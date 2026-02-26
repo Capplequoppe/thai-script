@@ -1307,7 +1307,7 @@ export interface Lesson {
 }
 
 export const lessons: Lesson[] = [
-  { number: 1, title: "Maaw maa, Naaw nuu, and Long a", focus: "Two low class consonants and one vowel", consonants: ["ม", "น"], vowels: ["า"], toneMarks: [], toneRulesIntroduced: [], specialRulesIntroduced: [], videoUrl: "/videos/TAME_L1_tpod101_video-h.webm" },
+  { number: 1, title: "Maaw maa, Naaw nuu, and Long a", focus: "Two low class consonants and one vowel", consonants: ["ม", "น"], vowels: ["า"], toneMarks: [], toneRulesIntroduced: [], specialRulesIntroduced: [], videoUrl: "/thai-script/videos/TAME_L1_tpod101_video-h.webm" },
   { number: 2, title: "Ngaaw nguu, Yaaw yak, Waaw waaen, and Tone Rules", focus: "Three low class consonants and first tone rule", consonants: ["ง", "ย", "ว"], vowels: [], toneMarks: [], toneRulesIntroduced: ["low-live"], specialRulesIntroduced: ["live-endings"] },
   { number: 3, title: "Gaaw gai, Daaw dek, Baaw baimai, and Long i", focus: "Three mid class consonants, dead endings, and long i vowel", consonants: ["ก", "ด", "บ"], vowels: [" ี"], toneMarks: [], toneRulesIntroduced: ["mid-live"], specialRulesIntroduced: ["dead-endings"] },
   { number: 4, title: "Chaaw chaang, Saaw soo, Short a, and Short i", focus: "Two low class consonants, two short vowels, and high tone rule", consonants: ["ช", "ซ"], vowels: ["ะ", "ั", " ิ"], toneMarks: [], toneRulesIntroduced: ["low-dead-short"], specialRulesIntroduced: ["mai-han-akat"] },
