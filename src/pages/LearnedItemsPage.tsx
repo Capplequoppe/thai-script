@@ -1,9 +1,50 @@
 import { useState, useMemo } from "react";
 import { useApp } from "../hooks/useApp";
 import { ConsonantCard, VowelCard, ToneMarkCard } from "../components/SymbolCard";
-import { ConsonantSummary, VowelSummary, ToneMarkSummary } from "../learning-service";
+import { ConsonantSummary, VowelSummary, ToneMarkSummary, LessonSummary } from "../learning-service";
 
-type Tab = "consonants" | "vowels" | "toneMarks";
+type Tab = "consonants" | "vowels" | "toneMarks" | "videos";
+
+function isEmbedUrl(url: string): boolean {
+  return url.includes("youtube.com") || url.includes("youtu.be") || url.includes("vimeo.com");
+}
+
+function VideoPlayer({ lesson, onBack }: { lesson: LessonSummary; onBack: () => void }) {
+  const url = lesson.videoUrl!;
+  return (
+    <div className="space-y-4">
+      <button
+        onClick={onBack}
+        className="text-sm text-indigo-600 dark:text-indigo-400 hover:underline"
+      >
+        &larr; Back to list
+      </button>
+      <h2 className="text-lg font-bold">
+        Lesson {lesson.lessonNumber}: {lesson.title}
+      </h2>
+      <div className="relative w-full aspect-video rounded-xl overflow-hidden bg-black">
+        {isEmbedUrl(url) ? (
+          <iframe
+            src={url}
+            title={lesson.title}
+            className="absolute inset-0 w-full h-full"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+          />
+        ) : (
+          <video
+            src={url}
+            title={lesson.title}
+            className="absolute inset-0 w-full h-full"
+            controls
+            preload="metadata"
+          />
+        )}
+      </div>
+      <p className="text-sm text-gray-500">{lesson.focus}</p>
+    </div>
+  );
+}
 
 export function LearnedItemsPage() {
   const { state, getLessonSummary } = useApp();
@@ -11,25 +52,30 @@ export function LearnedItemsPage() {
   const [selectedIdx, setSelectedIdx] = useState<number | null>(null);
 
   // Collect all learned items across completed lessons
-  const { consonants, vowels, toneMarks } = useMemo(() => {
+  const { consonants, vowels, toneMarks, videos } = useMemo(() => {
     const c: ConsonantSummary[] = [];
     const v: VowelSummary[] = [];
     const t: ToneMarkSummary[] = [];
+    const vids: LessonSummary[] = [];
 
     for (const lessonNum of [...state.completedLessons].sort((a, b) => a - b)) {
       const summary = getLessonSummary(lessonNum);
       c.push(...summary.consonants);
       v.push(...summary.vowels);
       t.push(...summary.toneMarks);
+      if (summary.videoUrl) {
+        vids.push(summary);
+      }
     }
 
-    return { consonants: c, vowels: v, toneMarks: t };
+    return { consonants: c, vowels: v, toneMarks: t, videos: vids };
   }, [state.completedLessons, getLessonSummary]);
 
   const tabs: { key: Tab; label: string; count: number }[] = [
     { key: "consonants", label: "Consonants", count: consonants.length },
     { key: "vowels", label: "Vowels", count: vowels.length },
     { key: "toneMarks", label: "Tone Marks", count: toneMarks.length },
+    { key: "videos", label: "Videos", count: videos.length },
   ];
 
   const total = consonants.length + vowels.length + toneMarks.length;
@@ -66,7 +112,7 @@ export function LearnedItemsPage() {
       </div>
 
       {/* Detail view */}
-      {selectedIdx !== null && (
+      {selectedIdx !== null && tab !== "videos" && (
         <div className="border border-gray-200 dark:border-gray-800 rounded-xl p-4">
           <button
             onClick={() => setSelectedIdx(null)}
@@ -144,6 +190,30 @@ export function LearnedItemsPage() {
             </button>
           ))}
         </div>
+      )}
+
+      {tab === "videos" && selectedIdx === null && (
+        <div className="space-y-3">
+          {videos.map((lesson, i) => (
+            <button
+              key={lesson.lessonNumber}
+              onClick={() => setSelectedIdx(i)}
+              className="w-full flex items-center gap-4 p-4 rounded-xl bg-gray-50 dark:bg-gray-900 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors text-left"
+            >
+              <div className="flex-shrink-0 w-12 h-12 bg-indigo-100 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400 rounded-xl flex items-center justify-center font-bold text-lg">
+                {lesson.lessonNumber}
+              </div>
+              <div className="min-w-0">
+                <div className="font-semibold truncate">{lesson.title}</div>
+                <div className="text-sm text-gray-500 truncate">{lesson.focus}</div>
+              </div>
+            </button>
+          ))}
+        </div>
+      )}
+
+      {tab === "videos" && selectedIdx !== null && videos[selectedIdx] && (
+        <VideoPlayer lesson={videos[selectedIdx]} onBack={() => setSelectedIdx(null)} />
       )}
     </div>
   );
