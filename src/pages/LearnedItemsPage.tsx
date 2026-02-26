@@ -1,0 +1,150 @@
+import { useState, useMemo } from "react";
+import { useApp } from "../hooks/useApp";
+import { ConsonantCard, VowelCard, ToneMarkCard } from "../components/SymbolCard";
+import { ConsonantSummary, VowelSummary, ToneMarkSummary } from "../learning-service";
+
+type Tab = "consonants" | "vowels" | "toneMarks";
+
+export function LearnedItemsPage() {
+  const { state, getLessonSummary } = useApp();
+  const [tab, setTab] = useState<Tab>("consonants");
+  const [selectedIdx, setSelectedIdx] = useState<number | null>(null);
+
+  // Collect all learned items across completed lessons
+  const { consonants, vowels, toneMarks } = useMemo(() => {
+    const c: ConsonantSummary[] = [];
+    const v: VowelSummary[] = [];
+    const t: ToneMarkSummary[] = [];
+
+    for (const lessonNum of [...state.completedLessons].sort((a, b) => a - b)) {
+      const summary = getLessonSummary(lessonNum);
+      c.push(...summary.consonants);
+      v.push(...summary.vowels);
+      t.push(...summary.toneMarks);
+    }
+
+    return { consonants: c, vowels: v, toneMarks: t };
+  }, [state.completedLessons, getLessonSummary]);
+
+  const tabs: { key: Tab; label: string; count: number }[] = [
+    { key: "consonants", label: "Consonants", count: consonants.length },
+    { key: "vowels", label: "Vowels", count: vowels.length },
+    { key: "toneMarks", label: "Tone Marks", count: toneMarks.length },
+  ];
+
+  const total = consonants.length + vowels.length + toneMarks.length;
+
+  if (total === 0) {
+    return (
+      <div className="text-center py-16 space-y-4">
+        <span className="text-6xl">📚</span>
+        <h1 className="text-2xl font-bold">No items learned yet</h1>
+        <p className="text-gray-500">Complete a lesson to see your learned symbols here.</p>
+      </div>
+    );
+  }
+
+  return (
+    <div className="space-y-6 py-4">
+      <h1 className="text-2xl font-bold">Learned Items</h1>
+
+      {/* Tabs */}
+      <div className="flex gap-1 bg-gray-100 dark:bg-gray-900 rounded-xl p-1">
+        {tabs.map(({ key, label, count }) => (
+          <button
+            key={key}
+            onClick={() => { setTab(key); setSelectedIdx(null); }}
+            className={`flex-1 py-2 px-3 rounded-lg text-sm font-medium transition-colors ${
+              tab === key
+                ? "bg-white dark:bg-gray-800 shadow-sm"
+                : "text-gray-500 hover:text-gray-700 dark:hover:text-gray-300"
+            }`}
+          >
+            {label} <span className="text-xs text-gray-400">({count})</span>
+          </button>
+        ))}
+      </div>
+
+      {/* Detail view */}
+      {selectedIdx !== null && (
+        <div className="border border-gray-200 dark:border-gray-800 rounded-xl p-4">
+          <button
+            onClick={() => setSelectedIdx(null)}
+            className="text-sm text-indigo-600 dark:text-indigo-400 mb-4 hover:underline"
+          >
+            ← Back to list
+          </button>
+          {tab === "consonants" && consonants[selectedIdx] && (
+            <ConsonantCard c={consonants[selectedIdx]} />
+          )}
+          {tab === "vowels" && vowels[selectedIdx] && (
+            <VowelCard v={vowels[selectedIdx]} />
+          )}
+          {tab === "toneMarks" && toneMarks[selectedIdx] && (
+            <ToneMarkCard t={toneMarks[selectedIdx]} />
+          )}
+        </div>
+      )}
+
+      {/* Grid view */}
+      {selectedIdx === null && tab === "consonants" && (
+        <div className="grid grid-cols-4 gap-2">
+          {consonants.map((c, i) => (
+            <button
+              key={c.character}
+              onClick={() => setSelectedIdx(i)}
+              className="flex flex-col items-center p-3 rounded-xl bg-gray-50 dark:bg-gray-900 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+            >
+              <span className="thai text-4xl">{c.character}</span>
+              <span className="text-[10px] text-gray-500 mt-1 truncate w-full text-center">{c.nameRomanized}</span>
+              <span className={`text-[10px] mt-0.5 px-1.5 rounded capitalize ${
+                c.classType === "low" ? "bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400"
+                  : c.classType === "mid" ? "bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400"
+                    : "bg-purple-100 text-purple-700 dark:bg-purple-900/30 dark:text-purple-400"
+              }`}>
+                {c.classType}
+              </span>
+            </button>
+          ))}
+        </div>
+      )}
+
+      {selectedIdx === null && tab === "vowels" && (
+        <div className="grid grid-cols-4 gap-2">
+          {vowels.map((v, i) => (
+            <button
+              key={v.character}
+              onClick={() => setSelectedIdx(i)}
+              className="flex flex-col items-center p-3 rounded-xl bg-gray-50 dark:bg-gray-900 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+            >
+              <span className="thai text-4xl">{v.character}</span>
+              <span className="text-[10px] text-gray-500 mt-1">{v.name}</span>
+              <span className={`text-[10px] mt-0.5 px-1.5 rounded ${
+                v.length === "long"
+                  ? "bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400"
+                  : "bg-orange-100 text-orange-700 dark:bg-orange-900/30 dark:text-orange-400"
+              }`}>
+                {v.length}
+              </span>
+            </button>
+          ))}
+        </div>
+      )}
+
+      {selectedIdx === null && tab === "toneMarks" && (
+        <div className="grid grid-cols-4 gap-2">
+          {toneMarks.map((t, i) => (
+            <button
+              key={t.character}
+              onClick={() => setSelectedIdx(i)}
+              className="flex flex-col items-center p-3 rounded-xl bg-gray-50 dark:bg-gray-900 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+            >
+              <span className="thai text-4xl">{t.character}</span>
+              <span className="text-[10px] text-gray-500 mt-1">{t.name}</span>
+            </button>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
