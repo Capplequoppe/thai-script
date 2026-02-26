@@ -530,14 +530,14 @@ const consonants: ThaiConsonant[] = [
   // === Lesson 4: ช, ซ ===
   ThaiConsonant.fromPlain({
     character: "ช", name: "ช ช้าง", nameRomanized: "chaaw chaang", nameMeaning: "elephant",
-    classType: ThaiSymbolClass.Low, hasDeadEnding: false, isAspirated: true,
+    classType: ThaiSymbolClass.Low, hasDeadEnding: true, isAspirated: true,
     initialSound: "ch (like CH in 'China')", finalSound: "T-stop",
     priority: 9, lesson: 4,
     mnemonic: "Clockwise head, then small curve and line down like a question mark, line goes right and back up, with a little tail sticking out to upper right. Think of an elephant -- ช has a tail (trunk) sticking out at the top right.",
   }),
   ThaiConsonant.fromPlain({
     character: "ซ", name: "ซ โซ่", nameRomanized: "saaw soo", nameMeaning: "chain",
-    classType: ThaiSymbolClass.Low, hasDeadEnding: false, isAspirated: false,
+    classType: ThaiSymbolClass.Low, hasDeadEnding: true, isAspirated: false,
     initialSound: "s (like S in 'sun')", finalSound: "T-stop",
     priority: 10, lesson: 4,
     mnemonic: "Looks similar to ช (cho chaang) but does NOT have the tail sticking out on top. Think: a chain (โซ่) has no tail. Both make T-stop when final.",
@@ -546,14 +546,14 @@ const consonants: ThaiConsonant[] = [
   // === Lesson 5: พ, ฟ ===
   ThaiConsonant.fromPlain({
     character: "พ", name: "พ พาน", nameRomanized: "phaaw phaan", nameMeaning: "offering tray",
-    classType: ThaiSymbolClass.Low, hasDeadEnding: false, isAspirated: true,
+    classType: ThaiSymbolClass.Low, hasDeadEnding: true, isAspirated: true,
     initialSound: "ph (aspirated P, like P in 'panda')", finalSound: "P-stop",
     priority: 11, lesson: 5,
     mnemonic: "Looks like the letter W or an upside down M. Clockwise head, then down-up-down-up. The outside lines are straight, inside lines slanted. Think of a W-shaped Pedestal for offerings. Aspirated means air comes out when you say it.",
   }),
   ThaiConsonant.fromPlain({
     character: "ฟ", name: "ฟ ฟัน", nameRomanized: "faaw fan", nameMeaning: "tooth",
-    classType: ThaiSymbolClass.Low, hasDeadEnding: false, isAspirated: false,
+    classType: ThaiSymbolClass.Low, hasDeadEnding: true, isAspirated: false,
     initialSound: "f (like F in 'family')", finalSound: "P-stop",
     priority: 12, lesson: 5,
     mnemonic: "Similar to พ (pho phaan) but the LAST line sticks out HIGHER than the rest. Think: teeth (ฟัน) stick up. Both พ and ฟ have clockwise heads (heads stick outside the letter).",
@@ -562,7 +562,7 @@ const consonants: ThaiConsonant[] = [
   // === Lesson 6: ค ===
   ThaiConsonant.fromPlain({
     character: "ค", name: "ค ควาย", nameRomanized: "khaaw khwaai", nameMeaning: "water buffalo",
-    classType: ThaiSymbolClass.Low, hasDeadEnding: false, isAspirated: true,
+    classType: ThaiSymbolClass.Low, hasDeadEnding: true, isAspirated: true,
     initialSound: "kh (like K in 'kite' or C in 'cup')", finalSound: "K-stop",
     priority: 13, lesson: 6,
     mnemonic: "Counter-clockwise head, short line down-left, then reverse direction with an arch left-to-right. Don't confuse with ด: ค has counter-clockwise head, ด has clockwise head. ค makes the same K-stop as ก when final.",
@@ -571,7 +571,7 @@ const consonants: ThaiConsonant[] = [
   // === Lesson 7: ท, ฮ ===
   ThaiConsonant.fromPlain({
     character: "ท", name: "ท ทหาร", nameRomanized: "thaaw thahaan", nameMeaning: "soldier",
-    classType: ThaiSymbolClass.Low, hasDeadEnding: false, isAspirated: true,
+    classType: ThaiSymbolClass.Low, hasDeadEnding: true, isAspirated: true,
     initialSound: "th (aspirated T, like T in 'top' with puff of air)", finalSound: "T-stop",
     priority: 14, lesson: 7,
     mnemonic: "Clockwise head, line straight down, then arch left to right. Looks like a hill -- think of a soldier standing on top of a hill. Aspirated T means you feel a puff of air.",
@@ -635,14 +635,14 @@ const consonants: ThaiConsonant[] = [
   // === Lesson 12: ข, ฉ (High class) ===
   ThaiConsonant.fromPlain({
     character: "ข", name: "ข ไข่", nameRomanized: "khaaw khai", nameMeaning: "egg",
-    classType: ThaiSymbolClass.High, hasDeadEnding: false, isAspirated: true,
+    classType: ThaiSymbolClass.High, hasDeadEnding: true, isAspirated: true,
     initialSound: "kh (same sound as ค, but high class)", finalSound: "K-stop",
     priority: 22, lesson: 12,
     mnemonic: "Looks almost the same as ช (cho chaang) but WITHOUT the tail sticking out on top. Remember: eggs don't have tails. Same sound as ค but different class -- ข is high, ค is low.",
   }),
   ThaiConsonant.fromPlain({
     character: "ฉ", name: "ฉ ฉิ่ง", nameRomanized: "chaaw ching", nameMeaning: "cymbals",
-    classType: ThaiSymbolClass.High, hasDeadEnding: false, isAspirated: true,
+    classType: ThaiSymbolClass.High, hasDeadEnding: true, isAspirated: true,
     initialSound: "ch (same sound as ช, but high class)", finalSound: "T-stop",
     priority: 23, lesson: 12,
     mnemonic: "Like a short letter น with a tail on top. Same sound as ช but different class -- ฉ is high, ช is low.",
@@ -651,21 +651,21 @@ const consonants: ThaiConsonant[] = [
   // === Lesson 13: ศ, ษ, ส (High class, all make 's' sound) ===
   ThaiConsonant.fromPlain({
     character: "ศ", name: "ศ ศาลา", nameRomanized: "saaw saalaa", nameMeaning: "pavilion",
-    classType: ThaiSymbolClass.High, hasDeadEnding: false, isAspirated: false,
+    classType: ThaiSymbolClass.High, hasDeadEnding: true, isAspirated: false,
     initialSound: "s", finalSound: "T-stop",
     priority: 24, lesson: 13,
     mnemonic: "Looks like ค with an extra line. One of three high-class S consonants. Sometimes called ศอคอ ศาลา.",
   }),
   ThaiConsonant.fromPlain({
     character: "ษ", name: "ษ ฤๅษี", nameRomanized: "saaw ruuesii", nameMeaning: "hermit",
-    classType: ThaiSymbolClass.High, hasDeadEnding: false, isAspirated: false,
+    classType: ThaiSymbolClass.High, hasDeadEnding: true, isAspirated: false,
     initialSound: "s", finalSound: "T-stop",
     priority: 25, lesson: 13,
     mnemonic: "Looks like บ with an extra line. One of three high-class S consonants.",
   }),
   ThaiConsonant.fromPlain({
     character: "ส", name: "ส เสือ", nameRomanized: "saaw suuea", nameMeaning: "tiger",
-    classType: ThaiSymbolClass.High, hasDeadEnding: false, isAspirated: false,
+    classType: ThaiSymbolClass.High, hasDeadEnding: true, isAspirated: false,
     initialSound: "s", finalSound: "T-stop",
     priority: 26, lesson: 13,
     mnemonic: "Looks like ล with an extra line. The MOST COMMON of the three S-consonants (ศ, ษ, ส).",
@@ -674,14 +674,14 @@ const consonants: ThaiConsonant[] = [
   // === Lesson 14: ผ, ฝ (High class) ===
   ThaiConsonant.fromPlain({
     character: "ผ", name: "ผ ผึ้ง", nameRomanized: "phaaw phueng", nameMeaning: "bee",
-    classType: ThaiSymbolClass.High, hasDeadEnding: false, isAspirated: true,
+    classType: ThaiSymbolClass.High, hasDeadEnding: true, isAspirated: true,
     initialSound: "ph (like P in 'pig')", finalSound: "P-stop",
     priority: 27, lesson: 14,
     mnemonic: "Looks like พ but with counter-clockwise head (head stays INSIDE the letter). Key distinction: ผ/ฝ = counter-clockwise heads (inside), พ/ฟ = clockwise heads (outside). Same 'ph' sound as พ but high class.",
   }),
   ThaiConsonant.fromPlain({
     character: "ฝ", name: "ฝ ฝา", nameRomanized: "faaw faa", nameMeaning: "lid/cover",
-    classType: ThaiSymbolClass.High, hasDeadEnding: false, isAspirated: false,
+    classType: ThaiSymbolClass.High, hasDeadEnding: true, isAspirated: false,
     initialSound: "f (like F in 'fan')", finalSound: "P-stop",
     priority: 28, lesson: 14,
     mnemonic: "Looks like ฟ but with counter-clockwise head (head stays INSIDE the letter). Same 'f' sound as ฟ but high class.",
@@ -690,7 +690,7 @@ const consonants: ThaiConsonant[] = [
   // === Lesson 15: ห (High class, class-changer) ===
   ThaiConsonant.fromPlain({
     character: "ห", name: "ห หีบ", nameRomanized: "haaw hiip", nameMeaning: "chest/trunk",
-    classType: ThaiSymbolClass.High, hasDeadEnding: false, isAspirated: false,
+    classType: ThaiSymbolClass.High, hasDeadEnding: true, isAspirated: false,
     initialSound: "h (like H in 'Hello')", finalSound: "not used as final consonant",
     priority: 29, lesson: 15,
     mnemonic: "Clockwise head at top, line down, diagonal upper right, loop, straight down right side. Special power: when placed before a low class consonant as a silent prefix (ห นำ), it makes that consonant follow HIGH class tone rules. Example: หมี = bear (rising tone).",
@@ -699,14 +699,14 @@ const consonants: ThaiConsonant[] = [
   // === Lesson 16: ภ, ธ, ณ, ญ (Low class) ===
   ThaiConsonant.fromPlain({
     character: "ภ", name: "ภ สำเภา", nameRomanized: "phaaw samphao", nameMeaning: "Chinese junk ship",
-    classType: ThaiSymbolClass.Low, hasDeadEnding: false, isAspirated: true,
+    classType: ThaiSymbolClass.Low, hasDeadEnding: true, isAspirated: true,
     initialSound: "ph (like P in 'pink')", finalSound: "P-stop",
     priority: 30, lesson: 16,
     mnemonic: "Contains shape of ก but with a counter-clockwise head sticking out to the LEFT. Distinguishes from ถ which has a clockwise head inside.",
   }),
   ThaiConsonant.fromPlain({
     character: "ธ", name: "ธ ธง", nameRomanized: "thaaw thong", nameMeaning: "flag",
-    classType: ThaiSymbolClass.Low, hasDeadEnding: false, isAspirated: true,
+    classType: ThaiSymbolClass.Low, hasDeadEnding: true, isAspirated: true,
     initialSound: "th (aspirated T, like T in 'tennis')", finalSound: "T-stop",
     priority: 31, lesson: 16,
     mnemonic: "No head -- one of only 2 Thai consonants without a head circle (ก and ธ). Upper right portion similar to ร. Short vertical line on left turns to L shape, top drawn like ร.",
@@ -729,14 +729,14 @@ const consonants: ThaiConsonant[] = [
   // === Lesson 19: ถ, ฐ, ฎ, ฏ ===
   ThaiConsonant.fromPlain({
     character: "ถ", name: "ถ ถุง", nameRomanized: "thaaw thung", nameMeaning: "bag/sack",
-    classType: ThaiSymbolClass.High, hasDeadEnding: false, isAspirated: true,
+    classType: ThaiSymbolClass.High, hasDeadEnding: true, isAspirated: true,
     initialSound: "th (like T in 'top')", finalSound: "T-stop",
     priority: 34, lesson: 19,
     mnemonic: "Contains shape of ก but with a clockwise head at bottom (head ends up INSIDE the letter). ถุง means 'bag' -- imagine the head is fruit carried inside a bag. Distinguishes from ภ which has head sticking out to the left.",
   }),
   ThaiConsonant.fromPlain({
     character: "ฐ", name: "ฐ ฐาน", nameRomanized: "thaaw thaan", nameMeaning: "base/platform",
-    classType: ThaiSymbolClass.High, hasDeadEnding: false, isAspirated: true,
+    classType: ThaiSymbolClass.High, hasDeadEnding: true, isAspirated: true,
     initialSound: "th (same as ถ)", finalSound: "T-stop",
     priority: 35, lesson: 19,
     mnemonic: "One of the most difficult letters. Top part like combination of จ and ร. Bottom has extra line with clockwise head, line goes left with bump and curl.",
@@ -759,14 +759,14 @@ const consonants: ThaiConsonant[] = [
   // === Lesson 20: ฑ, ฒ ===
   ThaiConsonant.fromPlain({
     character: "ฑ", name: "ฑ มณโฑ", nameRomanized: "thaaw monthoo", nameMeaning: "Montho (literary character)",
-    classType: ThaiSymbolClass.Low, hasDeadEnding: false, isAspirated: false,
+    classType: ThaiSymbolClass.Low, hasDeadEnding: true, isAspirated: false,
     initialSound: "th (usually same as ท, sometimes d)", finalSound: "T-stop",
     priority: 38, lesson: 20,
     mnemonic: "Looks almost identical to ท but with a little bump after the head before the first vertical line. Since ฑ and ท make the same sound, remembering one helps remember the other.",
   }),
   ThaiConsonant.fromPlain({
     character: "ฒ", name: "ฒ ผู้เฒ่า", nameRomanized: "thaaw phuuthao", nameMeaning: "elder/old man",
-    classType: ThaiSymbolClass.Low, hasDeadEnding: false, isAspirated: false,
+    classType: ThaiSymbolClass.Low, hasDeadEnding: true, isAspirated: false,
     initialSound: "th (same as ฑ and ท)", finalSound: "T-stop",
     priority: 39, lesson: 20,
     mnemonic: "Looks like a combination of ต and ม. Start with clockwise head, draw shape of ต, blend into shape of ม.",
@@ -782,7 +782,7 @@ const consonants: ThaiConsonant[] = [
   }),
   ThaiConsonant.fromPlain({
     character: "ฆ", name: "ฆ ระฆัง", nameRomanized: "khaaw rakhang", nameMeaning: "bell",
-    classType: ThaiSymbolClass.Low, hasDeadEnding: false, isAspirated: true,
+    classType: ThaiSymbolClass.Low, hasDeadEnding: true, isAspirated: true,
     initialSound: "kh (same as ค and ข)", finalSound: "K-stop",
     priority: 41, lesson: 21,
     mnemonic: "Like ม but with an extra curved line with a bump after the head. Same 'kh' sound as ค. These are the last 2 low class consonants.",
@@ -791,21 +791,21 @@ const consonants: ThaiConsonant[] = [
   // === Lesson 22: ฃ, ฅ (Obsolete) and ฌ ===
   ThaiConsonant.fromPlain({
     character: "ฃ", name: "ฃ ขวด", nameRomanized: "khaaw khuat", nameMeaning: "bottle",
-    classType: ThaiSymbolClass.High, hasDeadEnding: false, isAspirated: true,
+    classType: ThaiSymbolClass.High, hasDeadEnding: true, isAspirated: true,
     initialSound: "kh (same as ข)", finalSound: "K-stop",
     priority: 42, lesson: 22,
     mnemonic: "OBSOLETE - not used in modern Thai. Like ข with an extra indentation on top. Even ขวด (bottle) is now spelled with ข.",
   }),
   ThaiConsonant.fromPlain({
     character: "ฅ", name: "ฅ คน", nameRomanized: "khaaw khon", nameMeaning: "person",
-    classType: ThaiSymbolClass.Low, hasDeadEnding: false, isAspirated: true,
+    classType: ThaiSymbolClass.Low, hasDeadEnding: true, isAspirated: true,
     initialSound: "kh (same as ค)", finalSound: "K-stop",
     priority: 43, lesson: 22,
     mnemonic: "OBSOLETE - not used in modern Thai. Like ค with an extra indentation on top. Even คน (person) is now spelled with ค.",
   }),
   ThaiConsonant.fromPlain({
     character: "ฌ", name: "ฌ เฌอ", nameRomanized: "chaaw chooe", nameMeaning: "tree",
-    classType: ThaiSymbolClass.Low, hasDeadEnding: false, isAspirated: true,
+    classType: ThaiSymbolClass.Low, hasDeadEnding: true, isAspirated: true,
     initialSound: "ch (same as ช)", finalSound: "T-stop",
     priority: 44, lesson: 22,
     mnemonic: "Very rare. Same sound as ช. Few words use it, mostly from Cambodian, Balinese, and Sanskrit origins. Examples: ฌาน (meditative absorption), เพชฌฆาต (executioner).",
