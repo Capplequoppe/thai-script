@@ -1,10 +1,14 @@
 import { INITIAL_LEARNER_STATE } from "./types";
 import type { LearnerState } from "./types";
+import { mergeLearnerStates } from "./merge-service";
+import { validateLearnerState } from "./validation";
 
 export interface IStorage {
   load(): LearnerState;
   save(state: LearnerState): void;
   reset(): void;
+  exportData(): string;
+  importData(json: string): void;
 }
 
 export class InMemoryStorage implements IStorage {
@@ -20,6 +24,18 @@ export class InMemoryStorage implements IStorage {
 
   reset(): void {
     this.state = structuredClone(INITIAL_LEARNER_STATE);
+  }
+
+  exportData(): string {
+    return JSON.stringify(this.state);
+  }
+
+  importData(json: string): void {
+    const parsed: unknown = JSON.parse(json);
+    if (!validateLearnerState(parsed)) {
+      throw new Error("Invalid progress file format");
+    }
+    this.state = mergeLearnerStates(this.state, parsed as LearnerState);
   }
 }
 
@@ -47,5 +63,18 @@ export class LocalStorageAdapter implements IStorage {
   reset(): void {
     if (typeof localStorage === "undefined") return;
     localStorage.removeItem(this.key);
+  }
+
+  exportData(): string {
+    return JSON.stringify(this.load());
+  }
+
+  importData(json: string): void {
+    const parsed: unknown = JSON.parse(json);
+    if (!validateLearnerState(parsed)) {
+      throw new Error("Invalid progress file format");
+    }
+    const merged = mergeLearnerStates(this.load(), parsed as LearnerState);
+    this.save(merged);
   }
 }

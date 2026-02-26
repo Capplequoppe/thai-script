@@ -45,4 +45,6 @@ export interface IStorage {
   load(): LearnerState;
   save(state: LearnerState): void;
   reset(): void;
+  exportData(): string;
+  importData(json: string): void;
 }

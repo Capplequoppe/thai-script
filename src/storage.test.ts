@@ -43,3 +43,35 @@ describe("InMemoryStorage", () => {
     expect(reloaded.completedLessons).toEqual([]);
   });
 });
+
+describe("InMemoryStorage exportData/importData", () => {
+  let storage: InMemoryStorage;
+
+  beforeEach(() => {
+    storage = new InMemoryStorage();
+  });
+
+  it("exportData returns JSON of current state", () => {
+    const state: LearnerState = { ...INITIAL_LEARNER_STATE, completedLessons: [1, 2] };
+    storage.save(state);
+    const json = storage.exportData();
+    const parsed = JSON.parse(json);
+    expect(parsed.completedLessons).toEqual([1, 2]);
+  });
+
+  it("importData merges with existing state", () => {
+    storage.save({ ...INITIAL_LEARNER_STATE, completedLessons: [1] });
+    const incoming: LearnerState = { ...INITIAL_LEARNER_STATE, completedLessons: [2, 3] };
+    storage.importData(JSON.stringify(incoming));
+    const loaded = storage.load();
+    expect(loaded.completedLessons.sort()).toEqual([1, 2, 3]);
+  });
+
+  it("importData throws on invalid JSON", () => {
+    expect(() => storage.importData("not json")).toThrow();
+  });
+
+  it("importData throws on invalid state shape", () => {
+    expect(() => storage.importData(JSON.stringify({ bad: true }))).toThrow();
+  });
+});
