@@ -8,3 +8,9 @@ createRoot(document.getElementById("root")!).render(
     <App />
   </StrictMode>
 );
+
+if ("serviceWorker" in navigator) {
+  navigator.serviceWorker.register("/thai-script/sw.js", {
+    scope: "/thai-script/",
+  });
+}
