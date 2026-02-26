@@ -1,6 +1,6 @@
-import { describe, it, expect } from "vitest";
-import { validateLearnerState } from "./validation";
+import { describe, expect, it } from "vitest";
 import { INITIAL_LEARNER_STATE } from "./types";
+import { validateLearnerState } from "./validation";
 
 describe("validateLearnerState", () => {
 	it("accepts a valid LearnerState", () => {
@@ -21,7 +21,12 @@ describe("validateLearnerState", () => {
 	});
 
 	it("rejects non-array completedLessons", () => {
-		expect(validateLearnerState({ ...INITIAL_LEARNER_STATE, completedLessons: "bad" })).toBe(false);
+		expect(
+			validateLearnerState({
+				...INITIAL_LEARNER_STATE,
+				completedLessons: "bad",
+			}),
+		).toBe(false);
 	});
 
 	it("rejects missing cards", () => {
@@ -30,7 +35,9 @@ describe("validateLearnerState", () => {
 	});
 
 	it("rejects non-object cards", () => {
-		expect(validateLearnerState({ ...INITIAL_LEARNER_STATE, cards: [] })).toBe(false);
+		expect(validateLearnerState({ ...INITIAL_LEARNER_STATE, cards: [] })).toBe(
+			false,
+		);
 	});
 
 	it("rejects missing sessionHistory", () => {
@@ -39,6 +46,8 @@ describe("validateLearnerState", () => {
 	});
 
 	it("rejects non-array sessionHistory", () => {
-		expect(validateLearnerState({ ...INITIAL_LEARNER_STATE, sessionHistory: {} })).toBe(false);
+		expect(
+			validateLearnerState({ ...INITIAL_LEARNER_STATE, sessionHistory: {} }),
+		).toBe(false);
 	});
 });
