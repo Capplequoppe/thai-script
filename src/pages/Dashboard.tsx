@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router";
 import { useApp } from "../hooks/useApp";
+import { NotificationBanner } from "../components/NotificationBanner";
 
 export function Dashboard() {
   const { state, getNextLesson, getNumDueCards, getNextReviewDate } = useApp();
@@ -17,6 +18,8 @@ export function Dashboard() {
         <h1 className="text-3xl font-bold">Thai Script</h1>
         <p className="text-gray-500 dark:text-gray-400 mt-1">Learn the Thai alphabet with spaced repetition</p>
       </div>
+
+      <NotificationBanner />
 
       {/* Stats */}
       <div className="grid grid-cols-3 gap-4 text-center">

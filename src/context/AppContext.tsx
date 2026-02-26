@@ -1,13 +1,27 @@
-import { createContext, useCallback, useMemo, useState, type ReactNode } from "react";
+import { createContext, useCallback, useEffect, useMemo, useState, type ReactNode } from "react";
 import { LearningService, LessonInfo, LessonSummary } from "../learning-service";
 import { ReviewService, ActiveReviewSession } from "../review-service";
 import { LocalStorageAdapter } from "../storage";
 import { LearnerState, PropertyCard, RecallRating, SessionSummary } from "../types";
-
+import { NotificationScheduler } from "../notification-scheduler";
 
 const storage = new LocalStorageAdapter();
 const learningService = new LearningService(storage);
 const reviewService = new ReviewService(storage);
+const notificationScheduler = new NotificationScheduler();
+
+function scheduleNextNotification() {
+  if (notificationScheduler.permission !== "granted") return;
+  const nextDate = reviewService.getNextReviewDate();
+  const dueCount = reviewService.getNumDueCards();
+  if (dueCount > 0 && nextDate) {
+    notificationScheduler.scheduleNext(nextDate, dueCount);
+  } else if (nextDate) {
+    notificationScheduler.scheduleNext(nextDate, 1);
+  } else {
+    notificationScheduler.cancel();
+  }
+}
 
 export interface AppContextValue {
   state: LearnerState;
@@ -41,10 +55,24 @@ export function AppProvider({ children }: { children: ReactNode }) {
     <T,>(fn: () => T): T => {
       const result = fn();
       refresh();
+      scheduleNextNotification();
       return result;
     },
     [refresh]
   );
+
+  useEffect(() => {
+    scheduleNextNotification();
+
+    const handleVisibility = () => {
+      if (document.visibilityState === "visible") {
+        refresh();
+        scheduleNextNotification();
+      }
+    };
+    document.addEventListener("visibilitychange", handleVisibility);
+    return () => document.removeEventListener("visibilitychange", handleVisibility);
+  }, [refresh]);
 
   const value = useMemo<AppContextValue>(
     () => ({
