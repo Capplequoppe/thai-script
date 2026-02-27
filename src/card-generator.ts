@@ -142,6 +142,7 @@ function generateConsonantCards(c: ThaiConsonant): PropertyCard[] {
 	const recognition: PropertyCard = {
 		id: `${c.character}:recognition`,
 		symbolCharacter: c.character,
+		audioUrl: c.audioUrl,
 		property: "recognition" as ConsonantProperty,
 		question: `What is the name of this Thai consonant?`,
 		correctAnswer: c.nameRomanized,
@@ -153,8 +154,9 @@ function generateConsonantCards(c: ThaiConsonant): PropertyCard[] {
 	const classCard: PropertyCard = {
 		id: `${c.character}:class`,
 		symbolCharacter: c.character,
+		audioUrl: c.audioUrl,
 		property: "class" as ConsonantProperty,
-		question: `What class is this consonant (${c.nameRomanized})?`,
+		question: "What class is this consonant?",
 		correctAnswer: c.classType,
 		choices: pickChoices(c.classType, consonantClassPool),
 		srs: createSrsData(),
@@ -165,8 +167,9 @@ function generateConsonantCards(c: ThaiConsonant): PropertyCard[] {
 	const initialSound: PropertyCard = {
 		id: `${c.character}:initialSound`,
 		symbolCharacter: c.character,
+		audioUrl: c.audioUrl,
 		property: "initialSound" as ConsonantProperty,
-		question: `What is the initial sound of ${c.nameRomanized}?`,
+		question: "What is the initial sound of this consonant?",
 		correctAnswer: normalizedInitial,
 		choices: pickChoices(normalizedInitial, normalizedInitialSoundPool),
 		srs: createSrsData(),
@@ -177,8 +180,9 @@ function generateConsonantCards(c: ThaiConsonant): PropertyCard[] {
 	const finalSound: PropertyCard = {
 		id: `${c.character}:finalSound`,
 		symbolCharacter: c.character,
+		audioUrl: c.audioUrl,
 		property: "finalSound" as ConsonantProperty,
-		question: `What is the final sound of ${c.nameRomanized}?`,
+		question: "What is the final sound of this consonant?",
 		correctAnswer: normalizedFinal,
 		choices: pickChoices(normalizedFinal, normalizedFinalSoundPool),
 		srs: createSrsData(),
@@ -189,15 +193,32 @@ function generateConsonantCards(c: ThaiConsonant): PropertyCard[] {
 	const deadLive: PropertyCard = {
 		id: `${c.character}:deadLive`,
 		symbolCharacter: c.character,
+		audioUrl: c.audioUrl,
 		property: "deadLive" as ConsonantProperty,
-		question: `Does ${c.nameRomanized} have a dead or live ending?`,
+		question: "Does this consonant have a dead or live ending?",
 		correctAnswer: deadLiveAnswer,
 		choices: pickChoices(deadLiveAnswer, deadLivePool),
 		srs: createSrsData(),
 		lessonNumber: lesson,
 	};
 
-	return [recognition, classCard, initialSound, finalSound, deadLive];
+	const cards = [recognition, classCard, initialSound, finalSound, deadLive];
+
+	if (c.audioUrl) {
+		cards.push({
+			id: `${c.character}:audioRecognition`,
+			symbolCharacter: "",
+			audioUrl: c.audioUrl,
+			property: "audioRecognition" as ConsonantProperty,
+			question: "Listen to the audio. Which symbol is this?",
+			correctAnswer: c.character,
+			choices: pickChoices(c.character, consonantCharPool),
+			srs: createSrsData(),
+			lessonNumber: lesson,
+		});
+	}
+
+	return cards;
 }
 
 // ---------------------------------------------------------------------------
@@ -210,6 +231,7 @@ function generateVowelCards(v: ThaiVowel): PropertyCard[] {
 	const recognition: PropertyCard = {
 		id: `${v.character}:recognition`,
 		symbolCharacter: v.character,
+		audioUrl: v.audioUrl,
 		property: "recognition" as VowelProperty,
 		question: `What is the name of this Thai vowel?`,
 		correctAnswer: v.name,
@@ -224,8 +246,9 @@ function generateVowelCards(v: ThaiVowel): PropertyCard[] {
 	const lengthCard: PropertyCard = {
 		id: `${v.character}:length`,
 		symbolCharacter: v.character,
+		audioUrl: v.audioUrl,
 		property: "length" as VowelProperty,
-		question: `Is this vowel (${v.name}) short or long?`,
+		question: "Is this vowel short or long?",
 		correctAnswer: v.length,
 		choices: pickChoices(v.length, vowelLengthPool),
 		srs: createSrsData(),
@@ -235,15 +258,32 @@ function generateVowelCards(v: ThaiVowel): PropertyCard[] {
 	const positionCard: PropertyCard = {
 		id: `${v.character}:position`,
 		symbolCharacter: v.character,
+		audioUrl: v.audioUrl,
 		property: "position" as VowelProperty,
-		question: `Where is ${v.name} positioned relative to the consonant?`,
+		question: "Where is this vowel positioned relative to the consonant?",
 		correctAnswer: v.position,
 		choices: pickChoices(v.position, vowelPositionPool),
 		srs: createSrsData(),
 		lessonNumber: lesson,
 	};
 
-	return [recognition, lengthCard, positionCard];
+	const cards = [recognition, lengthCard, positionCard];
+
+	if (v.audioUrl) {
+		cards.push({
+			id: `${v.character}:audioRecognition`,
+			symbolCharacter: "",
+			audioUrl: v.audioUrl,
+			property: "audioRecognition" as VowelProperty,
+			question: "Listen to the audio. Which symbol is this?",
+			correctAnswer: v.character,
+			choices: pickChoices(v.character, vowelCharPool),
+			srs: createSrsData(),
+			lessonNumber: lesson,
+		});
+	}
+
+	return cards;
 }
 
 // ---------------------------------------------------------------------------
@@ -256,6 +296,7 @@ function generateToneMarkCards(t: ThaiToneMark): PropertyCard[] {
 	const recognition: PropertyCard = {
 		id: `${t.character}:recognition`,
 		symbolCharacter: t.character,
+		audioUrl: t.audioUrl,
 		property: "recognition" as ToneMarkProperty,
 		question: `What is the name of this tone mark?`,
 		correctAnswer: t.name,
@@ -278,8 +319,9 @@ function generateToneMarkCards(t: ThaiToneMark): PropertyCard[] {
 	const effectPerClass: PropertyCard = {
 		id: `${t.character}:effectPerClass`,
 		symbolCharacter: t.character,
+		audioUrl: t.audioUrl,
 		property: "effectPerClass" as ToneMarkProperty,
-		question: `What tones does ${t.character} (${t.name}) produce per consonant class?`,
+		question: "What tones does this tone mark produce per consonant class?",
 		correctAnswer: effects,
 		choices: pickChoices(
 			effects,
@@ -298,7 +340,23 @@ function generateToneMarkCards(t: ThaiToneMark): PropertyCard[] {
 		lessonNumber: lesson,
 	};
 
-	return [recognition, effectPerClass];
+	const cards = [recognition, effectPerClass];
+
+	if (t.audioUrl) {
+		cards.push({
+			id: `${t.character}:audioRecognition`,
+			symbolCharacter: "",
+			audioUrl: t.audioUrl,
+			property: "audioRecognition" as ToneMarkProperty,
+			question: "Listen to the audio. Which symbol is this?",
+			correctAnswer: t.character,
+			choices: pickChoices(t.character, toneMarkCharPool),
+			srs: createSrsData(),
+			lessonNumber: lesson,
+		});
+	}
+
+	return cards;
 }
 
 // ---------------------------------------------------------------------------

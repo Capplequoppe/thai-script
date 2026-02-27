@@ -29,9 +29,10 @@ export type ConsonantProperty =
 	| "class"
 	| "initialSound"
 	| "finalSound"
-	| "deadLive";
-export type VowelProperty = "recognition" | "length" | "position";
-export type ToneMarkProperty = "recognition" | "effectPerClass";
+	| "deadLive"
+	| "audioRecognition";
+export type VowelProperty = "recognition" | "length" | "position" | "audioRecognition";
+export type ToneMarkProperty = "recognition" | "effectPerClass" | "audioRecognition";
 export type PropertyType = ConsonantProperty | VowelProperty | ToneMarkProperty;
 
 export interface PropertyCard {

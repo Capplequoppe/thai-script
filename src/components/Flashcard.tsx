@@ -10,6 +10,8 @@ interface Props {
 export function Flashcard({ card, onRate }: Props) {
 	const [revealed, setRevealed] = useState(false);
 	const revealedAtRef = useRef(0);
+	const hideAudioHint =
+		card.property === "recognition" || card.property === "initialSound";
 
 	useEffect(() => {
 		setRevealed(false);
@@ -45,7 +47,7 @@ export function Flashcard({ card, onRate }: Props) {
 			{card.symbolCharacter && (
 				<div className="text-center">
 					<span className="thai text-8xl">{card.symbolCharacter}</span>
-					{card.audioUrl && (
+					{card.audioUrl && !hideAudioHint && (
 						<button
 							onClick={() => new Audio(card.audioUrl!).play()}
 							className="ml-3 inline-flex items-center justify-center w-10 h-10 rounded-full bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 text-gray-600 dark:text-gray-300 transition-colors align-middle"

@@ -16,6 +16,7 @@ export class ThaiSymbol extends LearnableItem {
 		public readonly character: string,
 		public readonly name: string,
 		public readonly mnemonic?: string,
+		public readonly audioUrl?: string,
 		priority?: number,
 		lesson?: number,
 	) {
@@ -25,16 +26,18 @@ export class ThaiSymbol extends LearnableItem {
 		character,
 		name,
 		mnemonic,
+		audioUrl,
 		priority,
 		lesson,
 	}: {
 		character: string;
 		name: string;
 		mnemonic?: string;
+		audioUrl?: string;
 		priority?: number;
 		lesson?: number;
 	}): ThaiSymbol {
-		return new ThaiSymbol(character, name, mnemonic, priority, lesson);
+		return new ThaiSymbol(character, name, mnemonic, audioUrl, priority, lesson);
 	}
 }
 
@@ -50,10 +53,11 @@ export class ThaiConsonant extends ThaiSymbol {
 		public readonly initialSound: string,
 		public readonly finalSound: string,
 		mnemonic?: string,
+		audioUrl?: string,
 		priority?: number,
 		lesson?: number,
 	) {
-		super(character, name, mnemonic, priority, lesson);
+		super(character, name, mnemonic, audioUrl, priority, lesson);
 	}
 	static fromPlain({
 		character,
@@ -66,6 +70,7 @@ export class ThaiConsonant extends ThaiSymbol {
 		initialSound,
 		finalSound,
 		mnemonic,
+		audioUrl,
 		priority,
 		lesson,
 	}: {
@@ -79,6 +84,7 @@ export class ThaiConsonant extends ThaiSymbol {
 		initialSound: string;
 		finalSound: string;
 		mnemonic?: string;
+		audioUrl?: string;
 		priority?: number;
 		lesson?: number;
 	}): ThaiConsonant {
@@ -93,6 +99,7 @@ export class ThaiConsonant extends ThaiSymbol {
 			initialSound,
 			finalSound,
 			mnemonic,
+			audioUrl,
 			priority,
 			lesson,
 		);
@@ -116,10 +123,11 @@ export class ThaiVowel extends ThaiSymbol {
 		public readonly sound: string,
 		public readonly position: VowelPosition,
 		mnemonic?: string,
+		audioUrl?: string,
 		priority?: number,
 		lesson?: number,
 	) {
-		super(character, name, mnemonic, priority, lesson);
+		super(character, name, mnemonic, audioUrl, priority, lesson);
 	}
 	static fromPlain({
 		character,
@@ -128,6 +136,7 @@ export class ThaiVowel extends ThaiSymbol {
 		sound,
 		position,
 		mnemonic,
+		audioUrl,
 		priority,
 		lesson,
 	}: {
@@ -137,6 +146,7 @@ export class ThaiVowel extends ThaiSymbol {
 		sound: string;
 		position: VowelPosition;
 		mnemonic?: string;
+		audioUrl?: string;
 		priority?: number;
 		lesson?: number;
 	}): ThaiVowel {
@@ -147,6 +157,7 @@ export class ThaiVowel extends ThaiSymbol {
 			sound,
 			position,
 			mnemonic,
+			audioUrl,
 			priority,
 			lesson,
 		);
@@ -161,10 +172,11 @@ export class ThaiToneMark extends ThaiSymbol {
 		public readonly highClassTone: ToneValue | null,
 		public readonly lowClassTone: ToneValue | null,
 		mnemonic?: string,
+		audioUrl?: string,
 		priority?: number,
 		lesson?: number,
 	) {
-		super(character, name, mnemonic, priority, lesson);
+		super(character, name, mnemonic, audioUrl, priority, lesson);
 	}
 	static fromPlain({
 		character,
@@ -173,6 +185,7 @@ export class ThaiToneMark extends ThaiSymbol {
 		highClassTone,
 		lowClassTone,
 		mnemonic,
+		audioUrl,
 		priority,
 		lesson,
 	}: {
@@ -182,6 +195,7 @@ export class ThaiToneMark extends ThaiSymbol {
 		highClassTone: ToneValue | null;
 		lowClassTone: ToneValue | null;
 		mnemonic?: string;
+		audioUrl?: string;
 		priority?: number;
 		lesson?: number;
 	}): ThaiToneMark {
@@ -192,6 +206,7 @@ export class ThaiToneMark extends ThaiSymbol {
 			highClassTone,
 			lowClassTone,
 			mnemonic,
+			audioUrl,
 			priority,
 			lesson,
 		);
@@ -573,6 +588,7 @@ const consonants: ThaiConsonant[] = [
 		isAspirated: false,
 		initialSound: "m",
 		finalSound: "m (live ending)",
+		audioUrl: "/thai-script/audio/consonant-mo-ma.mp3",
 		priority: 1,
 		lesson: 1,
 		mnemonic:
@@ -588,6 +604,7 @@ const consonants: ThaiConsonant[] = [
 		isAspirated: false,
 		initialSound: "n",
 		finalSound: "n (live ending)",
+		audioUrl: "/thai-script/audio/consonant-no-nu.mp3",
 		priority: 2,
 		lesson: 1,
 		mnemonic:
@@ -605,6 +622,7 @@ const consonants: ThaiConsonant[] = [
 		isAspirated: false,
 		initialSound: "ng (like end of 'sing')",
 		finalSound: "ng (live ending)",
+		audioUrl: "/thai-script/audio/consonant-ngo-ngu.mp3",
 		priority: 3,
 		lesson: 2,
 		mnemonic:
@@ -620,7 +638,8 @@ const consonants: ThaiConsonant[] = [
 		isAspirated: false,
 		initialSound: "y (like Y in 'yes')",
 		finalSound: "i (blends with vowel, like Y in 'boy')",
-		priority: 4,
+		audioUrl: "/thai-script/audio/consonant-yo-yak.mp3",
+		priority: 4,		
 		lesson: 2,
 		mnemonic:
 			"Counter-clockwise head continues into a half-circle, then another bump below, then cuts right and up at 90 degrees. ย is the ONLY Thai letter with two bumps on one side -- like a giant's big belly. ยักษ์ means 'giant'.",
@@ -635,6 +654,7 @@ const consonants: ThaiConsonant[] = [
 		isAspirated: false,
 		initialSound: "w (like W in 'water')",
 		finalSound: "o (blends with vowel, adds slight 'o' sound)",
+		audioUrl: "/thai-script/audio/consonant-wo-weng.mp3",
 		priority: 5,
 		lesson: 2,
 		mnemonic:
@@ -652,6 +672,7 @@ const consonants: ThaiConsonant[] = [
 		isAspirated: false,
 		initialSound: "g (hard G, unaspirated K)",
 		finalSound: "K-stop (close off air at back of throat)",
+		audioUrl: "/thai-script/audio/consonant-ko-kai.mp3",
 		priority: 6,
 		lesson: 3,
 		mnemonic:
@@ -667,6 +688,7 @@ const consonants: ThaiConsonant[] = [
 		isAspirated: false,
 		initialSound: "d (like D in 'diamond')",
 		finalSound: "T-stop (tongue touches near teeth, no air released)",
+		audioUrl: "/thai-script/audio/consonant-do-dek.mp3",
 		priority: 7,
 		lesson: 3,
 		mnemonic:
@@ -682,6 +704,7 @@ const consonants: ThaiConsonant[] = [
 		isAspirated: false,
 		initialSound: "b (like B in 'bucket')",
 		finalSound: "P-stop (close lips, no air released)",
+		audioUrl: "/thai-script/audio/consonant-bo-baimai.mp3",
 		priority: 8,
 		lesson: 3,
 		mnemonic:
@@ -699,6 +722,7 @@ const consonants: ThaiConsonant[] = [
 		isAspirated: true,
 		initialSound: "ch (like CH in 'China')",
 		finalSound: "T-stop",
+		audioUrl: "/thai-script/audio/consonant-cho-chang.mp3",
 		priority: 9,
 		lesson: 4,
 		mnemonic:
@@ -714,6 +738,7 @@ const consonants: ThaiConsonant[] = [
 		isAspirated: false,
 		initialSound: "s (like S in 'sun')",
 		finalSound: "T-stop",
+		audioUrl: "/thai-script/audio/consonant-so-so.mp3",
 		priority: 10,
 		lesson: 4,
 		mnemonic:
@@ -731,6 +756,7 @@ const consonants: ThaiConsonant[] = [
 		isAspirated: true,
 		initialSound: "ph (aspirated P, like P in 'panda')",
 		finalSound: "P-stop",
+		audioUrl: "/thai-script/audio/consonant-pho-phan.mp3",
 		priority: 11,
 		lesson: 5,
 		mnemonic:
@@ -746,6 +772,7 @@ const consonants: ThaiConsonant[] = [
 		isAspirated: false,
 		initialSound: "f (like F in 'family')",
 		finalSound: "P-stop",
+		audioUrl: "/thai-script/audio/consonant-fo-fan.mp3",
 		priority: 12,
 		lesson: 5,
 		mnemonic:
@@ -763,6 +790,7 @@ const consonants: ThaiConsonant[] = [
 		isAspirated: true,
 		initialSound: "kh (like K in 'kite' or C in 'cup')",
 		finalSound: "K-stop",
+		audioUrl: "/thai-script/audio/consonant-kho-khwai.mp3",
 		priority: 13,
 		lesson: 6,
 		mnemonic:
@@ -780,6 +808,7 @@ const consonants: ThaiConsonant[] = [
 		isAspirated: true,
 		initialSound: "th (aspirated T, like T in 'top' with puff of air)",
 		finalSound: "T-stop",
+		audioUrl: "/thai-script/audio/consonant-tho-thahan.mp3",
 		priority: 14,
 		lesson: 7,
 		mnemonic:
@@ -795,6 +824,7 @@ const consonants: ThaiConsonant[] = [
 		isAspirated: false,
 		initialSound: "h (like H in 'hoot')",
 		finalSound: "not used as final consonant",
+		audioUrl: "/thai-script/audio/consonant-ho-nokhu.mp3",
 		priority: 15,
 		lesson: 7,
 		mnemonic:
@@ -812,6 +842,7 @@ const consonants: ThaiConsonant[] = [
 		isAspirated: false,
 		initialSound: "r (trilled R, like double R in 'burrito')",
 		finalSound: "n (same as น, live ending)",
+		audioUrl: "/thai-script/audio/consonant-ro-ria.mp3",
 		priority: 16,
 		lesson: 8,
 		mnemonic:
@@ -827,6 +858,7 @@ const consonants: ThaiConsonant[] = [
 		isAspirated: false,
 		initialSound: "l (like L in 'little')",
 		finalSound: "n (same as ร final, live ending)",
+		audioUrl: "/thai-script/audio/consonant-lo-ling.mp3",
 		priority: 17,
 		lesson: 8,
 		mnemonic:
@@ -844,8 +876,9 @@ const consonants: ThaiConsonant[] = [
 		isAspirated: false,
 		initialSound: "j (like J in 'jump')",
 		finalSound: "T-stop",
+		audioUrl: "/thai-script/audio/consonant-jo-jan.mp3",
 		priority: 18,
-		lesson: 9,
+		lesson: 9,		
 		mnemonic:
 			"Clockwise head in the middle, line goes down right, hooks back up and curves over to the left.",
 	}),
@@ -859,6 +892,7 @@ const consonants: ThaiConsonant[] = [
 		isAspirated: false,
 		initialSound: "dt (between D and T, unaspirated T)",
 		finalSound: "T-stop",
+		audioUrl: "/thai-script/audio/consonant-to-tau.mp3",
 		priority: 19,
 		lesson: 9,
 		mnemonic:
@@ -874,6 +908,7 @@ const consonants: ThaiConsonant[] = [
 		isAspirated: false,
 		initialSound: "bp (between B and P, unaspirated P)",
 		finalSound: "P-stop",
+		audioUrl: "/thai-script/audio/consonant-po-pla.mp3",
 		priority: 20,
 		lesson: 9,
 		mnemonic:
@@ -891,6 +926,7 @@ const consonants: ThaiConsonant[] = [
 		isAspirated: false,
 		initialSound: "silent (placeholder for vowel-initial words)",
 		finalSound: "acts as vowel สระ ออ (aaw)",
+		audioUrl: "/thai-script/audio/consonant-o-ang.mp3",
 		priority: 21,
 		lesson: 11,
 		mnemonic:
@@ -908,6 +944,7 @@ const consonants: ThaiConsonant[] = [
 		isAspirated: true,
 		initialSound: "kh (same sound as ค, but high class)",
 		finalSound: "K-stop",
+		audioUrl: "/thai-script/audio/consonant-kho-khay.mp3",
 		priority: 22,
 		lesson: 12,
 		mnemonic:
@@ -923,6 +960,7 @@ const consonants: ThaiConsonant[] = [
 		isAspirated: true,
 		initialSound: "ch (same sound as ช, but high class)",
 		finalSound: "T-stop",
+		audioUrl: "/thai-script/audio/consonant-cho-ching.mp3",
 		priority: 23,
 		lesson: 12,
 		mnemonic:
@@ -940,6 +978,7 @@ const consonants: ThaiConsonant[] = [
 		isAspirated: false,
 		initialSound: "s",
 		finalSound: "T-stop",
+		audioUrl: "/thai-script/audio/consonant-so-sala.mp3",
 		priority: 24,
 		lesson: 13,
 		mnemonic:
@@ -955,6 +994,7 @@ const consonants: ThaiConsonant[] = [
 		isAspirated: false,
 		initialSound: "s",
 		finalSound: "T-stop",
+		audioUrl: "/thai-script/audio/consonant-so-risi.mp3",
 		priority: 25,
 		lesson: 13,
 		mnemonic:
@@ -970,6 +1010,7 @@ const consonants: ThaiConsonant[] = [
 		isAspirated: false,
 		initialSound: "s",
 		finalSound: "T-stop",
+		audioUrl: "/thai-script/audio/consonant-so-sia.mp3",
 		priority: 26,
 		lesson: 13,
 		mnemonic:
@@ -987,6 +1028,7 @@ const consonants: ThaiConsonant[] = [
 		isAspirated: true,
 		initialSound: "ph (like P in 'pig')",
 		finalSound: "P-stop",
+		audioUrl: "/thai-script/audio/consonant-pho-phing.mp3",
 		priority: 27,
 		lesson: 14,
 		mnemonic:
@@ -1002,6 +1044,7 @@ const consonants: ThaiConsonant[] = [
 		isAspirated: false,
 		initialSound: "f (like F in 'fan')",
 		finalSound: "P-stop",
+		audioUrl: "/thai-script/audio/consonant-fo-fa.mp3",
 		priority: 28,
 		lesson: 14,
 		mnemonic:
@@ -1019,6 +1062,7 @@ const consonants: ThaiConsonant[] = [
 		isAspirated: false,
 		initialSound: "h (like H in 'Hello')",
 		finalSound: "not used as final consonant",
+		audioUrl: "/thai-script/audio/consonant-ho-hip.mp3",
 		priority: 29,
 		lesson: 15,
 		mnemonic:
@@ -1036,6 +1080,7 @@ const consonants: ThaiConsonant[] = [
 		isAspirated: true,
 		initialSound: "ph (like P in 'pink')",
 		finalSound: "P-stop",
+		audioUrl: "/thai-script/audio/consonant-pho-samphau.mp3",
 		priority: 30,
 		lesson: 16,
 		mnemonic:
@@ -1051,6 +1096,7 @@ const consonants: ThaiConsonant[] = [
 		isAspirated: true,
 		initialSound: "th (aspirated T, like T in 'tennis')",
 		finalSound: "T-stop",
+		audioUrl: "/thai-script/audio/consonant-tho-thong.mp3",
 		priority: 31,
 		lesson: 16,
 		mnemonic:
@@ -1066,6 +1112,7 @@ const consonants: ThaiConsonant[] = [
 		isAspirated: false,
 		initialSound: "n (same as น)",
 		finalSound: "n (live ending)",
+		audioUrl: "/thai-script/audio/consonant-no-nen.mp3",
 		priority: 32,
 		lesson: 16,
 		mnemonic:
@@ -1081,6 +1128,7 @@ const consonants: ThaiConsonant[] = [
 		isAspirated: false,
 		initialSound: "y (same as ย)",
 		finalSound: "n",
+		audioUrl: "/thai-script/audio/consonant-yo-ying.mp3",
 		priority: 33,
 		lesson: 16,
 		mnemonic:
@@ -1098,6 +1146,7 @@ const consonants: ThaiConsonant[] = [
 		isAspirated: true,
 		initialSound: "th (like T in 'top')",
 		finalSound: "T-stop",
+		audioUrl: "/thai-script/audio/consonant-tho-thung.mp3",
 		priority: 34,
 		lesson: 19,
 		mnemonic:
@@ -1113,6 +1162,7 @@ const consonants: ThaiConsonant[] = [
 		isAspirated: true,
 		initialSound: "th (same as ถ)",
 		finalSound: "T-stop",
+		audioUrl: "/thai-script/audio/consonant-tho-than.mp3",
 		priority: 35,
 		lesson: 19,
 		mnemonic:
@@ -1128,6 +1178,7 @@ const consonants: ThaiConsonant[] = [
 		isAspirated: false,
 		initialSound: "d (same as ด)",
 		finalSound: "T-stop",
+		audioUrl: "/thai-script/audio/consonant-do-chada.mp3",
 		priority: 36,
 		lesson: 19,
 		mnemonic:
@@ -1143,6 +1194,7 @@ const consonants: ThaiConsonant[] = [
 		isAspirated: false,
 		initialSound: "dt (same as ต)",
 		finalSound: "T-stop",
+		audioUrl: "/thai-script/audio/consonant-to-patak.mp3",
 		priority: 37,
 		lesson: 19,
 		mnemonic:
@@ -1160,6 +1212,7 @@ const consonants: ThaiConsonant[] = [
 		isAspirated: false,
 		initialSound: "th (usually same as ท, sometimes d)",
 		finalSound: "T-stop",
+		audioUrl: "/thai-script/audio/consonant-tho-montho.mp3",
 		priority: 38,
 		lesson: 20,
 		mnemonic:
@@ -1175,6 +1228,7 @@ const consonants: ThaiConsonant[] = [
 		isAspirated: false,
 		initialSound: "th (same as ฑ and ท)",
 		finalSound: "T-stop",
+		audioUrl: "/thai-script/audio/consonant-tho-phuthau.mp3",
 		priority: 39,
 		lesson: 20,
 		mnemonic:
@@ -1192,6 +1246,7 @@ const consonants: ThaiConsonant[] = [
 		isAspirated: false,
 		initialSound: "l (same as ล)",
 		finalSound: "n (live ending)",
+		audioUrl: "/thai-script/audio/consonant-lo-jula.mp3",
 		priority: 40,
 		lesson: 21,
 		mnemonic:
@@ -1207,6 +1262,7 @@ const consonants: ThaiConsonant[] = [
 		isAspirated: true,
 		initialSound: "kh (same as ค and ข)",
 		finalSound: "K-stop",
+		audioUrl: "/thai-script/audio/consonant-kho-rakhang.mp3",
 		priority: 41,
 		lesson: 21,
 		mnemonic:
@@ -1273,6 +1329,7 @@ const vowels: ThaiVowel[] = [
 		length: "long",
 		sound: "aa (like A in 'father')",
 		position: "right",
+		audioUrl: "/thai-script/audio/sara-a-long.mp3",
 		priority: 1,
 		lesson: 1,
 		mnemonic:
@@ -1286,6 +1343,7 @@ const vowels: ThaiVowel[] = [
 		length: "long",
 		sound: "ii (like EE in 'green')",
 		position: "above",
+		audioUrl: "/thai-script/audio/sara-i-long.mp3",
 		priority: 2,
 		lesson: 3,
 		mnemonic:
@@ -1299,6 +1357,7 @@ const vowels: ThaiVowel[] = [
 		length: "short",
 		sound: "a (like A in 'hat')",
 		position: "right",
+		audioUrl: "/thai-script/audio/sara-a-short.mp3",
 		priority: 3,
 		lesson: 4,
 		mnemonic:
@@ -1310,6 +1369,7 @@ const vowels: ThaiVowel[] = [
 		length: "short",
 		sound: "a (short a, used when sara a has a following consonant)",
 		position: "above",
+		audioUrl: "/thai-script/audio/sara-a-short.mp3",
 		priority: 4,
 		lesson: 4,
 		mnemonic:
@@ -1321,6 +1381,7 @@ const vowels: ThaiVowel[] = [
 		length: "short",
 		sound: "i (like I in 'sit')",
 		position: "above",
+		audioUrl: "/thai-script/audio/sara-i-short.mp3",
 		priority: 5,
 		lesson: 4,
 		mnemonic:
@@ -1334,6 +1395,7 @@ const vowels: ThaiVowel[] = [
 		length: "short",
 		sound: "u (like OO in 'put')",
 		position: "below",
+		audioUrl: "/thai-script/audio/sara-u-short.mp3",
 		priority: 6,
 		lesson: 5,
 		mnemonic:
@@ -1345,6 +1407,7 @@ const vowels: ThaiVowel[] = [
 		length: "long",
 		sound: "uu (like OO in 'boot')",
 		position: "below",
+		audioUrl: "/thai-script/audio/sara-u-long.mp3",
 		priority: 7,
 		lesson: 5,
 		mnemonic:
@@ -1359,6 +1422,7 @@ const vowels: ThaiVowel[] = [
 		sound:
 			"ue (no English equivalent -- try making 'uu' with lips spread wide)",
 		position: "above",
+		audioUrl: "/thai-script/audio/sara-eu-short.mp3",
 		priority: 8,
 		lesson: 6,
 		mnemonic:
@@ -1370,6 +1434,7 @@ const vowels: ThaiVowel[] = [
 		length: "long",
 		sound: "uee (long version of sara ue -- like German 'über')",
 		position: "above",
+		audioUrl: "/thai-script/audio/sara-eu-long.mp3",
 		priority: 9,
 		lesson: 6,
 		mnemonic:
@@ -1383,6 +1448,7 @@ const vowels: ThaiVowel[] = [
 		length: "long",
 		sound: "ee (like EY in British 'grey')",
 		position: "left",
+		audioUrl: "/thai-script/audio/sara-e-long.mp3",
 		priority: 10,
 		lesson: 7,
 		mnemonic:
@@ -1394,6 +1460,7 @@ const vowels: ThaiVowel[] = [
 		length: "short",
 		sound: "e (like E in 'red')",
 		position: "around",
+		audioUrl: "/thai-script/audio/sara-e-short.mp3",
 		priority: 11,
 		lesson: 7,
 		mnemonic:
@@ -1407,6 +1474,7 @@ const vowels: ThaiVowel[] = [
 		length: "long",
 		sound: "ae (like A in 'cat', long)",
 		position: "left",
+		audioUrl: "/thai-script/audio/sara-ae-long.mp3",
 		priority: 12,
 		lesson: 8,
 		mnemonic:
@@ -1418,6 +1486,7 @@ const vowels: ThaiVowel[] = [
 		length: "short",
 		sound: "ae (like A in 'cat', short)",
 		position: "around",
+		audioUrl: "/thai-script/audio/sara-ae-short.mp3",
 		priority: 13,
 		lesson: 8,
 		mnemonic:
@@ -1431,6 +1500,7 @@ const vowels: ThaiVowel[] = [
 		length: "long",
 		sound: "oo (like O in 'go', long)",
 		position: "left",
+		audioUrl: "/thai-script/audio/sara-o-long.mp3",
 		priority: 14,
 		lesson: 9,
 		mnemonic:
@@ -1442,6 +1512,7 @@ const vowels: ThaiVowel[] = [
 		length: "short",
 		sound: "o (like O in 'go', short)",
 		position: "around",
+		audioUrl: "/thai-script/audio/sara-o-short.mp3",
 		priority: 15,
 		lesson: 9,
 		mnemonic: "โ to the left of consonant + อะ after.",
@@ -1454,6 +1525,7 @@ const vowels: ThaiVowel[] = [
 		length: "short",
 		sound: "ao (like OW in 'how')",
 		position: "around",
+		audioUrl: "/thai-script/audio/sara-au.mp3",
 		priority: 16,
 		lesson: 10,
 		mnemonic:
@@ -1465,6 +1537,7 @@ const vowels: ThaiVowel[] = [
 		length: "short",
 		sound: "ai (like I in 'Hi')",
 		position: "left",
+		audioUrl: "/thai-script/audio/sara-ay-may-malay.mp3",
 		priority: 17,
 		lesson: 10,
 		mnemonic:
@@ -1476,6 +1549,7 @@ const vowels: ThaiVowel[] = [
 		length: "short",
 		sound: "ai (same sound as ไ)",
 		position: "left",
+		audioUrl: "/thai-script/audio/sara-ay-may-muan.mp3",
 		priority: 18,
 		lesson: 10,
 		mnemonic:
@@ -1489,6 +1563,7 @@ const vowels: ThaiVowel[] = [
 		length: "long",
 		sound: "aaw (like AW in 'saw')",
 		position: "right",
+		audioUrl: "/thai-script/audio/sara-aw-long.mp3",
 		priority: 19,
 		lesson: 11,
 		mnemonic:
@@ -1500,6 +1575,7 @@ const vowels: ThaiVowel[] = [
 		length: "short",
 		sound: "aw (short version of สระ ออ)",
 		position: "around",
+		audioUrl: "/thai-script/audio/sara-aw-short.mp3",
 		priority: 20,
 		lesson: 11,
 		mnemonic:
@@ -1513,6 +1589,7 @@ const vowels: ThaiVowel[] = [
 		length: "long",
 		sound: "iia (like IA in 'Mamma Mia')",
 		position: "left-above-right",
+		audioUrl: "/thai-script/audio/sara-ia-long.mp3",
 		priority: 21,
 		lesson: 12,
 		mnemonic:
@@ -1524,6 +1601,7 @@ const vowels: ThaiVowel[] = [
 		length: "short",
 		sound: "ia (short version of sara iia)",
 		position: "around",
+		audioUrl: "/thai-script/audio/sara-ia-short.mp3",
 		priority: 22,
 		lesson: 12,
 		mnemonic: "Same as long version plus สระ อะ at the end.",
@@ -1536,6 +1614,7 @@ const vowels: ThaiVowel[] = [
 		length: "long",
 		sound: "ooe (like ER in 'her' with relaxed throat)",
 		position: "around",
+		audioUrl: "/thai-script/audio/sara-uh-long.mp3",
 		priority: 23,
 		lesson: 13,
 		mnemonic:
@@ -1547,6 +1626,7 @@ const vowels: ThaiVowel[] = [
 		length: "short",
 		sound: "oe (short version of sara ooe)",
 		position: "around",
+		audioUrl: "/thai-script/audio/sara-uh-short.mp3",
 		priority: 24,
 		lesson: 13,
 		mnemonic:
@@ -1560,6 +1640,7 @@ const vowels: ThaiVowel[] = [
 		length: "long",
 		sound: "uuea (combination of สระ อื + สระ อะ)",
 		position: "left-above-right",
+		audioUrl: "/thai-script/audio/sara-eua-long.mp3",
 		priority: 25,
 		lesson: 14,
 		mnemonic: "สระ เอ before + สระ อื above + อ after the consonant.",
@@ -1570,6 +1651,7 @@ const vowels: ThaiVowel[] = [
 		length: "short",
 		sound: "uea (short combination of สระ อื + สระ อะ)",
 		position: "around",
+		audioUrl: "/thai-script/audio/sara-eua-short.mp3",
 		priority: 26,
 		lesson: 14,
 		mnemonic: "Same as long version but with สระ อะ added at the end.",
@@ -1582,6 +1664,7 @@ const vowels: ThaiVowel[] = [
 		length: "long",
 		sound: "uua (combination of อู + อะ)",
 		position: "above",
+		audioUrl: "/thai-script/audio/sara-ua-long.mp3",
 		priority: 27,
 		lesson: 15,
 		mnemonic:
@@ -1593,6 +1676,7 @@ const vowels: ThaiVowel[] = [
 		length: "short",
 		sound: "ua (short combination of อู + อะ)",
 		position: "around",
+		audioUrl: "/thai-script/audio/sara-ua-short.mp3",
 		priority: 28,
 		lesson: 15,
 		mnemonic: "Same as long version plus สระ อะ to the right of ว.",
@@ -1605,6 +1689,7 @@ const vowels: ThaiVowel[] = [
 		length: "short",
 		sound: "am (built-in: สระ อะ + ม)",
 		position: "above",
+		audioUrl: "/thai-script/audio/sara-am.mp3",
 		priority: 29,
 		lesson: 16,
 		mnemonic:
@@ -1623,6 +1708,7 @@ const toneMarks: ThaiToneMark[] = [
 		midClassTone: "low",
 		highClassTone: "low",
 		lowClassTone: "falling",
+		audioUrl: "/thai-script/audio/tone-mayek.mp3",
 		priority: 1,
 		lesson: 17,
 		mnemonic:
@@ -1634,6 +1720,7 @@ const toneMarks: ThaiToneMark[] = [
 		midClassTone: "falling",
 		highClassTone: "falling",
 		lowClassTone: "high",
+		audioUrl: "/thai-script/audio/tone-maytho.mp3",
 		priority: 2,
 		lesson: 17,
 		mnemonic:
@@ -1645,6 +1732,7 @@ const toneMarks: ThaiToneMark[] = [
 		midClassTone: "high",
 		highClassTone: null,
 		lowClassTone: null,
+		audioUrl: "/thai-script/audio/tone-maytri.mp3",
 		priority: 3,
 		lesson: 18,
 		mnemonic:
@@ -1656,6 +1744,7 @@ const toneMarks: ThaiToneMark[] = [
 		midClassTone: "rising",
 		highClassTone: null,
 		lowClassTone: null,
+		audioUrl: "/thai-script/audio/tone-mayjattawa.mp3",
 		priority: 4,
 		lesson: 18,
 		mnemonic:

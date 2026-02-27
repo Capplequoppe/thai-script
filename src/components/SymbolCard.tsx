@@ -4,6 +4,18 @@ import type {
 	VowelSummary,
 } from "../learning-service";
 
+function PlayAudioButton({ audioUrl }: { audioUrl: string }) {
+	return (
+		<button
+			onClick={() => new Audio(audioUrl).play()}
+			className="ml-3 inline-flex items-center justify-center w-10 h-10 rounded-full bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 text-gray-600 dark:text-gray-300 transition-colors align-middle"
+			aria-label="Play pronunciation"
+		>
+			🔊
+		</button>
+	);
+}
+
 function Row({
 	label,
 	value,
@@ -47,6 +59,7 @@ export function ConsonantCard({
 		<div className="space-y-3">
 			<div className="text-center">
 				<span className="thai text-[96px] leading-none">{c.character}</span>
+				{c.audioUrl && <PlayAudioButton audioUrl={c.audioUrl} />}
 				<h2 className="text-2xl font-semibold mt-2">{c.nameRomanized}</h2>
 				<p className="thai text-lg text-gray-500 dark:text-gray-400">
 					{c.name}
@@ -95,6 +108,7 @@ export function VowelCard({
 		<div className="space-y-3">
 			<div className="text-center">
 				<span className="thai text-[96px] leading-none">{v.character}</span>
+				{v.audioUrl && <PlayAudioButton audioUrl={v.audioUrl} />}
 				<h2 className="text-2xl font-semibold mt-2">{v.name}</h2>
 				<p className="text-sm text-gray-400">{v.sound}</p>
 			</div>
@@ -128,6 +142,7 @@ export function ToneMarkCard({ t }: { t: ToneMarkSummary }) {
 		<div className="space-y-3">
 			<div className="text-center">
 				<span className="thai text-[96px] leading-none">{t.character}</span>
+				{t.audioUrl && <PlayAudioButton audioUrl={t.audioUrl} />}
 				<h2 className="text-2xl font-semibold mt-2">{t.name}</h2>
 			</div>
 

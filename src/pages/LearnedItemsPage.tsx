@@ -22,6 +22,29 @@ function isEmbedUrl(url: string): boolean {
 	);
 }
 
+function TileAudioButton({ audioUrl }: { audioUrl: string }) {
+	return (
+		<span
+			role="button"
+			tabIndex={0}
+			onClick={(e) => {
+				e.stopPropagation();
+				new Audio(audioUrl).play();
+			}}
+			onKeyDown={(e) => {
+				if (e.key === "Enter") {
+					e.stopPropagation();
+					new Audio(audioUrl).play();
+				}
+			}}
+			className="absolute top-1 right-1 text-xs opacity-50 hover:opacity-100 cursor-pointer"
+			aria-label="Play pronunciation"
+		>
+			🔊
+		</span>
+	);
+}
+
 function VideoPlayer({
 	lesson,
 	onBack,
@@ -163,8 +186,9 @@ export function LearnedItemsPage() {
 						<button
 							key={c.character}
 							onClick={() => setSelectedIdx(i)}
-							className="flex flex-col items-center p-3 rounded-xl bg-gray-50 dark:bg-gray-900 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+							className="relative flex flex-col items-center p-3 rounded-xl bg-gray-50 dark:bg-gray-900 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
 						>
+							{c.audioUrl && <TileAudioButton audioUrl={c.audioUrl} />}
 							<span className="thai text-4xl">{c.character}</span>
 							<span className="text-[10px] text-gray-500 mt-1 truncate w-full text-center">
 								{c.nameRomanized}
@@ -191,8 +215,9 @@ export function LearnedItemsPage() {
 						<button
 							key={v.character}
 							onClick={() => setSelectedIdx(i)}
-							className="flex flex-col items-center p-3 rounded-xl bg-gray-50 dark:bg-gray-900 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+							className="relative flex flex-col items-center p-3 rounded-xl bg-gray-50 dark:bg-gray-900 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
 						>
+							{v.audioUrl && <TileAudioButton audioUrl={v.audioUrl} />}
 							<span className="thai text-4xl">{v.character}</span>
 							<span className="text-[10px] text-gray-500 mt-1">{v.name}</span>
 							<span
@@ -215,8 +240,9 @@ export function LearnedItemsPage() {
 						<button
 							key={t.character}
 							onClick={() => setSelectedIdx(i)}
-							className="flex flex-col items-center p-3 rounded-xl bg-gray-50 dark:bg-gray-900 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+							className="relative flex flex-col items-center p-3 rounded-xl bg-gray-50 dark:bg-gray-900 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
 						>
+							{t.audioUrl && <TileAudioButton audioUrl={t.audioUrl} />}
 							<span className="thai text-4xl">{t.character}</span>
 							<span className="text-[10px] text-gray-500 mt-1">{t.name}</span>
 						</button>

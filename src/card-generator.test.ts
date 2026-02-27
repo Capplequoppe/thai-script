@@ -5,18 +5,18 @@ import {
 } from "./card-generator";
 
 describe("generateCardsForLesson", () => {
-	it("generates 5 property cards per consonant for lesson 1 (ม, น)", () => {
+	it("generates 6 property cards per consonant with audio for lesson 1 (ม, น)", () => {
 		const cards = generateCardsForLesson(1);
 		const consonantCards = cards.filter(
 			(c) => c.id.startsWith("ม:") || c.id.startsWith("น:"),
 		);
-		expect(consonantCards).toHaveLength(10);
+		expect(consonantCards).toHaveLength(12);
 	});
 
-	it("generates 3 property cards per vowel for lesson 1 (า)", () => {
+	it("generates 4 property cards per vowel with audio for lesson 1 (า)", () => {
 		const cards = generateCardsForLesson(1);
 		const vowelCards = cards.filter((c) => c.id.startsWith("า:"));
-		expect(vowelCards).toHaveLength(3);
+		expect(vowelCards).toHaveLength(4);
 	});
 
 	it("each card has question, correctAnswer, and choices containing the answer", () => {
@@ -35,10 +35,48 @@ describe("generateCardsForLesson", () => {
 		expect(new Set(ids).size).toBe(ids.length);
 	});
 
+	it("populates audioUrl on consonant and vowel cards", () => {
+		const cards = generateCardsForLesson(1);
+		const consonantCards = cards.filter((c) => c.id.startsWith("ม:"));
+		for (const card of consonantCards) {
+			expect(card.audioUrl).toBe("/thai-script/audio/consonant-mo-ma.mp3");
+		}
+		const vowelCards = cards.filter((c) => c.id.startsWith("า:"));
+		for (const card of vowelCards) {
+			expect(card.audioUrl).toBe("/thai-script/audio/sara-a-long.mp3");
+		}
+	});
+
 	it("includes tone rule cards when lesson has them", () => {
 		const cards = generateCardsForLesson(2); // lesson 2 has tone rule "low-live"
 		const toneCards = cards.filter((c) => c.id.startsWith("tone-rule:"));
 		expect(toneCards.length).toBeGreaterThanOrEqual(1);
+	});
+
+	it("audioRecognition card has empty symbolCharacter and valid audioUrl", () => {
+		const cards = generateCardsForLesson(1);
+		const audioCards = cards.filter((c) => c.property === "audioRecognition");
+		expect(audioCards.length).toBeGreaterThanOrEqual(1);
+		for (const card of audioCards) {
+			expect(card.symbolCharacter).toBe("");
+			expect(card.audioUrl).toBeTruthy();
+			expect(card.question).toBe(
+				"Listen to the audio. Which symbol is this?",
+			);
+			expect(card.choices).toContain(card.correctAnswer);
+		}
+	});
+
+	it("consonants without audioUrl still produce 5 cards", () => {
+		const cards = generateCardsForLesson(22);
+		// ฃ, ฅ, ฌ have no audioUrl
+		for (const char of ["ฃ", "ฅ", "ฌ"]) {
+			const charCards = cards.filter((c) => c.id.startsWith(`${char}:`));
+			expect(charCards).toHaveLength(5);
+			expect(
+				charCards.find((c) => c.property === "audioRecognition"),
+			).toBeUndefined();
+		}
 	});
 });
 

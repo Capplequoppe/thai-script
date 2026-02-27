@@ -31,6 +31,7 @@ export interface ConsonantSummary {
 	hasDeadEnding: boolean;
 	isAspirated: boolean;
 	mnemonic?: string;
+	audioUrl?: string;
 }
 
 export interface VowelSummary {
@@ -40,6 +41,7 @@ export interface VowelSummary {
 	length: string;
 	position: string;
 	mnemonic?: string;
+	audioUrl?: string;
 }
 
 export interface ToneMarkSummary {
@@ -48,6 +50,7 @@ export interface ToneMarkSummary {
 	midClassTone: string;
 	highClassTone: string | null;
 	lowClassTone: string | null;
+	audioUrl?: string;
 }
 
 export interface LessonSummary {
@@ -164,6 +167,7 @@ export class LearningService {
 					hasDeadEnding: c.hasDeadEnding,
 					isAspirated: c.isAspirated,
 					mnemonic: c.mnemonic,
+					audioUrl: c.audioUrl,
 				})),
 			vowels: symbols
 				.filter((s): s is ThaiVowel => s instanceof ThaiVowel)
@@ -174,6 +178,7 @@ export class LearningService {
 					length: v.length,
 					position: v.position,
 					mnemonic: v.mnemonic,
+					audioUrl: v.audioUrl,
 				})),
 			toneMarks: symbols
 				.filter((s): s is ThaiToneMark => s instanceof ThaiToneMark)
@@ -183,6 +188,7 @@ export class LearningService {
 					midClassTone: t.midClassTone,
 					highClassTone: t.highClassTone,
 					lowClassTone: t.lowClassTone,
+					audioUrl: t.audioUrl,
 				})),
 			toneRules: [
 				...toneRules
