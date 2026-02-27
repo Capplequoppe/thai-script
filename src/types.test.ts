@@ -4,9 +4,9 @@ import { DEFAULT_SRS_DATA, INITIAL_LEARNER_STATE } from "./types";
 describe("types", () => {
 	it("DEFAULT_SRS_DATA has correct defaults", () => {
 		expect(DEFAULT_SRS_DATA.easeFactor).toBe(2.0);
-		expect(DEFAULT_SRS_DATA.interval).toBe(0);
+		expect(DEFAULT_SRS_DATA.interval).toBe(10);
 		expect(DEFAULT_SRS_DATA.repetitions).toBe(0);
-		expect(DEFAULT_SRS_DATA.learningStep).toBe(0);
+		expect(DEFAULT_SRS_DATA.learningStep).toBe(1);
 		expect(DEFAULT_SRS_DATA.lastReviewDate).toBeNull();
 	});
 

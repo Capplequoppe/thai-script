@@ -3,6 +3,10 @@ import { LearningService } from "./learning-service";
 import { ReviewService } from "./review-service";
 import { InMemoryStorage } from "./storage";
 
+// Cards start at learning step 1 (interval 10 min), so they're due 10 min after creation.
+// Use a future timestamp to simulate time passing so cards become due.
+const FUTURE_NOW = new Date(Date.now() + 15 * 60 * 1000).toISOString();
+
 describe("Learn-then-Review flow", () => {
 	let storage: InMemoryStorage;
 	let learning: LearningService;
@@ -19,19 +23,19 @@ describe("Learn-then-Review flow", () => {
 		expect(lesson.cards.length).toBeGreaterThan(0);
 		learning.completeLesson(1);
 
-		const dueCards = review.getDueCards();
+		const dueCards = review.getDueCards(FUTURE_NOW);
 		expect(dueCards.length).toBe(lesson.cards.length);
 
-		const session = review.startReviewSession();
+		const session = review.startReviewSession(undefined, FUTURE_NOW);
 		expect(session.cards.length).toBe(dueCards.length);
 		expect(session.cards[0]!.mode).toBe("multipleChoice");
 
 		for (const quizCard of session.cards) {
-			review.recordReview(quizCard.card.id, 4);
+			review.recordReview(quizCard.card.id, 4, FUTURE_NOW);
 			session.results.push({ cardId: quizCard.card.id, rating: 4 });
 		}
 
-		expect(review.getNumDueCards()).toBe(0);
+		expect(review.getNumDueCards(FUTURE_NOW)).toBe(0);
 
 		const summary = review.endReviewSession(session);
 		expect(summary.totalCards).toBe(dueCards.length);
@@ -70,12 +74,12 @@ describe("Learn-then-Review flow", () => {
 		learning.startLesson(1);
 		learning.completeLesson(1);
 
-		const dueCards = review.getDueCards();
+		const dueCards = review.getDueCards(FUTURE_NOW);
 		const firstCard = dueCards[0]!;
 
-		review.recordReview(firstCard.id, 1);
+		review.recordReview(firstCard.id, 1, FUTURE_NOW);
 
-		const stillDue = review.getDueCards();
+		const stillDue = review.getDueCards(FUTURE_NOW);
 		expect(stillDue.some((c) => c.id === firstCard.id)).toBe(true);
 	});
 
@@ -83,13 +87,14 @@ describe("Learn-then-Review flow", () => {
 		learning.startLesson(1);
 		learning.completeLesson(1);
 
-		const cards = review.getDueCards();
+		const cards = review.getDueCards(FUTURE_NOW);
 		const card = cards[0]!;
 
-		// Rate easy three times to graduate through learning steps (0->2->4->graduated)
+		// Rate easy three times to graduate through learning steps (1->3->graduated)
+		// Step 1, easy skips to step 3
 		review.recordReview(card.id, 5, "2026-02-25T00:00:00.000Z");
+		// Step 3, easy skips past step 5 -> graduated
 		review.recordReview(card.id, 5, "2026-02-26T00:00:00.000Z");
-		review.recordReview(card.id, 5, "2026-02-27T00:00:00.000Z");
 
 		// Start session far in the future when card is due again
 		const session = review.startReviewSession(
@@ -106,16 +111,19 @@ describe("Learn-then-Review flow", () => {
 		learning.startLesson(1);
 		learning.completeLesson(1);
 
-		const s1 = review.startReviewSession(2);
+		const s1 = review.startReviewSession(2, FUTURE_NOW);
 		for (const qc of s1.cards) {
-			review.recordReview(qc.card.id, 4);
+			review.recordReview(qc.card.id, 4, FUTURE_NOW);
 			s1.results.push({ cardId: qc.card.id, rating: 4 });
 		}
 		review.endReviewSession(s1);
 
-		const s2 = review.startReviewSession(2);
+		// After rating 4 on step 1 cards, they advance to step 2 (interval 60).
+		// Need a time far enough in the future for those to be due again.
+		const farFuture = new Date(Date.now() + 120 * 60 * 1000).toISOString();
+		const s2 = review.startReviewSession(2, farFuture);
 		for (const qc of s2.cards) {
-			review.recordReview(qc.card.id, 3);
+			review.recordReview(qc.card.id, 3, farFuture);
 			s2.results.push({ cardId: qc.card.id, rating: 3 });
 		}
 		review.endReviewSession(s2);

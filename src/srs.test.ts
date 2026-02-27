@@ -47,18 +47,18 @@ function makeGraduatedCard(overrides?: Partial<SrsData>): SrsData {
 }
 
 describe("createSrsData", () => {
-	it("returns default SRS data with current date when no argument", () => {
+	it("returns default SRS data at learning step 1 (interval 10 min)", () => {
 		const srs = createSrsData();
 		expect(srs.easeFactor).toBe(2.0);
-		expect(srs.interval).toBe(0);
+		expect(srs.interval).toBe(10);
 		expect(srs.repetitions).toBe(0);
-		expect(srs.learningStep).toBe(0);
+		expect(srs.learningStep).toBe(1);
 		expect(srs.lastReviewDate).toBeNull();
 	});
 
-	it("accepts a custom date for nextReviewDate", () => {
+	it("accepts a custom date and sets nextReviewDate 10 min after it", () => {
 		const srs = createSrsData(NOW);
-		expect(srs.nextReviewDate).toBe(NOW);
+		expect(srs.nextReviewDate).toBe(addMinutes(NOW, 10));
 	});
 });
 
