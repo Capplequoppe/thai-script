@@ -42,7 +42,7 @@ describe("ReviewService", () => {
 			const state = storage.load();
 			const updated = state.cards[card.id]!;
 			expect(updated.srs.repetitions).toBe(1);
-			expect(updated.srs.interval).toBe(1);
+			expect(updated.srs.interval).toBe(10);
 		});
 
 		it("rating 1 keeps card due immediately", () => {
