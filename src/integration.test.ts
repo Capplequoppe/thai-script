@@ -86,9 +86,10 @@ describe("Learn-then-Review flow", () => {
 		const cards = review.getDueCards();
 		const card = cards[0]!;
 
-		// Rate good twice (reps: 0->1->2)
-		review.recordReview(card.id, 4, "2026-02-25T00:00:00.000Z");
-		review.recordReview(card.id, 4, "2026-02-26T00:00:00.000Z");
+		// Rate easy three times to graduate through learning steps (0->2->4->graduated)
+		review.recordReview(card.id, 5, "2026-02-25T00:00:00.000Z");
+		review.recordReview(card.id, 5, "2026-02-26T00:00:00.000Z");
+		review.recordReview(card.id, 5, "2026-02-27T00:00:00.000Z");
 
 		// Start session far in the future when card is due again
 		const session = review.startReviewSession(

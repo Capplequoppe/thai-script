@@ -54,7 +54,7 @@ export class ReviewService {
 		const quizCards: QuizCard[] = selected.map((card) => ({
 			card,
 			mode:
-				card.srs.repetitions >= 2
+				card.srs.learningStep === null
 					? ("flashcard" as const)
 					: ("multipleChoice" as const),
 		}));
