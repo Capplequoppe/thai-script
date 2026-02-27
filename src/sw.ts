@@ -1,11 +1,13 @@
 /// <reference lib="webworker" />
 declare const self: ServiceWorkerGlobalScope;
 
-const CACHE_NAME = "thai-srs-v1";
+const CACHE_NAME = "thai-srs-v2";
 const ASSETS_TO_CACHE = [
   "/thai-script/",
   "/thai-script/index.html",
   "/thai-script/manifest.json",
+  "/thai-script/icons/icon-192x192.png",
+  "/thai-script/icons/icon-512x512.png",
 ];
 
 // --- Caching ---
