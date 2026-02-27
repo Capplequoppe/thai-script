@@ -1,26 +1,29 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import type { PropertyCard } from "../types";
 
 interface Props {
 	card: PropertyCard;
-	onAnswer: (correct: boolean) => void;
+	onAnswer: (correct: boolean, responseTimeMs: number) => void;
 }
 
 export function MultipleChoice({ card, onAnswer }: Props) {
 	const [selected, setSelected] = useState<string | null>(null);
 	const [revealed, setRevealed] = useState(false);
+	const displayedAtRef = useRef(Date.now());
 
 	useEffect(() => {
 		setSelected(null);
 		setRevealed(false);
+		displayedAtRef.current = Date.now();
 	}, [card.id]);
 
 	const handleSelect = useCallback(
 		(choice: string) => {
 			if (revealed) return;
+			const elapsed = Date.now() - displayedAtRef.current;
 			setSelected(choice);
 			setRevealed(true);
-			setTimeout(() => onAnswer(choice === card.correctAnswer), 800);
+			setTimeout(() => onAnswer(choice === card.correctAnswer, elapsed), 800);
 		},
 		[card.correctAnswer, onAnswer, revealed],
 	);
