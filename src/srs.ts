@@ -88,7 +88,7 @@ function handleLearningPhase(
 	return {
 		easeFactor: current.easeFactor,
 		interval,
-		repetitions: current.repetitions,
+		repetitions: current.repetitions + 1,
 		learningStep: newStep,
 		nextReviewDate: interval === 0 ? now : addMinutesToIso(now, interval),
 		lastReviewDate: now,
@@ -99,7 +99,7 @@ function graduate(current: SrsData, now: string): SrsData {
 	return {
 		easeFactor: current.easeFactor,
 		interval: GRADUATING_INTERVAL_MINUTES,
-		repetitions: current.repetitions,
+		repetitions: current.repetitions + 1,
 		learningStep: null,
 		nextReviewDate: addMinutesToIso(now, GRADUATING_INTERVAL_MINUTES),
 		lastReviewDate: now,
@@ -125,7 +125,7 @@ function handleGraduatedPhase(
 			return {
 				easeFactor: newEf,
 				interval: 0,
-				repetitions: current.repetitions,
+				repetitions: current.repetitions + 1,
 				learningStep: 0,
 				nextReviewDate: now,
 				lastReviewDate: now,
@@ -137,7 +137,7 @@ function handleGraduatedPhase(
 			return {
 				easeFactor: newEf,
 				interval: 10,
-				repetitions: current.repetitions,
+				repetitions: current.repetitions + 1,
 				learningStep: 1,
 				nextReviewDate: addMinutesToIso(now, 10),
 				lastReviewDate: now,
@@ -178,7 +178,7 @@ function handleGraduatedPhase(
 	return {
 		easeFactor: newEf,
 		interval: newInterval,
-		repetitions: current.repetitions,
+		repetitions: current.repetitions + 1,
 		learningStep: newLearningStep,
 		nextReviewDate: addMinutesToIso(now, newInterval),
 		lastReviewDate: now,
@@ -211,6 +211,5 @@ function applyTimingModulation(
 
 function addMinutesToIso(iso: string, minutes: number): string {
 	const d = new Date(iso);
-	d.setMinutes(d.getMinutes() + minutes);
-	return d.toISOString();
+	return new Date(d.getTime() + minutes * 60_000).toISOString();
 }
