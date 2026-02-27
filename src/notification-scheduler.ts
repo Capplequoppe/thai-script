@@ -18,10 +18,12 @@ export class NotificationScheduler {
   }
 
   async requestPermission(): Promise<NotificationPermission> {
+    if (!this.isSupported) return "denied";
     return Notification.requestPermission();
   }
 
   get permission(): NotificationPermission {
+    if (!this.isSupported) return "denied";
     return Notification.permission;
   }
 
