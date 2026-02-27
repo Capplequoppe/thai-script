@@ -38,7 +38,7 @@ export function ReviewPage() {
 	const current = session?.cards[cardIdx] ?? null;
 
 	const advance = useCallback(
-		(rating: RecallRating) => {
+		(rating: RecallRating, _responseTimeMs?: number) => {
 			if (!current || !sessionRef.current || !session) return;
 
 			app.recordReview(current.card.id, rating);
@@ -55,7 +55,7 @@ export function ReviewPage() {
 	);
 
 	const handleMultipleChoiceAnswer = useCallback(
-		(correct: boolean) => {
+		(correct: boolean, _responseTimeMs: number) => {
 			advance(correct ? 4 : 2);
 		},
 		[advance],
