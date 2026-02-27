@@ -54,7 +54,7 @@ export interface ILearningService {
 export interface IReviewService {
 	getDueCards(): PropertyCard[];
 	getNumDueCards(): number;
-	recordReview(cardId: string, rating: RecallRating): void;
+	recordReview(cardId: string, rating: RecallRating, timing?: { responseTimeMs: number; averageResponseTimeMs: number }): void;
 	startReviewSession(maxCards?: number): {
 		id: string;
 		cards: Array<{ card: PropertyCard; mode: "multipleChoice" | "flashcard" }>;

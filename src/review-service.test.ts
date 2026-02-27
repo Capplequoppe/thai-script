@@ -60,6 +60,20 @@ describe("ReviewService", () => {
 				"Card not found",
 			);
 		});
+
+		it("card graduates after completing all learning steps", () => {
+			const due = reviewService.getDueCards();
+			const card = due[0]!;
+			reviewService.recordReview(card.id, 4); // step 0 -> 1
+			reviewService.recordReview(card.id, 4); // step 1 -> 2
+			reviewService.recordReview(card.id, 4); // step 2 -> 3
+			reviewService.recordReview(card.id, 4); // step 3 -> 4
+			reviewService.recordReview(card.id, 4); // step 4 -> graduated
+			const state = storage.load();
+			const graduated = state.cards[card.id]!;
+			expect(graduated.srs.learningStep).toBeNull();
+			expect(graduated.srs.interval).toBe(4320);
+		});
 	});
 
 	describe("getNumDueCards", () => {

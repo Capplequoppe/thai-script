@@ -1,4 +1,4 @@
-import { calculateNextReview, isDue } from "./srs";
+import { type ResponseTimingData, calculateNextReview, isDue } from "./srs";
 import type { IStorage } from "./storage";
 import type {
 	PropertyCard,
@@ -29,13 +29,13 @@ export class ReviewService {
 		return this.getDueCards(now).length;
 	}
 
-	recordReview(cardId: string, rating: RecallRating, now?: string): void {
+	recordReview(cardId: string, rating: RecallRating, now?: string, timing?: ResponseTimingData): void {
 		const state = this.storage.load();
 		const card = state.cards[cardId];
 		if (!card) throw new Error(`Card not found: ${cardId}`);
 
 		const currentTime = now ?? new Date().toISOString();
-		card.srs = calculateNextReview(card.srs, rating, currentTime);
+		card.srs = calculateNextReview(card.srs, rating, currentTime, timing);
 		this.storage.save(state);
 	}
 

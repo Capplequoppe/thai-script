@@ -50,7 +50,7 @@ export interface AppContextValue {
 	getCompletedLessons: () => number[];
 	getDueCards: () => PropertyCard[];
 	getNumDueCards: () => number;
-	recordReview: (cardId: string, rating: RecallRating) => void;
+	recordReview: (cardId: string, rating: RecallRating, timing?: { responseTimeMs: number; averageResponseTimeMs: number }) => void;
 	startReviewSession: (maxCards?: number) => ActiveReviewSession;
 	endReviewSession: (session: ActiveReviewSession) => SessionSummary;
 	getNextReviewDate: () => Date | null;
@@ -105,8 +105,8 @@ export function AppProvider({ children }: { children: ReactNode }) {
 			getCompletedLessons: () => learningService.getCompletedLessons(),
 			getDueCards: () => reviewService.getDueCards(),
 			getNumDueCards: () => reviewService.getNumDueCards(),
-			recordReview: (cardId, rating) =>
-				wrap(() => reviewService.recordReview(cardId, rating)),
+			recordReview: (cardId, rating, timing) =>
+				wrap(() => reviewService.recordReview(cardId, rating, undefined, timing)),
 			startReviewSession: (maxCards) =>
 				reviewService.startReviewSession(maxCards),
 			endReviewSession: (session) =>
