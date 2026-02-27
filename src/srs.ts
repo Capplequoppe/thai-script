@@ -22,12 +22,13 @@ export interface ResponseTimingData {
 // --- Public API ---
 
 export function createSrsData(now?: string): SrsData {
+	const currentTime = now ?? new Date().toISOString();
 	return {
 		easeFactor: DEFAULT_EASE_FACTOR,
-		interval: 0,
+		interval: LEARNING_STEPS_MINUTES[1],
 		repetitions: 0,
-		learningStep: 0,
-		nextReviewDate: now ?? new Date().toISOString(),
+		learningStep: 1,
+		nextReviewDate: addMinutesToIso(currentTime, LEARNING_STEPS_MINUTES[1]),
 		lastReviewDate: null,
 	};
 }

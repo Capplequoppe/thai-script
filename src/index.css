@@ -1,5 +1,5 @@
 @import "tailwindcss";
 
 .thai {
-  font-family: "Noto Serif Thai", serif;
+  font-family: "Noto Sans Thai Looped", "Noto Serif Thai" ,sans-serif;
 }

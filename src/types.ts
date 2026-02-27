@@ -13,9 +13,9 @@ export interface SrsData {
 
 export const DEFAULT_SRS_DATA: SrsData = {
 	easeFactor: 2.0,
-	interval: 0,
+	interval: 10,
 	repetitions: 0,
-	learningStep: 0,
+	learningStep: 1,
 	nextReviewDate: new Date().toISOString(),
 	lastReviewDate: null,
 };
