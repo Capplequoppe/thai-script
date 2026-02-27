@@ -1,20 +1,32 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import type { PropertyCard, RecallRating } from "../types";
 import { RatingButtons } from "./RatingButtons";
 
 interface Props {
 	card: PropertyCard;
-	onRate: (rating: RecallRating) => void;
+	onRate: (rating: RecallRating, responseTimeMs: number) => void;
 }
 
 export function Flashcard({ card, onRate }: Props) {
 	const [revealed, setRevealed] = useState(false);
+	const revealedAtRef = useRef(0);
 
 	useEffect(() => {
 		setRevealed(false);
 	}, [card.id]);
 
-	const handleReveal = useCallback(() => setRevealed(true), []);
+	const handleReveal = useCallback(() => {
+		setRevealed(true);
+		revealedAtRef.current = Date.now();
+	}, []);
+
+	const handleRate = useCallback(
+		(rating: RecallRating) => {
+			const elapsed = Date.now() - revealedAtRef.current;
+			onRate(rating, elapsed);
+		},
+		[onRate],
+	);
 
 	useEffect(() => {
 		if (revealed) return;
@@ -64,7 +76,7 @@ export function Flashcard({ card, onRate }: Props) {
 							{card.correctAnswer}
 						</p>
 					</div>
-					<RatingButtons onRate={onRate} />
+					<RatingButtons onRate={handleRate} />
 				</div>
 			)}
 		</div>
