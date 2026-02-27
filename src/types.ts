@@ -4,16 +4,18 @@ import type { ThaiSymbolClass, ToneValue, VowelPosition } from "./symbol";
 
 export interface SrsData {
 	easeFactor: number;
-	interval: number; // days
+	interval: number; // minutes
 	repetitions: number;
+	learningStep: number | null;
 	nextReviewDate: string; // ISO string for serialization
 	lastReviewDate: string | null;
 }
 
 export const DEFAULT_SRS_DATA: SrsData = {
-	easeFactor: 2.5,
+	easeFactor: 2.0,
 	interval: 0,
 	repetitions: 0,
+	learningStep: 0,
 	nextReviewDate: new Date().toISOString(),
 	lastReviewDate: null,
 };
