@@ -6,48 +6,48 @@ import {
 	useMemo,
 	useState,
 } from "react";
-import type { ApprenticeStats } from "../../apprentice-service";
-import { ApprenticeService } from "../../apprentice-service";
-import type { ReviewableCard } from "../../domain/srs/entities/ReviewableCard";
-import grammarData from "../../grammar.json";
-import { GrammarService } from "../../grammar-service";
+import grammarData from "../../domain/grammar/data/grammar.json";
+import { GrammarService } from "../../domain/grammar/services/GrammarLessonService";
 import type {
 	GrammarCard,
 	GrammarEntry,
 	GrammarLessonSummary,
-} from "../../grammar-types";
-import { StorageCardRepository } from "../../infrastructure/persistence/StorageCardRepository";
-import { StorageLearnerStateRepository } from "../../infrastructure/persistence/StorageLearnerStateRepository";
+} from "../../domain/grammar/types";
 import {
 	LearningService,
 	type LessonInfo,
 	type LessonSummary,
-} from "../../learning-service";
-import { LeechService } from "../../leech-service";
-import { NotificationScheduler } from "../../notification-scheduler";
-import type { CardPool } from "../../review-service";
+} from "../../domain/script/services/ScriptLessonService";
+import type { CardPool } from "../../domain/session/services/ReviewService";
 import {
 	type ActiveReviewSession,
 	type CriticalItem,
 	type ReviewForecast,
 	ReviewService,
-} from "../../review-service";
-import { getStageCounts } from "../../srs";
-import { LocalStorageAdapter } from "../../storage";
+} from "../../domain/session/services/ReviewService";
+import type { ApprenticeStats } from "../../domain/shared/services/ApprenticeService";
+import { ApprenticeService } from "../../domain/shared/services/ApprenticeService";
+import { LeechService } from "../../domain/shared/services/LeechService";
 import type {
 	LearnerState,
 	RecallRating,
 	SessionSummary,
 	SrsCard,
 	StageCounts,
-} from "../../types";
-import vocabularyData from "../../vocabulary.json";
-import { VocabularyService } from "../../vocabulary-service";
+} from "../../domain/shared/types";
+import type { ReviewableCard } from "../../domain/srs/entities/ReviewableCard";
+import vocabularyData from "../../domain/vocabulary/data/vocabulary.json";
+import { VocabularyService } from "../../domain/vocabulary/services/VocabularyLessonService";
 import type {
 	VocabEntry,
 	VocabLessonSummary,
 	VocabularyCard,
-} from "../../vocabulary-types";
+} from "../../domain/vocabulary/types";
+import { NotificationScheduler } from "../../infrastructure/notifications/NotificationScheduler";
+import { LocalStorageAdapter } from "../../infrastructure/persistence/Storage";
+import { StorageCardRepository } from "../../infrastructure/persistence/StorageCardRepository";
+import { StorageLearnerStateRepository } from "../../infrastructure/persistence/StorageLearnerStateRepository";
+import { getStageCounts } from "../../srs";
 
 const storage = new LocalStorageAdapter();
 const cardRepo = new StorageCardRepository(storage);

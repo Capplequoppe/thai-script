@@ -1,4 +1,4 @@
-import type { VocabEntry } from "../../vocabulary-types";
+import type { VocabEntry } from "../../domain/vocabulary/types";
 
 function PlayAudioButton({ audioUrl }: { audioUrl: string }) {
 	return (

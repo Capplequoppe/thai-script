@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import type { QuizCard } from "../../../types";
+import type { QuizCard } from "../../shared/types";
 import { ReviewSession } from "./ReviewSession";
 
 function makeCard(id: string): QuizCard {

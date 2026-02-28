@@ -2,20 +2,20 @@ import type {
 	GrammarCard,
 	GrammarEntry,
 	GrammarLessonSummary,
-} from "./grammar-types";
-import type { LessonInfo } from "./learning-service";
+} from "./domain/grammar/types";
+import type { LessonInfo } from "./domain/script/services/ScriptLessonService";
 import type {
 	CardPool,
 	CriticalItem,
 	ReviewForecast,
-} from "./review-service";
+} from "./domain/session/services/ReviewService";
 import type {
 	LearnerState,
 	PropertyCard,
 	RecallRating,
 	SessionSummary,
 	SrsCard,
-} from "./types";
+} from "./domain/shared/types";
 
 export interface ILearningService {
 	startLesson(lessonNumber: number): LessonInfo | null;
@@ -68,7 +68,12 @@ export interface ILearningService {
 export interface IReviewService {
 	getDueCards(): SrsCard[];
 	getNumDueCards(): number;
-	recordReview(cardId: string, rating: RecallRating, now?: string, timing?: { responseTimeMs: number; averageResponseTimeMs: number }): void;
+	recordReview(
+		cardId: string,
+		rating: RecallRating,
+		now?: string,
+		timing?: { responseTimeMs: number; averageResponseTimeMs: number },
+	): void;
 	startReviewSession(maxCards?: number): {
 		id: string;
 		cards: Array<{ card: SrsCard; mode: "multipleChoice" | "flashcard" }>;

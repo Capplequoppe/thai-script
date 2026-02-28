@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
-import type { RecallRating } from "../../types";
 import { ratingFromCorrectness } from "./ratingFromCorrectness";
+import type { RecallRating } from "./types";
 
 describe("ratingFromCorrectness", () => {
 	it("returns 4 (Good) when correct is true", () => {

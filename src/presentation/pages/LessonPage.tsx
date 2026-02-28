@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { useNavigate, useParams } from "react-router";
-import type { PropertyCard } from "../../types";
+import type { PropertyCard } from "../../domain/shared/types";
 import { LessonIntro } from "../components/LessonIntro";
 import { MultipleChoice } from "../components/MultipleChoice";
 import { useApp } from "../hooks/useApp";

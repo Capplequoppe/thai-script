@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from "react";
-import type { RecallRating } from "../../types";
+import type { RecallRating } from "../../domain/shared/types";
 import { RatingButtons } from "./RatingButtons";
 
 interface QuizCardView {

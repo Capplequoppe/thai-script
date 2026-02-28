@@ -10,7 +10,7 @@ createRoot(document.getElementById("root")!).render(
 );
 
 if ("serviceWorker" in navigator) {
-  navigator.serviceWorker.register("/thai-script/sw.js", {
-    scope: "/thai-script/",
-  });
+	navigator.serviceWorker.register("/thai-script/sw.js", {
+		scope: "/thai-script/",
+	});
 }

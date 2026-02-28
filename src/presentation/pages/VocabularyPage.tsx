@@ -1,8 +1,8 @@
 import { useCallback, useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import { ratingFromCorrectness } from "../../domain/shared/ratingFromCorrectness";
-import type { RecallRating } from "../../types";
-import type { VocabEntry, VocabularyCard } from "../../vocabulary-types";
+import type { RecallRating } from "../../domain/shared/types";
+import type { VocabEntry, VocabularyCard } from "../../domain/vocabulary/types";
 import { Flashcard } from "../components/Flashcard";
 import { MultipleChoice } from "../components/MultipleChoice";
 import { WordCard } from "../components/WordCard";

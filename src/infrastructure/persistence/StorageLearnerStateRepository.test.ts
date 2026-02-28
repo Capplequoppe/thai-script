@@ -1,6 +1,6 @@
 import { beforeEach, describe, expect, it } from "vitest";
-import { InMemoryStorage } from "../../storage";
-import type { SessionSummary } from "../../types";
+import type { SessionSummary } from "../../domain/shared/types";
+import { InMemoryStorage } from "./Storage";
 import { StorageLearnerStateRepository } from "./StorageLearnerStateRepository";
 
 function makeSummary(id: string): SessionSummary {

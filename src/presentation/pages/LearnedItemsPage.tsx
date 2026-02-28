@@ -4,7 +4,7 @@ import type {
 	LessonSummary,
 	ToneMarkSummary,
 	VowelSummary,
-} from "../../learning-service";
+} from "../../domain/script/services/ScriptLessonService";
 import {
 	ConsonantCard,
 	ToneMarkCard,

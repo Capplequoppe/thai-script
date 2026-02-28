@@ -1,8 +1,8 @@
 import { useCallback, useEffect, useState } from "react";
 import { useNavigate } from "react-router";
+import type { GrammarCard, GrammarEntry } from "../../domain/grammar/types";
 import { ratingFromCorrectness } from "../../domain/shared/ratingFromCorrectness";
-import type { GrammarCard, GrammarEntry } from "../../grammar-types";
-import type { RecallRating } from "../../types";
+import type { RecallRating } from "../../domain/shared/types";
 import { Flashcard } from "../components/Flashcard";
 import { MultipleChoice } from "../components/MultipleChoice";
 import { useApp } from "../hooks/useApp";

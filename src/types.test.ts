@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { DEFAULT_SRS_DATA, INITIAL_LEARNER_STATE } from "./types";
+import { DEFAULT_SRS_DATA, INITIAL_LEARNER_STATE } from "./domain/shared/types";
 
 describe("types", () => {
 	it("DEFAULT_SRS_DATA has correct defaults", () => {

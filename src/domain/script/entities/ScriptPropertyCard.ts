@@ -1,5 +1,5 @@
-import type { PropertyType } from "../../../types";
 import type { CardPool } from "../../shared/CardPool";
+import type { PropertyType } from "../../shared/types";
 import { ReviewableCard } from "../../srs/entities/ReviewableCard";
 import { SrsSchedule } from "../../srs/value-objects/SrsSchedule";
 

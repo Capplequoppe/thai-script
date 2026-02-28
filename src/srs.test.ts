@@ -1,22 +1,22 @@
 import { describe, expect, it } from "vitest";
+import type { SrsData } from "./domain/shared/types";
+import type { ResponseTimingData } from "./srs";
 import {
+	calculateNextReview,
+	createSrsData,
 	ENLIGHTENED_THRESHOLD_MINUTES,
 	GRADUATING_INTERVAL_MINUTES,
 	GURU_THRESHOLD_MINUTES,
-	LEARNING_STEPS_MINUTES,
-	MASTER_THRESHOLD_MINUTES,
-	MAX_INTERVAL_MINUTES,
-	MIN_GRADUATED_INTERVAL_MINUTES,
-	calculateNextReview,
-	createSrsData,
 	getSrsStage,
 	getStageCounts,
 	isBurned,
 	isDue,
+	LEARNING_STEPS_MINUTES,
+	MASTER_THRESHOLD_MINUTES,
+	MAX_INTERVAL_MINUTES,
+	MIN_GRADUATED_INTERVAL_MINUTES,
 	resurrectCard,
 } from "./srs";
-import type { ResponseTimingData } from "./srs";
-import type { SrsData } from "./types";
 
 const NOW = "2026-02-25T12:00:00.000Z";
 
@@ -26,10 +26,7 @@ function addMinutes(iso: string, minutes: number): string {
 	return d.toISOString();
 }
 
-function makeLearningCard(
-	step: number,
-	overrides?: Partial<SrsData>,
-): SrsData {
+function makeLearningCard(step: number, overrides?: Partial<SrsData>): SrsData {
 	return {
 		easeFactor: 2.0,
 		interval: LEARNING_STEPS_MINUTES[step],
@@ -333,9 +330,7 @@ describe("calculateNextReview — Response Time Modulation", () => {
 		};
 		const withTiming = calculateNextReview(card, 3, NOW, timing);
 		const withoutTiming = calculateNextReview(card, 3, NOW);
-		expect(withTiming.interval).toBe(
-			Math.round(withoutTiming.interval * 1.1),
-		);
+		expect(withTiming.interval).toBe(Math.round(withoutTiming.interval * 1.1));
 	});
 
 	it("applies to rating 5 (Easy) on graduated cards", () => {
@@ -386,37 +381,69 @@ describe("getSrsStage", () => {
 	});
 
 	it("returns Guru for graduated cards with interval < 14 days", () => {
-		expect(getSrsStage(makeGraduatedCard({ interval: GRADUATING_INTERVAL_MINUTES }))).toBe("Guru");
-		expect(getSrsStage(makeGraduatedCard({ interval: GURU_THRESHOLD_MINUTES - 1 }))).toBe("Guru");
+		expect(
+			getSrsStage(makeGraduatedCard({ interval: GRADUATING_INTERVAL_MINUTES })),
+		).toBe("Guru");
+		expect(
+			getSrsStage(makeGraduatedCard({ interval: GURU_THRESHOLD_MINUTES - 1 })),
+		).toBe("Guru");
 	});
 
 	it("returns Master for graduated cards with interval >= 14 days and < 42 days", () => {
-		expect(getSrsStage(makeGraduatedCard({ interval: GURU_THRESHOLD_MINUTES }))).toBe("Master");
-		expect(getSrsStage(makeGraduatedCard({ interval: MASTER_THRESHOLD_MINUTES - 1 }))).toBe("Master");
+		expect(
+			getSrsStage(makeGraduatedCard({ interval: GURU_THRESHOLD_MINUTES })),
+		).toBe("Master");
+		expect(
+			getSrsStage(
+				makeGraduatedCard({ interval: MASTER_THRESHOLD_MINUTES - 1 }),
+			),
+		).toBe("Master");
 	});
 
 	it("returns Enlightened for graduated cards with interval >= 42 days and < 84 days", () => {
-		expect(getSrsStage(makeGraduatedCard({ interval: MASTER_THRESHOLD_MINUTES }))).toBe("Enlightened");
-		expect(getSrsStage(makeGraduatedCard({ interval: ENLIGHTENED_THRESHOLD_MINUTES - 1 }))).toBe("Enlightened");
+		expect(
+			getSrsStage(makeGraduatedCard({ interval: MASTER_THRESHOLD_MINUTES })),
+		).toBe("Enlightened");
+		expect(
+			getSrsStage(
+				makeGraduatedCard({ interval: ENLIGHTENED_THRESHOLD_MINUTES - 1 }),
+			),
+		).toBe("Enlightened");
 	});
 
 	it("returns Burned for graduated cards with interval >= 84 days", () => {
-		expect(getSrsStage(makeGraduatedCard({ interval: ENLIGHTENED_THRESHOLD_MINUTES }))).toBe("Burned");
-		expect(getSrsStage(makeGraduatedCard({ interval: 200_000 }))).toBe("Burned");
+		expect(
+			getSrsStage(
+				makeGraduatedCard({ interval: ENLIGHTENED_THRESHOLD_MINUTES }),
+			),
+		).toBe("Burned");
+		expect(getSrsStage(makeGraduatedCard({ interval: 200_000 }))).toBe(
+			"Burned",
+		);
 	});
 });
 
 describe("isBurned", () => {
 	it("returns true at threshold", () => {
-		expect(isBurned(makeGraduatedCard({ interval: ENLIGHTENED_THRESHOLD_MINUTES }))).toBe(true);
+		expect(
+			isBurned(makeGraduatedCard({ interval: ENLIGHTENED_THRESHOLD_MINUTES })),
+		).toBe(true);
 	});
 
 	it("returns false below threshold", () => {
-		expect(isBurned(makeGraduatedCard({ interval: ENLIGHTENED_THRESHOLD_MINUTES - 1 }))).toBe(false);
+		expect(
+			isBurned(
+				makeGraduatedCard({ interval: ENLIGHTENED_THRESHOLD_MINUTES - 1 }),
+			),
+		).toBe(false);
 	});
 
 	it("returns false for learning cards even with high interval", () => {
-		expect(isBurned(makeLearningCard(0, { interval: ENLIGHTENED_THRESHOLD_MINUTES }))).toBe(false);
+		expect(
+			isBurned(
+				makeLearningCard(0, { interval: ENLIGHTENED_THRESHOLD_MINUTES }),
+			),
+		).toBe(false);
 	});
 });
 

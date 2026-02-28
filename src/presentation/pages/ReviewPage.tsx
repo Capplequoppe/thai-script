@@ -1,8 +1,8 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router";
 import { ratingFromCorrectness } from "../../domain/shared/ratingFromCorrectness";
+import type { RecallRating } from "../../domain/shared/types";
 import { Accuracy } from "../../domain/srs/value-objects/Accuracy";
-import type { RecallRating } from "../../types";
 import { Flashcard } from "../components/Flashcard";
 import { MultipleChoice } from "../components/MultipleChoice";
 import { useApp } from "../hooks/useApp";

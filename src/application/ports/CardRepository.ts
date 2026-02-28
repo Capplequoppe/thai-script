@@ -1,5 +1,5 @@
-import type { ReviewableCard } from "../../domain/srs/entities/ReviewableCard";
 import type { CardPool } from "../../domain/shared/CardPool";
+import type { ReviewableCard } from "../../domain/srs/entities/ReviewableCard";
 
 export interface CardRepository {
 	findById(id: string, pool: CardPool): ReviewableCard | null;

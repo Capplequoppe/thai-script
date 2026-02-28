@@ -1,4 +1,8 @@
-import type { QuizCard, RecallRating, SessionSummary } from "../../../types";
+import type {
+	QuizCard,
+	RecallRating,
+	SessionSummary,
+} from "../../shared/types";
 import { Accuracy } from "../../srs/value-objects/Accuracy";
 
 interface ReviewAnswer {

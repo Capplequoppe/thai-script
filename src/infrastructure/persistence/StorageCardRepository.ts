@@ -1,13 +1,13 @@
 import type { CardRepository } from "../../application/ports/CardRepository";
 import { GrammarReviewCard } from "../../domain/grammar/entities/GrammarReviewCard";
+import type { GrammarCard } from "../../domain/grammar/types";
 import { ScriptPropertyCard } from "../../domain/script/entities/ScriptPropertyCard";
 import type { CardPool } from "../../domain/shared/CardPool";
+import type { LearnerState, PropertyCard } from "../../domain/shared/types";
 import type { ReviewableCard } from "../../domain/srs/entities/ReviewableCard";
 import { VocabCard } from "../../domain/vocabulary/entities/VocabCard";
-import type { GrammarCard } from "../../grammar-types";
-import type { IStorage } from "../../storage";
-import type { LearnerState, PropertyCard } from "../../types";
-import type { VocabularyCard } from "../../vocabulary-types";
+import type { VocabularyCard } from "../../domain/vocabulary/types";
+import type { IStorage } from "./Storage";
 
 function getCardsDict(
 	state: LearnerState,

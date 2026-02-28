@@ -1,7 +1,7 @@
 import { useCallback, useRef, useState } from "react";
+import type { ActiveReviewSession } from "../../domain/session/services/ReviewService";
 import { ratingFromCorrectness } from "../../domain/shared/ratingFromCorrectness";
-import type { ActiveReviewSession } from "../../review-service";
-import type { RecallRating } from "../../types";
+import type { RecallRating } from "../../domain/shared/types";
 
 export interface ReviewCompletionResult {
 	status: "complete";

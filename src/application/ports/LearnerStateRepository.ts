@@ -1,4 +1,4 @@
-import type { SessionSummary } from "../../types";
+import type { SessionSummary } from "../../domain/shared/types";
 
 export interface LearnerStateRepository {
 	getCompletedLessons(): number[];

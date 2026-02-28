@@ -1,8 +1,8 @@
 // @vitest-environment jsdom
 import { act, renderHook } from "@testing-library/react";
 import { describe, expect, it, vi } from "vitest";
-import type { ActiveReviewSession } from "../../review-service";
-import type { RecallRating } from "../../types";
+import type { ActiveReviewSession } from "../../domain/session/services/ReviewService";
+import type { RecallRating } from "../../domain/shared/types";
 import { useReviewSession } from "./useReviewSession";
 
 function makeSession(cardCount = 2): ActiveReviewSession {

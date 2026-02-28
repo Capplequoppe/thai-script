@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import type { RecallRating } from "../../types";
+import type { RecallRating } from "../../domain/shared/types";
 
 interface Props {
 	onRate: (rating: RecallRating) => void;

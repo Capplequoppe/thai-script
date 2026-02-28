@@ -3,7 +3,7 @@ import { GrammarReviewCard } from "../../domain/grammar/entities/GrammarReviewCa
 import { ScriptPropertyCard } from "../../domain/script/entities/ScriptPropertyCard";
 import { SrsSchedule } from "../../domain/srs/value-objects/SrsSchedule";
 import { VocabCard } from "../../domain/vocabulary/entities/VocabCard";
-import { InMemoryStorage } from "../../storage";
+import { InMemoryStorage } from "./Storage";
 import { StorageCardRepository } from "./StorageCardRepository";
 
 function makeScriptCard(id: string, now?: string): ScriptPropertyCard {

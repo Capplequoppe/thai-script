@@ -1,10 +1,15 @@
+import type {
+	RecallRating,
+	SrsData,
+	SrsStage,
+	StageCounts,
+} from "./domain/shared/types";
 import { RecallRating as RecallRatingVO } from "./domain/srs/value-objects/RecallRating";
 import {
-	SrsSchedule,
 	type ResponseTimingData,
+	SrsSchedule,
 } from "./domain/srs/value-objects/SrsSchedule";
 import { SrsStage as SrsStageVO } from "./domain/srs/value-objects/SrsStage";
-import type { RecallRating, SrsData, SrsStage, StageCounts } from "./types";
 
 export type { ResponseTimingData } from "./domain/srs/value-objects/SrsSchedule";
 
@@ -41,7 +46,8 @@ export function calculateNextReview(
 }
 
 export function getSrsStage(srs: SrsData): SrsStage {
-	return SrsStageVO.fromScheduleData(srs.learningStep, srs.interval).name as SrsStage;
+	return SrsStageVO.fromScheduleData(srs.learningStep, srs.interval)
+		.name as SrsStage;
 }
 
 export function isDue(srs: SrsData, now: string): boolean {
@@ -53,15 +59,31 @@ export function isBurned(srs: SrsData): boolean {
 }
 
 export function getStageCounts(cards: SrsData[]): StageCounts {
-	const counts: StageCounts = { apprentice: 0, guru: 0, master: 0, enlightened: 0, burned: 0 };
+	const counts: StageCounts = {
+		apprentice: 0,
+		guru: 0,
+		master: 0,
+		enlightened: 0,
+		burned: 0,
+	};
 	for (const srs of cards) {
 		const stage = getSrsStage(srs);
 		switch (stage) {
-			case "Apprentice": counts.apprentice++; break;
-			case "Guru": counts.guru++; break;
-			case "Master": counts.master++; break;
-			case "Enlightened": counts.enlightened++; break;
-			case "Burned": counts.burned++; break;
+			case "Apprentice":
+				counts.apprentice++;
+				break;
+			case "Guru":
+				counts.guru++;
+				break;
+			case "Master":
+				counts.master++;
+				break;
+			case "Enlightened":
+				counts.enlightened++;
+				break;
+			case "Burned":
+				counts.burned++;
+				break;
 		}
 	}
 	return counts;

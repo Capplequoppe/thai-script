@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router";
-import { lessons } from "../../symbol";
+import { lessons } from "../../domain/script/data/symbols";
 import { useApp } from "../hooks/useApp";
 
 export function ProgressPage() {

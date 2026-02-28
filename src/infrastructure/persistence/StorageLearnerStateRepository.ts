@@ -1,6 +1,6 @@
 import type { LearnerStateRepository } from "../../application/ports/LearnerStateRepository";
-import type { IStorage } from "../../storage";
-import type { SessionSummary } from "../../types";
+import type { SessionSummary } from "../../domain/shared/types";
+import type { IStorage } from "./Storage";
 
 export class StorageLearnerStateRepository implements LearnerStateRepository {
 	constructor(private readonly storage: IStorage) {}
