@@ -1,7 +1,27 @@
 import { mergeLearnerStates } from "./merge-service";
-import type { LearnerState } from "./types";
+import type { LearnerState, SrsCard } from "./types";
 import { INITIAL_LEARNER_STATE } from "./types";
 import { validateLearnerState } from "./validation";
+
+function migrateSrsCard(card: SrsCard): void {
+	const srs = card.srs;
+	if (srs.learningStep === undefined) {
+		(srs as Record<string, unknown>).learningStep = null;
+	}
+	if (srs.lapseCount === undefined) {
+		srs.lapseCount = 0;
+	}
+}
+
+export function migrateState(state: LearnerState): LearnerState {
+	for (const card of Object.values(state.cards)) {
+		migrateSrsCard(card);
+	}
+	for (const card of Object.values(state.vocabCards ?? {})) {
+		migrateSrsCard(card);
+	}
+	return state;
+}
 
 export interface IStorage {
 	load(): LearnerState;
@@ -56,7 +76,7 @@ export class LocalStorageAdapter implements IStorage {
 		if (!state.vocabCards) {
 			state.vocabCards = {};
 		}
-		return state;
+		return migrateState(state);
 	}
 
 	save(state: LearnerState): void {

@@ -1,5 +1,5 @@
 import { beforeEach, describe, expect, it } from "vitest";
-import { InMemoryStorage } from "./storage";
+import { InMemoryStorage, migrateState } from "./storage";
 import type { LearnerState } from "./types";
 import { INITIAL_LEARNER_STATE } from "./types";
 
@@ -79,5 +79,105 @@ describe("InMemoryStorage exportData/importData", () => {
 
 	it("importData throws on invalid state shape", () => {
 		expect(() => storage.importData(JSON.stringify({ bad: true }))).toThrow();
+	});
+});
+
+describe("migrateState", () => {
+	it("migrates cards missing learningStep to learningStep: null", () => {
+		const oldState = {
+			completedLessons: [1],
+			currentLesson: null,
+			cards: {
+				"test:recognition": {
+					id: "test:recognition",
+					symbolCharacter: "ก",
+					property: "recognition",
+					lessonNumber: 1,
+					question: "What is this?",
+					correctAnswer: "ko kai",
+					choices: ["ko kai", "kho khai"],
+					srs: {
+						easeFactor: 2.5,
+						interval: 0,
+						repetitions: 0,
+						nextReviewDate: new Date().toISOString(),
+						lastReviewDate: null,
+					},
+				},
+			},
+			vocabCards: {},
+			sessionHistory: [],
+		} as unknown as LearnerState;
+
+		const state = migrateState(oldState);
+		const card = state.cards["test:recognition"]!;
+
+		expect(card.srs.learningStep).toBe(null);
+		expect(card.srs.lapseCount).toBe(0);
+	});
+
+	it("does not alter cards that already have learningStep", () => {
+		const oldState = {
+			completedLessons: [1],
+			currentLesson: null,
+			cards: {
+				"test:recognition": {
+					id: "test:recognition",
+					symbolCharacter: "ก",
+					property: "recognition",
+					lessonNumber: 1,
+					question: "What is this?",
+					correctAnswer: "ko kai",
+					choices: ["ko kai", "kho khai"],
+					srs: {
+						easeFactor: 2.0,
+						interval: 10,
+						repetitions: 0,
+						learningStep: 2,
+						nextReviewDate: new Date().toISOString(),
+						lastReviewDate: null,
+						lapseCount: 1,
+					},
+				},
+			},
+			vocabCards: {},
+			sessionHistory: [],
+		} as unknown as LearnerState;
+
+		const state = migrateState(oldState);
+		const card = state.cards["test:recognition"]!;
+
+		expect(card.srs.learningStep).toBe(2);
+		expect(card.srs.lapseCount).toBe(1);
+	});
+
+	it("migrates vocab cards missing learningStep", () => {
+		const oldState = {
+			completedLessons: [],
+			currentLesson: null,
+			cards: {},
+			vocabCards: {
+				"vocab:test": {
+					id: "vocab:test",
+					question: "What does this mean?",
+					correctAnswer: "hello",
+					choices: ["hello", "bye"],
+					srs: {
+						easeFactor: 2.0,
+						interval: 5,
+						repetitions: 1,
+						nextReviewDate: new Date().toISOString(),
+						lastReviewDate: null,
+					},
+				},
+			},
+			sessionHistory: [],
+		} as unknown as LearnerState;
+
+		const state = migrateState(oldState);
+		const card = state.vocabCards["vocab:test"]!;
+
+		expect(card.srs.learningStep).toBe(null);
+		expect(card.srs.lapseCount).toBe(0);
 	});
 });
