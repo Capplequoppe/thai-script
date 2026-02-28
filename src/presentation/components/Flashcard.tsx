@@ -45,9 +45,10 @@ export function Flashcard({ card, onRate }: Props) {
 		? SrsStage.fromScheduleData(card.srs.learningStep, card.srs.interval)
 		: null;
 
+	// biome-ignore lint/correctness/useExhaustiveDependencies: card.id resets state when the card changes
 	useEffect(() => {
 		setRevealed(false);
-	}, []);
+	}, [card.id]);
 
 	const handleReveal = useCallback(() => {
 		setRevealed(true);
