@@ -1,6 +1,6 @@
-import type { CardRepository } from "../../application/ports/CardRepository";
 import { GrammarReviewCard } from "../../domain/grammar/entities/GrammarReviewCard";
 import type { GrammarCard } from "../../domain/grammar/types";
+import type { CardRepository } from "../../domain/ports/CardRepository";
 import { ScriptPropertyCard } from "../../domain/script/entities/ScriptPropertyCard";
 import type { CardPool } from "../../domain/shared/CardPool";
 import type { LearnerState, PropertyCard } from "../../domain/shared/types";

@@ -1,4 +1,4 @@
-import type { LearnerStateRepository } from "../ports/LearnerStateRepository";
+import type { LearnerStateRepository } from "../../domain/ports/LearnerStateRepository";
 
 export class ManageDataUseCase {
 	constructor(private readonly stateRepo: LearnerStateRepository) {}

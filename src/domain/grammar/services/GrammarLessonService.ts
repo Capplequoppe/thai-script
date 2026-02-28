@@ -1,4 +1,4 @@
-import type { CardRepository } from "../../../application/ports/CardRepository";
+import type { CardRepository } from "../../ports/CardRepository";
 import type { ApprenticeService } from "../../shared/services/ApprenticeService";
 import type { VocabCard } from "../../vocabulary/entities/VocabCard";
 import type { VocabEntry } from "../../vocabulary/types";

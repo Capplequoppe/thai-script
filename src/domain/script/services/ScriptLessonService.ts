@@ -1,5 +1,5 @@
-import type { CardRepository } from "../../../application/ports/CardRepository";
-import type { LearnerStateRepository } from "../../../application/ports/LearnerStateRepository";
+import type { CardRepository } from "../../ports/CardRepository";
+import type { LearnerStateRepository } from "../../ports/LearnerStateRepository";
 import type { ApprenticeService } from "../../shared/services/ApprenticeService";
 import type { PropertyCard } from "../../shared/types";
 import { SrsSchedule } from "../../srs/value-objects/SrsSchedule";

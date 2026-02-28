@@ -1,5 +1,5 @@
-import type { CardRepository } from "../../../application/ports/CardRepository";
-import type { LearnerStateRepository } from "../../../application/ports/LearnerStateRepository";
+import type { CardRepository } from "../../ports/CardRepository";
+import type { LearnerStateRepository } from "../../ports/LearnerStateRepository";
 import {
 	consonants,
 	toneMarkRules,

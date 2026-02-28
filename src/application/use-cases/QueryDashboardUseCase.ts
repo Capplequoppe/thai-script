@@ -1,3 +1,4 @@
+import type { CardRepository } from "../../domain/ports/CardRepository";
 import type { CardPool } from "../../domain/shared/CardPool";
 import { CardPools } from "../../domain/shared/CardPool";
 import type {
@@ -7,7 +8,6 @@ import type {
 import type { LeechService } from "../../domain/shared/services/LeechService";
 import type { StageCounts } from "../../domain/shared/types";
 import type { ReviewableCard } from "../../domain/srs/entities/ReviewableCard";
-import type { CardRepository } from "../ports/CardRepository";
 
 export class QueryDashboardUseCase {
 	constructor(

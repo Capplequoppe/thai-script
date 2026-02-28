@@ -1,4 +1,4 @@
-import type { LearnerStateRepository } from "../../application/ports/LearnerStateRepository";
+import type { LearnerStateRepository } from "../../domain/ports/LearnerStateRepository";
 import type { SessionSummary } from "../../domain/shared/types";
 import type { IStorage } from "./Storage";
 

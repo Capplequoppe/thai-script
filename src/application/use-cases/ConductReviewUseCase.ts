@@ -1,3 +1,4 @@
+import type { NotificationPort } from "../../domain/ports/NotificationPort";
 import type {
 	ActiveReviewSession,
 	CriticalItem,
@@ -8,12 +9,11 @@ import type { CardPool } from "../../domain/shared/CardPool";
 import type { RecallRating, SessionSummary } from "../../domain/shared/types";
 import type { ReviewableCard } from "../../domain/srs/entities/ReviewableCard";
 import type { ResponseTimingData } from "../../domain/srs/value-objects/SrsSchedule";
-import type { NotificationScheduler } from "../../infrastructure/notifications/NotificationScheduler";
 
 export class ConductReviewUseCase {
 	constructor(
 		private readonly reviewService: ReviewService,
-		private readonly notificationScheduler: NotificationScheduler,
+		private readonly notificationScheduler: NotificationPort,
 	) {}
 
 	getDueCards(pool?: CardPool): ReviewableCard[] {

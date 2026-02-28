@@ -1,8 +1,8 @@
 import { beforeEach, describe, expect, it } from "vitest";
-import type { CardRepository } from "../../../application/ports/CardRepository";
 import { InMemoryStorage } from "../../../infrastructure/persistence/Storage";
 import { StorageCardRepository } from "../../../infrastructure/persistence/StorageCardRepository";
 import { GrammarReviewCard } from "../../grammar/entities/GrammarReviewCard";
+import type { CardRepository } from "../../ports/CardRepository";
 import { ScriptPropertyCard } from "../../script/entities/ScriptPropertyCard";
 import { SrsSchedule } from "../../srs/value-objects/SrsSchedule";
 import { VocabCard } from "../../vocabulary/entities/VocabCard";

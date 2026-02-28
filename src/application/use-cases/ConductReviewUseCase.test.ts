@@ -1,4 +1,5 @@
 import { beforeEach, describe, expect, it, vi } from "vitest";
+import type { NotificationPort } from "../../domain/ports/NotificationPort";
 import type {
 	ActiveReviewSession,
 	CriticalItem,
@@ -7,7 +8,6 @@ import type {
 } from "../../domain/session/services/ReviewService";
 import type { SessionSummary } from "../../domain/shared/types";
 import type { ReviewableCard } from "../../domain/srs/entities/ReviewableCard";
-import type { NotificationScheduler } from "../../infrastructure/notifications/NotificationScheduler";
 import { ConductReviewUseCase } from "./ConductReviewUseCase";
 
 function createMockReviewService(): {
@@ -47,11 +47,8 @@ function createMockReviewService(): {
 	};
 }
 
-function createMockNotificationScheduler(): {
-	[K in keyof NotificationScheduler]:
-		| ReturnType<typeof vi.fn>
-		| string
-		| boolean;
+function createMockNotificationPort(): {
+	[K in keyof NotificationPort]: ReturnType<typeof vi.fn> | string | boolean;
 } {
 	return {
 		permission: "denied" as NotificationPermission,
@@ -65,16 +62,14 @@ function createMockNotificationScheduler(): {
 describe("ConductReviewUseCase", () => {
 	let useCase: ConductReviewUseCase;
 	let mockReviewService: ReturnType<typeof createMockReviewService>;
-	let mockNotificationScheduler: ReturnType<
-		typeof createMockNotificationScheduler
-	>;
+	let mockNotificationPort: ReturnType<typeof createMockNotificationPort>;
 
 	beforeEach(() => {
 		mockReviewService = createMockReviewService();
-		mockNotificationScheduler = createMockNotificationScheduler();
+		mockNotificationPort = createMockNotificationPort();
 		useCase = new ConductReviewUseCase(
 			mockReviewService as unknown as ReviewService,
-			mockNotificationScheduler as unknown as NotificationScheduler,
+			mockNotificationPort as unknown as NotificationPort,
 		);
 	});
 
@@ -131,46 +126,46 @@ describe("ConductReviewUseCase", () => {
 		});
 
 		it("schedules notification when permission is granted and cards are due", () => {
-			mockNotificationScheduler.permission = "granted";
+			mockNotificationPort.permission = "granted";
 			const futureDate = new Date(Date.now() + 60_000);
 			mockReviewService.getNextReviewDate.mockReturnValue(futureDate);
 			mockReviewService.getNumDueCards.mockReturnValue(3);
 
 			useCase.recordReview("card-1", 4);
 
-			expect(mockNotificationScheduler.scheduleNext).toHaveBeenCalledWith(
+			expect(mockNotificationPort.scheduleNext).toHaveBeenCalledWith(
 				futureDate,
 				3,
 			);
 		});
 
 		it("does not schedule notification when permission is denied", () => {
-			mockNotificationScheduler.permission = "denied";
+			mockNotificationPort.permission = "denied";
 
 			useCase.recordReview("card-1", 4);
 
-			expect(mockNotificationScheduler.scheduleNext).not.toHaveBeenCalled();
+			expect(mockNotificationPort.scheduleNext).not.toHaveBeenCalled();
 		});
 
 		it("cancels notification when no next review date", () => {
-			mockNotificationScheduler.permission = "granted";
+			mockNotificationPort.permission = "granted";
 			mockReviewService.getNextReviewDate.mockReturnValue(null);
 			mockReviewService.getNumDueCards.mockReturnValue(0);
 
 			useCase.recordReview("card-1", 4);
 
-			expect(mockNotificationScheduler.cancel).toHaveBeenCalled();
+			expect(mockNotificationPort.cancel).toHaveBeenCalled();
 		});
 
 		it("schedules with count 1 when next date exists but no due cards", () => {
-			mockNotificationScheduler.permission = "granted";
+			mockNotificationPort.permission = "granted";
 			const futureDate = new Date(Date.now() + 60_000);
 			mockReviewService.getNextReviewDate.mockReturnValue(futureDate);
 			mockReviewService.getNumDueCards.mockReturnValue(0);
 
 			useCase.recordReview("card-1", 4);
 
-			expect(mockNotificationScheduler.scheduleNext).toHaveBeenCalledWith(
+			expect(mockNotificationPort.scheduleNext).toHaveBeenCalledWith(
 				futureDate,
 				1,
 			);
@@ -211,7 +206,7 @@ describe("ConductReviewUseCase", () => {
 		});
 
 		it("schedules notification after ending session", () => {
-			mockNotificationScheduler.permission = "granted";
+			mockNotificationPort.permission = "granted";
 			const futureDate = new Date(Date.now() + 60_000);
 			mockReviewService.getNextReviewDate.mockReturnValue(futureDate);
 			mockReviewService.getNumDueCards.mockReturnValue(2);
@@ -225,7 +220,7 @@ describe("ConductReviewUseCase", () => {
 
 			useCase.endSession(session);
 
-			expect(mockNotificationScheduler.scheduleNext).toHaveBeenCalledWith(
+			expect(mockNotificationPort.scheduleNext).toHaveBeenCalledWith(
 				futureDate,
 				2,
 			);
@@ -285,7 +280,7 @@ describe("ConductReviewUseCase", () => {
 
 	describe("resurrectCard", () => {
 		it("delegates to review service and schedules notification", () => {
-			mockNotificationScheduler.permission = "granted";
+			mockNotificationPort.permission = "granted";
 			const futureDate = new Date(Date.now() + 60_000);
 			mockReviewService.getNextReviewDate.mockReturnValue(futureDate);
 			mockReviewService.getNumDueCards.mockReturnValue(1);
@@ -296,7 +291,7 @@ describe("ConductReviewUseCase", () => {
 				"card-1",
 				"vocab",
 			);
-			expect(mockNotificationScheduler.scheduleNext).toHaveBeenCalledWith(
+			expect(mockNotificationPort.scheduleNext).toHaveBeenCalledWith(
 				futureDate,
 				1,
 			);

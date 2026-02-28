@@ -1,4 +1,6 @@
-export class NotificationScheduler {
+import type { NotificationPort } from "../../domain/ports/NotificationPort";
+
+export class NotificationScheduler implements NotificationPort {
 	scheduleNext(dueDate: Date, cardCount: number): void {
 		const sw = navigator.serviceWorker?.controller;
 		if (!sw) return;

@@ -1,4 +1,4 @@
-import type { CardRepository } from "../../../application/ports/CardRepository";
+import type { CardRepository } from "../../ports/CardRepository";
 import type { CardPool } from "../CardPool";
 import { CardPools } from "../CardPool";
 
