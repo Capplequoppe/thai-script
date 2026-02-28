@@ -102,7 +102,9 @@ export function Flashcard({ card, onRate }: Props) {
 						{card.audioUrl && !hideAudioHint && (
 							<button
 								type="button"
-								onClick={() => new Audio(card.audioUrl!).play()}
+								onClick={() => {
+									if (card.audioUrl) new Audio(card.audioUrl).play();
+								}}
 								className="ml-3 inline-flex items-center justify-center w-10 h-10 rounded-full bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 text-gray-600 dark:text-gray-300 transition-colors align-middle"
 								aria-label="Play pronunciation"
 							>
@@ -116,7 +118,9 @@ export function Flashcard({ card, onRate }: Props) {
 						{card.audioUrl && (
 							<button
 								type="button"
-								onClick={() => new Audio(card.audioUrl!).play()}
+								onClick={() => {
+									if (card.audioUrl) new Audio(card.audioUrl).play();
+								}}
 								className="ml-3 inline-flex items-center justify-center w-10 h-10 rounded-full bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 text-gray-600 dark:text-gray-300 transition-colors align-middle"
 								aria-label="Play pronunciation"
 							>
@@ -141,7 +145,10 @@ export function Flashcard({ card, onRate }: Props) {
 					<span className="text-xs text-gray-400 ml-1">(Space)</span>
 				</button>
 			) : (
-				<div style={{ animation: "slideUp 0.25s ease-out" }} className="space-y-6">
+				<div
+					style={{ animation: "slideUp 0.25s ease-out" }}
+					className="space-y-6"
+				>
 					<div className="text-center py-4 bg-indigo-50 dark:bg-indigo-900/20 rounded-xl">
 						<p className="text-2xl font-bold text-indigo-600 dark:text-indigo-400">
 							{card.correctAnswer}

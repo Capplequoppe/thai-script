@@ -1,5 +1,3 @@
-import type { SessionSummary } from "../../domain/shared/types";
-
 export interface HeatmapCell {
 	date: Date;
 	count: number;
@@ -8,7 +6,7 @@ export interface HeatmapCell {
 }
 
 export function buildHeatmapGrid(
-	sessions: Pick<SessionSummary, "completedAt" | "totalCards">[],
+	sessions: Array<{ completedAt?: string; totalCards: number }>,
 ): HeatmapCell[][] {
 	// Build count-by-day map
 	const countByDay = new Map<string, number>();
@@ -52,9 +50,10 @@ const INTENSITY_COLORS: Record<number, string> = {
 };
 
 const DAY_LABELS = ["S", "M", "T", "W", "T", "F", "S"];
+const DAY_KEYS = ["sun", "mon", "tue", "wed", "thu", "fri", "sat"];
 
 interface HeatmapWidgetProps {
-	sessions: Pick<SessionSummary, "completedAt" | "totalCards">[];
+	sessions: Array<{ completedAt?: string; totalCards: number }>;
 }
 
 export function HeatmapWidget({ sessions }: HeatmapWidgetProps) {
@@ -68,7 +67,7 @@ export function HeatmapWidget({ sessions }: HeatmapWidgetProps) {
 				<div className="flex flex-col gap-px mr-1 flex-shrink-0">
 					{DAY_LABELS.map((label, i) => (
 						<div
-							key={i}
+							key={DAY_KEYS[i]}
 							className="w-3 h-3 flex items-center justify-center"
 							style={{ fontSize: "7px", color: "var(--color-text-muted)" }}
 						>
@@ -77,11 +76,14 @@ export function HeatmapWidget({ sessions }: HeatmapWidgetProps) {
 					))}
 				</div>
 				{/* Grid columns = weeks */}
-				{grid.map((row, weekIdx) => (
-					<div key={weekIdx} className="flex flex-col gap-px flex-shrink-0">
-						{row.map((cell, dayIdx) => (
+				{grid.map((row) => (
+					<div
+						key={row[0].date.toISOString()}
+						className="flex flex-col gap-px flex-shrink-0"
+					>
+						{row.map((cell) => (
 							<div
-								key={dayIdx}
+								key={cell.date.toISOString()}
 								title={`${cell.date.toLocaleDateString([], { weekday: "short", month: "short", day: "numeric" })}: ${cell.count} cards`}
 								className="w-3 h-3 rounded-sm"
 								style={{

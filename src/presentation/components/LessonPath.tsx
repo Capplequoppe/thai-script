@@ -47,11 +47,11 @@ export function LessonPath({
 			aria-label="Lesson progress path"
 		>
 			{/* Path lines between consecutive lessons */}
-			{positions.slice(0, -1).map(({ x, y }, i) => {
+			{positions.slice(0, -1).map(({ n, x, y }, i) => {
 				const next = positions[i + 1];
 				return (
 					<line
-						key={i}
+						key={`line-${n}`}
 						x1={x}
 						y1={y}
 						x2={next.x}
@@ -75,15 +75,20 @@ export function LessonPath({
 					: isNext
 						? "var(--color-primary)"
 						: "var(--color-surface-2)";
-				const textColor =
-					isLocked ? "var(--color-text-muted)" : "white";
+				const textColor = isLocked ? "var(--color-text-muted)" : "white";
 				const strokeColor = isLocked ? "var(--color-border)" : "transparent";
 
 				return (
+					// biome-ignore lint/a11y/noStaticElementInteractions: SVG <g> uses role="button" with onKeyDown — no <button> exists in SVG
 					<g
 						key={n}
 						transform={`translate(${x}, ${y})`}
 						onClick={() => isClickable && onLessonClick(n)}
+						onKeyDown={(e) => {
+							if (isClickable && (e.key === "Enter" || e.key === " "))
+								onLessonClick(n);
+						}}
+						tabIndex={isClickable ? 0 : undefined}
 						style={{ cursor: isClickable ? "pointer" : "default" }}
 						role={isClickable ? "button" : undefined}
 						aria-label={
@@ -96,7 +101,10 @@ export function LessonPath({
 					>
 						{/* Pulse ring for next available */}
 						{isNext && (
-							<circle r={NODE_R + 6} style={{ fill: "var(--color-primary)", opacity: 0.15 }}>
+							<circle
+								r={NODE_R + 6}
+								style={{ fill: "var(--color-primary)", opacity: 0.15 }}
+							>
 								<animate
 									attributeName="r"
 									values={`${NODE_R + 4};${NODE_R + 9};${NODE_R + 4}`}

@@ -59,12 +59,18 @@ function GrammarIntro({
 				</span>
 				<span
 					className="px-2 py-0.5 rounded text-xs"
-					style={{ background: "var(--color-surface)", color: "var(--color-text-muted)" }}
+					style={{
+						background: "var(--color-surface)",
+						color: "var(--color-text-muted)",
+					}}
 				>
 					grammar
 				</span>
 			</div>
-			<div className="w-full h-1 rounded-full" style={{ background: "var(--color-border)" }}>
+			<div
+				className="w-full h-1 rounded-full"
+				style={{ background: "var(--color-border)" }}
+			>
 				<div
 					className="h-full rounded-full transition-all"
 					style={{
@@ -77,26 +83,40 @@ function GrammarIntro({
 			<h2 className="text-xl font-bold" style={{ color: "var(--color-text)" }}>
 				{current.title}
 			</h2>
-			<div className="card-royal p-4 font-mono text-center text-lg">{current.pattern}</div>
+			<div className="card-royal p-4 font-mono text-center text-lg">
+				{current.pattern}
+			</div>
 			<p style={{ color: "var(--color-text-muted)" }}>{current.explanation}</p>
 
 			<div className="space-y-3">
-				<h3 className="text-sm font-semibold" style={{ color: "var(--color-text-muted)" }}>
+				<h3
+					className="text-sm font-semibold"
+					style={{ color: "var(--color-text-muted)" }}
+				>
 					Examples
 				</h3>
 				{current.examples.map((ex) => (
 					<div key={ex.thai} className="card-royal p-3">
-						<div className="thai text-lg font-semibold" style={{ color: "var(--color-text)" }}>
+						<div
+							className="thai text-lg font-semibold"
+							style={{ color: "var(--color-text)" }}
+						>
 							{ex.thai}
 						</div>
-						<div className="text-sm" style={{ color: "var(--color-text-muted)" }}>
+						<div
+							className="text-sm"
+							style={{ color: "var(--color-text-muted)" }}
+						>
 							{ex.romanization}
 						</div>
 						<div className="text-sm" style={{ color: "var(--color-text)" }}>
 							{ex.english}
 						</div>
 						{ex.breakdown && (
-							<div className="text-xs mt-1 font-mono" style={{ color: "var(--color-text-muted)" }}>
+							<div
+								className="text-xs mt-1 font-mono"
+								style={{ color: "var(--color-text-muted)" }}
+							>
 								{ex.breakdown}
 							</div>
 						)}
@@ -110,7 +130,10 @@ function GrammarIntro({
 						type="button"
 						onClick={goBack}
 						className="py-3 px-6 rounded-xl font-semibold transition-colors"
-						style={{ background: "var(--color-surface)", color: "var(--color-text)" }}
+						style={{
+							background: "var(--color-surface)",
+							color: "var(--color-text)",
+						}}
 					>
 						Back
 					</button>
@@ -193,7 +216,13 @@ export function GrammarPage() {
 			const ids = checkAchievements(sessionSummary);
 			setNewAchievements(ids);
 		}
-	}, [phase, flow.correct, flow.incorrect, flow.accuracy.percentage, checkAchievements]);
+	}, [
+		phase,
+		flow.correct,
+		flow.incorrect,
+		flow.accuracy.percentage,
+		checkAchievements,
+	]);
 
 	const handleStartLesson = () => {
 		if (!nextLesson) return;
@@ -246,7 +275,10 @@ export function GrammarPage() {
 		return (
 			<div className="space-y-8 py-4">
 				<div className="text-center">
-					<h1 className="text-3xl font-bold" style={{ color: "var(--color-text)" }}>
+					<h1
+						className="text-3xl font-bold"
+						style={{ color: "var(--color-text)" }}
+					>
 						Grammar
 					</h1>
 					<p className="mt-1" style={{ color: "var(--color-text-muted)" }}>
@@ -256,26 +288,44 @@ export function GrammarPage() {
 
 				<div className="grid grid-cols-3 gap-4 text-center">
 					<div className="card-royal p-4">
-						<div className="text-2xl font-bold" style={{ color: "var(--color-text)" }}>
+						<div
+							className="text-2xl font-bold"
+							style={{ color: "var(--color-text)" }}
+						>
 							{unlockedCount}
 						</div>
-						<div className="text-xs mt-1" style={{ color: "var(--color-text-muted)" }}>
+						<div
+							className="text-xs mt-1"
+							style={{ color: "var(--color-text-muted)" }}
+						>
 							Unlocked
 						</div>
 					</div>
 					<div className="card-royal p-4">
-						<div className="text-2xl font-bold" style={{ color: "var(--color-text)" }}>
+						<div
+							className="text-2xl font-bold"
+							style={{ color: "var(--color-text)" }}
+						>
 							{learnedCount}
 						</div>
-						<div className="text-xs mt-1" style={{ color: "var(--color-text-muted)" }}>
+						<div
+							className="text-xs mt-1"
+							style={{ color: "var(--color-text-muted)" }}
+						>
 							Learned
 						</div>
 					</div>
 					<div className="card-royal p-4">
-						<div className="text-2xl font-bold" style={{ color: "var(--color-accent)" }}>
+						<div
+							className="text-2xl font-bold"
+							style={{ color: "var(--color-accent)" }}
+						>
 							{dueGrammarCards}
 						</div>
-						<div className="text-xs mt-1" style={{ color: "var(--color-text-muted)" }}>
+						<div
+							className="text-xs mt-1"
+							style={{ color: "var(--color-text-muted)" }}
+						>
 							Due
 						</div>
 					</div>
@@ -294,16 +344,25 @@ export function GrammarPage() {
 					)}
 
 					{!nextLesson && unlockedCount === 0 && (
-						<p className="text-center" style={{ color: "var(--color-text-muted)" }}>
+						<p
+							className="text-center"
+							style={{ color: "var(--color-text-muted)" }}
+						>
 							Master more vocabulary words to unlock grammar points.
 						</p>
 					)}
 
-					{!nextLesson && unlockedCount > 0 && learnedCount === unlockedCount && (
-						<p className="text-center font-semibold" style={{ color: "var(--color-master)" }}>
-							All unlocked grammar learned! Master more vocabulary to unlock more.
-						</p>
-					)}
+					{!nextLesson &&
+						unlockedCount > 0 &&
+						learnedCount === unlockedCount && (
+							<p
+								className="text-center font-semibold"
+								style={{ color: "var(--color-master)" }}
+							>
+								All unlocked grammar learned! Master more vocabulary to unlock
+								more.
+							</p>
+						)}
 
 					{dueGrammarCards > 0 && (
 						<button
@@ -324,38 +383,55 @@ export function GrammarPage() {
 	if (phase === "intro") {
 		return (
 			<div>
-				<h1 className="text-xl font-bold mb-1" style={{ color: "var(--color-text)" }}>
+				<h1
+					className="text-xl font-bold mb-1"
+					style={{ color: "var(--color-text)" }}
+				>
 					New Grammar
 				</h1>
-				<p className="text-sm mb-6" style={{ color: "var(--color-text-muted)" }}>
+				<p
+					className="text-sm mb-6"
+					style={{ color: "var(--color-text-muted)" }}
+				>
 					{lessonGrammar.length} grammar point
 					{lessonGrammar.length !== 1 ? "s" : ""} to learn
 				</p>
-				<GrammarIntro grammarPoints={lessonGrammar} onComplete={handleIntroComplete} />
+				<GrammarIntro
+					grammarPoints={lessonGrammar}
+					onComplete={handleIntroComplete}
+				/>
 			</div>
 		);
 	}
 
 	// Quiz
-	if (phase === "quiz" && cards[flow.cardIdx]) {
+	const currentGrammarCard = cards[flow.cardIdx];
+	if (phase === "quiz" && currentGrammarCard) {
 		const liveTotal = flow.correct + flow.incorrect;
 		const liveAccuracy =
-			liveTotal > 0
-				? `${Math.round((flow.correct / liveTotal) * 100)}%`
-				: "—";
+			liveTotal > 0 ? `${Math.round((flow.correct / liveTotal) * 100)}%` : "—";
 
 		return (
 			<div>
 				{/* Session header HUD */}
 				<div className="mb-4">
 					<div className="flex items-center justify-between mb-2">
-						<span className="text-sm font-semibold" style={{ color: "var(--color-text)" }}>
+						<span
+							className="text-sm font-semibold"
+							style={{ color: "var(--color-text)" }}
+						>
 							Grammar Session
 						</span>
-						<span className="text-sm" style={{ color: "var(--color-text-muted)" }}>
+						<span
+							className="text-sm"
+							style={{ color: "var(--color-text-muted)" }}
+						>
 							{flow.cardIdx + 1} / {cards.length}
 						</span>
-						<span className="text-sm" style={{ color: "var(--color-text-muted)" }}>
+						<span
+							className="text-sm"
+							style={{ color: "var(--color-text-muted)" }}
+						>
 							Acc: {liveAccuracy}
 						</span>
 						<button
@@ -368,7 +444,10 @@ export function GrammarPage() {
 							✕
 						</button>
 					</div>
-					<div className="w-full h-1.5 rounded-full" style={{ background: "var(--color-border)" }}>
+					<div
+						className="w-full h-1.5 rounded-full"
+						style={{ background: "var(--color-border)" }}
+					>
 						<div
 							className="h-full rounded-full transition-all"
 							style={{
@@ -378,7 +457,7 @@ export function GrammarPage() {
 						/>
 					</div>
 				</div>
-				<MultipleChoice card={cards[flow.cardIdx]!} onAnswer={flow.advance} />
+				<MultipleChoice card={currentGrammarCard} onAnswer={flow.advance} />
 			</div>
 		);
 	}
@@ -391,32 +470,55 @@ export function GrammarPage() {
 		return (
 			<div className="space-y-6 py-8">
 				<div className="text-center">
-					<div className="text-5xl mb-3" style={{ color: "var(--color-accent)" }}>
+					<div
+						className="text-5xl mb-3"
+						style={{ color: "var(--color-accent)" }}
+					>
 						✦
 					</div>
-					<h1 className="text-2xl font-semibold" style={{ color: "var(--color-text)" }}>
+					<h1
+						className="text-2xl font-semibold"
+						style={{ color: "var(--color-text)" }}
+					>
 						Session Complete
 					</h1>
-					<p className="text-sm mt-1" style={{ color: "var(--color-text-muted)" }}>
+					<p
+						className="text-sm mt-1"
+						style={{ color: "var(--color-text-muted)" }}
+					>
 						{accuracy.percentage}% accuracy
 					</p>
 				</div>
 
 				<div className="grid grid-cols-3 gap-3">
 					{[
-						{ label: "Cards", value: totalCardsCount, color: "var(--color-text)" },
-						{ label: "Correct", value: flow.correct, color: "var(--color-master)" },
+						{
+							label: "Cards",
+							value: totalCardsCount,
+							color: "var(--color-text)",
+						},
+						{
+							label: "Correct",
+							value: flow.correct,
+							color: "var(--color-master)",
+						},
 						{
 							label: "Accuracy",
 							value: `${accuracy.percentage}%`,
-							color: accuracy.percentage >= 80 ? "var(--color-accent)" : "var(--color-danger)",
+							color:
+								accuracy.percentage >= 80
+									? "var(--color-accent)"
+									: "var(--color-danger)",
 						},
 					].map(({ label, value, color }) => (
 						<div key={label} className="card-royal p-4 text-center">
 							<div className="text-2xl font-bold" style={{ color }}>
 								{value}
 							</div>
-							<div className="text-xs mt-1" style={{ color: "var(--color-text-muted)" }}>
+							<div
+								className="text-xs mt-1"
+								style={{ color: "var(--color-text-muted)" }}
+							>
 								{label}
 							</div>
 						</div>
@@ -462,13 +564,22 @@ export function GrammarPage() {
 				{/* Session header HUD */}
 				<div className="mb-4">
 					<div className="flex items-center justify-between mb-2">
-						<span className="text-sm font-semibold" style={{ color: "var(--color-text)" }}>
+						<span
+							className="text-sm font-semibold"
+							style={{ color: "var(--color-text)" }}
+						>
 							Grammar Review
 						</span>
-						<span className="text-sm" style={{ color: "var(--color-text-muted)" }}>
+						<span
+							className="text-sm"
+							style={{ color: "var(--color-text-muted)" }}
+						>
 							{grammarReview.cardIdx + 1} / {grammarReview.session.cards.length}
 						</span>
-						<span className="text-sm" style={{ color: "var(--color-text-muted)" }}>
+						<span
+							className="text-sm"
+							style={{ color: "var(--color-text-muted)" }}
+						>
 							Acc: {reviewLiveAccuracy}
 						</span>
 						<button
@@ -481,7 +592,10 @@ export function GrammarPage() {
 							✕
 						</button>
 					</div>
-					<div className="w-full h-1.5 rounded-full" style={{ background: "var(--color-border)" }}>
+					<div
+						className="w-full h-1.5 rounded-full"
+						style={{ background: "var(--color-border)" }}
+					>
 						<div
 							className="h-full rounded-full transition-all"
 							style={{

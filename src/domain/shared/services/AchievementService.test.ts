@@ -5,11 +5,9 @@ import { AchievementService } from "./AchievementService";
 
 const service = new AchievementService();
 
-function makeSession(overrides: {
-	type?: string;
-	totalCards?: number;
-	accuracy?: number;
-} = {}): SessionSummary {
+function makeSession(
+	overrides: { type?: string; totalCards?: number; accuracy?: number } = {},
+): SessionSummary {
 	const totalCards = overrides.totalCards ?? 5;
 	const accuracy = overrides.accuracy ?? 100;
 	const correctCount = Math.round((accuracy / 100) * totalCards);
@@ -49,7 +47,10 @@ function makeCard(learningStep: number | null, interval: number) {
 
 describe("AchievementService", () => {
 	it("returns no achievements for empty state", () => {
-		const result = service.checkNewAchievements(INITIAL_LEARNER_STATE, makeSession());
+		const result = service.checkNewAchievements(
+			INITIAL_LEARNER_STATE,
+			makeSession(),
+		);
 		expect(result).toHaveLength(0);
 	});
 
@@ -68,7 +69,10 @@ describe("AchievementService", () => {
 			...INITIAL_LEARNER_STATE,
 			completedLessons: [1],
 		};
-		const result = service.checkNewAchievements(state, makeSession({ type: "lesson" }));
+		const result = service.checkNewAchievements(
+			state,
+			makeSession({ type: "lesson" }),
+		);
 		expect(result).toContain("first_lesson");
 	});
 
@@ -78,7 +82,10 @@ describe("AchievementService", () => {
 			completedLessons: [1, 2, 3, 4, 5],
 			achievements: ["first_lesson"],
 		};
-		const result = service.checkNewAchievements(state, makeSession({ type: "lesson" }));
+		const result = service.checkNewAchievements(
+			state,
+			makeSession({ type: "lesson" }),
+		);
 		expect(result).toContain("five_lessons");
 		expect(result).not.toContain("first_lesson");
 	});
@@ -98,12 +105,17 @@ describe("AchievementService", () => {
 			...INITIAL_LEARNER_STATE,
 			sessionHistory: [makeSession({ type: "review" })],
 		};
-		const result = service.checkNewAchievements(state, makeSession({ type: "review" }));
+		const result = service.checkNewAchievements(
+			state,
+			makeSession({ type: "review" }),
+		);
 		expect(result).toContain("first_review");
 	});
 
 	it("unlocks century when total reviewed >= 100", () => {
-		const sessions = Array.from({ length: 10 }, () => makeSession({ totalCards: 10 }));
+		const sessions = Array.from({ length: 10 }, () =>
+			makeSession({ totalCards: 10 }),
+		);
 		const state: LearnerState = {
 			...INITIAL_LEARNER_STATE,
 			sessionHistory: sessions,
@@ -117,7 +129,10 @@ describe("AchievementService", () => {
 			...INITIAL_LEARNER_STATE,
 			sessionHistory: [makeSession({ totalCards: 50 })],
 		};
-		const result = service.checkNewAchievements(state, makeSession({ totalCards: 20 }));
+		const result = service.checkNewAchievements(
+			state,
+			makeSession({ totalCards: 20 }),
+		);
 		expect(result).not.toContain("century");
 	});
 
@@ -170,13 +185,21 @@ describe("AchievementService", () => {
 			question: "test",
 			correctAnswer: "test",
 			choices: [],
-			srs: { easeFactor: 2.0, interval: 10, repetitions: 0, learningStep: 1, nextReviewDate: new Date().toISOString(), lastReviewDate: null, lapseCount: 0 },
+			srs: {
+				easeFactor: 2.0,
+				interval: 10,
+				repetitions: 0,
+				learningStep: 1,
+				nextReviewDate: new Date().toISOString(),
+				lastReviewDate: null,
+				lapseCount: 0,
+			},
 			wordThai: "ขา",
-			property: "recognition" as const,
+			property: "thaiToEnglish" as const,
 		};
 		const state: LearnerState = {
 			...INITIAL_LEARNER_STATE,
-			vocabCards: { [vocabCard.id]: vocabCard as any },
+			vocabCards: { [vocabCard.id]: vocabCard },
 		};
 		const result = service.checkNewAchievements(state, makeSession());
 		expect(result).toContain("vocab_start");

@@ -19,7 +19,7 @@ export function HudStrip({ dueCount, sessionHistory }: HudStripProps) {
 			if (!s.completedAt) return false;
 			return new Date(s.completedAt).toDateString() === dayStr;
 		});
-		return { reviewed, isToday: dayStr === todayStr };
+		return { reviewed, isToday: dayStr === todayStr, dayStr };
 	});
 
 	return (
@@ -42,7 +42,10 @@ export function HudStrip({ dueCount, sessionHistory }: HudStripProps) {
 						{dueCount} due
 					</span>
 				) : (
-					<span className="text-xs" style={{ color: "var(--color-text-muted)" }}>
+					<span
+						className="text-xs"
+						style={{ color: "var(--color-text-muted)" }}
+					>
 						All clear
 					</span>
 				)}
@@ -58,7 +61,7 @@ export function HudStrip({ dueCount, sessionHistory }: HudStripProps) {
 
 			{/* Right: 7-day review dots */}
 			<div className="flex gap-1 items-center min-w-[60px] justify-end">
-				{dots.map(({ reviewed, isToday }, i) => {
+				{dots.map(({ reviewed, isToday, dayStr }) => {
 					let bgColor = "var(--color-border)";
 					let ring = false;
 					let ringColor = "var(--color-border)";
@@ -68,12 +71,14 @@ export function HudStrip({ dueCount, sessionHistory }: HudStripProps) {
 					}
 					if (isToday) {
 						ring = true;
-						ringColor = reviewed ? "var(--color-accent)" : "var(--color-border)";
+						ringColor = reviewed
+							? "var(--color-accent)"
+							: "var(--color-border)";
 					}
 
 					return (
 						<div
-							key={i}
+							key={dayStr}
 							className="w-2.5 h-2.5 rounded-full transition-all"
 							style={{
 								background: bgColor,

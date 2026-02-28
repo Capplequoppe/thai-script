@@ -34,8 +34,11 @@ export function StagePromotionPanel({ promotions }: StagePromotionPanelProps) {
 		>
 			<div className="section-header mb-3">Stage Promotions</div>
 			<div className="space-y-2">
-				{promotions.map((p, i) => (
-					<div key={i} className="flex items-center justify-between gap-4">
+				{promotions.map((p) => (
+					<div
+						key={p.cardQuestion}
+						className="flex items-center justify-between gap-4"
+					>
 						<span
 							className="thai text-xl font-semibold truncate"
 							style={{ color: "var(--color-text)" }}

@@ -65,8 +65,9 @@ export function MultipleChoice({ card, onAnswer }: Props) {
 		const handler = (e: KeyboardEvent) => {
 			if (revealed) return;
 			const idx = parseInt(e.key, 10) - 1;
-			if (idx >= 0 && idx < card.choices.length) {
-				handleSelect(card.choices[idx]!);
+			const choice = card.choices[idx];
+			if (idx >= 0 && idx < card.choices.length && choice !== undefined) {
+				handleSelect(choice);
 			}
 		};
 		window.addEventListener("keydown", handler);
@@ -79,7 +80,9 @@ export function MultipleChoice({ card, onAnswer }: Props) {
 				<div className="text-center">
 					<button
 						type="button"
-						onClick={() => playAudio(card.audioUrl!)}
+						onClick={() => {
+							if (card.audioUrl) playAudio(card.audioUrl);
+						}}
 						className="inline-flex items-center justify-center w-24 h-24 rounded-full bg-indigo-100 dark:bg-indigo-900/30 hover:bg-indigo-200 dark:hover:bg-indigo-800/40 text-indigo-600 dark:text-indigo-400 transition-colors text-5xl"
 						aria-label="Replay pronunciation"
 					>
@@ -98,7 +101,9 @@ export function MultipleChoice({ card, onAnswer }: Props) {
 					{card.audioUrl && !hideAudioHint && (
 						<button
 							type="button"
-							onClick={() => playAudio(card.audioUrl!)}
+							onClick={() => {
+								if (card.audioUrl) playAudio(card.audioUrl);
+							}}
 							className="ml-3 inline-flex items-center justify-center w-10 h-10 rounded-full bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 text-gray-600 dark:text-gray-300 transition-colors align-middle"
 							aria-label="Play pronunciation"
 						>
@@ -118,7 +123,9 @@ export function MultipleChoice({ card, onAnswer }: Props) {
 					{card.audioUrl && (
 						<button
 							type="button"
-							onClick={() => playAudio(card.audioUrl!)}
+							onClick={() => {
+								if (card.audioUrl) playAudio(card.audioUrl);
+							}}
 							className="ml-3 inline-flex items-center justify-center w-10 h-10 rounded-full bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 text-gray-600 dark:text-gray-300 transition-colors align-middle"
 							aria-label="Play pronunciation"
 						>

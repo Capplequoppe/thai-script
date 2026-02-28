@@ -55,7 +55,14 @@ export function LessonPage() {
 			const ids = checkAchievements(sessionSummary);
 			setNewAchievements(ids);
 		}
-	}, [phase, num, flow.correct, flow.incorrect, flow.accuracy.percentage, checkAchievements]);
+	}, [
+		phase,
+		num,
+		flow.correct,
+		flow.incorrect,
+		flow.accuracy.percentage,
+		checkAchievements,
+	]);
 
 	if (!summary) {
 		return (
@@ -93,10 +100,16 @@ export function LessonPage() {
 	if (phase === "intro") {
 		return (
 			<div>
-				<h1 className="text-xl font-bold mb-1" style={{ color: "var(--color-text)" }}>
+				<h1
+					className="text-xl font-bold mb-1"
+					style={{ color: "var(--color-text)" }}
+				>
 					Lesson {num}
 				</h1>
-				<p className="text-sm mb-6" style={{ color: "var(--color-text-muted)" }}>
+				<p
+					className="text-sm mb-6"
+					style={{ color: "var(--color-text-muted)" }}
+				>
 					{summary.focus}
 				</p>
 				<LessonIntro summary={summary} onComplete={handleIntroComplete} />
@@ -104,25 +117,33 @@ export function LessonPage() {
 		);
 	}
 
-	if (phase === "quiz" && cards[flow.cardIdx]) {
+	const currentLessonCard = cards[flow.cardIdx];
+	if (phase === "quiz" && currentLessonCard) {
 		const liveTotal = flow.correct + flow.incorrect;
 		const liveAccuracy =
-			liveTotal > 0
-				? `${Math.round((flow.correct / liveTotal) * 100)}%`
-				: "—";
+			liveTotal > 0 ? `${Math.round((flow.correct / liveTotal) * 100)}%` : "—";
 
 		return (
 			<div>
 				{/* Session header HUD */}
 				<div className="mb-4">
 					<div className="flex items-center justify-between mb-2">
-						<span className="text-sm font-semibold" style={{ color: "var(--color-text)" }}>
+						<span
+							className="text-sm font-semibold"
+							style={{ color: "var(--color-text)" }}
+						>
 							Lesson Session
 						</span>
-						<span className="text-sm" style={{ color: "var(--color-text-muted)" }}>
+						<span
+							className="text-sm"
+							style={{ color: "var(--color-text-muted)" }}
+						>
 							{flow.cardIdx + 1} / {cards.length}
 						</span>
-						<span className="text-sm" style={{ color: "var(--color-text-muted)" }}>
+						<span
+							className="text-sm"
+							style={{ color: "var(--color-text-muted)" }}
+						>
 							Acc: {liveAccuracy}
 						</span>
 						<button
@@ -135,7 +156,10 @@ export function LessonPage() {
 							✕
 						</button>
 					</div>
-					<div className="w-full h-1.5 rounded-full" style={{ background: "var(--color-border)" }}>
+					<div
+						className="w-full h-1.5 rounded-full"
+						style={{ background: "var(--color-border)" }}
+					>
 						<div
 							className="h-full rounded-full transition-all"
 							style={{
@@ -145,7 +169,7 @@ export function LessonPage() {
 						/>
 					</div>
 				</div>
-				<MultipleChoice card={cards[flow.cardIdx]!} onAnswer={flow.advance} />
+				<MultipleChoice card={currentLessonCard} onAnswer={flow.advance} />
 			</div>
 		);
 	}
@@ -160,29 +184,49 @@ export function LessonPage() {
 				<div className="text-5xl mb-3" style={{ color: "var(--color-accent)" }}>
 					✦
 				</div>
-				<h1 className="text-2xl font-semibold" style={{ color: "var(--color-text)" }}>
+				<h1
+					className="text-2xl font-semibold"
+					style={{ color: "var(--color-text)" }}
+				>
 					Session Complete
 				</h1>
-				<p className="text-sm mt-1" style={{ color: "var(--color-text-muted)" }}>
+				<p
+					className="text-sm mt-1"
+					style={{ color: "var(--color-text-muted)" }}
+				>
 					{accuracy.percentage}% accuracy
 				</p>
 			</div>
 
 			<div className="grid grid-cols-3 gap-3">
 				{[
-					{ label: "Cards", value: totalCardsCount, color: "var(--color-text)" },
-					{ label: "Correct", value: flow.correct, color: "var(--color-master)" },
+					{
+						label: "Cards",
+						value: totalCardsCount,
+						color: "var(--color-text)",
+					},
+					{
+						label: "Correct",
+						value: flow.correct,
+						color: "var(--color-master)",
+					},
 					{
 						label: "Accuracy",
 						value: `${accuracy.percentage}%`,
-						color: accuracy.percentage >= 80 ? "var(--color-accent)" : "var(--color-danger)",
+						color:
+							accuracy.percentage >= 80
+								? "var(--color-accent)"
+								: "var(--color-danger)",
 					},
 				].map(({ label, value, color }) => (
 					<div key={label} className="card-royal p-4 text-center">
 						<div className="text-2xl font-bold" style={{ color }}>
 							{value}
 						</div>
-						<div className="text-xs mt-1" style={{ color: "var(--color-text-muted)" }}>
+						<div
+							className="text-xs mt-1"
+							style={{ color: "var(--color-text-muted)" }}
+						>
 							{label}
 						</div>
 					</div>

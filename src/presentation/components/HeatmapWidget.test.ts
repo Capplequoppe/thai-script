@@ -58,7 +58,7 @@ describe("buildHeatmapGrid", () => {
 	});
 
 	it("ignores sessions without completedAt", () => {
-		const sessions = [{ completedAt: undefined as any, totalCards: 10 }];
+		const sessions = [{ completedAt: undefined, totalCards: 10 }];
 		const grid = buildHeatmapGrid(sessions);
 		expect(grid[11][6].count).toBe(0);
 	});
