@@ -9,7 +9,7 @@ import {
 	ConsonantCard,
 	ToneMarkCard,
 	VowelCard,
-} from "../components/SymbolCard";
+} from "../components/organisms/SymbolCard";
 import { useApp } from "../hooks/useApp";
 
 type Tab = "consonants" | "vowels" | "toneMarks" | "vocabulary" | "videos";

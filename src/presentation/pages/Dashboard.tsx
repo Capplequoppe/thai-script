@@ -5,9 +5,9 @@ import { Card } from "@/presentation/components/ui/card";
 import {
 	ACHIEVEMENT_DEFS,
 	AchievementBadge,
-} from "../components/AchievementBadge";
-import { HeatmapWidget } from "../components/HeatmapWidget";
-import { NotificationBanner } from "../components/NotificationBanner";
+} from "../components/organisms/AchievementBadge";
+import { HeatmapWidget } from "../components/organisms/HeatmapWidget";
+import { NotificationBanner } from "../components/organisms/NotificationBanner";
 import { useApp } from "../hooks/useApp";
 
 const STAGE_PILL_CONFIG = [

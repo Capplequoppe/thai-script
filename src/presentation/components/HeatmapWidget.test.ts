@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { buildHeatmapGrid } from "./HeatmapWidget";
+import { buildHeatmapGrid } from "./organisms/HeatmapWidget";
 
 describe("buildHeatmapGrid", () => {
 	it("returns 12 rows of 7 days each", () => {

@@ -6,11 +6,11 @@ import { Progress } from "@/presentation/components/ui/progress";
 import { ratingFromCorrectness } from "../../domain/shared/ratingFromCorrectness";
 import type { RecallRating, SessionSummary } from "../../domain/shared/types";
 import { Accuracy } from "../../domain/srs/value-objects/Accuracy";
-import { AchievementBadge } from "../components/AchievementBadge";
-import { Flashcard } from "../components/Flashcard";
-import { MultipleChoice } from "../components/MultipleChoice";
-import type { Promotion } from "../components/StagePromotionPanel";
-import { StagePromotionPanel } from "../components/StagePromotionPanel";
+import { AchievementBadge } from "../components/organisms/AchievementBadge";
+import { Flashcard } from "../components/organisms/Flashcard";
+import { MultipleChoice } from "../components/organisms/MultipleChoice";
+import type { Promotion } from "../components/organisms/StagePromotionPanel";
+import { StagePromotionPanel } from "../components/organisms/StagePromotionPanel";
 import { useApp } from "../hooks/useApp";
 import { useReviewSession } from "../hooks/useReviewSession";
 

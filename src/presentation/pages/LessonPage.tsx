@@ -12,9 +12,9 @@ import {
 } from "@/presentation/components/ui/dialog";
 import { Progress } from "@/presentation/components/ui/progress";
 import type { PropertyCard } from "../../domain/shared/types";
-import { AchievementBadge } from "../components/AchievementBadge";
-import { LessonIntro } from "../components/LessonIntro";
-import { MultipleChoice } from "../components/MultipleChoice";
+import { AchievementBadge } from "../components/organisms/AchievementBadge";
+import { LessonIntro } from "../components/organisms/LessonIntro";
+import { MultipleChoice } from "../components/organisms/MultipleChoice";
 import { useApp } from "../hooks/useApp";
 import { useSessionFlow } from "../hooks/useSessionFlow";
 

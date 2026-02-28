@@ -4,9 +4,9 @@ import { Card } from "@/presentation/components/ui/card";
 import {
 	ACHIEVEMENT_DEFS,
 	AchievementBadge,
-} from "../components/AchievementBadge";
-import { HeatmapWidget } from "../components/HeatmapWidget";
-import { LessonPath } from "../components/LessonPath";
+} from "../components/organisms/AchievementBadge";
+import { HeatmapWidget } from "../components/organisms/HeatmapWidget";
+import { LessonPath } from "../components/organisms/LessonPath";
 import { useApp } from "../hooks/useApp";
 
 export function ProgressPage() {
