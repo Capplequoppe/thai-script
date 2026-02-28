@@ -2,6 +2,7 @@ import { beforeEach, describe, expect, it } from "vitest";
 import { LearningService } from "./learning-service";
 import { ReviewService } from "./review-service";
 import { InMemoryStorage } from "./storage";
+import type { GrammarCard } from "./grammar-types";
 import type { VocabularyCard } from "./vocabulary-types";
 import { DEFAULT_SRS_DATA } from "./types";
 
@@ -344,6 +345,92 @@ describe("ReviewService", () => {
 		it("getNextReviewDate returns null for empty vocab pool", () => {
 			const date = reviewService.getNextReviewDate("vocab");
 			expect(date).toBeNull();
+		});
+	});
+
+	describe("grammar pool", () => {
+		const pastDate = new Date(Date.now() - 60 * 60 * 1000).toISOString();
+
+		function makeGrammarCard(
+			id: string,
+			nextReviewDate: string,
+		): GrammarCard {
+			return {
+				id,
+				grammarId: id.split(":")[1] ?? id,
+				property: "recognition",
+				question: "Test question",
+				correctAnswer: "Test answer",
+				choices: ["Test answer", "Wrong 1", "Wrong 2", "Wrong 3"],
+				srs: {
+					easeFactor: 2.0,
+					interval: 10,
+					repetitions: 0,
+					learningStep: 1,
+					nextReviewDate,
+					lastReviewDate: null,
+					lapseCount: 0,
+				},
+			};
+		}
+
+		function seedGrammarCards(store: InMemoryStorage): void {
+			const state = store.load();
+			state.grammarCards["grammar:g1:recognition"] = makeGrammarCard(
+				"grammar:g1:recognition",
+				pastDate,
+			);
+			store.save(state);
+		}
+
+		it("getDueCards returns grammar cards when pool is grammar", () => {
+			seedGrammarCards(storage);
+			const due = reviewService.getDueCards(FUTURE_NOW, "grammar");
+			expect(due.length).toBe(1);
+			expect(due[0]!.id).toBe("grammar:g1:recognition");
+		});
+
+		it("getDueCards with default pool does not return grammar cards", () => {
+			seedGrammarCards(storage);
+			const due = reviewService.getDueCards(FUTURE_NOW);
+			for (const card of due) {
+				expect(card.id).not.toBe("grammar:g1:recognition");
+			}
+		});
+
+		it("recordReview updates grammar card SRS data", () => {
+			seedGrammarCards(storage);
+			reviewService.recordReview(
+				"grammar:g1:recognition",
+				4,
+				FUTURE_NOW,
+				undefined,
+				"grammar",
+			);
+
+			const state = storage.load();
+			const updated = state.grammarCards["grammar:g1:recognition"]!;
+			expect(updated.srs.repetitions).toBe(1);
+			expect(updated.srs.interval).toBe(60);
+		});
+
+		it("endReviewSession sets type to grammar-review for grammar pool", () => {
+			seedGrammarCards(storage);
+			const session = reviewService.startReviewSession(
+				undefined,
+				FUTURE_NOW,
+				"grammar",
+			);
+			session.results.push({
+				cardId: "grammar:g1:recognition",
+				rating: 4,
+			});
+			const summary = reviewService.endReviewSession(
+				session,
+				undefined,
+				"grammar",
+			);
+			expect(summary.type).toBe("grammar-review");
 		});
 	});
 });
