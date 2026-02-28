@@ -1,4 +1,6 @@
 import { beforeEach, describe, expect, it } from "vitest";
+import { StorageCardRepository } from "./infrastructure/persistence/StorageCardRepository";
+import { StorageLearnerStateRepository } from "./infrastructure/persistence/StorageLearnerStateRepository";
 import { LearningService } from "./learning-service";
 import { ReviewService } from "./review-service";
 import { InMemoryStorage } from "./storage";
@@ -15,7 +17,9 @@ describe("Learn-then-Review flow", () => {
 	beforeEach(() => {
 		storage = new InMemoryStorage();
 		learning = new LearningService(storage);
-		review = new ReviewService(storage);
+		const cardRepo = new StorageCardRepository(storage);
+		const stateRepo = new StorageLearnerStateRepository(storage);
+		review = new ReviewService(cardRepo, stateRepo);
 	});
 
 	it("full lesson 1 -> review cycle", () => {

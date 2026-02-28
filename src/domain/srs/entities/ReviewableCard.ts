@@ -44,5 +44,9 @@ export abstract class ReviewableCard {
 		this._schedule = this._schedule.applyReview(rating, now, timing);
 	}
 
+	resurrect(now?: string): void {
+		this._schedule = this._schedule.resurrect(now);
+	}
+
 	abstract get pool(): CardPool;
 }

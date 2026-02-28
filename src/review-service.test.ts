@@ -1,10 +1,12 @@
 import { beforeEach, describe, expect, it } from "vitest";
+import type { GrammarCard } from "./grammar-types";
+import { StorageCardRepository } from "./infrastructure/persistence/StorageCardRepository";
+import { StorageLearnerStateRepository } from "./infrastructure/persistence/StorageLearnerStateRepository";
 import { LearningService } from "./learning-service";
 import { ReviewService } from "./review-service";
 import { InMemoryStorage } from "./storage";
-import type { GrammarCard } from "./grammar-types";
-import type { VocabularyCard } from "./vocabulary-types";
 import { DEFAULT_SRS_DATA } from "./types";
+import type { VocabularyCard } from "./vocabulary-types";
 
 // Cards start at learning step 1 (interval 10 min), so they're due 10 min after creation.
 // Use a future timestamp to simulate time passing so cards become due.
@@ -18,7 +20,9 @@ describe("ReviewService", () => {
 	beforeEach(() => {
 		storage = new InMemoryStorage();
 		learningService = new LearningService(storage);
-		reviewService = new ReviewService(storage);
+		const cardRepo = new StorageCardRepository(storage);
+		const stateRepo = new StorageLearnerStateRepository(storage);
+		reviewService = new ReviewService(cardRepo, stateRepo);
 		// Complete lesson 1 so there are cards to review
 		learningService.startLesson(1);
 		learningService.completeLesson(1);
@@ -139,7 +143,9 @@ describe("ReviewService", () => {
 
 		it("returns null when no cards exist", () => {
 			const emptyStorage = new InMemoryStorage();
-			const emptyReview = new ReviewService(emptyStorage);
+			const emptyCardRepo = new StorageCardRepository(emptyStorage);
+			const emptyStateRepo = new StorageLearnerStateRepository(emptyStorage);
+			const emptyReview = new ReviewService(emptyCardRepo, emptyStateRepo);
 			expect(emptyReview.getNextReviewDate()).toBeNull();
 		});
 	});
@@ -147,7 +153,9 @@ describe("ReviewService", () => {
 	describe("getReviewForecast", () => {
 		it("returns all zeros for empty state", () => {
 			const emptyStorage = new InMemoryStorage();
-			const emptyReview = new ReviewService(emptyStorage);
+			const emptyCardRepo = new StorageCardRepository(emptyStorage);
+			const emptyStateRepo = new StorageLearnerStateRepository(emptyStorage);
+			const emptyReview = new ReviewService(emptyCardRepo, emptyStateRepo);
 			const forecast = emptyReview.getReviewForecast();
 			expect(forecast).toEqual({
 				dueNow: 0,
@@ -178,7 +186,8 @@ describe("ReviewService", () => {
 			state.cards[cardIds[4]!]!.srs.nextReviewDate = "2025-01-06T12:00:00.000Z";
 			// Set remaining cards far in the future (beyond 7 days)
 			for (let i = 5; i < cardIds.length; i++) {
-				state.cards[cardIds[i]!]!.srs.nextReviewDate = "2025-02-01T00:00:00.000Z";
+				state.cards[cardIds[i]!]!.srs.nextReviewDate =
+					"2025-02-01T00:00:00.000Z";
 			}
 			storage.save(state);
 
@@ -209,7 +218,9 @@ describe("ReviewService", () => {
 			}
 			storage.save(state);
 
-			const forecast = reviewService.getReviewForecast("2025-06-01T00:00:00.000Z");
+			const forecast = reviewService.getReviewForecast(
+				"2025-06-01T00:00:00.000Z",
+			);
 			expect(forecast).toEqual({
 				dueNow: 0,
 				nextHour: 0,
@@ -323,16 +334,24 @@ describe("ReviewService", () => {
 
 		it("recordReview throws for vocab card when using script pool", () => {
 			seedVocabCards(storage);
-			expect(() => reviewService.recordReview("vocab-1", 4, FUTURE_NOW)).toThrow(
-				"Card not found",
-			);
+			expect(() =>
+				reviewService.recordReview("vocab-1", 4, FUTURE_NOW),
+			).toThrow("Card not found");
 		});
 
 		it("endReviewSession sets type to vocab-review for vocab pool", () => {
 			seedVocabCards(storage);
-			const session = reviewService.startReviewSession(undefined, FUTURE_NOW, "vocab");
+			const session = reviewService.startReviewSession(
+				undefined,
+				FUTURE_NOW,
+				"vocab",
+			);
 			session.results.push({ cardId: "vocab-1", rating: 4 });
-			const summary = reviewService.endReviewSession(session, undefined, "vocab");
+			const summary = reviewService.endReviewSession(
+				session,
+				undefined,
+				"vocab",
+			);
 			expect(summary.type).toBe("vocab-review");
 		});
 
@@ -351,10 +370,7 @@ describe("ReviewService", () => {
 	describe("grammar pool", () => {
 		const pastDate = new Date(Date.now() - 60 * 60 * 1000).toISOString();
 
-		function makeGrammarCard(
-			id: string,
-			nextReviewDate: string,
-		): GrammarCard {
+		function makeGrammarCard(id: string, nextReviewDate: string): GrammarCard {
 			return {
 				id,
 				grammarId: id.split(":")[1] ?? id,

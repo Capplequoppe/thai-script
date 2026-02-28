@@ -17,6 +17,7 @@ import type {
 	GrammarLessonSummary,
 } from "../../grammar-types";
 import { StorageCardRepository } from "../../infrastructure/persistence/StorageCardRepository";
+import { StorageLearnerStateRepository } from "../../infrastructure/persistence/StorageLearnerStateRepository";
 import {
 	LearningService,
 	type LessonInfo,
@@ -53,7 +54,8 @@ const cardRepo = new StorageCardRepository(storage);
 const apprenticeService = new ApprenticeService(cardRepo);
 const leechService = new LeechService(cardRepo);
 const learningService = new LearningService(storage, apprenticeService);
-const reviewService = new ReviewService(storage);
+const stateRepo = new StorageLearnerStateRepository(storage);
+const reviewService = new ReviewService(cardRepo, stateRepo);
 const vocabularyService = new VocabularyService(
 	storage,
 	vocabularyData as VocabEntry[],
@@ -89,7 +91,7 @@ export interface AppContextValue {
 	getNextLesson: () => number | null;
 	getLessonSummary: (n: number) => LessonSummary;
 	getCompletedLessons: () => number[];
-	getDueCards: () => SrsCard[];
+	getDueCards: () => ReviewableCard[];
 	getNumDueCards: () => number;
 	recordReview: (
 		cardId: string,

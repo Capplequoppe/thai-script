@@ -1,20 +1,23 @@
-import { type ResponseTimingData, calculateNextReview, isBurned, isDue, resurrectCard as resurrectSrsCard } from "./srs";
-import type { IStorage } from "./storage";
-import type {
-	LearnerState,
-	QuizCard,
-	RecallRating,
-	SessionSummary,
-	SrsCard,
-} from "./types";
+import type { CardRepository } from "./application/ports/CardRepository";
+import type { LearnerStateRepository } from "./application/ports/LearnerStateRepository";
+import type { CardPool } from "./domain/shared/CardPool";
+import type { ReviewableCard } from "./domain/srs/entities/ReviewableCard";
+import { RecallRating } from "./domain/srs/value-objects/RecallRating";
+import type { ResponseTimingData } from "./domain/srs/value-objects/SrsSchedule";
+import type { RecallRating as RawRecallRating, SessionSummary } from "./types";
 
-export type CardPool = "script" | "vocab" | "grammar";
+export type { CardPool };
+
+export interface ReviewQuizCard {
+	card: ReviewableCard;
+	mode: "multipleChoice" | "flashcard";
+}
 
 export interface ActiveReviewSession {
 	id: string;
-	cards: QuizCard[];
+	cards: ReviewQuizCard[];
 	startedAt: string;
-	results: Array<{ cardId: string; rating: RecallRating }>;
+	results: Array<{ cardId: string; rating: RawRecallRating }>;
 }
 
 export interface ReviewForecast {
@@ -35,28 +38,14 @@ export interface CriticalItem {
 }
 
 export class ReviewService {
-	constructor(private readonly storage: IStorage) {}
+	constructor(
+		private readonly cardRepo: CardRepository,
+		private readonly stateRepo: LearnerStateRepository,
+	) {}
 
-	private getCardRecord(
-		state: LearnerState,
-		pool: CardPool,
-	): Record<string, SrsCard> {
-		switch (pool) {
-			case "script":
-				return state.cards;
-			case "vocab":
-				return state.vocabCards;
-			case "grammar":
-				return state.grammarCards;
-		}
-	}
-
-	getDueCards(now?: string, pool: CardPool = "script"): SrsCard[] {
-		const state = this.storage.load();
+	getDueCards(now?: string, pool: CardPool = "script"): ReviewableCard[] {
 		const currentTime = now ?? new Date().toISOString();
-		return Object.values(this.getCardRecord(state, pool)).filter((card) =>
-			isDue(card.srs, currentTime),
-		);
+		return this.cardRepo.findDue(currentTime, pool);
 	}
 
 	getNumDueCards(now?: string, pool: CardPool = "script"): number {
@@ -65,19 +54,17 @@ export class ReviewService {
 
 	recordReview(
 		cardId: string,
-		rating: RecallRating,
+		rating: RawRecallRating,
 		now?: string,
 		timing?: ResponseTimingData,
 		pool: CardPool = "script",
 	): void {
-		const state = this.storage.load();
-		const cardRecord = this.getCardRecord(state, pool);
-		const card = cardRecord[cardId];
+		const card = this.cardRepo.findById(cardId, pool);
 		if (!card) throw new Error(`Card not found: ${cardId}`);
 
 		const currentTime = now ?? new Date().toISOString();
-		card.srs = calculateNextReview(card.srs, rating, currentTime, timing);
-		this.storage.save(state);
+		card.recordReview(RecallRating.fromRaw(rating), currentTime, timing);
+		this.cardRepo.save(card);
 	}
 
 	startReviewSession(
@@ -88,18 +75,18 @@ export class ReviewService {
 		const dueCards = this.getDueCards(now, pool);
 
 		const sorted = dueCards.sort((a, b) => {
-			const aDate = new Date(a.srs.nextReviewDate).getTime();
-			const bDate = new Date(b.srs.nextReviewDate).getTime();
+			const aDate = new Date(a.schedule.nextReviewDate).getTime();
+			const bDate = new Date(b.schedule.nextReviewDate).getTime();
 			if (aDate !== bDate) return aDate - bDate;
-			return a.srs.easeFactor - b.srs.easeFactor;
+			return a.schedule.easeFactor.value - b.schedule.easeFactor.value;
 		});
 
 		const selected = maxCards ? sorted.slice(0, maxCards) : sorted;
 
-		const quizCards: QuizCard[] = selected.map((card) => ({
+		const quizCards: ReviewQuizCard[] = selected.map((card) => ({
 			card,
 			mode:
-				card.srs.learningStep === null
+				card.schedule.learningStep === null
 					? ("flashcard" as const)
 					: ("multipleChoice" as const),
 		}));
@@ -131,7 +118,12 @@ export class ReviewService {
 		const incorrect = session.results.filter((r) => r.rating < 3).length;
 		const total = session.results.length;
 
-		const summaryType = pool === "script" ? "review" : pool === "vocab" ? "vocab-review" : "grammar-review";
+		const summaryType =
+			pool === "script"
+				? "review"
+				: pool === "vocab"
+					? "vocab-review"
+					: "grammar-review";
 
 		const summary: SessionSummary = {
 			sessionId: session.id,
@@ -144,44 +136,35 @@ export class ReviewService {
 			newCardsGraduated: 0,
 		};
 
-		const state = this.storage.load();
-		state.sessionHistory.push(summary);
-		this.storage.save(state);
+		this.stateRepo.addSession(summary);
 
 		return summary;
 	}
 
 	getNextReviewDate(pool: CardPool = "script"): Date | null {
-		const state = this.storage.load();
-		const cards = Object.values(this.getCardRecord(state, pool));
+		const cards = this.cardRepo.findAll(pool);
 		if (cards.length === 0) return null;
 
 		let earliest = Infinity;
 		for (const card of cards) {
-			if (isBurned(card.srs)) continue;
-			const d = new Date(card.srs.nextReviewDate).getTime();
+			if (card.schedule.isBurned) continue;
+			const d = new Date(card.schedule.nextReviewDate).getTime();
 			if (d < earliest) earliest = d;
 		}
 		return earliest === Infinity ? null : new Date(earliest);
 	}
 
 	resurrectCard(cardId: string, pool: CardPool = "script"): void {
-		const state = this.storage.load();
-		const cardRecord = this.getCardRecord(state, pool);
-		const card = cardRecord[cardId];
+		const card = this.cardRepo.findById(cardId, pool);
 		if (!card) throw new Error(`Card not found: ${cardId}`);
-		card.srs = resurrectSrsCard(card.srs);
-		this.storage.save(state);
+		card.resurrect();
+		this.cardRepo.save(card);
 	}
 
-	getReviewForecast(
-		now?: string,
-		pool: CardPool = "script",
-	): ReviewForecast {
-		const state = this.storage.load();
+	getReviewForecast(now?: string, pool: CardPool = "script"): ReviewForecast {
 		const currentTime = now ?? new Date().toISOString();
 		const nowMs = new Date(currentTime).getTime();
-		const cards = Object.values(this.getCardRecord(state, pool));
+		const cards = this.cardRepo.findAll(pool);
 
 		const forecast: ReviewForecast = {
 			dueNow: 0,
@@ -195,9 +178,9 @@ export class ReviewService {
 		const dayMs = 24 * hourMs;
 
 		for (const card of cards) {
-			if (isBurned(card.srs)) continue;
+			if (card.schedule.isBurned) continue;
 
-			const reviewMs = new Date(card.srs.nextReviewDate).getTime();
+			const reviewMs = new Date(card.schedule.nextReviewDate).getTime();
 			const diffMs = reviewMs - nowMs;
 
 			if (diffMs <= 7 * dayMs) {
@@ -221,28 +204,28 @@ export class ReviewService {
 	}
 
 	getCriticalItems(pool: CardPool = "script", limit = 10): CriticalItem[] {
-		const state = this.storage.load();
-		const cards = Object.values(this.getCardRecord(state, pool));
+		const cards = this.cardRepo.findAll(pool);
 
 		return cards
-			.filter((card) => card.srs.repetitions > 0)
+			.filter((card) => card.schedule.repetitions > 0)
 			.sort((a, b) => {
-				const easeDiff = a.srs.easeFactor - b.srs.easeFactor;
+				const easeDiff =
+					a.schedule.easeFactor.value - b.schedule.easeFactor.value;
 				if (easeDiff !== 0) return easeDiff;
-				return (b.srs.lapseCount ?? 0) - (a.srs.lapseCount ?? 0);
+				return b.schedule.lapseCount - a.schedule.lapseCount;
 			})
 			.slice(0, limit)
 			.map((card) => ({
 				id: card.id,
 				question: card.question,
 				correctAnswer: card.correctAnswer,
-				easeFactor: card.srs.easeFactor,
-				lapseCount: card.srs.lapseCount ?? 0,
-				interval: card.srs.interval,
+				easeFactor: card.schedule.easeFactor.value,
+				lapseCount: card.schedule.lapseCount,
+				interval: card.schedule.interval,
 			}));
 	}
 
 	getSessionHistory(): SessionSummary[] {
-		return this.storage.load().sessionHistory;
+		return this.stateRepo.getSessionHistory();
 	}
 }

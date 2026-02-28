@@ -1,9 +1,17 @@
 import { useCallback, useEffect, useRef, useState } from "react";
-import type { RecallRating, SrsCard } from "../../types";
+import type { RecallRating } from "../../types";
 import { RatingButtons } from "./RatingButtons";
 
+interface QuizCardView {
+	id: string;
+	question: string;
+	correctAnswer: string;
+	choices: readonly string[];
+	audioUrl?: string;
+}
+
 interface Props {
-	card: SrsCard;
+	card: QuizCardView;
 	onRate: (rating: RecallRating, responseTimeMs: number) => void;
 }
 

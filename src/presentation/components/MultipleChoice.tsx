@@ -1,8 +1,15 @@
 import { useCallback, useEffect, useRef, useState } from "react";
-import type { SrsCard } from "../../types";
+
+interface QuizCardView {
+	id: string;
+	question: string;
+	correctAnswer: string;
+	choices: readonly string[];
+	audioUrl?: string;
+}
 
 interface Props {
-	card: SrsCard;
+	card: QuizCardView;
 	onAnswer: (correct: boolean, responseTimeMs: number) => void;
 }
 
