@@ -130,6 +130,24 @@ describe("mergeLearnerStates", () => {
 		expect(result.cards.x.correctAnswer).toBe("current");
 	});
 
+	it("unions achievements without duplicates", () => {
+		const current: LearnerState = {
+			...INITIAL_LEARNER_STATE,
+			achievements: ["first_review", "century"],
+		};
+		const incoming: LearnerState = {
+			...INITIAL_LEARNER_STATE,
+			achievements: ["century", "warrior"],
+		};
+		const result = mergeLearnerStates(current, incoming);
+		expect(result.achievements.sort()).toEqual(["century", "first_review", "warrior"]);
+	});
+
+	it("merges empty achievements correctly", () => {
+		const result = mergeLearnerStates(INITIAL_LEARNER_STATE, INITIAL_LEARNER_STATE);
+		expect(result.achievements).toEqual([]);
+	});
+
 	it("deduplicates sessionHistory by sessionId", () => {
 		const s1 = makeSession("s1");
 		const s2 = makeSession("s2");
