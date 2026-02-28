@@ -35,16 +35,19 @@ export type VowelProperty = "recognition" | "length" | "position" | "audioRecogn
 export type ToneMarkProperty = "recognition" | "effectPerClass" | "audioRecognition";
 export type PropertyType = ConsonantProperty | VowelProperty | ToneMarkProperty;
 
-export interface PropertyCard {
+export interface SrsCard {
 	id: string;
-	symbolCharacter: string;
-	property: PropertyType | "toneRule";
 	question: string;
 	correctAnswer: string;
 	choices: string[];
 	srs: SrsData;
-	lessonNumber: number;
 	audioUrl?: string;
+}
+
+export interface PropertyCard extends SrsCard {
+	symbolCharacter: string;
+	property: PropertyType | "toneRule";
+	lessonNumber: number;
 }
 
 // --- Quiz Types ---
