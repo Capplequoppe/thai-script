@@ -20,10 +20,18 @@ import type {
 	SrsCard,
 } from "../types";
 import { NotificationScheduler } from "../notification-scheduler";
+import vocabularyData from "../vocabulary.json";
+import { VocabularyService } from "../vocabulary-service";
+import type {
+	VocabEntry,
+	VocabLessonSummary,
+	VocabularyCard,
+} from "../vocabulary-types";
 
 const storage = new LocalStorageAdapter();
 const learningService = new LearningService(storage);
 const reviewService = new ReviewService(storage);
+const vocabularyService = new VocabularyService(storage, vocabularyData as VocabEntry[]);
 const notificationScheduler = new NotificationScheduler();
 
 function scheduleNextNotification() {
@@ -58,6 +66,17 @@ export interface AppContextValue {
 	resetAll: () => void;
 	exportData: () => string;
 	importData: (json: string) => void;
+	// Vocabulary operations
+	getUnlockedWords: () => VocabEntry[];
+	getUnlearnedWords: () => VocabEntry[];
+	getNextVocabLesson: () => VocabLessonSummary | null;
+	startVocabLesson: () => VocabularyCard[];
+	getVocabUnlockedCount: () => number;
+	getVocabLearnedCount: () => number;
+	getNumDueVocabCards: () => number;
+	recordVocabReview: (cardId: string, rating: RecallRating, timing?: { responseTimeMs: number; averageResponseTimeMs: number }) => void;
+	startVocabReviewSession: (maxCards?: number) => ActiveReviewSession;
+	endVocabReviewSession: (session: ActiveReviewSession) => SessionSummary;
 }
 
 export const AppContext = createContext<AppContextValue | null>(null);
@@ -116,6 +135,19 @@ export function AppProvider({ children }: { children: ReactNode }) {
 			resetAll: () => wrap(() => storage.reset()),
 			exportData: () => storage.exportData(),
 			importData: (json) => wrap(() => storage.importData(json)),
+			getUnlockedWords: () => vocabularyService.getUnlockedWords(),
+			getUnlearnedWords: () => vocabularyService.getUnlearnedWords(),
+			getNextVocabLesson: () => vocabularyService.getNextLesson(),
+			startVocabLesson: () => wrap(() => vocabularyService.startLesson()),
+			getVocabUnlockedCount: () => vocabularyService.getUnlockedCount(),
+			getVocabLearnedCount: () => vocabularyService.getLearnedCount(),
+			getNumDueVocabCards: () => reviewService.getNumDueCards(undefined, "vocab"),
+			recordVocabReview: (cardId, rating, timing) =>
+				wrap(() => reviewService.recordReview(cardId, rating, undefined, timing, "vocab")),
+			startVocabReviewSession: (maxCards) =>
+				reviewService.startReviewSession(maxCards, undefined, "vocab"),
+			endVocabReviewSession: (session) =>
+				wrap(() => reviewService.endReviewSession(session, undefined, "vocab")),
 		}),
 		[state, refresh, wrap],
 	);
