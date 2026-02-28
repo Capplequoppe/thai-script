@@ -1,5 +1,112 @@
 @import "tailwindcss";
 
+/* ===== Thai Royal Color Tokens ===== */
+@theme {
+	/* Background & surface */
+	--color-bg:          #FAFAF5;
+	--color-surface:     #FFFFFF;
+	--color-surface-2:   #F0EDE4;
+	--color-border:      #D6CEB8;
+
+	/* Text */
+	--color-text:        #0D1B2A;
+	--color-text-muted:  #6B6B7A;
+
+	/* Brand */
+	--color-primary:     #1A3A6B;
+	--color-primary-h:   #142E56;
+	--color-accent:      #C9A227;
+	--color-accent-h:    #B8911F;
+	--color-danger:      #C0392B;
+
+	/* SRS Stage Colors */
+	--color-apprentice:  #D4688A;
+	--color-guru:        #E8951A;
+	--color-master:      #257A5A;
+	--color-enlightened: #1A3A6B;
+	--color-burned:      #C9A227;
+}
+
+/* ===== Dark Mode Token Overrides ===== */
+@media (prefers-color-scheme: dark) {
+	:root {
+		--color-bg:         #0D1320;
+		--color-surface:    #131E30;
+		--color-surface-2:  #1A2740;
+		--color-border:     #253550;
+		--color-text:       #EDE8DC;
+		--color-text-muted: #8A94A6;
+		/* Stage colors unchanged — vibrant on both modes */
+	}
+}
+
+/* ===== Typography ===== */
 .thai {
-	font-family: "Noto Sans Thai Looped", "Noto Serif Thai", sans-serif;
+	font-family: "Noto Serif Thai", "Noto Sans Thai Looped", sans-serif;
+	font-size: 1.1em;
+}
+
+/* ===== Reusable Component Primitives ===== */
+.card-royal {
+	background: var(--color-surface);
+	border-radius: 1rem;
+	box-shadow: 0 2px 8px rgba(13, 27, 42, 0.08);
+	border: 1px solid var(--color-border);
+}
+
+.section-header {
+	border-left: 2px solid var(--color-accent);
+	padding-left: 0.75rem;
+	font-weight: 600;
+	font-variant: small-caps;
+	letter-spacing: 0.05em;
+	color: var(--color-text-muted);
+	text-transform: uppercase;
+	font-size: 0.75rem;
+}
+
+.btn-primary {
+	background: var(--color-primary);
+	color: white;
+	border-radius: 0.75rem;
+	font-weight: 600;
+	padding: 0.75rem 1.5rem;
+	transition: background 0.15s;
+	display: block;
+	width: 100%;
+	text-align: center;
+	cursor: pointer;
+}
+
+.btn-primary:hover {
+	background: var(--color-primary-h);
+}
+
+.btn-accent {
+	background: var(--color-accent);
+	color: var(--color-text);
+	border-radius: 0.75rem;
+	font-weight: 600;
+	padding: 0.75rem 1.5rem;
+	transition: background 0.15s;
+	display: block;
+	width: 100%;
+	text-align: center;
+	cursor: pointer;
+}
+
+.btn-accent:hover {
+	background: var(--color-accent-h);
+}
+
+/* ===== Animations ===== */
+@keyframes slideUp {
+	from {
+		transform: translateY(8px);
+		opacity: 0;
+	}
+	to {
+		transform: translateY(0);
+		opacity: 1;
+	}
 }
