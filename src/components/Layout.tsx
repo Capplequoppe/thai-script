@@ -6,6 +6,7 @@ const navItems = [
 	{ to: "/items", label: "Items" },
 	{ to: "/progress", label: "Progress" },
 	{ to: "/vocabulary", label: "Vocab" },
+	{ to: "/grammar", label: "Grammar" },
 	{ to: "/settings", label: "Settings" },
 ];
 

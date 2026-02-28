@@ -31,6 +31,13 @@ import type {
 	StageCounts,
 } from "../types";
 import { NotificationScheduler } from "../notification-scheduler";
+import grammarData from "../grammar.json";
+import { GrammarService } from "../grammar-service";
+import type {
+	GrammarCard,
+	GrammarEntry,
+	GrammarLessonSummary,
+} from "../grammar-types";
 import vocabularyData from "../vocabulary.json";
 import { VocabularyService } from "../vocabulary-service";
 import type {
@@ -45,6 +52,7 @@ const leechService = new LeechService(storage);
 const learningService = new LearningService(storage, apprenticeService);
 const reviewService = new ReviewService(storage);
 const vocabularyService = new VocabularyService(storage, vocabularyData as VocabEntry[], apprenticeService);
+const grammarService = new GrammarService(storage, grammarData as unknown as GrammarEntry[], apprenticeService, vocabularyData as VocabEntry[]);
 const notificationScheduler = new NotificationScheduler();
 
 function scheduleNextNotification() {
@@ -90,6 +98,15 @@ export interface AppContextValue {
 	recordVocabReview: (cardId: string, rating: RecallRating, timing?: { responseTimeMs: number; averageResponseTimeMs: number }) => void;
 	startVocabReviewSession: (maxCards?: number) => ActiveReviewSession;
 	endVocabReviewSession: (session: ActiveReviewSession) => SessionSummary;
+	// Grammar operations
+	getNextGrammarLesson: () => GrammarLessonSummary | null;
+	startGrammarLesson: () => GrammarCard[] | null;
+	getGrammarUnlockedCount: () => number;
+	getGrammarLearnedCount: () => number;
+	getNumDueGrammarCards: () => number;
+	recordGrammarReview: (cardId: string, rating: RecallRating, timing?: { responseTimeMs: number; averageResponseTimeMs: number }) => void;
+	startGrammarReviewSession: (maxCards?: number) => ActiveReviewSession;
+	endGrammarReviewSession: (session: ActiveReviewSession) => SessionSummary;
 	// WaniKani-inspired features
 	getStageCounts: (pool?: CardPool) => StageCounts;
 	getLeechCards: (pool?: CardPool) => SrsCard[];
@@ -172,13 +189,34 @@ export function AppProvider({ children }: { children: ReactNode }) {
 				reviewService.startReviewSession(maxCards, undefined, "vocab"),
 			endVocabReviewSession: (session) =>
 				wrap(() => reviewService.endReviewSession(session, undefined, "vocab")),
+			// Grammar operations
+			getNextGrammarLesson: () => grammarService.getNextLesson(),
+			startGrammarLesson: () => wrap(() => grammarService.startLesson()),
+			getGrammarUnlockedCount: () => grammarService.getUnlockedCount(),
+			getGrammarLearnedCount: () => grammarService.getLearnedCount(),
+			getNumDueGrammarCards: () => reviewService.getNumDueCards(undefined, "grammar"),
+			recordGrammarReview: (cardId, rating, timing) =>
+				wrap(() => reviewService.recordReview(cardId, rating, undefined, timing, "grammar")),
+			startGrammarReviewSession: (maxCards) =>
+				reviewService.startReviewSession(maxCards, undefined, "grammar"),
+			endGrammarReviewSession: (session) =>
+				wrap(() => reviewService.endReviewSession(session, undefined, "grammar")),
 			// WaniKani-inspired features
 			getStageCounts: (pool) => {
-				const cards = pool === "vocab"
-					? Object.values(state.vocabCards)
-					: pool === "script"
-						? Object.values(state.cards)
-						: [...Object.values(state.cards), ...Object.values(state.vocabCards)];
+				let cards: SrsCard[];
+				switch (pool) {
+					case "script":
+						cards = Object.values(state.cards);
+						break;
+					case "vocab":
+						cards = Object.values(state.vocabCards);
+						break;
+					case "grammar":
+						cards = Object.values(state.grammarCards);
+						break;
+					default:
+						cards = [...Object.values(state.cards), ...Object.values(state.vocabCards), ...Object.values(state.grammarCards)];
+				}
 				return getStageCounts(cards.map((c) => c.srs));
 			},
 			getLeechCards: (pool) => leechService.getLeechCards(pool),
