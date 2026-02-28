@@ -1,5 +1,7 @@
+import type { CardRepository } from "./application/ports/CardRepository";
+import type { LearnerStateRepository } from "./application/ports/LearnerStateRepository";
 import type { ApprenticeService } from "./apprentice-service";
-import { generateVocabCards } from "./vocabulary-card-generator";
+import { VocabCard } from "./domain/vocabulary/entities/VocabCard";
 import {
 	consonants,
 	toneMarkRules,
@@ -7,7 +9,7 @@ import {
 	toneRules,
 	vowels,
 } from "./symbol";
-import type { IStorage } from "./storage";
+import { generateVocabCards } from "./vocabulary-card-generator";
 import type {
 	VocabEntry,
 	VocabLessonSummary,
@@ -19,29 +21,24 @@ const RANK_WINDOW_SIZE = 50;
 
 export class VocabularyService {
 	constructor(
-		private readonly storage: IStorage,
+		private readonly cardRepo: CardRepository,
+		private readonly stateRepo: LearnerStateRepository,
 		private readonly vocabulary: VocabEntry[],
 		private readonly apprenticeService?: ApprenticeService,
 	) {}
 
 	/** Get set of all Thai characters mastered from completed script lessons. */
 	private getMasteredCharacters(): Set<string> {
-		const state = this.storage.load();
+		const completedLessons = this.stateRepo.getCompletedLessons();
 		const chars = new Set<string>();
 
 		for (const sym of consonants) {
-			if (
-				sym.lesson != null &&
-				state.completedLessons.includes(sym.lesson)
-			) {
+			if (sym.lesson != null && completedLessons.includes(sym.lesson)) {
 				chars.add(sym.character);
 			}
 		}
 		for (const sym of vowels) {
-			if (
-				sym.lesson != null &&
-				state.completedLessons.includes(sym.lesson)
-			) {
+			if (sym.lesson != null && completedLessons.includes(sym.lesson)) {
 				for (const ch of sym.character) {
 					if ("\u0e00" <= ch && ch <= "\u0e7f") {
 						chars.add(ch);
@@ -50,10 +47,7 @@ export class VocabularyService {
 			}
 		}
 		for (const sym of toneMarks) {
-			if (
-				sym.lesson != null &&
-				state.completedLessons.includes(sym.lesson)
-			) {
+			if (sym.lesson != null && completedLessons.includes(sym.lesson)) {
 				chars.add(sym.character);
 			}
 		}
@@ -63,11 +57,11 @@ export class VocabularyService {
 
 	/** Get set of all tone rule IDs mastered from completed script lessons. */
 	private getMasteredToneRules(): Set<string> {
-		const state = this.storage.load();
+		const completedLessons = this.stateRepo.getCompletedLessons();
 		const rules = new Set<string>();
 
 		for (const rule of toneRules) {
-			if (state.completedLessons.includes(rule.lesson)) {
+			if (completedLessons.includes(rule.lesson)) {
 				rules.add(rule.id);
 			}
 		}
@@ -80,7 +74,7 @@ export class VocabularyService {
 		};
 
 		for (const rule of toneMarkRules) {
-			if (state.completedLessons.includes(rule.lesson)) {
+			if (completedLessons.includes(rule.lesson)) {
 				const markId = markNameMap[rule.toneMarkName];
 				if (markId) {
 					rules.add(`${rule.consonantClass}-${markId}`);
@@ -97,18 +91,14 @@ export class VocabularyService {
 		const rules = this.getMasteredToneRules();
 
 		const masteryFiltered = this.vocabulary.filter((entry) => {
-			const allCharsMastered = entry.characters.every((ch) =>
-				chars.has(ch),
-			);
-			const allRulesMastered = entry.toneRules.every((r) =>
-				rules.has(r),
-			);
+			const allCharsMastered = entry.characters.every((ch) => chars.has(ch));
+			const allRulesMastered = entry.toneRules.every((r) => rules.has(r));
 			return allCharsMastered && allRulesMastered;
 		});
 
-		const state = this.storage.load();
+		const vocabCards = this.cardRepo.findAll("vocab");
 		const learnedThaiWords = new Set(
-			Object.values(state.vocabCards).map((c) => c.wordThai),
+			vocabCards.map((c) => (c as VocabCard).wordThai),
 		);
 
 		const sorted = [...masteryFiltered].sort(
@@ -135,14 +125,18 @@ export class VocabularyService {
 
 	/** Unlocked words that don't yet have cards generated. Sorted by rank. */
 	getUnlearnedWords(): VocabEntry[] {
-		const state = this.storage.load();
+		const vocabCards = this.cardRepo.findAll("vocab");
 		const learnedThaiWords = new Set(
-			Object.values(state.vocabCards).map((c) => c.wordThai),
+			vocabCards.map((c) => (c as VocabCard).wordThai),
 		);
 
 		return this.getUnlockedWords()
 			.filter((e) => !learnedThaiWords.has(e.thai))
-			.sort((a, b) => (a.rank ?? Number.POSITIVE_INFINITY) - (b.rank ?? Number.POSITIVE_INFINITY));
+			.sort(
+				(a, b) =>
+					(a.rank ?? Number.POSITIVE_INFINITY) -
+					(b.rank ?? Number.POSITIVE_INFINITY),
+			);
 	}
 
 	/** Next batch of words to learn (up to BATCH_SIZE). */
@@ -156,7 +150,7 @@ export class VocabularyService {
 		return { words: words.slice(0, BATCH_SIZE) };
 	}
 
-	/** Generate cards for the next lesson batch and save to storage. */
+	/** Generate cards for the next lesson batch and save via repository. */
 	startLesson(): VocabularyCard[] | null {
 		if (this.apprenticeService && !this.apprenticeService.canStartLesson()) {
 			return null;
@@ -170,11 +164,8 @@ export class VocabularyService {
 			generateVocabCards(entry, allUnlocked),
 		);
 
-		const state = this.storage.load();
-		for (const card of cards) {
-			state.vocabCards[card.id] = card;
-		}
-		this.storage.save(state);
+		const domainCards = cards.map((card) => VocabCard.fromDTO(card));
+		this.cardRepo.saveAll(domainCards);
 
 		return cards;
 	}
@@ -186,8 +177,7 @@ export class VocabularyService {
 
 	/** Count of words that have cards generated. */
 	getLearnedCount(): number {
-		const state = this.storage.load();
-		return new Set(Object.values(state.vocabCards).map((c) => c.wordThai))
-			.size;
+		const vocabCards = this.cardRepo.findAll("vocab");
+		return new Set(vocabCards.map((c) => (c as VocabCard).wordThai)).size;
 	}
 }

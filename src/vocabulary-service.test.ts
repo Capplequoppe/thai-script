@@ -1,6 +1,7 @@
 import { beforeEach, describe, expect, it } from "vitest";
 import { ApprenticeService } from "./apprentice-service";
 import { StorageCardRepository } from "./infrastructure/persistence/StorageCardRepository";
+import { StorageLearnerStateRepository } from "./infrastructure/persistence/StorageLearnerStateRepository";
 import { InMemoryStorage } from "./storage";
 import type { SrsData } from "./types";
 import { VocabularyService } from "./vocabulary-service";
@@ -33,21 +34,25 @@ function makeEntry(overrides: Partial<VocabEntry> = {}): VocabEntry {
 
 describe("VocabularyService", () => {
 	let storage: InMemoryStorage;
+	let cardRepo: StorageCardRepository;
+	let stateRepo: StorageLearnerStateRepository;
 
 	beforeEach(() => {
 		storage = new InMemoryStorage();
+		cardRepo = new StorageCardRepository(storage);
+		stateRepo = new StorageLearnerStateRepository(storage);
 	});
 
 	it("returns no unlocked words when no lessons are completed", () => {
 		const vocabulary = [makeEntry()];
-		const service = new VocabularyService(storage, vocabulary);
+		const service = new VocabularyService(cardRepo, stateRepo, vocabulary);
 
 		expect(service.getUnlockedWords()).toHaveLength(0);
 	});
 
 	it("unlocks words when all characters and tone rules are mastered", () => {
 		const vocabulary = [makeEntry()];
-		const service = new VocabularyService(storage, vocabulary);
+		const service = new VocabularyService(cardRepo, stateRepo, vocabulary);
 
 		const state = storage.load();
 		state.completedLessons = [1, 2];
@@ -55,12 +60,12 @@ describe("VocabularyService", () => {
 
 		const unlocked = service.getUnlockedWords();
 		expect(unlocked).toHaveLength(1);
-		expect(unlocked[0]!.thai).toBe("มา");
+		expect(unlocked[0]?.thai).toBe("มา");
 	});
 
 	it("does not unlock words when only characters are mastered but tone rules are missing", () => {
 		const vocabulary = [makeEntry()];
-		const service = new VocabularyService(storage, vocabulary);
+		const service = new VocabularyService(cardRepo, stateRepo, vocabulary);
 
 		const state = storage.load();
 		state.completedLessons = [1]; // Has ม, า but not tone rule "low-live" (lesson 2)
@@ -90,7 +95,7 @@ describe("VocabularyService", () => {
 				english: "long time",
 			}),
 		];
-		const service = new VocabularyService(storage, vocabulary);
+		const service = new VocabularyService(cardRepo, stateRepo, vocabulary);
 
 		const state = storage.load();
 		state.completedLessons = [1, 2];
@@ -108,7 +113,7 @@ describe("VocabularyService", () => {
 				rank: i + 1,
 			}),
 		);
-		const service = new VocabularyService(storage, vocabulary);
+		const service = new VocabularyService(cardRepo, stateRepo, vocabulary);
 
 		const state = storage.load();
 		state.completedLessons = [1, 2];
@@ -116,7 +121,7 @@ describe("VocabularyService", () => {
 
 		const lesson = service.getNextLesson();
 		expect(lesson).not.toBeNull();
-		expect(lesson!.words).toHaveLength(5);
+		expect(lesson?.words).toHaveLength(5);
 	});
 
 	it("getNextLesson excludes already-learned words", () => {
@@ -129,7 +134,7 @@ describe("VocabularyService", () => {
 				english: "rice field",
 			}),
 		];
-		const service = new VocabularyService(storage, vocabulary);
+		const service = new VocabularyService(cardRepo, stateRepo, vocabulary);
 
 		const state = storage.load();
 		state.completedLessons = [1, 2];
@@ -153,13 +158,13 @@ describe("VocabularyService", () => {
 
 		const lesson = service.getNextLesson();
 		expect(lesson).not.toBeNull();
-		expect(lesson!.words).toHaveLength(1);
-		expect(lesson!.words[0]!.thai).toBe("นา");
+		expect(lesson?.words).toHaveLength(1);
+		expect(lesson?.words[0]?.thai).toBe("นา");
 	});
 
 	it("getNextLesson returns null when no unlearned words are available", () => {
 		const vocabulary = [makeEntry()];
-		const service = new VocabularyService(storage, vocabulary);
+		const service = new VocabularyService(cardRepo, stateRepo, vocabulary);
 
 		const state = storage.load();
 		state.completedLessons = [1, 2];
@@ -194,7 +199,7 @@ describe("VocabularyService", () => {
 				english: "rice field",
 			}),
 		];
-		const service = new VocabularyService(storage, vocabulary);
+		const service = new VocabularyService(cardRepo, stateRepo, vocabulary);
 
 		const state = storage.load();
 		state.completedLessons = [1, 2];
@@ -212,7 +217,7 @@ describe("VocabularyService", () => {
 	});
 
 	it("startLesson throws when no vocabulary words are available", () => {
-		const service = new VocabularyService(storage, []);
+		const service = new VocabularyService(cardRepo, stateRepo, []);
 
 		expect(() => service.startLesson()).toThrow(
 			"No vocabulary words available to learn",
@@ -229,7 +234,7 @@ describe("VocabularyService", () => {
 				english: "rice field",
 			}),
 		];
-		const service = new VocabularyService(storage, vocabulary);
+		const service = new VocabularyService(cardRepo, stateRepo, vocabulary);
 
 		const state = storage.load();
 		state.completedLessons = [1, 2];
@@ -254,7 +259,7 @@ describe("VocabularyService", () => {
 				english: "long time",
 			}),
 		];
-		const service = new VocabularyService(storage, vocabulary);
+		const service = new VocabularyService(cardRepo, stateRepo, vocabulary);
 
 		const state = storage.load();
 		state.completedLessons = [1, 2];
@@ -274,7 +279,7 @@ describe("VocabularyService", () => {
 				rank: (i + 1) * 10, // ranks 10, 20, 30, 40, 50, 60
 			}),
 		);
-		const service = new VocabularyService(storage, vocabulary);
+		const service = new VocabularyService(cardRepo, stateRepo, vocabulary);
 
 		const state = storage.load();
 		state.completedLessons = [1, 2];
@@ -312,7 +317,7 @@ describe("VocabularyService", () => {
 				english: "rice field",
 			}),
 		];
-		const service = new VocabularyService(storage, vocabulary);
+		const service = new VocabularyService(cardRepo, stateRepo, vocabulary);
 
 		const state = storage.load();
 		state.completedLessons = [1, 2];
@@ -320,14 +325,14 @@ describe("VocabularyService", () => {
 
 		const unlocked = service.getUnlockedWords();
 		expect(unlocked).toHaveLength(1);
-		expect(unlocked[0]!.thai).toBe("มา");
+		expect(unlocked[0]?.thai).toBe("มา");
 	});
 
 	it("includes learned words with null rank in unlocked set", () => {
 		const vocabulary = [
 			makeEntry({ thai: "มา", rank: null, english: "to come" }),
 		];
-		const service = new VocabularyService(storage, vocabulary);
+		const service = new VocabularyService(cardRepo, stateRepo, vocabulary);
 
 		const state = storage.load();
 		state.completedLessons = [1, 2];
@@ -351,7 +356,7 @@ describe("VocabularyService", () => {
 
 		const unlocked = service.getUnlockedWords();
 		expect(unlocked).toHaveLength(1);
-		expect(unlocked[0]!.thai).toBe("มา");
+		expect(unlocked[0]?.thai).toBe("มา");
 	});
 
 	it("getLearnedCount returns count of words with generated cards", () => {
@@ -364,7 +369,7 @@ describe("VocabularyService", () => {
 				english: "rice field",
 			}),
 		];
-		const service = new VocabularyService(storage, vocabulary);
+		const service = new VocabularyService(cardRepo, stateRepo, vocabulary);
 
 		const state = storage.load();
 		state.completedLessons = [1, 2];
@@ -392,15 +397,12 @@ describe("VocabularyService", () => {
 		}
 
 		it("getNextLesson returns null when at apprentice limit", () => {
-			const apprenticeService = new ApprenticeService(
-				new StorageCardRepository(storage),
-				1,
-			);
+			const apprenticeService = new ApprenticeService(cardRepo, 1);
 			const vocabulary = [makeEntry()];
 
 			const state = storage.load();
 			state.completedLessons = [1, 2];
-			state.cards["s1"] = {
+			state.cards.s1 = {
 				id: "s1",
 				question: "test",
 				correctAnswer: "test",
@@ -413,7 +415,8 @@ describe("VocabularyService", () => {
 			storage.save(state);
 
 			const service = new VocabularyService(
-				storage,
+				cardRepo,
+				stateRepo,
 				vocabulary,
 				apprenticeService,
 			);
@@ -421,15 +424,12 @@ describe("VocabularyService", () => {
 		});
 
 		it("startLesson returns null when at apprentice limit", () => {
-			const apprenticeService = new ApprenticeService(
-				new StorageCardRepository(storage),
-				1,
-			);
+			const apprenticeService = new ApprenticeService(cardRepo, 1);
 			const vocabulary = [makeEntry()];
 
 			const state = storage.load();
 			state.completedLessons = [1, 2];
-			state.cards["s1"] = {
+			state.cards.s1 = {
 				id: "s1",
 				question: "test",
 				correctAnswer: "test",
@@ -442,7 +442,8 @@ describe("VocabularyService", () => {
 			storage.save(state);
 
 			const service = new VocabularyService(
-				storage,
+				cardRepo,
+				stateRepo,
 				vocabulary,
 				apprenticeService,
 			);
@@ -451,7 +452,7 @@ describe("VocabularyService", () => {
 
 		it("works normally without ApprenticeService", () => {
 			const vocabulary = [makeEntry()];
-			const service = new VocabularyService(storage, vocabulary);
+			const service = new VocabularyService(cardRepo, stateRepo, vocabulary);
 
 			const state = storage.load();
 			state.completedLessons = [1, 2];
@@ -459,7 +460,7 @@ describe("VocabularyService", () => {
 
 			const lesson = service.getNextLesson();
 			expect(lesson).not.toBeNull();
-			expect(lesson!.words).toHaveLength(1);
+			expect(lesson?.words).toHaveLength(1);
 		});
 	});
 });
