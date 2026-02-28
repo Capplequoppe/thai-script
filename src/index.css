@@ -1,5 +1,9 @@
 @import "tailwindcss";
 
+/* Disable media-query dark mode — Thai Royal is a light-first design.
+   dark: utility classes only activate when a .dark class is explicitly added. */
+@custom-variant dark (&:where(.dark, .dark *));
+
 /* ===== Thai Royal Color Tokens ===== */
 @theme {
 	/* Background & surface */
@@ -25,19 +29,6 @@
 	--color-master:      #257A5A;
 	--color-enlightened: #1A3A6B;
 	--color-burned:      #C9A227;
-}
-
-/* ===== Dark Mode Token Overrides ===== */
-@media (prefers-color-scheme: dark) {
-	:root {
-		--color-bg:         #0D1320;
-		--color-surface:    #131E30;
-		--color-surface-2:  #1A2740;
-		--color-border:     #253550;
-		--color-text:       #EDE8DC;
-		--color-text-muted: #8A94A6;
-		/* Stage colors unchanged — vibrant on both modes */
-	}
 }
 
 /* ===== Typography ===== */
