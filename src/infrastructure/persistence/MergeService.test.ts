@@ -34,6 +34,7 @@ function makeCard(
 function makeSession(id: string): SessionSummary {
 	return {
 		sessionId: id,
+		completedAt: new Date().toISOString(),
 		type: "lesson",
 		durationMs: 1000,
 		totalCards: 5,

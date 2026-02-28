@@ -112,6 +112,7 @@ export interface ReviewSession {
 
 export interface SessionSummary {
 	sessionId: string;
+	completedAt: string;
 	type:
 		| "lesson"
 		| "review"
@@ -137,6 +138,7 @@ export interface LearnerState {
 	vocabCards: Record<string, VocabularyCard>;
 	grammarCards: Record<string, GrammarCard>;
 	sessionHistory: SessionSummary[];
+	achievements: string[];
 }
 
 export const INITIAL_LEARNER_STATE: LearnerState = {
@@ -146,4 +148,5 @@ export const INITIAL_LEARNER_STATE: LearnerState = {
 	vocabCards: {},
 	grammarCards: {},
 	sessionHistory: [],
+	achievements: [],
 };

@@ -6,6 +6,7 @@ import { StorageLearnerStateRepository } from "./StorageLearnerStateRepository";
 function makeSummary(id: string): SessionSummary {
 	return {
 		sessionId: id,
+		completedAt: new Date().toISOString(),
 		type: "review",
 		durationMs: 60000,
 		totalCards: 10,

@@ -131,6 +131,7 @@ export class ReviewService {
 
 		const summary: SessionSummary = {
 			sessionId: session.id,
+			completedAt: new Date().toISOString(),
 			type: summaryType,
 			durationMs: endMs - startMs,
 			totalCards: total,

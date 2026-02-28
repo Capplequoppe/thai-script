@@ -50,6 +50,10 @@ export function mergeLearnerStates(
 		}
 	}
 
+	const achievements = [
+		...new Set([...current.achievements, ...incoming.achievements]),
+	];
+
 	return {
 		completedLessons,
 		currentLesson: current.currentLesson,
@@ -57,5 +61,6 @@ export function mergeLearnerStates(
 		vocabCards,
 		grammarCards,
 		sessionHistory: [...sessionMap.values()],
+		achievements,
 	};
 }

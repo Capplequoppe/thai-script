@@ -25,6 +25,7 @@ function createMockReviewService(): {
 		}),
 		endReviewSession: vi.fn().mockReturnValue({
 			sessionId: "session-1",
+			completedAt: new Date().toISOString(),
 			type: "review",
 			durationMs: 1000,
 			totalCards: 5,
