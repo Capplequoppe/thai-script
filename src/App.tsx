@@ -7,6 +7,7 @@ import { LessonPage } from "./pages/LessonPage";
 import { ProgressPage } from "./pages/ProgressPage";
 import { ReviewPage } from "./pages/ReviewPage";
 import { SettingsPage } from "./pages/SettingsPage";
+import { VocabularyPage } from "./pages/VocabularyPage";
 
 export function App() {
 	return (
@@ -20,6 +21,7 @@ export function App() {
 						<Route path="/items" element={<LearnedItemsPage />} />
 						<Route path="/progress" element={<ProgressPage />} />
 						<Route path="/settings" element={<SettingsPage />} />
+						<Route path="/vocabulary" element={<VocabularyPage />} />
 						<Route path="*" element={<Navigate to="/" replace />} />
 					</Route>
 				</Routes>
