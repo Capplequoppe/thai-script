@@ -146,13 +146,25 @@ describe("LearningService", () => {
 			expect(service.isNextLessonAvailable()).toBe(true);
 		});
 
-		it("startLesson throws when previous lesson not mastered", () => {
+		it("startLesson allows up to 3 in-flight lessons before blocking", () => {
+			// Complete 3 lessons without mastering any — all in-flight
 			service.startLesson(1);
 			service.completeLesson(1);
-			// Lesson 1 cards are still in learning, not mastered
-			expect(() => service.startLesson(2)).toThrow(
-				"Previous lesson 1 is not mastered yet",
+			service.startLesson(2);
+			service.completeLesson(2);
+			service.startLesson(3);
+			service.completeLesson(3);
+			// 4th lesson should be blocked: 3 unmastered lessons already in flight
+			expect(() => service.startLesson(4)).toThrow(
+				"unmastered lessons in progress",
 			);
+		});
+
+		it("startLesson allows lesson 2 when only lesson 1 is in-flight", () => {
+			service.startLesson(1);
+			service.completeLesson(1);
+			// Only 1 in-flight lesson — under the limit of 3
+			expect(service.startLesson(2)).not.toBeNull();
 		});
 
 		it("getLessonMasteryProgress returns correct total/graduated/percentage", () => {
@@ -182,11 +194,22 @@ describe("LearningService", () => {
 			expect(lesson2?.lessonNumber).toBe(2);
 		});
 
-		it("isNextLessonAvailable returns false when previous lesson not mastered", () => {
+		it("isNextLessonAvailable returns false when 3 lessons are in-flight", () => {
 			service.startLesson(1);
 			service.completeLesson(1);
-			// Cards not graduated, so lesson 2 (next lesson) is not available
+			service.startLesson(2);
+			service.completeLesson(2);
+			service.startLesson(3);
+			service.completeLesson(3);
+			// 3 unmastered lessons in flight — next lesson (4) is not available
 			expect(service.isNextLessonAvailable()).toBe(false);
+		});
+
+		it("isNextLessonAvailable returns true when fewer than 3 lessons are in-flight", () => {
+			service.startLesson(1);
+			service.completeLesson(1);
+			// Only 1 in-flight lesson — next lesson (2) should be available
+			expect(service.isNextLessonAvailable()).toBe(true);
 		});
 
 		it("isNextLessonAvailable returns true when previous lesson is mastered", () => {

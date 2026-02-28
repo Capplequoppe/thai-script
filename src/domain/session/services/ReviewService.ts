@@ -59,13 +59,14 @@ export class ReviewService {
 		now?: string,
 		timing?: ResponseTimingData,
 		pool: CardPool = "script",
-	): void {
+	): string {
 		const card = this.cardRepo.findById(cardId, pool);
 		if (!card) throw new Error(`Card not found: ${cardId}`);
 
 		const currentTime = now ?? new Date().toISOString();
 		card.recordReview(RecallRating.fromRaw(rating), currentTime, timing);
 		this.cardRepo.save(card);
+		return card.schedule.stage.name;
 	}
 
 	startReviewSession(

@@ -108,9 +108,10 @@ export function VocabularyPage() {
 		[review],
 	);
 	const recordVocabReview = useCallback(
-		(cardId: string, rating: RecallRating) => {
-			review.recordReview(cardId, rating, "vocab");
+		(cardId: string, rating: RecallRating): string => {
+			const newStage = review.recordReview(cardId, rating, "vocab");
 			refresh();
+			return newStage;
 		},
 		[review, refresh],
 	);

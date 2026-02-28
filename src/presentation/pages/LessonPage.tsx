@@ -2,6 +2,14 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { useNavigate, useParams } from "react-router";
 import { Button } from "@/presentation/components/ui/button";
 import { Card } from "@/presentation/components/ui/card";
+import {
+	Dialog,
+	DialogContent,
+	DialogDescription,
+	DialogFooter,
+	DialogHeader,
+	DialogTitle,
+} from "@/presentation/components/ui/dialog";
 import { Progress } from "@/presentation/components/ui/progress";
 import type { PropertyCard } from "../../domain/shared/types";
 import { AchievementBadge } from "../components/AchievementBadge";
@@ -20,6 +28,7 @@ export function LessonPage() {
 
 	const [phase, setPhase] = useState<Phase>("intro");
 	const [cards, setCards] = useState<PropertyCard[]>([]);
+	const [blockedMessage, setBlockedMessage] = useState<string | null>(null);
 	const flow = useSessionFlow(cards.length);
 
 	const achievementsCheckedRef = useRef(false);
@@ -82,16 +91,16 @@ export function LessonPage() {
 		try {
 			const result = lesson.startScript(num);
 			if (!result) {
-				alert("Too many apprentice items. Review before starting new lessons.");
-				navigate("/");
+				setBlockedMessage(
+					"Too many apprentice items. Review your existing cards before starting new lessons.",
+				);
 				return;
 			}
 			setCards(result.cards);
 			refresh();
 			setPhase("quiz");
 		} catch (e) {
-			alert((e as Error).message);
-			navigate("/");
+			setBlockedMessage((e as Error).message);
 		}
 	};
 
@@ -111,6 +120,33 @@ export function LessonPage() {
 					{summary.focus}
 				</p>
 				<LessonIntro summary={summary} onComplete={handleIntroComplete} />
+
+				<Dialog
+					open={blockedMessage !== null}
+					onOpenChange={(open) => {
+						if (!open) {
+							setBlockedMessage(null);
+							navigate("/");
+						}
+					}}
+				>
+					<DialogContent>
+						<DialogHeader>
+							<DialogTitle>Can't start quiz yet</DialogTitle>
+							<DialogDescription>{blockedMessage}</DialogDescription>
+						</DialogHeader>
+						<DialogFooter>
+							<Button
+								onClick={() => {
+									setBlockedMessage(null);
+									navigate("/");
+								}}
+							>
+								Go to Reviews
+							</Button>
+						</DialogFooter>
+					</DialogContent>
+				</Dialog>
 			</div>
 		);
 	}

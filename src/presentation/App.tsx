@@ -1,5 +1,5 @@
 import { HashRouter, Navigate, Route, Routes } from "react-router";
-import { Layout } from "./components/Layout";
+import { Layout } from "./components/layout/Layout";
 import { AppProvider } from "./context/AppContext";
 import { Dashboard } from "./pages/Dashboard";
 import { GrammarPage } from "./pages/GrammarPage";

@@ -1,4 +1,4 @@
-import type { SessionSummary } from "../../domain/shared/types";
+import type { SessionSummary } from "../../../domain/shared/types";
 
 interface HudStripProps {
 	dueCount: number;

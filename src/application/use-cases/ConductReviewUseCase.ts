@@ -29,9 +29,16 @@ export class ConductReviewUseCase {
 		rating: RecallRating,
 		pool?: CardPool,
 		timing?: ResponseTimingData,
-	): void {
-		this.reviewService.recordReview(cardId, rating, undefined, timing, pool);
+	): string {
+		const newStage = this.reviewService.recordReview(
+			cardId,
+			rating,
+			undefined,
+			timing,
+			pool,
+		);
 		this.scheduleNotification();
+		return newStage;
 	}
 
 	startSession(pool?: CardPool, maxCards?: number): ActiveReviewSession {

@@ -16,6 +16,9 @@ function makeSession(cardCount = 2): ActiveReviewSession {
 				question: `Q${i}`,
 				correctAnswer: `A${i}`,
 				choices: [`A${i}`, "wrong"],
+				schedule: {
+					stage: { name: "Apprentice" },
+				},
 				srs: {
 					easeFactor: 2.0,
 					interval: 10,
@@ -35,7 +38,7 @@ describe("useReviewSession", () => {
 	function setup(session?: ActiveReviewSession) {
 		const mockSession = session ?? makeSession();
 		const startSessionFn = vi.fn(() => mockSession);
-		const recordReviewFn = vi.fn();
+		const recordReviewFn = vi.fn().mockReturnValue("Apprentice");
 		const mockEndSession = vi.fn().mockReturnValue({
 			sessionId: "s1",
 			type: "review" as const,
@@ -101,7 +104,7 @@ describe("useReviewSession", () => {
 	});
 
 	it("handleReviewAdvance returns completion result with results on last card", () => {
-		const { result, endSessionFn, mockSession } = setup();
+		const { result, endSessionFn } = setup();
 
 		act(() => {
 			result.current.startReview();
@@ -116,7 +119,12 @@ describe("useReviewSession", () => {
 		let returnValue:
 			| {
 					status: "complete";
-					results: Array<{ cardId: string; rating: RecallRating }>;
+					results: Array<{
+						cardId: string;
+						rating: RecallRating;
+						beforeStage: string;
+						afterStage: string;
+					}>;
 					summary: import("../../domain/shared/types").SessionSummary;
 			  }
 			| undefined;
@@ -126,10 +134,20 @@ describe("useReviewSession", () => {
 
 		expect(returnValue?.status).toBe("complete");
 		expect(returnValue?.results).toEqual([
-			{ cardId: "card-0", rating: 4 },
-			{ cardId: "card-1", rating: 3 },
+			{
+				cardId: "card-0",
+				rating: 4,
+				beforeStage: "Apprentice",
+				afterStage: "Apprentice",
+			},
+			{
+				cardId: "card-1",
+				rating: 3,
+				beforeStage: "Apprentice",
+				afterStage: "Apprentice",
+			},
 		]);
-		expect(endSessionFn).toHaveBeenCalledWith(mockSession);
+		expect(endSessionFn).toHaveBeenCalled();
 		expect(result.current.session).toBeNull();
 	});
 

@@ -162,9 +162,10 @@ export function GrammarPage() {
 		[review],
 	);
 	const recordGrammarReview = useCallback(
-		(cardId: string, rating: RecallRating) => {
-			review.recordReview(cardId, rating, "grammar");
+		(cardId: string, rating: RecallRating): string => {
+			const newStage = review.recordReview(cardId, rating, "grammar");
 			refresh();
+			return newStage;
 		},
 		[review, refresh],
 	);

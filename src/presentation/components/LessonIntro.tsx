@@ -1,4 +1,5 @@
 import { type ReactNode, useCallback, useEffect, useState } from "react";
+import { Button } from "@/presentation/components/ui/button";
 import type { LessonSummary } from "../../domain/script/services/ScriptLessonService";
 import {
 	ConsonantCard,
@@ -29,7 +30,7 @@ function VideoSlide({ url, title }: { url: string; title: string }) {
 	return (
 		<div className="space-y-4">
 			<h2 className="text-lg font-bold text-center">{title}</h2>
-			<div className="relative w-full aspect-video rounded-xl overflow-hidden bg-black">
+			<div className="relative w-full aspect-video max-h-[40vh] rounded-xl overflow-hidden bg-black">
 				{isEmbedUrl(url) ? (
 					<iframe
 						src={url}
@@ -49,7 +50,10 @@ function VideoSlide({ url, title }: { url: string; title: string }) {
 					/>
 				)}
 			</div>
-			<p className="text-sm text-gray-500 text-center">
+			<p
+				className="text-sm text-center"
+				style={{ color: "var(--color-text-muted)" }}
+			>
 				Watch the introduction, then continue to learn the symbols.
 			</p>
 		</div>
@@ -64,6 +68,7 @@ export function LessonIntro({ summary, onComplete }: Props) {
 						type: "video",
 						render: () => (
 							<VideoSlide
+								// biome-ignore lint/style/noNonNullAssertion: guarded by outer summary.videoUrl check
 								url={summary.videoUrl!}
 								title={`Lesson ${summary.lessonNumber}: ${summary.title}`}
 							/>
@@ -120,20 +125,32 @@ export function LessonIntro({ summary, onComplete }: Props) {
 
 	return (
 		<div className="space-y-6">
-			<div className="flex justify-between items-center text-sm text-gray-500">
+			<div
+				className="flex justify-between items-center text-sm"
+				style={{ color: "var(--color-text-muted)" }}
+			>
 				<span>
 					{idx + 1} / {slides.length}
 				</span>
-				<span className="capitalize px-2 py-0.5 rounded bg-gray-100 dark:bg-gray-800 text-xs">
+				<span
+					className="capitalize px-2 py-0.5 rounded text-xs"
+					style={{ background: "var(--color-surface-2)" }}
+				>
 					{current.type}
 				</span>
 			</div>
 
 			{/* Progress bar */}
-			<div className="w-full h-1 bg-gray-200 dark:bg-gray-800 rounded-full">
+			<div
+				className="w-full h-1 rounded-full"
+				style={{ background: "var(--color-border)" }}
+			>
 				<div
-					className="h-full bg-indigo-600 rounded-full transition-all"
-					style={{ width: `${((idx + 1) / slides.length) * 100}%` }}
+					className="h-full rounded-full transition-all"
+					style={{
+						background: "var(--color-accent)",
+						width: `${((idx + 1) / slides.length) * 100}%`,
+					}}
 				/>
 			</div>
 
@@ -141,21 +158,17 @@ export function LessonIntro({ summary, onComplete }: Props) {
 
 			<div className="flex gap-3">
 				{idx > 0 && (
-					<button
-						type="button"
+					<Button
+						variant="secondary"
 						onClick={goBack}
-						className="py-3 px-6 bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 rounded-xl font-semibold transition-colors"
+						className="px-6 py-3 h-auto rounded-xl"
 					>
 						Back
-					</button>
+					</Button>
 				)}
-				<button
-					type="button"
-					onClick={advance}
-					className="flex-1 py-3 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl font-semibold transition-colors"
-				>
+				<Button onClick={advance} className="flex-1 py-3 h-auto rounded-xl">
 					{isLast ? "Start Quiz" : "Next"}
-				</button>
+				</Button>
 			</div>
 		</div>
 	);

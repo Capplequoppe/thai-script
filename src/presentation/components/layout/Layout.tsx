@@ -1,5 +1,5 @@
 import { Outlet } from "react-router";
-import { useApp } from "../hooks/useApp";
+import { useApp } from "../../hooks/useApp";
 import { BottomTabBar } from "./BottomTabBar";
 import { HudStrip } from "./HudStrip";
 

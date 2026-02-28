@@ -33,12 +33,6 @@
 	--color-burned:      #C9A227;
 }
 
-/* ===== Typography ===== */
-.thai {
-	font-family: "Noto Serif Thai", "Noto Sans Thai Looped", sans-serif;
-	font-size: 1.1em;
-}
-
 /* ===== Reusable Component Primitives ===== */
 .section-header {
 	border-left: 2px solid var(--color-accent);
@@ -76,16 +70,16 @@
 	--color-card-foreground:          var(--card-foreground);
 	--color-popover:          var(--popover);
 	--color-popover-foreground:          var(--popover-foreground);
-	--color-primary:          var(--primary);
+	/* --color-primary and --color-accent and --color-border are defined in @theme above
+	   with concrete values — do NOT re-alias them here or they create a circular
+	   reference: @theme inline → :root → @theme inline → … */
 	--color-primary-foreground:          var(--primary-foreground);
 	--color-secondary:          var(--secondary);
 	--color-secondary-foreground:          var(--secondary-foreground);
 	--color-muted:          var(--muted);
 	--color-muted-foreground:          var(--muted-foreground);
-	--color-accent:          var(--accent);
 	--color-accent-foreground:          var(--accent-foreground);
 	--color-destructive:          var(--destructive);
-	--color-border:          var(--border);
 	--color-input:          var(--input);
 	--color-ring:          var(--ring);
 	--color-chart-1:          var(--chart-1);
@@ -142,4 +136,9 @@
   body {
     @apply bg-background text-foreground;
 	}
+  /* Thai font family — font-size intentionally omitted so Tailwind utility
+     classes (text-[10rem], text-[96px], etc.) are not overridden. */
+  .thai {
+    font-family: "Noto Serif Thai", "Noto Sans Thai Looped", sans-serif;
+  }
 }

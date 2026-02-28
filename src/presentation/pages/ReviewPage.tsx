@@ -17,6 +17,8 @@ import { useReviewSession } from "../hooks/useReviewSession";
 interface ReviewResult {
 	cardId: string;
 	rating: RecallRating;
+	beforeStage: string;
+	afterStage: string;
 }
 
 export function ReviewPage() {
@@ -37,9 +39,10 @@ export function ReviewPage() {
 		[review],
 	);
 	const recordReview = useCallback(
-		(cardId: string, rating: RecallRating) => {
-			review.recordReview(cardId, rating);
+		(cardId: string, rating: RecallRating): string => {
+			const newStage = review.recordReview(cardId, rating);
 			refresh();
+			return newStage;
 		},
 		[review, refresh],
 	);
@@ -113,12 +116,12 @@ export function ReviewPage() {
 			refresh();
 		}
 
-		// Build stage promotions for cards rated 4+ (high-quality recall → stage advance)
+		// Build stage promotions only for cards that actually changed stage
 		const promotions: Promotion[] = results
-			.filter((r) => r.rating >= 4)
+			.filter((r) => r.afterStage !== r.beforeStage)
 			.map((r) => ({
 				cardQuestion: cardQuestionsRef.current.get(r.cardId) ?? r.cardId,
-				newStage: "Guru",
+				newStage: r.afterStage,
 			}));
 
 		return (
