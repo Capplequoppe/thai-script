@@ -1,3 +1,4 @@
+import type { CardPool } from "../../shared/CardPool";
 import { ReviewableCard } from "../../srs/entities/ReviewableCard";
 import { SrsSchedule } from "../../srs/value-objects/SrsSchedule";
 
@@ -6,7 +7,7 @@ export class VocabCard extends ReviewableCard {
 		id: string,
 		question: string,
 		correctAnswer: string,
-		choices: string[],
+		choices: readonly string[],
 		schedule: SrsSchedule,
 		readonly wordThai: string,
 		readonly property: string,
@@ -15,7 +16,7 @@ export class VocabCard extends ReviewableCard {
 		super(id, question, correctAnswer, choices, schedule, audioUrl);
 	}
 
-	get pool(): string {
+	get pool(): CardPool {
 		return "vocab";
 	}
 

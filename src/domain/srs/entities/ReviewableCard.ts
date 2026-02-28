@@ -1,3 +1,4 @@
+import type { CardPool } from "../../shared/CardPool";
 import type { RecallRating } from "../value-objects/RecallRating";
 import type {
 	ResponseTimingData,
@@ -43,5 +44,5 @@ export abstract class ReviewableCard {
 		this._schedule = this._schedule.applyReview(rating, now, timing);
 	}
 
-	abstract get pool(): string;
+	abstract get pool(): CardPool;
 }

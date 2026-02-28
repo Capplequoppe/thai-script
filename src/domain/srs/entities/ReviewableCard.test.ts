@@ -1,12 +1,13 @@
 import { describe, expect, it } from "vitest";
+import type { CardPool } from "../../shared/CardPool";
 import { RecallRating } from "../value-objects/RecallRating";
 import { SrsSchedule } from "../value-objects/SrsSchedule";
 import { SrsStage } from "../value-objects/SrsStage";
 import { ReviewableCard } from "./ReviewableCard";
 
 class TestCard extends ReviewableCard {
-	get pool(): string {
-		return "test";
+	get pool(): CardPool {
+		return "script";
 	}
 }
 
@@ -119,6 +120,6 @@ describe("ReviewableCard", () => {
 
 	it("pool returns expected value from concrete subclass", () => {
 		const card = makeCard();
-		expect(card.pool).toBe("test");
+		expect(card.pool).toBe("script");
 	});
 });
