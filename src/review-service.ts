@@ -8,7 +8,7 @@ import type {
 	SrsCard,
 } from "./types";
 
-export type CardPool = "script" | "vocab";
+export type CardPool = "script" | "vocab" | "grammar";
 
 export interface ActiveReviewSession {
 	id: string;
@@ -41,7 +41,14 @@ export class ReviewService {
 		state: LearnerState,
 		pool: CardPool,
 	): Record<string, SrsCard> {
-		return pool === "script" ? state.cards : state.vocabCards;
+		switch (pool) {
+			case "script":
+				return state.cards;
+			case "vocab":
+				return state.vocabCards;
+			case "grammar":
+				return state.grammarCards;
+		}
 	}
 
 	getDueCards(now?: string, pool: CardPool = "script"): SrsCard[] {
@@ -124,7 +131,7 @@ export class ReviewService {
 		const incorrect = session.results.filter((r) => r.rating < 3).length;
 		const total = session.results.length;
 
-		const summaryType = pool === "script" ? "review" : "vocab-review";
+		const summaryType = pool === "script" ? "review" : pool === "vocab" ? "vocab-review" : "grammar-review";
 
 		const summary: SessionSummary = {
 			sessionId: session.id,

@@ -30,6 +30,9 @@ export function migrateState(state: LearnerState): LearnerState {
 	for (const card of Object.values(state.vocabCards ?? {})) {
 		migrateSrsCard(card);
 	}
+	for (const card of Object.values(state.grammarCards ?? {})) {
+		migrateSrsCard(card);
+	}
 	return state;
 }
 
@@ -85,6 +88,9 @@ export class LocalStorageAdapter implements IStorage {
 		const state = JSON.parse(raw) as LearnerState;
 		if (!state.vocabCards) {
 			state.vocabCards = {};
+		}
+		if (!state.grammarCards) {
+			state.grammarCards = {};
 		}
 		return migrateState(state);
 	}

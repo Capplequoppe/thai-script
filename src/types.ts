@@ -1,4 +1,5 @@
 import type { ThaiSymbolClass, ToneValue, VowelPosition } from "./symbol";
+import type { GrammarCard } from "./grammar-types";
 import type { VocabularyCard } from "./vocabulary-types";
 
 // --- SRS Stages ---
@@ -100,7 +101,7 @@ export interface ReviewSession {
 
 export interface SessionSummary {
 	sessionId: string;
-	type: "lesson" | "review" | "mixed" | "vocab-lesson" | "vocab-review";
+	type: "lesson" | "review" | "mixed" | "vocab-lesson" | "vocab-review" | "grammar-lesson" | "grammar-review";
 	durationMs: number;
 	totalCards: number;
 	correctCount: number;
@@ -116,6 +117,7 @@ export interface LearnerState {
 	currentLesson: number | null;
 	cards: Record<string, PropertyCard>;
 	vocabCards: Record<string, VocabularyCard>;
+	grammarCards: Record<string, GrammarCard>;
 	sessionHistory: SessionSummary[];
 }
 
@@ -124,5 +126,6 @@ export const INITIAL_LEARNER_STATE: LearnerState = {
 	currentLesson: null,
 	cards: {},
 	vocabCards: {},
+	grammarCards: {},
 	sessionHistory: [],
 };
