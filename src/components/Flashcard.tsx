@@ -16,7 +16,11 @@ export function Flashcard({ card, onRate }: Props) {
 		cardProperty === "recognition" || cardProperty === "initialSound";
 	const symbolChar =
 		"symbolCharacter" in card
-			? (card as Record<string, unknown>).symbolCharacter as string
+			? ((card as Record<string, unknown>).symbolCharacter as string)
+			: "";
+	const wordThai =
+		"wordThai" in card
+			? ((card as Record<string, unknown>).wordThai as string)
 			: "";
 
 	useEffect(() => {
@@ -50,7 +54,7 @@ export function Flashcard({ card, onRate }: Props) {
 
 	return (
 		<div className="space-y-6">
-			{symbolChar && (
+			{symbolChar ? (
 				<div className="text-center">
 					<span className="thai text-8xl">{symbolChar}</span>
 					{card.audioUrl && !hideAudioHint && (
@@ -63,7 +67,20 @@ export function Flashcard({ card, onRate }: Props) {
 						</button>
 					)}
 				</div>
-			)}
+			) : wordThai ? (
+				<div className="text-center">
+					<span className="thai text-6xl">{wordThai}</span>
+					{card.audioUrl && (
+						<button
+							onClick={() => new Audio(card.audioUrl!).play()}
+							className="ml-3 inline-flex items-center justify-center w-10 h-10 rounded-full bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 text-gray-600 dark:text-gray-300 transition-colors align-middle"
+							aria-label="Play pronunciation"
+						>
+							🔊
+						</button>
+					)}
+				</div>
+			) : null}
 
 			<p className="text-center text-lg text-gray-600 dark:text-gray-300">
 				{card.question}

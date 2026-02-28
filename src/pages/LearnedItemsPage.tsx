@@ -12,7 +12,7 @@ import type {
 	VowelSummary,
 } from "../learning-service";
 
-type Tab = "consonants" | "vowels" | "toneMarks" | "videos";
+type Tab = "consonants" | "vowels" | "toneMarks" | "vocabulary" | "videos";
 
 function isEmbedUrl(url: string): boolean {
 	return (
@@ -113,14 +113,31 @@ export function LearnedItemsPage() {
 		return { consonants: c, vowels: v, toneMarks: t, videos: vids };
 	}, [state.completedLessons, getLessonSummary]);
 
+	// Collect learned vocabulary words (deduplicated by wordThai, prefer thaiToEnglish for English meaning)
+	const vocabWords = useMemo(() => {
+		const byWord = new Map<string, { thai: string; english: string; audioUrl?: string }>();
+		for (const card of Object.values(state.vocabCards)) {
+			const existing = byWord.get(card.wordThai);
+			if (!existing || card.property === "thaiToEnglish") {
+				byWord.set(card.wordThai, {
+					thai: card.wordThai,
+					english: card.property === "thaiToEnglish" ? card.correctAnswer : (existing?.english ?? card.question),
+					audioUrl: card.audioUrl ?? existing?.audioUrl,
+				});
+			}
+		}
+		return Array.from(byWord.values());
+	}, [state.vocabCards]);
+
 	const tabs: { key: Tab; label: string; count: number }[] = [
 		{ key: "consonants", label: "Consonants", count: consonants.length },
 		{ key: "vowels", label: "Vowels", count: vowels.length },
-		{ key: "toneMarks", label: "Tone Marks", count: toneMarks.length },
+		{ key: "toneMarks", label: "Tones", count: toneMarks.length },
+		{ key: "vocabulary", label: "Vocab", count: vocabWords.length },
 		{ key: "videos", label: "Videos", count: videos.length },
 	];
 
-	const total = consonants.length + vowels.length + toneMarks.length;
+	const total = consonants.length + vowels.length + toneMarks.length + vocabWords.length;
 
 	if (total === 0) {
 		return (
@@ -159,7 +176,7 @@ export function LearnedItemsPage() {
 			</div>
 
 			{/* Detail view */}
-			{selectedIdx !== null && tab !== "videos" && (
+			{selectedIdx !== null && tab !== "videos" && tab !== "vocabulary" && (
 				<div className="border border-gray-200 dark:border-gray-800 rounded-xl p-4">
 					<button
 						onClick={() => setSelectedIdx(null)}
@@ -246,6 +263,23 @@ export function LearnedItemsPage() {
 							<span className="thai text-4xl">{t.character}</span>
 							<span className="text-[10px] text-gray-500 mt-1">{t.name}</span>
 						</button>
+					))}
+				</div>
+			)}
+
+			{selectedIdx === null && tab === "vocabulary" && (
+				<div className="grid grid-cols-3 gap-2">
+					{vocabWords.map((w) => (
+						<div
+							key={w.thai}
+							className="relative flex flex-col items-center p-3 rounded-xl bg-gray-50 dark:bg-gray-900"
+						>
+							{w.audioUrl && <TileAudioButton audioUrl={w.audioUrl} />}
+							<span className="thai text-3xl">{w.thai}</span>
+							<span className="text-[10px] text-gray-500 mt-1 text-center leading-tight">
+								{w.english}
+							</span>
+						</div>
 					))}
 				</div>
 			)}
