@@ -10,6 +10,8 @@ export function ProgressPage() {
 	const dueCount = getNumDueCards();
 	const stages = getStageCounts("script");
 	const totalStaged = stages.apprentice + stages.guru + stages.master + stages.enlightened + stages.burned;
+	const grammarStages = getStageCounts("grammar");
+	const totalGrammarStaged = grammarStages.apprentice + grammarStages.guru + grammarStages.master + grammarStages.enlightened + grammarStages.burned;
 
 	return (
 		<div className="space-y-8 py-4">
@@ -73,6 +75,37 @@ export function ProgressPage() {
 							className="h-full bg-amber-500"
 							style={{ width: `${(stages.burned / totalStaged) * 100}%` }}
 						/>
+					</div>
+				</div>
+			)}
+
+			{/* Grammar SRS Stage Stats */}
+			{totalGrammarStaged > 0 && (
+				<div>
+					<h2 className="text-sm font-semibold text-gray-500 mb-3">Grammar Stages</h2>
+					<div className="grid grid-cols-3 gap-3 text-center">
+						<div className="bg-gray-50 dark:bg-gray-900 rounded-xl p-3">
+							<div className="text-xl font-bold text-pink-500">{grammarStages.apprentice}</div>
+							<div className="text-xs text-gray-500">Apprentice</div>
+						</div>
+						<div className="bg-gray-50 dark:bg-gray-900 rounded-xl p-3">
+							<div className="text-xl font-bold text-purple-500">{grammarStages.guru}</div>
+							<div className="text-xs text-gray-500">Guru</div>
+						</div>
+						<div className="bg-gray-50 dark:bg-gray-900 rounded-xl p-3">
+							<div className="text-xl font-bold text-blue-500">{grammarStages.master}</div>
+							<div className="text-xs text-gray-500">Master</div>
+						</div>
+					</div>
+					<div className="grid grid-cols-3 gap-3 text-center mt-3">
+						<div className="bg-gray-50 dark:bg-gray-900 rounded-xl p-3">
+							<div className="text-xl font-bold text-teal-500">{grammarStages.enlightened}</div>
+							<div className="text-xs text-gray-500">Enlightened</div>
+						</div>
+						<div className="bg-gray-50 dark:bg-gray-900 rounded-xl p-3">
+							<div className="text-xl font-bold text-amber-500">{grammarStages.burned}</div>
+							<div className="text-xs text-gray-500">Burned</div>
+						</div>
 					</div>
 				</div>
 			)}

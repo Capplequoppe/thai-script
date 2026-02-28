@@ -11,6 +11,9 @@ export function Dashboard() {
 		getVocabUnlockedCount,
 		getVocabLearnedCount,
 		getNumDueVocabCards,
+		getGrammarUnlockedCount,
+		getGrammarLearnedCount,
+		getNumDueGrammarCards,
 		getReviewForecast,
 		getApprenticeStats,
 		getLeechCount,
@@ -213,6 +216,38 @@ export function Dashboard() {
 					className="w-full py-3 px-6 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl font-semibold transition-colors"
 				>
 					Go to Vocabulary
+				</button>
+			</div>
+			{/* Grammar */}
+			<div className="border-t border-gray-200 dark:border-gray-800 pt-6">
+				<h2 className="text-sm font-semibold text-gray-500 mb-3">
+					Grammar
+				</h2>
+				<div className="grid grid-cols-3 gap-4 text-center mb-3">
+					<div className="bg-gray-50 dark:bg-gray-900 rounded-xl p-3">
+						<div className="text-lg font-bold">
+							{getGrammarUnlockedCount()}
+						</div>
+						<div className="text-[10px] text-gray-500">Unlocked</div>
+					</div>
+					<div className="bg-gray-50 dark:bg-gray-900 rounded-xl p-3">
+						<div className="text-lg font-bold">
+							{getGrammarLearnedCount()}
+						</div>
+						<div className="text-[10px] text-gray-500">Learned</div>
+					</div>
+					<div className="bg-gray-50 dark:bg-gray-900 rounded-xl p-3">
+						<div className="text-lg font-bold text-orange-500">
+							{getNumDueGrammarCards()}
+						</div>
+						<div className="text-[10px] text-gray-500">Due</div>
+					</div>
+				</div>
+				<button
+					onClick={() => navigate("/grammar")}
+					className="w-full py-3 px-6 bg-cyan-600 hover:bg-cyan-700 text-white rounded-xl font-semibold transition-colors"
+				>
+					Go to Grammar
 				</button>
 			</div>
 		</div>
