@@ -1,6 +1,9 @@
+import type { CardRepository } from "./application/ports/CardRepository";
+import type { LearnerStateRepository } from "./application/ports/LearnerStateRepository";
 import type { ApprenticeService } from "./apprentice-service";
 import { generateCardsForLesson } from "./card-generator";
-import type { IStorage } from "./storage";
+import { ScriptPropertyCard } from "./domain/script/entities/ScriptPropertyCard";
+import { SrsSchedule } from "./domain/srs/value-objects/SrsSchedule";
 import {
 	getSymbolsByLesson,
 	lessons,
@@ -67,9 +70,24 @@ export interface LessonSummary {
 	toneRules: Array<{ description: string }>;
 }
 
+function toEntity(dto: PropertyCard): ScriptPropertyCard {
+	return new ScriptPropertyCard(
+		dto.id,
+		dto.question,
+		dto.correctAnswer,
+		dto.choices,
+		SrsSchedule.fromDTO(dto.srs),
+		dto.symbolCharacter,
+		dto.property,
+		dto.lessonNumber,
+		dto.audioUrl,
+	);
+}
+
 export class LearningService {
 	constructor(
-		private readonly storage: IStorage,
+		private readonly cardRepo: CardRepository,
+		private readonly stateRepo: LearnerStateRepository,
 		private readonly apprenticeService?: ApprenticeService,
 	) {}
 
@@ -78,14 +96,14 @@ export class LearningService {
 			return null;
 		}
 
-		const state = this.storage.load();
+		const completedLessons = this.stateRepo.getCompletedLessons();
 
-		if (state.completedLessons.includes(lessonNumber)) {
+		if (completedLessons.includes(lessonNumber)) {
 			throw new Error(`Lesson ${lessonNumber} is already completed`);
 		}
 
 		for (let i = 1; i < lessonNumber; i++) {
-			if (!state.completedLessons.includes(i)) {
+			if (!completedLessons.includes(i)) {
 				throw new Error(
 					`Must complete lesson ${i} before starting lesson ${lessonNumber}`,
 				);
@@ -105,13 +123,10 @@ export class LearningService {
 		if (!lessonMeta) throw new Error(`Lesson ${lessonNumber} not found`);
 
 		const cards = generateCardsForLesson(lessonNumber);
+		const entities = cards.map(toEntity);
 
-		for (const card of cards) {
-			state.cards[card.id] = card;
-		}
-		state.currentLesson = lessonNumber;
-
-		this.storage.save(state);
+		this.cardRepo.saveAll(entities);
+		this.stateRepo.setCurrentLesson(lessonNumber);
 
 		return {
 			lessonNumber,
@@ -122,42 +137,32 @@ export class LearningService {
 	}
 
 	completeLesson(lessonNumber: number): void {
-		const state = this.storage.load();
+		this.stateRepo.addCompletedLesson(lessonNumber);
 
-		if (!state.completedLessons.includes(lessonNumber)) {
-			state.completedLessons.push(lessonNumber);
+		if (this.stateRepo.getCurrentLesson() === lessonNumber) {
+			this.stateRepo.setCurrentLesson(null);
 		}
-		if (state.currentLesson === lessonNumber) {
-			state.currentLesson = null;
-		}
-
-		this.storage.save(state);
 	}
 
 	unlearnLesson(lessonNumber: number): void {
-		const state = this.storage.load();
+		this.stateRepo.removeCompletedLesson(lessonNumber);
 
-		state.completedLessons = state.completedLessons.filter(
-			(l) => l !== lessonNumber,
-		);
-
-		for (const [id, card] of Object.entries(state.cards)) {
+		const allCards = this.cardRepo.findAll("script") as ScriptPropertyCard[];
+		for (const card of allCards) {
 			if (card.lessonNumber === lessonNumber) {
-				delete state.cards[id];
+				this.cardRepo.remove(card.id, "script");
 			}
 		}
 
-		if (state.currentLesson === lessonNumber) {
-			state.currentLesson = null;
+		if (this.stateRepo.getCurrentLesson() === lessonNumber) {
+			this.stateRepo.setCurrentLesson(null);
 		}
-
-		this.storage.save(state);
 	}
 
 	getNextLesson(): number | null {
-		const state = this.storage.load();
+		const completedLessons = this.stateRepo.getCompletedLessons();
 		for (let i = 1; i <= TOTAL_LESSONS; i++) {
-			if (!state.completedLessons.includes(i)) return i;
+			if (!completedLessons.includes(i)) return i;
 		}
 		return null;
 	}
@@ -223,7 +228,7 @@ export class LearningService {
 	}
 
 	getCompletedLessons(): number[] {
-		return this.storage.load().completedLessons;
+		return this.stateRepo.getCompletedLessons();
 	}
 
 	isLessonMastered(lessonNumber: number): boolean {
@@ -238,13 +243,11 @@ export class LearningService {
 		graduated: number;
 		percentage: number;
 	} {
-		const state = this.storage.load();
-		const lessonCards = Object.values(state.cards).filter(
-			(c) => c.lessonNumber === lessonNumber,
-		);
+		const allCards = this.cardRepo.findAll("script") as ScriptPropertyCard[];
+		const lessonCards = allCards.filter((c) => c.lessonNumber === lessonNumber);
 		const total = lessonCards.length;
 		const graduated = lessonCards.filter(
-			(c) => c.srs.learningStep === null,
+			(c) => !c.schedule.isInLearning,
 		).length;
 		return {
 			total,

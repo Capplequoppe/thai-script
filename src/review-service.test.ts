@@ -19,9 +19,9 @@ describe("ReviewService", () => {
 
 	beforeEach(() => {
 		storage = new InMemoryStorage();
-		learningService = new LearningService(storage);
 		const cardRepo = new StorageCardRepository(storage);
 		const stateRepo = new StorageLearnerStateRepository(storage);
+		learningService = new LearningService(cardRepo, stateRepo);
 		reviewService = new ReviewService(cardRepo, stateRepo);
 		// Complete lesson 1 so there are cards to review
 		learningService.startLesson(1);

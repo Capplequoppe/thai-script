@@ -16,9 +16,9 @@ describe("Learn-then-Review flow", () => {
 
 	beforeEach(() => {
 		storage = new InMemoryStorage();
-		learning = new LearningService(storage);
 		const cardRepo = new StorageCardRepository(storage);
 		const stateRepo = new StorageLearnerStateRepository(storage);
+		learning = new LearningService(cardRepo, stateRepo);
 		review = new ReviewService(cardRepo, stateRepo);
 	});
 

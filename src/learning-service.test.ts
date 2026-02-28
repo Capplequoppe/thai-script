@@ -1,6 +1,7 @@
 import { beforeEach, describe, expect, it } from "vitest";
 import { ApprenticeService } from "./apprentice-service";
 import { StorageCardRepository } from "./infrastructure/persistence/StorageCardRepository";
+import { StorageLearnerStateRepository } from "./infrastructure/persistence/StorageLearnerStateRepository";
 import { LearningService } from "./learning-service";
 import { ReviewService } from "./review-service";
 import { InMemoryStorage } from "./storage";
@@ -9,10 +10,14 @@ import type { SrsData } from "./types";
 describe("LearningService", () => {
 	let service: LearningService;
 	let storage: InMemoryStorage;
+	let cardRepo: StorageCardRepository;
+	let stateRepo: StorageLearnerStateRepository;
 
 	beforeEach(() => {
 		storage = new InMemoryStorage();
-		service = new LearningService(storage);
+		cardRepo = new StorageCardRepository(storage);
+		stateRepo = new StorageLearnerStateRepository(storage);
+		service = new LearningService(cardRepo, stateRepo);
 	});
 
 	describe("startLesson", () => {
@@ -82,7 +87,7 @@ describe("LearningService", () => {
 		});
 
 		it("returns null after all 25 lessons completed", () => {
-			const reviewService = new ReviewService(storage);
+			const reviewService = new ReviewService(cardRepo, stateRepo);
 			for (let i = 1; i <= 25; i++) {
 				service.startLesson(i);
 				service.completeLesson(i);
@@ -207,10 +212,7 @@ describe("LearningService", () => {
 		}
 
 		it("returns null when ApprenticeService says at limit", () => {
-			const apprenticeService = new ApprenticeService(
-				new StorageCardRepository(storage),
-				1,
-			);
+			const apprenticeService = new ApprenticeService(cardRepo, 1);
 
 			const state = storage.load();
 			state.cards["s1"] = {
@@ -225,7 +227,11 @@ describe("LearningService", () => {
 			};
 			storage.save(state);
 
-			const gatedService = new LearningService(storage, apprenticeService);
+			const gatedService = new LearningService(
+				cardRepo,
+				stateRepo,
+				apprenticeService,
+			);
 			const result = gatedService.startLesson(1);
 			expect(result).toBeNull();
 		});

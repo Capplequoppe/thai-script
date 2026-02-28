@@ -53,11 +53,16 @@ const storage = new LocalStorageAdapter();
 const cardRepo = new StorageCardRepository(storage);
 const apprenticeService = new ApprenticeService(cardRepo);
 const leechService = new LeechService(cardRepo);
-const learningService = new LearningService(storage, apprenticeService);
 const stateRepo = new StorageLearnerStateRepository(storage);
+const learningService = new LearningService(
+	cardRepo,
+	stateRepo,
+	apprenticeService,
+);
 const reviewService = new ReviewService(cardRepo, stateRepo);
 const vocabularyService = new VocabularyService(
-	storage,
+	cardRepo,
+	stateRepo,
 	vocabularyData as VocabEntry[],
 	apprenticeService,
 );
