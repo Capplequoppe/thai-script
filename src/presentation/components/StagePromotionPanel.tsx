@@ -1,29 +1,16 @@
-import { Badge } from "@/presentation/components/ui/badge";
+import { SectionHeader } from "./atoms/SectionHeader";
+import { StageBadge } from "./molecules/StageBadge";
 
 export interface Promotion {
 	cardQuestion: string;
 	newStage: string;
 }
 
-interface StagePromotionPanelProps {
+interface Props {
 	promotions: Promotion[];
 }
 
-const STAGE_COLORS: Record<string, string> = {
-	Guru: "var(--color-guru)",
-	Master: "var(--color-master)",
-	Enlightened: "var(--color-enlightened)",
-	Burned: "var(--color-burned)",
-};
-
-const STAGE_LABELS: Record<string, string> = {
-	Guru: "Guru",
-	Master: "Master",
-	Enlightened: "Enlightened",
-	Burned: "Burned ✸",
-};
-
-export function StagePromotionPanel({ promotions }: StagePromotionPanelProps) {
+export function StagePromotionPanel({ promotions }: Props) {
 	if (promotions.length === 0) return null;
 
 	return (
@@ -34,7 +21,7 @@ export function StagePromotionPanel({ promotions }: StagePromotionPanelProps) {
 				border: "1px solid var(--color-accent)",
 			}}
 		>
-			<div className="section-header mb-3">Stage Promotions</div>
+			<SectionHeader className="mb-3">Stage Promotions</SectionHeader>
 			<div className="space-y-2">
 				{promotions.map((p) => (
 					<div
@@ -47,14 +34,7 @@ export function StagePromotionPanel({ promotions }: StagePromotionPanelProps) {
 						>
 							{p.cardQuestion}
 						</span>
-						<Badge
-							className="flex-shrink-0"
-							style={{
-								background: STAGE_COLORS[p.newStage] ?? "var(--color-primary)",
-							}}
-						>
-							{STAGE_LABELS[p.newStage] ?? p.newStage}
-						</Badge>
+						<StageBadge stage={p.newStage} className="flex-shrink-0" />
 					</div>
 				))}
 			</div>
