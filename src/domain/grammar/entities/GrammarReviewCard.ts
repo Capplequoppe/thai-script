@@ -33,9 +33,16 @@ export class GrammarReviewCard extends ReviewableCard {
 		};
 	}
 
-	static fromDTO(
-		dto: ReturnType<GrammarReviewCard["toDTO"]>,
-	): GrammarReviewCard {
+	static fromDTO(dto: {
+		id: string;
+		question: string;
+		correctAnswer: string;
+		choices: readonly string[];
+		srs: ReturnType<SrsSchedule["toDTO"]>;
+		grammarId: string;
+		property: string;
+		audioUrl?: string;
+	}): GrammarReviewCard {
 		return new GrammarReviewCard(
 			dto.id,
 			dto.question,

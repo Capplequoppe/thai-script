@@ -36,9 +36,17 @@ export class ScriptPropertyCard extends ReviewableCard {
 		};
 	}
 
-	static fromDTO(
-		dto: ReturnType<ScriptPropertyCard["toDTO"]>,
-	): ScriptPropertyCard {
+	static fromDTO(dto: {
+		id: string;
+		question: string;
+		correctAnswer: string;
+		choices: readonly string[];
+		srs: ReturnType<SrsSchedule["toDTO"]>;
+		symbolCharacter: string;
+		property: PropertyType | "toneRule";
+		lessonNumber: number;
+		audioUrl?: string;
+	}): ScriptPropertyCard {
 		return new ScriptPropertyCard(
 			dto.id,
 			dto.question,

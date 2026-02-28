@@ -33,7 +33,16 @@ export class VocabCard extends ReviewableCard {
 		};
 	}
 
-	static fromDTO(dto: ReturnType<VocabCard["toDTO"]>): VocabCard {
+	static fromDTO(dto: {
+		id: string;
+		question: string;
+		correctAnswer: string;
+		choices: readonly string[];
+		srs: ReturnType<SrsSchedule["toDTO"]>;
+		wordThai: string;
+		property: string;
+		audioUrl?: string;
+	}): VocabCard {
 		return new VocabCard(
 			dto.id,
 			dto.question,
