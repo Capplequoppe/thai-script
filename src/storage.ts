@@ -3,10 +3,20 @@ import type { LearnerState, SrsCard } from "./types";
 import { INITIAL_LEARNER_STATE } from "./types";
 import { validateLearnerState } from "./validation";
 
+interface LegacySrsData {
+	easeFactor: number;
+	interval: number;
+	repetitions: number;
+	learningStep?: number | null;
+	nextReviewDate: string;
+	lastReviewDate: string | null;
+	lapseCount?: number;
+}
+
 function migrateSrsCard(card: SrsCard): void {
-	const srs = card.srs;
+	const srs = card.srs as LegacySrsData;
 	if (srs.learningStep === undefined) {
-		(srs as Record<string, unknown>).learningStep = null;
+		srs.learningStep = null;
 	}
 	if (srs.lapseCount === undefined) {
 		srs.lapseCount = 0;
