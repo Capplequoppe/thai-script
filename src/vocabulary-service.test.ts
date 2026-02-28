@@ -1,9 +1,10 @@
 import { beforeEach, describe, expect, it } from "vitest";
 import { ApprenticeService } from "./apprentice-service";
+import { StorageCardRepository } from "./infrastructure/persistence/StorageCardRepository";
 import { InMemoryStorage } from "./storage";
 import type { SrsData } from "./types";
-import type { VocabEntry } from "./vocabulary-types";
 import { VocabularyService } from "./vocabulary-service";
+import type { VocabEntry } from "./vocabulary-types";
 
 function makeEntry(overrides: Partial<VocabEntry> = {}): VocabEntry {
 	return {
@@ -70,9 +71,24 @@ describe("VocabularyService", () => {
 
 	it("returns unlearned words sorted by rank", () => {
 		const vocabulary = [
-			makeEntry({ thai: "นา", characters: ["น", "า"], rank: 50, english: "rice field" }),
-			makeEntry({ thai: "มา", characters: ["ม", "า"], rank: 10, english: "to come" }),
-			makeEntry({ thai: "นาน", characters: ["น", "า"], rank: 30, english: "long time" }),
+			makeEntry({
+				thai: "นา",
+				characters: ["น", "า"],
+				rank: 50,
+				english: "rice field",
+			}),
+			makeEntry({
+				thai: "มา",
+				characters: ["ม", "า"],
+				rank: 10,
+				english: "to come",
+			}),
+			makeEntry({
+				thai: "นาน",
+				characters: ["น", "า"],
+				rank: 30,
+				english: "long time",
+			}),
 		];
 		const service = new VocabularyService(storage, vocabulary);
 
@@ -106,7 +122,12 @@ describe("VocabularyService", () => {
 	it("getNextLesson excludes already-learned words", () => {
 		const vocabulary = [
 			makeEntry({ thai: "มา", rank: 1, english: "to come" }),
-			makeEntry({ thai: "นา", characters: ["น", "า"], rank: 2, english: "rice field" }),
+			makeEntry({
+				thai: "นา",
+				characters: ["น", "า"],
+				rank: 2,
+				english: "rice field",
+			}),
 		];
 		const service = new VocabularyService(storage, vocabulary);
 
@@ -166,7 +187,12 @@ describe("VocabularyService", () => {
 	it("startLesson generates cards and saves them to storage", () => {
 		const vocabulary = [
 			makeEntry({ thai: "มา", rank: 1, english: "to come" }),
-			makeEntry({ thai: "นา", characters: ["น", "า"], rank: 2, english: "rice field" }),
+			makeEntry({
+				thai: "นา",
+				characters: ["น", "า"],
+				rank: 2,
+				english: "rice field",
+			}),
 		];
 		const service = new VocabularyService(storage, vocabulary);
 
@@ -196,7 +222,12 @@ describe("VocabularyService", () => {
 	it("getUnlockedCount returns count of all unlocked words", () => {
 		const vocabulary = [
 			makeEntry({ thai: "มา", rank: 1, english: "to come" }),
-			makeEntry({ thai: "นา", characters: ["น", "า"], rank: 2, english: "rice field" }),
+			makeEntry({
+				thai: "นา",
+				characters: ["น", "า"],
+				rank: 2,
+				english: "rice field",
+			}),
 		];
 		const service = new VocabularyService(storage, vocabulary);
 
@@ -210,8 +241,18 @@ describe("VocabularyService", () => {
 	it("excludes words outside the rank window even when character mastery qualifies them", () => {
 		const vocabulary = [
 			makeEntry({ thai: "มา", rank: 1, english: "to come" }),
-			makeEntry({ thai: "นา", characters: ["น", "า"], rank: 30, english: "rice field" }),
-			makeEntry({ thai: "นาน", characters: ["น", "า"], rank: 60, english: "long time" }),
+			makeEntry({
+				thai: "นา",
+				characters: ["น", "า"],
+				rank: 30,
+				english: "rice field",
+			}),
+			makeEntry({
+				thai: "นาน",
+				characters: ["น", "า"],
+				rank: 60,
+				english: "long time",
+			}),
 		];
 		const service = new VocabularyService(storage, vocabulary);
 
@@ -264,7 +305,12 @@ describe("VocabularyService", () => {
 	it("excludes null-rank words from the rank window", () => {
 		const vocabulary = [
 			makeEntry({ thai: "มา", rank: 1, english: "to come" }),
-			makeEntry({ thai: "นา", characters: ["น", "า"], rank: null, english: "rice field" }),
+			makeEntry({
+				thai: "นา",
+				characters: ["น", "า"],
+				rank: null,
+				english: "rice field",
+			}),
 		];
 		const service = new VocabularyService(storage, vocabulary);
 
@@ -311,7 +357,12 @@ describe("VocabularyService", () => {
 	it("getLearnedCount returns count of words with generated cards", () => {
 		const vocabulary = [
 			makeEntry({ thai: "มา", rank: 1, english: "to come" }),
-			makeEntry({ thai: "นา", characters: ["น", "า"], rank: 2, english: "rice field" }),
+			makeEntry({
+				thai: "นา",
+				characters: ["น", "า"],
+				rank: 2,
+				english: "rice field",
+			}),
 		];
 		const service = new VocabularyService(storage, vocabulary);
 
@@ -341,7 +392,10 @@ describe("VocabularyService", () => {
 		}
 
 		it("getNextLesson returns null when at apprentice limit", () => {
-			const apprenticeService = new ApprenticeService(storage, 1);
+			const apprenticeService = new ApprenticeService(
+				new StorageCardRepository(storage),
+				1,
+			);
 			const vocabulary = [makeEntry()];
 
 			const state = storage.load();
@@ -367,7 +421,10 @@ describe("VocabularyService", () => {
 		});
 
 		it("startLesson returns null when at apprentice limit", () => {
-			const apprenticeService = new ApprenticeService(storage, 1);
+			const apprenticeService = new ApprenticeService(
+				new StorageCardRepository(storage),
+				1,
+			);
 			const vocabulary = [makeEntry()];
 
 			const state = storage.load();

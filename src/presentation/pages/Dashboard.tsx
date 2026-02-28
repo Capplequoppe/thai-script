@@ -57,7 +57,7 @@ export function Dashboard() {
 			</div>
 
 			{/* Apprentice Count */}
-			{apprenticeStats.count > 0 && (
+			{apprenticeStats.total > 0 && (
 				<div className="bg-pink-50 dark:bg-pink-900/20 rounded-xl p-4">
 					<div className="flex justify-between items-center">
 						<div>
@@ -67,11 +67,11 @@ export function Dashboard() {
 							<div className="text-xs text-pink-500 dark:text-pink-400 mt-0.5">
 								{apprenticeStats.isAtLimit
 									? "At limit — review before new lessons"
-									: `${apprenticeStats.limit - apprenticeStats.count} slots remaining`}
+									: `${apprenticeStats.limit - apprenticeStats.total} slots remaining`}
 							</div>
 						</div>
 						<div className="text-2xl font-bold text-pink-600 dark:text-pink-400">
-							{apprenticeStats.count}/{apprenticeStats.limit}
+							{apprenticeStats.total}/{apprenticeStats.limit}
 						</div>
 					</div>
 				</div>

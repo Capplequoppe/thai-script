@@ -1,5 +1,6 @@
 import { beforeEach, describe, expect, it } from "vitest";
 import { ApprenticeService } from "./apprentice-service";
+import { StorageCardRepository } from "./infrastructure/persistence/StorageCardRepository";
 import { LearningService } from "./learning-service";
 import { ReviewService } from "./review-service";
 import { InMemoryStorage } from "./storage";
@@ -206,7 +207,10 @@ describe("LearningService", () => {
 		}
 
 		it("returns null when ApprenticeService says at limit", () => {
-			const apprenticeService = new ApprenticeService(storage, 1);
+			const apprenticeService = new ApprenticeService(
+				new StorageCardRepository(storage),
+				1,
+			);
 
 			const state = storage.load();
 			state.cards["s1"] = {

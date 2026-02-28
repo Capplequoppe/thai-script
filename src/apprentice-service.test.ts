@@ -1,63 +1,82 @@
 import { beforeEach, describe, expect, it } from "vitest";
+import type { CardRepository } from "./application/ports/CardRepository";
 import { ApprenticeService, MAX_APPRENTICE_ITEMS } from "./apprentice-service";
+import { GrammarReviewCard } from "./domain/grammar/entities/GrammarReviewCard";
+import { ScriptPropertyCard } from "./domain/script/entities/ScriptPropertyCard";
+import { SrsSchedule } from "./domain/srs/value-objects/SrsSchedule";
+import { VocabCard } from "./domain/vocabulary/entities/VocabCard";
+import { StorageCardRepository } from "./infrastructure/persistence/StorageCardRepository";
 import { InMemoryStorage } from "./storage";
-import type { SrsData } from "./types";
 
-function makeSrsData(overrides: Partial<SrsData> = {}): SrsData {
-	return {
-		easeFactor: 2.0,
-		interval: 10,
-		repetitions: 0,
-		learningStep: 1,
+function learningSchedule(): SrsSchedule {
+	return SrsSchedule.initial();
+}
+
+function graduatedSchedule(): SrsSchedule {
+	return SrsSchedule.fromDTO({
+		easeFactor: 2.5,
+		interval: 4320,
+		repetitions: 5,
+		learningStep: null,
 		nextReviewDate: new Date().toISOString(),
-		lastReviewDate: null,
+		lastReviewDate: new Date().toISOString(),
 		lapseCount: 0,
-		...overrides,
-	};
+	});
+}
+
+function makeScriptCard(id: string, inLearning: boolean): ScriptPropertyCard {
+	return new ScriptPropertyCard(
+		id,
+		"test",
+		"test",
+		["test"],
+		inLearning ? learningSchedule() : graduatedSchedule(),
+		"ก",
+		"recognition",
+		1,
+	);
+}
+
+function makeVocabCard(id: string, inLearning: boolean): VocabCard {
+	return new VocabCard(
+		id,
+		"test",
+		"test",
+		["test"],
+		inLearning ? learningSchedule() : graduatedSchedule(),
+		"มา",
+		"thaiToEnglish",
+	);
+}
+
+function makeGrammarCard(id: string, inLearning: boolean): GrammarReviewCard {
+	return new GrammarReviewCard(
+		id,
+		"test",
+		"test",
+		["test"],
+		inLearning ? learningSchedule() : graduatedSchedule(),
+		"svo-basic",
+		"recognition",
+	);
 }
 
 describe("ApprenticeService", () => {
 	let storage: InMemoryStorage;
+	let cardRepo: CardRepository;
 	let service: ApprenticeService;
 
 	beforeEach(() => {
 		storage = new InMemoryStorage();
-		service = new ApprenticeService(storage);
+		cardRepo = new StorageCardRepository(storage);
+		service = new ApprenticeService(cardRepo);
 	});
 
 	describe("getApprenticeCount", () => {
 		it("counts cards with learningStep !== null across both pools", () => {
-			const state = storage.load();
-			state.cards["s1"] = {
-				id: "s1",
-				question: "test",
-				correctAnswer: "test",
-				choices: ["test"],
-				srs: makeSrsData({ learningStep: 1 }),
-				symbolCharacter: "ก",
-				property: "recognition",
-				lessonNumber: 1,
-			};
-			state.cards["s2"] = {
-				id: "s2",
-				question: "test",
-				correctAnswer: "test",
-				choices: ["test"],
-				srs: makeSrsData({ learningStep: null }),
-				symbolCharacter: "ข",
-				property: "recognition",
-				lessonNumber: 1,
-			};
-			state.vocabCards["v1"] = {
-				id: "v1",
-				question: "test",
-				correctAnswer: "test",
-				choices: ["test"],
-				srs: makeSrsData({ learningStep: 2 }),
-				wordThai: "มา",
-				property: "thaiToEnglish",
-			};
-			storage.save(state);
+			cardRepo.save(makeScriptCard("s1", true));
+			cardRepo.save(makeScriptCard("s2", false));
+			cardRepo.save(makeVocabCard("v1", true));
 
 			expect(service.getApprenticeCount()).toBe(2);
 		});
@@ -73,39 +92,17 @@ describe("ApprenticeService", () => {
 		});
 
 		it("returns false when count is at limit", () => {
-			const state = storage.load();
 			for (let i = 0; i < MAX_APPRENTICE_ITEMS; i++) {
-				state.cards[`s${i}`] = {
-					id: `s${i}`,
-					question: "test",
-					correctAnswer: "test",
-					choices: ["test"],
-					srs: makeSrsData({ learningStep: 1 }),
-					symbolCharacter: "ก",
-					property: "recognition",
-					lessonNumber: 1,
-				};
+				cardRepo.save(makeScriptCard(`s${i}`, true));
 			}
-			storage.save(state);
 
 			expect(service.canStartLesson()).toBe(false);
 		});
 
 		it("returns false when count exceeds limit", () => {
-			const state = storage.load();
 			for (let i = 0; i < MAX_APPRENTICE_ITEMS + 5; i++) {
-				state.cards[`s${i}`] = {
-					id: `s${i}`,
-					question: "test",
-					correctAnswer: "test",
-					choices: ["test"],
-					srs: makeSrsData({ learningStep: 1 }),
-					symbolCharacter: "ก",
-					property: "recognition",
-					lessonNumber: 1,
-				};
+				cardRepo.save(makeScriptCard(`s${i}`, true));
 			}
-			storage.save(state);
 
 			expect(service.canStartLesson()).toBe(false);
 		});
@@ -113,30 +110,10 @@ describe("ApprenticeService", () => {
 
 	describe("custom limit", () => {
 		it("uses a custom limit", () => {
-			const customService = new ApprenticeService(storage, 2);
+			const customService = new ApprenticeService(cardRepo, 2);
 
-			const state = storage.load();
-			state.cards["s1"] = {
-				id: "s1",
-				question: "test",
-				correctAnswer: "test",
-				choices: ["test"],
-				srs: makeSrsData({ learningStep: 1 }),
-				symbolCharacter: "ก",
-				property: "recognition",
-				lessonNumber: 1,
-			};
-			state.cards["s2"] = {
-				id: "s2",
-				question: "test",
-				correctAnswer: "test",
-				choices: ["test"],
-				srs: makeSrsData({ learningStep: 1 }),
-				symbolCharacter: "ข",
-				property: "recognition",
-				lessonNumber: 1,
-			};
-			storage.save(state);
+			cardRepo.save(makeScriptCard("s1", true));
+			cardRepo.save(makeScriptCard("s2", true));
 
 			expect(customService.canStartLesson()).toBe(false);
 		});
@@ -144,127 +121,43 @@ describe("ApprenticeService", () => {
 
 	describe("getApprenticeStats", () => {
 		it("returns correct breakdown by pool", () => {
-			const state = storage.load();
-			state.cards["s1"] = {
-				id: "s1",
-				question: "test",
-				correctAnswer: "test",
-				choices: ["test"],
-				srs: makeSrsData({ learningStep: 1 }),
-				symbolCharacter: "ก",
-				property: "recognition",
-				lessonNumber: 1,
-			};
-			state.cards["s2"] = {
-				id: "s2",
-				question: "test",
-				correctAnswer: "test",
-				choices: ["test"],
-				srs: makeSrsData({ learningStep: null }),
-				symbolCharacter: "ข",
-				property: "recognition",
-				lessonNumber: 1,
-			};
-			state.vocabCards["v1"] = {
-				id: "v1",
-				question: "test",
-				correctAnswer: "test",
-				choices: ["test"],
-				srs: makeSrsData({ learningStep: 2 }),
-				wordThai: "มา",
-				property: "thaiToEnglish",
-			};
-			state.vocabCards["v2"] = {
-				id: "v2",
-				question: "test",
-				correctAnswer: "test",
-				choices: ["test"],
-				srs: makeSrsData({ learningStep: 3 }),
-				wordThai: "นา",
-				property: "thaiToEnglish",
-			};
-			storage.save(state);
+			cardRepo.save(makeScriptCard("s1", true));
+			cardRepo.save(makeScriptCard("s2", false));
+			cardRepo.save(makeVocabCard("v1", true));
+			cardRepo.save(makeVocabCard("v2", true));
 
 			const stats = service.getApprenticeStats();
-			expect(stats.script).toBe(1);
-			expect(stats.vocab).toBe(2);
-			expect(stats.grammar).toBe(0);
-			expect(stats.count).toBe(3);
+			expect(stats.byPool.script).toBe(1);
+			expect(stats.byPool.vocab).toBe(2);
+			expect(stats.byPool.grammar).toBe(0);
+			expect(stats.total).toBe(3);
 			expect(stats.limit).toBe(MAX_APPRENTICE_ITEMS);
 			expect(stats.isAtLimit).toBe(false);
 		});
 
 		it("counts grammar cards in apprentice stats", () => {
-			const state = storage.load();
-			state.grammarCards["g1"] = {
-				id: "g1",
-				question: "test",
-				correctAnswer: "test",
-				choices: ["test"],
-				srs: makeSrsData({ learningStep: 1 }),
-				grammarId: "svo-basic",
-				property: "recognition",
-			};
-			state.grammarCards["g2"] = {
-				id: "g2",
-				question: "test",
-				correctAnswer: "test",
-				choices: ["test"],
-				srs: makeSrsData({ learningStep: null }),
-				grammarId: "svo-basic",
-				property: "application",
-			};
-			storage.save(state);
+			cardRepo.save(makeGrammarCard("g1", true));
+			cardRepo.save(makeGrammarCard("g2", false));
 
 			const stats = service.getApprenticeStats();
-			expect(stats.grammar).toBe(1);
-			expect(stats.count).toBe(1);
+			expect(stats.byPool.grammar).toBe(1);
+			expect(stats.total).toBe(1);
 		});
 
 		it("includes grammar cards in total apprentice count", () => {
-			const state = storage.load();
-			state.cards["s1"] = {
-				id: "s1",
-				question: "test",
-				correctAnswer: "test",
-				choices: ["test"],
-				srs: makeSrsData({ learningStep: 1 }),
-				symbolCharacter: "ก",
-				property: "recognition",
-				lessonNumber: 1,
-			};
-			state.grammarCards["g1"] = {
-				id: "g1",
-				question: "test",
-				correctAnswer: "test",
-				choices: ["test"],
-				srs: makeSrsData({ learningStep: 2 }),
-				grammarId: "svo-basic",
-				property: "recognition",
-			};
-			storage.save(state);
+			cardRepo.save(makeScriptCard("s1", true));
+			cardRepo.save(makeGrammarCard("g1", true));
 
 			expect(service.getApprenticeCount()).toBe(2);
 			const stats = service.getApprenticeStats();
-			expect(stats.script).toBe(1);
-			expect(stats.grammar).toBe(1);
-			expect(stats.count).toBe(2);
+			expect(stats.byPool.script).toBe(1);
+			expect(stats.byPool.grammar).toBe(1);
+			expect(stats.total).toBe(2);
 		});
 
 		it("reports isAtLimit when at the limit", () => {
-			const customService = new ApprenticeService(storage, 1);
-			const state = storage.load();
-			state.cards["s1"] = {
-				id: "s1",
-				question: "test",
-				correctAnswer: "test",
-				choices: ["test"],
-				srs: makeSrsData({ learningStep: 1 }),
-				symbolCharacter: "ก",
-				property: "recognition",
-				lessonNumber: 1,
-			};
-			storage.save(state);
+			const customService = new ApprenticeService(cardRepo, 1);
+			cardRepo.save(makeScriptCard("s1", true));
 
 			const stats = customService.getApprenticeStats();
 			expect(stats.isAtLimit).toBe(true);
