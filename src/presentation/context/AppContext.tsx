@@ -18,13 +18,13 @@ import {
 	type LessonInfo,
 	type LessonSummary,
 } from "../../domain/script/services/ScriptLessonService";
-import type { CardPool } from "../../domain/session/services/ReviewService";
 import {
 	type ActiveReviewSession,
 	type CriticalItem,
 	type ReviewForecast,
 	ReviewService,
 } from "../../domain/session/services/ReviewService";
+import type { CardPool } from "../../domain/shared/CardPool";
 import type { ApprenticeStats } from "../../domain/shared/services/ApprenticeService";
 import { ApprenticeService } from "../../domain/shared/services/ApprenticeService";
 import { LeechService } from "../../domain/shared/services/LeechService";
@@ -210,9 +210,9 @@ export function AppProvider({ children }: { children: ReactNode }) {
 				wrap(() => reviewService.endReviewSession(session)),
 			getNextReviewDate: () => reviewService.getNextReviewDate(),
 			getSessionHistory: () => reviewService.getSessionHistory(),
-			resetAll: () => wrap(() => storage.reset()),
-			exportData: () => storage.exportData(),
-			importData: (json) => wrap(() => storage.importData(json)),
+			resetAll: () => wrap(() => stateRepo.reset()),
+			exportData: () => stateRepo.exportData(),
+			importData: (json) => wrap(() => stateRepo.importData(json)),
 			getUnlockedWords: () => vocabularyService.getUnlockedWords(),
 			getUnlearnedWords: () => vocabularyService.getUnlearnedWords(),
 			getNextVocabLesson: () => vocabularyService.getNextLesson(),

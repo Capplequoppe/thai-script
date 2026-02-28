@@ -9,8 +9,6 @@ import type { ReviewableCard } from "../../srs/entities/ReviewableCard";
 import { RecallRating } from "../../srs/value-objects/RecallRating";
 import type { ResponseTimingData } from "../../srs/value-objects/SrsSchedule";
 
-export type { CardPool };
-
 export interface ReviewQuizCard {
 	card: ReviewableCard;
 	mode: "multipleChoice" | "flashcard";

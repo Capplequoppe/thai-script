@@ -1,9 +1,4 @@
 import type { GrammarCard } from "../grammar/types";
-import type {
-	ThaiSymbolClass,
-	ToneValue,
-	VowelPosition,
-} from "../script/data/symbols";
 import type { VocabularyCard } from "../vocabulary/types";
 
 // --- SRS Stages ---
