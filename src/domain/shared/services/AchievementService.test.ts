@@ -10,15 +10,18 @@ function makeSession(overrides: {
 	totalCards?: number;
 	accuracy?: number;
 } = {}): SessionSummary {
+	const totalCards = overrides.totalCards ?? 5;
+	const accuracy = overrides.accuracy ?? 100;
+	const correctCount = Math.round((accuracy / 100) * totalCards);
 	return {
 		sessionId: "s1",
 		type: (overrides.type ?? "review") as SessionSummary["type"],
 		completedAt: new Date().toISOString(),
 		durationMs: 60_000,
-		totalCards: overrides.totalCards ?? 5,
-		correctCount: overrides.totalCards ?? 5,
-		incorrectCount: 0,
-		accuracy: overrides.accuracy ?? 100,
+		totalCards,
+		correctCount,
+		incorrectCount: totalCards - correctCount,
+		accuracy,
 		newCardsGraduated: 0,
 	};
 }
