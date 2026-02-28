@@ -16,15 +16,24 @@ export class LeechService {
 
 	getLeechCards(pool?: CardPool): SrsCard[] {
 		const state = this.storage.load();
-		const cards =
-			pool === "vocab"
-				? Object.values(state.vocabCards)
-				: pool === "script"
-					? Object.values(state.cards)
-					: [
-							...Object.values(state.cards),
-							...Object.values(state.vocabCards),
-						];
+		let cards: SrsCard[];
+		switch (pool) {
+			case "script":
+				cards = Object.values(state.cards);
+				break;
+			case "vocab":
+				cards = Object.values(state.vocabCards);
+				break;
+			case "grammar":
+				cards = Object.values(state.grammarCards);
+				break;
+			default:
+				cards = [
+					...Object.values(state.cards),
+					...Object.values(state.vocabCards),
+					...Object.values(state.grammarCards),
+				];
+		}
 		return cards.filter((card) => this.isLeech(card));
 	}
 

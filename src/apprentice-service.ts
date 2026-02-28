@@ -8,6 +8,7 @@ export interface ApprenticeStats {
 	isAtLimit: boolean;
 	script: number;
 	vocab: number;
+	grammar: number;
 }
 
 export class ApprenticeService {
@@ -25,6 +26,9 @@ export class ApprenticeService {
 		for (const card of Object.values(state.vocabCards)) {
 			if (card.srs.learningStep !== null) count++;
 		}
+		for (const card of Object.values(state.grammarCards)) {
+			if (card.srs.learningStep !== null) count++;
+		}
 		return count;
 	}
 
@@ -36,19 +40,24 @@ export class ApprenticeService {
 		const state = this.storage.load();
 		let script = 0;
 		let vocab = 0;
+		let grammar = 0;
 		for (const card of Object.values(state.cards)) {
 			if (card.srs.learningStep !== null) script++;
 		}
 		for (const card of Object.values(state.vocabCards)) {
 			if (card.srs.learningStep !== null) vocab++;
 		}
-		const count = script + vocab;
+		for (const card of Object.values(state.grammarCards)) {
+			if (card.srs.learningStep !== null) grammar++;
+		}
+		const count = script + vocab + grammar;
 		return {
 			count,
 			limit: this.limit,
 			isAtLimit: count >= this.limit,
 			script,
 			vocab,
+			grammar,
 		};
 	}
 }
