@@ -1,17 +1,23 @@
 import { useCallback, useEffect, useRef, useState } from "react";
-import type { PropertyCard, RecallRating } from "../types";
+import type { RecallRating, SrsCard } from "../types";
 import { RatingButtons } from "./RatingButtons";
 
 interface Props {
-	card: PropertyCard;
+	card: SrsCard;
 	onRate: (rating: RecallRating, responseTimeMs: number) => void;
 }
 
 export function Flashcard({ card, onRate }: Props) {
 	const [revealed, setRevealed] = useState(false);
 	const revealedAtRef = useRef(0);
+	const cardProperty =
+		"property" in card ? (card as Record<string, unknown>).property : null;
 	const hideAudioHint =
-		card.property === "recognition" || card.property === "initialSound";
+		cardProperty === "recognition" || cardProperty === "initialSound";
+	const symbolChar =
+		"symbolCharacter" in card
+			? (card as Record<string, unknown>).symbolCharacter as string
+			: "";
 
 	useEffect(() => {
 		setRevealed(false);
@@ -44,9 +50,9 @@ export function Flashcard({ card, onRate }: Props) {
 
 	return (
 		<div className="space-y-6">
-			{card.symbolCharacter && (
+			{symbolChar && (
 				<div className="text-center">
-					<span className="thai text-8xl">{card.symbolCharacter}</span>
+					<span className="thai text-8xl">{symbolChar}</span>
 					{card.audioUrl && !hideAudioHint && (
 						<button
 							onClick={() => new Audio(card.audioUrl!).play()}

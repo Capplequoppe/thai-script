@@ -1,8 +1,8 @@
 import { useCallback, useEffect, useRef, useState } from "react";
-import type { PropertyCard } from "../types";
+import type { SrsCard } from "../types";
 
 interface Props {
-	card: PropertyCard;
+	card: SrsCard;
 	onAnswer: (correct: boolean, responseTimeMs: number) => void;
 }
 
@@ -15,8 +15,15 @@ export function MultipleChoice({ card, onAnswer }: Props) {
 	const [revealed, setRevealed] = useState(false);
 	const displayedAtRef = useRef(Date.now());
 
-	const isAudioRecognition = card.property === "audioRecognition";
-	const hideAudioHint = card.property === "recognition" || card.property === "initialSound";
+	const cardProperty =
+		"property" in card ? (card as Record<string, unknown>).property : null;
+	const isAudioRecognition = cardProperty === "audioRecognition";
+	const hideAudioHint =
+		cardProperty === "recognition" || cardProperty === "initialSound";
+	const symbolChar =
+		"symbolCharacter" in card
+			? (card as Record<string, unknown>).symbolCharacter as string
+			: "";
 
 	useEffect(() => {
 		setSelected(null);
@@ -66,10 +73,10 @@ export function MultipleChoice({ card, onAnswer }: Props) {
 					</button>
 				</div>
 			) : (
-				card.symbolCharacter && (
+				symbolChar && (
 					<div className="text-center">
 						<span className="thai text-8xl font-normal">
-							{card.symbolCharacter}
+							{symbolChar}
 						</span>
 						{card.audioUrl && !hideAudioHint && (
 							<button
