@@ -1,7 +1,10 @@
 import { beforeEach, describe, expect, it } from "vitest";
-import { InMemoryStorage, migrateState } from "./storage";
-import type { LearnerState } from "./types";
-import { INITIAL_LEARNER_STATE } from "./types";
+import type { LearnerState } from "./domain/shared/types";
+import { INITIAL_LEARNER_STATE } from "./domain/shared/types";
+import {
+	InMemoryStorage,
+	migrateState,
+} from "./infrastructure/persistence/Storage";
 
 describe("InMemoryStorage", () => {
 	let storage: InMemoryStorage;
