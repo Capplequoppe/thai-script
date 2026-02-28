@@ -67,7 +67,7 @@ const vocabularyService = new VocabularyService(
 	apprenticeService,
 );
 const grammarService = new GrammarService(
-	storage,
+	cardRepo,
 	grammarData as unknown as GrammarEntry[],
 	apprenticeService,
 	vocabularyData as VocabEntry[],

@@ -102,7 +102,12 @@ describe("GrammarService", () => {
 				minVocabByClass: { n: 2 },
 			});
 			const vocabData = makeVocabEntries("n", 5);
-			const service = new GrammarService(storage, [g1], undefined, vocabData);
+			const service = new GrammarService(
+				new StorageCardRepository(storage),
+				[g1],
+				undefined,
+				vocabData,
+			);
 
 			expect(service.getUnlockedGrammarPoints()).toEqual([]);
 		});
@@ -114,7 +119,12 @@ describe("GrammarService", () => {
 			});
 			const vocabData = makeVocabEntries("n", 3);
 			seedGraduatedVocabCards(storage, "n", 3);
-			const service = new GrammarService(storage, [g1], undefined, vocabData);
+			const service = new GrammarService(
+				new StorageCardRepository(storage),
+				[g1],
+				undefined,
+				vocabData,
+			);
 
 			const unlocked = service.getUnlockedGrammarPoints();
 			expect(unlocked).toHaveLength(1);
@@ -132,7 +142,7 @@ describe("GrammarService", () => {
 			const vocabData = makeVocabEntries("n", 5);
 			seedGraduatedVocabCards(storage, "n", 5);
 			const service = new GrammarService(
-				storage,
+				new StorageCardRepository(storage),
 				[g1, g2],
 				undefined,
 				vocabData,
@@ -155,7 +165,7 @@ describe("GrammarService", () => {
 			seedGraduatedVocabCards(storage, "n", 5);
 
 			const service = new GrammarService(
-				storage,
+				new StorageCardRepository(storage),
 				[g1, g2],
 				undefined,
 				vocabData,
@@ -180,7 +190,12 @@ describe("GrammarService", () => {
 			];
 			seedGraduatedVocabCards(storage, "n", 3);
 			seedGraduatedVocabCards(storage, "v", 3);
-			const service = new GrammarService(storage, [g1], undefined, vocabData);
+			const service = new GrammarService(
+				new StorageCardRepository(storage),
+				[g1],
+				undefined,
+				vocabData,
+			);
 
 			expect(service.getUnlockedGrammarPoints()).toEqual([]);
 
@@ -227,7 +242,7 @@ describe("GrammarService", () => {
 
 			const fullVocabData = [...vocabData, ...moreNounData];
 			const service2 = new GrammarService(
-				storage,
+				new StorageCardRepository(storage),
 				[g1],
 				undefined,
 				fullVocabData,
@@ -240,7 +255,9 @@ describe("GrammarService", () => {
 		it("returns unlocked grammar points that have no cards", () => {
 			const storage = new InMemoryStorage();
 			const g1 = makeGrammarEntry("g1", 1, { minVocabByClass: {} });
-			const service = new GrammarService(storage, [g1]);
+			const service = new GrammarService(new StorageCardRepository(storage), [
+				g1,
+			]);
 
 			const unlearned = service.getUnlearnedGrammarPoints();
 			expect(unlearned).toHaveLength(1);
@@ -250,7 +267,9 @@ describe("GrammarService", () => {
 		it("excludes grammar points that already have cards", () => {
 			const storage = new InMemoryStorage();
 			const g1 = makeGrammarEntry("g1", 1, { minVocabByClass: {} });
-			const service = new GrammarService(storage, [g1]);
+			const service = new GrammarService(new StorageCardRepository(storage), [
+				g1,
+			]);
 
 			service.startLesson();
 
@@ -265,7 +284,12 @@ describe("GrammarService", () => {
 				minVocabByClass: { n: 5 },
 			});
 			const vocabData = makeVocabEntries("n", 5);
-			const service = new GrammarService(storage, [g1], undefined, vocabData);
+			const service = new GrammarService(
+				new StorageCardRepository(storage),
+				[g1],
+				undefined,
+				vocabData,
+			);
 
 			expect(service.getNextLesson()).toBeNull();
 		});
@@ -278,7 +302,10 @@ describe("GrammarService", () => {
 				makeGrammarEntry("g3", 1, { minVocabByClass: {} }),
 				makeGrammarEntry("g4", 1, { minVocabByClass: {} }),
 			];
-			const service = new GrammarService(storage, entries);
+			const service = new GrammarService(
+				new StorageCardRepository(storage),
+				entries,
+			);
 
 			const lesson = service.getNextLesson();
 			expect(lesson).not.toBeNull();
@@ -292,7 +319,11 @@ describe("GrammarService", () => {
 				new StorageCardRepository(storage),
 				0,
 			);
-			const service = new GrammarService(storage, [g1], apprentice);
+			const service = new GrammarService(
+				new StorageCardRepository(storage),
+				[g1],
+				apprentice,
+			);
 
 			expect(service.getNextLesson()).toBeNull();
 		});
@@ -302,7 +333,9 @@ describe("GrammarService", () => {
 		it("generates cards and saves to storage", () => {
 			const storage = new InMemoryStorage();
 			const g1 = makeGrammarEntry("g1", 1, { minVocabByClass: {} });
-			const service = new GrammarService(storage, [g1]);
+			const service = new GrammarService(new StorageCardRepository(storage), [
+				g1,
+			]);
 
 			const cards = service.startLesson();
 			expect(cards).not.toBeNull();
@@ -320,7 +353,12 @@ describe("GrammarService", () => {
 				minVocabByClass: { n: 5 },
 			});
 			const vocabData = makeVocabEntries("n", 5);
-			const service = new GrammarService(storage, [g1], undefined, vocabData);
+			const service = new GrammarService(
+				new StorageCardRepository(storage),
+				[g1],
+				undefined,
+				vocabData,
+			);
 
 			expect(service.startLesson()).toBeNull();
 		});
@@ -332,7 +370,11 @@ describe("GrammarService", () => {
 				new StorageCardRepository(storage),
 				0,
 			);
-			const service = new GrammarService(storage, [g1], apprentice);
+			const service = new GrammarService(
+				new StorageCardRepository(storage),
+				[g1],
+				apprentice,
+			);
 
 			expect(service.startLesson()).toBeNull();
 		});
@@ -348,7 +390,7 @@ describe("GrammarService", () => {
 			];
 			const vocabData = makeVocabEntries("n", 99);
 			const service = new GrammarService(
-				storage,
+				new StorageCardRepository(storage),
 				entries,
 				undefined,
 				vocabData,
@@ -363,7 +405,10 @@ describe("GrammarService", () => {
 			const storage = new InMemoryStorage();
 			const g1 = makeGrammarEntry("g1", 1, { minVocabByClass: {} });
 			const g2 = makeGrammarEntry("g2", 1, { minVocabByClass: {} });
-			const service = new GrammarService(storage, [g1, g2]);
+			const service = new GrammarService(new StorageCardRepository(storage), [
+				g1,
+				g2,
+			]);
 
 			expect(service.getLearnedCount()).toBe(0);
 

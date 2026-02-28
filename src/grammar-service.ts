@@ -1,18 +1,20 @@
+import type { CardRepository } from "./application/ports/CardRepository";
 import type { ApprenticeService } from "./apprentice-service";
+import { GrammarReviewCard } from "./domain/grammar/entities/GrammarReviewCard";
+import type { VocabCard } from "./domain/vocabulary/entities/VocabCard";
 import { generateGrammarCards } from "./grammar-card-generator";
 import type {
 	GrammarCard,
 	GrammarEntry,
 	GrammarLessonSummary,
 } from "./grammar-types";
-import type { IStorage } from "./storage";
 import type { VocabEntry } from "./vocabulary-types";
 
 const BATCH_SIZE = 3;
 
 export class GrammarService {
 	constructor(
-		private readonly storage: IStorage,
+		private readonly cardRepo: CardRepository,
 		private readonly grammarData: GrammarEntry[],
 		private readonly apprenticeService?: ApprenticeService,
 		private readonly vocabularyData?: VocabEntry[],
@@ -22,12 +24,13 @@ export class GrammarService {
 		byClass: Record<string, number>;
 		total: number;
 	} {
-		const state = this.storage.load();
+		const vocabCards = this.cardRepo.findAll("vocab");
 		const graduatedWords = new Set<string>();
 
-		for (const card of Object.values(state.vocabCards)) {
-			if (card.srs.learningStep === null) {
-				graduatedWords.add(card.wordThai);
+		for (const card of vocabCards) {
+			const vocabCard = card as VocabCard;
+			if (vocabCard.schedule.learningStep === null) {
+				graduatedWords.add(vocabCard.wordThai);
 			}
 		}
 
@@ -69,9 +72,9 @@ export class GrammarService {
 
 	getUnlockedGrammarPoints(): GrammarEntry[] {
 		const vocabCounts = this.getMasteredVocabCounts();
-		const state = this.storage.load();
+		const grammarCards = this.cardRepo.findAll("grammar");
 		const learnedGrammarIds = new Set(
-			Object.values(state.grammarCards).map((c) => c.grammarId),
+			grammarCards.map((c) => (c as GrammarReviewCard).grammarId),
 		);
 
 		const sorted = [...this.grammarData].sort(
@@ -97,9 +100,9 @@ export class GrammarService {
 	}
 
 	getUnlearnedGrammarPoints(): GrammarEntry[] {
-		const state = this.storage.load();
+		const grammarCards = this.cardRepo.findAll("grammar");
 		const learnedGrammarIds = new Set(
-			Object.values(state.grammarCards).map((c) => c.grammarId),
+			grammarCards.map((c) => (c as GrammarReviewCard).grammarId),
 		);
 		return this.getUnlockedGrammarPoints().filter(
 			(entry) => !learnedGrammarIds.has(entry.id),
@@ -119,17 +122,14 @@ export class GrammarService {
 		const lesson = this.getNextLesson();
 		if (!lesson) return null;
 
-		const cards = lesson.grammarPoints.flatMap((entry) =>
+		const cardDTOs = lesson.grammarPoints.flatMap((entry) =>
 			generateGrammarCards(entry),
 		);
 
-		const state = this.storage.load();
-		for (const card of cards) {
-			state.grammarCards[card.id] = card;
-		}
-		this.storage.save(state);
+		const entities = cardDTOs.map((dto) => GrammarReviewCard.fromDTO(dto));
+		this.cardRepo.saveAll(entities);
 
-		return cards;
+		return cardDTOs;
 	}
 
 	getUnlockedCount(): number {
@@ -137,9 +137,8 @@ export class GrammarService {
 	}
 
 	getLearnedCount(): number {
-		const state = this.storage.load();
-		return new Set(
-			Object.values(state.grammarCards).map((c) => c.grammarId),
-		).size;
+		const grammarCards = this.cardRepo.findAll("grammar");
+		return new Set(grammarCards.map((c) => (c as GrammarReviewCard).grammarId))
+			.size;
 	}
 }
