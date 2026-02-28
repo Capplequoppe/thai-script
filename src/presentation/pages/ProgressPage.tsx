@@ -1,6 +1,8 @@
 import { useNavigate } from "react-router";
-import { lessons } from "../../domain/script/data/symbols";
 import { useApp } from "../hooks/useApp";
+import { AchievementBadge, ACHIEVEMENT_DEFS } from "../components/AchievementBadge";
+import { HeatmapWidget } from "../components/HeatmapWidget";
+import { LessonPath } from "../components/LessonPath";
 
 export function ProgressPage() {
 	const { state, review, dashboard, data, refresh } = useApp();
@@ -22,6 +24,7 @@ export function ProgressPage() {
 		grammarStages.master +
 		grammarStages.enlightened +
 		grammarStages.burned;
+	const nextLesson = state.completedLessons.length < 25 ? state.completedLessons.length + 1 : null;
 
 	return (
 		<div className="space-y-8 py-4">
@@ -30,35 +33,35 @@ export function ProgressPage() {
 			{/* SRS Stage Stats */}
 			<div className="grid grid-cols-3 gap-3 text-center">
 				<div className="bg-gray-50 dark:bg-gray-900 rounded-xl p-3">
-					<div className="text-xl font-bold text-pink-500">
+					<div className="text-xl font-bold" style={{ color: "var(--color-apprentice)" }}>
 						{stages.apprentice}
 					</div>
 					<div className="text-xs text-gray-500">Apprentice</div>
 				</div>
 				<div className="bg-gray-50 dark:bg-gray-900 rounded-xl p-3">
-					<div className="text-xl font-bold text-purple-500">{stages.guru}</div>
+					<div className="text-xl font-bold" style={{ color: "var(--color-guru)" }}>{stages.guru}</div>
 					<div className="text-xs text-gray-500">Guru</div>
 				</div>
 				<div className="bg-gray-50 dark:bg-gray-900 rounded-xl p-3">
-					<div className="text-xl font-bold text-blue-500">{stages.master}</div>
+					<div className="text-xl font-bold" style={{ color: "var(--color-master)" }}>{stages.master}</div>
 					<div className="text-xs text-gray-500">Master</div>
 				</div>
 			</div>
 			<div className="grid grid-cols-3 gap-3 text-center">
 				<div className="bg-gray-50 dark:bg-gray-900 rounded-xl p-3">
-					<div className="text-xl font-bold text-teal-500">
+					<div className="text-xl font-bold" style={{ color: "var(--color-enlightened)" }}>
 						{stages.enlightened}
 					</div>
 					<div className="text-xs text-gray-500">Enlightened</div>
 				</div>
 				<div className="bg-gray-50 dark:bg-gray-900 rounded-xl p-3">
-					<div className="text-xl font-bold text-amber-500">
+					<div className="text-xl font-bold" style={{ color: "var(--color-burned)" }}>
 						{stages.burned}
 					</div>
 					<div className="text-xs text-gray-500">Burned</div>
 				</div>
 				<div className="bg-gray-50 dark:bg-gray-900 rounded-xl p-3">
-					<div className="text-xl font-bold text-orange-500">{dueCount}</div>
+					<div className="text-xl font-bold" style={{ color: "var(--color-accent)" }}>{dueCount}</div>
 					<div className="text-xs text-gray-500">Due</div>
 				</div>
 			</div>
@@ -72,24 +75,24 @@ export function ProgressPage() {
 					</div>
 					<div className="w-full h-3 bg-gray-200 dark:bg-gray-800 rounded-full overflow-hidden flex">
 						<div
-							className="h-full bg-pink-500"
-							style={{ width: `${(stages.apprentice / totalStaged) * 100}%` }}
+							className="h-full"
+							style={{ width: `${(stages.apprentice / totalStaged) * 100}%`, background: "var(--color-apprentice)" }}
 						/>
 						<div
-							className="h-full bg-purple-500"
-							style={{ width: `${(stages.guru / totalStaged) * 100}%` }}
+							className="h-full"
+							style={{ width: `${(stages.guru / totalStaged) * 100}%`, background: "var(--color-guru)" }}
 						/>
 						<div
-							className="h-full bg-blue-500"
-							style={{ width: `${(stages.master / totalStaged) * 100}%` }}
+							className="h-full"
+							style={{ width: `${(stages.master / totalStaged) * 100}%`, background: "var(--color-master)" }}
 						/>
 						<div
-							className="h-full bg-teal-500"
-							style={{ width: `${(stages.enlightened / totalStaged) * 100}%` }}
+							className="h-full"
+							style={{ width: `${(stages.enlightened / totalStaged) * 100}%`, background: "var(--color-enlightened)" }}
 						/>
 						<div
-							className="h-full bg-amber-500"
-							style={{ width: `${(stages.burned / totalStaged) * 100}%` }}
+							className="h-full"
+							style={{ width: `${(stages.burned / totalStaged) * 100}%`, background: "var(--color-burned)" }}
 						/>
 					</div>
 				</div>
@@ -103,19 +106,19 @@ export function ProgressPage() {
 					</h2>
 					<div className="grid grid-cols-3 gap-3 text-center">
 						<div className="bg-gray-50 dark:bg-gray-900 rounded-xl p-3">
-							<div className="text-xl font-bold text-pink-500">
+							<div className="text-xl font-bold" style={{ color: "var(--color-apprentice)" }}>
 								{grammarStages.apprentice}
 							</div>
 							<div className="text-xs text-gray-500">Apprentice</div>
 						</div>
 						<div className="bg-gray-50 dark:bg-gray-900 rounded-xl p-3">
-							<div className="text-xl font-bold text-purple-500">
+							<div className="text-xl font-bold" style={{ color: "var(--color-guru)" }}>
 								{grammarStages.guru}
 							</div>
 							<div className="text-xs text-gray-500">Guru</div>
 						</div>
 						<div className="bg-gray-50 dark:bg-gray-900 rounded-xl p-3">
-							<div className="text-xl font-bold text-blue-500">
+							<div className="text-xl font-bold" style={{ color: "var(--color-master)" }}>
 								{grammarStages.master}
 							</div>
 							<div className="text-xs text-gray-500">Master</div>
@@ -123,13 +126,13 @@ export function ProgressPage() {
 					</div>
 					<div className="grid grid-cols-3 gap-3 text-center mt-3">
 						<div className="bg-gray-50 dark:bg-gray-900 rounded-xl p-3">
-							<div className="text-xl font-bold text-teal-500">
+							<div className="text-xl font-bold" style={{ color: "var(--color-enlightened)" }}>
 								{grammarStages.enlightened}
 							</div>
 							<div className="text-xs text-gray-500">Enlightened</div>
 						</div>
 						<div className="bg-gray-50 dark:bg-gray-900 rounded-xl p-3">
-							<div className="text-xl font-bold text-amber-500">
+							<div className="text-xl font-bold" style={{ color: "var(--color-burned)" }}>
 								{grammarStages.burned}
 							</div>
 							<div className="text-xs text-gray-500">Burned</div>
@@ -138,46 +141,45 @@ export function ProgressPage() {
 				</div>
 			)}
 
-			{/* Lesson grid */}
-			<div>
-				<h2 className="text-sm font-semibold text-gray-500 mb-3">Lessons</h2>
-				<div className="grid grid-cols-5 gap-2">
-					{lessons.map((l) => {
-						const isCompleted = completed.has(l.number);
-						const isAvailable =
-							!isCompleted && (l.number === 1 || completed.has(l.number - 1));
-						const isLocked = !isCompleted && !isAvailable;
+			{/* Study Heatmap */}
+			{state.sessionHistory.length > 0 && (
+				<div className="card-royal p-4">
+					<HeatmapWidget sessions={state.sessionHistory} />
+				</div>
+			)}
 
-						return (
-							<button
-								type="button"
-								key={l.number}
-								onClick={() => {
-									if (isAvailable) navigate(`/lesson/${l.number}`);
-								}}
-								disabled={isLocked}
-								title={l.title}
-								className={`aspect-square rounded-xl flex items-center justify-center text-sm font-bold transition-colors ${
-									isCompleted
-										? "bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400"
-										: isAvailable
-											? "bg-indigo-100 dark:bg-indigo-900/30 text-indigo-700 dark:text-indigo-400 hover:bg-indigo-200 dark:hover:bg-indigo-900/50 cursor-pointer"
-											: "bg-gray-100 dark:bg-gray-900 text-gray-400 cursor-not-allowed"
-								}`}
-							>
-								{l.number}
-							</button>
-						);
-					})}
+			{/* Lesson Path */}
+			<div>
+				<div className="section-header mb-4">Lesson Progress</div>
+				<LessonPath
+					totalLessons={25}
+					completedLessons={completed}
+					nextAvailable={nextLesson}
+					onLessonClick={(n) => {
+						if (completed.has(n) || n === nextLesson) navigate(`/lesson/${n}`);
+					}}
+				/>
+			</div>
+
+			{/* Achievements */}
+			<div>
+				<div className="section-header mb-4">Achievements</div>
+				<div className="flex flex-wrap gap-4">
+					{ACHIEVEMENT_DEFS.map((def) => (
+						<AchievementBadge
+							key={def.id}
+							id={def.id}
+							unlocked={(state.achievements ?? []).includes(def.id)}
+							size="md"
+						/>
+					))}
 				</div>
 			</div>
 
 			{/* Session history */}
 			{state.sessionHistory.length > 0 && (
 				<div>
-					<h2 className="text-sm font-semibold text-gray-500 mb-2">
-						Session History ({state.sessionHistory.length})
-					</h2>
+					<div className="section-header mb-3">Session History ({state.sessionHistory.length})</div>
 					<div className="space-y-2 max-h-60 overflow-y-auto">
 						{[...state.sessionHistory].reverse().map((s, i) => (
 							<div
