@@ -1,5 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 
+const THAI_NUMERALS = ["๑", "๒", "๓", "๔"] as const;
+
 interface QuizCardView {
 	id: string;
 	question: string;
@@ -54,7 +56,7 @@ export function MultipleChoice({ card, onAnswer }: Props) {
 			const elapsed = Date.now() - displayedAtRef.current;
 			setSelected(choice);
 			setRevealed(true);
-			setTimeout(() => onAnswer(choice === card.correctAnswer, elapsed), 800);
+			setTimeout(() => onAnswer(choice === card.correctAnswer, elapsed), 500);
 		},
 		[card.correctAnswer, onAnswer, revealed],
 	);
@@ -85,7 +87,13 @@ export function MultipleChoice({ card, onAnswer }: Props) {
 					</button>
 				</div>
 			) : symbolChar ? (
-				<div className="text-center">
+				<div
+					className="text-center rounded-2xl py-6"
+					style={{
+						border: "2px solid var(--color-accent)",
+						background: "var(--color-surface)",
+					}}
+				>
 					<span className="thai text-8xl font-normal">{symbolChar}</span>
 					{card.audioUrl && !hideAudioHint && (
 						<button
@@ -99,7 +107,13 @@ export function MultipleChoice({ card, onAnswer }: Props) {
 					)}
 				</div>
 			) : wordThai ? (
-				<div className="text-center">
+				<div
+					className="text-center rounded-2xl py-6"
+					style={{
+						border: "2px solid var(--color-accent)",
+						background: "var(--color-surface)",
+					}}
+				>
 					<span className="thai text-6xl font-normal">{wordThai}</span>
 					{card.audioUrl && (
 						<button
@@ -120,13 +134,23 @@ export function MultipleChoice({ card, onAnswer }: Props) {
 
 			<div className="grid grid-cols-2 gap-3">
 				{card.choices.map((choice, idx) => {
-					let bg =
-						"bg-gray-50 dark:bg-gray-900 hover:bg-gray-100 dark:hover:bg-gray-800";
+					let extraStyle: React.CSSProperties = {
+						background: "var(--color-surface)",
+						borderColor: "var(--color-border)",
+					};
+
 					if (revealed) {
 						if (choice === card.correctAnswer) {
-							bg = "bg-green-100 dark:bg-green-900/40 border-green-500";
+							extraStyle = {
+								background: "var(--color-accent)",
+								color: "var(--color-text)",
+								borderColor: "var(--color-accent)",
+							};
 						} else if (choice === selected) {
-							bg = "bg-red-100 dark:bg-red-900/40 border-red-500";
+							extraStyle = {
+								background: "rgba(192, 57, 43, 0.12)",
+								borderColor: "var(--color-danger)",
+							};
 						}
 					}
 
@@ -138,9 +162,15 @@ export function MultipleChoice({ card, onAnswer }: Props) {
 							key={choice}
 							onClick={() => handleSelect(choice)}
 							disabled={revealed}
-							className={`w-full flex flex-col items-center justify-center px-3 py-4 rounded-xl border border-gray-200 dark:border-gray-700 transition-colors min-h-[4.5rem] ${bg}`}
+							className="w-full flex flex-col items-center justify-center px-3 py-4 rounded-xl border transition-colors min-h-[5rem]"
+							style={extraStyle}
 						>
-							<span className="text-[10px] text-gray-400 mb-1">{idx + 1}</span>
+							<span className="flex items-center gap-2 text-[10px] text-gray-400 mb-1">
+								<span className="text-xs opacity-50 font-normal">
+									{THAI_NUMERALS[idx]}
+								</span>
+								{idx + 1}
+							</span>
 							<span
 								className={`text-center leading-tight ${hasThaiChar ? "thai text-3xl" : "text-sm"}`}
 							>
