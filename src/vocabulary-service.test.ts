@@ -205,6 +205,107 @@ describe("VocabularyService", () => {
 		expect(service.getUnlockedCount()).toBe(2);
 	});
 
+	it("excludes words outside the rank window even when character mastery qualifies them", () => {
+		const vocabulary = [
+			makeEntry({ thai: "มา", rank: 1, english: "to come" }),
+			makeEntry({ thai: "นา", characters: ["น", "า"], rank: 30, english: "rice field" }),
+			makeEntry({ thai: "นาน", characters: ["น", "า"], rank: 60, english: "long time" }),
+		];
+		const service = new VocabularyService(storage, vocabulary);
+
+		const state = storage.load();
+		state.completedLessons = [1, 2];
+		storage.save(state);
+
+		// All 3 words pass mastery filter. First unlearned rank is 1, window is 1–50.
+		// Rank 60 is outside the window.
+		const unlocked = service.getUnlockedWords();
+		expect(unlocked.map((w) => w.thai).sort()).toEqual(["นา", "มา"]);
+	});
+
+	it("slides the rank window forward as lower-rank words are learned", () => {
+		const vocabulary = Array.from({ length: 6 }, (_, i) =>
+			makeEntry({
+				thai: `มา${i}`,
+				english: `word-${i}`,
+				rank: (i + 1) * 10, // ranks 10, 20, 30, 40, 50, 60
+			}),
+		);
+		const service = new VocabularyService(storage, vocabulary);
+
+		const state = storage.load();
+		state.completedLessons = [1, 2];
+		// Learn the first word (rank 10) so the window starts at rank 20 → 20–69
+		state.vocabCards["vocab:มา0:thaiToEnglish"] = {
+			id: "vocab:มา0:thaiToEnglish",
+			wordThai: "มา0",
+			property: "thaiToEnglish",
+			question: "What does this word mean?",
+			correctAnswer: "word-0",
+			choices: ["word-0"],
+			srs: {
+				easeFactor: 2.0,
+				interval: 10,
+				repetitions: 0,
+				learningStep: 1,
+				nextReviewDate: new Date().toISOString(),
+				lastReviewDate: null,
+			},
+		};
+		storage.save(state);
+
+		const unlocked = service.getUnlockedWords();
+		// Learned word (rank 10) always included; window 20–69 includes ranks 20,30,40,50,60
+		expect(unlocked).toHaveLength(6);
+	});
+
+	it("excludes null-rank words from the rank window", () => {
+		const vocabulary = [
+			makeEntry({ thai: "มา", rank: 1, english: "to come" }),
+			makeEntry({ thai: "นา", characters: ["น", "า"], rank: null, english: "rice field" }),
+		];
+		const service = new VocabularyService(storage, vocabulary);
+
+		const state = storage.load();
+		state.completedLessons = [1, 2];
+		storage.save(state);
+
+		const unlocked = service.getUnlockedWords();
+		expect(unlocked).toHaveLength(1);
+		expect(unlocked[0]!.thai).toBe("มา");
+	});
+
+	it("includes learned words with null rank in unlocked set", () => {
+		const vocabulary = [
+			makeEntry({ thai: "มา", rank: null, english: "to come" }),
+		];
+		const service = new VocabularyService(storage, vocabulary);
+
+		const state = storage.load();
+		state.completedLessons = [1, 2];
+		state.vocabCards["vocab:มา:thaiToEnglish"] = {
+			id: "vocab:มา:thaiToEnglish",
+			wordThai: "มา",
+			property: "thaiToEnglish",
+			question: "What does this word mean?",
+			correctAnswer: "to come",
+			choices: ["to come"],
+			srs: {
+				easeFactor: 2.0,
+				interval: 10,
+				repetitions: 0,
+				learningStep: 1,
+				nextReviewDate: new Date().toISOString(),
+				lastReviewDate: null,
+			},
+		};
+		storage.save(state);
+
+		const unlocked = service.getUnlockedWords();
+		expect(unlocked).toHaveLength(1);
+		expect(unlocked[0]!.thai).toBe("มา");
+	});
+
 	it("getLearnedCount returns count of words with generated cards", () => {
 		const vocabulary = [
 			makeEntry({ thai: "มา", rank: 1, english: "to come" }),

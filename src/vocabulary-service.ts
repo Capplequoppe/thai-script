@@ -14,6 +14,7 @@ import type {
 } from "./vocabulary-types";
 
 const BATCH_SIZE = 5;
+const RANK_WINDOW_SIZE = 50;
 
 export class VocabularyService {
 	constructor(
@@ -88,12 +89,12 @@ export class VocabularyService {
 		return rules;
 	}
 
-	/** All words whose characters and tone rules are fully mastered. */
+	/** All words whose characters and tone rules are fully mastered, limited by rank window. */
 	getUnlockedWords(): VocabEntry[] {
 		const chars = this.getMasteredCharacters();
 		const rules = this.getMasteredToneRules();
 
-		return this.vocabulary.filter((entry) => {
+		const masteryFiltered = this.vocabulary.filter((entry) => {
 			const allCharsMastered = entry.characters.every((ch) =>
 				chars.has(ch),
 			);
@@ -101,6 +102,32 @@ export class VocabularyService {
 				rules.has(r),
 			);
 			return allCharsMastered && allRulesMastered;
+		});
+
+		const state = this.storage.load();
+		const learnedThaiWords = new Set(
+			Object.values(state.vocabCards).map((c) => c.wordThai),
+		);
+
+		const sorted = [...masteryFiltered].sort(
+			(a, b) =>
+				(a.rank ?? Number.POSITIVE_INFINITY) -
+				(b.rank ?? Number.POSITIVE_INFINITY),
+		);
+
+		const firstUnlearned = sorted.find(
+			(e) => e.rank != null && !learnedThaiWords.has(e.thai),
+		);
+		const maxRank =
+			firstUnlearned?.rank != null
+				? firstUnlearned.rank + RANK_WINDOW_SIZE - 1
+				: null;
+
+		return masteryFiltered.filter((entry) => {
+			if (learnedThaiWords.has(entry.thai)) return true;
+			if (entry.rank == null) return false;
+			if (maxRank == null) return false;
+			return entry.rank <= maxRank;
 		});
 	}
 
