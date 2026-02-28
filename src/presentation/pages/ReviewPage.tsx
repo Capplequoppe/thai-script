@@ -6,6 +6,8 @@ import { Accuracy } from "../../domain/srs/value-objects/Accuracy";
 import { AchievementBadge } from "../components/AchievementBadge";
 import { Flashcard } from "../components/Flashcard";
 import { MultipleChoice } from "../components/MultipleChoice";
+import { StagePromotionPanel } from "../components/StagePromotionPanel";
+import type { Promotion } from "../components/StagePromotionPanel";
 import { useApp } from "../hooks/useApp";
 import { useReviewSession } from "../hooks/useReviewSession";
 
@@ -18,10 +20,14 @@ export function ReviewPage() {
 	const { review, refresh, checkAchievements } = useApp();
 	const navigate = useNavigate();
 	const [done, setDone] = useState(false);
+	const [sessionCorrect, setSessionCorrect] = useState(0);
+	const [sessionTotal, setSessionTotal] = useState(0);
 	const resultsRef = useRef<ReviewResult[]>([]);
 	const startedRef = useRef(false);
 	const achievementsRef = useRef<string[] | null>(null);
 	const summaryRef = useRef<SessionSummary | null>(null);
+	// Map cardId -> question captured from session cards before session ends
+	const cardQuestionsRef = useRef<Map<string, string>>(new Map());
 
 	const startSession = useCallback(
 		(maxCards?: number) => review.startSession(undefined, maxCards),
@@ -49,8 +55,21 @@ export function ReviewPage() {
 		endSession,
 	);
 
+	// Capture card questions whenever the session is active so we can display them after completion
+	useEffect(() => {
+		if (reviewSession.session) {
+			for (const quizCard of reviewSession.session.cards) {
+				cardQuestionsRef.current.set(quizCard.card.id, quizCard.card.question);
+			}
+		}
+	}, [reviewSession.session]);
+
 	const handleAdvance = useCallback(
 		(rating: RecallRating) => {
+			setSessionTotal((t) => t + 1);
+			if (rating >= 3) {
+				setSessionCorrect((c) => c + 1);
+			}
 			const result = reviewSession.handleReviewAdvance(rating);
 			if (result?.status === "complete") {
 				resultsRef.current = result.results;
@@ -91,6 +110,14 @@ export function ReviewPage() {
 			refresh();
 		}
 
+		// Build stage promotions for cards rated 4+ (high-quality recall → stage advance)
+		const promotions: Promotion[] = results
+			.filter((r) => r.rating >= 4)
+			.map((r) => ({
+				cardQuestion: cardQuestionsRef.current.get(r.cardId) ?? r.cardId,
+				newStage: "Guru",
+			}));
+
 		return (
 			<div className="space-y-6 py-8">
 				<div className="text-center">
@@ -105,14 +132,25 @@ export function ReviewPage() {
 					{[
 						{ label: "Reviewed", value: results.length, color: "var(--color-text)" },
 						{ label: "Correct", value: correctCount, color: "var(--color-master)" },
-						{ label: "Accuracy", value: `${accuracy.percentage}%`, color: accuracy.percentage >= 80 ? "var(--color-accent)" : "var(--color-danger)" },
+						{
+							label: "Accuracy",
+							value: `${accuracy.percentage}%`,
+							color: accuracy.percentage >= 80 ? "var(--color-accent)" : "var(--color-danger)",
+						},
 					].map(({ label, value, color }) => (
 						<div key={label} className="card-royal p-4 text-center">
-							<div className="text-2xl font-bold" style={{ color }}>{value}</div>
-							<div className="text-xs mt-1" style={{ color: "var(--color-text-muted)" }}>{label}</div>
+							<div className="text-2xl font-bold" style={{ color }}>
+								{value}
+							</div>
+							<div className="text-xs mt-1" style={{ color: "var(--color-text-muted)" }}>
+								{label}
+							</div>
 						</div>
 					))}
 				</div>
+
+				{/* Stage promotions */}
+				<StagePromotionPanel promotions={promotions} />
 
 				{/* Newly unlocked achievements */}
 				{(achievementsRef.current ?? []).length > 0 && (
@@ -131,7 +169,12 @@ export function ReviewPage() {
 					{review.getDueCount() > 0 && (
 						<button
 							type="button"
-							onClick={() => { startedRef.current = false; achievementsRef.current = null; summaryRef.current = null; setDone(false); }}
+							onClick={() => {
+								startedRef.current = false;
+								achievementsRef.current = null;
+								summaryRef.current = null;
+								setDone(false);
+							}}
 							className="btn-primary w-full"
 						>
 							Review More ({review.getDueCount()} due)
@@ -141,9 +184,13 @@ export function ReviewPage() {
 						type="button"
 						onClick={() => navigate("/")}
 						className="w-full py-3 rounded-xl font-semibold border"
-						style={{ background: "var(--color-surface)", color: "var(--color-text)", borderColor: "var(--color-border)" }}
+						style={{
+							background: "var(--color-surface)",
+							color: "var(--color-text)",
+							borderColor: "var(--color-border)",
+						}}
 					>
-						Back to Home
+						Go to Dashboard
 					</button>
 				</div>
 			</div>
@@ -151,6 +198,11 @@ export function ReviewPage() {
 	}
 
 	if (!reviewSession.currentCard || !reviewSession.session) return null;
+
+	const liveAccuracy =
+		sessionTotal > 0
+			? `${Math.round((sessionCorrect / sessionTotal) * 100)}%`
+			: "—";
 
 	return (
 		<div>
@@ -162,6 +214,9 @@ export function ReviewPage() {
 					</span>
 					<span className="text-sm" style={{ color: "var(--color-text-muted)" }}>
 						{reviewSession.cardIdx + 1} / {reviewSession.session.cards.length}
+					</span>
+					<span className="text-sm" style={{ color: "var(--color-text-muted)" }}>
+						Acc: {liveAccuracy}
 					</span>
 					<button
 						type="button"

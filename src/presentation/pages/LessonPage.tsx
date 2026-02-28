@@ -105,6 +105,12 @@ export function LessonPage() {
 	}
 
 	if (phase === "quiz" && cards[flow.cardIdx]) {
+		const liveTotal = flow.correct + flow.incorrect;
+		const liveAccuracy =
+			liveTotal > 0
+				? `${Math.round((flow.correct / liveTotal) * 100)}%`
+				: "—";
+
 		return (
 			<div>
 				{/* Session header HUD */}
@@ -115,6 +121,9 @@ export function LessonPage() {
 						</span>
 						<span className="text-sm" style={{ color: "var(--color-text-muted)" }}>
 							{flow.cardIdx + 1} / {cards.length}
+						</span>
+						<span className="text-sm" style={{ color: "var(--color-text-muted)" }}>
+							Acc: {liveAccuracy}
 						</span>
 						<button
 							type="button"
@@ -148,7 +157,9 @@ export function LessonPage() {
 	return (
 		<div className="space-y-6 py-8">
 			<div className="text-center">
-				<div className="text-5xl mb-3" style={{ color: "var(--color-accent)" }}>✦</div>
+				<div className="text-5xl mb-3" style={{ color: "var(--color-accent)" }}>
+					✦
+				</div>
 				<h1 className="text-2xl font-semibold" style={{ color: "var(--color-text)" }}>
 					Session Complete
 				</h1>
@@ -168,8 +179,12 @@ export function LessonPage() {
 					},
 				].map(({ label, value, color }) => (
 					<div key={label} className="card-royal p-4 text-center">
-						<div className="text-2xl font-bold" style={{ color }}>{value}</div>
-						<div className="text-xs mt-1" style={{ color: "var(--color-text-muted)" }}>{label}</div>
+						<div className="text-2xl font-bold" style={{ color }}>
+							{value}
+						</div>
+						<div className="text-xs mt-1" style={{ color: "var(--color-text-muted)" }}>
+							{label}
+						</div>
 					</div>
 				))}
 			</div>

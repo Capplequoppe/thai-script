@@ -55,7 +55,10 @@ function VocabIntro({
 				<span>
 					{idx + 1} / {words.length}
 				</span>
-				<span className="px-2 py-0.5 rounded text-xs" style={{ background: "var(--color-surface)", color: "var(--color-text-muted)" }}>
+				<span
+					className="px-2 py-0.5 rounded text-xs"
+					style={{ background: "var(--color-surface)", color: "var(--color-text-muted)" }}
+				>
 					vocabulary
 				</span>
 			</div>
@@ -77,11 +80,7 @@ function VocabIntro({
 						Back
 					</button>
 				)}
-				<button
-					type="button"
-					onClick={advance}
-					className="btn-primary flex-1"
-				>
+				<button type="button" onClick={advance} className="btn-primary flex-1">
 					{isLast ? "Start Quiz" : "Next"}
 				</button>
 			</div>
@@ -100,6 +99,10 @@ export function VocabularyPage() {
 
 	const achievementsCheckedRef = useRef(false);
 	const [newAchievements, setNewAchievements] = useState<string[]>([]);
+
+	// Live accuracy tracking for the vocab review phase
+	const [reviewCorrect, setReviewCorrect] = useState(0);
+	const [reviewTotal, setReviewTotal] = useState(0);
 
 	const startVocabSession = useCallback(
 		(maxCards?: number) => review.startSession("vocab", maxCards),
@@ -177,11 +180,17 @@ export function VocabularyPage() {
 	const handleStartReview = () => {
 		const s = vocabReview.startReview();
 		if (s.cards.length === 0) return;
+		setReviewCorrect(0);
+		setReviewTotal(0);
 		setPhase("review");
 	};
 
 	const handleReviewAdvance = useCallback(
 		(rating: RecallRating) => {
+			setReviewTotal((t) => t + 1);
+			if (rating >= 3) {
+				setReviewCorrect((c) => c + 1);
+			}
 			const result = vocabReview.handleReviewAdvance(rating);
 			if (result?.status === "complete") {
 				setPhase("overview");
@@ -202,7 +211,9 @@ export function VocabularyPage() {
 		return (
 			<div className="space-y-8 py-4">
 				<div className="text-center">
-					<h1 className="text-3xl font-bold" style={{ color: "var(--color-text)" }}>Vocabulary</h1>
+					<h1 className="text-3xl font-bold" style={{ color: "var(--color-text)" }}>
+						Vocabulary
+					</h1>
 					<p className="mt-1" style={{ color: "var(--color-text-muted)" }}>
 						Learn Thai words unlocked by your script mastery
 					</p>
@@ -210,18 +221,28 @@ export function VocabularyPage() {
 
 				<div className="grid grid-cols-3 gap-4 text-center">
 					<div className="card-royal p-4">
-						<div className="text-2xl font-bold" style={{ color: "var(--color-text)" }}>{unlockedCount}</div>
-						<div className="text-xs mt-1" style={{ color: "var(--color-text-muted)" }}>Unlocked</div>
+						<div className="text-2xl font-bold" style={{ color: "var(--color-text)" }}>
+							{unlockedCount}
+						</div>
+						<div className="text-xs mt-1" style={{ color: "var(--color-text-muted)" }}>
+							Unlocked
+						</div>
 					</div>
 					<div className="card-royal p-4">
-						<div className="text-2xl font-bold" style={{ color: "var(--color-text)" }}>{learnedCount}</div>
-						<div className="text-xs mt-1" style={{ color: "var(--color-text-muted)" }}>Learned</div>
+						<div className="text-2xl font-bold" style={{ color: "var(--color-text)" }}>
+							{learnedCount}
+						</div>
+						<div className="text-xs mt-1" style={{ color: "var(--color-text-muted)" }}>
+							Learned
+						</div>
 					</div>
 					<div className="card-royal p-4">
 						<div className="text-2xl font-bold" style={{ color: "var(--color-accent)" }}>
 							{dueVocabCards}
 						</div>
-						<div className="text-xs mt-1" style={{ color: "var(--color-text-muted)" }}>Due</div>
+						<div className="text-xs mt-1" style={{ color: "var(--color-text-muted)" }}>
+							Due
+						</div>
 					</div>
 				</div>
 
@@ -255,14 +276,11 @@ export function VocabularyPage() {
 						</p>
 					)}
 
-					{!nextLesson &&
-						unlockedCount > 0 &&
-						learnedCount === unlockedCount && (
-							<p className="text-center font-semibold" style={{ color: "var(--color-master)" }}>
-								All unlocked words learned! Complete more script lessons to
-								unlock more.
-							</p>
-						)}
+					{!nextLesson && unlockedCount > 0 && learnedCount === unlockedCount && (
+						<p className="text-center font-semibold" style={{ color: "var(--color-master)" }}>
+							All unlocked words learned! Complete more script lessons to unlock more.
+						</p>
+					)}
 
 					{dueVocabCards > 0 && (
 						<button
@@ -282,7 +300,9 @@ export function VocabularyPage() {
 	if (phase === "intro") {
 		return (
 			<div>
-				<h1 className="text-xl font-bold mb-1" style={{ color: "var(--color-text)" }}>New Vocabulary</h1>
+				<h1 className="text-xl font-bold mb-1" style={{ color: "var(--color-text)" }}>
+					New Vocabulary
+				</h1>
 				<p className="text-sm mb-6" style={{ color: "var(--color-text-muted)" }}>
 					{lessonWords.length} words to learn
 				</p>
@@ -293,6 +313,12 @@ export function VocabularyPage() {
 
 	// Quiz
 	if (phase === "quiz" && cards[flow.cardIdx]) {
+		const liveTotal = flow.correct + flow.incorrect;
+		const liveAccuracy =
+			liveTotal > 0
+				? `${Math.round((flow.correct / liveTotal) * 100)}%`
+				: "—";
+
 		return (
 			<div>
 				{/* Session header HUD */}
@@ -303,6 +329,9 @@ export function VocabularyPage() {
 						</span>
 						<span className="text-sm" style={{ color: "var(--color-text-muted)" }}>
 							{flow.cardIdx + 1} / {cards.length}
+						</span>
+						<span className="text-sm" style={{ color: "var(--color-text-muted)" }}>
+							Acc: {liveAccuracy}
 						</span>
 						<button
 							type="button"
@@ -337,7 +366,9 @@ export function VocabularyPage() {
 		return (
 			<div className="space-y-6 py-8">
 				<div className="text-center">
-					<div className="text-5xl mb-3" style={{ color: "var(--color-accent)" }}>✦</div>
+					<div className="text-5xl mb-3" style={{ color: "var(--color-accent)" }}>
+						✦
+					</div>
 					<h1 className="text-2xl font-semibold" style={{ color: "var(--color-text)" }}>
 						Session Complete
 					</h1>
@@ -357,8 +388,12 @@ export function VocabularyPage() {
 						},
 					].map(({ label, value, color }) => (
 						<div key={label} className="card-royal p-4 text-center">
-							<div className="text-2xl font-bold" style={{ color }}>{value}</div>
-							<div className="text-xs mt-1" style={{ color: "var(--color-text-muted)" }}>{label}</div>
+							<div className="text-2xl font-bold" style={{ color }}>
+								{value}
+							</div>
+							<div className="text-xs mt-1" style={{ color: "var(--color-text-muted)" }}>
+								{label}
+							</div>
 						</div>
 					))}
 				</div>
@@ -392,6 +427,11 @@ export function VocabularyPage() {
 		const current = vocabReview.currentCard;
 		if (!current) return null;
 
+		const reviewLiveAccuracy =
+			reviewTotal > 0
+				? `${Math.round((reviewCorrect / reviewTotal) * 100)}%`
+				: "—";
+
 		return (
 			<div>
 				{/* Session header HUD */}
@@ -402,6 +442,9 @@ export function VocabularyPage() {
 						</span>
 						<span className="text-sm" style={{ color: "var(--color-text-muted)" }}>
 							{vocabReview.cardIdx + 1} / {vocabReview.session.cards.length}
+						</span>
+						<span className="text-sm" style={{ color: "var(--color-text-muted)" }}>
+							Acc: {reviewLiveAccuracy}
 						</span>
 						<button
 							type="button"
