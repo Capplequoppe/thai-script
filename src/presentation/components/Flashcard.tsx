@@ -1,6 +1,8 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import type { RecallRating } from "../../domain/shared/types";
 import { SrsStage } from "../../domain/srs/value-objects/SrsStage";
+import { StageDot } from "./atoms/StageDot";
+import { ThaiCharDisplay } from "./atoms/ThaiCharDisplay";
 import { RatingButtons } from "./RatingButtons";
 
 interface SrsData {
@@ -22,17 +24,10 @@ interface Props {
 	onRate: (rating: RecallRating, responseTimeMs: number) => void;
 }
 
-const STAGE_DOT_COLORS: Record<string, string> = {
-	Apprentice: "var(--color-apprentice)",
-	Guru: "var(--color-guru)",
-	Master: "var(--color-master)",
-	Enlightened: "var(--color-enlightened)",
-	Burned: "var(--color-burned)",
-};
-
 export function Flashcard({ card, onRate }: Props) {
 	const [revealed, setRevealed] = useState(false);
 	const revealedAtRef = useRef(0);
+
 	const cardProperty =
 		"property" in card ? (card as Record<string, unknown>).property : null;
 	const hideAudioHint =
@@ -89,48 +84,34 @@ export function Flashcard({ card, onRate }: Props) {
 				}}
 			>
 				{stage && (
-					<div
-						className="absolute top-3 right-3 w-3 h-3 rounded-full"
-						style={{ background: STAGE_DOT_COLORS[stage.name] }}
-						title={stage.name}
-					/>
+					<div className="absolute top-3 right-3">
+						<StageDot stageName={stage.name} />
+					</div>
 				)}
 
 				{symbolChar ? (
 					<div className="text-center">
-						<span className="thai text-8xl">{symbolChar}</span>
-						{card.audioUrl && !hideAudioHint && (
-							<button
-								type="button"
-								onClick={() => {
-									if (card.audioUrl) new Audio(card.audioUrl).play();
-								}}
-								className="ml-3 inline-flex items-center justify-center w-10 h-10 rounded-full bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 text-gray-600 dark:text-gray-300 transition-colors align-middle"
-								aria-label="Play pronunciation"
-							>
-								🔊
-							</button>
-						)}
+						<ThaiCharDisplay
+							character={symbolChar}
+							className="text-8xl"
+							audioUrl={card.audioUrl}
+							hideAudio={hideAudioHint}
+						/>
 					</div>
 				) : wordThai ? (
 					<div className="text-center">
-						<span className="thai text-6xl">{wordThai}</span>
-						{card.audioUrl && (
-							<button
-								type="button"
-								onClick={() => {
-									if (card.audioUrl) new Audio(card.audioUrl).play();
-								}}
-								className="ml-3 inline-flex items-center justify-center w-10 h-10 rounded-full bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 text-gray-600 dark:text-gray-300 transition-colors align-middle"
-								aria-label="Play pronunciation"
-							>
-								🔊
-							</button>
-						)}
+						<ThaiCharDisplay
+							character={wordThai}
+							className="text-6xl"
+							audioUrl={card.audioUrl}
+						/>
 					</div>
 				) : null}
 
-				<p className="text-center text-lg text-gray-600 dark:text-gray-300">
+				<p
+					className="text-center text-lg"
+					style={{ color: "var(--color-text-muted)" }}
+				>
 					{card.question}
 				</p>
 			</div>
@@ -139,18 +120,27 @@ export function Flashcard({ card, onRate }: Props) {
 				<button
 					type="button"
 					onClick={handleReveal}
-					className="w-full py-4 bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 rounded-xl text-lg font-semibold transition-colors"
+					className="w-full py-4 rounded-xl text-lg font-semibold transition-colors"
+					style={{
+						background: "var(--color-surface-2)",
+						color: "var(--color-text)",
+					}}
 				>
-					Show Answer{" "}
-					<span className="text-xs text-gray-400 ml-1">(Space)</span>
+					Show Answer <span className="text-xs opacity-50 ml-1">(Space)</span>
 				</button>
 			) : (
 				<div
 					style={{ animation: "slideUp 0.25s ease-out" }}
 					className="space-y-6"
 				>
-					<div className="text-center py-4 bg-indigo-50 dark:bg-indigo-900/20 rounded-xl">
-						<p className="text-2xl font-bold text-indigo-600 dark:text-indigo-400">
+					<div
+						className="text-center py-4 rounded-xl"
+						style={{ background: "var(--color-surface-2)" }}
+					>
+						<p
+							className="text-2xl font-bold"
+							style={{ color: "var(--color-primary)" }}
+						>
 							{card.correctAnswer}
 						</p>
 					</div>
