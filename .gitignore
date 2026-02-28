@@ -39,5 +39,6 @@ storage/
 
 # Local development
 .pnpm-store/
+.worktrees/
 scripts/.venv/
 */Thai Alphabet/**
