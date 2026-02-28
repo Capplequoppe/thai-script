@@ -2,10 +2,10 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router";
 import { Flashcard } from "../components/Flashcard";
 import { MultipleChoice } from "../components/MultipleChoice";
-import { Accuracy } from "../domain/srs/value-objects/Accuracy";
+import { Accuracy } from "../../domain/srs/value-objects/Accuracy";
 import { useApp } from "../hooks/useApp";
-import { useReviewSession } from "../presentation/hooks/useReviewSession";
-import type { RecallRating } from "../types";
+import { useReviewSession } from "../hooks/useReviewSession";
+import type { RecallRating } from "../../types";
 
 interface ReviewResult {
 	cardId: string;

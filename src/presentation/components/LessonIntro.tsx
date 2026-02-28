@@ -1,5 +1,5 @@
 import { type ReactNode, useCallback, useEffect, useState } from "react";
-import type { LessonSummary } from "../learning-service";
+import type { LessonSummary } from "../../learning-service";
 import {
 	ConsonantCard,
 	ToneMarkCard,

@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router";
 import { useApp } from "../hooks/useApp";
-import { lessons } from "../symbol";
+import { lessons } from "../../symbol";
 
 export function ProgressPage() {
 	const { state, getNumDueCards, getStageCounts, resetAll } = useApp();

@@ -2,7 +2,7 @@ import type {
 	ConsonantSummary,
 	ToneMarkSummary,
 	VowelSummary,
-} from "../learning-service";
+} from "../../learning-service";
 
 function PlayAudioButton({ audioUrl }: { audioUrl: string }) {
 	return (

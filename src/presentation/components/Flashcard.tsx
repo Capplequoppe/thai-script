@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from "react";
-import type { RecallRating, SrsCard } from "../types";
+import type { RecallRating, SrsCard } from "../../types";
 import { RatingButtons } from "./RatingButtons";
 
 interface Props {

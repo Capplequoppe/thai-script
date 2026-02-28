@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from "react";
-import type { SrsCard } from "../types";
+import type { SrsCard } from "../../types";
 
 interface Props {
 	card: SrsCard;

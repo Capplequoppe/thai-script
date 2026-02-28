@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from "react";
-import { NotificationScheduler } from "../notification-scheduler";
+import { NotificationScheduler } from "../../notification-scheduler";
 
 const DISMISSED_KEY = "thai-srs-notification-banner-dismissed";
 

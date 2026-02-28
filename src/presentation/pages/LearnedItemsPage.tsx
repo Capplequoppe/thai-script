@@ -10,7 +10,7 @@ import type {
 	LessonSummary,
 	ToneMarkSummary,
 	VowelSummary,
-} from "../learning-service";
+} from "../../learning-service";
 
 type Tab = "consonants" | "vowels" | "toneMarks" | "vocabulary" | "videos";
 

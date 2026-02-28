@@ -6,45 +6,45 @@ import {
 	useMemo,
 	useState,
 } from "react";
-import { ApprenticeService } from "../apprentice-service";
-import type { ApprenticeStats } from "../apprentice-service";
-import { LeechService } from "../leech-service";
+import { ApprenticeService } from "../../apprentice-service";
+import type { ApprenticeStats } from "../../apprentice-service";
+import { LeechService } from "../../leech-service";
 import {
 	LearningService,
 	type LessonInfo,
 	type LessonSummary,
-} from "../learning-service";
+} from "../../learning-service";
 import {
 	type ActiveReviewSession,
 	type CriticalItem,
 	type ReviewForecast,
 	ReviewService,
-} from "../review-service";
-import type { CardPool } from "../review-service";
-import { getStageCounts } from "../srs";
-import { LocalStorageAdapter } from "../storage";
+} from "../../review-service";
+import type { CardPool } from "../../review-service";
+import { getStageCounts } from "../../srs";
+import { LocalStorageAdapter } from "../../storage";
 import type {
 	LearnerState,
 	RecallRating,
 	SessionSummary,
 	SrsCard,
 	StageCounts,
-} from "../types";
-import { NotificationScheduler } from "../notification-scheduler";
-import grammarData from "../grammar.json";
-import { GrammarService } from "../grammar-service";
+} from "../../types";
+import { NotificationScheduler } from "../../notification-scheduler";
+import grammarData from "../../grammar.json";
+import { GrammarService } from "../../grammar-service";
 import type {
 	GrammarCard,
 	GrammarEntry,
 	GrammarLessonSummary,
-} from "../grammar-types";
-import vocabularyData from "../vocabulary.json";
-import { VocabularyService } from "../vocabulary-service";
+} from "../../grammar-types";
+import vocabularyData from "../../vocabulary.json";
+import { VocabularyService } from "../../vocabulary-service";
 import type {
 	VocabEntry,
 	VocabLessonSummary,
 	VocabularyCard,
-} from "../vocabulary-types";
+} from "../../vocabulary-types";
 
 const storage = new LocalStorageAdapter();
 const apprenticeService = new ApprenticeService(storage);

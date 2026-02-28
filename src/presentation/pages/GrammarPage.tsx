@@ -2,25 +2,24 @@ import { useCallback, useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import { Flashcard } from "../components/Flashcard";
 import { MultipleChoice } from "../components/MultipleChoice";
-import { WordCard } from "../components/WordCard";
+import type { GrammarCard, GrammarEntry } from "../../grammar-types";
 import { useApp } from "../hooks/useApp";
-import { useReviewSession } from "../presentation/hooks/useReviewSession";
-import { useSessionFlow } from "../presentation/hooks/useSessionFlow";
-import type { RecallRating } from "../types";
-import type { VocabEntry, VocabularyCard } from "../vocabulary-types";
+import { useReviewSession } from "../hooks/useReviewSession";
+import { useSessionFlow } from "../hooks/useSessionFlow";
+import type { RecallRating } from "../../types";
 
 type Phase = "overview" | "intro" | "quiz" | "complete" | "review";
 
-function VocabIntro({
-	words,
+function GrammarIntro({
+	grammarPoints,
 	onComplete,
 }: {
-	words: VocabEntry[];
+	grammarPoints: GrammarEntry[];
 	onComplete: () => void;
 }) {
 	const [idx, setIdx] = useState(0);
-	const current = words[idx];
-	const isLast = idx === words.length - 1;
+	const current = grammarPoints[idx];
+	const isLast = idx === grammarPoints.length - 1;
 
 	const advance = useCallback(() => {
 		if (isLast) onComplete();
@@ -51,19 +50,48 @@ function VocabIntro({
 		<div className="space-y-6">
 			<div className="flex justify-between items-center text-sm text-gray-500">
 				<span>
-					{idx + 1} / {words.length}
+					{idx + 1} / {grammarPoints.length}
 				</span>
 				<span className="px-2 py-0.5 rounded bg-gray-100 dark:bg-gray-800 text-xs">
-					vocabulary
+					grammar
 				</span>
 			</div>
 			<div className="w-full h-1 bg-gray-200 dark:bg-gray-800 rounded-full">
 				<div
-					className="h-full bg-emerald-600 rounded-full transition-all"
-					style={{ width: `${((idx + 1) / words.length) * 100}%` }}
+					className="h-full bg-cyan-600 rounded-full transition-all"
+					style={{
+						width: `${((idx + 1) / grammarPoints.length) * 100}%`,
+					}}
 				/>
 			</div>
-			<WordCard word={current} />
+
+			<h2 className="text-xl font-bold">{current.title}</h2>
+			<div className="bg-cyan-50 dark:bg-cyan-900/20 rounded-xl p-4 font-mono text-center text-lg">
+				{current.pattern}
+			</div>
+			<p className="text-gray-600 dark:text-gray-300">
+				{current.explanation}
+			</p>
+
+			<div className="space-y-3">
+				<h3 className="text-sm font-semibold text-gray-500">Examples</h3>
+				{current.examples.map((ex) => (
+					<div
+						key={ex.thai}
+						className="bg-gray-50 dark:bg-gray-900 rounded-lg p-3"
+					>
+						<div className="thai text-lg font-semibold">{ex.thai}</div>
+						<div className="text-sm text-gray-500">{ex.romanization}</div>
+						<div className="text-sm">{ex.english}</div>
+						{ex.breakdown && (
+							<div className="text-xs text-gray-400 mt-1 font-mono">
+								{ex.breakdown}
+							</div>
+						)}
+					</div>
+				))}
+			</div>
+
 			<div className="flex gap-3">
 				{idx > 0 && (
 					<button
@@ -75,7 +103,7 @@ function VocabIntro({
 				)}
 				<button
 					onClick={advance}
-					className="flex-1 py-3 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl font-semibold transition-colors"
+					className="flex-1 py-3 bg-cyan-600 hover:bg-cyan-700 text-white rounded-xl font-semibold transition-colors"
 				>
 					{isLast ? "Start Quiz" : "Next"}
 				</button>
@@ -84,25 +112,25 @@ function VocabIntro({
 	);
 }
 
-export function VocabularyPage() {
+export function GrammarPage() {
 	const app = useApp();
 	const navigate = useNavigate();
 
 	const [phase, setPhase] = useState<Phase>("overview");
-	const [lessonWords, setLessonWords] = useState<VocabEntry[]>([]);
-	const [cards, setCards] = useState<VocabularyCard[]>([]);
+	const [lessonGrammar, setLessonGrammar] = useState<GrammarEntry[]>([]);
+	const [cards, setCards] = useState<GrammarCard[]>([]);
 	const flow = useSessionFlow(cards.length);
 
-	const vocabReview = useReviewSession(
-		app.startVocabReviewSession,
-		app.recordVocabReview,
-		app.endVocabReviewSession,
+	const grammarReview = useReviewSession(
+		app.startGrammarReviewSession,
+		app.recordGrammarReview,
+		app.endGrammarReviewSession,
 	);
 
-	const nextLesson = app.getNextVocabLesson();
-	const unlockedCount = app.getVocabUnlockedCount();
-	const learnedCount = app.getVocabLearnedCount();
-	const dueVocabCards = app.getNumDueVocabCards();
+	const nextLesson = app.getNextGrammarLesson();
+	const unlockedCount = app.getGrammarUnlockedCount();
+	const learnedCount = app.getGrammarLearnedCount();
+	const dueGrammarCards = app.getNumDueGrammarCards();
 
 	useEffect(() => {
 		if (flow.isComplete) {
@@ -112,12 +140,12 @@ export function VocabularyPage() {
 
 	const handleStartLesson = () => {
 		if (!nextLesson) return;
-		setLessonWords(nextLesson.words);
+		setLessonGrammar(nextLesson.grammarPoints);
 		setPhase("intro");
 	};
 
 	const handleIntroComplete = () => {
-		const generated = app.startVocabLesson();
+		const generated = app.startGrammarLesson();
 		if (!generated) return;
 		setCards(generated);
 		flow.reset();
@@ -125,19 +153,19 @@ export function VocabularyPage() {
 	};
 
 	const handleStartReview = () => {
-		const s = vocabReview.startReview();
+		const s = grammarReview.startReview();
 		if (s.cards.length === 0) return;
 		setPhase("review");
 	};
 
 	const handleReviewAdvance = useCallback(
 		(rating: RecallRating) => {
-			const result = vocabReview.handleReviewAdvance(rating);
+			const result = grammarReview.handleReviewAdvance(rating);
 			if (result === "complete") {
 				setPhase("overview");
 			}
 		},
-		[vocabReview],
+		[grammarReview],
 	);
 
 	const handleMcAnswer = useCallback(
@@ -153,9 +181,9 @@ export function VocabularyPage() {
 		return (
 			<div className="space-y-8 py-4">
 				<div className="text-center">
-					<h1 className="text-3xl font-bold">Vocabulary</h1>
+					<h1 className="text-3xl font-bold">Grammar</h1>
 					<p className="text-gray-500 dark:text-gray-400 mt-1">
-						Learn Thai words unlocked by your script mastery
+						Learn Thai grammar patterns unlocked by your vocabulary mastery
 					</p>
 				</div>
 
@@ -170,7 +198,7 @@ export function VocabularyPage() {
 					</div>
 					<div className="bg-gray-50 dark:bg-gray-900 rounded-xl p-4">
 						<div className="text-2xl font-bold text-orange-500">
-							{dueVocabCards}
+							{dueGrammarCards}
 						</div>
 						<div className="text-xs text-gray-500 mt-1">Due</div>
 					</div>
@@ -178,47 +206,37 @@ export function VocabularyPage() {
 
 				<div className="space-y-3">
 					{nextLesson && (
-						<div>
-							<button
-								onClick={handleStartLesson}
-								className="w-full py-4 px-6 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl text-lg font-semibold transition-colors"
-							>
-								Learn {nextLesson.words.length} New Words
-							</button>
-							<div className="mt-2 flex flex-wrap gap-2 justify-center">
-								{nextLesson.words.map((w) => (
-									<span
-										key={w.thai}
-										className="thai text-sm px-2 py-1 bg-gray-100 dark:bg-gray-800 rounded"
-									>
-										{w.thai} — {w.english}
-									</span>
-								))}
-							</div>
-						</div>
+						<button
+							onClick={handleStartLesson}
+							className="w-full py-4 px-6 bg-cyan-600 hover:bg-cyan-700 text-white rounded-xl text-lg font-semibold transition-colors"
+						>
+							Learn {nextLesson.grammarPoints.length} New Grammar Point
+							{nextLesson.grammarPoints.length !== 1 ? "s" : ""}
+						</button>
 					)}
 
 					{!nextLesson && unlockedCount === 0 && (
 						<p className="text-center text-gray-500">
-							Complete more script lessons to unlock vocabulary words.
+							Master more vocabulary words to unlock grammar points.
 						</p>
 					)}
 
 					{!nextLesson &&
 						unlockedCount > 0 &&
 						learnedCount === unlockedCount && (
-							<p className="text-center text-green-600 dark:text-green-400 font-semibold">
-								All unlocked words learned! Complete more script lessons to
-								unlock more.
+							<p className="text-center text-cyan-600 dark:text-cyan-400 font-semibold">
+								All unlocked grammar learned! Master more vocabulary to unlock
+								more.
 							</p>
 						)}
 
-					{dueVocabCards > 0 && (
+					{dueGrammarCards > 0 && (
 						<button
 							onClick={handleStartReview}
 							className="w-full py-4 px-6 bg-orange-500 hover:bg-orange-600 text-white rounded-xl text-lg font-semibold transition-colors"
 						>
-							Review {dueVocabCards} Due Words
+							Review {dueGrammarCards} Due Grammar Card
+							{dueGrammarCards !== 1 ? "s" : ""}
 						</button>
 					)}
 				</div>
@@ -230,11 +248,15 @@ export function VocabularyPage() {
 	if (phase === "intro") {
 		return (
 			<div>
-				<h1 className="text-xl font-bold mb-1">New Vocabulary</h1>
+				<h1 className="text-xl font-bold mb-1">New Grammar</h1>
 				<p className="text-sm text-gray-500 mb-6">
-					{lessonWords.length} words to learn
+					{lessonGrammar.length} grammar point
+					{lessonGrammar.length !== 1 ? "s" : ""} to learn
 				</p>
-				<VocabIntro words={lessonWords} onComplete={handleIntroComplete} />
+				<GrammarIntro
+					grammarPoints={lessonGrammar}
+					onComplete={handleIntroComplete}
+				/>
 			</div>
 		);
 	}
@@ -244,17 +266,15 @@ export function VocabularyPage() {
 		return (
 			<div>
 				<div className="flex justify-between items-center mb-6">
-					<h1 className="text-lg font-bold">Vocabulary Quiz</h1>
+					<h1 className="text-lg font-bold">Grammar Quiz</h1>
 					<span className="text-sm text-gray-500">
 						{flow.cardIdx + 1} / {cards.length}
 					</span>
 				</div>
 				<div className="w-full h-1.5 bg-gray-200 dark:bg-gray-800 rounded-full mb-6">
 					<div
-						className="h-full bg-emerald-600 rounded-full transition-all"
-						style={{
-							width: `${((flow.cardIdx + 1) / cards.length) * 100}%`,
-						}}
+						className="h-full bg-cyan-600 rounded-full transition-all"
+						style={{ width: `${((flow.cardIdx + 1) / cards.length) * 100}%` }}
 					/>
 				</div>
 				<MultipleChoice card={cards[flow.cardIdx]!} onAnswer={flow.advance} />
@@ -267,7 +287,7 @@ export function VocabularyPage() {
 		return (
 			<div className="text-center space-y-6 py-8">
 				<div className="text-6xl">{flow.accuracy.emoji}</div>
-				<h1 className="text-2xl font-bold">Words Learned!</h1>
+				<h1 className="text-2xl font-bold">Grammar Learned!</h1>
 				<div className="grid grid-cols-3 gap-4">
 					<div className="bg-gray-50 dark:bg-gray-900 rounded-xl p-4">
 						<div className="text-2xl font-bold">
@@ -291,9 +311,9 @@ export function VocabularyPage() {
 				<div className="space-y-3">
 					<button
 						onClick={() => setPhase("overview")}
-						className="w-full py-3 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl font-semibold"
+						className="w-full py-3 bg-cyan-600 hover:bg-cyan-700 text-white rounded-xl font-semibold"
 					>
-						Back to Vocabulary
+						Back to Grammar
 					</button>
 					<button
 						onClick={() => navigate("/")}
@@ -307,23 +327,24 @@ export function VocabularyPage() {
 	}
 
 	// Review
-	if (phase === "review" && vocabReview.session) {
-		const current = vocabReview.currentCard;
+	if (phase === "review" && grammarReview.session) {
+		const current = grammarReview.currentCard;
 		if (!current) return null;
 
 		return (
 			<div>
 				<div className="flex justify-between items-center mb-4">
-					<h1 className="text-lg font-bold">Vocabulary Review</h1>
+					<h1 className="text-lg font-bold">Grammar Review</h1>
 					<span className="text-sm text-gray-500">
-						{vocabReview.cardIdx + 1} / {vocabReview.session.cards.length}
+						{grammarReview.cardIdx + 1} /{" "}
+						{grammarReview.session.cards.length}
 					</span>
 				</div>
 				<div className="w-full h-1.5 bg-gray-200 dark:bg-gray-800 rounded-full mb-6">
 					<div
 						className="h-full bg-orange-500 rounded-full transition-all"
 						style={{
-							width: `${((vocabReview.cardIdx + 1) / vocabReview.session.cards.length) * 100}%`,
+							width: `${((grammarReview.cardIdx + 1) / grammarReview.session.cards.length) * 100}%`,
 						}}
 					/>
 				</div>

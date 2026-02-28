@@ -3,8 +3,8 @@ import { useNavigate, useParams } from "react-router";
 import { LessonIntro } from "../components/LessonIntro";
 import { MultipleChoice } from "../components/MultipleChoice";
 import { useApp } from "../hooks/useApp";
-import { useSessionFlow } from "../presentation/hooks/useSessionFlow";
-import type { PropertyCard } from "../types";
+import { useSessionFlow } from "../hooks/useSessionFlow";
+import type { PropertyCard } from "../../types";
 
 type Phase = "intro" | "quiz" | "complete";
 
