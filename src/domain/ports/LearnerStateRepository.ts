@@ -8,6 +8,8 @@ export interface LearnerStateRepository {
 	setCurrentLesson(n: number | null): void;
 	getSessionHistory(): SessionSummary[];
 	addSession(summary: SessionSummary): void;
+	getAchievements(): string[];
+	addAchievement(id: string): void;
 	reset(): void;
 	exportData(): string;
 	importData(json: string): void;
