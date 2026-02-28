@@ -43,7 +43,7 @@ export function MultipleChoice({ card, onAnswer }: Props) {
 
 	useEffect(() => {
 		if (isAudioRecognition && card.audioUrl) {
-			new Audio(card.audioUrl).play();
+			new Audio(card.audioUrl).play().catch(() => {});
 		}
 	}, [isAudioRecognition, card.audioUrl]);
 
