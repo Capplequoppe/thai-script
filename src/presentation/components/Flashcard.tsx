@@ -33,7 +33,7 @@ export function Flashcard({ card, onRate }: Props) {
 
 	useEffect(() => {
 		setRevealed(false);
-	}, [card.id]);
+	}, []);
 
 	const handleReveal = useCallback(() => {
 		setRevealed(true);
@@ -67,6 +67,7 @@ export function Flashcard({ card, onRate }: Props) {
 					<span className="thai text-8xl">{symbolChar}</span>
 					{card.audioUrl && !hideAudioHint && (
 						<button
+							type="button"
 							onClick={() => new Audio(card.audioUrl!).play()}
 							className="ml-3 inline-flex items-center justify-center w-10 h-10 rounded-full bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 text-gray-600 dark:text-gray-300 transition-colors align-middle"
 							aria-label="Play pronunciation"
@@ -80,6 +81,7 @@ export function Flashcard({ card, onRate }: Props) {
 					<span className="thai text-6xl">{wordThai}</span>
 					{card.audioUrl && (
 						<button
+							type="button"
 							onClick={() => new Audio(card.audioUrl!).play()}
 							className="ml-3 inline-flex items-center justify-center w-10 h-10 rounded-full bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 text-gray-600 dark:text-gray-300 transition-colors align-middle"
 							aria-label="Play pronunciation"
@@ -96,6 +98,7 @@ export function Flashcard({ card, onRate }: Props) {
 
 			{!revealed ? (
 				<button
+					type="button"
 					onClick={handleReveal}
 					className="w-full py-4 bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 rounded-xl text-lg font-semibold transition-colors"
 				>

@@ -1,10 +1,10 @@
-import { createSrsData } from "../../../srs";
 import type {
 	ConsonantProperty,
 	PropertyCard,
 	ToneMarkProperty,
 	VowelProperty,
 } from "../../shared/types";
+import { SrsSchedule } from "../../srs/value-objects/SrsSchedule";
 import {
 	consonants,
 	type ThaiConsonant,
@@ -117,7 +117,7 @@ function pickChoices(correct: string, pool: string[], count = 4): string[] {
 	const copy = [...distractors];
 	for (let i = copy.length - 1; i > copy.length - 1 - needed && i > 0; i--) {
 		const j = Math.floor(Math.random() * (i + 1));
-		[copy[i], copy[j]] = [copy[j]!, copy[i]!];
+		[copy[i], copy[j]] = [copy[j] as string, copy[i] as string];
 	}
 	const picked = copy.slice(copy.length - needed);
 
@@ -125,7 +125,7 @@ function pickChoices(correct: string, pool: string[], count = 4): string[] {
 	const choices = [...picked, correct];
 	for (let i = choices.length - 1; i > 0; i--) {
 		const j = Math.floor(Math.random() * (i + 1));
-		[choices[i], choices[j]] = [choices[j]!, choices[i]!];
+		[choices[i], choices[j]] = [choices[j] as string, choices[i] as string];
 	}
 
 	return choices;
@@ -137,7 +137,7 @@ function pickChoices(correct: string, pool: string[], count = 4): string[] {
 
 function generateConsonantCards(c: ThaiConsonant): PropertyCard[] {
 	const lesson = c.lesson ?? 0;
-	const srs = createSrsData();
+	const srs = SrsSchedule.initial().toDTO();
 
 	const recognition: PropertyCard = {
 		id: `${c.character}:recognition`,
@@ -159,7 +159,7 @@ function generateConsonantCards(c: ThaiConsonant): PropertyCard[] {
 		question: "What class is this consonant?",
 		correctAnswer: c.classType,
 		choices: pickChoices(c.classType, consonantClassPool),
-		srs: createSrsData(),
+		srs: SrsSchedule.initial().toDTO(),
 		lessonNumber: lesson,
 	};
 
@@ -172,7 +172,7 @@ function generateConsonantCards(c: ThaiConsonant): PropertyCard[] {
 		question: "What is the initial sound of this consonant?",
 		correctAnswer: normalizedInitial,
 		choices: pickChoices(normalizedInitial, normalizedInitialSoundPool),
-		srs: createSrsData(),
+		srs: SrsSchedule.initial().toDTO(),
 		lessonNumber: lesson,
 	};
 
@@ -185,7 +185,7 @@ function generateConsonantCards(c: ThaiConsonant): PropertyCard[] {
 		question: "What is the final sound of this consonant?",
 		correctAnswer: normalizedFinal,
 		choices: pickChoices(normalizedFinal, normalizedFinalSoundPool),
-		srs: createSrsData(),
+		srs: SrsSchedule.initial().toDTO(),
 		lessonNumber: lesson,
 	};
 
@@ -198,7 +198,7 @@ function generateConsonantCards(c: ThaiConsonant): PropertyCard[] {
 		question: "Does this consonant have a dead or live ending?",
 		correctAnswer: deadLiveAnswer,
 		choices: pickChoices(deadLiveAnswer, deadLivePool),
-		srs: createSrsData(),
+		srs: SrsSchedule.initial().toDTO(),
 		lessonNumber: lesson,
 	};
 
@@ -213,7 +213,7 @@ function generateConsonantCards(c: ThaiConsonant): PropertyCard[] {
 			question: "Listen to the audio. Which symbol is this?",
 			correctAnswer: c.character,
 			choices: pickChoices(c.character, consonantCharPool),
-			srs: createSrsData(),
+			srs: SrsSchedule.initial().toDTO(),
 			lessonNumber: lesson,
 		});
 	}
@@ -239,7 +239,7 @@ function generateVowelCards(v: ThaiVowel): PropertyCard[] {
 			v.name,
 			vowels.map((x) => x.name),
 		),
-		srs: createSrsData(),
+		srs: SrsSchedule.initial().toDTO(),
 		lessonNumber: lesson,
 	};
 
@@ -251,7 +251,7 @@ function generateVowelCards(v: ThaiVowel): PropertyCard[] {
 		question: "Is this vowel short or long?",
 		correctAnswer: v.length,
 		choices: pickChoices(v.length, vowelLengthPool),
-		srs: createSrsData(),
+		srs: SrsSchedule.initial().toDTO(),
 		lessonNumber: lesson,
 	};
 
@@ -263,7 +263,7 @@ function generateVowelCards(v: ThaiVowel): PropertyCard[] {
 		question: "Where is this vowel positioned relative to the consonant?",
 		correctAnswer: v.position,
 		choices: pickChoices(v.position, vowelPositionPool),
-		srs: createSrsData(),
+		srs: SrsSchedule.initial().toDTO(),
 		lessonNumber: lesson,
 	};
 
@@ -278,7 +278,7 @@ function generateVowelCards(v: ThaiVowel): PropertyCard[] {
 			question: "Listen to the audio. Which symbol is this?",
 			correctAnswer: v.character,
 			choices: pickChoices(v.character, vowelCharPool),
-			srs: createSrsData(),
+			srs: SrsSchedule.initial().toDTO(),
 			lessonNumber: lesson,
 		});
 	}
@@ -304,7 +304,7 @@ function generateToneMarkCards(t: ThaiToneMark): PropertyCard[] {
 			t.name,
 			toneMarks.map((x) => x.name),
 		),
-		srs: createSrsData(),
+		srs: SrsSchedule.initial().toDTO(),
 		lessonNumber: lesson,
 	};
 
@@ -336,7 +336,7 @@ function generateToneMarkCards(t: ThaiToneMark): PropertyCard[] {
 				return parts;
 			}),
 		),
-		srs: createSrsData(),
+		srs: SrsSchedule.initial().toDTO(),
 		lessonNumber: lesson,
 	};
 
@@ -351,7 +351,7 @@ function generateToneMarkCards(t: ThaiToneMark): PropertyCard[] {
 			question: "Listen to the audio. Which symbol is this?",
 			correctAnswer: t.character,
 			choices: pickChoices(t.character, toneMarkCharPool),
-			srs: createSrsData(),
+			srs: SrsSchedule.initial().toDTO(),
 			lessonNumber: lesson,
 		});
 	}
@@ -373,7 +373,7 @@ function generateToneRuleCard(rule: ToneRule): PropertyCard {
 		question,
 		correctAnswer: rule.resultingTone,
 		choices: pickChoices(rule.resultingTone, toneValuePool),
-		srs: createSrsData(),
+		srs: SrsSchedule.initial().toDTO(),
 		lessonNumber: rule.lesson,
 	};
 }
@@ -388,7 +388,7 @@ function generateToneMarkRuleCard(rule: ToneMarkRule): PropertyCard {
 		question,
 		correctAnswer: rule.resultingTone,
 		choices: pickChoices(rule.resultingTone, toneValuePool),
-		srs: createSrsData(),
+		srs: SrsSchedule.initial().toDTO(),
 		lessonNumber: rule.lesson,
 	};
 }

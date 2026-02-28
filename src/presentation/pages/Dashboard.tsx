@@ -119,6 +119,7 @@ export function Dashboard() {
 			<div className="space-y-3">
 				{nextLesson && (
 					<button
+						type="button"
 						onClick={() => navigate(`/lesson/${nextLesson}`)}
 						className="w-full py-4 px-6 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl text-lg font-semibold transition-colors"
 					>
@@ -132,6 +133,7 @@ export function Dashboard() {
 				)}
 				{dueCount > 0 && (
 					<button
+						type="button"
 						onClick={() => navigate("/review")}
 						className="w-full py-4 px-6 bg-orange-500 hover:bg-orange-600 text-white rounded-xl text-lg font-semibold transition-colors"
 					>
@@ -209,6 +211,7 @@ export function Dashboard() {
 						</div>
 					</div>
 					<button
+						type="button"
 						onClick={() => navigate("/vocabulary")}
 						className="w-full py-3 px-6 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl font-semibold transition-colors"
 					>
@@ -241,6 +244,7 @@ export function Dashboard() {
 						</div>
 					</div>
 					<button
+						type="button"
 						onClick={() => navigate("/grammar")}
 						className="w-full py-3 px-6 bg-cyan-600 hover:bg-cyan-700 text-white rounded-xl font-semibold transition-colors"
 					>

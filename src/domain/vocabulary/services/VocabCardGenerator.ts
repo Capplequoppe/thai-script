@@ -1,4 +1,4 @@
-import { createSrsData } from "../../../srs";
+import { SrsSchedule } from "../../srs/value-objects/SrsSchedule";
 import type { VocabEntry, VocabularyCard } from "../types";
 
 // ---------------------------------------------------------------------------
@@ -13,7 +13,7 @@ function pickChoices(correct: string, pool: string[], count = 4): string[] {
 	const copy = [...distractors];
 	for (let i = copy.length - 1; i > copy.length - 1 - needed && i > 0; i--) {
 		const j = Math.floor(Math.random() * (i + 1));
-		[copy[i], copy[j]] = [copy[j]!, copy[i]!];
+		[copy[i], copy[j]] = [copy[j] as string, copy[i] as string];
 	}
 	const picked = copy.slice(copy.length - needed);
 
@@ -21,7 +21,7 @@ function pickChoices(correct: string, pool: string[], count = 4): string[] {
 	const choices = [...picked, correct];
 	for (let i = choices.length - 1; i > 0; i--) {
 		const j = Math.floor(Math.random() * (i + 1));
-		[choices[i], choices[j]] = [choices[j]!, choices[i]!];
+		[choices[i], choices[j]] = [choices[j] as string, choices[i] as string];
 	}
 
 	return choices;
@@ -48,7 +48,7 @@ export function generateVocabCards(
 		question: "What does this word mean?",
 		correctAnswer: word.english,
 		choices: pickChoices(word.english, englishPool),
-		srs: createSrsData(),
+		srs: SrsSchedule.initial().toDTO(),
 	});
 
 	// English -> Thai
@@ -59,7 +59,7 @@ export function generateVocabCards(
 		question: `Which Thai word means "${word.english}"?`,
 		correctAnswer: word.thai,
 		choices: pickChoices(word.thai, thaiPool),
-		srs: createSrsData(),
+		srs: SrsSchedule.initial().toDTO(),
 	});
 
 	// Audio recognition (only if audio exists)
@@ -71,7 +71,7 @@ export function generateVocabCards(
 			question: "Listen to the audio. Which word is this?",
 			correctAnswer: word.thai,
 			choices: pickChoices(word.thai, thaiPool),
-			srs: createSrsData(),
+			srs: SrsSchedule.initial().toDTO(),
 			audioUrl: word.thai_audio_file,
 		});
 	}

@@ -95,7 +95,10 @@ export class ReviewService {
 		// Shuffle presentation order (Fisher-Yates)
 		for (let i = quizCards.length - 1; i > 0; i--) {
 			const j = Math.floor(Math.random() * (i + 1));
-			[quizCards[i], quizCards[j]] = [quizCards[j]!, quizCards[i]!];
+			[quizCards[i], quizCards[j]] = [
+				quizCards[j] as (typeof quizCards)[number],
+				quizCards[i] as (typeof quizCards)[number],
+			];
 		}
 
 		return {

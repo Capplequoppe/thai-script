@@ -150,6 +150,7 @@ export function ProgressPage() {
 
 						return (
 							<button
+								type="button"
 								key={l.number}
 								onClick={() => {
 									if (isAvailable) navigate(`/lesson/${l.number}`);
@@ -180,7 +181,7 @@ export function ProgressPage() {
 					<div className="space-y-2 max-h-60 overflow-y-auto">
 						{[...state.sessionHistory].reverse().map((s, i) => (
 							<div
-								key={i}
+								key={`session-${i}-${s.type}`}
 								className="flex justify-between items-center bg-gray-50 dark:bg-gray-900 rounded-lg px-4 py-2 text-sm"
 							>
 								<span className="capitalize">{s.type}</span>
@@ -205,6 +206,7 @@ export function ProgressPage() {
 			{/* Reset */}
 			<div className="pt-4 border-t border-gray-200 dark:border-gray-800">
 				<button
+					type="button"
 					onClick={() => {
 						if (confirm("This will erase all progress. Are you sure?")) {
 							data.reset();

@@ -39,6 +39,7 @@ function VideoSlide({ url, title }: { url: string; title: string }) {
 						allowFullScreen
 					/>
 				) : (
+					// biome-ignore lint/a11y/useMediaCaption: Thai pronunciation videos are self-explanatory
 					<video
 						src={url}
 						title={title}
@@ -141,6 +142,7 @@ export function LessonIntro({ summary, onComplete }: Props) {
 			<div className="flex gap-3">
 				{idx > 0 && (
 					<button
+						type="button"
 						onClick={goBack}
 						className="py-3 px-6 bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 rounded-xl font-semibold transition-colors"
 					>
@@ -148,6 +150,7 @@ export function LessonIntro({ summary, onComplete }: Props) {
 					</button>
 				)}
 				<button
+					type="button"
 					onClick={advance}
 					className="flex-1 py-3 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl font-semibold transition-colors"
 				>

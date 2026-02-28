@@ -51,7 +51,9 @@ describe("generateGrammarCards", () => {
 
 	it("generates a recognition card with correct ID format", () => {
 		const cards = generateGrammarCards(makeGrammarEntry());
-		const recognition = cards.find((c) => c.property === "recognition")!;
+		const recognition = cards.find(
+			(c) => c.property === "recognition",
+		) as NonNullable<(typeof cards)[number]>;
 		expect(recognition.id).toBe("grammar:svo-basic:recognition");
 		expect(recognition.grammarId).toBe("svo-basic");
 		expect(recognition.question).toBe("What does the SVO pattern express?");
@@ -62,7 +64,9 @@ describe("generateGrammarCards", () => {
 
 	it("generates an application card with correct example as answer", () => {
 		const cards = generateGrammarCards(makeGrammarEntry());
-		const application = cards.find((c) => c.property === "application")!;
+		const application = cards.find(
+			(c) => c.property === "application",
+		) as NonNullable<(typeof cards)[number]>;
 		expect(application.id).toBe("grammar:svo-basic:application");
 		expect(application.grammarId).toBe("svo-basic");
 		expect(application.correctAnswer).toBe("เขากินข้าว");
@@ -70,7 +74,9 @@ describe("generateGrammarCards", () => {
 
 	it("recognition card has 4 choices including correct answer", () => {
 		const cards = generateGrammarCards(makeGrammarEntry());
-		const recognition = cards.find((c) => c.property === "recognition")!;
+		const recognition = cards.find(
+			(c) => c.property === "recognition",
+		) as NonNullable<(typeof cards)[number]>;
 		expect(recognition.choices).toHaveLength(4);
 		expect(recognition.choices).toContain(
 			"Subject performing action on object",
@@ -79,7 +85,9 @@ describe("generateGrammarCards", () => {
 
 	it("application card has 4 choices including correct example", () => {
 		const cards = generateGrammarCards(makeGrammarEntry());
-		const application = cards.find((c) => c.property === "application")!;
+		const application = cards.find(
+			(c) => c.property === "application",
+		) as NonNullable<(typeof cards)[number]>;
 		expect(application.choices).toHaveLength(4);
 		expect(application.choices).toContain("เขากินข้าว");
 	});

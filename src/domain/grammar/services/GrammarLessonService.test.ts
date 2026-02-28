@@ -128,7 +128,7 @@ describe("GrammarService", () => {
 
 			const unlocked = service.getUnlockedGrammarPoints();
 			expect(unlocked).toHaveLength(1);
-			expect(unlocked[0]!.id).toBe("g1");
+			expect(unlocked[0]?.id).toBe("g1");
 		});
 
 		it("applies sequential gating — g2 requires g1 cards to exist", () => {
@@ -150,7 +150,7 @@ describe("GrammarService", () => {
 
 			const unlocked = service.getUnlockedGrammarPoints();
 			expect(unlocked).toHaveLength(1);
-			expect(unlocked[0]!.id).toBe("g1");
+			expect(unlocked[0]?.id).toBe("g1");
 		});
 
 		it("unlocks g2 after g1 cards exist in storage", () => {
@@ -261,7 +261,7 @@ describe("GrammarService", () => {
 
 			const unlearned = service.getUnlearnedGrammarPoints();
 			expect(unlearned).toHaveLength(1);
-			expect(unlearned[0]!.id).toBe("g1");
+			expect(unlearned[0]?.id).toBe("g1");
 		});
 
 		it("excludes grammar points that already have cards", () => {
@@ -309,7 +309,7 @@ describe("GrammarService", () => {
 
 			const lesson = service.getNextLesson();
 			expect(lesson).not.toBeNull();
-			expect(lesson!.grammarPoints).toHaveLength(3);
+			expect(lesson?.grammarPoints).toHaveLength(3);
 		});
 
 		it("returns null when at apprentice limit", () => {

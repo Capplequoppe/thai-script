@@ -1,11 +1,11 @@
-import { createSrsData } from "../../../srs";
+import { SrsSchedule } from "../../srs/value-objects/SrsSchedule";
 import type { GrammarCard, GrammarEntry } from "../types";
 
 function shuffle<T>(arr: T[]): T[] {
 	const copy = [...arr];
 	for (let i = copy.length - 1; i > 0; i--) {
 		const j = Math.floor(Math.random() * (i + 1));
-		[copy[i], copy[j]] = [copy[j]!, copy[i]!];
+		[copy[i], copy[j]] = [copy[j] as T, copy[i] as T];
 	}
 	return copy;
 }
@@ -21,11 +21,11 @@ export function generateGrammarCards(entry: GrammarEntry): GrammarCard[] {
 			entry.cards.recognition.correctAnswer,
 			...entry.cards.recognition.distractors,
 		]),
-		srs: createSrsData(),
+		srs: SrsSchedule.initial().toDTO(),
 	};
 
 	const correctSentence =
-		entry.examples[entry.cards.application.correctExample]!.thai;
+		entry.examples[entry.cards.application.correctExample]?.thai;
 	const application: GrammarCard = {
 		id: `grammar:${entry.id}:application`,
 		grammarId: entry.id,
@@ -36,7 +36,7 @@ export function generateGrammarCards(entry: GrammarEntry): GrammarCard[] {
 			correctSentence,
 			...entry.cards.application.incorrectExamples,
 		]),
-		srs: createSrsData(),
+		srs: SrsSchedule.initial().toDTO(),
 	};
 
 	return [recognition, application];

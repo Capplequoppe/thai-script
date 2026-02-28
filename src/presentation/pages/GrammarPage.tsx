@@ -95,6 +95,7 @@ function GrammarIntro({
 			<div className="flex gap-3">
 				{idx > 0 && (
 					<button
+						type="button"
 						onClick={goBack}
 						className="py-3 px-6 bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 rounded-xl font-semibold transition-colors"
 					>
@@ -102,6 +103,7 @@ function GrammarIntro({
 					</button>
 				)}
 				<button
+					type="button"
 					onClick={advance}
 					className="flex-1 py-3 bg-cyan-600 hover:bg-cyan-700 text-white rounded-xl font-semibold transition-colors"
 				>
@@ -226,6 +228,7 @@ export function GrammarPage() {
 				<div className="space-y-3">
 					{nextLesson && (
 						<button
+							type="button"
 							onClick={handleStartLesson}
 							className="w-full py-4 px-6 bg-cyan-600 hover:bg-cyan-700 text-white rounded-xl text-lg font-semibold transition-colors"
 						>
@@ -251,6 +254,7 @@ export function GrammarPage() {
 
 					{dueGrammarCards > 0 && (
 						<button
+							type="button"
 							onClick={handleStartReview}
 							className="w-full py-4 px-6 bg-orange-500 hover:bg-orange-600 text-white rounded-xl text-lg font-semibold transition-colors"
 						>
@@ -329,12 +333,14 @@ export function GrammarPage() {
 				</div>
 				<div className="space-y-3">
 					<button
+						type="button"
 						onClick={() => setPhase("overview")}
 						className="w-full py-3 bg-cyan-600 hover:bg-cyan-700 text-white rounded-xl font-semibold"
 					>
 						Back to Grammar
 					</button>
 					<button
+						type="button"
 						onClick={() => navigate("/")}
 						className="w-full py-3 bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 rounded-xl font-semibold"
 					>

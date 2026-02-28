@@ -24,6 +24,7 @@ function isEmbedUrl(url: string): boolean {
 
 function TileAudioButton({ audioUrl }: { audioUrl: string }) {
 	return (
+		// biome-ignore lint/a11y/useSemanticElements: interactive span with role="button" is intentional for inline audio trigger
 		<span
 			role="button"
 			tabIndex={0}
@@ -56,6 +57,7 @@ function VideoPlayer({
 	return (
 		<div className="space-y-4">
 			<button
+				type="button"
 				onClick={onBack}
 				className="text-sm text-indigo-600 dark:text-indigo-400 hover:underline"
 			>
@@ -74,6 +76,7 @@ function VideoPlayer({
 						allowFullScreen
 					/>
 				) : (
+					// biome-ignore lint/a11y/useMediaCaption: Thai pronunciation videos are self-explanatory
 					<video
 						src={url}
 						title={lesson.title}
@@ -166,6 +169,7 @@ export function LearnedItemsPage() {
 			<div className="flex gap-1 bg-gray-100 dark:bg-gray-900 rounded-xl p-1">
 				{tabs.map(({ key, label, count }) => (
 					<button
+						type="button"
 						key={key}
 						onClick={() => {
 							setTab(key);
@@ -186,6 +190,7 @@ export function LearnedItemsPage() {
 			{selectedIdx !== null && tab !== "videos" && tab !== "vocabulary" && (
 				<div className="border border-gray-200 dark:border-gray-800 rounded-xl p-4">
 					<button
+						type="button"
 						onClick={() => setSelectedIdx(null)}
 						className="text-sm text-indigo-600 dark:text-indigo-400 mb-4 hover:underline"
 					>
@@ -208,6 +213,7 @@ export function LearnedItemsPage() {
 				<div className="grid grid-cols-4 gap-2">
 					{consonants.map((c, i) => (
 						<button
+							type="button"
 							key={c.character}
 							onClick={() => setSelectedIdx(i)}
 							className="relative flex flex-col items-center p-3 rounded-xl bg-gray-50 dark:bg-gray-900 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
@@ -237,6 +243,7 @@ export function LearnedItemsPage() {
 				<div className="grid grid-cols-4 gap-2">
 					{vowels.map((v, i) => (
 						<button
+							type="button"
 							key={v.character}
 							onClick={() => setSelectedIdx(i)}
 							className="relative flex flex-col items-center p-3 rounded-xl bg-gray-50 dark:bg-gray-900 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
@@ -262,6 +269,7 @@ export function LearnedItemsPage() {
 				<div className="grid grid-cols-4 gap-2">
 					{toneMarks.map((t, i) => (
 						<button
+							type="button"
 							key={t.character}
 							onClick={() => setSelectedIdx(i)}
 							className="relative flex flex-col items-center p-3 rounded-xl bg-gray-50 dark:bg-gray-900 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
@@ -295,6 +303,7 @@ export function LearnedItemsPage() {
 				<div className="space-y-3">
 					{videos.map((lesson, i) => (
 						<button
+							type="button"
 							key={lesson.lessonNumber}
 							onClick={() => setSelectedIdx(i)}
 							className="w-full flex items-center gap-4 p-4 rounded-xl bg-gray-50 dark:bg-gray-900 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors text-left"

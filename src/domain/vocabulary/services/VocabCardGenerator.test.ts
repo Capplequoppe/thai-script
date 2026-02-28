@@ -48,30 +48,30 @@ describe("generateVocabCards", () => {
 		const cards = generateVocabCards(testWord, allWords);
 		const card = cards.find((c) => c.property === "thaiToEnglish");
 		expect(card).toBeDefined();
-		expect(card!.id).toBe("vocab:ที่:thaiToEnglish");
-		expect(card!.wordThai).toBe("ที่");
-		expect(card!.question).toBe("What does this word mean?");
-		expect(card!.correctAnswer).toBe("at");
+		expect(card?.id).toBe("vocab:ที่:thaiToEnglish");
+		expect(card?.wordThai).toBe("ที่");
+		expect(card?.question).toBe("What does this word mean?");
+		expect(card?.correctAnswer).toBe("at");
 	});
 
 	it("englishToThai card has correct id, question uses English meaning, correct answer is Thai", () => {
 		const cards = generateVocabCards(testWord, allWords);
 		const card = cards.find((c) => c.property === "englishToThai");
 		expect(card).toBeDefined();
-		expect(card!.id).toBe("vocab:ที่:englishToThai");
-		expect(card!.wordThai).toBe("ที่");
-		expect(card!.question).toBe('Which Thai word means "at"?');
-		expect(card!.correctAnswer).toBe("ที่");
+		expect(card?.id).toBe("vocab:ที่:englishToThai");
+		expect(card?.wordThai).toBe("ที่");
+		expect(card?.question).toBe('Which Thai word means "at"?');
+		expect(card?.correctAnswer).toBe("ที่");
 	});
 
 	it("audioRecognition card has audioUrl set", () => {
 		const cards = generateVocabCards(testWordWithAudio, allWords);
 		const card = cards.find((c) => c.property === "audioRecognition");
 		expect(card).toBeDefined();
-		expect(card!.id).toBe("vocab:ที่:audioRecognition");
-		expect(card!.audioUrl).toBe("/audio/thai/thi.mp3");
-		expect(card!.question).toBe("Listen to the audio. Which word is this?");
-		expect(card!.correctAnswer).toBe("ที่");
+		expect(card?.id).toBe("vocab:ที่:audioRecognition");
+		expect(card?.audioUrl).toBe("/audio/thai/thi.mp3");
+		expect(card?.question).toBe("Listen to the audio. Which word is this?");
+		expect(card?.correctAnswer).toBe("ที่");
 	});
 
 	it("choices always include the correct answer", () => {

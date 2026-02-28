@@ -24,8 +24,8 @@ describe("LearningService", () => {
 		it("starts lesson 1 and generates cards", () => {
 			const lesson = service.startLesson(1);
 			expect(lesson).not.toBeNull();
-			expect(lesson!.lessonNumber).toBe(1);
-			expect(lesson!.cards.length).toBeGreaterThan(0);
+			expect(lesson?.lessonNumber).toBe(1);
+			expect(lesson?.cards.length).toBeGreaterThan(0);
 		});
 
 		it("persists cards to storage", () => {
@@ -87,7 +87,7 @@ describe("LearningService", () => {
 		});
 
 		it("returns null after all 25 lessons completed", () => {
-			const reviewService = new ReviewService(cardRepo, stateRepo);
+			const _reviewService = new ReviewService(cardRepo, stateRepo);
 			for (let i = 1; i <= 25; i++) {
 				service.startLesson(i);
 				service.completeLesson(i);
@@ -179,7 +179,7 @@ describe("LearningService", () => {
 
 			const lesson2 = service.startLesson(2);
 			expect(lesson2).not.toBeNull();
-			expect(lesson2!.lessonNumber).toBe(2);
+			expect(lesson2?.lessonNumber).toBe(2);
 		});
 
 		it("isNextLessonAvailable returns false when previous lesson not mastered", () => {
@@ -215,7 +215,7 @@ describe("LearningService", () => {
 			const apprenticeService = new ApprenticeService(cardRepo, 1);
 
 			const state = storage.load();
-			state.cards["s1"] = {
+			state.cards.s1 = {
 				id: "s1",
 				question: "test",
 				correctAnswer: "test",
@@ -239,7 +239,7 @@ describe("LearningService", () => {
 		it("works normally without ApprenticeService (backward compat)", () => {
 			const result = service.startLesson(1);
 			expect(result).not.toBeNull();
-			expect(result!.lessonNumber).toBe(1);
+			expect(result?.lessonNumber).toBe(1);
 		});
 	});
 });

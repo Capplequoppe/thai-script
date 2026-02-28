@@ -32,7 +32,7 @@ describe("Learn-then-Review flow", () => {
 
 		const session = review.startReviewSession(undefined, FUTURE_NOW);
 		expect(session.cards.length).toBe(dueCards.length);
-		expect(session.cards[0]!.mode).toBe("multipleChoice");
+		expect(session.cards[0]?.mode).toBe("multipleChoice");
 
 		for (const quizCard of session.cards) {
 			review.recordReview(quizCard.card.id, 4, FUTURE_NOW);

@@ -41,12 +41,14 @@ export function NotificationBanner() {
 			</div>
 			<div className="flex gap-2 shrink-0">
 				<button
+					type="button"
 					onClick={handleEnable}
 					className="px-3 py-1.5 text-xs font-medium bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg transition-colors"
 				>
 					Enable
 				</button>
 				<button
+					type="button"
 					onClick={handleDismiss}
 					className="px-3 py-1.5 text-xs font-medium text-indigo-600 dark:text-indigo-400 hover:bg-indigo-100 dark:hover:bg-indigo-900 rounded-lg transition-colors"
 				>

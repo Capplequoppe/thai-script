@@ -110,7 +110,7 @@ describe("ReviewService", () => {
 
 		it("new cards get multipleChoice mode", () => {
 			const session = reviewService.startReviewSession(undefined, FUTURE_NOW);
-			expect(session.cards[0]!.mode).toBe("multipleChoice");
+			expect(session.cards[0]?.mode).toBe("multipleChoice");
 		});
 	});
 
@@ -175,18 +175,23 @@ describe("ReviewService", () => {
 			const cardIds = cards.map((c) => c.id);
 
 			// Due now (past)
-			state.cards[cardIds[0]!]!.srs.nextReviewDate = "2025-01-01T11:00:00.000Z";
+			state.cards[cardIds[0] as string].srs.nextReviewDate =
+				"2025-01-01T11:00:00.000Z";
 			// Due in 30 min (within 1 hour)
-			state.cards[cardIds[1]!]!.srs.nextReviewDate = "2025-01-01T12:30:00.000Z";
+			state.cards[cardIds[1] as string].srs.nextReviewDate =
+				"2025-01-01T12:30:00.000Z";
 			// Due in 12 hours (within 24 hours)
-			state.cards[cardIds[2]!]!.srs.nextReviewDate = "2025-01-02T00:00:00.000Z";
+			state.cards[cardIds[2] as string].srs.nextReviewDate =
+				"2025-01-02T00:00:00.000Z";
 			// Due in 2 days (within 3 days)
-			state.cards[cardIds[3]!]!.srs.nextReviewDate = "2025-01-03T12:00:00.000Z";
+			state.cards[cardIds[3] as string].srs.nextReviewDate =
+				"2025-01-03T12:00:00.000Z";
 			// Due in 5 days (within 7 days)
-			state.cards[cardIds[4]!]!.srs.nextReviewDate = "2025-01-06T12:00:00.000Z";
+			state.cards[cardIds[4] as string].srs.nextReviewDate =
+				"2025-01-06T12:00:00.000Z";
 			// Set remaining cards far in the future (beyond 7 days)
 			for (let i = 5; i < cardIds.length; i++) {
-				state.cards[cardIds[i]!]!.srs.nextReviewDate =
+				state.cards[cardIds[i] as string].srs.nextReviewDate =
 					"2025-02-01T00:00:00.000Z";
 			}
 			storage.save(state);
@@ -236,18 +241,18 @@ describe("ReviewService", () => {
 			const state = storage.load();
 			const cards = Object.values(state.cards);
 			// Give cards different ease factors and mark as reviewed
-			cards[0]!.srs.easeFactor = 2.5;
-			cards[0]!.srs.repetitions = 3;
-			cards[1]!.srs.easeFactor = 1.5;
-			cards[1]!.srs.repetitions = 3;
-			cards[2]!.srs.easeFactor = 1.8;
-			cards[2]!.srs.repetitions = 3;
+			(cards[0] as (typeof cards)[number]).srs.easeFactor = 2.5;
+			(cards[0] as (typeof cards)[number]).srs.repetitions = 3;
+			(cards[1] as (typeof cards)[number]).srs.easeFactor = 1.5;
+			(cards[1] as (typeof cards)[number]).srs.repetitions = 3;
+			(cards[2] as (typeof cards)[number]).srs.easeFactor = 1.8;
+			(cards[2] as (typeof cards)[number]).srs.repetitions = 3;
 			storage.save(state);
 
 			const items = reviewService.getCriticalItems();
 			for (let i = 1; i < items.length; i++) {
-				expect(items[i]!.easeFactor).toBeGreaterThanOrEqual(
-					items[i - 1]!.easeFactor,
+				expect(items[i]?.easeFactor).toBeGreaterThanOrEqual(
+					items[i - 1]?.easeFactor,
 				);
 			}
 		});
@@ -311,7 +316,7 @@ describe("ReviewService", () => {
 			seedVocabCards(storage);
 			const due = reviewService.getDueCards(FUTURE_NOW, "vocab");
 			expect(due.length).toBe(1);
-			expect(due[0]!.id).toBe("vocab-1");
+			expect(due[0]?.id).toBe("vocab-1");
 		});
 
 		it("getDueCards with default pool does not return vocab cards", () => {
@@ -403,7 +408,7 @@ describe("ReviewService", () => {
 			seedGrammarCards(storage);
 			const due = reviewService.getDueCards(FUTURE_NOW, "grammar");
 			expect(due.length).toBe(1);
-			expect(due[0]!.id).toBe("grammar:g1:recognition");
+			expect(due[0]?.id).toBe("grammar:g1:recognition");
 		});
 
 		it("getDueCards with default pool does not return grammar cards", () => {

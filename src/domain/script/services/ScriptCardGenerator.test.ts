@@ -82,7 +82,7 @@ describe("generateToneRuleCards", () => {
 	it("generates cards for tone rules introduced in lesson 2", () => {
 		const cards = generateToneRuleCards(2);
 		expect(cards.length).toBeGreaterThanOrEqual(1);
-		expect(cards[0]!.id).toContain("tone-rule:");
+		expect(cards[0]?.id).toContain("tone-rule:");
 	});
 
 	it("returns empty for lessons with no tone rules", () => {

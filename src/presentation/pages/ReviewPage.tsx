@@ -106,6 +106,7 @@ export function ReviewPage() {
 				<div className="space-y-3">
 					{review.getDueCount() > 0 && (
 						<button
+							type="button"
 							onClick={() => {
 								startedRef.current = false;
 								setDone(false);
@@ -116,6 +117,7 @@ export function ReviewPage() {
 						</button>
 					)}
 					<button
+						type="button"
 						onClick={() => navigate("/")}
 						className="w-full py-3 bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 rounded-xl font-semibold"
 					>

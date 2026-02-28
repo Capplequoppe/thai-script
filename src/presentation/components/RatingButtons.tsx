@@ -16,7 +16,7 @@ const ratings: { value: RecallRating; label: string; color: string }[] = [
 export function RatingButtons({ onRate }: Props) {
 	useEffect(() => {
 		const handler = (e: KeyboardEvent) => {
-			const n = parseInt(e.key);
+			const n = parseInt(e.key, 10);
 			if (n >= 1 && n <= 5) onRate(n as RecallRating);
 		};
 		window.addEventListener("keydown", handler);
@@ -27,6 +27,7 @@ export function RatingButtons({ onRate }: Props) {
 		<div className="grid grid-cols-5 gap-2">
 			{ratings.map(({ value, label, color }) => (
 				<button
+					type="button"
 					key={value}
 					onClick={() => onRate(value)}
 					className={`${color} text-white rounded-xl py-3 text-sm font-semibold transition-colors`}

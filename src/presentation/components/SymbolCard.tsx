@@ -7,6 +7,7 @@ import type {
 function PlayAudioButton({ audioUrl }: { audioUrl: string }) {
 	return (
 		<button
+			type="button"
 			onClick={() => new Audio(audioUrl).play()}
 			className="ml-3 inline-flex items-center justify-center w-10 h-10 rounded-full bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 text-gray-600 dark:text-gray-300 transition-colors align-middle"
 			aria-label="Play pronunciation"

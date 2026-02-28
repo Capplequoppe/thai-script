@@ -39,7 +39,11 @@ export function LessonPage() {
 		return (
 			<div className="text-center py-8">
 				<p className="text-gray-500">Lesson not found</p>
-				<button onClick={() => navigate("/")} className="mt-4 text-indigo-600">
+				<button
+					type="button"
+					onClick={() => navigate("/")}
+					className="mt-4 text-indigo-600"
+				>
 					Go Home
 				</button>
 			</div>
@@ -120,12 +124,14 @@ export function LessonPage() {
 			</div>
 			<div className="space-y-3">
 				<button
+					type="button"
 					onClick={() => navigate("/review")}
 					className="w-full py-3 bg-orange-500 hover:bg-orange-600 text-white rounded-xl font-semibold"
 				>
 					Review Now
 				</button>
 				<button
+					type="button"
 					onClick={() => navigate("/")}
 					className="w-full py-3 bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 rounded-xl font-semibold"
 				>
