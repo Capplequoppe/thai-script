@@ -1,6 +1,16 @@
 import { useNavigate } from "react-router";
+import { AchievementBadge, ACHIEVEMENT_DEFS } from "../components/AchievementBadge";
+import { HeatmapWidget } from "../components/HeatmapWidget";
 import { NotificationBanner } from "../components/NotificationBanner";
 import { useApp } from "../hooks/useApp";
+
+const STAGE_PILL_CONFIG = [
+	{ key: "apprentice" as const, label: "Apprentice", color: "var(--color-apprentice)" },
+	{ key: "guru" as const, label: "Guru", color: "var(--color-guru)" },
+	{ key: "master" as const, label: "Master", color: "var(--color-master)" },
+	{ key: "enlightened" as const, label: "Enlightened", color: "var(--color-enlightened)" },
+	{ key: "burned" as const, label: "Burned", color: "var(--color-burned)" },
+];
 
 export function Dashboard() {
 	const { state, lesson, review, dashboard } = useApp();
@@ -9,247 +19,191 @@ export function Dashboard() {
 	const nextLesson = lesson.getNextScript();
 	const dueCount = review.getDueCount();
 	const nextReview = review.getNextReviewDate();
-	const totalCards = Object.keys(state.cards).length;
-	const completedCount = state.completedLessons.length;
 	const forecast = review.getForecast();
-	const apprenticeStats = dashboard.getApprenticeStats();
 	const leechCount = dashboard.getLeechCount();
+	const stages = dashboard.getStageCounts("script");
+	const achievements = state.achievements ?? [];
 
 	return (
-		<div className="space-y-8 py-4">
-			<div className="text-center">
-				<h1 className="text-3xl font-bold">Thai Script</h1>
-				<p className="text-gray-500 dark:text-gray-400 mt-1">
-					Learn the Thai alphabet with spaced repetition
-				</p>
-			</div>
-
+		<div className="space-y-6 py-4">
 			<NotificationBanner />
 
-			{/* Stats */}
-			<div className="grid grid-cols-3 gap-4 text-center">
-				<div className="bg-gray-50 dark:bg-gray-900 rounded-xl p-4">
-					<div className="text-2xl font-bold">{completedCount}/25</div>
-					<div className="text-xs text-gray-500 mt-1">Lessons</div>
-				</div>
-				<div className="bg-gray-50 dark:bg-gray-900 rounded-xl p-4">
-					<div className="text-2xl font-bold">{totalCards}</div>
-					<div className="text-xs text-gray-500 mt-1">Cards</div>
-				</div>
-				<div className="bg-gray-50 dark:bg-gray-900 rounded-xl p-4">
-					<div className="text-2xl font-bold text-orange-500">{dueCount}</div>
-					<div className="text-xs text-gray-500 mt-1">Due</div>
-				</div>
+			{/* 1. Primary Action Card */}
+			<div
+				className="rounded-2xl p-6"
+				style={{
+					background: dueCount > 0 ? "var(--color-primary)" : "var(--color-surface-2)",
+				}}
+			>
+				{dueCount > 0 ? (
+					<>
+						<div className="flex items-center gap-3 mb-4">
+							<span
+								className="text-sm font-bold px-3 py-1 rounded-full"
+								style={{ background: "var(--color-apprentice)", color: "white" }}
+							>
+								{dueCount} due
+							</span>
+							<span className="text-sm" style={{ color: "rgba(255,255,255,0.7)" }}>
+								Cards ready for review
+							</span>
+						</div>
+						<button
+							type="button"
+							onClick={() => navigate("/review")}
+							className="w-full py-4 rounded-xl text-lg font-semibold transition-colors"
+							style={{ background: "var(--color-accent)", color: "var(--color-text)" }}
+						>
+							Start Review
+						</button>
+					</>
+				) : (
+					<>
+						<p className="text-sm font-semibold mb-2" style={{ color: "var(--color-text-muted)" }}>
+							All reviews complete
+						</p>
+						{nextReview && (
+							<p className="text-lg font-semibold" style={{ color: "var(--color-text)" }}>
+								Next review{" "}
+								{nextReview.toLocaleDateString([], { weekday: "short" })}{" "}
+								at{" "}
+								{nextReview.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}
+							</p>
+						)}
+					</>
+				)}
 			</div>
 
-			{/* Apprentice Count */}
-			{apprenticeStats.total > 0 && (
-				<div className="bg-pink-50 dark:bg-pink-900/20 rounded-xl p-4">
-					<div className="flex justify-between items-center">
-						<div>
-							<div className="text-sm font-semibold text-pink-700 dark:text-pink-300">
-								Apprentice Items
-							</div>
-							<div className="text-xs text-pink-500 dark:text-pink-400 mt-0.5">
-								{apprenticeStats.isAtLimit
-									? "At limit — review before new lessons"
-									: `${apprenticeStats.limit - apprenticeStats.total} slots remaining`}
-							</div>
-						</div>
-						<div className="text-2xl font-bold text-pink-600 dark:text-pink-400">
-							{apprenticeStats.total}/{apprenticeStats.limit}
-						</div>
-					</div>
-				</div>
-			)}
-
-			{/* Leech Warning */}
-			{leechCount > 0 && (
-				<div className="bg-red-50 dark:bg-red-900/20 rounded-xl p-4">
-					<div className="flex justify-between items-center">
-						<div>
-							<div className="text-sm font-semibold text-red-700 dark:text-red-300">
-								Leeches Detected
-							</div>
-							<div className="text-xs text-red-500 dark:text-red-400 mt-0.5">
-								Cards that keep failing — consider extra study
-							</div>
-						</div>
-						<div className="text-2xl font-bold text-red-600 dark:text-red-400">
-							{leechCount}
-						</div>
-					</div>
-				</div>
-			)}
-
-			{/* Review Forecast */}
-			{totalCards > 0 && (
-				<div>
-					<h2 className="text-sm font-semibold text-gray-500 mb-2">
-						Review Forecast
-					</h2>
-					<div className="grid grid-cols-5 gap-2 text-center">
-						<div className="bg-gray-50 dark:bg-gray-900 rounded-lg p-2">
-							<div className="text-lg font-bold text-orange-500">
-								{forecast.dueNow}
-							</div>
-							<div className="text-[10px] text-gray-500">Now</div>
-						</div>
-						<div className="bg-gray-50 dark:bg-gray-900 rounded-lg p-2">
-							<div className="text-lg font-bold">{forecast.nextHour}</div>
-							<div className="text-[10px] text-gray-500">1 hr</div>
-						</div>
-						<div className="bg-gray-50 dark:bg-gray-900 rounded-lg p-2">
-							<div className="text-lg font-bold">{forecast.next24Hours}</div>
-							<div className="text-[10px] text-gray-500">24 hr</div>
-						</div>
-						<div className="bg-gray-50 dark:bg-gray-900 rounded-lg p-2">
-							<div className="text-lg font-bold">{forecast.next3Days}</div>
-							<div className="text-[10px] text-gray-500">3 days</div>
-						</div>
-						<div className="bg-gray-50 dark:bg-gray-900 rounded-lg p-2">
-							<div className="text-lg font-bold">{forecast.next7Days}</div>
-							<div className="text-[10px] text-gray-500">7 days</div>
-						</div>
-					</div>
-				</div>
-			)}
-
-			{/* Actions */}
-			<div className="space-y-3">
-				{nextLesson && (
+			{/* 2. Secondary Actions (2-col) */}
+			<div className="grid grid-cols-2 gap-3">
+				{nextLesson ? (
 					<button
 						type="button"
 						onClick={() => navigate(`/lesson/${nextLesson}`)}
-						className="w-full py-4 px-6 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl text-lg font-semibold transition-colors"
+						className="card-royal p-4 text-left"
 					>
-						Start Lesson {nextLesson}
+						<div className="text-xs section-header mb-1">Next Lesson</div>
+						<div className="font-semibold mt-2" style={{ color: "var(--color-primary)" }}>
+							Lesson {nextLesson}
+						</div>
 					</button>
-				)}
-				{!nextLesson && completedCount === 25 && (
-					<div className="text-center py-4 text-green-600 dark:text-green-400 font-semibold">
-						All 25 lessons completed!
+				) : (
+					<div className="card-royal p-4 opacity-50">
+						<div className="text-xs section-header mb-1">Script</div>
+						<div className="text-sm mt-2" style={{ color: "var(--color-text-muted)" }}>All done ✓</div>
 					</div>
 				)}
-				{dueCount > 0 && (
+				{lesson.getVocabUnlockedCount() > 0 ? (
 					<button
 						type="button"
-						onClick={() => navigate("/review")}
-						className="w-full py-4 px-6 bg-orange-500 hover:bg-orange-600 text-white rounded-xl text-lg font-semibold transition-colors"
+						onClick={() => navigate("/vocabulary")}
+						className="card-royal p-4 text-left"
 					>
-						Review {dueCount} Due Cards
+						<div className="text-xs section-header mb-1">Vocabulary</div>
+						<div className="font-semibold mt-2" style={{ color: "var(--color-primary)" }}>
+							{review.getDueCount("vocab")} due
+						</div>
 					</button>
-				)}
-				{dueCount === 0 && totalCards > 0 && nextReview && (
-					<p className="text-center text-sm text-gray-500">
-						Next review: {nextReview.toLocaleDateString()} at{" "}
-						{nextReview.toLocaleTimeString([], {
-							hour: "2-digit",
-							minute: "2-digit",
-						})}
-					</p>
+				) : (
+					<div className="card-royal p-4 opacity-50">
+						<div className="text-xs section-header mb-1">Vocabulary</div>
+						<div className="text-sm mt-2" style={{ color: "var(--color-text-muted)" }}>Locked</div>
+					</div>
 				)}
 			</div>
 
-			{/* Recent sessions */}
-			{state.sessionHistory.length > 0 && (
+			{/* 3. Stage Progress Pills */}
+			{Object.values(stages).some((v) => v > 0) && (
 				<div>
-					<h2 className="text-sm font-semibold text-gray-500 mb-2">
-						Recent Sessions
-					</h2>
-					<div className="space-y-2">
-						{state.sessionHistory
-							.slice(-5)
-							.reverse()
-							.map((s) => (
-								<div
-									key={s.sessionId}
-									className="flex justify-between items-center bg-gray-50 dark:bg-gray-900 rounded-lg px-4 py-2 text-sm"
-								>
-									<span className="capitalize">{s.type}</span>
-									<span>{s.totalCards} cards</span>
-									<span
-										className={
-											s.accuracy >= 80
-												? "text-green-600"
-												: s.accuracy >= 50
-													? "text-yellow-600"
-													: "text-red-600"
-										}
-									>
-										{s.accuracy}%
-									</span>
-								</div>
+					<div className="section-header mb-3">SRS Progress</div>
+					<div className="flex gap-2 overflow-x-auto pb-1">
+						{STAGE_PILL_CONFIG.map(({ key, label, color }) => (
+							<div
+								key={key}
+								className="flex-shrink-0 flex items-center gap-2 px-3 py-2 rounded-full border text-sm font-medium"
+								style={{ borderColor: color, color }}
+							>
+								<span className="w-2 h-2 rounded-full" style={{ background: color }} />
+								{label}
+								<span className="font-bold">{stages[key]}</span>
+							</div>
+						))}
+					</div>
+				</div>
+			)}
+
+			{/* 4. Study Heatmap */}
+			{state.sessionHistory.length > 0 && (
+				<div className="card-royal p-4">
+					<HeatmapWidget sessions={state.sessionHistory} />
+				</div>
+			)}
+
+			{/* 5. Achievement Shelf */}
+			{achievements.length > 0 && (
+				<div>
+					<div className="section-header mb-3">Achievements</div>
+					<div className="flex gap-4 overflow-x-auto pb-1">
+						{achievements.slice(-4).map((id) => (
+							<AchievementBadge key={id} id={id} unlocked size="sm" />
+						))}
+						{ACHIEVEMENT_DEFS.filter((d) => !achievements.includes(d.id))
+							.slice(0, 2)
+							.map((d) => (
+								<AchievementBadge key={d.id} id={d.id} unlocked={false} size="sm" />
 							))}
 					</div>
 				</div>
 			)}
-			{/* Vocabulary */}
-			{lesson.getVocabUnlockedCount() > 0 && (
-				<div className="border-t border-gray-200 dark:border-gray-800 pt-6">
-					<h2 className="text-sm font-semibold text-gray-500 mb-3">
-						Vocabulary
-					</h2>
-					<div className="grid grid-cols-3 gap-4 text-center mb-3">
-						<div className="bg-gray-50 dark:bg-gray-900 rounded-xl p-3">
-							<div className="text-lg font-bold">
-								{lesson.getVocabUnlockedCount()}
+
+			{/* 6. Upcoming Reviews Forecast */}
+			{Object.keys(state.cards).length > 0 && (
+				<div>
+					<div className="section-header mb-3">Upcoming Reviews</div>
+					<div className="grid grid-cols-5 gap-2 text-center">
+						{[
+							{ label: "Now", value: forecast.dueNow },
+							{ label: "1 hr", value: forecast.nextHour },
+							{ label: "24 hr", value: forecast.next24Hours },
+							{ label: "3 days", value: forecast.next3Days },
+							{ label: "7 days", value: forecast.next7Days },
+						].map(({ label, value }) => (
+							<div key={label} className="card-royal p-2">
+								<div
+									className="text-lg font-bold"
+									style={{ color: value > 0 ? "var(--color-accent)" : "var(--color-text-muted)" }}
+								>
+									{value}
+								</div>
+								<div className="text-[10px]" style={{ color: "var(--color-text-muted)" }}>
+									{label}
+								</div>
 							</div>
-							<div className="text-[10px] text-gray-500">Unlocked</div>
-						</div>
-						<div className="bg-gray-50 dark:bg-gray-900 rounded-xl p-3">
-							<div className="text-lg font-bold">
-								{lesson.getVocabLearnedCount()}
-							</div>
-							<div className="text-[10px] text-gray-500">Learned</div>
-						</div>
-						<div className="bg-gray-50 dark:bg-gray-900 rounded-xl p-3">
-							<div className="text-lg font-bold text-orange-500">
-								{review.getDueCount("vocab")}
-							</div>
-							<div className="text-[10px] text-gray-500">Due</div>
-						</div>
+						))}
 					</div>
-					<button
-						type="button"
-						onClick={() => navigate("/vocabulary")}
-						className="w-full py-3 px-6 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl font-semibold transition-colors"
-					>
-						Go to Vocabulary
-					</button>
 				</div>
 			)}
-			{/* Grammar */}
-			{lesson.getGrammarUnlockedCount() > 0 && (
-				<div className="border-t border-gray-200 dark:border-gray-800 pt-6">
-					<h2 className="text-sm font-semibold text-gray-500 mb-3">Grammar</h2>
-					<div className="grid grid-cols-3 gap-4 text-center mb-3">
-						<div className="bg-gray-50 dark:bg-gray-900 rounded-xl p-3">
-							<div className="text-lg font-bold">
-								{lesson.getGrammarUnlockedCount()}
-							</div>
-							<div className="text-[10px] text-gray-500">Unlocked</div>
+
+			{/* 7. Leech Warning */}
+			{leechCount > 0 && (
+				<div
+					className="rounded-xl p-4 flex justify-between items-center"
+					style={{
+						background: "rgba(192,57,43,0.08)",
+						borderLeft: "3px solid var(--color-danger)",
+					}}
+				>
+					<div>
+						<div className="text-sm font-semibold" style={{ color: "var(--color-danger)" }}>
+							Leeches Detected
 						</div>
-						<div className="bg-gray-50 dark:bg-gray-900 rounded-xl p-3">
-							<div className="text-lg font-bold">
-								{lesson.getGrammarLearnedCount()}
-							</div>
-							<div className="text-[10px] text-gray-500">Learned</div>
-						</div>
-						<div className="bg-gray-50 dark:bg-gray-900 rounded-xl p-3">
-							<div className="text-lg font-bold text-orange-500">
-								{review.getDueCount("grammar")}
-							</div>
-							<div className="text-[10px] text-gray-500">Due</div>
+						<div className="text-xs mt-0.5" style={{ color: "var(--color-text-muted)" }}>
+							Cards that keep failing — consider extra study
 						</div>
 					</div>
-					<button
-						type="button"
-						onClick={() => navigate("/grammar")}
-						className="w-full py-3 px-6 bg-cyan-600 hover:bg-cyan-700 text-white rounded-xl font-semibold transition-colors"
-					>
-						Go to Grammar
-					</button>
+					<div className="text-2xl font-bold" style={{ color: "var(--color-danger)" }}>
+						{leechCount}
+					</div>
 				</div>
 			)}
 		</div>
