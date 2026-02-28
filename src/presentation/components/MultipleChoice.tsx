@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from "react";
-
-const THAI_NUMERALS = ["๑", "๒", "๓", "๔"] as const;
+import { ThaiCharDisplay } from "./atoms/ThaiCharDisplay";
+import { AnswerOptionButton } from "./molecules/AnswerOptionButton";
 
 interface QuizCardView {
 	id: string;
@@ -13,10 +13,6 @@ interface QuizCardView {
 interface Props {
 	card: QuizCardView;
 	onAnswer: (correct: boolean, responseTimeMs: number) => void;
-}
-
-function playAudio(url: string) {
-	new Audio(url).play();
 }
 
 export function MultipleChoice({ card, onAnswer }: Props) {
@@ -38,15 +34,16 @@ export function MultipleChoice({ card, onAnswer }: Props) {
 			? ((card as Record<string, unknown>).wordThai as string)
 			: "";
 
+	// biome-ignore lint/correctness/useExhaustiveDependencies: card.id resets state when the card changes
 	useEffect(() => {
 		setSelected(null);
 		setRevealed(false);
 		displayedAtRef.current = Date.now();
-	}, []);
+	}, [card.id]);
 
 	useEffect(() => {
 		if (isAudioRecognition && card.audioUrl) {
-			playAudio(card.audioUrl);
+			new Audio(card.audioUrl).play();
 		}
 	}, [isAudioRecognition, card.audioUrl]);
 
@@ -81,9 +78,15 @@ export function MultipleChoice({ card, onAnswer }: Props) {
 					<button
 						type="button"
 						onClick={() => {
-							if (card.audioUrl) playAudio(card.audioUrl);
+							if (card.audioUrl) {
+								new Audio(card.audioUrl).play().catch(() => {});
+							}
 						}}
-						className="inline-flex items-center justify-center w-24 h-24 rounded-full bg-indigo-100 dark:bg-indigo-900/30 hover:bg-indigo-200 dark:hover:bg-indigo-800/40 text-indigo-600 dark:text-indigo-400 transition-colors text-5xl"
+						className="inline-flex items-center justify-center w-24 h-24 rounded-full transition-colors text-5xl"
+						style={{
+							background: "var(--color-surface-2)",
+							color: "var(--color-primary)",
+						}}
 						aria-label="Replay pronunciation"
 					>
 						🔊
@@ -97,19 +100,12 @@ export function MultipleChoice({ card, onAnswer }: Props) {
 						background: "var(--color-surface)",
 					}}
 				>
-					<span className="thai text-8xl font-normal">{symbolChar}</span>
-					{card.audioUrl && !hideAudioHint && (
-						<button
-							type="button"
-							onClick={() => {
-								if (card.audioUrl) playAudio(card.audioUrl);
-							}}
-							className="ml-3 inline-flex items-center justify-center w-10 h-10 rounded-full bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 text-gray-600 dark:text-gray-300 transition-colors align-middle"
-							aria-label="Play pronunciation"
-						>
-							🔊
-						</button>
-					)}
+					<ThaiCharDisplay
+						character={symbolChar}
+						className="text-[10rem]"
+						audioUrl={card.audioUrl}
+						hideAudio={hideAudioHint}
+					/>
 				</div>
 			) : wordThai ? (
 				<div
@@ -119,73 +115,33 @@ export function MultipleChoice({ card, onAnswer }: Props) {
 						background: "var(--color-surface)",
 					}}
 				>
-					<span className="thai text-6xl font-normal">{wordThai}</span>
-					{card.audioUrl && (
-						<button
-							type="button"
-							onClick={() => {
-								if (card.audioUrl) playAudio(card.audioUrl);
-							}}
-							className="ml-3 inline-flex items-center justify-center w-10 h-10 rounded-full bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 text-gray-600 dark:text-gray-300 transition-colors align-middle"
-							aria-label="Play pronunciation"
-						>
-							🔊
-						</button>
-					)}
+					<ThaiCharDisplay
+						character={wordThai}
+						className="text-[7rem]"
+						audioUrl={card.audioUrl}
+					/>
 				</div>
 			) : null}
 
-			<p className="text-center text-lg text-gray-600 dark:text-gray-300">
+			<p
+				className="text-center text-lg"
+				style={{ color: "var(--color-text-muted)" }}
+			>
 				{card.question}
 			</p>
 
 			<div className="grid grid-cols-2 gap-3">
-				{card.choices.map((choice, idx) => {
-					let extraStyle: React.CSSProperties = {
-						background: "var(--color-surface)",
-						borderColor: "var(--color-border)",
-					};
-
-					if (revealed) {
-						if (choice === card.correctAnswer) {
-							extraStyle = {
-								background: "var(--color-accent)",
-								color: "var(--color-text)",
-								borderColor: "var(--color-accent)",
-							};
-						} else if (choice === selected) {
-							extraStyle = {
-								background: "rgba(192, 57, 43, 0.12)",
-								borderColor: "var(--color-danger)",
-							};
-						}
-					}
-
-					const hasThaiChar = /[\u0E00-\u0E7F]/.test(choice);
-
-					return (
-						<button
-							type="button"
-							key={choice}
-							onClick={() => handleSelect(choice)}
-							disabled={revealed}
-							className="w-full flex flex-col items-center justify-center px-3 py-4 rounded-xl border transition-colors min-h-[5rem]"
-							style={extraStyle}
-						>
-							<span className="flex items-center gap-2 text-[10px] text-gray-400 mb-1">
-								<span className="text-xs opacity-50 font-normal">
-									{THAI_NUMERALS[idx]}
-								</span>
-								{idx + 1}
-							</span>
-							<span
-								className={`text-center leading-tight ${hasThaiChar ? "thai text-3xl" : "text-sm"}`}
-							>
-								{choice}
-							</span>
-						</button>
-					);
-				})}
+				{card.choices.map((choice, idx) => (
+					<AnswerOptionButton
+						key={choice}
+						choice={choice}
+						index={idx}
+						isRevealed={revealed}
+						isSelected={selected === choice}
+						isCorrect={choice === card.correctAnswer}
+						onClick={() => handleSelect(choice)}
+					/>
+				))}
 			</div>
 		</div>
 	);
