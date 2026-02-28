@@ -8,6 +8,7 @@ import {
 } from "react";
 import type { ApprenticeStats } from "../../apprentice-service";
 import { ApprenticeService } from "../../apprentice-service";
+import type { ReviewableCard } from "../../domain/srs/entities/ReviewableCard";
 import grammarData from "../../grammar.json";
 import { GrammarService } from "../../grammar-service";
 import type {
@@ -15,6 +16,7 @@ import type {
 	GrammarEntry,
 	GrammarLessonSummary,
 } from "../../grammar-types";
+import { StorageCardRepository } from "../../infrastructure/persistence/StorageCardRepository";
 import {
 	LearningService,
 	type LessonInfo,
@@ -47,8 +49,9 @@ import type {
 } from "../../vocabulary-types";
 
 const storage = new LocalStorageAdapter();
-const apprenticeService = new ApprenticeService(storage);
-const leechService = new LeechService(storage);
+const cardRepo = new StorageCardRepository(storage);
+const apprenticeService = new ApprenticeService(cardRepo);
+const leechService = new LeechService(cardRepo);
 const learningService = new LearningService(storage, apprenticeService);
 const reviewService = new ReviewService(storage);
 const vocabularyService = new VocabularyService(
@@ -130,7 +133,7 @@ export interface AppContextValue {
 	endGrammarReviewSession: (session: ActiveReviewSession) => SessionSummary;
 	// WaniKani-inspired features
 	getStageCounts: (pool?: CardPool) => StageCounts;
-	getLeechCards: (pool?: CardPool) => SrsCard[];
+	getLeechCards: (pool?: CardPool) => ReviewableCard[];
 	getLeechCount: (pool?: CardPool) => number;
 	getApprenticeStats: () => ApprenticeStats;
 	canStartLesson: () => boolean;

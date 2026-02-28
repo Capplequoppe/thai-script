@@ -1,156 +1,104 @@
 import { beforeEach, describe, expect, it } from "vitest";
+import { ScriptPropertyCard } from "./domain/script/entities/ScriptPropertyCard";
+import { SrsSchedule } from "./domain/srs/value-objects/SrsSchedule";
+import { VocabCard } from "./domain/vocabulary/entities/VocabCard";
+import { StorageCardRepository } from "./infrastructure/persistence/StorageCardRepository";
 import { DEFAULT_LEECH_THRESHOLD, LeechService } from "./leech-service";
 import { InMemoryStorage } from "./storage";
-import type { SrsCard, SrsData } from "./types";
 
-function makeSrsData(overrides: Partial<SrsData> = {}): SrsData {
-	return {
+function makeSchedule(lapseCount: number): SrsSchedule {
+	return SrsSchedule.fromDTO({
 		easeFactor: 2.0,
 		interval: 10,
 		repetitions: 0,
 		learningStep: 1,
 		nextReviewDate: new Date().toISOString(),
 		lastReviewDate: null,
-		lapseCount: 0,
-		...overrides,
-	};
+		lapseCount,
+	});
 }
 
-function makeSrsCard(id: string, overrides: Partial<SrsData> = {}): SrsCard {
-	return {
+function makeScriptCard(id: string, lapseCount: number): ScriptPropertyCard {
+	return new ScriptPropertyCard(
 		id,
-		question: "test",
-		correctAnswer: "test",
-		choices: ["test"],
-		srs: makeSrsData(overrides),
-	};
+		"test",
+		"test",
+		["test"],
+		makeSchedule(lapseCount),
+		"ก",
+		"recognition",
+		1,
+	);
+}
+
+function makeVocabCard(id: string, lapseCount: number): VocabCard {
+	return new VocabCard(
+		id,
+		"test",
+		"test",
+		["test"],
+		makeSchedule(lapseCount),
+		"มา",
+		"thaiToEnglish",
+	);
 }
 
 describe("LeechService", () => {
 	let storage: InMemoryStorage;
 	let service: LeechService;
+	let cardRepo: StorageCardRepository;
 
 	beforeEach(() => {
 		storage = new InMemoryStorage();
-		service = new LeechService(storage);
+		cardRepo = new StorageCardRepository(storage);
+		service = new LeechService(cardRepo);
 	});
 
 	describe("isLeech", () => {
 		it("returns false when lapseCount is below threshold", () => {
-			const card = makeSrsCard("c1", { lapseCount: 3 });
+			const card = makeScriptCard("c1", 3);
 			expect(service.isLeech(card)).toBe(false);
 		});
 
 		it("returns true when lapseCount equals threshold", () => {
-			const card = makeSrsCard("c1", {
-				lapseCount: DEFAULT_LEECH_THRESHOLD,
-			});
+			const card = makeScriptCard("c1", DEFAULT_LEECH_THRESHOLD);
 			expect(service.isLeech(card)).toBe(true);
 		});
 
 		it("returns true when lapseCount exceeds threshold", () => {
-			const card = makeSrsCard("c1", {
-				lapseCount: DEFAULT_LEECH_THRESHOLD + 5,
-			});
+			const card = makeScriptCard("c1", DEFAULT_LEECH_THRESHOLD + 5);
 			expect(service.isLeech(card)).toBe(true);
 		});
 
-		it("treats undefined lapseCount as 0", () => {
-			const card = makeSrsCard("c1");
-			card.srs.lapseCount = undefined;
+		it("treats zero lapseCount as not leech", () => {
+			const card = makeScriptCard("c1", 0);
 			expect(service.isLeech(card)).toBe(false);
 		});
 	});
 
 	describe("getLeechCards", () => {
 		it("filters script cards when pool is script", () => {
-			const state = storage.load();
-			state.cards["s1"] = {
-				id: "s1",
-				question: "test",
-				correctAnswer: "test",
-				choices: ["test"],
-				srs: makeSrsData({ lapseCount: 10 }),
-				symbolCharacter: "ก",
-				property: "recognition",
-				lessonNumber: 1,
-			};
-			state.cards["s2"] = {
-				id: "s2",
-				question: "test",
-				correctAnswer: "test",
-				choices: ["test"],
-				srs: makeSrsData({ lapseCount: 1 }),
-				symbolCharacter: "ข",
-				property: "recognition",
-				lessonNumber: 1,
-			};
-			state.vocabCards["v1"] = {
-				id: "v1",
-				question: "test",
-				correctAnswer: "test",
-				choices: ["test"],
-				srs: makeSrsData({ lapseCount: 10 }),
-				wordThai: "มา",
-				property: "thaiToEnglish",
-			};
-			storage.save(state);
+			cardRepo.save(makeScriptCard("s1", 10));
+			cardRepo.save(makeScriptCard("s2", 1));
+			cardRepo.save(makeVocabCard("v1", 10));
 
 			const leeches = service.getLeechCards("script");
 			expect(leeches).toHaveLength(1);
-			expect(leeches[0]!.id).toBe("s1");
+			expect(leeches[0]?.id).toBe("s1");
 		});
 
 		it("filters vocab cards when pool is vocab", () => {
-			const state = storage.load();
-			state.cards["s1"] = {
-				id: "s1",
-				question: "test",
-				correctAnswer: "test",
-				choices: ["test"],
-				srs: makeSrsData({ lapseCount: 10 }),
-				symbolCharacter: "ก",
-				property: "recognition",
-				lessonNumber: 1,
-			};
-			state.vocabCards["v1"] = {
-				id: "v1",
-				question: "test",
-				correctAnswer: "test",
-				choices: ["test"],
-				srs: makeSrsData({ lapseCount: 10 }),
-				wordThai: "มา",
-				property: "thaiToEnglish",
-			};
-			storage.save(state);
+			cardRepo.save(makeScriptCard("s1", 10));
+			cardRepo.save(makeVocabCard("v1", 10));
 
 			const leeches = service.getLeechCards("vocab");
 			expect(leeches).toHaveLength(1);
-			expect(leeches[0]!.id).toBe("v1");
+			expect(leeches[0]?.id).toBe("v1");
 		});
 
-		it("returns cards from both pools when pool is undefined", () => {
-			const state = storage.load();
-			state.cards["s1"] = {
-				id: "s1",
-				question: "test",
-				correctAnswer: "test",
-				choices: ["test"],
-				srs: makeSrsData({ lapseCount: 10 }),
-				symbolCharacter: "ก",
-				property: "recognition",
-				lessonNumber: 1,
-			};
-			state.vocabCards["v1"] = {
-				id: "v1",
-				question: "test",
-				correctAnswer: "test",
-				choices: ["test"],
-				srs: makeSrsData({ lapseCount: 10 }),
-				wordThai: "มา",
-				property: "thaiToEnglish",
-			};
-			storage.save(state);
+		it("returns cards from all pools when pool is undefined", () => {
+			cardRepo.save(makeScriptCard("s1", 10));
+			cardRepo.save(makeVocabCard("v1", 10));
 
 			const leeches = service.getLeechCards();
 			expect(leeches).toHaveLength(2);
@@ -159,28 +107,8 @@ describe("LeechService", () => {
 
 	describe("getLeechCount", () => {
 		it("returns the correct count", () => {
-			const state = storage.load();
-			state.cards["s1"] = {
-				id: "s1",
-				question: "test",
-				correctAnswer: "test",
-				choices: ["test"],
-				srs: makeSrsData({ lapseCount: 10 }),
-				symbolCharacter: "ก",
-				property: "recognition",
-				lessonNumber: 1,
-			};
-			state.cards["s2"] = {
-				id: "s2",
-				question: "test",
-				correctAnswer: "test",
-				choices: ["test"],
-				srs: makeSrsData({ lapseCount: 1 }),
-				symbolCharacter: "ข",
-				property: "recognition",
-				lessonNumber: 1,
-			};
-			storage.save(state);
+			cardRepo.save(makeScriptCard("s1", 10));
+			cardRepo.save(makeScriptCard("s2", 1));
 
 			expect(service.getLeechCount("script")).toBe(1);
 		});
@@ -188,8 +116,8 @@ describe("LeechService", () => {
 
 	describe("custom threshold", () => {
 		it("uses a custom threshold", () => {
-			const customService = new LeechService(storage, 3);
-			const card = makeSrsCard("c1", { lapseCount: 3 });
+			const customService = new LeechService(cardRepo, 3);
+			const card = makeScriptCard("c1", 3);
 			expect(customService.isLeech(card)).toBe(true);
 		});
 	});
