@@ -86,7 +86,7 @@ export interface ReviewSession {
 
 export interface SessionSummary {
 	sessionId: string;
-	type: "lesson" | "review" | "mixed";
+	type: "lesson" | "review" | "mixed" | "vocab-lesson" | "vocab-review";
 	durationMs: number;
 	totalCards: number;
 	correctCount: number;

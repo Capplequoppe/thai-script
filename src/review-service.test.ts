@@ -2,6 +2,8 @@ import { beforeEach, describe, expect, it } from "vitest";
 import { LearningService } from "./learning-service";
 import { ReviewService } from "./review-service";
 import { InMemoryStorage } from "./storage";
+import type { VocabularyCard } from "./vocabulary-types";
+import { DEFAULT_SRS_DATA } from "./types";
 
 // Cards start at learning step 1 (interval 10 min), so they're due 10 min after creation.
 // Use a future timestamp to simulate time passing so cards become due.
@@ -138,6 +140,75 @@ describe("ReviewService", () => {
 			const emptyStorage = new InMemoryStorage();
 			const emptyReview = new ReviewService(emptyStorage);
 			expect(emptyReview.getNextReviewDate()).toBeNull();
+		});
+	});
+
+	describe("vocab pool", () => {
+		function seedVocabCards(store: InMemoryStorage): void {
+			const state = store.load();
+			const now = new Date().toISOString();
+			const vocabCard: VocabularyCard = {
+				id: "vocab-1",
+				question: "What does สวัสดี mean?",
+				correctAnswer: "hello",
+				choices: ["hello", "goodbye", "thanks", "sorry"],
+				srs: { ...DEFAULT_SRS_DATA, nextReviewDate: now },
+				wordThai: "สวัสดี",
+				property: "thaiToEnglish",
+			};
+			state.vocabCards[vocabCard.id] = vocabCard;
+			store.save(state);
+		}
+
+		it("getDueCards returns vocab cards when pool is vocab", () => {
+			seedVocabCards(storage);
+			const due = reviewService.getDueCards(FUTURE_NOW, "vocab");
+			expect(due.length).toBe(1);
+			expect(due[0]!.id).toBe("vocab-1");
+		});
+
+		it("getDueCards with default pool does not return vocab cards", () => {
+			seedVocabCards(storage);
+			const due = reviewService.getDueCards(FUTURE_NOW);
+			for (const card of due) {
+				expect(card.id).not.toBe("vocab-1");
+			}
+		});
+
+		it("recordReview updates vocab card SRS data", () => {
+			seedVocabCards(storage);
+			reviewService.recordReview("vocab-1", 4, FUTURE_NOW, undefined, "vocab");
+
+			const state = storage.load();
+			const updated = state.vocabCards["vocab-1"]!;
+			expect(updated.srs.repetitions).toBe(1);
+			expect(updated.srs.interval).toBe(60);
+		});
+
+		it("recordReview throws for vocab card when using script pool", () => {
+			seedVocabCards(storage);
+			expect(() => reviewService.recordReview("vocab-1", 4, FUTURE_NOW)).toThrow(
+				"Card not found",
+			);
+		});
+
+		it("endReviewSession sets type to vocab-review for vocab pool", () => {
+			seedVocabCards(storage);
+			const session = reviewService.startReviewSession(undefined, FUTURE_NOW, "vocab");
+			session.results.push({ cardId: "vocab-1", rating: 4 });
+			const summary = reviewService.endReviewSession(session, undefined, "vocab");
+			expect(summary.type).toBe("vocab-review");
+		});
+
+		it("getNextReviewDate works with vocab pool", () => {
+			seedVocabCards(storage);
+			const date = reviewService.getNextReviewDate("vocab");
+			expect(date).toBeInstanceOf(Date);
+		});
+
+		it("getNextReviewDate returns null for empty vocab pool", () => {
+			const date = reviewService.getNextReviewDate("vocab");
+			expect(date).toBeNull();
 		});
 	});
 });

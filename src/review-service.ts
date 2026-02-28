@@ -1,11 +1,14 @@
 import { type ResponseTimingData, calculateNextReview, isDue } from "./srs";
 import type { IStorage } from "./storage";
 import type {
-	PropertyCard,
+	LearnerState,
 	QuizCard,
 	RecallRating,
 	SessionSummary,
+	SrsCard,
 } from "./types";
+
+export type CardPool = "script" | "vocab";
 
 export interface ActiveReviewSession {
 	id: string;
@@ -17,21 +20,35 @@ export interface ActiveReviewSession {
 export class ReviewService {
 	constructor(private readonly storage: IStorage) {}
 
-	getDueCards(now?: string): PropertyCard[] {
+	private getCardRecord(
+		state: LearnerState,
+		pool: CardPool,
+	): Record<string, SrsCard> {
+		return pool === "script" ? state.cards : state.vocabCards;
+	}
+
+	getDueCards(now?: string, pool: CardPool = "script"): SrsCard[] {
 		const state = this.storage.load();
 		const currentTime = now ?? new Date().toISOString();
-		return Object.values(state.cards).filter((card) =>
+		return Object.values(this.getCardRecord(state, pool)).filter((card) =>
 			isDue(card.srs, currentTime),
 		);
 	}
 
-	getNumDueCards(now?: string): number {
-		return this.getDueCards(now).length;
+	getNumDueCards(now?: string, pool: CardPool = "script"): number {
+		return this.getDueCards(now, pool).length;
 	}
 
-	recordReview(cardId: string, rating: RecallRating, now?: string, timing?: ResponseTimingData): void {
+	recordReview(
+		cardId: string,
+		rating: RecallRating,
+		now?: string,
+		timing?: ResponseTimingData,
+		pool: CardPool = "script",
+	): void {
 		const state = this.storage.load();
-		const card = state.cards[cardId];
+		const cardRecord = this.getCardRecord(state, pool);
+		const card = cardRecord[cardId];
 		if (!card) throw new Error(`Card not found: ${cardId}`);
 
 		const currentTime = now ?? new Date().toISOString();
@@ -39,8 +56,12 @@ export class ReviewService {
 		this.storage.save(state);
 	}
 
-	startReviewSession(maxCards?: number, now?: string): ActiveReviewSession {
-		const dueCards = this.getDueCards(now);
+	startReviewSession(
+		maxCards?: number,
+		now?: string,
+		pool: CardPool = "script",
+	): ActiveReviewSession {
+		const dueCards = this.getDueCards(now, pool);
 
 		const sorted = dueCards.sort((a, b) => {
 			const aDate = new Date(a.srs.nextReviewDate).getTime();
@@ -73,7 +94,11 @@ export class ReviewService {
 		};
 	}
 
-	endReviewSession(session: ActiveReviewSession, now?: string): SessionSummary {
+	endReviewSession(
+		session: ActiveReviewSession,
+		now?: string,
+		pool: CardPool = "script",
+	): SessionSummary {
 		const endTime = now ?? new Date().toISOString();
 		const startMs = new Date(session.startedAt).getTime();
 		const endMs = new Date(endTime).getTime();
@@ -82,9 +107,11 @@ export class ReviewService {
 		const incorrect = session.results.filter((r) => r.rating < 3).length;
 		const total = session.results.length;
 
+		const summaryType = pool === "script" ? "review" : "vocab-review";
+
 		const summary: SessionSummary = {
 			sessionId: session.id,
-			type: "review",
+			type: summaryType,
 			durationMs: endMs - startMs,
 			totalCards: total,
 			correctCount: correct,
@@ -100,9 +127,9 @@ export class ReviewService {
 		return summary;
 	}
 
-	getNextReviewDate(): Date | null {
+	getNextReviewDate(pool: CardPool = "script"): Date | null {
 		const state = this.storage.load();
-		const cards = Object.values(state.cards);
+		const cards = Object.values(this.getCardRecord(state, pool));
 		if (cards.length === 0) return null;
 
 		let earliest = Infinity;

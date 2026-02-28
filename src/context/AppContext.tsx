@@ -15,9 +15,9 @@ import { type ActiveReviewSession, ReviewService } from "../review-service";
 import { LocalStorageAdapter } from "../storage";
 import type {
 	LearnerState,
-	PropertyCard,
 	RecallRating,
 	SessionSummary,
+	SrsCard,
 } from "../types";
 import { NotificationScheduler } from "../notification-scheduler";
 
@@ -48,7 +48,7 @@ export interface AppContextValue {
 	getNextLesson: () => number | null;
 	getLessonSummary: (n: number) => LessonSummary;
 	getCompletedLessons: () => number[];
-	getDueCards: () => PropertyCard[];
+	getDueCards: () => SrsCard[];
 	getNumDueCards: () => number;
 	recordReview: (cardId: string, rating: RecallRating, timing?: { responseTimeMs: number; averageResponseTimeMs: number }) => void;
 	startReviewSession: (maxCards?: number) => ActiveReviewSession;

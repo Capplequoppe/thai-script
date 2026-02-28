@@ -3,6 +3,7 @@ import type {
 	PropertyCard,
 	RecallRating,
 	SessionSummary,
+	SrsCard,
 } from "./types";
 
 export interface ILearningService {
@@ -52,12 +53,12 @@ export interface ILearningService {
 }
 
 export interface IReviewService {
-	getDueCards(): PropertyCard[];
+	getDueCards(): SrsCard[];
 	getNumDueCards(): number;
 	recordReview(cardId: string, rating: RecallRating, now?: string, timing?: { responseTimeMs: number; averageResponseTimeMs: number }): void;
 	startReviewSession(maxCards?: number): {
 		id: string;
-		cards: Array<{ card: PropertyCard; mode: "multipleChoice" | "flashcard" }>;
+		cards: Array<{ card: SrsCard; mode: "multipleChoice" | "flashcard" }>;
 		startedAt: string;
 		results: Array<{ cardId: string; rating: RecallRating }>;
 	};
