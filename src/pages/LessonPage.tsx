@@ -1,8 +1,9 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useNavigate, useParams } from "react-router";
 import { LessonIntro } from "../components/LessonIntro";
 import { MultipleChoice } from "../components/MultipleChoice";
 import { useApp } from "../hooks/useApp";
+import { useSessionFlow } from "../presentation/hooks/useSessionFlow";
 import type { PropertyCard } from "../types";
 
 type Phase = "intro" | "quiz" | "complete";
@@ -15,9 +16,7 @@ export function LessonPage() {
 
 	const [phase, setPhase] = useState<Phase>("intro");
 	const [cards, setCards] = useState<PropertyCard[]>([]);
-	const [cardIdx, setCardIdx] = useState(0);
-	const [correct, setCorrect] = useState(0);
-	const [incorrect, setIncorrect] = useState(0);
+	const flow = useSessionFlow(cards.length);
 
 	const summary = useMemo(() => {
 		try {
@@ -26,6 +25,13 @@ export function LessonPage() {
 			return null;
 		}
 	}, [app, num]);
+
+	useEffect(() => {
+		if (flow.isComplete) {
+			app.completeLesson(num);
+			setPhase("complete");
+		}
+	}, [flow.isComplete, app, num]);
 
 	if (!summary) {
 		return (
@@ -54,18 +60,6 @@ export function LessonPage() {
 		}
 	};
 
-	const handleAnswer = (isCorrect: boolean) => {
-		if (isCorrect) setCorrect((c) => c + 1);
-		else setIncorrect((c) => c + 1);
-
-		if (cardIdx + 1 < cards.length) {
-			setCardIdx((i) => i + 1);
-		} else {
-			app.completeLesson(num);
-			setPhase("complete");
-		}
-	};
-
 	if (phase === "intro") {
 		return (
 			<div>
@@ -76,51 +70,46 @@ export function LessonPage() {
 		);
 	}
 
-	if (phase === "quiz" && cards[cardIdx]) {
+	if (phase === "quiz" && cards[flow.cardIdx]) {
 		return (
 			<div>
 				<div className="flex justify-between items-center mb-6">
 					<h1 className="text-lg font-bold">Lesson {num} Quiz</h1>
 					<span className="text-sm text-gray-500">
-						{cardIdx + 1} / {cards.length}
+						{flow.cardIdx + 1} / {cards.length}
 					</span>
 				</div>
 				<div className="w-full h-1.5 bg-gray-200 dark:bg-gray-800 rounded-full mb-6">
 					<div
 						className="h-full bg-indigo-600 rounded-full transition-all"
-						style={{ width: `${((cardIdx + 1) / cards.length) * 100}%` }}
+						style={{
+							width: `${((flow.cardIdx + 1) / cards.length) * 100}%`,
+						}}
 					/>
 				</div>
-				<MultipleChoice card={cards[cardIdx]!} onAnswer={handleAnswer} />
+				<MultipleChoice card={cards[flow.cardIdx]!} onAnswer={flow.advance} />
 			</div>
 		);
 	}
 
 	// Complete phase
-	const total = correct + incorrect;
-	const accuracy = total > 0 ? Math.round((correct / total) * 100) : 0;
-
 	return (
 		<div className="text-center space-y-6 py-8">
-			<div className="text-6xl">
-				{accuracy >= 80
-					? "\uD83C\uDF89"
-					: accuracy >= 50
-						? "\uD83D\uDCAA"
-						: "\uD83D\uDCDA"}
-			</div>
+			<div className="text-6xl">{flow.accuracy.emoji}</div>
 			<h1 className="text-2xl font-bold">Lesson {num} Complete!</h1>
 			<div className="grid grid-cols-3 gap-4">
 				<div className="bg-gray-50 dark:bg-gray-900 rounded-xl p-4">
-					<div className="text-2xl font-bold">{total}</div>
+					<div className="text-2xl font-bold">
+						{flow.correct + flow.incorrect}
+					</div>
 					<div className="text-xs text-gray-500">Cards</div>
 				</div>
 				<div className="bg-gray-50 dark:bg-gray-900 rounded-xl p-4">
-					<div className="text-2xl font-bold text-green-600">{correct}</div>
+					<div className="text-2xl font-bold text-green-600">{flow.correct}</div>
 					<div className="text-xs text-gray-500">Correct</div>
 				</div>
 				<div className="bg-gray-50 dark:bg-gray-900 rounded-xl p-4">
-					<div className="text-2xl font-bold">{accuracy}%</div>
+					<div className="text-2xl font-bold">{flow.accuracy.percentage}%</div>
 					<div className="text-xs text-gray-500">Accuracy</div>
 				</div>
 			</div>

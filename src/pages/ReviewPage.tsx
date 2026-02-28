@@ -2,79 +2,70 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router";
 import { Flashcard } from "../components/Flashcard";
 import { MultipleChoice } from "../components/MultipleChoice";
+import { Accuracy } from "../domain/srs/value-objects/Accuracy";
 import { useApp } from "../hooks/useApp";
-import type { ActiveReviewSession } from "../review-service";
+import { useReviewSession } from "../presentation/hooks/useReviewSession";
 import type { RecallRating } from "../types";
+
+interface ReviewResult {
+	cardId: string;
+	rating: RecallRating;
+}
 
 export function ReviewPage() {
 	const app = useApp();
 	const navigate = useNavigate();
-	const [session, setSession] = useState<ActiveReviewSession | null>(null);
-	const [cardIdx, setCardIdx] = useState(0);
 	const [done, setDone] = useState(false);
-	const sessionRef = useRef<ActiveReviewSession | null>(null);
+	const resultsRef = useRef<ReviewResult[]>([]);
 	const startedRef = useRef(false);
 
-	const startSession = useCallback(() => {
-		const s = app.startReviewSession();
-		if (s.cards.length === 0) {
-			navigate("/");
-			return;
-		}
-		sessionRef.current = s;
-		setSession(s);
-		setCardIdx(0);
-		setDone(false);
-	}, [app, navigate]);
+	const review = useReviewSession(
+		app.startReviewSession,
+		app.recordReview,
+		app.endReviewSession,
+	);
+
+	const handleAdvance = useCallback(
+		(rating: RecallRating) => {
+			const result = review.handleReviewAdvance(rating);
+			if (result === "complete") {
+				resultsRef.current = review.session?.results ?? [];
+				setDone(true);
+			}
+		},
+		[review],
+	);
+
+	const handleMcAnswer = useCallback(
+		(correct: boolean) => {
+			const rating: RecallRating = correct ? 4 : 2;
+			handleAdvance(rating);
+		},
+		[handleAdvance],
+	);
 
 	// Auto-start on mount
 	useEffect(() => {
 		if (!startedRef.current) {
 			startedRef.current = true;
-			startSession();
-		}
-	}, [startSession]);
-
-	const current = session?.cards[cardIdx] ?? null;
-
-	const advance = useCallback(
-		(rating: RecallRating, _responseTimeMs?: number) => {
-			if (!current || !sessionRef.current || !session) return;
-
-			app.recordReview(current.card.id, rating);
-			sessionRef.current.results.push({ cardId: current.card.id, rating });
-
-			if (cardIdx + 1 < session.cards.length) {
-				setCardIdx((i) => i + 1);
-			} else {
-				app.endReviewSession(sessionRef.current);
-				setDone(true);
+			const s = review.startReview();
+			if (s.cards.length === 0) {
+				navigate("/");
 			}
-		},
-		[app, current, cardIdx, session],
-	);
+		}
+	}, [review, navigate]);
 
-	const handleMultipleChoiceAnswer = useCallback(
-		(correct: boolean, _responseTimeMs: number) => {
-			advance(correct ? 4 : 2);
-		},
-		[advance],
-	);
-
-	if (!session) return null;
+	if (!review.session && !done) return null;
 
 	if (done) {
-		const results = sessionRef.current?.results ?? [];
+		const results = resultsRef.current;
 		const correctCount = results.filter((r) => r.rating >= 3).length;
-		const accuracy =
-			results.length > 0
-				? Math.round((correctCount / results.length) * 100)
-				: 0;
+		const accuracy = Accuracy.fromCounts(correctCount, results.length);
 
 		return (
 			<div className="text-center space-y-6 py-8">
 				<div className="text-6xl">
-					{accuracy >= 80 ? "\uD83C\uDF1F" : "\uD83D\uDCAA"}
+					{accuracy.percentage >= 80 ? "\uD83C\uDF1F" : "\uD83D\uDCAA"}
 				</div>
 				<h1 className="text-2xl font-bold">Review Complete!</h1>
 				<div className="grid grid-cols-3 gap-4">
@@ -89,7 +80,7 @@ export function ReviewPage() {
 						<div className="text-xs text-gray-500">Correct</div>
 					</div>
 					<div className="bg-gray-50 dark:bg-gray-900 rounded-xl p-4">
-						<div className="text-2xl font-bold">{accuracy}%</div>
+						<div className="text-2xl font-bold">{accuracy.percentage}%</div>
 						<div className="text-xs text-gray-500">Accuracy</div>
 					</div>
 				</div>
@@ -98,7 +89,6 @@ export function ReviewPage() {
 						<button
 							onClick={() => {
 								startedRef.current = false;
-								setSession(null);
 								setDone(false);
 							}}
 							className="w-full py-3 bg-orange-500 hover:bg-orange-600 text-white rounded-xl font-semibold"
@@ -117,30 +107,32 @@ export function ReviewPage() {
 		);
 	}
 
-	if (!current) return null;
+	if (!review.currentCard || !review.session) return null;
 
 	return (
 		<div>
 			<div className="flex justify-between items-center mb-4">
 				<h1 className="text-lg font-bold">Review</h1>
 				<span className="text-sm text-gray-500">
-					{cardIdx + 1} / {session.cards.length}
+					{review.cardIdx + 1} / {review.session.cards.length}
 				</span>
 			</div>
 			<div className="w-full h-1.5 bg-gray-200 dark:bg-gray-800 rounded-full mb-6">
 				<div
 					className="h-full bg-orange-500 rounded-full transition-all"
-					style={{ width: `${((cardIdx + 1) / session.cards.length) * 100}%` }}
+					style={{
+						width: `${((review.cardIdx + 1) / review.session.cards.length) * 100}%`,
+					}}
 				/>
 			</div>
 
-			{current.mode === "multipleChoice" ? (
+			{review.currentCard.mode === "multipleChoice" ? (
 				<MultipleChoice
-					card={current.card}
-					onAnswer={handleMultipleChoiceAnswer}
+					card={review.currentCard.card}
+					onAnswer={handleMcAnswer}
 				/>
 			) : (
-				<Flashcard card={current.card} onRate={advance} />
+				<Flashcard card={review.currentCard.card} onRate={handleAdvance} />
 			)}
 		</div>
 	);
