@@ -1,3 +1,8 @@
+import type {
+	GrammarCard,
+	GrammarEntry,
+	GrammarLessonSummary,
+} from "./grammar-types";
 import type { LessonInfo } from "./learning-service";
 import type {
 	CardPool,
@@ -79,6 +84,15 @@ export interface IReviewService {
 	getSessionHistory(): SessionSummary[];
 	getReviewForecast(now?: string, pool?: CardPool): ReviewForecast;
 	getCriticalItems(pool?: CardPool, limit?: number): CriticalItem[];
+}
+
+export interface IGrammarService {
+	getUnlockedGrammarPoints(): GrammarEntry[];
+	getUnlearnedGrammarPoints(): GrammarEntry[];
+	getNextLesson(): GrammarLessonSummary | null;
+	startLesson(): GrammarCard[] | null;
+	getUnlockedCount(): number;
+	getLearnedCount(): number;
 }
 
 export interface IStorage {
