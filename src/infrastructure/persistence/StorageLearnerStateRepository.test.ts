@@ -106,12 +106,14 @@ describe("StorageLearnerStateRepository", () => {
 			repo.addCompletedLesson(1);
 			repo.setCurrentLesson(5);
 			repo.addSession(makeSummary("s1"));
+			repo.addAchievement("first_lesson");
 
 			repo.reset();
 
 			expect(repo.getCompletedLessons()).toEqual([]);
 			expect(repo.getCurrentLesson()).toBeNull();
 			expect(repo.getSessionHistory()).toEqual([]);
+			expect(repo.getAchievements()).toEqual([]);
 		});
 	});
 

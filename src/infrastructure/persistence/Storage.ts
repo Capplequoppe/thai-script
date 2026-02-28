@@ -92,6 +92,9 @@ export class LocalStorageAdapter implements IStorage {
 		if (!state.grammarCards) {
 			state.grammarCards = {};
 		}
+		if (!state.achievements) {
+			state.achievements = [];
+		}
 		return migrateState(state);
 	}
 
