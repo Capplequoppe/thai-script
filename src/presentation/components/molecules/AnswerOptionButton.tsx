@@ -33,7 +33,7 @@ export function AnswerOptionButton({
 			};
 		} else if (isSelected) {
 			style = {
-				background: "rgba(192, 57, 43, 0.12)",
+				background: "color-mix(in srgb, var(--color-danger) 12%, transparent)",
 				borderColor: "var(--color-danger)",
 			};
 		}
@@ -54,7 +54,7 @@ export function AnswerOptionButton({
 				style={{ color: "var(--color-text-muted)" }}
 			>
 				<span className="text-base opacity-50 font-normal">
-					{THAI_NUMERALS[index]}
+					{THAI_NUMERALS[index] ?? String(index + 1)}
 				</span>
 				{index + 1}
 			</span>
