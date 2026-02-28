@@ -6,18 +6,29 @@ import {
 	useMemo,
 	useState,
 } from "react";
+import { ApprenticeService } from "../apprentice-service";
+import type { ApprenticeStats } from "../apprentice-service";
+import { LeechService } from "../leech-service";
 import {
 	LearningService,
 	type LessonInfo,
 	type LessonSummary,
 } from "../learning-service";
-import { type ActiveReviewSession, ReviewService } from "../review-service";
+import {
+	type ActiveReviewSession,
+	type CriticalItem,
+	type ReviewForecast,
+	ReviewService,
+} from "../review-service";
+import type { CardPool } from "../review-service";
+import { getStageCounts } from "../srs";
 import { LocalStorageAdapter } from "../storage";
 import type {
 	LearnerState,
 	RecallRating,
 	SessionSummary,
 	SrsCard,
+	StageCounts,
 } from "../types";
 import { NotificationScheduler } from "../notification-scheduler";
 import vocabularyData from "../vocabulary.json";
@@ -29,9 +40,11 @@ import type {
 } from "../vocabulary-types";
 
 const storage = new LocalStorageAdapter();
-const learningService = new LearningService(storage);
+const apprenticeService = new ApprenticeService(storage);
+const leechService = new LeechService(storage);
+const learningService = new LearningService(storage, apprenticeService);
 const reviewService = new ReviewService(storage);
-const vocabularyService = new VocabularyService(storage, vocabularyData as VocabEntry[]);
+const vocabularyService = new VocabularyService(storage, vocabularyData as VocabEntry[], apprenticeService);
 const notificationScheduler = new NotificationScheduler();
 
 function scheduleNextNotification() {
@@ -50,7 +63,7 @@ function scheduleNextNotification() {
 export interface AppContextValue {
 	state: LearnerState;
 	refresh: () => void;
-	startLesson: (n: number) => LessonInfo;
+	startLesson: (n: number) => LessonInfo | null;
 	completeLesson: (n: number) => void;
 	unlearnLesson: (n: number) => void;
 	getNextLesson: () => number | null;
@@ -70,13 +83,24 @@ export interface AppContextValue {
 	getUnlockedWords: () => VocabEntry[];
 	getUnlearnedWords: () => VocabEntry[];
 	getNextVocabLesson: () => VocabLessonSummary | null;
-	startVocabLesson: () => VocabularyCard[];
+	startVocabLesson: () => VocabularyCard[] | null;
 	getVocabUnlockedCount: () => number;
 	getVocabLearnedCount: () => number;
 	getNumDueVocabCards: () => number;
 	recordVocabReview: (cardId: string, rating: RecallRating, timing?: { responseTimeMs: number; averageResponseTimeMs: number }) => void;
 	startVocabReviewSession: (maxCards?: number) => ActiveReviewSession;
 	endVocabReviewSession: (session: ActiveReviewSession) => SessionSummary;
+	// WaniKani-inspired features
+	getStageCounts: (pool?: CardPool) => StageCounts;
+	getLeechCards: (pool?: CardPool) => SrsCard[];
+	getLeechCount: (pool?: CardPool) => number;
+	getApprenticeStats: () => ApprenticeStats;
+	canStartLesson: () => boolean;
+	getReviewForecast: () => ReviewForecast;
+	getCriticalItems: (pool?: CardPool, limit?: number) => CriticalItem[];
+	isNextLessonAvailable: () => boolean;
+	getLessonMasteryProgress: (lessonNumber: number) => { total: number; graduated: number; percentage: number };
+	resurrectCard: (cardId: string, pool?: CardPool) => void;
 }
 
 export const AppContext = createContext<AppContextValue | null>(null);
@@ -148,6 +172,24 @@ export function AppProvider({ children }: { children: ReactNode }) {
 				reviewService.startReviewSession(maxCards, undefined, "vocab"),
 			endVocabReviewSession: (session) =>
 				wrap(() => reviewService.endReviewSession(session, undefined, "vocab")),
+			// WaniKani-inspired features
+			getStageCounts: (pool) => {
+				const cards = pool === "vocab"
+					? Object.values(state.vocabCards)
+					: pool === "script"
+						? Object.values(state.cards)
+						: [...Object.values(state.cards), ...Object.values(state.vocabCards)];
+				return getStageCounts(cards.map((c) => c.srs));
+			},
+			getLeechCards: (pool) => leechService.getLeechCards(pool),
+			getLeechCount: (pool) => leechService.getLeechCount(pool),
+			getApprenticeStats: () => apprenticeService.getApprenticeStats(),
+			canStartLesson: () => apprenticeService.canStartLesson(),
+			getReviewForecast: () => reviewService.getReviewForecast(),
+			getCriticalItems: (pool, limit) => reviewService.getCriticalItems(pool, limit),
+			isNextLessonAvailable: () => learningService.isNextLessonAvailable(),
+			getLessonMasteryProgress: (n) => learningService.getLessonMasteryProgress(n),
+			resurrectCard: (cardId, pool) => wrap(() => reviewService.resurrectCard(cardId, pool)),
 		}),
 		[state, refresh, wrap],
 	);

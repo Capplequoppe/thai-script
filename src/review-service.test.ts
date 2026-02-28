@@ -143,6 +143,141 @@ describe("ReviewService", () => {
 		});
 	});
 
+	describe("getReviewForecast", () => {
+		it("returns all zeros for empty state", () => {
+			const emptyStorage = new InMemoryStorage();
+			const emptyReview = new ReviewService(emptyStorage);
+			const forecast = emptyReview.getReviewForecast();
+			expect(forecast).toEqual({
+				dueNow: 0,
+				nextHour: 0,
+				next24Hours: 0,
+				next3Days: 0,
+				next7Days: 0,
+			});
+		});
+
+		it("correctly buckets cards by time window", () => {
+			const now = "2025-01-01T12:00:00.000Z";
+			const state = storage.load();
+			const cards = Object.values(state.cards);
+
+			// Set card review dates at different time windows
+			const cardIds = cards.map((c) => c.id);
+
+			// Due now (past)
+			state.cards[cardIds[0]!]!.srs.nextReviewDate = "2025-01-01T11:00:00.000Z";
+			// Due in 30 min (within 1 hour)
+			state.cards[cardIds[1]!]!.srs.nextReviewDate = "2025-01-01T12:30:00.000Z";
+			// Due in 12 hours (within 24 hours)
+			state.cards[cardIds[2]!]!.srs.nextReviewDate = "2025-01-02T00:00:00.000Z";
+			// Due in 2 days (within 3 days)
+			state.cards[cardIds[3]!]!.srs.nextReviewDate = "2025-01-03T12:00:00.000Z";
+			// Due in 5 days (within 7 days)
+			state.cards[cardIds[4]!]!.srs.nextReviewDate = "2025-01-06T12:00:00.000Z";
+			// Set remaining cards far in the future (beyond 7 days)
+			for (let i = 5; i < cardIds.length; i++) {
+				state.cards[cardIds[i]!]!.srs.nextReviewDate = "2025-02-01T00:00:00.000Z";
+			}
+			storage.save(state);
+
+			const forecast = reviewService.getReviewForecast(now);
+			expect(forecast.dueNow).toBe(1);
+			expect(forecast.nextHour).toBe(2);
+			expect(forecast.next24Hours).toBe(3);
+			expect(forecast.next3Days).toBe(4);
+			expect(forecast.next7Days).toBe(5);
+		});
+
+		it("cumulative counting (dueNow <= nextHour <= next24Hours <= next3Days <= next7Days)", () => {
+			const forecast = reviewService.getReviewForecast(FUTURE_NOW);
+			expect(forecast.dueNow).toBeLessThanOrEqual(forecast.nextHour);
+			expect(forecast.nextHour).toBeLessThanOrEqual(forecast.next24Hours);
+			expect(forecast.next24Hours).toBeLessThanOrEqual(forecast.next3Days);
+			expect(forecast.next3Days).toBeLessThanOrEqual(forecast.next7Days);
+		});
+
+		it("burned cards are excluded from forecast", () => {
+			const state = storage.load();
+			const cards = Object.values(state.cards);
+			// Burn all cards by setting them to graduated with very high interval
+			for (const card of cards) {
+				card.srs.learningStep = null;
+				card.srs.interval = 120_960; // ENLIGHTENED_THRESHOLD_MINUTES (burned)
+				card.srs.nextReviewDate = "2025-01-01T00:00:00.000Z";
+			}
+			storage.save(state);
+
+			const forecast = reviewService.getReviewForecast("2025-06-01T00:00:00.000Z");
+			expect(forecast).toEqual({
+				dueNow: 0,
+				nextHour: 0,
+				next24Hours: 0,
+				next3Days: 0,
+				next7Days: 0,
+			});
+		});
+	});
+
+	describe("getCriticalItems", () => {
+		it("sorted by ease factor ascending", () => {
+			const state = storage.load();
+			const cards = Object.values(state.cards);
+			// Give cards different ease factors and mark as reviewed
+			cards[0]!.srs.easeFactor = 2.5;
+			cards[0]!.srs.repetitions = 3;
+			cards[1]!.srs.easeFactor = 1.5;
+			cards[1]!.srs.repetitions = 3;
+			cards[2]!.srs.easeFactor = 1.8;
+			cards[2]!.srs.repetitions = 3;
+			storage.save(state);
+
+			const items = reviewService.getCriticalItems();
+			for (let i = 1; i < items.length; i++) {
+				expect(items[i]!.easeFactor).toBeGreaterThanOrEqual(
+					items[i - 1]!.easeFactor,
+				);
+			}
+		});
+
+		it("respects limit parameter", () => {
+			const state = storage.load();
+			// Mark all cards as reviewed
+			for (const card of Object.values(state.cards)) {
+				card.srs.repetitions = 1;
+			}
+			storage.save(state);
+
+			const items = reviewService.getCriticalItems("script", 3);
+			expect(items.length).toBeLessThanOrEqual(3);
+		});
+
+		it("excludes unreviewed cards (repetitions === 0)", () => {
+			// All cards start with repetitions 0, so nothing should be returned
+			const items = reviewService.getCriticalItems();
+			expect(items).toHaveLength(0);
+		});
+
+		it("returns correct shape with lapseCount", () => {
+			const state = storage.load();
+			const card = Object.values(state.cards)[0]!;
+			card.srs.repetitions = 5;
+			card.srs.lapseCount = 3;
+			storage.save(state);
+
+			const items = reviewService.getCriticalItems();
+			expect(items.length).toBeGreaterThan(0);
+			const item = items[0]!;
+			expect(item).toHaveProperty("id");
+			expect(item).toHaveProperty("question");
+			expect(item).toHaveProperty("correctAnswer");
+			expect(item).toHaveProperty("easeFactor");
+			expect(item).toHaveProperty("lapseCount");
+			expect(item).toHaveProperty("interval");
+			expect(item.lapseCount).toBe(3);
+		});
+	});
+
 	describe("vocab pool", () => {
 		function seedVocabCards(store: InMemoryStorage): void {
 			const state = store.load();

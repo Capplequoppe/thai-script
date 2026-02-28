@@ -1,4 +1,4 @@
-import { type ResponseTimingData, calculateNextReview, isDue } from "./srs";
+import { type ResponseTimingData, calculateNextReview, isBurned, isDue, resurrectCard as resurrectSrsCard } from "./srs";
 import type { IStorage } from "./storage";
 import type {
 	LearnerState,
@@ -15,6 +15,23 @@ export interface ActiveReviewSession {
 	cards: QuizCard[];
 	startedAt: string;
 	results: Array<{ cardId: string; rating: RecallRating }>;
+}
+
+export interface ReviewForecast {
+	dueNow: number;
+	nextHour: number;
+	next24Hours: number;
+	next3Days: number;
+	next7Days: number;
+}
+
+export interface CriticalItem {
+	id: string;
+	question: string;
+	correctAnswer: string;
+	easeFactor: number;
+	lapseCount: number;
+	interval: number;
 }
 
 export class ReviewService {
@@ -134,10 +151,88 @@ export class ReviewService {
 
 		let earliest = Infinity;
 		for (const card of cards) {
+			if (isBurned(card.srs)) continue;
 			const d = new Date(card.srs.nextReviewDate).getTime();
 			if (d < earliest) earliest = d;
 		}
-		return new Date(earliest);
+		return earliest === Infinity ? null : new Date(earliest);
+	}
+
+	resurrectCard(cardId: string, pool: CardPool = "script"): void {
+		const state = this.storage.load();
+		const cardRecord = this.getCardRecord(state, pool);
+		const card = cardRecord[cardId];
+		if (!card) throw new Error(`Card not found: ${cardId}`);
+		card.srs = resurrectSrsCard(card.srs);
+		this.storage.save(state);
+	}
+
+	getReviewForecast(
+		now?: string,
+		pool: CardPool = "script",
+	): ReviewForecast {
+		const state = this.storage.load();
+		const currentTime = now ?? new Date().toISOString();
+		const nowMs = new Date(currentTime).getTime();
+		const cards = Object.values(this.getCardRecord(state, pool));
+
+		const forecast: ReviewForecast = {
+			dueNow: 0,
+			nextHour: 0,
+			next24Hours: 0,
+			next3Days: 0,
+			next7Days: 0,
+		};
+
+		const hourMs = 60 * 60_000;
+		const dayMs = 24 * hourMs;
+
+		for (const card of cards) {
+			if (isBurned(card.srs)) continue;
+
+			const reviewMs = new Date(card.srs.nextReviewDate).getTime();
+			const diffMs = reviewMs - nowMs;
+
+			if (diffMs <= 7 * dayMs) {
+				forecast.next7Days++;
+				if (diffMs <= 3 * dayMs) {
+					forecast.next3Days++;
+					if (diffMs <= dayMs) {
+						forecast.next24Hours++;
+						if (diffMs <= hourMs) {
+							forecast.nextHour++;
+							if (diffMs <= 0) {
+								forecast.dueNow++;
+							}
+						}
+					}
+				}
+			}
+		}
+
+		return forecast;
+	}
+
+	getCriticalItems(pool: CardPool = "script", limit = 10): CriticalItem[] {
+		const state = this.storage.load();
+		const cards = Object.values(this.getCardRecord(state, pool));
+
+		return cards
+			.filter((card) => card.srs.repetitions > 0)
+			.sort((a, b) => {
+				const easeDiff = a.srs.easeFactor - b.srs.easeFactor;
+				if (easeDiff !== 0) return easeDiff;
+				return (b.srs.lapseCount ?? 0) - (a.srs.lapseCount ?? 0);
+			})
+			.slice(0, limit)
+			.map((card) => ({
+				id: card.id,
+				question: card.question,
+				correctAnswer: card.correctAnswer,
+				easeFactor: card.srs.easeFactor,
+				lapseCount: card.srs.lapseCount ?? 0,
+				interval: card.srs.interval,
+			}));
 	}
 
 	getSessionHistory(): SessionSummary[] {

@@ -1,4 +1,4 @@
-import type { RecallRating, SrsData } from "./types";
+import type { RecallRating, SrsData, SrsStage, StageCounts } from "./types";
 
 // --- Constants ---
 
@@ -9,6 +9,11 @@ export const MAX_INTERVAL_MINUTES = 259200; // 180 days
 export const MIN_EASE_FACTOR = 1.3;
 export const MAX_EASE_FACTOR = 3.0;
 export const MIN_GRADUATED_INTERVAL_MINUTES = 1440; // 1 day floor for hard
+
+// SRS Stage thresholds (in minutes)
+export const GURU_THRESHOLD_MINUTES = 20_160; // 14 days
+export const MASTER_THRESHOLD_MINUTES = 60_480; // 42 days
+export const ENLIGHTENED_THRESHOLD_MINUTES = 120_960; // 84 days
 
 const LAST_LEARNING_STEP = LEARNING_STEPS_MINUTES.length - 1;
 
@@ -30,6 +35,47 @@ export function createSrsData(now?: string): SrsData {
 		learningStep: 1,
 		nextReviewDate: addMinutesToIso(currentTime, LEARNING_STEPS_MINUTES[1]),
 		lastReviewDate: null,
+		lapseCount: 0,
+	};
+}
+
+export function getSrsStage(srs: SrsData): SrsStage {
+	if (srs.learningStep !== null) return "Apprentice";
+	if (srs.interval >= ENLIGHTENED_THRESHOLD_MINUTES) return "Burned";
+	if (srs.interval >= MASTER_THRESHOLD_MINUTES) return "Enlightened";
+	if (srs.interval >= GURU_THRESHOLD_MINUTES) return "Master";
+	return "Guru";
+}
+
+export function isBurned(srs: SrsData): boolean {
+	return srs.learningStep === null && srs.interval >= ENLIGHTENED_THRESHOLD_MINUTES;
+}
+
+export function getStageCounts(cards: SrsData[]): StageCounts {
+	const counts: StageCounts = { apprentice: 0, guru: 0, master: 0, enlightened: 0, burned: 0 };
+	for (const srs of cards) {
+		const stage = getSrsStage(srs);
+		switch (stage) {
+			case "Apprentice": counts.apprentice++; break;
+			case "Guru": counts.guru++; break;
+			case "Master": counts.master++; break;
+			case "Enlightened": counts.enlightened++; break;
+			case "Burned": counts.burned++; break;
+		}
+	}
+	return counts;
+}
+
+export function resurrectCard(srs: SrsData, now?: string): SrsData {
+	const currentTime = now ?? new Date().toISOString();
+	return {
+		easeFactor: srs.easeFactor,
+		interval: GRADUATING_INTERVAL_MINUTES,
+		repetitions: srs.repetitions,
+		learningStep: null,
+		nextReviewDate: addMinutesToIso(currentTime, GRADUATING_INTERVAL_MINUTES),
+		lastReviewDate: currentTime,
+		lapseCount: srs.lapseCount,
 	};
 }
 
@@ -49,6 +95,7 @@ export function calculateNextReview(
 }
 
 export function isDue(srs: SrsData, now: string): boolean {
+	if (isBurned(srs)) return false;
 	return new Date(srs.nextReviewDate) <= new Date(now);
 }
 
@@ -93,6 +140,7 @@ function handleLearningPhase(
 		learningStep: newStep,
 		nextReviewDate: interval === 0 ? now : addMinutesToIso(now, interval),
 		lastReviewDate: now,
+		lapseCount: current.lapseCount,
 	};
 }
 
@@ -104,6 +152,7 @@ function graduate(current: SrsData, now: string): SrsData {
 		learningStep: null,
 		nextReviewDate: addMinutesToIso(now, GRADUATING_INTERVAL_MINUTES),
 		lastReviewDate: now,
+		lapseCount: current.lapseCount,
 	};
 }
 
@@ -130,6 +179,7 @@ function handleGraduatedPhase(
 				learningStep: 0,
 				nextReviewDate: now,
 				lastReviewDate: now,
+				lapseCount: (current.lapseCount ?? 0) + 1,
 			};
 		}
 		case 2: {
@@ -142,6 +192,7 @@ function handleGraduatedPhase(
 				learningStep: 1,
 				nextReviewDate: addMinutesToIso(now, 10),
 				lastReviewDate: now,
+				lapseCount: (current.lapseCount ?? 0) + 1,
 			};
 		}
 		case 3: {
@@ -183,6 +234,7 @@ function handleGraduatedPhase(
 		learningStep: newLearningStep,
 		nextReviewDate: addMinutesToIso(now, newInterval),
 		lastReviewDate: now,
+		lapseCount: current.lapseCount,
 	};
 }
 

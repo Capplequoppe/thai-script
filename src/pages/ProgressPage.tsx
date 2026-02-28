@@ -3,36 +3,41 @@ import { useApp } from "../hooks/useApp";
 import { lessons } from "../symbol";
 
 export function ProgressPage() {
-	const { state, getNumDueCards, resetAll } = useApp();
+	const { state, getNumDueCards, getStageCounts, resetAll } = useApp();
 	const navigate = useNavigate();
 	const completed = new Set(state.completedLessons);
 	const totalCards = Object.keys(state.cards).length;
 	const dueCount = getNumDueCards();
-
-	const cards = Object.values(state.cards);
-	const mastered = cards.filter((c) => c.srs.repetitions >= 5).length;
-	const learning = cards.filter(
-		(c) => c.srs.repetitions > 0 && c.srs.repetitions < 5,
-	).length;
-	const fresh = cards.filter((c) => c.srs.repetitions === 0).length;
+	const stages = getStageCounts("script");
+	const totalStaged = stages.apprentice + stages.guru + stages.master + stages.enlightened + stages.burned;
 
 	return (
 		<div className="space-y-8 py-4">
 			<h1 className="text-2xl font-bold">Progress</h1>
 
-			{/* Stats */}
-			<div className="grid grid-cols-4 gap-3 text-center">
+			{/* SRS Stage Stats */}
+			<div className="grid grid-cols-3 gap-3 text-center">
 				<div className="bg-gray-50 dark:bg-gray-900 rounded-xl p-3">
-					<div className="text-xl font-bold text-green-600">{mastered}</div>
-					<div className="text-xs text-gray-500">Mastered</div>
+					<div className="text-xl font-bold text-pink-500">{stages.apprentice}</div>
+					<div className="text-xs text-gray-500">Apprentice</div>
 				</div>
 				<div className="bg-gray-50 dark:bg-gray-900 rounded-xl p-3">
-					<div className="text-xl font-bold text-blue-600">{learning}</div>
-					<div className="text-xs text-gray-500">Learning</div>
+					<div className="text-xl font-bold text-purple-500">{stages.guru}</div>
+					<div className="text-xs text-gray-500">Guru</div>
 				</div>
 				<div className="bg-gray-50 dark:bg-gray-900 rounded-xl p-3">
-					<div className="text-xl font-bold text-gray-400">{fresh}</div>
-					<div className="text-xs text-gray-500">New</div>
+					<div className="text-xl font-bold text-blue-500">{stages.master}</div>
+					<div className="text-xs text-gray-500">Master</div>
+				</div>
+			</div>
+			<div className="grid grid-cols-3 gap-3 text-center">
+				<div className="bg-gray-50 dark:bg-gray-900 rounded-xl p-3">
+					<div className="text-xl font-bold text-teal-500">{stages.enlightened}</div>
+					<div className="text-xs text-gray-500">Enlightened</div>
+				</div>
+				<div className="bg-gray-50 dark:bg-gray-900 rounded-xl p-3">
+					<div className="text-xl font-bold text-amber-500">{stages.burned}</div>
+					<div className="text-xs text-gray-500">Burned</div>
 				</div>
 				<div className="bg-gray-50 dark:bg-gray-900 rounded-xl p-3">
 					<div className="text-xl font-bold text-orange-500">{dueCount}</div>
@@ -40,25 +45,33 @@ export function ProgressPage() {
 				</div>
 			</div>
 
-			{/* Mastery bar */}
-			{totalCards > 0 && (
+			{/* 5-segment mastery bar */}
+			{totalStaged > 0 && (
 				<div>
 					<div className="flex justify-between text-xs text-gray-500 mb-1">
-						<span>Card Mastery</span>
-						<span>{Math.round((mastered / totalCards) * 100)}%</span>
+						<span>SRS Stages</span>
+						<span>{totalCards} cards</span>
 					</div>
 					<div className="w-full h-3 bg-gray-200 dark:bg-gray-800 rounded-full overflow-hidden flex">
 						<div
-							className="h-full bg-green-500"
-							style={{ width: `${(mastered / totalCards) * 100}%` }}
+							className="h-full bg-pink-500"
+							style={{ width: `${(stages.apprentice / totalStaged) * 100}%` }}
+						/>
+						<div
+							className="h-full bg-purple-500"
+							style={{ width: `${(stages.guru / totalStaged) * 100}%` }}
 						/>
 						<div
 							className="h-full bg-blue-500"
-							style={{ width: `${(learning / totalCards) * 100}%` }}
+							style={{ width: `${(stages.master / totalStaged) * 100}%` }}
 						/>
 						<div
-							className="h-full bg-gray-300 dark:bg-gray-600"
-							style={{ width: `${(fresh / totalCards) * 100}%` }}
+							className="h-full bg-teal-500"
+							style={{ width: `${(stages.enlightened / totalStaged) * 100}%` }}
+						/>
+						<div
+							className="h-full bg-amber-500"
+							style={{ width: `${(stages.burned / totalStaged) * 100}%` }}
 						/>
 					</div>
 				</div>

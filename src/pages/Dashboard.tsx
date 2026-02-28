@@ -11,6 +11,9 @@ export function Dashboard() {
 		getVocabUnlockedCount,
 		getVocabLearnedCount,
 		getNumDueVocabCards,
+		getReviewForecast,
+		getApprenticeStats,
+		getLeechCount,
 	} = useApp();
 	const navigate = useNavigate();
 
@@ -19,6 +22,9 @@ export function Dashboard() {
 	const nextReview = getNextReviewDate();
 	const totalCards = Object.keys(state.cards).length;
 	const completedCount = state.completedLessons.length;
+	const forecast = getReviewForecast();
+	const apprenticeStats = getApprenticeStats();
+	const leechCount = getLeechCount();
 
 	return (
 		<div className="space-y-8 py-4">
@@ -46,6 +52,69 @@ export function Dashboard() {
 					<div className="text-xs text-gray-500 mt-1">Due</div>
 				</div>
 			</div>
+
+			{/* Apprentice Count */}
+			{apprenticeStats.count > 0 && (
+				<div className="bg-pink-50 dark:bg-pink-900/20 rounded-xl p-4">
+					<div className="flex justify-between items-center">
+						<div>
+							<div className="text-sm font-semibold text-pink-700 dark:text-pink-300">Apprentice Items</div>
+							<div className="text-xs text-pink-500 dark:text-pink-400 mt-0.5">
+								{apprenticeStats.isAtLimit ? "At limit — review before new lessons" : `${apprenticeStats.limit - apprenticeStats.count} slots remaining`}
+							</div>
+						</div>
+						<div className="text-2xl font-bold text-pink-600 dark:text-pink-400">
+							{apprenticeStats.count}/{apprenticeStats.limit}
+						</div>
+					</div>
+				</div>
+			)}
+
+			{/* Leech Warning */}
+			{leechCount > 0 && (
+				<div className="bg-red-50 dark:bg-red-900/20 rounded-xl p-4">
+					<div className="flex justify-between items-center">
+						<div>
+							<div className="text-sm font-semibold text-red-700 dark:text-red-300">Leeches Detected</div>
+							<div className="text-xs text-red-500 dark:text-red-400 mt-0.5">
+								Cards that keep failing — consider extra study
+							</div>
+						</div>
+						<div className="text-2xl font-bold text-red-600 dark:text-red-400">
+							{leechCount}
+						</div>
+					</div>
+				</div>
+			)}
+
+			{/* Review Forecast */}
+			{totalCards > 0 && (
+				<div>
+					<h2 className="text-sm font-semibold text-gray-500 mb-2">Review Forecast</h2>
+					<div className="grid grid-cols-5 gap-2 text-center">
+						<div className="bg-gray-50 dark:bg-gray-900 rounded-lg p-2">
+							<div className="text-lg font-bold text-orange-500">{forecast.dueNow}</div>
+							<div className="text-[10px] text-gray-500">Now</div>
+						</div>
+						<div className="bg-gray-50 dark:bg-gray-900 rounded-lg p-2">
+							<div className="text-lg font-bold">{forecast.nextHour}</div>
+							<div className="text-[10px] text-gray-500">1 hr</div>
+						</div>
+						<div className="bg-gray-50 dark:bg-gray-900 rounded-lg p-2">
+							<div className="text-lg font-bold">{forecast.next24Hours}</div>
+							<div className="text-[10px] text-gray-500">24 hr</div>
+						</div>
+						<div className="bg-gray-50 dark:bg-gray-900 rounded-lg p-2">
+							<div className="text-lg font-bold">{forecast.next3Days}</div>
+							<div className="text-[10px] text-gray-500">3 days</div>
+						</div>
+						<div className="bg-gray-50 dark:bg-gray-900 rounded-lg p-2">
+							<div className="text-lg font-bold">{forecast.next7Days}</div>
+							<div className="text-[10px] text-gray-500">7 days</div>
+						</div>
+					</div>
+				</div>
+			)}
 
 			{/* Actions */}
 			<div className="space-y-3">

@@ -49,6 +49,16 @@ describe("Learn-then-Review flow", () => {
 		learning.completeLesson(1);
 		const afterLesson1 = Object.keys(storage.load().cards).length;
 
+		// Graduate lesson 1 cards so mastery gate passes
+		const state1 = storage.load();
+		for (const card of Object.values(state1.cards)) {
+			if (card.lessonNumber === 1) {
+				card.srs.learningStep = null;
+				card.srs.interval = 4320;
+			}
+		}
+		storage.save(state1);
+
 		learning.startLesson(2);
 		learning.completeLesson(2);
 		const afterLesson2 = Object.keys(storage.load().cards).length;
@@ -59,6 +69,17 @@ describe("Learn-then-Review flow", () => {
 	it("unlearnLesson removes only that lesson's cards", () => {
 		learning.startLesson(1);
 		learning.completeLesson(1);
+
+		// Graduate lesson 1 cards so mastery gate passes
+		const state1 = storage.load();
+		for (const card of Object.values(state1.cards)) {
+			if (card.lessonNumber === 1) {
+				card.srs.learningStep = null;
+				card.srs.interval = 4320;
+			}
+		}
+		storage.save(state1);
+
 		learning.startLesson(2);
 		learning.completeLesson(2);
 

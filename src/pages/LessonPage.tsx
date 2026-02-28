@@ -41,6 +41,11 @@ export function LessonPage() {
 	const handleIntroComplete = () => {
 		try {
 			const lesson = app.startLesson(num);
+			if (!lesson) {
+				alert("Too many apprentice items. Review before starting new lessons.");
+				navigate("/");
+				return;
+			}
 			setCards(lesson.cards);
 			setPhase("quiz");
 		} catch (e) {

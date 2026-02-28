@@ -1,5 +1,7 @@
 import { beforeEach, describe, expect, it } from "vitest";
+import { ApprenticeService } from "./apprentice-service";
 import { InMemoryStorage } from "./storage";
+import type { SrsData } from "./types";
 import type { VocabEntry } from "./vocabulary-types";
 import { VocabularyService } from "./vocabulary-service";
 
@@ -322,5 +324,85 @@ describe("VocabularyService", () => {
 		service.startLesson();
 
 		expect(service.getLearnedCount()).toBe(2);
+	});
+
+	describe("apprentice gating", () => {
+		function makeSrsData(overrides: Partial<SrsData> = {}): SrsData {
+			return {
+				easeFactor: 2.0,
+				interval: 10,
+				repetitions: 0,
+				learningStep: 1,
+				nextReviewDate: new Date().toISOString(),
+				lastReviewDate: null,
+				lapseCount: 0,
+				...overrides,
+			};
+		}
+
+		it("getNextLesson returns null when at apprentice limit", () => {
+			const apprenticeService = new ApprenticeService(storage, 1);
+			const vocabulary = [makeEntry()];
+
+			const state = storage.load();
+			state.completedLessons = [1, 2];
+			state.cards["s1"] = {
+				id: "s1",
+				question: "test",
+				correctAnswer: "test",
+				choices: ["test"],
+				srs: makeSrsData({ learningStep: 1 }),
+				symbolCharacter: "ก",
+				property: "recognition",
+				lessonNumber: 1,
+			};
+			storage.save(state);
+
+			const service = new VocabularyService(
+				storage,
+				vocabulary,
+				apprenticeService,
+			);
+			expect(service.getNextLesson()).toBeNull();
+		});
+
+		it("startLesson returns null when at apprentice limit", () => {
+			const apprenticeService = new ApprenticeService(storage, 1);
+			const vocabulary = [makeEntry()];
+
+			const state = storage.load();
+			state.completedLessons = [1, 2];
+			state.cards["s1"] = {
+				id: "s1",
+				question: "test",
+				correctAnswer: "test",
+				choices: ["test"],
+				srs: makeSrsData({ learningStep: 1 }),
+				symbolCharacter: "ก",
+				property: "recognition",
+				lessonNumber: 1,
+			};
+			storage.save(state);
+
+			const service = new VocabularyService(
+				storage,
+				vocabulary,
+				apprenticeService,
+			);
+			expect(service.startLesson()).toBeNull();
+		});
+
+		it("works normally without ApprenticeService", () => {
+			const vocabulary = [makeEntry()];
+			const service = new VocabularyService(storage, vocabulary);
+
+			const state = storage.load();
+			state.completedLessons = [1, 2];
+			storage.save(state);
+
+			const lesson = service.getNextLesson();
+			expect(lesson).not.toBeNull();
+			expect(lesson!.words).toHaveLength(1);
+		});
 	});
 });

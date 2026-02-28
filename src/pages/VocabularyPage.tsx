@@ -110,6 +110,7 @@ export function VocabularyPage() {
 
 	const handleIntroComplete = () => {
 		const generated = app.startVocabLesson();
+		if (!generated) return;
 		setCards(generated);
 		setCardIdx(0);
 		setCorrect(0);

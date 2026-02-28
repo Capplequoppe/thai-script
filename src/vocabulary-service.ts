@@ -1,3 +1,4 @@
+import type { ApprenticeService } from "./apprentice-service";
 import { generateVocabCards } from "./vocabulary-card-generator";
 import {
 	consonants,
@@ -20,6 +21,7 @@ export class VocabularyService {
 	constructor(
 		private readonly storage: IStorage,
 		private readonly vocabulary: VocabEntry[],
+		private readonly apprenticeService?: ApprenticeService,
 	) {}
 
 	/** Get set of all Thai characters mastered from completed script lessons. */
@@ -145,13 +147,21 @@ export class VocabularyService {
 
 	/** Next batch of words to learn (up to BATCH_SIZE). */
 	getNextLesson(): VocabLessonSummary | null {
+		if (this.apprenticeService && !this.apprenticeService.canStartLesson()) {
+			return null;
+		}
+
 		const words = this.getUnlearnedWords();
 		if (words.length === 0) return null;
 		return { words: words.slice(0, BATCH_SIZE) };
 	}
 
 	/** Generate cards for the next lesson batch and save to storage. */
-	startLesson(): VocabularyCard[] {
+	startLesson(): VocabularyCard[] | null {
+		if (this.apprenticeService && !this.apprenticeService.canStartLesson()) {
+			return null;
+		}
+
 		const lesson = this.getNextLesson();
 		if (!lesson) throw new Error("No vocabulary words available to learn");
 

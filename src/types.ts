@@ -1,6 +1,18 @@
 import type { ThaiSymbolClass, ToneValue, VowelPosition } from "./symbol";
 import type { VocabularyCard } from "./vocabulary-types";
 
+// --- SRS Stages ---
+
+export type SrsStage = "Apprentice" | "Guru" | "Master" | "Enlightened" | "Burned";
+
+export interface StageCounts {
+	apprentice: number;
+	guru: number;
+	master: number;
+	enlightened: number;
+	burned: number;
+}
+
 // --- SRS Data ---
 
 export interface SrsData {
@@ -10,6 +22,7 @@ export interface SrsData {
 	learningStep: number | null;
 	nextReviewDate: string; // ISO string for serialization
 	lastReviewDate: string | null;
+	lapseCount?: number;
 }
 
 export const DEFAULT_SRS_DATA: SrsData = {
@@ -19,6 +32,7 @@ export const DEFAULT_SRS_DATA: SrsData = {
 	learningStep: 1,
 	nextReviewDate: new Date().toISOString(),
 	lastReviewDate: null,
+	lapseCount: 0,
 };
 
 export type RecallRating = 1 | 2 | 3 | 4 | 5;

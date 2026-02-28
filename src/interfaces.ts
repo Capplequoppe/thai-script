@@ -1,3 +1,9 @@
+import type { LessonInfo } from "./learning-service";
+import type {
+	CardPool,
+	CriticalItem,
+	ReviewForecast,
+} from "./review-service";
 import type {
 	LearnerState,
 	PropertyCard,
@@ -7,16 +13,18 @@ import type {
 } from "./types";
 
 export interface ILearningService {
-	startLesson(lessonNumber: number): {
-		lessonNumber: number;
-		title: string;
-		focus: string;
-		cards: PropertyCard[];
-	};
+	startLesson(lessonNumber: number): LessonInfo | null;
 	completeLesson(lessonNumber: number): void;
 	unlearnLesson(lessonNumber: number): void;
 	getNextLesson(): number | null;
 	getCompletedLessons(): number[];
+	isLessonMastered(lessonNumber: number): boolean;
+	getLessonMasteryProgress(lessonNumber: number): {
+		total: number;
+		graduated: number;
+		percentage: number;
+	};
+	isNextLessonAvailable(): boolean;
 	getLessonSummary(lessonNumber: number): {
 		lessonNumber: number;
 		title: string;
@@ -69,6 +77,8 @@ export interface IReviewService {
 	}): SessionSummary;
 	getNextReviewDate(): Date | null;
 	getSessionHistory(): SessionSummary[];
+	getReviewForecast(now?: string, pool?: CardPool): ReviewForecast;
+	getCriticalItems(pool?: CardPool, limit?: number): CriticalItem[];
 }
 
 export interface IStorage {

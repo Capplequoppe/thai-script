@@ -1,3 +1,4 @@
+import type { ApprenticeService } from "./apprentice-service";
 import { generateCardsForLesson } from "./card-generator";
 import type { IStorage } from "./storage";
 import {
@@ -12,6 +13,8 @@ import {
 import type { PropertyCard } from "./types";
 
 const TOTAL_LESSONS = 25;
+
+export const MASTERY_THRESHOLD = 0.9;
 
 export interface LessonInfo {
 	lessonNumber: number;
@@ -65,9 +68,16 @@ export interface LessonSummary {
 }
 
 export class LearningService {
-	constructor(private readonly storage: IStorage) {}
+	constructor(
+		private readonly storage: IStorage,
+		private readonly apprenticeService?: ApprenticeService,
+	) {}
 
-	startLesson(lessonNumber: number): LessonInfo {
+	startLesson(lessonNumber: number): LessonInfo | null {
+		if (this.apprenticeService && !this.apprenticeService.canStartLesson()) {
+			return null;
+		}
+
 		const state = this.storage.load();
 
 		if (state.completedLessons.includes(lessonNumber)) {
@@ -78,6 +88,15 @@ export class LearningService {
 			if (!state.completedLessons.includes(i)) {
 				throw new Error(
 					`Must complete lesson ${i} before starting lesson ${lessonNumber}`,
+				);
+			}
+		}
+
+		if (lessonNumber > 1) {
+			const prevMastery = this.getLessonMasteryProgress(lessonNumber - 1);
+			if (prevMastery.percentage < MASTERY_THRESHOLD) {
+				throw new Error(
+					`Previous lesson ${lessonNumber - 1} is not mastered yet (${Math.round(prevMastery.percentage * 100)}% graduated, need ${Math.round(MASTERY_THRESHOLD * 100)}%)`,
 				);
 			}
 		}
@@ -205,5 +224,39 @@ export class LearningService {
 
 	getCompletedLessons(): number[] {
 		return this.storage.load().completedLessons;
+	}
+
+	isLessonMastered(lessonNumber: number): boolean {
+		const progress = this.getLessonMasteryProgress(lessonNumber);
+		return progress.total === 0
+			? false
+			: progress.percentage >= MASTERY_THRESHOLD;
+	}
+
+	getLessonMasteryProgress(lessonNumber: number): {
+		total: number;
+		graduated: number;
+		percentage: number;
+	} {
+		const state = this.storage.load();
+		const lessonCards = Object.values(state.cards).filter(
+			(c) => c.lessonNumber === lessonNumber,
+		);
+		const total = lessonCards.length;
+		const graduated = lessonCards.filter(
+			(c) => c.srs.learningStep === null,
+		).length;
+		return {
+			total,
+			graduated,
+			percentage: total === 0 ? 0 : graduated / total,
+		};
+	}
+
+	isNextLessonAvailable(): boolean {
+		const nextLesson = this.getNextLesson();
+		if (nextLesson === null) return false;
+		if (nextLesson === 1) return true;
+		return this.isLessonMastered(nextLesson - 1);
 	}
 }

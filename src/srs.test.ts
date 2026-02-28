@@ -1,12 +1,19 @@
 import { describe, expect, it } from "vitest";
 import {
+	ENLIGHTENED_THRESHOLD_MINUTES,
 	GRADUATING_INTERVAL_MINUTES,
+	GURU_THRESHOLD_MINUTES,
 	LEARNING_STEPS_MINUTES,
+	MASTER_THRESHOLD_MINUTES,
 	MAX_INTERVAL_MINUTES,
 	MIN_GRADUATED_INTERVAL_MINUTES,
 	calculateNextReview,
 	createSrsData,
+	getSrsStage,
+	getStageCounts,
+	isBurned,
 	isDue,
+	resurrectCard,
 } from "./srs";
 import type { ResponseTimingData } from "./srs";
 import type { SrsData } from "./types";
@@ -361,5 +368,166 @@ describe("isDue", () => {
 			nextReviewDate: "2026-02-26T00:00:00.000Z",
 		});
 		expect(isDue(srs, "2026-02-25T00:00:00.000Z")).toBe(false);
+	});
+
+	it("returns false for burned cards even when due", () => {
+		const srs = makeGraduatedCard({
+			interval: ENLIGHTENED_THRESHOLD_MINUTES,
+			nextReviewDate: "2026-02-24T00:00:00.000Z",
+		});
+		expect(isDue(srs, "2026-02-25T00:00:00.000Z")).toBe(false);
+	});
+});
+
+describe("getSrsStage", () => {
+	it("returns Apprentice for cards in learning phase", () => {
+		expect(getSrsStage(makeLearningCard(0))).toBe("Apprentice");
+		expect(getSrsStage(makeLearningCard(3))).toBe("Apprentice");
+	});
+
+	it("returns Guru for graduated cards with interval < 14 days", () => {
+		expect(getSrsStage(makeGraduatedCard({ interval: GRADUATING_INTERVAL_MINUTES }))).toBe("Guru");
+		expect(getSrsStage(makeGraduatedCard({ interval: GURU_THRESHOLD_MINUTES - 1 }))).toBe("Guru");
+	});
+
+	it("returns Master for graduated cards with interval >= 14 days and < 42 days", () => {
+		expect(getSrsStage(makeGraduatedCard({ interval: GURU_THRESHOLD_MINUTES }))).toBe("Master");
+		expect(getSrsStage(makeGraduatedCard({ interval: MASTER_THRESHOLD_MINUTES - 1 }))).toBe("Master");
+	});
+
+	it("returns Enlightened for graduated cards with interval >= 42 days and < 84 days", () => {
+		expect(getSrsStage(makeGraduatedCard({ interval: MASTER_THRESHOLD_MINUTES }))).toBe("Enlightened");
+		expect(getSrsStage(makeGraduatedCard({ interval: ENLIGHTENED_THRESHOLD_MINUTES - 1 }))).toBe("Enlightened");
+	});
+
+	it("returns Burned for graduated cards with interval >= 84 days", () => {
+		expect(getSrsStage(makeGraduatedCard({ interval: ENLIGHTENED_THRESHOLD_MINUTES }))).toBe("Burned");
+		expect(getSrsStage(makeGraduatedCard({ interval: 200_000 }))).toBe("Burned");
+	});
+});
+
+describe("isBurned", () => {
+	it("returns true at threshold", () => {
+		expect(isBurned(makeGraduatedCard({ interval: ENLIGHTENED_THRESHOLD_MINUTES }))).toBe(true);
+	});
+
+	it("returns false below threshold", () => {
+		expect(isBurned(makeGraduatedCard({ interval: ENLIGHTENED_THRESHOLD_MINUTES - 1 }))).toBe(false);
+	});
+
+	it("returns false for learning cards even with high interval", () => {
+		expect(isBurned(makeLearningCard(0, { interval: ENLIGHTENED_THRESHOLD_MINUTES }))).toBe(false);
+	});
+});
+
+describe("getStageCounts", () => {
+	it("aggregates counts correctly", () => {
+		const cards: SrsData[] = [
+			makeLearningCard(0),
+			makeLearningCard(2),
+			makeGraduatedCard({ interval: GRADUATING_INTERVAL_MINUTES }),
+			makeGraduatedCard({ interval: GURU_THRESHOLD_MINUTES }),
+			makeGraduatedCard({ interval: MASTER_THRESHOLD_MINUTES }),
+			makeGraduatedCard({ interval: ENLIGHTENED_THRESHOLD_MINUTES }),
+		];
+		const counts = getStageCounts(cards);
+		expect(counts).toEqual({
+			apprentice: 2,
+			guru: 1,
+			master: 1,
+			enlightened: 1,
+			burned: 1,
+		});
+	});
+
+	it("returns all zeros for empty array", () => {
+		expect(getStageCounts([])).toEqual({
+			apprentice: 0,
+			guru: 0,
+			master: 0,
+			enlightened: 0,
+			burned: 0,
+		});
+	});
+});
+
+describe("resurrectCard", () => {
+	it("resets interval to graduating interval", () => {
+		const burned = makeGraduatedCard({
+			interval: ENLIGHTENED_THRESHOLD_MINUTES,
+			easeFactor: 2.5,
+		});
+		const resurrected = resurrectCard(burned);
+		expect(resurrected.interval).toBe(GRADUATING_INTERVAL_MINUTES);
+		expect(resurrected.learningStep).toBeNull();
+	});
+
+	it("preserves ease factor", () => {
+		const burned = makeGraduatedCard({
+			interval: ENLIGHTENED_THRESHOLD_MINUTES,
+			easeFactor: 1.8,
+		});
+		const resurrected = resurrectCard(burned);
+		expect(resurrected.easeFactor).toBe(1.8);
+	});
+
+	it("preserves lapseCount", () => {
+		const burned = makeGraduatedCard({
+			interval: ENLIGHTENED_THRESHOLD_MINUTES,
+			lapseCount: 3,
+		});
+		const resurrected = resurrectCard(burned);
+		expect(resurrected.lapseCount).toBe(3);
+	});
+});
+
+describe("lapseCount tracking", () => {
+	it("increments on graduated lapse with rating 1", () => {
+		const card = makeGraduatedCard({ lapseCount: 2 });
+		const result = calculateNextReview(card, 1, NOW);
+		expect(result.lapseCount).toBe(3);
+	});
+
+	it("increments on graduated lapse with rating 2", () => {
+		const card = makeGraduatedCard({ lapseCount: 5 });
+		const result = calculateNextReview(card, 2, NOW);
+		expect(result.lapseCount).toBe(6);
+	});
+
+	it("does not increment on graduated good/easy/hard", () => {
+		const card = makeGraduatedCard({ lapseCount: 2 });
+		expect(calculateNextReview(card, 3, NOW).lapseCount).toBe(2);
+		expect(calculateNextReview(card, 4, NOW).lapseCount).toBe(2);
+		expect(calculateNextReview(card, 5, NOW).lapseCount).toBe(2);
+	});
+
+	it("does not increment during learning phase failures", () => {
+		const card = makeLearningCard(2, { lapseCount: 1 });
+		expect(calculateNextReview(card, 1, NOW).lapseCount).toBe(1);
+		expect(calculateNextReview(card, 2, NOW).lapseCount).toBe(1);
+	});
+
+	it("defaults to 0 when lapseCount is undefined", () => {
+		const card = makeGraduatedCard({ lapseCount: undefined });
+		const result = calculateNextReview(card, 1, NOW);
+		expect(result.lapseCount).toBe(1);
+	});
+
+	it("is included in createSrsData", () => {
+		const srs = createSrsData(NOW);
+		expect(srs.lapseCount).toBe(0);
+	});
+
+	it("propagates through learning phase", () => {
+		const card = makeLearningCard(1, { lapseCount: 3 });
+		const result = calculateNextReview(card, 4, NOW);
+		expect(result.lapseCount).toBe(3);
+	});
+
+	it("propagates through graduation", () => {
+		const card = makeLearningCard(4, { lapseCount: 2 });
+		const result = calculateNextReview(card, 4, NOW);
+		expect(result.learningStep).toBeNull();
+		expect(result.lapseCount).toBe(2);
 	});
 });
