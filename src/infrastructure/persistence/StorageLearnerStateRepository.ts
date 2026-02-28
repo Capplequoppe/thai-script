@@ -45,6 +45,19 @@ export class StorageLearnerStateRepository implements LearnerStateRepository {
 		this.storage.save(state);
 	}
 
+	getAchievements(): string[] {
+		return this.storage.load().achievements ?? [];
+	}
+
+	addAchievement(id: string): void {
+		const state = this.storage.load();
+		const achievements = state.achievements ?? [];
+		if (!achievements.includes(id)) {
+			state.achievements = [...achievements, id];
+			this.storage.save(state);
+		}
+	}
+
 	reset(): void {
 		this.storage.reset();
 	}

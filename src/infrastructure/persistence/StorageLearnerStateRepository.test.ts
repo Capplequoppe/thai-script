@@ -115,6 +115,31 @@ describe("StorageLearnerStateRepository", () => {
 		});
 	});
 
+	describe("achievements", () => {
+		it("returns empty array when no achievements unlocked", () => {
+			expect(repo.getAchievements()).toEqual([]);
+		});
+
+		it("adds a new achievement", () => {
+			repo.addAchievement("first_lesson");
+			expect(repo.getAchievements()).toContain("first_lesson");
+		});
+
+		it("does not duplicate achievements", () => {
+			repo.addAchievement("first_lesson");
+			repo.addAchievement("first_lesson");
+			expect(repo.getAchievements().filter((a) => a === "first_lesson")).toHaveLength(1);
+		});
+
+		it("persists multiple achievements independently", () => {
+			repo.addAchievement("first_lesson");
+			repo.addAchievement("first_review");
+			const achievements = repo.getAchievements();
+			expect(achievements).toContain("first_lesson");
+			expect(achievements).toContain("first_review");
+		});
+	});
+
 	describe("export and import", () => {
 		it("exports data as JSON string", () => {
 			repo.addCompletedLesson(1);
