@@ -187,6 +187,7 @@ export function Dashboard() {
 				</div>
 			)}
 			{/* Vocabulary */}
+			{getVocabUnlockedCount() > 0 && (
 			<div className="border-t border-gray-200 dark:border-gray-800 pt-6">
 				<h2 className="text-sm font-semibold text-gray-500 mb-3">
 					Vocabulary
@@ -218,7 +219,9 @@ export function Dashboard() {
 					Go to Vocabulary
 				</button>
 			</div>
+			)}
 			{/* Grammar */}
+			{getGrammarUnlockedCount() > 0 && (
 			<div className="border-t border-gray-200 dark:border-gray-800 pt-6">
 				<h2 className="text-sm font-semibold text-gray-500 mb-3">
 					Grammar
@@ -250,6 +253,7 @@ export function Dashboard() {
 					Go to Grammar
 				</button>
 			</div>
+			)}
 		</div>
 	);
 }

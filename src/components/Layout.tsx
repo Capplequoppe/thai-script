@@ -1,16 +1,22 @@
 import { NavLink, Outlet } from "react-router";
+import { useApp } from "../hooks/useApp";
 import { ThemeToggle } from "./ThemeToggle";
 
-const navItems = [
-	{ to: "/", label: "Home" },
-	{ to: "/items", label: "Items" },
-	{ to: "/progress", label: "Progress" },
-	{ to: "/vocabulary", label: "Vocab" },
-	{ to: "/grammar", label: "Grammar" },
-	{ to: "/settings", label: "Settings" },
-];
-
 export function Layout() {
+	const { getVocabUnlockedCount, getGrammarUnlockedCount } = useApp();
+
+	const navItems = [
+		{ to: "/", label: "Home" },
+		{ to: "/items", label: "Items" },
+		{ to: "/progress", label: "Progress" },
+		...(getVocabUnlockedCount() > 0
+			? [{ to: "/vocabulary", label: "Vocab" }]
+			: []),
+		...(getGrammarUnlockedCount() > 0
+			? [{ to: "/grammar", label: "Grammar" }]
+			: []),
+		{ to: "/settings", label: "Settings" },
+	];
 	return (
     <div className="min-h-screen flex flex-col">
       <header className="border-b border-gray-200 dark:border-gray-800 px-4 py-3 flex items-center justify-between">
