@@ -3,7 +3,7 @@ import { useNavigate } from "react-router";
 import { useApp } from "../hooks/useApp";
 
 export function SettingsPage() {
-	const { exportData, importData, resetAll } = useApp();
+	const { data, refresh } = useApp();
 	const navigate = useNavigate();
 	const fileInputRef = useRef<HTMLInputElement>(null);
 	const [importStatus, setImportStatus] = useState<{
@@ -12,7 +12,7 @@ export function SettingsPage() {
 	} | null>(null);
 
 	function handleExport() {
-		const json = exportData();
+		const json = data.exportData();
 		const date = new Date().toISOString().slice(0, 10);
 		const blob = new Blob([json], { type: "application/json" });
 		const url = URL.createObjectURL(blob);
@@ -31,7 +31,8 @@ export function SettingsPage() {
 		reader.onload = (e) => {
 			try {
 				const json = e.target?.result as string;
-				importData(json);
+				data.importData(json);
+				refresh();
 				setImportStatus({
 					type: "success",
 					message: "Progress imported and merged successfully.",
@@ -104,7 +105,8 @@ export function SettingsPage() {
 					type="button"
 					onClick={() => {
 						if (confirm("This will erase all progress. Are you sure?")) {
-							resetAll();
+							data.reset();
+							refresh();
 							navigate("/");
 						}
 					}}

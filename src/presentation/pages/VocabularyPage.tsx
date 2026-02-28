@@ -87,7 +87,7 @@ function VocabIntro({
 }
 
 export function VocabularyPage() {
-	const app = useApp();
+	const { lesson, review, refresh } = useApp();
 	const navigate = useNavigate();
 
 	const [phase, setPhase] = useState<Phase>("overview");
@@ -95,16 +95,35 @@ export function VocabularyPage() {
 	const [cards, setCards] = useState<VocabularyCard[]>([]);
 	const flow = useSessionFlow(cards.length);
 
-	const vocabReview = useReviewSession(
-		app.startVocabReviewSession,
-		app.recordVocabReview,
-		app.endVocabReviewSession,
+	const startVocabSession = useCallback(
+		(maxCards?: number) => review.startSession("vocab", maxCards),
+		[review],
+	);
+	const recordVocabReview = useCallback(
+		(cardId: string, rating: RecallRating) => {
+			review.recordReview(cardId, rating, "vocab");
+			refresh();
+		},
+		[review, refresh],
+	);
+	const endVocabSession = useCallback(
+		(session: Parameters<typeof review.endSession>[0]) => {
+			review.endSession(session, "vocab");
+			refresh();
+		},
+		[review, refresh],
 	);
 
-	const nextLesson = app.getNextVocabLesson();
-	const unlockedCount = app.getVocabUnlockedCount();
-	const learnedCount = app.getVocabLearnedCount();
-	const dueVocabCards = app.getNumDueVocabCards();
+	const vocabReview = useReviewSession(
+		startVocabSession,
+		recordVocabReview,
+		endVocabSession,
+	);
+
+	const nextLesson = lesson.getNextVocab();
+	const unlockedCount = lesson.getVocabUnlockedCount();
+	const learnedCount = lesson.getVocabLearnedCount();
+	const dueVocabCards = review.getDueCount("vocab");
 
 	useEffect(() => {
 		if (flow.isComplete) {
@@ -119,9 +138,10 @@ export function VocabularyPage() {
 	};
 
 	const handleIntroComplete = () => {
-		const generated = app.startVocabLesson();
+		const generated = lesson.startVocab();
 		if (!generated) return;
 		setCards(generated);
+		refresh();
 		flow.reset();
 		setPhase("quiz");
 	};

@@ -3,19 +3,19 @@ import { lessons } from "../../domain/script/data/symbols";
 import { useApp } from "../hooks/useApp";
 
 export function ProgressPage() {
-	const { state, getNumDueCards, getStageCounts, resetAll } = useApp();
+	const { state, review, dashboard, data, refresh } = useApp();
 	const navigate = useNavigate();
 	const completed = new Set(state.completedLessons);
 	const totalCards = Object.keys(state.cards).length;
-	const dueCount = getNumDueCards();
-	const stages = getStageCounts("script");
+	const dueCount = review.getDueCount();
+	const stages = dashboard.getStageCounts("script");
 	const totalStaged =
 		stages.apprentice +
 		stages.guru +
 		stages.master +
 		stages.enlightened +
 		stages.burned;
-	const grammarStages = getStageCounts("grammar");
+	const grammarStages = dashboard.getStageCounts("grammar");
 	const totalGrammarStaged =
 		grammarStages.apprentice +
 		grammarStages.guru +
@@ -207,7 +207,8 @@ export function ProgressPage() {
 				<button
 					onClick={() => {
 						if (confirm("This will erase all progress. Are you sure?")) {
-							resetAll();
+							data.reset();
+							refresh();
 							navigate("/");
 						}
 					}}

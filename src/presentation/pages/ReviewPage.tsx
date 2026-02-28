@@ -14,27 +14,46 @@ interface ReviewResult {
 }
 
 export function ReviewPage() {
-	const app = useApp();
+	const { review, refresh } = useApp();
 	const navigate = useNavigate();
 	const [done, setDone] = useState(false);
 	const resultsRef = useRef<ReviewResult[]>([]);
 	const startedRef = useRef(false);
 
-	const review = useReviewSession(
-		app.startReviewSession,
-		app.recordReview,
-		app.endReviewSession,
+	const startSession = useCallback(
+		(maxCards?: number) => review.startSession(undefined, maxCards),
+		[review],
+	);
+	const recordReview = useCallback(
+		(cardId: string, rating: RecallRating) => {
+			review.recordReview(cardId, rating);
+			refresh();
+		},
+		[review, refresh],
+	);
+	const endSession = useCallback(
+		(session: Parameters<typeof review.endSession>[0]) => {
+			review.endSession(session);
+			refresh();
+		},
+		[review, refresh],
+	);
+
+	const reviewSession = useReviewSession(
+		startSession,
+		recordReview,
+		endSession,
 	);
 
 	const handleAdvance = useCallback(
 		(rating: RecallRating) => {
-			const result = review.handleReviewAdvance(rating);
+			const result = reviewSession.handleReviewAdvance(rating);
 			if (result?.status === "complete") {
 				resultsRef.current = result.results;
 				setDone(true);
 			}
 		},
-		[review],
+		[reviewSession],
 	);
 
 	const handleMcAnswer = useCallback(
@@ -48,14 +67,14 @@ export function ReviewPage() {
 	useEffect(() => {
 		if (!startedRef.current) {
 			startedRef.current = true;
-			const s = review.startReview();
+			const s = reviewSession.startReview();
 			if (s.cards.length === 0) {
 				navigate("/");
 			}
 		}
-	}, [review, navigate]);
+	}, [reviewSession, navigate]);
 
-	if (!review.session && !done) return null;
+	if (!reviewSession.session && !done) return null;
 
 	if (done) {
 		const results = resultsRef.current;
@@ -85,7 +104,7 @@ export function ReviewPage() {
 					</div>
 				</div>
 				<div className="space-y-3">
-					{app.getNumDueCards() > 0 && (
+					{review.getDueCount() > 0 && (
 						<button
 							onClick={() => {
 								startedRef.current = false;
@@ -93,7 +112,7 @@ export function ReviewPage() {
 							}}
 							className="w-full py-3 bg-orange-500 hover:bg-orange-600 text-white rounded-xl font-semibold"
 						>
-							Review More ({app.getNumDueCards()} due)
+							Review More ({review.getDueCount()} due)
 						</button>
 					)}
 					<button
@@ -107,32 +126,35 @@ export function ReviewPage() {
 		);
 	}
 
-	if (!review.currentCard || !review.session) return null;
+	if (!reviewSession.currentCard || !reviewSession.session) return null;
 
 	return (
 		<div>
 			<div className="flex justify-between items-center mb-4">
 				<h1 className="text-lg font-bold">Review</h1>
 				<span className="text-sm text-gray-500">
-					{review.cardIdx + 1} / {review.session.cards.length}
+					{reviewSession.cardIdx + 1} / {reviewSession.session.cards.length}
 				</span>
 			</div>
 			<div className="w-full h-1.5 bg-gray-200 dark:bg-gray-800 rounded-full mb-6">
 				<div
 					className="h-full bg-orange-500 rounded-full transition-all"
 					style={{
-						width: `${((review.cardIdx + 1) / review.session.cards.length) * 100}%`,
+						width: `${((reviewSession.cardIdx + 1) / reviewSession.session.cards.length) * 100}%`,
 					}}
 				/>
 			</div>
 
-			{review.currentCard.mode === "multipleChoice" ? (
+			{reviewSession.currentCard.mode === "multipleChoice" ? (
 				<MultipleChoice
-					card={review.currentCard.card}
+					card={reviewSession.currentCard.card}
 					onAnswer={handleMcAnswer}
 				/>
 			) : (
-				<Flashcard card={review.currentCard.card} onRate={handleAdvance} />
+				<Flashcard
+					card={reviewSession.currentCard.card}
+					onRate={handleAdvance}
+				/>
 			)}
 		</div>
 	);

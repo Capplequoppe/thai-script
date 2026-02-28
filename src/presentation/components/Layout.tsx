@@ -1,18 +1,17 @@
 import { NavLink, Outlet } from "react-router";
 import { useApp } from "../hooks/useApp";
-import { ThemeToggle } from "./ThemeToggle";
 
 export function Layout() {
-	const { getVocabUnlockedCount, getGrammarUnlockedCount } = useApp();
+	const { lesson } = useApp();
 
 	const navItems = [
 		{ to: "/", label: "Home" },
 		{ to: "/items", label: "Items" },
 		{ to: "/progress", label: "Progress" },
-		...(getVocabUnlockedCount() > 0
+		...(lesson.getVocabUnlockedCount() > 0
 			? [{ to: "/vocabulary", label: "Vocab" }]
 			: []),
-		...(getGrammarUnlockedCount() > 0
+		...(lesson.getGrammarUnlockedCount() > 0
 			? [{ to: "/grammar", label: "Grammar" }]
 			: []),
 		{ to: "/settings", label: "Settings" },

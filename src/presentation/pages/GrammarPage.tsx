@@ -113,7 +113,7 @@ function GrammarIntro({
 }
 
 export function GrammarPage() {
-	const app = useApp();
+	const { lesson, review, refresh } = useApp();
 	const navigate = useNavigate();
 
 	const [phase, setPhase] = useState<Phase>("overview");
@@ -121,16 +121,35 @@ export function GrammarPage() {
 	const [cards, setCards] = useState<GrammarCard[]>([]);
 	const flow = useSessionFlow(cards.length);
 
-	const grammarReview = useReviewSession(
-		app.startGrammarReviewSession,
-		app.recordGrammarReview,
-		app.endGrammarReviewSession,
+	const startGrammarSession = useCallback(
+		(maxCards?: number) => review.startSession("grammar", maxCards),
+		[review],
+	);
+	const recordGrammarReview = useCallback(
+		(cardId: string, rating: RecallRating) => {
+			review.recordReview(cardId, rating, "grammar");
+			refresh();
+		},
+		[review, refresh],
+	);
+	const endGrammarSession = useCallback(
+		(session: Parameters<typeof review.endSession>[0]) => {
+			review.endSession(session, "grammar");
+			refresh();
+		},
+		[review, refresh],
 	);
 
-	const nextLesson = app.getNextGrammarLesson();
-	const unlockedCount = app.getGrammarUnlockedCount();
-	const learnedCount = app.getGrammarLearnedCount();
-	const dueGrammarCards = app.getNumDueGrammarCards();
+	const grammarReview = useReviewSession(
+		startGrammarSession,
+		recordGrammarReview,
+		endGrammarSession,
+	);
+
+	const nextLesson = lesson.getNextGrammar();
+	const unlockedCount = lesson.getGrammarUnlockedCount();
+	const learnedCount = lesson.getGrammarLearnedCount();
+	const dueGrammarCards = review.getDueCount("grammar");
 
 	useEffect(() => {
 		if (flow.isComplete) {
@@ -145,9 +164,10 @@ export function GrammarPage() {
 	};
 
 	const handleIntroComplete = () => {
-		const generated = app.startGrammarLesson();
+		const generated = lesson.startGrammar();
 		if (!generated) return;
 		setCards(generated);
+		refresh();
 		flow.reset();
 		setPhase("quiz");
 	};

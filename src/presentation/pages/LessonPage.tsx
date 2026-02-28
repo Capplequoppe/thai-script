@@ -13,7 +13,7 @@ export function LessonPage() {
 	const { lessonNumber } = useParams<{ lessonNumber: string }>();
 	const num = Number(lessonNumber);
 	const navigate = useNavigate();
-	const app = useApp();
+	const { lesson, refresh } = useApp();
 
 	const [phase, setPhase] = useState<Phase>("intro");
 	const [cards, setCards] = useState<PropertyCard[]>([]);
@@ -21,18 +21,19 @@ export function LessonPage() {
 
 	const summary = useMemo(() => {
 		try {
-			return app.getLessonSummary(num);
+			return lesson.getScriptSummary(num);
 		} catch {
 			return null;
 		}
-	}, [app, num]);
+	}, [lesson, num]);
 
 	useEffect(() => {
 		if (flow.isComplete) {
-			app.completeLesson(num);
+			lesson.completeScript(num);
+			refresh();
 			setPhase("complete");
 		}
-	}, [flow.isComplete, app, num]);
+	}, [flow.isComplete, lesson, num, refresh]);
 
 	if (!summary) {
 		return (
@@ -47,13 +48,14 @@ export function LessonPage() {
 
 	const handleIntroComplete = () => {
 		try {
-			const lesson = app.startLesson(num);
-			if (!lesson) {
+			const result = lesson.startScript(num);
+			if (!result) {
 				alert("Too many apprentice items. Review before starting new lessons.");
 				navigate("/");
 				return;
 			}
-			setCards(lesson.cards);
+			setCards(result.cards);
+			refresh();
 			setPhase("quiz");
 		} catch (e) {
 			alert((e as Error).message);

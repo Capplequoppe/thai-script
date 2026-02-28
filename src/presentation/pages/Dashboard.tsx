@@ -3,31 +3,17 @@ import { NotificationBanner } from "../components/NotificationBanner";
 import { useApp } from "../hooks/useApp";
 
 export function Dashboard() {
-	const {
-		state,
-		getNextLesson,
-		getNumDueCards,
-		getNextReviewDate,
-		getVocabUnlockedCount,
-		getVocabLearnedCount,
-		getNumDueVocabCards,
-		getGrammarUnlockedCount,
-		getGrammarLearnedCount,
-		getNumDueGrammarCards,
-		getReviewForecast,
-		getApprenticeStats,
-		getLeechCount,
-	} = useApp();
+	const { state, lesson, review, dashboard } = useApp();
 	const navigate = useNavigate();
 
-	const nextLesson = getNextLesson();
-	const dueCount = getNumDueCards();
-	const nextReview = getNextReviewDate();
+	const nextLesson = lesson.getNextScript();
+	const dueCount = review.getDueCount();
+	const nextReview = review.getNextReviewDate();
 	const totalCards = Object.keys(state.cards).length;
 	const completedCount = state.completedLessons.length;
-	const forecast = getReviewForecast();
-	const apprenticeStats = getApprenticeStats();
-	const leechCount = getLeechCount();
+	const forecast = review.getForecast();
+	const apprenticeStats = dashboard.getApprenticeStats();
+	const leechCount = dashboard.getLeechCount();
 
 	return (
 		<div className="space-y-8 py-4">
@@ -197,23 +183,27 @@ export function Dashboard() {
 				</div>
 			)}
 			{/* Vocabulary */}
-			{getVocabUnlockedCount() > 0 && (
+			{lesson.getVocabUnlockedCount() > 0 && (
 				<div className="border-t border-gray-200 dark:border-gray-800 pt-6">
 					<h2 className="text-sm font-semibold text-gray-500 mb-3">
 						Vocabulary
 					</h2>
 					<div className="grid grid-cols-3 gap-4 text-center mb-3">
 						<div className="bg-gray-50 dark:bg-gray-900 rounded-xl p-3">
-							<div className="text-lg font-bold">{getVocabUnlockedCount()}</div>
+							<div className="text-lg font-bold">
+								{lesson.getVocabUnlockedCount()}
+							</div>
 							<div className="text-[10px] text-gray-500">Unlocked</div>
 						</div>
 						<div className="bg-gray-50 dark:bg-gray-900 rounded-xl p-3">
-							<div className="text-lg font-bold">{getVocabLearnedCount()}</div>
+							<div className="text-lg font-bold">
+								{lesson.getVocabLearnedCount()}
+							</div>
 							<div className="text-[10px] text-gray-500">Learned</div>
 						</div>
 						<div className="bg-gray-50 dark:bg-gray-900 rounded-xl p-3">
 							<div className="text-lg font-bold text-orange-500">
-								{getNumDueVocabCards()}
+								{review.getDueCount("vocab")}
 							</div>
 							<div className="text-[10px] text-gray-500">Due</div>
 						</div>
@@ -227,25 +217,25 @@ export function Dashboard() {
 				</div>
 			)}
 			{/* Grammar */}
-			{getGrammarUnlockedCount() > 0 && (
+			{lesson.getGrammarUnlockedCount() > 0 && (
 				<div className="border-t border-gray-200 dark:border-gray-800 pt-6">
 					<h2 className="text-sm font-semibold text-gray-500 mb-3">Grammar</h2>
 					<div className="grid grid-cols-3 gap-4 text-center mb-3">
 						<div className="bg-gray-50 dark:bg-gray-900 rounded-xl p-3">
 							<div className="text-lg font-bold">
-								{getGrammarUnlockedCount()}
+								{lesson.getGrammarUnlockedCount()}
 							</div>
 							<div className="text-[10px] text-gray-500">Unlocked</div>
 						</div>
 						<div className="bg-gray-50 dark:bg-gray-900 rounded-xl p-3">
 							<div className="text-lg font-bold">
-								{getGrammarLearnedCount()}
+								{lesson.getGrammarLearnedCount()}
 							</div>
 							<div className="text-[10px] text-gray-500">Learned</div>
 						</div>
 						<div className="bg-gray-50 dark:bg-gray-900 rounded-xl p-3">
 							<div className="text-lg font-bold text-orange-500">
-								{getNumDueGrammarCards()}
+								{review.getDueCount("grammar")}
 							</div>
 							<div className="text-[10px] text-gray-500">Due</div>
 						</div>

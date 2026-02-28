@@ -89,7 +89,7 @@ function VideoPlayer({
 }
 
 export function LearnedItemsPage() {
-	const { state, getLessonSummary } = useApp();
+	const { state, lesson } = useApp();
 	const [tab, setTab] = useState<Tab>("consonants");
 	const [selectedIdx, setSelectedIdx] = useState<number | null>(null);
 
@@ -101,7 +101,7 @@ export function LearnedItemsPage() {
 		const vids: LessonSummary[] = [];
 
 		for (const lessonNum of [...state.completedLessons].sort((a, b) => a - b)) {
-			const summary = getLessonSummary(lessonNum);
+			const summary = lesson.getScriptSummary(lessonNum);
 			c.push(...summary.consonants);
 			v.push(...summary.vowels);
 			t.push(...summary.toneMarks);
@@ -111,7 +111,7 @@ export function LearnedItemsPage() {
 		}
 
 		return { consonants: c, vowels: v, toneMarks: t, videos: vids };
-	}, [state.completedLessons, getLessonSummary]);
+	}, [state.completedLessons, lesson]);
 
 	// Collect learned vocabulary words (deduplicated by wordThai, prefer thaiToEnglish for English meaning)
 	const vocabWords = useMemo(() => {
