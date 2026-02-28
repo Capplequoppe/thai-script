@@ -1,5 +1,6 @@
 import { useRef, useState } from "react";
 import { useNavigate } from "react-router";
+import { Button } from "@/presentation/components/ui/button";
 import { useApp } from "../hooks/useApp";
 
 export function SettingsPage() {
@@ -58,13 +59,9 @@ export function SettingsPage() {
 				<p className="text-sm text-gray-500 dark:text-gray-400">
 					Download your learning progress as a JSON file.
 				</p>
-				<button
-					type="button"
-					onClick={handleExport}
-					className="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg text-sm font-medium transition-colors"
-				>
+				<Button type="button" onClick={handleExport}>
 					Download Progress
-				</button>
+				</Button>
 			</section>
 
 			{/* Import */}
@@ -81,13 +78,9 @@ export function SettingsPage() {
 						accept=".json"
 						className="text-sm text-gray-500 file:mr-2 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-medium file:bg-gray-100 file:text-gray-700 hover:file:bg-gray-200 dark:file:bg-gray-800 dark:file:text-gray-300 dark:hover:file:bg-gray-700"
 					/>
-					<button
-						type="button"
-						onClick={handleImport}
-						className="px-4 py-2 bg-gray-200 hover:bg-gray-300 dark:bg-gray-800 dark:hover:bg-gray-700 rounded-lg text-sm font-medium transition-colors"
-					>
+					<Button type="button" variant="secondary" onClick={handleImport}>
 						Import
-					</button>
+					</Button>
 				</div>
 				{importStatus && (
 					<p
@@ -101,8 +94,10 @@ export function SettingsPage() {
 			{/* Danger Zone */}
 			<section className="space-y-2 pt-4 border-t border-gray-200 dark:border-gray-800">
 				<h2 className="text-sm font-semibold text-red-500">Danger Zone</h2>
-				<button
+				<Button
 					type="button"
+					variant="destructive"
+					size="sm"
 					onClick={() => {
 						if (confirm("This will erase all progress. Are you sure?")) {
 							data.reset();
@@ -110,10 +105,9 @@ export function SettingsPage() {
 							navigate("/");
 						}
 					}}
-					className="text-sm text-red-500 hover:text-red-600"
 				>
 					Reset All Progress
-				</button>
+				</Button>
 			</section>
 		</div>
 	);

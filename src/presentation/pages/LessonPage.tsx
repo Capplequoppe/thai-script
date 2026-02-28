@@ -1,5 +1,8 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useNavigate, useParams } from "react-router";
+import { Button } from "@/presentation/components/ui/button";
+import { Card } from "@/presentation/components/ui/card";
+import { Progress } from "@/presentation/components/ui/progress";
 import type { PropertyCard } from "../../domain/shared/types";
 import { AchievementBadge } from "../components/AchievementBadge";
 import { LessonIntro } from "../components/LessonIntro";
@@ -68,14 +71,9 @@ export function LessonPage() {
 		return (
 			<div className="text-center py-8">
 				<p style={{ color: "var(--color-text-muted)" }}>Lesson not found</p>
-				<button
-					type="button"
-					onClick={() => navigate("/")}
-					className="mt-4"
-					style={{ color: "var(--color-primary)" }}
-				>
+				<Button variant="link" className="mt-4" onClick={() => navigate("/")}>
 					Go Home
-				</button>
+				</Button>
 			</div>
 		);
 	}
@@ -156,18 +154,10 @@ export function LessonPage() {
 							✕
 						</button>
 					</div>
-					<div
-						className="w-full h-1.5 rounded-full"
-						style={{ background: "var(--color-border)" }}
-					>
-						<div
-							className="h-full rounded-full transition-all"
-							style={{
-								background: "var(--color-accent)",
-								width: `${((flow.cardIdx + 1) / cards.length) * 100}%`,
-							}}
-						/>
-					</div>
+					<Progress
+						value={((flow.cardIdx + 1) / cards.length) * 100}
+						className="h-1.5"
+					/>
 				</div>
 				<MultipleChoice card={currentLessonCard} onAnswer={flow.advance} />
 			</div>
@@ -219,7 +209,7 @@ export function LessonPage() {
 								: "var(--color-danger)",
 					},
 				].map(({ label, value, color }) => (
-					<div key={label} className="card-royal p-4 text-center">
+					<Card key={label} className="p-4 text-center">
 						<div className="text-2xl font-bold" style={{ color }}>
 							{value}
 						</div>
@@ -229,29 +219,25 @@ export function LessonPage() {
 						>
 							{label}
 						</div>
-					</div>
+					</Card>
 				))}
 			</div>
 
 			{newAchievements.length > 0 && (
-				<div className="card-royal p-4">
+				<Card className="p-4">
 					<div className="section-header mb-3">Achievement Unlocked!</div>
 					<div className="flex gap-4 flex-wrap justify-center">
 						{newAchievements.map((id) => (
 							<AchievementBadge key={id} id={id} unlocked size="sm" />
 						))}
 					</div>
-				</div>
+				</Card>
 			)}
 
 			<div className="space-y-3">
-				<button
-					type="button"
-					onClick={() => navigate("/")}
-					className="btn-primary w-full"
-				>
+				<Button className="w-full" onClick={() => navigate("/")}>
 					Back to Home
-				</button>
+				</Button>
 			</div>
 		</div>
 	);

@@ -1,14 +1,28 @@
 import { useNavigate } from "react-router";
-import { AchievementBadge, ACHIEVEMENT_DEFS } from "../components/AchievementBadge";
+import { Badge } from "@/presentation/components/ui/badge";
+import { Button } from "@/presentation/components/ui/button";
+import { Card } from "@/presentation/components/ui/card";
+import {
+	ACHIEVEMENT_DEFS,
+	AchievementBadge,
+} from "../components/AchievementBadge";
 import { HeatmapWidget } from "../components/HeatmapWidget";
 import { NotificationBanner } from "../components/NotificationBanner";
 import { useApp } from "../hooks/useApp";
 
 const STAGE_PILL_CONFIG = [
-	{ key: "apprentice" as const, label: "Apprentice", color: "var(--color-apprentice)" },
+	{
+		key: "apprentice" as const,
+		label: "Apprentice",
+		color: "var(--color-apprentice)",
+	},
 	{ key: "guru" as const, label: "Guru", color: "var(--color-guru)" },
 	{ key: "master" as const, label: "Master", color: "var(--color-master)" },
-	{ key: "enlightened" as const, label: "Enlightened", color: "var(--color-enlightened)" },
+	{
+		key: "enlightened" as const,
+		label: "Enlightened",
+		color: "var(--color-enlightened)",
+	},
 	{ key: "burned" as const, label: "Burned", color: "var(--color-burned)" },
 ];
 
@@ -32,42 +46,52 @@ export function Dashboard() {
 			<div
 				className="rounded-2xl p-6"
 				style={{
-					background: dueCount > 0 ? "var(--color-primary)" : "var(--color-surface-2)",
+					background:
+						dueCount > 0 ? "var(--color-primary)" : "var(--color-surface-2)",
 				}}
 			>
 				{dueCount > 0 ? (
 					<>
 						<div className="flex items-center gap-3 mb-4">
+							<Badge variant="outline">{dueCount} due</Badge>
 							<span
-								className="text-sm font-bold px-3 py-1 rounded-full"
-								style={{ background: "var(--color-apprentice)", color: "white" }}
+								className="text-sm"
+								style={{ color: "rgba(255,255,255,0.7)" }}
 							>
-								{dueCount} due
-							</span>
-							<span className="text-sm" style={{ color: "rgba(255,255,255,0.7)" }}>
 								Cards ready for review
 							</span>
 						</div>
-						<button
+						<Button
 							type="button"
 							onClick={() => navigate("/review")}
 							className="w-full py-4 rounded-xl text-lg font-semibold transition-colors"
-							style={{ background: "var(--color-accent)", color: "var(--color-text)" }}
+							style={{
+								background: "var(--color-accent)",
+								color: "var(--color-text)",
+							}}
 						>
 							Start Review
-						</button>
+						</Button>
 					</>
 				) : (
 					<>
-						<p className="text-sm font-semibold mb-2" style={{ color: "var(--color-text-muted)" }}>
+						<p
+							className="text-sm font-semibold mb-2"
+							style={{ color: "var(--color-text-muted)" }}
+						>
 							All reviews complete
 						</p>
 						{nextReview && (
-							<p className="text-lg font-semibold" style={{ color: "var(--color-text)" }}>
+							<p
+								className="text-lg font-semibold"
+								style={{ color: "var(--color-text)" }}
+							>
 								Next review{" "}
-								{nextReview.toLocaleDateString([], { weekday: "short" })}{" "}
-								at{" "}
-								{nextReview.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}
+								{nextReview.toLocaleDateString([], { weekday: "short" })} at{" "}
+								{nextReview.toLocaleTimeString([], {
+									hour: "2-digit",
+									minute: "2-digit",
+								})}
 							</p>
 						)}
 					</>
@@ -77,49 +101,65 @@ export function Dashboard() {
 			{/* 2. Secondary Actions (2-col) */}
 			<div className="grid grid-cols-2 gap-3">
 				{nextLesson ? (
-					<button
-						type="button"
+					<Card
+						className="p-4 text-left cursor-pointer"
 						onClick={() => navigate(`/lesson/${nextLesson}`)}
-						className="card-royal p-4 text-left"
 					>
 						<div className="text-xs section-header mb-1">Next Lesson</div>
-						<div className="font-semibold mt-2" style={{ color: "var(--color-primary)" }}>
+						<div
+							className="font-semibold mt-2"
+							style={{ color: "var(--color-primary)" }}
+						>
 							Lesson {nextLesson}
 						</div>
-					</button>
+					</Card>
 				) : (
-					<div className="card-royal p-4 opacity-50">
+					<Card className="p-4 opacity-50">
 						<div className="text-xs section-header mb-1">Script</div>
-						<div className="text-sm mt-2" style={{ color: "var(--color-text-muted)" }}>All done ✓</div>
-					</div>
+						<div
+							className="text-sm mt-2"
+							style={{ color: "var(--color-text-muted)" }}
+						>
+							All done ✓
+						</div>
+					</Card>
 				)}
 				{lesson.getGrammarUnlockedCount() > 0 ? (
-					<button
-						type="button"
+					<Card
+						className="p-4 text-left cursor-pointer"
 						onClick={() => navigate("/grammar")}
-						className="card-royal p-4 text-left"
 					>
 						<div className="text-xs section-header mb-1">Grammar</div>
-						<div className="font-semibold mt-2" style={{ color: "var(--color-primary)" }}>
+						<div
+							className="font-semibold mt-2"
+							style={{ color: "var(--color-primary)" }}
+						>
 							{review.getDueCount("grammar")} due
 						</div>
-					</button>
+					</Card>
 				) : lesson.getVocabUnlockedCount() > 0 ? (
-					<button
-						type="button"
+					<Card
+						className="p-4 text-left cursor-pointer"
 						onClick={() => navigate("/vocabulary")}
-						className="card-royal p-4 text-left"
 					>
 						<div className="text-xs section-header mb-1">Vocabulary</div>
-						<div className="font-semibold mt-2" style={{ color: "var(--color-primary)" }}>
+						<div
+							className="font-semibold mt-2"
+							style={{ color: "var(--color-primary)" }}
+						>
 							{review.getDueCount("vocab")} due
 						</div>
-					</button>
+					</Card>
 				) : (
-					<div className="card-royal p-4 opacity-50">
+					<Card className="p-4 opacity-50">
 						<div className="text-xs section-header mb-1">Vocabulary</div>
-						<div className="text-sm mt-2" style={{ color: "var(--color-text-muted)" }}>Locked</div>
-					</div>
+						<div
+							className="text-sm mt-2"
+							style={{ color: "var(--color-text-muted)" }}
+						>
+							Locked
+						</div>
+					</Card>
 				)}
 			</div>
 
@@ -136,7 +176,10 @@ export function Dashboard() {
 								className="flex-shrink-0 flex items-center gap-2 px-3 py-2 rounded-full border text-sm font-medium cursor-pointer"
 								style={{ borderColor: color, color }}
 							>
-								<span className="w-2 h-2 rounded-full" style={{ background: color }} />
+								<span
+									className="w-2 h-2 rounded-full"
+									style={{ background: color }}
+								/>
 								{label}
 								<span className="font-bold">{stages[key]}</span>
 							</button>
@@ -147,9 +190,9 @@ export function Dashboard() {
 
 			{/* 4. Study Heatmap */}
 			{state.sessionHistory.length > 0 && (
-				<div className="card-royal p-4">
+				<Card className="p-4">
 					<HeatmapWidget sessions={state.sessionHistory} />
-				</div>
+				</Card>
 			)}
 
 			{/* 5. Achievement Shelf */}
@@ -163,18 +206,24 @@ export function Dashboard() {
 						{ACHIEVEMENT_DEFS.filter((d) => !achievements.includes(d.id))
 							.slice(0, 2)
 							.map((d) => (
-								<AchievementBadge key={d.id} id={d.id} unlocked={false} size="sm" />
+								<AchievementBadge
+									key={d.id}
+									id={d.id}
+									unlocked={false}
+									size="sm"
+								/>
 							))}
 					</div>
 					<div className="flex justify-end mt-2">
-						<button
+						<Button
 							type="button"
+							variant="ghost"
 							onClick={() => navigate("/progress")}
-							className="text-xs"
+							className="text-xs h-auto p-0"
 							style={{ color: "var(--color-text-muted)" }}
 						>
 							See all →
-						</button>
+						</Button>
 					</div>
 				</div>
 			)}
@@ -191,17 +240,25 @@ export function Dashboard() {
 							{ label: "3 days", value: forecast.next3Days },
 							{ label: "7 days", value: forecast.next7Days },
 						].map(({ label, value }) => (
-							<div key={label} className="card-royal p-2">
+							<Card key={label} className="p-2">
 								<div
 									className="text-lg font-bold"
-									style={{ color: value > 0 ? "var(--color-accent)" : "var(--color-text-muted)" }}
+									style={{
+										color:
+											value > 0
+												? "var(--color-accent)"
+												: "var(--color-text-muted)",
+									}}
 								>
 									{value}
 								</div>
-								<div className="text-[10px]" style={{ color: "var(--color-text-muted)" }}>
+								<div
+									className="text-[10px]"
+									style={{ color: "var(--color-text-muted)" }}
+								>
 									{label}
 								</div>
-							</div>
+							</Card>
 						))}
 					</div>
 				</div>
@@ -217,14 +274,23 @@ export function Dashboard() {
 					}}
 				>
 					<div>
-						<div className="text-sm font-semibold" style={{ color: "var(--color-danger)" }}>
+						<div
+							className="text-sm font-semibold"
+							style={{ color: "var(--color-danger)" }}
+						>
 							Leeches Detected
 						</div>
-						<div className="text-xs mt-0.5" style={{ color: "var(--color-text-muted)" }}>
+						<div
+							className="text-xs mt-0.5"
+							style={{ color: "var(--color-text-muted)" }}
+						>
 							Cards that keep failing — consider extra study
 						</div>
 					</div>
-					<div className="text-2xl font-bold" style={{ color: "var(--color-danger)" }}>
+					<div
+						className="text-2xl font-bold"
+						style={{ color: "var(--color-danger)" }}
+					>
 						{leechCount}
 					</div>
 				</div>

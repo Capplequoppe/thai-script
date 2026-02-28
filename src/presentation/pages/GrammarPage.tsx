@@ -1,5 +1,8 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router";
+import { Button } from "@/presentation/components/ui/button";
+import { Card } from "@/presentation/components/ui/card";
+import { Progress } from "@/presentation/components/ui/progress";
 import type { GrammarCard, GrammarEntry } from "../../domain/grammar/types";
 import { ratingFromCorrectness } from "../../domain/shared/ratingFromCorrectness";
 import type { RecallRating } from "../../domain/shared/types";
@@ -83,9 +86,9 @@ function GrammarIntro({
 			<h2 className="text-xl font-bold" style={{ color: "var(--color-text)" }}>
 				{current.title}
 			</h2>
-			<div className="card-royal p-4 font-mono text-center text-lg">
+			<Card className="p-4 font-mono text-center text-lg">
 				{current.pattern}
-			</div>
+			</Card>
 			<p style={{ color: "var(--color-text-muted)" }}>{current.explanation}</p>
 
 			<div className="space-y-3">
@@ -96,7 +99,7 @@ function GrammarIntro({
 					Examples
 				</h3>
 				{current.examples.map((ex) => (
-					<div key={ex.thai} className="card-royal p-3">
+					<Card key={ex.thai} className="p-3">
 						<div
 							className="thai text-lg font-semibold"
 							style={{ color: "var(--color-text)" }}
@@ -120,27 +123,19 @@ function GrammarIntro({
 								{ex.breakdown}
 							</div>
 						)}
-					</div>
+					</Card>
 				))}
 			</div>
 
 			<div className="flex gap-3">
 				{idx > 0 && (
-					<button
-						type="button"
-						onClick={goBack}
-						className="py-3 px-6 rounded-xl font-semibold transition-colors"
-						style={{
-							background: "var(--color-surface)",
-							color: "var(--color-text)",
-						}}
-					>
+					<Button type="button" variant="outline" onClick={goBack}>
 						Back
-					</button>
+					</Button>
 				)}
-				<button type="button" onClick={advance} className="btn-primary flex-1">
+				<Button type="button" className="flex-1" onClick={advance}>
 					{isLast ? "Start Quiz" : "Next"}
-				</button>
+				</Button>
 			</div>
 		</div>
 	);
@@ -287,7 +282,7 @@ export function GrammarPage() {
 				</div>
 
 				<div className="grid grid-cols-3 gap-4 text-center">
-					<div className="card-royal p-4">
+					<Card className="p-4">
 						<div
 							className="text-2xl font-bold"
 							style={{ color: "var(--color-text)" }}
@@ -300,8 +295,8 @@ export function GrammarPage() {
 						>
 							Unlocked
 						</div>
-					</div>
-					<div className="card-royal p-4">
+					</Card>
+					<Card className="p-4">
 						<div
 							className="text-2xl font-bold"
 							style={{ color: "var(--color-text)" }}
@@ -314,8 +309,8 @@ export function GrammarPage() {
 						>
 							Learned
 						</div>
-					</div>
-					<div className="card-royal p-4">
+					</Card>
+					<Card className="p-4">
 						<div
 							className="text-2xl font-bold"
 							style={{ color: "var(--color-accent)" }}
@@ -328,19 +323,20 @@ export function GrammarPage() {
 						>
 							Due
 						</div>
-					</div>
+					</Card>
 				</div>
 
 				<div className="space-y-3">
 					{nextLesson && (
-						<button
+						<Button
 							type="button"
+							size="lg"
+							className="w-full"
 							onClick={handleStartLesson}
-							className="btn-primary w-full text-lg py-4"
 						>
 							Learn {nextLesson.grammarPoints.length} New Grammar Point
 							{nextLesson.grammarPoints.length !== 1 ? "s" : ""}
-						</button>
+						</Button>
 					)}
 
 					{!nextLesson && unlockedCount === 0 && (
@@ -365,14 +361,15 @@ export function GrammarPage() {
 						)}
 
 					{dueGrammarCards > 0 && (
-						<button
+						<Button
 							type="button"
+							size="lg"
+							className="w-full"
 							onClick={handleStartReview}
-							className="btn-primary w-full text-lg py-4"
 						>
 							Review {dueGrammarCards} Due Grammar Card
 							{dueGrammarCards !== 1 ? "s" : ""}
-						</button>
+						</Button>
 					)}
 				</div>
 			</div>
@@ -444,18 +441,10 @@ export function GrammarPage() {
 							✕
 						</button>
 					</div>
-					<div
-						className="w-full h-1.5 rounded-full"
-						style={{ background: "var(--color-border)" }}
-					>
-						<div
-							className="h-full rounded-full transition-all"
-							style={{
-								background: "var(--color-accent)",
-								width: `${((flow.cardIdx + 1) / cards.length) * 100}%`,
-							}}
-						/>
-					</div>
+					<Progress
+						value={((flow.cardIdx + 1) / cards.length) * 100}
+						className="h-1.5"
+					/>
 				</div>
 				<MultipleChoice card={currentGrammarCard} onAnswer={flow.advance} />
 			</div>
@@ -511,7 +500,7 @@ export function GrammarPage() {
 									: "var(--color-danger)",
 						},
 					].map(({ label, value, color }) => (
-						<div key={label} className="card-royal p-4 text-center">
+						<Card key={label} className="p-4 text-center">
 							<div className="text-2xl font-bold" style={{ color }}>
 								{value}
 							</div>
@@ -521,29 +510,29 @@ export function GrammarPage() {
 							>
 								{label}
 							</div>
-						</div>
+						</Card>
 					))}
 				</div>
 
 				{newAchievements.length > 0 && (
-					<div className="card-royal p-4">
+					<Card className="p-4">
 						<div className="section-header mb-3">Achievement Unlocked!</div>
 						<div className="flex gap-4 flex-wrap justify-center">
 							{newAchievements.map((id) => (
 								<AchievementBadge key={id} id={id} unlocked size="sm" />
 							))}
 						</div>
-					</div>
+					</Card>
 				)}
 
 				<div className="space-y-3">
-					<button
+					<Button
 						type="button"
+						className="w-full"
 						onClick={() => navigate("/")}
-						className="btn-primary w-full"
 					>
 						Back to Home
-					</button>
+					</Button>
 				</div>
 			</div>
 		);
@@ -592,18 +581,14 @@ export function GrammarPage() {
 							✕
 						</button>
 					</div>
-					<div
-						className="w-full h-1.5 rounded-full"
-						style={{ background: "var(--color-border)" }}
-					>
-						<div
-							className="h-full rounded-full transition-all"
-							style={{
-								background: "var(--color-accent)",
-								width: `${((grammarReview.cardIdx + 1) / grammarReview.session.cards.length) * 100}%`,
-							}}
-						/>
-					</div>
+					<Progress
+						value={
+							((grammarReview.cardIdx + 1) /
+								grammarReview.session.cards.length) *
+							100
+						}
+						className="h-1.5"
+					/>
 				</div>
 				{current.mode === "multipleChoice" ? (
 					<MultipleChoice card={current.card} onAnswer={handleMcAnswer} />

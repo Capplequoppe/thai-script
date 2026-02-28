@@ -91,6 +91,7 @@ interface BottomTabBarProps {
 	vocabUnlocked: boolean;
 	grammarUnlocked: boolean;
 	dueCount: number;
+	mobileOnly?: boolean;
 }
 
 const ACTIVE = "text-[var(--color-accent)]";
@@ -101,6 +102,7 @@ export function BottomTabBar({
 	vocabUnlocked,
 	grammarUnlocked,
 	dueCount,
+	mobileOnly = false,
 }: BottomTabBarProps) {
 	const tabs = [
 		{
@@ -156,48 +158,50 @@ export function BottomTabBar({
 			</nav>
 
 			{/* Desktop horizontal nav */}
-			<nav className="hidden md:flex gap-6 items-center">
-				{tabs.map(({ to, end, label, badge }) => (
-					<NavLink
-						key={to}
-						to={to}
-						end={end}
-						className={({ isActive }) =>
-							`text-sm font-medium transition-colors relative ${isActive ? ACTIVE : INACTIVE}`
-						}
-					>
-						{label}
-						{badge !== undefined && badge > 0 && (
-							<span
-								className="ml-1.5 text-white text-[9px] rounded-full px-1.5 py-0.5 font-bold"
-								style={{ background: "var(--color-apprentice)" }}
-							>
-								{badge}
-							</span>
-						)}
-					</NavLink>
-				))}
-				{vocabUnlocked && (
-					<NavLink
-						to="/vocabulary"
-						className={({ isActive }) =>
-							`text-sm font-medium transition-colors ${isActive ? ACTIVE : INACTIVE}`
-						}
-					>
-						Vocab
-					</NavLink>
-				)}
-				{grammarUnlocked && (
-					<NavLink
-						to="/grammar"
-						className={({ isActive }) =>
-							`text-sm font-medium transition-colors ${isActive ? ACTIVE : INACTIVE}`
-						}
-					>
-						Grammar
-					</NavLink>
-				)}
-			</nav>
+			{!mobileOnly && (
+				<nav className="hidden md:flex gap-6 items-center">
+					{tabs.map(({ to, end, label, badge }) => (
+						<NavLink
+							key={to}
+							to={to}
+							end={end}
+							className={({ isActive }) =>
+								`text-sm font-medium transition-colors relative ${isActive ? ACTIVE : INACTIVE}`
+							}
+						>
+							{label}
+							{badge !== undefined && badge > 0 && (
+								<span
+									className="ml-1.5 text-white text-[9px] rounded-full px-1.5 py-0.5 font-bold"
+									style={{ background: "var(--color-apprentice)" }}
+								>
+									{badge}
+								</span>
+							)}
+						</NavLink>
+					))}
+					{vocabUnlocked && (
+						<NavLink
+							to="/vocabulary"
+							className={({ isActive }) =>
+								`text-sm font-medium transition-colors ${isActive ? ACTIVE : INACTIVE}`
+							}
+						>
+							Vocab
+						</NavLink>
+					)}
+					{grammarUnlocked && (
+						<NavLink
+							to="/grammar"
+							className={({ isActive }) =>
+								`text-sm font-medium transition-colors ${isActive ? ACTIVE : INACTIVE}`
+							}
+						>
+							Grammar
+						</NavLink>
+					)}
+				</nav>
+			)}
 		</>
 	);
 }

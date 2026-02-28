@@ -35,11 +35,12 @@ export function Layout() {
 				<Outlet />
 			</main>
 
-			{/* Mobile fixed bottom tab bar (renders its own fixed positioning) */}
+			{/* Mobile fixed bottom tab bar — mobileOnly suppresses the desktop nav duplicate */}
 			<BottomTabBar
 				vocabUnlocked={lesson.getVocabUnlockedCount() > 0}
 				grammarUnlocked={lesson.getGrammarUnlockedCount() > 0}
 				dueCount={dueCount}
+				mobileOnly
 			/>
 		</div>
 	);

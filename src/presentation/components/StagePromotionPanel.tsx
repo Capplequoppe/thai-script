@@ -1,3 +1,5 @@
+import { Badge } from "@/presentation/components/ui/badge";
+
 export interface Promotion {
 	cardQuestion: string;
 	newStage: string;
@@ -45,14 +47,14 @@ export function StagePromotionPanel({ promotions }: StagePromotionPanelProps) {
 						>
 							{p.cardQuestion}
 						</span>
-						<span
-							className="text-sm font-semibold px-3 py-1 rounded-full text-white flex-shrink-0"
+						<Badge
+							className="flex-shrink-0"
 							style={{
 								background: STAGE_COLORS[p.newStage] ?? "var(--color-primary)",
 							}}
 						>
 							{STAGE_LABELS[p.newStage] ?? p.newStage}
-						</span>
+						</Badge>
 					</div>
 				))}
 			</div>
