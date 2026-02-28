@@ -1,6 +1,6 @@
+import type { PropertyType } from "../../../types";
 import { ReviewableCard } from "../../srs/entities/ReviewableCard";
 import { SrsSchedule } from "../../srs/value-objects/SrsSchedule";
-import type { PropertyType } from "../../../types";
 
 export class ScriptPropertyCard extends ReviewableCard {
 	constructor(
@@ -35,7 +35,9 @@ export class ScriptPropertyCard extends ReviewableCard {
 		};
 	}
 
-	static fromDTO(dto: ReturnType<ScriptPropertyCard["toDTO"]>): ScriptPropertyCard {
+	static fromDTO(
+		dto: ReturnType<ScriptPropertyCard["toDTO"]>,
+	): ScriptPropertyCard {
 		return new ScriptPropertyCard(
 			dto.id,
 			dto.question,

@@ -1,6 +1,8 @@
 import type { RecallRating } from "../value-objects/RecallRating";
-import type { ResponseTimingData } from "../value-objects/SrsSchedule";
-import { SrsSchedule } from "../value-objects/SrsSchedule";
+import type {
+	ResponseTimingData,
+	SrsSchedule,
+} from "../value-objects/SrsSchedule";
 import type { SrsStage } from "../value-objects/SrsStage";
 
 export abstract class ReviewableCard {
@@ -10,7 +12,7 @@ export abstract class ReviewableCard {
 		readonly id: string,
 		readonly question: string,
 		readonly correctAnswer: string,
-		readonly choices: string[],
+		readonly choices: readonly string[],
 		schedule: SrsSchedule,
 		readonly audioUrl?: string,
 	) {

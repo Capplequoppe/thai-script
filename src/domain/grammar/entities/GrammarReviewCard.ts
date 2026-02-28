@@ -32,7 +32,9 @@ export class GrammarReviewCard extends ReviewableCard {
 		};
 	}
 
-	static fromDTO(dto: ReturnType<GrammarReviewCard["toDTO"]>): GrammarReviewCard {
+	static fromDTO(
+		dto: ReturnType<GrammarReviewCard["toDTO"]>,
+	): GrammarReviewCard {
 		return new GrammarReviewCard(
 			dto.id,
 			dto.question,

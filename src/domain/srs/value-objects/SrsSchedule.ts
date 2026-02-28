@@ -194,7 +194,7 @@ export class SrsSchedule {
 					0,
 					now,
 					now,
-					(this.lapseCount ?? 0) + 1,
+					this.lapseCount + 1,
 				);
 			}
 			case 2: {
@@ -206,7 +206,7 @@ export class SrsSchedule {
 					1,
 					addMinutesToIso(now, 10),
 					now,
-					(this.lapseCount ?? 0) + 1,
+					this.lapseCount + 1,
 				);
 			}
 			case 3: {
