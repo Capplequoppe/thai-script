@@ -93,7 +93,18 @@ export function Dashboard() {
 						<div className="text-sm mt-2" style={{ color: "var(--color-text-muted)" }}>All done ✓</div>
 					</div>
 				)}
-				{lesson.getVocabUnlockedCount() > 0 ? (
+				{lesson.getGrammarUnlockedCount() > 0 ? (
+					<button
+						type="button"
+						onClick={() => navigate("/grammar")}
+						className="card-royal p-4 text-left"
+					>
+						<div className="text-xs section-header mb-1">Grammar</div>
+						<div className="font-semibold mt-2" style={{ color: "var(--color-primary)" }}>
+							{review.getDueCount("grammar")} due
+						</div>
+					</button>
+				) : lesson.getVocabUnlockedCount() > 0 ? (
 					<button
 						type="button"
 						onClick={() => navigate("/vocabulary")}
@@ -118,15 +129,17 @@ export function Dashboard() {
 					<div className="section-header mb-3">SRS Progress</div>
 					<div className="flex gap-2 overflow-x-auto pb-1">
 						{STAGE_PILL_CONFIG.map(({ key, label, color }) => (
-							<div
+							<button
 								key={key}
-								className="flex-shrink-0 flex items-center gap-2 px-3 py-2 rounded-full border text-sm font-medium"
+								type="button"
+								onClick={() => navigate("/progress")}
+								className="flex-shrink-0 flex items-center gap-2 px-3 py-2 rounded-full border text-sm font-medium cursor-pointer"
 								style={{ borderColor: color, color }}
 							>
 								<span className="w-2 h-2 rounded-full" style={{ background: color }} />
 								{label}
 								<span className="font-bold">{stages[key]}</span>
-							</div>
+							</button>
 						))}
 					</div>
 				</div>
@@ -152,6 +165,16 @@ export function Dashboard() {
 							.map((d) => (
 								<AchievementBadge key={d.id} id={d.id} unlocked={false} size="sm" />
 							))}
+					</div>
+					<div className="flex justify-end mt-2">
+						<button
+							type="button"
+							onClick={() => navigate("/progress")}
+							className="text-xs"
+							style={{ color: "var(--color-text-muted)" }}
+						>
+							See all →
+						</button>
 					</div>
 				</div>
 			)}
