@@ -1,15 +1,15 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router";
 import { ratingFromCorrectness } from "../../domain/shared/ratingFromCorrectness";
 import type { RecallRating } from "../../domain/shared/types";
 import type { VocabEntry, VocabularyCard } from "../../domain/vocabulary/types";
+import { AchievementBadge } from "../components/AchievementBadge";
 import { Flashcard } from "../components/Flashcard";
 import { MultipleChoice } from "../components/MultipleChoice";
 import { WordCard } from "../components/WordCard";
 import { useApp } from "../hooks/useApp";
 import { useReviewSession } from "../hooks/useReviewSession";
 import { useSessionFlow } from "../hooks/useSessionFlow";
-import { accuracyEmoji } from "../utils/accuracyEmoji";
 
 type Phase = "overview" | "intro" | "quiz" | "complete" | "review";
 
@@ -51,18 +51,18 @@ function VocabIntro({
 
 	return (
 		<div className="space-y-6">
-			<div className="flex justify-between items-center text-sm text-gray-500">
+			<div className="flex justify-between items-center text-sm" style={{ color: "var(--color-text-muted)" }}>
 				<span>
 					{idx + 1} / {words.length}
 				</span>
-				<span className="px-2 py-0.5 rounded bg-gray-100 dark:bg-gray-800 text-xs">
+				<span className="px-2 py-0.5 rounded text-xs" style={{ background: "var(--color-surface)", color: "var(--color-text-muted)" }}>
 					vocabulary
 				</span>
 			</div>
-			<div className="w-full h-1 bg-gray-200 dark:bg-gray-800 rounded-full">
+			<div className="w-full h-1 rounded-full" style={{ background: "var(--color-border)" }}>
 				<div
-					className="h-full bg-emerald-600 rounded-full transition-all"
-					style={{ width: `${((idx + 1) / words.length) * 100}%` }}
+					className="h-full rounded-full transition-all"
+					style={{ background: "var(--color-accent)", width: `${((idx + 1) / words.length) * 100}%` }}
 				/>
 			</div>
 			<WordCard word={current} />
@@ -71,7 +71,8 @@ function VocabIntro({
 					<button
 						type="button"
 						onClick={goBack}
-						className="py-3 px-6 bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 rounded-xl font-semibold transition-colors"
+						className="py-3 px-6 rounded-xl font-semibold transition-colors"
+						style={{ background: "var(--color-surface)", color: "var(--color-text)" }}
 					>
 						Back
 					</button>
@@ -79,7 +80,7 @@ function VocabIntro({
 				<button
 					type="button"
 					onClick={advance}
-					className="flex-1 py-3 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl font-semibold transition-colors"
+					className="btn-primary flex-1"
 				>
 					{isLast ? "Start Quiz" : "Next"}
 				</button>
@@ -89,13 +90,16 @@ function VocabIntro({
 }
 
 export function VocabularyPage() {
-	const { lesson, review, refresh } = useApp();
+	const { lesson, review, refresh, checkAchievements } = useApp();
 	const navigate = useNavigate();
 
 	const [phase, setPhase] = useState<Phase>("overview");
 	const [lessonWords, setLessonWords] = useState<VocabEntry[]>([]);
 	const [cards, setCards] = useState<VocabularyCard[]>([]);
 	const flow = useSessionFlow(cards.length);
+
+	const achievementsCheckedRef = useRef(false);
+	const [newAchievements, setNewAchievements] = useState<string[]>([]);
 
 	const startVocabSession = useCallback(
 		(maxCards?: number) => review.startSession("vocab", maxCards),
@@ -134,9 +138,30 @@ export function VocabularyPage() {
 		}
 	}, [flow.isComplete]);
 
+	useEffect(() => {
+		if (phase === "complete" && !achievementsCheckedRef.current) {
+			achievementsCheckedRef.current = true;
+			const sessionSummary = {
+				sessionId: `vocab-lesson-${Date.now()}`,
+				completedAt: new Date().toISOString(),
+				type: "vocab-lesson" as const,
+				durationMs: 0,
+				totalCards: flow.correct + flow.incorrect,
+				correctCount: flow.correct,
+				incorrectCount: flow.incorrect,
+				accuracy: flow.accuracy.percentage,
+				newCardsGraduated: 0,
+			};
+			const ids = checkAchievements(sessionSummary);
+			setNewAchievements(ids);
+		}
+	}, [phase, flow.correct, flow.incorrect, flow.accuracy.percentage, checkAchievements]);
+
 	const handleStartLesson = () => {
 		if (!nextLesson) return;
 		setLessonWords(nextLesson.words);
+		achievementsCheckedRef.current = false;
+		setNewAchievements([]);
 		setPhase("intro");
 	};
 
@@ -177,26 +202,26 @@ export function VocabularyPage() {
 		return (
 			<div className="space-y-8 py-4">
 				<div className="text-center">
-					<h1 className="text-3xl font-bold">Vocabulary</h1>
-					<p className="text-gray-500 dark:text-gray-400 mt-1">
+					<h1 className="text-3xl font-bold" style={{ color: "var(--color-text)" }}>Vocabulary</h1>
+					<p className="mt-1" style={{ color: "var(--color-text-muted)" }}>
 						Learn Thai words unlocked by your script mastery
 					</p>
 				</div>
 
 				<div className="grid grid-cols-3 gap-4 text-center">
-					<div className="bg-gray-50 dark:bg-gray-900 rounded-xl p-4">
-						<div className="text-2xl font-bold">{unlockedCount}</div>
-						<div className="text-xs text-gray-500 mt-1">Unlocked</div>
+					<div className="card-royal p-4">
+						<div className="text-2xl font-bold" style={{ color: "var(--color-text)" }}>{unlockedCount}</div>
+						<div className="text-xs mt-1" style={{ color: "var(--color-text-muted)" }}>Unlocked</div>
 					</div>
-					<div className="bg-gray-50 dark:bg-gray-900 rounded-xl p-4">
-						<div className="text-2xl font-bold">{learnedCount}</div>
-						<div className="text-xs text-gray-500 mt-1">Learned</div>
+					<div className="card-royal p-4">
+						<div className="text-2xl font-bold" style={{ color: "var(--color-text)" }}>{learnedCount}</div>
+						<div className="text-xs mt-1" style={{ color: "var(--color-text-muted)" }}>Learned</div>
 					</div>
-					<div className="bg-gray-50 dark:bg-gray-900 rounded-xl p-4">
-						<div className="text-2xl font-bold text-orange-500">
+					<div className="card-royal p-4">
+						<div className="text-2xl font-bold" style={{ color: "var(--color-accent)" }}>
 							{dueVocabCards}
 						</div>
-						<div className="text-xs text-gray-500 mt-1">Due</div>
+						<div className="text-xs mt-1" style={{ color: "var(--color-text-muted)" }}>Due</div>
 					</div>
 				</div>
 
@@ -206,7 +231,7 @@ export function VocabularyPage() {
 							<button
 								type="button"
 								onClick={handleStartLesson}
-								className="w-full py-4 px-6 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl text-lg font-semibold transition-colors"
+								className="btn-primary w-full text-lg py-4"
 							>
 								Learn {nextLesson.words.length} New Words
 							</button>
@@ -214,7 +239,8 @@ export function VocabularyPage() {
 								{nextLesson.words.map((w) => (
 									<span
 										key={w.thai}
-										className="thai text-sm px-2 py-1 bg-gray-100 dark:bg-gray-800 rounded"
+										className="thai text-sm px-2 py-1 rounded"
+										style={{ background: "var(--color-surface)", color: "var(--color-text)" }}
 									>
 										{w.thai} — {w.english}
 									</span>
@@ -224,7 +250,7 @@ export function VocabularyPage() {
 					)}
 
 					{!nextLesson && unlockedCount === 0 && (
-						<p className="text-center text-gray-500">
+						<p className="text-center" style={{ color: "var(--color-text-muted)" }}>
 							Complete more script lessons to unlock vocabulary words.
 						</p>
 					)}
@@ -232,7 +258,7 @@ export function VocabularyPage() {
 					{!nextLesson &&
 						unlockedCount > 0 &&
 						learnedCount === unlockedCount && (
-							<p className="text-center text-green-600 dark:text-green-400 font-semibold">
+							<p className="text-center font-semibold" style={{ color: "var(--color-master)" }}>
 								All unlocked words learned! Complete more script lessons to
 								unlock more.
 							</p>
@@ -242,7 +268,7 @@ export function VocabularyPage() {
 						<button
 							type="button"
 							onClick={handleStartReview}
-							className="w-full py-4 px-6 bg-orange-500 hover:bg-orange-600 text-white rounded-xl text-lg font-semibold transition-colors"
+							className="btn-primary w-full text-lg py-4"
 						>
 							Review {dueVocabCards} Due Words
 						</button>
@@ -256,8 +282,8 @@ export function VocabularyPage() {
 	if (phase === "intro") {
 		return (
 			<div>
-				<h1 className="text-xl font-bold mb-1">New Vocabulary</h1>
-				<p className="text-sm text-gray-500 mb-6">
+				<h1 className="text-xl font-bold mb-1" style={{ color: "var(--color-text)" }}>New Vocabulary</h1>
+				<p className="text-sm mb-6" style={{ color: "var(--color-text-muted)" }}>
 					{lessonWords.length} words to learn
 				</p>
 				<VocabIntro words={lessonWords} onComplete={handleIntroComplete} />
@@ -269,19 +295,34 @@ export function VocabularyPage() {
 	if (phase === "quiz" && cards[flow.cardIdx]) {
 		return (
 			<div>
-				<div className="flex justify-between items-center mb-6">
-					<h1 className="text-lg font-bold">Vocabulary Quiz</h1>
-					<span className="text-sm text-gray-500">
-						{flow.cardIdx + 1} / {cards.length}
-					</span>
-				</div>
-				<div className="w-full h-1.5 bg-gray-200 dark:bg-gray-800 rounded-full mb-6">
-					<div
-						className="h-full bg-emerald-600 rounded-full transition-all"
-						style={{
-							width: `${((flow.cardIdx + 1) / cards.length) * 100}%`,
-						}}
-					/>
+				{/* Session header HUD */}
+				<div className="mb-4">
+					<div className="flex items-center justify-between mb-2">
+						<span className="text-sm font-semibold" style={{ color: "var(--color-text)" }}>
+							Vocabulary Session
+						</span>
+						<span className="text-sm" style={{ color: "var(--color-text-muted)" }}>
+							{flow.cardIdx + 1} / {cards.length}
+						</span>
+						<button
+							type="button"
+							onClick={() => navigate("/")}
+							className="text-lg leading-none"
+							style={{ color: "var(--color-text-muted)" }}
+							title="End session"
+						>
+							✕
+						</button>
+					</div>
+					<div className="w-full h-1.5 rounded-full" style={{ background: "var(--color-border)" }}>
+						<div
+							className="h-full rounded-full transition-all"
+							style={{
+								background: "var(--color-accent)",
+								width: `${((flow.cardIdx + 1) / cards.length) * 100}%`,
+							}}
+						/>
+					</div>
 				</div>
 				<MultipleChoice card={cards[flow.cardIdx]!} onAnswer={flow.advance} />
 			</div>
@@ -290,42 +331,54 @@ export function VocabularyPage() {
 
 	// Complete
 	if (phase === "complete") {
+		const totalCardsCount = flow.correct + flow.incorrect;
+		const accuracy = flow.accuracy;
+
 		return (
-			<div className="text-center space-y-6 py-8">
-				<div className="text-6xl">{accuracyEmoji(flow.accuracy)}</div>
-				<h1 className="text-2xl font-bold">Words Learned!</h1>
-				<div className="grid grid-cols-3 gap-4">
-					<div className="bg-gray-50 dark:bg-gray-900 rounded-xl p-4">
-						<div className="text-2xl font-bold">
-							{flow.correct + flow.incorrect}
-						</div>
-						<div className="text-xs text-gray-500">Cards</div>
-					</div>
-					<div className="bg-gray-50 dark:bg-gray-900 rounded-xl p-4">
-						<div className="text-2xl font-bold text-green-600">
-							{flow.correct}
-						</div>
-						<div className="text-xs text-gray-500">Correct</div>
-					</div>
-					<div className="bg-gray-50 dark:bg-gray-900 rounded-xl p-4">
-						<div className="text-2xl font-bold">
-							{flow.accuracy.percentage}%
-						</div>
-						<div className="text-xs text-gray-500">Accuracy</div>
-					</div>
+			<div className="space-y-6 py-8">
+				<div className="text-center">
+					<div className="text-5xl mb-3" style={{ color: "var(--color-accent)" }}>✦</div>
+					<h1 className="text-2xl font-semibold" style={{ color: "var(--color-text)" }}>
+						Session Complete
+					</h1>
+					<p className="text-sm mt-1" style={{ color: "var(--color-text-muted)" }}>
+						{accuracy.percentage}% accuracy
+					</p>
 				</div>
+
+				<div className="grid grid-cols-3 gap-3">
+					{[
+						{ label: "Cards", value: totalCardsCount, color: "var(--color-text)" },
+						{ label: "Correct", value: flow.correct, color: "var(--color-master)" },
+						{
+							label: "Accuracy",
+							value: `${accuracy.percentage}%`,
+							color: accuracy.percentage >= 80 ? "var(--color-accent)" : "var(--color-danger)",
+						},
+					].map(({ label, value, color }) => (
+						<div key={label} className="card-royal p-4 text-center">
+							<div className="text-2xl font-bold" style={{ color }}>{value}</div>
+							<div className="text-xs mt-1" style={{ color: "var(--color-text-muted)" }}>{label}</div>
+						</div>
+					))}
+				</div>
+
+				{newAchievements.length > 0 && (
+					<div className="card-royal p-4">
+						<div className="section-header mb-3">Achievement Unlocked!</div>
+						<div className="flex gap-4 flex-wrap justify-center">
+							{newAchievements.map((id) => (
+								<AchievementBadge key={id} id={id} unlocked size="sm" />
+							))}
+						</div>
+					</div>
+				)}
+
 				<div className="space-y-3">
 					<button
 						type="button"
-						onClick={() => setPhase("overview")}
-						className="w-full py-3 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl font-semibold"
-					>
-						Back to Vocabulary
-					</button>
-					<button
-						type="button"
 						onClick={() => navigate("/")}
-						className="w-full py-3 bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 rounded-xl font-semibold"
+						className="btn-primary w-full"
 					>
 						Back to Home
 					</button>
@@ -341,19 +394,34 @@ export function VocabularyPage() {
 
 		return (
 			<div>
-				<div className="flex justify-between items-center mb-4">
-					<h1 className="text-lg font-bold">Vocabulary Review</h1>
-					<span className="text-sm text-gray-500">
-						{vocabReview.cardIdx + 1} / {vocabReview.session.cards.length}
-					</span>
-				</div>
-				<div className="w-full h-1.5 bg-gray-200 dark:bg-gray-800 rounded-full mb-6">
-					<div
-						className="h-full bg-orange-500 rounded-full transition-all"
-						style={{
-							width: `${((vocabReview.cardIdx + 1) / vocabReview.session.cards.length) * 100}%`,
-						}}
-					/>
+				{/* Session header HUD */}
+				<div className="mb-4">
+					<div className="flex items-center justify-between mb-2">
+						<span className="text-sm font-semibold" style={{ color: "var(--color-text)" }}>
+							Vocabulary Review
+						</span>
+						<span className="text-sm" style={{ color: "var(--color-text-muted)" }}>
+							{vocabReview.cardIdx + 1} / {vocabReview.session.cards.length}
+						</span>
+						<button
+							type="button"
+							onClick={() => navigate("/")}
+							className="text-lg leading-none"
+							style={{ color: "var(--color-text-muted)" }}
+							title="End session"
+						>
+							✕
+						</button>
+					</div>
+					<div className="w-full h-1.5 rounded-full" style={{ background: "var(--color-border)" }}>
+						<div
+							className="h-full rounded-full transition-all"
+							style={{
+								background: "var(--color-accent)",
+								width: `${((vocabReview.cardIdx + 1) / vocabReview.session.cards.length) * 100}%`,
+							}}
+						/>
+					</div>
 				</div>
 				{current.mode === "multipleChoice" ? (
 					<MultipleChoice card={current.card} onAnswer={handleMcAnswer} />
