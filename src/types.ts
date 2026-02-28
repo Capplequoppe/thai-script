@@ -1,4 +1,5 @@
 import type { ThaiSymbolClass, ToneValue, VowelPosition } from "./symbol";
+import type { VocabularyCard } from "./vocabulary-types";
 
 // --- SRS Data ---
 
@@ -55,7 +56,7 @@ export interface PropertyCard extends SrsCard {
 export type QuizMode = "multipleChoice" | "flashcard";
 
 export interface QuizCard {
-	card: PropertyCard;
+	card: SrsCard;
 	mode: QuizMode;
 }
 
@@ -100,6 +101,7 @@ export interface LearnerState {
 	completedLessons: number[];
 	currentLesson: number | null;
 	cards: Record<string, PropertyCard>;
+	vocabCards: Record<string, VocabularyCard>;
 	sessionHistory: SessionSummary[];
 }
 
@@ -107,5 +109,6 @@ export const INITIAL_LEARNER_STATE: LearnerState = {
 	completedLessons: [],
 	currentLesson: null,
 	cards: {},
+	vocabCards: {},
 	sessionHistory: [],
 };

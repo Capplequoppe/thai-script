@@ -52,7 +52,11 @@ export class LocalStorageAdapter implements IStorage {
 		}
 		const raw = localStorage.getItem(this.key);
 		if (!raw) return structuredClone(INITIAL_LEARNER_STATE);
-		return JSON.parse(raw) as LearnerState;
+		const state = JSON.parse(raw) as LearnerState;
+		if (!state.vocabCards) {
+			state.vocabCards = {};
+		}
+		return state;
 	}
 
 	save(state: LearnerState): void {
