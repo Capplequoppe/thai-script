@@ -1,11 +1,12 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router";
+import { ratingFromCorrectness } from "../../domain/shared/ratingFromCorrectness";
+import { Accuracy } from "../../domain/srs/value-objects/Accuracy";
+import type { RecallRating } from "../../types";
 import { Flashcard } from "../components/Flashcard";
 import { MultipleChoice } from "../components/MultipleChoice";
-import { Accuracy } from "../../domain/srs/value-objects/Accuracy";
 import { useApp } from "../hooks/useApp";
 import { useReviewSession } from "../hooks/useReviewSession";
-import type { RecallRating } from "../../types";
 
 interface ReviewResult {
 	cardId: string;
@@ -28,8 +29,8 @@ export function ReviewPage() {
 	const handleAdvance = useCallback(
 		(rating: RecallRating) => {
 			const result = review.handleReviewAdvance(rating);
-			if (result === "complete") {
-				resultsRef.current = review.session?.results ?? [];
+			if (result?.status === "complete") {
+				resultsRef.current = result.results;
 				setDone(true);
 			}
 		},
@@ -38,8 +39,7 @@ export function ReviewPage() {
 
 	const handleMcAnswer = useCallback(
 		(correct: boolean) => {
-			const rating: RecallRating = correct ? 4 : 2;
-			handleAdvance(rating);
+			handleAdvance(ratingFromCorrectness(correct));
 		},
 		[handleAdvance],
 	);

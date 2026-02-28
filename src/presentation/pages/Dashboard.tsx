@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router";
-import { useApp } from "../hooks/useApp";
 import { NotificationBanner } from "../components/NotificationBanner";
+import { useApp } from "../hooks/useApp";
 
 export function Dashboard() {
 	const {
@@ -61,9 +61,13 @@ export function Dashboard() {
 				<div className="bg-pink-50 dark:bg-pink-900/20 rounded-xl p-4">
 					<div className="flex justify-between items-center">
 						<div>
-							<div className="text-sm font-semibold text-pink-700 dark:text-pink-300">Apprentice Items</div>
+							<div className="text-sm font-semibold text-pink-700 dark:text-pink-300">
+								Apprentice Items
+							</div>
 							<div className="text-xs text-pink-500 dark:text-pink-400 mt-0.5">
-								{apprenticeStats.isAtLimit ? "At limit — review before new lessons" : `${apprenticeStats.limit - apprenticeStats.count} slots remaining`}
+								{apprenticeStats.isAtLimit
+									? "At limit — review before new lessons"
+									: `${apprenticeStats.limit - apprenticeStats.count} slots remaining`}
 							</div>
 						</div>
 						<div className="text-2xl font-bold text-pink-600 dark:text-pink-400">
@@ -78,7 +82,9 @@ export function Dashboard() {
 				<div className="bg-red-50 dark:bg-red-900/20 rounded-xl p-4">
 					<div className="flex justify-between items-center">
 						<div>
-							<div className="text-sm font-semibold text-red-700 dark:text-red-300">Leeches Detected</div>
+							<div className="text-sm font-semibold text-red-700 dark:text-red-300">
+								Leeches Detected
+							</div>
 							<div className="text-xs text-red-500 dark:text-red-400 mt-0.5">
 								Cards that keep failing — consider extra study
 							</div>
@@ -93,10 +99,14 @@ export function Dashboard() {
 			{/* Review Forecast */}
 			{totalCards > 0 && (
 				<div>
-					<h2 className="text-sm font-semibold text-gray-500 mb-2">Review Forecast</h2>
+					<h2 className="text-sm font-semibold text-gray-500 mb-2">
+						Review Forecast
+					</h2>
 					<div className="grid grid-cols-5 gap-2 text-center">
 						<div className="bg-gray-50 dark:bg-gray-900 rounded-lg p-2">
-							<div className="text-lg font-bold text-orange-500">{forecast.dueNow}</div>
+							<div className="text-lg font-bold text-orange-500">
+								{forecast.dueNow}
+							</div>
 							<div className="text-[10px] text-gray-500">Now</div>
 						</div>
 						<div className="bg-gray-50 dark:bg-gray-900 rounded-lg p-2">
@@ -188,71 +198,65 @@ export function Dashboard() {
 			)}
 			{/* Vocabulary */}
 			{getVocabUnlockedCount() > 0 && (
-			<div className="border-t border-gray-200 dark:border-gray-800 pt-6">
-				<h2 className="text-sm font-semibold text-gray-500 mb-3">
-					Vocabulary
-				</h2>
-				<div className="grid grid-cols-3 gap-4 text-center mb-3">
-					<div className="bg-gray-50 dark:bg-gray-900 rounded-xl p-3">
-						<div className="text-lg font-bold">
-							{getVocabUnlockedCount()}
+				<div className="border-t border-gray-200 dark:border-gray-800 pt-6">
+					<h2 className="text-sm font-semibold text-gray-500 mb-3">
+						Vocabulary
+					</h2>
+					<div className="grid grid-cols-3 gap-4 text-center mb-3">
+						<div className="bg-gray-50 dark:bg-gray-900 rounded-xl p-3">
+							<div className="text-lg font-bold">{getVocabUnlockedCount()}</div>
+							<div className="text-[10px] text-gray-500">Unlocked</div>
 						</div>
-						<div className="text-[10px] text-gray-500">Unlocked</div>
-					</div>
-					<div className="bg-gray-50 dark:bg-gray-900 rounded-xl p-3">
-						<div className="text-lg font-bold">
-							{getVocabLearnedCount()}
+						<div className="bg-gray-50 dark:bg-gray-900 rounded-xl p-3">
+							<div className="text-lg font-bold">{getVocabLearnedCount()}</div>
+							<div className="text-[10px] text-gray-500">Learned</div>
 						</div>
-						<div className="text-[10px] text-gray-500">Learned</div>
-					</div>
-					<div className="bg-gray-50 dark:bg-gray-900 rounded-xl p-3">
-						<div className="text-lg font-bold text-orange-500">
-							{getNumDueVocabCards()}
+						<div className="bg-gray-50 dark:bg-gray-900 rounded-xl p-3">
+							<div className="text-lg font-bold text-orange-500">
+								{getNumDueVocabCards()}
+							</div>
+							<div className="text-[10px] text-gray-500">Due</div>
 						</div>
-						<div className="text-[10px] text-gray-500">Due</div>
 					</div>
+					<button
+						onClick={() => navigate("/vocabulary")}
+						className="w-full py-3 px-6 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl font-semibold transition-colors"
+					>
+						Go to Vocabulary
+					</button>
 				</div>
-				<button
-					onClick={() => navigate("/vocabulary")}
-					className="w-full py-3 px-6 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl font-semibold transition-colors"
-				>
-					Go to Vocabulary
-				</button>
-			</div>
 			)}
 			{/* Grammar */}
 			{getGrammarUnlockedCount() > 0 && (
-			<div className="border-t border-gray-200 dark:border-gray-800 pt-6">
-				<h2 className="text-sm font-semibold text-gray-500 mb-3">
-					Grammar
-				</h2>
-				<div className="grid grid-cols-3 gap-4 text-center mb-3">
-					<div className="bg-gray-50 dark:bg-gray-900 rounded-xl p-3">
-						<div className="text-lg font-bold">
-							{getGrammarUnlockedCount()}
+				<div className="border-t border-gray-200 dark:border-gray-800 pt-6">
+					<h2 className="text-sm font-semibold text-gray-500 mb-3">Grammar</h2>
+					<div className="grid grid-cols-3 gap-4 text-center mb-3">
+						<div className="bg-gray-50 dark:bg-gray-900 rounded-xl p-3">
+							<div className="text-lg font-bold">
+								{getGrammarUnlockedCount()}
+							</div>
+							<div className="text-[10px] text-gray-500">Unlocked</div>
 						</div>
-						<div className="text-[10px] text-gray-500">Unlocked</div>
-					</div>
-					<div className="bg-gray-50 dark:bg-gray-900 rounded-xl p-3">
-						<div className="text-lg font-bold">
-							{getGrammarLearnedCount()}
+						<div className="bg-gray-50 dark:bg-gray-900 rounded-xl p-3">
+							<div className="text-lg font-bold">
+								{getGrammarLearnedCount()}
+							</div>
+							<div className="text-[10px] text-gray-500">Learned</div>
 						</div>
-						<div className="text-[10px] text-gray-500">Learned</div>
-					</div>
-					<div className="bg-gray-50 dark:bg-gray-900 rounded-xl p-3">
-						<div className="text-lg font-bold text-orange-500">
-							{getNumDueGrammarCards()}
+						<div className="bg-gray-50 dark:bg-gray-900 rounded-xl p-3">
+							<div className="text-lg font-bold text-orange-500">
+								{getNumDueGrammarCards()}
+							</div>
+							<div className="text-[10px] text-gray-500">Due</div>
 						</div>
-						<div className="text-[10px] text-gray-500">Due</div>
 					</div>
+					<button
+						onClick={() => navigate("/grammar")}
+						className="w-full py-3 px-6 bg-cyan-600 hover:bg-cyan-700 text-white rounded-xl font-semibold transition-colors"
+					>
+						Go to Grammar
+					</button>
 				</div>
-				<button
-					onClick={() => navigate("/grammar")}
-					className="w-full py-3 px-6 bg-cyan-600 hover:bg-cyan-700 text-white rounded-xl font-semibold transition-colors"
-				>
-					Go to Grammar
-				</button>
-			</div>
 			)}
 		</div>
 	);

@@ -1,10 +1,11 @@
 import { useEffect, useMemo, useState } from "react";
 import { useNavigate, useParams } from "react-router";
+import type { PropertyCard } from "../../types";
 import { LessonIntro } from "../components/LessonIntro";
 import { MultipleChoice } from "../components/MultipleChoice";
 import { useApp } from "../hooks/useApp";
 import { useSessionFlow } from "../hooks/useSessionFlow";
-import type { PropertyCard } from "../../types";
+import { accuracyEmoji } from "../utils/accuracyEmoji";
 
 type Phase = "intro" | "quiz" | "complete";
 
@@ -95,7 +96,7 @@ export function LessonPage() {
 	// Complete phase
 	return (
 		<div className="text-center space-y-6 py-8">
-			<div className="text-6xl">{flow.accuracy.emoji}</div>
+			<div className="text-6xl">{accuracyEmoji(flow.accuracy)}</div>
 			<h1 className="text-2xl font-bold">Lesson {num} Complete!</h1>
 			<div className="grid grid-cols-3 gap-4">
 				<div className="bg-gray-50 dark:bg-gray-900 rounded-xl p-4">
@@ -105,7 +106,9 @@ export function LessonPage() {
 					<div className="text-xs text-gray-500">Cards</div>
 				</div>
 				<div className="bg-gray-50 dark:bg-gray-900 rounded-xl p-4">
-					<div className="text-2xl font-bold text-green-600">{flow.correct}</div>
+					<div className="text-2xl font-bold text-green-600">
+						{flow.correct}
+					</div>
 					<div className="text-xs text-gray-500">Correct</div>
 				</div>
 				<div className="bg-gray-50 dark:bg-gray-900 rounded-xl p-4">

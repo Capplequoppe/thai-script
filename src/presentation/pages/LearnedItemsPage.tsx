@@ -1,16 +1,16 @@
 import { useMemo, useState } from "react";
-import {
-	ConsonantCard,
-	ToneMarkCard,
-	VowelCard,
-} from "../components/SymbolCard";
-import { useApp } from "../hooks/useApp";
 import type {
 	ConsonantSummary,
 	LessonSummary,
 	ToneMarkSummary,
 	VowelSummary,
 } from "../../learning-service";
+import {
+	ConsonantCard,
+	ToneMarkCard,
+	VowelCard,
+} from "../components/SymbolCard";
+import { useApp } from "../hooks/useApp";
 
 type Tab = "consonants" | "vowels" | "toneMarks" | "vocabulary" | "videos";
 
@@ -115,13 +115,19 @@ export function LearnedItemsPage() {
 
 	// Collect learned vocabulary words (deduplicated by wordThai, prefer thaiToEnglish for English meaning)
 	const vocabWords = useMemo(() => {
-		const byWord = new Map<string, { thai: string; english: string; audioUrl?: string }>();
+		const byWord = new Map<
+			string,
+			{ thai: string; english: string; audioUrl?: string }
+		>();
 		for (const card of Object.values(state.vocabCards)) {
 			const existing = byWord.get(card.wordThai);
 			if (!existing || card.property === "thaiToEnglish") {
 				byWord.set(card.wordThai, {
 					thai: card.wordThai,
-					english: card.property === "thaiToEnglish" ? card.correctAnswer : (existing?.english ?? card.question),
+					english:
+						card.property === "thaiToEnglish"
+							? card.correctAnswer
+							: (existing?.english ?? card.question),
 					audioUrl: card.audioUrl ?? existing?.audioUrl,
 				});
 			}
@@ -137,7 +143,8 @@ export function LearnedItemsPage() {
 		{ key: "videos", label: "Videos", count: videos.length },
 	];
 
-	const total = consonants.length + vowels.length + toneMarks.length + vocabWords.length;
+	const total =
+		consonants.length + vowels.length + toneMarks.length + vocabWords.length;
 
 	if (total === 0) {
 		return (

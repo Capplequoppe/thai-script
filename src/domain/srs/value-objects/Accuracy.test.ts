@@ -30,32 +30,4 @@ describe("Accuracy", () => {
 			expect(Accuracy.fromCounts(2, 3).percentage).toBe(67);
 		});
 	});
-
-	describe("emoji", () => {
-		it("returns 🎉 for percentage >= 80", () => {
-			expect(Accuracy.fromCounts(80, 100).emoji).toBe("🎉");
-			expect(Accuracy.fromCounts(10, 10).emoji).toBe("🎉");
-		});
-
-		it("returns 💪 for percentage >= 50 and < 80", () => {
-			expect(Accuracy.fromCounts(50, 100).emoji).toBe("💪");
-			expect(Accuracy.fromCounts(79, 100).emoji).toBe("💪");
-		});
-
-		it("returns 📚 for percentage < 50", () => {
-			expect(Accuracy.fromCounts(49, 100).emoji).toBe("📚");
-			expect(Accuracy.fromCounts(0, 10).emoji).toBe("📚");
-			expect(Accuracy.fromCounts(0, 0).emoji).toBe("📚");
-		});
-
-		it("handles boundary at 80 exactly", () => {
-			expect(Accuracy.fromCounts(80, 100).emoji).toBe("🎉");
-			expect(Accuracy.fromCounts(79, 100).emoji).toBe("💪");
-		});
-
-		it("handles boundary at 50 exactly", () => {
-			expect(Accuracy.fromCounts(50, 100).emoji).toBe("💪");
-			expect(Accuracy.fromCounts(49, 100).emoji).toBe("📚");
-		});
-	});
 });

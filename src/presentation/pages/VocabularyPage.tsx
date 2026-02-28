@@ -1,13 +1,15 @@
 import { useCallback, useEffect, useState } from "react";
 import { useNavigate } from "react-router";
+import { ratingFromCorrectness } from "../../domain/shared/ratingFromCorrectness";
+import type { RecallRating } from "../../types";
+import type { VocabEntry, VocabularyCard } from "../../vocabulary-types";
 import { Flashcard } from "../components/Flashcard";
 import { MultipleChoice } from "../components/MultipleChoice";
 import { WordCard } from "../components/WordCard";
 import { useApp } from "../hooks/useApp";
 import { useReviewSession } from "../hooks/useReviewSession";
 import { useSessionFlow } from "../hooks/useSessionFlow";
-import type { RecallRating } from "../../types";
-import type { VocabEntry, VocabularyCard } from "../../vocabulary-types";
+import { accuracyEmoji } from "../utils/accuracyEmoji";
 
 type Phase = "overview" | "intro" | "quiz" | "complete" | "review";
 
@@ -133,7 +135,7 @@ export function VocabularyPage() {
 	const handleReviewAdvance = useCallback(
 		(rating: RecallRating) => {
 			const result = vocabReview.handleReviewAdvance(rating);
-			if (result === "complete") {
+			if (result?.status === "complete") {
 				setPhase("overview");
 			}
 		},
@@ -142,8 +144,7 @@ export function VocabularyPage() {
 
 	const handleMcAnswer = useCallback(
 		(correct: boolean) => {
-			const rating: RecallRating = correct ? 4 : 2;
-			handleReviewAdvance(rating);
+			handleReviewAdvance(ratingFromCorrectness(correct));
 		},
 		[handleReviewAdvance],
 	);
@@ -266,7 +267,7 @@ export function VocabularyPage() {
 	if (phase === "complete") {
 		return (
 			<div className="text-center space-y-6 py-8">
-				<div className="text-6xl">{flow.accuracy.emoji}</div>
+				<div className="text-6xl">{accuracyEmoji(flow.accuracy)}</div>
 				<h1 className="text-2xl font-bold">Words Learned!</h1>
 				<div className="grid grid-cols-3 gap-4">
 					<div className="bg-gray-50 dark:bg-gray-900 rounded-xl p-4">

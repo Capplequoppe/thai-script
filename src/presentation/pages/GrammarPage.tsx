@@ -1,12 +1,14 @@
 import { useCallback, useEffect, useState } from "react";
 import { useNavigate } from "react-router";
+import { ratingFromCorrectness } from "../../domain/shared/ratingFromCorrectness";
+import type { GrammarCard, GrammarEntry } from "../../grammar-types";
+import type { RecallRating } from "../../types";
 import { Flashcard } from "../components/Flashcard";
 import { MultipleChoice } from "../components/MultipleChoice";
-import type { GrammarCard, GrammarEntry } from "../../grammar-types";
 import { useApp } from "../hooks/useApp";
 import { useReviewSession } from "../hooks/useReviewSession";
 import { useSessionFlow } from "../hooks/useSessionFlow";
-import type { RecallRating } from "../../types";
+import { accuracyEmoji } from "../utils/accuracyEmoji";
 
 type Phase = "overview" | "intro" | "quiz" | "complete" | "review";
 
@@ -69,9 +71,7 @@ function GrammarIntro({
 			<div className="bg-cyan-50 dark:bg-cyan-900/20 rounded-xl p-4 font-mono text-center text-lg">
 				{current.pattern}
 			</div>
-			<p className="text-gray-600 dark:text-gray-300">
-				{current.explanation}
-			</p>
+			<p className="text-gray-600 dark:text-gray-300">{current.explanation}</p>
 
 			<div className="space-y-3">
 				<h3 className="text-sm font-semibold text-gray-500">Examples</h3>
@@ -161,7 +161,7 @@ export function GrammarPage() {
 	const handleReviewAdvance = useCallback(
 		(rating: RecallRating) => {
 			const result = grammarReview.handleReviewAdvance(rating);
-			if (result === "complete") {
+			if (result?.status === "complete") {
 				setPhase("overview");
 			}
 		},
@@ -170,8 +170,7 @@ export function GrammarPage() {
 
 	const handleMcAnswer = useCallback(
 		(correct: boolean) => {
-			const rating: RecallRating = correct ? 4 : 2;
-			handleReviewAdvance(rating);
+			handleReviewAdvance(ratingFromCorrectness(correct));
 		},
 		[handleReviewAdvance],
 	);
@@ -286,7 +285,7 @@ export function GrammarPage() {
 	if (phase === "complete") {
 		return (
 			<div className="text-center space-y-6 py-8">
-				<div className="text-6xl">{flow.accuracy.emoji}</div>
+				<div className="text-6xl">{accuracyEmoji(flow.accuracy)}</div>
 				<h1 className="text-2xl font-bold">Grammar Learned!</h1>
 				<div className="grid grid-cols-3 gap-4">
 					<div className="bg-gray-50 dark:bg-gray-900 rounded-xl p-4">
@@ -336,8 +335,7 @@ export function GrammarPage() {
 				<div className="flex justify-between items-center mb-4">
 					<h1 className="text-lg font-bold">Grammar Review</h1>
 					<span className="text-sm text-gray-500">
-						{grammarReview.cardIdx + 1} /{" "}
-						{grammarReview.session.cards.length}
+						{grammarReview.cardIdx + 1} / {grammarReview.session.cards.length}
 					</span>
 				</div>
 				<div className="w-full h-1.5 bg-gray-200 dark:bg-gray-800 rounded-full mb-6">

@@ -1,7 +1,12 @@
 import { useCallback, useRef, useState } from "react";
+import { ratingFromCorrectness } from "../../domain/shared/ratingFromCorrectness";
 import type { ActiveReviewSession } from "../../review-service";
 import type { RecallRating } from "../../types";
-import { ratingFromCorrectness } from "../../domain/shared/ratingFromCorrectness";
+
+export interface ReviewCompletionResult {
+	status: "complete";
+	results: Array<{ cardId: string; rating: RecallRating }>;
+}
 
 export function useReviewSession(
 	startSessionFn: (maxCards?: number) => ActiveReviewSession,
@@ -24,7 +29,7 @@ export function useReviewSession(
 	);
 
 	const handleReviewAdvance = useCallback(
-		(rating: RecallRating) => {
+		(rating: RecallRating): ReviewCompletionResult | undefined => {
 			if (!session || !sessionRef.current) return;
 			const current = session.cards[cardIdx];
 			if (!current) return;
@@ -35,9 +40,10 @@ export function useReviewSession(
 			if (cardIdx + 1 < session.cards.length) {
 				setCardIdx((i) => i + 1);
 			} else {
+				const finalResults = [...sessionRef.current.results];
 				endSessionFn(sessionRef.current);
 				setSession(null);
-				return "complete";
+				return { status: "complete", results: finalResults };
 			}
 		},
 		[session, cardIdx, recordReviewFn, endSessionFn],
@@ -45,7 +51,7 @@ export function useReviewSession(
 
 	const handleMcAnswer = useCallback(
 		(correct: boolean) => {
-			handleReviewAdvance(ratingFromCorrectness(correct));
+			return handleReviewAdvance(ratingFromCorrectness(correct));
 		},
 		[handleReviewAdvance],
 	);

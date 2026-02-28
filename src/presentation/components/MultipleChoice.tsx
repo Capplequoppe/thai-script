@@ -78,9 +78,7 @@ export function MultipleChoice({ card, onAnswer }: Props) {
 				</div>
 			) : symbolChar ? (
 				<div className="text-center">
-					<span className="thai text-8xl font-normal">
-						{symbolChar}
-					</span>
+					<span className="thai text-8xl font-normal">{symbolChar}</span>
 					{card.audioUrl && !hideAudioHint && (
 						<button
 							onClick={() => playAudio(card.audioUrl!)}
@@ -93,9 +91,7 @@ export function MultipleChoice({ card, onAnswer }: Props) {
 				</div>
 			) : wordThai ? (
 				<div className="text-center">
-					<span className="thai text-6xl font-normal">
-						{wordThai}
-					</span>
+					<span className="thai text-6xl font-normal">{wordThai}</span>
 					{card.audioUrl && (
 						<button
 							onClick={() => playAudio(card.audioUrl!)}

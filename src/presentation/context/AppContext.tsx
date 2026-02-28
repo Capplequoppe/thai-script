@@ -6,21 +6,29 @@ import {
 	useMemo,
 	useState,
 } from "react";
-import { ApprenticeService } from "../../apprentice-service";
 import type { ApprenticeStats } from "../../apprentice-service";
-import { LeechService } from "../../leech-service";
+import { ApprenticeService } from "../../apprentice-service";
+import grammarData from "../../grammar.json";
+import { GrammarService } from "../../grammar-service";
+import type {
+	GrammarCard,
+	GrammarEntry,
+	GrammarLessonSummary,
+} from "../../grammar-types";
 import {
 	LearningService,
 	type LessonInfo,
 	type LessonSummary,
 } from "../../learning-service";
+import { LeechService } from "../../leech-service";
+import { NotificationScheduler } from "../../notification-scheduler";
+import type { CardPool } from "../../review-service";
 import {
 	type ActiveReviewSession,
 	type CriticalItem,
 	type ReviewForecast,
 	ReviewService,
 } from "../../review-service";
-import type { CardPool } from "../../review-service";
 import { getStageCounts } from "../../srs";
 import { LocalStorageAdapter } from "../../storage";
 import type {
@@ -30,14 +38,6 @@ import type {
 	SrsCard,
 	StageCounts,
 } from "../../types";
-import { NotificationScheduler } from "../../notification-scheduler";
-import grammarData from "../../grammar.json";
-import { GrammarService } from "../../grammar-service";
-import type {
-	GrammarCard,
-	GrammarEntry,
-	GrammarLessonSummary,
-} from "../../grammar-types";
 import vocabularyData from "../../vocabulary.json";
 import { VocabularyService } from "../../vocabulary-service";
 import type {
@@ -51,8 +51,17 @@ const apprenticeService = new ApprenticeService(storage);
 const leechService = new LeechService(storage);
 const learningService = new LearningService(storage, apprenticeService);
 const reviewService = new ReviewService(storage);
-const vocabularyService = new VocabularyService(storage, vocabularyData as VocabEntry[], apprenticeService);
-const grammarService = new GrammarService(storage, grammarData as unknown as GrammarEntry[], apprenticeService, vocabularyData as VocabEntry[]);
+const vocabularyService = new VocabularyService(
+	storage,
+	vocabularyData as VocabEntry[],
+	apprenticeService,
+);
+const grammarService = new GrammarService(
+	storage,
+	grammarData as unknown as GrammarEntry[],
+	apprenticeService,
+	vocabularyData as VocabEntry[],
+);
 const notificationScheduler = new NotificationScheduler();
 
 function scheduleNextNotification() {
@@ -79,7 +88,11 @@ export interface AppContextValue {
 	getCompletedLessons: () => number[];
 	getDueCards: () => SrsCard[];
 	getNumDueCards: () => number;
-	recordReview: (cardId: string, rating: RecallRating, timing?: { responseTimeMs: number; averageResponseTimeMs: number }) => void;
+	recordReview: (
+		cardId: string,
+		rating: RecallRating,
+		timing?: { responseTimeMs: number; averageResponseTimeMs: number },
+	) => void;
 	startReviewSession: (maxCards?: number) => ActiveReviewSession;
 	endReviewSession: (session: ActiveReviewSession) => SessionSummary;
 	getNextReviewDate: () => Date | null;
@@ -95,7 +108,11 @@ export interface AppContextValue {
 	getVocabUnlockedCount: () => number;
 	getVocabLearnedCount: () => number;
 	getNumDueVocabCards: () => number;
-	recordVocabReview: (cardId: string, rating: RecallRating, timing?: { responseTimeMs: number; averageResponseTimeMs: number }) => void;
+	recordVocabReview: (
+		cardId: string,
+		rating: RecallRating,
+		timing?: { responseTimeMs: number; averageResponseTimeMs: number },
+	) => void;
 	startVocabReviewSession: (maxCards?: number) => ActiveReviewSession;
 	endVocabReviewSession: (session: ActiveReviewSession) => SessionSummary;
 	// Grammar operations
@@ -104,7 +121,11 @@ export interface AppContextValue {
 	getGrammarUnlockedCount: () => number;
 	getGrammarLearnedCount: () => number;
 	getNumDueGrammarCards: () => number;
-	recordGrammarReview: (cardId: string, rating: RecallRating, timing?: { responseTimeMs: number; averageResponseTimeMs: number }) => void;
+	recordGrammarReview: (
+		cardId: string,
+		rating: RecallRating,
+		timing?: { responseTimeMs: number; averageResponseTimeMs: number },
+	) => void;
 	startGrammarReviewSession: (maxCards?: number) => ActiveReviewSession;
 	endGrammarReviewSession: (session: ActiveReviewSession) => SessionSummary;
 	// WaniKani-inspired features
@@ -116,7 +137,11 @@ export interface AppContextValue {
 	getReviewForecast: () => ReviewForecast;
 	getCriticalItems: (pool?: CardPool, limit?: number) => CriticalItem[];
 	isNextLessonAvailable: () => boolean;
-	getLessonMasteryProgress: (lessonNumber: number) => { total: number; graduated: number; percentage: number };
+	getLessonMasteryProgress: (lessonNumber: number) => {
+		total: number;
+		graduated: number;
+		percentage: number;
+	};
 	resurrectCard: (cardId: string, pool?: CardPool) => void;
 }
 
@@ -166,7 +191,9 @@ export function AppProvider({ children }: { children: ReactNode }) {
 			getDueCards: () => reviewService.getDueCards(),
 			getNumDueCards: () => reviewService.getNumDueCards(),
 			recordReview: (cardId, rating, timing) =>
-				wrap(() => reviewService.recordReview(cardId, rating, undefined, timing)),
+				wrap(() =>
+					reviewService.recordReview(cardId, rating, undefined, timing),
+				),
 			startReviewSession: (maxCards) =>
 				reviewService.startReviewSession(maxCards),
 			endReviewSession: (session) =>
@@ -182,9 +209,18 @@ export function AppProvider({ children }: { children: ReactNode }) {
 			startVocabLesson: () => wrap(() => vocabularyService.startLesson()),
 			getVocabUnlockedCount: () => vocabularyService.getUnlockedCount(),
 			getVocabLearnedCount: () => vocabularyService.getLearnedCount(),
-			getNumDueVocabCards: () => reviewService.getNumDueCards(undefined, "vocab"),
+			getNumDueVocabCards: () =>
+				reviewService.getNumDueCards(undefined, "vocab"),
 			recordVocabReview: (cardId, rating, timing) =>
-				wrap(() => reviewService.recordReview(cardId, rating, undefined, timing, "vocab")),
+				wrap(() =>
+					reviewService.recordReview(
+						cardId,
+						rating,
+						undefined,
+						timing,
+						"vocab",
+					),
+				),
 			startVocabReviewSession: (maxCards) =>
 				reviewService.startReviewSession(maxCards, undefined, "vocab"),
 			endVocabReviewSession: (session) =>
@@ -194,13 +230,24 @@ export function AppProvider({ children }: { children: ReactNode }) {
 			startGrammarLesson: () => wrap(() => grammarService.startLesson()),
 			getGrammarUnlockedCount: () => grammarService.getUnlockedCount(),
 			getGrammarLearnedCount: () => grammarService.getLearnedCount(),
-			getNumDueGrammarCards: () => reviewService.getNumDueCards(undefined, "grammar"),
+			getNumDueGrammarCards: () =>
+				reviewService.getNumDueCards(undefined, "grammar"),
 			recordGrammarReview: (cardId, rating, timing) =>
-				wrap(() => reviewService.recordReview(cardId, rating, undefined, timing, "grammar")),
+				wrap(() =>
+					reviewService.recordReview(
+						cardId,
+						rating,
+						undefined,
+						timing,
+						"grammar",
+					),
+				),
 			startGrammarReviewSession: (maxCards) =>
 				reviewService.startReviewSession(maxCards, undefined, "grammar"),
 			endGrammarReviewSession: (session) =>
-				wrap(() => reviewService.endReviewSession(session, undefined, "grammar")),
+				wrap(() =>
+					reviewService.endReviewSession(session, undefined, "grammar"),
+				),
 			// WaniKani-inspired features
 			getStageCounts: (pool) => {
 				let cards: SrsCard[];
@@ -215,7 +262,11 @@ export function AppProvider({ children }: { children: ReactNode }) {
 						cards = Object.values(state.grammarCards);
 						break;
 					default:
-						cards = [...Object.values(state.cards), ...Object.values(state.vocabCards), ...Object.values(state.grammarCards)];
+						cards = [
+							...Object.values(state.cards),
+							...Object.values(state.vocabCards),
+							...Object.values(state.grammarCards),
+						];
 				}
 				return getStageCounts(cards.map((c) => c.srs));
 			},
@@ -224,10 +275,13 @@ export function AppProvider({ children }: { children: ReactNode }) {
 			getApprenticeStats: () => apprenticeService.getApprenticeStats(),
 			canStartLesson: () => apprenticeService.canStartLesson(),
 			getReviewForecast: () => reviewService.getReviewForecast(),
-			getCriticalItems: (pool, limit) => reviewService.getCriticalItems(pool, limit),
+			getCriticalItems: (pool, limit) =>
+				reviewService.getCriticalItems(pool, limit),
 			isNextLessonAvailable: () => learningService.isNextLessonAvailable(),
-			getLessonMasteryProgress: (n) => learningService.getLessonMasteryProgress(n),
-			resurrectCard: (cardId, pool) => wrap(() => reviewService.resurrectCard(cardId, pool)),
+			getLessonMasteryProgress: (n) =>
+				learningService.getLessonMasteryProgress(n),
+			resurrectCard: (cardId, pool) =>
+				wrap(() => reviewService.resurrectCard(cardId, pool)),
 		}),
 		[state, refresh, wrap],
 	);

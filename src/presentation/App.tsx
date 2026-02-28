@@ -2,12 +2,12 @@ import { HashRouter, Navigate, Route, Routes } from "react-router";
 import { Layout } from "./components/Layout";
 import { AppProvider } from "./context/AppContext";
 import { Dashboard } from "./pages/Dashboard";
+import { GrammarPage } from "./pages/GrammarPage";
 import { LearnedItemsPage } from "./pages/LearnedItemsPage";
 import { LessonPage } from "./pages/LessonPage";
 import { ProgressPage } from "./pages/ProgressPage";
 import { ReviewPage } from "./pages/ReviewPage";
 import { SettingsPage } from "./pages/SettingsPage";
-import { GrammarPage } from "./pages/GrammarPage";
 import { VocabularyPage } from "./pages/VocabularyPage";
 
 export function App() {

@@ -1,5 +1,5 @@
 // @vitest-environment jsdom
-import { renderHook, act } from "@testing-library/react";
+import { act, renderHook } from "@testing-library/react";
 import { describe, expect, it, vi } from "vitest";
 import type { ActiveReviewSession } from "../../review-service";
 import type { RecallRating } from "../../types";
@@ -42,7 +42,13 @@ describe("useReviewSession", () => {
 			useReviewSession(startSessionFn, recordReviewFn, endSessionFn),
 		);
 
-		return { ...result, startSessionFn, recordReviewFn, endSessionFn, mockSession };
+		return {
+			...result,
+			startSessionFn,
+			recordReviewFn,
+			endSessionFn,
+			mockSession,
+		};
 	}
 
 	it("has correct initial state", () => {
@@ -83,7 +89,7 @@ describe("useReviewSession", () => {
 		expect(result.current.currentCard).toBe(mockSession.cards[1]);
 	});
 
-	it("handleReviewAdvance returns 'complete' on last card and sets session to null", () => {
+	it("handleReviewAdvance returns completion result with results on last card", () => {
 		const { result, endSessionFn, mockSession } = setup();
 
 		act(() => {
@@ -96,12 +102,21 @@ describe("useReviewSession", () => {
 		});
 
 		// Advance past last card
-		let returnValue: string | undefined;
+		let returnValue:
+			| {
+					status: "complete";
+					results: Array<{ cardId: string; rating: RecallRating }>;
+			  }
+			| undefined;
 		act(() => {
 			returnValue = result.current.handleReviewAdvance(3 as RecallRating);
 		});
 
-		expect(returnValue).toBe("complete");
+		expect(returnValue?.status).toBe("complete");
+		expect(returnValue?.results).toEqual([
+			{ cardId: "card-0", rating: 4 },
+			{ cardId: "card-1", rating: 3 },
+		]);
 		expect(endSessionFn).toHaveBeenCalledWith(mockSession);
 		expect(result.current.session).toBeNull();
 	});
