@@ -36,7 +36,18 @@ describe("useReviewSession", () => {
 		const mockSession = session ?? makeSession();
 		const startSessionFn = vi.fn(() => mockSession);
 		const recordReviewFn = vi.fn();
-		const endSessionFn = vi.fn();
+		const mockEndSession = vi.fn().mockReturnValue({
+			sessionId: "s1",
+			type: "review" as const,
+			completedAt: new Date().toISOString(),
+			durationMs: 1000,
+			totalCards: 3,
+			correctCount: 3,
+			incorrectCount: 0,
+			accuracy: 100,
+			newCardsGraduated: 0,
+		});
+		const endSessionFn = mockEndSession;
 
 		const result = renderHook(() =>
 			useReviewSession(startSessionFn, recordReviewFn, endSessionFn),
@@ -106,6 +117,7 @@ describe("useReviewSession", () => {
 			| {
 					status: "complete";
 					results: Array<{ cardId: string; rating: RecallRating }>;
+					summary: import("../../domain/shared/types").SessionSummary;
 			  }
 			| undefined;
 		act(() => {

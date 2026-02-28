@@ -110,8 +110,9 @@ export function VocabularyPage() {
 	);
 	const endVocabSession = useCallback(
 		(session: Parameters<typeof review.endSession>[0]) => {
-			review.endSession(session, "vocab");
+			const summary = review.endSession(session, "vocab");
 			refresh();
+			return summary;
 		},
 		[review, refresh],
 	);

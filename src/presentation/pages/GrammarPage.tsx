@@ -136,8 +136,9 @@ export function GrammarPage() {
 	);
 	const endGrammarSession = useCallback(
 		(session: Parameters<typeof review.endSession>[0]) => {
-			review.endSession(session, "grammar");
+			const summary = review.endSession(session, "grammar");
 			refresh();
+			return summary;
 		},
 		[review, refresh],
 	);

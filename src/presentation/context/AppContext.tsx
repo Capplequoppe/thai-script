@@ -16,8 +16,9 @@ import type { GrammarEntry } from "../../domain/grammar/types";
 import { LearningService } from "../../domain/script/services/ScriptLessonService";
 import { ReviewService } from "../../domain/session/services/ReviewService";
 import { ApprenticeService } from "../../domain/shared/services/ApprenticeService";
+import { AchievementService } from "../../domain/shared/services/AchievementService";
 import { LeechService } from "../../domain/shared/services/LeechService";
-import type { LearnerState } from "../../domain/shared/types";
+import type { LearnerState, SessionSummary } from "../../domain/shared/types";
 import vocabularyData from "../../domain/vocabulary/data/vocabulary.json";
 import { VocabularyService } from "../../domain/vocabulary/services/VocabularyLessonService";
 import type { VocabEntry } from "../../domain/vocabulary/types";
@@ -50,6 +51,7 @@ const grammarService = new GrammarService(
 	vocabularyData as VocabEntry[],
 );
 const notificationScheduler = new NotificationScheduler();
+const achievementService = new AchievementService();
 
 const lessonUseCase = new StartLessonUseCase(
 	learningService,
@@ -74,6 +76,7 @@ export interface AppContextValue {
 	review: ConductReviewUseCase;
 	dashboard: QueryDashboardUseCase;
 	data: ManageDataUseCase;
+	checkAchievements: (summary: SessionSummary) => string[];
 }
 
 export const AppContext = createContext<AppContextValue | null>(null);
@@ -84,6 +87,18 @@ export function AppProvider({ children }: { children: ReactNode }) {
 	const refresh = useCallback(() => {
 		setState(storage.load());
 	}, []);
+
+	const checkAchievements = useCallback(
+		(summary: SessionSummary): string[] => {
+			const freshState = storage.load();
+			const newIds = achievementService.checkNewAchievements(freshState, summary);
+			for (const id of newIds) {
+				stateRepo.addAchievement(id);
+			}
+			return newIds;
+		},
+		[],
+	);
 
 	useEffect(() => {
 		reviewUseCase.getForecast();
@@ -106,8 +121,9 @@ export function AppProvider({ children }: { children: ReactNode }) {
 			review: reviewUseCase,
 			dashboard: dashboardUseCase,
 			data: dataUseCase,
+			checkAchievements,
 		}),
-		[state, refresh],
+		[state, refresh, checkAchievements],
 	);
 
 	return <AppContext.Provider value={value}>{children}</AppContext.Provider>;

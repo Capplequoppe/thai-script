@@ -33,8 +33,9 @@ export function ReviewPage() {
 	);
 	const endSession = useCallback(
 		(session: Parameters<typeof review.endSession>[0]) => {
-			review.endSession(session);
+			const summary = review.endSession(session);
 			refresh();
+			return summary;
 		},
 		[review, refresh],
 	);

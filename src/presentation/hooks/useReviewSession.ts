@@ -1,17 +1,18 @@
 import { useCallback, useRef, useState } from "react";
 import type { ActiveReviewSession } from "../../domain/session/services/ReviewService";
 import { ratingFromCorrectness } from "../../domain/shared/ratingFromCorrectness";
-import type { RecallRating } from "../../domain/shared/types";
+import type { RecallRating, SessionSummary } from "../../domain/shared/types";
 
 export interface ReviewCompletionResult {
 	status: "complete";
 	results: Array<{ cardId: string; rating: RecallRating }>;
+	summary: SessionSummary;
 }
 
 export function useReviewSession(
 	startSessionFn: (maxCards?: number) => ActiveReviewSession,
 	recordReviewFn: (cardId: string, rating: RecallRating) => void,
-	endSessionFn: (session: ActiveReviewSession) => void,
+	endSessionFn: (session: ActiveReviewSession) => SessionSummary,
 ) {
 	const [session, setSession] = useState<ActiveReviewSession | null>(null);
 	const [cardIdx, setCardIdx] = useState(0);
@@ -41,9 +42,9 @@ export function useReviewSession(
 				setCardIdx((i) => i + 1);
 			} else {
 				const finalResults = [...sessionRef.current.results];
-				endSessionFn(sessionRef.current);
+				const summary = endSessionFn(sessionRef.current);
 				setSession(null);
-				return { status: "complete", results: finalResults };
+				return { status: "complete" as const, results: finalResults, summary };
 			}
 		},
 		[session, cardIdx, recordReviewFn, endSessionFn],
