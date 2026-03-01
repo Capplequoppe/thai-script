@@ -48,5 +48,9 @@ export abstract class ReviewableCard {
 		this._schedule = this._schedule.resurrect(now);
 	}
 
+	overrideStage(targetStage: SrsStage, now?: string): void {
+		this._schedule = this._schedule.overrideStage(targetStage, now);
+	}
+
 	abstract get pool(): CardPool;
 }

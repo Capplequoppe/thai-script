@@ -122,4 +122,45 @@ describe("ReviewableCard", () => {
 		const card = makeCard();
 		expect(card.pool).toBe("script");
 	});
+
+	describe("overrideStage", () => {
+		it("sets stage to BURNED when called with SrsStage.BURNED", () => {
+			const card = makeCard();
+			card.overrideStage(SrsStage.BURNED);
+			expect(card.stage).toBe(SrsStage.BURNED);
+		});
+
+		it("sets stage to APPRENTICE when called on a burned card", () => {
+			const burnedSchedule = SrsSchedule.fromDTO({
+				easeFactor: 2.5,
+				interval: 120960,
+				repetitions: 10,
+				learningStep: null,
+				nextReviewDate: "2025-06-01T00:00:00.000Z",
+				lastReviewDate: "2025-03-01T00:00:00.000Z",
+				lapseCount: 0,
+			});
+			const card = makeCard({ schedule: burnedSchedule });
+			expect(card.stage).toBe(SrsStage.BURNED);
+
+			card.overrideStage(SrsStage.APPRENTICE);
+			expect(card.stage).toBe(SrsStage.APPRENTICE);
+		});
+
+		it("sets nextReviewDate to a future date when promoted to MASTER", () => {
+			const now = "2025-01-01T00:00:00.000Z";
+			const card = makeCard();
+			card.overrideStage(SrsStage.MASTER, now);
+			const nextReview = new Date(card.schedule.nextReviewDate);
+			expect(nextReview > new Date(now)).toBe(true);
+		});
+
+		it("forwards the optional now parameter to SrsSchedule.overrideStage", () => {
+			const now = "2025-06-15T12:00:00.000Z";
+			const card = makeCard();
+			card.overrideStage(SrsStage.GURU, now);
+			// GURU demotions pin nextReviewDate to `now` (immediately due)
+			expect(card.schedule.nextReviewDate).toBe(now);
+		});
+	});
 });
