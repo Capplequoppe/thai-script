@@ -9826,7 +9826,7 @@
     "english": "Mr.",
     "thai_audio_file": "/thai-script/vocabulary/audio/1256_นาย_th.mp3",
     "english_audio_file": "/thai-script/vocabulary/audio/1256_นาย_en.mp3",
-    "image_file": "/thai-script/vocabulary/images/1256_นาย.jpg",
+    "image_file": "/thai-script/vocabulary/images/216 นาย.png",
     "samples": [
       {
         "thai": "เพื่อนๆของดิฉันเรียกคุณพ่อของดิฉันว่านายมาร์ตินเสมอ",
@@ -9858,7 +9858,7 @@
     "toneRules": [
       "low-live"
     ],
-    "mnemonic": "NAI — MR. NAIs guy at your service (— neutral)"
+    "mnemonic": "A strict German officer with a badge that says “MR. NAAI” is standing in front of his soldiers. When someone addresses him casually, he angrily shouts, “NAAI! NAAI! I am MR. NAAI!” นาย (— neutral) is the male authority — the formal “Mr.” you must address properly."
   },
   {
     "thai": "ชาติ",
