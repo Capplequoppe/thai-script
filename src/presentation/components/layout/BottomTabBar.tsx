@@ -19,39 +19,6 @@ function LotusIcon() {
 	);
 }
 
-function DaggersIcon() {
-	return (
-		<svg
-			viewBox="0 0 24 24"
-			fill="currentColor"
-			className="w-6 h-6"
-			aria-hidden="true"
-		>
-			<title>Review</title>
-			<rect x="11" y="2" width="2" height="12" rx="1" />
-			<path d="M10 14l-1.5 4h5L12 14z" />
-			<rect x="7.5" y="7" width="9" height="1.5" rx="0.75" />
-		</svg>
-	);
-}
-
-function PalmLeafIcon() {
-	return (
-		<svg
-			viewBox="0 0 24 24"
-			fill="currentColor"
-			className="w-6 h-6"
-			aria-hidden="true"
-		>
-			<title>Lessons</title>
-			<rect x="3" y="4" width="18" height="2.5" rx="1.25" />
-			<rect x="3" y="8.5" width="16" height="2" rx="1" />
-			<rect x="3" y="13" width="14" height="2" rx="1" />
-			<rect x="3" y="17.5" width="10" height="2" rx="1" />
-		</svg>
-	);
-}
-
 function GemIcon() {
 	return (
 		<svg
@@ -112,8 +79,6 @@ export function BottomTabBar({
 			icon: <LotusIcon />,
 			badge: dueCount > 0 ? dueCount : undefined,
 		},
-		{ to: "/review", end: false, label: "Review", icon: <DaggersIcon /> },
-		{ to: "/lessons", end: false, label: "Lessons", icon: <PalmLeafIcon /> },
 		{ to: "/items", end: false, label: "Items", icon: <GemIcon /> },
 		{ to: "/progress", end: false, label: "Progress", icon: <PagodaIcon /> },
 	];

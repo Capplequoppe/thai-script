@@ -155,9 +155,8 @@ export class VocabularyService {
 		const lesson = this.getNextLesson();
 		if (!lesson) throw new Error("No vocabulary words available to learn");
 
-		const allUnlocked = this.getUnlockedWords();
 		const cards = lesson.words.flatMap((entry) =>
-			generateVocabCards(entry, allUnlocked),
+			generateVocabCards(entry, this.vocabulary),
 		);
 
 		const domainCards = cards.map((card) => VocabCard.fromDTO(card));
