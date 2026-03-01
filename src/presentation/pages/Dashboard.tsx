@@ -29,13 +29,21 @@ export function Dashboard() {
 	const nextLesson = lesson.getNextScript();
 	const nextVocabLesson =
 		lesson.getVocabUnlockedCount() > 0 ? vocab.getNextLesson() : null;
+	const scriptDueCount = review.getDueCount("script");
 	const vocabDueCount = review.getDueCount("vocab");
-	const dueCount = review.getDueCount();
+	const grammarDueCount = review.getDueCount("grammar");
+	const dueCount = scriptDueCount + vocabDueCount + grammarDueCount;
 	const timeUntilNextReview = review.getTimeUntilNextReview();
 	const forecast = review.getForecast();
 	const leechCount = dashboard.getLeechCount();
-	const stages = dashboard.getStageCounts("script");
+	const stages = dashboard.getStageCounts();
 	const achievements = state.achievements ?? [];
+	const reviewButtonCount = [
+		scriptDueCount,
+		vocabDueCount,
+		grammarDueCount,
+	].filter((n) => n > 0).length;
+	const reviewGridClass = `grid gap-3 ${reviewButtonCount > 1 ? `grid-cols-${reviewButtonCount}` : "grid-cols-1"}`;
 
 	return (
 		<div className="space-y-6 py-4">
@@ -60,17 +68,47 @@ export function Dashboard() {
 								Cards ready for review
 							</span>
 						</div>
-						<Button
-							type="button"
-							onClick={() => navigate("/review")}
-							className="w-full py-4 rounded-xl text-lg font-semibold transition-colors"
-							style={{
-								background: "var(--color-accent)",
-								color: "var(--color-text)",
-							}}
-						>
-							Start Review
-						</Button>
+						<div className={reviewGridClass}>
+							{scriptDueCount > 0 && (
+								<Button
+									type="button"
+									onClick={() => navigate("/review")}
+									className="py-4 rounded-xl text-base font-semibold transition-colors"
+									style={{
+										background: "var(--color-accent)",
+										color: "var(--color-text)",
+									}}
+								>
+									Script ({scriptDueCount})
+								</Button>
+							)}
+							{vocabDueCount > 0 && (
+								<Button
+									type="button"
+									onClick={() => navigate("/vocabulary")}
+									className="py-4 rounded-xl text-base font-semibold transition-colors"
+									style={{
+										background: "var(--color-accent)",
+										color: "var(--color-text)",
+									}}
+								>
+									Vocab ({vocabDueCount})
+								</Button>
+							)}
+							{grammarDueCount > 0 && (
+								<Button
+									type="button"
+									onClick={() => navigate("/grammar")}
+									className="py-4 rounded-xl text-base font-semibold transition-colors"
+									style={{
+										background: "var(--color-accent)",
+										color: "var(--color-text)",
+									}}
+								>
+									Grammar ({grammarDueCount})
+								</Button>
+							)}
+						</div>
 					</>
 				) : (
 					<>

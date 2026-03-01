@@ -5,7 +5,7 @@ import type {
 	ReviewForecast,
 	ReviewService,
 } from "../../domain/session/services/ReviewService";
-import type { CardPool } from "../../domain/shared/CardPool";
+import { type CardPool, CardPools } from "../../domain/shared/CardPool";
 import type { RecallRating, SessionSummary } from "../../domain/shared/types";
 import type { ReviewableCard } from "../../domain/srs/entities/ReviewableCard";
 import type { ResponseTimingData } from "../../domain/srs/value-objects/SrsSchedule";
@@ -21,7 +21,11 @@ export class ConductReviewUseCase {
 	}
 
 	getDueCount(pool?: CardPool): number {
-		return this.reviewService.getNumDueCards(undefined, pool);
+		if (pool) return this.reviewService.getNumDueCards(undefined, pool);
+		return CardPools.all().reduce(
+			(sum, p) => sum + this.reviewService.getNumDueCards(undefined, p),
+			0,
+		);
 	}
 
 	recordReview(
@@ -60,9 +64,13 @@ export class ConductReviewUseCase {
 	}
 
 	getTimeUntilNextReview(pool?: CardPool): string | null {
-		const date = this.reviewService.getNextReviewDate(pool);
-		if (!date) return null;
-		const diffMs = date.getTime() - Date.now();
+		const pools = pool ? [pool] : CardPools.all();
+		const dates = pools
+			.map((p) => this.reviewService.getNextReviewDate(p))
+			.filter((d): d is Date => d !== null);
+		if (dates.length === 0) return null;
+		const earliest = new Date(Math.min(...dates.map((d) => d.getTime())));
+		const diffMs = earliest.getTime() - Date.now();
 		if (diffMs < 60_000) return "less than 1 minute";
 		const minutes = Math.floor(diffMs / 60_000);
 		if (minutes < 60) return `${minutes} minute${minutes === 1 ? "" : "s"}`;
@@ -77,7 +85,24 @@ export class ConductReviewUseCase {
 	}
 
 	getForecast(pool?: CardPool): ReviewForecast {
-		return this.reviewService.getReviewForecast(undefined, pool);
+		if (pool) return this.reviewService.getReviewForecast(undefined, pool);
+		const zero: ReviewForecast = {
+			dueNow: 0,
+			nextHour: 0,
+			next24Hours: 0,
+			next3Days: 0,
+			next7Days: 0,
+		};
+		return CardPools.all().reduce((acc, p) => {
+			const f = this.reviewService.getReviewForecast(undefined, p);
+			return {
+				dueNow: acc.dueNow + f.dueNow,
+				nextHour: acc.nextHour + f.nextHour,
+				next24Hours: acc.next24Hours + f.next24Hours,
+				next3Days: acc.next3Days + f.next3Days,
+				next7Days: acc.next7Days + f.next7Days,
+			};
+		}, zero);
 	}
 
 	getCriticalItems(pool?: CardPool, limit?: number): CriticalItem[] {

@@ -54,7 +54,7 @@ export function generateVocabCards(
 	// English -> Thai
 	cards.push({
 		id: `vocab:${word.thai}:englishToThai`,
-		wordThai: word.english,
+		wordThai: word.thai,
 		property: "englishToThai",
 		question: `Which Thai word means "${word.english}"?`,
 		correctAnswer: word.thai,
