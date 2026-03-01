@@ -1,10 +1,6 @@
 import { SrsSchedule } from "../../srs/value-objects/SrsSchedule";
 import type { VocabEntry, VocabularyCard } from "../types";
 
-// ---------------------------------------------------------------------------
-// Utility: Pick multiple-choice options
-// ---------------------------------------------------------------------------
-
 function pickChoices(correct: string, pool: string[], count = 4): string[] {
 	const distractors = pool.filter((item) => item !== correct);
 	const needed = Math.min(count - 1, distractors.length);
@@ -27,16 +23,13 @@ function pickChoices(correct: string, pool: string[], count = 4): string[] {
 	return choices;
 }
 
-// ---------------------------------------------------------------------------
-// Public API
-// ---------------------------------------------------------------------------
-
 export function generateVocabCards(
 	word: VocabEntry,
 	allWords: VocabEntry[],
 ): VocabularyCard[] {
 	const thaiPool = allWords.map((w) => w.thai);
 	const englishPool = allWords.map((w) => w.english);
+	const mnemonic = word.mnemonic ?? undefined;
 
 	const cards: VocabularyCard[] = [];
 
@@ -48,17 +41,19 @@ export function generateVocabCards(
 		question: "What does this word mean?",
 		correctAnswer: word.english,
 		choices: pickChoices(word.english, englishPool),
+		mnemonic,
 		srs: SrsSchedule.initial().toDTO(),
 	});
 
 	// English -> Thai
 	cards.push({
 		id: `vocab:${word.thai}:englishToThai`,
-		wordThai: word.english,
+		wordThai: word.thai,
 		property: "englishToThai",
 		question: `Which Thai word means "${word.english}"?`,
 		correctAnswer: word.thai,
 		choices: pickChoices(word.thai, thaiPool),
+		mnemonic,
 		srs: SrsSchedule.initial().toDTO(),
 	});
 
@@ -66,13 +61,33 @@ export function generateVocabCards(
 	if (word.thai_audio_file) {
 		cards.push({
 			id: `vocab:${word.thai}:audioRecognition`,
-			wordThai: "Which word is this?",
+			wordThai: word.thai,
 			property: "audioRecognition",
-			question: "Listen to the audio.",
+			question: "Listen to the audio. Which word is this?",
 			correctAnswer: word.thai,
 			choices: pickChoices(word.thai, thaiPool),
+			mnemonic,
 			srs: SrsSchedule.initial().toDTO(),
 			audioUrl: word.thai_audio_file,
+		});
+	}
+
+	// Tone identification (only if at least one syllable has a tone)
+	const toneSyllables = word.syllables
+		.filter((s) => s.tone)
+		.map((s) => ({ text: s.text, tone: s.tone as string }));
+
+	if (toneSyllables.length > 0) {
+		cards.push({
+			id: `vocab:${word.thai}:toneIdentification`,
+			wordThai: word.thai,
+			property: "toneIdentification",
+			question: "What is the tone of each syllable?",
+			correctAnswer: toneSyllables.map((s) => s.tone).join("|"),
+			choices: [],
+			mnemonic,
+			syllables: toneSyllables,
+			srs: SrsSchedule.initial().toDTO(),
 		});
 	}
 

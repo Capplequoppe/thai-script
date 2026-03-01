@@ -33,6 +33,39 @@ const allWords: VocabEntry[] = [
 	{ ...testWord, thai: "มี", english: "to have", rank: 5, frequency: 200000 },
 ];
 
+const testWordWithMnemonic: VocabEntry = {
+	...testWord,
+	mnemonic: "tea tree → falling tone",
+};
+
+const testWordWithTones: VocabEntry = {
+	...testWord,
+	thai: "สวัสดี",
+	english: "hello",
+	syllables: [
+		{
+			text: "สวัส",
+			initialConsonant: "ส",
+			vowel: "วั",
+			finalConsonant: "ส",
+			toneMark: null,
+			consonantClass: "high",
+			syllableType: "dead",
+			tone: "low",
+		},
+		{
+			text: "ดี",
+			initialConsonant: "ด",
+			vowel: "ี",
+			finalConsonant: null,
+			toneMark: null,
+			consonantClass: "mid",
+			syllableType: "live",
+			tone: "mid",
+		},
+	],
+};
+
 describe("generateVocabCards", () => {
 	it("produces 2 cards for a word without audio", () => {
 		const cards = generateVocabCards(testWord, allWords);
@@ -70,7 +103,7 @@ describe("generateVocabCards", () => {
 		expect(card).toBeDefined();
 		expect(card?.id).toBe("vocab:ที่:audioRecognition");
 		expect(card?.audioUrl).toBe("/audio/thai/thi.mp3");
-		expect(card?.question).toBe("Listen to the audio.");
+		expect(card?.question).toBe("Listen to the audio. Which word is this?");
 		expect(card?.correctAnswer).toBe("ที่");
 	});
 
@@ -92,5 +125,30 @@ describe("generateVocabCards", () => {
 		// This line will not compile if 'toneIdentification' is removed from VocabProperty
 		const _check: import("../types").VocabProperty = "toneIdentification";
 		void _check;
+	});
+
+	it("all card types carry mnemonic from source word", () => {
+		const cards = generateVocabCards(testWordWithMnemonic, allWords);
+		for (const card of cards) {
+			expect(card.mnemonic).toBe("tea tree → falling tone");
+		}
+	});
+
+	it("produces a toneIdentification card when syllables have tones", () => {
+		const cards = generateVocabCards(testWordWithTones, [testWordWithTones]);
+		const toneCard = cards.find((c) => c.property === "toneIdentification");
+		expect(toneCard).toBeDefined();
+		expect(toneCard?.id).toBe("vocab:สวัสดี:toneIdentification");
+		expect(toneCard?.correctAnswer).toBe("low|mid");
+		expect(toneCard?.syllables).toEqual([
+			{ text: "สวัส", tone: "low" },
+			{ text: "ดี", tone: "mid" },
+		]);
+	});
+
+	it("does not produce a toneIdentification card when no syllable tones", () => {
+		const cards = generateVocabCards(testWord, allWords);
+		const toneCard = cards.find((c) => c.property === "toneIdentification");
+		expect(toneCard).toBeUndefined();
 	});
 });
