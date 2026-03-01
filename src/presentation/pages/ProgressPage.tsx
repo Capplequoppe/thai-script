@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router";
 import { Badge } from "@/presentation/components/ui/badge";
 import { Card } from "@/presentation/components/ui/card";
+import { SectionHeader } from "../components/atoms/SectionHeader";
 import {
 	ACHIEVEMENT_DEFS,
 	AchievementBadge,
@@ -114,7 +115,10 @@ export function ProgressPage() {
 						<span>SRS Stages</span>
 						<span>{totalCards} cards</span>
 					</div>
-					<div className="w-full h-3 bg-gray-200 dark:bg-gray-800 rounded-full overflow-hidden flex">
+					<div
+						className="w-full h-3 rounded-full overflow-hidden flex"
+						style={{ background: "var(--color-surface-2)" }}
+					>
 						<div
 							className="h-full"
 							style={{
@@ -157,7 +161,7 @@ export function ProgressPage() {
 			{/* Grammar SRS Stage Stats */}
 			{totalGrammarStaged > 0 && (
 				<div>
-					<h2 className="section-header mb-3">Grammar Stages</h2>
+					<SectionHeader className="mb-3">Grammar Stages</SectionHeader>
 					<div className="grid grid-cols-3 gap-3 text-center">
 						<Card className="rounded-xl p-3">
 							<div
@@ -227,7 +231,7 @@ export function ProgressPage() {
 
 			{/* Lesson Path */}
 			<div>
-				<div className="section-header mb-4">Lesson Progress</div>
+				<SectionHeader className="mb-4">Lesson Progress</SectionHeader>
 				<LessonPath
 					totalLessons={25}
 					completedLessons={completed}
@@ -240,7 +244,7 @@ export function ProgressPage() {
 
 			{/* Achievements */}
 			<div>
-				<div className="section-header mb-4">Achievements</div>
+				<SectionHeader className="mb-4">Achievements</SectionHeader>
 				<div className="flex flex-wrap gap-4">
 					{ACHIEVEMENT_DEFS.map((def) => (
 						<AchievementBadge
@@ -256,9 +260,9 @@ export function ProgressPage() {
 			{/* Session history */}
 			{state.sessionHistory.length > 0 && (
 				<div>
-					<div className="section-header mb-3">
+					<SectionHeader className="mb-3">
 						Session History ({state.sessionHistory.length})
-					</div>
+					</SectionHeader>
 					<div className="space-y-2 max-h-60 overflow-y-auto">
 						{[...state.sessionHistory].reverse().map((s, i) => (
 							<Card
@@ -286,7 +290,10 @@ export function ProgressPage() {
 			)}
 
 			{/* Reset */}
-			<div className="pt-4 border-t border-gray-200 dark:border-gray-800">
+			<div
+				className="pt-4 border-t"
+				style={{ borderColor: "var(--color-border)" }}
+			>
 				<button
 					type="button"
 					onClick={() => {
@@ -296,7 +303,8 @@ export function ProgressPage() {
 							navigate("/");
 						}
 					}}
-					className="text-sm text-red-500 hover:text-red-600"
+					className="text-sm"
+					style={{ color: "var(--color-danger)" }}
 				>
 					Reset All Progress
 				</button>
