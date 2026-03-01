@@ -54,7 +54,7 @@ export function generateVocabCards(
 	// English -> Thai
 	cards.push({
 		id: `vocab:${word.thai}:englishToThai`,
-		wordThai: word.thai,
+		wordThai: word.english,
 		property: "englishToThai",
 		question: `Which Thai word means "${word.english}"?`,
 		correctAnswer: word.thai,
@@ -66,9 +66,9 @@ export function generateVocabCards(
 	if (word.thai_audio_file) {
 		cards.push({
 			id: `vocab:${word.thai}:audioRecognition`,
-			wordThai: word.thai,
+			wordThai: "Which word is this?",
 			property: "audioRecognition",
-			question: "Listen to the audio. Which word is this?",
+			question: "Listen to the audio.",
 			correctAnswer: word.thai,
 			choices: pickChoices(word.thai, thaiPool),
 			srs: SrsSchedule.initial().toDTO(),
