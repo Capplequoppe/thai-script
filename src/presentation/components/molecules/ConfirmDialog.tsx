@@ -8,7 +8,7 @@ import {
 	DialogTitle,
 } from "@/presentation/components/ui/dialog";
 
-interface ConfirmDialogProps {
+interface Props {
 	open: boolean;
 	onOpenChange: (open: boolean) => void;
 	title: string;
@@ -26,7 +26,7 @@ export function ConfirmDialog({
 	onConfirm,
 	confirmLabel = "Confirm",
 	isDestructive = false,
-}: ConfirmDialogProps) {
+}: Props) {
 	return (
 		<Dialog open={open} onOpenChange={onOpenChange}>
 			<DialogContent>
