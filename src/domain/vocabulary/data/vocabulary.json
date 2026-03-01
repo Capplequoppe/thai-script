@@ -90,7 +90,7 @@
     "english": "will",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/3 จะ.png",
     "samples": [
       {
         "thai": "การอนุรักษ์สิ่งแวดล้อมจะสัมฤทธิ์ผลได้ถ้าทุกคนร่วมมือกัน",
@@ -122,7 +122,7 @@
     "toneRules": [
       "mid-dead-short"
     ],
-    "mnemonic": "JA — I WILL do it (▬ flat and firm, like German 'ja')"
+    "mnemonic": "A man asks his German friend if he will go to Thailand, snorkel, eat Pad Thai, and go to the beach. Each time the German smiles and answers confidently, “Jaaa!”. That “Ja” pushes every action into the future — that is จะ."
   },
   {
     "thai": "นี้",
@@ -10868,7 +10868,7 @@
     "toneRules": [
       "low-live"
     ],
-    "mnemonic": "WANG — PUT it in my Vera Wang bag(— neutral)"
+    "mnemonic": "A woman walks into a shop and carefully puts down a beautiful Vera Wang bag on a table. The moment the bag touches the surface, it sparkles and a glowing word appears: “วาง!” (— neutral). Vera Wang → วาง → to deliberately put/place something down. "
   },
   {
     "thai": "ยาก",
