@@ -32,6 +32,7 @@ export interface VocabEntry {
 	rank: number | null;
 	frequency: number;
 	mnemonic: string | null;
+	description?: string | null;
 	characters: string[];
 	syllables: SyllableInfo[];
 	toneRules: string[];

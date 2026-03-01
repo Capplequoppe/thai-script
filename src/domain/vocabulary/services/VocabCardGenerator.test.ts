@@ -38,6 +38,12 @@ const testWordWithMnemonic: VocabEntry = {
 	mnemonic: "tea tree → falling tone",
 };
 
+const testWordWithDescription: VocabEntry = {
+	...testWord,
+	description:
+		'A versatile preposition meaning "at", "in", "on", or "of". Also used as a relative clause marker and nominalizer.',
+};
+
 const testWordWithTones: VocabEntry = {
 	...testWord,
 	thai: "สวัสดี",
@@ -150,5 +156,10 @@ describe("generateVocabCards", () => {
 		const cards = generateVocabCards(testWord, allWords);
 		const toneCard = cards.find((c) => c.property === "toneIdentification");
 		expect(toneCard).toBeUndefined();
+	});
+
+	it("generates cards for word with description (description is ignored by generator)", () => {
+		const cards = generateVocabCards(testWordWithDescription, allWords);
+		expect(cards.length).toBeGreaterThan(0);
 	});
 });
