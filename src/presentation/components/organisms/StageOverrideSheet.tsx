@@ -162,6 +162,8 @@ export function StageOverrideSheet({
 						<button
 							type="button"
 							onClick={() => setIndividualOpen((prev) => !prev)}
+							aria-expanded={individualOpen}
+							aria-controls="stage-override-individual-cards"
 							className="w-full flex items-center justify-between px-3 py-2 text-sm font-medium transition-colors"
 							style={{
 								background: "var(--color-surface-2)",
@@ -182,6 +184,7 @@ export function StageOverrideSheet({
 
 						{individualOpen && (
 							<div
+								id="stage-override-individual-cards"
 								className="divide-y"
 								style={{ borderTop: "1px solid var(--color-border)" }}
 							>
