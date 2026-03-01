@@ -112,6 +112,14 @@ export function WordCard({ word }: { word: VocabEntry }) {
 						{word.word_class}
 					</span>
 				)}
+				{word.description && (
+					<p
+						className="text-sm mt-3 text-center"
+						style={{ color: "var(--color-text-muted)" }}
+					>
+						{word.description}
+					</p>
+				)}
 			</div>
 
 			{/* 2. Mnemonic */}
@@ -285,7 +293,6 @@ export function WordCard({ word }: { word: VocabEntry }) {
 					</div>
 				</div>
 			)}
-
 		</div>
 	);
 }
