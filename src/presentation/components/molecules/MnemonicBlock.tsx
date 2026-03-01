@@ -1,8 +1,9 @@
 interface Props {
 	text: string;
+	label?: string;
 }
 
-export function MnemonicBlock({ text }: Props) {
+export function MnemonicBlock({ text, label }: Props) {
 	return (
 		<div
 			className="rounded-xl p-3"
@@ -11,7 +12,15 @@ export function MnemonicBlock({ text }: Props) {
 					"color-mix(in srgb, var(--color-accent) 15%, var(--color-surface))",
 			}}
 		>
-			<p className="text-sm" style={{ color: "var(--color-text)" }}>
+			{label && (
+				<p
+					className="text-xs font-semibold mb-1"
+					style={{ color: "var(--color-accent)" }}
+				>
+					{label}
+				</p>
+			)}
+			<p className="text-sm" style={{ color: "var(--color-accent)" }}>
 				💡 {text}
 			</p>
 		</div>

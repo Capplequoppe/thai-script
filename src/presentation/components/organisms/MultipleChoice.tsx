@@ -8,6 +8,7 @@ import {
 import { PlayAudioButton } from "../atoms/PlayAudioButton";
 import { ThaiCharDisplay } from "../atoms/ThaiCharDisplay";
 import { AnswerOptionButton } from "../molecules/AnswerOptionButton";
+import { MnemonicBlock } from "../molecules/MnemonicBlock";
 
 function ThaiWordDisplay({
 	word,
@@ -184,48 +185,22 @@ export function MultipleChoice({ card, onAnswer, mnemonicExpanded = false }: Pro
 				{card.question}
 			</p>
 
-			{mnemonic && (
-				<div>
-					{mnemonicExpanded ? (
-						<div
-							className="rounded-xl p-3"
-							style={{
-								background:
-									"color-mix(in srgb, var(--color-accent) 12%, var(--color-surface))",
-							}}
-						>
-							<p className="text-sm" style={{ color: "var(--color-accent)" }}>
-								💡 {mnemonic}
-							</p>
-						</div>
-					) : (
-						<div className="text-center">
-							{hintVisible ? (
-								<div
-									className="rounded-xl p-3"
-									style={{
-										background:
-											"color-mix(in srgb, var(--color-accent) 12%, var(--color-surface))",
-									}}
-								>
-									<p className="text-sm" style={{ color: "var(--color-accent)" }}>
-										💡 {mnemonic}
-									</p>
-								</div>
-							) : (
-								<button
-									type="button"
-									className="text-xs underline"
-									style={{ color: "var(--color-text-muted)" }}
-									onClick={() => setHintVisible(true)}
-								>
-									Show hint
-								</button>
-							)}
-						</div>
-					)}
-				</div>
-			)}
+			{mnemonic &&
+				(mnemonicExpanded ? (
+					<MnemonicBlock text={mnemonic} />
+				) : hintVisible ? (
+					<MnemonicBlock text={mnemonic} />
+				) : (
+					<button
+						type="button"
+						className="text-xs underline mx-auto block"
+						style={{ color: "var(--color-text-muted)" }}
+						onClick={() => setHintVisible(true)}
+						aria-label="Show memory hint"
+					>
+						Show hint
+					</button>
+				))}
 
 			<div className="grid grid-cols-2 gap-3">
 				{card.choices.map((choice, idx) => (

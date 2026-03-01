@@ -1,4 +1,5 @@
 import type { VocabEntry } from "../../../domain/vocabulary/types";
+import { MnemonicBlock } from "../molecules/MnemonicBlock";
 
 function PlayAudioButton({ audioUrl }: { audioUrl: string }) {
 	return (
@@ -115,23 +116,7 @@ export function WordCard({ word }: { word: VocabEntry }) {
 
 			{/* 2. Mnemonic */}
 			{word.mnemonic && (
-				<div
-					className="rounded-xl p-4"
-					style={{
-						background:
-							"color-mix(in srgb, var(--color-accent) 15%, var(--color-surface))",
-					}}
-				>
-					<p
-						className="text-xs font-semibold mb-1"
-						style={{ color: "var(--color-accent)" }}
-					>
-						Memory tip
-					</p>
-					<p className="text-sm" style={{ color: "var(--color-accent)" }}>
-						💡 {word.mnemonic}
-					</p>
-				</div>
+				<MnemonicBlock text={word.mnemonic} label="Memory tip" />
 			)}
 
 			{/* 3. Syllable Breakdown (enriched) */}
