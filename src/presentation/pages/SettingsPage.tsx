@@ -55,8 +55,13 @@ export function SettingsPage() {
 
 			{/* Export */}
 			<section className="space-y-2">
-				<h2 className="text-sm font-semibold text-gray-500">Export Progress</h2>
-				<p className="text-sm text-gray-500 dark:text-gray-400">
+				<h2
+					className="text-sm font-semibold"
+					style={{ color: "var(--color-text-muted)" }}
+				>
+					Export Progress
+				</h2>
+				<p className="text-sm" style={{ color: "var(--color-text-muted)" }}>
 					Download your learning progress as a JSON file.
 				</p>
 				<Button type="button" onClick={handleExport}>
@@ -66,8 +71,13 @@ export function SettingsPage() {
 
 			{/* Import */}
 			<section className="space-y-2">
-				<h2 className="text-sm font-semibold text-gray-500">Import Progress</h2>
-				<p className="text-sm text-gray-500 dark:text-gray-400">
+				<h2
+					className="text-sm font-semibold"
+					style={{ color: "var(--color-text-muted)" }}
+				>
+					Import Progress
+				</h2>
+				<p className="text-sm" style={{ color: "var(--color-text-muted)" }}>
 					Import a progress file. Your existing progress will be merged with the
 					imported data.
 				</p>
@@ -76,7 +86,8 @@ export function SettingsPage() {
 						ref={fileInputRef}
 						type="file"
 						accept=".json"
-						className="text-sm text-gray-500 file:mr-2 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-medium file:bg-gray-100 file:text-gray-700 hover:file:bg-gray-200 dark:file:bg-gray-800 dark:file:text-gray-300 dark:hover:file:bg-gray-700"
+						className="text-sm file:mr-2 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-medium"
+						style={{ color: "var(--color-text-muted)" }}
 					/>
 					<Button type="button" variant="secondary" onClick={handleImport}>
 						Import
@@ -84,7 +95,13 @@ export function SettingsPage() {
 				</div>
 				{importStatus && (
 					<p
-						className={`text-sm ${importStatus.type === "success" ? "text-green-600" : "text-red-600"}`}
+						className="text-sm"
+						style={{
+							color:
+								importStatus.type === "success"
+									? "var(--color-master)"
+									: "var(--color-danger)",
+						}}
 					>
 						{importStatus.message}
 					</p>
@@ -92,8 +109,16 @@ export function SettingsPage() {
 			</section>
 
 			{/* Danger Zone */}
-			<section className="space-y-2 pt-4 border-t border-gray-200 dark:border-gray-800">
-				<h2 className="text-sm font-semibold text-red-500">Danger Zone</h2>
+			<section
+				className="space-y-2 pt-4 border-t"
+				style={{ borderColor: "var(--color-border)" }}
+			>
+				<h2
+					className="text-sm font-semibold"
+					style={{ color: "var(--color-danger)" }}
+				>
+					Danger Zone
+				</h2>
 				<Button
 					type="button"
 					variant="destructive"
