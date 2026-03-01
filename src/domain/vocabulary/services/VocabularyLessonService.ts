@@ -146,8 +146,8 @@ export class VocabularyService {
 		return { words: words.slice(0, BATCH_SIZE) };
 	}
 
-	/** Generate cards for the next lesson batch and save via repository. */
-	startLesson(): VocabularyCard[] | null {
+	/** Generate cards for the next lesson batch WITHOUT persisting them. */
+	generateLessonCards(): VocabularyCard[] | null {
 		if (this.apprenticeService && !this.apprenticeService.canStartLesson()) {
 			return null;
 		}
@@ -155,19 +155,25 @@ export class VocabularyService {
 		const lesson = this.getNextLesson();
 		if (!lesson) throw new Error("No vocabulary words available to learn");
 
-		const cards = lesson.words.flatMap((entry) =>
+		return lesson.words.flatMap((entry) =>
 			generateVocabCards(entry, this.vocabulary),
 		);
+	}
 
+	/** Persist previously generated lesson cards to the repository. */
+	commitLessonCards(cards: VocabularyCard[]): void {
 		const domainCards = cards.map((card) => VocabCard.fromDTO(card));
 		this.cardRepo.saveAll(domainCards);
-
-		return cards;
 	}
 
 	/** Count of unlocked (including learned) words. */
 	getUnlockedCount(): number {
 		return this.getUnlockedWords().length;
+	}
+
+	/** Count of words that are eligible but not yet learned. */
+	getUnlearnedCount(): number {
+		return this.getUnlearnedWords().length;
 	}
 
 	/** Count of words that have cards generated. */

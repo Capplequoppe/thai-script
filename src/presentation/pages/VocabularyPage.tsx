@@ -133,15 +133,17 @@ export function VocabularyPage() {
 	);
 
 	const nextLesson = lesson.getNextVocab();
-	const unlockedCount = lesson.getVocabUnlockedCount();
+	const availableCount = lesson.getVocabUnlearnedCount();
 	const learnedCount = lesson.getVocabLearnedCount();
 	const dueVocabCards = review.getDueCount("vocab");
 
 	useEffect(() => {
-		if (flow.isComplete) {
+		if (flow.isComplete && cards.length > 0) {
+			lesson.commitVocabLesson(cards);
+			refresh();
 			setPhase("complete");
 		}
-	}, [flow.isComplete]);
+	}, [flow.isComplete, cards, lesson, refresh]);
 
 	useEffect(() => {
 		if (phase === "complete" && !achievementsCheckedRef.current) {
@@ -177,10 +179,9 @@ export function VocabularyPage() {
 	};
 
 	const handleIntroComplete = () => {
-		const generated = lesson.startVocab();
+		const generated = lesson.prepareVocabLesson();
 		if (!generated) return;
 		setCards(generated);
-		refresh();
 		flow.reset();
 		setPhase("quiz");
 	};
@@ -236,13 +237,13 @@ export function VocabularyPage() {
 							className="text-2xl font-bold"
 							style={{ color: "var(--color-text)" }}
 						>
-							{unlockedCount}
+							{availableCount}
 						</div>
 						<div
 							className="text-xs mt-1"
 							style={{ color: "var(--color-text-muted)" }}
 						>
-							Unlocked
+							Available
 						</div>
 					</Card>
 					<Card className="p-4">
@@ -303,7 +304,7 @@ export function VocabularyPage() {
 						</div>
 					)}
 
-					{!nextLesson && unlockedCount === 0 && (
+					{!nextLesson && availableCount === 0 && learnedCount === 0 && (
 						<p
 							className="text-center"
 							style={{ color: "var(--color-text-muted)" }}
@@ -312,17 +313,15 @@ export function VocabularyPage() {
 						</p>
 					)}
 
-					{!nextLesson &&
-						unlockedCount > 0 &&
-						learnedCount === unlockedCount && (
-							<p
-								className="text-center font-semibold"
-								style={{ color: "var(--color-master)" }}
-							>
-								All unlocked words learned! Complete more script lessons to
-								unlock more.
-							</p>
-						)}
+					{!nextLesson && availableCount === 0 && learnedCount > 0 && (
+						<p
+							className="text-center font-semibold"
+							style={{ color: "var(--color-master)" }}
+						>
+							All unlocked words learned! Complete more script lessons to unlock
+							more.
+						</p>
+					)}
 
 					{dueVocabCards > 0 && (
 						<Button

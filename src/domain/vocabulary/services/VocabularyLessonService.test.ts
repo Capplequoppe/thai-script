@@ -189,7 +189,7 @@ describe("VocabularyService", () => {
 		expect(service.getNextLesson()).toBeNull();
 	});
 
-	it("startLesson generates cards and saves them to storage", () => {
+	it("generateLessonCards returns cards without saving; commitLessonCards persists them", () => {
 		const vocabulary = [
 			makeEntry({ thai: "มา", rank: 1, english: "to come" }),
 			makeEntry({
@@ -205,10 +205,18 @@ describe("VocabularyService", () => {
 		state.completedLessons = [1, 2];
 		storage.save(state);
 
-		const cards = service.startLesson();
+		const cards = service.generateLessonCards();
 
 		// Each word without audio produces 2 cards (thaiToEnglish + englishToThai)
 		expect(cards).toHaveLength(4);
+
+		// Cards are NOT yet saved
+		const midState = storage.load();
+		expect(Object.keys(midState.vocabCards)).toHaveLength(0);
+
+		// Commit saves them
+		if (!cards) throw new Error("Expected cards");
+		service.commitLessonCards(cards);
 
 		const savedState = storage.load();
 		expect(Object.keys(savedState.vocabCards)).toHaveLength(4);
@@ -216,10 +224,10 @@ describe("VocabularyService", () => {
 		expect(savedState.vocabCards["vocab:นา:englishToThai"]).toBeDefined();
 	});
 
-	it("startLesson throws when no vocabulary words are available", () => {
+	it("generateLessonCards throws when no vocabulary words are available", () => {
 		const service = new VocabularyService(cardRepo, stateRepo, []);
 
-		expect(() => service.startLesson()).toThrow(
+		expect(() => service.generateLessonCards()).toThrow(
 			"No vocabulary words available to learn",
 		);
 	});
@@ -377,7 +385,9 @@ describe("VocabularyService", () => {
 
 		expect(service.getLearnedCount()).toBe(0);
 
-		service.startLesson();
+		const cards = service.generateLessonCards();
+		if (!cards) throw new Error("Expected cards");
+		service.commitLessonCards(cards);
 
 		expect(service.getLearnedCount()).toBe(2);
 	});
@@ -401,7 +411,9 @@ describe("VocabularyService", () => {
 
 		expect(service.getLearnedEntries()).toHaveLength(0); // none learned yet
 
-		service.startLesson();
+		const cards = service.generateLessonCards();
+		if (!cards) throw new Error("Expected cards");
+		service.commitLessonCards(cards);
 
 		const entries = service.getLearnedEntries();
 		expect(entries).toHaveLength(2);
@@ -509,7 +521,7 @@ describe("VocabularyService", () => {
 			expect(service.getNextLesson()).toBeNull();
 		});
 
-		it("startLesson returns null when at apprentice limit", () => {
+		it("generateLessonCards returns null when at apprentice limit", () => {
 			const apprenticeService = new ApprenticeService(cardRepo, 1);
 			const vocabulary = [makeEntry()];
 
@@ -533,7 +545,7 @@ describe("VocabularyService", () => {
 				vocabulary,
 				apprenticeService,
 			);
-			expect(service.startLesson()).toBeNull();
+			expect(service.generateLessonCards()).toBeNull();
 		});
 
 		it("works normally without ApprenticeService", () => {

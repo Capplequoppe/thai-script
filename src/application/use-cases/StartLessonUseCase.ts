@@ -62,8 +62,12 @@ export class StartLessonUseCase {
 
 	// --- Vocabulary lessons ---
 
-	startVocab(): VocabularyCard[] | null {
-		return this.vocabService.startLesson();
+	prepareVocabLesson(): VocabularyCard[] | null {
+		return this.vocabService.generateLessonCards();
+	}
+
+	commitVocabLesson(cards: VocabularyCard[]): void {
+		this.vocabService.commitLessonCards(cards);
 	}
 
 	getNextVocab(): VocabLessonSummary | null {
@@ -80,6 +84,10 @@ export class StartLessonUseCase {
 
 	getVocabUnlockedCount(): number {
 		return this.vocabService.getUnlockedCount();
+	}
+
+	getVocabUnlearnedCount(): number {
+		return this.vocabService.getUnlearnedCount();
 	}
 
 	getVocabLearnedCount(): number {
