@@ -63,9 +63,10 @@ interface QuizCardView {
 interface Props {
 	card: QuizCardView;
 	onAnswer: (correct: boolean, responseTimeMs: number) => void;
+	mnemonicExpanded?: boolean;
 }
 
-export function MultipleChoice({ card, onAnswer }: Props) {
+export function MultipleChoice({ card, onAnswer, mnemonicExpanded = false }: Props) {
 	const [selected, setSelected] = useState<string | null>(null);
 	const [revealed, setRevealed] = useState(false);
 	const displayedAtRef = useRef(Date.now());
@@ -83,11 +84,18 @@ export function MultipleChoice({ card, onAnswer }: Props) {
 		"wordThai" in card
 			? ((card as Record<string, unknown>).wordThai as string)
 			: "";
+	const mnemonic =
+		"mnemonic" in card
+			? ((card as Record<string, unknown>).mnemonic as string | null | undefined)
+			: null;
+
+	const [hintVisible, setHintVisible] = useState(false);
 
 	// biome-ignore lint/correctness/useExhaustiveDependencies: card.id resets state when the card changes
 	useEffect(() => {
 		setSelected(null);
 		setRevealed(false);
+		setHintVisible(false);
 		displayedAtRef.current = Date.now();
 	}, [card.id]);
 
@@ -175,6 +183,49 @@ export function MultipleChoice({ card, onAnswer }: Props) {
 			>
 				{card.question}
 			</p>
+
+			{mnemonic && (
+				<div>
+					{mnemonicExpanded ? (
+						<div
+							className="rounded-xl p-3"
+							style={{
+								background:
+									"color-mix(in srgb, var(--color-accent) 12%, var(--color-surface))",
+							}}
+						>
+							<p className="text-sm" style={{ color: "var(--color-accent)" }}>
+								💡 {mnemonic}
+							</p>
+						</div>
+					) : (
+						<div className="text-center">
+							{hintVisible ? (
+								<div
+									className="rounded-xl p-3"
+									style={{
+										background:
+											"color-mix(in srgb, var(--color-accent) 12%, var(--color-surface))",
+									}}
+								>
+									<p className="text-sm" style={{ color: "var(--color-accent)" }}>
+										💡 {mnemonic}
+									</p>
+								</div>
+							) : (
+								<button
+									type="button"
+									className="text-xs underline"
+									style={{ color: "var(--color-text-muted)" }}
+									onClick={() => setHintVisible(true)}
+								>
+									Show hint
+								</button>
+							)}
+						</div>
+					)}
+				</div>
+			)}
 
 			<div className="grid grid-cols-2 gap-3">
 				{card.choices.map((choice, idx) => (
