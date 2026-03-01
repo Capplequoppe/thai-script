@@ -30,12 +30,24 @@ export function NotificationBanner() {
 	if (!visible) return null;
 
 	return (
-		<div className="bg-indigo-50 dark:bg-indigo-950 border border-indigo-200 dark:border-indigo-800 rounded-xl p-4 flex items-start gap-3">
+		<div
+			className="rounded-xl border p-4 flex items-start gap-3"
+			style={{
+				background: "var(--color-surface-2)",
+				borderColor: "var(--color-border)",
+			}}
+		>
 			<div className="flex-1">
-				<p className="text-sm font-medium text-indigo-900 dark:text-indigo-100">
+				<p
+					className="text-sm font-medium"
+					style={{ color: "var(--color-text)" }}
+				>
 					Enable notifications?
 				</p>
-				<p className="text-xs text-indigo-700 dark:text-indigo-300 mt-1">
+				<p
+					className="text-xs mt-1"
+					style={{ color: "var(--color-text-muted)" }}
+				>
 					Get reminded when cards are due for review.
 				</p>
 			</div>
@@ -43,14 +55,16 @@ export function NotificationBanner() {
 				<button
 					type="button"
 					onClick={handleEnable}
-					className="px-3 py-1.5 text-xs font-medium bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg transition-colors"
+					className="px-3 py-1.5 text-xs font-medium rounded-lg transition-colors"
+					style={{ background: "var(--color-primary)", color: "white" }}
 				>
 					Enable
 				</button>
 				<button
 					type="button"
 					onClick={handleDismiss}
-					className="px-3 py-1.5 text-xs font-medium text-indigo-600 dark:text-indigo-400 hover:bg-indigo-100 dark:hover:bg-indigo-900 rounded-lg transition-colors"
+					className="px-3 py-1.5 text-xs font-medium rounded-lg transition-colors"
+					style={{ color: "var(--color-primary)" }}
 				>
 					Not now
 				</button>
