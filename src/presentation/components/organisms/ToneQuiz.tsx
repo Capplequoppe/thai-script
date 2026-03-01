@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { Button } from "@/presentation/components/ui/button";
 import type { VocabularyCard } from "../../../domain/vocabulary/types";
 
@@ -27,7 +27,10 @@ export function ToneQuiz({ card, onAnswer }: ToneQuizProps) {
 	}, [card.id]);
 
 	const allSelected = selections.every((s) => s !== null);
-	const correctTones = card.correctAnswer.split("|");
+	const correctTones = useMemo(
+		() => card.correctAnswer.split("|"),
+		[card.correctAnswer],
+	);
 
 	const handleSelect = useCallback(
 		(syllableIdx: number, tone: Tone) => {
