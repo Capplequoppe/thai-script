@@ -19092,7 +19092,7 @@
   {
     "thai": "แล้วก็",
     "romanization": "lɛ́ːw kɔ̂ː",
-    "word_class": "",
+    "word_class": "conj",
     "english": "and subsequently",
     "thai_audio_file": null,
     "english_audio_file": null,
@@ -19148,7 +19148,7 @@
   {
     "thai": "รวดเร็ว",
     "romanization": "rûːat rew",
-    "word_class": "",
+    "word_class": "adj",
     "english": "fast",
     "thai_audio_file": null,
     "english_audio_file": null,
@@ -19203,7 +19203,7 @@
   {
     "thai": "ส่วนใหญ่",
     "romanization": "sùːan jàj",
-    "word_class": "",
+    "word_class": "adv",
     "english": "majority; large part",
     "thai_audio_file": null,
     "english_audio_file": null,
@@ -19300,7 +19300,7 @@
   {
     "thai": "ศึกษา",
     "romanization": "sɯ̀k sǎː",
-    "word_class": "",
+    "word_class": "v",
     "english": "study",
     "thai_audio_file": null,
     "english_audio_file": null,
@@ -19396,7 +19396,7 @@
   {
     "thai": "เต็ม",
     "romanization": "tem",
-    "word_class": "",
+    "word_class": "adj",
     "english": "full; fill up",
     "thai_audio_file": null,
     "english_audio_file": null,
@@ -19480,7 +19480,7 @@
   {
     "thai": "เหตุผล",
     "romanization": "hèːt pʰǒn",
-    "word_class": "",
+    "word_class": "n",
     "english": "reason",
     "thai_audio_file": null,
     "english_audio_file": null,
@@ -19536,7 +19536,7 @@
   {
     "thai": "นา",
     "romanization": "naː",
-    "word_class": "",
+    "word_class": "n",
     "english": "rice farm; land",
     "thai_audio_file": null,
     "english_audio_file": null,
@@ -19577,7 +19577,7 @@
   {
     "thai": "เลิก",
     "romanization": "lɤ̂ːk",
-    "word_class": "",
+    "word_class": "v",
     "english": "quit",
     "thai_audio_file": null,
     "english_audio_file": null,
@@ -19620,7 +19620,7 @@
   {
     "thai": "สาว",
     "romanization": "sǎːw",
-    "word_class": "",
+    "word_class": "n",
     "english": "girl",
     "thai_audio_file": null,
     "english_audio_file": null,
@@ -19662,7 +19662,7 @@
   {
     "thai": "ใบ",
     "romanization": "baj",
-    "word_class": "",
+    "word_class": "clf",
     "english": "leaf",
     "thai_audio_file": null,
     "english_audio_file": null,
@@ -19703,7 +19703,7 @@
   {
     "thai": "ราช",
     "romanization": "râːt tɕʰá",
-    "word_class": "",
+    "word_class": "adj",
     "english": "royal",
     "thai_audio_file": null,
     "english_audio_file": null,
@@ -19745,7 +19745,7 @@
   {
     "thai": "พูดถึง",
     "romanization": "pʰûːt tʰɯ̌ŋ",
-    "word_class": "",
+    "word_class": "v",
     "english": "talking about",
     "thai_audio_file": null,
     "english_audio_file": null,
@@ -19801,7 +19801,7 @@
   {
     "thai": "เก่า",
     "romanization": "kàw",
-    "word_class": "",
+    "word_class": "adj",
     "english": "old",
     "thai_audio_file": null,
     "english_audio_file": null,
@@ -19844,7 +19844,7 @@
   {
     "thai": "แก้",
     "romanization": "kɛ̂ː",
-    "word_class": "",
+    "word_class": "v",
     "english": "correct",
     "thai_audio_file": null,
     "english_audio_file": null,
@@ -19886,7 +19886,7 @@
   {
     "thai": "จบ",
     "romanization": "tɕòp",
-    "word_class": "",
+    "word_class": "v",
     "english": "end",
     "thai_audio_file": null,
     "english_audio_file": null,
@@ -19927,7 +19927,7 @@
   {
     "thai": "ประเภท",
     "romanization": "pràʔ pʰêːt",
-    "word_class": "",
+    "word_class": "n",
     "english": "category",
     "thai_audio_file": null,
     "english_audio_file": null,
@@ -19983,7 +19983,7 @@
   {
     "thai": "คณะ",
     "romanization": "kʰá náʔ",
-    "word_class": "",
+    "word_class": "n",
     "english": "faculty; council; group",
     "thai_audio_file": null,
     "english_audio_file": null,
@@ -20025,7 +20025,7 @@
   {
     "thai": "บริเวณ",
     "romanization": "bɔ̀ʔ ríʔ weːn",
-    "word_class": "",
+    "word_class": "n",
     "english": "area",
     "thai_audio_file": null,
     "english_audio_file": null,
@@ -20081,7 +20081,7 @@
   {
     "thai": "ความคิด",
     "romanization": "kʰwaːm kʰít",
-    "word_class": "",
+    "word_class": "n",
     "english": "idea; thought",
     "thai_audio_file": null,
     "english_audio_file": null,
@@ -20137,7 +20137,7 @@
   {
     "thai": "อาศัย",
     "romanization": "ʔaː sǎj",
-    "word_class": "",
+    "word_class": "v",
     "english": "to live; to dwell",
     "thai_audio_file": null,
     "english_audio_file": null,
@@ -20233,7 +20233,7 @@
   {
     "thai": "มิ",
     "romanization": "míʔ",
-    "word_class": "",
+    "word_class": "adv",
     "english": "not; no",
     "thai_audio_file": null,
     "english_audio_file": null,
@@ -20274,7 +20274,7 @@
   {
     "thai": "บุคคล",
     "romanization": "bùk kʰon",
-    "word_class": "",
+    "word_class": "n",
     "english": "person (formal)",
     "thai_audio_file": null,
     "english_audio_file": null,
@@ -20328,7 +20328,7 @@
   {
     "thai": "จังหวัด",
     "romanization": "tɕaŋ wàt",
-    "word_class": "",
+    "word_class": "n",
     "english": "province",
     "thai_audio_file": null,
     "english_audio_file": null,
@@ -20384,7 +20384,7 @@
   {
     "thai": "หลวง",
     "romanization": "lǔːaŋ",
-    "word_class": "",
+    "word_class": "adj",
     "english": "royal",
     "thai_audio_file": null,
     "english_audio_file": null,
@@ -20427,7 +20427,7 @@
   {
     "thai": "ยอม",
     "romanization": "jɔːm",
-    "word_class": "",
+    "word_class": "v",
     "english": "permit",
     "thai_audio_file": null,
     "english_audio_file": null,
@@ -20551,7 +20551,7 @@
   {
     "thai": "อย่า",
     "romanization": "jàː",
-    "word_class": "",
+    "word_class": "adv",
     "english": "do not",
     "thai_audio_file": null,
     "english_audio_file": null,
@@ -20594,7 +20594,7 @@
   {
     "thai": "เต็มที่",
     "romanization": "tem tʰîː",
-    "word_class": "",
+    "word_class": "adv",
     "english": "full",
     "thai_audio_file": null,
     "english_audio_file": null,
@@ -20651,7 +20651,7 @@
   {
     "thai": "ฐานะ",
     "romanization": "tʰǎː náʔ",
-    "word_class": "",
+    "word_class": "n",
     "english": "position; relative position",
     "thai_audio_file": null,
     "english_audio_file": null,
@@ -20705,7 +20705,7 @@
   {
     "thai": "ชิ้น",
     "romanization": "tɕʰín",
-    "word_class": "",
+    "word_class": "clf",
     "english": "piece",
     "thai_audio_file": null,
     "english_audio_file": null,
@@ -20748,7 +20748,7 @@
   {
     "thai": "พวกเขา",
     "romanization": "pʰûːak kʰǎw",
-    "word_class": "",
+    "word_class": "pron",
     "english": "they",
     "thai_audio_file": null,
     "english_audio_file": null,
@@ -20804,7 +20804,7 @@
   {
     "thai": "อากาศ",
     "romanization": "ʔaː kàːt",
-    "word_class": "",
+    "word_class": "n",
     "english": "air; weather",
     "thai_audio_file": null,
     "english_audio_file": null,
@@ -20858,7 +20858,7 @@
   {
     "thai": "คนใน",
     "romanization": "kʰon naj",
-    "word_class": "",
+    "word_class": "n",
     "english": "insider",
     "thai_audio_file": null,
     "english_audio_file": null,
@@ -20910,7 +20910,7 @@
   {
     "thai": "สัมผัส",
     "romanization": "sǎm pʰàt",
-    "word_class": "",
+    "word_class": "v",
     "english": "contact; experience",
     "thai_audio_file": null,
     "english_audio_file": null,
@@ -20964,7 +20964,7 @@
   {
     "thai": "ก่อ",
     "romanization": "kɔ̀ː",
-    "word_class": "",
+    "word_class": "v",
     "english": "cause, bring about; construct",
     "thai_audio_file": null,
     "english_audio_file": null,
@@ -21006,7 +21006,7 @@
   {
     "thai": "เหตุการณ์",
     "romanization": "hèːt kaːn",
-    "word_class": "",
+    "word_class": "n",
     "english": "event",
     "thai_audio_file": null,
     "english_audio_file": null,
@@ -21064,7 +21064,7 @@
   {
     "thai": "ราย",
     "romanization": "raːj",
-    "word_class": "",
+    "word_class": "clf",
     "english": "record; list of items; case; instance",
     "thai_audio_file": null,
     "english_audio_file": null,
@@ -21106,7 +21106,7 @@
   {
     "thai": "ดังนั้น",
     "romanization": "daŋ nán",
-    "word_class": "",
+    "word_class": "conj",
     "english": "so; therefore; in consequence",
     "thai_audio_file": null,
     "english_audio_file": null,
@@ -21161,7 +21161,7 @@
   {
     "thai": "ต่อมา",
     "romanization": "tɔ̀ː maː",
-    "word_class": "",
+    "word_class": "adv",
     "english": "later; afterwards",
     "thai_audio_file": null,
     "english_audio_file": null,
@@ -21216,7 +21216,7 @@
   {
     "thai": "แค่",
     "romanization": "kʰɛ̂ː",
-    "word_class": "",
+    "word_class": "adv",
     "english": "only",
     "thai_audio_file": null,
     "english_audio_file": null,
@@ -21258,7 +21258,7 @@
   {
     "thai": "ไร้",
     "romanization": "ráj",
-    "word_class": "",
+    "word_class": "prep",
     "english": "without",
     "thai_audio_file": null,
     "english_audio_file": null,
@@ -21341,7 +21341,7 @@
   {
     "thai": "บรรยากาศ",
     "romanization": "ban jaː kàːt",
-    "word_class": "",
+    "word_class": "n",
     "english": "atmosphere",
     "thai_audio_file": null,
     "english_audio_file": null,
@@ -21408,7 +21408,7 @@
   {
     "thai": "งาม",
     "romanization": "ŋaːm",
-    "word_class": "",
+    "word_class": "adj",
     "english": "beautiful",
     "thai_audio_file": null,
     "english_audio_file": null,
@@ -21450,7 +21450,7 @@
   {
     "thai": "สั่ง",
     "romanization": "sàŋ",
-    "word_class": "",
+    "word_class": "v",
     "english": "order",
     "thai_audio_file": null,
     "english_audio_file": null,
@@ -21535,7 +21535,7 @@
   {
     "thai": "พื้นที่",
     "romanization": "pʰɯ́ːn tʰîː",
-    "word_class": "",
+    "word_class": "n",
     "english": "area",
     "thai_audio_file": null,
     "english_audio_file": null,
@@ -21592,7 +21592,7 @@
   {
     "thai": "การเมือง",
     "romanization": "kaːn mɯːaŋ",
-    "word_class": "",
+    "word_class": "n",
     "english": "politics",
     "thai_audio_file": null,
     "english_audio_file": null,
@@ -21650,7 +21650,7 @@
   {
     "thai": "น่าเชื่อ",
     "romanization": "nâː tɕʰɯ̂ːa",
-    "word_class": "",
+    "word_class": "adj",
     "english": "believable; reliable",
     "thai_audio_file": null,
     "english_audio_file": null,
@@ -21706,7 +21706,7 @@
   {
     "thai": "ปล่อย",
     "romanization": "plɔ̀ːj",
-    "word_class": "",
+    "word_class": "v",
     "english": "release",
     "thai_audio_file": null,
     "english_audio_file": null,
@@ -21804,7 +21804,7 @@
   {
     "thai": "เพียงแต่",
     "romanization": "pʰiːaŋ tɛ̀ː",
-    "word_class": "",
+    "word_class": "adv",
     "english": "only",
     "thai_audio_file": null,
     "english_audio_file": null,
@@ -21862,7 +21862,7 @@
   {
     "thai": "เลี้ยง",
     "romanization": "líːaŋ",
-    "word_class": "",
+    "word_class": "v",
     "english": "nurture",
     "thai_audio_file": null,
     "english_audio_file": null,
@@ -21907,7 +21907,7 @@
   {
     "thai": "สัก",
     "romanization": "sàk",
-    "word_class": "",
+    "word_class": "part",
     "english": "once; just",
     "thai_audio_file": null,
     "english_audio_file": null,
@@ -22107,7 +22107,7 @@
   {
     "thai": "ประกอบ",
     "romanization": "pràʔ kɔ̀ːp",
-    "word_class": "",
+    "word_class": "v",
     "english": "combine; put together; build",
     "thai_audio_file": null,
     "english_audio_file": null,
@@ -22163,7 +22163,7 @@
   {
     "thai": "ชน",
     "romanization": "tɕʰon",
-    "word_class": "",
+    "word_class": "v",
     "english": "crash",
     "thai_audio_file": null,
     "english_audio_file": null,
@@ -22204,7 +22204,7 @@
   {
     "thai": "ความรู้",
     "romanization": "kʰwaːm rúː",
-    "word_class": "",
+    "word_class": "n",
     "english": "knowledge",
     "thai_audio_file": null,
     "english_audio_file": null,
@@ -22261,7 +22261,7 @@
   {
     "thai": "ฆ่า",
     "romanization": "kʰâː",
-    "word_class": "",
+    "word_class": "v",
     "english": "kill",
     "thai_audio_file": null,
     "english_audio_file": null,
@@ -22361,7 +22361,7 @@
   {
     "thai": "ผู้คน",
     "romanization": "pʰûː kʰon",
-    "word_class": "",
+    "word_class": "n",
     "english": "people",
     "thai_audio_file": null,
     "english_audio_file": null,
@@ -22416,7 +22416,7 @@
   {
     "thai": "แยก",
     "romanization": "jɛ̂ːk",
-    "word_class": "",
+    "word_class": "v",
     "english": "separate",
     "thai_audio_file": null,
     "english_audio_file": null,
@@ -22458,7 +22458,7 @@
   {
     "thai": "มาตรา",
     "romanization": "mâːt traː",
-    "word_class": "",
+    "word_class": "n",
     "english": "section",
     "thai_audio_file": null,
     "english_audio_file": null,
@@ -22501,7 +22501,7 @@
   {
     "thai": "อา",
     "romanization": "ʔaː",
-    "word_class": "",
+    "word_class": "n",
     "english": "aunt/uncle (younger, father side)",
     "thai_audio_file": null,
     "english_audio_file": null,
@@ -22542,7 +22542,7 @@
   {
     "thai": "เจ้า",
     "romanization": "tɕâw",
-    "word_class": "",
+    "word_class": "pron",
     "english": "you; master",
     "thai_audio_file": null,
     "english_audio_file": null,
@@ -22585,7 +22585,7 @@
   {
     "thai": "ซ้ำ",
     "romanization": "sám",
-    "word_class": "",
+    "word_class": "adv",
     "english": "repeatedly",
     "thai_audio_file": null,
     "english_audio_file": null,
@@ -22627,7 +22627,7 @@
   {
     "thai": "สะดวก",
     "romanization": "sàʔ dùːak",
-    "word_class": "",
+    "word_class": "adj",
     "english": "convenient; comfortable",
     "thai_audio_file": null,
     "english_audio_file": null,
@@ -22737,7 +22737,7 @@
   {
     "thai": "ทั่วไป",
     "romanization": "tʰûːa paj",
-    "word_class": "",
+    "word_class": "adj",
     "english": "general",
     "thai_audio_file": null,
     "english_audio_file": null,
@@ -22793,7 +22793,7 @@
   {
     "thai": "เหมือนกับ",
     "romanization": "mɯ̌ːan kàp",
-    "word_class": "",
+    "word_class": "conj",
     "english": "as; like",
     "thai_audio_file": null,
     "english_audio_file": null,
@@ -22852,7 +22852,7 @@
   {
     "thai": "ร้าน",
     "romanization": "ráːn",
-    "word_class": "",
+    "word_class": "n",
     "english": "store; shop",
     "thai_audio_file": null,
     "english_audio_file": null,
@@ -22895,7 +22895,7 @@
   {
     "thai": "อย่างน้อย",
     "romanization": "jàːŋ nɔ́ːj",
-    "word_class": "",
+    "word_class": "adv",
     "english": "at least",
     "thai_audio_file": null,
     "english_audio_file": null,
@@ -23038,7 +23038,7 @@
   {
     "thai": "เฉพาะ",
     "romanization": "tɕʰà pʰɔ́ʔ",
-    "word_class": "",
+    "word_class": "adv",
     "english": "specifically",
     "thai_audio_file": null,
     "english_audio_file": null,
@@ -23082,7 +23082,7 @@
   {
     "thai": "องค์",
     "romanization": "ʔoŋ",
-    "word_class": "",
+    "word_class": "clf",
     "english": "organ; body; organization",
     "thai_audio_file": null,
     "english_audio_file": null,
@@ -23124,7 +23124,7 @@
   {
     "thai": "ช่วยเหลือ",
     "romanization": "tɕʰûaj lɯ̌ːa",
-    "word_class": "",
+    "word_class": "v",
     "english": "help",
     "thai_audio_file": null,
     "english_audio_file": null,
@@ -23183,7 +23183,7 @@
   {
     "thai": "หยุด",
     "romanization": "jùt",
-    "word_class": "",
+    "word_class": "v",
     "english": "stop",
     "thai_audio_file": null,
     "english_audio_file": null,
@@ -23226,7 +23226,7 @@
   {
     "thai": "ที",
     "romanization": "tʰiː",
-    "word_class": "",
+    "word_class": "clf",
     "english": "time; accasion; attitute",
     "thai_audio_file": null,
     "english_audio_file": null,
@@ -23335,7 +23335,7 @@
   {
     "thai": "เขต",
     "romanization": "kʰèːt",
-    "word_class": "",
+    "word_class": "n",
     "english": "zone; border; limit",
     "thai_audio_file": null,
     "english_audio_file": null,
@@ -23420,7 +23420,7 @@
   {
     "thai": "ยุค",
     "romanization": "júk",
-    "word_class": "",
+    "word_class": "n",
     "english": "era",
     "thai_audio_file": null,
     "english_audio_file": null,
@@ -23462,7 +23462,7 @@
   {
     "thai": "กระทำ",
     "romanization": "kràʔ tʰam",
-    "word_class": "",
+    "word_class": "v",
     "english": "act",
     "thai_audio_file": null,
     "english_audio_file": null,
@@ -23667,7 +23667,7 @@
   {
     "thai": "บาท",
     "romanization": "bàːt",
-    "word_class": "",
+    "word_class": "n",
     "english": "baht",
     "thai_audio_file": null,
     "english_audio_file": null,
@@ -23709,7 +23709,7 @@
   {
     "thai": "สัตว์",
     "romanization": "sàt",
-    "word_class": "",
+    "word_class": "n",
     "english": "animal",
     "thai_audio_file": null,
     "english_audio_file": null,
@@ -23752,7 +23752,7 @@
   {
     "thai": "คำตอบ",
     "romanization": "kʰam tɔ̀ːp",
-    "word_class": "",
+    "word_class": "n",
     "english": "an answer",
     "thai_audio_file": null,
     "english_audio_file": null,
@@ -23807,7 +23807,7 @@
   {
     "thai": "ปลูก",
     "romanization": "plùːk",
-    "word_class": "",
+    "word_class": "v",
     "english": "plant",
     "thai_audio_file": null,
     "english_audio_file": null,
@@ -23903,7 +23903,7 @@
   {
     "thai": "ถือว่า",
     "romanization": "tʰɯ̌ː wâː",
-    "word_class": "",
+    "word_class": "v",
     "english": "consider",
     "thai_audio_file": null,
     "english_audio_file": null,
@@ -23959,7 +23959,7 @@
   {
     "thai": "น้อง",
     "romanization": "nɔ́ːŋ",
-    "word_class": "",
+    "word_class": "n",
     "english": "younger sibling",
     "thai_audio_file": null,
     "english_audio_file": null,
@@ -24002,7 +24002,7 @@
   {
     "thai": "ประชุม",
     "romanization": "pràʔ tɕʰum",
-    "word_class": "",
+    "word_class": "v",
     "english": "meeting",
     "thai_audio_file": null,
     "english_audio_file": null,
@@ -24058,7 +24058,7 @@
   {
     "thai": "ทางการ",
     "romanization": "tʰaːŋ kaːn",
-    "word_class": "",
+    "word_class": "adj",
     "english": "official; authority; formal",
     "thai_audio_file": null,
     "english_audio_file": null,
@@ -24113,7 +24113,7 @@
   {
     "thai": "เหล่านี้",
     "romanization": "làw níː",
-    "word_class": "",
+    "word_class": "det",
     "english": "these",
     "thai_audio_file": null,
     "english_audio_file": null,
@@ -24171,7 +24171,7 @@
   {
     "thai": "นอน",
     "romanization": "nɔːn",
-    "word_class": "",
+    "word_class": "v",
     "english": "lie down; sleep",
     "thai_audio_file": null,
     "english_audio_file": null,
@@ -24253,7 +24253,7 @@
   {
     "thai": "สิ้น",
     "romanization": "sîn",
-    "word_class": "",
+    "word_class": "v",
     "english": "end",
     "thai_audio_file": null,
     "english_audio_file": null,
@@ -24296,7 +24296,7 @@
   {
     "thai": "ภาค",
     "romanization": "pʰâːk",
-    "word_class": "",
+    "word_class": "n",
     "english": "sector; region",
     "thai_audio_file": null,
     "english_audio_file": null,
@@ -24422,7 +24422,7 @@
   {
     "thai": "หมู่",
     "romanization": "mùː",
-    "word_class": "",
+    "word_class": "n",
     "english": "group",
     "thai_audio_file": null,
     "english_audio_file": null,
@@ -24465,7 +24465,7 @@
   {
     "thai": "กันเอง",
     "romanization": "kan ʔeːŋ",
-    "word_class": "",
+    "word_class": "adv",
     "english": "intimately; among themselves",
     "thai_audio_file": null,
     "english_audio_file": null,
@@ -24520,7 +24520,7 @@
   {
     "thai": "โครงการ",
     "romanization": "kʰroːŋ kaːn",
-    "word_class": "",
+    "word_class": "n",
     "english": "project",
     "thai_audio_file": null,
     "english_audio_file": null,
@@ -24658,7 +24658,7 @@
   {
     "thai": "บริการ",
     "romanization": "bɔː ríʔ kaːn",
-    "word_class": "",
+    "word_class": "n",
     "english": "service",
     "thai_audio_file": null,
     "english_audio_file": null,
@@ -24712,7 +24712,7 @@
   {
     "thai": "เรื่อย",
     "romanization": "rɯ̂ːaj",
-    "word_class": "",
+    "word_class": "adv",
     "english": "continuously",
     "thai_audio_file": null,
     "english_audio_file": null,
@@ -24757,7 +24757,7 @@
   {
     "thai": "ป้องกัน",
     "romanization": "pɔ̂ːŋ kan",
-    "word_class": "",
+    "word_class": "v",
     "english": "prevent; protect",
     "thai_audio_file": null,
     "english_audio_file": null,
@@ -24856,7 +24856,7 @@
   {
     "thai": "แบ่ง",
     "romanization": "bɛ̀ŋ",
-    "word_class": "",
+    "word_class": "v",
     "english": "share",
     "thai_audio_file": null,
     "english_audio_file": null,
@@ -24899,7 +24899,7 @@
   {
     "thai": "ก็ตาม",
     "romanization": "kɔ̂ː taːm",
-    "word_class": "",
+    "word_class": "conj",
     "english": "no matter; whatever",
     "thai_audio_file": null,
     "english_audio_file": null,
@@ -24953,7 +24953,7 @@
   {
     "thai": "บริหาร",
     "romanization": "bɔː ríʔ hǎːn",
-    "word_class": "",
+    "word_class": "v",
     "english": "administration; to administer; to manage",
     "thai_audio_file": null,
     "english_audio_file": null,
@@ -25008,7 +25008,7 @@
   {
     "thai": "ควบคุม",
     "romanization": "kʰûːap kʰum",
-    "word_class": "",
+    "word_class": "v",
     "english": "control",
     "thai_audio_file": null,
     "english_audio_file": null,
@@ -25063,7 +25063,7 @@
   {
     "thai": "แม้แต่",
     "romanization": "mɛ́ː tɛ̀ː",
-    "word_class": "",
+    "word_class": "conj",
     "english": "even",
     "thai_audio_file": null,
     "english_audio_file": null,
@@ -25171,7 +25171,7 @@
   {
     "thai": "เร็ว",
     "romanization": "rew",
-    "word_class": "",
+    "word_class": "adj",
     "english": "quick",
     "thai_audio_file": null,
     "english_audio_file": null,
@@ -25214,7 +25214,7 @@
   {
     "thai": "ลา",
     "romanization": "laː",
-    "word_class": "",
+    "word_class": "v",
     "english": "to say goodbye",
     "thai_audio_file": null,
     "english_audio_file": null,
@@ -25255,7 +25255,7 @@
   {
     "thai": "รุ่น",
     "romanization": "rûn",
-    "word_class": "",
+    "word_class": "n",
     "english": "generation",
     "thai_audio_file": null,
     "english_audio_file": null,
@@ -25298,7 +25298,7 @@
   {
     "thai": "ข้าง",
     "romanization": "kʰâːŋ",
-    "word_class": "",
+    "word_class": "n",
     "english": "side",
     "thai_audio_file": null,
     "english_audio_file": null,
@@ -25396,7 +25396,7 @@
   {
     "thai": "ร่าง",
     "romanization": "râːŋ",
-    "word_class": "",
+    "word_class": "n",
     "english": "draft",
     "thai_audio_file": null,
     "english_audio_file": null,
@@ -25439,7 +25439,7 @@
   {
     "thai": "จำ",
     "romanization": "tɕam",
-    "word_class": "",
+    "word_class": "v",
     "english": "remember",
     "thai_audio_file": null,
     "english_audio_file": null,
@@ -25480,7 +25480,7 @@
   {
     "thai": "เล่ม",
     "romanization": "lêm",
-    "word_class": "",
+    "word_class": "clf",
     "english": "book (classifier)",
     "thai_audio_file": null,
     "english_audio_file": null,
@@ -25523,7 +25523,7 @@
   {
     "thai": "พัก",
     "romanization": "pʰák",
-    "word_class": "",
+    "word_class": "v",
     "english": "to rest",
     "thai_audio_file": null,
     "english_audio_file": null,
@@ -25565,7 +25565,7 @@
   {
     "thai": "มองเห็น",
     "romanization": "mɔːŋ hěn",
-    "word_class": "",
+    "word_class": "v",
     "english": "see; catch sight of",
     "thai_audio_file": null,
     "english_audio_file": null,
@@ -25622,7 +25622,7 @@
   {
     "thai": "สินค้า",
     "romanization": "sǐn kʰáː",
-    "word_class": "",
+    "word_class": "n",
     "english": "goods; product",
     "thai_audio_file": null,
     "english_audio_file": null,
@@ -25678,7 +25678,7 @@
   {
     "thai": "พ่อแม่",
     "romanization": "pʰɔ̂ː mɛ̂ː",
-    "word_class": "",
+    "word_class": "n",
     "english": "parents",
     "thai_audio_file": null,
     "english_audio_file": null,
@@ -25780,7 +25780,7 @@
   {
     "thai": "ตกลง",
     "romanization": "tòk loŋ",
-    "word_class": "",
+    "word_class": "v",
     "english": "agree",
     "thai_audio_file": null,
     "english_audio_file": null,
@@ -25917,7 +25917,7 @@
   {
     "thai": "เสร็จ",
     "romanization": "sèt",
-    "word_class": "",
+    "word_class": "adj",
     "english": "completed",
     "thai_audio_file": null,
     "english_audio_file": null,
@@ -25961,7 +25961,7 @@
   {
     "thai": "ไหม",
     "romanization": "mǎj",
-    "word_class": "",
+    "word_class": "part",
     "english": "question particle",
     "thai_audio_file": null,
     "english_audio_file": null,
@@ -26100,7 +26100,7 @@
   {
     "thai": "มหา",
     "romanization": "má hǎː",
-    "word_class": "",
+    "word_class": "adj",
     "english": "great",
     "thai_audio_file": null,
     "english_audio_file": null,
@@ -26182,7 +26182,7 @@
   {
     "thai": "วง",
     "romanization": "woŋ",
-    "word_class": "",
+    "word_class": "n",
     "english": "circle",
     "thai_audio_file": null,
     "english_audio_file": null,
@@ -26223,7 +26223,7 @@
   {
     "thai": "พระเจ้า",
     "romanization": "pʰráʔ tɕâw",
-    "word_class": "",
+    "word_class": "n",
     "english": "God",
     "thai_audio_file": null,
     "english_audio_file": null,
@@ -26280,7 +26280,7 @@
   {
     "thai": "ชี้",
     "romanization": "tɕʰíː",
-    "word_class": "",
+    "word_class": "v",
     "english": "point",
     "thai_audio_file": null,
     "english_audio_file": null,
@@ -26322,7 +26322,7 @@
   {
     "thai": "ฉบับ",
     "romanization": "tɕʰà bàp",
-    "word_class": "",
+    "word_class": "clf",
     "english": "issue",
     "thai_audio_file": null,
     "english_audio_file": null,
@@ -26364,7 +26364,7 @@
   {
     "thai": "เกือบ",
     "romanization": "kɯ̀ːap",
-    "word_class": "",
+    "word_class": "adv",
     "english": "almost; close to",
     "thai_audio_file": null,
     "english_audio_file": null,
@@ -26408,7 +26408,7 @@
   {
     "thai": "สุด",
     "romanization": "sùt",
-    "word_class": "",
+    "word_class": "adv",
     "english": "end",
     "thai_audio_file": null,
     "english_audio_file": null,
@@ -26543,7 +26543,7 @@
   {
     "thai": "แหล่ง",
     "romanization": "lɛ̀ŋ",
-    "word_class": "",
+    "word_class": "n",
     "english": "source; place, venue, spot",
     "thai_audio_file": null,
     "english_audio_file": null,
@@ -26587,7 +26587,7 @@
   {
     "thai": "สถานที่",
     "romanization": "sà tʰǎːn tʰîː",
-    "word_class": "",
+    "word_class": "n",
     "english": "location",
     "thai_audio_file": null,
     "english_audio_file": null,
@@ -26644,7 +26644,7 @@
   {
     "thai": "ชุมชน",
     "romanization": "tɕʰum tɕʰon",
-    "word_class": "",
+    "word_class": "n",
     "english": "community",
     "thai_audio_file": null,
     "english_audio_file": null,
@@ -26697,7 +26697,7 @@
   {
     "thai": "สิทธิ",
     "romanization": "sìt tʰíʔ",
-    "word_class": "",
+    "word_class": "n",
     "english": "claim; right",
     "thai_audio_file": null,
     "english_audio_file": null,
@@ -26845,7 +26845,7 @@
   {
     "thai": "ทำไม",
     "romanization": "tham-mai",
-    "word_class": "",
+    "word_class": "adv",
     "english": "why",
     "thai_audio_file": "/thai-script/vocabulary/audio/0548_ทำไม_th.mp3",
     "english_audio_file": "/thai-script/vocabulary/audio/0548_ทำไม_en.mp3",
@@ -26897,7 +26897,7 @@
   {
     "thai": "ชม",
     "romanization": "tɕʰom",
-    "word_class": "",
+    "word_class": "v",
     "english": "admire",
     "thai_audio_file": null,
     "english_audio_file": null,
@@ -26938,7 +26938,7 @@
   {
     "thai": "ธรรม",
     "romanization": "tʰam má",
-    "word_class": "",
+    "word_class": "n",
     "english": "fairness; Dharma",
     "thai_audio_file": null,
     "english_audio_file": null,
@@ -27054,7 +27054,7 @@
   {
     "thai": "ส่วนตัว",
     "romanization": "sùːan tuːa",
-    "word_class": "",
+    "word_class": "adj",
     "english": "private",
     "thai_audio_file": null,
     "english_audio_file": null,
@@ -27110,7 +27110,7 @@
   {
     "thai": "พระองค์",
     "romanization": "pʰráʔ ʔoŋ",
-    "word_class": "",
+    "word_class": "pron",
     "english": "His Majesty",
     "thai_audio_file": null,
     "english_audio_file": null,
@@ -27166,7 +27166,7 @@
   {
     "thai": "เหมาะสม",
     "romanization": "mɔ̀ʔ sǒm",
-    "word_class": "",
+    "word_class": "adj",
     "english": "appropriate",
     "thai_audio_file": null,
     "english_audio_file": null,
@@ -27221,7 +27221,7 @@
   {
     "thai": "แผ่น",
     "romanization": "pʰɛ̀n",
-    "word_class": "",
+    "word_class": "clf",
     "english": "sheet; tablet",
     "thai_audio_file": null,
     "english_audio_file": null,
@@ -27264,7 +27264,7 @@
   {
     "thai": "นโยบาย",
     "romanization": "ná joː baːj",
-    "word_class": "",
+    "word_class": "n",
     "english": "policy",
     "thai_audio_file": null,
     "english_audio_file": null,
@@ -27361,7 +27361,7 @@
   {
     "thai": "วิธีการ",
     "romanization": "wíʔ tʰiː kaːn",
-    "word_class": "",
+    "word_class": "n",
     "english": "method; way",
     "thai_audio_file": null,
     "english_audio_file": null,
@@ -27429,7 +27429,7 @@
   {
     "thai": "นิยม",
     "romanization": "níʔ jom",
-    "word_class": "",
+    "word_class": "n",
     "english": "popular; principle",
     "thai_audio_file": null,
     "english_audio_file": null,
@@ -27483,7 +27483,7 @@
   {
     "thai": "เหมาะ",
     "romanization": "mɔ̀ʔ",
-    "word_class": "",
+    "word_class": "adj",
     "english": "approporiate; suitable",
     "thai_audio_file": null,
     "english_audio_file": null,
@@ -27527,7 +27527,7 @@
   {
     "thai": "อดีต",
     "romanization": "ʔà dìːt",
-    "word_class": "",
+    "word_class": "n",
     "english": "former",
     "thai_audio_file": null,
     "english_audio_file": null,
@@ -27570,7 +27570,7 @@
   {
     "thai": "สม",
     "romanization": "sǒm",
-    "word_class": "",
+    "word_class": "adj",
     "english": "suitable; appropriate",
     "thai_audio_file": null,
     "english_audio_file": null,
@@ -27611,7 +27611,7 @@
   {
     "thai": "สำรวจ",
     "romanization": "sǎm rùːat",
-    "word_class": "",
+    "word_class": "v",
     "english": "survey",
     "thai_audio_file": null,
     "english_audio_file": null,
@@ -27666,7 +27666,7 @@
   {
     "thai": "ย่อม",
     "romanization": "jɔ̂ːm",
-    "word_class": "",
+    "word_class": "adv",
     "english": "small; naturally; inevitably",
     "thai_audio_file": null,
     "english_audio_file": null,
@@ -27709,7 +27709,7 @@
   {
     "thai": "ล้วน",
     "romanization": "lúuan",
-    "word_class": "adj",
+    "word_class": "adv",
     "english": "solid",
     "thai_audio_file": "/thai-script/vocabulary/audio/0539_ลวน_th.mp3",
     "english_audio_file": "/thai-script/vocabulary/audio/0539_ลวน_en.mp3",
@@ -27751,7 +27751,7 @@
   {
     "thai": "ทันที",
     "romanization": "tʰan tʰiː",
-    "word_class": "",
+    "word_class": "adv",
     "english": "immediately",
     "thai_audio_file": null,
     "english_audio_file": null,
@@ -27804,7 +27804,7 @@
   {
     "thai": "พี่น้อง",
     "romanization": "pʰîː nɔ́ːŋ",
-    "word_class": "",
+    "word_class": "n",
     "english": "sibling",
     "thai_audio_file": null,
     "english_audio_file": null,
@@ -27861,7 +27861,7 @@
   {
     "thai": "สาร",
     "romanization": "sǎːn",
-    "word_class": "",
+    "word_class": "n",
     "english": "substance",
     "thai_audio_file": null,
     "english_audio_file": null,
@@ -27903,7 +27903,7 @@
   {
     "thai": "ทั้งนี้",
     "romanization": "tʰáŋ níː",
-    "word_class": "",
+    "word_class": "conj",
     "english": "in order that; so that",
     "thai_audio_file": null,
     "english_audio_file": null,
@@ -27958,7 +27958,7 @@
   {
     "thai": "ไหล",
     "romanization": "lǎj",
-    "word_class": "",
+    "word_class": "v",
     "english": "flow",
     "thai_audio_file": null,
     "english_audio_file": null,
@@ -28000,7 +28000,7 @@
   {
     "thai": "วัฒนธรรม",
     "romanization": "wát tʰá ná tʰam",
-    "word_class": "",
+    "word_class": "n",
     "english": "culture",
     "thai_audio_file": null,
     "english_audio_file": null,
@@ -28056,7 +28056,7 @@
   {
     "thai": "สถาบัน",
     "romanization": "sà tʰǎː ban",
-    "word_class": "",
+    "word_class": "n",
     "english": "institution",
     "thai_audio_file": null,
     "english_audio_file": null,
@@ -28112,7 +28112,7 @@
   {
     "thai": "ตี",
     "romanization": "tiː",
-    "word_class": "",
+    "word_class": "v",
     "english": "hit",
     "thai_audio_file": null,
     "english_audio_file": null,
@@ -28153,7 +28153,7 @@
   {
     "thai": "เทียบ",
     "romanization": "tʰîːap",
-    "word_class": "",
+    "word_class": "v",
     "english": "compared",
     "thai_audio_file": null,
     "english_audio_file": null,
@@ -28197,7 +28197,7 @@
   {
     "thai": "หาย",
     "romanization": "hǎːj",
-    "word_class": "",
+    "word_class": "v",
     "english": "disappear",
     "thai_audio_file": null,
     "english_audio_file": null,
@@ -28239,7 +28239,7 @@
   {
     "thai": "ชัด",
     "romanization": "tɕʰát",
-    "word_class": "",
+    "word_class": "adj",
     "english": "clear",
     "thai_audio_file": null,
     "english_audio_file": null,
@@ -28281,7 +28281,7 @@
   {
     "thai": "สัมพันธ์",
     "romanization": "sǎm pʰan",
-    "word_class": "",
+    "word_class": "n",
     "english": "relations",
     "thai_audio_file": null,
     "english_audio_file": null,
@@ -28337,7 +28337,7 @@
   {
     "thai": "วิชา",
     "romanization": "wíʔ tɕʰaː",
-    "word_class": "",
+    "word_class": "n",
     "english": "subject",
     "thai_audio_file": null,
     "english_audio_file": null,
@@ -28484,7 +28484,7 @@
   {
     "thai": "ปฏิเสธ",
     "romanization": "pà tìʔ sèːt",
-    "word_class": "",
+    "word_class": "v",
     "english": "decline",
     "thai_audio_file": null,
     "english_audio_file": null,
@@ -28540,7 +28540,7 @@
   {
     "thai": "ปรับ",
     "romanization": "pràp",
-    "word_class": "",
+    "word_class": "v",
     "english": "a fine (monetary); to improve",
     "thai_audio_file": null,
     "english_audio_file": null,
@@ -28583,7 +28583,7 @@
   {
     "thai": "เลื่อน",
     "romanization": "lɯ̂ːan",
-    "word_class": "",
+    "word_class": "v",
     "english": "slide; postpone",
     "thai_audio_file": null,
     "english_audio_file": null,
@@ -28628,7 +28628,7 @@
   {
     "thai": "เริ่มต้น",
     "romanization": "rɤ̂ːm tôn",
-    "word_class": "",
+    "word_class": "v",
     "english": "start; begin",
     "thai_audio_file": null,
     "english_audio_file": null,
@@ -28686,7 +28686,7 @@
   {
     "thai": "แนว",
     "romanization": "nɛːw",
-    "word_class": "",
+    "word_class": "n",
     "english": "line; trend",
     "thai_audio_file": null,
     "english_audio_file": null,
@@ -28728,7 +28728,7 @@
   {
     "thai": "อาชีพ",
     "romanization": "ʔaː tɕʰîːp",
-    "word_class": "",
+    "word_class": "n",
     "english": "career; occupation",
     "thai_audio_file": null,
     "english_audio_file": null,
@@ -28783,7 +28783,7 @@
   {
     "thai": "สมาชิก",
     "romanization": "sà maː tɕʰík",
-    "word_class": "",
+    "word_class": "n",
     "english": "member",
     "thai_audio_file": null,
     "english_audio_file": null,
@@ -28880,7 +28880,7 @@
   {
     "thai": "จิตใจ",
     "romanization": "tɕìt tɕaj",
-    "word_class": "",
+    "word_class": "n",
     "english": "mind; mental",
     "thai_audio_file": null,
     "english_audio_file": null,
@@ -28934,7 +28934,7 @@
   {
     "thai": "จนกระทั่ง",
     "romanization": "tɕon kràʔ tʰâŋ",
-    "word_class": "",
+    "word_class": "conj",
     "english": "until",
     "thai_audio_file": null,
     "english_audio_file": null,
@@ -29003,7 +29003,7 @@
   {
     "thai": "ตั้งใจ",
     "romanization": "tâŋ tɕaj",
-    "word_class": "",
+    "word_class": "v",
     "english": "intend",
     "thai_audio_file": null,
     "english_audio_file": null,
