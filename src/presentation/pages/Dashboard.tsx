@@ -214,46 +214,6 @@ export function Dashboard() {
 				</div>
 			)}
 
-			{/* 4. Study Heatmap */}
-			{state.sessionHistory.length > 0 && (
-				<Card className="p-4">
-					<HeatmapWidget sessions={state.sessionHistory} />
-				</Card>
-			)}
-
-			{/* 5. Achievement Shelf */}
-			{achievements.length > 0 && (
-				<div>
-					<SectionHeader className="mb-3">Achievements</SectionHeader>
-					<div className="flex gap-4 overflow-x-auto pb-1">
-						{achievements.slice(-4).map((id) => (
-							<AchievementBadge key={id} id={id} unlocked size="sm" />
-						))}
-						{ACHIEVEMENT_DEFS.filter((d) => !achievements.includes(d.id))
-							.slice(0, 2)
-							.map((d) => (
-								<AchievementBadge
-									key={d.id}
-									id={d.id}
-									unlocked={false}
-									size="sm"
-								/>
-							))}
-					</div>
-					<div className="flex justify-end mt-2">
-						<Button
-							type="button"
-							variant="ghost"
-							onClick={() => navigate("/progress")}
-							className="text-xs h-auto p-0"
-							style={{ color: "var(--color-text-muted)" }}
-						>
-							See all →
-						</Button>
-					</div>
-				</div>
-			)}
-
 			{/* 6. Upcoming Reviews Forecast */}
 			{Object.keys(state.cards).length > 0 && (
 				<div>
