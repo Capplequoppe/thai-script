@@ -29,7 +29,7 @@ export function generateVocabCards(
 ): VocabularyCard[] {
 	const thaiPool = allWords.map((w) => w.thai);
 	const englishPool = allWords.map((w) => w.english);
-	const mnemonic = word.mnemonic ?? undefined;
+	const mnemonic = word.mnemonic;
 
 	const cards: VocabularyCard[] = [];
 
@@ -74,8 +74,8 @@ export function generateVocabCards(
 
 	// Tone identification (only if at least one syllable has a tone)
 	const toneSyllables = word.syllables
-		.filter((s) => s.tone)
-		.map((s) => ({ text: s.text, tone: s.tone as string }));
+		.filter((s): s is typeof s & { tone: string } => s.tone !== null && s.tone !== "")
+		.map((s) => ({ text: s.text, tone: s.tone }));
 
 	if (toneSyllables.length > 0) {
 		cards.push({
