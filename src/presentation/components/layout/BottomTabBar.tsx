@@ -184,16 +184,6 @@ export function BottomTabBar({
 							)}
 						</NavLink>
 					))}
-					{vocabUnlocked && (
-						<NavLink
-							to="/vocab"
-							className={({ isActive }) =>
-								`text-sm font-medium transition-colors ${isActive ? ACTIVE : INACTIVE}`
-							}
-						>
-							Vocab
-						</NavLink>
-					)}
 					{grammarUnlocked && (
 						<NavLink
 							to="/grammar"
