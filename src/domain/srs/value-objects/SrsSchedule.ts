@@ -17,7 +17,7 @@ export interface SrsDataDTO {
 	lapseCount?: number;
 }
 
-const LEARNING_STEPS_MINUTES = [0, 10, 60, 480, 1440] as const;
+const LEARNING_STEPS_MINUTES = [0, 10, 60, 480] as const;
 const GRADUATING_INTERVAL_MINUTES = 4320;
 const MAX_INTERVAL_MINUTES = 259200;
 const MIN_GRADUATED_INTERVAL_MINUTES = 1440;

@@ -18,7 +18,7 @@ function makeLearningSchedule(
 ): SrsSchedule {
 	return SrsSchedule.fromDTO({
 		easeFactor: 2.0,
-		interval: [0, 10, 60, 480, 1440][step],
+		interval: [0, 10, 60, 480][step],
 		repetitions: 0,
 		learningStep: step,
 		nextReviewDate: NOW,
@@ -64,7 +64,7 @@ describe("SrsSchedule.initial", () => {
 });
 
 describe("SrsSchedule.applyReview - Learning Phase", () => {
-	it("Good advances steps 0->1->2->3->4->graduated with correct intervals", () => {
+	it("Good advances steps 0->1->2->3->graduated with correct intervals", () => {
 		let card = makeLearningSchedule(0);
 
 		card = card.applyReview(RecallRating.GOOD, NOW);
@@ -78,10 +78,6 @@ describe("SrsSchedule.applyReview - Learning Phase", () => {
 		card = card.applyReview(RecallRating.GOOD, NOW);
 		expect(card.learningStep).toBe(3);
 		expect(card.interval).toBe(480);
-
-		card = card.applyReview(RecallRating.GOOD, NOW);
-		expect(card.learningStep).toBe(4);
-		expect(card.interval).toBe(1440);
 
 		card = card.applyReview(RecallRating.GOOD, NOW);
 		expect(card.learningStep).toBeNull();
@@ -102,8 +98,8 @@ describe("SrsSchedule.applyReview - Learning Phase", () => {
 		expect(result.interval).toBe(4320);
 	});
 
-	it("Easy skips steps: 4->graduated", () => {
-		const card = makeLearningSchedule(4);
+	it("Easy skips steps: 2->graduated", () => {
+		const card = makeLearningSchedule(2);
 		const result = card.applyReview(RecallRating.EASY, NOW);
 		expect(result.learningStep).toBeNull();
 		expect(result.interval).toBe(4320);
@@ -542,7 +538,7 @@ describe("lapseCount tracking", () => {
 	});
 
 	it("propagates through graduation", () => {
-		const card = makeLearningSchedule(4, { lapseCount: 2 });
+		const card = makeLearningSchedule(3, { lapseCount: 2 });
 		const result = card.applyReview(RecallRating.GOOD, NOW);
 		expect(result.learningStep).toBeNull();
 		expect(result.lapseCount).toBe(2);
