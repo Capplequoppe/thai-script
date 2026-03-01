@@ -530,8 +530,9 @@ export function VocabularyPage() {
 						className="h-1.5"
 					/>
 				</div>
-				{"property" in current.card && current.card.property === "toneIdentification" ? (
-					<ToneQuiz card={current.card} onAnswer={handleMcAnswer} />
+				{"property" in current.card &&
+				(current.card as unknown as VocabularyCard).property === "toneIdentification" ? (
+					<ToneQuiz card={current.card as unknown as VocabularyCard} onAnswer={handleMcAnswer} />
 				) : current.mode === "multipleChoice" ? (
 					<MultipleChoice card={current.card} onAnswer={handleMcAnswer} />
 				) : (
