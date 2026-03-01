@@ -11,6 +11,7 @@ import { SessionStatGrid } from "../components/molecules/SessionStatGrid";
 import { AchievementBadge } from "../components/organisms/AchievementBadge";
 import { Flashcard } from "../components/organisms/Flashcard";
 import { MultipleChoice } from "../components/organisms/MultipleChoice";
+import { ToneQuiz } from "../components/organisms/ToneQuiz";
 import { WordCard } from "../components/organisms/WordCard";
 import { useApp } from "../hooks/useApp";
 import { useReviewSession } from "../hooks/useReviewSession";
@@ -404,7 +405,15 @@ export function VocabularyPage() {
 						className="h-1.5"
 					/>
 				</div>
-				<MultipleChoice card={currentVocabCard} onAnswer={flow.advance} />
+				{currentVocabCard.property === "toneIdentification" ? (
+					<ToneQuiz card={currentVocabCard} onAnswer={flow.advance} />
+				) : (
+					<MultipleChoice
+						card={currentVocabCard}
+						onAnswer={flow.advance}
+						mnemonicExpanded
+					/>
+				)}
 			</div>
 		);
 	}
@@ -521,7 +530,9 @@ export function VocabularyPage() {
 						className="h-1.5"
 					/>
 				</div>
-				{current.mode === "multipleChoice" ? (
+				{"property" in current.card && current.card.property === "toneIdentification" ? (
+					<ToneQuiz card={current.card} onAnswer={handleMcAnswer} />
+				) : current.mode === "multipleChoice" ? (
 					<MultipleChoice card={current.card} onAnswer={handleMcAnswer} />
 				) : (
 					<Flashcard card={current.card} onRate={handleReviewAdvance} />
