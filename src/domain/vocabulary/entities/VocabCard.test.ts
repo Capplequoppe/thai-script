@@ -106,4 +106,39 @@ describe("VocabCard", () => {
 		expect(restored.schedule.toDTO()).toEqual(card.schedule.toDTO());
 		expect(restored.pool).toBe("vocab");
 	});
+
+	it("toDTO includes mnemonic when provided", () => {
+		const card = new VocabCard(
+			"id-1", "Q?", "A", ["A", "B"],
+			SrsSchedule.initial(NOW),
+			"คำ", "thaiToEnglish",
+			undefined,
+			"sounds like 'come'",
+		);
+		expect(card.toDTO().mnemonic).toBe("sounds like 'come'");
+	});
+
+	it("toDTO includes syllables when provided", () => {
+		const syllables = [{ text: "คำ", tone: "mid" }];
+		const card = new VocabCard(
+			"id-1", "Q?", "A", [],
+			SrsSchedule.initial(NOW),
+			"คำ", "toneIdentification",
+			undefined, undefined, syllables,
+		);
+		expect(card.toDTO().syllables).toEqual(syllables);
+	});
+
+	it("fromDTO roundtrips mnemonic and syllables", () => {
+		const syllables = [{ text: "คำ", tone: "mid" }];
+		const card = new VocabCard(
+			"id-2", "Q?", "A", [],
+			SrsSchedule.initial(NOW),
+			"คำ", "toneIdentification",
+			undefined, "tip", syllables,
+		);
+		const restored = VocabCard.fromDTO(card.toDTO());
+		expect(restored.mnemonic).toBe("tip");
+		expect(restored.syllables).toEqual(syllables);
+	});
 });

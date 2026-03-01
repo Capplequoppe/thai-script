@@ -12,6 +12,8 @@ export class VocabCard extends ReviewableCard {
 		readonly wordThai: string,
 		readonly property: string,
 		audioUrl?: string,
+		readonly mnemonic?: string | null,
+		readonly syllables?: { text: string; tone: string }[],
 	) {
 		super(id, question, correctAnswer, choices, schedule, audioUrl);
 	}
@@ -30,6 +32,8 @@ export class VocabCard extends ReviewableCard {
 			audioUrl: this.audioUrl,
 			wordThai: this.wordThai,
 			property: this.property,
+			...(this.mnemonic != null && { mnemonic: this.mnemonic }),
+			...(this.syllables != null && { syllables: this.syllables }),
 		};
 	}
 
@@ -42,6 +46,8 @@ export class VocabCard extends ReviewableCard {
 		wordThai: string;
 		property: string;
 		audioUrl?: string;
+		mnemonic?: string | null;
+		syllables?: { text: string; tone: string }[];
 	}): VocabCard {
 		return new VocabCard(
 			dto.id,
@@ -52,6 +58,8 @@ export class VocabCard extends ReviewableCard {
 			dto.wordThai,
 			dto.property,
 			dto.audioUrl,
+			dto.mnemonic,
+			dto.syllables,
 		);
 	}
 }
