@@ -1,6 +1,7 @@
 import { useRef, useState } from "react";
 import { useNavigate } from "react-router";
 import { Button } from "@/presentation/components/ui/button";
+import { ConfirmDialog } from "../components/molecules/ConfirmDialog";
 import { useApp } from "../hooks/useApp";
 
 export function SettingsPage() {
@@ -11,6 +12,7 @@ export function SettingsPage() {
 		type: "success" | "error";
 		message: string;
 	} | null>(null);
+	const [resetOpen, setResetOpen] = useState(false);
 
 	function handleExport() {
 		const json = data.exportData();
@@ -123,17 +125,24 @@ export function SettingsPage() {
 					type="button"
 					variant="destructive"
 					size="sm"
-					onClick={() => {
-						if (confirm("This will erase all progress. Are you sure?")) {
-							data.reset();
-							refresh();
-							navigate("/");
-						}
-					}}
+					onClick={() => setResetOpen(true)}
 				>
 					Reset All Progress
 				</Button>
 			</section>
+			<ConfirmDialog
+				open={resetOpen}
+				onOpenChange={setResetOpen}
+				title="Reset All Progress"
+				description="This will erase all progress. This action cannot be undone."
+				confirmLabel="Reset"
+				isDestructive
+				onConfirm={() => {
+					data.reset();
+					refresh();
+					navigate("/");
+				}}
+			/>
 		</div>
 	);
 }
