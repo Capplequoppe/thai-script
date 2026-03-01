@@ -2195,7 +2195,7 @@
     "toneRules": [
       "mid-live"
     ],
-    "mnemonic": null
+    "mnemonic": "TAM — FOLLOW the tam-tam drum beat (— neutral)"
   },
   {
     "thai": "บาง",
@@ -2237,7 +2237,7 @@
     "toneRules": [
       "mid-live"
     ],
-    "mnemonic": null
+    "mnemonic": "BANG — SOME go out with a bang (— neutral)"
   },
   {
     "thai": "อีก",
@@ -2279,7 +2279,7 @@
     "toneRules": [
       "mid-dead-long"
     ],
-    "mnemonic": null
+    "mnemonic": "EEK — I want MORE eeks! (▬ low, quietly adding)"
   },
   {
     "thai": "ทำให้",
@@ -2334,7 +2334,7 @@
       "low-live",
       "high-maytho"
     ],
-    "mnemonic": null
+    "mnemonic": "THUMB-HAI — MAKE it happen, then HAI-give it (↓ causative drop)"
   },
   {
     "thai": "ทาง",
@@ -2375,7 +2375,7 @@
     "toneRules": [
       "low-live"
     ],
-    "mnemonic": null
+    "mnemonic": "THONG — flip-flops point every DIRECTION (— neutral)"
   },
   {
     "thai": "แบบ",
@@ -2416,7 +2416,7 @@
     "toneRules": [
       "mid-dead-long"
     ],
-    "mnemonic": null
+    "mnemonic": "BAP — a BAPtism of STYLE (▬ low, understated fashion)"
   },
   {
     "thai": "ออก",
@@ -2457,7 +2457,7 @@
     "toneRules": [
       "mid-dead-long"
     ],
-    "mnemonic": null
+    "mnemonic": "OAK — EXIT through the oak door (▬ low, departing)"
   },
   {
     "thai": "ที่สุด",
@@ -2513,7 +2513,7 @@
       "low-mayek",
       "high-dead-short"
     ],
-    "mnemonic": null
+    "mnemonic": "TEE-SOOT — AT the utterMOST SUIT (↓ definitive endpoint)"
   },
   {
     "thai": "เรา",
@@ -2555,7 +2555,7 @@
     "toneRules": [
       "low-live"
     ],
-    "mnemonic": null
+    "mnemonic": "RAW — WE eat raw food together (— neutral)"
   },
   {
     "thai": "โดย",
@@ -2597,7 +2597,7 @@
     "toneRules": [
       "mid-live"
     ],
-    "mnemonic": null
+    "mnemonic": "DOI — done BY me, doi! (— neutral, authorship)"
   },
   {
     "thai": "ดี",
@@ -2637,7 +2637,7 @@
     "toneRules": [
       "mid-live"
     ],
-    "mnemonic": null
+    "mnemonic": "DEE — dee-lightfully GOOD (— neutral)"
   },
   {
     "thai": "เพื่อ",
@@ -2681,7 +2681,7 @@
     "toneRules": [
       "low-mayek"
     ],
-    "mnemonic": null
+    "mnemonic": "PHUA — FOR you, phua (↓ drops with giving)"
   },
   {
     "thai": "จึง",
@@ -2723,7 +2723,7 @@
     "toneRules": [
       "mid-live"
     ],
-    "mnemonic": null
+    "mnemonic": "JUNG — THEREFORE, as Jung concluded (— neutral)"
   },
   {
     "thai": "ต่อ",
@@ -2765,7 +2765,7 @@
     "toneRules": [
       "mid-mayek"
     ],
-    "mnemonic": null
+    "mnemonic": "TAW — CONNECT two ends with a taw-knot (▬ low)"
   },
   {
     "thai": "ครั้ง",
@@ -2809,7 +2809,7 @@
     "toneRules": [
       "low-maytho"
     ],
-    "mnemonic": null
+    "mnemonic": "KRANG — every TIME the KRANG rings! (▲ sharp, each occurrence)"
   },
   {
     "thai": "เขา",
@@ -2851,7 +2851,7 @@
     "toneRules": [
       "high-live"
     ],
-    "mnemonic": null
+    "mnemonic": "KAO — HE went kao? (↑ voice rises, pointing at him)"
   },
   {
     "thai": "หลาย",
@@ -2894,7 +2894,7 @@
     "toneRules": [
       "high-live"
     ],
-    "mnemonic": null
+    "mnemonic": "LIE — MANY layers of lies pile up (↑ rising with accumulation)"
   },
   {
     "thai": "ผู้",
@@ -2936,7 +2936,7 @@
     "toneRules": [
       "high-maytho"
     ],
-    "mnemonic": null
+    "mnemonic": "POO — a PERSON of importance — poo! (↓ dignified drop)"
   },
   {
     "thai": "ทุก",
@@ -2978,7 +2978,7 @@
     "toneRules": [
       "low-dead-short"
     ],
-    "mnemonic": null
+    "mnemonic": "TOOK — EACH one TOOK a turn (▲ sharp, distributed to all)"
   },
   {
     "thai": "น้อย",
@@ -3021,7 +3021,7 @@
     "toneRules": [
       "low-maytho"
     ],
-    "mnemonic": null
+    "mnemonic": "NOY — just a LITTLE noy-se (▲ sharp, minimal amount)"
   },
   {
     "thai": "คือ",
@@ -3063,7 +3063,7 @@
     "toneRules": [
       "low-live"
     ],
-    "mnemonic": null
+    "mnemonic": "KUE — a queue IS a line (— neutral, defining)"
   },
   {
     "thai": "หาก",
@@ -3105,7 +3105,7 @@
     "toneRules": [
       "high-dead-long"
     ],
-    "mnemonic": null
+    "mnemonic": "HARK — IF you hark and listen (▬ low, conditional silence)"
   },
   {
     "thai": "เกิด",
@@ -3147,7 +3147,7 @@
     "toneRules": [
       "mid-dead-short"
     ],
-    "mnemonic": null
+    "mnemonic": "GOAT — BORN in the year of the goat (▬ low, origins)"
   },
   {
     "thai": "ปี",
@@ -3187,7 +3187,7 @@
     "toneRules": [
       "mid-live"
     ],
-    "mnemonic": null
+    "mnemonic": "PEE — a YEAR-ly pee-riod (— neutral)"
   },
   {
     "thai": "งาน",
@@ -3228,7 +3228,7 @@
     "toneRules": [
       "low-live"
     ],
-    "mnemonic": null
+    "mnemonic": "NGAN — JOB at the naan bakery (— neutral)"
   },
   {
     "thai": "ใหม่",
@@ -3271,7 +3271,7 @@
     "toneRules": [
       "high-mayek"
     ],
-    "mnemonic": null
+    "mnemonic": "MY — this NEW one is mine (▬ low, freshly acquired)"
   },
   {
     "thai": "ตั้ง",
@@ -3314,7 +3314,7 @@
     "toneRules": [
       "mid-maytho"
     ],
-    "mnemonic": null
+    "mnemonic": "TANG — SET the tang balance at zero (↓ voice drops, established)"
   },
   {
     "thai": "ส่วน",
@@ -3357,7 +3357,7 @@
     "toneRules": [
       "high-mayek"
     ],
-    "mnemonic": null
+    "mnemonic": "SUAN — a SECTION of the garden (▬ low, divided part)"
   },
   {
     "thai": "รับ",
@@ -3398,7 +3398,7 @@
     "toneRules": [
       "low-dead-long"
     ],
-    "mnemonic": null
+    "mnemonic": "RAP — RECEIVE the rap message (▲ sharp, catching)"
   },
   {
     "thai": "รับ",
@@ -3439,7 +3439,7 @@
     "toneRules": [
       "low-dead-long"
     ],
-    "mnemonic": null
+    "mnemonic": "RAP — RECEIVE the rap message (▲ sharp, catching)"
   },
   {
     "thai": "แรก",
@@ -3481,7 +3481,7 @@
     "toneRules": [
       "low-dead-long"
     ],
-    "mnemonic": null
+    "mnemonic": "RAKE — FIRST rake the leaves (↓ falling, initial action)"
   },
   {
     "thai": "พระ",
@@ -3523,7 +3523,7 @@
     "toneRules": [
       "low-live"
     ],
-    "mnemonic": null
+    "mnemonic": "PRAH — MONK in prayer — prah! (▲ sharp, sacred)"
   },
   {
     "thai": "ทำงาน",
@@ -3576,7 +3576,7 @@
     "toneRules": [
       "low-live"
     ],
-    "mnemonic": null
+    "mnemonic": "THUMB-NGAN — WORK with your thumbs all ngaan-day (— neutral)"
   },
   {
     "thai": "วัน",
@@ -3617,7 +3617,7 @@
     "toneRules": [
       "low-live"
     ],
-    "mnemonic": null
+    "mnemonic": "WAN — one WAN-derful DAY (— neutral)"
   },
   {
     "thai": "ช่วย",
@@ -3659,7 +3659,7 @@
     "toneRules": [
       "low-mayek"
     ],
-    "mnemonic": null
+    "mnemonic": "CHOO-ay — HELP! the choo-choo train! (↓ urgent drop)"
   },
   {
     "thai": "เพียง",
@@ -3703,7 +3703,7 @@
     "toneRules": [
       "low-live"
     ],
-    "mnemonic": null
+    "mnemonic": "PIANG — ONLY a ping of sound remains (— neutral, sparse)"
   },
   {
     "thai": "อาจ",
@@ -3745,7 +3745,7 @@
     "toneRules": [
       "mid-dead-long"
     ],
-    "mnemonic": null
+    "mnemonic": "ART — it MAY be art (▬ low, possibility)"
   },
   {
     "thai": "ขนาด",
@@ -3788,7 +3788,7 @@
     "toneRules": [
       "high-dead-long"
     ],
-    "mnemonic": null
+    "mnemonic": "KHA-NAT — the SIZE of a karate chop! (▬ low, measured)"
   },
   {
     "thai": "อื่น",
@@ -3831,7 +3831,7 @@
     "toneRules": [
       "mid-mayek"
     ],
-    "mnemonic": null
+    "mnemonic": "UNE — ANOTHER one — une more (▬ low, like French 'une')"
   },
   {
     "thai": "นัก",
@@ -3873,7 +3873,7 @@
     "toneRules": [
       "low-dead-long"
     ],
-    "mnemonic": null
+    "mnemonic": "NAK — VERY much a knock-out! (▲ high, intense)"
   },
   {
     "thai": "เริ่ม",
@@ -3916,7 +3916,7 @@
     "toneRules": [
       "low-mayek"
     ],
-    "mnemonic": null
+    "mnemonic": "ROME — didn't START Rome in a day (↓ falling, beginning)"
   },
   {
     "thai": "เด็ก",
@@ -3958,7 +3958,7 @@
     "toneRules": [
       "mid-dead-long"
     ],
-    "mnemonic": null
+    "mnemonic": "DECK — a CHILD playing on the deck (▬ low, small)"
   },
   {
     "thai": "ชีวิต",
@@ -4013,7 +4013,7 @@
       "low-live",
       "low-dead-short"
     ],
-    "mnemonic": null
+    "mnemonic": "CHEE-WIT — LIFE is a cheeky wit! (▲ lively, vibrant)"
   },
   {
     "thai": "สูง",
@@ -4054,7 +4054,7 @@
     "toneRules": [
       "high-live"
     ],
-    "mnemonic": null
+    "mnemonic": "SOONG — TALL as a soaring song (↑ voice rises like height)"
   },
   {
     "thai": "สูง",
@@ -4095,7 +4095,7 @@
     "toneRules": [
       "high-live"
     ],
-    "mnemonic": null
+    "mnemonic": "SOONG — TALL as a soaring song (↑ voice rises like height)"
   },
   {
     "thai": "ก่อน",
@@ -4137,7 +4137,7 @@
     "toneRules": [
       "mid-mayek"
     ],
-    "mnemonic": null
+    "mnemonic": "GONE — BEFORE it's all gone (▬ low, preceding)"
   },
   {
     "thai": "เปลี่ยน",
@@ -4182,7 +4182,7 @@
     "toneRules": [
       "mid-mayek"
     ],
-    "mnemonic": null
+    "mnemonic": "PLAN — TRANSFER to a new plan (▬ low, shifting)"
   },
   {
     "thai": "ต่าง",
@@ -4225,7 +4225,7 @@
     "toneRules": [
       "mid-mayek"
     ],
-    "mnemonic": null
+    "mnemonic": "TANG — DIFFERENT tang, a distinct flavor (▬ low, distinct)"
   },
   {
     "thai": "ต่อไป",
@@ -4280,7 +4280,7 @@
       "mid-mayek",
       "mid-live"
     ],
-    "mnemonic": null
+    "mnemonic": "TAW-PAI — NEXT, keep pai-ing forward (▬→— connecting on)"
   },
   {
     "thai": "ดู",
@@ -4320,7 +4320,7 @@
     "toneRules": [
       "mid-live"
     ],
-    "mnemonic": null
+    "mnemonic": "DOO — WATCH the doo-wop show (— neutral)"
   },
   {
     "thai": "แห่ง",
@@ -4363,7 +4363,7 @@
     "toneRules": [
       "high-mayek"
     ],
-    "mnemonic": null
+    "mnemonic": "HENGE — the LOCATION of Stonehenge (▬ low, fixed place)"
   },
   {
     "thai": "ใหญ่",
@@ -4405,7 +4405,7 @@
     "toneRules": [
       "high-mayek"
     ],
-    "mnemonic": null
+    "mnemonic": "YAI — BIG yai-yai sized! (▬ low, substantial)"
   },
   {
     "thai": "หา",
