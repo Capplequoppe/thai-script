@@ -382,6 +382,38 @@ describe("VocabularyService", () => {
 		expect(service.getLearnedCount()).toBe(2);
 	});
 
+	it("getLearnedEntries returns full VocabEntry for learned words sorted by rank", () => {
+		const vocabulary = [
+			makeEntry({ thai: "มา", rank: 1, english: "to come" }),
+			makeEntry({
+				thai: "นา",
+				characters: ["น", "า"],
+				rank: 2,
+				english: "rice field",
+			}),
+		];
+		const service = new VocabularyService(cardRepo, stateRepo, vocabulary);
+
+		const state = storage.load();
+		state.completedLessons = [1, 2];
+		storage.save(state);
+
+		expect(service.getLearnedEntries()).toHaveLength(0); // none learned yet
+
+		service.startLesson();
+
+		const entries = service.getLearnedEntries();
+		expect(entries).toHaveLength(2);
+		expect(entries[0]?.thai).toBe("มา");
+		expect(entries[1]?.thai).toBe("นา");
+	});
+
+	it("getLearnedEntries returns empty array when no cards exist", () => {
+		const vocabulary = [makeEntry()];
+		const service = new VocabularyService(cardRepo, stateRepo, vocabulary);
+		expect(service.getLearnedEntries()).toHaveLength(0);
+	});
+
 	describe("apprentice gating", () => {
 		function makeSrsData(overrides: Partial<SrsData> = {}): SrsData {
 			return {

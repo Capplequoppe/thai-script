@@ -175,4 +175,19 @@ export class VocabularyService {
 		const vocabCards = this.cardRepo.findAll("vocab");
 		return new Set(vocabCards.map((c) => (c as VocabCard).wordThai)).size;
 	}
+
+	/** Full VocabEntry for every word the learner has cards for, sorted by rank. */
+	getLearnedEntries(): VocabEntry[] {
+		const vocabCards = this.cardRepo.findAll("vocab");
+		const learnedThaiWords = new Set(
+			vocabCards.map((c) => (c as VocabCard).wordThai),
+		);
+		return this.vocabulary
+			.filter((entry) => learnedThaiWords.has(entry.thai))
+			.sort(
+				(a, b) =>
+					(a.rank ?? Number.POSITIVE_INFINITY) -
+					(b.rank ?? Number.POSITIVE_INFINITY),
+			);
+	}
 }
