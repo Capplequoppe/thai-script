@@ -39,7 +39,8 @@
     "toneRules": [
       "low-mayek"
     ],
-    "mnemonic": "There is no better place to be drinking TEE (↓ voice drops, pinpointed) than AT/ON the perfect SPOT/Location than Buckingham palace! "
+    "mnemonic": "There is no better place to be drinking TEE (↓ voice drops, pinpointed) than AT/ON the perfect SPOT/Location than Buckingham palace! ",
+    "description": "A highly versatile word with several roles. As a preposition it marks location (at, in, on, of). As a relative clause marker it connects a noun to a describing phrase, similar to \"that\" or \"which\" in English. It can also nominalize verbs or adjectives, turning them into noun phrases."
   },
   {
     "thai": "ได้",
@@ -10836,7 +10837,7 @@
     "english": "put",
     "thai_audio_file": "/thai-script/vocabulary/audio/0271_วาง_th.mp3",
     "english_audio_file": "/thai-script/vocabulary/audio/0271_วาง_en.mp3",
-    "image_file": "/thai-script/vocabulary/images/0271_วาง.jpg",
+    "image_file": "/thai-script/vocabulary/images/237 วาง.png",
     "samples": [
       {
         "thai": "กรุณาพยายามวางกล่องใบนี้ไว้บนชั้นบนสุด",
