@@ -1,7 +1,12 @@
 import { useMemo, useState } from "react";
 import { useNavigate } from "react-router";
 import { SrsStage } from "../../domain/srs/value-objects/SrsStage";
+import type { VocabProperty } from "../../domain/vocabulary/types";
 import { StageBadge } from "../components/molecules/StageBadge";
+import {
+	type ItemCard,
+	StageOverrideSheet,
+} from "../components/organisms/StageOverrideSheet";
 import { WordCard } from "../components/organisms/WordCard";
 import { useApp } from "../hooks/useApp";
 
@@ -48,11 +53,19 @@ function toTabKey(word_class: string): string {
 // Page
 // ---------------------------------------------------------------------------
 
+const VOCAB_PROPERTY_LABELS: Record<VocabProperty, string> = {
+	thaiToEnglish: "Thai → English",
+	englishToThai: "English → Thai",
+	audioRecognition: "Listening",
+	toneIdentification: "Tone",
+};
+
 export function VocabListPage() {
-	const { vocab, state } = useApp();
+	const { vocab, state, items, refresh } = useApp();
 	const navigate = useNavigate();
 	const [classFilter, setClassFilter] = useState<string>("all");
 	const [selectedThai, setSelectedThai] = useState<string | null>(null);
+	const [overrideOpen, setOverrideOpen] = useState(false);
 
 	// biome-ignore lint/correctness/useExhaustiveDependencies: vocab is a stable service; vocabCards changing drives re-computation
 	const learnedEntries = useMemo(
@@ -140,6 +153,21 @@ export function VocabListPage() {
 	const selectedEntry = selectedThai
 		? (learnedEntries.find((e) => e.thai === selectedThai) ?? null)
 		: null;
+
+	const overrideCards: ItemCard[] = useMemo(() => {
+		if (!selectedThai) return [];
+		return Object.values(state.vocabCards)
+			.filter((card) => card.wordThai === selectedThai)
+			.map((card) => ({
+				id: card.id,
+				pool: "vocab" as const,
+				label: VOCAB_PROPERTY_LABELS[card.property] ?? card.property,
+				currentStage: SrsStage.fromScheduleData(
+					card.srs.learningStep,
+					card.srs.interval,
+				),
+			}));
+	}, [selectedThai, state.vocabCards]);
 
 	if (learnedEntries.length === 0) {
 		return (
@@ -278,6 +306,30 @@ export function VocabListPage() {
 						<StageBadge stage={getWordStage(selectedEntry.thai)} />
 					</div>
 					<WordCard word={selectedEntry} />
+					<div className="flex justify-center">
+						<button
+							type="button"
+							onClick={() => setOverrideOpen(true)}
+							className="text-sm px-4 py-2 rounded-lg font-medium transition-colors"
+							style={{
+								background: "var(--color-surface-2)",
+								color: "var(--color-text-muted)",
+								border: "1px solid var(--color-border)",
+							}}
+						>
+							Override Stage
+						</button>
+					</div>
+					<StageOverrideSheet
+						open={overrideOpen}
+						onClose={() => setOverrideOpen(false)}
+						itemLabel={selectedEntry.thai}
+						cards={overrideCards}
+						onOverride={(id, pool, stage) => {
+							items.overrideCardStage(id, pool, stage);
+							refresh();
+						}}
+					/>
 				</div>
 			)}
 		</div>
