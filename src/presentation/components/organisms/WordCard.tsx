@@ -17,6 +17,23 @@ function PlayAudioButton({ audioUrl }: { audioUrl: string }) {
 	);
 }
 
+function InlinePlayButton({ audioUrl }: { audioUrl: string }) {
+	return (
+		<button
+			type="button"
+			onClick={() => new Audio(audioUrl).play()}
+			className="inline-flex items-center justify-center w-7 h-7 rounded-full transition-colors shrink-0"
+			style={{
+				background: "var(--color-surface-2)",
+				color: "var(--color-text-muted)",
+			}}
+			aria-label="Play audio"
+		>
+			<span className="text-xs">🔊</span>
+		</button>
+	);
+}
+
 function consonantClassStyle(cls: string): React.CSSProperties {
 	if (cls === "mid") {
 		return {
@@ -56,10 +73,25 @@ function syllableTypeStyle(type: string): React.CSSProperties {
 }
 
 export function WordCard({ word }: { word: VocabEntry }) {
+	const hasDecomposition = word.syllables.some(
+		(s) => s.initialConsonant || s.vowel || s.finalConsonant,
+	);
+	const visibleSamples = word.samples.filter((s) => s.thai);
+
 	return (
-		<div className="space-y-3">
-			{/* Word display */}
+		<div className="space-y-4">
+			{/* 1. Hero — Image + Word + Audio */}
 			<div className="text-center">
+				{word.image_file && (
+					<div className="flex justify-center mb-4">
+						<img
+							src={word.image_file}
+							alt={word.english}
+							className="rounded-xl object-contain max-h-64 w-full"
+							style={{ background: "var(--color-surface-2)" }}
+						/>
+					</div>
+				)}
 				<span className="thai text-[72px] leading-none">{word.thai}</span>
 				{word.thai_audio_file && (
 					<PlayAudioButton audioUrl={word.thai_audio_file} />
@@ -81,63 +113,174 @@ export function WordCard({ word }: { word: VocabEntry }) {
 				)}
 			</div>
 
-			{/* Syllable breakdown */}
+			{/* 2. Syllable Breakdown (enriched) */}
 			{word.syllables.length > 0 && (
 				<div
 					className="rounded-xl p-4"
 					style={{ background: "var(--color-surface-2)" }}
 				>
 					<p
-						className="text-xs mb-2"
+						className="text-xs font-semibold mb-3"
 						style={{ color: "var(--color-text-muted)" }}
 					>
-						Syllable breakdown
+						Syllable Breakdown
 					</p>
-					<div className="space-y-2">
+					<div className="space-y-3">
 						{word.syllables.map((syl, i) => (
 							<div
 								key={`${syl.text}-${i}`}
-								className="flex items-center justify-between py-1.5 last:border-0"
+								className="pb-3 last:pb-0 last:border-0"
 								style={{ borderBottom: "1px solid var(--color-border)" }}
 							>
-								<span className="thai text-lg">{syl.text}</span>
-								<div className="flex items-center gap-2 text-xs">
-									{syl.consonantClass && (
-										<span
-											className="px-2 py-0.5 rounded font-semibold capitalize"
-											style={consonantClassStyle(syl.consonantClass)}
-										>
-											{syl.consonantClass}
-										</span>
-									)}
-									{syl.tone && (
-										<span
-											className="px-2 py-0.5 rounded font-semibold"
-											style={{
-												background:
-													"color-mix(in srgb, var(--color-primary) 12%, var(--color-surface))",
-												color: "var(--color-primary)",
-											}}
-										>
-											{syl.tone}
-										</span>
-									)}
-									{syl.syllableType && (
-										<span
-											className="px-2 py-0.5 rounded font-semibold"
-											style={syllableTypeStyle(syl.syllableType)}
-										>
-											{syl.syllableType}
-										</span>
-									)}
+								<div className="flex items-center justify-between mb-1">
+									<span className="thai text-lg">{syl.text}</span>
+									<div className="flex items-center gap-1.5 text-xs">
+										{syl.consonantClass && (
+											<span
+												className="px-2 py-0.5 rounded font-semibold capitalize"
+												style={consonantClassStyle(syl.consonantClass)}
+											>
+												{syl.consonantClass}
+											</span>
+										)}
+										{syl.tone && (
+											<span
+												className="px-2 py-0.5 rounded font-semibold"
+												style={{
+													background:
+														"color-mix(in srgb, var(--color-primary) 12%, var(--color-surface))",
+													color: "var(--color-primary)",
+												}}
+											>
+												{syl.tone}
+											</span>
+										)}
+										{syl.syllableType && (
+											<span
+												className="px-2 py-0.5 rounded font-semibold"
+												style={syllableTypeStyle(syl.syllableType)}
+											>
+												{syl.syllableType}
+											</span>
+										)}
+									</div>
 								</div>
+								{hasDecomposition && (
+									<div
+										className="flex items-center gap-2 text-xs mt-1"
+										style={{ color: "var(--color-text-muted)" }}
+									>
+										{syl.initialConsonant && (
+											<span>
+												<span className="opacity-60">initial </span>
+												<span
+													className="thai text-sm font-semibold"
+													style={{ color: "var(--color-text)" }}
+												>
+													{syl.initialConsonant}
+												</span>
+											</span>
+										)}
+										{syl.vowel && (
+											<>
+												<span className="opacity-40">→</span>
+												<span>
+													<span className="opacity-60">vowel </span>
+													<span
+														className="thai text-sm font-semibold"
+														style={{ color: "var(--color-text)" }}
+													>
+														{syl.vowel}
+													</span>
+												</span>
+											</>
+										)}
+										{syl.finalConsonant && (
+											<>
+												<span className="opacity-40">→</span>
+												<span>
+													<span className="opacity-60">final </span>
+													<span
+														className="thai text-sm font-semibold"
+														style={{ color: "var(--color-text)" }}
+													>
+														{syl.finalConsonant}
+													</span>
+												</span>
+											</>
+										)}
+										{syl.toneMark && (
+											<>
+												<span className="opacity-40">→</span>
+												<span>
+													<span className="opacity-60">mark </span>
+													<span
+														className="text-sm font-semibold"
+														style={{ color: "var(--color-text)" }}
+													>
+														{syl.toneMark}
+													</span>
+												</span>
+											</>
+										)}
+									</div>
+								)}
 							</div>
 						))}
 					</div>
 				</div>
 			)}
 
-			{/* Mnemonic */}
+			{/* 3. Example Sentences */}
+			{visibleSamples.length > 0 && (
+				<div
+					className="rounded-xl p-4"
+					style={{ background: "var(--color-surface-2)" }}
+				>
+					<p
+						className="text-xs font-semibold mb-3"
+						style={{ color: "var(--color-text-muted)" }}
+					>
+						Examples
+					</p>
+					<div className="space-y-3">
+						{visibleSamples.map((sample) => (
+							<div
+								key={sample.thai}
+								className="pb-3 last:pb-0 last:border-0"
+								style={{ borderBottom: "1px solid var(--color-border)" }}
+							>
+								<div className="flex items-start gap-2">
+									<p className="thai text-base leading-relaxed flex-1">
+										{sample.thai}
+									</p>
+									{sample.thai_audio_file && (
+										<InlinePlayButton audioUrl={sample.thai_audio_file} />
+									)}
+								</div>
+								{sample.romanization && (
+									<p
+										className="text-xs mt-1 italic"
+										style={{ color: "var(--color-text-muted)" }}
+									>
+										{sample.romanization}
+									</p>
+								)}
+								{sample.english && (
+									<p
+										className="text-sm mt-1"
+										style={{ color: "var(--color-text-muted)" }}
+									>
+										{sample.english}
+									</p>
+								)}
+							</div>
+						))}
+					</div>
+				</div>
+			)}
+
+			{/* 4. Mnemonic */}
 			{word.mnemonic && (
 				<div
 					className="rounded-xl p-3"

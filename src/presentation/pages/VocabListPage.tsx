@@ -1,8 +1,8 @@
 import { useMemo, useState } from "react";
 import { useNavigate } from "react-router";
 import { SrsStage } from "../../domain/srs/value-objects/SrsStage";
-import type { VocabEntry } from "../../domain/vocabulary/types";
 import { StageBadge } from "../components/molecules/StageBadge";
+import { WordCard } from "../components/organisms/WordCard";
 import { useApp } from "../hooks/useApp";
 
 // ---------------------------------------------------------------------------
@@ -42,119 +42,6 @@ const OTHER_KEY = "__other__";
 function toTabKey(word_class: string): string {
 	if (!word_class || !(word_class in WORD_CLASS_LABELS)) return OTHER_KEY;
 	return word_class;
-}
-
-// ---------------------------------------------------------------------------
-// Detail card
-// ---------------------------------------------------------------------------
-
-function VocabDetailCard({
-	entry,
-	stage,
-}: {
-	entry: VocabEntry;
-	stage: string;
-}) {
-	return (
-		<div className="space-y-6">
-			{/* Thai word + audio */}
-			<div className="text-center space-y-1">
-				<div className="flex items-center justify-center gap-3">
-					<span className="thai text-6xl">{entry.thai}</span>
-					{entry.thai_audio_file && (
-						<button
-							type="button"
-							onClick={() =>
-								new Audio(entry.thai_audio_file as string)
-									.play()
-									.catch(() => {})
-							}
-							className="text-2xl opacity-60 hover:opacity-100 transition-opacity"
-							aria-label="Play Thai pronunciation"
-						>
-							🔊
-						</button>
-					)}
-				</div>
-				<p className="text-sm" style={{ color: "var(--color-text-muted)" }}>
-					{entry.romanization}
-				</p>
-			</div>
-
-			{/* Badges */}
-			<div className="flex gap-2 justify-center flex-wrap">
-				{entry.word_class && (
-					<span
-						className="text-sm px-3 py-1 rounded-full"
-						style={{
-							background:
-								"color-mix(in srgb, var(--color-primary) 10%, var(--color-surface))",
-							color: "var(--color-primary)",
-						}}
-					>
-						{WORD_CLASS_LABELS[entry.word_class] ?? entry.word_class}
-					</span>
-				)}
-				<StageBadge stage={stage} />
-			</div>
-
-			{/* English meaning */}
-			<p className="text-xl text-center font-semibold">{entry.english}</p>
-
-			{/* Image */}
-			{entry.image_file && (
-				<img
-					src={entry.image_file}
-					alt={entry.english}
-					className="w-full rounded-xl object-cover max-h-48"
-				/>
-			)}
-
-			{/* Sample sentences */}
-			{entry.samples.length > 0 && (
-				<div className="space-y-3">
-					<h3
-						className="font-semibold text-sm"
-						style={{ color: "var(--color-text-muted)" }}
-					>
-						Sample Sentences
-					</h3>
-					{entry.samples.slice(0, 3).map((s) => (
-						<div
-							key={s.thai}
-							className="rounded-xl p-4 space-y-1"
-							style={{ background: "var(--color-surface-2)" }}
-						>
-							<div className="flex items-center gap-2">
-								<span className="thai text-lg">{s.thai}</span>
-								{s.thai_audio_file && (
-									<button
-										type="button"
-										onClick={() =>
-											new Audio(s.thai_audio_file as string)
-												.play()
-												.catch(() => {})
-										}
-										className="text-sm opacity-60 hover:opacity-100"
-										aria-label="Play sample sentence"
-									>
-										🔊
-									</button>
-								)}
-							</div>
-							<p
-								className="text-sm"
-								style={{ color: "var(--color-text-muted)" }}
-							>
-								{s.romanization}
-							</p>
-							<p className="text-sm">{s.english}</p>
-						</div>
-					))}
-				</div>
-			)}
-		</div>
-	);
 }
 
 // ---------------------------------------------------------------------------
@@ -386,10 +273,12 @@ export function VocabListPage() {
 
 			{/* Detail card */}
 			{selectedThai && selectedEntry && (
-				<VocabDetailCard
-					entry={selectedEntry}
-					stage={getWordStage(selectedEntry.thai)}
-				/>
+				<div className="space-y-4">
+					<div className="flex justify-center">
+						<StageBadge stage={getWordStage(selectedEntry.thai)} />
+					</div>
+					<WordCard word={selectedEntry} />
+				</div>
 			)}
 		</div>
 	);
