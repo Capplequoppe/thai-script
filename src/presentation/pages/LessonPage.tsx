@@ -12,6 +12,8 @@ import {
 } from "@/presentation/components/ui/dialog";
 import { Progress } from "@/presentation/components/ui/progress";
 import type { PropertyCard } from "../../domain/shared/types";
+import { SectionHeader } from "../components/atoms/SectionHeader";
+import { SessionStatGrid } from "../components/molecules/SessionStatGrid";
 import { AchievementBadge } from "../components/organisms/AchievementBadge";
 import { LessonIntro } from "../components/organisms/LessonIntro";
 import { MultipleChoice } from "../components/organisms/MultipleChoice";
@@ -224,44 +226,16 @@ export function LessonPage() {
 				</p>
 			</div>
 
-			<div className="grid grid-cols-3 gap-3">
-				{[
-					{
-						label: "Cards",
-						value: totalCardsCount,
-						color: "var(--color-text)",
-					},
-					{
-						label: "Correct",
-						value: flow.correct,
-						color: "var(--color-master)",
-					},
-					{
-						label: "Accuracy",
-						value: `${accuracy.percentage}%`,
-						color:
-							accuracy.percentage >= 80
-								? "var(--color-accent)"
-								: "var(--color-danger)",
-					},
-				].map(({ label, value, color }) => (
-					<Card key={label} className="p-4 text-center">
-						<div className="text-2xl font-bold" style={{ color }}>
-							{value}
-						</div>
-						<div
-							className="text-xs mt-1"
-							style={{ color: "var(--color-text-muted)" }}
-						>
-							{label}
-						</div>
-					</Card>
-				))}
-			</div>
+			<SessionStatGrid
+				totalLabel="Cards"
+				total={totalCardsCount}
+				correct={flow.correct}
+				accuracy={accuracy.percentage}
+			/>
 
 			{newAchievements.length > 0 && (
 				<Card className="p-4">
-					<div className="section-header mb-3">Achievement Unlocked!</div>
+					<SectionHeader className="mb-3">Achievement Unlocked!</SectionHeader>
 					<div className="flex gap-4 flex-wrap justify-center">
 						{newAchievements.map((id) => (
 							<AchievementBadge key={id} id={id} unlocked size="sm" />
