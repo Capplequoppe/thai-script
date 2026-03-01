@@ -9137,7 +9137,7 @@
     "toneRules": [
       "mid-mayek"
     ],
-    "mnemonic": null
+    "mnemonic": "GLOOM — a GROUP glooms together (▬ low, huddled)"
   },
   {
     "thai": "ช่วง",
@@ -9180,7 +9180,7 @@
     "toneRules": [
       "low-mayek"
     ],
-    "mnemonic": null
+    "mnemonic": "CHOONG — each PHASE is a choong (↓ voice drops, period)"
   },
   {
     "thai": "พอ",
@@ -9221,7 +9221,7 @@
     "toneRules": [
       "low-live"
     ],
-    "mnemonic": null
+    "mnemonic": "PAW — PAW says that's ENOUGH (— neutral)"
   },
   {
     "thai": "อยาก",
@@ -9264,7 +9264,7 @@
     "toneRules": [
       "mid-dead-long"
     ],
-    "mnemonic": null
+    "mnemonic": "YARK — WANT a yak? yark! (▬ low, yearning)"
   },
   {
     "thai": "เงิน",
@@ -9298,7 +9298,7 @@
     "toneRules": [
       "low-live"
     ],
-    "mnemonic": null
+    "mnemonic": "NGERN — EARN MONEY, ngern! (— neutral)"
   },
   {
     "thai": "เงิน",
@@ -9340,7 +9340,7 @@
     "toneRules": [
       "low-live"
     ],
-    "mnemonic": null
+    "mnemonic": "NGERN — EARN MONEY, ngern! (— neutral)"
   },
   {
     "thai": "เงิน",
@@ -9382,7 +9382,7 @@
     "toneRules": [
       "low-live"
     ],
-    "mnemonic": null
+    "mnemonic": "NGERN — EARN MONEY, ngern! (— neutral)"
   },
   {
     "thai": "รวม",
@@ -9424,7 +9424,7 @@
     "toneRules": [
       "low-live"
     ],
-    "mnemonic": null
+    "mnemonic": "ROOM — INCLUDING everyone in the room (— neutral)"
   },
   {
     "thai": "หน้า",
@@ -9466,7 +9466,7 @@
     "toneRules": [
       "high-maytho"
     ],
-    "mnemonic": null
+    "mnemonic": "NAH — FACE it: nah (↓ voice drops, fronting)"
   },
   {
     "thai": "เขียน",
@@ -9510,7 +9510,7 @@
     "toneRules": [
       "high-live"
     ],
-    "mnemonic": null
+    "mnemonic": "KEEN — WRITE when you're keen! (↑ rising, eager)"
   },
   {
     "thai": "สี",
@@ -9550,7 +9550,7 @@
     "toneRules": [
       "high-live"
     ],
-    "mnemonic": null
+    "mnemonic": "SEE — what COLOR do you SEE? (↑ rising, looking)"
   },
   {
     "thai": "ฉัน",
@@ -9592,7 +9592,7 @@
     "toneRules": [
       "high-live"
     ],
-    "mnemonic": null
+    "mnemonic": "CHAN — I, Chan, am speaking (↑ rising, self-assertion)"
   },
   {
     "thai": "ชาย",
@@ -9634,7 +9634,7 @@
     "toneRules": [
       "low-live"
     ],
-    "mnemonic": null
+    "mnemonic": "CHAI — a MAN of chai (— neutral)"
   },
   {
     "thai": "ดัง",
@@ -9676,7 +9676,7 @@
     "toneRules": [
       "mid-live"
     ],
-    "mnemonic": null
+    "mnemonic": "DANG — AS LOUD as a dang bell (— neutral)"
   },
   {
     "thai": "โอกาส",
@@ -9731,7 +9731,7 @@
       "mid-live",
       "mid-dead-long"
     ],
-    "mnemonic": null
+    "mnemonic": "OH-KAHT — what a CHANCE! oh-kaht! (—▬ seized opportunity)"
   },
   {
     "thai": "เสมอ",
@@ -9774,7 +9774,7 @@
     "toneRules": [
       "high-live"
     ],
-    "mnemonic": null
+    "mnemonic": "SA-MUR — ALWAYS the same sa-mur (▬↑ consistent)"
   },
   {
     "thai": "แม่",
@@ -9816,7 +9816,7 @@
     "toneRules": [
       "low-mayek"
     ],
-    "mnemonic": null
+    "mnemonic": "MAY — MOTHER's day in May (↓ tender drop)"
   },
   {
     "thai": "นาย",
@@ -9857,7 +9857,7 @@
     "toneRules": [
       "low-live"
     ],
-    "mnemonic": null
+    "mnemonic": "NAI — MR. NAI at your service (— neutral)"
   },
   {
     "thai": "ชาติ",
@@ -9900,7 +9900,7 @@
     "toneRules": [
       "low-dead-short"
     ],
-    "mnemonic": null
+    "mnemonic": "CHAT — the NATION had a chat (↓ voice drops, collective)"
   },
   {
     "thai": "เรียน",
@@ -9943,7 +9943,7 @@
     "toneRules": [
       "low-live"
     ],
-    "mnemonic": null
+    "mnemonic": "LEAN — LEAN in to LEARN (— neutral)"
   },
   {
     "thai": "เรียน",
@@ -9986,7 +9986,7 @@
     "toneRules": [
       "low-live"
     ],
-    "mnemonic": null
+    "mnemonic": "LEAN — LEAN in to LEARN (— neutral)"
   },
   {
     "thai": "เสียง",
@@ -10030,7 +10030,7 @@
     "toneRules": [
       "high-live"
     ],
-    "mnemonic": null
+    "mnemonic": "SIANG — that SOUND! siang! (↑ voice rises, hearing)"
   },
   {
     "thai": "รัก",
@@ -10071,7 +10071,7 @@
     "toneRules": [
       "low-dead-long"
     ],
-    "mnemonic": null
+    "mnemonic": "ROCK — LOVE is a rock song (▲ sharp, passionate)"
   },
   {
     "thai": "โรง",
@@ -10113,7 +10113,7 @@
     "toneRules": [
       "low-live"
     ],
-    "mnemonic": null
+    "mnemonic": "RONG — the BUILDING rong-s along (— neutral)"
   },
   {
     "thai": "ทราบ",
@@ -10156,7 +10156,7 @@
     "toneRules": [
       "low-dead-long"
     ],
-    "mnemonic": null
+    "mnemonic": "SAP — KNOW the sap of it (↓ voice drops, knowing)"
   },
   {
     "thai": "เชื่อ",
@@ -10199,7 +10199,7 @@
     "toneRules": [
       "low-mayek"
     ],
-    "mnemonic": null
+    "mnemonic": "CHOO-a — BELIEVE in choo-a (↓ voice drops, faith)"
   },
   {
     "thai": "ตน",
@@ -10240,7 +10240,7 @@
     "toneRules": [
       "mid-live"
     ],
-    "mnemonic": null
+    "mnemonic": "TON — your SELF weighs a ton (— neutral)"
   },
   {
     "thai": "ระดับ",
@@ -10295,7 +10295,7 @@
       "low-dead-short",
       "mid-dead-long"
     ],
-    "mnemonic": null
+    "mnemonic": "RA-DAP — LEVEL up the ra-dap (▲▬ gradation)"
   },
   {
     "thai": "ครอบครัว",
@@ -10351,7 +10351,7 @@
       "low-dead-long",
       "low-live"
     ],
-    "mnemonic": null
+    "mnemonic": "KROB-KRUA — FAMILY wrapped together, krob-krua (↓— enveloping)"
   },
   {
     "thai": "เปิด",
@@ -10393,7 +10393,7 @@
     "toneRules": [
       "mid-dead-short"
     ],
-    "mnemonic": null
+    "mnemonic": "POET — OPEN the book of poetry (▬ low, unfolding)"
   },
   {
     "thai": "เปิด",
@@ -10435,7 +10435,7 @@
     "toneRules": [
       "mid-dead-short"
     ],
-    "mnemonic": null
+    "mnemonic": "POET — OPEN the book of poetry (▬ low, unfolding)"
   },
   {
     "thai": "ชอบ",
@@ -10476,7 +10476,7 @@
     "toneRules": [
       "low-dead-long"
     ],
-    "mnemonic": null
+    "mnemonic": "CHOP — I LIKE to chop! (↓ voice drops, preference)"
   },
   {
     "thai": "ภายใน",
@@ -10530,7 +10530,7 @@
     "toneRules": [
       "low-live"
     ],
-    "mnemonic": null
+    "mnemonic": "PIE-NAI — WITHIN the pie, nai (— neutral, inside)"
   },
   {
     "thai": "เหลือ",
@@ -10574,7 +10574,7 @@
     "toneRules": [
       "high-live"
     ],
-    "mnemonic": null
+    "mnemonic": "LLER-ah — what REMAINS after ller-ah? (↑ rising, leftover)"
   },
   {
     "thai": "แทน",
@@ -10616,7 +10616,7 @@
     "toneRules": [
       "low-live"
     ],
-    "mnemonic": null
+    "mnemonic": "TAN — TAN INSTEAD of burn (— neutral)"
   },
   {
     "thai": "มอง",
@@ -10658,7 +10658,7 @@
     "toneRules": [
       "low-live"
     ],
-    "mnemonic": null
+    "mnemonic": "MONG — VIEW the Mong-olian steppe (— neutral)"
   },
   {
     "thai": "พวก",
@@ -10700,7 +10700,7 @@
     "toneRules": [
       "low-dead-long"
     ],
-    "mnemonic": null
+    "mnemonic": "PWAK — the GROUP of pwak flocks together (↓ collective)"
   },
   {
     "thai": "ญาติ",
@@ -10743,7 +10743,7 @@
     "toneRules": [
       "low-dead-short"
     ],
-    "mnemonic": null
+    "mnemonic": "YART — a RELATIVE in the yard (↓ voice drops, kin)"
   },
   {
     "thai": "รูป",
@@ -10785,7 +10785,7 @@
     "toneRules": [
       "low-dead-long"
     ],
-    "mnemonic": null
+    "mnemonic": "ROOP — an IMAGE in the roop (↓ voice drops, snapshot)"
   },
   {
     "thai": "ติด",
@@ -10827,7 +10827,7 @@
     "toneRules": [
       "mid-dead-short"
     ],
-    "mnemonic": null
+    "mnemonic": "TIT — STICK with a tit-bit (▬ low, adhering)"
   },
   {
     "thai": "วาง",
@@ -10868,7 +10868,7 @@
     "toneRules": [
       "low-live"
     ],
-    "mnemonic": null
+    "mnemonic": "WANG — PUT it in Wang's hands (— neutral)"
   },
   {
     "thai": "ยาก",
@@ -10909,7 +10909,7 @@
     "toneRules": [
       "low-dead-long"
     ],
-    "mnemonic": null
+    "mnemonic": "YARK — DIFFICULT as climbing a yak (↓ voice drops, hard)"
   },
   {
     "thai": "ฟัง",
@@ -10950,7 +10950,7 @@
     "toneRules": [
       "low-live"
     ],
-    "mnemonic": null
+    "mnemonic": "FANG — LISTEN for the fangs in the tale (— neutral)"
   },
   {
     "thai": "เดือน",
@@ -10993,7 +10993,7 @@
     "toneRules": [
       "mid-live"
     ],
-    "mnemonic": null
+    "mnemonic": "DUAN — each MONTH, duan (— neutral)"
   },
   {
     "thai": "นาน",
@@ -11034,7 +11034,7 @@
     "toneRules": [
       "low-live"
     ],
-    "mnemonic": null
+    "mnemonic": "NAAN — a LONG naan bread (— neutral)"
   },
   {
     "thai": "ระบบ",
@@ -11087,7 +11087,7 @@
       "low-dead-short",
       "mid-dead-long"
     ],
-    "mnemonic": null
+    "mnemonic": "RA-BOP — the SYSTEM ra-bop (▲▬ structured)"
   },
   {
     "thai": "ผู้หญิง",
@@ -11143,7 +11143,7 @@
       "high-maytho",
       "high-live"
     ],
-    "mnemonic": null
+    "mnemonic": "POO-YING — WOMAN poo-ying (↓↑ dignified)"
   },
   {
     "thai": "พัฒนา",
@@ -11198,7 +11198,7 @@
       "low-dead-long",
       "low-live"
     ],
-    "mnemonic": null
+    "mnemonic": "PAT-THA-NA — DEVELOP phat-tha-na (▲▲— growing)"
   },
   {
     "thai": "ซื้อ",
@@ -11240,7 +11240,7 @@
     "toneRules": [
       "low-maytho"
     ],
-    "mnemonic": null
+    "mnemonic": "SUE — BUY your way out of a sue-t (▲ sharp, purchasing)"
   },
   {
     "thai": "ภรรยา",
@@ -11292,7 +11292,7 @@
     "toneRules": [
       "low-live"
     ],
-    "mnemonic": null
+    "mnemonic": "PAN-RA-YA — WIFE phan-ra-ya (—▲— bonded)"
   },
   {
     "thai": "สังคม",
@@ -11347,7 +11347,7 @@
       "high-live",
       "low-live"
     ],
-    "mnemonic": null
+    "mnemonic": "SANG-KOM — SOCIETY sings together, sang-kom (↑— communal)"
   },
   {
     "thai": "รู้จัก",
@@ -11403,7 +11403,7 @@
       "low-maytho",
       "mid-dead-long"
     ],
-    "mnemonic": null
+    "mnemonic": "ROO-JAK — KNOW jack? roo-jak! (▲▬ acquainted)"
   },
   {
     "thai": "จำนวน",
@@ -11457,7 +11457,7 @@
       "mid-live",
       "low-live"
     ],
-    "mnemonic": null
+    "mnemonic": "JAM-NUAN — the AMOUNT of jam-nuan (— neutral)"
   },
   {
     "thai": "เล่น",
@@ -11500,7 +11500,7 @@
     "toneRules": [
       "low-mayek"
     ],
-    "mnemonic": null
+    "mnemonic": "LEN — PLAY with a lens (↓ voice drops, playful)"
   },
   {
     "thai": "สำคัญ",
