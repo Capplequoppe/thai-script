@@ -23,6 +23,12 @@ export class VocabularyService {
 		private readonly apprenticeService?: ApprenticeService,
 	) {}
 
+	/** Get set of Thai words for which vocab cards have already been generated. */
+	private getLearnedThaiWords(): Set<string> {
+		const vocabCards = this.cardRepo.findAll("vocab");
+		return new Set(vocabCards.map((c) => (c as VocabCard).wordThai));
+	}
+
 	/** Get set of all Thai characters mastered from completed script lessons. */
 	private getMasteredCharacters(): Set<string> {
 		const completedLessons = this.stateRepo.getCompletedLessons();
@@ -92,10 +98,7 @@ export class VocabularyService {
 			return allCharsMastered && allRulesMastered;
 		});
 
-		const vocabCards = this.cardRepo.findAll("vocab");
-		const learnedThaiWords = new Set(
-			vocabCards.map((c) => (c as VocabCard).wordThai),
-		);
+		const learnedThaiWords = this.getLearnedThaiWords();
 
 		const sorted = [...masteryFiltered].sort(
 			(a, b) =>
@@ -121,10 +124,7 @@ export class VocabularyService {
 
 	/** Unlocked words that don't yet have cards generated. Sorted by rank. */
 	getUnlearnedWords(): VocabEntry[] {
-		const vocabCards = this.cardRepo.findAll("vocab");
-		const learnedThaiWords = new Set(
-			vocabCards.map((c) => (c as VocabCard).wordThai),
-		);
+		const learnedThaiWords = this.getLearnedThaiWords();
 
 		return this.getUnlockedWords()
 			.filter((e) => !learnedThaiWords.has(e.thai))
@@ -172,16 +172,12 @@ export class VocabularyService {
 
 	/** Count of words that have cards generated. */
 	getLearnedCount(): number {
-		const vocabCards = this.cardRepo.findAll("vocab");
-		return new Set(vocabCards.map((c) => (c as VocabCard).wordThai)).size;
+		return this.getLearnedThaiWords().size;
 	}
 
 	/** Full VocabEntry for every word the learner has cards for, sorted by rank. */
 	getLearnedEntries(): VocabEntry[] {
-		const vocabCards = this.cardRepo.findAll("vocab");
-		const learnedThaiWords = new Set(
-			vocabCards.map((c) => (c as VocabCard).wordThai),
-		);
+		const learnedThaiWords = this.getLearnedThaiWords();
 		return this.vocabulary
 			.filter((entry) => learnedThaiWords.has(entry.thai))
 			.sort(

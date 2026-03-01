@@ -383,14 +383,15 @@ describe("VocabularyService", () => {
 	});
 
 	it("getLearnedEntries returns full VocabEntry for learned words sorted by rank", () => {
+		// Vocabulary declared in reverse rank order so the .sort() is actually exercised.
 		const vocabulary = [
-			makeEntry({ thai: "มา", rank: 1, english: "to come" }),
 			makeEntry({
 				thai: "นา",
 				characters: ["น", "า"],
 				rank: 2,
 				english: "rice field",
 			}),
+			makeEntry({ thai: "มา", rank: 1, english: "to come" }),
 		];
 		const service = new VocabularyService(cardRepo, stateRepo, vocabulary);
 
@@ -404,6 +405,59 @@ describe("VocabularyService", () => {
 
 		const entries = service.getLearnedEntries();
 		expect(entries).toHaveLength(2);
+		// rank 1 must come first regardless of declaration order
+		expect(entries[0]?.thai).toBe("มา");
+		expect(entries[1]?.thai).toBe("นา");
+	});
+
+	it("getLearnedEntries sorts null-rank entries after ranked entries", () => {
+		// Seed cards for both words directly so we can test sort behaviour for a
+		// null-rank entry without going through the unlock/lesson pipeline (which
+		// excludes null-rank words from the rank window by design).
+		const vocabulary = [
+			makeEntry({ thai: "มา", rank: 1, english: "to come" }),
+			makeEntry({
+				thai: "นา",
+				characters: ["น", "า"],
+				english: "rice field",
+				rank: undefined,
+			}),
+		];
+		const service = new VocabularyService(cardRepo, stateRepo, vocabulary);
+
+		const state = storage.load();
+		state.completedLessons = [1, 2];
+		const baseSrs = {
+			easeFactor: 2.0,
+			interval: 10,
+			repetitions: 0,
+			learningStep: 1,
+			nextReviewDate: new Date().toISOString(),
+			lastReviewDate: null,
+		};
+		state.vocabCards["vocab:มา:thaiToEnglish"] = {
+			id: "vocab:มา:thaiToEnglish",
+			wordThai: "มา",
+			property: "thaiToEnglish",
+			question: "What does this word mean?",
+			correctAnswer: "to come",
+			choices: ["to come"],
+			srs: baseSrs,
+		};
+		state.vocabCards["vocab:นา:thaiToEnglish"] = {
+			id: "vocab:นา:thaiToEnglish",
+			wordThai: "นา",
+			property: "thaiToEnglish",
+			question: "What does this word mean?",
+			correctAnswer: "rice field",
+			choices: ["rice field"],
+			srs: baseSrs,
+		};
+		storage.save(state);
+
+		const entries = service.getLearnedEntries();
+		expect(entries).toHaveLength(2);
+		// ranked entry (rank 1) must sort before the null-rank entry
 		expect(entries[0]?.thai).toBe("มา");
 		expect(entries[1]?.thai).toBe("นา");
 	});
