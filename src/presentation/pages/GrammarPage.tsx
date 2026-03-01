@@ -262,8 +262,8 @@ export function GrammarPage() {
 	);
 
 	const handleMcAnswer = useCallback(
-		(correct: boolean) => {
-			handleReviewAdvance(ratingFromCorrectness(correct));
+		(correct: boolean, responseTimeMs?: number) => {
+			handleReviewAdvance(ratingFromCorrectness(correct, responseTimeMs));
 		},
 		[handleReviewAdvance],
 	);
