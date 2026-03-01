@@ -95,6 +95,52 @@ export class SrsSchedule {
 		);
 	}
 
+	overrideStage(targetStage: SrsStage, now?: string): SrsSchedule {
+		const currentTime = now ?? new Date().toISOString();
+
+		if (targetStage === SrsStage.APPRENTICE) {
+			return new SrsSchedule(
+				this.easeFactor,
+				10,
+				this.repetitions,
+				1,
+				currentTime,
+				this.lastReviewDate,
+				this.lapseCount,
+			);
+		}
+
+		if (targetStage === SrsStage.GURU) {
+			return new SrsSchedule(
+				this.easeFactor,
+				GRADUATING_INTERVAL_MINUTES,
+				this.repetitions,
+				null,
+				currentTime,
+				this.lastReviewDate,
+				this.lapseCount,
+			);
+		}
+
+		const intervalByStage: Partial<Record<string, number>> = {
+			Master: SrsStage.GURU_THRESHOLD,
+			Enlightened: SrsStage.MASTER_THRESHOLD,
+			Burned: SrsStage.ENLIGHTENED_THRESHOLD,
+		};
+		const interval =
+			intervalByStage[targetStage.name] ?? SrsStage.GURU_THRESHOLD;
+
+		return new SrsSchedule(
+			this.easeFactor,
+			interval,
+			this.repetitions,
+			null,
+			addMinutesToIso(currentTime, interval),
+			this.lastReviewDate,
+			this.lapseCount,
+		);
+	}
+
 	static initial(now?: string): SrsSchedule {
 		const currentTime = now ?? new Date().toISOString();
 		return new SrsSchedule(

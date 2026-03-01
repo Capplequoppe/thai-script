@@ -552,6 +552,69 @@ describe("lapseCount tracking", () => {
 	});
 });
 
+describe("overrideStage", () => {
+	const NOW = "2026-03-01T10:00:00.000Z";
+
+	// A graduated card with non-default easeFactor and lapseCount to verify preservation
+	const schedule = SrsSchedule.fromDTO({
+		easeFactor: 2.3,
+		interval: 4320,
+		repetitions: 5,
+		learningStep: null,
+		nextReviewDate: NOW,
+		lastReviewDate: null,
+		lapseCount: 2,
+	});
+
+	it("overrides to Apprentice: learningStep=1, interval=10, immediately due", () => {
+		const result = schedule.overrideStage(SrsStage.APPRENTICE, NOW);
+		expect(result.learningStep).toBe(1);
+		expect(result.interval).toBe(10);
+		expect(new Date(result.nextReviewDate) <= new Date(NOW)).toBe(true);
+	});
+
+	it("overrides to Guru: learningStep=null, interval=2880, immediately due", () => {
+		const result = schedule.overrideStage(SrsStage.GURU, NOW);
+		expect(result.learningStep).toBeNull();
+		expect(result.interval).toBe(2880);
+		expect(result.stage).toStrictEqual(SrsStage.GURU);
+		expect(new Date(result.nextReviewDate) <= new Date(NOW)).toBe(true);
+	});
+
+	it("overrides to Master: learningStep=null, interval=20160, due in future", () => {
+		const result = schedule.overrideStage(SrsStage.MASTER, NOW);
+		expect(result.learningStep).toBeNull();
+		expect(result.interval).toBe(20_160);
+		expect(result.stage).toStrictEqual(SrsStage.MASTER);
+		expect(new Date(result.nextReviewDate) > new Date(NOW)).toBe(true);
+	});
+
+	it("overrides to Enlightened: interval=60480", () => {
+		const result = schedule.overrideStage(SrsStage.ENLIGHTENED, NOW);
+		expect(result.learningStep).toBeNull();
+		expect(result.interval).toBe(60_480);
+		expect(result.stage).toStrictEqual(SrsStage.ENLIGHTENED);
+	});
+
+	it("overrides to Burned: interval=120960, isBurned=true", () => {
+		const result = schedule.overrideStage(SrsStage.BURNED, NOW);
+		expect(result.learningStep).toBeNull();
+		expect(result.interval).toBe(120_960);
+		expect(result.isBurned).toBe(true);
+	});
+
+	it("preserves easeFactor and lapseCount from original schedule", () => {
+		const result = schedule.overrideStage(SrsStage.MASTER, NOW);
+		expect(result.toDTO().easeFactor).toBe(2.3);
+		expect(result.toDTO().lapseCount).toBe(2);
+	});
+
+	it("uses current time when now not provided", () => {
+		const result = schedule.overrideStage(SrsStage.APPRENTICE);
+		expect(result.learningStep).toBe(1);
+	});
+});
+
 describe("Relearning steps (lapsed cards)", () => {
 	it("lapsed card uses shorter relearning steps [0, 10, 60]", () => {
 		const card = makeGraduatedSchedule({ easeFactor: 2.0 });
