@@ -6,7 +6,12 @@ import type {
 	ToneMarkSummary,
 	VowelSummary,
 } from "../../domain/script/services/ScriptLessonService";
+import { SrsStage } from "../../domain/srs/value-objects/SrsStage";
 import { ClassBadge } from "../components/atoms/ClassBadge";
+import {
+	type ItemCard,
+	StageOverrideSheet,
+} from "../components/organisms/StageOverrideSheet";
 import {
 	ConsonantCard,
 	ToneMarkCard,
@@ -96,10 +101,26 @@ function VideoPlayer({
 	);
 }
 
+function propertyLabel(property: string): string {
+	const labels: Record<string, string> = {
+		recognition: "Recognition",
+		class: "Class",
+		initialSound: "Initial Sound",
+		finalSound: "Final Sound",
+		deadLive: "Dead / Live",
+		audioRecognition: "Audio Recognition",
+		length: "Length",
+		position: "Position",
+		effectPerClass: "Effect per Class",
+	};
+	return labels[property] ?? property;
+}
+
 export function LearnedItemsPage() {
-	const { state, lesson } = useApp();
+	const { state, lesson, items, refresh } = useApp();
 	const [tab, setTab] = useState<Tab>("consonants");
 	const [selectedIdx, setSelectedIdx] = useState<number | null>(null);
+	const [overrideOpen, setOverrideOpen] = useState(false);
 	const navigate = useNavigate();
 
 	// Collect all learned items across completed lessons
@@ -163,39 +184,39 @@ export function LearnedItemsPage() {
 					className="flex gap-1 rounded-xl p-1 w-max min-w-full"
 					style={{ background: "var(--color-surface-2)" }}
 				>
-				{tabs.map(({ key, label, count }) => (
-					<button
-						type="button"
-						key={key}
-						onClick={() => {
-							if (key === "vocabulary") {
-								navigate("/vocab");
-								return;
+					{tabs.map(({ key, label, count }) => (
+						<button
+							type="button"
+							key={key}
+							onClick={() => {
+								if (key === "vocabulary") {
+									navigate("/vocab");
+									return;
+								}
+								setTab(key);
+								setSelectedIdx(null);
+							}}
+							className="shrink-0 py-2 px-3 rounded-lg text-sm font-medium transition-colors"
+							style={
+								tab === key
+									? {
+											background: "var(--color-surface)",
+											color: "var(--color-text)",
+											boxShadow:
+												"0 1px 3px color-mix(in srgb, var(--color-text) 10%, transparent)",
+										}
+									: { color: "var(--color-text-muted)" }
 							}
-							setTab(key);
-							setSelectedIdx(null);
-						}}
-						className="shrink-0 py-2 px-3 rounded-lg text-sm font-medium transition-colors"
-						style={
-							tab === key
-								? {
-										background: "var(--color-surface)",
-										color: "var(--color-text)",
-										boxShadow:
-											"0 1px 3px color-mix(in srgb, var(--color-text) 10%, transparent)",
-									}
-								: { color: "var(--color-text-muted)" }
-						}
-					>
-						{label}{" "}
-						<span
-							className="text-xs"
-							style={{ color: "var(--color-text-muted)" }}
 						>
-							({count})
-						</span>
-					</button>
-				))}
+							{label}{" "}
+							<span
+								className="text-xs"
+								style={{ color: "var(--color-text-muted)" }}
+							>
+								({count})
+							</span>
+						</button>
+					))}
 				</div>
 			</div>
 
@@ -222,6 +243,54 @@ export function LearnedItemsPage() {
 					{tab === "toneMarks" && toneMarks[selectedIdx] && (
 						<ToneMarkCard t={toneMarks[selectedIdx]} />
 					)}
+					{(() => {
+						const symbol =
+							tab === "consonants"
+								? consonants[selectedIdx]
+								: tab === "vowels"
+									? vowels[selectedIdx]
+									: toneMarks[selectedIdx];
+						if (!symbol) return null;
+						const overrideCards: ItemCard[] = Object.values(state.cards)
+							.filter((card) => card.symbolCharacter === symbol.character)
+							.map((card) => ({
+								id: card.id,
+								pool: "script" as const,
+								label: propertyLabel(card.property),
+								currentStage: SrsStage.fromScheduleData(
+									card.srs.learningStep,
+									card.srs.interval,
+								),
+							}));
+						return (
+							<>
+								<button
+									type="button"
+									onClick={() => setOverrideOpen(true)}
+									className="mt-4 w-full py-2 px-4 rounded-lg text-sm font-medium transition-colors"
+									style={{
+										background:
+											"color-mix(in srgb, var(--color-primary) 12%, var(--color-surface))",
+										color: "var(--color-primary)",
+										border:
+											"1px solid color-mix(in srgb, var(--color-primary) 30%, transparent)",
+									}}
+								>
+									Override Stage
+								</button>
+								<StageOverrideSheet
+									open={overrideOpen}
+									onClose={() => setOverrideOpen(false)}
+									itemLabel={symbol.character}
+									cards={overrideCards}
+									onOverride={(id, pool, stage) => {
+										items.overrideCardStage(id, pool, stage);
+										refresh();
+									}}
+								/>
+							</>
+						);
+					})()}
 				</div>
 			)}
 
