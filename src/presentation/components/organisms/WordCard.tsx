@@ -5,12 +5,54 @@ function PlayAudioButton({ audioUrl }: { audioUrl: string }) {
 		<button
 			type="button"
 			onClick={() => new Audio(audioUrl).play()}
-			className="ml-3 inline-flex items-center justify-center w-10 h-10 rounded-full bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 text-gray-600 dark:text-gray-300 transition-colors align-middle"
+			className="ml-3 inline-flex items-center justify-center w-10 h-10 rounded-full transition-colors align-middle"
+			style={{
+				background: "var(--color-surface-2)",
+				color: "var(--color-text-muted)",
+			}}
 			aria-label="Play pronunciation"
 		>
 			🔊
 		</button>
 	);
+}
+
+function consonantClassStyle(cls: string): React.CSSProperties {
+	if (cls === "mid") {
+		return {
+			background:
+				"color-mix(in srgb, var(--color-master) 12%, var(--color-surface))",
+			color: "var(--color-master)",
+		};
+	}
+	if (cls === "high") {
+		return {
+			background:
+				"color-mix(in srgb, var(--color-enlightened) 12%, var(--color-surface))",
+			color: "var(--color-enlightened)",
+		};
+	}
+	// low
+	return {
+		background:
+			"color-mix(in srgb, var(--color-enlightened) 12%, var(--color-surface))",
+		color: "var(--color-enlightened)",
+	};
+}
+
+function syllableTypeStyle(type: string): React.CSSProperties {
+	if (type === "live") {
+		return {
+			background:
+				"color-mix(in srgb, var(--color-master) 12%, var(--color-surface))",
+			color: "var(--color-master)",
+		};
+	}
+	return {
+		background:
+			"color-mix(in srgb, var(--color-danger) 12%, var(--color-surface))",
+		color: "var(--color-danger)",
+	};
 }
 
 export function WordCard({ word }: { word: VocabEntry }) {
@@ -23,9 +65,17 @@ export function WordCard({ word }: { word: VocabEntry }) {
 					<PlayAudioButton audioUrl={word.thai_audio_file} />
 				)}
 				<p className="text-2xl font-semibold mt-2">{word.english}</p>
-				<p className="text-sm text-gray-400">{word.romanization}</p>
+				<p className="text-sm" style={{ color: "var(--color-text-muted)" }}>
+					{word.romanization}
+				</p>
 				{word.word_class && (
-					<span className="inline-block mt-1 px-2 py-0.5 rounded text-xs font-semibold bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400">
+					<span
+						className="inline-block mt-1 px-2 py-0.5 rounded text-xs font-semibold"
+						style={{
+							background: "var(--color-surface-2)",
+							color: "var(--color-text-muted)",
+						}}
+					>
 						{word.word_class}
 					</span>
 				)}
@@ -33,41 +83,49 @@ export function WordCard({ word }: { word: VocabEntry }) {
 
 			{/* Syllable breakdown */}
 			{word.syllables.length > 0 && (
-				<div className="bg-gray-50 dark:bg-gray-900 rounded-xl p-4">
-					<p className="text-xs text-gray-500 mb-2">Syllable breakdown</p>
+				<div
+					className="rounded-xl p-4"
+					style={{ background: "var(--color-surface-2)" }}
+				>
+					<p
+						className="text-xs mb-2"
+						style={{ color: "var(--color-text-muted)" }}
+					>
+						Syllable breakdown
+					</p>
 					<div className="space-y-2">
 						{word.syllables.map((syl, i) => (
 							<div
 								key={`${syl.text}-${i}`}
-								className="flex items-center justify-between py-1.5 border-b border-gray-100 dark:border-gray-800 last:border-0"
+								className="flex items-center justify-between py-1.5 last:border-0"
+								style={{ borderBottom: "1px solid var(--color-border)" }}
 							>
 								<span className="thai text-lg">{syl.text}</span>
 								<div className="flex items-center gap-2 text-xs">
 									{syl.consonantClass && (
 										<span
-											className={`px-2 py-0.5 rounded font-semibold capitalize ${
-												syl.consonantClass === "mid"
-													? "bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400"
-													: syl.consonantClass === "high"
-														? "bg-purple-100 text-purple-700 dark:bg-purple-900/30 dark:text-purple-400"
-														: "bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400"
-											}`}
+											className="px-2 py-0.5 rounded font-semibold capitalize"
+											style={consonantClassStyle(syl.consonantClass)}
 										>
 											{syl.consonantClass}
 										</span>
 									)}
 									{syl.tone && (
-										<span className="px-2 py-0.5 rounded bg-indigo-100 text-indigo-700 dark:bg-indigo-900/30 dark:text-indigo-400 font-semibold">
+										<span
+											className="px-2 py-0.5 rounded font-semibold"
+											style={{
+												background:
+													"color-mix(in srgb, var(--color-primary) 12%, var(--color-surface))",
+												color: "var(--color-primary)",
+											}}
+										>
 											{syl.tone}
 										</span>
 									)}
 									{syl.syllableType && (
 										<span
-											className={`px-2 py-0.5 rounded font-semibold ${
-												syl.syllableType === "live"
-													? "bg-green-50 text-green-600 dark:bg-green-900/20 dark:text-green-400"
-													: "bg-red-50 text-red-600 dark:bg-red-900/20 dark:text-red-400"
-											}`}
+											className="px-2 py-0.5 rounded font-semibold"
+											style={syllableTypeStyle(syl.syllableType)}
 										>
 											{syl.syllableType}
 										</span>
@@ -81,8 +139,14 @@ export function WordCard({ word }: { word: VocabEntry }) {
 
 			{/* Mnemonic */}
 			{word.mnemonic && (
-				<div className="bg-amber-50 dark:bg-amber-900/20 rounded-xl p-3">
-					<p className="text-sm text-amber-800 dark:text-amber-300">
+				<div
+					className="rounded-xl p-3"
+					style={{
+						background:
+							"color-mix(in srgb, var(--color-accent) 12%, var(--color-surface))",
+					}}
+				>
+					<p className="text-sm" style={{ color: "var(--color-accent)" }}>
 						💡 {word.mnemonic}
 					</p>
 				</div>
