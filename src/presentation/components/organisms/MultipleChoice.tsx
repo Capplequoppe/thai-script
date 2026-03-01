@@ -90,13 +90,10 @@ export function MultipleChoice({ card, onAnswer, mnemonicExpanded = false }: Pro
 			? ((card as Record<string, unknown>).mnemonic as string | null | undefined)
 			: null;
 
-	const [hintVisible, setHintVisible] = useState(false);
-
 	// biome-ignore lint/correctness/useExhaustiveDependencies: card.id resets state when the card changes
 	useEffect(() => {
 		setSelected(null);
 		setRevealed(false);
-		setHintVisible(false);
 		displayedAtRef.current = Date.now();
 	}, [card.id]);
 
@@ -186,21 +183,9 @@ export function MultipleChoice({ card, onAnswer, mnemonicExpanded = false }: Pro
 			</p>
 
 			{mnemonic &&
-				(mnemonicExpanded ? (
+				(mnemonicExpanded || (revealed && selected !== card.correctAnswer)) && (
 					<MnemonicBlock text={mnemonic} />
-				) : hintVisible ? (
-					<MnemonicBlock text={mnemonic} />
-				) : (
-					<button
-						type="button"
-						className="text-xs underline mx-auto block"
-						style={{ color: "var(--color-text-muted)" }}
-						onClick={() => setHintVisible(true)}
-						aria-label="Show memory hint"
-					>
-						Show hint
-					</button>
-				))}
+				)}
 
 			<div className="grid grid-cols-2 gap-3">
 				{card.choices.map((choice, idx) => (
