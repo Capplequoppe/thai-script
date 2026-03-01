@@ -3,10 +3,10 @@
     "thai": "ที่",
     "romanization": "tʰîː",
     "word_class": "prep",
-    "english": "at",
+    "english": "at/in/on",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/1 ที่.png",
     "samples": [
       {
         "thai": "เขาได้รับรางวัลที่ 1 ในการประกวดวาดภาพ",
@@ -39,7 +39,7 @@
     "toneRules": [
       "low-mayek"
     ],
-    "mnemonic": "TEE is AT the spot (↓ voice drops, pinpointed)"
+    "mnemonic": "There is no better place to be drinking TEE (↓ voice drops, pinpointed) than AT/ON the perfect SPOT/Location than Buckingham palace! "
   },
   {
     "thai": "ได้",
@@ -48,7 +48,7 @@
     "english": "can",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/2 ได้.png",
     "samples": [
       {
         "thai": "นักท่องเที่ยวได้ข้อมูลนี้จากหนังสือนำเที่ยว",
@@ -81,7 +81,7 @@
     "toneRules": [
       "mid-maytho"
     ],
-    "mnemonic": "Living things CAN 'dai'"
+    "mnemonic": "A man walks along the Road of Life, and whenever he opens a door, receives a gift, or eats a meal, a golden glow appears and says “ได้!”. As long as he is alive, he can do things, get things, and successfully make things happen — ได้. At the end of the road is a quiet sign that says “DIE,” and beyond it there is nothing left to ได้."
   },
   {
     "thai": "จะ",
@@ -10999,10 +10999,10 @@
     "thai": "นาน",
     "romanization": "naːn",
     "word_class": "adj",
-    "english": "long",
+    "english": "long time",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/241 นาน.png",
     "samples": [
       {
         "thai": "ครอบครัวของเขาอยู่บนที่ดินผืนนี้มานานหลายชั่วอายุคน",
