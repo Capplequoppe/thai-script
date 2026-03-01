@@ -17,8 +17,6 @@ import { generateCardsForLesson } from "./ScriptCardGenerator";
 
 const TOTAL_LESSONS = 25;
 
-export const MASTERY_THRESHOLD = 0.9;
-export const MAX_IN_FLIGHT_LESSONS = 3;
 
 export interface LessonInfo {
 	lessonNumber: number;
@@ -112,16 +110,6 @@ export class LearningService {
 					`Must complete lesson ${i} before starting lesson ${lessonNumber}`,
 				);
 			}
-		}
-
-		const inFlightLessons = completedLessons.filter(
-			(l) => !this.isLessonMastered(l),
-		);
-		if (inFlightLessons.length >= MAX_IN_FLIGHT_LESSONS) {
-			const oldest = [...inFlightLessons].sort((a, b) => a - b)[0];
-			throw new Error(
-				`You have ${inFlightLessons.length} unmastered lessons in progress. Master lesson ${oldest} (and others) before starting new ones.`,
-			);
 		}
 
 		const lessonMeta = lessons.find((l) => l.number === lessonNumber);
@@ -236,13 +224,6 @@ export class LearningService {
 		return this.stateRepo.getCompletedLessons();
 	}
 
-	isLessonMastered(lessonNumber: number): boolean {
-		const progress = this.getLessonMasteryProgress(lessonNumber);
-		return progress.total === 0
-			? false
-			: progress.percentage >= MASTERY_THRESHOLD;
-	}
-
 	getLessonMasteryProgress(lessonNumber: number): {
 		total: number;
 		graduated: number;
@@ -262,13 +243,6 @@ export class LearningService {
 	}
 
 	isNextLessonAvailable(): boolean {
-		const nextLesson = this.getNextLesson();
-		if (nextLesson === null) return false;
-		if (nextLesson === 1) return true;
-		const completedLessons = this.stateRepo.getCompletedLessons();
-		const inFlightCount = completedLessons.filter(
-			(l) => !this.isLessonMastered(l),
-		).length;
-		return inFlightCount < MAX_IN_FLIGHT_LESSONS;
+		return this.getNextLesson() !== null;
 	}
 }
