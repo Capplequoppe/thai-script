@@ -1,4 +1,5 @@
 import { useMemo, useState } from "react";
+import { useNavigate } from "react-router";
 import type {
 	ConsonantSummary,
 	LessonSummary,
@@ -99,6 +100,7 @@ export function LearnedItemsPage() {
 	const { state, lesson } = useApp();
 	const [tab, setTab] = useState<Tab>("consonants");
 	const [selectedIdx, setSelectedIdx] = useState<number | null>(null);
+	const navigate = useNavigate();
 
 	// Collect all learned items across completed lessons
 	const { consonants, vowels, toneMarks, videos } = useMemo(() => {
@@ -120,38 +122,24 @@ export function LearnedItemsPage() {
 		return { consonants: c, vowels: v, toneMarks: t, videos: vids };
 	}, [state.completedLessons, lesson]);
 
-	// Collect learned vocabulary words (deduplicated by wordThai, prefer thaiToEnglish for English meaning)
-	const vocabWords = useMemo(() => {
-		const byWord = new Map<
-			string,
-			{ thai: string; english: string; audioUrl?: string }
-		>();
+	const vocabWordCount = useMemo(() => {
+		const seen = new Set<string>();
 		for (const card of Object.values(state.vocabCards)) {
-			const existing = byWord.get(card.wordThai);
-			if (!existing || card.property === "thaiToEnglish") {
-				byWord.set(card.wordThai, {
-					thai: card.wordThai,
-					english:
-						card.property === "thaiToEnglish"
-							? card.correctAnswer
-							: (existing?.english ?? card.question),
-					audioUrl: card.audioUrl ?? existing?.audioUrl,
-				});
-			}
+			seen.add(card.wordThai);
 		}
-		return Array.from(byWord.values());
+		return seen.size;
 	}, [state.vocabCards]);
 
 	const tabs: { key: Tab; label: string; count: number }[] = [
 		{ key: "consonants", label: "Consonants", count: consonants.length },
 		{ key: "vowels", label: "Vowels", count: vowels.length },
 		{ key: "toneMarks", label: "Tones", count: toneMarks.length },
-		{ key: "vocabulary", label: "Vocab", count: vocabWords.length },
+		{ key: "vocabulary", label: "Vocab", count: vocabWordCount },
 		{ key: "videos", label: "Videos", count: videos.length },
 	];
 
 	const total =
-		consonants.length + vowels.length + toneMarks.length + vocabWords.length;
+		consonants.length + vowels.length + toneMarks.length + vocabWordCount;
 
 	if (total === 0) {
 		return (
@@ -179,6 +167,10 @@ export function LearnedItemsPage() {
 						type="button"
 						key={key}
 						onClick={() => {
+							if (key === "vocabulary") {
+								navigate("/vocab");
+								return;
+							}
 							setTab(key);
 							setSelectedIdx(null);
 						}}
@@ -313,27 +305,6 @@ export function LearnedItemsPage() {
 								{t.name}
 							</span>
 						</button>
-					))}
-				</div>
-			)}
-
-			{selectedIdx === null && tab === "vocabulary" && (
-				<div className="grid grid-cols-3 gap-2">
-					{vocabWords.map((w) => (
-						<div
-							key={w.thai}
-							className="relative flex flex-col items-center p-3 rounded-xl"
-							style={{ background: "var(--color-surface-2)" }}
-						>
-							{w.audioUrl && <TileAudioButton audioUrl={w.audioUrl} />}
-							<span className="thai text-3xl">{w.thai}</span>
-							<span
-								className="text-[10px] mt-1 text-center leading-tight"
-								style={{ color: "var(--color-text-muted)" }}
-							>
-								{w.english}
-							</span>
-						</div>
 					))}
 				</div>
 			)}
