@@ -155,11 +155,20 @@ describe("ReviewableCard", () => {
 			expect(nextReview > new Date(now)).toBe(true);
 		});
 
+		it("sets stage to ENLIGHTENED and nextReviewDate in the future when promoted to ENLIGHTENED", () => {
+			const now = "2025-01-01T00:00:00.000Z";
+			const card = makeCard();
+			card.overrideStage(SrsStage.ENLIGHTENED, now);
+			expect(card.stage).toBe(SrsStage.ENLIGHTENED);
+			expect(new Date(card.schedule.nextReviewDate) > new Date(now)).toBe(true);
+		});
+
 		it("forwards the optional now parameter to SrsSchedule.overrideStage", () => {
 			const now = "2025-06-15T12:00:00.000Z";
 			const card = makeCard();
+			// GURU demotion is immediately due (nextReviewDate = now), so we can verify
+			// the `now` parameter was forwarded by checking the pinned date.
 			card.overrideStage(SrsStage.GURU, now);
-			// GURU demotions pin nextReviewDate to `now` (immediately due)
 			expect(card.schedule.nextReviewDate).toBe(now);
 		});
 	});
