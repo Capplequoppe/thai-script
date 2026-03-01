@@ -15,8 +15,8 @@ import { GrammarService } from "../../domain/grammar/services/GrammarLessonServi
 import type { GrammarEntry } from "../../domain/grammar/types";
 import { LearningService } from "../../domain/script/services/ScriptLessonService";
 import { ReviewService } from "../../domain/session/services/ReviewService";
-import { ApprenticeService } from "../../domain/shared/services/ApprenticeService";
 import { AchievementService } from "../../domain/shared/services/AchievementService";
+import { ApprenticeService } from "../../domain/shared/services/ApprenticeService";
 import { LeechService } from "../../domain/shared/services/LeechService";
 import type { LearnerState, SessionSummary } from "../../domain/shared/types";
 import vocabularyData from "../../domain/vocabulary/data/vocabulary.json";
@@ -76,6 +76,7 @@ export interface AppContextValue {
 	review: ConductReviewUseCase;
 	dashboard: QueryDashboardUseCase;
 	data: ManageDataUseCase;
+	vocab: VocabularyService;
 	checkAchievements: (summary: SessionSummary) => string[];
 }
 
@@ -88,17 +89,14 @@ export function AppProvider({ children }: { children: ReactNode }) {
 		setState(storage.load());
 	}, []);
 
-	const checkAchievements = useCallback(
-		(summary: SessionSummary): string[] => {
-			const freshState = storage.load();
-			const newIds = achievementService.checkNewAchievements(freshState, summary);
-			for (const id of newIds) {
-				stateRepo.addAchievement(id);
-			}
-			return newIds;
-		},
-		[],
-	);
+	const checkAchievements = useCallback((summary: SessionSummary): string[] => {
+		const freshState = storage.load();
+		const newIds = achievementService.checkNewAchievements(freshState, summary);
+		for (const id of newIds) {
+			stateRepo.addAchievement(id);
+		}
+		return newIds;
+	}, []);
 
 	useEffect(() => {
 		reviewUseCase.getForecast();
@@ -121,6 +119,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
 			review: reviewUseCase,
 			dashboard: dashboardUseCase,
 			data: dataUseCase,
+			vocab: vocabularyService,
 			checkAchievements,
 		}),
 		[state, refresh, checkAchievements],
