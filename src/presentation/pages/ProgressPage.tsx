@@ -1,18 +1,22 @@
+import { useState } from "react";
 import { useNavigate } from "react-router";
 import { Badge } from "@/presentation/components/ui/badge";
 import { Card } from "@/presentation/components/ui/card";
 import { SectionHeader } from "../components/atoms/SectionHeader";
+import { ConfirmDialog } from "../components/molecules/ConfirmDialog";
 import {
 	ACHIEVEMENT_DEFS,
 	AchievementBadge,
 } from "../components/organisms/AchievementBadge";
 import { HeatmapWidget } from "../components/organisms/HeatmapWidget";
 import { LessonPath } from "../components/organisms/LessonPath";
+import { Button } from "../components/ui/button";
 import { useApp } from "../hooks/useApp";
 
 export function ProgressPage() {
 	const { state, review, dashboard, data, refresh } = useApp();
 	const navigate = useNavigate();
+	const [resetOpen, setResetOpen] = useState(false);
 	const completed = new Set(state.completedLessons);
 	const totalCards = Object.keys(state.cards).length;
 	const dueCount = review.getDueCount();
@@ -112,7 +116,7 @@ export function ProgressPage() {
 						className="flex justify-between text-xs mb-1"
 						style={{ color: "var(--color-text-muted)" }}
 					>
-						<span>SRS Stages</span>
+						<span>Items in learning</span>
 						<span>{totalCards} cards</span>
 					</div>
 					<div
@@ -231,7 +235,7 @@ export function ProgressPage() {
 
 			{/* Lesson Path */}
 			<div>
-				<SectionHeader className="mb-4">Lesson Progress</SectionHeader>
+				<SectionHeader className="mb-4">Script Lesson Progress</SectionHeader>
 				<LessonPath
 					totalLessons={25}
 					completedLessons={completed}
@@ -290,25 +294,29 @@ export function ProgressPage() {
 			)}
 
 			{/* Reset */}
-			<div
-				className="pt-4 border-t"
-				style={{ borderColor: "var(--color-border)" }}
-			>
-				<button
+			<div className="pt-4 border-t">
+				<Button
 					type="button"
-					onClick={() => {
-						if (confirm("This will erase all progress. Are you sure?")) {
-							data.reset();
-							refresh();
-							navigate("/");
-						}
-					}}
-					className="text-sm"
-					style={{ color: "var(--color-danger)" }}
+					onClick={() => setResetOpen(true)}
+					size="sm"
+					variant="destructive"
 				>
 					Reset All Progress
-				</button>
+				</Button>
 			</div>
+			<ConfirmDialog
+				open={resetOpen}
+				onOpenChange={setResetOpen}
+				title="Reset All Progress"
+				description="This will erase all progress. This action cannot be undone."
+				confirmLabel="Reset"
+				isDestructive
+				onConfirm={() => {
+					data.reset();
+					refresh();
+					navigate("/");
+				}}
+			/>
 		</div>
 	);
 }
