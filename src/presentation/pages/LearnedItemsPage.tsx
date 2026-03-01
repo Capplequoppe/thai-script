@@ -5,6 +5,7 @@ import type {
 	ToneMarkSummary,
 	VowelSummary,
 } from "../../domain/script/services/ScriptLessonService";
+import { ClassBadge } from "../components/atoms/ClassBadge";
 import {
 	ConsonantCard,
 	ToneMarkCard,
@@ -59,7 +60,8 @@ function VideoPlayer({
 			<button
 				type="button"
 				onClick={onBack}
-				className="text-sm text-indigo-600 dark:text-indigo-400 hover:underline"
+				className="text-sm hover:underline"
+				style={{ color: "var(--color-primary)" }}
 			>
 				&larr; Back to list
 			</button>
@@ -86,7 +88,9 @@ function VideoPlayer({
 					/>
 				)}
 			</div>
-			<p className="text-sm text-gray-500">{lesson.focus}</p>
+			<p className="text-sm" style={{ color: "var(--color-text-muted)" }}>
+				{lesson.focus}
+			</p>
 		</div>
 	);
 }
@@ -154,7 +158,7 @@ export function LearnedItemsPage() {
 			<div className="text-center py-16 space-y-4">
 				<span className="text-6xl">📚</span>
 				<h1 className="text-2xl font-bold">No items learned yet</h1>
-				<p className="text-gray-500">
+				<p style={{ color: "var(--color-text-muted)" }}>
 					Complete a lesson to see your learned symbols here.
 				</p>
 			</div>
@@ -166,7 +170,10 @@ export function LearnedItemsPage() {
 			<h1 className="text-2xl font-bold">Learned Items</h1>
 
 			{/* Tabs */}
-			<div className="flex gap-1 bg-gray-100 dark:bg-gray-900 rounded-xl p-1">
+			<div
+				className="flex gap-1 rounded-xl p-1"
+				style={{ background: "var(--color-surface-2)" }}
+			>
 				{tabs.map(({ key, label, count }) => (
 					<button
 						type="button"
@@ -175,11 +182,16 @@ export function LearnedItemsPage() {
 							setTab(key);
 							setSelectedIdx(null);
 						}}
-						className={`flex-1 py-2 px-3 rounded-lg text-sm font-medium transition-colors ${
+						className="flex-1 py-2 px-3 rounded-lg text-sm font-medium transition-colors"
+						style={
 							tab === key
-								? "bg-white dark:bg-gray-800 shadow-sm"
-								: "text-gray-500 hover:text-gray-700 dark:hover:text-gray-300"
-						}`}
+								? {
+										background: "var(--color-surface)",
+										color: "var(--color-text)",
+										boxShadow: "0 1px 3px rgba(0,0,0,0.1)",
+									}
+								: { color: "var(--color-text-muted)" }
+						}
 					>
 						{label} <span className="text-xs text-gray-400">({count})</span>
 					</button>
@@ -188,11 +200,15 @@ export function LearnedItemsPage() {
 
 			{/* Detail view */}
 			{selectedIdx !== null && tab !== "videos" && tab !== "vocabulary" && (
-				<div className="border border-gray-200 dark:border-gray-800 rounded-xl p-4">
+				<div
+					className="border rounded-xl p-4"
+					style={{ borderColor: "var(--color-border)" }}
+				>
 					<button
 						type="button"
 						onClick={() => setSelectedIdx(null)}
-						className="text-sm text-indigo-600 dark:text-indigo-400 mb-4 hover:underline"
+						className="text-sm mb-4 hover:underline"
+						style={{ color: "var(--color-primary)" }}
 					>
 						← Back to list
 					</button>
@@ -216,24 +232,18 @@ export function LearnedItemsPage() {
 							type="button"
 							key={c.character}
 							onClick={() => setSelectedIdx(i)}
-							className="relative flex flex-col items-center p-3 rounded-xl bg-gray-50 dark:bg-gray-900 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+							className="relative flex flex-col items-center p-3 rounded-xl transition-colors"
+							style={{ background: "var(--color-surface-2)" }}
 						>
 							{c.audioUrl && <TileAudioButton audioUrl={c.audioUrl} />}
 							<span className="thai text-4xl">{c.character}</span>
-							<span className="text-[10px] text-gray-500 mt-1 truncate w-full text-center">
+							<span
+								className="text-[10px] mt-1 truncate w-full text-center"
+								style={{ color: "var(--color-text-muted)" }}
+							>
 								{c.nameRomanized}
 							</span>
-							<span
-								className={`text-[10px] mt-0.5 px-1.5 rounded capitalize ${
-									c.classType === "low"
-										? "bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400"
-										: c.classType === "mid"
-											? "bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400"
-											: "bg-purple-100 text-purple-700 dark:bg-purple-900/30 dark:text-purple-400"
-								}`}
-							>
-								{c.classType}
-							</span>
+							<ClassBadge classType={c.classType} />
 						</button>
 					))}
 				</div>
@@ -246,17 +256,29 @@ export function LearnedItemsPage() {
 							type="button"
 							key={v.character}
 							onClick={() => setSelectedIdx(i)}
-							className="relative flex flex-col items-center p-3 rounded-xl bg-gray-50 dark:bg-gray-900 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+							className="relative flex flex-col items-center p-3 rounded-xl transition-colors"
+							style={{ background: "var(--color-surface-2)" }}
 						>
 							{v.audioUrl && <TileAudioButton audioUrl={v.audioUrl} />}
 							<span className="thai text-4xl">{v.character}</span>
-							<span className="text-[10px] text-gray-500 mt-1">{v.name}</span>
 							<span
-								className={`text-[10px] mt-0.5 px-1.5 rounded ${
-									v.length === "long"
-										? "bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400"
-										: "bg-orange-100 text-orange-700 dark:bg-orange-900/30 dark:text-orange-400"
-								}`}
+								className="text-[10px] mt-1"
+								style={{ color: "var(--color-text-muted)" }}
+							>
+								{v.name}
+							</span>
+							<span
+								className="text-[10px] mt-0.5 px-1.5 rounded"
+								style={{
+									background:
+										v.length === "long"
+											? "color-mix(in srgb, var(--color-enlightened) 15%, var(--color-surface))"
+											: "color-mix(in srgb, var(--color-guru) 15%, var(--color-surface))",
+									color:
+										v.length === "long"
+											? "var(--color-enlightened)"
+											: "var(--color-guru)",
+								}}
 							>
 								{v.length}
 							</span>
@@ -272,11 +294,17 @@ export function LearnedItemsPage() {
 							type="button"
 							key={t.character}
 							onClick={() => setSelectedIdx(i)}
-							className="relative flex flex-col items-center p-3 rounded-xl bg-gray-50 dark:bg-gray-900 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+							className="relative flex flex-col items-center p-3 rounded-xl transition-colors"
+							style={{ background: "var(--color-surface-2)" }}
 						>
 							{t.audioUrl && <TileAudioButton audioUrl={t.audioUrl} />}
 							<span className="thai text-4xl">{t.character}</span>
-							<span className="text-[10px] text-gray-500 mt-1">{t.name}</span>
+							<span
+								className="text-[10px] mt-1"
+								style={{ color: "var(--color-text-muted)" }}
+							>
+								{t.name}
+							</span>
 						</button>
 					))}
 				</div>
@@ -287,11 +315,15 @@ export function LearnedItemsPage() {
 					{vocabWords.map((w) => (
 						<div
 							key={w.thai}
-							className="relative flex flex-col items-center p-3 rounded-xl bg-gray-50 dark:bg-gray-900"
+							className="relative flex flex-col items-center p-3 rounded-xl"
+							style={{ background: "var(--color-surface-2)" }}
 						>
 							{w.audioUrl && <TileAudioButton audioUrl={w.audioUrl} />}
 							<span className="thai text-3xl">{w.thai}</span>
-							<span className="text-[10px] text-gray-500 mt-1 text-center leading-tight">
+							<span
+								className="text-[10px] mt-1 text-center leading-tight"
+								style={{ color: "var(--color-text-muted)" }}
+							>
 								{w.english}
 							</span>
 						</div>
@@ -306,14 +338,25 @@ export function LearnedItemsPage() {
 							type="button"
 							key={lesson.lessonNumber}
 							onClick={() => setSelectedIdx(i)}
-							className="w-full flex items-center gap-4 p-4 rounded-xl bg-gray-50 dark:bg-gray-900 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors text-left"
+							className="w-full flex items-center gap-4 p-4 rounded-xl transition-colors text-left"
+							style={{ background: "var(--color-surface-2)" }}
 						>
-							<div className="flex-shrink-0 w-12 h-12 bg-indigo-100 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400 rounded-xl flex items-center justify-center font-bold text-lg">
+							<div
+								className="flex-shrink-0 w-12 h-12 rounded-xl flex items-center justify-center font-bold text-lg"
+								style={{
+									background:
+										"color-mix(in srgb, var(--color-primary) 12%, var(--color-surface))",
+									color: "var(--color-primary)",
+								}}
+							>
 								{lesson.lessonNumber}
 							</div>
 							<div className="min-w-0">
 								<div className="font-semibold truncate">{lesson.title}</div>
-								<div className="text-sm text-gray-500 truncate">
+								<div
+									className="text-sm truncate"
+									style={{ color: "var(--color-text-muted)" }}
+								>
 									{lesson.focus}
 								</div>
 							</div>
