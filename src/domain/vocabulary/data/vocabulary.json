@@ -4446,7 +4446,7 @@
     "toneRules": [
       "high-live"
     ],
-    "mnemonic": null
+    "mnemonic": "HAH — FIND it! (↑ voice rises in discovery)"
   },
   {
     "thai": "สำหรับ",
@@ -4502,7 +4502,7 @@
       "high-live",
       "high-dead-long"
     ],
-    "mnemonic": null
+    "mnemonic": "SAM-RAP — FOR Sam, rap it up (↑ then ▬, purposeful)"
   },
   {
     "thai": "ผม",
@@ -4542,7 +4542,7 @@
     "toneRules": [
       "high-live"
     ],
-    "mnemonic": null
+    "mnemonic": "FOAM — HAIR needs foam to style (↑ rising, light touch)"
   },
   {
     "thai": "กลาง",
@@ -4585,7 +4585,7 @@
     "toneRules": [
       "mid-live"
     ],
-    "mnemonic": null
+    "mnemonic": "CLANG — in the MIDDLE where the CLANG rings (— neutral)"
   },
   {
     "thai": "ก็ได้",
@@ -4640,7 +4640,7 @@
       "mid-live",
       "mid-maytho"
     ],
-    "mnemonic": null
+    "mnemonic": "KOR-DAI — IT'S ALRIGHT, kor-dai! (↓↓ double drop, permissive)"
   },
   {
     "thai": "ด้าน",
@@ -4683,7 +4683,7 @@
     "toneRules": [
       "mid-maytho"
     ],
-    "mnemonic": null
+    "mnemonic": "DAN — on Dan's SIDE (↓ voice drops, positioned)"
   },
   {
     "thai": "คุณ",
@@ -4725,7 +4725,7 @@
     "toneRules": [
       "low-live"
     ],
-    "mnemonic": null
+    "mnemonic": "KUN — YOU're the kung-fu kun! (— neutral)"
   },
   {
     "thai": "นอก",
@@ -4767,7 +4767,7 @@
     "toneRules": [
       "low-dead-long"
     ],
-    "mnemonic": null
+    "mnemonic": "NORK — OUT the door, nork! (↓ voice drops, exiting)"
   },
   {
     "thai": "เดียว",
@@ -4811,7 +4811,7 @@
     "toneRules": [
       "mid-live"
     ],
-    "mnemonic": null
+    "mnemonic": "DEOW — just ONE single dew drop (— neutral)"
   },
   {
     "thai": "เมือง",
@@ -4854,7 +4854,7 @@
     "toneRules": [
       "low-live"
     ],
-    "mnemonic": null
+    "mnemonic": "MUEANG — the CITY of Mueang (— neutral)"
   },
   {
     "thai": "เมือง",
@@ -4897,7 +4897,7 @@
     "toneRules": [
       "low-live"
     ],
-    "mnemonic": null
+    "mnemonic": "MUEANG — the CITY of Mueang (— neutral)"
   },
   {
     "thai": "สิ่ง",
@@ -4940,7 +4940,7 @@
     "toneRules": [
       "high-mayek"
     ],
-    "mnemonic": null
+    "mnemonic": "SING — a THING you sing about (▬ low, any thing)"
   },
   {
     "thai": "ทรง",
@@ -4982,7 +4982,7 @@
     "toneRules": [
       "low-live"
     ],
-    "mnemonic": null
+    "mnemonic": "SONG — every STYLE has its own SONG (— neutral)"
   },
   {
     "thai": "ตัด",
@@ -5023,7 +5023,7 @@
     "toneRules": [
       "mid-dead-long"
     ],
-    "mnemonic": null
+    "mnemonic": "TAT — CUT a tattoo line (▬ low, precise cut)"
   },
   {
     "thai": "นำ",
@@ -5064,7 +5064,7 @@
     "toneRules": [
       "low-live"
     ],
-    "mnemonic": null
+    "mnemonic": "NAM — your NAMe goes first — LEAD! (— neutral)"
   },
   {
     "thai": "ผิด",
@@ -5106,7 +5106,7 @@
     "toneRules": [
       "high-dead-short"
     ],
-    "mnemonic": null
+    "mnemonic": "PIT — falling in a PIT is WRONG (▬ low, error)"
   },
   {
     "thai": "เสีย",
@@ -5149,7 +5149,7 @@
     "toneRules": [
       "high-live"
     ],
-    "mnemonic": null
+    "mnemonic": "SIA — what a WASTE, sia! (↑ voice rises in dismay)"
   },
   {
     "thai": "เอา",
@@ -5191,7 +5191,7 @@
     "toneRules": [
       "mid-live"
     ],
-    "mnemonic": null
+    "mnemonic": "OW — WANT it and TAKE it — ow! (— neutral)"
   },
   {
     "thai": "จน",
@@ -5232,7 +5232,7 @@
     "toneRules": [
       "mid-live"
     ],
-    "mnemonic": null
+    "mnemonic": "JON — UNTIL Jon arrives (— neutral)"
   },
   {
     "thai": "คิด",
@@ -5274,7 +5274,7 @@
     "toneRules": [
       "low-dead-short"
     ],
-    "mnemonic": null
+    "mnemonic": "KIT — THINK about the kit (▲ sharp, mental focus)"
   },
   {
     "thai": "เลย",
@@ -5316,7 +5316,7 @@
     "toneRules": [
       "low-live"
     ],
-    "mnemonic": null
+    "mnemonic": "LOO-ay — THEREFORE it went loo-ay (— neutral)"
   },
   {
     "thai": "เท่านั้น",
@@ -5373,7 +5373,7 @@
       "low-mayek",
       "low-maytho"
     ],
-    "mnemonic": null
+    "mnemonic": "TAO-NAN — ONLY the tao of nan (↓▲ definitive endpoint)"
   },
   {
     "thai": "นับ",
@@ -5415,7 +5415,7 @@
     "toneRules": [
       "low-dead-long"
     ],
-    "mnemonic": null
+    "mnemonic": "NAP — COUNT the nap-time hours (▲ sharp, tallying)"
   },
   {
     "thai": "ผ่าน",
@@ -5458,7 +5458,7 @@
     "toneRules": [
       "high-mayek"
     ],
-    "mnemonic": null
+    "mnemonic": "PAN — PASS the pan down the line (▬ low, moving through)"
   },
   {
     "thai": "ตอน",
@@ -5500,7 +5500,7 @@
     "toneRules": [
       "mid-live"
     ],
-    "mnemonic": null
+    "mnemonic": "TONE — DURING the ringtone (— neutral, temporal slice)"
   },
   {
     "thai": "ตั้งแต่",
@@ -5556,7 +5556,7 @@
       "mid-maytho",
       "mid-mayek"
     ],
-    "mnemonic": null
+    "mnemonic": "TANG-TAY — SINCE tang and tay mixed (↓▬ from that point on)"
   },
   {
     "thai": "เรียก",
@@ -5600,7 +5600,7 @@
     "toneRules": [
       "low-dead-long"
     ],
-    "mnemonic": null
+    "mnemonic": "REEK — CALL out when it reeks! (↓ voice falls, summoning)"
   },
   {
     "thai": "สามารถ",
@@ -5654,7 +5654,7 @@
       "high-live",
       "low-dead-long"
     ],
-    "mnemonic": null
+    "mnemonic": "SAM-ART — CAN Samuel do this art? (↑↓ tested ability)"
   },
   {
     "thai": "ชื่อ",
@@ -5697,7 +5697,7 @@
     "toneRules": [
       "low-mayek"
     ],
-    "mnemonic": null
+    "mnemonic": "CHOO — your NAME is Choo (↓ voice drops, introducing)"
   },
   {
     "thai": "เอง",
@@ -5739,7 +5739,7 @@
     "toneRules": [
       "mid-live"
     ],
-    "mnemonic": null
+    "mnemonic": "ENG — ALONE like an engine running solo (— neutral)"
   },
   {
     "thai": "ประเทศ",
@@ -5795,7 +5795,7 @@
       "mid-live",
       "low-dead-long"
     ],
-    "mnemonic": null
+    "mnemonic": "PRA-TATE — the COUNTRY of pra-tate (▬↓ vast land)"
   },
   {
     "thai": "ภาพ",
@@ -5837,7 +5837,7 @@
     "toneRules": [
       "low-dead-long"
     ],
-    "mnemonic": null
+    "mnemonic": "PAP — an IMAGE captured on pap-er (↓ falling, snapshot)"
   },
   {
     "thai": "นอกจาก",
@@ -5892,7 +5892,7 @@
       "low-dead-long",
       "mid-dead-long"
     ],
-    "mnemonic": null
+    "mnemonic": "NORK-JACK — BEYOND nork, IN ADDITION TO jack (↓▬ extra)"
   },
   {
     "thai": "อ่าน",
@@ -5934,7 +5934,7 @@
     "toneRules": [
       "mid-mayek"
     ],
-    "mnemonic": null
+    "mnemonic": "AHN — READ quietly — aahn (▬ low, silent reading)"
   },
   {
     "thai": "เคย",
@@ -5976,7 +5976,7 @@
     "toneRules": [
       "low-live"
     ],
-    "mnemonic": null
+    "mnemonic": "KOO-ay — EVER been there? koo-ay (— neutral)"
   },
   {
     "thai": "อะไร",
@@ -6029,7 +6029,7 @@
       "mid-dead-short",
       "low-live"
     ],
-    "mnemonic": null
+    "mnemonic": "A-RAI — WHAT a-rai is this? (▬→ rising question)"
   },
   {
     "thai": "กลับ",
@@ -6071,7 +6071,7 @@
     "toneRules": [
       "mid-dead-long"
     ],
-    "mnemonic": null
+    "mnemonic": "CLAP — RETURN with a clap (▬ low, coming back)"
   },
   {
     "thai": "ขอ",
@@ -6112,7 +6112,7 @@
     "toneRules": [
       "high-live"
     ],
-    "mnemonic": null
+    "mnemonic": "KOR — ASK for more kor! (↑ voice rises, requesting)"
   },
   {
     "thai": "โลก",
@@ -6154,7 +6154,7 @@
     "toneRules": [
       "low-dead-long"
     ],
-    "mnemonic": null
+    "mnemonic": "LOKE — the whole WORLD is one loke (↓ voice drops, vast)"
   },
   {
     "thai": "เดิม",
@@ -6197,7 +6197,7 @@
     "toneRules": [
       "mid-live"
     ],
-    "mnemonic": null
+    "mnemonic": "DERM — the ORIGINAL skin — derm (— neutral)"
   },
   {
     "thai": "ได้รับ",
@@ -6253,7 +6253,7 @@
       "mid-maytho",
       "low-dead-long"
     ],
-    "mnemonic": null
+    "mnemonic": "DAI-RAP — CAN RECEIVE — dai rap! (↓▲ getting something)"
   },
   {
     "thai": "อย่างไร",
@@ -6309,7 +6309,7 @@
       "mid-mayek",
       "low-live"
     ],
-    "mnemonic": null
+    "mnemonic": "YANG-RAI — HOW yang-rai? (▬→ questioning manner)"
   },
   {
     "thai": "ยิ่ง",
@@ -6352,7 +6352,7 @@
     "toneRules": [
       "low-mayek"
     ],
-    "mnemonic": null
+    "mnemonic": "YING — MORE ying than yang (↓ voice drops, emphasizing excess)"
   },
   {
     "thai": "ฝ่าย",
@@ -6395,7 +6395,7 @@
     "toneRules": [
       "high-mayek"
     ],
-    "mnemonic": null
+    "mnemonic": "FIE — each PARTY takes its SIDE — fie! (▬ low, faction)"
   },
   {
     "thai": "บ้าน",
@@ -6437,7 +6437,7 @@
     "toneRules": [
       "mid-maytho"
     ],
-    "mnemonic": null
+    "mnemonic": "BAN — HOME behind the ban-ner (↓ voice drops, hearth)"
   },
   {
     "thai": "บ้าน",
@@ -6479,7 +6479,7 @@
     "toneRules": [
       "mid-maytho"
     ],
-    "mnemonic": null
+    "mnemonic": "BAN — HOME behind the ban-ner (↓ voice drops, hearth)"
   },
   {
     "thai": "คำ",
@@ -6519,7 +6519,7 @@
     "toneRules": [
       "low-live"
     ],
-    "mnemonic": null
+    "mnemonic": "KUM — every WORD is a kum (— neutral)"
   },
   {
     "thai": "พบ",
@@ -6559,7 +6559,7 @@
     "toneRules": [
       "low-dead-long"
     ],
-    "mnemonic": null
+    "mnemonic": "POP — MEET and pop! (▲ sharp, sudden encounter)"
   },
   {
     "thai": "พบ",
@@ -6599,7 +6599,7 @@
     "toneRules": [
       "low-dead-long"
     ],
-    "mnemonic": null
+    "mnemonic": "POP — MEET and pop! (▲ sharp, sudden encounter)"
   },
   {
     "thai": "เข้าใจ",
@@ -6655,7 +6655,7 @@
       "high-maytho",
       "mid-live"
     ],
-    "mnemonic": null
+    "mnemonic": "KAO-JAI — ENTER the heart — that's to UNDERSTAND (↓→ insight)"
   },
   {
     "thai": "อัน",
@@ -6697,7 +6697,7 @@
     "toneRules": [
       "mid-live"
     ],
-    "mnemonic": null
+    "mnemonic": "AHN — each PIECE is an ahn (— neutral, classifier)"
   },
   {
     "thai": "ส่ง",
@@ -6738,7 +6738,7 @@
     "toneRules": [
       "high-mayek"
     ],
-    "mnemonic": null
+    "mnemonic": "SONG — SUBMIT a song to the contest (▬ low, sending off)"
   },
   {
     "thai": "ที่อยู่",
