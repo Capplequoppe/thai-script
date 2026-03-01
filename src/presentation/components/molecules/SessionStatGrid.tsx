@@ -8,7 +8,12 @@ interface Props {
 	accuracy: number;
 }
 
-export function SessionStatGrid({ totalLabel, total, correct, accuracy }: Props) {
+export function SessionStatGrid({
+	totalLabel,
+	total,
+	correct,
+	accuracy,
+}: Props) {
 	return (
 		<div className="grid grid-cols-3 gap-3">
 			{[
@@ -17,8 +22,7 @@ export function SessionStatGrid({ totalLabel, total, correct, accuracy }: Props)
 				{
 					label: "Accuracy",
 					value: `${accuracy}%`,
-					color:
-						accuracy >= 80 ? "var(--color-accent)" : "var(--color-danger)",
+					color: accuracy >= 80 ? "var(--color-accent)" : "var(--color-danger)",
 				},
 			].map(({ label, value, color }) => (
 				<Card key={label} className="p-4 text-center">

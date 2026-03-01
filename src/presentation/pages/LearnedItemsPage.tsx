@@ -188,12 +188,19 @@ export function LearnedItemsPage() {
 								? {
 										background: "var(--color-surface)",
 										color: "var(--color-text)",
-										boxShadow: "0 1px 3px rgba(0,0,0,0.1)",
+										boxShadow:
+											"0 1px 3px color-mix(in srgb, var(--color-text) 10%, transparent)",
 									}
 								: { color: "var(--color-text-muted)" }
 						}
 					>
-						{label} <span className="text-xs text-gray-400">({count})</span>
+						{label}{" "}
+						<span
+							className="text-xs"
+							style={{ color: "var(--color-text-muted)" }}
+						>
+							({count})
+						</span>
 					</button>
 				))}
 			</div>
