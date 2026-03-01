@@ -3,6 +3,7 @@ import type { CardPool } from "../CardPool";
 import { CardPools } from "../CardPool";
 
 export const MAX_APPRENTICE_ITEMS = 100;
+export const MAX_SCRIPT_APPRENTICE_ITEMS = 35;
 
 export interface ApprenticeStats {
 	total: number;
@@ -27,7 +28,18 @@ export class ApprenticeService {
 		return count;
 	}
 
-	canStartLesson(): boolean {
+	getApprenticeCountForPool(pool: CardPool): number {
+		return this.cardRepo
+			.findAll(pool)
+			.filter((card) => card.schedule.isInLearning).length;
+	}
+
+	canStartLesson(pool?: CardPool): boolean {
+		if (pool === "script") {
+			return (
+				this.getApprenticeCountForPool("script") < MAX_SCRIPT_APPRENTICE_ITEMS
+			);
+		}
 		return this.getApprenticeCount() < this.apprenticeLimit;
 	}
 

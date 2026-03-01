@@ -3,7 +3,10 @@ import { InMemoryStorage } from "../../../infrastructure/persistence/Storage";
 import { StorageCardRepository } from "../../../infrastructure/persistence/StorageCardRepository";
 import { StorageLearnerStateRepository } from "../../../infrastructure/persistence/StorageLearnerStateRepository";
 import { ReviewService } from "../../session/services/ReviewService";
-import { ApprenticeService } from "../../shared/services/ApprenticeService";
+import {
+	ApprenticeService,
+	MAX_SCRIPT_APPRENTICE_ITEMS,
+} from "../../shared/services/ApprenticeService";
 import type { SrsData } from "../../shared/types";
 import { LearningService } from "./ScriptLessonService";
 
@@ -234,20 +237,23 @@ describe("LearningService", () => {
 			};
 		}
 
-		it("returns null when ApprenticeService says at limit", () => {
-			const apprenticeService = new ApprenticeService(cardRepo, 1);
+		it("returns null when ApprenticeService says at script limit", () => {
+			const apprenticeService = new ApprenticeService(cardRepo);
 
 			const state = storage.load();
-			state.cards.s1 = {
-				id: "s1",
-				question: "test",
-				correctAnswer: "test",
-				choices: ["test"],
-				srs: makeSrsData({ learningStep: 1 }),
-				symbolCharacter: "ก",
-				property: "recognition",
-				lessonNumber: 1,
-			};
+			// Fill up the script apprentice stage to MAX_SCRIPT_APPRENTICE_ITEMS
+			for (let i = 0; i < MAX_SCRIPT_APPRENTICE_ITEMS; i++) {
+				state.cards[`s${i}`] = {
+					id: `s${i}`,
+					question: "test",
+					correctAnswer: "test",
+					choices: ["test"],
+					srs: makeSrsData({ learningStep: 1 }),
+					symbolCharacter: "ก",
+					property: "recognition",
+					lessonNumber: 1,
+				};
+			}
 			storage.save(state);
 
 			const gatedService = new LearningService(

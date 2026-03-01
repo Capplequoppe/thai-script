@@ -70,7 +70,7 @@ describe("generateVocabCards", () => {
 		expect(card).toBeDefined();
 		expect(card?.id).toBe("vocab:ที่:audioRecognition");
 		expect(card?.audioUrl).toBe("/audio/thai/thi.mp3");
-		expect(card?.question).toBe("Listen to the audio. Which word is this?");
+		expect(card?.question).toBe("Listen to the audio.");
 		expect(card?.correctAnswer).toBe("ที่");
 	});
 

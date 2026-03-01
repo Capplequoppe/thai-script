@@ -6,7 +6,11 @@ import type { CardRepository } from "../../ports/CardRepository";
 import { ScriptPropertyCard } from "../../script/entities/ScriptPropertyCard";
 import { SrsSchedule } from "../../srs/value-objects/SrsSchedule";
 import { VocabCard } from "../../vocabulary/entities/VocabCard";
-import { ApprenticeService, MAX_APPRENTICE_ITEMS } from "./ApprenticeService";
+import {
+	ApprenticeService,
+	MAX_APPRENTICE_ITEMS,
+	MAX_SCRIPT_APPRENTICE_ITEMS,
+} from "./ApprenticeService";
 
 function learningSchedule(): SrsSchedule {
 	return SrsSchedule.initial();
@@ -105,6 +109,41 @@ describe("ApprenticeService", () => {
 			}
 
 			expect(service.canStartLesson()).toBe(false);
+		});
+
+		describe("pool-specific limits", () => {
+			it("uses script-specific limit of 35 for script pool", () => {
+				for (let i = 0; i < MAX_SCRIPT_APPRENTICE_ITEMS; i++) {
+					cardRepo.save(makeScriptCard(`s${i}`, true));
+				}
+				expect(service.canStartLesson("script")).toBe(false);
+			});
+
+			it("allows script when below 35 even if combined count is high", () => {
+				for (let i = 0; i < MAX_SCRIPT_APPRENTICE_ITEMS - 1; i++) {
+					cardRepo.save(makeScriptCard(`s${i}`, true));
+				}
+				expect(service.canStartLesson("script")).toBe(true);
+			});
+
+			it("falls back to combined limit for unspecified pools", () => {
+				for (let i = 0; i < MAX_APPRENTICE_ITEMS; i++) {
+					cardRepo.save(makeScriptCard(`s${i}`, true));
+				}
+				expect(service.canStartLesson("grammar")).toBe(false);
+			});
+		});
+	});
+
+	describe("getApprenticeCountForPool", () => {
+		it("returns count for a specific pool", () => {
+			cardRepo.save(makeScriptCard("s1", true));
+			cardRepo.save(makeScriptCard("s2", false));
+			cardRepo.save(makeVocabCard("v1", true));
+
+			expect(service.getApprenticeCountForPool("script")).toBe(1);
+			expect(service.getApprenticeCountForPool("vocab")).toBe(1);
+			expect(service.getApprenticeCountForPool("grammar")).toBe(0);
 		});
 	});
 

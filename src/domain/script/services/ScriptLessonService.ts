@@ -93,7 +93,10 @@ export class LearningService {
 	) {}
 
 	startLesson(lessonNumber: number): LessonInfo | null {
-		if (this.apprenticeService && !this.apprenticeService.canStartLesson()) {
+		if (
+			this.apprenticeService &&
+			!this.apprenticeService.canStartLesson("script")
+		) {
 			return null;
 		}
 
