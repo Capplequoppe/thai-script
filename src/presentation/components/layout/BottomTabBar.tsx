@@ -54,6 +54,23 @@ function PagodaIcon() {
 	);
 }
 
+function BookIcon() {
+	return (
+		<svg
+			viewBox="0 0 24 24"
+			fill="currentColor"
+			className="w-6 h-6"
+			aria-hidden="true"
+		>
+			<title>Vocab</title>
+			<path d="M4 4h7a2 2 0 012 2v13a1.5 1.5 0 00-1.5-1.5H4V4z" opacity="0.5" />
+			<path d="M20 4h-7a2 2 0 00-2 2v13a1.5 1.5 0 011.5-1.5H20V4z" />
+			<path d="M4 19.5h7.5A1.5 1.5 0 0113 21H4v-1.5z" opacity="0.4" />
+			<path d="M20 19.5h-7.5A1.5 1.5 0 0011 21h9v-1.5z" opacity="0.7" />
+		</svg>
+	);
+}
+
 function GearIcon() {
 	return (
 		<svg
@@ -98,6 +115,9 @@ export function BottomTabBar({
 			badge: dueCount > 0 ? dueCount : undefined,
 		},
 		{ to: "/items", end: false, label: "Items", icon: <GemIcon /> },
+		...(vocabUnlocked
+			? [{ to: "/vocab", end: false, label: "Vocab", icon: <BookIcon /> }]
+			: []),
 		{ to: "/progress", end: false, label: "Progress", icon: <PagodaIcon /> },
 		{ to: "/settings", end: false, label: "Settings", icon: <GearIcon /> },
 	];
@@ -166,7 +186,7 @@ export function BottomTabBar({
 					))}
 					{vocabUnlocked && (
 						<NavLink
-							to="/vocabulary"
+							to="/vocab"
 							className={({ isActive }) =>
 								`text-sm font-medium transition-colors ${isActive ? ACTIVE : INACTIVE}`
 							}
