@@ -280,10 +280,10 @@ export class SrsSchedule {
 				newEf = this.easeFactor.adjust(-0.2);
 				return new SrsSchedule(
 					newEf,
-					10,
+					LEARNING_STEPS_MINUTES[1],
 					this.repetitions + 1,
 					1,
-					addMinutesToIso(now, 10),
+					addMinutesToIso(now, LEARNING_STEPS_MINUTES[1]),
 					now,
 					this.lapseCount + 1,
 				);
