@@ -89,7 +89,8 @@ describe("generateVocabCards", () => {
 	});
 
 	it("toneIdentification is a recognised VocabProperty at compile time", () => {
-		const prop: import("../types").VocabProperty = "toneIdentification";
-		expect(prop).toBe("toneIdentification");
+		// This line will not compile if 'toneIdentification' is removed from VocabProperty
+		const _check: import("../types").VocabProperty = "toneIdentification";
+		void _check;
 	});
 });
