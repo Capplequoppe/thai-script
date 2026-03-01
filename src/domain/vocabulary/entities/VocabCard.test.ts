@@ -109,9 +109,13 @@ describe("VocabCard", () => {
 
 	it("toDTO includes mnemonic when provided", () => {
 		const card = new VocabCard(
-			"id-1", "Q?", "A", ["A", "B"],
+			"id-1",
+			"Q?",
+			"A",
+			["A", "B"],
 			SrsSchedule.initial(NOW),
-			"คำ", "thaiToEnglish",
+			"คำ",
+			"thaiToEnglish",
 			undefined,
 			"sounds like 'come'",
 		);
@@ -121,10 +125,16 @@ describe("VocabCard", () => {
 	it("toDTO includes syllables when provided", () => {
 		const syllables = [{ text: "คำ", tone: "mid" }];
 		const card = new VocabCard(
-			"id-1", "Q?", "A", [],
+			"id-1",
+			"Q?",
+			"A",
+			[],
 			SrsSchedule.initial(NOW),
-			"คำ", "toneIdentification",
-			undefined, undefined, syllables,
+			"คำ",
+			"toneIdentification",
+			undefined,
+			undefined,
+			syllables,
 		);
 		expect(card.toDTO().syllables).toEqual(syllables);
 	});
@@ -132,10 +142,16 @@ describe("VocabCard", () => {
 	it("fromDTO roundtrips mnemonic and syllables", () => {
 		const syllables = [{ text: "คำ", tone: "mid" }];
 		const card = new VocabCard(
-			"id-2", "Q?", "A", [],
+			"id-2",
+			"Q?",
+			"A",
+			[],
 			SrsSchedule.initial(NOW),
-			"คำ", "toneIdentification",
-			undefined, "tip", syllables,
+			"คำ",
+			"toneIdentification",
+			undefined,
+			"tip",
+			syllables,
 		);
 		const restored = VocabCard.fromDTO(card.toDTO());
 		expect(restored.mnemonic).toBe("tip");
