@@ -1,4 +1,5 @@
 import { beforeEach, describe, expect, it, vi } from "vitest";
+import { GrammarReviewCard } from "../../domain/grammar/entities/GrammarReviewCard";
 import type { CardRepository } from "../../domain/ports/CardRepository";
 import { ScriptPropertyCard } from "../../domain/script/entities/ScriptPropertyCard";
 import { SrsSchedule } from "../../domain/srs/value-objects/SrsSchedule";
@@ -16,6 +17,18 @@ function makeScriptCard(id: string): ScriptPropertyCard {
 		"ก",
 		"recognition",
 		1,
+	);
+}
+
+function makeGrammarCard(id: string): GrammarReviewCard {
+	return new GrammarReviewCard(
+		id,
+		"Which particle marks the subject?",
+		"ว่า",
+		["ว่า", "ที่", "ซึ่ง", "อัน"],
+		SrsSchedule.initial(),
+		"grammar-topic-1",
+		"subjectMarker",
 	);
 }
 
@@ -76,17 +89,19 @@ describe("ManageItemsUseCase", () => {
 			expect(mockCardRepo.save).not.toHaveBeenCalled();
 		});
 
-		it("works for the script pool", () => {
-			const card = makeScriptCard("script-2");
+		it("works for the grammar pool", () => {
+			const card = makeGrammarCard("grammar-1");
 			mockCardRepo.findById.mockReturnValue(card);
 
-			useCase.overrideCardStage("script-2", "script", SrsStage.ENLIGHTENED);
+			useCase.overrideCardStage("grammar-1", "grammar", SrsStage.ENLIGHTENED);
 
-			expect(mockCardRepo.findById).toHaveBeenCalledWith("script-2", "script");
+			expect(mockCardRepo.findById).toHaveBeenCalledWith(
+				"grammar-1",
+				"grammar",
+			);
 			expect(mockCardRepo.save).toHaveBeenCalledTimes(1);
 
-			const savedCard = mockCardRepo.save.mock
-				.calls[0][0] as ScriptPropertyCard;
+			const savedCard = mockCardRepo.save.mock.calls[0][0] as GrammarReviewCard;
 			expect(savedCard.stage).toBe(SrsStage.ENLIGHTENED);
 		});
 
