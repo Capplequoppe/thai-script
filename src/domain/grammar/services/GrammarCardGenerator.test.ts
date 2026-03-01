@@ -95,7 +95,7 @@ describe("generateGrammarCards", () => {
 	it("cards have initialized SRS data", () => {
 		const cards = generateGrammarCards(makeGrammarEntry());
 		for (const card of cards) {
-			expect(card.srs.easeFactor).toBe(2.0);
+			expect(card.srs.easeFactor).toBe(2.5);
 			expect(card.srs.learningStep).toBe(1);
 			expect(card.srs.lapseCount).toBe(0);
 		}

@@ -18,10 +18,10 @@ export interface SrsDataDTO {
 }
 
 const LEARNING_STEPS_MINUTES = [0, 10, 60, 480] as const;
-const GRADUATING_INTERVAL_MINUTES = 4320;
+const RELEARNING_STEPS_MINUTES = [0, 10, 60] as const;
+const GRADUATING_INTERVAL_MINUTES = 2880;
 const MAX_INTERVAL_MINUTES = 259200;
 const MIN_GRADUATED_INTERVAL_MINUTES = 1440;
-const LAST_LEARNING_STEP = LEARNING_STEPS_MINUTES.length - 1;
 
 function addMinutesToIso(iso: string, minutes: number): string {
 	const d = new Date(iso);
@@ -60,6 +60,12 @@ export class SrsSchedule {
 
 	get isInLearning(): boolean {
 		return this.learningStep !== null;
+	}
+
+	private get activeSteps(): readonly number[] {
+		return this.lapseCount > 0
+			? RELEARNING_STEPS_MINUTES
+			: LEARNING_STEPS_MINUTES;
 	}
 
 	isDue(now: string): boolean {
@@ -128,6 +134,8 @@ export class SrsSchedule {
 
 	private handleLearningPhase(rating: RecallRating, now: string): SrsSchedule {
 		const step = this.learningStep as number;
+		const steps = this.activeSteps;
+		const lastStep = steps.length - 1;
 		let newStep: number;
 
 		switch (rating.value) {
@@ -135,7 +143,7 @@ export class SrsSchedule {
 				newStep = 0;
 				break;
 			case 2:
-				newStep = 1;
+				newStep = Math.max(0, step - 1);
 				break;
 			case 3:
 				newStep = step;
@@ -148,11 +156,11 @@ export class SrsSchedule {
 				break;
 		}
 
-		if (newStep > LAST_LEARNING_STEP) {
+		if (newStep > lastStep) {
 			return this.graduate(now);
 		}
 
-		const interval = LEARNING_STEPS_MINUTES[newStep];
+		const interval = steps[newStep];
 		return new SrsSchedule(
 			this.easeFactor,
 			interval,
@@ -218,6 +226,7 @@ export class SrsSchedule {
 				break;
 			}
 			case 4: {
+				newEf = this.easeFactor.adjust(0.05);
 				newInterval = Math.round(this.interval * this.easeFactor.value);
 				break;
 			}

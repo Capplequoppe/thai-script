@@ -3,8 +3,8 @@ import { EaseFactor } from "./EaseFactor";
 
 describe("EaseFactor", () => {
 	describe("create", () => {
-		it("defaults to 2.0", () => {
-			expect(EaseFactor.create().value).toBe(2.0);
+		it("defaults to 2.5", () => {
+			expect(EaseFactor.create().value).toBe(2.5);
 		});
 
 		it("accepts a valid value", () => {
@@ -29,8 +29,8 @@ describe("EaseFactor", () => {
 	});
 
 	describe("default", () => {
-		it("returns 2.0", () => {
-			expect(EaseFactor.default().value).toBe(2.0);
+		it("returns 2.5", () => {
+			expect(EaseFactor.default().value).toBe(2.5);
 		});
 	});
 

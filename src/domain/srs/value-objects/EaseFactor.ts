@@ -1,7 +1,7 @@
 export class EaseFactor {
 	static readonly MIN = 1.3;
 	static readonly MAX = 3.0;
-	static readonly DEFAULT = 2.0;
+	static readonly DEFAULT = 2.5;
 
 	private constructor(readonly value: number) {}
 

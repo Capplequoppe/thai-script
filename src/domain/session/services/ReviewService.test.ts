@@ -83,7 +83,7 @@ describe("ReviewService", () => {
 			const state = storage.load();
 			const graduated = state.cards[card.id]!;
 			expect(graduated.srs.learningStep).toBeNull();
-			expect(graduated.srs.interval).toBe(4320);
+			expect(graduated.srs.interval).toBe(2880);
 		});
 	});
 

@@ -44,7 +44,7 @@ function makeGraduatedSchedule(overrides?: Partial<SrsDataDTO>): SrsSchedule {
 describe("SrsSchedule.initial", () => {
 	it("creates correct initial state at learning step 1 with interval 10", () => {
 		const schedule = SrsSchedule.initial(NOW);
-		expect(schedule.easeFactor.value).toBe(2.0);
+		expect(schedule.easeFactor.value).toBe(2.5);
 		expect(schedule.interval).toBe(10);
 		expect(schedule.repetitions).toBe(0);
 		expect(schedule.learningStep).toBe(1);
@@ -81,7 +81,7 @@ describe("SrsSchedule.applyReview - Learning Phase", () => {
 
 		card = card.applyReview(RecallRating.GOOD, NOW);
 		expect(card.learningStep).toBeNull();
-		expect(card.interval).toBe(4320);
+		expect(card.interval).toBe(2880);
 	});
 
 	it("Easy skips steps: 0->2", () => {
@@ -95,14 +95,14 @@ describe("SrsSchedule.applyReview - Learning Phase", () => {
 		const card = makeLearningSchedule(3);
 		const result = card.applyReview(RecallRating.EASY, NOW);
 		expect(result.learningStep).toBeNull();
-		expect(result.interval).toBe(4320);
+		expect(result.interval).toBe(2880);
 	});
 
 	it("Easy skips steps: 2->graduated", () => {
 		const card = makeLearningSchedule(2);
 		const result = card.applyReview(RecallRating.EASY, NOW);
 		expect(result.learningStep).toBeNull();
-		expect(result.interval).toBe(4320);
+		expect(result.interval).toBe(2880);
 	});
 
 	it("Hard repeats current step with same interval", () => {
@@ -119,11 +119,18 @@ describe("SrsSchedule.applyReview - Learning Phase", () => {
 		expect(result.interval).toBe(0);
 	});
 
-	it("Wrong resets to step 1 with interval 10", () => {
+	it("Wrong drops back one step: 3->2", () => {
 		const card = makeLearningSchedule(3);
 		const result = card.applyReview(RecallRating.WRONG, NOW);
-		expect(result.learningStep).toBe(1);
-		expect(result.interval).toBe(10);
+		expect(result.learningStep).toBe(2);
+		expect(result.interval).toBe(60);
+	});
+
+	it("Wrong drops back one step: 1->0", () => {
+		const card = makeLearningSchedule(1);
+		const result = card.applyReview(RecallRating.WRONG, NOW);
+		expect(result.learningStep).toBe(0);
+		expect(result.interval).toBe(0);
 	});
 
 	it("nextReviewDate is offset by interval minutes", () => {
@@ -152,11 +159,11 @@ describe("SrsSchedule.applyReview - Learning Phase", () => {
 });
 
 describe("SrsSchedule.applyReview - Graduated Phase", () => {
-	it("Good multiplies interval by ease factor", () => {
+	it("Good multiplies interval by ease factor and boosts ease by 0.05", () => {
 		const card = makeGraduatedSchedule({ interval: 4320, easeFactor: 2.0 });
 		const result = card.applyReview(RecallRating.GOOD, NOW);
 		expect(result.interval).toBe(Math.round(4320 * 2.0));
-		expect(result.easeFactor.value).toBe(2.0);
+		expect(result.easeFactor.value).toBe(2.05);
 		expect(result.learningStep).toBeNull();
 	});
 
@@ -426,7 +433,7 @@ describe("SrsSchedule.resurrect", () => {
 			easeFactor: 2.5,
 		});
 		const resurrected = burned.resurrect(NOW);
-		expect(resurrected.interval).toBe(4320);
+		expect(resurrected.interval).toBe(2880);
 		expect(resurrected.learningStep).toBeNull();
 	});
 
@@ -448,7 +455,7 @@ describe("SrsSchedule.resurrect", () => {
 	it("sets nextReviewDate offset by graduating interval", () => {
 		const burned = makeGraduatedSchedule({ interval: 120_960 });
 		const resurrected = burned.resurrect(NOW);
-		expect(resurrected.nextReviewDate).toBe(addMinutes(NOW, 4320));
+		expect(resurrected.nextReviewDate).toBe(addMinutes(NOW, 2880));
 	});
 
 	it("sets lastReviewDate to now", () => {
@@ -494,7 +501,7 @@ describe("SrsSchedule.toDTO / fromDTO", () => {
 		const schedule = SrsSchedule.initial(NOW);
 		const dto = schedule.toDTO();
 		expect(dto).toEqual({
-			easeFactor: 2.0,
+			easeFactor: 2.5,
 			interval: 10,
 			repetitions: 0,
 			learningStep: 1,
@@ -542,5 +549,48 @@ describe("lapseCount tracking", () => {
 		const result = card.applyReview(RecallRating.GOOD, NOW);
 		expect(result.learningStep).toBeNull();
 		expect(result.lapseCount).toBe(2);
+	});
+});
+
+describe("Relearning steps (lapsed cards)", () => {
+	it("lapsed card uses shorter relearning steps [0, 10, 60]", () => {
+		const card = makeGraduatedSchedule({ easeFactor: 2.0 });
+		let lapsed = card.applyReview(RecallRating.AGAIN, NOW);
+		expect(lapsed.learningStep).toBe(0);
+		expect(lapsed.lapseCount).toBe(1);
+
+		lapsed = lapsed.applyReview(RecallRating.GOOD, NOW);
+		expect(lapsed.learningStep).toBe(1);
+		expect(lapsed.interval).toBe(10);
+
+		lapsed = lapsed.applyReview(RecallRating.GOOD, NOW);
+		expect(lapsed.learningStep).toBe(2);
+		expect(lapsed.interval).toBe(60);
+
+		lapsed = lapsed.applyReview(RecallRating.GOOD, NOW);
+		expect(lapsed.learningStep).toBeNull();
+		expect(lapsed.interval).toBe(2880);
+	});
+
+	it("WRONG lapse relearns from step 1 and graduates after step 2", () => {
+		const card = makeGraduatedSchedule({ easeFactor: 2.0 });
+		let lapsed = card.applyReview(RecallRating.WRONG, NOW);
+		expect(lapsed.learningStep).toBe(1);
+		expect(lapsed.lapseCount).toBe(1);
+
+		lapsed = lapsed.applyReview(RecallRating.GOOD, NOW);
+		expect(lapsed.learningStep).toBe(2);
+		expect(lapsed.interval).toBe(60);
+
+		lapsed = lapsed.applyReview(RecallRating.GOOD, NOW);
+		expect(lapsed.learningStep).toBeNull();
+		expect(lapsed.interval).toBe(2880);
+	});
+
+	it("new card (lapseCount 0) uses full learning steps [0, 10, 60, 480]", () => {
+		let card = makeLearningSchedule(2, { lapseCount: 0 });
+		card = card.applyReview(RecallRating.GOOD, NOW);
+		expect(card.learningStep).toBe(3);
+		expect(card.interval).toBe(480);
 	});
 });
