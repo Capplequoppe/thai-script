@@ -1,6 +1,56 @@
-import { useCallback, useEffect, useRef, useState } from "react";
+import {
+	useCallback,
+	useEffect,
+	useLayoutEffect,
+	useRef,
+	useState,
+} from "react";
+import { PlayAudioButton } from "../atoms/PlayAudioButton";
 import { ThaiCharDisplay } from "../atoms/ThaiCharDisplay";
 import { AnswerOptionButton } from "../molecules/AnswerOptionButton";
+
+function ThaiWordDisplay({
+	word,
+	audioUrl,
+}: {
+	word: string;
+	audioUrl?: string;
+}) {
+	const rowRef = useRef<HTMLDivElement>(null);
+	const textRef = useRef<HTMLSpanElement>(null);
+
+	// biome-ignore lint/correctness/useExhaustiveDependencies: word is not read inside the effect but triggers re-measurement when the displayed word changes
+	useLayoutEffect(() => {
+		const row = rowRef.current;
+		const text = textRef.current;
+		if (!row || !text) return;
+		// Reset to max then shrink until row no longer overflows its bounds
+		let px = 112; // 7rem at 16px base
+		text.style.fontSize = `${px}px`;
+		while (px > 20 && row.scrollWidth > row.clientWidth) {
+			px -= 2;
+			text.style.fontSize = `${px}px`;
+		}
+	}, [word]);
+
+	return (
+		<div
+			ref={rowRef}
+			className="flex items-center justify-center gap-3 overflow-hidden px-4"
+		>
+			<span
+				ref={textRef}
+				className="thai leading-none font-normal whitespace-nowrap"
+				style={{ fontSize: "7rem" }}
+			>
+				{word}
+			</span>
+			{audioUrl && (
+				<PlayAudioButton audioUrl={audioUrl} className="w-10 h-10 shrink-0" />
+			)}
+		</div>
+	);
+}
 
 interface QuizCardView {
 	id: string;
@@ -115,11 +165,7 @@ export function MultipleChoice({ card, onAnswer }: Props) {
 						background: "var(--color-surface)",
 					}}
 				>
-					<ThaiCharDisplay
-						character={wordThai}
-						className="text-[7rem]"
-						audioUrl={card.audioUrl}
-					/>
+					<ThaiWordDisplay word={wordThai} audioUrl={card.audioUrl} />
 				</div>
 			) : null}
 
