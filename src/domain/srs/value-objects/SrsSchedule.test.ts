@@ -553,7 +553,7 @@ describe("lapseCount tracking", () => {
 });
 
 describe("overrideStage", () => {
-	const NOW = "2026-03-01T10:00:00.000Z";
+	const OVERRIDE_NOW = "2026-03-01T10:00:00.000Z";
 
 	// A graduated card with non-default easeFactor and lapseCount to verify preservation
 	const schedule = SrsSchedule.fromDTO({
@@ -561,50 +561,50 @@ describe("overrideStage", () => {
 		interval: 4320,
 		repetitions: 5,
 		learningStep: null,
-		nextReviewDate: NOW,
+		nextReviewDate: OVERRIDE_NOW,
 		lastReviewDate: null,
 		lapseCount: 2,
 	});
 
 	it("overrides to Apprentice: learningStep=1, interval=10, immediately due", () => {
-		const result = schedule.overrideStage(SrsStage.APPRENTICE, NOW);
+		const result = schedule.overrideStage(SrsStage.APPRENTICE, OVERRIDE_NOW);
 		expect(result.learningStep).toBe(1);
 		expect(result.interval).toBe(10);
-		expect(new Date(result.nextReviewDate) <= new Date(NOW)).toBe(true);
+		expect(result.nextReviewDate).toBe(OVERRIDE_NOW);
 	});
 
 	it("overrides to Guru: learningStep=null, interval=2880, immediately due", () => {
-		const result = schedule.overrideStage(SrsStage.GURU, NOW);
+		const result = schedule.overrideStage(SrsStage.GURU, OVERRIDE_NOW);
 		expect(result.learningStep).toBeNull();
 		expect(result.interval).toBe(2880);
 		expect(result.stage).toStrictEqual(SrsStage.GURU);
-		expect(new Date(result.nextReviewDate) <= new Date(NOW)).toBe(true);
+		expect(result.nextReviewDate).toBe(OVERRIDE_NOW);
 	});
 
 	it("overrides to Master: learningStep=null, interval=20160, due in future", () => {
-		const result = schedule.overrideStage(SrsStage.MASTER, NOW);
+		const result = schedule.overrideStage(SrsStage.MASTER, OVERRIDE_NOW);
 		expect(result.learningStep).toBeNull();
 		expect(result.interval).toBe(20_160);
 		expect(result.stage).toStrictEqual(SrsStage.MASTER);
-		expect(new Date(result.nextReviewDate) > new Date(NOW)).toBe(true);
+		expect(new Date(result.nextReviewDate) > new Date(OVERRIDE_NOW)).toBe(true);
 	});
 
 	it("overrides to Enlightened: interval=60480", () => {
-		const result = schedule.overrideStage(SrsStage.ENLIGHTENED, NOW);
+		const result = schedule.overrideStage(SrsStage.ENLIGHTENED, OVERRIDE_NOW);
 		expect(result.learningStep).toBeNull();
 		expect(result.interval).toBe(60_480);
 		expect(result.stage).toStrictEqual(SrsStage.ENLIGHTENED);
 	});
 
 	it("overrides to Burned: interval=120960, isBurned=true", () => {
-		const result = schedule.overrideStage(SrsStage.BURNED, NOW);
+		const result = schedule.overrideStage(SrsStage.BURNED, OVERRIDE_NOW);
 		expect(result.learningStep).toBeNull();
 		expect(result.interval).toBe(120_960);
 		expect(result.isBurned).toBe(true);
 	});
 
 	it("preserves easeFactor, repetitions, lastReviewDate, and lapseCount from original schedule", () => {
-		const result = schedule.overrideStage(SrsStage.MASTER, NOW);
+		const result = schedule.overrideStage(SrsStage.MASTER, OVERRIDE_NOW);
 		const dto = result.toDTO();
 		expect(dto.easeFactor).toBe(2.3);
 		expect(dto.lapseCount).toBe(2);

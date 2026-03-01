@@ -98,10 +98,12 @@ export class SrsSchedule {
 	overrideStage(targetStage: SrsStage, now?: string): SrsSchedule {
 		const currentTime = now ?? new Date().toISOString();
 
+		// Demotions (Apprentice, Guru) set nextReviewDate to now so the card is immediately due.
+		// Promotions (Master, Enlightened, Burned) set nextReviewDate in the future.
 		if (targetStage === SrsStage.APPRENTICE) {
 			return new SrsSchedule(
 				this.easeFactor,
-				10,
+				LEARNING_STEPS_MINUTES[1],
 				this.repetitions,
 				1,
 				currentTime,
@@ -122,23 +124,46 @@ export class SrsSchedule {
 			);
 		}
 
-		const intervalByStage: Partial<Record<string, number>> = {
-			Master: SrsStage.GURU_THRESHOLD,
-			Enlightened: SrsStage.MASTER_THRESHOLD,
-			Burned: SrsStage.ENLIGHTENED_THRESHOLD,
-		};
-		const interval =
-			intervalByStage[targetStage.name] ?? SrsStage.GURU_THRESHOLD;
+		if (targetStage === SrsStage.MASTER) {
+			const interval = SrsStage.GURU_THRESHOLD;
+			return new SrsSchedule(
+				this.easeFactor,
+				interval,
+				this.repetitions,
+				null,
+				addMinutesToIso(currentTime, interval),
+				this.lastReviewDate,
+				this.lapseCount,
+			);
+		}
 
-		return new SrsSchedule(
-			this.easeFactor,
-			interval,
-			this.repetitions,
-			null,
-			addMinutesToIso(currentTime, interval),
-			this.lastReviewDate,
-			this.lapseCount,
-		);
+		if (targetStage === SrsStage.ENLIGHTENED) {
+			const interval = SrsStage.MASTER_THRESHOLD;
+			return new SrsSchedule(
+				this.easeFactor,
+				interval,
+				this.repetitions,
+				null,
+				addMinutesToIso(currentTime, interval),
+				this.lastReviewDate,
+				this.lapseCount,
+			);
+		}
+
+		if (targetStage === SrsStage.BURNED) {
+			const interval = SrsStage.ENLIGHTENED_THRESHOLD;
+			return new SrsSchedule(
+				this.easeFactor,
+				interval,
+				this.repetitions,
+				null,
+				addMinutesToIso(currentTime, interval),
+				this.lastReviewDate,
+				this.lapseCount,
+			);
+		}
+
+		throw new Error(`Unhandled stage: ${targetStage.name}`);
 	}
 
 	static initial(now?: string): SrsSchedule {
