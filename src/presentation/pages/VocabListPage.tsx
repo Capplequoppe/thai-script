@@ -40,7 +40,8 @@ const CLASS_ORDER = [
 const OTHER_KEY = "__other__";
 
 function toTabKey(word_class: string): string {
-	return word_class || OTHER_KEY;
+	if (!word_class || !(word_class in WORD_CLASS_LABELS)) return OTHER_KEY;
+	return word_class;
 }
 
 // ---------------------------------------------------------------------------
