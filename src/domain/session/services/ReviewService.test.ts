@@ -76,11 +76,10 @@ describe("ReviewService", () => {
 		it("card graduates after completing all learning steps", () => {
 			const due = reviewService.getDueCards(FUTURE_NOW);
 			const card = due[0]!;
-			// Starts at step 1 (from createSrsData), so 4 reviews to graduate:
+			// Starts at step 1 (from createSrsData), so 3 reviews to graduate:
 			reviewService.recordReview(card.id, 4, FUTURE_NOW); // step 1 -> 2
 			reviewService.recordReview(card.id, 4, FUTURE_NOW); // step 2 -> 3
-			reviewService.recordReview(card.id, 4, FUTURE_NOW); // step 3 -> 4
-			reviewService.recordReview(card.id, 4, FUTURE_NOW); // step 4 -> graduated
+			reviewService.recordReview(card.id, 4, FUTURE_NOW); // step 3 -> graduated
 			const state = storage.load();
 			const graduated = state.cards[card.id]!;
 			expect(graduated.srs.learningStep).toBeNull();
