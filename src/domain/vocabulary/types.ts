@@ -3,11 +3,14 @@ import type { SrsCard } from "../shared/types";
 export type VocabProperty =
 	| "thaiToEnglish"
 	| "englishToThai"
-	| "audioRecognition";
+	| "audioRecognition"
+	| "toneIdentification";
 
 export interface VocabularyCard extends SrsCard {
 	wordThai: string;
 	property: VocabProperty;
+	mnemonic?: string | null;
+	syllables?: { text: string; tone: string }[];
 }
 
 export interface SyllableInfo {

@@ -87,4 +87,9 @@ describe("generateVocabCards", () => {
 			expect(card.choices).toHaveLength(4);
 		}
 	});
+
+	it("toneIdentification is a recognised VocabProperty at compile time", () => {
+		const prop: import("../types").VocabProperty = "toneIdentification";
+		expect(prop).toBe("toneIdentification");
+	});
 });
