@@ -49,7 +49,7 @@ export function ToneQuiz({ card, onAnswer }: ToneQuizProps) {
 		setRevealed(true);
 		const elapsed = Date.now() - displayedAtRef.current;
 		const allCorrect = selections.every((sel, i) => sel === correctTones[i]);
-		setTimeout(() => onAnswer(allCorrect, elapsed), 600);
+		setTimeout(() => onAnswer(allCorrect, elapsed), allCorrect ? 600 : 5000);
 	}, [allSelected, revealed, selections, correctTones, onAnswer]);
 
 	return (

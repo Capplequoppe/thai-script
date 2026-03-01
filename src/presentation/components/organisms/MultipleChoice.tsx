@@ -109,7 +109,8 @@ export function MultipleChoice({ card, onAnswer, mnemonicExpanded = false }: Pro
 			const elapsed = Date.now() - displayedAtRef.current;
 			setSelected(choice);
 			setRevealed(true);
-			setTimeout(() => onAnswer(choice === card.correctAnswer, elapsed), 500);
+			const correct = choice === card.correctAnswer;
+		setTimeout(() => onAnswer(correct, elapsed), correct ? 500 : 5000);
 		},
 		[card.correctAnswer, onAnswer, revealed],
 	);
