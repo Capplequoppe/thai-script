@@ -113,7 +113,28 @@ export function WordCard({ word }: { word: VocabEntry }) {
 				)}
 			</div>
 
-			{/* 2. Syllable Breakdown (enriched) */}
+			{/* 2. Mnemonic */}
+			{word.mnemonic && (
+				<div
+					className="rounded-xl p-4"
+					style={{
+						background:
+							"color-mix(in srgb, var(--color-accent) 15%, var(--color-surface))",
+					}}
+				>
+					<p
+						className="text-xs font-semibold mb-1"
+						style={{ color: "var(--color-accent)" }}
+					>
+						Memory tip
+					</p>
+					<p className="text-sm" style={{ color: "var(--color-accent)" }}>
+						💡 {word.mnemonic}
+					</p>
+				</div>
+			)}
+
+			{/* 3. Syllable Breakdown (enriched) */}
 			{word.syllables.length > 0 && (
 				<div
 					className="rounded-xl p-4"
@@ -231,7 +252,7 @@ export function WordCard({ word }: { word: VocabEntry }) {
 				</div>
 			)}
 
-			{/* 3. Example Sentences */}
+			{/* 4. Example Sentences */}
 			{visibleSamples.length > 0 && (
 				<div
 					className="rounded-xl p-4"
@@ -280,20 +301,6 @@ export function WordCard({ word }: { word: VocabEntry }) {
 				</div>
 			)}
 
-			{/* 4. Mnemonic */}
-			{word.mnemonic && (
-				<div
-					className="rounded-xl p-3"
-					style={{
-						background:
-							"color-mix(in srgb, var(--color-accent) 12%, var(--color-surface))",
-					}}
-				>
-					<p className="text-sm" style={{ color: "var(--color-accent)" }}>
-						💡 {word.mnemonic}
-					</p>
-				</div>
-			)}
 		</div>
 	);
 }
