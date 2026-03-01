@@ -151,6 +151,29 @@ export function LearnedItemsPage() {
 		return seen.size;
 	}, [state.vocabCards]);
 
+	const selectedSymbol = useMemo(() => {
+		if (selectedIdx === null) return null;
+		if (tab === "consonants") return consonants[selectedIdx] ?? null;
+		if (tab === "vowels") return vowels[selectedIdx] ?? null;
+		if (tab === "toneMarks") return toneMarks[selectedIdx] ?? null;
+		return null;
+	}, [tab, selectedIdx, consonants, vowels, toneMarks]);
+
+	const overrideCards: ItemCard[] = useMemo(() => {
+		if (!selectedSymbol) return [];
+		return Object.values(state.cards)
+			.filter((card) => card.symbolCharacter === selectedSymbol.character)
+			.map((card) => ({
+				id: card.id,
+				pool: "script" as const,
+				label: propertyLabel(card.property),
+				currentStage: SrsStage.fromScheduleData(
+					card.srs.learningStep,
+					card.srs.interval,
+				),
+			}));
+	}, [selectedSymbol, state.cards]);
+
 	const tabs: { key: Tab; label: string; count: number }[] = [
 		{ key: "consonants", label: "Consonants", count: consonants.length },
 		{ key: "vowels", label: "Vowels", count: vowels.length },
@@ -228,7 +251,10 @@ export function LearnedItemsPage() {
 				>
 					<button
 						type="button"
-						onClick={() => setSelectedIdx(null)}
+						onClick={() => {
+							setSelectedIdx(null);
+							setOverrideOpen(false);
+						}}
 						className="text-sm mb-4 hover:underline"
 						style={{ color: "var(--color-primary)" }}
 					>
@@ -243,54 +269,34 @@ export function LearnedItemsPage() {
 					{tab === "toneMarks" && toneMarks[selectedIdx] && (
 						<ToneMarkCard t={toneMarks[selectedIdx]} />
 					)}
-					{(() => {
-						const symbol =
-							tab === "consonants"
-								? consonants[selectedIdx]
-								: tab === "vowels"
-									? vowels[selectedIdx]
-									: toneMarks[selectedIdx];
-						if (!symbol) return null;
-						const overrideCards: ItemCard[] = Object.values(state.cards)
-							.filter((card) => card.symbolCharacter === symbol.character)
-							.map((card) => ({
-								id: card.id,
-								pool: "script" as const,
-								label: propertyLabel(card.property),
-								currentStage: SrsStage.fromScheduleData(
-									card.srs.learningStep,
-									card.srs.interval,
-								),
-							}));
-						return (
-							<>
-								<button
-									type="button"
-									onClick={() => setOverrideOpen(true)}
-									className="mt-4 w-full py-2 px-4 rounded-lg text-sm font-medium transition-colors"
-									style={{
-										background:
-											"color-mix(in srgb, var(--color-primary) 12%, var(--color-surface))",
-										color: "var(--color-primary)",
-										border:
-											"1px solid color-mix(in srgb, var(--color-primary) 30%, transparent)",
-									}}
-								>
-									Override Stage
-								</button>
-								<StageOverrideSheet
-									open={overrideOpen}
-									onClose={() => setOverrideOpen(false)}
-									itemLabel={symbol.character}
-									cards={overrideCards}
-									onOverride={(id, pool, stage) => {
-										items.overrideCardStage(id, pool, stage);
-										refresh();
-									}}
-								/>
-							</>
-						);
-					})()}
+					{selectedSymbol && (
+						<>
+							<button
+								type="button"
+								onClick={() => setOverrideOpen(true)}
+								className="mt-4 w-full py-2 px-4 rounded-lg text-sm font-medium transition-colors"
+								style={{
+									background:
+										"color-mix(in srgb, var(--color-primary) 12%, var(--color-surface))",
+									color: "var(--color-primary)",
+									border:
+										"1px solid color-mix(in srgb, var(--color-primary) 30%, transparent)",
+								}}
+							>
+								Override Stage
+							</button>
+							<StageOverrideSheet
+								open={overrideOpen}
+								onClose={() => setOverrideOpen(false)}
+								itemLabel={selectedSymbol.character}
+								cards={overrideCards}
+								onOverride={(id, pool, stage) => {
+									items.overrideCardStage(id, pool, stage);
+									refresh();
+								}}
+							/>
+						</>
+					)}
 				</div>
 			)}
 
