@@ -8,6 +8,7 @@ import {
 } from "react";
 import { ConductReviewUseCase } from "../../application/use-cases/ConductReviewUseCase";
 import { ManageDataUseCase } from "../../application/use-cases/ManageDataUseCase";
+import { ManageItemsUseCase } from "../../application/use-cases/ManageItemsUseCase";
 import { QueryDashboardUseCase } from "../../application/use-cases/QueryDashboardUseCase";
 import { StartLessonUseCase } from "../../application/use-cases/StartLessonUseCase";
 import grammarData from "../../domain/grammar/data/grammar.json";
@@ -67,6 +68,7 @@ const dashboardUseCase = new QueryDashboardUseCase(
 	leechService,
 );
 const dataUseCase = new ManageDataUseCase(stateRepo);
+const itemsUseCase = new ManageItemsUseCase(cardRepo);
 
 export interface AppContextValue {
 	state: LearnerState;
@@ -75,6 +77,7 @@ export interface AppContextValue {
 	review: ConductReviewUseCase;
 	dashboard: QueryDashboardUseCase;
 	data: ManageDataUseCase;
+	items: ManageItemsUseCase;
 	vocab: VocabularyService;
 	checkAchievements: (summary: SessionSummary) => string[];
 }
@@ -118,6 +121,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
 			review: reviewUseCase,
 			dashboard: dashboardUseCase,
 			data: dataUseCase,
+			items: itemsUseCase,
 			vocab: vocabularyService,
 			checkAchievements,
 		}),
