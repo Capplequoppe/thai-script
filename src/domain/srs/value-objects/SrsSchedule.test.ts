@@ -603,15 +603,22 @@ describe("overrideStage", () => {
 		expect(result.isBurned).toBe(true);
 	});
 
-	it("preserves easeFactor and lapseCount from original schedule", () => {
+	it("preserves easeFactor, repetitions, lastReviewDate, and lapseCount from original schedule", () => {
 		const result = schedule.overrideStage(SrsStage.MASTER, NOW);
-		expect(result.toDTO().easeFactor).toBe(2.3);
-		expect(result.toDTO().lapseCount).toBe(2);
+		const dto = result.toDTO();
+		expect(dto.easeFactor).toBe(2.3);
+		expect(dto.lapseCount).toBe(2);
+		expect(dto.repetitions).toBe(5);
+		expect(dto.lastReviewDate).toBeNull();
 	});
 
 	it("uses current time when now not provided", () => {
+		const before = new Date().toISOString();
 		const result = schedule.overrideStage(SrsStage.APPRENTICE);
+		const after = new Date().toISOString();
 		expect(result.learningStep).toBe(1);
+		expect(new Date(result.nextReviewDate) >= new Date(before)).toBe(true);
+		expect(new Date(result.nextReviewDate) <= new Date(after)).toBe(true);
 	});
 });
 
