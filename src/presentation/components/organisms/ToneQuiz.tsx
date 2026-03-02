@@ -12,8 +12,8 @@ interface ToneQuizProps {
 
 export function ToneQuiz({ card, onAnswer }: ToneQuizProps) {
 	const syllables = card.syllables ?? [];
-	const [selections, setSelections] = useState<(Tone | null)[]>(
-		() => syllables.map(() => null),
+	const [selections, setSelections] = useState<(Tone | null)[]>(() =>
+		syllables.map(() => null),
 	);
 	const [revealed, setRevealed] = useState(false);
 	const displayedAtRef = useRef(Date.now());

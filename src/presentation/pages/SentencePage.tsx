@@ -3,32 +3,31 @@ import { useNavigate } from "react-router";
 import { Button } from "@/presentation/components/ui/button";
 import { Card } from "@/presentation/components/ui/card";
 import { Progress } from "@/presentation/components/ui/progress";
+import type { SentenceCard, SentenceEntry } from "../../domain/sentence/types";
 import { ratingFromCorrectness } from "../../domain/shared/ratingFromCorrectness";
 import type { RecallRating } from "../../domain/shared/types";
-import type { VocabEntry, VocabularyCard } from "../../domain/vocabulary/types";
 import { SectionHeader } from "../components/atoms/SectionHeader";
 import { SessionStatGrid } from "../components/molecules/SessionStatGrid";
 import { AchievementBadge } from "../components/organisms/AchievementBadge";
 import { Flashcard } from "../components/organisms/Flashcard";
 import { MultipleChoice } from "../components/organisms/MultipleChoice";
-import { ToneQuiz } from "../components/organisms/ToneQuiz";
-import { WordCard } from "../components/organisms/WordCard";
+import { SentenceBuilder } from "../components/organisms/SentenceBuilder";
 import { useApp } from "../hooks/useApp";
 import { useReviewSession } from "../hooks/useReviewSession";
 import { useSessionFlow } from "../hooks/useSessionFlow";
 
 type Phase = "overview" | "intro" | "quiz" | "complete" | "review";
 
-function VocabIntro({
-	words,
+function SentenceIntro({
+	sentences,
 	onComplete,
 }: {
-	words: VocabEntry[];
+	sentences: SentenceEntry[];
 	onComplete: () => void;
 }) {
 	const [idx, setIdx] = useState(0);
-	const current = words[idx];
-	const isLast = idx === words.length - 1;
+	const current = sentences[idx];
+	const isLast = idx === sentences.length - 1;
 
 	const advance = useCallback(() => {
 		if (isLast) onComplete();
@@ -62,7 +61,7 @@ function VocabIntro({
 				style={{ color: "var(--color-text-muted)" }}
 			>
 				<span>
-					{idx + 1} / {words.length}
+					{idx + 1} / {sentences.length}
 				</span>
 				<span
 					className="px-2 py-0.5 rounded text-xs"
@@ -71,11 +70,51 @@ function VocabIntro({
 						color: "var(--color-text-muted)",
 					}}
 				>
-					vocabulary
+					sentence
 				</span>
 			</div>
-			<Progress value={((idx + 1) / words.length) * 100} className="h-1.5" />
-			<WordCard word={current} />
+			<div
+				className="w-full h-1 rounded-full"
+				style={{ background: "var(--color-border)" }}
+			>
+				<div
+					className="h-full rounded-full transition-all"
+					style={{
+						background: "var(--color-accent)",
+						width: `${((idx + 1) / sentences.length) * 100}%`,
+					}}
+				/>
+			</div>
+
+			<Card className="p-5 text-center space-y-2">
+				<div
+					className="thai text-2xl font-bold"
+					style={{ color: "var(--color-text)" }}
+				>
+					{current.thai}
+				</div>
+				<div className="text-sm" style={{ color: "var(--color-text-muted)" }}>
+					{current.romanization}
+				</div>
+				<div className="text-base" style={{ color: "var(--color-text)" }}>
+					{current.english}
+				</div>
+				{current.thai_audio_file && (
+					<button
+						type="button"
+						onClick={() =>
+							new Audio(current.thai_audio_file as string)
+								.play()
+								.catch(() => {})
+						}
+						className="text-2xl mt-2"
+						aria-label="Play pronunciation"
+					>
+						🔊
+					</button>
+				)}
+			</Card>
+
 			<div className="flex gap-3">
 				{idx > 0 && (
 					<Button type="button" variant="outline" onClick={goBack}>
@@ -90,69 +129,93 @@ function VocabIntro({
 	);
 }
 
-export function VocabularyPage() {
+function SentenceQuizCard({
+	card,
+	onAnswer,
+}: {
+	card: SentenceCard;
+	onAnswer: (correct: boolean, responseTimeMs: number) => void;
+}) {
+	switch (card.property) {
+		case "readingComprehension":
+		case "listeningComprehension":
+			return <MultipleChoice card={card} onAnswer={onAnswer} />;
+		case "sentenceBuilding":
+			return <SentenceBuilder card={card} onAnswer={onAnswer} />;
+		case "selfValidation":
+			return (
+				<Flashcard
+					card={card}
+					onRate={(rating, responseTimeMs) =>
+						onAnswer(rating >= 3, responseTimeMs)
+					}
+				/>
+			);
+		default:
+			return null;
+	}
+}
+
+export function SentencePage() {
 	const { lesson, review, refresh, checkAchievements } = useApp();
 	const navigate = useNavigate();
 
 	const [phase, setPhase] = useState<Phase>("overview");
-	const [lessonWords, setLessonWords] = useState<VocabEntry[]>([]);
-	const [cards, setCards] = useState<VocabularyCard[]>([]);
+	const [lessonSentences, setLessonSentences] = useState<SentenceEntry[]>([]);
+	const [cards, setCards] = useState<SentenceCard[]>([]);
 	const flow = useSessionFlow(cards.length);
 
 	const achievementsCheckedRef = useRef(false);
 	const [newAchievements, setNewAchievements] = useState<string[]>([]);
 
-	// Live accuracy tracking for the vocab review phase
 	const [reviewCorrect, setReviewCorrect] = useState(0);
 	const [reviewTotal, setReviewTotal] = useState(0);
 
-	const startVocabSession = useCallback(
-		(maxCards?: number) => review.startSession("vocab", maxCards),
+	const startSentenceSession = useCallback(
+		(maxCards?: number) => review.startSession("sentence", maxCards),
 		[review],
 	);
-	const recordVocabReview = useCallback(
+	const recordSentenceReview = useCallback(
 		(cardId: string, rating: RecallRating): string => {
-			const newStage = review.recordReview(cardId, rating, "vocab");
+			const newStage = review.recordReview(cardId, rating, "sentence");
 			refresh();
 			return newStage;
 		},
 		[review, refresh],
 	);
-	const endVocabSession = useCallback(
+	const endSentenceSession = useCallback(
 		(session: Parameters<typeof review.endSession>[0]) => {
-			const summary = review.endSession(session, "vocab");
+			const summary = review.endSession(session, "sentence");
 			refresh();
 			return summary;
 		},
 		[review, refresh],
 	);
 
-	const vocabReview = useReviewSession(
-		startVocabSession,
-		recordVocabReview,
-		endVocabSession,
+	const sentenceReview = useReviewSession(
+		startSentenceSession,
+		recordSentenceReview,
+		endSentenceSession,
 	);
 
-	const nextLesson = lesson.getNextVocab();
-	const availableCount = lesson.getVocabUnlearnedCount();
-	const learnedCount = lesson.getVocabLearnedCount();
-	const dueVocabCards = review.getDueCount("vocab");
+	const nextLesson = lesson.getNextSentence();
+	const unlockedCount = lesson.getSentenceUnlockedCount();
+	const learnedCount = lesson.getSentenceLearnedCount();
+	const dueSentenceCards = review.getDueCount("sentence");
 
 	useEffect(() => {
-		if (flow.isComplete && cards.length > 0) {
-			lesson.commitVocabLesson(cards);
-			refresh();
+		if (flow.isComplete) {
 			setPhase("complete");
 		}
-	}, [flow.isComplete, cards, lesson, refresh]);
+	}, [flow.isComplete]);
 
 	useEffect(() => {
 		if (phase === "complete" && !achievementsCheckedRef.current) {
 			achievementsCheckedRef.current = true;
 			const sessionSummary = {
-				sessionId: `vocab-lesson-${Date.now()}`,
+				sessionId: `sentence-lesson-${Date.now()}`,
 				completedAt: new Date().toISOString(),
-				type: "vocab-lesson" as const,
+				type: "sentence-lesson" as const,
 				durationMs: 0,
 				totalCards: flow.correct + flow.incorrect,
 				correctCount: flow.correct,
@@ -173,22 +236,23 @@ export function VocabularyPage() {
 
 	const handleStartLesson = () => {
 		if (!nextLesson) return;
-		setLessonWords(nextLesson.words);
+		setLessonSentences(nextLesson.sentences);
 		achievementsCheckedRef.current = false;
 		setNewAchievements([]);
 		setPhase("intro");
 	};
 
 	const handleIntroComplete = () => {
-		const generated = lesson.prepareVocabLesson();
+		const generated = lesson.startSentence();
 		if (!generated) return;
 		setCards(generated);
+		refresh();
 		flow.reset();
 		setPhase("quiz");
 	};
 
 	const handleStartReview = () => {
-		const s = vocabReview.startReview();
+		const s = sentenceReview.startReview();
 		if (s.cards.length === 0) return;
 		setReviewCorrect(0);
 		setReviewTotal(0);
@@ -201,12 +265,12 @@ export function VocabularyPage() {
 			if (rating >= 3) {
 				setReviewCorrect((c) => c + 1);
 			}
-			const result = vocabReview.handleReviewAdvance(rating);
+			const result = sentenceReview.handleReviewAdvance(rating);
 			if (result?.status === "complete") {
 				setPhase("overview");
 			}
 		},
-		[vocabReview],
+		[sentenceReview],
 	);
 
 	const handleMcAnswer = useCallback(
@@ -225,10 +289,10 @@ export function VocabularyPage() {
 						className="text-3xl font-bold"
 						style={{ color: "var(--color-text)" }}
 					>
-						Vocabulary
+						Sentences
 					</h1>
 					<p className="mt-1" style={{ color: "var(--color-text-muted)" }}>
-						Learn Thai words unlocked by your script mastery
+						Practice reading and understanding Thai sentences
 					</p>
 				</div>
 
@@ -238,13 +302,13 @@ export function VocabularyPage() {
 							className="text-2xl font-bold"
 							style={{ color: "var(--color-text)" }}
 						>
-							{availableCount}
+							{unlockedCount}
 						</div>
 						<div
 							className="text-xs mt-1"
 							style={{ color: "var(--color-text-muted)" }}
 						>
-							Available
+							Unlocked
 						</div>
 					</Card>
 					<Card className="p-4">
@@ -266,7 +330,7 @@ export function VocabularyPage() {
 							className="text-2xl font-bold"
 							style={{ color: "var(--color-accent)" }}
 						>
-							{dueVocabCards}
+							{dueSentenceCards}
 						</div>
 						<div
 							className="text-xs mt-1"
@@ -279,59 +343,47 @@ export function VocabularyPage() {
 
 				<div className="space-y-3">
 					{nextLesson && (
-						<div>
-							<Button
-								type="button"
-								size="lg"
-								className="w-full"
-								onClick={handleStartLesson}
-							>
-								Learn {nextLesson.words.length} New Words
-							</Button>
-							<div className="mt-2 flex flex-wrap gap-2 justify-center">
-								{nextLesson.words.map((w) => (
-									<span
-										key={w.thai}
-										className="thai text-sm px-2 py-1 rounded"
-										style={{
-											background: "var(--color-surface)",
-											color: "var(--color-text)",
-										}}
-									>
-										{w.thai} — {w.english}
-									</span>
-								))}
-							</div>
-						</div>
+						<Button
+							type="button"
+							size="lg"
+							className="w-full"
+							onClick={handleStartLesson}
+						>
+							Learn {nextLesson.sentences.length} New Sentence
+							{nextLesson.sentences.length !== 1 ? "s" : ""}
+						</Button>
 					)}
 
-					{!nextLesson && availableCount === 0 && learnedCount === 0 && (
+					{!nextLesson && unlockedCount === 0 && (
 						<p
 							className="text-center"
 							style={{ color: "var(--color-text-muted)" }}
 						>
-							Complete more script lessons to unlock vocabulary words.
+							Learn more vocabulary words to unlock sentences.
 						</p>
 					)}
 
-					{!nextLesson && availableCount === 0 && learnedCount > 0 && (
-						<p
-							className="text-center font-semibold"
-							style={{ color: "var(--color-master)" }}
-						>
-							All unlocked words learned! Complete more script lessons to unlock
-							more.
-						</p>
-					)}
+					{!nextLesson &&
+						unlockedCount > 0 &&
+						learnedCount === unlockedCount && (
+							<p
+								className="text-center font-semibold"
+								style={{ color: "var(--color-master)" }}
+							>
+								All unlocked sentences learned! Learn more vocabulary to unlock
+								more.
+							</p>
+						)}
 
-					{dueVocabCards > 0 && (
+					{dueSentenceCards > 0 && (
 						<Button
 							type="button"
 							size="lg"
 							className="w-full"
 							onClick={handleStartReview}
 						>
-							Review {dueVocabCards} Due Words
+							Review {dueSentenceCards} Due Sentence Card
+							{dueSentenceCards !== 1 ? "s" : ""}
 						</Button>
 					)}
 				</div>
@@ -347,36 +399,39 @@ export function VocabularyPage() {
 					className="text-xl font-bold mb-1"
 					style={{ color: "var(--color-text)" }}
 				>
-					New Vocabulary
+					New Sentences
 				</h1>
 				<p
 					className="text-sm mb-6"
 					style={{ color: "var(--color-text-muted)" }}
 				>
-					{lessonWords.length} words to learn
+					{lessonSentences.length} sentence
+					{lessonSentences.length !== 1 ? "s" : ""} to learn
 				</p>
-				<VocabIntro words={lessonWords} onComplete={handleIntroComplete} />
+				<SentenceIntro
+					sentences={lessonSentences}
+					onComplete={handleIntroComplete}
+				/>
 			</div>
 		);
 	}
 
 	// Quiz
-	const currentVocabCard = cards[flow.cardIdx];
-	if (phase === "quiz" && currentVocabCard) {
+	const currentCard = cards[flow.cardIdx];
+	if (phase === "quiz" && currentCard) {
 		const liveTotal = flow.correct + flow.incorrect;
 		const liveAccuracy =
 			liveTotal > 0 ? `${Math.round((flow.correct / liveTotal) * 100)}%` : "—";
 
 		return (
 			<div>
-				{/* Session header HUD */}
 				<div className="mb-4">
 					<div className="flex items-center justify-between mb-2">
 						<span
 							className="text-sm font-semibold"
 							style={{ color: "var(--color-text)" }}
 						>
-							Vocabulary Session
+							Sentence Session
 						</span>
 						<span
 							className="text-sm"
@@ -405,18 +460,13 @@ export function VocabularyPage() {
 						className="h-1.5"
 					/>
 				</div>
-				{currentVocabCard.property === "toneIdentification" ? (
-					<ToneQuiz card={currentVocabCard} onAnswer={flow.advance} />
-				) : (
-					<MultipleChoice card={currentVocabCard} onAnswer={flow.advance} />
-				)}
+				<SentenceQuizCard card={currentCard} onAnswer={flow.advance} />
 			</div>
 		);
 	}
 
 	// Complete
 	if (phase === "complete") {
-		const totalCardsCount = flow.correct + flow.incorrect;
 		const accuracy = flow.accuracy;
 
 		return (
@@ -444,7 +494,7 @@ export function VocabularyPage() {
 
 				<SessionStatGrid
 					totalLabel="Cards"
-					total={totalCardsCount}
+					total={flow.correct + flow.incorrect}
 					correct={flow.correct}
 					accuracy={accuracy.percentage}
 				/>
@@ -476,8 +526,8 @@ export function VocabularyPage() {
 	}
 
 	// Review
-	if (phase === "review" && vocabReview.session) {
-		const current = vocabReview.currentCard;
+	if (phase === "review" && sentenceReview.session) {
+		const current = sentenceReview.currentCard;
 		if (!current) return null;
 
 		const reviewLiveAccuracy =
@@ -487,20 +537,20 @@ export function VocabularyPage() {
 
 		return (
 			<div>
-				{/* Session header HUD */}
 				<div className="mb-4">
 					<div className="flex items-center justify-between mb-2">
 						<span
 							className="text-sm font-semibold"
 							style={{ color: "var(--color-text)" }}
 						>
-							Vocabulary Review
+							Sentence Review
 						</span>
 						<span
 							className="text-sm"
 							style={{ color: "var(--color-text-muted)" }}
 						>
-							{vocabReview.cardIdx + 1} / {vocabReview.session.cards.length}
+							{sentenceReview.cardIdx + 1} /{" "}
+							{sentenceReview.session.cards.length}
 						</span>
 						<span
 							className="text-sm"
@@ -520,20 +570,14 @@ export function VocabularyPage() {
 					</div>
 					<Progress
 						value={
-							((vocabReview.cardIdx + 1) / vocabReview.session.cards.length) *
+							((sentenceReview.cardIdx + 1) /
+								sentenceReview.session.cards.length) *
 							100
 						}
 						className="h-1.5"
 					/>
 				</div>
-				{"property" in current.card &&
-				(current.card as unknown as VocabularyCard).property ===
-					"toneIdentification" ? (
-					<ToneQuiz
-						card={current.card as unknown as VocabularyCard}
-						onAnswer={handleMcAnswer}
-					/>
-				) : current.mode === "multipleChoice" ? (
+				{current.mode === "multipleChoice" ? (
 					<MultipleChoice card={current.card} onAnswer={handleMcAnswer} />
 				) : (
 					<Flashcard card={current.card} onRate={handleReviewAdvance} />

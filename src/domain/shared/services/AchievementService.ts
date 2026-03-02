@@ -6,10 +6,7 @@ export class AchievementService {
 	 * Returns IDs of achievements newly earned given the current state and last session.
 	 * Pure computation — does NOT modify state. Caller is responsible for persisting.
 	 */
-	checkNewAchievements(
-		state: LearnerState,
-		session: SessionSummary,
-	): string[] {
+	checkNewAchievements(state: LearnerState, session: SessionSummary): string[] {
 		const alreadyUnlocked = new Set(state.achievements ?? []);
 		const earned: string[] = [];
 
@@ -17,7 +14,13 @@ export class AchievementService {
 			if (condition && !alreadyUnlocked.has(id)) earned.push(id);
 		};
 
-		const { completedLessons, sessionHistory, cards, vocabCards, grammarCards } = state;
+		const {
+			completedLessons,
+			sessionHistory,
+			cards,
+			vocabCards,
+			grammarCards,
+		} = state;
 
 		// Lesson milestones
 		check("first_lesson", completedLessons.length >= 1);
@@ -33,7 +36,10 @@ export class AchievementService {
 		);
 		check("first_review", reviewSessions.length >= 1);
 
-		const totalReviewed = sessionHistory.reduce((sum, s) => sum + s.totalCards, 0);
+		const totalReviewed = sessionHistory.reduce(
+			(sum, s) => sum + s.totalCards,
+			0,
+		);
 		check("century", totalReviewed >= 100);
 		check("warrior", totalReviewed >= 500);
 
@@ -51,8 +57,7 @@ export class AchievementService {
 		// "Master" = interval >= GURU_THRESHOLD (14 days = 20160 min)
 		const hasMasterCard = allSrsData.some(
 			(srs) =>
-				srs.learningStep === null &&
-				srs.interval >= SrsStage.GURU_THRESHOLD,
+				srs.learningStep === null && srs.interval >= SrsStage.GURU_THRESHOLD,
 		);
 		// "Burned" = interval >= ENLIGHTENED_THRESHOLD (84 days = 120960 min)
 		const hasBurnedCard = allSrsData.some(

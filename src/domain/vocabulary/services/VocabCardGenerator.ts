@@ -74,7 +74,9 @@ export function generateVocabCards(
 
 	// Tone identification (only if at least one syllable has a tone)
 	const toneSyllables = word.syllables
-		.filter((s): s is typeof s & { tone: string } => s.tone !== null && s.tone !== "")
+		.filter(
+			(s): s is typeof s & { tone: string } => s.tone !== null && s.tone !== "",
+		)
 		.map((s) => ({ text: s.text, tone: s.tone }));
 
 	if (toneSyllables.length > 0) {

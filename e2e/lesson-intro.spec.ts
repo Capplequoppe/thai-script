@@ -1,4 +1,4 @@
-import { test, expect } from "@playwright/test";
+import { expect, test } from "@playwright/test";
 
 test.describe("Lesson 1 intro flow", () => {
 	test.use({ viewport: { width: 390, height: 844 } });
@@ -43,9 +43,7 @@ test.describe("Lesson 1 intro flow", () => {
 		await page.getByRole("button", { name: "Next" }).click();
 
 		// ConsonantCard for ม (maaw maa)
-		await expect(
-			page.getByRole("heading", { name: "maaw maa" }),
-		).toBeVisible();
+		await expect(page.getByRole("heading", { name: "maaw maa" })).toBeVisible();
 		await expect(page.getByText("ม", { exact: true }).first()).toBeVisible();
 		await expect(page.getByText("ม ม้า")).toBeVisible();
 	});

@@ -98,7 +98,8 @@ describe("QueryDashboardUseCase", () => {
 			mockCardRepo.findAll
 				.mockReturnValueOnce([makeCard("s1", SrsStage.APPRENTICE)])
 				.mockReturnValueOnce([makeCard("v1", SrsStage.GURU)])
-				.mockReturnValueOnce([makeCard("g1", SrsStage.MASTER)]);
+				.mockReturnValueOnce([makeCard("g1", SrsStage.MASTER)])
+				.mockReturnValueOnce([makeCard("t1", SrsStage.ENLIGHTENED)]);
 
 			const counts = useCase.getStageCounts();
 
@@ -106,10 +107,10 @@ describe("QueryDashboardUseCase", () => {
 				apprentice: 1,
 				guru: 1,
 				master: 1,
-				enlightened: 0,
+				enlightened: 1,
 				burned: 0,
 			});
-			expect(mockCardRepo.findAll).toHaveBeenCalledTimes(3);
+			expect(mockCardRepo.findAll).toHaveBeenCalledTimes(4);
 		});
 
 		it("returns all zeros when no cards exist", () => {

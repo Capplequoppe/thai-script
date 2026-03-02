@@ -32,7 +32,9 @@ export function Dashboard() {
 	const scriptDueCount = review.getDueCount("script");
 	const vocabDueCount = review.getDueCount("vocab");
 	const grammarDueCount = review.getDueCount("grammar");
-	const dueCount = scriptDueCount + vocabDueCount + grammarDueCount;
+	const sentenceDueCount = review.getDueCount("sentence");
+	const dueCount =
+		scriptDueCount + vocabDueCount + grammarDueCount + sentenceDueCount;
 	const timeUntilNextReview = review.getTimeUntilNextReview();
 	const forecast = review.getForecast();
 	const leechCount = dashboard.getLeechCount();
@@ -42,6 +44,7 @@ export function Dashboard() {
 		scriptDueCount,
 		vocabDueCount,
 		grammarDueCount,
+		sentenceDueCount,
 	].filter((n) => n > 0).length;
 	const reviewGridClass = `grid gap-3 ${reviewButtonCount > 1 ? `grid-cols-${reviewButtonCount}` : "grid-cols-1"}`;
 
@@ -106,6 +109,19 @@ export function Dashboard() {
 									}}
 								>
 									Grammar ({grammarDueCount})
+								</Button>
+							)}
+							{sentenceDueCount > 0 && (
+								<Button
+									type="button"
+									onClick={() => navigate("/sentences")}
+									className="py-4 rounded-xl text-base font-semibold transition-colors"
+									style={{
+										background: "var(--color-accent)",
+										color: "var(--color-text)",
+									}}
+								>
+									Sentences ({sentenceDueCount})
 								</Button>
 							)}
 						</div>

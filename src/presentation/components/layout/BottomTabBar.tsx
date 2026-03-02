@@ -92,6 +92,7 @@ function GearIcon() {
 interface BottomTabBarProps {
 	vocabUnlocked: boolean;
 	grammarUnlocked: boolean;
+	sentenceUnlocked: boolean;
 	dueCount: number;
 	mobileOnly?: boolean;
 }
@@ -103,6 +104,7 @@ const INACTIVE =
 export function BottomTabBar({
 	vocabUnlocked,
 	grammarUnlocked,
+	sentenceUnlocked,
 	dueCount,
 	mobileOnly = false,
 }: BottomTabBarProps) {
@@ -192,6 +194,16 @@ export function BottomTabBar({
 							}
 						>
 							Grammar
+						</NavLink>
+					)}
+					{sentenceUnlocked && (
+						<NavLink
+							to="/sentences"
+							className={({ isActive }) =>
+								`text-sm font-medium transition-colors ${isActive ? ACTIVE : INACTIVE}`
+							}
+						>
+							Sentences
 						</NavLink>
 					)}
 				</nav>

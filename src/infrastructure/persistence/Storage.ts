@@ -33,6 +33,9 @@ export function migrateState(state: LearnerState): LearnerState {
 	for (const card of Object.values(state.grammarCards ?? {})) {
 		migrateSrsCard(card);
 	}
+	for (const card of Object.values(state.sentenceCards ?? {})) {
+		migrateSrsCard(card);
+	}
 	return state;
 }
 
@@ -91,6 +94,9 @@ export class LocalStorageAdapter implements IStorage {
 		}
 		if (!state.grammarCards) {
 			state.grammarCards = {};
+		}
+		if (!state.sentenceCards) {
+			state.sentenceCards = {};
 		}
 		if (!state.achievements) {
 			state.achievements = [];

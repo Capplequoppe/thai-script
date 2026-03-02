@@ -14,13 +14,18 @@ describe("CardPools", () => {
 		expect(CardPools.GRAMMAR).toBe("grammar");
 	});
 
+	it("SENTENCE has value 'sentence'", () => {
+		expect(CardPools.SENTENCE).toBe("sentence");
+	});
+
 	describe("all", () => {
-		it("returns all three card pools", () => {
+		it("returns all four card pools", () => {
 			const all = CardPools.all();
-			expect(all).toHaveLength(3);
+			expect(all).toHaveLength(4);
 			expect(all).toContain("script");
 			expect(all).toContain("vocab");
 			expect(all).toContain("grammar");
+			expect(all).toContain("sentence");
 		});
 	});
 
@@ -29,6 +34,7 @@ describe("CardPools", () => {
 			expect(CardPools.isValid("script")).toBe(true);
 			expect(CardPools.isValid("vocab")).toBe(true);
 			expect(CardPools.isValid("grammar")).toBe(true);
+			expect(CardPools.isValid("sentence")).toBe(true);
 		});
 
 		it("returns false for invalid strings", () => {

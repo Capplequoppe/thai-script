@@ -130,7 +130,9 @@ describe("StorageLearnerStateRepository", () => {
 		it("does not duplicate achievements", () => {
 			repo.addAchievement("first_lesson");
 			repo.addAchievement("first_lesson");
-			expect(repo.getAchievements().filter((a) => a === "first_lesson")).toHaveLength(1);
+			expect(
+				repo.getAchievements().filter((a) => a === "first_lesson"),
+			).toHaveLength(1);
 		});
 
 		it("persists multiple achievements independently", () => {

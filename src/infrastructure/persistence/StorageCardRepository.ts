@@ -2,6 +2,8 @@ import { GrammarReviewCard } from "../../domain/grammar/entities/GrammarReviewCa
 import type { GrammarCard } from "../../domain/grammar/types";
 import type { CardRepository } from "../../domain/ports/CardRepository";
 import { ScriptPropertyCard } from "../../domain/script/entities/ScriptPropertyCard";
+import { SentenceReviewCard } from "../../domain/sentence/entities/SentenceReviewCard";
+import type { SentenceCard } from "../../domain/sentence/types";
 import type { CardPool } from "../../domain/shared/CardPool";
 import type { LearnerState, PropertyCard } from "../../domain/shared/types";
 import type { ReviewableCard } from "../../domain/srs/entities/ReviewableCard";
@@ -12,7 +14,7 @@ import type { IStorage } from "./Storage";
 function getCardsDict(
 	state: LearnerState,
 	pool: CardPool,
-): Record<string, PropertyCard | VocabularyCard | GrammarCard> {
+): Record<string, PropertyCard | VocabularyCard | GrammarCard | SentenceCard> {
 	switch (pool) {
 		case "script":
 			return state.cards;
@@ -20,6 +22,8 @@ function getCardsDict(
 			return state.vocabCards;
 		case "grammar":
 			return state.grammarCards;
+		case "sentence":
+			return state.sentenceCards;
 	}
 }
 
@@ -35,15 +39,20 @@ function toDomain(pool: CardPool, raw: unknown): ReviewableCard {
 			return GrammarReviewCard.fromDTO(
 				raw as ReturnType<GrammarReviewCard["toDTO"]>,
 			);
+		case "sentence":
+			return SentenceReviewCard.fromDTO(
+				raw as ReturnType<SentenceReviewCard["toDTO"]>,
+			);
 	}
 }
 
 function cardToDTO(
 	card: ReviewableCard,
-): PropertyCard | VocabularyCard | GrammarCard {
+): PropertyCard | VocabularyCard | GrammarCard | SentenceCard {
 	if (card instanceof ScriptPropertyCard) return card.toDTO() as PropertyCard;
 	if (card instanceof VocabCard) return card.toDTO() as VocabularyCard;
 	if (card instanceof GrammarReviewCard) return card.toDTO() as GrammarCard;
+	if (card instanceof SentenceReviewCard) return card.toDTO() as SentenceCard;
 	throw new Error(`Unknown card type: ${card.pool}`);
 }
 

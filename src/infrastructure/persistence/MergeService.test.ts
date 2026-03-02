@@ -140,11 +140,18 @@ describe("mergeLearnerStates", () => {
 			achievements: ["century", "warrior"],
 		};
 		const result = mergeLearnerStates(current, incoming);
-		expect(result.achievements.sort()).toEqual(["century", "first_review", "warrior"]);
+		expect(result.achievements.sort()).toEqual([
+			"century",
+			"first_review",
+			"warrior",
+		]);
 	});
 
 	it("merges empty achievements correctly", () => {
-		const result = mergeLearnerStates(INITIAL_LEARNER_STATE, INITIAL_LEARNER_STATE);
+		const result = mergeLearnerStates(
+			INITIAL_LEARNER_STATE,
+			INITIAL_LEARNER_STATE,
+		);
 		expect(result.achievements).toEqual([]);
 	});
 
