@@ -259,7 +259,8 @@
     "english": "have; there is",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/7 มี.png",
+    "description": "มี (mii) means “to have” or “there is/there are” in Thai. It expresses possession when followed by a noun. For example, ฉันมีเงิน means “I have money.” Thai does not use a separate verb for “there is,” so มี also expresses existence. For example, มีคนอยู่ข้างนอก means “There is a person outside.” In this sense, it indicates that something exists in a location or situation. The negative form is ไม่มี, which means “do not have” or “there is not.” For example, ฉันไม่มีเวลา means “I don’t have time.” มี does not change form for tense; time is shown through context or additional words. It can be used with both concrete objects and abstract ideas. For instance, มีความสุข means “to have happiness” or “to be happy.” In Thai, possession and existence are closely related concepts and both use มี. The word often appears near the beginning of a sentence when expressing existence. It is one of the most common and essential verbs in Thai. In summary, มี indicates that something exists or is possessed within a person’s or situation’s domain.",
     "samples": [
       {
         "thai": "อาหารหลักที่สำคัญต่อชีวิตเรามี 5 หมู่",
@@ -291,7 +292,7 @@
     "toneRules": [
       "low-live"
     ],
-    "mnemonic": "ME HAVE — Tarzan says 'mee' flatly (— neutral)"
+    "mnemonic": "An arrogant man proudly shouts, “Mii have car! Mii have money! There is nothing Mii don’t have!” He is surrounded by everything he owns, glowing with abundance. “Mii” → มี → to have / there is. (— neutral)"
   },
   {
     "thai": "ให้",
@@ -1315,6 +1316,7 @@
     "thai_audio_file": null,
     "english_audio_file": null,
     "image_file": null,
+    "description": "ความ (khwaam) is a prefix that turns adjectives and verbs into abstract nouns. It functions similarly to the English endings “-ness,” “-ity,” “-hood,” or sometimes “-tion.” When placed before an adjective, it creates the concept or quality of that adjective. For example, ดี (good) becomes ความดี (goodness). สุข (happy) becomes ความสุข (happiness). จริง (true) becomes ความจริง (truth). When placed before a verb, it turns the action into a conceptual thing. รู้ (to know) becomes ความรู้ (knowledge). เข้าใจ (to understand) becomes ความเข้าใจ (understanding). ความ does not change tense or time; it only changes grammatical category. It converts descriptive or action words into abstract ideas. The result is usually a non-countable noun referring to a state, condition, or quality. ความ is very common in formal and written Thai. It helps express complex concepts by nominalizing qualities and actions. In short, ความ is an abstraction marker that turns properties and actions into conceptual nouns.",
     "samples": [
       {
         "thai": "คดีที่เป็นตัวอย่างการพิจารณาความอาญาเก็บไว้ในห้องสมุด",
@@ -2608,7 +2610,8 @@
     "english": "good",
     "thai_audio_file": "/thai-script/vocabulary/audio/0301_ด_th.mp3",
     "english_audio_file": "/thai-script/vocabulary/audio/0301_ด_en.mp3",
-    "image_file": "/thai-script/vocabulary/images/0301_ด.jpg",
+    "image_file": "/thai-script/vocabulary/images/61 ดี.png",
+    "description": "ดี (dii) means “good” in Thai. It is an adjective used to describe positive quality, benefit, or desirability. It can describe people, objects, situations, or outcomes. For example, คนดี means “a good person.” อาหารดี means “good food.” It can also express approval or satisfaction. ดีมาก means “very good,” with มาก intensifying the degree. ดีใจ is a common expression meaning “to be glad” or “happy” (literally “good heart”). ดี can describe moral goodness, practical usefulness, or general quality. Thai adjectives like ดี do not change form based on tense or number. The meaning depends on context and the word it modifies. ดี is often placed after the noun it describes in Thai sentence structure. It can also be used alone as a response, meaning “okay” or “good.” The word conveys positive evaluation in a broad and flexible way. In essence, ดี expresses that something has favorable, beneficial, or desirable qualities.",
     "samples": [
       {
         "thai": "ผักดีสำหรับคุณ",
@@ -2639,7 +2642,7 @@
     "toneRules": [
       "mid-live"
     ],
-    "mnemonic": "DEE — dee-lightfully GOOD (— neutral)"
+    "mnemonic": "A quality inspector walks around with a giant glowing “D” stamp. Whenever something is good, he stamps it with a big shining D. D → ดี → good. (— neutral)"
   },
   {
     "thai": "เพื่อ",
@@ -3587,7 +3590,7 @@
     "english": "day",
     "thai_audio_file": "/thai-script/vocabulary/audio/0208_วน_th.mp3",
     "english_audio_file": "/thai-script/vocabulary/audio/0208_วน_en.mp3",
-    "image_file": "/thai-script/vocabulary/images/0208_วน.jpg",
+    "image_file": "/thai-script/vocabulary/images/83 วัน.png",
     "samples": [
       {
         "thai": "ในหนึ่งวันมียี่สิบสี่ชั่วโมง",
@@ -3619,7 +3622,7 @@
     "toneRules": [
       "low-live"
     ],
-    "mnemonic": "WAN — one WAN-derful DAY (— neutral)"
+    "mnemonic": "A person looks at a calendar and circles a single square while saying, “One WAN-derful day I will do this!” That single marked square represents one specific day. One (wan) → วัน → day. (— neutral)"
   },
   {
     "thai": "ช่วย",
@@ -3838,11 +3841,12 @@
   {
     "thai": "นัก",
     "romanization": "nák",
-    "word_class": "adv",
-    "english": "very; extremely",
+    "word_class": "mod",
+    "english": "a person who;",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/89 นัก.png",
+    "description": "นัก (nák) is primarily a noun-forming prefix in Thai. It is placed in front of a verb, noun, or field of activity to create a person associated with that activity. It often corresponds to English endings like “-er,” “-or,” or “-ist.” For example, เรียน (to study) becomes นักเรียน (student). เขียน (to write) becomes นักเขียน (writer). กีฬา (sport) becomes นักกีฬา (athlete). ดนตรี (music) becomes นักดนตรี (musician). In these cases, นัก forms a noun referring to someone engaged in or identified with that domain. It does not change tense or grammatical agreement. The resulting word functions as a regular noun in a sentence. นัก can be used for professions, hobbies, roles, or areas of expertise. It does not necessarily imply skill level, only association or engagement. In some contexts, นัก can also function as an adverbial intensifier, though this use is less common. Its primary and most important function is to create person-role nouns. In summary, นัก is a derivational prefix that forms nouns meaning “a person associated with a particular activity or field.”",
     "samples": [
       {
         "thai": "ช่วงฤดูหนาวที่เชียงใหม่จะมีอากาศหนาวนัก",
@@ -3875,7 +3879,7 @@
     "toneRules": [
       "low-dead-long"
     ],
-    "mnemonic": "NAK — VERY much a knock-out! (▲ high, intense)"
+    "mnemonic": "A person with a glowing “KNACK” badge stands next to different activities and instantly becomes the specialist in that field. Knack for sports → athlete, knack for music → musician. Knack → นัก → person associated with a skill or domain. (▲ high, intense)"
   },
   {
     "thai": "เริ่ม",
@@ -4288,10 +4292,10 @@
     "thai": "ดู",
     "romanization": "duu",
     "word_class": "v",
-    "english": "watch",
+    "english": "to watch",
     "thai_audio_file": "/thai-script/vocabulary/audio/0293_ด_th.mp3",
     "english_audio_file": "/thai-script/vocabulary/audio/0293_ด_en.mp3",
-    "image_file": "/thai-script/vocabulary/images/0293_ด.jpg",
+    "image_file": "/thai-script/vocabulary/images/98 ดู.png",
     "samples": [
       {
         "thai": "ดูโทรทัศน์",
@@ -4322,7 +4326,7 @@
     "toneRules": [
       "mid-live"
     ],
-    "mnemonic": "DOO — WATCH the doo-wop show (— neutral)"
+    "mnemonic": "A friend suddenly grabs your shoulder and shouts, “Duuuuude, look!” He points excitedly at something happening in front of you, forcing your attention toward it. “Duuuuude” → ดู → to look, watch, or observe. (— neutral)"
   },
   {
     "thai": "แห่ง",
@@ -5243,7 +5247,8 @@
     "english": "think",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/119 คิด.png",
+    "description": "คิด (khít) means “to think.” It refers to mental activity such as reasoning, considering, or forming opinions. It is commonly used to express personal thoughts or beliefs. For example, คิดว่า means “to think that” when introducing an opinion. คิด can also mean “to calculate,” especially in financial or mathematical contexts. For example, คิดเงิน means “to calculate money” or “to charge.” คิดเลข means “to do math” or “to calculate numbers.” The word can extend to emotional thinking, as in คิดถึง, which means “to miss someone” (literally “to think of”). In all uses, the core idea involves mental processing. It can describe quick thoughts or deep reflection depending on context. Thai does not change the form of คิด for tense; time is shown through context or additional words. It is frequently used in both spoken and written Thai. คิด can express intention, opinion, calculation, or memory. The meaning depends on what words follow it. In essence, คิด refers to any cognitive activity involving thinking, calculating, or mentally considering something.",
     "samples": [
       {
         "thai": "นักภูมิศาสตร์จากบริษัทสำรวจทางอากาศคิดว่าการใช้คอมพิวเตอร์จะช่วยให้งานนี้สำเร็จได้เร็วขึ้นและประหยัด",
@@ -5276,7 +5281,7 @@
     "toneRules": [
       "low-dead-short"
     ],
-    "mnemonic": "KIT — THINK about the kit (▲ sharp, mental focus)"
+    "mnemonic": "A kid pulls out his special “thinking kit” — a pen, notebook, and calculator — whenever he needs to solve a problem. He says, “I can’t think without my kit!” Kid + kit → คิด (▲ sharp, mental focus) → to think, calculate, consider. "
   },
   {
     "thai": "เลย",
@@ -5384,7 +5389,7 @@
     "english": "count",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/122 นับ.png",
     "samples": [
       {
         "thai": "สุเทพไม่นับว่าสุชาติเป็นญาติเพราะเขาทำตัวไม่ดี",
@@ -5417,7 +5422,7 @@
     "toneRules": [
       "low-dead-long"
     ],
-    "mnemonic": "NAP — COUNT the nap-time hours (▲ sharp, tallying)"
+    "mnemonic": "A sleepy child tries to count sheep before bed, whispering, “One… two… three…” Halfway through, he yawns and says, “I’ll take a nap after I finish counting!” Nap → นับ (▲ sharp, tallying) → to count. Can you count all the times you have taken a nap?"
   },
   {
     "thai": "ผ่าน",
@@ -7336,7 +7341,7 @@
     "english": "on",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/164 บน.png",
     "samples": [
       {
         "thai": "นักเรียนมักมาบนพระพรหมเอราวัณไว้ว่าขอให้สอบเข้ามหาวิทยาลัยได้",
@@ -7368,7 +7373,7 @@
     "toneRules": [
       "mid-live"
     ],
-    "mnemonic": "BON — BON voyage, ON the ship (— neutral)"
+    "mnemonic": "A gigantic cinnamon bun is sitting on top of a skyscraper. People point upward and shout, “Look! The bun is ON the building!” Bun → บน → on / on top of. (— neutral)"
   },
   {
     "thai": "พยายาม",
