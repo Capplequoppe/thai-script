@@ -6,7 +6,47 @@
 		"pattern": "[Subject] [Verb] [Object]",
 		"lessonNumber": 1,
 		"prerequisites": {
-			"minVocabByClass": { "n": 2, "v": 2 }
+			"minVocabByClass": {
+				"n": 2,
+				"v": 2
+			}
+		},
+		"applicationTemplate": {
+			"slots": [
+				{
+					"role": "subject",
+					"wordClass": "pron",
+					"fallbackWordClasses": [
+						"n"
+					]
+				},
+				{
+					"role": "verb",
+					"wordClass": "v"
+				},
+				{
+					"role": "object",
+					"wordClass": "n"
+				}
+			],
+			"functionWords": [],
+			"distractorPatterns": [
+				[
+					"object",
+					"verb",
+					"subject"
+				],
+				[
+					"verb",
+					"subject",
+					"object"
+				],
+				[
+					"object",
+					"subject",
+					"verb"
+				]
+			]
 		},
 		"examples": [
 			{
@@ -15,9 +55,18 @@
 				"english": "He eats rice.",
 				"breakdown": "เขา (he) + กิน (eat) + ข้าว (rice)",
 				"words": [
-					{ "thai": "เขา", "gloss": "he" },
-					{ "thai": "กิน", "gloss": "eat" },
-					{ "thai": "ข้าว", "gloss": "rice" }
+					{
+						"thai": "เขา",
+						"gloss": "he"
+					},
+					{
+						"thai": "กิน",
+						"gloss": "eat"
+					},
+					{
+						"thai": "ข้าว",
+						"gloss": "rice"
+					}
 				]
 			},
 			{
@@ -54,23 +103,50 @@
 				"incorrectExamples": [
 					{
 						"words": [
-							{ "thai": "ข้าว", "gloss": "rice" },
-							{ "thai": "กิน", "gloss": "eat" },
-							{ "thai": "เขา", "gloss": "he" }
+							{
+								"thai": "ข้าว",
+								"gloss": "rice"
+							},
+							{
+								"thai": "กิน",
+								"gloss": "eat"
+							},
+							{
+								"thai": "เขา",
+								"gloss": "he"
+							}
 						]
 					},
 					{
 						"words": [
-							{ "thai": "กิน", "gloss": "eat" },
-							{ "thai": "เขา", "gloss": "he" },
-							{ "thai": "ข้าว", "gloss": "rice" }
+							{
+								"thai": "กิน",
+								"gloss": "eat"
+							},
+							{
+								"thai": "เขา",
+								"gloss": "he"
+							},
+							{
+								"thai": "ข้าว",
+								"gloss": "rice"
+							}
 						]
 					},
 					{
 						"words": [
-							{ "thai": "ข้าว", "gloss": "rice" },
-							{ "thai": "เขา", "gloss": "he" },
-							{ "thai": "กิน", "gloss": "eat" }
+							{
+								"thai": "ข้าว",
+								"gloss": "rice"
+							},
+							{
+								"thai": "เขา",
+								"gloss": "he"
+							},
+							{
+								"thai": "กิน",
+								"gloss": "eat"
+							}
 						]
 					}
 				]
@@ -84,7 +160,53 @@
 		"pattern": "[Statement] + ไหม",
 		"lessonNumber": 2,
 		"prerequisites": {
-			"minVocabByClass": { "n": 3, "v": 2 }
+			"minVocabByClass": {
+				"n": 3,
+				"v": 2
+			}
+		},
+		"applicationTemplate": {
+			"slots": [
+				{
+					"role": "subject",
+					"wordClass": "pron",
+					"fallbackWordClasses": [
+						"n"
+					]
+				},
+				{
+					"role": "verb",
+					"wordClass": "v"
+				},
+				{
+					"role": "object",
+					"wordClass": "n"
+				}
+			],
+			"functionWords": [
+				{
+					"thai": "ไหม",
+					"gloss": "?",
+					"position": "end"
+				}
+			],
+			"distractorPatterns": [
+				[
+					"subject",
+					"verb",
+					"object"
+				],
+				[
+					"subject",
+					"verb",
+					"object"
+				],
+				[
+					"subject",
+					"verb",
+					"object"
+				]
+			]
 		},
 		"examples": [
 			{
@@ -93,10 +215,22 @@
 				"english": "Do you eat rice?",
 				"breakdown": "คุณ (you) + กิน (eat) + ข้าว (rice) + ไหม (question particle)",
 				"words": [
-					{ "thai": "คุณ", "gloss": "you" },
-					{ "thai": "กิน", "gloss": "eat" },
-					{ "thai": "ข้าว", "gloss": "rice" },
-					{ "thai": "ไหม", "gloss": "?" }
+					{
+						"thai": "คุณ",
+						"gloss": "you"
+					},
+					{
+						"thai": "กิน",
+						"gloss": "eat"
+					},
+					{
+						"thai": "ข้าว",
+						"gloss": "rice"
+					},
+					{
+						"thai": "ไหม",
+						"gloss": "?"
+					}
 				]
 			},
 			{
@@ -127,26 +261,62 @@
 				"incorrectExamples": [
 					{
 						"words": [
-							{ "thai": "ไหม", "gloss": "?" },
-							{ "thai": "คุณ", "gloss": "you" },
-							{ "thai": "กิน", "gloss": "eat" },
-							{ "thai": "ข้าว", "gloss": "rice" }
+							{
+								"thai": "ไหม",
+								"gloss": "?"
+							},
+							{
+								"thai": "คุณ",
+								"gloss": "you"
+							},
+							{
+								"thai": "กิน",
+								"gloss": "eat"
+							},
+							{
+								"thai": "ข้าว",
+								"gloss": "rice"
+							}
 						]
 					},
 					{
 						"words": [
-							{ "thai": "คุณ", "gloss": "you" },
-							{ "thai": "ไหม", "gloss": "?" },
-							{ "thai": "กิน", "gloss": "eat" },
-							{ "thai": "ข้าว", "gloss": "rice" }
+							{
+								"thai": "คุณ",
+								"gloss": "you"
+							},
+							{
+								"thai": "ไหม",
+								"gloss": "?"
+							},
+							{
+								"thai": "กิน",
+								"gloss": "eat"
+							},
+							{
+								"thai": "ข้าว",
+								"gloss": "rice"
+							}
 						]
 					},
 					{
 						"words": [
-							{ "thai": "คุณ", "gloss": "you" },
-							{ "thai": "กิน", "gloss": "eat" },
-							{ "thai": "ไหม", "gloss": "?" },
-							{ "thai": "ข้าว", "gloss": "rice" }
+							{
+								"thai": "คุณ",
+								"gloss": "you"
+							},
+							{
+								"thai": "กิน",
+								"gloss": "eat"
+							},
+							{
+								"thai": "ไหม",
+								"gloss": "?"
+							},
+							{
+								"thai": "ข้าว",
+								"gloss": "rice"
+							}
 						]
 					}
 				]
@@ -160,7 +330,53 @@
 		"pattern": "[Subject] + ไม่ + [Verb/Adj]",
 		"lessonNumber": 3,
 		"prerequisites": {
-			"minVocabByClass": { "n": 3, "v": 3 }
+			"minVocabByClass": {
+				"n": 3,
+				"v": 3
+			}
+		},
+		"applicationTemplate": {
+			"slots": [
+				{
+					"role": "subject",
+					"wordClass": "pron",
+					"fallbackWordClasses": [
+						"n"
+					]
+				},
+				{
+					"role": "verb",
+					"wordClass": "v"
+				},
+				{
+					"role": "object",
+					"wordClass": "n"
+				}
+			],
+			"functionWords": [
+				{
+					"thai": "ไม่",
+					"gloss": "not",
+					"position": "before-verb"
+				}
+			],
+			"distractorPatterns": [
+				[
+					"subject",
+					"verb",
+					"object"
+				],
+				[
+					"subject",
+					"verb",
+					"object"
+				],
+				[
+					"subject",
+					"verb",
+					"object"
+				]
+			]
 		},
 		"examples": [
 			{
@@ -169,10 +385,22 @@
 				"english": "I don't eat meat.",
 				"breakdown": "ฉัน (I) + ไม่ (not) + กิน (eat) + เนื้อ (meat)",
 				"words": [
-					{ "thai": "ฉัน", "gloss": "I" },
-					{ "thai": "ไม่", "gloss": "not" },
-					{ "thai": "กิน", "gloss": "eat" },
-					{ "thai": "เนื้อ", "gloss": "meat" }
+					{
+						"thai": "ฉัน",
+						"gloss": "I"
+					},
+					{
+						"thai": "ไม่",
+						"gloss": "not"
+					},
+					{
+						"thai": "กิน",
+						"gloss": "eat"
+					},
+					{
+						"thai": "เนื้อ",
+						"gloss": "meat"
+					}
 				]
 			},
 			{
@@ -208,26 +436,62 @@
 				"incorrectExamples": [
 					{
 						"words": [
-							{ "thai": "ฉัน", "gloss": "I" },
-							{ "thai": "กิน", "gloss": "eat" },
-							{ "thai": "ไม่", "gloss": "not" },
-							{ "thai": "เนื้อ", "gloss": "meat" }
+							{
+								"thai": "ฉัน",
+								"gloss": "I"
+							},
+							{
+								"thai": "กิน",
+								"gloss": "eat"
+							},
+							{
+								"thai": "ไม่",
+								"gloss": "not"
+							},
+							{
+								"thai": "เนื้อ",
+								"gloss": "meat"
+							}
 						]
 					},
 					{
 						"words": [
-							{ "thai": "ฉัน", "gloss": "I" },
-							{ "thai": "กิน", "gloss": "eat" },
-							{ "thai": "เนื้อ", "gloss": "meat" },
-							{ "thai": "ไม่", "gloss": "not" }
+							{
+								"thai": "ฉัน",
+								"gloss": "I"
+							},
+							{
+								"thai": "กิน",
+								"gloss": "eat"
+							},
+							{
+								"thai": "เนื้อ",
+								"gloss": "meat"
+							},
+							{
+								"thai": "ไม่",
+								"gloss": "not"
+							}
 						]
 					},
 					{
 						"words": [
-							{ "thai": "ไม่", "gloss": "not" },
-							{ "thai": "ฉัน", "gloss": "I" },
-							{ "thai": "กิน", "gloss": "eat" },
-							{ "thai": "เนื้อ", "gloss": "meat" }
+							{
+								"thai": "ไม่",
+								"gloss": "not"
+							},
+							{
+								"thai": "ฉัน",
+								"gloss": "I"
+							},
+							{
+								"thai": "กิน",
+								"gloss": "eat"
+							},
+							{
+								"thai": "เนื้อ",
+								"gloss": "meat"
+							}
 						]
 					}
 				]
@@ -241,7 +505,37 @@
 		"pattern": "[Subject] + [Adjective]",
 		"lessonNumber": 4,
 		"prerequisites": {
-			"minVocabByClass": { "n": 4, "adj": 2 }
+			"minVocabByClass": {
+				"n": 4,
+				"adj": 2
+			}
+		},
+		"applicationTemplate": {
+			"slots": [
+				{
+					"role": "subject",
+					"wordClass": "n"
+				},
+				{
+					"role": "adjective",
+					"wordClass": "adj"
+				}
+			],
+			"functionWords": [],
+			"distractorPatterns": [
+				[
+					"adjective",
+					"subject"
+				],
+				[
+					"adjective",
+					"subject"
+				],
+				[
+					"adjective",
+					"subject"
+				]
+			]
 		},
 		"examples": [
 			{
@@ -250,8 +544,14 @@
 				"english": "The food is delicious.",
 				"breakdown": "อาหาร (food) + อร่อย (delicious) — no linking verb needed",
 				"words": [
-					{ "thai": "อาหาร", "gloss": "food" },
-					{ "thai": "อร่อย", "gloss": "delicious" }
+					{
+						"thai": "อาหาร",
+						"gloss": "food"
+					},
+					{
+						"thai": "อร่อย",
+						"gloss": "delicious"
+					}
 				]
 			},
 			{
@@ -287,22 +587,46 @@
 				"incorrectExamples": [
 					{
 						"words": [
-							{ "thai": "อร่อย", "gloss": "delicious" },
-							{ "thai": "อาหาร", "gloss": "food" }
+							{
+								"thai": "อร่อย",
+								"gloss": "delicious"
+							},
+							{
+								"thai": "อาหาร",
+								"gloss": "food"
+							}
 						]
 					},
 					{
 						"words": [
-							{ "thai": "อาหาร", "gloss": "food" },
-							{ "thai": "เป็น", "gloss": "is" },
-							{ "thai": "อร่อย", "gloss": "delicious" }
+							{
+								"thai": "อาหาร",
+								"gloss": "food"
+							},
+							{
+								"thai": "เป็น",
+								"gloss": "is"
+							},
+							{
+								"thai": "อร่อย",
+								"gloss": "delicious"
+							}
 						]
 					},
 					{
 						"words": [
-							{ "thai": "อาหาร", "gloss": "food" },
-							{ "thai": "คือ", "gloss": "is" },
-							{ "thai": "อร่อย", "gloss": "delicious" }
+							{
+								"thai": "อาหาร",
+								"gloss": "food"
+							},
+							{
+								"thai": "คือ",
+								"gloss": "is"
+							},
+							{
+								"thai": "อร่อย",
+								"gloss": "delicious"
+							}
 						]
 					}
 				]
@@ -316,7 +640,46 @@
 		"pattern": "[Thing] + ของ + [Owner]",
 		"lessonNumber": 5,
 		"prerequisites": {
-			"minVocabByClass": { "n": 5 }
+			"minVocabByClass": {
+				"n": 5
+			}
+		},
+		"applicationTemplate": {
+			"slots": [
+				{
+					"role": "thing",
+					"wordClass": "n"
+				},
+				{
+					"role": "owner",
+					"wordClass": "pron",
+					"fallbackWordClasses": [
+						"n"
+					]
+				}
+			],
+			"functionWords": [
+				{
+					"thai": "ของ",
+					"gloss": "of",
+					"position": "end",
+					"insertAfter": "thing"
+				}
+			],
+			"distractorPatterns": [
+				[
+					"owner",
+					"thing"
+				],
+				[
+					"owner",
+					"thing"
+				],
+				[
+					"thing",
+					"owner"
+				]
+			]
 		},
 		"examples": [
 			{
@@ -325,9 +688,18 @@
 				"english": "My book.",
 				"breakdown": "หนังสือ (book) + ของ (of) + ฉัน (I/me)",
 				"words": [
-					{ "thai": "หนังสือ", "gloss": "book" },
-					{ "thai": "ของ", "gloss": "of" },
-					{ "thai": "ฉัน", "gloss": "I" }
+					{
+						"thai": "หนังสือ",
+						"gloss": "book"
+					},
+					{
+						"thai": "ของ",
+						"gloss": "of"
+					},
+					{
+						"thai": "ฉัน",
+						"gloss": "I"
+					}
 				]
 			},
 			{
@@ -363,23 +735,50 @@
 				"incorrectExamples": [
 					{
 						"words": [
-							{ "thai": "ของ", "gloss": "of" },
-							{ "thai": "หนังสือ", "gloss": "book" },
-							{ "thai": "ฉัน", "gloss": "I" }
+							{
+								"thai": "ของ",
+								"gloss": "of"
+							},
+							{
+								"thai": "หนังสือ",
+								"gloss": "book"
+							},
+							{
+								"thai": "ฉัน",
+								"gloss": "I"
+							}
 						]
 					},
 					{
 						"words": [
-							{ "thai": "ฉัน", "gloss": "I" },
-							{ "thai": "ของ", "gloss": "of" },
-							{ "thai": "หนังสือ", "gloss": "book" }
+							{
+								"thai": "ฉัน",
+								"gloss": "I"
+							},
+							{
+								"thai": "ของ",
+								"gloss": "of"
+							},
+							{
+								"thai": "หนังสือ",
+								"gloss": "book"
+							}
 						]
 					},
 					{
 						"words": [
-							{ "thai": "ของ", "gloss": "of" },
-							{ "thai": "ฉัน", "gloss": "I" },
-							{ "thai": "หนังสือ", "gloss": "book" }
+							{
+								"thai": "ของ",
+								"gloss": "of"
+							},
+							{
+								"thai": "ฉัน",
+								"gloss": "I"
+							},
+							{
+								"thai": "หนังสือ",
+								"gloss": "book"
+							}
 						]
 					}
 				]
@@ -393,7 +792,9 @@
 		"pattern": "[Noun] + [Number] + [Classifier]",
 		"lessonNumber": 6,
 		"prerequisites": {
-			"minVocabByClass": { "n": 8 }
+			"minVocabByClass": {
+				"n": 8
+			}
 		},
 		"examples": [
 			{
@@ -402,9 +803,18 @@
 				"english": "Two cats.",
 				"breakdown": "แมว (cat) + สอง (two) + ตัว (classifier for animals)",
 				"words": [
-					{ "thai": "แมว", "gloss": "cat" },
-					{ "thai": "สอง", "gloss": "two" },
-					{ "thai": "ตัว", "gloss": "clf." }
+					{
+						"thai": "แมว",
+						"gloss": "cat"
+					},
+					{
+						"thai": "สอง",
+						"gloss": "two"
+					},
+					{
+						"thai": "ตัว",
+						"gloss": "clf."
+					}
 				]
 			},
 			{
@@ -440,23 +850,50 @@
 				"incorrectExamples": [
 					{
 						"words": [
-							{ "thai": "สอง", "gloss": "two" },
-							{ "thai": "แมว", "gloss": "cat" },
-							{ "thai": "ตัว", "gloss": "clf." }
+							{
+								"thai": "สอง",
+								"gloss": "two"
+							},
+							{
+								"thai": "แมว",
+								"gloss": "cat"
+							},
+							{
+								"thai": "ตัว",
+								"gloss": "clf."
+							}
 						]
 					},
 					{
 						"words": [
-							{ "thai": "ตัว", "gloss": "clf." },
-							{ "thai": "แมว", "gloss": "cat" },
-							{ "thai": "สอง", "gloss": "two" }
+							{
+								"thai": "ตัว",
+								"gloss": "clf."
+							},
+							{
+								"thai": "แมว",
+								"gloss": "cat"
+							},
+							{
+								"thai": "สอง",
+								"gloss": "two"
+							}
 						]
 					},
 					{
 						"words": [
-							{ "thai": "สอง", "gloss": "two" },
-							{ "thai": "ตัว", "gloss": "clf." },
-							{ "thai": "แมว", "gloss": "cat" }
+							{
+								"thai": "สอง",
+								"gloss": "two"
+							},
+							{
+								"thai": "ตัว",
+								"gloss": "clf."
+							},
+							{
+								"thai": "แมว",
+								"gloss": "cat"
+							}
 						]
 					}
 				]
@@ -470,7 +907,47 @@
 		"pattern": "[Subject] + อยู่ + [Place]",
 		"lessonNumber": 7,
 		"prerequisites": {
-			"minVocabByClass": { "n": 8, "v": 3 }
+			"minVocabByClass": {
+				"n": 8,
+				"v": 3
+			}
+		},
+		"applicationTemplate": {
+			"slots": [
+				{
+					"role": "subject",
+					"wordClass": "pron",
+					"fallbackWordClasses": [
+						"n"
+					]
+				},
+				{
+					"role": "place",
+					"wordClass": "n"
+				}
+			],
+			"functionWords": [
+				{
+					"thai": "อยู่",
+					"gloss": "is at",
+					"position": "end",
+					"insertAfter": "subject"
+				}
+			],
+			"distractorPatterns": [
+				[
+					"place",
+					"subject"
+				],
+				[
+					"place",
+					"subject"
+				],
+				[
+					"subject",
+					"place"
+				]
+			]
 		},
 		"examples": [
 			{
@@ -479,9 +956,18 @@
 				"english": "Mom is at home.",
 				"breakdown": "แม่ (mom) + อยู่ (is at) + บ้าน (home)",
 				"words": [
-					{ "thai": "แม่", "gloss": "mom" },
-					{ "thai": "อยู่", "gloss": "is at" },
-					{ "thai": "บ้าน", "gloss": "home" }
+					{
+						"thai": "แม่",
+						"gloss": "mom"
+					},
+					{
+						"thai": "อยู่",
+						"gloss": "is at"
+					},
+					{
+						"thai": "บ้าน",
+						"gloss": "home"
+					}
 				]
 			},
 			{
@@ -517,24 +1003,54 @@
 				"incorrectExamples": [
 					{
 						"words": [
-							{ "thai": "อยู่", "gloss": "is at" },
-							{ "thai": "แม่", "gloss": "mom" },
-							{ "thai": "บ้าน", "gloss": "home" }
+							{
+								"thai": "อยู่",
+								"gloss": "is at"
+							},
+							{
+								"thai": "แม่",
+								"gloss": "mom"
+							},
+							{
+								"thai": "บ้าน",
+								"gloss": "home"
+							}
 						]
 					},
 					{
 						"words": [
-							{ "thai": "บ้าน", "gloss": "home" },
-							{ "thai": "อยู่", "gloss": "is at" },
-							{ "thai": "แม่", "gloss": "mom" }
+							{
+								"thai": "บ้าน",
+								"gloss": "home"
+							},
+							{
+								"thai": "อยู่",
+								"gloss": "is at"
+							},
+							{
+								"thai": "แม่",
+								"gloss": "mom"
+							}
 						]
 					},
 					{
 						"words": [
-							{ "thai": "แม่", "gloss": "mom" },
-							{ "thai": "บ้าน", "gloss": "home" },
-							{ "thai": "อยู่", "gloss": "is at" },
-							{ "thai": "ที่", "gloss": "at" }
+							{
+								"thai": "แม่",
+								"gloss": "mom"
+							},
+							{
+								"thai": "บ้าน",
+								"gloss": "home"
+							},
+							{
+								"thai": "อยู่",
+								"gloss": "is at"
+							},
+							{
+								"thai": "ที่",
+								"gloss": "at"
+							}
 						]
 					}
 				]
@@ -548,7 +1064,52 @@
 		"pattern": "[Subject] + อยาก/ต้องการ + [Verb]",
 		"lessonNumber": 8,
 		"prerequisites": {
-			"minVocabByClass": { "v": 5 }
+			"minVocabByClass": {
+				"v": 5
+			}
+		},
+		"applicationTemplate": {
+			"slots": [
+				{
+					"role": "subject",
+					"wordClass": "pron",
+					"fallbackWordClasses": [
+						"n"
+					]
+				},
+				{
+					"role": "verb",
+					"wordClass": "v"
+				},
+				{
+					"role": "object",
+					"wordClass": "n"
+				}
+			],
+			"functionWords": [
+				{
+					"thai": "อยาก",
+					"gloss": "want",
+					"position": "before-verb"
+				}
+			],
+			"distractorPatterns": [
+				[
+					"subject",
+					"verb",
+					"object"
+				],
+				[
+					"subject",
+					"verb",
+					"object"
+				],
+				[
+					"subject",
+					"verb",
+					"object"
+				]
+			]
 		},
 		"examples": [
 			{
@@ -557,10 +1118,22 @@
 				"english": "I want to eat som tam.",
 				"breakdown": "ฉัน (I) + อยาก (want) + กิน (eat) + ส้มตำ (papaya salad)",
 				"words": [
-					{ "thai": "ฉัน", "gloss": "I" },
-					{ "thai": "อยาก", "gloss": "want" },
-					{ "thai": "กิน", "gloss": "eat" },
-					{ "thai": "ส้มตำ", "gloss": "papaya salad" }
+					{
+						"thai": "ฉัน",
+						"gloss": "I"
+					},
+					{
+						"thai": "อยาก",
+						"gloss": "want"
+					},
+					{
+						"thai": "กิน",
+						"gloss": "eat"
+					},
+					{
+						"thai": "ส้มตำ",
+						"gloss": "papaya salad"
+					}
 				]
 			},
 			{
@@ -591,26 +1164,62 @@
 				"incorrectExamples": [
 					{
 						"words": [
-							{ "thai": "ฉัน", "gloss": "I" },
-							{ "thai": "กิน", "gloss": "eat" },
-							{ "thai": "อยาก", "gloss": "want" },
-							{ "thai": "ส้มตำ", "gloss": "papaya salad" }
+							{
+								"thai": "ฉัน",
+								"gloss": "I"
+							},
+							{
+								"thai": "กิน",
+								"gloss": "eat"
+							},
+							{
+								"thai": "อยาก",
+								"gloss": "want"
+							},
+							{
+								"thai": "ส้มตำ",
+								"gloss": "papaya salad"
+							}
 						]
 					},
 					{
 						"words": [
-							{ "thai": "อยาก", "gloss": "want" },
-							{ "thai": "ฉัน", "gloss": "I" },
-							{ "thai": "กิน", "gloss": "eat" },
-							{ "thai": "ส้มตำ", "gloss": "papaya salad" }
+							{
+								"thai": "อยาก",
+								"gloss": "want"
+							},
+							{
+								"thai": "ฉัน",
+								"gloss": "I"
+							},
+							{
+								"thai": "กิน",
+								"gloss": "eat"
+							},
+							{
+								"thai": "ส้มตำ",
+								"gloss": "papaya salad"
+							}
 						]
 					},
 					{
 						"words": [
-							{ "thai": "ฉัน", "gloss": "I" },
-							{ "thai": "กิน", "gloss": "eat" },
-							{ "thai": "ส้มตำ", "gloss": "papaya salad" },
-							{ "thai": "อยาก", "gloss": "want" }
+							{
+								"thai": "ฉัน",
+								"gloss": "I"
+							},
+							{
+								"thai": "กิน",
+								"gloss": "eat"
+							},
+							{
+								"thai": "ส้มตำ",
+								"gloss": "papaya salad"
+							},
+							{
+								"thai": "อยาก",
+								"gloss": "want"
+							}
 						]
 					}
 				]
@@ -624,7 +1233,53 @@
 		"pattern": "[Subject] + [Verb] + แล้ว",
 		"lessonNumber": 9,
 		"prerequisites": {
-			"minVocabByClass": { "v": 5, "n": 8 }
+			"minVocabByClass": {
+				"v": 5,
+				"n": 8
+			}
+		},
+		"applicationTemplate": {
+			"slots": [
+				{
+					"role": "subject",
+					"wordClass": "pron",
+					"fallbackWordClasses": [
+						"n"
+					]
+				},
+				{
+					"role": "verb",
+					"wordClass": "v"
+				},
+				{
+					"role": "object",
+					"wordClass": "n"
+				}
+			],
+			"functionWords": [
+				{
+					"thai": "แล้ว",
+					"gloss": "already",
+					"position": "end"
+				}
+			],
+			"distractorPatterns": [
+				[
+					"subject",
+					"verb",
+					"object"
+				],
+				[
+					"subject",
+					"verb",
+					"object"
+				],
+				[
+					"subject",
+					"verb",
+					"object"
+				]
+			]
 		},
 		"examples": [
 			{
@@ -633,10 +1288,22 @@
 				"english": "I already ate.",
 				"breakdown": "ฉัน (I) + กิน (eat) + ข้าว (rice/food) + แล้ว (already)",
 				"words": [
-					{ "thai": "ฉัน", "gloss": "I" },
-					{ "thai": "กิน", "gloss": "eat" },
-					{ "thai": "ข้าว", "gloss": "rice" },
-					{ "thai": "แล้ว", "gloss": "already" }
+					{
+						"thai": "ฉัน",
+						"gloss": "I"
+					},
+					{
+						"thai": "กิน",
+						"gloss": "eat"
+					},
+					{
+						"thai": "ข้าว",
+						"gloss": "rice"
+					},
+					{
+						"thai": "แล้ว",
+						"gloss": "already"
+					}
 				]
 			},
 			{
@@ -667,26 +1334,62 @@
 				"incorrectExamples": [
 					{
 						"words": [
-							{ "thai": "ฉัน", "gloss": "I" },
-							{ "thai": "แล้ว", "gloss": "already" },
-							{ "thai": "กิน", "gloss": "eat" },
-							{ "thai": "ข้าว", "gloss": "rice" }
+							{
+								"thai": "ฉัน",
+								"gloss": "I"
+							},
+							{
+								"thai": "แล้ว",
+								"gloss": "already"
+							},
+							{
+								"thai": "กิน",
+								"gloss": "eat"
+							},
+							{
+								"thai": "ข้าว",
+								"gloss": "rice"
+							}
 						]
 					},
 					{
 						"words": [
-							{ "thai": "แล้ว", "gloss": "already" },
-							{ "thai": "ฉัน", "gloss": "I" },
-							{ "thai": "กิน", "gloss": "eat" },
-							{ "thai": "ข้าว", "gloss": "rice" }
+							{
+								"thai": "แล้ว",
+								"gloss": "already"
+							},
+							{
+								"thai": "ฉัน",
+								"gloss": "I"
+							},
+							{
+								"thai": "กิน",
+								"gloss": "eat"
+							},
+							{
+								"thai": "ข้าว",
+								"gloss": "rice"
+							}
 						]
 					},
 					{
 						"words": [
-							{ "thai": "ฉัน", "gloss": "I" },
-							{ "thai": "กิน", "gloss": "eat" },
-							{ "thai": "แล้ว", "gloss": "already" },
-							{ "thai": "ข้าว", "gloss": "rice" }
+							{
+								"thai": "ฉัน",
+								"gloss": "I"
+							},
+							{
+								"thai": "กิน",
+								"gloss": "eat"
+							},
+							{
+								"thai": "แล้ว",
+								"gloss": "already"
+							},
+							{
+								"thai": "ข้าว",
+								"gloss": "rice"
+							}
 						]
 					}
 				]
@@ -700,7 +1403,53 @@
 		"pattern": "[Subject] + จะ + [Verb]",
 		"lessonNumber": 10,
 		"prerequisites": {
-			"minVocabByClass": { "v": 6, "n": 8 }
+			"minVocabByClass": {
+				"v": 6,
+				"n": 8
+			}
+		},
+		"applicationTemplate": {
+			"slots": [
+				{
+					"role": "subject",
+					"wordClass": "pron",
+					"fallbackWordClasses": [
+						"n"
+					]
+				},
+				{
+					"role": "verb",
+					"wordClass": "v"
+				},
+				{
+					"role": "object",
+					"wordClass": "n"
+				}
+			],
+			"functionWords": [
+				{
+					"thai": "จะ",
+					"gloss": "will",
+					"position": "before-verb"
+				}
+			],
+			"distractorPatterns": [
+				[
+					"subject",
+					"verb",
+					"object"
+				],
+				[
+					"subject",
+					"verb",
+					"object"
+				],
+				[
+					"subject",
+					"verb",
+					"object"
+				]
+			]
 		},
 		"examples": [
 			{
@@ -709,10 +1458,22 @@
 				"english": "I will go to the market.",
 				"breakdown": "ฉัน (I) + จะ (will) + ไป (go) + ตลาด (market)",
 				"words": [
-					{ "thai": "ฉัน", "gloss": "I" },
-					{ "thai": "จะ", "gloss": "will" },
-					{ "thai": "ไป", "gloss": "go" },
-					{ "thai": "ตลาด", "gloss": "market" }
+					{
+						"thai": "ฉัน",
+						"gloss": "I"
+					},
+					{
+						"thai": "จะ",
+						"gloss": "will"
+					},
+					{
+						"thai": "ไป",
+						"gloss": "go"
+					},
+					{
+						"thai": "ตลาด",
+						"gloss": "market"
+					}
 				]
 			},
 			{
@@ -748,26 +1509,62 @@
 				"incorrectExamples": [
 					{
 						"words": [
-							{ "thai": "ฉัน", "gloss": "I" },
-							{ "thai": "ไป", "gloss": "go" },
-							{ "thai": "จะ", "gloss": "will" },
-							{ "thai": "ตลาด", "gloss": "market" }
+							{
+								"thai": "ฉัน",
+								"gloss": "I"
+							},
+							{
+								"thai": "ไป",
+								"gloss": "go"
+							},
+							{
+								"thai": "จะ",
+								"gloss": "will"
+							},
+							{
+								"thai": "ตลาด",
+								"gloss": "market"
+							}
 						]
 					},
 					{
 						"words": [
-							{ "thai": "จะ", "gloss": "will" },
-							{ "thai": "ฉัน", "gloss": "I" },
-							{ "thai": "ไป", "gloss": "go" },
-							{ "thai": "ตลาด", "gloss": "market" }
+							{
+								"thai": "จะ",
+								"gloss": "will"
+							},
+							{
+								"thai": "ฉัน",
+								"gloss": "I"
+							},
+							{
+								"thai": "ไป",
+								"gloss": "go"
+							},
+							{
+								"thai": "ตลาด",
+								"gloss": "market"
+							}
 						]
 					},
 					{
 						"words": [
-							{ "thai": "ฉัน", "gloss": "I" },
-							{ "thai": "ไป", "gloss": "go" },
-							{ "thai": "ตลาด", "gloss": "market" },
-							{ "thai": "จะ", "gloss": "will" }
+							{
+								"thai": "ฉัน",
+								"gloss": "I"
+							},
+							{
+								"thai": "ไป",
+								"gloss": "go"
+							},
+							{
+								"thai": "ตลาด",
+								"gloss": "market"
+							},
+							{
+								"thai": "จะ",
+								"gloss": "will"
+							}
 						]
 					}
 				]
@@ -781,7 +1578,57 @@
 		"pattern": "[Subject] + กำลัง + [Verb] + (อยู่)",
 		"lessonNumber": 11,
 		"prerequisites": {
-			"minVocabByClass": { "v": 7 }
+			"minVocabByClass": {
+				"v": 7
+			}
+		},
+		"applicationTemplate": {
+			"slots": [
+				{
+					"role": "subject",
+					"wordClass": "pron",
+					"fallbackWordClasses": [
+						"n"
+					]
+				},
+				{
+					"role": "verb",
+					"wordClass": "v"
+				},
+				{
+					"role": "object",
+					"wordClass": "n"
+				}
+			],
+			"functionWords": [
+				{
+					"thai": "กำลัง",
+					"gloss": "currently",
+					"position": "before-verb"
+				},
+				{
+					"thai": "อยู่",
+					"gloss": "ongoing",
+					"position": "end"
+				}
+			],
+			"distractorPatterns": [
+				[
+					"subject",
+					"verb",
+					"object"
+				],
+				[
+					"subject",
+					"verb",
+					"object"
+				],
+				[
+					"subject",
+					"verb",
+					"object"
+				]
+			]
 		},
 		"examples": [
 			{
@@ -790,11 +1637,26 @@
 				"english": "He is eating.",
 				"breakdown": "เขา (he) + กำลัง (currently) + กิน (eat) + ข้าว (rice) + อยู่ (ongoing)",
 				"words": [
-					{ "thai": "เขา", "gloss": "he" },
-					{ "thai": "กำลัง", "gloss": "currently" },
-					{ "thai": "กิน", "gloss": "eat" },
-					{ "thai": "ข้าว", "gloss": "rice" },
-					{ "thai": "อยู่", "gloss": "ongoing" }
+					{
+						"thai": "เขา",
+						"gloss": "he"
+					},
+					{
+						"thai": "กำลัง",
+						"gloss": "currently"
+					},
+					{
+						"thai": "กิน",
+						"gloss": "eat"
+					},
+					{
+						"thai": "ข้าว",
+						"gloss": "rice"
+					},
+					{
+						"thai": "อยู่",
+						"gloss": "ongoing"
+					}
 				]
 			},
 			{
@@ -825,29 +1687,74 @@
 				"incorrectExamples": [
 					{
 						"words": [
-							{ "thai": "เขา", "gloss": "he" },
-							{ "thai": "กิน", "gloss": "eat" },
-							{ "thai": "กำลัง", "gloss": "currently" },
-							{ "thai": "ข้าว", "gloss": "rice" },
-							{ "thai": "อยู่", "gloss": "ongoing" }
+							{
+								"thai": "เขา",
+								"gloss": "he"
+							},
+							{
+								"thai": "กิน",
+								"gloss": "eat"
+							},
+							{
+								"thai": "กำลัง",
+								"gloss": "currently"
+							},
+							{
+								"thai": "ข้าว",
+								"gloss": "rice"
+							},
+							{
+								"thai": "อยู่",
+								"gloss": "ongoing"
+							}
 						]
 					},
 					{
 						"words": [
-							{ "thai": "กำลัง", "gloss": "currently" },
-							{ "thai": "เขา", "gloss": "he" },
-							{ "thai": "กิน", "gloss": "eat" },
-							{ "thai": "ข้าว", "gloss": "rice" },
-							{ "thai": "อยู่", "gloss": "ongoing" }
+							{
+								"thai": "กำลัง",
+								"gloss": "currently"
+							},
+							{
+								"thai": "เขา",
+								"gloss": "he"
+							},
+							{
+								"thai": "กิน",
+								"gloss": "eat"
+							},
+							{
+								"thai": "ข้าว",
+								"gloss": "rice"
+							},
+							{
+								"thai": "อยู่",
+								"gloss": "ongoing"
+							}
 						]
 					},
 					{
 						"words": [
-							{ "thai": "เขา", "gloss": "he" },
-							{ "thai": "กิน", "gloss": "eat" },
-							{ "thai": "ข้าว", "gloss": "rice" },
-							{ "thai": "กำลัง", "gloss": "currently" },
-							{ "thai": "อยู่", "gloss": "ongoing" }
+							{
+								"thai": "เขา",
+								"gloss": "he"
+							},
+							{
+								"thai": "กิน",
+								"gloss": "eat"
+							},
+							{
+								"thai": "ข้าว",
+								"gloss": "rice"
+							},
+							{
+								"thai": "กำลัง",
+								"gloss": "currently"
+							},
+							{
+								"thai": "อยู่",
+								"gloss": "ongoing"
+							}
 						]
 					}
 				]
@@ -861,7 +1768,51 @@
 		"pattern": "A + [Adj] + กว่า + B",
 		"lessonNumber": 12,
 		"prerequisites": {
-			"minVocabByClass": { "adj": 4, "n": 10 }
+			"minVocabByClass": {
+				"adj": 4,
+				"n": 10
+			}
+		},
+		"applicationTemplate": {
+			"slots": [
+				{
+					"role": "subjectA",
+					"wordClass": "n"
+				},
+				{
+					"role": "adjective",
+					"wordClass": "adj"
+				},
+				{
+					"role": "subjectB",
+					"wordClass": "n"
+				}
+			],
+			"functionWords": [
+				{
+					"thai": "กว่า",
+					"gloss": "more than",
+					"position": "end",
+					"insertAfter": "adjective"
+				}
+			],
+			"distractorPatterns": [
+				[
+					"subjectA",
+					"subjectB",
+					"adjective"
+				],
+				[
+					"adjective",
+					"subjectA",
+					"subjectB"
+				],
+				[
+					"subjectB",
+					"adjective",
+					"subjectA"
+				]
+			]
 		},
 		"examples": [
 			{
@@ -870,10 +1821,22 @@
 				"english": "The older brother is taller than the younger brother.",
 				"breakdown": "พี่ชาย (older brother) + สูง (tall) + กว่า (more than) + น้องชาย (younger brother)",
 				"words": [
-					{ "thai": "พี่ชาย", "gloss": "older brother" },
-					{ "thai": "สูง", "gloss": "tall" },
-					{ "thai": "กว่า", "gloss": "more than" },
-					{ "thai": "น้องชาย", "gloss": "younger brother" }
+					{
+						"thai": "พี่ชาย",
+						"gloss": "older brother"
+					},
+					{
+						"thai": "สูง",
+						"gloss": "tall"
+					},
+					{
+						"thai": "กว่า",
+						"gloss": "more than"
+					},
+					{
+						"thai": "น้องชาย",
+						"gloss": "younger brother"
+					}
 				]
 			},
 			{
@@ -904,26 +1867,62 @@
 				"incorrectExamples": [
 					{
 						"words": [
-							{ "thai": "พี่ชาย", "gloss": "older brother" },
-							{ "thai": "กว่า", "gloss": "more than" },
-							{ "thai": "สูง", "gloss": "tall" },
-							{ "thai": "น้องชาย", "gloss": "younger brother" }
+							{
+								"thai": "พี่ชาย",
+								"gloss": "older brother"
+							},
+							{
+								"thai": "กว่า",
+								"gloss": "more than"
+							},
+							{
+								"thai": "สูง",
+								"gloss": "tall"
+							},
+							{
+								"thai": "น้องชาย",
+								"gloss": "younger brother"
+							}
 						]
 					},
 					{
 						"words": [
-							{ "thai": "กว่า", "gloss": "more than" },
-							{ "thai": "พี่ชาย", "gloss": "older brother" },
-							{ "thai": "สูง", "gloss": "tall" },
-							{ "thai": "น้องชาย", "gloss": "younger brother" }
+							{
+								"thai": "กว่า",
+								"gloss": "more than"
+							},
+							{
+								"thai": "พี่ชาย",
+								"gloss": "older brother"
+							},
+							{
+								"thai": "สูง",
+								"gloss": "tall"
+							},
+							{
+								"thai": "น้องชาย",
+								"gloss": "younger brother"
+							}
 						]
 					},
 					{
 						"words": [
-							{ "thai": "พี่ชาย", "gloss": "older brother" },
-							{ "thai": "สูง", "gloss": "tall" },
-							{ "thai": "น้องชาย", "gloss": "younger brother" },
-							{ "thai": "กว่า", "gloss": "more than" }
+							{
+								"thai": "พี่ชาย",
+								"gloss": "older brother"
+							},
+							{
+								"thai": "สูง",
+								"gloss": "tall"
+							},
+							{
+								"thai": "น้องชาย",
+								"gloss": "younger brother"
+							},
+							{
+								"thai": "กว่า",
+								"gloss": "more than"
+							}
 						]
 					}
 				]
@@ -937,7 +1936,10 @@
 		"pattern": "เพราะ + [Cause], เลย + [Result]",
 		"lessonNumber": 13,
 		"prerequisites": {
-			"minVocabByClass": { "v": 8, "n": 10 }
+			"minVocabByClass": {
+				"v": 8,
+				"n": 10
+			}
 		},
 		"examples": [
 			{
@@ -946,10 +1948,22 @@
 				"english": "Because it rained, so I didn't go.",
 				"breakdown": "เพราะ (because) + ฝนตก (rain falls) + เลย (so) + ไม่ไป (not go)",
 				"words": [
-					{ "thai": "เพราะ", "gloss": "because" },
-					{ "thai": "ฝนตก", "gloss": "rain falls" },
-					{ "thai": "เลย", "gloss": "so" },
-					{ "thai": "ไม่ไป", "gloss": "not go" }
+					{
+						"thai": "เพราะ",
+						"gloss": "because"
+					},
+					{
+						"thai": "ฝนตก",
+						"gloss": "rain falls"
+					},
+					{
+						"thai": "เลย",
+						"gloss": "so"
+					},
+					{
+						"thai": "ไม่ไป",
+						"gloss": "not go"
+					}
 				]
 			},
 			{
@@ -980,26 +1994,62 @@
 				"incorrectExamples": [
 					{
 						"words": [
-							{ "thai": "เลย", "gloss": "so" },
-							{ "thai": "ฝนตก", "gloss": "rain falls" },
-							{ "thai": "เพราะ", "gloss": "because" },
-							{ "thai": "ไม่ไป", "gloss": "not go" }
+							{
+								"thai": "เลย",
+								"gloss": "so"
+							},
+							{
+								"thai": "ฝนตก",
+								"gloss": "rain falls"
+							},
+							{
+								"thai": "เพราะ",
+								"gloss": "because"
+							},
+							{
+								"thai": "ไม่ไป",
+								"gloss": "not go"
+							}
 						]
 					},
 					{
 						"words": [
-							{ "thai": "ฝนตก", "gloss": "rain falls" },
-							{ "thai": "เพราะ", "gloss": "because" },
-							{ "thai": "ไม่ไป", "gloss": "not go" },
-							{ "thai": "เลย", "gloss": "so" }
+							{
+								"thai": "ฝนตก",
+								"gloss": "rain falls"
+							},
+							{
+								"thai": "เพราะ",
+								"gloss": "because"
+							},
+							{
+								"thai": "ไม่ไป",
+								"gloss": "not go"
+							},
+							{
+								"thai": "เลย",
+								"gloss": "so"
+							}
 						]
 					},
 					{
 						"words": [
-							{ "thai": "เพราะ", "gloss": "because" },
-							{ "thai": "เลย", "gloss": "so" },
-							{ "thai": "ฝนตก", "gloss": "rain falls" },
-							{ "thai": "ไม่ไป", "gloss": "not go" }
+							{
+								"thai": "เพราะ",
+								"gloss": "because"
+							},
+							{
+								"thai": "เลย",
+								"gloss": "so"
+							},
+							{
+								"thai": "ฝนตก",
+								"gloss": "rain falls"
+							},
+							{
+								"thai": "ไม่ไป",
+								"gloss": "not go"
+							}
 						]
 					}
 				]
@@ -1013,7 +2063,52 @@
 		"pattern": "[Subject] + [Verb] + ได้ / [Subject] + [Verb] + เป็น",
 		"lessonNumber": 14,
 		"prerequisites": {
-			"minVocabByClass": { "v": 8 }
+			"minVocabByClass": {
+				"v": 8
+			}
+		},
+		"applicationTemplate": {
+			"slots": [
+				{
+					"role": "subject",
+					"wordClass": "pron",
+					"fallbackWordClasses": [
+						"n"
+					]
+				},
+				{
+					"role": "verb",
+					"wordClass": "v"
+				},
+				{
+					"role": "object",
+					"wordClass": "n"
+				}
+			],
+			"functionWords": [
+				{
+					"thai": "ได้",
+					"gloss": "can",
+					"position": "end"
+				}
+			],
+			"distractorPatterns": [
+				[
+					"subject",
+					"verb",
+					"object"
+				],
+				[
+					"subject",
+					"verb",
+					"object"
+				],
+				[
+					"subject",
+					"verb",
+					"object"
+				]
+			]
 		},
 		"examples": [
 			{
@@ -1022,10 +2117,22 @@
 				"english": "I can speak Thai.",
 				"breakdown": "ฉัน (I) + พูด (speak) + ไทย (Thai) + ได้ (can/able)",
 				"words": [
-					{ "thai": "ฉัน", "gloss": "I" },
-					{ "thai": "พูด", "gloss": "speak" },
-					{ "thai": "ไทย", "gloss": "Thai" },
-					{ "thai": "ได้", "gloss": "can" }
+					{
+						"thai": "ฉัน",
+						"gloss": "I"
+					},
+					{
+						"thai": "พูด",
+						"gloss": "speak"
+					},
+					{
+						"thai": "ไทย",
+						"gloss": "Thai"
+					},
+					{
+						"thai": "ได้",
+						"gloss": "can"
+					}
 				]
 			},
 			{
@@ -1056,26 +2163,62 @@
 				"incorrectExamples": [
 					{
 						"words": [
-							{ "thai": "ฉัน", "gloss": "I" },
-							{ "thai": "ได้", "gloss": "can" },
-							{ "thai": "พูด", "gloss": "speak" },
-							{ "thai": "ไทย", "gloss": "Thai" }
+							{
+								"thai": "ฉัน",
+								"gloss": "I"
+							},
+							{
+								"thai": "ได้",
+								"gloss": "can"
+							},
+							{
+								"thai": "พูด",
+								"gloss": "speak"
+							},
+							{
+								"thai": "ไทย",
+								"gloss": "Thai"
+							}
 						]
 					},
 					{
 						"words": [
-							{ "thai": "ได้", "gloss": "can" },
-							{ "thai": "ฉัน", "gloss": "I" },
-							{ "thai": "พูด", "gloss": "speak" },
-							{ "thai": "ไทย", "gloss": "Thai" }
+							{
+								"thai": "ได้",
+								"gloss": "can"
+							},
+							{
+								"thai": "ฉัน",
+								"gloss": "I"
+							},
+							{
+								"thai": "พูด",
+								"gloss": "speak"
+							},
+							{
+								"thai": "ไทย",
+								"gloss": "Thai"
+							}
 						]
 					},
 					{
 						"words": [
-							{ "thai": "ฉัน", "gloss": "I" },
-							{ "thai": "พูด", "gloss": "speak" },
-							{ "thai": "ได้", "gloss": "can" },
-							{ "thai": "ไทย", "gloss": "Thai" }
+							{
+								"thai": "ฉัน",
+								"gloss": "I"
+							},
+							{
+								"thai": "พูด",
+								"gloss": "speak"
+							},
+							{
+								"thai": "ได้",
+								"gloss": "can"
+							},
+							{
+								"thai": "ไทย",
+								"gloss": "Thai"
+							}
 						]
 					}
 				]
@@ -1089,7 +2232,46 @@
 		"pattern": "[Sentence] + ครับ/ค่ะ",
 		"lessonNumber": 15,
 		"prerequisites": {
-			"minVocabByClass": { "n": 5, "v": 3 }
+			"minVocabByClass": {
+				"n": 5,
+				"v": 3
+			}
+		},
+		"applicationTemplate": {
+			"slots": [
+				{
+					"role": "subject",
+					"wordClass": "pron",
+					"fallbackWordClasses": [
+						"n"
+					]
+				},
+				{
+					"role": "verb",
+					"wordClass": "v"
+				}
+			],
+			"functionWords": [
+				{
+					"thai": "ครับ",
+					"gloss": "polite",
+					"position": "end"
+				}
+			],
+			"distractorPatterns": [
+				[
+					"verb",
+					"subject"
+				],
+				[
+					"verb",
+					"subject"
+				],
+				[
+					"subject",
+					"verb"
+				]
+			]
 		},
 		"examples": [
 			{
@@ -1098,8 +2280,14 @@
 				"english": "Hello (male speaker).",
 				"breakdown": "สวัสดี (hello) + ครับ (polite particle, male)",
 				"words": [
-					{ "thai": "สวัสดี", "gloss": "hello" },
-					{ "thai": "ครับ", "gloss": "polite, male" }
+					{
+						"thai": "สวัสดี",
+						"gloss": "hello"
+					},
+					{
+						"thai": "ครับ",
+						"gloss": "polite, male"
+					}
 				]
 			},
 			{
@@ -1135,22 +2323,46 @@
 				"incorrectExamples": [
 					{
 						"words": [
-							{ "thai": "ครับ", "gloss": "polite, male" },
-							{ "thai": "สวัสดี", "gloss": "hello" }
+							{
+								"thai": "ครับ",
+								"gloss": "polite, male"
+							},
+							{
+								"thai": "สวัสดี",
+								"gloss": "hello"
+							}
 						]
 					},
 					{
 						"words": [
-							{ "thai": "สวัส", "gloss": "hello" },
-							{ "thai": "ครับ", "gloss": "polite, male" },
-							{ "thai": "ดี", "gloss": "good" }
+							{
+								"thai": "สวัส",
+								"gloss": "hello"
+							},
+							{
+								"thai": "ครับ",
+								"gloss": "polite, male"
+							},
+							{
+								"thai": "ดี",
+								"gloss": "good"
+							}
 						]
 					},
 					{
 						"words": [
-							{ "thai": "สวัสดี", "gloss": "hello" },
-							{ "thai": "ค่ะ", "gloss": "polite, female" },
-							{ "thai": "ครับ", "gloss": "polite, male" }
+							{
+								"thai": "สวัสดี",
+								"gloss": "hello"
+							},
+							{
+								"thai": "ค่ะ",
+								"gloss": "polite, female"
+							},
+							{
+								"thai": "ครับ",
+								"gloss": "polite, male"
+							}
 						]
 					}
 				]
