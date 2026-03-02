@@ -1,6 +1,31 @@
 import { describe, expect, it } from "vitest";
+import type { VocabEntry } from "../../vocabulary/types";
 import type { GrammarEntry } from "../types";
 import { generateGrammarCards } from "./GrammarCardGenerator";
+
+function makeVocabEntry(
+	thai: string,
+	english: string,
+	wordClass: string,
+): VocabEntry {
+	return {
+		thai,
+		english,
+		romanization: "test",
+		word_class: wordClass,
+		rank: null,
+		frequency: 0,
+		mnemonic: null,
+		characters: [],
+		syllables: [],
+		toneRules: [],
+		thai_audio_file: null,
+		english_audio_file: null,
+		image_file: null,
+		samples: [],
+		source: "test",
+	};
+}
 
 function makeGrammarEntry(overrides?: Partial<GrammarEntry>): GrammarEntry {
 	return {
@@ -129,5 +154,199 @@ describe("generateGrammarCards", () => {
 			expect(card.srs.learningStep).toBe(1);
 			expect(card.srs.lapseCount).toBe(0);
 		}
+	});
+});
+
+describe("generateGrammarCards with applicationTemplate", () => {
+	const masteredVocab: VocabEntry[] = [
+		makeVocabEntry("คน", "person", "n"),
+		makeVocabEntry("น้ำ", "water", "n"),
+		makeVocabEntry("บ้าน", "house", "n"),
+		makeVocabEntry("กิน", "eat", "v"),
+		makeVocabEntry("ไป", "go", "v"),
+		makeVocabEntry("เขา", "he", "pron"),
+		makeVocabEntry("ฉัน", "I", "pron"),
+	];
+
+	it("generates application card with dynamic words from mastered vocab", () => {
+		const entry = makeGrammarEntry({
+			applicationTemplate: {
+				slots: [
+					{ role: "subject", wordClass: "pron", fallbackWordClasses: ["n"] },
+					{ role: "verb", wordClass: "v" },
+					{ role: "object", wordClass: "n" },
+				],
+				functionWords: [],
+				distractorPatterns: [
+					["object", "verb", "subject"],
+					["verb", "subject", "object"],
+					["object", "subject", "verb"],
+				],
+			},
+		});
+
+		const cards = generateGrammarCards(entry, masteredVocab);
+		const app = cards.find((c) => c.property === "application")!;
+
+		// Correct answer should be glossed format with 3 words
+		const parts = app.correctAnswer.split(" ");
+		expect(parts).toHaveLength(3);
+		for (const part of parts) {
+			expect(part).toMatch(/^.+\(.+\)$/);
+		}
+		expect(app.choices).toHaveLength(4);
+	});
+
+	it("places function words at 'end' position correctly", () => {
+		const entry = makeGrammarEntry({
+			applicationTemplate: {
+				slots: [
+					{ role: "subject", wordClass: "pron", fallbackWordClasses: ["n"] },
+					{ role: "verb", wordClass: "v" },
+					{ role: "object", wordClass: "n" },
+				],
+				functionWords: [{ thai: "ไหม", gloss: "?", position: "end" }],
+				distractorPatterns: [
+					["subject", "verb", "object"],
+					["subject", "verb", "object"],
+					["subject", "verb", "object"],
+				],
+			},
+		});
+
+		const cards = generateGrammarCards(entry, masteredVocab);
+		const app = cards.find((c) => c.property === "application")!;
+
+		expect(app.correctAnswer).toMatch(/ไหม\(\?\)$/);
+	});
+
+	it("distractors reorder slot words per distractorPatterns", () => {
+		const entry = makeGrammarEntry({
+			applicationTemplate: {
+				slots: [
+					{ role: "subject", wordClass: "pron", fallbackWordClasses: ["n"] },
+					{ role: "verb", wordClass: "v" },
+					{ role: "object", wordClass: "n" },
+				],
+				functionWords: [],
+				distractorPatterns: [
+					["object", "verb", "subject"],
+					["verb", "subject", "object"],
+					["object", "subject", "verb"],
+				],
+			},
+		});
+
+		const cards = generateGrammarCards(entry, masteredVocab);
+		const app = cards.find((c) => c.property === "application")!;
+
+		const unique = new Set(app.choices);
+		expect(unique.size).toBe(4);
+	});
+
+	it("uses fallback word classes when primary has no entries", () => {
+		const limitedVocab: VocabEntry[] = [
+			makeVocabEntry("คน", "person", "n"),
+			makeVocabEntry("น้ำ", "water", "n"),
+			makeVocabEntry("กิน", "eat", "v"),
+		];
+
+		const entry = makeGrammarEntry({
+			applicationTemplate: {
+				slots: [
+					{ role: "subject", wordClass: "pron", fallbackWordClasses: ["n"] },
+					{ role: "verb", wordClass: "v" },
+					{ role: "object", wordClass: "n" },
+				],
+				functionWords: [],
+				distractorPatterns: [
+					["object", "verb", "subject"],
+					["verb", "subject", "object"],
+					["object", "subject", "verb"],
+				],
+			},
+		});
+
+		const cards = generateGrammarCards(entry, limitedVocab);
+		const app = cards.find((c) => c.property === "application")!;
+		expect(app.correctAnswer).toBeDefined();
+		expect(app.choices).toHaveLength(4);
+	});
+
+	it("falls back to static examples when no applicationTemplate is present", () => {
+		const cards = generateGrammarCards(makeGrammarEntry());
+		const app = cards.find((c) => c.property === "application")!;
+		expect(app.correctAnswer).toBe("เขา(he) กิน(eat) ข้าว(rice)");
+	});
+
+	it("falls back to static examples when masteredVocab is not provided", () => {
+		const entry = makeGrammarEntry({
+			applicationTemplate: {
+				slots: [
+					{ role: "subject", wordClass: "pron" },
+					{ role: "verb", wordClass: "v" },
+				],
+				functionWords: [],
+				distractorPatterns: [["verb", "subject"]],
+			},
+		});
+
+		const cards = generateGrammarCards(entry);
+		const app = cards.find((c) => c.property === "application")!;
+		expect(app.correctAnswer).toBe("เขา(he) กิน(eat) ข้าว(rice)");
+	});
+
+	it("function word at 'before-verb' position is placed correctly", () => {
+		const entry = makeGrammarEntry({
+			applicationTemplate: {
+				slots: [
+					{ role: "subject", wordClass: "pron", fallbackWordClasses: ["n"] },
+					{ role: "verb", wordClass: "v" },
+					{ role: "object", wordClass: "n" },
+				],
+				functionWords: [{ thai: "ไม่", gloss: "not", position: "before-verb" }],
+				distractorPatterns: [
+					["subject", "verb", "object"],
+					["subject", "verb", "object"],
+					["subject", "verb", "object"],
+				],
+			},
+		});
+
+		const cards = generateGrammarCards(entry, masteredVocab);
+		const app = cards.find((c) => c.property === "application")!;
+
+		const parts = app.correctAnswer.split(" ");
+		const maiIdx = parts.findIndex((p) => p.startsWith("ไม่"));
+		expect(maiIdx).toBeGreaterThan(0);
+		expect(maiIdx).toBeLessThan(parts.length - 1);
+	});
+
+	it("function word with insertAfter is placed after the specified role", () => {
+		const entry = makeGrammarEntry({
+			applicationTemplate: {
+				slots: [
+					{ role: "thing", wordClass: "n" },
+					{ role: "owner", wordClass: "pron", fallbackWordClasses: ["n"] },
+				],
+				functionWords: [
+					{ thai: "ของ", gloss: "of", position: "end", insertAfter: "thing" },
+				],
+				distractorPatterns: [
+					["owner", "thing"],
+					["owner", "thing"],
+					["thing", "owner"],
+				],
+			},
+		});
+
+		const cards = generateGrammarCards(entry, masteredVocab);
+		const app = cards.find((c) => c.property === "application")!;
+
+		// ของ(of) should appear after the thing word and before the owner word
+		const parts = app.correctAnswer.split(" ");
+		const khongIdx = parts.findIndex((p) => p.startsWith("ของ"));
+		expect(khongIdx).toBe(1); // After first slot (thing), before second slot (owner)
+		expect(parts).toHaveLength(3); // thing, ของ, owner
 	});
 });
