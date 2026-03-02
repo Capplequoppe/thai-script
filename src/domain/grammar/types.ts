@@ -9,6 +9,21 @@ export interface GlossedPhrase {
 	words: GlossedWord[];
 }
 
+export interface ApplicationTemplate {
+	slots: Array<{
+		role: string;
+		wordClass: string;
+		fallbackWordClasses?: string[];
+	}>;
+	functionWords: Array<{
+		thai: string;
+		gloss: string;
+		position: "start" | "end" | "before-verb" | "after-verb" | "after-adj";
+		insertAfter?: string;
+	}>;
+	distractorPatterns: string[][];
+}
+
 export interface GrammarEntry {
 	id: string;
 	title: string;
@@ -38,6 +53,7 @@ export interface GrammarEntry {
 			incorrectExamples: GlossedPhrase[];
 		};
 	};
+	applicationTemplate?: ApplicationTemplate;
 }
 
 export interface GrammarCard extends SrsCard {
