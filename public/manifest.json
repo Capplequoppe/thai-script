@@ -1,24 +1,24 @@
 {
-  "name": "Thai SRS",
-  "short_name": "Thai SRS",
-  "description": "Learn the Thai alphabet with spaced repetition",
-  "start_url": "/thai-script/",
-  "scope": "/thai-script/",
-  "display": "standalone",
-  "background_color": "#ffffff",
-  "theme_color": "#4f46e5",
-  "icons": [
-    {
-      "src": "/thai-script/icons/icon-192x192.png",
-      "sizes": "192x192",
-      "type": "image/png",
-      "purpose": "any maskable"
-    },
-    {
-      "src": "/thai-script/icons/icon-512x512.png",
-      "sizes": "512x512",
-      "type": "image/png",
-      "purpose": "any maskable"
-    }
-  ]
+	"name": "Thai SRS",
+	"short_name": "Thai SRS",
+	"description": "Learn the Thai alphabet with spaced repetition",
+	"start_url": "/thai-script/",
+	"scope": "/thai-script/",
+	"display": "standalone",
+	"background_color": "#ffffff",
+	"theme_color": "#4f46e5",
+	"icons": [
+		{
+			"src": "/thai-script/icons/icon-192x192.png",
+			"sizes": "192x192",
+			"type": "image/png",
+			"purpose": "any maskable"
+		},
+		{
+			"src": "/thai-script/icons/icon-512x512.png",
+			"sizes": "512x512",
+			"type": "image/png",
+			"purpose": "any maskable"
+		}
+	]
 }

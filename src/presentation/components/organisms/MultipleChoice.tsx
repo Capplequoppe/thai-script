@@ -67,7 +67,11 @@ interface Props {
 	mnemonicExpanded?: boolean;
 }
 
-export function MultipleChoice({ card, onAnswer, mnemonicExpanded = false }: Props) {
+export function MultipleChoice({
+	card,
+	onAnswer,
+	mnemonicExpanded = false,
+}: Props) {
 	const [selected, setSelected] = useState<string | null>(null);
 	const [revealed, setRevealed] = useState(false);
 	const displayedAtRef = useRef(Date.now());
@@ -87,7 +91,10 @@ export function MultipleChoice({ card, onAnswer, mnemonicExpanded = false }: Pro
 			: "";
 	const mnemonic =
 		"mnemonic" in card
-			? ((card as Record<string, unknown>).mnemonic as string | null | undefined)
+			? ((card as Record<string, unknown>).mnemonic as
+					| string
+					| null
+					| undefined)
 			: null;
 
 	// biome-ignore lint/correctness/useExhaustiveDependencies: card.id resets state when the card changes
@@ -110,7 +117,7 @@ export function MultipleChoice({ card, onAnswer, mnemonicExpanded = false }: Pro
 			setSelected(choice);
 			setRevealed(true);
 			const correct = choice === card.correctAnswer;
-		setTimeout(() => onAnswer(correct, elapsed), correct ? 500 : 5000);
+			setTimeout(() => onAnswer(correct, elapsed), correct ? 500 : 5000);
 		},
 		[card.correctAnswer, onAnswer, revealed],
 	);

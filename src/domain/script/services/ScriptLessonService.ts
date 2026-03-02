@@ -17,7 +17,6 @@ import { generateCardsForLesson } from "./ScriptCardGenerator";
 
 const TOTAL_LESSONS = 25;
 
-
 export interface LessonInfo {
 	lessonNumber: number;
 	title: string;

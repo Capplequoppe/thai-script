@@ -408,10 +408,7 @@ export function VocabularyPage() {
 				{currentVocabCard.property === "toneIdentification" ? (
 					<ToneQuiz card={currentVocabCard} onAnswer={flow.advance} />
 				) : (
-					<MultipleChoice
-						card={currentVocabCard}
-						onAnswer={flow.advance}
-					/>
+					<MultipleChoice card={currentVocabCard} onAnswer={flow.advance} />
 				)}
 			</div>
 		);
@@ -530,8 +527,12 @@ export function VocabularyPage() {
 					/>
 				</div>
 				{"property" in current.card &&
-				(current.card as unknown as VocabularyCard).property === "toneIdentification" ? (
-					<ToneQuiz card={current.card as unknown as VocabularyCard} onAnswer={handleMcAnswer} />
+				(current.card as unknown as VocabularyCard).property ===
+					"toneIdentification" ? (
+					<ToneQuiz
+						card={current.card as unknown as VocabularyCard}
+						onAnswer={handleMcAnswer}
+					/>
 				) : current.mode === "multipleChoice" ? (
 					<MultipleChoice card={current.card} onAnswer={handleMcAnswer} />
 				) : (

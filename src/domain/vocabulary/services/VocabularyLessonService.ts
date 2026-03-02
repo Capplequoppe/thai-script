@@ -125,9 +125,7 @@ export class VocabularyService {
 			.filter((e) => e.rank != null)
 			.sort((a, b) => a.rank! - b.rank!);
 
-		const firstUnlearned = sortedAll.find(
-			(e) => !learnedThaiWords.has(e.thai),
-		);
+		const firstUnlearned = sortedAll.find((e) => !learnedThaiWords.has(e.thai));
 		const maxRank =
 			firstUnlearned?.rank != null
 				? firstUnlearned.rank + RANK_WINDOW_SIZE - 1
