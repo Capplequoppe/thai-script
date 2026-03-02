@@ -1,5 +1,14 @@
 import type { SrsCard } from "../shared/types";
 
+export interface GlossedWord {
+	thai: string;
+	gloss: string;
+}
+
+export interface GlossedPhrase {
+	words: GlossedWord[];
+}
+
 export interface GrammarEntry {
 	id: string;
 	title: string;
@@ -14,6 +23,7 @@ export interface GrammarEntry {
 		thai: string;
 		romanization: string;
 		english: string;
+		words?: GlossedWord[];
 		breakdown?: string;
 	}>;
 	cards: {
@@ -25,7 +35,7 @@ export interface GrammarEntry {
 		application: {
 			question: string;
 			correctExample: number;
-			incorrectExamples: string[];
+			incorrectExamples: GlossedPhrase[];
 		};
 	};
 }

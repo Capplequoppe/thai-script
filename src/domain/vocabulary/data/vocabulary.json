@@ -4305,7 +4305,7 @@
         "english_audio_file": "/thai-script/vocabulary/audio/0293_ด_sample1_en.mp3"
       }
     ],
-    "rank": 98,
+    "rank": 60,
     "frequency": 49431,
     "characters": [
       "ด",
@@ -4430,7 +4430,7 @@
         "english_audio_file": null
       }
     ],
-    "rank": 101,
+    "rank": 60,
     "frequency": 34684,
     "source": "frequency_csv",
     "characters": [
@@ -4610,7 +4610,7 @@
         "english_audio_file": null
       }
     ],
-    "rank": 105,
+    "rank": 30,
     "frequency": 19548,
     "source": "frequency_csv",
     "characters": [
@@ -4708,7 +4708,7 @@
         "english_audio_file": null
       }
     ],
-    "rank": 107,
+    "rank": 8,
     "frequency": 66391,
     "source": "frequency_csv",
     "characters": [
@@ -5174,7 +5174,7 @@
         "english_audio_file": null
       }
     ],
-    "rank": 117,
+    "rank": 55,
     "frequency": 46620,
     "source": "frequency_csv",
     "characters": [
@@ -5300,7 +5300,7 @@
         "english_audio_file": null
       }
     ],
-    "rank": 120,
+    "rank": 45,
     "frequency": 64575,
     "source": "frequency_csv",
     "characters": [
@@ -5723,7 +5723,7 @@
         "english_audio_file": null
       }
     ],
-    "rank": 129,
+    "rank": 60,
     "frequency": 30032,
     "source": "frequency_csv",
     "characters": [
@@ -6002,7 +6002,7 @@
         "english_audio_file": "/thai-script/vocabulary/audio/0552_อะไร_sample1_en.mp3"
       }
     ],
-    "rank": 135,
+    "rank": 30,
     "frequency": 60871,
     "characters": [
       "อ",
@@ -6279,7 +6279,7 @@
         "english_audio_file": "/thai-script/vocabulary/audio/0549_อยางไร_sample1_en.mp3"
       }
     ],
-    "rank": 142,
+    "rank": 45,
     "frequency": 16555,
     "characters": [
       "อ",
@@ -6421,7 +6421,7 @@
         "english_audio_file": "/thai-script/vocabulary/audio/1167_บาน_sample1_en.mp3"
       }
     ],
-    "rank": 145,
+    "rank": 45,
     "frequency": 36957,
     "characters": [
       "บ",
@@ -6463,7 +6463,7 @@
         "english_audio_file": "/thai-script/vocabulary/audio/1169_บาน_sample1_en.mp3"
       }
     ],
-    "rank": 145,
+    "rank": 45,
     "frequency": 36957,
     "characters": [
       "บ",
@@ -7221,7 +7221,7 @@
         "english_audio_file": null
       }
     ],
-    "rank": 161,
+    "rank": 40,
     "frequency": 47287,
     "source": "frequency_csv",
     "characters": [
@@ -7574,7 +7574,7 @@
         "english_audio_file": null
       }
     ],
-    "rank": 169,
+    "rank": 60,
     "frequency": 42762,
     "source": "frequency_csv",
     "characters": [
@@ -8022,7 +8022,7 @@
         "english_audio_file": "/thai-script/vocabulary/audio/0553_ใคร_sample1_en.mp3"
       }
     ],
-    "rank": 179,
+    "rank": 35,
     "frequency": 35797,
     "characters": [
       "ใ",
@@ -8278,7 +8278,7 @@
     "english_audio_file": "/thai-script/vocabulary/audio/0363_ใช_en.mp3",
     "image_file": "/thai-script/vocabulary/images/0363_ใช.jpg",
     "samples": [],
-    "rank": 184,
+    "rank": 20,
     "frequency": 32703,
     "characters": [
       "ใ",
@@ -8405,7 +8405,7 @@
         "english_audio_file": null
       }
     ],
-    "rank": 187,
+    "rank": 55,
     "frequency": 30422,
     "source": "frequency_csv",
     "characters": [
@@ -8943,7 +8943,7 @@
         "english_audio_file": "/thai-script/vocabulary/audio/0259_พด_sample1_en.mp3"
       }
     ],
-    "rank": 197,
+    "rank": 45,
     "frequency": 37978,
     "characters": [
       "พ",
@@ -9025,7 +9025,7 @@
         "english_audio_file": "/thai-script/vocabulary/audio/0873_อาหาร_sample1_en.mp3"
       }
     ],
-    "rank": 199,
+    "rank": 55,
     "frequency": 24905,
     "characters": [
       "อ",
@@ -9247,7 +9247,7 @@
         "english_audio_file": null
       }
     ],
-    "rank": 204,
+    "rank": 50,
     "frequency": 34356,
     "source": "frequency_csv",
     "characters": [
@@ -9576,7 +9576,7 @@
         "english_audio_file": null
       }
     ],
-    "rank": 210,
+    "rank": 8,
     "frequency": 81556,
     "source": "frequency_csv",
     "characters": [
@@ -9800,7 +9800,7 @@
         "english_audio_file": null
       }
     ],
-    "rank": 215,
+    "rank": 50,
     "frequency": 29570,
     "source": "frequency_csv",
     "characters": [
@@ -10056,7 +10056,7 @@
         "english_audio_file": "/thai-script/vocabulary/audio/0288_รก_sample1_en.mp3"
       }
     ],
-    "rank": 220,
+    "rank": 55,
     "frequency": 22291,
     "characters": [
       "ร",
@@ -10461,7 +10461,7 @@
         "english_audio_file": "/thai-script/vocabulary/audio/1283_ชอบ_sample1_en.mp3"
       }
     ],
-    "rank": 228,
+    "rank": 45,
     "frequency": 20547,
     "characters": [
       "ช",
@@ -10935,7 +10935,7 @@
         "english_audio_file": "/thai-script/vocabulary/audio/1717_ฟง_sample1_en.mp3"
       }
     ],
-    "rank": 239,
+    "rank": 55,
     "frequency": 18551,
     "characters": [
       "ฟ",
@@ -11224,7 +11224,7 @@
         "english_audio_file": "/thai-script/vocabulary/audio/0577_ซอ_sample1_en.mp3"
       }
     ],
-    "rank": 245,
+    "rank": 60,
     "frequency": 16986,
     "characters": [
       "ซ",
@@ -12040,7 +12040,7 @@
         "english_audio_file": null
       }
     ],
-    "rank": 261,
+    "rank": 40,
     "frequency": 26353,
     "source": "frequency_csv",
     "characters": [
@@ -13356,7 +13356,7 @@
         "english_audio_file": null
       }
     ],
-    "rank": 289,
+    "rank": 35,
     "frequency": 20905,
     "source": "frequency_csv",
     "characters": [
@@ -14291,7 +14291,7 @@
         "english_audio_file": "/thai-script/vocabulary/audio/1710_ถาม_sample1_en.mp3"
       }
     ],
-    "rank": 308,
+    "rank": 60,
     "frequency": 23012,
     "characters": [
       "ถ",
@@ -15368,7 +15368,7 @@
         "english_audio_file": null
       }
     ],
-    "rank": 329,
+    "rank": 50,
     "frequency": 20712,
     "source": "frequency_csv",
     "characters": [
@@ -16069,7 +16069,7 @@
         "english_audio_file": null
       }
     ],
-    "rank": 343,
+    "rank": 55,
     "frequency": 28648,
     "source": "frequency_csv",
     "characters": [
@@ -16479,7 +16479,7 @@
         "english_audio_file": "/thai-script/vocabulary/audio/1162_หอง_sample1_en.mp3"
       }
     ],
-    "rank": 351,
+    "rank": 65,
     "frequency": 21713,
     "characters": [
       "ห",
@@ -17575,7 +17575,7 @@
         "english_audio_file": "/thai-script/vocabulary/audio/0753_ขาว_sample1_en.mp3"
       }
     ],
-    "rank": 372,
+    "rank": 50,
     "frequency": 11313,
     "characters": [
       "ข",
@@ -22873,7 +22873,7 @@
         "english_audio_file": null
       }
     ],
-    "rank": 476,
+    "rank": 65,
     "frequency": 13061,
     "source": "frequency_csv",
     "characters": [
@@ -23980,7 +23980,7 @@
         "english_audio_file": null
       }
     ],
-    "rank": 498,
+    "rank": 55,
     "frequency": 12520,
     "source": "frequency_csv",
     "characters": [
@@ -24192,7 +24192,7 @@
         "english_audio_file": null
       }
     ],
-    "rank": 502,
+    "rank": 60,
     "frequency": 13536,
     "source": "frequency_csv",
     "characters": [
@@ -24359,7 +24359,7 @@
         "english_audio_file": "/thai-script/vocabulary/audio/0324_รอน_sample1_en.mp3"
       }
     ],
-    "rank": 506,
+    "rank": 65,
     "frequency": 8770,
     "characters": [
       "ร",
@@ -24401,7 +24401,7 @@
         "english_audio_file": "/thai-script/vocabulary/audio/1451_รอน_sample1_en.mp3"
       }
     ],
-    "rank": 506,
+    "rank": 65,
     "frequency": 8770,
     "characters": [
       "ร",
@@ -25982,7 +25982,7 @@
         "english_audio_file": null
       }
     ],
-    "rank": 538,
+    "rank": 15,
     "frequency": 12300,
     "source": "frequency_csv",
     "characters": [
@@ -26866,7 +26866,7 @@
         "english_audio_file": "/thai-script/vocabulary/audio/0548_ทำไม_sample1_en.mp3"
       }
     ],
-    "rank": 557,
+    "rank": 40,
     "frequency": 14964,
     "characters": [
       "ท",
@@ -32414,7 +32414,7 @@
         "english_audio_file": "/thai-script/vocabulary/audio/0322_เยน_sample1_en.mp3"
       }
     ],
-    "rank": 667,
+    "rank": 65,
     "frequency": 7924,
     "characters": [
       "เ",
@@ -32456,7 +32456,7 @@
         "english_audio_file": null
       }
     ],
-    "rank": 668,
+    "rank": 65,
     "frequency": 7879,
     "source": "frequency_csv",
     "characters": [
@@ -36390,7 +36390,7 @@
         "english_audio_file": null
       }
     ],
-    "rank": 747,
+    "rank": 45,
     "frequency": 5673,
     "source": "frequency_csv",
     "characters": [
@@ -36957,7 +36957,7 @@
         "english_audio_file": null
       }
     ],
-    "rank": 758,
+    "rank": 25,
     "frequency": 6378,
     "source": "frequency_csv",
     "characters": [
@@ -37368,7 +37368,7 @@
         "english_audio_file": null
       }
     ],
-    "rank": 766,
+    "rank": 60,
     "frequency": 12980,
     "source": "frequency_csv",
     "characters": [
@@ -47196,7 +47196,7 @@
         "english_audio_file": null
       }
     ],
-    "rank": 956,
+    "rank": 35,
     "frequency": 7175,
     "source": "frequency_csv",
     "characters": [
@@ -57017,7 +57017,7 @@
         "english_audio_file": null
       }
     ],
-    "rank": 1142,
+    "rank": 50,
     "frequency": 3409,
     "source": "frequency_csv",
     "characters": [
@@ -65832,7 +65832,7 @@
         "english_audio_file": null
       }
     ],
-    "rank": 1312,
+    "rank": 20,
     "frequency": 6498,
     "source": "frequency_csv",
     "characters": [
@@ -68959,7 +68959,7 @@
         "english_audio_file": "/thai-script/vocabulary/audio/0328_เหนอย_sample1_en.mp3"
       }
     ],
-    "rank": 1373,
+    "rank": 65,
     "frequency": 3140,
     "characters": [
       "เ",
@@ -75662,7 +75662,7 @@
         "english_audio_file": null
       }
     ],
-    "rank": 1500,
+    "rank": 60,
     "frequency": 3964,
     "source": "frequency_csv",
     "characters": [
@@ -77837,7 +77837,7 @@
         "english_audio_file": null
       }
     ],
-    "rank": 1542,
+    "rank": 40,
     "frequency": 2914,
     "source": "frequency_csv",
     "characters": [
@@ -78855,7 +78855,7 @@
         "english_audio_file": "/thai-script/vocabulary/audio/0330_อรอย_sample1_en.mp3"
       }
     ],
-    "rank": 1560,
+    "rank": 65,
     "frequency": 2687,
     "characters": [
       "อ",
@@ -78889,7 +78889,7 @@
     "english_audio_file": "/thai-script/vocabulary/audio/0366_อรอย_en.mp3",
     "image_file": "/thai-script/vocabulary/images/0366_อรอย.jpg",
     "samples": [],
-    "rank": 1560,
+    "rank": 65,
     "frequency": 2687,
     "characters": [
       "อ",
@@ -84095,7 +84095,7 @@
         "english_audio_file": "/thai-script/vocabulary/audio/0287_ขอบคณ_sample1_en.mp3"
       }
     ],
-    "rank": 1658,
+    "rank": 15,
     "frequency": 3264,
     "characters": [
       "ข",
@@ -84142,7 +84142,7 @@
     "english_audio_file": "/thai-script/vocabulary/audio/0361_ขอบคณ_en.mp3",
     "image_file": "/thai-script/vocabulary/images/0361_ขอบคณ.jpg",
     "samples": [],
-    "rank": 1658,
+    "rank": 15,
     "frequency": 3264,
     "characters": [
       "ข",
@@ -103732,7 +103732,7 @@
         "english_audio_file": "/thai-script/vocabulary/audio/0800_นำ_sample1_en.mp3"
       }
     ],
-    "rank": 2027,
+    "rank": 50,
     "frequency": 3176,
     "characters": [
       "น",
@@ -111122,7 +111122,7 @@
         "english_audio_file": "/thai-script/vocabulary/audio/0550_เมอไหร_sample1_en.mp3"
       }
     ],
-    "rank": 2164,
+    "rank": 45,
     "frequency": 2055,
     "characters": [
       "เ",
@@ -122599,7 +122599,7 @@
         "english_audio_file": "/thai-script/vocabulary/audio/0739_หว_sample1_en.mp3"
       }
     ],
-    "rank": 2388,
+    "rank": 60,
     "frequency": 1710,
     "characters": [
       "ห",
@@ -128534,7 +128534,7 @@
     "english_audio_file": "/thai-script/vocabulary/audio/0371_ขอโทษ_en.mp3",
     "image_file": "/thai-script/vocabulary/images/0371_ขอโทษ.jpg",
     "samples": [],
-    "rank": 2501,
+    "rank": 15,
     "frequency": 2364,
     "characters": [
       "ข",
@@ -128580,7 +128580,7 @@
     "english_audio_file": "/thai-script/vocabulary/audio/0374_ขอโทษ_en.mp3",
     "image_file": "/thai-script/vocabulary/images/0374_ขอโทษ.jpg",
     "samples": [],
-    "rank": 2501,
+    "rank": 15,
     "frequency": 2364,
     "characters": [
       "ข",
@@ -146542,7 +146542,7 @@
         "english_audio_file": null
       }
     ],
-    "rank": 2835,
+    "rank": 5,
     "frequency": 1154,
     "source": "frequency_csv",
     "characters": [
@@ -301329,5 +301329,843 @@
       "low-dead-long"
     ],
     "mnemonic": null
+  },
+  {
+    "thai": "ครับ",
+    "romanization": "kʰráp",
+    "word_class": "part",
+    "english": "polite particle (male)",
+    "rank": 4,
+    "frequency": 500000,
+    "mnemonic": "KHRAP — the polite bow a man makes after every sentence",
+    "description": "Male politeness particle added to the end of statements and questions. Essential for polite speech.",
+    "characters": [
+      "ค",
+      "ร",
+      "ั",
+      "บ"
+    ],
+    "syllables": [
+      {
+        "text": "ครับ",
+        "initialConsonant": "ค",
+        "vowel": "ั",
+        "finalConsonant": "บ",
+        "toneMark": null,
+        "consonantClass": "low",
+        "syllableType": "dead",
+        "tone": "high"
+      }
+    ],
+    "toneRules": [
+      "low-dead-short"
+    ],
+    "thai_audio_file": null,
+    "english_audio_file": null,
+    "image_file": null,
+    "samples": [
+      {
+        "thai": "สวัสดีครับ",
+        "romanization": "sà-wàt-dii kʰráp",
+        "english": "Hello (male)",
+        "thai_audio_file": null,
+        "english_audio_file": null
+      },
+      {
+        "thai": "ขอบคุณครับ",
+        "romanization": "khàawp-khun kʰráp",
+        "english": "Thank you (male)",
+        "thai_audio_file": null,
+        "english_audio_file": null
+      }
+    ],
+    "source": "spoken-essentials"
+  },
+  {
+    "thai": "ค่ะ",
+    "romanization": "kʰâ",
+    "word_class": "part",
+    "english": "polite particle (female, statement)",
+    "rank": 4,
+    "frequency": 500000,
+    "mnemonic": "KHA (falling) — a woman's graceful curtsy at the end of a statement",
+    "description": "Female politeness particle for statements. The falling tone distinguishes it from the question form คะ.",
+    "characters": [
+      "ค",
+      "่",
+      "ะ"
+    ],
+    "syllables": [
+      {
+        "text": "ค่ะ",
+        "initialConsonant": "ค",
+        "vowel": "ะ",
+        "finalConsonant": null,
+        "toneMark": "mayek",
+        "consonantClass": "low",
+        "syllableType": "dead",
+        "tone": "falling"
+      }
+    ],
+    "toneRules": [
+      "low-mayek"
+    ],
+    "thai_audio_file": null,
+    "english_audio_file": null,
+    "image_file": null,
+    "samples": [
+      {
+        "thai": "สวัสดีค่ะ",
+        "romanization": "sà-wàt-dii kʰâ",
+        "english": "Hello (female)",
+        "thai_audio_file": null,
+        "english_audio_file": null
+      },
+      {
+        "thai": "ขอบคุณค่ะ",
+        "romanization": "khàawp-khun kʰâ",
+        "english": "Thank you (female)",
+        "thai_audio_file": null,
+        "english_audio_file": null
+      }
+    ],
+    "source": "spoken-essentials"
+  },
+  {
+    "thai": "คะ",
+    "romanization": "kʰá",
+    "word_class": "part",
+    "english": "polite particle (female, question)",
+    "rank": 4,
+    "frequency": 400000,
+    "mnemonic": "KHA (high) — voice goes UP like a question mark at the end",
+    "description": "Female politeness particle for questions. Higher tone than ค่ะ to signal a question.",
+    "characters": [
+      "ค",
+      "ะ"
+    ],
+    "syllables": [
+      {
+        "text": "คะ",
+        "initialConsonant": "ค",
+        "vowel": "ะ",
+        "finalConsonant": null,
+        "toneMark": null,
+        "consonantClass": "low",
+        "syllableType": "dead",
+        "tone": "high"
+      }
+    ],
+    "toneRules": [
+      "low-dead-short"
+    ],
+    "thai_audio_file": null,
+    "english_audio_file": null,
+    "image_file": null,
+    "samples": [
+      {
+        "thai": "สบายดีไหมคะ",
+        "romanization": "sà-baai-dii mǎi kʰá",
+        "english": "How are you? (female)",
+        "thai_audio_file": null,
+        "english_audio_file": null
+      }
+    ],
+    "source": "spoken-essentials"
+  },
+  {
+    "thai": "ผม",
+    "romanization": "phǒm",
+    "word_class": "pron",
+    "english": "I (male)",
+    "rank": 8,
+    "frequency": 300000,
+    "mnemonic": "PHOM — I PALM my chest when I say 'I' (male)",
+    "description": "First-person pronoun for males. The most common way for men to say 'I' in polite conversation.",
+    "characters": [
+      "ผ",
+      "ม"
+    ],
+    "syllables": [
+      {
+        "text": "ผม",
+        "initialConsonant": "ผ",
+        "vowel": null,
+        "finalConsonant": "ม",
+        "toneMark": null,
+        "consonantClass": "high",
+        "syllableType": "live",
+        "tone": "rising"
+      }
+    ],
+    "toneRules": [
+      "high-live"
+    ],
+    "thai_audio_file": null,
+    "english_audio_file": null,
+    "image_file": null,
+    "samples": [
+      {
+        "thai": "ผมชอบกินข้าว",
+        "romanization": "phǒm châwp kin kʰâaw",
+        "english": "I like to eat rice",
+        "thai_audio_file": null,
+        "english_audio_file": null
+      },
+      {
+        "thai": "ผมไปครับ",
+        "romanization": "phǒm pai kʰráp",
+        "english": "I'm going (male)",
+        "thai_audio_file": null,
+        "english_audio_file": null
+      }
+    ],
+    "source": "spoken-essentials"
+  },
+  {
+    "thai": "นะ",
+    "romanization": "ná",
+    "word_class": "part",
+    "english": "softening particle",
+    "rank": 25,
+    "frequency": 100000,
+    "mnemonic": "NA — a gentle nudge, like adding 'okay?' to make things softer",
+    "description": "Softening particle added to requests, suggestions, and statements to make them gentler and friendlier.",
+    "characters": [
+      "น",
+      "ะ"
+    ],
+    "syllables": [
+      {
+        "text": "นะ",
+        "initialConsonant": "น",
+        "vowel": "ะ",
+        "finalConsonant": null,
+        "toneMark": null,
+        "consonantClass": "low",
+        "syllableType": "dead",
+        "tone": "high"
+      }
+    ],
+    "toneRules": [
+      "low-dead-short"
+    ],
+    "thai_audio_file": null,
+    "english_audio_file": null,
+    "image_file": null,
+    "samples": [
+      {
+        "thai": "ไปนะ",
+        "romanization": "pai ná",
+        "english": "Let's go, okay?",
+        "thai_audio_file": null,
+        "english_audio_file": null
+      },
+      {
+        "thai": "ดีนะ",
+        "romanization": "dii ná",
+        "english": "That's good, you know",
+        "thai_audio_file": null,
+        "english_audio_file": null
+      }
+    ],
+    "source": "spoken-essentials"
+  },
+  {
+    "thai": "สิ",
+    "romanization": "sì",
+    "word_class": "part",
+    "english": "urging particle",
+    "rank": 55,
+    "frequency": 50000,
+    "mnemonic": "SI — SEE! Just do it! An encouraging push",
+    "description": "Particle used to urge or encourage action. Makes suggestions more emphatic.",
+    "characters": [
+      "ส",
+      "ิ"
+    ],
+    "syllables": [
+      {
+        "text": "สิ",
+        "initialConsonant": "ส",
+        "vowel": "ิ",
+        "finalConsonant": null,
+        "toneMark": null,
+        "consonantClass": "high",
+        "syllableType": "dead",
+        "tone": "low"
+      }
+    ],
+    "toneRules": [
+      "high-dead-short"
+    ],
+    "thai_audio_file": null,
+    "english_audio_file": null,
+    "image_file": null,
+    "samples": [
+      {
+        "thai": "กินสิ",
+        "romanization": "kin sì",
+        "english": "Go ahead and eat!",
+        "thai_audio_file": null,
+        "english_audio_file": null
+      },
+      {
+        "thai": "ไปสิ",
+        "romanization": "pai sì",
+        "english": "Go on, go!",
+        "thai_audio_file": null,
+        "english_audio_file": null
+      }
+    ],
+    "source": "spoken-essentials"
+  },
+  {
+    "thai": "ที่นี่",
+    "romanization": "thîi-nîi",
+    "word_class": "adv",
+    "english": "here",
+    "rank": 30,
+    "frequency": 80000,
+    "mnemonic": "TEE-NEE — THIS place right HERE next to me",
+    "description": "Demonstrative adverb meaning 'here'. Combines ที่ (place) + นี่ (this).",
+    "characters": [
+      "ท",
+      "ี",
+      "่",
+      "น",
+      "ี",
+      "่"
+    ],
+    "syllables": [
+      {
+        "text": "ที่",
+        "initialConsonant": "ท",
+        "vowel": "ี",
+        "finalConsonant": null,
+        "toneMark": "mayek",
+        "consonantClass": "low",
+        "syllableType": "live",
+        "tone": "falling"
+      },
+      {
+        "text": "นี่",
+        "initialConsonant": "น",
+        "vowel": "ี",
+        "finalConsonant": null,
+        "toneMark": "mayek",
+        "consonantClass": "low",
+        "syllableType": "live",
+        "tone": "falling"
+      }
+    ],
+    "toneRules": [
+      "low-mayek",
+      "low-mayek"
+    ],
+    "thai_audio_file": null,
+    "english_audio_file": null,
+    "image_file": null,
+    "samples": [
+      {
+        "thai": "อยู่ที่นี่",
+        "romanization": "yùu thîi-nîi",
+        "english": "It's here",
+        "thai_audio_file": null,
+        "english_audio_file": null
+      },
+      {
+        "thai": "มาที่นี่",
+        "romanization": "maa thîi-nîi",
+        "english": "Come here",
+        "thai_audio_file": null,
+        "english_audio_file": null
+      }
+    ],
+    "source": "spoken-essentials"
+  },
+  {
+    "thai": "ที่นั่น",
+    "romanization": "thîi-nân",
+    "word_class": "adv",
+    "english": "there",
+    "rank": 30,
+    "frequency": 60000,
+    "mnemonic": "TEE-NAN — THAT place over THERE, far away",
+    "description": "Demonstrative adverb meaning 'there'. Combines ที่ (place) + นั่น (that).",
+    "characters": [
+      "ท",
+      "ี",
+      "่",
+      "น",
+      "ั",
+      "่",
+      "น"
+    ],
+    "syllables": [
+      {
+        "text": "ที่",
+        "initialConsonant": "ท",
+        "vowel": "ี",
+        "finalConsonant": null,
+        "toneMark": "mayek",
+        "consonantClass": "low",
+        "syllableType": "live",
+        "tone": "falling"
+      },
+      {
+        "text": "นั่น",
+        "initialConsonant": "น",
+        "vowel": "ั",
+        "finalConsonant": "น",
+        "toneMark": "mayek",
+        "consonantClass": "low",
+        "syllableType": "live",
+        "tone": "falling"
+      }
+    ],
+    "toneRules": [
+      "low-mayek",
+      "low-mayek"
+    ],
+    "thai_audio_file": null,
+    "english_audio_file": null,
+    "image_file": null,
+    "samples": [
+      {
+        "thai": "อยู่ที่นั่น",
+        "romanization": "yùu thîi-nân",
+        "english": "It's there",
+        "thai_audio_file": null,
+        "english_audio_file": null
+      }
+    ],
+    "source": "spoken-essentials"
+  },
+  {
+    "thai": "สบายดี",
+    "romanization": "sà-baai-dii",
+    "word_class": "adj",
+    "english": "fine; well",
+    "rank": 10,
+    "frequency": 90000,
+    "mnemonic": "SA-BAI-DEE — I'm feeling SUPER FINE, comfortable and good",
+    "description": "Greeting response meaning 'fine' or 'well'. Used in สบายดีไหม (How are you?) and as the standard reply.",
+    "characters": [
+      "ส",
+      "บ",
+      "า",
+      "ย",
+      "ด",
+      "ี"
+    ],
+    "syllables": [
+      {
+        "text": "สบาย",
+        "initialConsonant": "ส",
+        "vowel": "า",
+        "finalConsonant": "ย",
+        "toneMark": null,
+        "consonantClass": "high",
+        "syllableType": "live",
+        "tone": "rising"
+      },
+      {
+        "text": "ดี",
+        "initialConsonant": "ด",
+        "vowel": "ี",
+        "finalConsonant": null,
+        "toneMark": null,
+        "consonantClass": "mid",
+        "syllableType": "live",
+        "tone": "mid"
+      }
+    ],
+    "toneRules": [
+      "high-live",
+      "mid-live"
+    ],
+    "thai_audio_file": null,
+    "english_audio_file": null,
+    "image_file": null,
+    "samples": [
+      {
+        "thai": "สบายดีไหม",
+        "romanization": "sà-baai-dii mǎi",
+        "english": "How are you?",
+        "thai_audio_file": null,
+        "english_audio_file": null
+      },
+      {
+        "thai": "สบายดีครับ",
+        "romanization": "sà-baai-dii kʰráp",
+        "english": "I'm fine (male)",
+        "thai_audio_file": null,
+        "english_audio_file": null
+      }
+    ],
+    "source": "spoken-essentials"
+  },
+  {
+    "thai": "หรือเปล่า",
+    "romanization": "rʉ̌ʉ-plàaw",
+    "word_class": "part",
+    "english": "or not? (question)",
+    "rank": 35,
+    "frequency": 50000,
+    "mnemonic": "REU-PLAO — OR NOT? A casual way to ask yes-or-no",
+    "description": "Alternative yes/no question particle, more casual than ไหม. Literally 'or empty/not'.",
+    "characters": [
+      "ห",
+      "ร",
+      "ื",
+      "อ",
+      "เ",
+      "ป",
+      "ล",
+      "่",
+      "า"
+    ],
+    "syllables": [
+      {
+        "text": "หรือ",
+        "initialConsonant": "ห",
+        "vowel": "ื",
+        "finalConsonant": null,
+        "toneMark": null,
+        "consonantClass": "high",
+        "syllableType": "live",
+        "tone": "rising"
+      },
+      {
+        "text": "เปล่า",
+        "initialConsonant": "ป",
+        "vowel": "า",
+        "finalConsonant": null,
+        "toneMark": "mayek",
+        "consonantClass": "mid",
+        "syllableType": "live",
+        "tone": "low"
+      }
+    ],
+    "toneRules": [
+      "high-live",
+      "mid-mayek"
+    ],
+    "thai_audio_file": null,
+    "english_audio_file": null,
+    "image_file": null,
+    "samples": [
+      {
+        "thai": "ชอบหรือเปล่า",
+        "romanization": "châwp rʉ̌ʉ-plàaw",
+        "english": "Do you like it or not?",
+        "thai_audio_file": null,
+        "english_audio_file": null
+      },
+      {
+        "thai": "ไปหรือเปล่า",
+        "romanization": "pai rʉ̌ʉ-plàaw",
+        "english": "Are you going or not?",
+        "thai_audio_file": null,
+        "english_audio_file": null
+      }
+    ],
+    "source": "spoken-essentials"
+  },
+  {
+    "thai": "ล่ะ",
+    "romanization": "lâ",
+    "word_class": "part",
+    "english": "emphasis particle; what about...?",
+    "rank": 55,
+    "frequency": 40000,
+    "mnemonic": "LA — and what about THAT, huh? Adds punch",
+    "description": "Spoken particle for emphasis or to redirect questions. อะไรล่ะ = 'What is it then?', แล้วคุณล่ะ = 'And what about you?'",
+    "characters": [
+      "ล",
+      "่",
+      "ะ"
+    ],
+    "syllables": [
+      {
+        "text": "ล่ะ",
+        "initialConsonant": "ล",
+        "vowel": "ะ",
+        "finalConsonant": null,
+        "toneMark": "mayek",
+        "consonantClass": "low",
+        "syllableType": "dead",
+        "tone": "falling"
+      }
+    ],
+    "toneRules": [
+      "low-mayek"
+    ],
+    "thai_audio_file": null,
+    "english_audio_file": null,
+    "image_file": null,
+    "samples": [
+      {
+        "thai": "แล้วคุณล่ะ",
+        "romanization": "lɛ́ɛw kʰun lâ",
+        "english": "And what about you?",
+        "thai_audio_file": null,
+        "english_audio_file": null
+      },
+      {
+        "thai": "อะไรล่ะ",
+        "romanization": "à-rai lâ",
+        "english": "What is it then?",
+        "thai_audio_file": null,
+        "english_audio_file": null
+      }
+    ],
+    "source": "spoken-essentials"
+  },
+  {
+    "thai": "เหรอ",
+    "romanization": "rə̌ə",
+    "word_class": "part",
+    "english": "really?; is that so?",
+    "rank": 55,
+    "frequency": 35000,
+    "mnemonic": "RER — REALLY?! eyebrows up in surprise",
+    "description": "Spoken question particle expressing surprise or seeking confirmation. Very common in casual conversation.",
+    "characters": [
+      "เ",
+      "ห",
+      "ร",
+      "อ"
+    ],
+    "syllables": [
+      {
+        "text": "เหรอ",
+        "initialConsonant": "ห",
+        "vowel": "เ",
+        "finalConsonant": null,
+        "toneMark": null,
+        "consonantClass": "high",
+        "syllableType": "live",
+        "tone": "rising"
+      }
+    ],
+    "toneRules": [
+      "high-live"
+    ],
+    "thai_audio_file": null,
+    "english_audio_file": null,
+    "image_file": null,
+    "samples": [
+      {
+        "thai": "จริงเหรอ",
+        "romanization": "jiŋ rə̌ə",
+        "english": "Really? Is that true?",
+        "thai_audio_file": null,
+        "english_audio_file": null
+      }
+    ],
+    "source": "spoken-essentials"
+  },
+  {
+    "thai": "เถอะ",
+    "romanization": "thə̀",
+    "word_class": "part",
+    "english": "let's; go ahead (persuasion)",
+    "rank": 60,
+    "frequency": 30000,
+    "mnemonic": "THUH — COME ON, let's just DO it",
+    "description": "Persuasion particle used to coax or encourage. ไปเถอะ (Let's go / Come on, go). Often paired with เถอะนะ for gentler persuasion.",
+    "characters": [
+      "เ",
+      "ถ",
+      "อ",
+      "ะ"
+    ],
+    "syllables": [
+      {
+        "text": "เถอะ",
+        "initialConsonant": "ถ",
+        "vowel": "เ",
+        "finalConsonant": null,
+        "toneMark": null,
+        "consonantClass": "high",
+        "syllableType": "dead",
+        "tone": "low"
+      }
+    ],
+    "toneRules": [
+      "high-dead-short"
+    ],
+    "thai_audio_file": null,
+    "english_audio_file": null,
+    "image_file": null,
+    "samples": [
+      {
+        "thai": "ไปเถอะ",
+        "romanization": "pai thə̀",
+        "english": "Let's go / Come on, go",
+        "thai_audio_file": null,
+        "english_audio_file": null
+      },
+      {
+        "thai": "กินเถอะ",
+        "romanization": "kin thə̀",
+        "english": "Go ahead and eat",
+        "thai_audio_file": null,
+        "english_audio_file": null
+      }
+    ],
+    "source": "spoken-essentials"
+  },
+  {
+    "thai": "ซิ",
+    "romanization": "sí",
+    "word_class": "part",
+    "english": "go on; do it (urging, informal)",
+    "rank": 60,
+    "frequency": 25000,
+    "mnemonic": "SI — SEE? just go ahead! (casual twin of สิ)",
+    "description": "Informal variant of สิ. Urging particle with a slightly softer, more colloquial feel. ไปซิ (Go on then!).",
+    "characters": [
+      "ซ",
+      "ิ"
+    ],
+    "syllables": [
+      {
+        "text": "ซิ",
+        "initialConsonant": "ซ",
+        "vowel": "ิ",
+        "finalConsonant": null,
+        "toneMark": null,
+        "consonantClass": "low",
+        "syllableType": "dead",
+        "tone": "high"
+      }
+    ],
+    "toneRules": [
+      "low-dead-short"
+    ],
+    "thai_audio_file": null,
+    "english_audio_file": null,
+    "image_file": null,
+    "samples": [
+      {
+        "thai": "บอกซิ",
+        "romanization": "bàwk sí",
+        "english": "Go on, tell me!",
+        "thai_audio_file": null,
+        "english_audio_file": null
+      },
+      {
+        "thai": "ลองซิ",
+        "romanization": "lawng sí",
+        "english": "Go ahead, try it!",
+        "thai_audio_file": null,
+        "english_audio_file": null
+      }
+    ],
+    "source": "spoken-essentials"
+  },
+  {
+    "thai": "จ้ะ",
+    "romanization": "jâ",
+    "word_class": "part",
+    "english": "yes; okay (friendly, female)",
+    "rank": 60,
+    "frequency": 25000,
+    "mnemonic": "JA — a warm, friendly YES with a smile",
+    "description": "Friendly acknowledgment particle, often used by women or when speaking sweetly. Softer and warmer than ครับ/ค่ะ.",
+    "characters": [
+      "จ",
+      "้",
+      "ะ"
+    ],
+    "syllables": [
+      {
+        "text": "จ้ะ",
+        "initialConsonant": "จ",
+        "vowel": "ะ",
+        "finalConsonant": null,
+        "toneMark": "maytho",
+        "consonantClass": "mid",
+        "syllableType": "dead",
+        "tone": "falling"
+      }
+    ],
+    "toneRules": [
+      "mid-maytho"
+    ],
+    "thai_audio_file": null,
+    "english_audio_file": null,
+    "image_file": null,
+    "samples": [
+      {
+        "thai": "ได้จ้ะ",
+        "romanization": "dâi jâ",
+        "english": "Yes, sure! (friendly)",
+        "thai_audio_file": null,
+        "english_audio_file": null
+      },
+      {
+        "thai": "ขอบคุณจ้ะ",
+        "romanization": "khàawp-khun jâ",
+        "english": "Thanks! (friendly)",
+        "thai_audio_file": null,
+        "english_audio_file": null
+      }
+    ],
+    "source": "spoken-essentials"
+  },
+  {
+    "thai": "มั้ง",
+    "romanization": "máng",
+    "word_class": "part",
+    "english": "maybe; I think; probably",
+    "rank": 65,
+    "frequency": 20000,
+    "mnemonic": "MANG — MAYBE... I'm not quite sure, MANG",
+    "description": "Hedging particle expressing uncertainty. Placed at end of sentence. Colloquial form. สามโมงมั้ง (Around 3 o'clock, I think).",
+    "characters": [
+      "ม",
+      "ั",
+      "้",
+      "ง"
+    ],
+    "syllables": [
+      {
+        "text": "มั้ง",
+        "initialConsonant": "ม",
+        "vowel": "ั",
+        "finalConsonant": "ง",
+        "toneMark": "maytho",
+        "consonantClass": "low",
+        "syllableType": "live",
+        "tone": "high"
+      }
+    ],
+    "toneRules": [
+      "low-maytho"
+    ],
+    "thai_audio_file": null,
+    "english_audio_file": null,
+    "image_file": null,
+    "samples": [
+      {
+        "thai": "ได้มั้ง",
+        "romanization": "dâi máng",
+        "english": "I think so / Probably",
+        "thai_audio_file": null,
+        "english_audio_file": null
+      },
+      {
+        "thai": "สองชั่วโมงมั้ง",
+        "romanization": "sǎawng chûa-moong máng",
+        "english": "About two hours, I think",
+        "thai_audio_file": null,
+        "english_audio_file": null
+      }
+    ],
+    "source": "spoken-essentials"
   }
 ]
