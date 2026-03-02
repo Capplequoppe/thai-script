@@ -15,7 +15,12 @@ function makeGrammarEntry(overrides?: Partial<GrammarEntry>): GrammarEntry {
 				thai: "เขากินข้าว",
 				romanization: "khao gin khao",
 				english: "He eats rice",
-				breakdown: "[เขา=he] [กิน=eat] [ข้าว=rice]",
+				breakdown: "เขา (he) + กิน (eat) + ข้าว (rice)",
+				words: [
+					{ thai: "เขา", gloss: "he" },
+					{ thai: "กิน", gloss: "eat" },
+					{ thai: "ข้าว", gloss: "rice" },
+				],
 			},
 			{
 				thai: "ฉันดื่มน้ำ",
@@ -36,7 +41,29 @@ function makeGrammarEntry(overrides?: Partial<GrammarEntry>): GrammarEntry {
 			application: {
 				question: "Which sentence correctly uses SVO order?",
 				correctExample: 0,
-				incorrectExamples: ["ข้าวกินเขา", "กินเขาข้าว", "เขาข้าวกิน"],
+				incorrectExamples: [
+					{
+						words: [
+							{ thai: "ข้าว", gloss: "rice" },
+							{ thai: "กิน", gloss: "eat" },
+							{ thai: "เขา", gloss: "he" },
+						],
+					},
+					{
+						words: [
+							{ thai: "กิน", gloss: "eat" },
+							{ thai: "เขา", gloss: "he" },
+							{ thai: "ข้าว", gloss: "rice" },
+						],
+					},
+					{
+						words: [
+							{ thai: "เขา", gloss: "he" },
+							{ thai: "ข้าว", gloss: "rice" },
+							{ thai: "กิน", gloss: "eat" },
+						],
+					},
+				],
 			},
 		},
 		...overrides,
@@ -62,14 +89,14 @@ describe("generateGrammarCards", () => {
 		);
 	});
 
-	it("generates an application card with correct example as answer", () => {
+	it("generates an application card with glossed correct answer", () => {
 		const cards = generateGrammarCards(makeGrammarEntry());
 		const application = cards.find(
 			(c) => c.property === "application",
 		) as NonNullable<(typeof cards)[number]>;
 		expect(application.id).toBe("grammar:svo-basic:application");
 		expect(application.grammarId).toBe("svo-basic");
-		expect(application.correctAnswer).toBe("เขากินข้าว");
+		expect(application.correctAnswer).toBe("เขา(he) กิน(eat) ข้าว(rice)");
 	});
 
 	it("recognition card has 4 choices including correct answer", () => {
@@ -83,13 +110,16 @@ describe("generateGrammarCards", () => {
 		);
 	});
 
-	it("application card has 4 choices including correct example", () => {
+	it("application card has 4 glossed choices including correct example", () => {
 		const cards = generateGrammarCards(makeGrammarEntry());
 		const application = cards.find(
 			(c) => c.property === "application",
 		) as NonNullable<(typeof cards)[number]>;
 		expect(application.choices).toHaveLength(4);
-		expect(application.choices).toContain("เขากินข้าว");
+		expect(application.choices).toContain("เขา(he) กิน(eat) ข้าว(rice)");
+		expect(application.choices).toContain("ข้าว(rice) กิน(eat) เขา(he)");
+		expect(application.choices).toContain("กิน(eat) เขา(he) ข้าว(rice)");
+		expect(application.choices).toContain("เขา(he) ข้าว(rice) กิน(eat)");
 	});
 
 	it("cards have initialized SRS data", () => {

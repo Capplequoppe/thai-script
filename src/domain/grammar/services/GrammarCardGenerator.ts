@@ -1,5 +1,5 @@
 import { SrsSchedule } from "../../srs/value-objects/SrsSchedule";
-import type { GrammarCard, GrammarEntry } from "../types";
+import type { GlossedWord, GrammarCard, GrammarEntry } from "../types";
 
 function shuffle<T>(arr: T[]): T[] {
 	const copy = [...arr];
@@ -8,6 +8,10 @@ function shuffle<T>(arr: T[]): T[] {
 		[copy[i], copy[j]] = [copy[j] as T, copy[i] as T];
 	}
 	return copy;
+}
+
+function formatGlossed(words: GlossedWord[]): string {
+	return words.map((w) => `${w.thai}(${w.gloss})`).join(" ");
 }
 
 export function generateGrammarCards(entry: GrammarEntry): GrammarCard[] {
@@ -24,18 +28,22 @@ export function generateGrammarCards(entry: GrammarEntry): GrammarCard[] {
 		srs: SrsSchedule.initial().toDTO(),
 	};
 
-	const correctSentence =
-		entry.examples[entry.cards.application.correctExample]?.thai;
+	const correctExample = entry.examples[entry.cards.application.correctExample];
+	const correctAnswer = correctExample?.words
+		? formatGlossed(correctExample.words)
+		: correctExample?.thai;
+
+	const incorrectChoices = entry.cards.application.incorrectExamples.map(
+		(ex) => formatGlossed(ex.words),
+	);
+
 	const application: GrammarCard = {
 		id: `grammar:${entry.id}:application`,
 		grammarId: entry.id,
 		property: "application",
 		question: entry.cards.application.question,
-		correctAnswer: correctSentence,
-		choices: shuffle([
-			correctSentence,
-			...entry.cards.application.incorrectExamples,
-		]),
+		correctAnswer: correctAnswer,
+		choices: shuffle([correctAnswer, ...incorrectChoices]),
 		srs: SrsSchedule.initial().toDTO(),
 	};
 
