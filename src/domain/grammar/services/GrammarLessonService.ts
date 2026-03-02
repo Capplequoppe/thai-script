@@ -92,13 +92,20 @@ export class GrammarService {
 
 		const unlocked: GrammarEntry[] = [];
 		for (const entry of sorted) {
-			if (!this.meetsPrerequisites(entry, vocabCounts, vocabCounts.graduatedWords)) continue;
+			if (
+				!this.meetsPrerequisites(entry, vocabCounts, vocabCounts.graduatedWords)
+			)
+				continue;
 
 			const previousMissing = sorted.some(
 				(prev) =>
 					prev.lessonNumber < entry.lessonNumber &&
 					!learnedGrammarIds.has(prev.id) &&
-					this.meetsPrerequisites(prev, vocabCounts, vocabCounts.graduatedWords),
+					this.meetsPrerequisites(
+						prev,
+						vocabCounts,
+						vocabCounts.graduatedWords,
+					),
 			);
 			if (previousMissing) continue;
 
@@ -132,7 +139,9 @@ export class GrammarService {
 		if (!lesson) return null;
 
 		const vocabCounts = this.getMasteredVocabCounts();
-		const masteredVocabEntries = this.getMasteredVocabEntries(vocabCounts.graduatedWords);
+		const masteredVocabEntries = this.getMasteredVocabEntries(
+			vocabCounts.graduatedWords,
+		);
 
 		const cardDTOs = lesson.grammarPoints.flatMap((entry) =>
 			generateGrammarCards(entry, masteredVocabEntries),

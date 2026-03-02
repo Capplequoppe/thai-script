@@ -16,9 +16,7 @@
 				{
 					"role": "subject",
 					"wordClass": "pron",
-					"fallbackWordClasses": [
-						"n"
-					]
+					"fallbackWordClasses": ["n"]
 				},
 				{
 					"role": "verb",
@@ -31,21 +29,9 @@
 			],
 			"functionWords": [],
 			"distractorPatterns": [
-				[
-					"object",
-					"verb",
-					"subject"
-				],
-				[
-					"verb",
-					"subject",
-					"object"
-				],
-				[
-					"object",
-					"subject",
-					"verb"
-				]
+				["object", "verb", "subject"],
+				["verb", "subject", "object"],
+				["object", "subject", "verb"]
 			]
 		},
 		"examples": [
@@ -170,9 +156,7 @@
 				{
 					"role": "subject",
 					"wordClass": "pron",
-					"fallbackWordClasses": [
-						"n"
-					]
+					"fallbackWordClasses": ["n"]
 				},
 				{
 					"role": "verb",
@@ -191,21 +175,9 @@
 				}
 			],
 			"distractorPatterns": [
-				[
-					"subject",
-					"verb",
-					"object"
-				],
-				[
-					"subject",
-					"verb",
-					"object"
-				],
-				[
-					"subject",
-					"verb",
-					"object"
-				]
+				["subject", "verb", "object"],
+				["subject", "verb", "object"],
+				["subject", "verb", "object"]
 			]
 		},
 		"examples": [
@@ -340,9 +312,7 @@
 				{
 					"role": "subject",
 					"wordClass": "pron",
-					"fallbackWordClasses": [
-						"n"
-					]
+					"fallbackWordClasses": ["n"]
 				},
 				{
 					"role": "verb",
@@ -361,21 +331,9 @@
 				}
 			],
 			"distractorPatterns": [
-				[
-					"subject",
-					"verb",
-					"object"
-				],
-				[
-					"subject",
-					"verb",
-					"object"
-				],
-				[
-					"subject",
-					"verb",
-					"object"
-				]
+				["subject", "verb", "object"],
+				["subject", "verb", "object"],
+				["subject", "verb", "object"]
 			]
 		},
 		"examples": [
@@ -523,18 +481,9 @@
 			],
 			"functionWords": [],
 			"distractorPatterns": [
-				[
-					"adjective",
-					"subject"
-				],
-				[
-					"adjective",
-					"subject"
-				],
-				[
-					"adjective",
-					"subject"
-				]
+				["adjective", "subject"],
+				["adjective", "subject"],
+				["adjective", "subject"]
 			]
 		},
 		"examples": [
@@ -653,9 +602,7 @@
 				{
 					"role": "owner",
 					"wordClass": "pron",
-					"fallbackWordClasses": [
-						"n"
-					]
+					"fallbackWordClasses": ["n"]
 				}
 			],
 			"functionWords": [
@@ -667,18 +614,9 @@
 				}
 			],
 			"distractorPatterns": [
-				[
-					"owner",
-					"thing"
-				],
-				[
-					"owner",
-					"thing"
-				],
-				[
-					"thing",
-					"owner"
-				]
+				["owner", "thing"],
+				["owner", "thing"],
+				["thing", "owner"]
 			]
 		},
 		"examples": [
@@ -917,9 +855,7 @@
 				{
 					"role": "subject",
 					"wordClass": "pron",
-					"fallbackWordClasses": [
-						"n"
-					]
+					"fallbackWordClasses": ["n"]
 				},
 				{
 					"role": "place",
@@ -935,18 +871,9 @@
 				}
 			],
 			"distractorPatterns": [
-				[
-					"place",
-					"subject"
-				],
-				[
-					"place",
-					"subject"
-				],
-				[
-					"subject",
-					"place"
-				]
+				["place", "subject"],
+				["place", "subject"],
+				["subject", "place"]
 			]
 		},
 		"examples": [
@@ -1073,9 +1000,7 @@
 				{
 					"role": "subject",
 					"wordClass": "pron",
-					"fallbackWordClasses": [
-						"n"
-					]
+					"fallbackWordClasses": ["n"]
 				},
 				{
 					"role": "verb",
@@ -1094,21 +1019,9 @@
 				}
 			],
 			"distractorPatterns": [
-				[
-					"subject",
-					"verb",
-					"object"
-				],
-				[
-					"subject",
-					"verb",
-					"object"
-				],
-				[
-					"subject",
-					"verb",
-					"object"
-				]
+				["subject", "verb", "object"],
+				["subject", "verb", "object"],
+				["subject", "verb", "object"]
 			]
 		},
 		"examples": [
@@ -1243,9 +1156,7 @@
 				{
 					"role": "subject",
 					"wordClass": "pron",
-					"fallbackWordClasses": [
-						"n"
-					]
+					"fallbackWordClasses": ["n"]
 				},
 				{
 					"role": "verb",
@@ -1264,21 +1175,9 @@
 				}
 			],
 			"distractorPatterns": [
-				[
-					"subject",
-					"verb",
-					"object"
-				],
-				[
-					"subject",
-					"verb",
-					"object"
-				],
-				[
-					"subject",
-					"verb",
-					"object"
-				]
+				["subject", "verb", "object"],
+				["subject", "verb", "object"],
+				["subject", "verb", "object"]
 			]
 		},
 		"examples": [
@@ -1413,9 +1312,7 @@
 				{
 					"role": "subject",
 					"wordClass": "pron",
-					"fallbackWordClasses": [
-						"n"
-					]
+					"fallbackWordClasses": ["n"]
 				},
 				{
 					"role": "verb",
@@ -1434,21 +1331,9 @@
 				}
 			],
 			"distractorPatterns": [
-				[
-					"subject",
-					"verb",
-					"object"
-				],
-				[
-					"subject",
-					"verb",
-					"object"
-				],
-				[
-					"subject",
-					"verb",
-					"object"
-				]
+				["subject", "verb", "object"],
+				["subject", "verb", "object"],
+				["subject", "verb", "object"]
 			]
 		},
 		"examples": [
@@ -1587,9 +1472,7 @@
 				{
 					"role": "subject",
 					"wordClass": "pron",
-					"fallbackWordClasses": [
-						"n"
-					]
+					"fallbackWordClasses": ["n"]
 				},
 				{
 					"role": "verb",
@@ -1613,21 +1496,9 @@
 				}
 			],
 			"distractorPatterns": [
-				[
-					"subject",
-					"verb",
-					"object"
-				],
-				[
-					"subject",
-					"verb",
-					"object"
-				],
-				[
-					"subject",
-					"verb",
-					"object"
-				]
+				["subject", "verb", "object"],
+				["subject", "verb", "object"],
+				["subject", "verb", "object"]
 			]
 		},
 		"examples": [
@@ -1797,21 +1668,9 @@
 				}
 			],
 			"distractorPatterns": [
-				[
-					"subjectA",
-					"subjectB",
-					"adjective"
-				],
-				[
-					"adjective",
-					"subjectA",
-					"subjectB"
-				],
-				[
-					"subjectB",
-					"adjective",
-					"subjectA"
-				]
+				["subjectA", "subjectB", "adjective"],
+				["adjective", "subjectA", "subjectB"],
+				["subjectB", "adjective", "subjectA"]
 			]
 		},
 		"examples": [
@@ -2072,9 +1931,7 @@
 				{
 					"role": "subject",
 					"wordClass": "pron",
-					"fallbackWordClasses": [
-						"n"
-					]
+					"fallbackWordClasses": ["n"]
 				},
 				{
 					"role": "verb",
@@ -2093,21 +1950,9 @@
 				}
 			],
 			"distractorPatterns": [
-				[
-					"subject",
-					"verb",
-					"object"
-				],
-				[
-					"subject",
-					"verb",
-					"object"
-				],
-				[
-					"subject",
-					"verb",
-					"object"
-				]
+				["subject", "verb", "object"],
+				["subject", "verb", "object"],
+				["subject", "verb", "object"]
 			]
 		},
 		"examples": [
@@ -2242,9 +2087,7 @@
 				{
 					"role": "subject",
 					"wordClass": "pron",
-					"fallbackWordClasses": [
-						"n"
-					]
+					"fallbackWordClasses": ["n"]
 				},
 				{
 					"role": "verb",
@@ -2259,18 +2102,9 @@
 				}
 			],
 			"distractorPatterns": [
-				[
-					"verb",
-					"subject"
-				],
-				[
-					"verb",
-					"subject"
-				],
-				[
-					"subject",
-					"verb"
-				]
+				["verb", "subject"],
+				["verb", "subject"],
+				["subject", "verb"]
 			]
 		},
 		"examples": [
