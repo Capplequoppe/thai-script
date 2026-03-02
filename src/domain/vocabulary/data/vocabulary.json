@@ -589,11 +589,12 @@
   {
     "thai": "กัน",
     "romanization": "kan",
+    "description": "",
     "word_class": "part",
     "english": "together",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/15 กัน.png",
     "samples": [
       {
         "thai": "เธอและเขารักกันมานานแล้ว",
@@ -626,7 +627,7 @@
     "toneRules": [
       "mid-live"
     ],
-    "mnemonic": "CAN we go TOGETHER? (— flat, natural)"
+    "mnemonic": "A group of friends sit around a table using a glue gun to glue tiny versions of themselves together in a circle. As the mini figures stick, they smile and say, “We’re together — กัน! (— flat, natural)” Gun → กัน → people connected, doing something together or to each other. "
   },
   {
     "thai": "ขึ้น",
@@ -1057,7 +1058,7 @@
     "english": "person",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/26 คน.png",
     "samples": [
       {
         "thai": "ในสมัยก่อนคนยังอาศัยอยู่ในถ้ำ และใช้อาวุธง่ายๆ ในการล่าสัตว์",
@@ -1089,7 +1090,7 @@
     "toneRules": [
       "low-live"
     ],
-    "mnemonic": "CONE hat — a PERSON in a cone hat (— neutral)"
+    "mnemonic": "A group of people proudly wear traffic cones as hats and hold ice cream cones, each cone representing one person. They laugh and say, “One cone equals one person!” Cone → คน (— neutral) → human being."
   },
   {
     "thai": "แต่",
@@ -1398,7 +1399,7 @@
     "english": "much",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/34 มาก.png",
     "samples": [
       {
         "thai": "สัตว์และมนุษย์ไม่มีอะไรแตกต่างกันมาก",
@@ -1431,7 +1432,7 @@
     "toneRules": [
       "low-dead-long"
     ],
-    "mnemonic": "MARK — MUCH ink in a marker (↓ voice falls with weight)"
+    "mnemonic": "A VERY fat man named Mark VERY excitedly pours more and more into a VERY large container until it reaches the red “MARK” line. When it hits the line, it glows and says “มาก!” (↓ voice falls with weight) Mark line = มาก = very / a lot"
   },
   {
     "thai": "แล้ว",
@@ -1706,7 +1707,7 @@
     "english": "still",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/41 ยัง.png",
     "samples": [
       {
         "thai": "สุนัขเป็นเพื่อนที่ซื่อสัตย์ใกล้ชิดกับคนแถมยังมีประโยชน์เฝ้าบ้านได้เวลาไม่มีใครอยู่",
@@ -1739,7 +1740,7 @@
     "toneRules": [
       "low-live"
     ],
-    "mnemonic": "YANG — STILL balancing yin and yang (— neutral, ongoing)"
+    "mnemonic": "An old gray-haired man in flashy party clothes insists, “I’m still young! The night is still young!” A confused young person looks at him, clearly seeing he’s not young anymore. Young → ยัง (— neutral, ongoing) → still / not yet finished."
   },
   {
     "thai": "ทำ",
