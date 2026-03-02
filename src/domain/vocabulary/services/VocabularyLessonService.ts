@@ -98,38 +98,52 @@ export class VocabularyService {
 		return rules;
 	}
 
-	/** All words whose characters and tone rules are fully mastered, limited by rank window. */
+	/** Check whether a word's characters and tone rules are fully mastered. */
+	private isWordMastered(
+		entry: VocabEntry,
+		chars: Set<string>,
+		rules: Set<string>,
+	): boolean {
+		return (
+			entry.characters.every((ch) => chars.has(ch)) &&
+			entry.toneRules.every((r) => rules.has(r))
+		);
+	}
+
+	/** All words whose characters and tone rules are fully mastered, limited by rank window.
+	 *
+	 *  The rank window is computed against ALL vocabulary (not just mastered words):
+	 *  1. Find the first unlearned word by rank (regardless of mastery).
+	 *  2. Allow only words within RANK_WINDOW_SIZE of that rank.
+	 *  3. Filter that slice to words whose characters and tone rules are mastered.
+	 */
 	getUnlockedWords(): VocabEntry[] {
-		const chars = this.getMasteredCharacters();
-		const rules = this.getMasteredToneRules();
-
-		const masteryFiltered = this.vocabulary.filter((entry) => {
-			const allCharsMastered = entry.characters.every((ch) => chars.has(ch));
-			const allRulesMastered = entry.toneRules.every((r) => rules.has(r));
-			return allCharsMastered && allRulesMastered;
-		});
-
 		const learnedThaiWords = this.getLearnedThaiWords();
 
-		const sorted = [...masteryFiltered].sort(
-			(a, b) =>
-				(a.rank ?? Number.POSITIVE_INFINITY) -
-				(b.rank ?? Number.POSITIVE_INFINITY),
-		);
+		// 1. Find the first unlearned word by rank across ALL vocabulary
+		const sortedAll = [...this.vocabulary]
+			.filter((e) => e.rank != null)
+			.sort((a, b) => a.rank! - b.rank!);
 
-		const firstUnlearned = sorted.find(
-			(e) => e.rank != null && !learnedThaiWords.has(e.thai),
+		const firstUnlearned = sortedAll.find(
+			(e) => !learnedThaiWords.has(e.thai),
 		);
 		const maxRank =
 			firstUnlearned?.rank != null
 				? firstUnlearned.rank + RANK_WINDOW_SIZE - 1
 				: null;
 
-		return masteryFiltered.filter((entry) => {
-			if (learnedThaiWords.has(entry.thai)) return true;
+		// 2. Apply rank window, then filter by mastery
+		const chars = this.getMasteredCharacters();
+		const rules = this.getMasteredToneRules();
+
+		return this.vocabulary.filter((entry) => {
+			if (learnedThaiWords.has(entry.thai)) {
+				return this.isWordMastered(entry, chars, rules);
+			}
 			if (entry.rank == null) return false;
 			if (maxRank == null) return false;
-			return entry.rank <= maxRank;
+			return entry.rank <= maxRank && this.isWordMastered(entry, chars, rules);
 		});
 	}
 

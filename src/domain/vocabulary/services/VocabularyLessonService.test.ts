@@ -479,6 +479,44 @@ describe("VocabularyService", () => {
 		expect(service.getLearnedEntries()).toHaveLength(0);
 	});
 
+	it("anchors rank window to the first unlearned word regardless of mastery", () => {
+		const vocabulary = [
+			// Rank 1: NOT mastered (requires unknown character ก)
+			makeEntry({
+				thai: "กา",
+				characters: ["ก", "า"],
+				rank: 1,
+				english: "crow",
+				toneRules: ["mid-live"],
+			}),
+			// Rank 10: mastered
+			makeEntry({
+				thai: "มา",
+				characters: ["ม", "า"],
+				rank: 10,
+				english: "to come",
+			}),
+			// Rank 60: mastered but should be outside window (1 + 50 - 1 = 50)
+			makeEntry({
+				thai: "นา",
+				characters: ["น", "า"],
+				rank: 60,
+				english: "rice field",
+			}),
+		];
+		const service = new VocabularyService(cardRepo, stateRepo, vocabulary);
+
+		const state = storage.load();
+		state.completedLessons = [1, 2]; // masters ม, น, า and "low-live" but NOT ก or "mid-live"
+		storage.save(state);
+
+		const unlocked = service.getUnlockedWords();
+		// กา is locked (not mastered), but it anchors the window at rank 1 → max rank 50.
+		// มา (rank 10) is mastered and within window → included.
+		// นา (rank 60) is mastered but outside window → excluded.
+		expect(unlocked.map((w) => w.thai)).toEqual(["มา"]);
+	});
+
 	describe("apprentice word gating", () => {
 		function makeLearningVocabCard(
 			wordThai: string,
