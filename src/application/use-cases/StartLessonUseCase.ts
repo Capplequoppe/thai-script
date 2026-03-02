@@ -8,6 +8,11 @@ import type {
 	LessonInfo,
 	LessonSummary,
 } from "../../domain/script/services/ScriptLessonService";
+import type { SentenceService } from "../../domain/sentence/services/SentenceLessonService";
+import type {
+	SentenceCard,
+	SentenceLessonSummary,
+} from "../../domain/sentence/types";
 import type { VocabularyService } from "../../domain/vocabulary/services/VocabularyLessonService";
 import type {
 	VocabEntry,
@@ -20,6 +25,7 @@ export class StartLessonUseCase {
 		private readonly scriptService: LearningService,
 		private readonly vocabService: VocabularyService,
 		private readonly grammarService: GrammarService,
+		private readonly sentenceService: SentenceService,
 	) {}
 
 	// --- Script lessons ---
@@ -110,5 +116,23 @@ export class StartLessonUseCase {
 
 	getGrammarLearnedCount(): number {
 		return this.grammarService.getLearnedCount();
+	}
+
+	// --- Sentence lessons ---
+
+	startSentence(): SentenceCard[] | null {
+		return this.sentenceService.startLesson();
+	}
+
+	getNextSentence(): SentenceLessonSummary | null {
+		return this.sentenceService.getNextLesson();
+	}
+
+	getSentenceUnlockedCount(): number {
+		return this.sentenceService.getUnlockedCount();
+	}
+
+	getSentenceLearnedCount(): number {
+		return this.sentenceService.getLearnedCount();
 	}
 }

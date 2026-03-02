@@ -128,7 +128,9 @@ export class ReviewService {
 				? "review"
 				: pool === "vocab"
 					? "vocab-review"
-					: "grammar-review";
+					: pool === "grammar"
+						? "grammar-review"
+						: "sentence-review";
 
 		const summary: SessionSummary = {
 			sessionId: session.id,

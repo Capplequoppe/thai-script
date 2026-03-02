@@ -34,7 +34,9 @@ export function generateGrammarCards(entry: GrammarEntry): GrammarCard[] {
 		correctAnswer: correctSentence,
 		choices: shuffle([
 			correctSentence,
-			...entry.cards.application.incorrectExamples,
+			...entry.cards.application.incorrectExamples.map((ex) =>
+				typeof ex === "string" ? ex : ex.words.map((w) => w.thai).join(""),
+			),
 		]),
 		srs: SrsSchedule.initial().toDTO(),
 	};

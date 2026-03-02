@@ -15,6 +15,9 @@ import grammarData from "../../domain/grammar/data/grammar.json";
 import { GrammarService } from "../../domain/grammar/services/GrammarLessonService";
 import type { GrammarEntry } from "../../domain/grammar/types";
 import { LearningService } from "../../domain/script/services/ScriptLessonService";
+import sentenceData from "../../domain/sentence/data/sentences.json";
+import { SentenceService } from "../../domain/sentence/services/SentenceLessonService";
+import type { SentenceEntry } from "../../domain/sentence/types";
 import { ReviewService } from "../../domain/session/services/ReviewService";
 import { AchievementService } from "../../domain/shared/services/AchievementService";
 import { ApprenticeService } from "../../domain/shared/services/ApprenticeService";
@@ -50,6 +53,12 @@ const grammarService = new GrammarService(
 	apprenticeService,
 	vocabularyData as VocabEntry[],
 );
+const sentenceService = new SentenceService(
+	cardRepo,
+	sentenceData as unknown as SentenceEntry[],
+	vocabularyService,
+	apprenticeService,
+);
 const notificationScheduler = new NotificationScheduler();
 const achievementService = new AchievementService();
 
@@ -57,6 +66,7 @@ const lessonUseCase = new StartLessonUseCase(
 	learningService,
 	vocabularyService,
 	grammarService,
+	sentenceService,
 );
 const reviewUseCase = new ConductReviewUseCase(
 	reviewService,

@@ -1,4 +1,5 @@
 import type { GrammarCard } from "../grammar/types";
+import type { SentenceCard } from "../sentence/types";
 import type { VocabularyCard } from "../vocabulary/types";
 
 // --- SRS Stages ---
@@ -120,7 +121,9 @@ export interface SessionSummary {
 		| "vocab-lesson"
 		| "vocab-review"
 		| "grammar-lesson"
-		| "grammar-review";
+		| "grammar-review"
+		| "sentence-lesson"
+		| "sentence-review";
 	durationMs: number;
 	totalCards: number;
 	correctCount: number;
@@ -137,6 +140,7 @@ export interface LearnerState {
 	cards: Record<string, PropertyCard>;
 	vocabCards: Record<string, VocabularyCard>;
 	grammarCards: Record<string, GrammarCard>;
+	sentenceCards: Record<string, SentenceCard>;
 	sessionHistory: SessionSummary[];
 	achievements: string[];
 }
@@ -147,6 +151,7 @@ export const INITIAL_LEARNER_STATE: LearnerState = {
 	cards: {},
 	vocabCards: {},
 	grammarCards: {},
+	sentenceCards: {},
 	sessionHistory: [],
 	achievements: [],
 };

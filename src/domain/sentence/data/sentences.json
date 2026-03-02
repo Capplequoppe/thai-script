@@ -1,0 +1,868 @@
+[
+	{
+		"id": "basic-001",
+		"thai": "มา กิน กัน",
+		"romanization": "maa gin gan",
+		"english": "Come eat together",
+		"words": ["มา", "กิน", "กัน"],
+		"difficulty": 1,
+		"thai_audio_file": null,
+		"cards": {
+			"readingComprehension": {
+				"distractors": [
+					"Come sleep together",
+					"Go eat alone",
+					"Come drink together"
+				]
+			}
+		}
+	},
+	{
+		"id": "basic-002",
+		"thai": "มี ดี",
+		"romanization": "mii dii",
+		"english": "Have good (things)",
+		"words": ["มี", "ดี"],
+		"difficulty": 1,
+		"thai_audio_file": null,
+		"cards": {
+			"readingComprehension": {
+				"distractors": ["Is good", "Not good", "Very bad"]
+			}
+		}
+	},
+	{
+		"id": "basic-003",
+		"thai": "มา กัน",
+		"romanization": "maa gan",
+		"english": "Come together",
+		"words": ["มา", "กัน"],
+		"difficulty": 1,
+		"thai_audio_file": null,
+		"cards": {
+			"readingComprehension": {
+				"distractors": ["Go together", "Come alone", "Stay together"]
+			}
+		}
+	},
+	{
+		"id": "basic-004",
+		"thai": "กิน ดี",
+		"romanization": "gin dii",
+		"english": "Eat well",
+		"words": ["กิน", "ดี"],
+		"difficulty": 1,
+		"thai_audio_file": null,
+		"cards": {
+			"readingComprehension": {
+				"distractors": ["Drink well", "Sleep well", "Cook well"]
+			}
+		}
+	},
+	{
+		"id": "polite-001",
+		"thai": "ดี มาก ครับ",
+		"romanization": "dii mâak kráp",
+		"english": "Very good (male speaker)",
+		"words": ["ดี", "มาก", "ครับ"],
+		"difficulty": 2,
+		"thai_audio_file": null,
+		"cards": {
+			"readingComprehension": {
+				"distractors": ["Very bad", "Not very good", "Good enough"]
+			}
+		}
+	},
+	{
+		"id": "polite-002",
+		"thai": "ดี มาก ค่ะ",
+		"romanization": "dii mâak kâ",
+		"english": "Very good (female speaker)",
+		"words": ["ดี", "มาก", "ค่ะ"],
+		"difficulty": 2,
+		"thai_audio_file": null,
+		"cards": {
+			"readingComprehension": {
+				"distractors": ["Very bad", "A little good", "Not so good"]
+			}
+		}
+	},
+	{
+		"id": "polite-003",
+		"thai": "พูด ดี มาก",
+		"romanization": "phûut dii mâak",
+		"english": "Speak very well",
+		"words": ["พูด", "ดี", "มาก"],
+		"difficulty": 2,
+		"thai_audio_file": null,
+		"cards": {
+			"readingComprehension": {
+				"distractors": ["Listen very well", "Write very well", "Read very well"]
+			}
+		}
+	},
+	{
+		"id": "polite-004",
+		"thai": "ฟัง ดี มาก",
+		"romanization": "fang dii mâak",
+		"english": "Listen very well",
+		"words": ["ฟัง", "ดี", "มาก"],
+		"difficulty": 2,
+		"thai_audio_file": null,
+		"cards": {
+			"readingComprehension": {
+				"distractors": ["Speak very well", "Eat very well", "Sing very well"]
+			}
+		}
+	},
+	{
+		"id": "family-001",
+		"thai": "รัก ลูก มาก",
+		"romanization": "rák lûuk mâak",
+		"english": "Love the child very much",
+		"words": ["รัก", "ลูก", "มาก"],
+		"difficulty": 2,
+		"thai_audio_file": null,
+		"cards": {
+			"readingComprehension": {
+				"distractors": [
+					"Like the child a little",
+					"Miss the child very much",
+					"See the child often"
+				]
+			}
+		}
+	},
+	{
+		"id": "family-002",
+		"thai": "เรา มา กัน",
+		"romanization": "rao maa gan",
+		"english": "We come together",
+		"words": ["เรา", "มา", "กัน"],
+		"difficulty": 2,
+		"thai_audio_file": null,
+		"cards": {
+			"readingComprehension": {
+				"distractors": [
+					"They come together",
+					"We go together",
+					"We eat together"
+				]
+			}
+		}
+	},
+	{
+		"id": "family-003",
+		"thai": "ลูก ดี มาก",
+		"romanization": "lûuk dii mâak",
+		"english": "The child is very good",
+		"words": ["ลูก", "ดี", "มาก"],
+		"difficulty": 2,
+		"thai_audio_file": null,
+		"cards": {
+			"readingComprehension": {
+				"distractors": [
+					"The child is very bad",
+					"The child is very big",
+					"The child is very young"
+				]
+			}
+		}
+	},
+	{
+		"id": "family-004",
+		"thai": "พี่ และ น้อง",
+		"romanization": "phîi láe nɔ́ɔng",
+		"english": "Older sibling and younger sibling",
+		"words": ["พี่", "และ", "น้อง"],
+		"difficulty": 2,
+		"thai_audio_file": null,
+		"cards": {
+			"readingComprehension": {
+				"distractors": [
+					"Father and mother",
+					"Brother and sister",
+					"Friend and enemy"
+				]
+			}
+		}
+	},
+	{
+		"id": "desire-001",
+		"thai": "จะ ไป",
+		"romanization": "jà bpai",
+		"english": "Will go",
+		"words": ["จะ", "ไป"],
+		"difficulty": 3,
+		"thai_audio_file": null,
+		"cards": {
+			"readingComprehension": {
+				"distractors": ["Will come", "Already went", "Want to stay"]
+			}
+		}
+	},
+	{
+		"id": "desire-002",
+		"thai": "อยาก กิน",
+		"romanization": "yàak gin",
+		"english": "Want to eat",
+		"words": ["อยาก", "กิน"],
+		"difficulty": 3,
+		"thai_audio_file": null,
+		"cards": {
+			"readingComprehension": {
+				"distractors": ["Want to sleep", "Need to eat", "Like to eat"]
+			}
+		}
+	},
+	{
+		"id": "desire-003",
+		"thai": "ชอบ กิน มาก",
+		"romanization": "chɔ̂ɔp gin mâak",
+		"english": "Like eating a lot",
+		"words": ["ชอบ", "กิน", "มาก"],
+		"difficulty": 3,
+		"thai_audio_file": null,
+		"cards": {
+			"readingComprehension": {
+				"distractors": [
+					"Dislike eating a lot",
+					"Like cooking a lot",
+					"Like sleeping a lot"
+				]
+			}
+		}
+	},
+	{
+		"id": "desire-004",
+		"thai": "เอา อะไร",
+		"romanization": "ao à-rai",
+		"english": "What do you want?",
+		"words": ["เอา", "อะไร"],
+		"difficulty": 3,
+		"thai_audio_file": null,
+		"cards": {
+			"readingComprehension": {
+				"distractors": [
+					"Where are you going?",
+					"Who is that?",
+					"How much is this?"
+				]
+			}
+		}
+	},
+	{
+		"id": "desire-005",
+		"thai": "จะ กิน อะไร",
+		"romanization": "jà gin à-rai",
+		"english": "What will you eat?",
+		"words": ["จะ", "กิน", "อะไร"],
+		"difficulty": 3,
+		"thai_audio_file": null,
+		"cards": {
+			"readingComprehension": {
+				"distractors": [
+					"What will you drink?",
+					"What did you eat?",
+					"Where will you eat?"
+				]
+			}
+		}
+	},
+	{
+		"id": "desire-006",
+		"thai": "บอก อะไร",
+		"romanization": "bɔ̀ɔk à-rai",
+		"english": "What did you say?",
+		"words": ["บอก", "อะไร"],
+		"difficulty": 3,
+		"thai_audio_file": null,
+		"cards": {
+			"readingComprehension": {
+				"distractors": [
+					"Who said that?",
+					"Why did you say that?",
+					"When did you say that?"
+				]
+			}
+		}
+	},
+	{
+		"id": "desire-007",
+		"thai": "ไป กิน กัน",
+		"romanization": "bpai gin gan",
+		"english": "Let's go eat together",
+		"words": ["ไป", "กิน", "กัน"],
+		"difficulty": 3,
+		"thai_audio_file": null,
+		"cards": {
+			"readingComprehension": {
+				"distractors": [
+					"Let's go home together",
+					"Let's go sleep together",
+					"Let's come eat together"
+				]
+			}
+		}
+	},
+	{
+		"id": "greet-001",
+		"thai": "สวัสดี ครับ",
+		"romanization": "sà-wàt-dii kráp",
+		"english": "Hello (male speaker)",
+		"words": ["สวัสดี", "ครับ"],
+		"difficulty": 3,
+		"thai_audio_file": null,
+		"cards": {
+			"readingComprehension": {
+				"distractors": ["Goodbye (male)", "Thank you (male)", "Sorry (male)"]
+			}
+		}
+	},
+	{
+		"id": "greet-002",
+		"thai": "สวัสดี ค่ะ",
+		"romanization": "sà-wàt-dii kâ",
+		"english": "Hello (female speaker)",
+		"words": ["สวัสดี", "ค่ะ"],
+		"difficulty": 3,
+		"thai_audio_file": null,
+		"cards": {
+			"readingComprehension": {
+				"distractors": [
+					"Goodbye (female)",
+					"Thank you (female)",
+					"Sorry (female)"
+				]
+			}
+		}
+	},
+	{
+		"id": "greet-003",
+		"thai": "ขอโทษ ครับ",
+		"romanization": "khɔ̌ɔ-thôot kráp",
+		"english": "Sorry / Excuse me (male speaker)",
+		"words": ["ขอโทษ", "ครับ"],
+		"difficulty": 3,
+		"thai_audio_file": null,
+		"cards": {
+			"readingComprehension": {
+				"distractors": ["Hello (male)", "Thank you (male)", "Goodbye (male)"]
+			}
+		}
+	},
+	{
+		"id": "greet-004",
+		"thai": "ผม ชอบ มาก",
+		"romanization": "phǒm chɔ̂ɔp mâak",
+		"english": "I like it a lot (male speaker)",
+		"words": ["ผม", "ชอบ", "มาก"],
+		"difficulty": 3,
+		"thai_audio_file": null,
+		"cards": {
+			"readingComprehension": {
+				"distractors": [
+					"I don't like it",
+					"He likes it a lot",
+					"I want it a lot"
+				]
+			}
+		}
+	},
+	{
+		"id": "greet-005",
+		"thai": "ฉัน ชอบ มาก",
+		"romanization": "chǎn chɔ̂ɔp mâak",
+		"english": "I like it a lot (mostly female)",
+		"words": ["ฉัน", "ชอบ", "มาก"],
+		"difficulty": 3,
+		"thai_audio_file": null,
+		"cards": {
+			"readingComprehension": {
+				"distractors": [
+					"I don't like it at all",
+					"She likes it a lot",
+					"I need it a lot"
+				]
+			}
+		}
+	},
+	{
+		"id": "question-001",
+		"thai": "ดี ไหม",
+		"romanization": "dii mǎi",
+		"english": "Is it good?",
+		"words": ["ดี", "ไหม"],
+		"difficulty": 4,
+		"thai_audio_file": null,
+		"cards": {
+			"readingComprehension": {
+				"distractors": ["It is good", "Not good", "Very good"]
+			}
+		}
+	},
+	{
+		"id": "question-002",
+		"thai": "คุณ ชอบ ไหม",
+		"romanization": "khun chɔ̂ɔp mǎi",
+		"english": "Do you like it?",
+		"words": ["คุณ", "ชอบ", "ไหม"],
+		"difficulty": 4,
+		"thai_audio_file": null,
+		"cards": {
+			"readingComprehension": {
+				"distractors": [
+					"Do you want it?",
+					"Does he like it?",
+					"Did you buy it?"
+				]
+			}
+		}
+	},
+	{
+		"id": "question-003",
+		"thai": "ขอบคุณ ครับ",
+		"romanization": "khɔ̀ɔp-khun kráp",
+		"english": "Thank you (male speaker)",
+		"words": ["ขอบคุณ", "ครับ"],
+		"difficulty": 4,
+		"thai_audio_file": null,
+		"cards": {
+			"readingComprehension": {
+				"distractors": [
+					"Sorry (male speaker)",
+					"Hello (male speaker)",
+					"Goodbye (male speaker)"
+				]
+			}
+		}
+	},
+	{
+		"id": "question-004",
+		"thai": "ขอบคุณ ค่ะ",
+		"romanization": "khɔ̀ɔp-khun kâ",
+		"english": "Thank you (female speaker)",
+		"words": ["ขอบคุณ", "ค่ะ"],
+		"difficulty": 4,
+		"thai_audio_file": null,
+		"cards": {
+			"readingComprehension": {
+				"distractors": [
+					"Sorry (female speaker)",
+					"Hello (female speaker)",
+					"Goodbye (female speaker)"
+				]
+			}
+		}
+	},
+	{
+		"id": "question-005",
+		"thai": "ทำ อะไร",
+		"romanization": "tham à-rai",
+		"english": "What are you doing?",
+		"words": ["ทำ", "อะไร"],
+		"difficulty": 4,
+		"thai_audio_file": null,
+		"cards": {
+			"readingComprehension": {
+				"distractors": ["Where are you going?", "Who are you?", "How are you?"]
+			}
+		}
+	},
+	{
+		"id": "question-006",
+		"thai": "คุณ จะ ไป ไหม",
+		"romanization": "khun jà bpai mǎi",
+		"english": "Will you go?",
+		"words": ["คุณ", "จะ", "ไป", "ไหม"],
+		"difficulty": 4,
+		"thai_audio_file": null,
+		"cards": {
+			"readingComprehension": {
+				"distractors": ["Did you go?", "Will you come?", "Can you go?"]
+			}
+		}
+	},
+	{
+		"id": "question-007",
+		"thai": "อาหาร ดี ไหม",
+		"romanization": "aa-hǎan dii mǎi",
+		"english": "Is the food good?",
+		"words": ["อาหาร", "ดี", "ไหม"],
+		"difficulty": 4,
+		"thai_audio_file": null,
+		"cards": {
+			"readingComprehension": {
+				"distractors": [
+					"Is the food expensive?",
+					"Do you have food?",
+					"Is there food?"
+				]
+			}
+		}
+	},
+	{
+		"id": "question-008",
+		"thai": "ชอบ อาหาร ไหม",
+		"romanization": "chɔ̂ɔp aa-hǎan mǎi",
+		"english": "Do you like the food?",
+		"words": ["ชอบ", "อาหาร", "ไหม"],
+		"difficulty": 4,
+		"thai_audio_file": null,
+		"cards": {
+			"readingComprehension": {
+				"distractors": [
+					"Do you want food?",
+					"Did you eat the food?",
+					"Is the food ready?"
+				]
+			}
+		}
+	},
+	{
+		"id": "question-009",
+		"thai": "กิน อาหาร หรือ",
+		"romanization": "gin aa-hǎan rʉ̌ʉ",
+		"english": "Eating food, or...?",
+		"words": ["กิน", "อาหาร", "หรือ"],
+		"difficulty": 4,
+		"thai_audio_file": null,
+		"cards": {
+			"readingComprehension": {
+				"distractors": ["Cooking food?", "Buying food?", "Making food?"]
+			}
+		}
+	},
+	{
+		"id": "negation-001",
+		"thai": "ไม่ ดี",
+		"romanization": "mâi dii",
+		"english": "Not good",
+		"words": ["ไม่", "ดี"],
+		"difficulty": 4,
+		"thai_audio_file": null,
+		"cards": {
+			"readingComprehension": {
+				"distractors": ["Very good", "Good enough", "Is it good?"]
+			}
+		}
+	},
+	{
+		"id": "negation-002",
+		"thai": "ไม่ ชอบ",
+		"romanization": "mâi chɔ̂ɔp",
+		"english": "Don't like",
+		"words": ["ไม่", "ชอบ"],
+		"difficulty": 4,
+		"thai_audio_file": null,
+		"cards": {
+			"readingComprehension": {
+				"distractors": ["Really like", "Want to", "Don't know"]
+			}
+		}
+	},
+	{
+		"id": "negation-003",
+		"thai": "ไม่ ไป",
+		"romanization": "mâi bpai",
+		"english": "Not going",
+		"words": ["ไม่", "ไป"],
+		"difficulty": 4,
+		"thai_audio_file": null,
+		"cards": {
+			"readingComprehension": {
+				"distractors": ["Will go", "Already went", "Want to go"]
+			}
+		}
+	},
+	{
+		"id": "location-001",
+		"thai": "อยู่ บ้าน",
+		"romanization": "yùu bâan",
+		"english": "At home",
+		"words": ["อยู่", "บ้าน"],
+		"difficulty": 5,
+		"thai_audio_file": null,
+		"cards": {
+			"readingComprehension": {
+				"distractors": ["Go home", "My house", "From home"]
+			}
+		}
+	},
+	{
+		"id": "location-002",
+		"thai": "ไป บ้าน",
+		"romanization": "bpai bâan",
+		"english": "Go home",
+		"words": ["ไป", "บ้าน"],
+		"difficulty": 5,
+		"thai_audio_file": null,
+		"cards": {
+			"readingComprehension": {
+				"distractors": ["At home", "Leave home", "My house"]
+			}
+		}
+	},
+	{
+		"id": "location-003",
+		"thai": "ต้อง ไป",
+		"romanization": "tɔ̂ɔng bpai",
+		"english": "Must go",
+		"words": ["ต้อง", "ไป"],
+		"difficulty": 5,
+		"thai_audio_file": null,
+		"cards": {
+			"readingComprehension": {
+				"distractors": ["Want to go", "Will go", "Can go"]
+			}
+		}
+	},
+	{
+		"id": "location-004",
+		"thai": "ได้ กิน",
+		"romanization": "dâai gin",
+		"english": "Can eat / Got to eat",
+		"words": ["ได้", "กิน"],
+		"difficulty": 5,
+		"thai_audio_file": null,
+		"cards": {
+			"readingComprehension": {
+				"distractors": ["Must eat", "Want to eat", "Will eat"]
+			}
+		}
+	},
+	{
+		"id": "location-005",
+		"thai": "ดื่ม น้ำ",
+		"romanization": "dʉ̀ʉm náam",
+		"english": "Drink water",
+		"words": ["ดื่ม", "น้ำ"],
+		"difficulty": 5,
+		"thai_audio_file": null,
+		"cards": {
+			"readingComprehension": {
+				"distractors": ["Eat rice", "Boil water", "Pour water"]
+			}
+		}
+	},
+	{
+		"id": "location-006",
+		"thai": "กิน ข้าว",
+		"romanization": "gin khâao",
+		"english": "Eat rice / Have a meal",
+		"words": ["กิน", "ข้าว"],
+		"difficulty": 5,
+		"thai_audio_file": null,
+		"cards": {
+			"readingComprehension": {
+				"distractors": ["Cook rice", "Buy rice", "Drink water"]
+			}
+		}
+	},
+	{
+		"id": "location-007",
+		"thai": "อาหาร อร่อย",
+		"romanization": "aa-hǎan à-ròi",
+		"english": "The food is delicious",
+		"words": ["อาหาร", "อร่อย"],
+		"difficulty": 5,
+		"thai_audio_file": null,
+		"cards": {
+			"readingComprehension": {
+				"distractors": [
+					"The food is expensive",
+					"The food is ready",
+					"The food is spicy"
+				]
+			}
+		}
+	},
+	{
+		"id": "location-008",
+		"thai": "อาหาร อร่อย มาก",
+		"romanization": "aa-hǎan à-ròi mâak",
+		"english": "The food is very delicious",
+		"words": ["อาหาร", "อร่อย", "มาก"],
+		"difficulty": 5,
+		"thai_audio_file": null,
+		"cards": {
+			"readingComprehension": {
+				"distractors": [
+					"The food is very expensive",
+					"The food is not good",
+					"The food is a little spicy"
+				]
+			}
+		}
+	},
+	{
+		"id": "daily-001",
+		"thai": "ผม ไป บ้าน",
+		"romanization": "phǒm bpai bâan",
+		"english": "I'm going home (male speaker)",
+		"words": ["ผม", "ไป", "บ้าน"],
+		"difficulty": 5,
+		"thai_audio_file": null,
+		"cards": {
+			"readingComprehension": {
+				"distractors": [
+					"I'm at home",
+					"He's going home",
+					"I'm leaving the house"
+				]
+			}
+		}
+	},
+	{
+		"id": "daily-002",
+		"thai": "ฉัน อยู่ บ้าน",
+		"romanization": "chǎn yùu bâan",
+		"english": "I'm at home (mostly female)",
+		"words": ["ฉัน", "อยู่", "บ้าน"],
+		"difficulty": 5,
+		"thai_audio_file": null,
+		"cards": {
+			"readingComprehension": {
+				"distractors": ["I'm going home", "She's at the shop", "I'm not home"]
+			}
+		}
+	},
+	{
+		"id": "daily-003",
+		"thai": "คุณ สบายดี ไหม",
+		"romanization": "khun sà-baai-dii mǎi",
+		"english": "How are you? / Are you well?",
+		"words": ["คุณ", "สบายดี", "ไหม"],
+		"difficulty": 5,
+		"thai_audio_file": null,
+		"cards": {
+			"readingComprehension": {
+				"distractors": [
+					"Are you hungry?",
+					"Where are you?",
+					"What is your name?"
+				]
+			}
+		}
+	},
+	{
+		"id": "daily-004",
+		"thai": "ผม สบายดี ครับ",
+		"romanization": "phǒm sà-baai-dii kráp",
+		"english": "I'm fine (male speaker)",
+		"words": ["ผม", "สบายดี", "ครับ"],
+		"difficulty": 5,
+		"thai_audio_file": null,
+		"cards": {
+			"readingComprehension": {
+				"distractors": ["I'm not well", "He is fine", "I'm hungry"]
+			}
+		}
+	},
+	{
+		"id": "daily-005",
+		"thai": "ฉัน ต้อง ไป",
+		"romanization": "chǎn tɔ̂ɔng bpai",
+		"english": "I have to go (mostly female)",
+		"words": ["ฉัน", "ต้อง", "ไป"],
+		"difficulty": 5,
+		"thai_audio_file": null,
+		"cards": {
+			"readingComprehension": {
+				"distractors": ["I want to go", "I will come", "She has to stay"]
+			}
+		}
+	},
+	{
+		"id": "daily-006",
+		"thai": "คุณ ทำ อะไร",
+		"romanization": "khun tham à-rai",
+		"english": "What are you doing?",
+		"words": ["คุณ", "ทำ", "อะไร"],
+		"difficulty": 5,
+		"thai_audio_file": null,
+		"cards": {
+			"readingComprehension": {
+				"distractors": [
+					"Where are you going?",
+					"Who are you?",
+					"What do you want?"
+				]
+			}
+		}
+	},
+	{
+		"id": "daily-007",
+		"thai": "ไม่ ต้อง ครับ",
+		"romanization": "mâi tɔ̂ɔng kráp",
+		"english": "No need (male speaker)",
+		"words": ["ไม่", "ต้อง", "ครับ"],
+		"difficulty": 5,
+		"thai_audio_file": null,
+		"cards": {
+			"readingComprehension": {
+				"distractors": [
+					"You must (male)",
+					"Yes please (male)",
+					"I want to (male)"
+				]
+			}
+		}
+	},
+	{
+		"id": "daily-008",
+		"thai": "รู้ ไหม",
+		"romanization": "rúu mǎi",
+		"english": "Do you know?",
+		"words": ["รู้", "ไหม"],
+		"difficulty": 5,
+		"thai_audio_file": null,
+		"cards": {
+			"readingComprehension": {
+				"distractors": ["I know", "I don't know", "Who knows?"]
+			}
+		}
+	},
+	{
+		"id": "daily-009",
+		"thai": "ไม่ รู้",
+		"romanization": "mâi rúu",
+		"english": "Don't know",
+		"words": ["ไม่", "รู้"],
+		"difficulty": 5,
+		"thai_audio_file": null,
+		"cards": {
+			"readingComprehension": {
+				"distractors": ["I know", "Do you know?", "Want to know"]
+			}
+		}
+	},
+	{
+		"id": "daily-010",
+		"thai": "หิว ไหม",
+		"romanization": "hǐw mǎi",
+		"english": "Are you hungry?",
+		"words": ["หิว", "ไหม"],
+		"difficulty": 5,
+		"thai_audio_file": null,
+		"cards": {
+			"readingComprehension": {
+				"distractors": ["Are you full?", "Are you thirsty?", "Are you tired?"]
+			}
+		}
+	},
+	{
+		"id": "daily-011",
+		"thai": "หิว มาก",
+		"romanization": "hǐw mâak",
+		"english": "Very hungry",
+		"words": ["หิว", "มาก"],
+		"difficulty": 5,
+		"thai_audio_file": null,
+		"cards": {
+			"readingComprehension": {
+				"distractors": ["Very full", "Very tired", "A little hungry"]
+			}
+		}
+	}
+]

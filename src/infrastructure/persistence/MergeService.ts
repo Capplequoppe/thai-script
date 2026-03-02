@@ -41,6 +41,17 @@ export function mergeLearnerStates(
 		}
 	}
 
+	const sentenceCards = { ...(incoming.sentenceCards ?? {}) };
+	for (const [id, currentCard] of Object.entries(current.sentenceCards ?? {})) {
+		const incomingCard = sentenceCards[id];
+		if (
+			!incomingCard ||
+			currentCard.srs.repetitions >= incomingCard.srs.repetitions
+		) {
+			sentenceCards[id] = currentCard;
+		}
+	}
+
 	const sessionMap = new Map(
 		current.sessionHistory.map((s) => [s.sessionId, s]),
 	);
@@ -60,6 +71,7 @@ export function mergeLearnerStates(
 		cards,
 		vocabCards,
 		grammarCards,
+		sentenceCards,
 		sessionHistory: [...sessionMap.values()],
 		achievements,
 	};
