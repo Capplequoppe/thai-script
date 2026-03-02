@@ -33,8 +33,8 @@ export function generateGrammarCards(entry: GrammarEntry): GrammarCard[] {
 		? formatGlossed(correctExample.words)
 		: correctExample?.thai;
 
-	const incorrectChoices = entry.cards.application.incorrectExamples.map(
-		(ex) => formatGlossed(ex.words),
+	const incorrectChoices = entry.cards.application.incorrectExamples.map((ex) =>
+		formatGlossed(ex.words),
 	);
 
 	const application: GrammarCard = {

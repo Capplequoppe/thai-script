@@ -23,6 +23,10 @@ function makeGrammarEntry(
 				thai: `thai-${id}-0`,
 				romanization: `rom-${id}-0`,
 				english: `eng-${id}-0`,
+				words: [
+					{ thai: "w1", gloss: "g1" },
+					{ thai: "w2", gloss: "g2" },
+				],
 			},
 			{
 				thai: `thai-${id}-1`,
@@ -39,7 +43,26 @@ function makeGrammarEntry(
 			application: {
 				question: `Q application ${id}`,
 				correctExample: 0,
-				incorrectExamples: ["wrong1", "wrong2", "wrong3"],
+				incorrectExamples: [
+					{
+						words: [
+							{ thai: "w2", gloss: "g2" },
+							{ thai: "w1", gloss: "g1" },
+						],
+					},
+					{
+						words: [
+							{ thai: "w1", gloss: "g1" },
+							{ thai: "w2", gloss: "g2" },
+						],
+					},
+					{
+						words: [
+							{ thai: "w2", gloss: "g2" },
+							{ thai: "w1", gloss: "g1" },
+						],
+					},
+				],
 			},
 		},
 	};
