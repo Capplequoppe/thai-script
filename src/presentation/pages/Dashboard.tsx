@@ -46,7 +46,7 @@ export function Dashboard() {
 		grammarDueCount,
 		sentenceDueCount,
 	].filter((n) => n > 0).length;
-	const reviewGridClass = `grid gap-3 ${reviewButtonCount > 1 ? `grid-cols-${reviewButtonCount}` : "grid-cols-1"}`;
+	const reviewGridClass = `grid gap-3 ${reviewButtonCount === 2 ? "grid-cols-2" : "grid-cols-1"}`;
 
 	return (
 		<div className="space-y-6 py-4">
