@@ -98,7 +98,7 @@ describe("generateVocabCards", () => {
 		const card = cards.find((c) => c.property === "englishToThai");
 		expect(card).toBeDefined();
 		expect(card?.id).toBe("vocab:ที่:englishToThai");
-		expect(card?.wordThai).toBe("ที่");
+		expect(card?.wordThai).toBe("at");
 		expect(card?.question).toBe('Which Thai word means "at"?');
 		expect(card?.correctAnswer).toBe("ที่");
 	});

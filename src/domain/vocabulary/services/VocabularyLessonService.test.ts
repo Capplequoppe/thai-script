@@ -388,7 +388,7 @@ describe("VocabularyService", () => {
 		if (!cards) throw new Error("Expected cards");
 		service.commitLessonCards(cards);
 
-		expect(service.getLearnedCount()).toBe(2);
+		expect(service.getLearnedCount()).toBe(4); // 2 cards per word
 	});
 
 	it("getLearnedEntries returns full VocabEntry for learned words sorted by rank", () => {

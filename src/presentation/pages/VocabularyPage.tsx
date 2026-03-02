@@ -411,7 +411,6 @@ export function VocabularyPage() {
 					<MultipleChoice
 						card={currentVocabCard}
 						onAnswer={flow.advance}
-						mnemonicExpanded
 					/>
 				)}
 			</div>
