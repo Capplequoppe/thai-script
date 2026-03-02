@@ -13,7 +13,12 @@
 				"thai": "เขากินข้าว",
 				"romanization": "khao gin khao",
 				"english": "He eats rice.",
-				"breakdown": "เขา (he) + กิน (eat) + ข้าว (rice)"
+				"breakdown": "เขา (he) + กิน (eat) + ข้าว (rice)",
+				"words": [
+					{ "thai": "เขา", "gloss": "he" },
+					{ "thai": "กิน", "gloss": "eat" },
+					{ "thai": "ข้าว", "gloss": "rice" }
+				]
 			},
 			{
 				"thai": "ฉันดื่มน้ำ",
@@ -46,7 +51,29 @@
 			"application": {
 				"question": "Which sentence correctly uses the SVO pattern?",
 				"correctExample": 0,
-				"incorrectExamples": ["ข้าวกินเขา", "กินเขาข้าว", "ข้าวเขากิน"]
+				"incorrectExamples": [
+					{
+						"words": [
+							{ "thai": "ข้าว", "gloss": "rice" },
+							{ "thai": "กิน", "gloss": "eat" },
+							{ "thai": "เขา", "gloss": "he" }
+						]
+					},
+					{
+						"words": [
+							{ "thai": "กิน", "gloss": "eat" },
+							{ "thai": "เขา", "gloss": "he" },
+							{ "thai": "ข้าว", "gloss": "rice" }
+						]
+					},
+					{
+						"words": [
+							{ "thai": "ข้าว", "gloss": "rice" },
+							{ "thai": "เขา", "gloss": "he" },
+							{ "thai": "กิน", "gloss": "eat" }
+						]
+					}
+				]
 			}
 		}
 	},
@@ -64,7 +91,13 @@
 				"thai": "คุณกินข้าวไหม",
 				"romanization": "khun gin khao mai",
 				"english": "Do you eat rice?",
-				"breakdown": "คุณ (you) + กิน (eat) + ข้าว (rice) + ไหม (question particle)"
+				"breakdown": "คุณ (you) + กิน (eat) + ข้าว (rice) + ไหม (question particle)",
+				"words": [
+					{ "thai": "คุณ", "gloss": "you" },
+					{ "thai": "กิน", "gloss": "eat" },
+					{ "thai": "ข้าว", "gloss": "rice" },
+					{ "thai": "ไหม", "gloss": "?" }
+				]
 			},
 			{
 				"thai": "เขาชอบหมาไหม",
@@ -91,7 +124,32 @@
 			"application": {
 				"question": "Which sentence correctly uses ไหม to form a question?",
 				"correctExample": 0,
-				"incorrectExamples": ["ไหมคุณกินข้าว", "คุณไหมกินข้าว", "คุณกินไหมข้าว"]
+				"incorrectExamples": [
+					{
+						"words": [
+							{ "thai": "ไหม", "gloss": "?" },
+							{ "thai": "คุณ", "gloss": "you" },
+							{ "thai": "กิน", "gloss": "eat" },
+							{ "thai": "ข้าว", "gloss": "rice" }
+						]
+					},
+					{
+						"words": [
+							{ "thai": "คุณ", "gloss": "you" },
+							{ "thai": "ไหม", "gloss": "?" },
+							{ "thai": "กิน", "gloss": "eat" },
+							{ "thai": "ข้าว", "gloss": "rice" }
+						]
+					},
+					{
+						"words": [
+							{ "thai": "คุณ", "gloss": "you" },
+							{ "thai": "กิน", "gloss": "eat" },
+							{ "thai": "ไหม", "gloss": "?" },
+							{ "thai": "ข้าว", "gloss": "rice" }
+						]
+					}
+				]
 			}
 		}
 	},
@@ -109,7 +167,13 @@
 				"thai": "ฉันไม่กินเนื้อ",
 				"romanization": "chan mai gin nuea",
 				"english": "I don't eat meat.",
-				"breakdown": "ฉัน (I) + ไม่ (not) + กิน (eat) + เนื้อ (meat)"
+				"breakdown": "ฉัน (I) + ไม่ (not) + กิน (eat) + เนื้อ (meat)",
+				"words": [
+					{ "thai": "ฉัน", "gloss": "I" },
+					{ "thai": "ไม่", "gloss": "not" },
+					{ "thai": "กิน", "gloss": "eat" },
+					{ "thai": "เนื้อ", "gloss": "meat" }
+				]
 			},
 			{
 				"thai": "เขาไม่ชอบกาแฟ",
@@ -141,7 +205,32 @@
 			"application": {
 				"question": "Which sentence correctly uses ไม่ for negation?",
 				"correctExample": 0,
-				"incorrectExamples": ["ฉันกินไม่เนื้อ", "ฉันกินเนื้อไม่", "ไม่ฉันกินเนื้อ"]
+				"incorrectExamples": [
+					{
+						"words": [
+							{ "thai": "ฉัน", "gloss": "I" },
+							{ "thai": "กิน", "gloss": "eat" },
+							{ "thai": "ไม่", "gloss": "not" },
+							{ "thai": "เนื้อ", "gloss": "meat" }
+						]
+					},
+					{
+						"words": [
+							{ "thai": "ฉัน", "gloss": "I" },
+							{ "thai": "กิน", "gloss": "eat" },
+							{ "thai": "เนื้อ", "gloss": "meat" },
+							{ "thai": "ไม่", "gloss": "not" }
+						]
+					},
+					{
+						"words": [
+							{ "thai": "ไม่", "gloss": "not" },
+							{ "thai": "ฉัน", "gloss": "I" },
+							{ "thai": "กิน", "gloss": "eat" },
+							{ "thai": "เนื้อ", "gloss": "meat" }
+						]
+					}
+				]
 			}
 		}
 	},
@@ -159,7 +248,11 @@
 				"thai": "อาหารอร่อย",
 				"romanization": "aahan aroi",
 				"english": "The food is delicious.",
-				"breakdown": "อาหาร (food) + อร่อย (delicious) — no linking verb needed"
+				"breakdown": "อาหาร (food) + อร่อย (delicious) — no linking verb needed",
+				"words": [
+					{ "thai": "อาหาร", "gloss": "food" },
+					{ "thai": "อร่อย", "gloss": "delicious" }
+				]
 			},
 			{
 				"thai": "บ้านใหญ่",
@@ -191,7 +284,28 @@
 			"application": {
 				"question": "Which sentence correctly uses an adjective as a predicate?",
 				"correctExample": 0,
-				"incorrectExamples": ["อร่อยอาหาร", "อาหารเป็นอร่อย", "อาหารคืออร่อย"]
+				"incorrectExamples": [
+					{
+						"words": [
+							{ "thai": "อร่อย", "gloss": "delicious" },
+							{ "thai": "อาหาร", "gloss": "food" }
+						]
+					},
+					{
+						"words": [
+							{ "thai": "อาหาร", "gloss": "food" },
+							{ "thai": "เป็น", "gloss": "is" },
+							{ "thai": "อร่อย", "gloss": "delicious" }
+						]
+					},
+					{
+						"words": [
+							{ "thai": "อาหาร", "gloss": "food" },
+							{ "thai": "คือ", "gloss": "is" },
+							{ "thai": "อร่อย", "gloss": "delicious" }
+						]
+					}
+				]
 			}
 		}
 	},
@@ -209,7 +323,12 @@
 				"thai": "หนังสือของฉัน",
 				"romanization": "nangsuue khong chan",
 				"english": "My book.",
-				"breakdown": "หนังสือ (book) + ของ (of) + ฉัน (I/me)"
+				"breakdown": "หนังสือ (book) + ของ (of) + ฉัน (I/me)",
+				"words": [
+					{ "thai": "หนังสือ", "gloss": "book" },
+					{ "thai": "ของ", "gloss": "of" },
+					{ "thai": "ฉัน", "gloss": "I" }
+				]
 			},
 			{
 				"thai": "บ้านของเขา",
@@ -241,7 +360,29 @@
 			"application": {
 				"question": "Which phrase correctly uses ของ to show possession?",
 				"correctExample": 0,
-				"incorrectExamples": ["ของหนังสือฉัน", "ฉันของหนังสือ", "ของฉันหนังสือ"]
+				"incorrectExamples": [
+					{
+						"words": [
+							{ "thai": "ของ", "gloss": "of" },
+							{ "thai": "หนังสือ", "gloss": "book" },
+							{ "thai": "ฉัน", "gloss": "I" }
+						]
+					},
+					{
+						"words": [
+							{ "thai": "ฉัน", "gloss": "I" },
+							{ "thai": "ของ", "gloss": "of" },
+							{ "thai": "หนังสือ", "gloss": "book" }
+						]
+					},
+					{
+						"words": [
+							{ "thai": "ของ", "gloss": "of" },
+							{ "thai": "ฉัน", "gloss": "I" },
+							{ "thai": "หนังสือ", "gloss": "book" }
+						]
+					}
+				]
 			}
 		}
 	},
@@ -259,7 +400,12 @@
 				"thai": "แมวสองตัว",
 				"romanization": "maew song tua",
 				"english": "Two cats.",
-				"breakdown": "แมว (cat) + สอง (two) + ตัว (classifier for animals)"
+				"breakdown": "แมว (cat) + สอง (two) + ตัว (classifier for animals)",
+				"words": [
+					{ "thai": "แมว", "gloss": "cat" },
+					{ "thai": "สอง", "gloss": "two" },
+					{ "thai": "ตัว", "gloss": "clf." }
+				]
 			},
 			{
 				"thai": "คนสามคน",
@@ -291,7 +437,29 @@
 			"application": {
 				"question": "Which phrase correctly uses a classifier?",
 				"correctExample": 0,
-				"incorrectExamples": ["สองแมวตัว", "ตัวแมวสอง", "สองตัวแมว"]
+				"incorrectExamples": [
+					{
+						"words": [
+							{ "thai": "สอง", "gloss": "two" },
+							{ "thai": "แมว", "gloss": "cat" },
+							{ "thai": "ตัว", "gloss": "clf." }
+						]
+					},
+					{
+						"words": [
+							{ "thai": "ตัว", "gloss": "clf." },
+							{ "thai": "แมว", "gloss": "cat" },
+							{ "thai": "สอง", "gloss": "two" }
+						]
+					},
+					{
+						"words": [
+							{ "thai": "สอง", "gloss": "two" },
+							{ "thai": "ตัว", "gloss": "clf." },
+							{ "thai": "แมว", "gloss": "cat" }
+						]
+					}
+				]
 			}
 		}
 	},
@@ -309,7 +477,12 @@
 				"thai": "แม่อยู่บ้าน",
 				"romanization": "mae yuu baan",
 				"english": "Mom is at home.",
-				"breakdown": "แม่ (mom) + อยู่ (is at) + บ้าน (home)"
+				"breakdown": "แม่ (mom) + อยู่ (is at) + บ้าน (home)",
+				"words": [
+					{ "thai": "แม่", "gloss": "mom" },
+					{ "thai": "อยู่", "gloss": "is at" },
+					{ "thai": "บ้าน", "gloss": "home" }
+				]
 			},
 			{
 				"thai": "โรงเรียนอยู่ที่นี่",
@@ -341,7 +514,30 @@
 			"application": {
 				"question": "Which sentence correctly uses อยู่ to indicate location?",
 				"correctExample": 0,
-				"incorrectExamples": ["อยู่แม่บ้าน", "บ้านอยู่แม่", "แม่บ้านอยู่ที่"]
+				"incorrectExamples": [
+					{
+						"words": [
+							{ "thai": "อยู่", "gloss": "is at" },
+							{ "thai": "แม่", "gloss": "mom" },
+							{ "thai": "บ้าน", "gloss": "home" }
+						]
+					},
+					{
+						"words": [
+							{ "thai": "บ้าน", "gloss": "home" },
+							{ "thai": "อยู่", "gloss": "is at" },
+							{ "thai": "แม่", "gloss": "mom" }
+						]
+					},
+					{
+						"words": [
+							{ "thai": "แม่", "gloss": "mom" },
+							{ "thai": "บ้าน", "gloss": "home" },
+							{ "thai": "อยู่", "gloss": "is at" },
+							{ "thai": "ที่", "gloss": "at" }
+						]
+					}
+				]
 			}
 		}
 	},
@@ -359,7 +555,13 @@
 				"thai": "ฉันอยากกินส้มตำ",
 				"romanization": "chan yaak gin som tam",
 				"english": "I want to eat som tam.",
-				"breakdown": "ฉัน (I) + อยาก (want) + กิน (eat) + ส้มตำ (papaya salad)"
+				"breakdown": "ฉัน (I) + อยาก (want) + กิน (eat) + ส้มตำ (papaya salad)",
+				"words": [
+					{ "thai": "ฉัน", "gloss": "I" },
+					{ "thai": "อยาก", "gloss": "want" },
+					{ "thai": "กิน", "gloss": "eat" },
+					{ "thai": "ส้มตำ", "gloss": "papaya salad" }
+				]
 			},
 			{
 				"thai": "เขาอยากไปเที่ยว",
@@ -386,7 +588,32 @@
 			"application": {
 				"question": "Which sentence correctly uses อยาก to express a want?",
 				"correctExample": 0,
-				"incorrectExamples": ["ฉันกินอยากส้มตำ", "อยากฉันกินส้มตำ", "ฉันกินส้มตำอยาก"]
+				"incorrectExamples": [
+					{
+						"words": [
+							{ "thai": "ฉัน", "gloss": "I" },
+							{ "thai": "กิน", "gloss": "eat" },
+							{ "thai": "อยาก", "gloss": "want" },
+							{ "thai": "ส้มตำ", "gloss": "papaya salad" }
+						]
+					},
+					{
+						"words": [
+							{ "thai": "อยาก", "gloss": "want" },
+							{ "thai": "ฉัน", "gloss": "I" },
+							{ "thai": "กิน", "gloss": "eat" },
+							{ "thai": "ส้มตำ", "gloss": "papaya salad" }
+						]
+					},
+					{
+						"words": [
+							{ "thai": "ฉัน", "gloss": "I" },
+							{ "thai": "กิน", "gloss": "eat" },
+							{ "thai": "ส้มตำ", "gloss": "papaya salad" },
+							{ "thai": "อยาก", "gloss": "want" }
+						]
+					}
+				]
 			}
 		}
 	},
@@ -404,7 +631,13 @@
 				"thai": "ฉันกินข้าวแล้ว",
 				"romanization": "chan gin khao laew",
 				"english": "I already ate.",
-				"breakdown": "ฉัน (I) + กิน (eat) + ข้าว (rice/food) + แล้ว (already)"
+				"breakdown": "ฉัน (I) + กิน (eat) + ข้าว (rice/food) + แล้ว (already)",
+				"words": [
+					{ "thai": "ฉัน", "gloss": "I" },
+					{ "thai": "กิน", "gloss": "eat" },
+					{ "thai": "ข้าว", "gloss": "rice" },
+					{ "thai": "แล้ว", "gloss": "already" }
+				]
 			},
 			{
 				"thai": "เขาไปแล้ว",
@@ -431,7 +664,32 @@
 			"application": {
 				"question": "Which sentence correctly uses แล้ว to indicate a completed action?",
 				"correctExample": 0,
-				"incorrectExamples": ["ฉันแล้วกินข้าว", "แล้วฉันกินข้าว", "ฉันกินแล้วข้าว"]
+				"incorrectExamples": [
+					{
+						"words": [
+							{ "thai": "ฉัน", "gloss": "I" },
+							{ "thai": "แล้ว", "gloss": "already" },
+							{ "thai": "กิน", "gloss": "eat" },
+							{ "thai": "ข้าว", "gloss": "rice" }
+						]
+					},
+					{
+						"words": [
+							{ "thai": "แล้ว", "gloss": "already" },
+							{ "thai": "ฉัน", "gloss": "I" },
+							{ "thai": "กิน", "gloss": "eat" },
+							{ "thai": "ข้าว", "gloss": "rice" }
+						]
+					},
+					{
+						"words": [
+							{ "thai": "ฉัน", "gloss": "I" },
+							{ "thai": "กิน", "gloss": "eat" },
+							{ "thai": "แล้ว", "gloss": "already" },
+							{ "thai": "ข้าว", "gloss": "rice" }
+						]
+					}
+				]
 			}
 		}
 	},
@@ -449,7 +707,13 @@
 				"thai": "ฉันจะไปตลาด",
 				"romanization": "chan ja pai talaat",
 				"english": "I will go to the market.",
-				"breakdown": "ฉัน (I) + จะ (will) + ไป (go) + ตลาด (market)"
+				"breakdown": "ฉัน (I) + จะ (will) + ไป (go) + ตลาด (market)",
+				"words": [
+					{ "thai": "ฉัน", "gloss": "I" },
+					{ "thai": "จะ", "gloss": "will" },
+					{ "thai": "ไป", "gloss": "go" },
+					{ "thai": "ตลาด", "gloss": "market" }
+				]
 			},
 			{
 				"thai": "เขาจะมาพรุ่งนี้",
@@ -481,7 +745,32 @@
 			"application": {
 				"question": "Which sentence correctly uses จะ for future tense?",
 				"correctExample": 0,
-				"incorrectExamples": ["ฉันไปจะตลาด", "จะฉันไปตลาด", "ฉันไปตลาดจะ"]
+				"incorrectExamples": [
+					{
+						"words": [
+							{ "thai": "ฉัน", "gloss": "I" },
+							{ "thai": "ไป", "gloss": "go" },
+							{ "thai": "จะ", "gloss": "will" },
+							{ "thai": "ตลาด", "gloss": "market" }
+						]
+					},
+					{
+						"words": [
+							{ "thai": "จะ", "gloss": "will" },
+							{ "thai": "ฉัน", "gloss": "I" },
+							{ "thai": "ไป", "gloss": "go" },
+							{ "thai": "ตลาด", "gloss": "market" }
+						]
+					},
+					{
+						"words": [
+							{ "thai": "ฉัน", "gloss": "I" },
+							{ "thai": "ไป", "gloss": "go" },
+							{ "thai": "ตลาด", "gloss": "market" },
+							{ "thai": "จะ", "gloss": "will" }
+						]
+					}
+				]
 			}
 		}
 	},
@@ -499,7 +788,14 @@
 				"thai": "เขากำลังกินข้าวอยู่",
 				"romanization": "khao kamlang gin khao yuu",
 				"english": "He is eating.",
-				"breakdown": "เขา (he) + กำลัง (currently) + กิน (eat) + ข้าว (rice) + อยู่ (ongoing)"
+				"breakdown": "เขา (he) + กำลัง (currently) + กิน (eat) + ข้าว (rice) + อยู่ (ongoing)",
+				"words": [
+					{ "thai": "เขา", "gloss": "he" },
+					{ "thai": "กำลัง", "gloss": "currently" },
+					{ "thai": "กิน", "gloss": "eat" },
+					{ "thai": "ข้าว", "gloss": "rice" },
+					{ "thai": "อยู่", "gloss": "ongoing" }
+				]
 			},
 			{
 				"thai": "ฉันกำลังเรียน",
@@ -527,9 +823,33 @@
 				"question": "Which sentence correctly uses กำลัง for a progressive action?",
 				"correctExample": 0,
 				"incorrectExamples": [
-					"เขากินกำลังข้าวอยู่",
-					"กำลังเขากินข้าวอยู่",
-					"เขากินข้าวกำลังอยู่"
+					{
+						"words": [
+							{ "thai": "เขา", "gloss": "he" },
+							{ "thai": "กิน", "gloss": "eat" },
+							{ "thai": "กำลัง", "gloss": "currently" },
+							{ "thai": "ข้าว", "gloss": "rice" },
+							{ "thai": "อยู่", "gloss": "ongoing" }
+						]
+					},
+					{
+						"words": [
+							{ "thai": "กำลัง", "gloss": "currently" },
+							{ "thai": "เขา", "gloss": "he" },
+							{ "thai": "กิน", "gloss": "eat" },
+							{ "thai": "ข้าว", "gloss": "rice" },
+							{ "thai": "อยู่", "gloss": "ongoing" }
+						]
+					},
+					{
+						"words": [
+							{ "thai": "เขา", "gloss": "he" },
+							{ "thai": "กิน", "gloss": "eat" },
+							{ "thai": "ข้าว", "gloss": "rice" },
+							{ "thai": "กำลัง", "gloss": "currently" },
+							{ "thai": "อยู่", "gloss": "ongoing" }
+						]
+					}
 				]
 			}
 		}
@@ -548,7 +868,13 @@
 				"thai": "พี่ชายสูงกว่าน้องชาย",
 				"romanization": "phii chaai sung kwaa nong chaai",
 				"english": "The older brother is taller than the younger brother.",
-				"breakdown": "พี่ชาย (older brother) + สูง (tall) + กว่า (more than) + น้องชาย (younger brother)"
+				"breakdown": "พี่ชาย (older brother) + สูง (tall) + กว่า (more than) + น้องชาย (younger brother)",
+				"words": [
+					{ "thai": "พี่ชาย", "gloss": "older brother" },
+					{ "thai": "สูง", "gloss": "tall" },
+					{ "thai": "กว่า", "gloss": "more than" },
+					{ "thai": "น้องชาย", "gloss": "younger brother" }
+				]
 			},
 			{
 				"thai": "วันนี้ร้อนกว่าเมื่อวาน",
@@ -576,9 +902,30 @@
 				"question": "Which sentence correctly uses กว่า for comparison?",
 				"correctExample": 0,
 				"incorrectExamples": [
-					"พี่ชายกว่าสูงน้องชาย",
-					"กว่าพี่ชายสูงน้องชาย",
-					"พี่ชายสูงน้องชายกว่า"
+					{
+						"words": [
+							{ "thai": "พี่ชาย", "gloss": "older brother" },
+							{ "thai": "กว่า", "gloss": "more than" },
+							{ "thai": "สูง", "gloss": "tall" },
+							{ "thai": "น้องชาย", "gloss": "younger brother" }
+						]
+					},
+					{
+						"words": [
+							{ "thai": "กว่า", "gloss": "more than" },
+							{ "thai": "พี่ชาย", "gloss": "older brother" },
+							{ "thai": "สูง", "gloss": "tall" },
+							{ "thai": "น้องชาย", "gloss": "younger brother" }
+						]
+					},
+					{
+						"words": [
+							{ "thai": "พี่ชาย", "gloss": "older brother" },
+							{ "thai": "สูง", "gloss": "tall" },
+							{ "thai": "น้องชาย", "gloss": "younger brother" },
+							{ "thai": "กว่า", "gloss": "more than" }
+						]
+					}
 				]
 			}
 		}
@@ -597,7 +944,13 @@
 				"thai": "เพราะฝนตก เลยไม่ไป",
 				"romanization": "phro fon tok loei mai pai",
 				"english": "Because it rained, so I didn't go.",
-				"breakdown": "เพราะ (because) + ฝนตก (rain falls) + เลย (so) + ไม่ไป (not go)"
+				"breakdown": "เพราะ (because) + ฝนตก (rain falls) + เลย (so) + ไม่ไป (not go)",
+				"words": [
+					{ "thai": "เพราะ", "gloss": "because" },
+					{ "thai": "ฝนตก", "gloss": "rain falls" },
+					{ "thai": "เลย", "gloss": "so" },
+					{ "thai": "ไม่ไป", "gloss": "not go" }
+				]
 			},
 			{
 				"thai": "เพราะหิว เลยกินข้าว",
@@ -625,9 +978,30 @@
 				"question": "Which sentence correctly uses เพราะ and เลย?",
 				"correctExample": 0,
 				"incorrectExamples": [
-					"เลยฝนตก เพราะไม่ไป",
-					"ฝนตกเพราะ ไม่ไปเลย",
-					"เพราะเลยฝนตก ไม่ไป"
+					{
+						"words": [
+							{ "thai": "เลย", "gloss": "so" },
+							{ "thai": "ฝนตก", "gloss": "rain falls" },
+							{ "thai": "เพราะ", "gloss": "because" },
+							{ "thai": "ไม่ไป", "gloss": "not go" }
+						]
+					},
+					{
+						"words": [
+							{ "thai": "ฝนตก", "gloss": "rain falls" },
+							{ "thai": "เพราะ", "gloss": "because" },
+							{ "thai": "ไม่ไป", "gloss": "not go" },
+							{ "thai": "เลย", "gloss": "so" }
+						]
+					},
+					{
+						"words": [
+							{ "thai": "เพราะ", "gloss": "because" },
+							{ "thai": "เลย", "gloss": "so" },
+							{ "thai": "ฝนตก", "gloss": "rain falls" },
+							{ "thai": "ไม่ไป", "gloss": "not go" }
+						]
+					}
 				]
 			}
 		}
@@ -646,7 +1020,13 @@
 				"thai": "ฉันพูดไทยได้",
 				"romanization": "chan phuut thai dai",
 				"english": "I can speak Thai.",
-				"breakdown": "ฉัน (I) + พูด (speak) + ไทย (Thai) + ได้ (can/able)"
+				"breakdown": "ฉัน (I) + พูด (speak) + ไทย (Thai) + ได้ (can/able)",
+				"words": [
+					{ "thai": "ฉัน", "gloss": "I" },
+					{ "thai": "พูด", "gloss": "speak" },
+					{ "thai": "ไทย", "gloss": "Thai" },
+					{ "thai": "ได้", "gloss": "can" }
+				]
 			},
 			{
 				"thai": "เขาว่ายน้ำเป็น",
@@ -673,7 +1053,32 @@
 			"application": {
 				"question": "Which sentence correctly uses ได้ to express ability?",
 				"correctExample": 0,
-				"incorrectExamples": ["ฉันได้พูดไทย", "ได้ฉันพูดไทย", "ฉันพูดได้ไทย"]
+				"incorrectExamples": [
+					{
+						"words": [
+							{ "thai": "ฉัน", "gloss": "I" },
+							{ "thai": "ได้", "gloss": "can" },
+							{ "thai": "พูด", "gloss": "speak" },
+							{ "thai": "ไทย", "gloss": "Thai" }
+						]
+					},
+					{
+						"words": [
+							{ "thai": "ได้", "gloss": "can" },
+							{ "thai": "ฉัน", "gloss": "I" },
+							{ "thai": "พูด", "gloss": "speak" },
+							{ "thai": "ไทย", "gloss": "Thai" }
+						]
+					},
+					{
+						"words": [
+							{ "thai": "ฉัน", "gloss": "I" },
+							{ "thai": "พูด", "gloss": "speak" },
+							{ "thai": "ได้", "gloss": "can" },
+							{ "thai": "ไทย", "gloss": "Thai" }
+						]
+					}
+				]
 			}
 		}
 	},
@@ -691,7 +1096,11 @@
 				"thai": "สวัสดีครับ",
 				"romanization": "sawatdii khrap",
 				"english": "Hello (male speaker).",
-				"breakdown": "สวัสดี (hello) + ครับ (polite particle, male)"
+				"breakdown": "สวัสดี (hello) + ครับ (polite particle, male)",
+				"words": [
+					{ "thai": "สวัสดี", "gloss": "hello" },
+					{ "thai": "ครับ", "gloss": "polite, male" }
+				]
 			},
 			{
 				"thai": "ขอบคุณค่ะ",
@@ -723,7 +1132,28 @@
 			"application": {
 				"question": "Which sentence correctly uses a polite particle?",
 				"correctExample": 0,
-				"incorrectExamples": ["ครับสวัสดี", "สวัสครับดี", "สวัสดีค่ะครับ"]
+				"incorrectExamples": [
+					{
+						"words": [
+							{ "thai": "ครับ", "gloss": "polite, male" },
+							{ "thai": "สวัสดี", "gloss": "hello" }
+						]
+					},
+					{
+						"words": [
+							{ "thai": "สวัส", "gloss": "hello" },
+							{ "thai": "ครับ", "gloss": "polite, male" },
+							{ "thai": "ดี", "gloss": "good" }
+						]
+					},
+					{
+						"words": [
+							{ "thai": "สวัสดี", "gloss": "hello" },
+							{ "thai": "ค่ะ", "gloss": "polite, female" },
+							{ "thai": "ครับ", "gloss": "polite, male" }
+						]
+					}
+				]
 			}
 		}
 	}
