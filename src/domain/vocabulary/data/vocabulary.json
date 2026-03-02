@@ -8933,7 +8933,7 @@
     "english": "say",
     "thai_audio_file": "/thai-script/vocabulary/audio/0259_พด_th.mp3",
     "english_audio_file": "/thai-script/vocabulary/audio/0259_พด_en.mp3",
-    "image_file": "/thai-script/vocabulary/images/0259_พด.jpg",
+    "image_file": "/thai-script/vocabulary/images/45 พูด.png",
     "samples": [
       {
         "thai": "ผู้คนกำลังพูดว่า \"สวัสดี\"",
@@ -8965,7 +8965,7 @@
     "toneRules": [
       "low-dead-long"
     ],
-    "mnemonic": "POOT — SAY it — poot! (↓ voice drops, speaking out)"
+    "mnemonic": "A girl takes glowing feelings from her heart and puts them into floating word bubbles. As she puts the feelings into words, she begins to speak clearly. Put → พูด → to speak. (↓ voice drops, speaking out)"
   },
   {
     "thai": "ใจ",
@@ -12030,7 +12030,7 @@
     "english": "eat",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/40 กิน.png",
     "samples": [
       {
         "thai": "เขาถูกเจ้ามือกินไป 3 ครั้งแล้ว",
@@ -301438,7 +301438,7 @@
     "english": "polite particle (female, question)",
     "rank": 4,
     "frequency": 400000,
-    "mnemonic": "KHA (high) — voice goes UP like a question mark at the end",
+    "mnemonic": "A kind woman gently asks, “Are you okay, kha?” A soft pink “คะ?” floats at the end of her sentence, making it polite and gentle. Kha → คะ → polite question particle (female).",
     "description": "Female politeness particle for questions. Higher tone than ค่ะ to signal a question.",
     "characters": [
       "ค",
@@ -301461,7 +301461,7 @@
     ],
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/4 คะ.png",
     "samples": [
       {
         "thai": "สบายดีไหมคะ",
@@ -301529,7 +301529,7 @@
     "english": "softening particle",
     "rank": 25,
     "frequency": 100000,
-    "mnemonic": "NA — a gentle nudge, like adding 'okay?' to make things softer",
+    "mnemonic": "A boy says “Help me,” and the words look sharp and serious in the air. He quickly adds a glowing pink “นะ~” at the end, and the letters soften and become warm. นะ turns direct words into friendly invitations.",
     "description": "Softening particle added to requests, suggestions, and statements to make them gentler and friendlier.",
     "characters": [
       "น",
@@ -301552,7 +301552,7 @@
     ],
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/25 นะ.png",
     "samples": [
       {
         "thai": "ไปนะ",
