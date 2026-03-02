@@ -201,6 +201,89 @@ describe("GrammarService", () => {
 			expect(unlocked.map((e) => e.id)).toContain("g2");
 		});
 
+		it("blocks grammar when function word is not in mastered vocab", () => {
+			const storage = new InMemoryStorage();
+			const g1 = makeGrammarEntry("g1", 1, { minVocabByClass: {} });
+			g1.applicationTemplate = {
+				slots: [{ role: "subject", wordClass: "n" }],
+				functionWords: [{ thai: "ไหม", gloss: "?", position: "end" }],
+				distractorPatterns: [["subject"]],
+			};
+
+			seedGraduatedVocabCards(storage, "n", 3);
+			const vocabData = makeVocabEntries("n", 3);
+
+			const service = new GrammarService(
+				new StorageCardRepository(storage),
+				[g1],
+				undefined,
+				vocabData,
+			);
+
+			expect(service.getUnlockedGrammarPoints()).toEqual([]);
+		});
+
+		it("unlocks grammar when function word is mastered", () => {
+			const storage = new InMemoryStorage();
+			const g1 = makeGrammarEntry("g1", 1, { minVocabByClass: {} });
+			g1.applicationTemplate = {
+				slots: [{ role: "subject", wordClass: "n" }],
+				functionWords: [{ thai: "ไหม", gloss: "?", position: "end" }],
+				distractorPatterns: [["subject"]],
+			};
+
+			seedGraduatedVocabCards(storage, "n", 3);
+			const state = storage.load();
+			state.vocabCards["vocab:ไหม:thaiToEnglish"] = {
+				id: "vocab:ไหม:thaiToEnglish",
+				wordThai: "ไหม",
+				property: "thaiToEnglish",
+				question: "ไหม",
+				correctAnswer: "?",
+				choices: ["?", "not", "of", "will"],
+				srs: {
+					easeFactor: 2.0,
+					interval: 4320,
+					repetitions: 6,
+					learningStep: null,
+					nextReviewDate: new Date().toISOString(),
+					lastReviewDate: new Date().toISOString(),
+					lapseCount: 0,
+				},
+			};
+			storage.save(state);
+
+			const vocabData: VocabEntry[] = [
+				...makeVocabEntries("n", 3),
+				{
+					thai: "ไหม",
+					english: "?",
+					romanization: "mai",
+					word_class: "particle",
+					rank: null,
+					frequency: 0,
+					mnemonic: null,
+					characters: [],
+					syllables: [],
+					toneRules: [],
+					thai_audio_file: null,
+					english_audio_file: null,
+					image_file: null,
+					samples: [],
+					source: "test",
+				},
+			];
+
+			const service = new GrammarService(
+				new StorageCardRepository(storage),
+				[g1],
+				undefined,
+				vocabData,
+			);
+
+			expect(service.getUnlockedGrammarPoints()).toHaveLength(1);
+		});
+
 		it("checks minTotalVocab prerequisite", () => {
 			const storage = new InMemoryStorage();
 			const g1 = makeGrammarEntry("g1", 1, {

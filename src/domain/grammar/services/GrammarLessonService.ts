@@ -19,6 +19,7 @@ export class GrammarService {
 	private getMasteredVocabCounts(): {
 		byClass: Record<string, number>;
 		total: number;
+		graduatedWords: Set<string>;
 	} {
 		const vocabCards = this.cardRepo.findAll("vocab");
 		const graduatedWords = new Set<string>();
@@ -45,12 +46,13 @@ export class GrammarService {
 			total = graduatedWords.size;
 		}
 
-		return { byClass, total };
+		return { byClass, total, graduatedWords };
 	}
 
 	private meetsPrerequisites(
 		entry: GrammarEntry,
 		vocabCounts: { byClass: Record<string, number>; total: number },
+		graduatedWords: Set<string>,
 	): boolean {
 		for (const [cls, min] of Object.entries(
 			entry.prerequisites.minVocabByClass,
@@ -63,7 +65,18 @@ export class GrammarService {
 		) {
 			return false;
 		}
+		// Check function word prerequisites
+		if (entry.applicationTemplate) {
+			for (const fw of entry.applicationTemplate.functionWords) {
+				if (!graduatedWords.has(fw.thai)) return false;
+			}
+		}
 		return true;
+	}
+
+	private getMasteredVocabEntries(graduatedWords: Set<string>): VocabEntry[] {
+		if (!this.vocabularyData) return [];
+		return this.vocabularyData.filter((e) => graduatedWords.has(e.thai));
 	}
 
 	getUnlockedGrammarPoints(): GrammarEntry[] {
@@ -79,13 +92,13 @@ export class GrammarService {
 
 		const unlocked: GrammarEntry[] = [];
 		for (const entry of sorted) {
-			if (!this.meetsPrerequisites(entry, vocabCounts)) continue;
+			if (!this.meetsPrerequisites(entry, vocabCounts, vocabCounts.graduatedWords)) continue;
 
 			const previousMissing = sorted.some(
 				(prev) =>
 					prev.lessonNumber < entry.lessonNumber &&
 					!learnedGrammarIds.has(prev.id) &&
-					this.meetsPrerequisites(prev, vocabCounts),
+					this.meetsPrerequisites(prev, vocabCounts, vocabCounts.graduatedWords),
 			);
 			if (previousMissing) continue;
 
@@ -118,8 +131,11 @@ export class GrammarService {
 		const lesson = this.getNextLesson();
 		if (!lesson) return null;
 
+		const vocabCounts = this.getMasteredVocabCounts();
+		const masteredVocabEntries = this.getMasteredVocabEntries(vocabCounts.graduatedWords);
+
 		const cardDTOs = lesson.grammarPoints.flatMap((entry) =>
-			generateGrammarCards(entry),
+			generateGrammarCards(entry, masteredVocabEntries),
 		);
 
 		const entities = cardDTOs.map((dto) => GrammarReviewCard.fromDTO(dto));
