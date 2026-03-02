@@ -175,9 +175,9 @@
 				}
 			],
 			"distractorPatterns": [
-				["subject", "verb", "object"],
-				["subject", "verb", "object"],
-				["subject", "verb", "object"]
+				["object", "verb", "subject"],
+				["verb", "subject", "object"],
+				["object", "subject", "verb"]
 			]
 		},
 		"examples": [
@@ -331,9 +331,9 @@
 				}
 			],
 			"distractorPatterns": [
-				["subject", "verb", "object"],
-				["subject", "verb", "object"],
-				["subject", "verb", "object"]
+				["object", "verb", "subject"],
+				["verb", "subject", "object"],
+				["object", "subject", "verb"]
 			]
 		},
 		"examples": [
@@ -1019,9 +1019,9 @@
 				}
 			],
 			"distractorPatterns": [
-				["subject", "verb", "object"],
-				["subject", "verb", "object"],
-				["subject", "verb", "object"]
+				["object", "verb", "subject"],
+				["verb", "subject", "object"],
+				["object", "subject", "verb"]
 			]
 		},
 		"examples": [
@@ -1175,9 +1175,9 @@
 				}
 			],
 			"distractorPatterns": [
-				["subject", "verb", "object"],
-				["subject", "verb", "object"],
-				["subject", "verb", "object"]
+				["object", "verb", "subject"],
+				["verb", "subject", "object"],
+				["object", "subject", "verb"]
 			]
 		},
 		"examples": [
@@ -1331,9 +1331,9 @@
 				}
 			],
 			"distractorPatterns": [
-				["subject", "verb", "object"],
-				["subject", "verb", "object"],
-				["subject", "verb", "object"]
+				["object", "verb", "subject"],
+				["verb", "subject", "object"],
+				["object", "subject", "verb"]
 			]
 		},
 		"examples": [
@@ -1496,9 +1496,9 @@
 				}
 			],
 			"distractorPatterns": [
-				["subject", "verb", "object"],
-				["subject", "verb", "object"],
-				["subject", "verb", "object"]
+				["object", "verb", "subject"],
+				["verb", "subject", "object"],
+				["object", "subject", "verb"]
 			]
 		},
 		"examples": [
@@ -1950,9 +1950,9 @@
 				}
 			],
 			"distractorPatterns": [
-				["subject", "verb", "object"],
-				["subject", "verb", "object"],
-				["subject", "verb", "object"]
+				["object", "verb", "subject"],
+				["verb", "subject", "object"],
+				["object", "subject", "verb"]
 			]
 		},
 		"examples": [

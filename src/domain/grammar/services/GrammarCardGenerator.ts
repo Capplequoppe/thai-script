@@ -135,7 +135,6 @@ function assemblePhrase(
 }
 
 function generateDynamicApplication(
-	_entry: GrammarEntry,
 	template: ApplicationTemplate,
 	vocab: VocabEntry[],
 ): { correctAnswer: string; choices: string[] } | null {
@@ -180,10 +179,12 @@ function generateDynamicApplication(
 		}
 	}
 
-	const selectedDistractors = distractors.slice(0, 3);
+	// Need exactly 3 distractors for a 4-choice card; fall back to static if not enough
+	if (distractors.length < 3) return null;
+
 	return {
 		correctAnswer,
-		choices: shuffle([correctAnswer, ...selectedDistractors]),
+		choices: shuffle([correctAnswer, ...distractors.slice(0, 3)]),
 	};
 }
 
@@ -211,7 +212,6 @@ export function generateGrammarCards(
 
 	if (entry.applicationTemplate && masteredVocab && masteredVocab.length > 0) {
 		applicationData = generateDynamicApplication(
-			entry,
 			entry.applicationTemplate,
 			masteredVocab,
 		);

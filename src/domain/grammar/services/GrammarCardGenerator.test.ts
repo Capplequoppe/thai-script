@@ -207,9 +207,9 @@ describe("generateGrammarCards with applicationTemplate", () => {
 				],
 				functionWords: [{ thai: "ไหม", gloss: "?", position: "end" }],
 				distractorPatterns: [
-					["subject", "verb", "object"],
-					["subject", "verb", "object"],
-					["subject", "verb", "object"],
+					["object", "verb", "subject"],
+					["verb", "subject", "object"],
+					["object", "subject", "verb"],
 				],
 			},
 		});
@@ -306,9 +306,9 @@ describe("generateGrammarCards with applicationTemplate", () => {
 				],
 				functionWords: [{ thai: "ไม่", gloss: "not", position: "before-verb" }],
 				distractorPatterns: [
-					["subject", "verb", "object"],
-					["subject", "verb", "object"],
-					["subject", "verb", "object"],
+					["object", "verb", "subject"],
+					["verb", "subject", "object"],
+					["object", "subject", "verb"],
 				],
 			},
 		});
@@ -322,20 +322,40 @@ describe("generateGrammarCards with applicationTemplate", () => {
 		expect(maiIdx).toBeLessThan(parts.length - 1);
 	});
 
+	it("falls back to static when 2-slot template cannot produce enough distractors", () => {
+		const entry = makeGrammarEntry({
+			applicationTemplate: {
+				slots: [
+					{ role: "subject", wordClass: "pron", fallbackWordClasses: ["n"] },
+					{ role: "adjective", wordClass: "adj" },
+				],
+				functionWords: [],
+				distractorPatterns: [["adjective", "subject"]],
+			},
+		});
+
+		const cards = generateGrammarCards(entry, masteredVocab);
+		const app = cards.find((c) => c.property === "application")!;
+		// Falls back to static since 2-slot template can't produce 3 unique distractors
+		expect(app.correctAnswer).toBe("เขา(he) กิน(eat) ข้าว(rice)");
+		expect(app.choices).toHaveLength(4);
+	});
+
 	it("function word with insertAfter is placed after the specified role", () => {
 		const entry = makeGrammarEntry({
 			applicationTemplate: {
 				slots: [
+					{ role: "subject", wordClass: "pron", fallbackWordClasses: ["n"] },
 					{ role: "thing", wordClass: "n" },
-					{ role: "owner", wordClass: "pron", fallbackWordClasses: ["n"] },
+					{ role: "owner", wordClass: "n" },
 				],
 				functionWords: [
 					{ thai: "ของ", gloss: "of", position: "end", insertAfter: "thing" },
 				],
 				distractorPatterns: [
-					["owner", "thing"],
-					["owner", "thing"],
-					["thing", "owner"],
+					["owner", "thing", "subject"],
+					["thing", "subject", "owner"],
+					["subject", "owner", "thing"],
 				],
 			},
 		});
@@ -343,10 +363,10 @@ describe("generateGrammarCards with applicationTemplate", () => {
 		const cards = generateGrammarCards(entry, masteredVocab);
 		const app = cards.find((c) => c.property === "application")!;
 
-		// ของ(of) should appear after the thing word and before the owner word
+		// ของ(of) should appear after the thing word
 		const parts = app.correctAnswer.split(" ");
 		const khongIdx = parts.findIndex((p) => p.startsWith("ของ"));
-		expect(khongIdx).toBe(1); // After first slot (thing), before second slot (owner)
-		expect(parts).toHaveLength(3); // thing, ของ, owner
+		expect(khongIdx).toBe(2); // subject, thing, ของ, owner
+		expect(parts).toHaveLength(4);
 	});
 });
