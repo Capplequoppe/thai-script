@@ -343,7 +343,7 @@
     "english": "must",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/9 ต้อง.png",
     "samples": [
       {
         "thai": "มนุษย์เราจำเป็นต้องใช้ชีวิตร่วมกับผู้อื่น",
@@ -377,7 +377,7 @@
     "toneRules": [
       "mid-maytho"
     ],
-    "mnemonic": "TONG — you MUST use tongs (↓ firm obligation)"
+    "mnemonic": "A basement is flooding and the water keeps rising. The only way to stop it is with a giant tong, and the man shouts, “I HAVE TO use the tong!” Tong → ต้อง → must / have to. (↓ firm obligation)"
   },
   {
     "thai": "ของ",
@@ -386,7 +386,7 @@
     "english": "of",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/10 ของ.png",
     "samples": [
       {
         "thai": "ชมรมค่ายอาสาพัฒนาขอบริจาคของที่เหลือใช้จากประชาชนทั่วไป",
@@ -419,7 +419,8 @@
     "toneRules": [
       "high-live"
     ],
-    "mnemonic": "KONG — king OF the jungle (↑ voice rises like Kong climbing)"
+    "description": "ของ (khǎawng) is a very common Thai word with two main functions. Its first major function is as a possessive marker, meaning “of.” It is placed between a noun and its owner. For example, หนังสือของฉัน means “my book” (literally “book of me”). บ้านของเขา means “his house” (literally “house of him”). In spoken Thai, ของ is sometimes omitted when the possessive relationship is obvious. For example, หนังสือฉัน can also mean “my book” in casual speech. ของ can also function as a noun meaning “thing” or “object.” For example, ของนี้ means “this thing.” ของกิน means “food” (literally “things to eat”). ของใช้ means “items for use” or “supplies.” In this sense, ของ refers to physical items or belongings. The possessive meaning and the “thing” meaning are conceptually related, since objects often belong to someone. ของ usually appears between two nouns when marking possession. In summary, ของ means either “of” to show possession or “thing/object” depending on context. (↑ voice rises like Kong climbing)",
+    "mnemonic": "A giant book labeled “The Book of Kong” lies open on a table. Kong jumps out of the pages and proudly says, “This is the book of me!” Kong → ของ → of (possession marker)."
   },
   {
     "thai": "กับ",
@@ -428,7 +429,7 @@
     "english": "with",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/11 กับ.png",
     "samples": [
       {
         "thai": "เขาวางเหยื่อล่อเพื่อให้หนูมาติดกับ",
@@ -461,7 +462,7 @@
     "toneRules": [
       "mid-dead-long"
     ],
-    "mnemonic": "CAP goes WITH the outfit (▬ low, casual pairing)"
+    "mnemonic": "A friend smiles and says, “I want to share this CUP with you.” They lift the cup and add, “It’s a cup of coffee with milk.” Cup → กับ → with (together / paired with). (▬ low, casual pairing)"
   },
   {
     "thai": "ไม่",
