@@ -132,7 +132,7 @@
     "english": "this",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/4 นี้.png",
     "samples": [
       {
         "thai": "ศาลมีคำพิพากษาถึงที่สุดว่าการสมรสของบุคคลคู่นี้ เป็นโมฆะแล้ว",
@@ -165,7 +165,7 @@
     "toneRules": [
       "low-maytho"
     ],
-    "mnemonic": "Point to THIS knee — nee! (▲ sharp, excited pointing)"
+    "mnemonic": "A man proudly shows off a glowing golden tattoo on his knee. The amazed crowd points and shouts, “Look at THIS knee!” Knee → นี้ → this (near the speaker). (▲ sharp, excited pointing)"
   },
   {
     "thai": "ว่า",
@@ -174,7 +174,7 @@
     "english": "that; think",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/5 ว่า.png",
     "samples": [
       {
         "thai": "”ภาษา” เป็นคำที่มาจากรากศัพท์ “ภาษ” แปลว่าพูด",
@@ -207,7 +207,7 @@
     "toneRules": [
       "low-mayek"
     ],
-    "mnemonic": "WAH — I THINK THAT is it (↓ voice falls with realization)"
+    "mnemonic": "A British man says, “I think that waa is coming,” pronouncing “war” without the R. As he says “waa,” a glowing doorway opens and the dramatic war scene appears behind it. Waa → ว่า → introduces what is said or thought (“that”). (↓ voice falls with realization)"
   },
   {
     "thai": "เป็น",
@@ -216,7 +216,7 @@
     "english": "is; be able",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/6 เป็น.png",
     "samples": [
       {
         "thai": "แมวที่อาจารย์เลี้ยงไว้มีอยู่หลายตัวเป็นแมวจรจัด",
@@ -250,7 +250,7 @@
     "toneRules": [
       "mid-live"
     ],
-    "mnemonic": "A PEN IS what it IS (— flat, matter-of-fact)"
+    "mnemonic": "A normal man stands quietly as a glowing magical pen signs a “Certificate of Doctor” in front of him. The moment the pen finishes signing, golden light surrounds him and he transforms into a skilled doctor. Pen → เป็น → the pen makes him be a doctor and know how to do what a doctor does.(— flat, matter-of-fact)"
   },
   {
     "thai": "มี",
@@ -301,7 +301,7 @@
     "english": "give",
     "thai_audio_file": "/thai-script/vocabulary/audio/0266_ให_th.mp3",
     "english_audio_file": "/thai-script/vocabulary/audio/0266_ให_en.mp3",
-    "image_file": "/thai-script/vocabulary/images/0266_ให.jpg",
+    "image_file": "/thai-script/vocabulary/images/8 ให้.png",
     "samples": [
       {
         "thai": "พ่อกำลังให้เหรียญกับลูกชายของเขา",
@@ -333,7 +333,8 @@
     "toneRules": [
       "high-maytho"
     ],
-    "mnemonic": "HAI — GIVE it away (↓ voice drops, generous gesture)"
+    "description": "ให้ (hâi) is a versatile Thai verb with several important grammatical functions. Its core meaning is “to give.” For example, ฉันให้เงินเขา means “I give him money.” In this sense, it expresses the transfer of something from one person to another. ให้ can also function as an indirect object marker meaning “for” or “to someone.” For example, ฉันซื้อของให้เขา means “I bought something for him.” In this usage, it indicates who benefits from the action. ให้ is also used to express permission, similar to “let” or “allow.” For example, แม่ให้ฉันไป means “Mom lets me go.” Additionally, ให้ can express causation, meaning “to make someone do something.” For example, เขาทำให้ฉันหัวเราะ means “He made me laugh.” In this structure, it links an action to its resulting effect on someone. ให้ may also appear in formal or instructional language to indicate that something should be done. Across its usages, the underlying idea involves causing or transferring something toward another person. In summary, ให้ conveys giving, allowing, causing, or directing something to someone as a recipient or beneficiary.",
+    "mnemonic": "A person cheerfully shouts, “Hi!” and hands a glowing gift to someone. Sometimes the gift is money, sometimes it’s permission, sometimes it’s laughter. Hi → ให้ → to give, allow, or cause something to go to someone. (↓ voice drops, generous gesture)"
   },
   {
     "thai": "ต้อง",
