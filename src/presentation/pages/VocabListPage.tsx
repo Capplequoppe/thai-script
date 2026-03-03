@@ -58,6 +58,8 @@ const VOCAB_PROPERTY_LABELS: Record<VocabProperty, string> = {
 	englishToThai: "English → Thai",
 	audioRecognition: "Listening",
 	toneIdentification: "Tone",
+	spelling: "Spelling",
+	spellingFromAudio: "Spelling (Audio)",
 };
 
 export function VocabListPage() {

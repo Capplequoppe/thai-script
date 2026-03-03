@@ -4,7 +4,9 @@ export type VocabProperty =
 	| "thaiToEnglish"
 	| "englishToThai"
 	| "audioRecognition"
-	| "toneIdentification";
+	| "toneIdentification"
+	| "spelling"
+	| "spellingFromAudio";
 
 export interface VocabularyCard extends SrsCard {
 	wordThai: string;
