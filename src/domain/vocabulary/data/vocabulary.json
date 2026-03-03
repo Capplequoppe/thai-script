@@ -511,7 +511,7 @@
     "english": "and",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/13 และ.png",
     "samples": [
       {
         "thai": "เครื่องจักรทุกชนิดจะต้องมีมนุษย์เป็นผู้ควบคุมและสั่งการใช้งาน",
@@ -765,7 +765,7 @@
     "english": "the process of; work; job",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/19 การ.png",
     "samples": [
       {
         "thai": "คนที่ประสบความสำเร็จในงานนั้นเป็นคนที่ขยันทำการทุกอย่างด้วยตนเอง",
@@ -798,7 +798,8 @@
     "toneRules": [
       "mid-live"
     ],
-    "mnemonic": "KARN — a CAREER is the WORK you do (— neutral, ongoing)"
+    "description": "การ (gaan) is a nominalizing prefix in Thai. It is placed in front of a verb to turn the action into a noun. It often corresponds to English forms like “-ing,” “-tion,” or “the act of.” For example, เรียน (to study) becomes การเรียน (the act of studying / education). ทำ (to do) becomes การทำ (the act of doing). พูด (to speak) becomes การพูด (speaking as an activity). การ does not change the tense or meaning of the verb itself. Instead, it changes the grammatical category from a verb to a noun. The resulting word refers to the activity or process in an abstract sense. การ is commonly used in formal, academic, and written Thai. It frequently appears in official terms and institutional names. For example, การศึกษา means “education” (the act of studying). It allows speakers to talk about actions as concepts rather than as events. การ usually appears directly before the verb it modifies. In summary, การ is a prefix that transforms verbs into abstract nouns referring to the action or process itself.",
+    "mnemonic": "A simple verb is standing casually, like “study” or “speak.” Someone places a formal graduation gown on it, and it instantly transforms into “the act of studying” or “the act of speaking.” Gown → การ → turns a verb into an abstract action noun."
   },
   {
     "thai": "ไป",
@@ -1612,7 +1613,7 @@
     "english": "because",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/39 เพราะ.png",
     "samples": [
       {
         "thai": "รัฐบาลตัดสินใจสลายการชุมนุมอย่างรวดเร็ว เพราะหากปล่อยให้ยืดเยื้อย่อมกระทบต่อการลงทุนของต่างชาติ",
@@ -1647,7 +1648,7 @@
     "toneRules": [
       "low-live"
     ],
-    "mnemonic": "PRO! BECAUSE it's the best (▲ sharp, high justification)"
+    "mnemonic": "Someone asks, “Why are you so good at this?” The person smiles confidently and says, “Because I’m a PRO!” PRO → เพราะ → because (introduces the reason). (▲ sharp, high justification)"
   },
   {
     "thai": "เวลา",
@@ -1656,7 +1657,7 @@
     "english": "time",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/40 เวลา.png",
     "samples": [
       {
         "thai": "การวิจารณ์ไม่ว่าจะใช้ในเวลาใดก็ตามต้องมีลักษณะสร้างสรรค์มิใช่ทำลาย",
@@ -1700,7 +1701,8 @@
     "toneRules": [
       "low-live"
     ],
-    "mnemonic": "WAY-la — TIME is always on its way-la (— neutral, flowing)"
+    "description": "เวลา = time. It refers to: Clock time, Duration, A specific moment, An occasion",
+    "mnemonic": "A giant glowing wheel turns slowly in the sky, changing day into night. People say, “The wheel of time keeps moving.” Wheel → เวลา → time. (— neutral, flowing)"
   },
   {
     "thai": "ยัง",
@@ -301337,7 +301339,7 @@
     "english": "polite particle (male)",
     "rank": 4,
     "frequency": 500000,
-    "mnemonic": "KHRAP — the polite bow a man makes after every sentence",
+    "mnemonic": "A polite man finishes his sentence, and a small golden crab pops onto the end of his words. The crab clicks its claws and says “ครับ!” making the sentence sound respectful and polite. Crab → ครับ → male polite particle used at the end of statements.",
     "description": "Male politeness particle added to the end of statements and questions. Essential for polite speech.",
     "characters": [
       "ค",
@@ -301362,7 +301364,7 @@
     ],
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/4 ครับ.png",
     "samples": [
       {
         "thai": "สวัสดีครับ",
