@@ -73,14 +73,14 @@ const testWordWithTones: VocabEntry = {
 };
 
 describe("generateVocabCards", () => {
-	it("produces 2 cards for a word without audio", () => {
+	it("produces 3 cards for a word without audio", () => {
 		const cards = generateVocabCards(testWord, allWords);
-		expect(cards).toHaveLength(2);
+		expect(cards).toHaveLength(3);
 	});
 
-	it("produces 3 cards for a word with audio", () => {
+	it("produces 5 cards for a word with audio", () => {
 		const cards = generateVocabCards(testWordWithAudio, allWords);
-		expect(cards).toHaveLength(3);
+		expect(cards).toHaveLength(5);
 	});
 
 	it("thaiToEnglish card has correct id format, question, and correct answer", () => {
@@ -115,14 +115,20 @@ describe("generateVocabCards", () => {
 
 	it("choices always include the correct answer", () => {
 		const cards = generateVocabCards(testWordWithAudio, allWords);
-		for (const card of cards) {
+		const nonSpellingCards = cards.filter(
+			(c) => c.property !== "spelling" && c.property !== "spellingFromAudio",
+		);
+		for (const card of nonSpellingCards) {
 			expect(card.choices).toContain(card.correctAnswer);
 		}
 	});
 
 	it("choices have 4 items when pool is large enough", () => {
 		const cards = generateVocabCards(testWord, allWords);
-		for (const card of cards) {
+		const nonSpellingCards = cards.filter(
+			(c) => c.property !== "spelling" && c.property !== "spellingFromAudio",
+		);
+		for (const card of nonSpellingCards) {
 			expect(card.choices).toHaveLength(4);
 		}
 	});
@@ -161,5 +167,52 @@ describe("generateVocabCards", () => {
 	it("generates cards for word with description (description is ignored by generator)", () => {
 		const cards = generateVocabCards(testWordWithDescription, allWords);
 		expect(cards.length).toBeGreaterThan(0);
+	});
+
+	it("produces a spelling card for every word", () => {
+		const cards = generateVocabCards(testWord, allWords);
+		const card = cards.find((c) => c.property === "spelling");
+		expect(card).toBeDefined();
+		expect(card?.id).toBe("vocab:ที่:spelling");
+		expect(card?.question).toBe('Spell the Thai word for "at"');
+		expect(card?.correctAnswer).toBe("ที่");
+		expect(card?.wordThai).toBe("ที่");
+	});
+
+	it("spelling card choices contain all characters of the word", () => {
+		const cards = generateVocabCards(testWord, allWords);
+		const card = cards.find((c) => c.property === "spelling");
+		for (const ch of ["ท", "ี", "่"]) {
+			expect(card?.choices).toContain(ch);
+		}
+	});
+
+	it("spelling card choices contain more characters than the word itself", () => {
+		const cards = generateVocabCards(testWord, allWords);
+		const card = cards.find((c) => c.property === "spelling");
+		expect(card?.choices.length).toBeGreaterThan(3);
+	});
+
+	it("does not produce spellingFromAudio card without audio", () => {
+		const cards = generateVocabCards(testWord, allWords);
+		const card = cards.find((c) => c.property === "spellingFromAudio");
+		expect(card).toBeUndefined();
+	});
+
+	it("produces spellingFromAudio card when audio exists", () => {
+		const cards = generateVocabCards(testWordWithAudio, allWords);
+		const card = cards.find((c) => c.property === "spellingFromAudio");
+		expect(card).toBeDefined();
+		expect(card?.id).toBe("vocab:ที่:spellingFromAudio");
+		expect(card?.question).toBe("Listen and spell the word");
+		expect(card?.correctAnswer).toBe("ที่");
+		expect(card?.audioUrl).toBe("/audio/thai/thi.mp3");
+		expect(card?.wordThai).toBe("ที่");
+	});
+
+	it("spelling cards carry mnemonic from source word", () => {
+		const cards = generateVocabCards(testWordWithMnemonic, allWords);
+		const spellingCard = cards.find((c) => c.property === "spelling");
+		expect(spellingCard?.mnemonic).toBe("tea tree → falling tone");
 	});
 });

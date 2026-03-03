@@ -1,3 +1,4 @@
+import { consonants } from "../../script/data/symbols";
 import { SrsSchedule } from "../../srs/value-objects/SrsSchedule";
 import type { VocabEntry, VocabularyCard } from "../types";
 
@@ -20,6 +21,72 @@ function pickChoices(correct: string, pool: string[], count = 4): string[] {
 		[choices[i], choices[j]] = [choices[j] as string, choices[i] as string];
 	}
 
+	return choices;
+}
+
+/** Normalise an initialSound string to its base phoneme for grouping. */
+function normaliseSound(sound: string): string {
+	return sound
+		.replace(/\s*\(.*\)/, "")
+		.trim()
+		.toLowerCase();
+}
+
+/** Build a map from base sound → set of consonant characters. */
+function buildConfusableMap(): Map<string, string[]> {
+	const map = new Map<string, string[]>();
+	for (const c of consonants) {
+		const key = normaliseSound(c.initialSound);
+		const list = map.get(key) ?? [];
+		list.push(c.character);
+		map.set(key, list);
+	}
+	return map;
+}
+
+const confusableMap = buildConfusableMap();
+
+/** All consonant characters as a flat set for quick membership checks. */
+const consonantChars = new Set(consonants.map((c) => c.character));
+
+/**
+ * Generate a shuffled character grid for a spelling quiz.
+ *
+ * Includes all characters of the word plus phonetically confusable
+ * consonant distractors and random padding characters.
+ */
+function generateSpellingChoices(word: VocabEntry): string[] {
+	const wordChars = [...word.thai].filter((ch) => ch !== " ");
+	const charSet = new Set(wordChars);
+
+	// Add confusable consonants for each consonant in the word
+	for (const ch of wordChars) {
+		if (!consonantChars.has(ch)) continue;
+		const consonant = consonants.find((c) => c.character === ch);
+		if (!consonant) continue;
+		const key = normaliseSound(consonant.initialSound);
+		const group = confusableMap.get(key) ?? [];
+		for (const confusable of group) {
+			if (confusable !== ch) charSet.add(confusable);
+		}
+	}
+
+	// Pad with random characters if grid is too small
+	const allChars = consonants.map((c) => c.character);
+	const MIN_GRID_SIZE = wordChars.length + 3;
+	while (charSet.size < MIN_GRID_SIZE) {
+		const random = allChars[
+			Math.floor(Math.random() * allChars.length)
+		] as string;
+		charSet.add(random);
+	}
+
+	// Shuffle
+	const choices = [...charSet];
+	for (let i = choices.length - 1; i > 0; i--) {
+		const j = Math.floor(Math.random() * (i + 1));
+		[choices[i], choices[j]] = [choices[j] as string, choices[i] as string];
+	}
 	return choices;
 }
 
@@ -90,6 +157,33 @@ export function generateVocabCards(
 			mnemonic,
 			syllables: toneSyllables,
 			srs: SrsSchedule.initial().toDTO(),
+		});
+	}
+
+	// Spelling (always)
+	cards.push({
+		id: `vocab:${word.thai}:spelling`,
+		wordThai: word.thai,
+		property: "spelling",
+		question: `Spell the Thai word for "${word.english}"`,
+		correctAnswer: word.thai.replaceAll(" ", ""),
+		choices: generateSpellingChoices(word),
+		mnemonic,
+		srs: SrsSchedule.initial().toDTO(),
+	});
+
+	// Spelling from audio (only if audio exists)
+	if (word.thai_audio_file) {
+		cards.push({
+			id: `vocab:${word.thai}:spellingFromAudio`,
+			wordThai: word.thai,
+			property: "spellingFromAudio",
+			question: "Listen and spell the word",
+			correctAnswer: word.thai.replaceAll(" ", ""),
+			choices: generateSpellingChoices(word),
+			mnemonic,
+			srs: SrsSchedule.initial().toDTO(),
+			audioUrl: word.thai_audio_file,
 		});
 	}
 
