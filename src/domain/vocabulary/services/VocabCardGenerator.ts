@@ -46,8 +46,8 @@ function buildConfusableMap(): Map<string, string[]> {
 
 const confusableMap = buildConfusableMap();
 
-/** All consonant characters as a flat set for quick membership checks. */
-const consonantChars = new Set(consonants.map((c) => c.character));
+/** Fast character → consonant lookup. */
+const charToConsonant = new Map(consonants.map((c) => [c.character, c]));
 
 /**
  * Generate a shuffled character grid for a spelling quiz.
@@ -61,8 +61,7 @@ function generateSpellingChoices(word: VocabEntry): string[] {
 
 	// Add confusable consonants for each consonant in the word
 	for (const ch of wordChars) {
-		if (!consonantChars.has(ch)) continue;
-		const consonant = consonants.find((c) => c.character === ch);
+		const consonant = charToConsonant.get(ch);
 		if (!consonant) continue;
 		const key = normaliseSound(consonant.initialSound);
 		const group = confusableMap.get(key) ?? [];
