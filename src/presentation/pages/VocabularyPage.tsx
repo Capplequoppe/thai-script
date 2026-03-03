@@ -11,6 +11,7 @@ import { SessionStatGrid } from "../components/molecules/SessionStatGrid";
 import { AchievementBadge } from "../components/organisms/AchievementBadge";
 import { Flashcard } from "../components/organisms/Flashcard";
 import { MultipleChoice } from "../components/organisms/MultipleChoice";
+import { SentenceBuilder } from "../components/organisms/SentenceBuilder";
 import { ToneQuiz } from "../components/organisms/ToneQuiz";
 import { WordCard } from "../components/organisms/WordCard";
 import { useApp } from "../hooks/useApp";
@@ -407,6 +408,9 @@ export function VocabularyPage() {
 				</div>
 				{currentVocabCard.property === "toneIdentification" ? (
 					<ToneQuiz card={currentVocabCard} onAnswer={flow.advance} />
+				) : currentVocabCard.property === "spelling" ||
+				  currentVocabCard.property === "spellingFromAudio" ? (
+					<SentenceBuilder card={currentVocabCard} onAnswer={flow.advance} />
 				) : (
 					<MultipleChoice card={currentVocabCard} onAnswer={flow.advance} />
 				)}
@@ -530,6 +534,13 @@ export function VocabularyPage() {
 				(current.card as unknown as VocabularyCard).property ===
 					"toneIdentification" ? (
 					<ToneQuiz
+						card={current.card as unknown as VocabularyCard}
+						onAnswer={handleMcAnswer}
+					/>
+				) : "property" in current.card &&
+				  ((current.card as unknown as VocabularyCard).property === "spelling" ||
+					(current.card as unknown as VocabularyCard).property === "spellingFromAudio") ? (
+					<SentenceBuilder
 						card={current.card as unknown as VocabularyCard}
 						onAnswer={handleMcAnswer}
 					/>
