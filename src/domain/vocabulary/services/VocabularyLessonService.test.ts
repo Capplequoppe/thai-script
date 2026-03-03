@@ -206,8 +206,8 @@ describe("VocabularyService", () => {
 
 		const cards = service.generateLessonCards();
 
-		// Each word without audio produces 2 cards (thaiToEnglish + englishToThai)
-		expect(cards).toHaveLength(4);
+		// Each word without audio produces 3 cards (thaiToEnglish + englishToThai + spelling)
+		expect(cards).toHaveLength(6);
 
 		// Cards are NOT yet saved
 		const midState = storage.load();
@@ -218,7 +218,7 @@ describe("VocabularyService", () => {
 		service.commitLessonCards(cards);
 
 		const savedState = storage.load();
-		expect(Object.keys(savedState.vocabCards)).toHaveLength(4);
+		expect(Object.keys(savedState.vocabCards)).toHaveLength(6);
 		expect(savedState.vocabCards["vocab:มา:thaiToEnglish"]).toBeDefined();
 		expect(savedState.vocabCards["vocab:นา:englishToThai"]).toBeDefined();
 	});
