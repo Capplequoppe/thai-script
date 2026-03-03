@@ -11,6 +11,8 @@ import { SessionStatGrid } from "../components/molecules/SessionStatGrid";
 import { AchievementBadge } from "../components/organisms/AchievementBadge";
 import { Flashcard } from "../components/organisms/Flashcard";
 import { MultipleChoice } from "../components/organisms/MultipleChoice";
+import { SentenceBuilder } from "../components/organisms/SentenceBuilder";
+import type { VocabularyCard } from "../../domain/vocabulary/types";
 import type { Promotion } from "../components/organisms/StagePromotionPanel";
 import { StagePromotionPanel } from "../components/organisms/StagePromotionPanel";
 import { useApp } from "../hooks/useApp";
@@ -241,7 +243,14 @@ export function ReviewPage() {
 				/>
 			</div>
 
-			{reviewSession.currentCard.mode === "multipleChoice" ? (
+			{"property" in reviewSession.currentCard.card &&
+			 ((reviewSession.currentCard.card as unknown as VocabularyCard).property === "spelling" ||
+			  (reviewSession.currentCard.card as unknown as VocabularyCard).property === "spellingFromAudio") ? (
+				<SentenceBuilder
+					card={reviewSession.currentCard.card as unknown as VocabularyCard}
+					onAnswer={handleMcAnswer}
+				/>
+			) : reviewSession.currentCard.mode === "multipleChoice" ? (
 				<MultipleChoice
 					card={reviewSession.currentCard.card}
 					onAnswer={handleMcAnswer}
