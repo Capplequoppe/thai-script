@@ -17,7 +17,8 @@ export function ThaiCharDisplay({
 	return (
 		<div className="flex items-center justify-center">
 			<span
-				className={`thai leading-none font-normal ${className ?? "text-8xl"}`}
+				className={`thai font-normal ${className ?? "text-8xl"}`}
+				style={{ lineHeight: 1.15 }}
 			>
 				{character}
 			</span>

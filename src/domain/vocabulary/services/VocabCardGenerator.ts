@@ -102,7 +102,7 @@ export function generateVocabCards(
 	// Thai -> English
 	cards.push({
 		id: `vocab:${word.thai}:thaiToEnglish`,
-		wordThai: word.thai,
+		promptWord: word.thai,
 		property: "thaiToEnglish",
 		question: "What does this word mean?",
 		correctAnswer: word.english,
@@ -114,7 +114,7 @@ export function generateVocabCards(
 	// English -> Thai
 	cards.push({
 		id: `vocab:${word.thai}:englishToThai`,
-		wordThai: word.english,
+		promptWord: word.english,
 		property: "englishToThai",
 		question: `Which Thai word means "${word.english}"?`,
 		correctAnswer: word.thai,
@@ -127,7 +127,7 @@ export function generateVocabCards(
 	if (word.thai_audio_file) {
 		cards.push({
 			id: `vocab:${word.thai}:audioRecognition`,
-			wordThai: word.thai,
+			promptWord: word.thai,
 			property: "audioRecognition",
 			question: "Listen to the audio. Which word is this?",
 			correctAnswer: word.thai,
@@ -148,7 +148,7 @@ export function generateVocabCards(
 	if (toneSyllables.length > 0) {
 		cards.push({
 			id: `vocab:${word.thai}:toneIdentification`,
-			wordThai: word.thai,
+			promptWord: word.thai,
 			property: "toneIdentification",
 			question: "What is the tone of each syllable?",
 			correctAnswer: toneSyllables.map((s) => s.tone).join("|"),
@@ -162,7 +162,7 @@ export function generateVocabCards(
 	// Spelling (always)
 	cards.push({
 		id: `vocab:${word.thai}:spelling`,
-		wordThai: word.thai,
+		promptWord: word.thai,
 		property: "spelling",
 		question: `Spell the Thai word for "${word.english}"`,
 		correctAnswer: word.thai.replaceAll(" ", ""),
@@ -175,7 +175,7 @@ export function generateVocabCards(
 	if (word.thai_audio_file) {
 		cards.push({
 			id: `vocab:${word.thai}:spellingFromAudio`,
-			wordThai: word.thai,
+			promptWord: word.thai,
 			property: "spellingFromAudio",
 			question: "Listen and spell the word",
 			correctAnswer: word.thai.replaceAll(" ", ""),

@@ -41,8 +41,8 @@ function ThaiWordDisplay({
 		>
 			<span
 				ref={textRef}
-				className="thai leading-none font-normal whitespace-nowrap"
-				style={{ fontSize: "7rem" }}
+				className="thai font-normal whitespace-nowrap"
+				style={{ fontSize: "7rem", lineHeight: 1.15 }}
 			>
 				{word}
 			</span>
@@ -85,9 +85,9 @@ export function MultipleChoice({
 		"symbolCharacter" in card
 			? ((card as Record<string, unknown>).symbolCharacter as string)
 			: "";
-	const wordThai =
-		"wordThai" in card
-			? ((card as Record<string, unknown>).wordThai as string)
+	const promptWord =
+		"promptWord" in card
+			? ((card as Record<string, unknown>).promptWord as string)
 			: "";
 	const mnemonic =
 		"mnemonic" in card
@@ -96,6 +96,7 @@ export function MultipleChoice({
 					| null
 					| undefined)
 			: null;
+	const hasLongChoice = card.choices.some((c) => c.length > 6);
 
 	// biome-ignore lint/correctness/useExhaustiveDependencies: card.id resets state when the card changes
 	useEffect(() => {
@@ -171,7 +172,7 @@ export function MultipleChoice({
 						hideAudio={hideAudioHint}
 					/>
 				</div>
-			) : wordThai ? (
+			) : promptWord ? (
 				<div
 					className="text-center rounded-2xl py-6"
 					style={{
@@ -179,7 +180,7 @@ export function MultipleChoice({
 						background: "var(--color-surface)",
 					}}
 				>
-					<ThaiWordDisplay word={wordThai} audioUrl={card.audioUrl} />
+					<ThaiWordDisplay word={promptWord} audioUrl={card.audioUrl} />
 				</div>
 			) : null}
 
@@ -195,7 +196,9 @@ export function MultipleChoice({
 					<MnemonicBlock text={mnemonic} />
 				)}
 
-			<div className="grid grid-cols-2 gap-3">
+			<div
+				className={`grid gap-3 ${hasLongChoice ? "grid-cols-1" : "grid-cols-2"}`}
+			>
 				{card.choices.map((choice, idx) => (
 					<AnswerOptionButton
 						key={choice}
@@ -205,6 +208,7 @@ export function MultipleChoice({
 						isSelected={selected === choice}
 						isCorrect={choice === card.correctAnswer}
 						onClick={() => handleSelect(choice)}
+						compact={hasLongChoice}
 					/>
 				))}
 			</div>

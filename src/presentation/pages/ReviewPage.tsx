@@ -6,13 +6,13 @@ import { Progress } from "@/presentation/components/ui/progress";
 import { ratingFromCorrectness } from "../../domain/shared/ratingFromCorrectness";
 import type { RecallRating, SessionSummary } from "../../domain/shared/types";
 import { Accuracy } from "../../domain/srs/value-objects/Accuracy";
+import type { VocabularyCard } from "../../domain/vocabulary/types";
 import { SectionHeader } from "../components/atoms/SectionHeader";
 import { SessionStatGrid } from "../components/molecules/SessionStatGrid";
 import { AchievementBadge } from "../components/organisms/AchievementBadge";
 import { Flashcard } from "../components/organisms/Flashcard";
 import { MultipleChoice } from "../components/organisms/MultipleChoice";
 import { SentenceBuilder } from "../components/organisms/SentenceBuilder";
-import type { VocabularyCard } from "../../domain/vocabulary/types";
 import type { Promotion } from "../components/organisms/StagePromotionPanel";
 import { StagePromotionPanel } from "../components/organisms/StagePromotionPanel";
 import { useApp } from "../hooks/useApp";
@@ -244,8 +244,10 @@ export function ReviewPage() {
 			</div>
 
 			{"property" in reviewSession.currentCard.card &&
-			 ((reviewSession.currentCard.card as unknown as VocabularyCard).property === "spelling" ||
-			  (reviewSession.currentCard.card as unknown as VocabularyCard).property === "spellingFromAudio") ? (
+			((reviewSession.currentCard.card as unknown as VocabularyCard)
+				.property === "spelling" ||
+				(reviewSession.currentCard.card as unknown as VocabularyCard)
+					.property === "spellingFromAudio") ? (
 				<SentenceBuilder
 					card={reviewSession.currentCard.card as unknown as VocabularyCard}
 					onAnswer={handleMcAnswer}

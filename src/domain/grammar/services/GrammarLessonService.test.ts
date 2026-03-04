@@ -75,12 +75,12 @@ function seedGraduatedVocabCards(
 ): void {
 	const state = storage.load();
 	for (let i = 0; i < count; i++) {
-		const wordThai = `${wordClass}-word-${i}`;
-		state.vocabCards[`vocab:${wordThai}:thaiToEnglish`] = {
-			id: `vocab:${wordThai}:thaiToEnglish`,
-			wordThai,
+		const promptWord = `${wordClass}-word-${i}`;
+		state.vocabCards[`vocab:${promptWord}:thaiToEnglish`] = {
+			id: `vocab:${promptWord}:thaiToEnglish`,
+			promptWord,
 			property: "thaiToEnglish",
-			question: wordThai,
+			question: promptWord,
 			correctAnswer: `meaning-${i}`,
 			choices: [`meaning-${i}`, "wrong1", "wrong2", "wrong3"],
 			srs: {
@@ -236,7 +236,7 @@ describe("GrammarService", () => {
 			const state = storage.load();
 			state.vocabCards["vocab:ไหม:thaiToEnglish"] = {
 				id: "vocab:ไหม:thaiToEnglish",
-				wordThai: "ไหม",
+				promptWord: "ไหม",
 				property: "thaiToEnglish",
 				question: "ไหม",
 				correctAnswer: "?",
@@ -325,12 +325,12 @@ describe("GrammarService", () => {
 			}));
 			const state = storage.load();
 			for (let i = 0; i < 4; i++) {
-				const wordThai = `n2-word-${i}`;
-				state.vocabCards[`vocab:${wordThai}:thaiToEnglish`] = {
-					id: `vocab:${wordThai}:thaiToEnglish`,
-					wordThai,
+				const promptWord = `n2-word-${i}`;
+				state.vocabCards[`vocab:${promptWord}:thaiToEnglish`] = {
+					id: `vocab:${promptWord}:thaiToEnglish`,
+					promptWord,
 					property: "thaiToEnglish",
-					question: wordThai,
+					question: promptWord,
 					correctAnswer: `meaning-${i}`,
 					choices: [`meaning-${i}`, "wrong1", "wrong2", "wrong3"],
 					srs: {

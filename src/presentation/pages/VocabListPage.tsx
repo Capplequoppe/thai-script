@@ -78,7 +78,7 @@ export function VocabListPage() {
 	// Derive the SRS stage for a word from its best (most-advanced) card
 	const getWordStage = (thai: string): string => {
 		const cards = Object.values(state.vocabCards).filter(
-			(c) => c.wordThai === thai,
+			(c) => c.id.split(":")[1] === thai,
 		);
 		if (cards.length === 0) return "Apprentice";
 		const stageOrder = [
@@ -159,7 +159,7 @@ export function VocabListPage() {
 	const overrideCards: ItemCard[] = useMemo(() => {
 		if (!selectedThai) return [];
 		return Object.values(state.vocabCards)
-			.filter((card) => card.wordThai === selectedThai)
+			.filter((card) => card.id.split(":")[1] === selectedThai)
 			.map((card) => ({
 				id: card.id,
 				pool: "vocab" as const,

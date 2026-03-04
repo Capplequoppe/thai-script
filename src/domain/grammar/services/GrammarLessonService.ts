@@ -1,6 +1,5 @@
 import type { CardRepository } from "../../ports/CardRepository";
 import type { ApprenticeService } from "../../shared/services/ApprenticeService";
-import type { VocabCard } from "../../vocabulary/entities/VocabCard";
 import type { VocabEntry } from "../../vocabulary/types";
 import { GrammarReviewCard } from "../entities/GrammarReviewCard";
 import type { GrammarCard, GrammarEntry, GrammarLessonSummary } from "../types";
@@ -25,9 +24,8 @@ export class GrammarService {
 		const graduatedWords = new Set<string>();
 
 		for (const card of vocabCards) {
-			const vocabCard = card as VocabCard;
-			if (vocabCard.schedule.learningStep === null) {
-				graduatedWords.add(vocabCard.wordThai);
+			if (card.schedule.learningStep === null) {
+				graduatedWords.add(card.id.split(":")[1] ?? "");
 			}
 		}
 

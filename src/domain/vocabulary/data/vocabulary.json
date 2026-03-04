@@ -471,7 +471,7 @@
     "english": "not",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/12 ไม่.png",
     "samples": [
       {
         "thai": "นมข้นหวานก็เป็นนมที่มีความหวานมากเกินไปไม่เหมาะสำหรับเด็ก",
@@ -504,7 +504,7 @@
     "toneRules": [
       "low-mayek"
     ],
-    "mnemonic": "MAI — NOT! (↓ firm refusal, voice drops)"
+    "mnemonic": "A giant red stamp labeled “MAI” slams down in front of the word “GO.” The action is instantly blocked and cannot happen. Mai → ไม่ → not. (↓ firm refusal, voice drops)"
   },
   {
     "thai": "และ",
@@ -546,7 +546,7 @@
     "toneRules": [
       "low-live"
     ],
-    "mnemonic": "LAY AND pile it high! (▲ sharp, adding on)"
+    "mnemonic": "Two giant signs stand far apart: one says “LOS” and the other says “ANGELES.” A glowing golden “AND” appears between them and pulls them together into “Los AND Angeles (LA).” LA → และ → and, the word that connects two equal parts. (▲ sharp, adding on)"
   },
   {
     "thai": "ใน",

@@ -29,6 +29,12 @@ export function migrateState(state: LearnerState): LearnerState {
 	}
 	for (const card of Object.values(state.vocabCards ?? {})) {
 		migrateSrsCard(card);
+		// Migrate legacy wordThai → promptWord
+		const legacy = card as unknown as Record<string, unknown>;
+		if ("wordThai" in legacy && !("promptWord" in legacy)) {
+			legacy.promptWord = legacy.wordThai;
+			delete legacy.wordThai;
+		}
 	}
 	for (const card of Object.values(state.grammarCards ?? {})) {
 		migrateSrsCard(card);

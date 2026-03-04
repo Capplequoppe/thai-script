@@ -9,7 +9,7 @@ export class VocabCard extends ReviewableCard {
 		correctAnswer: string,
 		choices: readonly string[],
 		schedule: SrsSchedule,
-		readonly wordThai: string,
+		readonly promptWord: string,
 		readonly property: string,
 		audioUrl?: string,
 		readonly mnemonic?: string | null,
@@ -30,7 +30,7 @@ export class VocabCard extends ReviewableCard {
 			choices: this.choices,
 			srs: this.schedule.toDTO(),
 			audioUrl: this.audioUrl,
-			wordThai: this.wordThai,
+			promptWord: this.promptWord,
 			property: this.property,
 			...(this.mnemonic != null && { mnemonic: this.mnemonic }),
 			...(this.syllables != null && { syllables: this.syllables }),
@@ -43,7 +43,7 @@ export class VocabCard extends ReviewableCard {
 		correctAnswer: string;
 		choices: readonly string[];
 		srs: ReturnType<SrsSchedule["toDTO"]>;
-		wordThai: string;
+		promptWord: string;
 		property: string;
 		audioUrl?: string;
 		mnemonic?: string | null;
@@ -55,7 +55,7 @@ export class VocabCard extends ReviewableCard {
 			dto.correctAnswer,
 			dto.choices,
 			SrsSchedule.fromDTO(dto.srs),
-			dto.wordThai,
+			dto.promptWord,
 			dto.property,
 			dto.audioUrl,
 			dto.mnemonic,

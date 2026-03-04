@@ -51,14 +51,14 @@ function makeVocabEntry(thai: string): VocabEntry {
 
 function seedVocabCards(storage: InMemoryStorage, words: string[]): void {
 	const state = storage.load();
-	for (const wordThai of words) {
-		state.vocabCards[`vocab:${wordThai}:thaiToEnglish`] = {
-			id: `vocab:${wordThai}:thaiToEnglish`,
-			wordThai,
+	for (const promptWord of words) {
+		state.vocabCards[`vocab:${promptWord}:thaiToEnglish`] = {
+			id: `vocab:${promptWord}:thaiToEnglish`,
+			promptWord,
 			property: "thaiToEnglish",
-			question: wordThai,
-			correctAnswer: `meaning-${wordThai}`,
-			choices: [`meaning-${wordThai}`, "wrong1", "wrong2", "wrong3"],
+			question: promptWord,
+			correctAnswer: `meaning-${promptWord}`,
+			choices: [`meaning-${promptWord}`, "wrong1", "wrong2", "wrong3"],
 			srs: {
 				easeFactor: 2.0,
 				interval: 4320,

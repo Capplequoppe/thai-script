@@ -146,7 +146,7 @@ export function LearnedItemsPage() {
 	const vocabWordCount = useMemo(() => {
 		const seen = new Set<string>();
 		for (const card of Object.values(state.vocabCards)) {
-			seen.add(card.wordThai);
+			seen.add(card.id.split(":")[1] ?? "");
 		}
 		return seen.size;
 	}, [state.vocabCards]);

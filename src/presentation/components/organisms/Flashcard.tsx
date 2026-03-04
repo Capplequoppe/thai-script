@@ -30,15 +30,16 @@ export function Flashcard({ card, onRate }: Props) {
 
 	const cardProperty =
 		"property" in card ? (card as Record<string, unknown>).property : null;
+	const isAudioRecognition = cardProperty === "audioRecognition";
 	const hideAudioHint =
 		cardProperty === "recognition" || cardProperty === "initialSound";
 	const symbolChar =
 		"symbolCharacter" in card
 			? ((card as Record<string, unknown>).symbolCharacter as string)
 			: "";
-	const wordThai =
-		"wordThai" in card
-			? ((card as Record<string, unknown>).wordThai as string)
+	const promptWord =
+		"promptWord" in card
+			? ((card as Record<string, unknown>).promptWord as string)
 			: "";
 
 	const stage = card.srs
@@ -49,6 +50,12 @@ export function Flashcard({ card, onRate }: Props) {
 	useEffect(() => {
 		setRevealed(false);
 	}, [card.id]);
+
+	useEffect(() => {
+		if (isAudioRecognition && card.audioUrl) {
+			new Audio(card.audioUrl).play().catch(() => {});
+		}
+	}, [isAudioRecognition, card.audioUrl]);
 
 	const handleReveal = useCallback(() => {
 		setRevealed(true);
@@ -90,7 +97,26 @@ export function Flashcard({ card, onRate }: Props) {
 					</div>
 				)}
 
-				{symbolChar ? (
+				{isAudioRecognition && card.audioUrl ? (
+					<div className="text-center">
+						<button
+							type="button"
+							onClick={() => {
+								if (card.audioUrl) {
+									new Audio(card.audioUrl).play().catch(() => {});
+								}
+							}}
+							className="inline-flex items-center justify-center w-24 h-24 rounded-full transition-colors text-5xl"
+							style={{
+								background: "var(--color-surface-2)",
+								color: "var(--color-primary)",
+							}}
+							aria-label="Replay pronunciation"
+						>
+							🔊
+						</button>
+					</div>
+				) : symbolChar ? (
 					<div className="text-center">
 						<ThaiCharDisplay
 							character={symbolChar}
@@ -99,10 +125,10 @@ export function Flashcard({ card, onRate }: Props) {
 							hideAudio={hideAudioHint}
 						/>
 					</div>
-				) : wordThai ? (
+				) : promptWord ? (
 					<div className="text-center">
 						<ThaiCharDisplay
-							character={wordThai}
+							character={promptWord}
 							className="text-6xl"
 							audioUrl={card.audioUrl}
 						/>

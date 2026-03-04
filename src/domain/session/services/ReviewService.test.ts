@@ -304,7 +304,7 @@ describe("ReviewService", () => {
 				correctAnswer: "hello",
 				choices: ["hello", "goodbye", "thanks", "sorry"],
 				srs: { ...DEFAULT_SRS_DATA, nextReviewDate: now },
-				wordThai: "สวัสดี",
+				promptWord: "สวัสดี",
 				property: "thaiToEnglish",
 			};
 			state.vocabCards[vocabCard.id] = vocabCard;

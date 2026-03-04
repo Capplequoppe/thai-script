@@ -139,7 +139,7 @@ describe("VocabularyService", () => {
 		state.completedLessons = [1, 2];
 		state.vocabCards["vocab:มา:thaiToEnglish"] = {
 			id: "vocab:มา:thaiToEnglish",
-			wordThai: "มา",
+			promptWord: "มา",
 			property: "thaiToEnglish",
 			question: "What does this word mean?",
 			correctAnswer: "to come",
@@ -169,7 +169,7 @@ describe("VocabularyService", () => {
 		state.completedLessons = [1, 2];
 		state.vocabCards["vocab:มา:thaiToEnglish"] = {
 			id: "vocab:มา:thaiToEnglish",
-			wordThai: "มา",
+			promptWord: "มา",
 			property: "thaiToEnglish",
 			question: "What does this word mean?",
 			correctAnswer: "to come",
@@ -293,7 +293,7 @@ describe("VocabularyService", () => {
 		// Learn the first word (rank 10) so the window starts at rank 20 → 20–69
 		state.vocabCards["vocab:มา0:thaiToEnglish"] = {
 			id: "vocab:มา0:thaiToEnglish",
-			wordThai: "มา0",
+			promptWord: "มา0",
 			property: "thaiToEnglish",
 			question: "What does this word mean?",
 			correctAnswer: "word-0",
@@ -345,7 +345,7 @@ describe("VocabularyService", () => {
 		state.completedLessons = [1, 2];
 		state.vocabCards["vocab:มา:thaiToEnglish"] = {
 			id: "vocab:มา:thaiToEnglish",
-			wordThai: "มา",
+			promptWord: "มา",
 			property: "thaiToEnglish",
 			question: "What does this word mean?",
 			correctAnswer: "to come",
@@ -388,7 +388,7 @@ describe("VocabularyService", () => {
 		if (!cards) throw new Error("Expected cards");
 		service.commitLessonCards(cards);
 
-		expect(service.getLearnedCount()).toBe(4); // 2 cards per word
+		expect(service.getLearnedCount()).toBe(2); // 2 distinct words
 	});
 
 	it("getLearnedEntries returns full VocabEntry for learned words sorted by rank", () => {
@@ -448,7 +448,7 @@ describe("VocabularyService", () => {
 		};
 		state.vocabCards["vocab:มา:thaiToEnglish"] = {
 			id: "vocab:มา:thaiToEnglish",
-			wordThai: "มา",
+			promptWord: "มา",
 			property: "thaiToEnglish",
 			question: "What does this word mean?",
 			correctAnswer: "to come",
@@ -457,7 +457,7 @@ describe("VocabularyService", () => {
 		};
 		state.vocabCards["vocab:นา:thaiToEnglish"] = {
 			id: "vocab:นา:thaiToEnglish",
-			wordThai: "นา",
+			promptWord: "นา",
 			property: "thaiToEnglish",
 			question: "What does this word mean?",
 			correctAnswer: "rice field",
@@ -519,12 +519,12 @@ describe("VocabularyService", () => {
 
 	describe("apprentice word gating", () => {
 		function makeLearningVocabCard(
-			wordThai: string,
+			promptWord: string,
 			cardSuffix: string,
 		): object {
 			return {
-				id: `vocab:${wordThai}:${cardSuffix}`,
-				wordThai,
+				id: `vocab:${promptWord}:${cardSuffix}`,
+				promptWord,
 				property: cardSuffix,
 				question: "test",
 				correctAnswer: "test",

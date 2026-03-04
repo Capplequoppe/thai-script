@@ -63,10 +63,10 @@ export function ToneQuiz({ card, onAnswer }: ToneQuizProps) {
 				}}
 			>
 				<span
-					className="thai leading-none font-normal"
-					style={{ fontSize: "7rem" }}
+					className="thai font-normal"
+					style={{ fontSize: "7rem", lineHeight: 1.15 }}
 				>
-					{card.wordThai}
+					{card.promptWord}
 				</span>
 			</div>
 

@@ -93,7 +93,7 @@ export function WordCard({ word }: { word: VocabEntry }) {
 						/>
 					</div>
 				)}
-				<span className="thai text-[72px] leading-none">{word.thai}</span>
+				<span className="thai text-[72px]" style={{ lineHeight: 1.15 }}>{word.thai}</span>
 				{word.thai_audio_file && (
 					<PlayAudioButton audioUrl={word.thai_audio_file} />
 				)}

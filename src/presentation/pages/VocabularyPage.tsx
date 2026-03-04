@@ -409,7 +409,7 @@ export function VocabularyPage() {
 				{currentVocabCard.property === "toneIdentification" ? (
 					<ToneQuiz card={currentVocabCard} onAnswer={flow.advance} />
 				) : currentVocabCard.property === "spelling" ||
-				  currentVocabCard.property === "spellingFromAudio" ? (
+					currentVocabCard.property === "spellingFromAudio" ? (
 					<SentenceBuilder card={currentVocabCard} onAnswer={flow.advance} />
 				) : (
 					<MultipleChoice card={currentVocabCard} onAnswer={flow.advance} />
@@ -538,8 +538,10 @@ export function VocabularyPage() {
 						onAnswer={handleMcAnswer}
 					/>
 				) : "property" in current.card &&
-				  ((current.card as unknown as VocabularyCard).property === "spelling" ||
-					(current.card as unknown as VocabularyCard).property === "spellingFromAudio") ? (
+					((current.card as unknown as VocabularyCard).property ===
+						"spelling" ||
+						(current.card as unknown as VocabularyCard).property ===
+							"spellingFromAudio") ? (
 					<SentenceBuilder
 						card={current.card as unknown as VocabularyCard}
 						onAnswer={handleMcAnswer}

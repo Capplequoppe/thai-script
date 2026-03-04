@@ -88,7 +88,7 @@ describe("generateVocabCards", () => {
 		const card = cards.find((c) => c.property === "thaiToEnglish");
 		expect(card).toBeDefined();
 		expect(card?.id).toBe("vocab:ที่:thaiToEnglish");
-		expect(card?.wordThai).toBe("ที่");
+		expect(card?.promptWord).toBe("ที่");
 		expect(card?.question).toBe("What does this word mean?");
 		expect(card?.correctAnswer).toBe("at");
 	});
@@ -98,7 +98,7 @@ describe("generateVocabCards", () => {
 		const card = cards.find((c) => c.property === "englishToThai");
 		expect(card).toBeDefined();
 		expect(card?.id).toBe("vocab:ที่:englishToThai");
-		expect(card?.wordThai).toBe("at");
+		expect(card?.promptWord).toBe("at");
 		expect(card?.question).toBe('Which Thai word means "at"?');
 		expect(card?.correctAnswer).toBe("ที่");
 	});
@@ -176,7 +176,7 @@ describe("generateVocabCards", () => {
 		expect(card?.id).toBe("vocab:ที่:spelling");
 		expect(card?.question).toBe('Spell the Thai word for "at"');
 		expect(card?.correctAnswer).toBe("ที่");
-		expect(card?.wordThai).toBe("ที่");
+		expect(card?.promptWord).toBe("ที่");
 	});
 
 	it("spelling card choices contain all characters of the word", () => {
@@ -207,7 +207,7 @@ describe("generateVocabCards", () => {
 		expect(card?.question).toBe("Listen and spell the word");
 		expect(card?.correctAnswer).toBe("ที่");
 		expect(card?.audioUrl).toBe("/audio/thai/thi.mp3");
-		expect(card?.wordThai).toBe("ที่");
+		expect(card?.promptWord).toBe("ที่");
 	});
 
 	it("spelling cards carry mnemonic from source word", () => {

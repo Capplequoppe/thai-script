@@ -60,7 +60,7 @@ describe("generateCardsForLesson", () => {
 		for (const card of audioCards) {
 			expect(card.symbolCharacter).toBe("");
 			expect(card.audioUrl).toBeTruthy();
-			expect(card.question).toBe("Listen to the audio. Which symbol is this?");
+			expect(card.question).toBe("Listen and draw the symbol");
 			expect(card.choices).toContain(card.correctAnswer);
 		}
 	});

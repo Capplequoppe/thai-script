@@ -37,7 +37,7 @@ describe("VocabCard", () => {
 		expect(card.correctAnswer).toBe("A");
 		expect(card.choices).toEqual(["A", "B"]);
 		expect(card.schedule).toBe(schedule);
-		expect(card.wordThai).toBe("คำ");
+		expect(card.promptWord).toBe("คำ");
 		expect(card.property).toBe("englishToThai");
 		expect(card.audioUrl).toBe("https://example.com/audio.mp3");
 	});
@@ -86,7 +86,7 @@ describe("VocabCard", () => {
 			choices: ["hello", "goodbye", "thanks"],
 			srs: card.schedule.toDTO(),
 			audioUrl: "https://example.com/a.mp3",
-			wordThai: "สวัสดี",
+			promptWord: "สวัสดี",
 			property: "thaiToEnglish",
 		});
 	});
@@ -100,7 +100,7 @@ describe("VocabCard", () => {
 		expect(restored.question).toBe(card.question);
 		expect(restored.correctAnswer).toBe(card.correctAnswer);
 		expect(restored.choices).toEqual(card.choices);
-		expect(restored.wordThai).toBe(card.wordThai);
+		expect(restored.promptWord).toBe(card.promptWord);
 		expect(restored.property).toBe(card.property);
 		expect(restored.audioUrl).toBe(card.audioUrl);
 		expect(restored.schedule.toDTO()).toEqual(card.schedule.toDTO());

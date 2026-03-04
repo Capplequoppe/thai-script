@@ -9,7 +9,7 @@ export type VocabProperty =
 	| "spellingFromAudio";
 
 export interface VocabularyCard extends SrsCard {
-	wordThai: string;
+	promptWord: string;
 	property: VocabProperty;
 	mnemonic?: string | null;
 	syllables?: { text: string; tone: string }[];

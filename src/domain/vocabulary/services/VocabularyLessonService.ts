@@ -22,10 +22,17 @@ export class VocabularyService {
 		private readonly vocabulary: VocabEntry[],
 	) {}
 
+	/** Extract the Thai word from a vocab card ID (format: vocab:{thai}:{property}). */
+	private static thaiWordFromId(cardId: string): string {
+		return cardId.split(":")[1] ?? "";
+	}
+
 	/** Get set of Thai words for which vocab cards have already been generated. */
 	private getLearnedThaiWords(): Set<string> {
 		const vocabCards = this.cardRepo.findAll("vocab");
-		return new Set(vocabCards.map((c) => (c as VocabCard).wordThai));
+		return new Set(
+			vocabCards.map((c) => VocabularyService.thaiWordFromId(c.id)),
+		);
 	}
 
 	/** Count of distinct Thai words currently at apprentice stage (isInLearning). */
@@ -34,7 +41,7 @@ export class VocabularyService {
 		const apprenticeWords = new Set<string>();
 		for (const card of vocabCards) {
 			if (card.schedule.isInLearning) {
-				apprenticeWords.add((card as VocabCard).wordThai);
+				apprenticeWords.add(VocabularyService.thaiWordFromId(card.id));
 			}
 		}
 		return apprenticeWords.size;

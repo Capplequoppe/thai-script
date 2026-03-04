@@ -194,7 +194,7 @@ describe("AchievementService", () => {
 				lastReviewDate: null,
 				lapseCount: 0,
 			},
-			wordThai: "ขา",
+			promptWord: "ขา",
 			property: "thaiToEnglish" as const,
 		};
 		const state: LearnerState = {
