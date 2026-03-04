@@ -10,6 +10,7 @@ import type { VocabularyCard } from "../../domain/vocabulary/types";
 import { SectionHeader } from "../components/atoms/SectionHeader";
 import { SessionStatGrid } from "../components/molecules/SessionStatGrid";
 import { AchievementBadge } from "../components/organisms/AchievementBadge";
+import { DrawingQuiz } from "../components/organisms/DrawingQuiz";
 import { Flashcard } from "../components/organisms/Flashcard";
 import { MultipleChoice } from "../components/organisms/MultipleChoice";
 import { SentenceBuilder } from "../components/organisms/SentenceBuilder";
@@ -256,6 +257,19 @@ export function ReviewPage() {
 				<MultipleChoice
 					card={reviewSession.currentCard.card}
 					onAnswer={handleMcAnswer}
+				/>
+			) : "property" in reviewSession.currentCard.card &&
+				(reviewSession.currentCard.card as unknown as VocabularyCard)
+					.property === "audioRecognition" &&
+				"symbolCharacter" in reviewSession.currentCard.card &&
+				(
+					reviewSession.currentCard.card as unknown as {
+						symbolCharacter: string;
+					}
+				).symbolCharacter === "" ? (
+				<DrawingQuiz
+					card={reviewSession.currentCard.card}
+					onRate={handleAdvance}
 				/>
 			) : (
 				<Flashcard
