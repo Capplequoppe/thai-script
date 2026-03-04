@@ -2004,7 +2004,7 @@
     "english": "down",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/47 ลง.png",
     "samples": [
       {
         "thai": "ในเช้าวันรุ่งขึ้นก่อนที่เขาจะกลับบ้าน หมอกลงหนาทึบจนมองไม่เห็นแม่น้ำ",
@@ -2036,7 +2036,7 @@
     "toneRules": [
       "low-live"
     ],
-    "mnemonic": "LONG way DOWN (— neutral drop)"
+    "mnemonic": "A boy slides down a very long slide from the top of a hill. As he rushes downward he shouts, “This is a LONG way down!” Long → ลง → down / put down / get off. (— neutral drop)"
   },
   {
     "thai": "ถ้า",
@@ -2699,7 +2699,7 @@
     "english": "therefore",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/63 จึง.png",
     "samples": [
       {
         "thai": "เมื่อทำงานเสร็จ พนักงานจึงกลับบ้าน",
@@ -2732,7 +2732,7 @@
     "toneRules": [
       "mid-live"
     ],
-    "mnemonic": "JUNG — THEREFORE, as Jung concluded (— neutral)"
+    "mnemonic": "A player carefully pulls a block from a giant Jenga tower. It was the wrong piece, THEREFORE the tower collapses and everyone shouts, “THEREFORE it fell!” Jenga → จึง → therefore / so. (— neutral)"
   },
   {
     "thai": "ต่อ",
