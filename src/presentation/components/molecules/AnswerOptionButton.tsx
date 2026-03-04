@@ -2,6 +2,15 @@ import type { CSSProperties } from "react";
 
 const THAI_NUMERALS = ["๑", "๒", "๓", "๔"] as const;
 
+// Thai combining marks (above/below vowels, tone marks) are invisible without
+// a base character. Prefix them with ◌ (dotted circle) for display.
+const THAI_COMBINING = /^[\u0E31\u0E34-\u0E3A\u0E47-\u0E4E]/;
+function displayChoice(choice: string): string {
+	return THAI_COMBINING.test(choice.trimStart())
+		? `◌${choice.trimStart()}`
+		: choice;
+}
+
 interface Props {
 	choice: string;
 	index: number;
@@ -65,7 +74,7 @@ export function AnswerOptionButton({
 			<span
 				className={`text-center leading-tight break-words overflow-hidden ${hasThaiChar ? thaiSizeClass : "text-base"}`}
 			>
-				{choice}
+				{displayChoice(choice)}
 			</span>
 		</button>
 	);
