@@ -21,19 +21,32 @@ export function SentenceBuilder({ card, onAnswer }: SentenceBuilderProps) {
 		null,
 	);
 	const displayedAtRef = useRef(Date.now());
+	const audioRef = useRef<HTMLAudioElement | null>(null);
+
+	const playAudio = useCallback(() => {
+		if (!card.audioUrl) return;
+		if (audioRef.current) {
+			audioRef.current.pause();
+			audioRef.current.currentTime = 0;
+		}
+		const audio = new Audio(card.audioUrl);
+		audioRef.current = audio;
+		audio.play().catch(() => {});
+	}, [card.audioUrl]);
 
 	// Reset state when card changes
+	// biome-ignore lint/correctness/useExhaustiveDependencies: card.id resets state when the card changes
 	useEffect(() => {
 		setBuilt([]);
 		setAvailable(card.choices.map((ch) => ({ char: ch, used: false })));
 		setFeedback(null);
 		displayedAtRef.current = Date.now();
+	}, [card.id]);
 
-		// Auto-play audio
-		if (card.audioUrl) {
-			new Audio(card.audioUrl).play().catch(() => {});
-		}
-	}, [card.audioUrl, card.choices]);
+	// Auto-play audio on mount / card change
+	useEffect(() => {
+		playAudio();
+	}, [playAudio]);
 
 	const handleTap = useCallback(
 		(index: number) => {
@@ -78,33 +91,32 @@ export function SentenceBuilder({ card, onAnswer }: SentenceBuilderProps) {
 		setTimeout(() => onAnswer(isCorrect, elapsed), isCorrect ? 500 : 3000);
 	}, [built, card.correctAnswer, feedback, onAnswer]);
 
-	const handleReplay = useCallback(() => {
-		if (card.audioUrl) {
-			new Audio(card.audioUrl).play().catch(() => {});
-		}
-	}, [card.audioUrl]);
-
 	return (
 		<div className="space-y-6">
 			{/* Question */}
 			<div className="text-center">
+				{card.audioUrl && (
+					<div className="mb-3">
+						<button
+							type="button"
+							onClick={playAudio}
+							className="inline-flex items-center justify-center w-24 h-24 rounded-full transition-colors text-5xl"
+							style={{
+								background: "var(--color-surface-2)",
+								color: "var(--color-primary)",
+							}}
+							aria-label="Replay pronunciation"
+						>
+							🔊
+						</button>
+					</div>
+				)}
 				<p
-					className="text-sm font-semibold mb-3"
+					className="text-sm font-semibold"
 					style={{ color: "var(--color-text-muted)" }}
 				>
-					Listen and build the sentence
+					{card.question}
 				</p>
-				{card.audioUrl && (
-					<button
-						type="button"
-						onClick={handleReplay}
-						className="text-4xl p-4 rounded-full transition-colors"
-						style={{ background: "var(--color-surface)" }}
-						aria-label="Replay audio"
-					>
-						🔊
-					</button>
-				)}
 			</div>
 
 			{/* Building area */}

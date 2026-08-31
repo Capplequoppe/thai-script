@@ -169,6 +169,7 @@ export function generateVocabCards(
 		choices: generateSpellingChoices(word),
 		mnemonic,
 		srs: SrsSchedule.initial().toDTO(),
+		...(word.thai_audio_file && { audioUrl: word.thai_audio_file }),
 	});
 
 	// Spelling from audio (only if audio exists)
