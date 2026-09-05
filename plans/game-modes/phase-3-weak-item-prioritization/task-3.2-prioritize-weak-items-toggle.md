@@ -9,7 +9,7 @@ covers:
   - src/presentation/pages/GamePage.test.tsx
 status: draft
 task_id: "3.2"
-task_status: pending
+task_status: complete
 depends_on: ["3.1"]
 size: small
 verify:
@@ -20,6 +20,15 @@ ac_enforcement:
   - "AC2 -> the same render test, checked: asserting the round contains the exact weak-biased item set task 3.1's own AC4 established for that fixture/seed — proven through the actual page, not re-derived at a different layer"
   - "AC3 -> a case: the toggle, the pool selector, and zero eligible items in the selected pool interact correctly — start remains blocked with the same message task 1.4 AC6/task 2.3 AC3 establish, regardless of the toggle's state"
   - "AC4 -> a case asserting the checkbox has an accessible label and is keyboard-operable (matching the labeling precedent DrawingCanvas already sets with aria-label/role)"
+ac_tests:
+  - "AC1 -> src/presentation/pages/GamePage.test.tsx::checkbox is unchecked by default"
+  - "AC2 -> src/presentation/pages/GamePage.test.tsx::with toggle checked, a round uses weighted item selection matching task 3.1's expectation"
+  - "AC3 -> src/presentation/pages/GamePage.test.tsx::toggle + zero-eligible-pool interaction: start stays blocked regardless of toggle state"
+  - "AC4 -> src/presentation/pages/GamePage.test.tsx::prioritize-weak-items checkbox is accessibly labeled and keyboard-operable"
+lint:
+  before: 0
+  after: 0
+  outcome: unsupported
 generated: {by: claude-sonnet-5/agent, at: 2026-09-05}
 profile_version: 1
 ---
