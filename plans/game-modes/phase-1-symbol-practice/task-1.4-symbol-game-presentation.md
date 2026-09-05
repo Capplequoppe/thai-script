@@ -33,6 +33,34 @@ ac_enforcement:
   - "AC9 -> a Dashboard render test asserting a Game quick-action card is present and navigates to /game, verified without requiring the md: desktop viewport"
   - "AC10 -> a case: navigating away mid-round persists nothing to history, and returning to /game shows the setup screen with an empty tally on next start"
   - "AC11 -> a case asserting the item-count input and the draw/paper toggle each have an accessible name and can be operated via keyboard"
+ac_tests:
+  - "AC1 -> src/presentation/pages/GamePage.test.tsx::presents exactly the configured number of item screens before the summary"
+  - "AC2 -> src/presentation/pages/GamePage.test.tsx::renders dictation with audio before reveal and reading with audio only after reveal"
+  - "AC3 -> src/presentation/pages/GamePage.test.tsx::shows rating buttons only after reveal and advances on rating"
+  - "AC4 -> src/presentation/pages/GamePage.test.tsx::leaves the whole thai-srs-state blob byte-identical after a full round through the real AppProvider"
+  - "AC5 -> src/presentation/pages/GamePage.test.tsx::renders a corrupt history read as unavailable, never as never-played"
+  - "AC6 -> src/presentation/pages/GamePage.test.tsx::keeps start unavailable and explains when no symbols are eligible"
+  - "AC7 -> src/presentation/pages/GamePage.test.tsx::resets reveal and canvas across two consecutive dictation items"
+  - "AC8 -> src/presentation/pages/GamePage.test.tsx::keeps start unavailable for zero, negative, and non-integer item counts"
+  - "AC9 -> src/presentation/pages/GamePage.test.tsx::dashboard shows a game quick-action card that navigates to /game"
+  - "AC10 -> src/presentation/pages/GamePage.test.tsx::abandoning a round persists nothing and the next round starts clean"
+  - "AC11 -> src/presentation/pages/GamePage.test.tsx::labels the count input and input-mode toggle and keeps them keyboard-operable"
+red_proof:
+  - "AC1 -> GamePage.handleRate advance condition changed from `currentIndex + 1 < items.length` to `currentIndex + 2 < items.length`, ending a 3-item round after 2 screens. Reverted after red.… [see red-proofs/]"
+  - "AC2 -> SymbolReadingChallenge's reset effect gained a `playAudio()` call, constructing the item's audio on mount — before the reveal. Reverted after red. (Second mutation for the input-mod… [see red-proofs/]"
+  - "AC3 -> SymbolDictationChallenge rendered `<RatingButtons onRate={onRate} />` unconditionally above the reveal branch, so rating buttons appeared before reveal. Reverted after red. Classifi… [see red-proofs/]"
+  - "AC4 -> GamePage's finish branch appended a single space to localStorage[\"thai-srs-state\"] before computing the summary — a byte-level change that is semantically near-invisible. Reverted a… [see red-proofs/]"
+  - "AC5 -> GameHistoryList collapsed the unavailable state into the empty state: `if (result.status === \"unavailable\" || result.entries.length === 0)` returning \"No games played yet.\" for both… [see red-proofs/]"
+  - "AC6 -> GamePage's zero-eligible branch condition changed from `eligibleCount === 0` to `eligibleCount < 0`, so the setup form (with Start) rendered even with no eligible symbols and the ex… [see red-proofs/]"
+  - "AC7 -> SymbolDictationChallenge's identity-keyed reset effect dependency changed from `[item.symbolCharacter]` to `[]`, so it never re-ran when the current item changed — exactly the no-re… [see red-proofs/]"
+  - "AC8 -> GamePage's countValid replaced with `!Number.isNaN(parsedCount)`, accepting 0, negatives and non-integers. Reverted after red (and the validation later simplified — `Number(\"\") ===… [see red-proofs/]"
+  - "AC9 -> Removed the Game QuickActionCard block from Dashboard.tsx's quick-action grid. Reverted after red. Classified on re-read: TestingLibraryElementError captured verbatim at the card-pr… [see red-proofs/]"
+  - "AC10 -> The ✕ End-round button's handler called `game.saveHistory({pools, itemCount}, game.finishRound(ratings))` before navigating away — persisting the abandoned round. Reverted after red… [see red-proofs/]"
+  - "AC11 -> The count input's label association broken: `htmlFor=\"game-item-count\"` changed to `htmlFor=\"game-item-count-detached\"`, leaving the input with no accessible name. Reverted after re… [see red-proofs/]"
+lint:
+  before: 0
+  after: 0
+  outcome: unsupported
 generated: {by: claude-sonnet-5/agent, at: 2026-09-05}
 profile_version: 1
 ---
