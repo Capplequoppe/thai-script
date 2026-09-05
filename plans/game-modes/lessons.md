@@ -60,3 +60,13 @@ GameItemSelectionService's optional 2nd constructor arg is `cardRepository?: Car
 <!-- lesson id=L9 from=3.1 scope=plan -->
 
 GameItemSelectionService.test.ts's outer describe (and the pre-existing nested 'word pool and mix' describe) already exceeded the length lint bound before task 3.1 touched the file (317 lines vs bound 150); the file-wide convention of nesting every feature's tests inside one describe makes a partial extraction inconsistent without fixing the underlying issu… [clipped — full text in the transcript]
+## L10 — task reviewer:3 · run-20260905T125011Z
+
+<!-- lesson id=L10 from=reviewer:3 scope=plan -->
+
+In this repo, `npx biome check --write` sometimes reports 'Fixed 1 file' for one safe fix while leaving other flagged unused-imports unfixed as 'unsafe' in the same run (e.g. removing exports from a module the tool treats as possibly side-effecting) — always re-run `biome check` (no --write) after to see what's left, rather than trusting the 'Fixed' message covered everything reported.
+## L11 — task 2.1 · run-20260905T152954Z
+
+<!-- lesson id=L11 from=2.1 scope=plan -->
+
+Redo of task 2.1 found the work already fully implemented and committed (384bdc6), with phases 2.2/2.3/3.1/3.2 already built on top; no code changes were needed, only gate re-verification and a red-proof observation.

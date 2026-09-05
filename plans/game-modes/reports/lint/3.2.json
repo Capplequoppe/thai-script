@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "task": "3.2",
+  "pass": "after",
+  "result": {
+    "outcome": "unsupported",
+    "reason": ".claude/agent-memory/general-claude-skills-core-qa/MEMORY.md: no grammar covers '.md' files (and 86 more)"
+  },
+  "findings": [],
+  "adapters": []
+}

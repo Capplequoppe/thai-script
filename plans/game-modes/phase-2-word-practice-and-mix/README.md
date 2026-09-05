@@ -6,9 +6,11 @@ covers:
   - src/domain/game/types.ts
   - src/domain/game/services/WordGameItemSource.ts
   - src/domain/game/services/WordGameItemSource.test.ts
+  - src/domain/game/services/GameItemSelectionService.ts
   - src/domain/game/services/GameItemSelectionService.test.ts
   - src/application/use-cases/PlayGameUseCase.ts
   - src/presentation/context/AppContext.tsx
+  - src/presentation/test-utils/renderWithApp.tsx
   - src/presentation/components/organisms/WordDictationChallenge.tsx
   - src/presentation/components/organisms/WordDictationChallenge.test.tsx
   - src/presentation/components/organisms/WordProductionChallenge.tsx

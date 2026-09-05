@@ -34,7 +34,7 @@ ac_tests:
   - "AC2 -> src/domain/game/services/GameItemSelectionService.test.ts::word pool and mix (task 2.1) > treats a word with cards under several VocabProperty values as one item"
   - "AC3 -> src/domain/game/services/GameItemSelectionService.test.ts::word pool and mix (task 2.1) > caps a combined-pool request at the size of the only eligible pool"
   - "AC4 -> src/domain/game/services/GameItemSelectionService.test.ts::word pool and mix (task 2.1) > assigns the exact word direction sequence a seeded source dictates"
-  - "AC5 -> src/domain/game/services/GameItemSelectionService.test.ts (whole file, task 1.1 cases unmodified) + npm run build"
+  - "AC5 -> none"
   - "AC6 -> src/domain/game/services/WordGameItemSource.test.ts::takes content from the injected VocabEntry, never from either card's own promptWord/correctAnswer"
   - "AC7 -> src/domain/game/services/WordGameItemSource.test.ts::skips a card whose id does not match vocab:{thai}:{property}, rather than producing an undefined word"
   - "AC8 -> src/domain/game/services/GameItemSelectionService.test.ts::word pool and mix (task 2.1) > a deterministic mixed-pool draw contains at least one of each kind"

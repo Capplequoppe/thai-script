@@ -7,11 +7,8 @@ import { GameItemSelectionService } from "../../domain/game/services/GameItemSel
 import { SymbolGameItemSource } from "../../domain/game/services/SymbolGameItemSource";
 import { WordGameItemSource } from "../../domain/game/services/WordGameItemSource";
 import {
-	FRESH_SYMBOL,
-	STRONG_SYMBOL,
 	WEAK_STRONG_FRESH_CARDS,
 	WEAK_SYMBOL,
-	weightedSeed,
 } from "../../domain/game/test-fixtures/weakStrongFixture";
 import type {
 	GameHistoryEntry,
@@ -39,7 +36,6 @@ import {
 	makeScriptCard,
 	makeSymbolItem,
 	renderWithApp,
-	scriptCardWith,
 } from "../test-utils/renderWithApp";
 import { Dashboard } from "./Dashboard";
 import { GamePage } from "./GamePage";
@@ -783,11 +779,49 @@ describe("GamePage", () => {
 	});
 
 	// Task 3.2 AC1
-	it("checkbox is unchecked by default", () => {
-		renderWithApp(<GamePage />, {}, { symbols: ["ม", "น", "ง"] });
+	it("checkbox is unchecked by default, and the resulting round matches the plain unweighted draw for the same seed", () => {
+		const cardRepo = new StorageCardRepository(new InMemoryStorage());
+		cardRepo.saveAll([...WEAK_STRONG_FRESH_CARDS]);
+		const game = new PlayGameUseCase(
+			new GameItemSelectionService(
+				[new SymbolGameItemSource(cardRepo)],
+				cardRepo,
+			),
+			new StorageGameHistoryRepository(
+				new InMemoryJsonStore<GameHistoryEntry[]>(),
+			),
+		);
+		// task 1.1/2.1's own unweighted algorithm, called directly with no
+		// `cardRepository` at all (so it *cannot* weight) — the expected
+		// output for this seed, not a value hand-picked to make this test
+		// pass.
+		const [expectedItem] = new GameItemSelectionService([
+			new SymbolGameItemSource(cardRepo),
+		]).selectRound({ pools: ["script"], itemCount: 1 }, () => 0.75);
+		if (!expectedItem || expectedItem.kind !== "symbol") {
+			throw new Error("expected a single symbol item from the fixture");
+		}
 
-		const toggle = screen.getByLabelText("Prioritize weak items") as HTMLInputElement;
+		renderWithApp(<GamePage />, { game });
+
+		const toggle = screen.getByLabelText(
+			"Prioritize weak items",
+		) as HTMLInputElement;
 		expect(toggle.checked).toBe(false);
+
+		// The page's own selection service *does* have a `cardRepository`
+		// (production wiring passes one unconditionally) — proving that an
+		// unchecked toggle still disables weighting end to end, not merely
+		// that the service behaves when no repository was ever supplied.
+		const randomSpy = vi.spyOn(Math, "random").mockReturnValue(0.75);
+		try {
+			setCount("1");
+			startRound();
+
+			expect(screen.getByText(expectedItem.symbolCharacter)).toBeTruthy();
+		} finally {
+			randomSpy.mockRestore();
+		}
 	});
 
 	// Task 3.2 AC2
@@ -806,7 +840,9 @@ describe("GamePage", () => {
 		renderWithApp(<GamePage />, { game });
 
 		// Check the toggle
-		const toggle = screen.getByLabelText("Prioritize weak items") as HTMLInputElement;
+		const toggle = screen.getByLabelText(
+			"Prioritize weak items",
+		) as HTMLInputElement;
 		fireEvent.click(toggle);
 		expect(toggle.checked).toBe(true);
 
@@ -829,20 +865,43 @@ describe("GamePage", () => {
 
 	// Task 3.2 AC3
 	it("toggle + zero-eligible-pool interaction: start stays blocked regardless of toggle state", () => {
-		renderWithApp(<GamePage />);
+		// Symbols has one eligible item (so the toggle actually exists to
+		// flip); Words has none — the interaction this AC names is that
+		// having switched the toggle on does not rescue a pool with nothing
+		// eligible in it.
+		renderWithApp(<GamePage />, {}, { symbols: ["ม"] });
 
-		// With zero eligible items, start button is unavailable and checkbox not
-		// rendered (entire form is hidden when no eligible items).
-		expect(screen.getByText(/No symbols to practice yet/)).toBeTruthy();
+		fireEvent.click(screen.getByLabelText("Prioritize weak items"));
+		expect(
+			(screen.getByLabelText("Prioritize weak items") as HTMLInputElement)
+				.checked,
+		).toBe(true);
+
+		fireEvent.click(screen.getByLabelText("Words"));
+
+		expect(screen.getByText(/No words to practice yet/)).toBeTruthy();
 		expect(screen.queryByRole("button", { name: "Start Round" })).toBeNull();
+		// The whole setup form (toggle included) is hidden once nothing is
+		// eligible — there is no rendered toggle left to have "rescued" start.
 		expect(screen.queryByLabelText("Prioritize weak items")).toBeNull();
+
+		// And switching back confirms the earlier toggle wasn't lost, silently
+		// undone, or somehow left in a state that unblocks start on its own.
+		fireEvent.click(screen.getByLabelText("Symbols"));
+		expect(
+			(screen.getByLabelText("Prioritize weak items") as HTMLInputElement)
+				.checked,
+		).toBe(true);
+		expect(screen.getByRole("button", { name: "Start Round" })).toBeTruthy();
 	});
 
 	// Task 3.2 AC4
 	it("prioritize-weak-items checkbox is accessibly labeled and keyboard-operable", () => {
 		renderWithApp(<GamePage />, {}, { symbols: ["ม"] });
 
-		const toggle = screen.getByLabelText("Prioritize weak items") as HTMLInputElement;
+		const toggle = screen.getByLabelText(
+			"Prioritize weak items",
+		) as HTMLInputElement;
 		expect(toggle.type).toBe("checkbox");
 		expect(toggle.checked).toBe(false);
 
