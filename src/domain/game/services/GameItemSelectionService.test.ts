@@ -444,16 +444,18 @@ describe("GameItemSelectionService", () => {
 				new SymbolGameItemSource(repository),
 			]);
 
-			const rng = scripted([0.0, 0.75, 0.5, 0.1, 0.9, 0.49]);
-			const rngCopy = scripted([0.0, 0.75, 0.5, 0.1, 0.9, 0.49]);
-
+			// itemCount: 1, roll: 0.75 — a roll chosen so a *weighted* draw and a
+			// *uniform* draw over this fixture disagree (weighted would land on
+			// the middling-weight item, uniform on the last of the three), so
+			// this only passes if `prioritizeWeakItems: false` truly disables
+			// weighting even when a `cardRepository` was supplied.
 			const roundWithCardsButUnweighted = withCards.selectRound(
-				{ ...SCRIPT_ONLY, itemCount: 3, prioritizeWeakItems: false },
-				rng,
+				{ ...SCRIPT_ONLY, itemCount: 1, prioritizeWeakItems: false },
+				scripted([0.75]),
 			);
 			const roundWithNoCardsAtAll = withoutCards.selectRound(
-				{ ...SCRIPT_ONLY, itemCount: 3 },
-				rngCopy,
+				{ ...SCRIPT_ONLY, itemCount: 1 },
+				scripted([0.75]),
 			);
 
 			expect(
