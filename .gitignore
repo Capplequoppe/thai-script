@@ -42,3 +42,8 @@ storage/
 .worktrees/
 scripts/.venv/
 */Thai Alphabet/**
+
+# Claude Code local tooling (machine-local, not app source)
+.claude/settings.local.json
+.claude/agent-memory/
+.codegraph/
