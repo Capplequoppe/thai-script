@@ -99,10 +99,13 @@ const gameHistoryRepo = new StorageGameHistoryRepository(
 	),
 );
 const gameUseCase = new PlayGameUseCase(
-	new GameItemSelectionService([
-		new SymbolGameItemSource(cardRepo),
-		new WordGameItemSource(cardRepo, vocabularyData as VocabEntry[]),
-	]),
+	new GameItemSelectionService(
+		[
+			new SymbolGameItemSource(cardRepo),
+			new WordGameItemSource(cardRepo, vocabularyData as VocabEntry[]),
+		],
+		cardRepo,
+	),
 	gameHistoryRepo,
 );
 

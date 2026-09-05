@@ -1,0 +1,326 @@
+{
+  "version": 1,
+  "task": "1.1",
+  "pass": "before",
+  "result": {
+    "outcome": "incomplete",
+    "reason": "biome: biome did not resolve: 'biome' on PATH (30 entries). Its findings are missing from this report — that is a gap and not a pass."
+  },
+  "findings": [
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "(anonymous)",
+        "path": "src/domain/game/architecture.test.ts",
+        "bytes": {
+          "startIndex": 1029,
+          "endIndex": 2048
+        },
+        "lines": {
+          "startRow": 29,
+          "endRow": 66
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "(anonymous)",
+        "path": "src/domain/game/architecture.test.ts",
+        "bytes": {
+          "startIndex": 1599,
+          "endIndex": 2044
+        },
+        "lines": {
+          "startRow": 46,
+          "endRow": 65
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "file",
+      "path": "src/domain/game/architecture.test.ts",
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "length",
+      "severity": "warning",
+      "tier": "function",
+      "measured": 157,
+      "threshold": 150,
+      "symbol": {
+        "kind": "function",
+        "name": "(anonymous)",
+        "path": "src/domain/game/services/GameItemSelectionService.test.ts",
+        "bytes": {
+          "startIndex": 1381,
+          "endIndex": 5956
+        },
+        "lines": {
+          "startRow": 44,
+          "endRow": 200
+        }
+      }
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 3.82,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "(anonymous)",
+        "path": "src/domain/game/services/GameItemSelectionService.test.ts",
+        "bytes": {
+          "startIndex": 1381,
+          "endIndex": 5956
+        },
+        "lines": {
+          "startRow": 44,
+          "endRow": 200
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "(anonymous)",
+        "path": "src/domain/game/services/GameItemSelectionService.test.ts",
+        "bytes": {
+          "startIndex": 3223,
+          "endIndex": 4132
+        },
+        "lines": {
+          "startRow": 99,
+          "endRow": 136
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 3.85,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "(anonymous)",
+        "path": "src/domain/game/services/GameItemSelectionService.test.ts",
+        "bytes": {
+          "startIndex": 4193,
+          "endIndex": 4938
+        },
+        "lines": {
+          "startRow": 138,
+          "endRow": 163
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "(anonymous)",
+        "path": "src/domain/game/services/GameItemSelectionService.test.ts",
+        "bytes": {
+          "startIndex": 4996,
+          "endIndex": 5520
+        },
+        "lines": {
+          "startRow": 165,
+          "endRow": 184
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 2.99,
+      "threshold": 5,
+      "tier": "file",
+      "path": "src/domain/game/services/GameItemSelectionService.test.ts",
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "(anonymous)",
+        "path": "src/domain/game/services/SymbolGameItemSource.test.ts",
+        "bytes": {
+          "startIndex": 1259,
+          "endIndex": 2635
+        },
+        "lines": {
+          "startRow": 43,
+          "endRow": 91
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "(anonymous)",
+        "path": "src/domain/game/services/SymbolGameItemSource.test.ts",
+        "bytes": {
+          "startIndex": 1338,
+          "endIndex": 2106
+        },
+        "lines": {
+          "startRow": 44,
+          "endRow": 71
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "file",
+      "path": "src/domain/game/services/SymbolGameItemSource.test.ts",
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "eligibleContent",
+        "path": "src/domain/game/services/SymbolGameItemSource.ts",
+        "bytes": {
+          "startIndex": 840,
+          "endIndex": 1446
+        },
+        "lines": {
+          "startRow": 22,
+          "endRow": 44
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "(anonymous)",
+        "path": "src/domain/game/services/sampling.test.ts",
+        "bytes": {
+          "startIndex": 695,
+          "endIndex": 2525
+        },
+        "lines": {
+          "startRow": 20,
+          "endRow": 89
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "(anonymous)",
+        "path": "src/domain/game/services/sampling.test.ts",
+        "bytes": {
+          "startIndex": 773,
+          "endIndex": 1209
+        },
+        "lines": {
+          "startRow": 21,
+          "endRow": 42
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 4.95,
+      "threshold": 5,
+      "tier": "file",
+      "path": "src/domain/game/services/sampling.test.ts",
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "sampleWithoutReplacement",
+        "path": "src/domain/game/services/sampling.ts",
+        "bytes": {
+          "startIndex": 1049,
+          "endIndex": 1578
+        },
+        "lines": {
+          "startRow": 31,
+          "endRow": 50
+        }
+      },
+      "check": "density-below-floor"
+    }
+  ],
+  "adapters": [
+    {
+      "tool": "biome",
+      "selection": {
+        "evidence": "configured",
+        "by": "biome.json"
+      },
+      "program": null,
+      "result": {
+        "outcome": "unsupported",
+        "reason": "biome did not resolve: 'biome' on PATH (30 entries). Its findings are missing from this report — that is a gap and not a pass."
+      },
+      "files": 9,
+      "findings": 0,
+      "refusedPaths": 0,
+      "outsideAnalysis": 0,
+      "refusedShape": 0
+    }
+  ]
+}

@@ -1,0 +1,160 @@
+{
+  "findings": [
+    {
+      "id": "F5",
+      "action": "fixed",
+      "message": "GameRatingRecord.itemKey's doc comment in src/domain/game/types.ts still described the pre-fix bare symbolCharacter/thaiWord key format, not the kind-prefixed format itemKeyOf now produces (the round-1 fix for the cross-kind collision, F1). Repaired: updated the comment to describe the current `kind:`-prefixed format and point at itemKeyOf.",
+      "severity": 2,
+      "effort": 1,
+      "file": "src/domain/game/types.ts",
+      "line": 106,
+      "category": "doc-drift"
+    }
+  ],
+  "acValidations": [
+    {
+      "task_id": "2.1",
+      "criterion": "AC1",
+      "locator": "src/domain/game/services/GameItemSelectionService.test.ts::word pool and mix (task 2.1) > returns only script/word/both items for pools:[...]",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "2.1",
+      "criterion": "AC2",
+      "locator": "src/domain/game/services/GameItemSelectionService.test.ts::word pool and mix (task 2.1) > treats a word with cards under several VocabProperty values as one item",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "2.1",
+      "criterion": "AC3",
+      "locator": "src/domain/game/services/GameItemSelectionService.test.ts::word pool and mix (task 2.1) > caps a combined-pool request at the size of the only eligible pool",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "2.1",
+      "criterion": "AC4",
+      "locator": "src/domain/game/services/GameItemSelectionService.test.ts::word pool and mix (task 2.1) > assigns the exact word direction sequence a seeded source dictates",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "2.1",
+      "criterion": "AC5",
+      "locator": "src/domain/game/services/GameItemSelectionService.test.ts (whole file) + npm run build",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "2.1",
+      "criterion": "AC6",
+      "locator": "src/domain/game/services/WordGameItemSource.test.ts::takes content from the injected VocabEntry, never from either card's own promptWord/correctAnswer",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "2.1",
+      "criterion": "AC7",
+      "locator": "src/domain/game/services/WordGameItemSource.test.ts::skips a card whose id does not match vocab:{thai}:{property}, rather than producing an undefined word",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "2.1",
+      "criterion": "AC8",
+      "locator": "src/domain/game/services/GameItemSelectionService.test.ts::word pool and mix (task 2.1) > a deterministic mixed-pool draw contains at least one of each kind",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "2.2",
+      "criterion": "AC1",
+      "locator": "src/presentation/components/organisms/WordDictationChallenge.test.tsx::auto-plays the item's own audio on mount, offers a write-input, and reveals the spelling and meaning",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "2.2",
+      "criterion": "AC2",
+      "locator": "src/presentation/components/organisms/WordProductionChallenge.test.tsx::shows the English word first with no audio autoplay, offers a write-input, and reveals the spelling",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "2.2",
+      "criterion": "AC3",
+      "locator": "src/presentation/components/organisms/WordDictationChallenge.test.tsx::renders no canvas in paper mode",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "2.2",
+      "criterion": "AC4",
+      "locator": "src/presentation/components/organisms/WordDictationChallenge.test.tsx::does not construct an Audio for an item with no audioUrl",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "2.2",
+      "criterion": "AC5",
+      "locator": "src/presentation/components/organisms/WordDictationChallenge.test.tsx::shows RatingButtons only after reveal",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "2.2",
+      "criterion": "AC6",
+      "locator": "src/presentation/components/organisms/WordProductionChallenge.test.tsx::resets revealed/canvas state when the current item changes",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "2.3",
+      "criterion": "AC1",
+      "locator": "src/presentation/pages/GamePage.test.tsx::Words: renders every item through a word organism",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "2.3",
+      "criterion": "AC2",
+      "locator": "src/presentation/pages/GamePage.test.tsx::Mix: dispatches each item to its correct organism by kind and direction",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "2.3",
+      "criterion": "AC3",
+      "locator": "src/presentation/pages/GamePage.test.tsx::keeps start unavailable and explains why for Words and Mix with no eligible items",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "2.3",
+      "criterion": "AC4",
+      "locator": "src/presentation/pages/GamePage.test.tsx::leaves the whole thai-srs-state blob byte-identical after a full Words round through the real AppProvider",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "2.3",
+      "criterion": "AC5",
+      "locator": "src/presentation/pages/GamePage.test.tsx::records which pools a finished round used, distinguishably in history",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "2.3",
+      "criterion": "AC6",
+      "locator": "src/presentation/pages/GamePage.test.tsx::renders a legacy history entry with no pools field using a fallback label, never 'undefined'",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "2.3",
+      "criterion": "AC7",
+      "locator": "src/presentation/pages/GamePage.test.tsx::defaults the pool selector to Symbols",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "2.3",
+      "criterion": "AC8",
+      "locator": "src/presentation/pages/GamePage.test.tsx::fills a Mix round from both pools when one pool alone can't supply the requested count (fixed this round: fixture sized so neither pool alone satisfies count, asserts both kinds actually rendered)",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "2.3",
+      "criterion": "AC9",
+      "locator": "src/presentation/pages/GamePage.test.tsx::labels each pool-selector option accessibly and keeps them keyboard-operable",
+      "verdict": "valid"
+    }
+  ],
+  "reviewedAt": "0a10a63092c78badcedae74f049ae21aff945e62",
+  "answersAt": "e3b0c44298fc1c14",
+  "enforcement": [
+    "reviewer edited 1 path(s) the plan does not declare and they were reverted: plans/game-modes/resources.jsonl"
+  ],
+  "repairsVerified": true
+}

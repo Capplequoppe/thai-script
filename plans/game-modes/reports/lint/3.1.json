@@ -1,0 +1,139 @@
+{
+  "version": 1,
+  "task": "3.1",
+  "pass": "after",
+  "result": {
+    "outcome": "incomplete",
+    "reason": "biome: biome did not resolve: 'biome' on PATH (30 entries). Its findings are missing from this report — that is a gap and not a pass."
+  },
+  "findings": [
+    {
+      "rule": "length",
+      "severity": "warning",
+      "tier": "function",
+      "measured": 488,
+      "threshold": 150,
+      "symbol": {
+        "kind": "function",
+        "name": "(anonymous)",
+        "path": "src/domain/game/services/GameItemSelectionService.test.ts",
+        "bytes": {
+          "startIndex": 3459,
+          "endIndex": 18886
+        },
+        "lines": {
+          "startRow": 145,
+          "endRow": 632
+        }
+      }
+    },
+    {
+      "rule": "length",
+      "severity": "warning",
+      "tier": "function",
+      "measured": 169,
+      "threshold": 150,
+      "symbol": {
+        "kind": "function",
+        "name": "(anonymous)",
+        "path": "src/domain/game/services/GameItemSelectionService.test.ts",
+        "bytes": {
+          "startIndex": 12894,
+          "endIndex": 18882
+        },
+        "lines": {
+          "startRow": 463,
+          "endRow": 631
+        }
+      }
+    },
+    {
+      "rule": "argument-count",
+      "severity": "warning",
+      "measured": 6,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "kind": "function",
+        "name": "vocabCardWith",
+        "path": "src/domain/game/services/GameItemSelectionService.test.ts",
+        "bytes": {
+          "startIndex": 2228,
+          "endIndex": 2718
+        },
+        "lines": {
+          "startRow": 89,
+          "endRow": 114
+        }
+      }
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "vocabCardWith",
+        "path": "src/domain/game/services/GameItemSelectionService.test.ts",
+        "bytes": {
+          "startIndex": 2228,
+          "endIndex": 2718
+        },
+        "lines": {
+          "startRow": 89,
+          "endRow": 114
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "scriptCardWith",
+        "path": "src/domain/game/services/GameItemSelectionService.test.ts",
+        "bytes": {
+          "startIndex": 18976,
+          "endIndex": 19530
+        },
+        "lines": {
+          "startRow": 635,
+          "endRow": 659
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 4.44,
+      "threshold": 5,
+      "tier": "file",
+      "path": "src/domain/game/services/itemWeight.test.ts",
+      "check": "density-below-floor"
+    }
+  ],
+  "adapters": [
+    {
+      "tool": "biome",
+      "selection": {
+        "evidence": "configured",
+        "by": "biome.json"
+      },
+      "program": null,
+      "result": {
+        "outcome": "unsupported",
+        "reason": "biome did not resolve: 'biome' on PATH (30 entries). Its findings are missing from this report — that is a gap and not a pass."
+      },
+      "files": 5,
+      "findings": 0,
+      "refusedPaths": 0,
+      "outsideAnalysis": 0,
+      "refusedShape": 0
+    }
+  ]
+}

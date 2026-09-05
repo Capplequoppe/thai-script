@@ -196,6 +196,35 @@ export function makeScriptCard(symbolCharacter: string): ScriptPropertyCard {
 	});
 }
 
+/**
+ * A script card with an explicit SRS history — for weighting/weak-item tests.
+ */
+export function scriptCardWith(
+	symbolCharacter: string,
+	easeFactor: number,
+	lapseCount: number,
+	repetitions: number,
+): ScriptPropertyCard {
+	return ScriptPropertyCard.fromDTO({
+		id: `${symbolCharacter}-recognition`,
+		question: "question",
+		correctAnswer: "answer",
+		choices: ["answer"],
+		srs: {
+			easeFactor,
+			interval: 10,
+			repetitions,
+			learningStep: null,
+			nextReviewDate: "2026-01-01T00:00:00.000Z",
+			lastReviewDate: "2026-01-01T00:00:00.000Z",
+			lapseCount,
+		},
+		symbolCharacter,
+		property: "recognition",
+		lessonNumber: 1,
+	});
+}
+
 /** A `GameItem` with a pre-assigned direction, for fixed-round tests. */
 export function makeSymbolItem(
 	symbolCharacter: string,

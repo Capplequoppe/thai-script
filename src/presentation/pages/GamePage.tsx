@@ -63,11 +63,12 @@ const DEFAULT_ITEM_COUNT = 10;
 function countEligibleItems(
 	game: PlayGameUseCase,
 	pools: readonly GameCardPool[],
+	prioritizeWeakItems: boolean = false,
 ): number {
 	return game.startRound({
 		pools,
 		itemCount: Number.MAX_SAFE_INTEGER,
-		prioritizeWeakItems: false,
+		prioritizeWeakItems,
 		inputMode: "draw",
 	}).length;
 }
@@ -90,6 +91,7 @@ export function GamePage() {
 	const [phase, setPhase] = useState<GamePhase>("setup");
 	const [poolChoice, setPoolChoice] = useState<PoolChoice>(DEFAULT_POOL_CHOICE);
 	const [inputMode, setInputMode] = useState<GameInputMode>("draw");
+	const [prioritizeWeakItems, setPrioritizeWeakItems] = useState(false);
 	const [items, setItems] = useState<GameItem[]>([]);
 	const [ratings, setRatings] = useState<GameRatingRecord[]>([]);
 	const [currentIndex, setCurrentIndex] = useState(0);
@@ -101,8 +103,8 @@ export function GamePage() {
 	const pools = POOL_CHOICE_POOLS[poolChoice];
 
 	const eligibleCount = useMemo(
-		() => (phase === "setup" ? countEligibleItems(game, pools) : 0),
-		[game, phase, pools],
+		() => (phase === "setup" ? countEligibleItems(game, pools, prioritizeWeakItems) : 0),
+		[game, phase, pools, prioritizeWeakItems],
 	);
 	const [countInput, setCountInput] = useState<string>(() =>
 		eligibleCount > 0
@@ -135,7 +137,7 @@ export function GamePage() {
 		const roundItems = game.startRound({
 			pools,
 			itemCount: parsedCount,
-			prioritizeWeakItems: false,
+			prioritizeWeakItems,
 			inputMode,
 		});
 		if (roundItems.length === 0) return;
@@ -145,7 +147,7 @@ export function GamePage() {
 		setSummary(null);
 		ratedIndexRef.current = -1;
 		setPhase("playing");
-	}, [game, pools, parsedCount, inputMode]);
+	}, [game, pools, parsedCount, inputMode, prioritizeWeakItems]);
 
 	const handleRate = useCallback(
 		(rating: RecallRating) => {
@@ -402,6 +404,22 @@ export function GamePage() {
 							</span>
 						</div>
 					</fieldset>
+
+					<div className="flex items-center gap-2">
+						<input
+							id="game-prioritize-weak"
+							type="checkbox"
+							checked={prioritizeWeakItems}
+							onChange={(e) => setPrioritizeWeakItems(e.target.checked)}
+						/>
+						<label
+							htmlFor="game-prioritize-weak"
+							className="text-sm"
+							style={{ color: "var(--color-text)" }}
+						>
+							Prioritize weak items
+						</label>
+					</div>
 
 					<Button
 						className="w-full"

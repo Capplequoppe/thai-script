@@ -1,11 +1,18 @@
 // @vitest-environment jsdom
 import { fireEvent, render, screen } from "@testing-library/react";
 import { Link, MemoryRouter, Route, Routes } from "react-router";
-import { describe, expect, it } from "vitest";
+import { describe, expect, it, vi } from "vitest";
 import { PlayGameUseCase } from "../../application/use-cases/PlayGameUseCase";
 import { GameItemSelectionService } from "../../domain/game/services/GameItemSelectionService";
 import { SymbolGameItemSource } from "../../domain/game/services/SymbolGameItemSource";
 import { WordGameItemSource } from "../../domain/game/services/WordGameItemSource";
+import {
+	FRESH_SYMBOL,
+	STRONG_SYMBOL,
+	WEAK_STRONG_FRESH_CARDS,
+	WEAK_SYMBOL,
+	weightedSeed,
+} from "../../domain/game/test-fixtures/weakStrongFixture";
 import type {
 	GameHistoryEntry,
 	GameItem,
@@ -32,6 +39,7 @@ import {
 	makeScriptCard,
 	makeSymbolItem,
 	renderWithApp,
+	scriptCardWith,
 } from "../test-utils/renderWithApp";
 import { Dashboard } from "./Dashboard";
 import { GamePage } from "./GamePage";
@@ -772,5 +780,79 @@ describe("GamePage", () => {
 		fireEvent.click(mixChoice);
 		expect(mixChoice.checked).toBe(true);
 		expect(wordsChoice.checked).toBe(false);
+	});
+
+	// Task 3.2 AC1
+	it("checkbox is unchecked by default", () => {
+		renderWithApp(<GamePage />, {}, { symbols: ["ม", "น", "ง"] });
+
+		const toggle = screen.getByLabelText("Prioritize weak items") as HTMLInputElement;
+		expect(toggle.checked).toBe(false);
+	});
+
+	// Task 3.2 AC2
+	it("with toggle checked, a round uses weighted item selection matching task 3.1's expectation", () => {
+		const cardRepo = new StorageCardRepository(new InMemoryStorage());
+		cardRepo.saveAll([...WEAK_STRONG_FRESH_CARDS]);
+		const game = new PlayGameUseCase(
+			new GameItemSelectionService(
+				[new SymbolGameItemSource(cardRepo)],
+				cardRepo,
+			),
+			new StorageGameHistoryRepository(
+				new InMemoryJsonStore<GameHistoryEntry[]>(),
+			),
+		);
+		renderWithApp(<GamePage />, { game });
+
+		// Check the toggle
+		const toggle = screen.getByLabelText("Prioritize weak items") as HTMLInputElement;
+		fireEvent.click(toggle);
+		expect(toggle.checked).toBe(true);
+
+		// With weighting on and the weighted seed (roll 0.5), the draw always
+		// lands on the weak item first, regardless of draw order.
+		// This is the exact same fixture and seed as task 3.1's AC4.
+		const randomSpy = vi.spyOn(Math, "random").mockReturnValue(0.5);
+		try {
+			setCount("1");
+			startRound();
+
+			// The weak symbol should appear — with the seeded fixture and 0.5 roll,
+			// weighted selection always picks the weak item (see itemWeight.test.ts).
+			const weakItem = screen.getByText(WEAK_SYMBOL);
+			expect(weakItem).toBeTruthy();
+		} finally {
+			randomSpy.mockRestore();
+		}
+	});
+
+	// Task 3.2 AC3
+	it("toggle + zero-eligible-pool interaction: start stays blocked regardless of toggle state", () => {
+		renderWithApp(<GamePage />);
+
+		// With zero eligible items, start button is unavailable and checkbox not
+		// rendered (entire form is hidden when no eligible items).
+		expect(screen.getByText(/No symbols to practice yet/)).toBeTruthy();
+		expect(screen.queryByRole("button", { name: "Start Round" })).toBeNull();
+		expect(screen.queryByLabelText("Prioritize weak items")).toBeNull();
+	});
+
+	// Task 3.2 AC4
+	it("prioritize-weak-items checkbox is accessibly labeled and keyboard-operable", () => {
+		renderWithApp(<GamePage />, {}, { symbols: ["ม"] });
+
+		const toggle = screen.getByLabelText("Prioritize weak items") as HTMLInputElement;
+		expect(toggle.type).toBe("checkbox");
+		expect(toggle.checked).toBe(false);
+
+		toggle.focus();
+		expect(document.activeElement).toBe(toggle);
+
+		fireEvent.click(toggle);
+		expect(toggle.checked).toBe(true);
+
+		fireEvent.click(toggle);
+		expect(toggle.checked).toBe(false);
 	});
 });

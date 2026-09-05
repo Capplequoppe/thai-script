@@ -1,0 +1,79 @@
+{
+  "version": 1,
+  "task": "1.2",
+  "pass": "after",
+  "result": {
+    "outcome": "incomplete",
+    "reason": "biome: biome did not resolve: 'biome' on PATH (30 entries). Its findings are missing from this report — that is a gap and not a pass."
+  },
+  "findings": [
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 1.49,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "(anonymous)",
+        "path": "src/infrastructure/persistence/JsonStore.test.ts",
+        "bytes": {
+          "startIndex": 1783,
+          "endIndex": 4183
+        },
+        "lines": {
+          "startRow": 72,
+          "endRow": 138
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0.86,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "(anonymous)",
+        "path": "src/infrastructure/persistence/StorageGameHistoryRepository.test.ts",
+        "bytes": {
+          "startIndex": 2248,
+          "endIndex": 6027
+        },
+        "lines": {
+          "startRow": 88,
+          "endRow": 203
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 4.41,
+      "threshold": 5,
+      "tier": "file",
+      "path": "src/infrastructure/persistence/StorageGameHistoryRepository.test.ts",
+      "check": "density-below-floor"
+    }
+  ],
+  "adapters": [
+    {
+      "tool": "biome",
+      "selection": {
+        "evidence": "configured",
+        "by": "biome.json"
+      },
+      "program": null,
+      "result": {
+        "outcome": "unsupported",
+        "reason": "biome did not resolve: 'biome' on PATH (30 entries). Its findings are missing from this report — that is a gap and not a pass."
+      },
+      "files": 4,
+      "findings": 0,
+      "refusedPaths": 0,
+      "outsideAnalysis": 0,
+      "refusedShape": 0
+    }
+  ]
+}

@@ -1,0 +1,231 @@
+{
+  "findings": [
+    {
+      "id": "F1",
+      "action": "fixed",
+      "message": "GameRoundSummary's doc comment described the accuracy rule as 'rating >= 3, matching ratingFromCorrectness', which contradicts the actually-implemented and AC3-tested rule (only ratings 4/5 count as correct) in PlayGameUseCase.finishRound. The 1.3 executor's own summary flagged this exact mismatch but left it for a later pass ('flagging the mismatch as a finding instead'). Fixed by rewriting the doc comment to state the Good/Easy-only threshold and explicitly note it differs from ReviewService's >=3 convention, matching PlayGameUseCase.ts and its passing AC3 test exactly. No behavior changed; npm run build and the domain/application test scopes were re-run green after the edit.",
+      "severity": 3,
+      "effort": 1,
+      "file": "src/domain/game/types.ts",
+      "line": 80
+    }
+  ],
+  "acValidations": [
+    {
+      "task_id": "1.1",
+      "criterion": "AC1",
+      "locator": "src/domain/game/services/GameItemSelectionService.test.ts::returns exactly the requested count, one per distinct symbol",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "1.1",
+      "criterion": "AC2",
+      "locator": "src/domain/game/services/GameItemSelectionService.test.ts::returns every eligible item when more are requested than exist",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "1.1",
+      "criterion": "AC3",
+      "locator": "src/domain/game/services/GameItemSelectionService.test.ts::returns an empty round when nothing is eligible",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "1.1",
+      "criterion": "AC4",
+      "locator": "src/domain/game/services/GameItemSelectionService.test.ts::assigns the exact direction sequence a seeded source dictates",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "1.1",
+      "criterion": "AC5",
+      "locator": "src/domain/game/services/GameItemSelectionService.test.ts::treats a symbol with cards under several properties as one item",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "1.1",
+      "criterion": "AC6",
+      "locator": "src/domain/game/architecture.test.ts::never imports presentation, application, or infrastructure / exports the game round vocabulary",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "1.1",
+      "criterion": "AC7",
+      "locator": "src/domain/game/services/SymbolGameItemSource.test.ts::takes content from symbols.ts, never from any card's own fields",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "1.1",
+      "criterion": "AC8",
+      "locator": "src/domain/game/services/GameItemSelectionService.test.ts::never assigns dictation to a symbol with no audio",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "1.1",
+      "criterion": "AC9",
+      "locator": "src/domain/game/services/GameItemSelectionService.test.ts::clamps and floors a degenerate requested count",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "1.1",
+      "criterion": "AC10",
+      "locator": "src/domain/game/services/sampling.test.ts::samples uniformly with no weightOf, reaching every permutation",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "1.2",
+      "criterion": "AC1",
+      "locator": "src/infrastructure/persistence/StorageGameHistoryRepository.test.ts::AC1",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "1.2",
+      "criterion": "AC2",
+      "locator": "src/infrastructure/persistence/StorageGameHistoryRepository.test.ts::AC2",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "1.2",
+      "criterion": "AC3",
+      "locator": "src/infrastructure/persistence/StorageGameHistoryRepository.test.ts::AC3",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "1.2",
+      "criterion": "AC4",
+      "locator": "src/infrastructure/persistence/StorageGameHistoryRepository.test.ts::AC4",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "1.2",
+      "criterion": "AC5",
+      "locator": "src/infrastructure/persistence/StorageGameHistoryRepository.test.ts::AC5",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "1.2",
+      "criterion": "AC6",
+      "locator": "src/infrastructure/persistence/JsonStore.test.ts::reports invalid JSON as corrupt, never as empty or a throw",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "1.2",
+      "criterion": "AC7",
+      "locator": "src/infrastructure/persistence/JsonStore.test.ts::surfaces a throwing setItem as a failed save, not an uncaught throw",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "1.2",
+      "criterion": "AC8",
+      "locator": "src/infrastructure/persistence/StorageGameHistoryRepository.test.ts::AC8",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "1.3",
+      "criterion": "AC1",
+      "locator": "src/application/use-cases/PlayGameUseCase.test.ts::AC1",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "1.3",
+      "criterion": "AC2",
+      "locator": "src/application/use-cases/PlayGameUseCase.test.ts::AC2",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "1.3",
+      "criterion": "AC3",
+      "locator": "src/application/use-cases/PlayGameUseCase.test.ts::AC3",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "1.3",
+      "criterion": "AC4",
+      "locator": "src/application/use-cases/PlayGameUseCase.test.ts::AC4",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "1.3",
+      "criterion": "AC5",
+      "locator": "src/application/use-cases/PlayGameUseCase.test.ts::AC5",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "1.3",
+      "criterion": "AC6",
+      "locator": "src/application/use-cases/PlayGameUseCase.test.ts::AC6 (both idempotent-rating and no-duplicate-history cases)",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "1.4",
+      "criterion": "AC1",
+      "locator": "src/presentation/pages/GamePage.test.tsx::presents exactly the configured number of item screens before the summary",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "1.4",
+      "criterion": "AC2",
+      "locator": "src/presentation/pages/GamePage.test.tsx::renders dictation with audio before reveal and reading with audio only after reveal",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "1.4",
+      "criterion": "AC3",
+      "locator": "src/presentation/pages/GamePage.test.tsx::shows rating buttons only after reveal and advances on rating",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "1.4",
+      "criterion": "AC4",
+      "locator": "src/presentation/pages/GamePage.test.tsx::leaves the whole thai-srs-state blob byte-identical after a full round through the real AppProvider",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "1.4",
+      "criterion": "AC5",
+      "locator": "src/presentation/pages/GamePage.test.tsx::renders a corrupt history read as unavailable, never as never-played (plus the never-played/populated sibling cases)",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "1.4",
+      "criterion": "AC6",
+      "locator": "src/presentation/pages/GamePage.test.tsx::keeps start unavailable and explains when no symbols are eligible",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "1.4",
+      "criterion": "AC7",
+      "locator": "src/presentation/pages/GamePage.test.tsx::resets reveal and canvas across two consecutive dictation items",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "1.4",
+      "criterion": "AC8",
+      "locator": "src/presentation/pages/GamePage.test.tsx::keeps start unavailable for zero, negative, and non-integer item counts",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "1.4",
+      "criterion": "AC9",
+      "locator": "src/presentation/pages/GamePage.test.tsx::dashboard shows a game quick-action card that navigates to /game",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "1.4",
+      "criterion": "AC10",
+      "locator": "src/presentation/pages/GamePage.test.tsx::abandoning a round persists nothing and the next round starts clean",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "1.4",
+      "criterion": "AC11",
+      "locator": "src/presentation/pages/GamePage.test.tsx::labels the count input and input-mode toggle and keeps them keyboard-operable",
+      "verdict": "valid"
+    }
+  ],
+  "reviewedAt": "4ea0a504004862c2306b014caeecbca5e47ad087",
+  "answersAt": "e3b0c44298fc1c14",
+  "enforcement": [
+    "reviewer edited 1 path(s) the plan does not declare and they were reverted: plans/game-modes/resources.jsonl"
+  ],
+  "repairsVerified": true
+}
