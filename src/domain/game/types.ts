@@ -102,7 +102,12 @@ export interface GameRoundConfig {
 
 /** One self-assessment, for one item, in one round. */
 export interface GameRatingRecord {
-	/** The item's identity — a `symbolCharacter` for a symbol item. */
+	/**
+	 * The item's identity, prefixed with `kind` (`"symbol:..."` /
+	 * `"word:..."`) so a symbol character can never collide with a vocab
+	 * word of the same Thai text in a mixed-pool round — see
+	 * `itemKeyOf` in `PlayGameUseCase.ts`.
+	 */
 	readonly itemKey: string;
 	readonly kind: GameItem["kind"];
 	readonly challengeDirection: GameChallengeDirection;
