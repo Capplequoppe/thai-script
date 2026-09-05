@@ -66,15 +66,19 @@ export class GameItemSelectionService {
 	}
 
 	/**
-	 * One weight per item key (`itemKeyOf`), built from every card across the
-	 * requested pools grouped by that same key, each reduced to its worst
-	 * (lowest ease factor) card's stats before scoring. An item with no
-	 * matching stats (should not happen — eligibility itself requires a
-	 * card) falls back to a neutral weight rather than throwing.
+	 * One weight per item key (`itemKeyOfCard`/`itemKeyOfContent` below),
+	 * built from every card across the requested pools grouped by that same
+	 * key, each reduced to its worst (lowest ease factor) card's stats
+	 * before scoring. An item with no matching stats (should not happen —
+	 * eligibility itself requires a card) falls back to a neutral weight of
+	 * `1` rather than throwing.
 	 */
 	private weightOfFor(
 		pools: readonly GameCardPool[],
 	): (content: GameItemContent) => number {
+		// Every card's stats, grouped under its item's key — several cards can
+		// share one key (one per PropertyType/VocabProperty), so this collects
+		// them all before `worstStats` below picks the representative one.
 		const statsByKey = new Map<string, ScheduleStats[]>();
 		for (const pool of pools) {
 			for (const card of this.cardRepository?.findAll(pool) ?? []) {
@@ -91,12 +95,16 @@ export class GameItemSelectionService {
 			}
 		}
 
+		// One weight per key, from its worst card's stats only.
 		const weightByKey = new Map<string, number>();
 		for (const [key, stats] of statsByKey) {
 			const worst = worstStats(stats);
 			if (worst) weightByKey.set(key, itemWeight(worst));
 		}
 
+		// A key with no cached weight should be unreachable (eligibility
+		// itself requires a card), but a neutral fallback is safer than a
+		// throw a caller would have no reason to expect.
 		return (content) => weightByKey.get(itemKeyOfContent(content)) ?? 1;
 	}
 }

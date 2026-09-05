@@ -21,6 +21,7 @@ export const WEAK_SYMBOL = "ม";
 export const STRONG_SYMBOL = "น";
 export const FRESH_SYMBOL = "ง";
 
+/** One `recognition` card for `symbolCharacter`, with a chosen SRS history. */
 function scriptCard(
 	symbolCharacter: string,
 	srs: { easeFactor: number; lapseCount: number; repetitions: number },
@@ -30,6 +31,8 @@ function scriptCard(
 		question: `question for ${symbolCharacter}`,
 		correctAnswer: "answer",
 		choices: ["answer"],
+		// `learningStep: null` (graduated) so `itemWeight` reads the ease
+		// factor/lapse count fixed here, not a fresh card's in-learning ones.
 		srs: {
 			easeFactor: srs.easeFactor,
 			interval: 10,

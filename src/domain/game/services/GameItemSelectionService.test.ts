@@ -86,6 +86,34 @@ function vocabCard(
 	);
 }
 
+/** Like `vocabCard`, but with an explicit SRS history — for weighting tests. */
+function vocabCardWith(
+	id: string,
+	promptWord: string,
+	property: string,
+	easeFactor: number,
+	lapseCount: number,
+	repetitions: number,
+): VocabCard {
+	return VocabCard.fromDTO({
+		id,
+		question: "question",
+		correctAnswer: "answer",
+		choices: ["answer"],
+		srs: {
+			easeFactor,
+			interval: 10,
+			repetitions,
+			learningStep: null,
+			nextReviewDate: "2026-01-01T00:00:00.000Z",
+			lastReviewDate: "2026-01-01T00:00:00.000Z",
+			lapseCount,
+		},
+		promptWord,
+		property,
+	});
+}
+
 function repositoryOf(
 	scriptCards: readonly ScriptPropertyCard[],
 	vocabCards: readonly VocabCard[],
@@ -482,8 +510,9 @@ describe("GameItemSelectionService", () => {
 
 		it("AC4: with the shared seeded fixture, under-sampling returns exactly the weak item", () => {
 			// Weak deliberately placed last: a plain uniform draw against this
-			// same seed would land on the first item (strong) instead, so this
-			// only passes because weighting, not draw order, picked weak.
+			// same seed (roll 0.5 of 3 items -> index 1) would land on the
+			// second item (fresh) instead, so this only passes because
+			// weighting, not draw order, picked weak.
 			const [weak, strong, fresh] = WEAK_STRONG_FRESH_CARDS;
 			const repository = repositoryOf(
 				[
@@ -513,9 +542,12 @@ describe("GameItemSelectionService", () => {
 				repository,
 			);
 
-			// A roll just past the fresh+strong share of the total weight would
-			// land on fresh if fresh were scored as maximally weak; it lands on
-			// weak instead, because weak alone dominates the total.
+			// Confirms the wiring-level outcome AC5 states: weak wins, fresh
+			// (never reviewed) does not out-rank it. The deeper claim — that a
+			// never-reviewed item's weight ignores its own stored ease/lapse
+			// fields rather than merely coming out low here by coincidence — is
+			// proven directly in itemWeight.test.ts, where fresh's raw fields
+			// are deliberately set to something other than the neutral case.
 			const round = service.selectRound(
 				{ ...SCRIPT_ONLY, itemCount: 1, prioritizeWeakItems: true },
 				scripted([0.5]),
@@ -525,6 +557,10 @@ describe("GameItemSelectionService", () => {
 		});
 
 		it("AC6: equal weight across all eligible items still returns the requested count, no NaN/undefined", () => {
+			// Identical ease/lapse/repetitions -> identical, non-zero weight for
+			// all three (itemWeight never actually reaches zero, see its own
+			// tests) — this only checks that equal weights still behave like a
+			// normal weighted draw: every distinct item, no NaN/undefined.
 			const equalCards = [
 				scriptCardWith("ม", 2.5, 0, 3),
 				scriptCardWith("น", 2.5, 0, 3),
@@ -550,9 +586,53 @@ describe("GameItemSelectionService", () => {
 			}
 			expect(new Set(round.map((item) => item.symbolCharacter)).size).toBe(3);
 		});
+
+		it("weights vocab items too, keyed by thai word across several VocabProperty cards", () => {
+			const weakEntry = vocabEntry("แมว", "/audio/maeo.mp3");
+			const strongEntry = vocabEntry("หมา", "/audio/maa.mp3");
+			// Two cards for the weak word (different properties): the worse of
+			// the two (ease 1.3) is what should drive its weight, not the
+			// better one (ease 2.9) — exercising `itemKeyOfCard`'s `VocabCard`
+			// branch and `worstStats`' grouping together, neither of which any
+			// other test in this file reaches.
+			const cards = [
+				vocabCardWith(
+					"vocab:แมว:thaiToEnglish",
+					"แมว",
+					"thaiToEnglish",
+					1.3,
+					4,
+					5,
+				),
+				vocabCardWith("vocab:แมว:spelling", "แมว", "spelling", 2.9, 0, 6),
+				vocabCardWith(
+					"vocab:หมา:thaiToEnglish",
+					"หมา",
+					"thaiToEnglish",
+					2.8,
+					0,
+					8,
+				),
+			];
+			const repository = repositoryOf([], cards);
+			const service = new GameItemSelectionService(
+				[new WordGameItemSource(repository, [weakEntry, strongEntry])],
+				repository,
+			);
+
+			const round = service.selectRound(
+				{ pools: ["vocab"], itemCount: 1, prioritizeWeakItems: true },
+				scripted([0.5]),
+			);
+
+			expect(
+				round.map((item) => (item.kind === "word" ? item.thaiWord : null)),
+			).toEqual(["แมว"]);
+		});
 	});
 });
 
+/** Like `weakStrongFixture.ts`'s own `scriptCard`, local to this file's AC6 case. */
 function scriptCardWith(
 	character: string,
 	easeFactor: number,
