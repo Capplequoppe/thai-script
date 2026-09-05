@@ -21,20 +21,15 @@ function isGameCardPool(value: unknown): value is GameCardPool {
 	);
 }
 
-function isGameHistoryEntry(value: unknown): value is GameHistoryEntry {
+/**
+ * Shallow shape check for one persisted `GameHistoryEntry.summary` — enough
+ * to reject a corrupt or foreign blob, matching `Validation.ts`'s own
+ * shallow-not-exhaustive style for the SRS blob.
+ */
+function hasGameRoundSummaryShape(value: unknown): boolean {
 	if (value === null || typeof value !== "object") return false;
-	const entry = value as Record<string, unknown>;
+	const summary = value as Record<string, unknown>;
 
-	if (typeof entry.id !== "string") return false;
-	if (typeof entry.playedAt !== "string") return false;
-	if (typeof entry.itemCount !== "number") return false;
-	if (!Array.isArray(entry.pools) || !entry.pools.every(isGameCardPool)) {
-		return false;
-	}
-	if (entry.summary === null || typeof entry.summary !== "object") {
-		return false;
-	}
-	const summary = entry.summary as Record<string, unknown>;
 	if (
 		typeof summary.ratingCounts !== "object" ||
 		summary.ratingCounts === null
@@ -42,11 +37,25 @@ function isGameHistoryEntry(value: unknown): value is GameHistoryEntry {
 		return false;
 	}
 	if (typeof summary.ratedCount !== "number") return false;
-	if (summary.accuracy !== null && typeof summary.accuracy !== "number") {
-		return false;
-	}
+	return summary.accuracy === null || typeof summary.accuracy === "number";
+}
 
-	return true;
+/**
+ * Shallow shape check for one persisted `GameHistoryEntry` — enough to
+ * reject a corrupt or foreign blob, not a full domain-validity check.
+ */
+function isGameHistoryEntry(value: unknown): value is GameHistoryEntry {
+	if (value === null || typeof value !== "object") return false;
+	const entry = value as Record<string, unknown>;
+
+	return (
+		typeof entry.id === "string" &&
+		typeof entry.playedAt === "string" &&
+		typeof entry.itemCount === "number" &&
+		Array.isArray(entry.pools) &&
+		entry.pools.every(isGameCardPool) &&
+		hasGameRoundSummaryShape(entry.summary)
+	);
 }
 
 /** Shape guard for the `JsonStore<GameHistoryEntry[]>` this repository is built over. */
@@ -55,6 +64,11 @@ export const isGameHistoryEntryArray: JsonShapeGuard<GameHistoryEntry[]> = (
 ): value is GameHistoryEntry[] =>
 	Array.isArray(value) && value.every(isGameHistoryEntry);
 
+/**
+ * `GameHistoryRepository` over a `JsonStore<GameHistoryEntry[]>` — a
+ * corrupt store maps to `{status:"unavailable"}`, an empty one to
+ * `{status:"ok", entries:[]}`, and listing sorts most-recent-first.
+ */
 export class StorageGameHistoryRepository implements GameHistoryRepository {
 	constructor(private readonly store: JsonStore<GameHistoryEntry[]>) {}
 
