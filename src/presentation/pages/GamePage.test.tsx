@@ -715,28 +715,42 @@ describe("GamePage", () => {
 
 	// Task 2.3 AC8
 	it("fills a Mix round from both pools when one pool alone can't supply the requested count", () => {
-		const symbolChars = ["ม", "น", "ง", "ย", "ว", "ก", "ด", "บ", "ช", "ซ"];
-		const vocabWords = ["ที่", "ได้", "จะ"];
+		// 4 symbols, 4 words, requesting 6: neither pool alone can supply 6, so
+		// the round is mathematically guaranteed to include at least 2 of each
+		// kind — a deterministic guarantee, not a statistical near-miss (see
+		// task 2.1's own "deterministic mixed-pool draw" test for the same
+		// reasoning). A fixture sized so one pool alone already meets the
+		// requested count (e.g. 10 symbols for a 10-item round) would let this
+		// test pass even if Mix silently ignored the other pool entirely.
+		const symbolChars = ["ม", "น", "ง", "ย"];
+		const vocabWords = ["ที่", "ได้", "จะ", "นี้"];
 		const { game } = makeMixGame(symbolChars, vocabWords);
 		renderWithApp(<GamePage />, { game });
 		fireEvent.click(screen.getByLabelText("Mix"));
-
-		expect(
-			(screen.getByLabelText("Items per round") as HTMLInputElement).value,
-		).toBe("10");
+		setCount("6");
 		startRound();
 
 		let screensTraversed = 0;
+		let sawSymbol = false;
+		let sawWord = false;
 		while (
 			screen.queryByText("Round Complete") === null &&
 			screensTraversed < 15
 		) {
 			reveal();
+			if (symbolChars.some((c) => screen.queryByText(c) !== null)) {
+				sawSymbol = true;
+			}
+			if (vocabWords.some((w) => screen.queryByText(w) !== null)) {
+				sawWord = true;
+			}
 			rate(/Good/);
 			screensTraversed += 1;
 		}
-		expect(screensTraversed).toBe(10);
+		expect(screensTraversed).toBe(6);
 		expect(screen.getByText("Round Complete")).toBeTruthy();
+		expect(sawSymbol).toBe(true);
+		expect(sawWord).toBe(true);
 	});
 
 	// Task 2.3 AC9
