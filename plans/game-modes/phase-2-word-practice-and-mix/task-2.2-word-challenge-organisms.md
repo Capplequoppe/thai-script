@@ -31,6 +31,10 @@ ac_tests:
   - "AC6 -> src/presentation/components/organisms/WordProductionChallenge.test.tsx::resets revealed/canvas state when the current item changes"
 red_proof:
   - "AC1 -> Removed the playAudio() call from WordDictationChallenge's item-change effect."
+  - "AC2 -> Added a playAudio() call to WordProductionChallenge's item-change reset effect."
+  - "AC3 -> Changed WordDictationChallenge's canvas-render condition from inputMode === \"draw\" to true."
+  - "AC4 -> Removed the `if (!item.audioUrl) return;` guard from WordDictationChallenge's playAudio."
+  - "AC5 -> Rendered RatingButtons unconditionally in WordDictationChallenge, ahead of the reveal branch."
   - "AC6 -> Changed WordProductionChallenge's reset useEffect dependency array from [item.thaiWord] to [] so it would not re-run on item change."
 lint:
   before: 0

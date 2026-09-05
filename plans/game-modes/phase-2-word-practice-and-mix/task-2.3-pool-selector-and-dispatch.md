@@ -38,8 +38,14 @@ ac_tests:
   - "AC9 -> src/presentation/pages/GamePage.test.tsx::labels each pool-selector option accessibly and keeps them keyboard-operable"
 red_proof:
   - "AC1 -> Reverted GamePage.tsx's playing-phase dispatch guard to the old phase-1 shape `if (!item || item.kind !== \"symbol\") return null;`, which blanks the screen for any word item."
-  - "AC6 -> Reverted GameHistoryList.tsx's poolsLabel guard to a bare `(pools as readonly GameCardPool[]).map(...)`, removing the undefined check."
+  - "AC2 -> Changed GamePage.tsx's playing-phase word-dispatch condition from `item.challengeDirection === \"dictationTranslate\"` to `true`, forcing every word item through WordDictationChallenge."
+  - "AC3 -> Changed GamePage.tsx's empty-pool guard from `eligibleCount === 0` to `eligibleCount < 0`."
   - "AC4 -> Re-verified during review: replaced the earlier weak mutation (hardcoding pools:[\"script\"], which only broke round setup) with one that lets the Words round complete normally but th… [see red-proofs/]"
+  - "AC5 -> Hardcoded `pools: [\"script\"]` in GamePage.tsx's saveHistory call, discarding the round's actual pool choice."
+  - "AC6 -> Reverted GameHistoryList.tsx's poolsLabel guard to a bare `(pools as readonly GameCardPool[]).map(...)`, removing the undefined check."
+  - "AC7 -> Changed GamePage.tsx's DEFAULT_POOL_CHOICE from \"symbols\" to \"words\"."
+  - "AC8 -> Changed GameItemSelectionService.eligibleContent's source filter to also require `source.pool === pools[0]`, restricting a Mix round to one pool."
+  - "AC9 -> Broke the pool-selector input's `id`/`htmlFor` link in GamePage.tsx by changing the input `id` to `game-pool-x-${choice}`."
 lint:
   before: 0
   after: 0
