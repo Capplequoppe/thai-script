@@ -2,6 +2,7 @@ import { HashRouter, Navigate, Route, Routes } from "react-router";
 import { Layout } from "./components/layout/Layout";
 import { AppProvider } from "./context/AppContext";
 import { Dashboard } from "./pages/Dashboard";
+import { GamePage } from "./pages/GamePage";
 import { GrammarPage } from "./pages/GrammarPage";
 import { LearnedItemsPage } from "./pages/LearnedItemsPage";
 import { LessonPage } from "./pages/LessonPage";
@@ -21,6 +22,7 @@ export function App() {
 						<Route path="/" element={<Dashboard />} />
 						<Route path="/lesson/:lessonNumber" element={<LessonPage />} />
 						<Route path="/review" element={<ReviewPage />} />
+						<Route path="/game" element={<GamePage />} />
 						<Route path="/items" element={<LearnedItemsPage />} />
 						<Route path="/progress" element={<ProgressPage />} />
 						<Route path="/settings" element={<SettingsPage />} />

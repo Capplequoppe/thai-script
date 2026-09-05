@@ -9,8 +9,12 @@ import {
 import { ConductReviewUseCase } from "../../application/use-cases/ConductReviewUseCase";
 import { ManageDataUseCase } from "../../application/use-cases/ManageDataUseCase";
 import { ManageItemsUseCase } from "../../application/use-cases/ManageItemsUseCase";
+import { PlayGameUseCase } from "../../application/use-cases/PlayGameUseCase";
 import { QueryDashboardUseCase } from "../../application/use-cases/QueryDashboardUseCase";
 import { StartLessonUseCase } from "../../application/use-cases/StartLessonUseCase";
+import { GameItemSelectionService } from "../../domain/game/services/GameItemSelectionService";
+import { SymbolGameItemSource } from "../../domain/game/services/SymbolGameItemSource";
+import type { GameHistoryEntry } from "../../domain/game/types";
 import grammarData from "../../domain/grammar/data/grammar.json";
 import { GrammarService } from "../../domain/grammar/services/GrammarLessonService";
 import type { GrammarEntry } from "../../domain/grammar/types";
@@ -27,8 +31,14 @@ import vocabularyData from "../../domain/vocabulary/data/vocabulary.json";
 import { VocabularyService } from "../../domain/vocabulary/services/VocabularyLessonService";
 import type { VocabEntry } from "../../domain/vocabulary/types";
 import { NotificationScheduler } from "../../infrastructure/notifications/NotificationScheduler";
+import { LocalStorageJsonStore } from "../../infrastructure/persistence/JsonStore";
 import { LocalStorageAdapter } from "../../infrastructure/persistence/Storage";
 import { StorageCardRepository } from "../../infrastructure/persistence/StorageCardRepository";
+import {
+	GAME_HISTORY_STORAGE_KEY,
+	isGameHistoryEntryArray,
+	StorageGameHistoryRepository,
+} from "../../infrastructure/persistence/StorageGameHistoryRepository";
 import { StorageLearnerStateRepository } from "../../infrastructure/persistence/StorageLearnerStateRepository";
 
 const storage = new LocalStorageAdapter();
@@ -79,6 +89,18 @@ const dashboardUseCase = new QueryDashboardUseCase(
 );
 const dataUseCase = new ManageDataUseCase(stateRepo);
 const itemsUseCase = new ManageItemsUseCase(cardRepo);
+// Game history lives under its own localStorage key, never inside
+// `thai-srs-state` — a practice log must survive an SRS reset (CONTEXT.md).
+const gameHistoryRepo = new StorageGameHistoryRepository(
+	new LocalStorageJsonStore<GameHistoryEntry[]>(
+		GAME_HISTORY_STORAGE_KEY,
+		isGameHistoryEntryArray,
+	),
+);
+const gameUseCase = new PlayGameUseCase(
+	new GameItemSelectionService([new SymbolGameItemSource(cardRepo)]),
+	gameHistoryRepo,
+);
 
 export interface AppContextValue {
 	state: LearnerState;
@@ -89,6 +111,7 @@ export interface AppContextValue {
 	data: ManageDataUseCase;
 	items: ManageItemsUseCase;
 	vocab: VocabularyService;
+	game: PlayGameUseCase;
 	checkAchievements: (summary: SessionSummary) => string[];
 }
 
@@ -133,6 +156,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
 			data: dataUseCase,
 			items: itemsUseCase,
 			vocab: vocabularyService,
+			game: gameUseCase,
 			checkAchievements,
 		}),
 		[state, refresh, checkAchievements],
