@@ -12,7 +12,15 @@ const POOL_LABELS: Record<GameCardPool, string> = {
 	vocab: "Words",
 };
 
-function poolsLabel(pools: readonly GameCardPool[]): string {
+/**
+ * A history entry written by a shipped phase 1 predates the `pools` field
+ * entirely — `undefined` at runtime despite `GameHistoryEntry.pools` being
+ * typed as required, since nothing re-validates an already-persisted blob
+ * on this read path. Phase 1 only ever offered the script pool, so that is
+ * the accurate fallback label, never the string `"undefined"`.
+ */
+function poolsLabel(pools: readonly GameCardPool[] | undefined): string {
+	if (!pools || pools.length === 0) return POOL_LABELS.script;
 	return pools.map((pool) => POOL_LABELS[pool]).join(" + ");
 }
 

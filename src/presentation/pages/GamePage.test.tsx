@@ -2,8 +2,24 @@
 import { fireEvent, render, screen } from "@testing-library/react";
 import { Link, MemoryRouter, Route, Routes } from "react-router";
 import { describe, expect, it } from "vitest";
-import type { GameHistoryEntry } from "../../domain/game/types";
+import { PlayGameUseCase } from "../../application/use-cases/PlayGameUseCase";
+import { GameItemSelectionService } from "../../domain/game/services/GameItemSelectionService";
+import { SymbolGameItemSource } from "../../domain/game/services/SymbolGameItemSource";
+import { WordGameItemSource } from "../../domain/game/services/WordGameItemSource";
+import type {
+	GameHistoryEntry,
+	GameItem,
+	WordChallengeDirection,
+	WordItemContent,
+} from "../../domain/game/types";
+import { SrsSchedule } from "../../domain/srs/value-objects/SrsSchedule";
+import vocabularyData from "../../domain/vocabulary/data/vocabulary.json";
+import { VocabCard } from "../../domain/vocabulary/entities/VocabCard";
+import type { VocabEntry } from "../../domain/vocabulary/types";
 import { InMemoryJsonStore } from "../../infrastructure/persistence/JsonStore";
+import { InMemoryStorage } from "../../infrastructure/persistence/Storage";
+import { StorageCardRepository } from "../../infrastructure/persistence/StorageCardRepository";
+import { StorageGameHistoryRepository } from "../../infrastructure/persistence/StorageGameHistoryRepository";
 import { AppProvider } from "../context/AppContext";
 import {
 	CorruptJsonStore,
@@ -13,6 +29,7 @@ import {
 	makeFixedRoundGame,
 	makeGame,
 	makeHistoryEntry,
+	makeScriptCard,
 	makeSymbolItem,
 	renderWithApp,
 } from "../test-utils/renderWithApp";
@@ -59,6 +76,80 @@ function scriptCardDTO(character: string) {
 		property: "recognition",
 		lessonNumber: 1,
 	};
+}
+
+/** A raw `VocabCard` DTO as it sits inside the persisted SRS blob. */
+function vocabCardDTO(thai: string, property = "thaiToEnglish") {
+	return {
+		id: `vocab:${thai}:${property}`,
+		question: `What does ${thai} mean?`,
+		correctAnswer: "answer",
+		choices: ["answer", "other"],
+		srs: {
+			easeFactor: 2,
+			interval: 10,
+			repetitions: 0,
+			learningStep: 1,
+			nextReviewDate: "2026-01-01T00:00:00.000Z",
+			lastReviewDate: null,
+			lapseCount: 0,
+		},
+		promptWord: thai,
+		property,
+	};
+}
+
+/** A `WordGameItem` with a pre-assigned direction, for fixed-round tests. */
+function makeWordItem(
+	thaiWord: string,
+	challengeDirection: WordChallengeDirection,
+	overrides: Partial<Omit<WordItemContent, "kind">> = {},
+): GameItem {
+	return {
+		kind: "word",
+		thaiWord,
+		englishMeaning: `${thaiWord} meaning`,
+		audioUrl: `/audio/${thaiWord}.mp3`,
+		...overrides,
+		challengeDirection,
+	};
+}
+
+/** An in-memory `VocabCard`, for a `WordGameItemSource`'s eligibility. */
+function vocabCard(thai: string, property = "thaiToEnglish"): VocabCard {
+	return new VocabCard(
+		`vocab:${thai}:${property}`,
+		"question",
+		"answer",
+		["answer"],
+		SrsSchedule.initial(),
+		thai,
+		property,
+	);
+}
+
+/**
+ * A real `PlayGameUseCase` wired over both pools — `makeGame` in
+ * `renderWithApp.tsx` only registers `SymbolGameItemSource` (phase 1's
+ * seam), so a real Words/Mix round needs its own selection service here.
+ */
+function makeMixGame(
+	symbolChars: readonly string[],
+	vocabThaiWords: readonly string[],
+): { game: PlayGameUseCase } {
+	const cardRepo = new StorageCardRepository(new InMemoryStorage());
+	cardRepo.saveAll(symbolChars.map(makeScriptCard));
+	cardRepo.saveAll(vocabThaiWords.map((thai) => vocabCard(thai)));
+	const game = new PlayGameUseCase(
+		new GameItemSelectionService([
+			new SymbolGameItemSource(cardRepo),
+			new WordGameItemSource(cardRepo, vocabularyData as VocabEntry[]),
+		]),
+		new StorageGameHistoryRepository(
+			new InMemoryJsonStore<GameHistoryEntry[]>(),
+		),
+	);
+	return { game };
 }
 
 describe("GamePage", () => {
@@ -396,5 +487,276 @@ describe("GamePage", () => {
 		fireEvent.click(paper);
 		expect(paper.checked).toBe(true);
 		expect(draw.checked).toBe(false);
+	});
+
+	// Task 2.3 AC1
+	it("Words: renders every item through a word organism", () => {
+		const dictation = makeWordItem("แมว", "dictationTranslate", {
+			englishMeaning: "cat",
+		});
+		const production = makeWordItem("หมา", "production", {
+			englishMeaning: "dog",
+		});
+		const { game } = makeFixedRoundGame([dictation, production]);
+		renderWithApp(<GamePage />, { game });
+		fireEvent.click(screen.getByLabelText("Words"));
+		startRound();
+
+		// dictationTranslate: prompt audio plays, meaning stays hidden until reveal.
+		expect(createdAudioUrls()).toContain("/audio/แมว.mp3");
+		expect(screen.queryByText("cat")).toBeNull();
+		reveal();
+		expect(screen.getByText("แมว")).toBeTruthy();
+		expect(screen.getByText("cat")).toBeTruthy();
+		rate(/Good/);
+
+		// production: the English meaning is the prompt, shown up front.
+		expect(screen.getByText("dog")).toBeTruthy();
+		reveal();
+		expect(screen.getByText("หมา")).toBeTruthy();
+		rate(/Good/);
+
+		expect(screen.getByText("Round Complete")).toBeTruthy();
+	});
+
+	// Task 2.3 AC2
+	it("Mix: dispatches each item to its correct organism by kind and direction", () => {
+		const symbolItem = makeSymbolItem("ม", "reading");
+		const wordItem = makeWordItem("แมว", "production", {
+			englishMeaning: "cat",
+		});
+		const { game } = makeFixedRoundGame([symbolItem, wordItem]);
+		renderWithApp(<GamePage />, { game });
+		fireEvent.click(screen.getByLabelText("Mix"));
+		startRound();
+
+		// First item: a symbol reading challenge.
+		expect(screen.getByText("Say this symbol aloud")).toBeTruthy();
+		expect(screen.getByText("ม")).toBeTruthy();
+		reveal();
+		expect(screen.getByText("ม name")).toBeTruthy();
+		rate(/Good/);
+
+		// Second item: a word production challenge.
+		expect(screen.getByText("cat")).toBeTruthy();
+		reveal();
+		expect(screen.getByText("แมว")).toBeTruthy();
+		rate(/Good/);
+
+		expect(screen.getByText("Round Complete")).toBeTruthy();
+	});
+
+	// Task 2.3 AC3
+	it("keeps start unavailable and explains why for Words and Mix with no eligible items", () => {
+		renderWithApp(<GamePage />);
+
+		fireEvent.click(screen.getByLabelText("Words"));
+		expect(screen.getByText(/No words to practice yet/)).toBeTruthy();
+		expect(screen.queryByRole("button", { name: "Start Round" })).toBeNull();
+
+		fireEvent.click(screen.getByLabelText("Mix"));
+		expect(screen.getByText(/No items to practice yet/)).toBeTruthy();
+		expect(screen.queryByRole("button", { name: "Start Round" })).toBeNull();
+	});
+
+	// Task 2.3 AC4 — extends task 1.4's AC4 proof (script cards only) to the
+	// vocab cards this phase introduces, through the real AppProvider.
+	it("leaves the whole thai-srs-state blob byte-identical after a full Words round through the real AppProvider", () => {
+		const seeded = JSON.stringify({
+			completedLessons: [1],
+			currentLesson: 2,
+			cards: {},
+			vocabCards: {
+				"vocab:ที่:thaiToEnglish": vocabCardDTO("ที่"),
+				"vocab:ได้:thaiToEnglish": vocabCardDTO("ได้"),
+			},
+			grammarCards: {},
+			sentenceCards: {},
+			sessionHistory: [],
+			achievements: [],
+		});
+		getFakeLocalStorage().setItem("thai-srs-state", seeded);
+
+		render(
+			<AppProvider>
+				<MemoryRouter initialEntries={["/game"]}>
+					<Routes>
+						<Route path="/game" element={<GamePage />} />
+					</Routes>
+				</MemoryRouter>
+			</AppProvider>,
+		);
+
+		fireEvent.click(screen.getByLabelText("Words"));
+		setCount("2");
+		startRound();
+		for (const rating of [/Again/, /Good/]) {
+			reveal();
+			rate(rating);
+		}
+		expect(screen.getByText("Round Complete")).toBeTruthy();
+
+		expect(
+			getFakeLocalStorage().getItem("thai-srs-game-history"),
+		).not.toBeNull();
+		expect(getFakeLocalStorage().getItem("thai-srs-state")).toBe(seeded);
+	});
+
+	// Task 2.3 AC4 — the Mix half of the same proof.
+	it("leaves the whole thai-srs-state blob byte-identical after a full Mix round through the real AppProvider", () => {
+		const seeded = JSON.stringify({
+			completedLessons: [1],
+			currentLesson: 2,
+			cards: {
+				"ม-recognition": scriptCardDTO("ม"),
+				"น-recognition": scriptCardDTO("น"),
+			},
+			vocabCards: {
+				"vocab:ที่:thaiToEnglish": vocabCardDTO("ที่"),
+			},
+			grammarCards: {},
+			sentenceCards: {},
+			sessionHistory: [],
+			achievements: [],
+		});
+		getFakeLocalStorage().setItem("thai-srs-state", seeded);
+
+		render(
+			<AppProvider>
+				<MemoryRouter initialEntries={["/game"]}>
+					<Routes>
+						<Route path="/game" element={<GamePage />} />
+					</Routes>
+				</MemoryRouter>
+			</AppProvider>,
+		);
+
+		fireEvent.click(screen.getByLabelText("Mix"));
+		setCount("3");
+		startRound();
+
+		let screensTraversed = 0;
+		while (
+			screen.queryByText("Round Complete") === null &&
+			screensTraversed < 10
+		) {
+			reveal();
+			rate(/Good/);
+			screensTraversed += 1;
+		}
+		expect(screensTraversed).toBe(3);
+		expect(screen.getByText("Round Complete")).toBeTruthy();
+
+		expect(
+			getFakeLocalStorage().getItem("thai-srs-game-history"),
+		).not.toBeNull();
+		expect(getFakeLocalStorage().getItem("thai-srs-state")).toBe(seeded);
+	});
+
+	// Task 2.3 AC5
+	it("records which pools a finished round used, distinguishably in history", () => {
+		const { game } = makeFixedRoundGame([makeWordItem("แมว", "production")]);
+		renderWithApp(<GamePage />, { game });
+
+		fireEvent.click(screen.getByLabelText("Words"));
+		startRound();
+		reveal();
+		rate(/Good/);
+		expect(screen.getByText("Round Complete")).toBeTruthy();
+
+		fireEvent.click(screen.getByRole("button", { name: "Play Again" }));
+		fireEvent.click(screen.getByLabelText("Mix"));
+		startRound();
+		reveal();
+		rate(/Good/);
+		expect(screen.getByText("Round Complete")).toBeTruthy();
+
+		fireEvent.click(screen.getByRole("button", { name: "Play Again" }));
+		expect(screen.getByText("Words · 1 items")).toBeTruthy();
+		expect(screen.getByText("Symbols + Words · 1 items")).toBeTruthy();
+	});
+
+	// Task 2.3 AC6
+	it("renders a legacy history entry with no pools field using a fallback label, never 'undefined'", () => {
+		const historyStore = new InMemoryJsonStore<GameHistoryEntry[]>();
+		const legacyEntry = {
+			id: "legacy-1",
+			playedAt: "2026-08-01T10:00:00.000Z",
+			itemCount: 5,
+			summary: {
+				ratingCounts: { 1: 0, 2: 0, 3: 0, 4: 3, 5: 2 },
+				ratedCount: 5,
+				accuracy: 100,
+			},
+			// `pools` is absent — this shape predates task 1.1's field.
+		} as unknown as GameHistoryEntry;
+		historyStore.save([legacyEntry]);
+		const game = makeGame({ symbols: ["ม"], historyStore });
+		renderWithApp(<GamePage />, { game });
+
+		expect(screen.getByText("Symbols · 5 items")).toBeTruthy();
+		expect(screen.queryByText(/undefined/i)).toBeNull();
+	});
+
+	// Task 2.3 AC7
+	it("defaults the pool selector to Symbols", () => {
+		renderWithApp(<GamePage />, {}, { symbols: ["ม"] });
+
+		expect((screen.getByLabelText("Symbols") as HTMLInputElement).checked).toBe(
+			true,
+		);
+		expect((screen.getByLabelText("Words") as HTMLInputElement).checked).toBe(
+			false,
+		);
+		expect((screen.getByLabelText("Mix") as HTMLInputElement).checked).toBe(
+			false,
+		);
+	});
+
+	// Task 2.3 AC8
+	it("fills a Mix round from both pools when one pool alone can't supply the requested count", () => {
+		const symbolChars = ["ม", "น", "ง", "ย", "ว", "ก", "ด", "บ", "ช", "ซ"];
+		const vocabWords = ["ที่", "ได้", "จะ"];
+		const { game } = makeMixGame(symbolChars, vocabWords);
+		renderWithApp(<GamePage />, { game });
+		fireEvent.click(screen.getByLabelText("Mix"));
+
+		expect(
+			(screen.getByLabelText("Items per round") as HTMLInputElement).value,
+		).toBe("10");
+		startRound();
+
+		let screensTraversed = 0;
+		while (
+			screen.queryByText("Round Complete") === null &&
+			screensTraversed < 15
+		) {
+			reveal();
+			rate(/Good/);
+			screensTraversed += 1;
+		}
+		expect(screensTraversed).toBe(10);
+		expect(screen.getByText("Round Complete")).toBeTruthy();
+	});
+
+	// Task 2.3 AC9
+	it("labels each pool-selector option accessibly and keeps them keyboard-operable", () => {
+		renderWithApp(<GamePage />, {}, { symbols: ["ม"] });
+
+		const symbolsChoice = screen.getByLabelText("Symbols") as HTMLInputElement;
+		const wordsChoice = screen.getByLabelText("Words") as HTMLInputElement;
+		const mixChoice = screen.getByLabelText("Mix") as HTMLInputElement;
+
+		wordsChoice.focus();
+		expect(document.activeElement).toBe(wordsChoice);
+		fireEvent.click(wordsChoice);
+		expect(wordsChoice.checked).toBe(true);
+		expect(symbolsChoice.checked).toBe(false);
+
+		mixChoice.focus();
+		expect(document.activeElement).toBe(mixChoice);
+		fireEvent.click(mixChoice);
+		expect(mixChoice.checked).toBe(true);
+		expect(wordsChoice.checked).toBe(false);
 	});
 });

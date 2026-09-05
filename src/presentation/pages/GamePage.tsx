@@ -1,8 +1,9 @@
-import { useCallback, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useNavigate } from "react-router";
 import { Button } from "@/presentation/components/ui/button";
 import type { PlayGameUseCase } from "../../application/use-cases/PlayGameUseCase";
 import type {
+	GameCardPool,
 	GameInputMode,
 	GameItem,
 	GameRatingRecord,
@@ -14,12 +15,43 @@ import { GameHistoryList } from "../components/molecules/GameHistoryList";
 import { GameRoundSummary } from "../components/organisms/GameRoundSummary";
 import { SymbolDictationChallenge } from "../components/organisms/SymbolDictationChallenge";
 import { SymbolReadingChallenge } from "../components/organisms/SymbolReadingChallenge";
+import { WordDictationChallenge } from "../components/organisms/WordDictationChallenge";
+import { WordProductionChallenge } from "../components/organisms/WordProductionChallenge";
 import { useApp } from "../hooks/useApp";
 
 type GamePhase = "setup" | "playing" | "summary";
 
-/** Phase 1 practices symbols only; phase 2 adds the pool selector. */
-const GAME_POOLS = ["script"] as const;
+/**
+ * The setup screen's three choices, mapping to `GameCardPool` combinations
+ * — `CardPool` values stay `"script"`/`"vocab"` everywhere below the UI
+ * layer (see CONTEXT.md).
+ */
+type PoolChoice = "symbols" | "words" | "mix";
+
+const POOL_CHOICE_POOLS: Record<PoolChoice, readonly GameCardPool[]> = {
+	symbols: ["script"],
+	words: ["vocab"],
+	mix: ["script", "vocab"],
+};
+
+const POOL_CHOICE_LABELS: Record<PoolChoice, string> = {
+	symbols: "Symbols",
+	words: "Words",
+	mix: "Mix",
+};
+
+/**
+ * The least surprising default for anyone who has only used this feature
+ * since phase 1 — a repeat player's setup screen doesn't silently start
+ * offering words until they choose to.
+ */
+const DEFAULT_POOL_CHOICE: PoolChoice = "symbols";
+
+const EMPTY_POOL_MESSAGES: Record<PoolChoice, string> = {
+	symbols: "No symbols to practice yet — complete a script lesson first.",
+	words: "No words to practice yet — complete a vocabulary lesson first.",
+	mix: "No items to practice yet — complete a script or vocabulary lesson first.",
+};
 
 const DEFAULT_ITEM_COUNT = 10;
 
@@ -28,9 +60,12 @@ const DEFAULT_ITEM_COUNT = 10;
  * free way to learn how many are eligible — the use case exposes no
  * separate count query.
  */
-function countEligibleItems(game: PlayGameUseCase): number {
+function countEligibleItems(
+	game: PlayGameUseCase,
+	pools: readonly GameCardPool[],
+): number {
 	return game.startRound({
-		pools: GAME_POOLS,
+		pools,
 		itemCount: Number.MAX_SAFE_INTEGER,
 		prioritizeWeakItems: false,
 		inputMode: "draw",
@@ -52,6 +87,7 @@ export function GamePage() {
 	const navigate = useNavigate();
 
 	const [phase, setPhase] = useState<GamePhase>("setup");
+	const [poolChoice, setPoolChoice] = useState<PoolChoice>(DEFAULT_POOL_CHOICE);
 	const [inputMode, setInputMode] = useState<GameInputMode>("draw");
 	const [items, setItems] = useState<GameItem[]>([]);
 	const [ratings, setRatings] = useState<GameRatingRecord[]>([]);
@@ -61,15 +97,27 @@ export function GamePage() {
 	// keypress on top of a click) advancing past the next item unseen.
 	const ratedIndexRef = useRef(-1);
 
+	const pools = POOL_CHOICE_POOLS[poolChoice];
+
 	const eligibleCount = useMemo(
-		() => (phase === "setup" ? countEligibleItems(game) : 0),
-		[game, phase],
+		() => (phase === "setup" ? countEligibleItems(game, pools) : 0),
+		[game, phase, pools],
 	);
 	const [countInput, setCountInput] = useState<string>(() =>
 		eligibleCount > 0
 			? String(Math.min(DEFAULT_ITEM_COUNT, eligibleCount))
 			: "",
 	);
+	// The eligible count is pool-dependent — switching pools can make a
+	// previously-typed count invalid without ever telling the learner why.
+	// biome-ignore lint/correctness/useExhaustiveDependencies: resets only when the chosen pool changes, never on every eligibleCount-affecting render
+	useEffect(() => {
+		setCountInput(
+			eligibleCount > 0
+				? String(Math.min(DEFAULT_ITEM_COUNT, eligibleCount))
+				: "",
+		);
+	}, [poolChoice]);
 	const history = useMemo(
 		() => (phase === "setup" ? game.getHistory() : null),
 		[game, phase],
@@ -84,7 +132,7 @@ export function GamePage() {
 
 	const handleStart = useCallback(() => {
 		const roundItems = game.startRound({
-			pools: GAME_POOLS,
+			pools,
 			itemCount: parsedCount,
 			prioritizeWeakItems: false,
 			inputMode,
@@ -96,7 +144,7 @@ export function GamePage() {
 		setSummary(null);
 		ratedIndexRef.current = -1;
 		setPhase("playing");
-	}, [game, parsedCount, inputMode]);
+	}, [game, pools, parsedCount, inputMode]);
 
 	const handleRate = useCallback(
 		(rating: RecallRating) => {
@@ -117,23 +165,45 @@ export function GamePage() {
 			}
 
 			const roundSummary = game.finishRound(nextRatings);
-			game.saveHistory(
-				{ pools: GAME_POOLS, itemCount: items.length },
-				roundSummary,
-			);
+			game.saveHistory({ pools, itemCount: items.length }, roundSummary);
 			setSummary(roundSummary);
 			setPhase("summary");
 		},
-		[game, items, ratings, currentIndex],
+		[game, items, ratings, currentIndex, pools],
 	);
 
 	if (phase === "playing") {
 		const item = items[currentIndex];
-		// `GAME_POOLS` is script-only until task 2.3 adds the pool selector, so
-		// a word item can never actually reach this page yet — this narrowing
-		// is a type-safety guard for the `GameItem` union widened in task 2.1,
-		// not a behavior change.
-		if (!item || item.kind !== "symbol") return null;
+		if (!item) return null;
+
+		// The page dispatches by `kind` then `challengeDirection`; each
+		// organism receives a single-kind, single-direction prop and never
+		// inspects `GameItem`'s union tag itself (see task 2.3's
+		// architectural decision).
+		const challenge =
+			item.kind === "symbol" ? (
+				item.challengeDirection === "dictation" ? (
+					<SymbolDictationChallenge
+						item={item}
+						inputMode={inputMode}
+						onRate={handleRate}
+					/>
+				) : (
+					<SymbolReadingChallenge item={item} onRate={handleRate} />
+				)
+			) : item.challengeDirection === "dictationTranslate" ? (
+				<WordDictationChallenge
+					item={item}
+					inputMode={inputMode}
+					onRate={handleRate}
+				/>
+			) : (
+				<WordProductionChallenge
+					item={item}
+					inputMode={inputMode}
+					onRate={handleRate}
+				/>
+			);
 
 		return (
 			<div>
@@ -162,15 +232,7 @@ export function GamePage() {
 					</button>
 				</div>
 
-				{item.challengeDirection === "dictation" ? (
-					<SymbolDictationChallenge
-						item={item}
-						inputMode={inputMode}
-						onRate={handleRate}
-					/>
-				) : (
-					<SymbolReadingChallenge item={item} onRate={handleRate} />
-				)}
+				{challenge}
 			</div>
 		);
 	}
@@ -213,6 +275,41 @@ export function GamePage() {
 				</p>
 			</div>
 
+			<fieldset
+				className="rounded-xl p-4"
+				style={{
+					border: "1px solid var(--color-border)",
+					background: "var(--color-surface)",
+				}}
+			>
+				<legend
+					className="text-sm font-semibold mb-1"
+					style={{ color: "var(--color-text)" }}
+				>
+					Practice pool
+				</legend>
+				<div className="flex gap-4">
+					{(Object.keys(POOL_CHOICE_POOLS) as PoolChoice[]).map((choice) => (
+						<span key={choice} className="flex items-center gap-2">
+							<input
+								id={`game-pool-${choice}`}
+								type="radio"
+								name="game-pool-choice"
+								checked={poolChoice === choice}
+								onChange={() => setPoolChoice(choice)}
+							/>
+							<label
+								htmlFor={`game-pool-${choice}`}
+								className="text-sm"
+								style={{ color: "var(--color-text)" }}
+							>
+								{POOL_CHOICE_LABELS[choice]}
+							</label>
+						</span>
+					))}
+				</div>
+			</fieldset>
+
 			{eligibleCount === 0 ? (
 				<p
 					className="rounded-xl p-4 text-sm"
@@ -221,7 +318,7 @@ export function GamePage() {
 						color: "var(--color-text-muted)",
 					}}
 				>
-					No symbols to practice yet — complete a script lesson first.
+					{EMPTY_POOL_MESSAGES[poolChoice]}
 				</p>
 			) : (
 				<div
