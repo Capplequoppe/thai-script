@@ -21,10 +21,16 @@ const CORRECT_RATINGS: ReadonlySet<RecallRating> = new Set([4, 5]);
 /**
  * The item's identity: a `symbolCharacter` for a symbol item, a `thaiWord`
  * for a word item — matches the dedupe key each `GameItemSource` uses (see
- * CONTEXT.md, GameRatingRecord's `itemKey` doc comment).
+ * CONTEXT.md, GameRatingRecord's `itemKey` doc comment). Prefixed with
+ * `kind` because a Mix round draws from both pools at once, and a symbol
+ * character can coincide with a vocab word's exact Thai spelling (e.g. "ณ"
+ * is both a consonant and a one-character preposition) — without the
+ * prefix, rating that symbol and that word as two separate items in the
+ * same round would silently collapse into one record in `recordRating`'s
+ * de-dupe below, undercounting the round.
  */
 function itemKeyOf(item: GameItem): string {
-	return item.kind === "symbol" ? item.symbolCharacter : item.thaiWord;
+	return `${item.kind}:${item.kind === "symbol" ? item.symbolCharacter : item.thaiWord}`;
 }
 
 /**
