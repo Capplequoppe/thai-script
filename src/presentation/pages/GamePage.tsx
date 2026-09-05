@@ -103,7 +103,10 @@ export function GamePage() {
 	const pools = POOL_CHOICE_POOLS[poolChoice];
 
 	const eligibleCount = useMemo(
-		() => (phase === "setup" ? countEligibleItems(game, pools, prioritizeWeakItems) : 0),
+		() =>
+			phase === "setup"
+				? countEligibleItems(game, pools, prioritizeWeakItems)
+				: 0,
 		[game, phase, pools, prioritizeWeakItems],
 	);
 	const [countInput, setCountInput] = useState<string>(() =>
