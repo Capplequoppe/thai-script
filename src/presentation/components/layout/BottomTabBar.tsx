@@ -186,6 +186,14 @@ export function BottomTabBar({
 							)}
 						</NavLink>
 					))}
+					<NavLink
+						to="/game"
+						className={({ isActive }) =>
+							`text-sm font-medium transition-colors ${isActive ? ACTIVE : INACTIVE}`
+						}
+					>
+						Game
+					</NavLink>
 					{grammarUnlocked && (
 						<NavLink
 							to="/grammar"
