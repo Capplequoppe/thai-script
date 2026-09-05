@@ -143,7 +143,6 @@ describe("PlayGameUseCase", () => {
 			scripted([0.1, 0.3, 0.5, 0.7, 0.9]),
 		);
 
-		// 3 items rated Good/Easy (correct) out of 5 -> 60%, no rounding needed.
 		const ratings = rateAll(useCase, items, [1, 2, 3, 4, 5]);
 		const summary = useCase.finishRound(ratings);
 
@@ -252,5 +251,18 @@ describe("PlayGameUseCase", () => {
 			status: "ok",
 			entries: historyRepository.entries,
 		});
+	});
+
+	it("getHistory forwards a failed read as unavailable, never as an empty ok list", () => {
+		const failingHistoryRepository: GameHistoryRepository = {
+			list: () => ({ status: "unavailable" }),
+			save: () => {},
+		};
+		const useCase = new PlayGameUseCase(
+			new GameItemSelectionService([]),
+			failingHistoryRepository,
+		);
+
+		expect(useCase.getHistory()).toEqual({ status: "unavailable" });
 	});
 });
