@@ -7,6 +7,13 @@ import type { PropertyType } from "../../shared/types";
 import { SrsSchedule } from "../../srs/value-objects/SrsSchedule";
 import { VocabCard } from "../../vocabulary/entities/VocabCard";
 import type { VocabEntry } from "../../vocabulary/types";
+import {
+	FRESH_SYMBOL,
+	STRONG_SYMBOL,
+	WEAK_STRONG_FRESH_CARDS,
+	WEAK_SYMBOL,
+	weightedSeed,
+} from "../test-fixtures/weakStrongFixture";
 import type {
 	GameCardPool,
 	GameItemContent,
@@ -425,4 +432,147 @@ describe("GameItemSelectionService", () => {
 			expect([...kinds].sort()).toEqual(["symbol", "word"]);
 		});
 	});
+
+	describe("weighted selection (task 3.1)", () => {
+		it("AC1: without prioritizeWeakItems, behaves exactly as the unweighted draw", () => {
+			const repository = repositoryOf([...WEAK_STRONG_FRESH_CARDS], []);
+			const withCards = new GameItemSelectionService(
+				[new SymbolGameItemSource(repository)],
+				repository,
+			);
+			const withoutCards = new GameItemSelectionService([
+				new SymbolGameItemSource(repository),
+			]);
+
+			const rng = scripted([0.0, 0.75, 0.5, 0.1, 0.9, 0.49]);
+			const rngCopy = scripted([0.0, 0.75, 0.5, 0.1, 0.9, 0.49]);
+
+			const roundWithCardsButUnweighted = withCards.selectRound(
+				{ ...SCRIPT_ONLY, itemCount: 3, prioritizeWeakItems: false },
+				rng,
+			);
+			const roundWithNoCardsAtAll = withoutCards.selectRound(
+				{ ...SCRIPT_ONLY, itemCount: 3 },
+				rngCopy,
+			);
+
+			expect(
+				roundWithCardsButUnweighted.map((item) => item.symbolCharacter),
+			).toEqual(roundWithNoCardsAtAll.map((item) => item.symbolCharacter));
+		});
+
+		it("AC3: a full-set request with weighting on still returns every item exactly once", () => {
+			const repository = repositoryOf([...WEAK_STRONG_FRESH_CARDS], []);
+			const service = new GameItemSelectionService(
+				[new SymbolGameItemSource(repository)],
+				repository,
+			);
+
+			const round = service.selectRound(
+				{ ...SCRIPT_ONLY, itemCount: 3, prioritizeWeakItems: true },
+				scripted([0.0, 0.3, 0.6, 0.9]),
+			);
+
+			expect([...round.map((item) => item.symbolCharacter)].sort()).toEqual(
+				[WEAK_SYMBOL, STRONG_SYMBOL, FRESH_SYMBOL].sort(),
+			);
+		});
+
+		it("AC4: with the shared seeded fixture, under-sampling returns exactly the weak item", () => {
+			// Weak deliberately placed last: a plain uniform draw against this
+			// same seed would land on the first item (strong) instead, so this
+			// only passes because weighting, not draw order, picked weak.
+			const [weak, strong, fresh] = WEAK_STRONG_FRESH_CARDS;
+			const repository = repositoryOf(
+				[
+					strong as ScriptPropertyCard,
+					fresh as ScriptPropertyCard,
+					weak as ScriptPropertyCard,
+				],
+				[],
+			);
+			const service = new GameItemSelectionService(
+				[new SymbolGameItemSource(repository)],
+				repository,
+			);
+
+			const round = service.selectRound(
+				{ ...SCRIPT_ONLY, itemCount: 1, prioritizeWeakItems: true },
+				weightedSeed(),
+			);
+
+			expect(round.map((item) => item.symbolCharacter)).toEqual([WEAK_SYMBOL]);
+		});
+
+		it("AC5: a never-reviewed item is not preferred over a genuinely weak one", () => {
+			const repository = repositoryOf([...WEAK_STRONG_FRESH_CARDS], []);
+			const service = new GameItemSelectionService(
+				[new SymbolGameItemSource(repository)],
+				repository,
+			);
+
+			// A roll just past the fresh+strong share of the total weight would
+			// land on fresh if fresh were scored as maximally weak; it lands on
+			// weak instead, because weak alone dominates the total.
+			const round = service.selectRound(
+				{ ...SCRIPT_ONLY, itemCount: 1, prioritizeWeakItems: true },
+				scripted([0.5]),
+			);
+
+			expect(round.map((item) => item.symbolCharacter)).toEqual([WEAK_SYMBOL]);
+		});
+
+		it("AC6: equal weight across all eligible items still returns the requested count, no NaN/undefined", () => {
+			const equalCards = [
+				scriptCardWith("ม", 2.5, 0, 3),
+				scriptCardWith("น", 2.5, 0, 3),
+				scriptCardWith("ง", 2.5, 0, 3),
+			];
+			const repository = repositoryOf(equalCards, []);
+			const service = new GameItemSelectionService(
+				[new SymbolGameItemSource(repository)],
+				repository,
+			);
+
+			const round = service.selectRound(
+				{ ...SCRIPT_ONLY, itemCount: 3, prioritizeWeakItems: true },
+				scripted([0.1, 0.4, 0.7]),
+			);
+
+			expect(round).toHaveLength(3);
+			for (const item of round) {
+				expect(item.symbolCharacter).not.toBeUndefined();
+				expect(Number.isNaN(item.symbolCharacter as unknown as number)).toBe(
+					false,
+				);
+			}
+			expect(new Set(round.map((item) => item.symbolCharacter)).size).toBe(3);
+		});
+	});
 });
+
+function scriptCardWith(
+	character: string,
+	easeFactor: number,
+	lapseCount: number,
+	repetitions: number,
+): ScriptPropertyCard {
+	return ScriptPropertyCard.fromDTO({
+		id: `${character}-recognition`,
+		question: "question",
+		correctAnswer: "answer",
+		choices: ["answer"],
+		srs: {
+			easeFactor,
+			interval: 10,
+			repetitions,
+			learningStep: null,
+			nextReviewDate: "2026-01-01T00:00:00.000Z",
+			lastReviewDate: "2026-01-01T00:00:00.000Z",
+			lapseCount,
+		},
+		symbolCharacter: character,
+		property: "recognition",
+		lessonNumber: 1,
+	});
+}

@@ -1,3 +1,7 @@
+import type { CardRepository } from "../../ports/CardRepository";
+import { ScriptPropertyCard } from "../../script/entities/ScriptPropertyCard";
+import type { ReviewableCard } from "../../srs/entities/ReviewableCard";
+import { VocabCard } from "../../vocabulary/entities/VocabCard";
 import type {
 	GameCardPool,
 	GameItem,
@@ -8,22 +12,50 @@ import type {
 	SymbolChallengeDirection,
 	WordChallengeDirection,
 } from "../types";
+import { itemWeight, type ScheduleStats, worstStats } from "./itemWeight";
 import { sampleWithoutReplacement } from "./sampling";
+
+/**
+ * `selectRound`'s own config shape: `GameRoundConfig`'s `prioritizeWeakItems`
+ * made optional here (rather than `Pick`, which would keep it required) so
+ * every caller that predates weighting — every existing test, and any
+ * caller that never intends to weight — keeps compiling unchanged.
+ */
+type SelectRoundConfig = Pick<GameRoundConfig, "pools" | "itemCount"> & {
+	readonly prioritizeWeakItems?: boolean;
+};
 
 /**
  * Composes one `GameItemSource` per pool, samples across them, and assigns
  * each drawn item a challenge direction. Adding a pool is adding a source
- * to the array; adding weighting is supplying `weightOf` to the sample.
+ * to the array; weighting (task 3.1) is supplying `weightOf` to the sample
+ * when `prioritizeWeakItems` is set — no other behavior changes.
+ *
+ * The optional `cardRepository` is read only for weighting, directly (the
+ * same `easeFactor`/`lapseCount`/`repetitions` fields
+ * `ReviewService.getCriticalItems` reads) — never through `ReviewService`
+ * itself, which stays a sibling over the same port, not something this
+ * service chains through.
  */
 export class GameItemSelectionService {
-	constructor(private readonly sources: readonly GameItemSource[]) {}
+	constructor(
+		private readonly sources: readonly GameItemSource[],
+		private readonly cardRepository?: CardRepository,
+	) {}
 
 	selectRound(
-		config: Pick<GameRoundConfig, "pools" | "itemCount">,
+		config: SelectRoundConfig,
 		rng: RandomSource = Math.random,
 	): GameItem[] {
 		const eligible = this.eligibleContent(config.pools);
-		const drawn = sampleWithoutReplacement(eligible, config.itemCount, { rng });
+		const weightOf =
+			config.prioritizeWeakItems && this.cardRepository
+				? this.weightOfFor(config.pools)
+				: undefined;
+		const drawn = sampleWithoutReplacement(eligible, config.itemCount, {
+			rng,
+			weightOf,
+		});
 		return drawn.map((content) => assignDirection(content, rng));
 	}
 
@@ -32,6 +64,65 @@ export class GameItemSelectionService {
 			.filter((source) => pools.includes(source.pool))
 			.flatMap((source) => source.eligibleContent());
 	}
+
+	/**
+	 * One weight per item key (`itemKeyOf`), built from every card across the
+	 * requested pools grouped by that same key, each reduced to its worst
+	 * (lowest ease factor) card's stats before scoring. An item with no
+	 * matching stats (should not happen — eligibility itself requires a
+	 * card) falls back to a neutral weight rather than throwing.
+	 */
+	private weightOfFor(
+		pools: readonly GameCardPool[],
+	): (content: GameItemContent) => number {
+		const statsByKey = new Map<string, ScheduleStats[]>();
+		for (const pool of pools) {
+			for (const card of this.cardRepository?.findAll(pool) ?? []) {
+				const key = itemKeyOfCard(card);
+				if (!key) continue;
+				const stats: ScheduleStats = {
+					easeFactor: card.schedule.easeFactor.value,
+					lapseCount: card.schedule.lapseCount,
+					repetitions: card.schedule.repetitions,
+				};
+				const list = statsByKey.get(key);
+				if (list) list.push(stats);
+				else statsByKey.set(key, [stats]);
+			}
+		}
+
+		const weightByKey = new Map<string, number>();
+		for (const [key, stats] of statsByKey) {
+			const worst = worstStats(stats);
+			if (worst) weightByKey.set(key, itemWeight(worst));
+		}
+
+		return (content) => weightByKey.get(itemKeyOfContent(content)) ?? 1;
+	}
+}
+
+/**
+ * A card's own item key, mirroring `itemKeyOf` in `PlayGameUseCase.ts` and
+ * `SymbolGameItemSource`/`WordGameItemSource`'s own eligibility grouping.
+ * Duplicated rather than imported: neither source exports its dedupe key,
+ * and this service's own scope does not extend to changing them.
+ */
+function itemKeyOfCard(card: ReviewableCard): string | null {
+	if (card instanceof ScriptPropertyCard) {
+		return `symbol:${card.symbolCharacter}`;
+	}
+	if (card instanceof VocabCard) {
+		const [prefix, thai] = card.id.split(":");
+		if (prefix !== "vocab" || !thai) return null;
+		return `word:${thai}`;
+	}
+	return null;
+}
+
+function itemKeyOfContent(content: GameItemContent): string {
+	return content.kind === "symbol"
+		? `symbol:${content.symbolCharacter}`
+		: `word:${content.thaiWord}`;
 }
 
 /**
