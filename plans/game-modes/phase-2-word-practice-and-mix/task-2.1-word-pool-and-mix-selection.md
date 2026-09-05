@@ -6,11 +6,15 @@ covers:
   - src/domain/game/types.ts
   - src/domain/game/services/WordGameItemSource.ts
   - src/domain/game/services/WordGameItemSource.test.ts
+  - src/domain/game/services/GameItemSelectionService.ts
   - src/domain/game/services/GameItemSelectionService.test.ts
   - src/presentation/context/AppContext.tsx
+  - src/application/use-cases/PlayGameUseCase.ts
+  - src/presentation/pages/GamePage.tsx
+  - src/presentation/test-utils/renderWithApp.tsx
 status: draft
 task_id: "2.1"
-task_status: pending
+task_status: complete
 depends_on: ["1.4"]
 size: medium
 verify:
@@ -34,6 +38,8 @@ ac_tests:
   - "AC6 -> src/domain/game/services/WordGameItemSource.test.ts::takes content from the injected VocabEntry, never from either card's own promptWord/correctAnswer"
   - "AC7 -> src/domain/game/services/WordGameItemSource.test.ts::skips a card whose id does not match vocab:{thai}:{property}, rather than producing an undefined word"
   - "AC8 -> src/domain/game/services/GameItemSelectionService.test.ts::word pool and mix (task 2.1) > a deterministic mixed-pool draw contains at least one of each kind"
+red_proof:
+  - "AC6 -> In WordGameItemSource.eligibleContent(), swapped the pushed content fields to `thaiWord: entry.english, englishMeaning: entry.thai` (previously also tried using `card.promptWord`/`c… [see red-proofs/]"
 generated: {by: claude-sonnet-5/agent, at: 2026-09-05}
 profile_version: 1
 ---
