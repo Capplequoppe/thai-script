@@ -14,6 +14,7 @@ import { QueryDashboardUseCase } from "../../application/use-cases/QueryDashboar
 import { StartLessonUseCase } from "../../application/use-cases/StartLessonUseCase";
 import { GameItemSelectionService } from "../../domain/game/services/GameItemSelectionService";
 import { SymbolGameItemSource } from "../../domain/game/services/SymbolGameItemSource";
+import { WordGameItemSource } from "../../domain/game/services/WordGameItemSource";
 import type { GameHistoryEntry } from "../../domain/game/types";
 import grammarData from "../../domain/grammar/data/grammar.json";
 import { GrammarService } from "../../domain/grammar/services/GrammarLessonService";
@@ -98,7 +99,10 @@ const gameHistoryRepo = new StorageGameHistoryRepository(
 	),
 );
 const gameUseCase = new PlayGameUseCase(
-	new GameItemSelectionService([new SymbolGameItemSource(cardRepo)]),
+	new GameItemSelectionService([
+		new SymbolGameItemSource(cardRepo),
+		new WordGameItemSource(cardRepo, vocabularyData as VocabEntry[]),
+	]),
 	gameHistoryRepo,
 );
 

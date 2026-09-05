@@ -1,11 +1,12 @@
 import type {
 	GameCardPool,
-	GameChallengeDirection,
 	GameItem,
 	GameItemContent,
 	GameItemSource,
 	GameRoundConfig,
 	RandomSource,
+	SymbolChallengeDirection,
+	WordChallengeDirection,
 } from "../types";
 import { sampleWithoutReplacement } from "./sampling";
 
@@ -23,10 +24,7 @@ export class GameItemSelectionService {
 	): GameItem[] {
 		const eligible = this.eligibleContent(config.pools);
 		const drawn = sampleWithoutReplacement(eligible, config.itemCount, { rng });
-		return drawn.map((content) => ({
-			...content,
-			challengeDirection: assignDirection(content, rng),
-		}));
+		return drawn.map((content) => assignDirection(content, rng));
 	}
 
 	private eligibleContent(pools: readonly GameCardPool[]): GameItemContent[] {
@@ -37,14 +35,28 @@ export class GameItemSelectionService {
 }
 
 /**
- * An item with no audio can never be asked "hear it, write it" — there
- * would be nothing to hear — so it is always a reading challenge, and no
- * randomness is spent on it. Otherwise the direction is a 50/50 draw.
+ * An item with no audio can never be asked to hear anything — so it is
+ * always assigned the direction that needs no audio (`reading` for a
+ * symbol, `production` for a word), and no randomness is spent on it.
+ * Otherwise the direction is a 50/50 draw.
  */
 function assignDirection(
 	content: GameItemContent,
 	rng: RandomSource,
-): GameChallengeDirection {
-	if (!content.audioUrl) return "reading";
-	return rng() < 0.5 ? "dictation" : "reading";
+): GameItem {
+	if (content.kind === "symbol") {
+		const challengeDirection: SymbolChallengeDirection = !content.audioUrl
+			? "reading"
+			: rng() < 0.5
+				? "dictation"
+				: "reading";
+		return { ...content, challengeDirection };
+	}
+
+	const challengeDirection: WordChallengeDirection = !content.audioUrl
+		? "production"
+		: rng() < 0.5
+			? "dictationTranslate"
+			: "production";
+	return { ...content, challengeDirection };
 }

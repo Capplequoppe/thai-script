@@ -20,7 +20,19 @@ export type GameInputMode = "draw" | "paper";
  * reveal. Which one a given item gets is randomized per round, never
  * configured.
  */
-export type GameChallengeDirection = "dictation" | "reading";
+export type SymbolChallengeDirection = "dictation" | "reading";
+
+/**
+ * `dictationTranslate` — hear the Thai word, write the Thai spelling and
+ * the English meaning. `production` — see the English, write the Thai
+ * spelling and say it, hear/see the reveal. Which one a given word gets is
+ * randomized per round, never configured.
+ */
+export type WordChallengeDirection = "dictationTranslate" | "production";
+
+export type GameChallengeDirection =
+	| SymbolChallengeDirection
+	| WordChallengeDirection;
 
 /**
  * Content for one symbol, sourced from `script/data/symbols.ts` — never
@@ -40,19 +52,40 @@ export interface SymbolItemContent {
 	readonly audioUrl?: string;
 }
 
+/**
+ * Content for one vocab word, sourced from its `VocabEntry` — never from an
+ * individual `VocabCard`, whose `promptWord` holds the Thai word for five
+ * `VocabProperty` values but the *English* word for `englishToThai`
+ * (`VocabCardGenerator.ts`), so no single card's fields are safe to read as
+ * "the" Thai spelling or English meaning.
+ *
+ * `thaiWord` is the item's identity — the key a round dedupes on.
+ */
+export interface WordItemContent {
+	readonly kind: "word";
+	readonly thaiWord: string;
+	readonly englishMeaning: string;
+	readonly audioUrl?: string;
+}
+
 /** Content for one game item, before a direction has been assigned. */
-export type GameItemContent = SymbolItemContent;
+export type GameItemContent = SymbolItemContent | WordItemContent;
 
 export type SymbolGameItem = SymbolItemContent & {
-	readonly challengeDirection: GameChallengeDirection;
+	readonly challengeDirection: SymbolChallengeDirection;
+};
+
+export type WordGameItem = WordItemContent & {
+	readonly challengeDirection: WordChallengeDirection;
 };
 
 /**
- * One item as it is played. A discriminated union with one member today;
- * phase 2 adds a `"word"` member, which is purely additive for every
- * consumer that already narrows on `kind`.
+ * One item as it is played. A discriminated union on `kind`; phase 1's
+ * `"symbol"` member and phase 2's `"word"` member are independent variants,
+ * so every consumer that already narrows on `kind` is unaffected by this
+ * addition.
  */
-export type GameItem = SymbolGameItem;
+export type GameItem = SymbolGameItem | WordGameItem;
 
 /** Supplies the eligible content for exactly one pool. */
 export interface GameItemSource {
@@ -77,10 +110,10 @@ export interface GameRatingRecord {
 }
 
 /**
- * `accuracy` is the share of rated items the learner rated as recalled
- * (rating >= 3, matching `ratingFromCorrectness`, where 2 is "wrong"),
- * as an integer 0-100 rounded half-up — and `null` if and only if nothing
- * in the round was rated.
+ * `accuracy` is the share of rated items the learner rated Good or Easy
+ * (rating 4 or 5) — a deliberately different, stricter threshold from
+ * `ReviewService.endReviewSession`'s `rating >= 3` — as an integer 0-100
+ * rounded half-up, and `null` if and only if nothing in the round was rated.
  */
 export interface GameRoundSummary {
 	readonly ratingCounts: Readonly<Record<RecallRating, number>>;
