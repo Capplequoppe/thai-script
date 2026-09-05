@@ -241,7 +241,7 @@ describe("GamePage", () => {
 	});
 
 	// AC6
-	it("disables start and explains when no symbols are eligible", () => {
+	it("keeps start unavailable and explains when no symbols are eligible", () => {
 		renderWithApp(<GamePage />);
 		expect(screen.getByText(/No symbols to practice yet/)).toBeTruthy();
 		expect(screen.queryByRole("button", { name: "Start Round" })).toBeNull();

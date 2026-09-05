@@ -317,7 +317,8 @@ export interface MakeAppValueOptions {
  * A complete in-memory `AppContextValue`: every use case and service the
  * real `AppContext.tsx` wires, built over `InMemoryStorage` instead of
  * `localStorage`, plus a real `PlayGameUseCase` over an in-memory history
- * store.
+ * store. `refresh` and `checkAchievements` are inert stubs — pass overrides
+ * if a test needs either to be observable.
  */
 export function makeAppValue(options: MakeAppValueOptions = {}): AppHarness {
 	const storage = new InMemoryStorage();
