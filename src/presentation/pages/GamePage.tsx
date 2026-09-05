@@ -73,8 +73,9 @@ function countEligibleItems(
 }
 
 /**
- * A self-graded practice round over introduced symbols. The page owns all
- * round state (`items`/`ratings`/`currentIndex`) and threads it through
+ * A self-graded practice round over introduced symbols and/or vocab words,
+ * per the setup screen's pool choice. The page owns all round state
+ * (`items`/`ratings`/`currentIndex`) and threads it through
  * `PlayGameUseCase`'s pure functions — the use case is a long-lived
  * singleton and must never hold a round.
  *
@@ -270,8 +271,8 @@ export function GamePage() {
 					className="text-sm mt-1"
 					style={{ color: "var(--color-text-muted)" }}
 				>
-					Self-graded drilling over your introduced symbols — it never changes
-					your review schedule.
+					Self-graded drilling over your introduced symbols and words — it never
+					changes your review schedule.
 				</p>
 			</div>
 
