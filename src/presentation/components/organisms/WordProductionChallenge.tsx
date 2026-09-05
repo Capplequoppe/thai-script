@@ -51,10 +51,6 @@ export function WordProductionChallenge({ item, inputMode, onRate }: Props) {
 		};
 	}, [item.thaiWord]);
 
-	const handleReveal = useCallback(() => {
-		setRevealed(true);
-	}, []);
-
 	return (
 		<div className="space-y-6">
 			<div
@@ -89,7 +85,7 @@ export function WordProductionChallenge({ item, inputMode, onRate }: Props) {
 			{!revealed ? (
 				<button
 					type="button"
-					onClick={handleReveal}
+					onClick={() => setRevealed(true)}
 					className="w-full py-4 rounded-xl text-lg font-semibold transition-colors"
 					style={{
 						background: "var(--color-surface-2)",
