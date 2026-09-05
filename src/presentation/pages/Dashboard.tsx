@@ -180,6 +180,13 @@ export function Dashboard() {
 				) : (
 					<QuickActionCard label="Vocabulary" value="Locked" disabled />
 				)}
+				{/* Mobile-reachable entry point for the practice game — the
+				    5-icon mobile tab row has no room for a sixth icon. */}
+				<QuickActionCard
+					label="Game"
+					value="Practice round"
+					onClick={() => navigate("/game")}
+				/>
 			</div>
 
 			{/* Vocab lesson callout — shown when grammar is also taking the right slot */}

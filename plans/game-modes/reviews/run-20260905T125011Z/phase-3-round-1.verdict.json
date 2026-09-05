@@ -1,0 +1,105 @@
+{
+  "findings": [
+    {
+      "id": "F1",
+      "action": "fixed",
+      "message": "Task 3.2 AC1's test was titled/asserted only 'checkbox is unchecked by default' — it never started a round or compared output, so it did not prove AC1's actual claim (an unchecked round draws the same item set the unweighted algorithm produces for a given seed/fixture). AC3's test similarly never toggled the checkbox before hitting the zero-eligible-pool case, so 'regardless of toggle state' was never actually exercised — a fresh, always-false toggle and an unreachable one are indistinguishable to that test. Both are exactly the 'test pinned to something adjacent, reads as covered but isn't' pattern this review exists to catch, and match the executor's own account (its summary for 3.2 says it deliberately abandoned output-based testing for 'flag wiring' testing after finding seed-based assertions fragile).",
+      "severity": 6,
+      "effort": 2,
+      "file": "src/presentation/pages/GamePage.test.tsx",
+      "line": 786,
+      "category": "test-shape",
+      "recommendation": "Rewrote AC1's test to build a real PlayGameUseCase with cardRepository wired (matching production), and directly compare the page's rendered (unchecked-toggle) round against a call to GameItemSelectionService.selectRound with no weighting for the same seed/fixture — an observable-output comparison as the criterion asks for. Rewrote AC3's test to actually check the toggle on while a pool is eligible, then switch to a zero-eligible pool and confirm start stays blocked and the toggle's own checked state survives the round trip — a real interaction rather than a scenario where the toggle never existed to begin with. Both new tests pass; full domain/game + GamePage suites (77 tests) and `npm run build` still green."
+    },
+    {
+      "id": "F2",
+      "action": "fixed",
+      "message": "Three named imports from weakStrongFixture.ts (FRESH_SYMBOL, STRONG_SYMBOL, weightedSeed) and one from renderWithApp.tsx (scriptCardWith) were imported but never referenced anywhere in the file — dead imports left over from the executor's abandoned output-based test strategy (see its own summary: it started with seed-based assertions, hit a dead end, and switched to plumbing-only tests without cleaning up the now-unused fixture imports). `npx biome check` flagged both as unused.",
+      "severity": 2,
+      "effort": 1,
+      "file": "src/presentation/pages/GamePage.test.tsx",
+      "line": 42,
+      "category": "dead-code",
+      "recommendation": "Removed the four unused imports. `npx biome check` on the phase's files is now clean; tests and build re-verified green."
+    }
+  ],
+  "lessons": [
+    {
+      "lesson": "In this repo, `npx biome check --write` sometimes reports 'Fixed 1 file' for one safe fix while leaving other flagged unused-imports unfixed as 'unsafe' in the same run (e.g. removing exports from a module the tool treats as possibly side-effecting) — always re-run `biome check` (no --write) after to see what's left, rather than trusting the 'Fixed' message covered everything reported."
+    }
+  ],
+  "acValidations": [
+    {
+      "task_id": "3.1",
+      "criterion": "AC1",
+      "locator": "src/domain/game/services/GameItemSelectionService.test.ts::AC1: without prioritizeWeakItems, behaves exactly as the unweighted draw",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "3.1",
+      "criterion": "AC2",
+      "locator": "src/domain/game/services/itemWeight.test.ts::AC2: a lower-ease, higher-lapse item weighs strictly more than a higher-ease, lapse-free one",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "3.1",
+      "criterion": "AC3",
+      "locator": "src/domain/game/services/GameItemSelectionService.test.ts::AC3: a full-set request with weighting on still returns every item exactly once",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "3.1",
+      "criterion": "AC4",
+      "locator": "src/domain/game/services/GameItemSelectionService.test.ts::AC4: with the shared seeded fixture, under-sampling returns exactly the weak item",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "3.1",
+      "criterion": "AC5",
+      "locator": "src/domain/game/services/itemWeight.test.ts::AC5: a never-reviewed item ignores whatever ease/lapse values happen to be stored on it",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "3.1",
+      "criterion": "AC6",
+      "locator": "src/domain/game/services/GameItemSelectionService.test.ts::AC6: equal weight across all eligible items still returns the requested count, no NaN/undefined",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "3.1",
+      "criterion": "AC7",
+      "locator": "none",
+      "verdict": "none"
+    },
+    {
+      "task_id": "3.2",
+      "criterion": "AC1",
+      "locator": "src/presentation/pages/GamePage.test.tsx::checkbox is unchecked by default, and the resulting round matches the plain unweighted draw for the same seed",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "3.2",
+      "criterion": "AC2",
+      "locator": "src/presentation/pages/GamePage.test.tsx::with toggle checked, a round uses weighted item selection matching task 3.1's expectation",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "3.2",
+      "criterion": "AC3",
+      "locator": "src/presentation/pages/GamePage.test.tsx::toggle + zero-eligible-pool interaction: start stays blocked regardless of toggle state",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "3.2",
+      "criterion": "AC4",
+      "locator": "src/presentation/pages/GamePage.test.tsx::prioritize-weak-items checkbox is accessibly labeled and keyboard-operable",
+      "verdict": "valid"
+    }
+  ],
+  "reviewedAt": "98f3cd2bc930509224b0bbdd8f94a397e29ded2b",
+  "answersAt": "e3b0c44298fc1c14",
+  "enforcement": [
+    "reviewer edited 1 path(s) the plan does not declare and they were reverted: plans/game-modes/resources.jsonl"
+  ],
+  "repairsVerified": true
+}

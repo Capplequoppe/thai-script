@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "task": "1.4",
+  "pass": "after",
+  "result": {
+    "outcome": "unsupported",
+    "reason": "plans/game-modes/phase-1-symbol-practice/task-1.4-symbol-game-presentation.md: no grammar covers '.md' files (and 10 more)"
+  },
+  "findings": [],
+  "adapters": []
+}

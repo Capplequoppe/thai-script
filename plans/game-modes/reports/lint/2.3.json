@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "task": "2.3",
+  "pass": "after",
+  "result": {
+    "outcome": "unsupported",
+    "reason": "src/presentation/components/molecules/GameHistoryList.tsx: no grammar covers '.tsx' files (and 2 more)"
+  },
+  "findings": [],
+  "adapters": []
+}

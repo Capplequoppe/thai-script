@@ -1,0 +1,159 @@
+{
+  "version": 1,
+  "task": "1.3",
+  "pass": "after",
+  "result": {
+    "outcome": "incomplete",
+    "reason": "biome: biome did not resolve: 'biome' on PATH (30 entries). Its findings are missing from this report — that is a gap and not a pass."
+  },
+  "findings": [
+    {
+      "rule": "length",
+      "severity": "warning",
+      "tier": "function",
+      "measured": 174,
+      "threshold": 150,
+      "symbol": {
+        "kind": "function",
+        "name": "(anonymous)",
+        "path": "src/application/use-cases/PlayGameUseCase.test.ts",
+        "bytes": {
+          "startIndex": 2810,
+          "endIndex": 8745
+        },
+        "lines": {
+          "startRow": 94,
+          "endRow": 267
+        }
+      }
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 1.15,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "(anonymous)",
+        "path": "src/application/use-cases/PlayGameUseCase.test.ts",
+        "bytes": {
+          "startIndex": 2810,
+          "endIndex": 8745
+        },
+        "lines": {
+          "startRow": 94,
+          "endRow": 267
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "(anonymous)",
+        "path": "src/application/use-cases/PlayGameUseCase.test.ts",
+        "bytes": {
+          "startIndex": 3466,
+          "endIndex": 4188
+        },
+        "lines": {
+          "startRow": 109,
+          "endRow": 133
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "(anonymous)",
+        "path": "src/application/use-cases/PlayGameUseCase.test.ts",
+        "bytes": {
+          "startIndex": 5457,
+          "endIndex": 6175
+        },
+        "lines": {
+          "startRow": 169,
+          "endRow": 188
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "(anonymous)",
+        "path": "src/application/use-cases/PlayGameUseCase.test.ts",
+        "bytes": {
+          "startIndex": 6265,
+          "endIndex": 6913
+        },
+        "lines": {
+          "startRow": 190,
+          "endRow": 210
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "(anonymous)",
+        "path": "src/application/use-cases/PlayGameUseCase.test.ts",
+        "bytes": {
+          "startIndex": 7642,
+          "endIndex": 8338
+        },
+        "lines": {
+          "startRow": 231,
+          "endRow": 253
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0.75,
+      "threshold": 5,
+      "tier": "file",
+      "path": "src/application/use-cases/PlayGameUseCase.test.ts",
+      "check": "density-below-floor"
+    }
+  ],
+  "adapters": [
+    {
+      "tool": "biome",
+      "selection": {
+        "evidence": "configured",
+        "by": "biome.json"
+      },
+      "program": null,
+      "result": {
+        "outcome": "unsupported",
+        "reason": "biome did not resolve: 'biome' on PATH (30 entries). Its findings are missing from this report — that is a gap and not a pass."
+      },
+      "files": 2,
+      "findings": 0,
+      "refusedPaths": 0,
+      "outsideAnalysis": 0,
+      "refusedShape": 0
+    }
+  ]
+}
