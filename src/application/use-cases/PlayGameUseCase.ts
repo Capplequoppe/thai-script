@@ -18,8 +18,13 @@ const ALL_RATINGS: readonly RecallRating[] = [1, 2, 3, 4, 5];
 /** Ratings counting as "recalled" toward accuracy — Good and Easy only. */
 const CORRECT_RATINGS: ReadonlySet<RecallRating> = new Set([4, 5]);
 
+/**
+ * The item's identity: a `symbolCharacter` for a symbol item, a `thaiWord`
+ * for a word item — matches the dedupe key each `GameItemSource` uses (see
+ * CONTEXT.md, GameRatingRecord's `itemKey` doc comment).
+ */
 function itemKeyOf(item: GameItem): string {
-	return item.symbolCharacter;
+	return item.kind === "symbol" ? item.symbolCharacter : item.thaiWord;
 }
 
 /**

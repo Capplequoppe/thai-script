@@ -35,10 +35,10 @@ import { GameItemSelectionService } from "../../domain/game/services/GameItemSel
 import { SymbolGameItemSource } from "../../domain/game/services/SymbolGameItemSource";
 import { normalizeRequestedCount } from "../../domain/game/services/sampling";
 import type {
-	GameChallengeDirection,
 	GameHistoryEntry,
 	GameItem,
 	GameRoundConfig,
+	SymbolChallengeDirection,
 	SymbolItemContent,
 } from "../../domain/game/types";
 import grammarData from "../../domain/grammar/data/grammar.json";
@@ -199,7 +199,7 @@ export function makeScriptCard(symbolCharacter: string): ScriptPropertyCard {
 /** A `GameItem` with a pre-assigned direction, for fixed-round tests. */
 export function makeSymbolItem(
 	symbolCharacter: string,
-	challengeDirection: GameChallengeDirection,
+	challengeDirection: SymbolChallengeDirection,
 	overrides: Partial<Omit<SymbolItemContent, "kind">> = {},
 ): GameItem {
 	return {

@@ -129,7 +129,11 @@ export function GamePage() {
 
 	if (phase === "playing") {
 		const item = items[currentIndex];
-		if (!item) return null;
+		// `GAME_POOLS` is script-only until task 2.3 adds the pool selector, so
+		// a word item can never actually reach this page yet — this narrowing
+		// is a type-safety guard for the `GameItem` union widened in task 2.1,
+		// not a behavior change.
+		if (!item || item.kind !== "symbol") return null;
 
 		return (
 			<div>
