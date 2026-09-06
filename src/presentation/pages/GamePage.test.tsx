@@ -1630,9 +1630,9 @@ describe("GamePage", () => {
 		rate(/Good/);
 
 		// Second item: unrevealed again despite the identical audioUrl...
-		expect(screen.getByText("นี้")).toBeTruthy();
 		expect(screen.getByRole("button", { name: "Show Answer" })).toBeTruthy();
 		expect(screen.queryByText("falling")).toBeNull();
+		expect(screen.getByText("นี้")).toBeTruthy();
 		expect(screen.queryByRole("button", { name: /Again/ })).toBeNull();
 		// ...and its own mount played the audio again.
 		expect(createdAudioUrls().filter((url) => url === shared)).toHaveLength(2);
