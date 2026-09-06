@@ -1,6 +1,7 @@
 import { consonants } from "../../script/data/symbols";
 import { SrsSchedule } from "../../srs/value-objects/SrsSchedule";
 import type { VocabEntry, VocabularyCard } from "../types";
+import { toneSyllablesOf } from "./toneSyllables";
 
 function pickChoices(correct: string, pool: string[], count = 4): string[] {
 	const distractors = pool.filter((item) => item !== correct);
@@ -139,11 +140,7 @@ export function generateVocabCards(
 	}
 
 	// Tone identification (only if at least one syllable has a tone)
-	const toneSyllables = word.syllables
-		.filter(
-			(s): s is typeof s & { tone: string } => s.tone !== null && s.tone !== "",
-		)
-		.map((s) => ({ text: s.text, tone: s.tone }));
+	const toneSyllables = toneSyllablesOf(word);
 
 	if (toneSyllables.length > 0) {
 		cards.push({

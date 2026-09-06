@@ -26,6 +26,7 @@ import type {
 import { GameItemSelectionService } from "./GameItemSelectionService";
 import { SentenceGameItemSource } from "./SentenceGameItemSource";
 import { SymbolGameItemSource } from "./SymbolGameItemSource";
+import { ToneGameItemSource } from "./ToneGameItemSource";
 import { WordGameItemSource } from "./WordGameItemSource";
 
 function symbolContent(character: string, audioUrl?: string): GameItemContent {
@@ -910,6 +911,182 @@ describe("GameItemSelectionService", () => {
 					item.kind === "sentence" ? item.sentenceId : null,
 				),
 			).toEqual(["weak"]);
+		});
+	});
+
+	describe("tone identification (task 2.1)", () => {
+		function toneVocabEntry(thai: string, audioUrl?: string): VocabEntry {
+			return {
+				...vocabEntry(thai, audioUrl),
+				syllables: [{ ...syllable("rising"), text: thai }],
+			};
+		}
+
+		function syllable(tone: string) {
+			return {
+				text: "",
+				initialConsonant: null,
+				vowel: null,
+				finalConsonant: null,
+				toneMark: null,
+				consonantClass: null,
+				syllableType: null,
+				tone,
+			};
+		}
+
+		function toneVocabCard(thai: string): VocabCard {
+			return new VocabCard(
+				`vocab:${thai}:toneIdentification`,
+				"question",
+				"answer",
+				["answer"],
+				SrsSchedule.initial(),
+				thai,
+				"toneIdentification",
+			);
+		}
+
+		/** Like `toneVocabCard`, but with an explicit SRS history — for the weighting-neutrality test. */
+		function toneVocabCardWith(
+			thai: string,
+			easeFactor: number,
+			lapseCount: number,
+			repetitions: number,
+		): VocabCard {
+			return VocabCard.fromDTO({
+				id: `vocab:${thai}:toneIdentification`,
+				question: "question",
+				correctAnswer: "answer",
+				choices: ["answer"],
+				srs: {
+					easeFactor,
+					interval: 10,
+					repetitions,
+					learningStep: null,
+					nextReviewDate: "2026-01-01T00:00:00.000Z",
+					lastReviewDate: "2026-01-01T00:00:00.000Z",
+					lapseCount,
+				},
+				promptWord: thai,
+				property: "toneIdentification",
+			});
+		}
+
+		it("AC4: includeTonePractice returns tone items even when 'vocab' is not in pools", () => {
+			const entry = toneVocabEntry("แมว", "/audio/maeo.mp3");
+			const repository = repositoryOf([], [toneVocabCard("แมว")]);
+			const service = new GameItemSelectionService(
+				[sourceOf("script", FIVE)],
+				undefined,
+				new ToneGameItemSource(repository, [entry]),
+			);
+
+			const round = service.selectRound(
+				{ pools: ["script"], itemCount: 10, includeTonePractice: true },
+				scripted([0.5]),
+			);
+
+			expect(round.some((item) => item.kind === "tone")).toBe(true);
+		});
+
+		it("AC5: includeTonePractice omitted or false never returns a tone item", () => {
+			const entry = toneVocabEntry("แมว", "/audio/maeo.mp3");
+			const repository = repositoryOf([], [toneVocabCard("แมว")]);
+			const toneSource = new ToneGameItemSource(repository, [entry]);
+
+			const omitted = new GameItemSelectionService(
+				[sourceOf("script", FIVE)],
+				undefined,
+				toneSource,
+			).selectRound({ pools: ["script"], itemCount: 10 }, scripted([0.5]));
+			const explicitFalse = new GameItemSelectionService(
+				[sourceOf("script", FIVE)],
+				undefined,
+				toneSource,
+			).selectRound(
+				{ pools: ["script"], itemCount: 10, includeTonePractice: false },
+				scripted([0.5]),
+			);
+
+			expect(omitted.some((item) => item.kind === "tone")).toBe(false);
+			expect(explicitFalse.some((item) => item.kind === "tone")).toBe(false);
+		});
+
+		it("AC6: every tone item's challengeDirection is the single defined literal", () => {
+			const entry = toneVocabEntry("แมว", "/audio/maeo.mp3");
+			const repository = repositoryOf([], [toneVocabCard("แมว")]);
+			const service = new GameItemSelectionService(
+				[],
+				undefined,
+				new ToneGameItemSource(repository, [entry]),
+			);
+
+			const round = service.selectRound(
+				{ pools: [], itemCount: 1, includeTonePractice: true },
+				scripted([0.9]),
+			);
+
+			expect(round).toEqual([
+				{
+					kind: "tone",
+					thaiWord: "แมว",
+					syllables: [{ text: "แมว", tone: "rising" }],
+					audioUrl: "/audio/maeo.mp3",
+					challengeDirection: "identification",
+				},
+			]);
+		});
+
+		it("AC8: prioritizeWeakItems has no effect on tone item selection, even while it genuinely weights vocab", () => {
+			// pools: ["vocab"] + a real cardRepository makes weightOfFor scan
+			// these exact cards for real — `itemKeyOfCard` keys every VocabCard
+			// by `word:${thai}` regardless of property, so these two
+			// toneIdentification-property cards *do* populate real weights
+			// under "word:แมว"/"word:หมา". A tone item's own key is
+			// "tone:${thaiWord}", which that scan never produces, so its weight
+			// can only ever come from the neutral `?? 1` fallback — this is the
+			// direct proof, not just an absence-of-effect observation.
+			const weakEntry = toneVocabEntry("แมว", "/audio/maeo.mp3");
+			const freshEntry = toneVocabEntry("หมา", "/audio/maa.mp3");
+			const repository = repositoryOf(
+				[],
+				[
+					toneVocabCardWith("แมว", 1.3, 8, 10),
+					toneVocabCardWith("หมา", 2.5, 0, 0),
+				],
+			);
+			const service = new GameItemSelectionService(
+				[],
+				repository,
+				new ToneGameItemSource(repository, [weakEntry, freshEntry]),
+			);
+
+			let weakCount = 0;
+			let freshCount = 0;
+			const rng = scripted([0.1, 0.4, 0.7]);
+			for (let round = 0; round < 200; round++) {
+				const drawn = service.selectRound(
+					{
+						pools: ["vocab"],
+						itemCount: 1,
+						includeTonePractice: true,
+						prioritizeWeakItems: true,
+					},
+					rng,
+				);
+				const item = drawn[0];
+				if (item?.kind === "tone" && item.thaiWord === "แมว") weakCount++;
+				if (item?.kind === "tone" && item.thaiWord === "หมา") freshCount++;
+			}
+
+			expect(weakCount).toBeGreaterThan(0);
+			expect(freshCount).toBeGreaterThan(0);
+			// Neutral weighting means neither is meaningfully favored — a wide
+			// tolerance band, not a precise 50/50 claim.
+			expect(Math.abs(weakCount - freshCount)).toBeLessThan(
+				(weakCount + freshCount) * 0.5,
+			);
 		});
 	});
 });

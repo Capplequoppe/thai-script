@@ -48,10 +48,20 @@ export type WordChallengeDirection = "dictationTranslate" | "production";
  */
 export type SentenceChallengeDirection = "listening" | "reading";
 
+/**
+ * Tone identification is a single self-assessment — did the learner
+ * correctly identify the word's whole tone pattern — never a direction
+ * choice. Kept as a single-literal type, and kept on the item (never
+ * omitted) so every generic consumer of `item.challengeDirection` needs no
+ * special case for this kind.
+ */
+export type ToneChallengeDirection = "identification";
+
 export type GameChallengeDirection =
 	| SymbolChallengeDirection
 	| WordChallengeDirection
-	| SentenceChallengeDirection;
+	| SentenceChallengeDirection
+	| ToneChallengeDirection;
 
 /**
  * Content for one symbol, sourced from `script/data/symbols.ts` — never
@@ -104,11 +114,28 @@ export interface SentenceItemContent {
 	readonly audioUrl?: string;
 }
 
+/**
+ * Content for one tone-identification item, sourced from its `VocabEntry`
+ * — never from the `toneIdentification` `VocabCard`, which is used for
+ * eligibility only. Older, already-persisted cards can have
+ * `VocabCard.syllables === undefined` (the field was added after such
+ * cards already existed), and this content must never depend on that.
+ *
+ * `thaiWord` is the item's identity — the key a round dedupes on.
+ */
+export interface ToneItemContent {
+	readonly kind: "tone";
+	readonly thaiWord: string;
+	readonly syllables: readonly { text: string; tone: string }[];
+	readonly audioUrl?: string;
+}
+
 /** Content for one game item, before a direction has been assigned. */
 export type GameItemContent =
 	| SymbolItemContent
 	| WordItemContent
-	| SentenceItemContent;
+	| SentenceItemContent
+	| ToneItemContent;
 
 export type SymbolGameItem = SymbolItemContent & {
 	readonly challengeDirection: SymbolChallengeDirection;
@@ -122,19 +149,29 @@ export type SentenceGameItem = SentenceItemContent & {
 	readonly challengeDirection: SentenceChallengeDirection;
 };
 
+export type ToneGameItem = ToneItemContent & {
+	readonly challengeDirection: ToneChallengeDirection;
+};
+
 /**
- * Every item that reaches play through a `GameItemSource` and the shared
- * draw pipeline (`sampleWithoutReplacement` + `assignDirection`) — one
- * variant per `GameItemContent` member, each intersecting in the direction
- * that content type's own rule assigned.
+ * Every item that reaches play through the shared draw pipeline
+ * (`sampleWithoutReplacement` + `assignDirection`) — one variant per
+ * `GameItemContent` member, each intersecting in the direction that
+ * content type's own rule assigned. `ToneGameItem` reaches this pipeline
+ * through `GameItemSelectionService`'s separate tone-source constructor
+ * slot, not through a pool-keyed `GameItemSource` — see `ToneGameItemSource`.
  */
-export type SourcedGameItem = SymbolGameItem | WordGameItem | SentenceGameItem;
+export type SourcedGameItem =
+	| SymbolGameItem
+	| WordGameItem
+	| SentenceGameItem
+	| ToneGameItem;
 
 /**
  * One item as it is played. A discriminated union on `kind`; the
- * `"symbol"`, `"word"` and `"sentence"` members are independent variants,
- * so every consumer that already narrows on `kind` is unaffected by an
- * addition.
+ * `"symbol"`, `"word"`, `"sentence"` and `"tone"` members are independent
+ * variants, so every consumer that already narrows on `kind` is unaffected
+ * by an addition.
  */
 export type GameItem = SourcedGameItem;
 
@@ -149,15 +186,22 @@ export interface GameRoundConfig {
 	readonly itemCount: number;
 	readonly prioritizeWeakItems: boolean;
 	readonly inputMode: GameInputMode;
+	/**
+	 * Off by default. Independent of `pools` by design — tone practice
+	 * draws from the same vocab words the Words pool already covers, not a
+	 * distinct `CardRepository` partition, so it is combinable with any
+	 * pool selection including none. See `ToneGameItemSource`.
+	 */
+	readonly includeTonePractice?: boolean;
 }
 
 /** One self-assessment, for one item, in one round. */
 export interface GameRatingRecord {
 	/**
 	 * The item's identity, prefixed with `kind` (`"symbol:..."` /
-	 * `"word:..."` / `"sentence:..."`) so a symbol character can never
-	 * collide with a vocab word of the same Thai text in a mixed-pool round
-	 * — see `itemKeyOf` in `PlayGameUseCase.ts`.
+	 * `"word:..."` / `"sentence:..."` / `"tone:..."`) so a symbol character
+	 * can never collide with a vocab word of the same Thai text in a
+	 * mixed-pool round — see `itemKeyOf` in `PlayGameUseCase.ts`.
 	 */
 	readonly itemKey: string;
 	readonly kind: GameItem["kind"];

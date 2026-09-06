@@ -12,18 +12,25 @@ import type {
 	RandomSource,
 	SentenceChallengeDirection,
 	SymbolChallengeDirection,
+	ToneChallengeDirection,
 	WordChallengeDirection,
 } from "../types";
 import { itemWeight, type ScheduleStats, worstStats } from "./itemWeight";
 import { sampleWithoutReplacement } from "./sampling";
+import type { ToneGameItemSource } from "./ToneGameItemSource";
 
 /**
  * `selectRound`'s own config shape: `GameRoundConfig`'s `prioritizeWeakItems`
  * made optional here (rather than `Pick`, which would keep it required) so
  * every caller that predates weighting — every existing test, and any
  * caller that never intends to weight — keeps compiling unchanged.
+ * `includeTonePractice` is already optional on `GameRoundConfig` itself, so
+ * `Pick` carries it through unchanged.
  */
-type SelectRoundConfig = Pick<GameRoundConfig, "pools" | "itemCount"> & {
+type SelectRoundConfig = Pick<
+	GameRoundConfig,
+	"pools" | "itemCount" | "includeTonePractice"
+> & {
 	readonly prioritizeWeakItems?: boolean;
 };
 
@@ -32,6 +39,15 @@ type SelectRoundConfig = Pick<GameRoundConfig, "pools" | "itemCount"> & {
  * each drawn item a challenge direction. Adding a pool is adding a source
  * to the array; weighting (task 3.1) is supplying `weightOf` to the sample
  * when `prioritizeWeakItems` is set — no other behavior changes.
+ *
+ * The optional `toneSource` is consulted separately, whenever
+ * `config.includeTonePractice` is set, regardless of `config.pools` — tone
+ * practice is independent of pool selection by design, so it has no honest
+ * `pool` value and is never one of `sources` (see `ToneGameItemSource`).
+ * Tone items are never scanned by `weightOfFor` (which only reads cards
+ * from the requested `pools`), so they always draw at the same neutral
+ * weight regardless of `prioritizeWeakItems` — a deliberate, tested choice,
+ * not an oversight.
  *
  * The optional `cardRepository` is read only for weighting, directly (the
  * same `easeFactor`/`lapseCount`/`repetitions` fields
@@ -43,13 +59,17 @@ export class GameItemSelectionService {
 	constructor(
 		private readonly sources: readonly GameItemSource[],
 		private readonly cardRepository?: CardRepository,
+		private readonly toneSource?: ToneGameItemSource,
 	) {}
 
 	selectRound(
 		config: SelectRoundConfig,
 		rng: RandomSource = Math.random,
 	): GameItem[] {
-		const eligible = this.eligibleContent(config.pools);
+		const eligible: GameItemContent[] = this.eligibleContent(config.pools);
+		if (config.includeTonePractice && this.toneSource) {
+			eligible.push(...this.toneSource.eligibleContent());
+		}
 		const weightOf =
 			config.prioritizeWeakItems && this.cardRepository
 				? this.weightOfFor(config.pools)
@@ -145,6 +165,8 @@ function itemKeyOfContent(content: GameItemContent): string {
 			return `word:${content.thaiWord}`;
 		case "sentence":
 			return `sentence:${content.sentenceId}`;
+		case "tone":
+			return `tone:${content.thaiWord}`;
 		default: {
 			const _never: never = content;
 			throw new Error(`unhandled game item content: ${JSON.stringify(_never)}`);
@@ -190,6 +212,12 @@ function assignDirection(
 				: rng() < 0.5
 					? "listening"
 					: "reading";
+			return { ...content, challengeDirection };
+		}
+		case "tone": {
+			// A single self-assessment, never a direction choice — no
+			// randomness is ever spent on it.
+			const challengeDirection: ToneChallengeDirection = "identification";
 			return { ...content, challengeDirection };
 		}
 		default: {
