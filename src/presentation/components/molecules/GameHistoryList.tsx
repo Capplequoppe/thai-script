@@ -19,9 +19,18 @@ const POOL_LABELS: Record<GameCardPool, string> = {
  * typed as required, since nothing re-validates an already-persisted blob
  * on this read path. Phase 1 only ever offered the script pool, so that is
  * the accurate fallback label, never the string `"undefined"`.
+ *
+ * A present-but-empty `pools` array is a *different*, equally legitimate
+ * case introduced by phase 2: `GamePage` lets a round start with no pool
+ * checked as long as Tone Identification is on (see its AC6), so `pools:
+ * []` is exactly what a tone-only round persists — never a legacy entry,
+ * since a legacy entry lacks the field rather than having it empty. It
+ * must not fall into the same fallback as the legacy `undefined` case,
+ * which would mislabel a real tone-only round as "Symbols".
  */
 function poolsLabel(pools: readonly GameCardPool[] | undefined): string {
-	if (!pools || pools.length === 0) return POOL_LABELS.script;
+	if (!pools) return POOL_LABELS.script;
+	if (pools.length === 0) return "Tone Identification";
 	return pools.map((pool) => POOL_LABELS[pool]).join(" + ");
 }
 
