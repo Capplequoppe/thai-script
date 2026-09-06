@@ -13,6 +13,8 @@ import type { RecallRating } from "../../domain/shared/types";
 import { SectionHeader } from "../components/atoms/SectionHeader";
 import { GameHistoryList } from "../components/molecules/GameHistoryList";
 import { GameRoundSummary } from "../components/organisms/GameRoundSummary";
+import { SentenceListeningChallenge } from "../components/organisms/SentenceListeningChallenge";
+import { SentenceReadingChallenge } from "../components/organisms/SentenceReadingChallenge";
 import { SymbolDictationChallenge } from "../components/organisms/SymbolDictationChallenge";
 import { SymbolReadingChallenge } from "../components/organisms/SymbolReadingChallenge";
 import { WordDictationChallenge } from "../components/organisms/WordDictationChallenge";
@@ -22,36 +24,40 @@ import { useApp } from "../hooks/useApp";
 type GamePhase = "setup" | "playing" | "summary";
 
 /**
- * The setup screen's three choices, mapping to `GameCardPool` combinations
- * — `CardPool` values stay `"script"`/`"vocab"` everywhere below the UI
- * layer (see CONTEXT.md).
+ * The setup screen's pool multi-select — one independent checkbox per
+ * `GameCardPool`, in this render order. `CardPool` values stay
+ * `"script"`/`"vocab"`/`"sentence"` everywhere below the UI layer (see
+ * CONTEXT.md); only the labels are learner-facing.
  */
-type PoolChoice = "symbols" | "words" | "mix";
+const ALL_POOLS: readonly GameCardPool[] = ["script", "vocab", "sentence"];
 
-const POOL_CHOICE_POOLS: Record<PoolChoice, readonly GameCardPool[]> = {
-	symbols: ["script"],
-	words: ["vocab"],
-	mix: ["script", "vocab"],
-};
-
-const POOL_CHOICE_LABELS: Record<PoolChoice, string> = {
-	symbols: "Symbols",
-	words: "Words",
-	mix: "Mix",
+const POOL_LABELS: Record<GameCardPool, string> = {
+	script: "Symbols",
+	vocab: "Words",
+	sentence: "Sentence Reading",
 };
 
 /**
- * The least surprising default for anyone who has only used this feature
- * since phase 1 — a repeat player's setup screen doesn't silently start
- * offering words until they choose to.
+ * Symbols alone — the least surprising default for anyone who has only
+ * used this feature since phase 1: a repeat player's setup screen doesn't
+ * silently start offering words or sentences until they choose to.
  */
-const DEFAULT_POOL_CHOICE: PoolChoice = "symbols";
-
-const EMPTY_POOL_MESSAGES: Record<PoolChoice, string> = {
-	symbols: "No symbols to practice yet — complete a script lesson first.",
-	words: "No words to practice yet — complete a vocabulary lesson first.",
-	mix: "No items to practice yet — complete a script or vocabulary lesson first.",
+const DEFAULT_CHECKED_POOLS: Readonly<Record<GameCardPool, boolean>> = {
+	script: true,
+	vocab: false,
+	sentence: false,
 };
+
+/**
+ * Two different empty states, never collapsed into one text: "you haven't
+ * chosen anything yet" vs. "you chose something and it has nothing
+ * eligible". With a free multi-select there is no fixed set of named pool
+ * combinations, so the second message is generic over whatever subset is
+ * checked.
+ */
+const NO_POOLS_CHECKED_MESSAGE = "Select at least one pool to practice.";
+const NOTHING_ELIGIBLE_MESSAGE =
+	"Nothing to practice yet in the selected pools — complete a lesson that introduces them first.";
 
 const DEFAULT_ITEM_COUNT = 10;
 
@@ -74,9 +80,9 @@ function countEligibleItems(
 }
 
 /**
- * A self-graded practice round over introduced symbols and/or vocab words,
- * per the setup screen's pool choice. The page owns all round state
- * (`items`/`ratings`/`currentIndex`) and threads it through
+ * A self-graded practice round over introduced symbols, vocab words and/or
+ * sentences, per the setup screen's checked pools. The page owns all round
+ * state (`items`/`ratings`/`currentIndex`) and threads it through
  * `PlayGameUseCase`'s pure functions — the use case is a long-lived
  * singleton and must never hold a round.
  *
@@ -89,7 +95,9 @@ export function GamePage() {
 	const navigate = useNavigate();
 
 	const [phase, setPhase] = useState<GamePhase>("setup");
-	const [poolChoice, setPoolChoice] = useState<PoolChoice>(DEFAULT_POOL_CHOICE);
+	const [checkedPools, setCheckedPools] = useState<
+		Readonly<Record<GameCardPool, boolean>>
+	>(DEFAULT_CHECKED_POOLS);
 	const [inputMode, setInputMode] = useState<GameInputMode>("draw");
 	const [prioritizeWeakItems, setPrioritizeWeakItems] = useState(false);
 	const [items, setItems] = useState<GameItem[]>([]);
@@ -100,7 +108,14 @@ export function GamePage() {
 	// keypress on top of a click) advancing past the next item unseen.
 	const ratedIndexRef = useRef(-1);
 
-	const pools = POOL_CHOICE_POOLS[poolChoice];
+	// A stable reference for an unchanged checked set — `checkedPools` only
+	// gets a new identity when a checkbox is actually toggled, so effects and
+	// memos keyed on `pools` don't re-fire on unrelated re-renders (a fresh
+	// array every render would silently re-key them all).
+	const pools = useMemo(
+		() => ALL_POOLS.filter((pool) => checkedPools[pool]),
+		[checkedPools],
+	);
 
 	const eligibleCount = useMemo(
 		() =>
@@ -114,16 +129,17 @@ export function GamePage() {
 			? String(Math.min(DEFAULT_ITEM_COUNT, eligibleCount))
 			: "",
 	);
-	// The eligible count is pool-dependent — switching pools can make a
-	// previously-typed count invalid without ever telling the learner why.
-	// biome-ignore lint/correctness/useExhaustiveDependencies: resets only when the chosen pool changes, never on every eligibleCount-affecting render
+	// The eligible count is pool-dependent — changing the checked set can
+	// make a previously-typed count invalid without ever telling the learner
+	// why.
+	// biome-ignore lint/correctness/useExhaustiveDependencies: resets only when the checked pool set changes, never on every eligibleCount-affecting render
 	useEffect(() => {
 		setCountInput(
 			eligibleCount > 0
 				? String(Math.min(DEFAULT_ITEM_COUNT, eligibleCount))
 				: "",
 		);
-	}, [poolChoice]);
+	}, [pools]);
 	const history = useMemo(
 		() => (phase === "setup" ? game.getHistory() : null),
 		[game, phase],
@@ -197,18 +213,24 @@ export function GamePage() {
 				) : (
 					<SymbolReadingChallenge item={item} onRate={handleRate} />
 				)
-			) : item.challengeDirection === "dictationTranslate" ? (
-				<WordDictationChallenge
-					item={item}
-					inputMode={inputMode}
-					onRate={handleRate}
-				/>
+			) : item.kind === "word" ? (
+				item.challengeDirection === "dictationTranslate" ? (
+					<WordDictationChallenge
+						item={item}
+						inputMode={inputMode}
+						onRate={handleRate}
+					/>
+				) : (
+					<WordProductionChallenge
+						item={item}
+						inputMode={inputMode}
+						onRate={handleRate}
+					/>
+				)
+			) : item.challengeDirection === "listening" ? (
+				<SentenceListeningChallenge item={item} onRate={handleRate} />
 			) : (
-				<WordProductionChallenge
-					item={item}
-					inputMode={inputMode}
-					onRate={handleRate}
-				/>
+				<SentenceReadingChallenge item={item} onRate={handleRate} />
 			);
 
 		return (
@@ -276,8 +298,8 @@ export function GamePage() {
 					className="text-sm mt-1"
 					style={{ color: "var(--color-text-muted)" }}
 				>
-					Self-graded drilling over your introduced symbols and words — it never
-					changes your review schedule.
+					Self-graded drilling over your introduced symbols, words, and
+					sentences — it never changes your review schedule.
 				</p>
 			</div>
 
@@ -292,31 +314,35 @@ export function GamePage() {
 					className="text-sm font-semibold mb-1"
 					style={{ color: "var(--color-text)" }}
 				>
-					Practice pool
+					Practice pools
 				</legend>
-				<div className="flex gap-4">
-					{(Object.keys(POOL_CHOICE_POOLS) as PoolChoice[]).map((choice) => (
-						<span key={choice} className="flex items-center gap-2">
+				<div className="flex flex-wrap gap-4">
+					{ALL_POOLS.map((pool) => (
+						<span key={pool} className="flex items-center gap-2">
 							<input
-								id={`game-pool-${choice}`}
-								type="radio"
-								name="game-pool-choice"
-								checked={poolChoice === choice}
-								onChange={() => setPoolChoice(choice)}
+								id={`game-pool-${pool}`}
+								type="checkbox"
+								checked={checkedPools[pool]}
+								onChange={() =>
+									setCheckedPools((previous) => ({
+										...previous,
+										[pool]: !previous[pool],
+									}))
+								}
 							/>
 							<label
-								htmlFor={`game-pool-${choice}`}
+								htmlFor={`game-pool-${pool}`}
 								className="text-sm"
 								style={{ color: "var(--color-text)" }}
 							>
-								{POOL_CHOICE_LABELS[choice]}
+								{POOL_LABELS[pool]}
 							</label>
 						</span>
 					))}
 				</div>
 			</fieldset>
 
-			{eligibleCount === 0 ? (
+			{pools.length === 0 || eligibleCount === 0 ? (
 				<p
 					className="rounded-xl p-4 text-sm"
 					style={{
@@ -324,7 +350,9 @@ export function GamePage() {
 						color: "var(--color-text-muted)",
 					}}
 				>
-					{EMPTY_POOL_MESSAGES[poolChoice]}
+					{pools.length === 0
+						? NO_POOLS_CHECKED_MESSAGE
+						: NOTHING_ELIGIBLE_MESSAGE}
 				</p>
 			) : (
 				<div
@@ -365,48 +393,55 @@ export function GamePage() {
 						</p>
 					</div>
 
-					<fieldset>
-						<legend
-							className="text-sm font-semibold mb-1"
-							style={{ color: "var(--color-text)" }}
-						>
-							Input mode
-						</legend>
-						<div className="flex gap-4">
-							<span className="flex items-center gap-2">
-								<input
-									id="game-input-draw"
-									type="radio"
-									name="game-input-mode"
-									checked={inputMode === "draw"}
-									onChange={() => setInputMode("draw")}
-								/>
-								<label
-									htmlFor="game-input-draw"
-									className="text-sm"
-									style={{ color: "var(--color-text)" }}
-								>
-									Draw on canvas
-								</label>
-							</span>
-							<span className="flex items-center gap-2">
-								<input
-									id="game-input-paper"
-									type="radio"
-									name="game-input-mode"
-									checked={inputMode === "paper"}
-									onChange={() => setInputMode("paper")}
-								/>
-								<label
-									htmlFor="game-input-paper"
-									className="text-sm"
-									style={{ color: "var(--color-text)" }}
-								>
-									Write on paper
-								</label>
-							</span>
-						</div>
-					</fieldset>
+					{/* Input mode only controls the symbol/word write-input
+					    challenges; a sentence challenge never asks for writing
+					    (see the architectural decision), so with only Sentence
+					    Reading checked the toggle would control nothing and is
+					    hidden. */}
+					{pools.some((pool) => pool !== "sentence") && (
+						<fieldset>
+							<legend
+								className="text-sm font-semibold mb-1"
+								style={{ color: "var(--color-text)" }}
+							>
+								Input mode
+							</legend>
+							<div className="flex gap-4">
+								<span className="flex items-center gap-2">
+									<input
+										id="game-input-draw"
+										type="radio"
+										name="game-input-mode"
+										checked={inputMode === "draw"}
+										onChange={() => setInputMode("draw")}
+									/>
+									<label
+										htmlFor="game-input-draw"
+										className="text-sm"
+										style={{ color: "var(--color-text)" }}
+									>
+										Draw on canvas
+									</label>
+								</span>
+								<span className="flex items-center gap-2">
+									<input
+										id="game-input-paper"
+										type="radio"
+										name="game-input-mode"
+										checked={inputMode === "paper"}
+										onChange={() => setInputMode("paper")}
+									/>
+									<label
+										htmlFor="game-input-paper"
+										className="text-sm"
+										style={{ color: "var(--color-text)" }}
+									>
+										Write on paper
+									</label>
+								</span>
+							</div>
+						</fieldset>
+					)}
 
 					<div className="flex items-center gap-2">
 						<input

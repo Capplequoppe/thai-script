@@ -32,8 +32,10 @@ import { QueryDashboardUseCase } from "../../application/use-cases/QueryDashboar
 import { StartLessonUseCase } from "../../application/use-cases/StartLessonUseCase";
 import type { GameHistoryRepository } from "../../domain/game/ports/GameHistoryRepository";
 import { GameItemSelectionService } from "../../domain/game/services/GameItemSelectionService";
+import { SentenceGameItemSource } from "../../domain/game/services/SentenceGameItemSource";
 import { SymbolGameItemSource } from "../../domain/game/services/SymbolGameItemSource";
 import { normalizeRequestedCount } from "../../domain/game/services/sampling";
+import { WordGameItemSource } from "../../domain/game/services/WordGameItemSource";
 import type {
 	GameHistoryEntry,
 	GameItem,
@@ -47,6 +49,7 @@ import type { GrammarEntry } from "../../domain/grammar/types";
 import { ScriptPropertyCard } from "../../domain/script/entities/ScriptPropertyCard";
 import { LearningService } from "../../domain/script/services/ScriptLessonService";
 import sentenceData from "../../domain/sentence/data/sentences.json";
+import { SentenceReviewCard } from "../../domain/sentence/entities/SentenceReviewCard";
 import { SentenceService } from "../../domain/sentence/services/SentenceLessonService";
 import type { SentenceEntry } from "../../domain/sentence/types";
 import { ReviewService } from "../../domain/session/services/ReviewService";
@@ -225,6 +228,23 @@ export function scriptCardWith(
 	});
 }
 
+/**
+ * One sentence review card for `sentenceId` — enough to make that sentence
+ * eligible (eligibility is card-driven; content still comes from
+ * `sentences.json`, so pass ids that exist there, e.g. "basic-001").
+ */
+export function makeSentenceCard(sentenceId: string): SentenceReviewCard {
+	return SentenceReviewCard.fromDTO({
+		id: `sentence:${sentenceId}:readingComprehension`,
+		question: `question for ${sentenceId}`,
+		correctAnswer: "answer",
+		choices: ["answer", "other"],
+		srs: { ...DEFAULT_SRS },
+		sentenceId,
+		property: "readingComprehension",
+	});
+}
+
 /** A `GameItem` with a pre-assigned direction, for fixed-round tests. */
 export function makeSymbolItem(
 	symbolCharacter: string,
@@ -340,6 +360,8 @@ export interface AppHarness {
 export interface MakeAppValueOptions {
 	/** Characters (existing in `symbols.ts`) to seed one script card each for. */
 	symbols?: readonly string[];
+	/** Sentence ids (existing in `sentences.json`) to seed one card each for. */
+	sentences?: readonly string[];
 }
 
 /**
@@ -380,10 +402,25 @@ export function makeAppValue(options: MakeAppValueOptions = {}): AppHarness {
 	);
 
 	cardRepo.saveAll((options.symbols ?? []).map(makeScriptCard));
+	cardRepo.saveAll((options.sentences ?? []).map(makeSentenceCard));
 
 	const historyStore = new InMemoryJsonStore<GameHistoryEntry[]>();
+	// Register every source the real `AppContext.tsx` registers — a harness
+	// that registers a subset silently diverges from production per pool
+	// (see task 1.3), which is how "works in the harness, empty in the app"
+	// bugs are born.
 	const game = new PlayGameUseCase(
-		new GameItemSelectionService([new SymbolGameItemSource(cardRepo)]),
+		new GameItemSelectionService(
+			[
+				new SymbolGameItemSource(cardRepo),
+				new WordGameItemSource(cardRepo, vocabularyData as VocabEntry[]),
+				new SentenceGameItemSource(
+					cardRepo,
+					sentenceData as unknown as SentenceEntry[],
+				),
+			],
+			cardRepo,
+		),
 		new StorageGameHistoryRepository(historyStore),
 	);
 
@@ -430,7 +467,10 @@ export function renderWithApp(
 	overrides: Partial<AppContextValue> = {},
 	options: RenderWithAppOptions = {},
 ): RenderResult & { app: AppHarness } {
-	const app = makeAppValue({ symbols: options.symbols });
+	const app = makeAppValue({
+		symbols: options.symbols,
+		sentences: options.sentences,
+	});
 	const value: AppContextValue = { ...app.value, ...overrides };
 	const result = render(
 		<AppContext.Provider value={value}>

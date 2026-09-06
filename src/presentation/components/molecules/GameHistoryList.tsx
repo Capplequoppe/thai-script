@@ -10,6 +10,7 @@ const MAX_ENTRIES_SHOWN = 10;
 const POOL_LABELS: Record<GameCardPool, string> = {
 	script: "Symbols",
 	vocab: "Words",
+	sentence: "Sentence Reading",
 };
 
 /**
