@@ -57,11 +57,20 @@ export type SentenceChallengeDirection = "listening" | "reading";
  */
 export type ToneChallengeDirection = "identification";
 
+/**
+ * Sentence composition is always "build the sentence from tiles" — never a
+ * direction choice. Kept as a single-literal type for the same reason as
+ * `ToneChallengeDirection`: every generic consumer of
+ * `item.challengeDirection` needs no special case for this kind.
+ */
+export type CompositionChallengeDirection = "build";
+
 export type GameChallengeDirection =
 	| SymbolChallengeDirection
 	| WordChallengeDirection
 	| SentenceChallengeDirection
-	| ToneChallengeDirection;
+	| ToneChallengeDirection
+	| CompositionChallengeDirection;
 
 /**
  * Content for one symbol, sourced from `script/data/symbols.ts` — never
@@ -137,6 +146,30 @@ export type GameItemContent =
 	| SentenceItemContent
 	| ToneItemContent;
 
+/**
+ * Content for one sentence-composition item, sourced from one of its
+ * `GrammarEntry`'s own `examples` — never from `generateDynamicApplication`,
+ * which calls `Math.random()` directly and bakes one fixed card at lesson
+ * time. Deliberately **not** part of `GameItemContent`: that type is
+ * exactly `GameItemSource.eligibleContent()`'s return type, and composition
+ * is never produced by a `GameItemSource` (see `selectCompositionRound`) —
+ * folding it in would force dead `"composition"` branches into
+ * `assignDirection`/`weightOfFor`, which composition items never reach.
+ *
+ * No `audioUrl`: grammar examples carry no per-example audio, and a field
+ * specified to always be `undefined` invites a future reader to try
+ * playing it anyway.
+ *
+ * `grammarId` is the item's identity — the key a round dedupes on.
+ */
+export interface CompositionItemContent {
+	readonly kind: "composition";
+	readonly grammarId: string;
+	readonly englishMeaning: string;
+	readonly tiles: readonly string[];
+	readonly correctOrder: readonly string[];
+}
+
 export type SymbolGameItem = SymbolItemContent & {
 	readonly challengeDirection: SymbolChallengeDirection;
 };
@@ -151,6 +184,10 @@ export type SentenceGameItem = SentenceItemContent & {
 
 export type ToneGameItem = ToneItemContent & {
 	readonly challengeDirection: ToneChallengeDirection;
+};
+
+export type CompositionGameItem = CompositionItemContent & {
+	readonly challengeDirection: CompositionChallengeDirection;
 };
 
 /**
@@ -169,11 +206,14 @@ export type SourcedGameItem =
 
 /**
  * One item as it is played. A discriminated union on `kind`; the
- * `"symbol"`, `"word"`, `"sentence"` and `"tone"` members are independent
- * variants, so every consumer that already narrows on `kind` is unaffected
- * by an addition.
+ * `"symbol"`, `"word"`, `"sentence"`, `"tone"` and `"composition"` members
+ * are independent variants, so every consumer that already narrows on
+ * `kind` is unaffected by an addition. `CompositionGameItem` never flows
+ * through the shared draw pipeline (`selectCompositionRound` builds it
+ * directly) — it is added only here, not to `SourcedGameItem` or
+ * `GameItemContent`.
  */
-export type GameItem = SourcedGameItem;
+export type GameItem = SourcedGameItem | CompositionGameItem;
 
 /** Supplies the eligible content for exactly one pool. */
 export interface GameItemSource {
