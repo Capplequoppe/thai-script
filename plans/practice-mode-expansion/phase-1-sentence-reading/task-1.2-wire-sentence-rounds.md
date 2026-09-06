@@ -13,7 +13,7 @@ depends_on: ["1.1"]
 size: small
 verify:
   - npm test -- src/application/use-cases/PlayGameUseCase
-  - npm run build
+  - npx tsc --noEmit -p tsconfig.domain-check.json
 ac_enforcement:
   - "AC1 -> a case in PlayGameUseCase.test.ts recording a rating for a sentence item, asserting the resulting GameRatingRecord's itemKey is sentence:{sentenceId} and does not collide with a symbol/word item sharing similar text"
   - "AC2 -> a case starting a round with pools including \"sentence\" against a fixture repository, asserting sentence items appear alongside symbol/word items in one round"

@@ -19,7 +19,7 @@ size: medium
 verify:
   - npm test -- src/domain/game
   - npm test -- src/domain/vocabulary
-  - npm run build
+  - npx tsc --noEmit -p tsconfig.domain-check.json
 ac_enforcement:
   - "AC1 -> a case in ToneGameItemSource.test.ts: a fixture VocabEntry with two syllables carrying tones, asserting the produced content's thaiWord/syllables match toneSyllablesOf(entry) exactly, and a toneIdentification card exists only for eligibility (a fixture where the card's own syllables field is absent/undefined still produces correct content, proving content never comes from the card)"
   - "AC2 -> a case: a vocab word with no toneIdentification card (no determinable tone) is excluded from tone eligibility, without affecting its eligibility for the Words pool"

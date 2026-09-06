@@ -13,7 +13,7 @@ depends_on: ["2.1"]
 size: medium
 verify:
   - npm test -- src/domain/game
-  - npm run build
+  - npx tsc --noEmit -p tsconfig.domain-check.json
 ac_enforcement:
   - "AC1 -> a case: a fixture GrammarEntry whose cards.application.correctExample-indexed example carries a `words` breakdown, asserting the produced item's tiles are a PERMUTATION of that example's Thai words (same multiset as correctOrder — exact order is AC5's job, not this one, since a 2-tile entry's shuffle is 50% likely to equal the original and a not.toEqual assertion here would be flaky)"
   - "AC2 -> a case: a fixture GrammarEntry whose correctExample-indexed example has no `words` but a LATER example does, asserting the function falls back to that example rather than skipping the entry"

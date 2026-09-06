@@ -20,11 +20,11 @@ verify:
   - npm test -- src/domain/game
   - npm test -- src/infrastructure/persistence/StorageGameHistoryRepository
   - npm test -- src/application/use-cases/PlayGameUseCase
-  - npm run build
+  - npx tsc --noEmit -p tsconfig.domain-check.json
 ac_enforcement:
   - "AC1 -> a case recording a rating for a composition item, asserting the itemKey is composition:{grammarId}"
   - "AC2 -> a case calling PlayGameUseCase.startCompositionRound with a fixture unlocked-grammar-points provider and a seeded rng, asserting it returns an EXACT, literal list of items for that fixture/seed — not merely that it matches whatever selectCompositionRound happens to return (a delegation-mirroring assertion passes for a broken wrapper as long as both sides share the bug)"
-  - "AC3 -> a case: constructing PlayGameUseCase WITHOUT the unlockedGrammarPoints argument is a TypeScript compile error (the parameter is required, not optional) — verified by the type signature itself, ac_tests: none needed beyond npm run build"
+  - "AC3 -> a case: constructing PlayGameUseCase WITHOUT the unlockedGrammarPoints argument is a TypeScript compile error (the parameter is required, not optional) — verified by the type signature itself, ac_tests: none needed beyond npx tsc --noEmit -p tsconfig.domain-check.json (application layer, in scope for this task's own gate)"
   - "AC4 -> the critical case, in StorageGameHistoryRepository.test.ts: a store seeded with (a) one legacy entry with no kind field at all, (b) one entry with kind:\"practice\", and (c) one entry with kind:\"composition\" and no pools field, all through the REAL LocalStorageJsonStore, asserts list() returns {status:\"ok\"} with all three entries present, the legacy entry's kind normalized to \"practice\", most-recent-first"
   - "AC5 -> a case: playing two rounds — one practice, one composition — back to back on the same PlayGameUseCase instance, asserting each produces its own correctly-typed history entry, neither overwriting the other"
   - "AC6 -> none"

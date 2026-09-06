@@ -13,7 +13,7 @@ depends_on: ["2.1"]
 size: small
 verify:
   - npm test -- src/application/use-cases/PlayGameUseCase
-  - npm run build
+  - npx tsc --noEmit -p tsconfig.domain-check.json
 ac_enforcement:
   - "AC1 -> a case recording a rating for a tone item, asserting the resulting itemKey is tone:{thaiWord} and does not collide with a word item for the same Thai word in the same round"
   - "AC2 -> a case starting a round with pools: [\"script\"] and includeTonePractice: true against a fixture repository (vocab cards present but \"vocab\" NOT in pools), asserting tone items still appear in the result"

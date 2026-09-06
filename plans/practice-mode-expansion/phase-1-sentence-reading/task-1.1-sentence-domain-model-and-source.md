@@ -13,19 +13,19 @@ covers:
   - src/infrastructure/persistence/StorageGameHistoryRepository.test.ts
 status: draft
 task_id: "1.1"
-task_status: complete
+task_status: pending
 depends_on: []
 size: large
 verify:
   - npm test -- src/domain/game
   - npm test -- src/infrastructure/persistence/StorageGameHistoryRepository
-  - npm run build
+  - npx tsc --noEmit -p tsconfig.domain-check.json
 ac_enforcement:
   - "AC1 -> a case in GameItemSelectionService.test.ts requesting pools including \"sentence\", asserting the returned items' kind/fields match SentenceGameItem's shape"
   - "AC2 -> a case in SentenceGameItemSource.test.ts: a fixture with two sentence cards for one sentenceId under differing SentenceProperty values, asserting the produced content's thaiText/englishMeaning/audioUrl come from the injected SentenceEntry, never from either card's own question/correctAnswer"
   - "AC3 -> a case asserting an audio-less sentence's assigned direction is \"reading\" while a counting RandomSource records ZERO calls for it (no randomness is spent, matching the existing audio-less-symbol rule exactly) — plus a case running SentenceGameItemSource against the REAL sentences.json, asserting every produced item is assigned \"reading\" (today's data has no audio at all; this is a regression guard, not a statistical sample)"
   - "AC4 -> a case with a seeded RandomSource asserting the exact sequence of assigned directions for a fixture of sentence items WITH audio, not a statistical sample"
-  - "AC5 -> all of the existing GameItemSelectionService.test.ts cases (script/vocab/mix, from the original game-modes plan) pass unmodified, enforced by npm run build + npm test rather than a rewritten expectation"
+  - "AC5 -> all of the existing GameItemSelectionService.test.ts cases (script/vocab/mix, from the original game-modes plan) pass unmodified, enforced by npm test (npx tsc --noEmit -p tsconfig.domain-check.json covers the domain-layer type-check; the plan's whole-app npm run build gate is deferred to task 1.3, the task that actually closes the union over presentation) rather than a rewritten expectation"
   - "AC6 -> a case: a sentence card whose sentenceId has no matching SentenceEntry in the injected data is excluded from eligibility, never turned into an item with empty/undefined content"
   - "AC7 -> a case in PlayGameUseCase.test.ts: with prioritizeWeakItems true and a seeded rng, a low-ease sentence card is drawn ahead of a high-ease one — proving itemKeyOfCard's new sentence branch actually contributes real weight, not the neutral fallback"
   - "AC8 -> the critical case, in StorageGameHistoryRepository.test.ts: an entry with pools: [\"sentence\"] saved through the REAL LocalStorageJsonStore (not InMemoryJsonStore) is read back as {status:\"ok\"} on a fresh repository instance, and a SEPARATE prior entry with pools: [\"script\"] already in the store is still present and unchanged afterward"
