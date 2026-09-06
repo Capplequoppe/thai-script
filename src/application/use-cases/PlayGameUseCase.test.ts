@@ -3,10 +3,12 @@ import type { GameHistoryRepository } from "../../domain/game/ports/GameHistoryR
 import { GameItemSelectionService } from "../../domain/game/services/GameItemSelectionService";
 import { SentenceGameItemSource } from "../../domain/game/services/SentenceGameItemSource";
 import { SymbolGameItemSource } from "../../domain/game/services/SymbolGameItemSource";
+import { ToneGameItemSource } from "../../domain/game/services/ToneGameItemSource";
 import { WordGameItemSource } from "../../domain/game/services/WordGameItemSource";
 import type {
 	GameHistoryEntry,
 	GameItem,
+	GameItemSource,
 	GameRoundConfig,
 	RandomSource,
 } from "../../domain/game/types";
@@ -66,6 +68,25 @@ function vocabCard(thai: string, id: string): VocabCard {
 	);
 }
 
+function toneCard(
+	thai: string,
+	id: string,
+	syllables?: { text: string; tone: string }[],
+): VocabCard {
+	return new VocabCard(
+		id,
+		`question ${id}`,
+		`${thai}`,
+		[`${thai}`],
+		SrsSchedule.initial(),
+		thai,
+		"toneIdentification",
+		"/audio/card-specific.mp3",
+		undefined,
+		syllables ?? [{ text: thai, tone: "1" }],
+	);
+}
+
 interface CardsByPool {
 	readonly script?: readonly ScriptPropertyCard[];
 	readonly sentence?: readonly SentenceReviewCard[];
@@ -115,16 +136,61 @@ const CONFIG: GameRoundConfig = {
 
 function setUp(
 	cardsByPool: CardsByPool = {},
-	sourcesFactory?: (repo: CardRepository) => any,
+	sourcesFactory?: (repo: CardRepository) => readonly GameItemSource[],
+	toneSourceFactory?: (repo: CardRepository, words: readonly VocabEntry[]) => ToneGameItemSource,
 ) {
 	const cardRepository = repositoryOf(cardsByPool);
 	const sources = sourcesFactory
 		? sourcesFactory(cardRepository)
 		: [new SymbolGameItemSource(cardRepository)];
-	const selectionService = new GameItemSelectionService(sources, cardRepository);
+	const toneSource = toneSourceFactory
+		? toneSourceFactory(cardRepository, [])
+		: undefined;
+	const selectionService = new GameItemSelectionService(
+		sources,
+		cardRepository,
+		toneSource,
+	);
 	const historyRepository = fakeHistoryRepository();
 	const useCase = new PlayGameUseCase(selectionService, historyRepository);
 	return { cardRepository, selectionService, historyRepository, useCase };
+}
+
+/**
+ * A round wired over all three pools with one card/entry each — the fixture
+ * shared by task 1.2's AC1-AC3, which each start from the identical
+ * three-pool setup and differ only in the round they play.
+ */
+function setUpFullyWiredGame() {
+	const symbolCards = SYMBOLS.slice(0, 2).map((symbol, index) =>
+		scriptCard(symbol.character, `card-${index}`),
+	);
+	const sentenceCards = [sentenceCard("sentence-1", "sentence-card-1")];
+	const vocabCards = [vocabCard("มา", "vocab:มา:thaiToEnglish")];
+	const sentenceEntry: SentenceEntry = {
+		id: "sentence-1",
+		thai: "มา กิน",
+		english: "come eat",
+		romanization: "maa gin",
+		words: ["มา", "กิน"],
+		difficulty: 1,
+		thai_audio_file: null,
+		cards: { readingComprehension: { distractors: [] } },
+	} as SentenceEntry;
+	const vocabEntry = {
+		thai: "มา",
+		english: "come",
+		difficulty: 1,
+	} as VocabEntry;
+
+	return setUp(
+		{ script: symbolCards, sentence: sentenceCards, vocab: vocabCards },
+		(cardRepository) => [
+			new SymbolGameItemSource(cardRepository),
+			new WordGameItemSource(cardRepository, [vocabEntry]),
+			new SentenceGameItemSource(cardRepository, [sentenceEntry]),
+		],
+	);
 }
 
 function rateAll(
@@ -314,41 +380,7 @@ describe("PlayGameUseCase", () => {
 	});
 
 	it("Task 1.2 AC1: a sentence item's itemKey is sentence:{sentenceId} and does not collide with symbol/word keys", () => {
-		const symbolCards = SYMBOLS.slice(0, 2).map((symbol, index) =>
-			scriptCard(symbol.character, `card-${index}`),
-		);
-		const sentenceCards = [sentenceCard("sentence-1", "sentence-card-1")];
-		const vocabCards = [vocabCard("มา", "vocab:มา:thaiToEnglish")];
-
-		const { useCase } = setUp(
-			{
-				script: symbolCards,
-				sentence: sentenceCards,
-				vocab: vocabCards,
-			},
-			(cardRepository) => [
-				new SymbolGameItemSource(cardRepository),
-				new WordGameItemSource(
-					cardRepository,
-					[{ thai: "มา", english: "come", difficulty: 1 } as VocabEntry],
-				),
-				new SentenceGameItemSource(
-					cardRepository,
-					[
-						{
-							id: "sentence-1",
-							thai: "มา กิน",
-							english: "come eat",
-							romanization: "maa gin",
-							words: ["มา", "กิน"],
-							difficulty: 1,
-							thai_audio_file: null,
-							cards: { readingComprehension: { distractors: [] } },
-						} as SentenceEntry,
-					],
-				),
-			],
-		);
+		const { useCase } = setUpFullyWiredGame();
 
 		const items = useCase.startRound(
 			{ pools: ["script", "vocab", "sentence"], itemCount: 4 },
@@ -363,7 +395,7 @@ describe("PlayGameUseCase", () => {
 		}
 
 		// Record ratings for items
-		let ratings: any[] = [];
+		let ratings: ReturnType<PlayGameUseCase["recordRating"]> = [];
 		items.forEach((_, index) => {
 			ratings = useCase.recordRating(items, ratings, index, 4);
 		});
@@ -381,41 +413,7 @@ describe("PlayGameUseCase", () => {
 	});
 
 	it("Task 1.2 AC2: starting a round with 'sentence' pool returns sentence items alongside symbol/word items", () => {
-		const symbolCards = SYMBOLS.slice(0, 2).map((symbol, index) =>
-			scriptCard(symbol.character, `card-${index}`),
-		);
-		const sentenceCards = [sentenceCard("sentence-1", "sentence-card-1")];
-		const vocabCards = [vocabCard("มา", "vocab:มา:thaiToEnglish")];
-
-		const { useCase } = setUp(
-			{
-				script: symbolCards,
-				sentence: sentenceCards,
-				vocab: vocabCards,
-			},
-			(cardRepository) => [
-				new SymbolGameItemSource(cardRepository),
-				new WordGameItemSource(
-					cardRepository,
-					[{ thai: "มา", english: "come", difficulty: 1 } as VocabEntry],
-				),
-				new SentenceGameItemSource(
-					cardRepository,
-					[
-						{
-							id: "sentence-1",
-							thai: "มา กิน",
-							english: "come eat",
-							romanization: "maa gin",
-							words: ["มา", "กิน"],
-							difficulty: 1,
-							thai_audio_file: null,
-							cards: { readingComprehension: { distractors: [] } },
-						} as SentenceEntry,
-					],
-				),
-			],
-		);
+		const { useCase } = setUpFullyWiredGame();
 
 		const items = useCase.startRound(
 			{
@@ -445,41 +443,7 @@ describe("PlayGameUseCase", () => {
 	});
 
 	it("Task 1.2 AC3: starting a round with only 'script' through the fully-wired service returns only symbol items", () => {
-		const symbolCards = SYMBOLS.slice(0, 2).map((symbol, index) =>
-			scriptCard(symbol.character, `card-${index}`),
-		);
-		const sentenceCards = [sentenceCard("sentence-1", "sentence-card-1")];
-		const vocabCards = [vocabCard("มา", "vocab:มา:thaiToEnglish")];
-
-		const { useCase } = setUp(
-			{
-				script: symbolCards,
-				sentence: sentenceCards,
-				vocab: vocabCards,
-			},
-			(cardRepository) => [
-				new SymbolGameItemSource(cardRepository),
-				new WordGameItemSource(
-					cardRepository,
-					[{ thai: "มา", english: "come", difficulty: 1 } as VocabEntry],
-				),
-				new SentenceGameItemSource(
-					cardRepository,
-					[
-						{
-							id: "sentence-1",
-							thai: "มา กิน",
-							english: "come eat",
-							romanization: "maa gin",
-							words: ["มา", "กิน"],
-							difficulty: 1,
-							thai_audio_file: null,
-							cards: { readingComprehension: { distractors: [] } },
-						} as SentenceEntry,
-					],
-				),
-			],
-		);
+		const { useCase } = setUpFullyWiredGame();
 
 		const items = useCase.startRound(
 			{ pools: ["script"], itemCount: 2 },
@@ -491,5 +455,117 @@ describe("PlayGameUseCase", () => {
 		items.forEach((item) => {
 			expect(item.kind).toBe("symbol");
 		});
+	});
+
+	it("Task 2.2 AC1: a tone item's itemKey is tone:{thaiWord} and does not collide with word item keys", () => {
+		const thaiWord = "มา";
+		const vocabEntry: VocabEntry = {
+			thai: thaiWord,
+			english: "come",
+			difficulty: 1,
+			syllables: [{ text: "มา", tone: "2" }],
+		} as VocabEntry;
+
+		const wordCards = [vocabCard(thaiWord, `vocab:${thaiWord}:thaiToEnglish`)];
+		const toneCards = [
+			toneCard(thaiWord, `vocab:${thaiWord}:toneIdentification`, [
+				{ text: "มา", tone: "2" },
+			]),
+		];
+
+		const { useCase } = setUp(
+			{ vocab: [...wordCards, ...toneCards] },
+			(cardRepository) => [
+				new WordGameItemSource(cardRepository, [vocabEntry]),
+			],
+			(cardRepository, _words) =>
+				new ToneGameItemSource(cardRepository, [vocabEntry]),
+		);
+
+		const items = useCase.startRound(
+			{
+				pools: ["vocab"],
+				itemCount: 10,
+				prioritizeWeakItems: false,
+				inputMode: "paper",
+				includeTonePractice: true,
+			},
+			scripted([0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 0.05]),
+		);
+
+		// Verify we have both word and tone items
+		const wordItem = items.find((item) => item.kind === "word");
+		const toneItem = items.find((item) => item.kind === "tone");
+		expect(wordItem).toBeDefined();
+		expect(toneItem).toBeDefined();
+
+		// Record ratings for all items
+		let ratings: ReturnType<PlayGameUseCase["recordRating"]> = [];
+		items.forEach((_, index) => {
+			ratings = useCase.recordRating(items, ratings, index, 4);
+		});
+
+		// Verify tone and word items have different keys and don't collide
+		const wordRating = ratings.find((r) => r.kind === "word");
+		const toneRating = ratings.find((r) => r.kind === "tone");
+
+		expect(wordRating?.itemKey).toBe(`word:${thaiWord}`);
+		expect(toneRating?.itemKey).toBe(`tone:${thaiWord}`);
+		expect(wordRating?.itemKey).not.toBe(toneRating?.itemKey);
+
+		// Verify all keys are unique
+		const recordedKeys = ratings.map((r) => r.itemKey);
+		expect(new Set(recordedKeys).size).toBe(recordedKeys.length);
+	});
+
+	it("Task 2.2 AC2: with pools: ['script'] and includeTonePractice: true, tone items still appear even though 'vocab' is not in pools", () => {
+		const thaiWord = "มา";
+		const vocabEntry: VocabEntry = {
+			thai: thaiWord,
+			english: "come",
+			difficulty: 1,
+			syllables: [{ text: "มา", tone: "2" }],
+		} as VocabEntry;
+
+		const symbolCards = SYMBOLS.slice(0, 2).map((symbol, index) =>
+			scriptCard(symbol.character, `card-${index}`),
+		);
+		const toneCards = [
+			toneCard(thaiWord, `vocab:${thaiWord}:toneIdentification`, [
+				{ text: "มา", tone: "2" },
+			]),
+		];
+
+		const { useCase } = setUp(
+			{ script: symbolCards, vocab: toneCards },
+			(cardRepository) => [new SymbolGameItemSource(cardRepository)],
+			(cardRepository, _words) =>
+				new ToneGameItemSource(cardRepository, [vocabEntry]),
+		);
+
+		// Request tone practice with only "script" pool, not "vocab"
+		const items = useCase.startRound(
+			{
+				pools: ["script"],
+				itemCount: 5,
+				prioritizeWeakItems: false,
+				inputMode: "paper",
+				includeTonePractice: true,
+			},
+			scripted([0.1, 0.2, 0.3, 0.4, 0.5]),
+		);
+
+		// Verify we have both symbol and tone items
+		const kinds = new Set(items.map((item) => item.kind));
+		expect(kinds).toContain("symbol");
+		expect(kinds).toContain("tone");
+
+		// Verify at least one tone item exists
+		const toneItem = items.find((item) => item.kind === "tone");
+		expect(toneItem).toBeDefined();
+		if (toneItem && toneItem.kind === "tone") {
+			expect(toneItem.thaiWord).toBe(thaiWord);
+			expect(toneItem.challengeDirection).toBe("identification");
+		}
 	});
 });
