@@ -33,6 +33,9 @@ const CORRECT_RATINGS: ReadonlySet<RecallRating> = new Set([4, 5]);
  * `word:`, even though both hold a Thai word: a round can include a word's
  * `WordGameItem` and its `ToneGameItem` at once (task 2.2 wires
  * `includeTonePractice`), and those must rate as two separate items too.
+ * A composition item's key is its `grammarId`, prefixed `composition:` —
+ * mechanical exhaustiveness only; task 3.2 wires composition rounds
+ * through this class's actual round-tracking.
  *
  * Exhaustive on `kind`: a new `GameItem` member must be a compile error
  * here rather than silently inheriting another kind's identity rule.
@@ -47,6 +50,8 @@ function itemKeyOf(item: GameItem): string {
 			return `sentence:${item.sentenceId}`;
 		case "tone":
 			return `tone:${item.thaiWord}`;
+		case "composition":
+			return `composition:${item.grammarId}`;
 		default: {
 			const _never: never = item;
 			throw new Error(`unhandled game item: ${JSON.stringify(_never)}`);
