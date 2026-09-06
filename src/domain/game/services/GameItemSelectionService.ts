@@ -113,9 +113,10 @@ export class GameItemSelectionService {
 
 /**
  * A card's own item key, mirroring `itemKeyOf` in `PlayGameUseCase.ts` and
- * `SymbolGameItemSource`/`WordGameItemSource`'s own eligibility grouping.
- * Duplicated rather than imported: neither source exports its dedupe key,
- * and this service's own scope does not extend to changing them.
+ * the eligibility grouping of `SymbolGameItemSource`, `WordGameItemSource`
+ * and `SentenceGameItemSource`. Duplicated rather than imported: no source
+ * exports its dedupe key, and this service's own scope does not extend to
+ * changing them.
  */
 function itemKeyOfCard(card: ReviewableCard): string | null {
 	if (card instanceof ScriptPropertyCard) {

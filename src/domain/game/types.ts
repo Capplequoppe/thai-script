@@ -89,7 +89,7 @@ export interface WordItemContent {
 
 /**
  * Content for one sentence, sourced from its `SentenceEntry` — never from
- * an individual `SentenceCard`, whose `question`/`correctAnswer` are
+ * an individual `SentenceReviewCard`, whose `question`/`correctAnswer` are
  * specific to the `SentenceProperty` that card reviews (a
  * `listeningComprehension` card and a `readingComprehension` card for the
  * same sentence disagree by design).
