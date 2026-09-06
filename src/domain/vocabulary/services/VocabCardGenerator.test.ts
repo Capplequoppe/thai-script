@@ -193,7 +193,7 @@ describe("generateVocabCards", () => {
 		expect(card?.choices.length).toBeGreaterThan(3);
 	});
 
-	it("spelling card choices include a separate tile for each occurrence of a repeated letter", () => {
+	it("spelling card choices contain a repeated letter's tile only once", () => {
 		const wordWithRepeatedLetter: VocabEntry = {
 			...testWord,
 			thai: "ยาย",
@@ -202,7 +202,7 @@ describe("generateVocabCards", () => {
 		const cards = generateVocabCards(wordWithRepeatedLetter, allWords);
 		const card = cards.find((c) => c.property === "spelling");
 		const occurrences = card?.choices.filter((ch) => ch === "ย").length;
-		expect(occurrences).toBe(2);
+		expect(occurrences).toBe(1);
 	});
 
 	it("does not produce spellingFromAudio card without audio", () => {

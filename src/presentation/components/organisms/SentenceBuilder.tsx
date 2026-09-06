@@ -14,9 +14,6 @@ interface SentenceBuilderProps {
 
 export function SentenceBuilder({ card, onAnswer }: SentenceBuilderProps) {
 	const [built, setBuilt] = useState<string[]>([]);
-	const [available, setAvailable] = useState<{ char: string; used: boolean }[]>(
-		[],
-	);
 	const [feedback, setFeedback] = useState<"correct" | "incorrect" | null>(
 		null,
 	);
@@ -38,7 +35,6 @@ export function SentenceBuilder({ card, onAnswer }: SentenceBuilderProps) {
 	// biome-ignore lint/correctness/useExhaustiveDependencies: card.id resets state when the card changes
 	useEffect(() => {
 		setBuilt([]);
-		setAvailable(card.choices.map((ch) => ({ char: ch, used: false })));
 		setFeedback(null);
 		displayedAtRef.current = Date.now();
 	}, [card.id]);
@@ -48,37 +44,21 @@ export function SentenceBuilder({ card, onAnswer }: SentenceBuilderProps) {
 		playAudio();
 	}, [playAudio]);
 
+	// Tiles are never disabled after a tap: a word's tile pool holds only one
+	// tile per distinct character (see generateSpellingChoices), so a letter
+	// that occurs more than once in the word must be tappable more than once
+	// to spell it — the grid works like a keyboard, not a one-time-use pool.
 	const handleTap = useCallback(
-		(index: number) => {
+		(char: string) => {
 			if (feedback) return;
-			setAvailable((prev) =>
-				prev.map((item, i) => (i === index ? { ...item, used: true } : item)),
-			);
-			const item = available[index];
-			if (item) setBuilt((prev) => [...prev, item.char]);
+			setBuilt((prev) => [...prev, char]);
 		},
-		[available, feedback],
+		[feedback],
 	);
 
 	const handleBackspace = useCallback(() => {
 		if (feedback || built.length === 0) return;
-		const lastChar = built[built.length - 1];
 		setBuilt((prev) => prev.slice(0, -1));
-		// Un-use the last matching used character
-		setAvailable((prev) => {
-			let idx = -1;
-			for (let i = prev.length - 1; i >= 0; i--) {
-				const entry = prev[i];
-				if (entry?.used && entry.char === lastChar) {
-					idx = i;
-					break;
-				}
-			}
-			if (idx === -1) return prev;
-			return prev.map((item, i) =>
-				i === idx ? { ...item, used: false } : item,
-			);
-		});
 	}, [built, feedback]);
 
 	const handleSubmit = useCallback(() => {
@@ -170,24 +150,20 @@ export function SentenceBuilder({ card, onAnswer }: SentenceBuilderProps) {
 
 			{/* Character grid */}
 			<div className="flex flex-wrap gap-2 justify-center">
-				{available.map((item, i) => (
+				{card.choices.map((choice, i) => (
 					<button
-						key={`${item.char}-${i}`}
+						// biome-ignore lint/suspicious/noArrayIndexKey: choices is a fixed tile pool for this card, index keeps each tile stable
+						key={`${choice}-${i}`}
 						type="button"
-						disabled={item.used || feedback !== null}
-						onClick={() => handleTap(i)}
+						disabled={feedback !== null}
+						onClick={() => handleTap(choice)}
 						className="thai text-lg font-semibold w-10 h-10 rounded-lg flex items-center justify-center transition-all"
 						style={{
-							background: item.used
-								? "var(--color-border)"
-								: "var(--color-surface)",
-							color: item.used
-								? "var(--color-text-muted)"
-								: "var(--color-text)",
-							opacity: item.used ? 0.4 : 1,
+							background: "var(--color-surface)",
+							color: "var(--color-text)",
 						}}
 					>
-						{item.char}
+						{choice}
 					</button>
 				))}
 			</div>
