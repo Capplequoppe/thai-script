@@ -12,6 +12,7 @@ import type {
 	GameRoundConfig,
 	RandomSource,
 } from "../../domain/game/types";
+import type { GrammarEntry } from "../../domain/grammar/types";
 import type { CardRepository } from "../../domain/ports/CardRepository";
 import { consonants } from "../../domain/script/data/symbols";
 import { ScriptPropertyCard } from "../../domain/script/entities/ScriptPropertyCard";
@@ -137,7 +138,11 @@ const CONFIG: GameRoundConfig = {
 function setUp(
 	cardsByPool: CardsByPool = {},
 	sourcesFactory?: (repo: CardRepository) => readonly GameItemSource[],
-	toneSourceFactory?: (repo: CardRepository, words: readonly VocabEntry[]) => ToneGameItemSource,
+	toneSourceFactory?: (
+		repo: CardRepository,
+		words: readonly VocabEntry[],
+	) => ToneGameItemSource,
+	unlockedGrammarPoints?: () => readonly GrammarEntry[],
 ) {
 	const cardRepository = repositoryOf(cardsByPool);
 	const sources = sourcesFactory
@@ -152,7 +157,11 @@ function setUp(
 		toneSource,
 	);
 	const historyRepository = fakeHistoryRepository();
-	const useCase = new PlayGameUseCase(selectionService, historyRepository);
+	const useCase = new PlayGameUseCase(
+		selectionService,
+		historyRepository,
+		unlockedGrammarPoints ?? (() => []),
+	);
 	return { cardRepository, selectionService, historyRepository, useCase };
 }
 
@@ -238,7 +247,7 @@ describe("PlayGameUseCase", () => {
 		const allRatings: readonly RecallRating[] = [1, 2, 3, 4, 5];
 		const ratings = rateAll(useCase, items, allRatings);
 		const summary = useCase.finishRound(ratings);
-		useCase.saveHistory(CONFIG, summary);
+		useCase.saveHistory({ kind: "practice", ...CONFIG }, summary);
 
 		const after = cardRepository
 			.findAll("script")
@@ -354,8 +363,8 @@ describe("PlayGameUseCase", () => {
 		const ratings = rateAll(useCase, items, [4, 5]);
 		const summary = useCase.finishRound(ratings);
 
-		useCase.saveHistory({ ...CONFIG, itemCount: 2 }, summary);
-		useCase.saveHistory({ ...CONFIG, itemCount: 2 }, summary);
+		useCase.saveHistory({ kind: "practice", ...CONFIG, itemCount: 2 }, summary);
+		useCase.saveHistory({ kind: "practice", ...CONFIG, itemCount: 2 }, summary);
 
 		expect(historyRepository.entries).toHaveLength(1);
 
@@ -374,6 +383,7 @@ describe("PlayGameUseCase", () => {
 		const useCase = new PlayGameUseCase(
 			new GameItemSelectionService([]),
 			failingHistoryRepository,
+			() => [],
 		);
 
 		expect(useCase.getHistory()).toEqual({ status: "unavailable" });
@@ -567,5 +577,158 @@ describe("PlayGameUseCase", () => {
 			expect(toneItem.thaiWord).toBe(thaiWord);
 			expect(toneItem.challengeDirection).toBe("identification");
 		}
+	});
+});
+
+/**
+ * One grammar entry with a single, fully-glossed example — the shape
+ * `selectCompositionRound` builds a composition item from.
+ */
+function grammarEntry(
+	id: string,
+	english: string,
+	words: readonly string[],
+): GrammarEntry {
+	return {
+		id,
+		title: `title ${id}`,
+		explanation: "explanation",
+		pattern: "pattern",
+		lessonNumber: 1,
+		prerequisites: { minVocabByClass: {} },
+		examples: [
+			{
+				thai: words.join(""),
+				romanization: "romanization",
+				english,
+				words: words.map((thai) => ({ thai, gloss: `gloss ${thai}` })),
+			},
+		],
+		cards: {
+			recognition: { question: "q", correctAnswer: "a", distractors: [] },
+			application: { question: "q", correctExample: 0, incorrectExamples: [] },
+		},
+	};
+}
+
+const GRAMMAR_FIXTURE: readonly GrammarEntry[] = [
+	grammarEntry("grammar-eat", "I eat rice", ["ผม", "กิน", "ข้าว"]),
+	grammarEntry("grammar-go", "He goes", ["เขา", "ไป"]),
+];
+
+/**
+ * The rng consumed by `selectCompositionRound` over `GRAMMAR_FIXTURE`, in
+ * order: three draws shuffling the first entry's tiles, two shuffling the
+ * second's, then two choosing the round's items out of the two candidates.
+ */
+const COMPOSITION_SEED = [0.9, 0.0, 0.0, 0.5, 0.0, 0.6, 0.0];
+
+describe("PlayGameUseCase composition rounds", () => {
+	it("Task 3.2 AC2: startCompositionRound returns exactly this round for this fixture and seed", () => {
+		const { useCase } = setUp({}, undefined, undefined, () => GRAMMAR_FIXTURE);
+
+		const items = useCase.startCompositionRound(2, scripted(COMPOSITION_SEED));
+
+		// Asserted as a literal, not against a second call to
+		// `selectCompositionRound`: a delegation-mirroring assertion passes
+		// for a broken wrapper as long as both sides share the bug.
+		expect(items).toEqual([
+			{
+				kind: "composition",
+				grammarId: "grammar-go",
+				englishMeaning: "He goes",
+				tiles: ["ไป", "เขา"],
+				correctOrder: ["เขา", "ไป"],
+				challengeDirection: "build",
+			},
+			{
+				kind: "composition",
+				grammarId: "grammar-eat",
+				englishMeaning: "I eat rice",
+				tiles: ["ข้าว", "ผม", "กิน"],
+				correctOrder: ["ผม", "กิน", "ข้าว"],
+				challengeDirection: "build",
+			},
+		]);
+	});
+
+	it("Task 3.2 AC2b: each round re-reads the unlocked grammar points", () => {
+		let unlocked: readonly GrammarEntry[] = [];
+		const { useCase } = setUp({}, undefined, undefined, () => unlocked);
+
+		expect(useCase.startCompositionRound(2, scripted([0]))).toEqual([]);
+
+		unlocked = GRAMMAR_FIXTURE;
+		expect(
+			useCase
+				.startCompositionRound(2, scripted(COMPOSITION_SEED))
+				.map((item) => (item.kind === "composition" ? item.grammarId : null)),
+		).toEqual(["grammar-go", "grammar-eat"]);
+	});
+
+	it("Task 3.2 AC1: a composition item's itemKey is its grammarId prefixed composition", () => {
+		const { useCase } = setUp({}, undefined, undefined, () => GRAMMAR_FIXTURE);
+		const items = useCase.startCompositionRound(2, scripted(COMPOSITION_SEED));
+
+		const ratings = rateAll(useCase, items, [5, 3]);
+
+		expect(ratings.map((record) => record.itemKey)).toEqual([
+			"composition:grammar-go",
+			"composition:grammar-eat",
+		]);
+		expect(ratings.every((record) => record.kind === "composition")).toBe(true);
+	});
+
+	it("Task 3.2 AC5: a practice round and a composition round on one instance each save their own entry", () => {
+		const cards = SYMBOLS.slice(0, 2).map((symbol, index) =>
+			scriptCard(symbol.character, `card-${index}`),
+		);
+		const { useCase, historyRepository } = setUp(
+			{ script: cards },
+			undefined,
+			undefined,
+			() => GRAMMAR_FIXTURE,
+		);
+
+		const practiceItems = useCase.startRound(
+			{ ...CONFIG, itemCount: 2 },
+			scripted([0.1, 0.6]),
+		);
+		const practiceSummary = useCase.finishRound(
+			rateAll(useCase, practiceItems, [4, 5]),
+		);
+		useCase.saveHistory(
+			{ kind: "practice", pools: ["script"], itemCount: practiceItems.length },
+			practiceSummary,
+		);
+
+		const compositionItems = useCase.startCompositionRound(
+			2,
+			scripted(COMPOSITION_SEED),
+		);
+		const compositionSummary = useCase.finishRound(
+			rateAll(useCase, compositionItems, [2, 3]),
+		);
+		useCase.saveHistory(
+			{ kind: "composition", itemCount: compositionItems.length },
+			compositionSummary,
+		);
+
+		expect(historyRepository.entries).toHaveLength(2);
+		const [practiceEntry, compositionEntry] = historyRepository.entries;
+
+		expect(practiceEntry).toMatchObject({
+			kind: "practice",
+			pools: ["script"],
+			itemCount: 2,
+			summary: practiceSummary,
+		});
+		expect(compositionEntry).toMatchObject({
+			kind: "composition",
+			itemCount: 2,
+			summary: compositionSummary,
+		});
+		expect(compositionEntry && "pools" in compositionEntry).toBe(false);
+		expect(practiceEntry?.id).not.toBe(compositionEntry?.id);
 	});
 });

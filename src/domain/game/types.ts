@@ -261,11 +261,49 @@ export interface GameRoundSummary {
 	readonly accuracy: number | null;
 }
 
-export interface GameHistoryEntry {
+interface GameHistoryEntryBase {
 	readonly id: string;
 	/** ISO 8601 timestamp. */
 	readonly playedAt: string;
-	readonly pools: readonly GameCardPool[];
 	readonly itemCount: number;
 	readonly summary: GameRoundSummary;
 }
+
+/** One finished pool-mixing practice round. */
+export interface PracticeHistoryEntry extends GameHistoryEntryBase {
+	readonly kind: "practice";
+	readonly pools: readonly GameCardPool[];
+}
+
+/**
+ * One finished sentence-composition round. Carries no `pools`: composition
+ * draws from currently-unlocked grammar points, which is not a
+ * `GameCardPool` partition at all (see `selectCompositionRound`).
+ */
+export interface CompositionHistoryEntry extends GameHistoryEntryBase {
+	readonly kind: "composition";
+}
+
+/**
+ * A discriminated union on `kind`, and `kind` is **required** on both
+ * variants. Entries persisted before this field existed are normalized to
+ * `"practice"` once, on read, by `StorageGameHistoryRepository.list()` — so
+ * no consumer anywhere ever sees an entry without a `kind`, and none needs
+ * its own copy of that back-compat rule. An *optional* discriminant would
+ * be the weak version of this: `entry.kind === "practice"` is `false` for
+ * every legacy entry, which is exactly the shape a consumer gets wrong by
+ * writing the natural code.
+ */
+export type GameHistoryEntry = PracticeHistoryEntry | CompositionHistoryEntry;
+
+/**
+ * What a caller hands `PlayGameUseCase.saveHistory`: the round-shaped half
+ * of a `GameHistoryEntry`, with the use case supplying the identity and
+ * timestamp. Derived from the entry types by `Omit` rather than restated,
+ * so the two can never drift; and discriminated, so a caller must say which
+ * kind of round it just played instead of defaulting into the practice
+ * shape.
+ */
+export type PlayedRound =
+	| Omit<PracticeHistoryEntry, "id" | "playedAt" | "summary">
+	| Omit<CompositionHistoryEntry, "id" | "playedAt" | "summary">;

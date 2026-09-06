@@ -2,15 +2,17 @@ import type {
 	GameHistoryListResult,
 	GameHistoryRepository,
 } from "../../domain/game/ports/GameHistoryRepository";
+import { selectCompositionRound } from "../../domain/game/services/compositionSelection";
 import type { GameItemSelectionService } from "../../domain/game/services/GameItemSelectionService";
 import type {
-	GameHistoryEntry,
 	GameItem,
 	GameRatingRecord,
 	GameRoundConfig,
 	GameRoundSummary,
+	PlayedRound,
 	RandomSource,
 } from "../../domain/game/types";
+import type { GrammarEntry } from "../../domain/grammar/types";
 import type { RecallRating } from "../../domain/shared/types";
 
 const ALL_RATINGS: readonly RecallRating[] = [1, 2, 3, 4, 5];
@@ -67,11 +69,14 @@ function itemKeyOf(item: GameItem): string {
  * wires this up as one long-lived singleton; a singleton holding mutable
  * per-round state would leak ratings between rounds and between mounts.
  *
- * No `CardRepository` is ever received here — only `GameItemSelectionService`
- * (which wraps it) and `GameHistoryRepository`. There is therefore no code
- * path through this use case that could ever call `CardRepository.save` or
- * `ReviewableCard.recordReview`: the SRS-isolation guarantee is structural,
- * not merely a rule nobody happens to break.
+ * No `CardRepository` — and no object able to write one — is ever received
+ * here: only `GameItemSelectionService` (which wraps one, read-only), a
+ * `GameHistoryRepository`, and a read-only capability for unlocked grammar
+ * points (a function returning data, deliberately not `GrammarService`
+ * itself). There is therefore no code path through this use case that could
+ * ever call `CardRepository.save` or `ReviewableCard.recordReview`: the
+ * SRS-isolation guarantee is structural, not merely a rule nobody happens
+ * to break.
  */
 export class PlayGameUseCase {
 	/**
@@ -87,13 +92,34 @@ export class PlayGameUseCase {
 	 */
 	private readonly savedSummaries = new WeakSet<GameRoundSummary>();
 
+	/**
+	 * `unlockedGrammarPoints` is required, not optional: an optional
+	 * provider makes a missed wiring site indistinguishable from "nothing is
+	 * unlocked yet", which would reach a learner as a permanently empty
+	 * composition mode with a green test suite. Required makes the omission
+	 * a compile error at every construction site instead. It is a function,
+	 * called fresh per round, because unlock status changes as the learner
+	 * graduates vocabulary and learns grammar between rounds.
+	 */
 	constructor(
 		private readonly selectionService: GameItemSelectionService,
 		private readonly historyRepository: GameHistoryRepository,
+		private readonly unlockedGrammarPoints: () => readonly GrammarEntry[],
 	) {}
 
 	startRound(config: GameRoundConfig, rng?: RandomSource): GameItem[] {
 		return this.selectionService.selectRound(config, rng);
+	}
+
+	/**
+	 * A composition round over whatever is unlocked *now*. Not a
+	 * `GameRoundConfig`: composition has no pools, no input mode and no
+	 * weak-item weighting to configure — only how many items to draw. The
+	 * unlocked set is often tiny (frequently one entry), so a short round is
+	 * expected behavior here, not a symptom (see CONTEXT.md).
+	 */
+	startCompositionRound(count: number, rng?: RandomSource): GameItem[] {
+		return selectCompositionRound(this.unlockedGrammarPoints(), count, rng);
 	}
 
 	/**
@@ -149,21 +175,22 @@ export class PlayGameUseCase {
 		return { ratingCounts, ratedCount, accuracy };
 	}
 
-	saveHistory(
-		config: Pick<GameRoundConfig, "pools" | "itemCount">,
-		summary: GameRoundSummary,
-	): void {
+	/**
+	 * `round` is discriminated on `kind`, so the caller states which kind of
+	 * round it just played rather than falling into the practice shape by
+	 * default — a composition round saved as a practice entry would be
+	 * indistinguishable from a real one in history.
+	 */
+	saveHistory(round: PlayedRound, summary: GameRoundSummary): void {
 		if (this.savedSummaries.has(summary)) return;
 		this.savedSummaries.add(summary);
 
-		const entry: GameHistoryEntry = {
+		this.historyRepository.save({
+			...round,
 			id: crypto.randomUUID(),
 			playedAt: new Date().toISOString(),
-			pools: config.pools,
-			itemCount: config.itemCount,
 			summary,
-		};
-		this.historyRepository.save(entry);
+		});
 	}
 
 	getHistory(): GameHistoryListResult {

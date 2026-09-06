@@ -114,6 +114,11 @@ const gameUseCase = new PlayGameUseCase(
 		new ToneGameItemSource(cardRepo, vocabularyData as VocabEntry[]),
 	),
 	gameHistoryRepo,
+	// Read-only, and read fresh per round: what is unlocked changes as the
+	// learner graduates vocabulary and learns grammar. The use case receives
+	// this closure, never `grammarService` itself, so it stays incapable of
+	// writing a card (SRS isolation, see PlayGameUseCase's class doc).
+	() => grammarService.getUnlockedGrammarPoints(),
 );
 
 export interface AppContextValue {

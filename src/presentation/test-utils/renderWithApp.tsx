@@ -302,6 +302,7 @@ export function makeHistoryEntry(
 	overrides: Partial<GameHistoryEntry> = {},
 ): GameHistoryEntry {
 	return {
+		kind: "practice",
 		id: "entry-1",
 		playedAt: "2026-09-01T10:00:00.000Z",
 		pools: ["script"],
@@ -342,6 +343,9 @@ export function makeGame(options: MakeGameOptions = {}): PlayGameUseCase {
 		new StorageGameHistoryRepository(
 			options.historyStore ?? new InMemoryJsonStore<GameHistoryEntry[]>(),
 		),
+		// No composition rounds from this factory: it wires one symbol source
+		// and no grammar, so an empty unlocked set is the honest answer.
+		() => [],
 	);
 }
 
@@ -351,13 +355,25 @@ class FixedRoundGame extends PlayGameUseCase {
 		selection: GameItemSelectionService,
 		historyRepository: GameHistoryRepository,
 	) {
-		super(selection, historyRepository);
+		super(selection, historyRepository, () => []);
 	}
 
 	override startRound(config: GameRoundConfig): GameItem[] {
+		return this.fixedRound(config.itemCount);
+	}
+
+	/**
+	 * Composition rounds are fixed the same way practice rounds are, so a
+	 * page test can drive either mode from one list of pre-built items.
+	 */
+	override startCompositionRound(count: number): GameItem[] {
+		return this.fixedRound(count);
+	}
+
+	private fixedRound(count: number): GameItem[] {
 		return this.fixedItems.slice(
 			0,
-			normalizeRequestedCount(config.itemCount, this.fixedItems.length),
+			normalizeRequestedCount(count, this.fixedItems.length),
 		);
 	}
 }
@@ -465,6 +481,10 @@ export function makeAppValue(options: MakeAppValueOptions = {}): AppHarness {
 			new ToneGameItemSource(cardRepo, vocabularyData as VocabEntry[]),
 		),
 		new StorageGameHistoryRepository(historyStore),
+		// The real `GrammarService`, exactly as `AppContext.tsx` wires it — a
+		// harness that stubs this diverges from production on the one
+		// question composition mode asks (see task 1.3's own note above).
+		() => grammarService.getUnlockedGrammarPoints(),
 	);
 
 	const value: AppContextValue = {

@@ -2,7 +2,11 @@ import type {
 	GameHistoryListResult,
 	GameHistoryRepository,
 } from "../../domain/game/ports/GameHistoryRepository";
-import type { GameCardPool, GameHistoryEntry } from "../../domain/game/types";
+import type {
+	GameCardPool,
+	GameHistoryEntry,
+	PracticeHistoryEntry,
+} from "../../domain/game/types";
 import type { JsonShapeGuard, JsonStore } from "./JsonStore";
 
 /**
@@ -61,24 +65,82 @@ function hasGameRoundSummaryShape(value: unknown): boolean {
 }
 
 /**
+ * The `kind` allowlist, derived from `GameHistoryEntry` the same way — and
+ * for the same reason — as `GAME_CARD_POOL_ALLOWLIST` is derived from
+ * `GameCardPool`: a new history-entry variant must be a compile error here
+ * rather than a blob this guard silently rejects.
+ */
+const GAME_HISTORY_KIND_ALLOWLIST: Record<GameHistoryEntry["kind"], true> = {
+	practice: true,
+	composition: true,
+};
+
+const GAME_HISTORY_KINDS: ReadonlySet<string> = new Set(
+	Object.keys(GAME_HISTORY_KIND_ALLOWLIST),
+);
+
+/**
+ * One entry as it may be found in the store. `kind` is required on the
+ * domain type but was not written at all before this plan, so the persisted
+ * shape is the domain shape plus that one legacy variant — named here so
+ * the normalization below is a total function over what the guard accepts,
+ * not a cast.
+ */
+type PersistedGameHistoryEntry =
+	| GameHistoryEntry
+	| Omit<PracticeHistoryEntry, "kind">;
+
+/**
  * Shallow shape check for one persisted `GameHistoryEntry` — enough to
  * reject a corrupt or foreign blob, not a full domain-validity check.
+ *
+ * `kind` may be absent (every entry written before the field existed),
+ * `"practice"` or `"composition"`; anything else is rejected. A composition
+ * entry carries no `pools` — requiring the field regardless would reject
+ * the entire stored array the first time a composition round was saved,
+ * which is the same whole-history loss the pool allowlist above exists to
+ * prevent.
  */
-function isGameHistoryEntry(value: unknown): value is GameHistoryEntry {
+function isGameHistoryEntry(
+	value: unknown,
+): value is PersistedGameHistoryEntry {
 	if (value === null || typeof value !== "object") return false;
 	const entry = value as Record<string, unknown>;
+
+	if (entry.kind !== undefined) {
+		if (typeof entry.kind !== "string") return false;
+		if (!GAME_HISTORY_KINDS.has(entry.kind)) return false;
+	}
+
+	const hasPools =
+		entry.kind === "composition" ||
+		(Array.isArray(entry.pools) && entry.pools.every(isGameCardPool));
 
 	return (
 		typeof entry.id === "string" &&
 		typeof entry.playedAt === "string" &&
 		typeof entry.itemCount === "number" &&
-		Array.isArray(entry.pools) &&
-		entry.pools.every(isGameCardPool) &&
+		hasPools &&
 		hasGameRoundSummaryShape(entry.summary)
 	);
 }
 
-/** Shape guard for the `JsonStore<GameHistoryEntry[]>` this repository is built over. */
+/**
+ * Fills in `kind: "practice"` for an entry persisted before that field
+ * existed. The one and only place that rule lives — see
+ * `GameHistoryEntry`'s own doc comment.
+ */
+function withKind(entry: PersistedGameHistoryEntry): GameHistoryEntry {
+	return "kind" in entry ? entry : { ...entry, kind: "practice" };
+}
+
+/**
+ * Shape guard for the `JsonStore<GameHistoryEntry[]>` this repository is
+ * built over. The store is typed in the *domain* shape because that is what
+ * every holder of one passes around; what it accepts is the slightly wider
+ * persisted shape, and `list()` — the only code that ever reads a loaded
+ * value — closes that gap by normalizing before returning.
+ */
 export const isGameHistoryEntryArray: JsonShapeGuard<GameHistoryEntry[]> = (
 	value,
 ): value is GameHistoryEntry[] =>
@@ -98,9 +160,9 @@ export class StorageGameHistoryRepository implements GameHistoryRepository {
 		if (result.status === "empty") return { status: "ok", entries: [] };
 		return {
 			status: "ok",
-			entries: [...result.value].sort((a, b) =>
-				b.playedAt.localeCompare(a.playedAt),
-			),
+			entries: (result.value as readonly PersistedGameHistoryEntry[])
+				.map(withKind)
+				.sort((a, b) => b.playedAt.localeCompare(a.playedAt)),
 		};
 	}
 
