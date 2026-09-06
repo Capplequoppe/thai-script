@@ -113,11 +113,11 @@ const allSpellingChars = [
 /**
  * Generate a shuffled character grid for a spelling quiz.
  *
- * Includes one tile per occurrence of each character in the word (so a
- * word with a repeated letter gets a tile for each occurrence — tapping a
- * tile only ever uses up that one tile, never blocks a later occurrence of
- * the same letter) plus distractors, all kept distinct from the word's own
- * characters.
+ * Includes one tile per distinct character in the word — a repeated letter
+ * (e.g. the two ส in "สวัสดี") gets a single tile, and the spelling-grid UI
+ * lets that tile be tapped again for its later occurrence rather than
+ * disabling it after one use — plus distractors, all kept distinct from the
+ * word's own characters.
  *
  * Distractors are deliberately phonetically confusable — consonants sharing
  * the word's consonants' initial or final sound, and vowels sharing the
@@ -181,7 +181,7 @@ function generateSpellingChoices(
 	}
 
 	// Shuffle
-	const choices = [...wordChars, ...distractors];
+	const choices = [...wordCharSet, ...distractors];
 	for (let i = choices.length - 1; i > 0; i--) {
 		const j = Math.floor(Math.random() * (i + 1));
 		[choices[i], choices[j]] = [choices[j] as string, choices[i] as string];
