@@ -30,6 +30,31 @@ ac_enforcement:
   - "AC7 -> a case in PlayGameUseCase.test.ts: with prioritizeWeakItems true and a seeded rng, a low-ease sentence card is drawn ahead of a high-ease one — proving itemKeyOfCard's new sentence branch actually contributes real weight, not the neutral fallback"
   - "AC8 -> the critical case, in StorageGameHistoryRepository.test.ts: an entry with pools: [\"sentence\"] saved through the REAL LocalStorageJsonStore (not InMemoryJsonStore) is read back as {status:\"ok\"} on a fresh repository instance, and a SEPARATE prior entry with pools: [\"script\"] already in the store is still present and unchanged afterward"
   - "AC9 -> none — exhaustiveness is a compile-time property (a `never`-typed default branch), not something a runtime test observes; verified by reading the four function bodies, the same way the original plan's AC6 (domain purity) was verified by src/domain/game/architecture.test.ts rather than a behavioral test"
+ac_tests:
+  - "AC1 -> src/domain/game/services/GameItemSelectionService.test.ts::AC1: returns sentence items with the SentenceGameItem shape for pools including 'sentence'"
+  - "AC2 -> src/domain/game/services/SentenceGameItemSource.test.ts::AC2: takes content from the SentenceEntry, never from any card's own fields"
+  - "AC3 -> src/domain/game/services/GameItemSelectionService.test.ts::AC3: an audio-less sentence is 'reading' and spends no randomness on its direction"
+  - "AC4 -> src/domain/game/services/GameItemSelectionService.test.ts::AC4: assigns the exact sentence direction sequence a seeded source dictates"
+  - "AC5 -> none"
+  - "AC6 -> src/domain/game/services/SentenceGameItemSource.test.ts::AC6: excludes a sentence card whose sentenceId has no matching entry"
+  - "AC7 -> src/domain/game/services/GameItemSelectionService.test.ts::AC7: weak-item weighting draws a low-ease sentence ahead of a high-ease one"
+  - "AC8 -> src/infrastructure/persistence/StorageGameHistoryRepository.test.ts::AC8: a sentence-pool entry survives the real store and leaves an existing entry untouched"
+  - "AC9 -> none"
+red_proof:
+  - "AC3 -> In GameItemSelectionService.assignDirection's \"sentence\" case, deleted the `!content.audioUrl ? \"reading\" :` guard so an audio-less sentence spends a roll like any other. Ran the au… [see red-proofs/]"
+  - "AC4 -> In assignDirection's \"sentence\" case, swapped the two arms of the 50/50 draw (`rng() < 0.5 ? \"reading\" : \"listening\"`), keeping the audio-less guard intact — so only the seeded audi… [see red-proofs/]"
+  - "AC1 -> Same arm-swap mutation as AC4 (one mutation, two criteria): AC1's case asserts the whole returned item by deep equality, including the direction the seeded source dictates, so the s… [see red-proofs/]"
+  - "AC7 -> Deleted the `if (card instanceof SentenceReviewCard) return \\`sentence:${card.sentenceId}\\`;` branch from GameItemSelectionService's itemKeyOfCard, so sentence cards fall through to… [see red-proofs/]"
+  - "AC2 -> In SentenceGameItemSource.eligibleContent, sourced the content from the card instead of the entry (`thaiText: card.question, englishMeaning: card.correctAnswer`) — exactly the mista… [see red-proofs/]"
+  - "AC6 -> In SentenceGameItemSource.eligibleContent, removed the `if (!entry) continue;` exclusion and emitted the item anyway with `thaiText: entry?.thai ?? \"\"` — the empty-content item the… [see red-proofs/]"
+  - "AC8 -> In StorageGameHistoryRepository, replaced the derived allowlist with the pre-fix hand-maintained pair (`new Set([\"script\", \"vocab\"])`) while leaving the Record anchor in place, repr… [see red-proofs/]"
+red_proof_waived:
+  - "AC5 -> traced: \"Every existing case in this file passes unmodified\" is a property of the diff, not of any one test: there is nothing to mutate that would make it red without also making it meaning… [see red-proofs/]"
+  - "AC9 -> traced: Exhaustiveness is a compile-time property — the `const _never: never = x` default branches — and cannot fail a runtime assertion, so no red is producible. Verified by reading all fo… [see red-proofs/]"
+lint:
+  before: 0
+  after: 0
+  outcome: unsupported
 generated: {by: claude-sonnet-5/agent, at: 2026-09-05}
 profile_version: 1
 ---
