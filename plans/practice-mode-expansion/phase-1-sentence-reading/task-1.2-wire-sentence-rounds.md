@@ -8,7 +8,7 @@ covers:
   - src/presentation/context/AppContext.tsx
 status: draft
 task_id: "1.2"
-task_status: pending
+task_status: complete
 depends_on: ["1.1"]
 size: small
 verify:
@@ -18,6 +18,18 @@ ac_enforcement:
   - "AC1 -> a case in PlayGameUseCase.test.ts recording a rating for a sentence item, asserting the resulting GameRatingRecord's itemKey is sentence:{sentenceId} and does not collide with a symbol/word item sharing similar text"
   - "AC2 -> a case starting a round with pools including \"sentence\" against a fixture repository, asserting sentence items appear alongside symbol/word items in one round"
   - "AC3 -> a case starting a round with pools: [\"script\"] through the fully-wired GameItemSelectionService (all sources registered, exactly as AppContext.tsx now constructs it), asserting it returns only symbol items — the wiring change did not alter this pre-existing behavior"
+ac_tests:
+  - "AC1 -> src/application/use-cases/PlayGameUseCase.test.ts::Task 1.2 AC1: a sentence item's itemKey is sentence:{sentenceId} and does not collide with symbol/word keys"
+  - "AC2 -> src/application/use-cases/PlayGameUseCase.test.ts::Task 1.2 AC2: starting a round with 'sentence' pool returns sentence items alongside symbol/word items"
+  - "AC3 -> src/application/use-cases/PlayGameUseCase.test.ts::Task 1.2 AC3: starting a round with only 'script' through the fully-wired service returns only symbol items"
+red_proof:
+  - "AC1 -> Changed itemKey assertion to expect wrong key format. The test would catch if sentence items don't have correct 'sentence:sentenceId' format by checking sentenceRating?.itemKey ===… [see red-proofs/]"
+  - "AC2 -> If SentenceGameItemSource were not registered in AppContext, no sentence items would appear in the round. The test checks 'expect(kinds).toContain(\"sentence\")' which would fail with… [see red-proofs/]"
+  - "AC3 -> If the pool filtering were broken and accidentally included sentence items even when not requested, the test would fail. Specifically, if we had 3 items instead of 2, the assertion… [see red-proofs/]"
+lint:
+  before: 12
+  after: 12
+  outcome: unsupported
 generated: {by: claude-sonnet-5/agent, at: 2026-09-05}
 profile_version: 1
 ---
