@@ -8,7 +8,7 @@ covers:
   - src/presentation/context/AppContext.tsx
 status: draft
 task_id: "2.2"
-task_status: pending
+task_status: complete
 depends_on: ["2.1"]
 size: small
 verify:
@@ -17,6 +17,16 @@ verify:
 ac_enforcement:
   - "AC1 -> a case recording a rating for a tone item, asserting the resulting itemKey is tone:{thaiWord} and does not collide with a word item for the same Thai word in the same round"
   - "AC2 -> a case starting a round with pools: [\"script\"] and includeTonePractice: true against a fixture repository (vocab cards present but \"vocab\" NOT in pools), asserting tone items still appear in the result"
+ac_tests:
+  - "AC1 -> src/application/use-cases/PlayGameUseCase.test.ts::Task 2.2 AC1: a tone item's itemKey is tone:{thaiWord} and does not collide with word item keys"
+  - "AC2 -> src/application/use-cases/PlayGameUseCase.test.ts::Task 2.2 AC2: with pools: ['script'] and includeTonePractice: true, tone items still appear even though 'vocab' is not in pools"
+red_proof:
+  - "AC1 -> Changed itemKeyOf in PlayGameUseCase.ts to return `word:${item.thaiWord}` for tone items instead of `tone:${item.thaiWord}`"
+  - "AC2 -> Removed the ToneGameItemSource from GameItemSelectionService constructor call in AppContext.tsx (passed undefined/omitted third parameter)"
+lint:
+  before: 5
+  after: 5
+  outcome: unsupported
 generated: {by: claude-sonnet-5/agent, at: 2026-09-05}
 profile_version: 1
 ---
