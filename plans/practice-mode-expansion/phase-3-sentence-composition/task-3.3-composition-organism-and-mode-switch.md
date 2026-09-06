@@ -27,6 +27,28 @@ ac_enforcement:
   - "AC6 -> a case asserting GameHistoryList renders a composition-kind entry with its own label, distinct from any pool label — a pure rendering test, since StorageGameHistoryRepository (task 3.2) now normalizes kind before this component ever sees an entry"
   - "AC7 -> a case: completing a composition round through the actual page (not a unit-level saveHistory call) asserts the resulting history entry has kind:\"composition\" and no pool label — proving GamePage's handleRate/saveHistory call site actually branches on mode rather than always taking the practice-shaped path"
   - "AC8 -> a case asserting two consecutive composition items each independently reset tile/built/reveal state on the second item"
+ac_tests:
+  - "AC1 -> src/presentation/components/organisms/SentenceCompositionChallenge.test.tsx::builds by tapping tiles with backspace and reveals the correct order with rating buttons only after"
+  - "AC2 -> src/presentation/pages/GamePage.test.tsx::Sentence Composition mode shows an item-count-only setup whose cap comes from unlocked grammar"
+  - "AC3 -> src/presentation/pages/GamePage.test.tsx::dispatches a composition item to the Sentence Composition organism"
+  - "AC4 -> src/presentation/pages/GamePage.test.tsx::leaves the whole thai-srs-state blob byte-identical after a full composition round through the real AppProvider"
+  - "AC5 -> src/presentation/pages/GamePage.test.tsx::states the true range for two unlocked grammar points and rejects an over-large request before start"
+  - "AC6 -> src/presentation/pages/GamePage.test.tsx::renders a composition history entry with its own label distinct from pool labels"
+  - "AC7 -> src/presentation/pages/GamePage.test.tsx::a composition round completed through the page writes a composition-kind entry with no pool label"
+  - "AC8 -> src/presentation/pages/GamePage.test.tsx::resets tile and reveal state across two consecutive composition items"
+red_proof:
+  - "AC1 -> Rendered <RatingButtons onRate={onRate} /> inside SentenceCompositionChallenge's pre-reveal branch, so rating buttons appear before the reveal. Self-review classification (read back… [see red-proofs/]"
+  - "AC2 -> Replaced the eligibleCount memo's `mode === \"composition\"` condition with `false`, so composition mode's cap came from the practice countEligibleItems path instead of countEligibleC… [see red-proofs/]"
+  - "AC3 -> Made renderChallenge's `case \"composition\"` return null instead of <SentenceCompositionChallenge>. Classification: thrown TestingLibraryElementError from the test's own getByText at… [see red-proofs/]"
+  - "AC4 -> Made GamePage.handleRate append one space to localStorage[\"thai-srs-state\"] when finishing a round — the SRS-write defect class byte-identity guards. Classification: real assertion… [see red-proofs/]"
+  - "AC5 -> Removed countValid's `parsedCount <= eligibleCount` upper bound (leaving only integer >= 1), so an over-large request would silently start a shorter round. Classification: real assertion failure."
+  - "AC6 -> Removed entryLabel's composition branch in GameHistoryList so composition entries fall through to poolsLabel((entry as {pools?}).pools) — the mislabeled-as-a-pool defect. Classifica… [see red-proofs/]"
+  - "AC7 -> Made handleRate's saveHistory call unconditionally pass { kind: \"practice\", pools, itemCount } — the always-practice-shaped path the AC exists to rule out. Classification: real assertion failure."
+  - "AC8 -> Changed SentenceCompositionChallenge's reset effect deps from [item.grammarId] to [] so built/reveal state leaks across consecutive items. Classification: thrown TestingLibraryEleme… [see red-proofs/]"
+lint:
+  before: 0
+  after: 0
+  outcome: unsupported
 generated: {by: claude-sonnet-5/agent, at: 2026-09-05}
 profile_version: 1
 ---
