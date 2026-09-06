@@ -13,6 +13,7 @@ import { PlayGameUseCase } from "../../application/use-cases/PlayGameUseCase";
 import { QueryDashboardUseCase } from "../../application/use-cases/QueryDashboardUseCase";
 import { StartLessonUseCase } from "../../application/use-cases/StartLessonUseCase";
 import { GameItemSelectionService } from "../../domain/game/services/GameItemSelectionService";
+import { SentenceGameItemSource } from "../../domain/game/services/SentenceGameItemSource";
 import { SymbolGameItemSource } from "../../domain/game/services/SymbolGameItemSource";
 import { WordGameItemSource } from "../../domain/game/services/WordGameItemSource";
 import type { GameHistoryEntry } from "../../domain/game/types";
@@ -103,6 +104,7 @@ const gameUseCase = new PlayGameUseCase(
 		[
 			new SymbolGameItemSource(cardRepo),
 			new WordGameItemSource(cardRepo, vocabularyData as VocabEntry[]),
+			new SentenceGameItemSource(cardRepo, sentenceData as unknown as SentenceEntry[]),
 		],
 		cardRepo,
 	),

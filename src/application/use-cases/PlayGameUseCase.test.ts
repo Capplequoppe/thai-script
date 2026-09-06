@@ -1,7 +1,9 @@
 import { describe, expect, it } from "vitest";
 import type { GameHistoryRepository } from "../../domain/game/ports/GameHistoryRepository";
 import { GameItemSelectionService } from "../../domain/game/services/GameItemSelectionService";
+import { SentenceGameItemSource } from "../../domain/game/services/SentenceGameItemSource";
 import { SymbolGameItemSource } from "../../domain/game/services/SymbolGameItemSource";
+import { WordGameItemSource } from "../../domain/game/services/WordGameItemSource";
 import type {
 	GameHistoryEntry,
 	GameItem,
@@ -11,9 +13,13 @@ import type {
 import type { CardRepository } from "../../domain/ports/CardRepository";
 import { consonants } from "../../domain/script/data/symbols";
 import { ScriptPropertyCard } from "../../domain/script/entities/ScriptPropertyCard";
+import { SentenceReviewCard } from "../../domain/sentence/entities/SentenceReviewCard";
+import type { SentenceEntry } from "../../domain/sentence/types";
 import type { CardPool } from "../../domain/shared/CardPool";
 import type { RecallRating } from "../../domain/shared/types";
 import { SrsSchedule } from "../../domain/srs/value-objects/SrsSchedule";
+import { VocabCard } from "../../domain/vocabulary/entities/VocabCard";
+import type { VocabEntry } from "../../domain/vocabulary/types";
 import { PlayGameUseCase } from "./PlayGameUseCase";
 
 const SYMBOLS = consonants.slice(0, 5) as ReadonlyArray<
@@ -34,11 +40,48 @@ function scriptCard(symbolCharacter: string, id: string): ScriptPropertyCard {
 	);
 }
 
-function repositoryOf(cards: readonly ScriptPropertyCard[]): CardRepository {
+function sentenceCard(sentenceId: string, id: string): SentenceReviewCard {
+	return new SentenceReviewCard(
+		id,
+		`question ${id}`,
+		`answer ${id}`,
+		[`answer ${id}`],
+		SrsSchedule.initial(),
+		sentenceId,
+		"readingComprehension",
+		undefined,
+	);
+}
+
+function vocabCard(thai: string, id: string): VocabCard {
+	return new VocabCard(
+		id,
+		`question ${id}`,
+		`${thai}`,
+		[`${thai}`],
+		SrsSchedule.initial(),
+		thai,
+		"thaiToEnglish",
+		"/audio/card-specific.mp3",
+	);
+}
+
+interface CardsByPool {
+	readonly script?: readonly ScriptPropertyCard[];
+	readonly sentence?: readonly SentenceReviewCard[];
+	readonly vocab?: readonly VocabCard[];
+}
+
+function repositoryOf(cardsByPool: CardsByPool): CardRepository {
 	return {
 		findById: () => null,
 		findDue: () => [],
-		findAll: (pool: CardPool) => (pool === "script" ? [...cards] : []),
+		findAll: (pool: CardPool) => {
+			if (pool === "script") return [...(cardsByPool.script ?? [])];
+			if (pool === "sentence") return [...(cardsByPool.sentence ?? [])];
+			if (pool === "vocab") return [...(cardsByPool.vocab ?? [])];
+			return [];
+		},
 		save: () => {},
 		saveAll: () => {},
 		remove: () => {},
@@ -70,11 +113,15 @@ const CONFIG: GameRoundConfig = {
 	inputMode: "paper",
 };
 
-function setUp(cards: readonly ScriptPropertyCard[]) {
-	const cardRepository = repositoryOf(cards);
-	const selectionService = new GameItemSelectionService([
-		new SymbolGameItemSource(cardRepository),
-	]);
+function setUp(
+	cardsByPool: CardsByPool = {},
+	sourcesFactory?: (repo: CardRepository) => any,
+) {
+	const cardRepository = repositoryOf(cardsByPool);
+	const sources = sourcesFactory
+		? sourcesFactory(cardRepository)
+		: [new SymbolGameItemSource(cardRepository)];
+	const selectionService = new GameItemSelectionService(sources, cardRepository);
 	const historyRepository = fakeHistoryRepository();
 	const useCase = new PlayGameUseCase(selectionService, historyRepository);
 	return { cardRepository, selectionService, historyRepository, useCase };
@@ -97,7 +144,7 @@ describe("PlayGameUseCase", () => {
 		const cards = SYMBOLS.map((symbol, index) =>
 			scriptCard(symbol.character, `card-${index}`),
 		);
-		const { selectionService, useCase } = setUp(cards);
+		const { selectionService, useCase } = setUp({ script: cards });
 		const rng1 = scripted([0.1, 0.3, 0.5, 0.7, 0.9, 0.2, 0.4, 0.6, 0.8, 0.05]);
 		const rng2 = scripted([0.1, 0.3, 0.5, 0.7, 0.9, 0.2, 0.4, 0.6, 0.8, 0.05]);
 
@@ -111,7 +158,7 @@ describe("PlayGameUseCase", () => {
 		const cards = SYMBOLS.map((symbol, index) =>
 			scriptCard(symbol.character, `card-${index}`),
 		);
-		const { cardRepository, useCase } = setUp(cards);
+		const { cardRepository, useCase } = setUp({ script: cards });
 		const before = cardRepository
 			.findAll("script")
 			.map((card) => card.schedule.toDTO());
@@ -137,7 +184,7 @@ describe("PlayGameUseCase", () => {
 		const cards = SYMBOLS.map((symbol, index) =>
 			scriptCard(symbol.character, `card-${index}`),
 		);
-		const { useCase } = setUp(cards);
+		const { useCase } = setUp({ script: cards });
 		const items = useCase.startRound(
 			CONFIG,
 			scripted([0.1, 0.3, 0.5, 0.7, 0.9]),
@@ -156,7 +203,7 @@ describe("PlayGameUseCase", () => {
 		const cards = SYMBOLS.slice(0, 3).map((symbol, index) =>
 			scriptCard(symbol.character, `card-${index}`),
 		);
-		const { useCase } = setUp(cards);
+		const { useCase } = setUp({ script: cards });
 		const config: GameRoundConfig = { ...CONFIG, itemCount: 3 };
 		const items = useCase.startRound(config, scripted([0.1, 0.3, 0.5]));
 
@@ -171,7 +218,7 @@ describe("PlayGameUseCase", () => {
 		const cards = SYMBOLS.map((symbol, index) =>
 			scriptCard(symbol.character, `card-${index}`),
 		);
-		const { useCase } = setUp(cards);
+		const { useCase } = setUp({ script: cards });
 		const config: GameRoundConfig = { ...CONFIG, itemCount: 2 };
 
 		const itemsA = useCase.startRound(config, scripted([0.1, 0.6]));
@@ -189,7 +236,7 @@ describe("PlayGameUseCase", () => {
 	});
 
 	it("AC5: a zero-rating round reports accuracy null, distinct from a rated 0% round", () => {
-		const { useCase } = setUp([]);
+		const { useCase } = setUp({});
 
 		const emptySummary = useCase.finishRound([]);
 		expect(emptySummary.accuracy).toBeNull();
@@ -198,7 +245,7 @@ describe("PlayGameUseCase", () => {
 		const cards = SYMBOLS.slice(0, 2).map((symbol, index) =>
 			scriptCard(symbol.character, `card-${index}`),
 		);
-		const { useCase: useCase2 } = setUp(cards);
+		const { useCase: useCase2 } = setUp({ script: cards });
 		const items = useCase2.startRound(
 			{ ...CONFIG, itemCount: 2 },
 			scripted([0.1, 0.6]),
@@ -214,7 +261,7 @@ describe("PlayGameUseCase", () => {
 		const cards = SYMBOLS.slice(0, 2).map((symbol, index) =>
 			scriptCard(symbol.character, `card-${index}`),
 		);
-		const { useCase } = setUp(cards);
+		const { useCase } = setUp({ script: cards });
 		const items = useCase.startRound(
 			{ ...CONFIG, itemCount: 2 },
 			scripted([0.1, 0.6]),
@@ -233,7 +280,7 @@ describe("PlayGameUseCase", () => {
 		const cards = SYMBOLS.slice(0, 2).map((symbol, index) =>
 			scriptCard(symbol.character, `card-${index}`),
 		);
-		const { useCase, historyRepository } = setUp(cards);
+		const { useCase, historyRepository } = setUp({ script: cards });
 		const items = useCase.startRound(
 			{ ...CONFIG, itemCount: 2 },
 			scripted([0.1, 0.6]),
@@ -264,5 +311,185 @@ describe("PlayGameUseCase", () => {
 		);
 
 		expect(useCase.getHistory()).toEqual({ status: "unavailable" });
+	});
+
+	it("Task 1.2 AC1: a sentence item's itemKey is sentence:{sentenceId} and does not collide with symbol/word keys", () => {
+		const symbolCards = SYMBOLS.slice(0, 2).map((symbol, index) =>
+			scriptCard(symbol.character, `card-${index}`),
+		);
+		const sentenceCards = [sentenceCard("sentence-1", "sentence-card-1")];
+		const vocabCards = [vocabCard("มา", "vocab:มา:thaiToEnglish")];
+
+		const { useCase } = setUp(
+			{
+				script: symbolCards,
+				sentence: sentenceCards,
+				vocab: vocabCards,
+			},
+			(cardRepository) => [
+				new SymbolGameItemSource(cardRepository),
+				new WordGameItemSource(
+					cardRepository,
+					[{ thai: "มา", english: "come", difficulty: 1 } as VocabEntry],
+				),
+				new SentenceGameItemSource(
+					cardRepository,
+					[
+						{
+							id: "sentence-1",
+							thai: "มา กิน",
+							english: "come eat",
+							romanization: "maa gin",
+							words: ["มา", "กิน"],
+							difficulty: 1,
+							thai_audio_file: null,
+							cards: { readingComprehension: { distractors: [] } },
+						} as SentenceEntry,
+					],
+				),
+			],
+		);
+
+		const items = useCase.startRound(
+			{ pools: ["script", "vocab", "sentence"], itemCount: 4 },
+			scripted([0.1, 0.2, 0.3, 0.4]),
+		);
+
+		// Verify we have at least one sentence item
+		const sentenceItem = items.find((item) => item.kind === "sentence");
+		expect(sentenceItem).toBeDefined();
+		if (sentenceItem && sentenceItem.kind === "sentence") {
+			expect(sentenceItem.sentenceId).toBe("sentence-1");
+		}
+
+		// Record ratings for items
+		let ratings: any[] = [];
+		items.forEach((_, index) => {
+			ratings = useCase.recordRating(items, ratings, index, 4);
+		});
+
+		// Find the sentence rating record
+		const sentenceRating = ratings.find((r) =>
+			r.itemKey.startsWith("sentence:"),
+		);
+		expect(sentenceRating).toBeDefined();
+		expect(sentenceRating?.itemKey).toBe("sentence:sentence-1");
+
+		// Verify no collisions - all keys should be unique
+		const recordedKeys = ratings.map((r) => r.itemKey);
+		expect(new Set(recordedKeys).size).toBe(recordedKeys.length);
+	});
+
+	it("Task 1.2 AC2: starting a round with 'sentence' pool returns sentence items alongside symbol/word items", () => {
+		const symbolCards = SYMBOLS.slice(0, 2).map((symbol, index) =>
+			scriptCard(symbol.character, `card-${index}`),
+		);
+		const sentenceCards = [sentenceCard("sentence-1", "sentence-card-1")];
+		const vocabCards = [vocabCard("มา", "vocab:มา:thaiToEnglish")];
+
+		const { useCase } = setUp(
+			{
+				script: symbolCards,
+				sentence: sentenceCards,
+				vocab: vocabCards,
+			},
+			(cardRepository) => [
+				new SymbolGameItemSource(cardRepository),
+				new WordGameItemSource(
+					cardRepository,
+					[{ thai: "มา", english: "come", difficulty: 1 } as VocabEntry],
+				),
+				new SentenceGameItemSource(
+					cardRepository,
+					[
+						{
+							id: "sentence-1",
+							thai: "มา กิน",
+							english: "come eat",
+							romanization: "maa gin",
+							words: ["มา", "กิน"],
+							difficulty: 1,
+							thai_audio_file: null,
+							cards: { readingComprehension: { distractors: [] } },
+						} as SentenceEntry,
+					],
+				),
+			],
+		);
+
+		const items = useCase.startRound(
+			{
+				pools: ["script", "vocab", "sentence"],
+				itemCount: 10,
+				prioritizeWeakItems: false,
+				inputMode: "paper",
+			},
+			scripted([0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 0.05]),
+		);
+
+		// Verify we have items from all pools
+		const kinds = new Set(items.map((item) => item.kind));
+		expect(kinds).toContain("symbol");
+		expect(kinds).toContain("word");
+		expect(kinds).toContain("sentence");
+
+		// Verify sentence item has correct properties
+		const sentenceItem = items.find((item) => item.kind === "sentence");
+		expect(sentenceItem).toBeDefined();
+		if (sentenceItem && sentenceItem.kind === "sentence") {
+			expect(sentenceItem.sentenceId).toBe("sentence-1");
+			expect(sentenceItem.thaiText).toBe("มา กิน");
+			expect(sentenceItem.englishMeaning).toBe("come eat");
+			expect(sentenceItem.challengeDirection).toBe("reading"); // Because thai_audio_file is null
+		}
+	});
+
+	it("Task 1.2 AC3: starting a round with only 'script' through the fully-wired service returns only symbol items", () => {
+		const symbolCards = SYMBOLS.slice(0, 2).map((symbol, index) =>
+			scriptCard(symbol.character, `card-${index}`),
+		);
+		const sentenceCards = [sentenceCard("sentence-1", "sentence-card-1")];
+		const vocabCards = [vocabCard("มา", "vocab:มา:thaiToEnglish")];
+
+		const { useCase } = setUp(
+			{
+				script: symbolCards,
+				sentence: sentenceCards,
+				vocab: vocabCards,
+			},
+			(cardRepository) => [
+				new SymbolGameItemSource(cardRepository),
+				new WordGameItemSource(
+					cardRepository,
+					[{ thai: "มา", english: "come", difficulty: 1 } as VocabEntry],
+				),
+				new SentenceGameItemSource(
+					cardRepository,
+					[
+						{
+							id: "sentence-1",
+							thai: "มา กิน",
+							english: "come eat",
+							romanization: "maa gin",
+							words: ["มา", "กิน"],
+							difficulty: 1,
+							thai_audio_file: null,
+							cards: { readingComprehension: { distractors: [] } },
+						} as SentenceEntry,
+					],
+				),
+			],
+		);
+
+		const items = useCase.startRound(
+			{ pools: ["script"], itemCount: 2 },
+			scripted([0.1, 0.3]),
+		);
+
+		// Verify only symbol items are returned
+		expect(items).toHaveLength(2);
+		items.forEach((item) => {
+			expect(item.kind).toBe("symbol");
+		});
 	});
 });
