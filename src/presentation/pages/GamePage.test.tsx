@@ -945,7 +945,7 @@ describe("GamePage", () => {
 	});
 
 	// Task 3.2 AC3
-	it("toggle + zero-eligible-pool interaction: start stays blocked regardless of toggle state", () => {
+	it("toggle and zero-eligible-pool interaction: start stays blocked regardless of toggle state", () => {
 		// Symbols has one eligible item (so the toggle actually exists to
 		// flip); Words has none — the interaction this AC names is that
 		// having switched the toggle on does not rescue a pool with nothing
