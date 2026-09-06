@@ -34,6 +34,36 @@ ac_enforcement:
   - "AC10 -> a typed item count survives toggling Input Mode/Prioritize Weak Items but resets on a pool-selection change — proof `pools` stays a stable reference"
   - "AC11 -> the critical storage case: a full round through the REAL AppProvider (not renderWithApp's InMemoryJsonStore), returning to setup, shows the round in Recent Rounds with no \"unavailable\" text"
   - "AC12 -> Input Mode is hidden/disabled when only Sentence Reading is checked"
+ac_tests:
+  - "AC1 -> src/presentation/pages/GamePage.test.tsx::draws only from Symbols and Sentence Reading when Words is left unchecked"
+  - "AC2 -> src/presentation/components/organisms/SentenceListeningChallenge.test.tsx::auto-plays the sentence audio on mount, offers no write-input, and reveals the Thai text and meaning"
+  - "AC3 -> src/presentation/components/organisms/SentenceReadingChallenge.test.tsx::shows the Thai text with no premature audio, then reveals via audio and meaning"
+  - "AC4 -> src/presentation/pages/GamePage.test.tsx::dispatches sentence items to the listening or reading organism by challengeDirection"
+  - "AC5 -> src/presentation/pages/GamePage.test.tsx::leaves the whole thai-srs-state blob byte-identical after a full Sentence Reading round through the real AppProvider"
+  - "AC6 -> src/presentation/pages/GamePage.test.tsx::distinguishes zero pools checked from a checked-but-empty pool, and still starts from the non-empty one"
+  - "AC7 -> src/presentation/pages/GamePage.test.tsx::labels a sentence-inclusive history entry sensibly, never 'undefined'"
+  - "AC8 -> src/presentation/pages/GamePage.test.tsx::labels each pool checkbox accessibly and keeps them independently keyboard-operable"
+  - "AC9 -> src/presentation/pages/GamePage.test.tsx::resets reveal and replays audio across two consecutive sentence reading items sharing one audioUrl"
+  - "AC10 -> src/presentation/pages/GamePage.test.tsx::keeps a typed item count across unrelated toggles but resets it when the checked pools change"
+  - "AC11 -> src/presentation/pages/GamePage.test.tsx::round-trips a Sentence Reading round through the real AppProvider's history storage"
+  - "AC12 -> src/presentation/pages/GamePage.test.tsx::hides Input Mode when only Sentence Reading is checked and restores it with a write-input pool"
+red_proof:
+  - "AC1 -> In GamePage.tsx, made the pools derivation ignore the checkboxes: `ALL_POOLS.filter((pool) => checkedPools[pool])` -> `ALL_POOLS.filter(() => true)`. Self-review classification from… [see red-proofs/]"
+  - "AC2 -> In SentenceListeningChallenge.tsx, removed `playAudio()` from the item-keyed mount/reset effect, so nothing auto-plays. Classification: real AssertionError on the autoplay claim."
+  - "AC3 -> Two mutations in SentenceReadingChallenge.tsx, each observed separately then reverted. (1) Added `playAudio()` into the mount/reset effect (premature audio). (2) Removed the `if (!i… [see red-proofs/]"
+  - "AC4 -> In GamePage.tsx, swapped the sentence dispatch branches: `challengeDirection === \"listening\"` rendered SentenceReadingChallenge and the else rendered SentenceListeningChallenge. Cla… [see red-proofs/]"
+  - "AC5 -> In GamePage.tsx handleRate, made finishing a round write the SRS blob: inserted `localStorage.setItem(\"thai-srs-state\", \"tampered-by-round\")` before saveHistory — the exact failure… [see red-proofs/]"
+  - "AC6 -> In GamePage.tsx, collapsed the two empty states into one text: the ternary `pools.length === 0 ? NO_POOLS_CHECKED_MESSAGE : NOTHING_ELIGIBLE_MESSAGE` replaced by always rendering NO… [see red-proofs/]"
+  - "AC7 -> In GameHistoryList.tsx, removed the `sentence: \"Sentence Reading\"` entry from POOL_LABELS (reverting the map to its pre-task shape), so a sentence pool renders `undefined` in the la… [see red-proofs/]"
+  - "AC8 -> In GamePage.tsx, broke the checkbox/label association: the input id became `game-pool-input-${pool}` while the label htmlFor stayed `game-pool-${pool}`. Classification: TestingLibra… [see red-proofs/]"
+  - "AC9 -> In SentenceReadingChallenge.tsx, keyed the reset effect on `[item.audioUrl]` instead of `[item.sentenceId]` — with the test's two items sharing one audioUrl, the second item never r… [see red-proofs/]"
+  - "AC10 -> In GamePage.tsx, removed the useMemo so `pools` is a fresh array every render — the pools-keyed count-reset effect then fires on every re-render. Classification: real AssertionError."
+  - "AC11 -> In StorageGameHistoryRepository.ts (temporarily, reverted byte-identically before commit — verified via clean `git status`), restored the exact pre-task-1.1 defect: `GAME_CARD_POOLS… [see red-proofs/]"
+  - "AC12 -> In GamePage.tsx, rendered the Input Mode fieldset unconditionally: `{pools.some((pool) => pool !== \"sentence\") && (` -> `{true && (`. Classification: real AssertionError."
+lint:
+  before: 0
+  after: 0
+  outcome: unsupported
 generated: {by: claude-sonnet-5/agent, at: 2026-09-05}
 profile_version: 1
 ---
