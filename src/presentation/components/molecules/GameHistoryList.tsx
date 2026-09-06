@@ -1,5 +1,8 @@
 import type { GameHistoryListResult } from "../../../domain/game/ports/GameHistoryRepository";
-import type { GameCardPool } from "../../../domain/game/types";
+import type {
+	GameCardPool,
+	GameHistoryEntry,
+} from "../../../domain/game/types";
 
 interface Props {
 	result: GameHistoryListResult;
@@ -32,6 +35,18 @@ function poolsLabel(pools: readonly GameCardPool[] | undefined): string {
 	if (!pools) return POOL_LABELS.script;
 	if (pools.length === 0) return "Tone Identification";
 	return pools.map((pool) => POOL_LABELS[pool]).join(" + ");
+}
+
+/**
+ * `entry.kind` is always present here — `StorageGameHistoryRepository`
+ * normalizes entries persisted before the field existed on read (see
+ * `GameHistoryEntry`) — so no legacy-`kind` branch belongs in this
+ * component. Composition rounds carry no `pools` and get their own label,
+ * deliberately distinct from every pool label above.
+ */
+function entryLabel(entry: GameHistoryEntry): string {
+	if (entry.kind === "composition") return "Sentence Composition";
+	return poolsLabel(entry.pools);
 }
 
 /**
@@ -73,7 +88,7 @@ export function GameHistoryList({ result }: Props) {
 							className="text-sm font-semibold"
 							style={{ color: "var(--color-text)" }}
 						>
-							{poolsLabel(entry.pools)} · {entry.itemCount} items
+							{entryLabel(entry)} · {entry.itemCount} items
 						</div>
 						<div
 							className="text-xs mt-0.5"

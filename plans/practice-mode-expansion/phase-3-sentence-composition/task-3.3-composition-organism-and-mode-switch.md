@@ -11,7 +11,7 @@ covers:
   - src/presentation/test-utils/renderWithApp.tsx
 status: draft
 task_id: "3.3"
-task_status: pending
+task_status: complete
 depends_on: ["3.2"]
 size: x-large
 verify:

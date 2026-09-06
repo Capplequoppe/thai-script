@@ -13,6 +13,7 @@ import type { RecallRating } from "../../domain/shared/types";
 import { SectionHeader } from "../components/atoms/SectionHeader";
 import { GameHistoryList } from "../components/molecules/GameHistoryList";
 import { GameRoundSummary } from "../components/organisms/GameRoundSummary";
+import { SentenceCompositionChallenge } from "../components/organisms/SentenceCompositionChallenge";
 import { SentenceListeningChallenge } from "../components/organisms/SentenceListeningChallenge";
 import { SentenceReadingChallenge } from "../components/organisms/SentenceReadingChallenge";
 import { SymbolDictationChallenge } from "../components/organisms/SymbolDictationChallenge";
@@ -23,6 +24,22 @@ import { WordProductionChallenge } from "../components/organisms/WordProductionC
 import { useApp } from "../hooks/useApp";
 
 type GamePhase = "setup" | "playing" | "summary";
+
+/**
+ * Which of the page's two flows the setup screen configures: the pool-
+ * mixing practice round (everything below `checkedPools`), or a sentence-
+ * composition round over currently-unlocked grammar points — a separate
+ * mode, not a fourth pool, because its supply is a set-level grammar
+ * computation rather than a `GameCardPool` partition (see CONTEXT.md).
+ */
+type GameMode = "practice" | "composition";
+
+const ALL_MODES: readonly GameMode[] = ["practice", "composition"];
+
+const MODE_LABELS: Record<GameMode, string> = {
+	practice: "Practice",
+	composition: "Sentence Composition",
+};
 
 /**
  * The setup screen's pool multi-select — one independent checkbox per
@@ -72,6 +89,16 @@ const NO_TONE_ELIGIBLE_MESSAGE =
 	"No words with identifiable tones yet — learn some vocabulary first, then Tone Identification will have something to draw from.";
 
 /**
+ * Composition mode's own empty state — none of the three practice messages
+ * above applies, since composition has no pools and no tone toggle. It also
+ * covers an unlocked grammar point whose examples carry no word breakdown
+ * ("to build from" is the accurate qualifier), which
+ * `selectCompositionRound` excludes for the same zero count.
+ */
+const NO_COMPOSITION_ELIGIBLE_MESSAGE =
+	"No unlocked grammar points to build from yet — graduate more vocabulary and learn earlier grammar lessons first.";
+
+/**
  * The one name this toggle goes by, everywhere. Never "Prioritize tone
  * identification" (see CONTEXT.md): this control *includes* items, it does
  * not reorder them — that is the separate weak-item toggle's job.
@@ -112,6 +139,19 @@ function countEligibleItems(
 		inputMode: "draw",
 		includeTonePractice,
 	}).length;
+}
+
+/**
+ * Composition mode's `countEligibleItems`: the same ask-for-everything
+ * trick over `startCompositionRound`, which is read-only by construction
+ * (the grammar-unlock provider is one read-only method — see
+ * `PlayGameUseCase`). This is *the* named mechanism the composition setup
+ * step's count hint comes from; the eligible set is often genuinely tiny
+ * (one item per unlocked grammar point), which is stated behavior, not a
+ * symptom.
+ */
+function countEligibleCompositionItems(game: PlayGameUseCase): number {
+	return game.startCompositionRound(Number.MAX_SAFE_INTEGER).length;
 }
 
 /**
@@ -162,6 +202,8 @@ function renderChallenge(
 			);
 		case "tone":
 			return <ToneIdentificationChallenge item={item} onRate={onRate} />;
+		case "composition":
+			return <SentenceCompositionChallenge item={item} onRate={onRate} />;
 		default: {
 			const _never: never = item;
 			throw new Error(`unhandled game item: ${JSON.stringify(_never)}`);
@@ -171,20 +213,22 @@ function renderChallenge(
 
 /**
  * A self-graded practice round over introduced symbols, vocab words and/or
- * sentences, per the setup screen's checked pools. The page owns all round
- * state (`items`/`ratings`/`currentIndex`) and threads it through
- * `PlayGameUseCase`'s pure functions — the use case is a long-lived
- * singleton and must never hold a round.
+ * sentences, per the setup screen's checked pools — or, in Sentence
+ * Composition mode, a round built from currently-unlocked grammar points.
+ * The page owns all round state (`items`/`ratings`/`currentIndex`) and
+ * threads it through `PlayGameUseCase`'s pure functions — the use case is
+ * a long-lived singleton and must never hold a round.
  *
  * Deliberately reads only `game` from `useApp()`: no `refresh()`, no
- * `checkAchievements`, nothing that could write the SRS blob. A practice
- * round must leave `thai-srs-state` byte-identical.
+ * `checkAchievements`, nothing that could write the SRS blob. A round of
+ * either mode must leave `thai-srs-state` byte-identical.
  */
 export function GamePage() {
 	const { game } = useApp();
 	const navigate = useNavigate();
 
 	const [phase, setPhase] = useState<GamePhase>("setup");
+	const [mode, setMode] = useState<GameMode>("practice");
 	const [checkedPools, setCheckedPools] = useState<
 		Readonly<Record<GameCardPool, boolean>>
 	>(DEFAULT_CHECKED_POOLS);
@@ -211,28 +255,30 @@ export function GamePage() {
 		[checkedPools],
 	);
 
-	const eligibleCount = useMemo(
-		() =>
-			phase === "setup"
-				? countEligibleItems(
-						game,
-						pools,
-						prioritizeWeakItems,
-						includeTonePractice,
-					)
-				: 0,
-		[game, phase, pools, prioritizeWeakItems, includeTonePractice],
-	);
+	// Per-mode eligible cap: practice counts the checked pools (plus tone
+	// practice), composition counts unlocked grammar points — two named
+	// mechanisms, one call site, so neither flow invents its own count.
+	const eligibleCount = useMemo(() => {
+		if (phase !== "setup") return 0;
+		return mode === "composition"
+			? countEligibleCompositionItems(game)
+			: countEligibleItems(
+					game,
+					pools,
+					prioritizeWeakItems,
+					includeTonePractice,
+				);
+	}, [game, phase, mode, pools, prioritizeWeakItems, includeTonePractice]);
 	const [countInput, setCountInput] = useState<string>(() =>
 		eligibleCount > 0
 			? String(Math.min(DEFAULT_ITEM_COUNT, eligibleCount))
 			: "",
 	);
 	// Changing what the round draws from can make a previously-typed count
-	// invalid without ever telling the learner why — so the two controls
-	// that change it, the checked pools and the tone toggle, both reset it.
-	// Nothing else does (the weak-item toggle and input mode leave the
-	// eligible set alone).
+	// invalid without ever telling the learner why — so the three controls
+	// that change it (the checked pools, the tone toggle, and the mode
+	// switch) all reset it. Nothing else does (the weak-item toggle and
+	// input mode leave the eligible set alone).
 	// biome-ignore lint/correctness/useExhaustiveDependencies: resets only when the drawn-from set changes, never on every eligibleCount-affecting render
 	useEffect(() => {
 		setCountInput(
@@ -240,7 +286,7 @@ export function GamePage() {
 				? String(Math.min(DEFAULT_ITEM_COUNT, eligibleCount))
 				: "",
 		);
-	}, [pools, includeTonePractice]);
+	}, [pools, includeTonePractice, mode]);
 	const history = useMemo(
 		() => (phase === "setup" ? game.getHistory() : null),
 		[game, phase],
@@ -253,20 +299,28 @@ export function GamePage() {
 		parsedCount >= 1 &&
 		parsedCount <= eligibleCount;
 
-	const emptyMessage = emptySelectionMessage(
-		pools.length > 0,
-		includeTonePractice,
-		eligibleCount,
-	);
+	const emptyMessage =
+		mode === "composition"
+			? eligibleCount > 0
+				? null
+				: NO_COMPOSITION_ELIGIBLE_MESSAGE
+			: emptySelectionMessage(
+					pools.length > 0,
+					includeTonePractice,
+					eligibleCount,
+				);
 
 	const handleStart = useCallback(() => {
-		const roundItems = game.startRound({
-			pools,
-			itemCount: parsedCount,
-			prioritizeWeakItems,
-			inputMode,
-			includeTonePractice,
-		});
+		const roundItems =
+			mode === "composition"
+				? game.startCompositionRound(parsedCount)
+				: game.startRound({
+						pools,
+						itemCount: parsedCount,
+						prioritizeWeakItems,
+						inputMode,
+						includeTonePractice,
+					});
 		if (roundItems.length === 0) return;
 		setItems(roundItems);
 		setRatings([]);
@@ -276,6 +330,7 @@ export function GamePage() {
 		setPhase("playing");
 	}, [
 		game,
+		mode,
 		pools,
 		parsedCount,
 		inputMode,
@@ -302,11 +357,20 @@ export function GamePage() {
 			}
 
 			const roundSummary = game.finishRound(nextRatings);
-			game.saveHistory({ pools, itemCount: items.length }, roundSummary);
+			// The explicit mode branch this call site needs now that two
+			// history shapes exist: a composition round carries no `pools`,
+			// and `PlayedRound`'s required `kind` keeps either branch from
+			// silently taking the other's shape.
+			game.saveHistory(
+				mode === "composition"
+					? { kind: "composition", itemCount: items.length }
+					: { kind: "practice", pools, itemCount: items.length },
+				roundSummary,
+			);
 			setSummary(roundSummary);
 			setPhase("summary");
 		},
-		[game, items, ratings, currentIndex, pools],
+		[game, items, ratings, currentIndex, mode, pools],
 	);
 
 	if (phase === "playing") {
@@ -322,7 +386,7 @@ export function GamePage() {
 						className="text-sm font-semibold"
 						style={{ color: "var(--color-text)" }}
 					>
-						Practice Round
+						{mode === "composition" ? "Sentence Composition" : "Practice Round"}
 					</span>
 					<span
 						className="text-sm"
@@ -396,65 +460,107 @@ export function GamePage() {
 					className="text-sm font-semibold mb-1"
 					style={{ color: "var(--color-text)" }}
 				>
-					Practice pools
+					Mode
 				</legend>
 				<div className="flex flex-wrap gap-4">
-					{ALL_POOLS.map((pool) => (
-						<span key={pool} className="flex items-center gap-2">
+					{ALL_MODES.map((gameMode) => (
+						<span key={gameMode} className="flex items-center gap-2">
 							<input
-								id={`game-pool-${pool}`}
-								type="checkbox"
-								checked={checkedPools[pool]}
-								onChange={() =>
-									setCheckedPools((previous) => ({
-										...previous,
-										[pool]: !previous[pool],
-									}))
-								}
+								id={`game-mode-${gameMode}`}
+								type="radio"
+								name="game-mode"
+								checked={mode === gameMode}
+								onChange={() => setMode(gameMode)}
 							/>
 							<label
-								htmlFor={`game-pool-${pool}`}
+								htmlFor={`game-mode-${gameMode}`}
 								className="text-sm"
 								style={{ color: "var(--color-text)" }}
 							>
-								{POOL_LABELS[pool]}
+								{MODE_LABELS[gameMode]}
 							</label>
 						</span>
 					))}
 				</div>
 			</fieldset>
 
-			{/* Beside the pool checkboxes, never among them: tone practice
-			    draws from the same vocab words the Words pool covers and is
-			    combinable with any pool selection, so reading as a fourth
-			    pool would misdescribe it (see CONTEXT.md). It lives outside
-			    the count/input-mode box below because that box disappears
-			    once nothing is eligible — a toggle that can rescue an empty
-			    selection must stay reachable from one. */}
-			<div>
-				<div className="flex items-center gap-2">
-					<input
-						id="game-include-tone"
-						type="checkbox"
-						checked={includeTonePractice}
-						onChange={(e) => setIncludeTonePractice(e.target.checked)}
-					/>
-					<label
-						htmlFor="game-include-tone"
-						className="text-sm"
-						style={{ color: "var(--color-text)" }}
+			{/* Composition mode's setup is item-count-only: no pools (its
+			    supply is the unlocked grammar set, not a pool), no tone
+			    toggle, and none of the practice-only controls below. */}
+			{mode === "practice" && (
+				<>
+					<fieldset
+						className="rounded-xl p-4"
+						style={{
+							border: "1px solid var(--color-border)",
+							background: "var(--color-surface)",
+						}}
 					>
-						{TONE_TOGGLE_LABEL}
-					</label>
-				</div>
-				<p
-					className="text-xs mt-1"
-					style={{ color: "var(--color-text-muted)" }}
-				>
-					Adds tone-pattern items from your vocabulary, whichever pools are
-					checked.
-				</p>
-			</div>
+						<legend
+							className="text-sm font-semibold mb-1"
+							style={{ color: "var(--color-text)" }}
+						>
+							Practice pools
+						</legend>
+						<div className="flex flex-wrap gap-4">
+							{ALL_POOLS.map((pool) => (
+								<span key={pool} className="flex items-center gap-2">
+									<input
+										id={`game-pool-${pool}`}
+										type="checkbox"
+										checked={checkedPools[pool]}
+										onChange={() =>
+											setCheckedPools((previous) => ({
+												...previous,
+												[pool]: !previous[pool],
+											}))
+										}
+									/>
+									<label
+										htmlFor={`game-pool-${pool}`}
+										className="text-sm"
+										style={{ color: "var(--color-text)" }}
+									>
+										{POOL_LABELS[pool]}
+									</label>
+								</span>
+							))}
+						</div>
+					</fieldset>
+
+					{/* Beside the pool checkboxes, never among them: tone practice
+					    draws from the same vocab words the Words pool covers and is
+					    combinable with any pool selection, so reading as a fourth
+					    pool would misdescribe it (see CONTEXT.md). It lives outside
+					    the count/input-mode box below because that box disappears
+					    once nothing is eligible — a toggle that can rescue an empty
+					    selection must stay reachable from one. */}
+					<div>
+						<div className="flex items-center gap-2">
+							<input
+								id="game-include-tone"
+								type="checkbox"
+								checked={includeTonePractice}
+								onChange={(e) => setIncludeTonePractice(e.target.checked)}
+							/>
+							<label
+								htmlFor="game-include-tone"
+								className="text-sm"
+								style={{ color: "var(--color-text)" }}
+							>
+								{TONE_TOGGLE_LABEL}
+							</label>
+						</div>
+						<p
+							className="text-xs mt-1"
+							style={{ color: "var(--color-text-muted)" }}
+						>
+							Adds tone-pattern items from your vocabulary, whichever pools are
+							checked.
+						</p>
+					</div>
+				</>
+			)}
 
 			{emptyMessage ? (
 				<p
@@ -509,8 +615,9 @@ export function GamePage() {
 					    challenges; a sentence challenge never asks for writing
 					    (see the architectural decision), so with only Sentence
 					    Reading checked the toggle would control nothing and is
-					    hidden. */}
-					{pools.some((pool) => pool !== "sentence") && (
+					    hidden. Composition hides it for the same reason:
+					    tile-tapping has no "on paper" alternative. */}
+					{mode === "practice" && pools.some((pool) => pool !== "sentence") && (
 						<fieldset>
 							<legend
 								className="text-sm font-semibold mb-1"
@@ -555,21 +662,26 @@ export function GamePage() {
 						</fieldset>
 					)}
 
-					<div className="flex items-center gap-2">
-						<input
-							id="game-prioritize-weak"
-							type="checkbox"
-							checked={prioritizeWeakItems}
-							onChange={(e) => setPrioritizeWeakItems(e.target.checked)}
-						/>
-						<label
-							htmlFor="game-prioritize-weak"
-							className="text-sm"
-							style={{ color: "var(--color-text)" }}
-						>
-							Prioritize weak items
-						</label>
-					</div>
+					{/* Composition has no per-item SRS weighting to prioritize —
+					    `startCompositionRound` takes only a count — so the
+					    toggle would control nothing there and is hidden. */}
+					{mode === "practice" && (
+						<div className="flex items-center gap-2">
+							<input
+								id="game-prioritize-weak"
+								type="checkbox"
+								checked={prioritizeWeakItems}
+								onChange={(e) => setPrioritizeWeakItems(e.target.checked)}
+							/>
+							<label
+								htmlFor="game-prioritize-weak"
+								className="text-sm"
+								style={{ color: "var(--color-text)" }}
+							>
+								Prioritize weak items
+							</label>
+						</div>
+					)}
 
 					<Button
 						className="w-full"

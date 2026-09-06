@@ -45,6 +45,7 @@ import type {
 	SymbolItemContent,
 } from "../../domain/game/types";
 import grammarData from "../../domain/grammar/data/grammar.json";
+import { GrammarReviewCard } from "../../domain/grammar/entities/GrammarReviewCard";
 import { GrammarService } from "../../domain/grammar/services/GrammarLessonService";
 import type { GrammarEntry } from "../../domain/grammar/types";
 import { ScriptPropertyCard } from "../../domain/script/entities/ScriptPropertyCard";
@@ -280,6 +281,136 @@ export function makeToneVocabCard(thai: string): VocabCard {
 	});
 }
 
+/**
+ * One *graduated* vocab card for `thai` — `srs.learningStep: null`, which
+ * is what `GrammarService.getMasteredVocabCounts()` counts toward grammar
+ * prerequisites (`DEFAULT_SRS` above graduates nothing). The word must
+ * exist in `vocabulary.json`: a graduated card for a word the data doesn't
+ * carry counts toward no `word_class` at all, which is exactly the silent
+ * fixture typo this check exists to catch.
+ */
+export function makeGraduatedVocabCard(thai: string): VocabCard {
+	const entry = (vocabularyData as VocabEntry[]).find(
+		(word) => word.thai === thai,
+	);
+	if (!entry) {
+		throw new Error(`no vocabulary entry for "${thai}"`);
+	}
+	return VocabCard.fromDTO({
+		id: `vocab:${thai}:thaiToEnglish`,
+		question: `What does ${thai} mean?`,
+		correctAnswer: "answer",
+		choices: ["answer", "other"],
+		srs: { ...DEFAULT_SRS, learningStep: null },
+		promptWord: thai,
+		property: "thaiToEnglish",
+	});
+}
+
+/**
+ * One grammar card for `grammarId` — what marks that grammar point
+ * *learned* for `GrammarService.getUnlockedGrammarPoints()`'s
+ * learned-prefix rule, letting the next point unlock once its own
+ * prerequisites are met. The content fields are inert: nothing in the game
+ * feature reads a grammar card beyond its `grammarId`'s existence.
+ */
+export function makeGrammarCard(grammarId: string): GrammarReviewCard {
+	return GrammarReviewCard.fromDTO({
+		id: `grammar:${grammarId}:recognition`,
+		question: `question for ${grammarId}`,
+		correctAnswer: "answer",
+		choices: ["answer", "other"],
+		srs: { ...DEFAULT_SRS },
+		grammarId,
+		property: "recognition",
+	});
+}
+
+// --- Grammar-unlock fixtures, derived from the real data ---
+
+const GRAMMAR_BY_LESSON: readonly GrammarEntry[] = [
+	...(grammarData as unknown as GrammarEntry[]),
+].sort((a, b) => a.lessonNumber - b.lessonNumber);
+
+const firstGrammarEntry = GRAMMAR_BY_LESSON[0];
+if (!firstGrammarEntry) {
+	throw new Error("grammar.json is empty — the unlock fixtures need data");
+}
+
+/** The id `makeGrammarCard` needs to mark the first grammar point learned. */
+export const FIRST_GRAMMAR_POINT_ID: string = firstGrammarEntry.id;
+
+/**
+ * The fewest graduated vocab words that satisfy every prerequisite of
+ * `entries`: per word class, the largest `minVocabByClass` requirement
+ * across the entries, taken from the front of `vocabulary.json`'s words of
+ * that class, plus every `applicationTemplate` function word (which
+ * `GrammarService.meetsPrerequisites` also requires graduated). Derived
+ * from the real data rather than hardcoded so a data change moves the
+ * fixture instead of silently unlocking nothing. `minTotalVocab` is not
+ * handled — no early entry sets it; the throw below is where that would
+ * surface if one ever does and the class minimums stop covering it.
+ */
+function vocabSatisfyingPrerequisitesOf(
+	entries: readonly GrammarEntry[],
+): readonly string[] {
+	const minByClass = new Map<string, number>();
+	for (const entry of entries) {
+		for (const [wordClass, min] of Object.entries(
+			entry.prerequisites.minVocabByClass,
+		)) {
+			minByClass.set(wordClass, Math.max(minByClass.get(wordClass) ?? 0, min));
+		}
+		const required = entry.prerequisites.minTotalVocab ?? 0;
+		if (required > 0) {
+			throw new Error(
+				`grammar entry "${entry.id}" sets minTotalVocab, which this fixture does not derive — extend vocabSatisfyingPrerequisitesOf`,
+			);
+		}
+	}
+
+	const words: string[] = [];
+	for (const [wordClass, min] of minByClass) {
+		const ofClass = (vocabularyData as VocabEntry[])
+			.filter((word) => word.word_class === wordClass)
+			.slice(0, min);
+		if (ofClass.length < min) {
+			throw new Error(
+				`vocabulary.json has only ${ofClass.length} "${wordClass}" words, ${min} required`,
+			);
+		}
+		words.push(...ofClass.map((word) => word.thai));
+	}
+	for (const entry of entries) {
+		for (const functionWord of entry.applicationTemplate?.functionWords ?? []) {
+			if (!words.includes(functionWord.thai)) {
+				words.push(functionWord.thai);
+			}
+		}
+	}
+	return words;
+}
+
+/**
+ * Graduating exactly these words (see `makeGraduatedVocabCard` /
+ * `graduatedVocab`) unlocks the first grammar point — and, with no grammar
+ * card learned, *only* the first: `getUnlockedGrammarPoints()`'s
+ * learned-prefix rule keeps every later prerequisite-satisfying point
+ * locked behind an unlearned earlier one.
+ */
+export const UNLOCKS_FIRST_GRAMMAR_POINT: readonly string[] =
+	vocabSatisfyingPrerequisitesOf(GRAMMAR_BY_LESSON.slice(0, 1));
+
+/**
+ * Graduating these words *and* marking the first point learned
+ * (`learnedGrammar: [FIRST_GRAMMAR_POINT_ID]`) unlocks exactly the first
+ * two grammar points: the second's prerequisites are met and the only
+ * earlier point is learned, while everything after stays locked behind the
+ * unlearned second point.
+ */
+export const UNLOCKS_FIRST_TWO_GRAMMAR_POINTS: readonly string[] =
+	vocabSatisfyingPrerequisitesOf(GRAMMAR_BY_LESSON.slice(0, 2));
+
 /** A `GameItem` with a pre-assigned direction, for fixed-round tests. */
 export function makeSymbolItem(
 	symbolCharacter: string,
@@ -419,6 +550,19 @@ export interface MakeAppValueOptions {
 	 * tone practice.
 	 */
 	toneWords?: readonly string[];
+	/**
+	 * Thai words (existing in `vocabulary.json`) to seed one *graduated*
+	 * vocab card each for — what counts toward grammar prerequisites and so
+	 * toward composition mode's unlocked set. `UNLOCKS_FIRST_GRAMMAR_POINT`
+	 * is the derived set that unlocks exactly the first grammar point.
+	 */
+	graduatedVocab?: readonly string[];
+	/**
+	 * Grammar ids (existing in `grammar.json`) to seed one grammar card
+	 * each for — what marks those points *learned*, letting later points
+	 * unlock once their own prerequisites are met.
+	 */
+	learnedGrammar?: readonly string[];
 }
 
 /**
@@ -461,6 +605,8 @@ export function makeAppValue(options: MakeAppValueOptions = {}): AppHarness {
 	cardRepo.saveAll((options.symbols ?? []).map(makeScriptCard));
 	cardRepo.saveAll((options.sentences ?? []).map(makeSentenceCard));
 	cardRepo.saveAll((options.toneWords ?? []).map(makeToneVocabCard));
+	cardRepo.saveAll((options.graduatedVocab ?? []).map(makeGraduatedVocabCard));
+	cardRepo.saveAll((options.learnedGrammar ?? []).map(makeGrammarCard));
 
 	const historyStore = new InMemoryJsonStore<GameHistoryEntry[]>();
 	// Register every source the real `AppContext.tsx` registers — a harness
@@ -534,6 +680,8 @@ export function renderWithApp(
 		symbols: options.symbols,
 		sentences: options.sentences,
 		toneWords: options.toneWords,
+		graduatedVocab: options.graduatedVocab,
+		learnedGrammar: options.learnedGrammar,
 	});
 	const value: AppContextValue = { ...app.value, ...overrides };
 	const result = render(
