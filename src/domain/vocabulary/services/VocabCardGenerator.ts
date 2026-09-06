@@ -52,12 +52,17 @@ const charToConsonant = new Map(consonants.map((c) => [c.character, c]));
 /**
  * Generate a shuffled character grid for a spelling quiz.
  *
- * Includes all characters of the word plus phonetically confusable
- * consonant distractors and random padding characters.
+ * Includes one tile per occurrence of each character in the word (so a
+ * word with a repeated letter gets a tile for each occurrence — tapping a
+ * tile only ever uses up that one tile, never blocks a later occurrence of
+ * the same letter) plus phonetically confusable consonant distractors and
+ * random padding characters, all kept distinct from the word's own
+ * characters.
  */
 function generateSpellingChoices(word: VocabEntry): string[] {
 	const wordChars = [...word.thai].filter((ch) => ch !== " ");
-	const charSet = new Set(wordChars);
+	const wordCharSet = new Set(wordChars);
+	const distractors = new Set<string>();
 
 	// Add confusable consonants for each consonant in the word
 	for (const ch of wordChars) {
@@ -66,22 +71,22 @@ function generateSpellingChoices(word: VocabEntry): string[] {
 		const key = normaliseSound(consonant.initialSound);
 		const group = confusableMap.get(key) ?? [];
 		for (const confusable of group) {
-			if (confusable !== ch) charSet.add(confusable);
+			if (!wordCharSet.has(confusable)) distractors.add(confusable);
 		}
 	}
 
-	// Pad with random characters if grid is too small
+	// Pad with random characters if the distractor pool is too small
 	const allChars = consonants.map((c) => c.character);
-	const MIN_GRID_SIZE = wordChars.length + 3;
-	while (charSet.size < MIN_GRID_SIZE) {
+	const MIN_DISTRACTORS = 3;
+	while (distractors.size < MIN_DISTRACTORS) {
 		const random = allChars[
 			Math.floor(Math.random() * allChars.length)
 		] as string;
-		charSet.add(random);
+		if (!wordCharSet.has(random)) distractors.add(random);
 	}
 
 	// Shuffle
-	const choices = [...charSet];
+	const choices = [...wordChars, ...distractors];
 	for (let i = choices.length - 1; i > 0; i--) {
 		const j = Math.floor(Math.random() * (i + 1));
 		[choices[i], choices[j]] = [choices[j] as string, choices[i] as string];
