@@ -16,8 +16,6 @@ task_id: "3.2"
 task_status: pending
 depends_on: ["3.1"]
 size: large
-weight_votes:
-  - "author -> 8"
 verify:
   - npm test -- src/domain/game
   - npm test -- src/infrastructure/persistence/StorageGameHistoryRepository

@@ -11,8 +11,6 @@ task_id: "3.1"
 task_status: pending
 depends_on: ["2.1"]
 size: medium
-weight_votes:
-  - "author -> 5"
 verify:
   - npm test -- src/domain/game
   - npm run build

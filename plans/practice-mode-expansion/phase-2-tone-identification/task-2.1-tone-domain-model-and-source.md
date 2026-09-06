@@ -16,8 +16,6 @@ task_id: "2.1"
 task_status: pending
 depends_on: ["1.1"]
 size: medium
-weight_votes:
-  - "author -> 5"
 verify:
   - npm test -- src/domain/game
   - npm test -- src/domain/vocabulary

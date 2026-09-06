@@ -13,8 +13,6 @@ task_id: "2.3"
 task_status: pending
 depends_on: ["2.2"]
 size: large
-weight_votes:
-  - "author -> 8"
 verify:
   - npm test -- src/presentation/pages/GamePage
   - npm test -- src/presentation/components/organisms/ToneIdentificationChallenge

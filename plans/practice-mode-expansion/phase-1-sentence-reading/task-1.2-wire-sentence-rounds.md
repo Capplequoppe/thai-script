@@ -11,8 +11,6 @@ task_id: "1.2"
 task_status: pending
 depends_on: ["1.1"]
 size: small
-weight_votes:
-  - "author -> 3"
 verify:
   - npm test -- src/application/use-cases/PlayGameUseCase
   - npm run build

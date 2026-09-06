@@ -16,8 +16,6 @@ task_id: "1.3"
 task_status: pending
 depends_on: ["1.2"]
 size: x-large
-weight_votes:
-  - "author -> 13"
 verify:
   - npm test -- src/presentation/pages/GamePage
   - npm test -- src/presentation/components/organisms/SentenceListeningChallenge
