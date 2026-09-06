@@ -348,8 +348,9 @@ export const FIRST_GRAMMAR_POINT_ID: string = firstGrammarEntry.id;
  * `GrammarService.meetsPrerequisites` also requires graduated). Derived
  * from the real data rather than hardcoded so a data change moves the
  * fixture instead of silently unlocking nothing. `minTotalVocab` is not
- * handled — no early entry sets it; the throw below is where that would
- * surface if one ever does and the class minimums stop covering it.
+ * handled — no early entry sets it — and the throw below surfaces the
+ * moment one does, rather than guessing whether the class minimums happen
+ * to cover it.
  */
 function vocabSatisfyingPrerequisitesOf(
 	entries: readonly GrammarEntry[],

@@ -445,7 +445,8 @@ export function GamePage() {
 					style={{ color: "var(--color-text-muted)" }}
 				>
 					Self-graded drilling over your introduced symbols, words, and
-					sentences — it never changes your review schedule.
+					sentences — or sentence composition from your unlocked grammar. It
+					never changes your review schedule.
 				</p>
 			</div>
 

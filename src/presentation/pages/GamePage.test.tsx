@@ -250,9 +250,10 @@ function vocabCard(thai: string, property = "thaiToEnglish"): VocabCard {
 
 /**
  * A real `PlayGameUseCase` wired over all three pools — `makeAppValue` in
- * `renderWithApp.tsx` registers every production source too, but only seeds
- * script/sentence cards, so a round needing eligible vocab words builds its
- * own card repository here.
+ * `renderWithApp.tsx` registers every production source too, but seeds
+ * vocab cards only through its tone/graduated-vocab options, so a round
+ * needing arbitrary eligible vocab words builds its own card repository
+ * here.
  */
 function makeMixGame(
 	symbolChars: readonly string[],
