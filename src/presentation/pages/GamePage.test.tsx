@@ -16,6 +16,7 @@ import type {
 	GameItem,
 	SentenceChallengeDirection,
 	SentenceItemContent,
+	ToneItemContent,
 	WordChallengeDirection,
 	WordItemContent,
 } from "../../domain/game/types";
@@ -160,6 +161,24 @@ function makeWordItem(
 		audioUrl: `/audio/${thaiWord}.mp3`,
 		...overrides,
 		challengeDirection,
+	};
+}
+
+/**
+ * A `ToneGameItem`, for fixed-round tests. Tone items have one direction
+ * by design, so there is nothing to pass for it.
+ */
+function makeToneItem(
+	thaiWord: string,
+	overrides: Partial<Omit<ToneItemContent, "kind">> = {},
+): GameItem {
+	return {
+		kind: "tone",
+		thaiWord,
+		syllables: [{ text: thaiWord, tone: "falling" }],
+		audioUrl: `/audio/${thaiWord}.mp3`,
+		...overrides,
+		challengeDirection: "identification",
 	};
 }
 
@@ -1188,7 +1207,9 @@ describe("GamePage", () => {
 		// Zero pools checked — its own message.
 		fireEvent.click(screen.getByLabelText("Symbols"));
 		expect(
-			screen.getByText("Select at least one pool to practice."),
+			// A substring match: this copy also names the tone toggle since
+			// task 2.3 made an all-unchecked state rescuable by it.
+			screen.getByText(/Select at least one pool to practice/),
 		).toBeTruthy();
 		expect(screen.queryByRole("button", { name: "Start Round" })).toBeNull();
 
@@ -1198,7 +1219,7 @@ describe("GamePage", () => {
 			screen.getByText(/Nothing to practice yet in the selected pools/),
 		).toBeTruthy();
 		expect(
-			screen.queryByText("Select at least one pool to practice."),
+			screen.queryByText(/Select at least one pool to practice/),
 		).toBeNull();
 		expect(screen.queryByRole("button", { name: "Start Round" })).toBeNull();
 
@@ -1366,5 +1387,256 @@ describe("GamePage", () => {
 
 		fireEvent.click(screen.getByLabelText("Symbols"));
 		expect(screen.getByLabelText("Draw on canvas")).toBeTruthy();
+	});
+	// --- Task 2.3: Tone Identification ---
+
+	// Four real vocabulary entries, each with a determinable tone, so a
+	// seeded `toneIdentification` card makes exactly four words eligible.
+	const TONE_WORDS = ["ที่", "ได้", "จะ", "นี้"] as const;
+	const TONE_PROMPT = "Say this word's tones aloud";
+
+	// Tone AC3, AC7
+	it("leaves the Tone Identification toggle unchecked by default and keeps it accessibly labeled and keyboard-operable", () => {
+		renderWithApp(
+			<GamePage />,
+			{},
+			{ symbols: ["ม"], toneWords: [...TONE_WORDS] },
+		);
+
+		const toggle = screen.getByLabelText(
+			"Tone Identification",
+		) as HTMLInputElement;
+		expect(toggle.type).toBe("checkbox");
+		expect(toggle.checked).toBe(false);
+
+		toggle.focus();
+		expect(document.activeElement).toBe(toggle);
+		// jsdom cannot synthesize the browser's Space-key default action on a
+		// focused checkbox; activating the focused element is its stand-in.
+		fireEvent.click(toggle);
+		expect(toggle.checked).toBe(true);
+		fireEvent.click(toggle);
+		expect(toggle.checked).toBe(false);
+	});
+
+	// Tone AC3 — the toggle is combinable with any pool selection, and an
+	// unchecked toggle must never let a tone item into the round.
+	it("includes tone items only when the toggle is checked, alongside the checked pools", () => {
+		renderWithApp(
+			<GamePage />,
+			{},
+			{ symbols: ["ม", "น", "ง"], toneWords: [...TONE_WORDS] },
+		);
+
+		// Unchecked: Symbols' three items and nothing else.
+		setCount("3");
+		startRound();
+		for (let i = 0; i < 3; i += 1) {
+			expect(screen.queryByText(TONE_PROMPT)).toBeNull();
+			reveal();
+			rate(/Good/);
+		}
+		expect(screen.getByText("Round Complete")).toBeTruthy();
+		fireEvent.click(screen.getByRole("button", { name: "Play Again" }));
+
+		// Checked, with Symbols still checked: tone items now appear.
+		fireEvent.click(screen.getByLabelText("Tone Identification"));
+		setCount("7");
+		startRound();
+		let sawTone = false;
+		let sawSymbol = false;
+		let screensTraversed = 0;
+		while (
+			screen.queryByText("Round Complete") === null &&
+			screensTraversed < 10
+		) {
+			if (screen.queryByText(TONE_PROMPT) !== null) sawTone = true;
+			if (screen.queryByText("Say this symbol aloud") !== null)
+				sawSymbol = true;
+			reveal();
+			rate(/Good/);
+			screensTraversed += 1;
+		}
+		expect(sawTone).toBe(true);
+		expect(sawSymbol).toBe(true);
+		// Seven screens: three symbols plus four tone-eligible words.
+		expect(screensTraversed).toBe(7);
+	});
+
+	// Tone AC4
+	it("dispatches a tone item to the Tone Identification organism", () => {
+		const { game } = makeFixedRoundGame([
+			makeToneItem("นี้", { syllables: [{ text: "นี้", tone: "high" }] }),
+		]);
+		renderWithApp(<GamePage />, { game });
+		startRound();
+
+		// Text and audio together on mount — the tone organism's prompt.
+		expect(screen.getByText(TONE_PROMPT)).toBeTruthy();
+		expect(screen.getByText("นี้")).toBeTruthy();
+		expect(createdAudioUrls()).toContain("/audio/นี้.mp3");
+		expect(screen.queryByText("high")).toBeNull();
+
+		reveal();
+		expect(screen.getByText("high")).toBeTruthy();
+		rate(/Good/);
+		expect(screen.getByText("Round Complete")).toBeTruthy();
+	});
+
+	// Tone AC5 — the critical case: extends the script/vocab/sentence
+	// byte-identity proofs to the tone-practice path, through the real
+	// AppProvider (which is what wires the real `ToneGameItemSource`).
+	it("leaves the whole thai-srs-state blob byte-identical after a full tone round through the real AppProvider", () => {
+		const seeded = JSON.stringify({
+			completedLessons: [1],
+			currentLesson: 2,
+			cards: {},
+			vocabCards: {
+				"vocab:ที่:thaiToEnglish": vocabCardDTO("ที่"),
+				"vocab:ที่:toneIdentification": vocabCardDTO("ที่", "toneIdentification"),
+				"vocab:ได้:toneIdentification": vocabCardDTO("ได้", "toneIdentification"),
+			},
+			grammarCards: {},
+			sentenceCards: {},
+			sessionHistory: [],
+			achievements: [],
+		});
+		getFakeLocalStorage().setItem("thai-srs-state", seeded);
+
+		render(
+			<AppProvider>
+				<MemoryRouter initialEntries={["/game"]}>
+					<Routes>
+						<Route path="/game" element={<GamePage />} />
+					</Routes>
+				</MemoryRouter>
+			</AppProvider>,
+		);
+
+		fireEvent.click(screen.getByLabelText("Symbols"));
+		fireEvent.click(screen.getByLabelText("Tone Identification"));
+		setCount("2");
+		startRound();
+		for (const rating of [/Again/, /Easy/]) {
+			expect(screen.getByText(TONE_PROMPT)).toBeTruthy();
+			reveal();
+			rate(rating);
+		}
+		expect(screen.getByText("Round Complete")).toBeTruthy();
+
+		// The round itself persisted — to its own key...
+		expect(
+			getFakeLocalStorage().getItem("thai-srs-game-history"),
+		).not.toBeNull();
+		// ...while the whole SRS blob is byte-identical.
+		expect(getFakeLocalStorage().getItem("thai-srs-state")).toBe(seeded);
+	});
+
+	// Tone AC6 — the state task 2.1's pool-independent design exists to
+	// allow: no pool checked at all, tone practice alone.
+	it("starts a tone-only round with no pool checked and the toggle checked", () => {
+		renderWithApp(
+			<GamePage />,
+			{},
+			{ symbols: ["ม"], toneWords: [...TONE_WORDS] },
+		);
+
+		fireEvent.click(screen.getByLabelText("Symbols"));
+		fireEvent.click(screen.getByLabelText("Tone Identification"));
+
+		// Zero pools is no longer an empty state once tone practice is on.
+		expect(
+			screen.queryByText(/Select at least one pool to practice/),
+		).toBeNull();
+		expect(
+			(screen.getByLabelText("Items per round") as HTMLInputElement).max,
+		).toBe("4");
+
+		setCount("4");
+		startRound();
+		for (let i = 0; i < 4; i += 1) {
+			expect(screen.getByText(TONE_PROMPT)).toBeTruthy();
+			expect(screen.queryByText("Say this symbol aloud")).toBeNull();
+			reveal();
+			rate(/Good/);
+		}
+		expect(screen.getByText("Round Complete")).toBeTruthy();
+	});
+
+	// Tone AC6 — the other end: the toggle on with nothing tone-eligible
+	// must say so about tone, not about pools the learner never checked.
+	it("explains an empty tone selection in its own words, never the pool-empty message", () => {
+		renderWithApp(<GamePage />, {}, { symbols: ["ม"] });
+
+		fireEvent.click(screen.getByLabelText("Symbols"));
+		fireEvent.click(screen.getByLabelText("Tone Identification"));
+
+		expect(
+			screen.getByText(/No words with identifiable tones yet/),
+		).toBeTruthy();
+		expect(
+			screen.queryByText(/Nothing to practice yet in the selected pools/),
+		).toBeNull();
+		expect(
+			screen.queryByText(/Select at least one pool to practice/),
+		).toBeNull();
+		expect(screen.queryByRole("button", { name: "Start Round" })).toBeNull();
+	});
+
+	// Tone AC8 — the count is what proves `includeTonePractice` reaches
+	// `countEligibleItems` and not merely `startRound`: 3 symbols + 4
+	// tone-eligible words is a cap of 7, and an unthreaded toggle leaves it 3.
+	it("counts tone items in the eligible cap when the toggle is checked", () => {
+		renderWithApp(
+			<GamePage />,
+			{},
+			{ symbols: ["ม", "น", "ง"], toneWords: [...TONE_WORDS] },
+		);
+		const countInput = () =>
+			screen.getByLabelText("Items per round") as HTMLInputElement;
+
+		expect(countInput().max).toBe("3");
+
+		fireEvent.click(screen.getByLabelText("Tone Identification"));
+		expect(countInput().max).toBe("7");
+		expect(screen.getByText("Whole number from 1 to 7")).toBeTruthy();
+
+		// And unchecking it puts the cap back — the count is derived, not a
+		// one-way widening.
+		fireEvent.click(screen.getByLabelText("Tone Identification"));
+		expect(countInput().max).toBe("3");
+	});
+
+	// Tone AC9 — two consecutive tone items reuse the component instance
+	// without a remount, and here deliberately share one audioUrl: only an
+	// identity-keyed reset/replay passes.
+	it("resets reveal and replays audio across two consecutive tone items sharing one audioUrl", () => {
+		const shared = "/audio/shared-word.mp3";
+		const first = makeToneItem("ที่", {
+			syllables: [{ text: "ที่", tone: "falling" }],
+			audioUrl: shared,
+		});
+		const second = makeToneItem("นี้", {
+			syllables: [{ text: "นี้", tone: "high" }],
+			audioUrl: shared,
+		});
+		const { game } = makeFixedRoundGame([first, second]);
+		renderWithApp(<GamePage />, { game });
+		startRound();
+
+		expect(createdAudioUrls().filter((url) => url === shared)).toHaveLength(1);
+		reveal();
+		expect(screen.getByText("falling")).toBeTruthy();
+		rate(/Good/);
+
+		// Second item: unrevealed again despite the identical audioUrl...
+		expect(screen.getByText("นี้")).toBeTruthy();
+		expect(screen.getByRole("button", { name: "Show Answer" })).toBeTruthy();
+		expect(screen.queryByText("falling")).toBeNull();
+		expect(screen.queryByRole("button", { name: /Again/ })).toBeNull();
+		// ...and its own mount played the audio again.
+		expect(createdAudioUrls().filter((url) => url === shared)).toHaveLength(2);
+		reveal();
+		expect(screen.getByText("high")).toBeTruthy();
 	});
 });

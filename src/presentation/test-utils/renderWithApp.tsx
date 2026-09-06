@@ -35,6 +35,7 @@ import { GameItemSelectionService } from "../../domain/game/services/GameItemSel
 import { SentenceGameItemSource } from "../../domain/game/services/SentenceGameItemSource";
 import { SymbolGameItemSource } from "../../domain/game/services/SymbolGameItemSource";
 import { normalizeRequestedCount } from "../../domain/game/services/sampling";
+import { ToneGameItemSource } from "../../domain/game/services/ToneGameItemSource";
 import { WordGameItemSource } from "../../domain/game/services/WordGameItemSource";
 import type {
 	GameHistoryEntry,
@@ -56,6 +57,8 @@ import { ReviewService } from "../../domain/session/services/ReviewService";
 import { ApprenticeService } from "../../domain/shared/services/ApprenticeService";
 import { LeechService } from "../../domain/shared/services/LeechService";
 import vocabularyData from "../../domain/vocabulary/data/vocabulary.json";
+import { VocabCard } from "../../domain/vocabulary/entities/VocabCard";
+import { toneSyllablesOf } from "../../domain/vocabulary/services/toneSyllables";
 import { VocabularyService } from "../../domain/vocabulary/services/VocabularyLessonService";
 import type { VocabEntry } from "../../domain/vocabulary/types";
 import { NotificationScheduler } from "../../infrastructure/notifications/NotificationScheduler";
@@ -245,6 +248,38 @@ export function makeSentenceCard(sentenceId: string): SentenceReviewCard {
 	});
 }
 
+/**
+ * One `toneIdentification` vocab card for `thai` — enough to make that word
+ * eligible for tone practice (eligibility is card-driven; the item's
+ * content still comes from the matching `VocabEntry`, so pass Thai words
+ * that exist in `vocabulary.json`, e.g. "ที่", "ได้", "จะ", "นี้").
+ *
+ * The card carries the word's real syllables, exactly as
+ * `VocabCardGenerator` writes them, so a fixture can never accidentally
+ * prove more than production does — but nothing reads them: a card
+ * persisted before that field existed has `syllables === undefined`, which
+ * is why `ToneGameItemSource` sources its content from the entry instead
+ * (see CONTEXT.md).
+ */
+export function makeToneVocabCard(thai: string): VocabCard {
+	const entry = (vocabularyData as VocabEntry[]).find(
+		(word) => word.thai === thai,
+	);
+	if (!entry) {
+		throw new Error(`no vocabulary entry for "${thai}"`);
+	}
+	return VocabCard.fromDTO({
+		id: `vocab:${thai}:toneIdentification`,
+		question: `What is the tone pattern of ${thai}?`,
+		correctAnswer: "answer",
+		choices: ["answer", "other"],
+		srs: { ...DEFAULT_SRS },
+		promptWord: thai,
+		property: "toneIdentification",
+		syllables: toneSyllablesOf(entry),
+	});
+}
+
 /** A `GameItem` with a pre-assigned direction, for fixed-round tests. */
 export function makeSymbolItem(
 	symbolCharacter: string,
@@ -362,6 +397,12 @@ export interface MakeAppValueOptions {
 	symbols?: readonly string[];
 	/** Sentence ids (existing in `sentences.json`) to seed one card each for. */
 	sentences?: readonly string[];
+	/**
+	 * Thai words (existing in `vocabulary.json`) to seed one
+	 * `toneIdentification` card each for — what makes a word eligible for
+	 * tone practice.
+	 */
+	toneWords?: readonly string[];
 }
 
 /**
@@ -403,6 +444,7 @@ export function makeAppValue(options: MakeAppValueOptions = {}): AppHarness {
 
 	cardRepo.saveAll((options.symbols ?? []).map(makeScriptCard));
 	cardRepo.saveAll((options.sentences ?? []).map(makeSentenceCard));
+	cardRepo.saveAll((options.toneWords ?? []).map(makeToneVocabCard));
 
 	const historyStore = new InMemoryJsonStore<GameHistoryEntry[]>();
 	// Register every source the real `AppContext.tsx` registers — a harness
@@ -420,6 +462,7 @@ export function makeAppValue(options: MakeAppValueOptions = {}): AppHarness {
 				),
 			],
 			cardRepo,
+			new ToneGameItemSource(cardRepo, vocabularyData as VocabEntry[]),
 		),
 		new StorageGameHistoryRepository(historyStore),
 	);
@@ -470,6 +513,7 @@ export function renderWithApp(
 	const app = makeAppValue({
 		symbols: options.symbols,
 		sentences: options.sentences,
+		toneWords: options.toneWords,
 	});
 	const value: AppContextValue = { ...app.value, ...overrides };
 	const result = render(

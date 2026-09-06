@@ -17,6 +17,7 @@ import { SentenceListeningChallenge } from "../components/organisms/SentenceList
 import { SentenceReadingChallenge } from "../components/organisms/SentenceReadingChallenge";
 import { SymbolDictationChallenge } from "../components/organisms/SymbolDictationChallenge";
 import { SymbolReadingChallenge } from "../components/organisms/SymbolReadingChallenge";
+import { ToneIdentificationChallenge } from "../components/organisms/ToneIdentificationChallenge";
 import { WordDictationChallenge } from "../components/organisms/WordDictationChallenge";
 import { WordProductionChallenge } from "../components/organisms/WordProductionChallenge";
 import { useApp } from "../hooks/useApp";
@@ -49,15 +50,47 @@ const DEFAULT_CHECKED_POOLS: Readonly<Record<GameCardPool, boolean>> = {
 };
 
 /**
- * Two different empty states, never collapsed into one text: "you haven't
- * chosen anything yet" vs. "you chose something and it has nothing
- * eligible". With a free multi-select there is no fixed set of named pool
- * combinations, so the second message is generic over whatever subset is
- * checked.
+ * Three different empty states, never collapsed into one text: "you haven't
+ * chosen anything yet", "you chose pools and they have nothing eligible",
+ * and "you chose tone practice and it has nothing eligible" — each sends
+ * the learner to a different control. With a free multi-select there is no
+ * fixed set of named pool combinations, so the pool message is generic over
+ * whatever subset is checked. `emptySelectionMessage` below picks between
+ * them.
  */
-const NO_POOLS_CHECKED_MESSAGE = "Select at least one pool to practice.";
+const NO_POOLS_CHECKED_MESSAGE =
+	"Select at least one pool to practice, or turn on Tone Identification.";
 const NOTHING_ELIGIBLE_MESSAGE =
 	"Nothing to practice yet in the selected pools — complete a lesson that introduces them first.";
+/**
+ * Tone practice is not a pool (see `TONE_TOGGLE_LABEL`), so "nothing in the
+ * selected pools" would be a false explanation when the toggle is the only
+ * thing selected — the learner would go looking at pool checkboxes they
+ * never checked.
+ */
+const NO_TONE_ELIGIBLE_MESSAGE =
+	"No words with identifiable tones yet — learn some vocabulary first, then Tone Identification will have something to draw from.";
+
+/**
+ * The one name this toggle goes by, everywhere. Never "Prioritize tone
+ * identification" (see CONTEXT.md): this control *includes* items, it does
+ * not reorder them — that is the separate weak-item toggle's job.
+ */
+const TONE_TOGGLE_LABEL = "Tone Identification";
+
+/**
+ * Which of the three setup empty states applies, or `null` when the round
+ * can start.
+ */
+function emptySelectionMessage(
+	hasPools: boolean,
+	includeTonePractice: boolean,
+	eligibleCount: number,
+): string | null {
+	if (!hasPools && !includeTonePractice) return NO_POOLS_CHECKED_MESSAGE;
+	if (eligibleCount > 0) return null;
+	return hasPools ? NOTHING_ELIGIBLE_MESSAGE : NO_TONE_ELIGIBLE_MESSAGE;
+}
 
 const DEFAULT_ITEM_COUNT = 10;
 
@@ -69,14 +102,71 @@ const DEFAULT_ITEM_COUNT = 10;
 function countEligibleItems(
 	game: PlayGameUseCase,
 	pools: readonly GameCardPool[],
-	prioritizeWeakItems: boolean = false,
+	prioritizeWeakItems: boolean,
+	includeTonePractice: boolean,
 ): number {
 	return game.startRound({
 		pools,
 		itemCount: Number.MAX_SAFE_INTEGER,
 		prioritizeWeakItems,
 		inputMode: "draw",
+		includeTonePractice,
 	}).length;
+}
+
+/**
+ * The one place a `GameItem`'s union tag is inspected: each organism
+ * receives a single-kind, single-direction prop and never narrows the union
+ * itself (see task 2.3's architectural decision).
+ *
+ * Exhaustive on `kind` with a `never` default, matching every other switch
+ * over this union (`assignDirection`, `itemKeyOf`): a new member must be a
+ * compile error right here, at the page that has to render it, rather than
+ * silently falling through to some other kind's organism.
+ */
+function renderChallenge(
+	item: GameItem,
+	inputMode: GameInputMode,
+	onRate: (rating: RecallRating) => void,
+) {
+	switch (item.kind) {
+		case "symbol":
+			return item.challengeDirection === "dictation" ? (
+				<SymbolDictationChallenge
+					item={item}
+					inputMode={inputMode}
+					onRate={onRate}
+				/>
+			) : (
+				<SymbolReadingChallenge item={item} onRate={onRate} />
+			);
+		case "word":
+			return item.challengeDirection === "dictationTranslate" ? (
+				<WordDictationChallenge
+					item={item}
+					inputMode={inputMode}
+					onRate={onRate}
+				/>
+			) : (
+				<WordProductionChallenge
+					item={item}
+					inputMode={inputMode}
+					onRate={onRate}
+				/>
+			);
+		case "sentence":
+			return item.challengeDirection === "listening" ? (
+				<SentenceListeningChallenge item={item} onRate={onRate} />
+			) : (
+				<SentenceReadingChallenge item={item} onRate={onRate} />
+			);
+		case "tone":
+			return <ToneIdentificationChallenge item={item} onRate={onRate} />;
+		default: {
+			const _never: never = item;
+			throw new Error(`unhandled game item: ${JSON.stringify(_never)}`);
+		}
+	}
 }
 
 /**
@@ -100,6 +190,10 @@ export function GamePage() {
 	>(DEFAULT_CHECKED_POOLS);
 	const [inputMode, setInputMode] = useState<GameInputMode>("draw");
 	const [prioritizeWeakItems, setPrioritizeWeakItems] = useState(false);
+	// Off by default, and independent of `checkedPools` — tone practice is
+	// not a pool (see `TONE_TOGGLE_LABEL`), so it combines with any pool
+	// selection, including none at all.
+	const [includeTonePractice, setIncludeTonePractice] = useState(false);
 	const [items, setItems] = useState<GameItem[]>([]);
 	const [ratings, setRatings] = useState<GameRatingRecord[]>([]);
 	const [currentIndex, setCurrentIndex] = useState(0);
@@ -120,26 +214,33 @@ export function GamePage() {
 	const eligibleCount = useMemo(
 		() =>
 			phase === "setup"
-				? countEligibleItems(game, pools, prioritizeWeakItems)
+				? countEligibleItems(
+						game,
+						pools,
+						prioritizeWeakItems,
+						includeTonePractice,
+					)
 				: 0,
-		[game, phase, pools, prioritizeWeakItems],
+		[game, phase, pools, prioritizeWeakItems, includeTonePractice],
 	);
 	const [countInput, setCountInput] = useState<string>(() =>
 		eligibleCount > 0
 			? String(Math.min(DEFAULT_ITEM_COUNT, eligibleCount))
 			: "",
 	);
-	// The eligible count is pool-dependent — changing the checked set can
-	// make a previously-typed count invalid without ever telling the learner
-	// why.
-	// biome-ignore lint/correctness/useExhaustiveDependencies: resets only when the checked pool set changes, never on every eligibleCount-affecting render
+	// Changing what the round draws from can make a previously-typed count
+	// invalid without ever telling the learner why — so the two controls
+	// that change it, the checked pools and the tone toggle, both reset it.
+	// Nothing else does (the weak-item toggle and input mode leave the
+	// eligible set alone).
+	// biome-ignore lint/correctness/useExhaustiveDependencies: resets only when the drawn-from set changes, never on every eligibleCount-affecting render
 	useEffect(() => {
 		setCountInput(
 			eligibleCount > 0
 				? String(Math.min(DEFAULT_ITEM_COUNT, eligibleCount))
 				: "",
 		);
-	}, [pools]);
+	}, [pools, includeTonePractice]);
 	const history = useMemo(
 		() => (phase === "setup" ? game.getHistory() : null),
 		[game, phase],
@@ -152,12 +253,19 @@ export function GamePage() {
 		parsedCount >= 1 &&
 		parsedCount <= eligibleCount;
 
+	const emptyMessage = emptySelectionMessage(
+		pools.length > 0,
+		includeTonePractice,
+		eligibleCount,
+	);
+
 	const handleStart = useCallback(() => {
 		const roundItems = game.startRound({
 			pools,
 			itemCount: parsedCount,
 			prioritizeWeakItems,
 			inputMode,
+			includeTonePractice,
 		});
 		if (roundItems.length === 0) return;
 		setItems(roundItems);
@@ -166,7 +274,14 @@ export function GamePage() {
 		setSummary(null);
 		ratedIndexRef.current = -1;
 		setPhase("playing");
-	}, [game, pools, parsedCount, inputMode, prioritizeWeakItems]);
+	}, [
+		game,
+		pools,
+		parsedCount,
+		inputMode,
+		prioritizeWeakItems,
+		includeTonePractice,
+	]);
 
 	const handleRate = useCallback(
 		(rating: RecallRating) => {
@@ -198,40 +313,7 @@ export function GamePage() {
 		const item = items[currentIndex];
 		if (!item) return null;
 
-		// The page dispatches by `kind` then `challengeDirection`; each
-		// organism receives a single-kind, single-direction prop and never
-		// inspects `GameItem`'s union tag itself (see task 2.3's
-		// architectural decision).
-		const challenge =
-			item.kind === "symbol" ? (
-				item.challengeDirection === "dictation" ? (
-					<SymbolDictationChallenge
-						item={item}
-						inputMode={inputMode}
-						onRate={handleRate}
-					/>
-				) : (
-					<SymbolReadingChallenge item={item} onRate={handleRate} />
-				)
-			) : item.kind === "word" ? (
-				item.challengeDirection === "dictationTranslate" ? (
-					<WordDictationChallenge
-						item={item}
-						inputMode={inputMode}
-						onRate={handleRate}
-					/>
-				) : (
-					<WordProductionChallenge
-						item={item}
-						inputMode={inputMode}
-						onRate={handleRate}
-					/>
-				)
-			) : item.challengeDirection === "listening" ? (
-				<SentenceListeningChallenge item={item} onRate={handleRate} />
-			) : (
-				<SentenceReadingChallenge item={item} onRate={handleRate} />
-			);
+		const challenge = renderChallenge(item, inputMode, handleRate);
 
 		return (
 			<div>
@@ -342,7 +424,39 @@ export function GamePage() {
 				</div>
 			</fieldset>
 
-			{pools.length === 0 || eligibleCount === 0 ? (
+			{/* Beside the pool checkboxes, never among them: tone practice
+			    draws from the same vocab words the Words pool covers and is
+			    combinable with any pool selection, so reading as a fourth
+			    pool would misdescribe it (see CONTEXT.md). It lives outside
+			    the count/input-mode box below because that box disappears
+			    once nothing is eligible — a toggle that can rescue an empty
+			    selection must stay reachable from one. */}
+			<div>
+				<div className="flex items-center gap-2">
+					<input
+						id="game-include-tone"
+						type="checkbox"
+						checked={includeTonePractice}
+						onChange={(e) => setIncludeTonePractice(e.target.checked)}
+					/>
+					<label
+						htmlFor="game-include-tone"
+						className="text-sm"
+						style={{ color: "var(--color-text)" }}
+					>
+						{TONE_TOGGLE_LABEL}
+					</label>
+				</div>
+				<p
+					className="text-xs mt-1"
+					style={{ color: "var(--color-text-muted)" }}
+				>
+					Adds tone-pattern items from your vocabulary, whichever pools are
+					checked.
+				</p>
+			</div>
+
+			{emptyMessage ? (
 				<p
 					className="rounded-xl p-4 text-sm"
 					style={{
@@ -350,9 +464,7 @@ export function GamePage() {
 						color: "var(--color-text-muted)",
 					}}
 				>
-					{pools.length === 0
-						? NO_POOLS_CHECKED_MESSAGE
-						: NOTHING_ELIGIBLE_MESSAGE}
+					{emptyMessage}
 				</p>
 			) : (
 				<div

@@ -10,7 +10,7 @@ covers:
   - src/presentation/test-utils/renderWithApp.tsx
 status: draft
 task_id: "2.3"
-task_status: pending
+task_status: complete
 depends_on: ["2.2"]
 size: large
 verify:
