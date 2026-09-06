@@ -1,4 +1,5 @@
-import { consonants } from "../../script/data/symbols";
+import { consonants, vowels } from "../../script/data/symbols";
+import { normalizeFinalSound } from "../../script/services/ScriptCardGenerator";
 import { SrsSchedule } from "../../srs/value-objects/SrsSchedule";
 import type { VocabEntry, VocabularyCard } from "../types";
 
@@ -24,7 +25,7 @@ function pickChoices(correct: string, pool: string[], count = 4): string[] {
 	return choices;
 }
 
-/** Normalise an initialSound string to its base phoneme for grouping. */
+/** Normalise a sound description string to its base phoneme for grouping. */
 function normaliseSound(sound: string): string {
 	return sound
 		.replace(/\s*\(.*\)/, "")
@@ -32,11 +33,16 @@ function normaliseSound(sound: string): string {
 		.toLowerCase();
 }
 
-/** Build a map from base sound → set of consonant characters. */
-function buildConfusableMap(): Map<string, string[]> {
+/** Build a map from a consonant's normalised sound → sharing consonant characters. */
+function buildConsonantConfusableMap(
+	soundOf: (c: (typeof consonants)[number]) => string,
+	normalise: (raw: string) => string,
+	excludedKeys: ReadonlySet<string> = new Set(),
+): Map<string, string[]> {
 	const map = new Map<string, string[]>();
 	for (const c of consonants) {
-		const key = normaliseSound(c.initialSound);
+		const key = normalise(soundOf(c));
+		if (excludedKeys.has(key)) continue;
 		const list = map.get(key) ?? [];
 		list.push(c.character);
 		map.set(key, list);
@@ -44,44 +50,138 @@ function buildConfusableMap(): Map<string, string[]> {
 	return map;
 }
 
-const confusableMap = buildConfusableMap();
+// Consonants sharing an initial sound (ข/ฃ/ค/ฅ/ฆ all "kh", etc.) are genuinely
+// confusable when spelling from sound. So are consonants sharing a final
+// sound (ด/ต/ฎ/ฏ/ถ/ฐ/ท/ธ/ศ/ษ/ส all "T-stop" as finals) — excluding the two
+// catch-all labels that just mean "no shared final-sound behaviour", which
+// would otherwise lump together unrelated consonants as false confusables.
+const initialSoundConfusableMap = buildConsonantConfusableMap(
+	(c) => c.initialSound,
+	normaliseSound,
+);
+const finalSoundConfusableMap = buildConsonantConfusableMap(
+	(c) => c.finalSound,
+	normalizeFinalSound,
+	new Set(["Not used as final", "Acts as vowel"]),
+);
 
 /** Fast character → consonant lookup. */
 const charToConsonant = new Map(consonants.map((c) => [c.character, c]));
 
 /**
+ * A vowel's `character` sometimes models a compound form with a `-` (or a
+ * leading space) standing in for the consonant slot, e.g. "เ-ะ". Only the
+ * single-glyph entries (ะ, า, ิ, เ, …) are atomic characters that actually
+ * appear on their own inside a word's text, so only those are usable as
+ * spelling-grid tiles or distractors.
+ */
+function atomicVowelChar(character: string): string | null {
+	const stripped = [...character.replaceAll("-", "").trim()];
+	return stripped.length === 1 ? stripped[0] : null;
+}
+
+/** Build a map from a vowel's normalised sound → sharing atomic vowel characters. */
+function buildVowelConfusableMap(): Map<string, string[]> {
+	const map = new Map<string, string[]>();
+	for (const v of vowels) {
+		const atomic = atomicVowelChar(v.character);
+		if (!atomic) continue;
+		const key = normaliseSound(v.sound);
+		const list = map.get(key) ?? [];
+		if (!list.includes(atomic)) list.push(atomic);
+		map.set(key, list);
+	}
+	return map;
+}
+
+const vowelConfusableMap = buildVowelConfusableMap();
+
+/** Fast character → vowel sound-group key lookup, atomic vowel characters only. */
+const charToVowelSoundKey = new Map<string, string>();
+for (const [key, chars] of vowelConfusableMap) {
+	for (const ch of chars) charToVowelSoundKey.set(ch, key);
+}
+
+/** Every character (consonant or atomic vowel) that can appear as a spelling-grid tile. */
+const allSpellingChars = [
+	...new Set([
+		...consonants.map((c) => c.character),
+		...charToVowelSoundKey.keys(),
+	]),
+];
+
+/**
  * Generate a shuffled character grid for a spelling quiz.
  *
- * Includes all characters of the word plus phonetically confusable
- * consonant distractors and random padding characters.
+ * Includes one tile per occurrence of each character in the word (so a
+ * word with a repeated letter gets a tile for each occurrence — tapping a
+ * tile only ever uses up that one tile, never blocks a later occurrence of
+ * the same letter) plus distractors, all kept distinct from the word's own
+ * characters.
+ *
+ * Distractors are deliberately phonetically confusable — consonants sharing
+ * the word's consonants' initial or final sound, and vowels sharing the
+ * word's vowels' sound — rather than arbitrary noise, so the exercise drills
+ * the exact sound-alike pairs a learner needs to tell apart. Any padding
+ * needed to reach the minimum distractor count is drawn from characters
+ * `introducedChars` says the learner has already seen (falling back to the
+ * full alphabet only if that pool is too small to fill the minimum).
  */
-function generateSpellingChoices(word: VocabEntry): string[] {
+function generateSpellingChoices(
+	word: VocabEntry,
+	introducedChars?: ReadonlySet<string>,
+): string[] {
 	const wordChars = [...word.thai].filter((ch) => ch !== " ");
-	const charSet = new Set(wordChars);
+	const wordCharSet = new Set(wordChars);
+	const distractors = new Set<string>();
+	const isUsable = (ch: string) =>
+		!wordCharSet.has(ch) && (!introducedChars || introducedChars.has(ch));
 
-	// Add confusable consonants for each consonant in the word
+	// Add confusable consonants (shared initial or final sound) for each
+	// consonant in the word.
 	for (const ch of wordChars) {
 		const consonant = charToConsonant.get(ch);
 		if (!consonant) continue;
-		const key = normaliseSound(consonant.initialSound);
-		const group = confusableMap.get(key) ?? [];
-		for (const confusable of group) {
-			if (confusable !== ch) charSet.add(confusable);
+		const groups = [
+			initialSoundConfusableMap.get(normaliseSound(consonant.initialSound)),
+			finalSoundConfusableMap.get(normalizeFinalSound(consonant.finalSound)),
+		];
+		for (const group of groups) {
+			for (const confusable of group ?? []) {
+				if (isUsable(confusable)) distractors.add(confusable);
+			}
 		}
 	}
 
-	// Pad with random characters if grid is too small
-	const allChars = consonants.map((c) => c.character);
-	const MIN_GRID_SIZE = wordChars.length + 3;
-	while (charSet.size < MIN_GRID_SIZE) {
-		const random = allChars[
-			Math.floor(Math.random() * allChars.length)
-		] as string;
-		charSet.add(random);
+	// Add confusable vowels (shared sound) for each vowel character in the word.
+	for (const ch of wordChars) {
+		const key = charToVowelSoundKey.get(ch);
+		if (!key) continue;
+		for (const confusable of vowelConfusableMap.get(key) ?? []) {
+			if (isUsable(confusable)) distractors.add(confusable);
+		}
+	}
+
+	// Pad with characters the learner has already been introduced to if the
+	// distractor pool is still too small, falling back to the full alphabet
+	// when there aren't enough introduced characters to draw from yet.
+	const MIN_DISTRACTORS = 3;
+	const pools = introducedChars
+		? [allSpellingChars.filter((c) => introducedChars.has(c)), allSpellingChars]
+		: [allSpellingChars];
+	for (const pool of pools) {
+		if (pool.length === 0) continue;
+		let attempts = 0;
+		while (distractors.size < MIN_DISTRACTORS && attempts < pool.length * 5) {
+			attempts++;
+			const random = pool[Math.floor(Math.random() * pool.length)] as string;
+			if (!wordCharSet.has(random)) distractors.add(random);
+		}
+		if (distractors.size >= MIN_DISTRACTORS) break;
 	}
 
 	// Shuffle
-	const choices = [...charSet];
+	const choices = [...wordChars, ...distractors];
 	for (let i = choices.length - 1; i > 0; i--) {
 		const j = Math.floor(Math.random() * (i + 1));
 		[choices[i], choices[j]] = [choices[j] as string, choices[i] as string];
@@ -92,6 +192,7 @@ function generateSpellingChoices(word: VocabEntry): string[] {
 export function generateVocabCards(
 	word: VocabEntry,
 	allWords: VocabEntry[],
+	introducedChars?: ReadonlySet<string>,
 ): VocabularyCard[] {
 	const thaiPool = allWords.map((w) => w.thai);
 	const englishPool = allWords.map((w) => w.english);
@@ -166,7 +267,7 @@ export function generateVocabCards(
 		property: "spelling",
 		question: `Spell the Thai word for "${word.english}"`,
 		correctAnswer: word.thai.replaceAll(" ", ""),
-		choices: generateSpellingChoices(word),
+		choices: generateSpellingChoices(word, introducedChars),
 		mnemonic,
 		srs: SrsSchedule.initial().toDTO(),
 		...(word.thai_audio_file && { audioUrl: word.thai_audio_file }),
@@ -180,7 +281,7 @@ export function generateVocabCards(
 			property: "spellingFromAudio",
 			question: "Listen and spell the word",
 			correctAnswer: word.thai.replaceAll(" ", ""),
-			choices: generateSpellingChoices(word),
+			choices: generateSpellingChoices(word, introducedChars),
 			mnemonic,
 			srs: SrsSchedule.initial().toDTO(),
 			audioUrl: word.thai_audio_file,

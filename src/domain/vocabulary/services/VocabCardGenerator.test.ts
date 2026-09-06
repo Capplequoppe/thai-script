@@ -193,6 +193,18 @@ describe("generateVocabCards", () => {
 		expect(card?.choices.length).toBeGreaterThan(3);
 	});
 
+	it("spelling card choices include a separate tile for each occurrence of a repeated letter", () => {
+		const wordWithRepeatedLetter: VocabEntry = {
+			...testWord,
+			thai: "ยาย",
+			english: "grandmother",
+		};
+		const cards = generateVocabCards(wordWithRepeatedLetter, allWords);
+		const card = cards.find((c) => c.property === "spelling");
+		const occurrences = card?.choices.filter((ch) => ch === "ย").length;
+		expect(occurrences).toBe(2);
+	});
+
 	it("does not produce spellingFromAudio card without audio", () => {
 		const cards = generateVocabCards(testWord, allWords);
 		const card = cards.find((c) => c.property === "spellingFromAudio");
@@ -214,5 +226,57 @@ describe("generateVocabCards", () => {
 		const cards = generateVocabCards(testWordWithMnemonic, allWords);
 		const spellingCard = cards.find((c) => c.property === "spelling");
 		expect(spellingCard?.mnemonic).toBe("tea tree → falling tone");
+	});
+
+	it("spelling distractors include a consonant sharing the word's final sound (ท → ต, both T-stop)", () => {
+		// testWord "ที่" contains ท, whose finalSound is "T-stop" — same as ต.
+		const cards = generateVocabCards(testWord, allWords);
+		const card = cards.find((c) => c.property === "spelling");
+		expect(card?.choices).toContain("ต");
+	});
+
+	it("spelling distractors include a vowel sharing the word's vowel sound (ะ → ั, both short 'a')", () => {
+		const wordWithShortA: VocabEntry = {
+			...testWord,
+			thai: "กะ",
+			characters: ["ก", "ะ"],
+		};
+		const cards = generateVocabCards(wordWithShortA, [wordWithShortA]);
+		const card = cards.find((c) => c.property === "spelling");
+		expect(card?.choices).toContain("ั");
+	});
+
+	it("restricts distractors to introduced characters when a set is supplied", () => {
+		// The word's own characters plus a handful of ท's initial/final-sound
+		// confusables — enough to fill the minimum without needing the
+		// full-alphabet padding fallback. No other character should ever
+		// appear as a distractor tile.
+		const introducedChars = new Set([
+			"ท",
+			"ี",
+			"่",
+			"ต",
+			"ถ",
+			"ธ",
+			"ฐ",
+			"ช",
+			"ซ",
+		]);
+		for (let i = 0; i < 20; i++) {
+			const cards = generateVocabCards(testWord, allWords, introducedChars);
+			const card = cards.find((c) => c.property === "spelling");
+			for (const ch of card?.choices ?? []) {
+				expect(introducedChars.has(ch)).toBe(true);
+			}
+		}
+	});
+
+	it("falls back to the full alphabet for padding when introduced characters are too few", () => {
+		// Only the word's own characters are "introduced" — too few to reach the
+		// minimum distractor count, so padding must fall back to the full pool.
+		const introducedChars = new Set(["ท", "ี", "่"]);
+		const cards = generateVocabCards(testWord, allWords, introducedChars);
+		const card = cards.find((c) => c.property === "spelling");
+		expect(card?.choices.length).toBeGreaterThan(3);
 	});
 });
