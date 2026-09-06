@@ -72,7 +72,7 @@ function normalizeInitialSound(raw: string): string {
 	return map[core] ?? raw;
 }
 
-function normalizeFinalSound(raw: string): string {
+export function normalizeFinalSound(raw: string): string {
 	const lower = raw.toLowerCase();
 	// Check multi-word patterns first (before single-letter prefix matches)
 	if (lower.includes("not used")) return "Not used as final";

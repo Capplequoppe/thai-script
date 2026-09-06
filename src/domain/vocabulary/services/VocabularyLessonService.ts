@@ -185,8 +185,9 @@ export class VocabularyService {
 		const lesson = this.getNextLesson();
 		if (!lesson) throw new Error("No vocabulary words available to learn");
 
+		const introducedChars = this.getMasteredCharacters();
 		return lesson.words.flatMap((entry) =>
-			generateVocabCards(entry, this.vocabulary),
+			generateVocabCards(entry, this.vocabulary, introducedChars),
 		);
 	}
 
