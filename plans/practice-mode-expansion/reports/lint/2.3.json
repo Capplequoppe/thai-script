@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "task": "2.3",
+  "pass": "before",
+  "result": {
+    "outcome": "unsupported",
+    "reason": "plans/practice-mode-expansion/phase-2-tone-identification/task-2.3-tone-organism-and-toggle.md: no grammar covers '.md' files (and 5 more)"
+  },
+  "findings": [],
+  "adapters": []
+}

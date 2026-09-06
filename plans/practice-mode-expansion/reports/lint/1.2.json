@@ -1,0 +1,259 @@
+{
+  "version": 1,
+  "task": "1.2",
+  "pass": "after",
+  "result": {
+    "outcome": "unsupported",
+    "reason": "src/presentation/context/AppContext.tsx: no grammar covers '.tsx' files — 12 violations were measured before this and are not shown"
+  },
+  "findings": [
+    {
+      "rule": "length",
+      "severity": "warning",
+      "tier": "function",
+      "measured": 354,
+      "threshold": 150,
+      "symbol": {
+        "kind": "function",
+        "name": "(anonymous)",
+        "path": "src/application/use-cases/PlayGameUseCase.test.ts",
+        "bytes": {
+          "startIndex": 4239,
+          "endIndex": 15632
+        },
+        "lines": {
+          "startRow": 141,
+          "endRow": 494
+        }
+      }
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 2.54,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "(anonymous)",
+        "path": "src/application/use-cases/PlayGameUseCase.test.ts",
+        "bytes": {
+          "startIndex": 4239,
+          "endIndex": 15632
+        },
+        "lines": {
+          "startRow": 141,
+          "endRow": 494
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "(anonymous)",
+        "path": "src/application/use-cases/PlayGameUseCase.test.ts",
+        "bytes": {
+          "startIndex": 4907,
+          "endIndex": 5641
+        },
+        "lines": {
+          "startRow": 156,
+          "endRow": 180
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "(anonymous)",
+        "path": "src/application/use-cases/PlayGameUseCase.test.ts",
+        "bytes": {
+          "startIndex": 6934,
+          "endIndex": 7664
+        },
+        "lines": {
+          "startRow": 216,
+          "endRow": 235
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "(anonymous)",
+        "path": "src/application/use-cases/PlayGameUseCase.test.ts",
+        "bytes": {
+          "startIndex": 7754,
+          "endIndex": 8414
+        },
+        "lines": {
+          "startRow": 237,
+          "endRow": 257
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "(anonymous)",
+        "path": "src/application/use-cases/PlayGameUseCase.test.ts",
+        "bytes": {
+          "startIndex": 9155,
+          "endIndex": 9863
+        },
+        "lines": {
+          "startRow": 278,
+          "endRow": 300
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "(anonymous)",
+        "path": "src/application/use-cases/PlayGameUseCase.test.ts",
+        "bytes": {
+          "startIndex": 10773,
+          "endIndex": 11329
+        },
+        "lines": {
+          "startRow": 328,
+          "endRow": 349
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 3.17,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "(anonymous)",
+        "path": "src/application/use-cases/PlayGameUseCase.test.ts",
+        "bytes": {
+          "startIndex": 12423,
+          "endIndex": 14301
+        },
+        "lines": {
+          "startRow": 382,
+          "endRow": 444
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "(anonymous)",
+        "path": "src/application/use-cases/PlayGameUseCase.test.ts",
+        "bytes": {
+          "startIndex": 12811,
+          "endIndex": 13367
+        },
+        "lines": {
+          "startRow": 395,
+          "endRow": 416
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 2.08,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "(anonymous)",
+        "path": "src/application/use-cases/PlayGameUseCase.test.ts",
+        "bytes": {
+          "startIndex": 14420,
+          "endIndex": 15628
+        },
+        "lines": {
+          "startRow": 446,
+          "endRow": 493
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "(anonymous)",
+        "path": "src/application/use-cases/PlayGameUseCase.test.ts",
+        "bytes": {
+          "startIndex": 14808,
+          "endIndex": 15364
+        },
+        "lines": {
+          "startRow": 459,
+          "endRow": 480
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 1.82,
+      "threshold": 5,
+      "tier": "file",
+      "path": "src/application/use-cases/PlayGameUseCase.test.ts",
+      "check": "density-below-floor"
+    }
+  ],
+  "adapters": [
+    {
+      "tool": "biome",
+      "selection": {
+        "evidence": "configured",
+        "by": "biome.json"
+      },
+      "program": null,
+      "result": {
+        "outcome": "unsupported",
+        "reason": "biome did not resolve: 'biome' on PATH (30 entries). Its findings are missing from this report — that is a gap and not a pass."
+      },
+      "files": 1,
+      "findings": 0,
+      "refusedPaths": 0,
+      "outsideAnalysis": 0,
+      "refusedShape": 0
+    }
+  ]
+}

@@ -1,5 +1,6 @@
 import type { CardRepository } from "../../ports/CardRepository";
 import { ScriptPropertyCard } from "../../script/entities/ScriptPropertyCard";
+import { SentenceReviewCard } from "../../sentence/entities/SentenceReviewCard";
 import type { ReviewableCard } from "../../srs/entities/ReviewableCard";
 import { VocabCard } from "../../vocabulary/entities/VocabCard";
 import type {
@@ -9,19 +10,27 @@ import type {
 	GameItemSource,
 	GameRoundConfig,
 	RandomSource,
+	SentenceChallengeDirection,
 	SymbolChallengeDirection,
+	ToneChallengeDirection,
 	WordChallengeDirection,
 } from "../types";
 import { itemWeight, type ScheduleStats, worstStats } from "./itemWeight";
 import { sampleWithoutReplacement } from "./sampling";
+import type { ToneGameItemSource } from "./ToneGameItemSource";
 
 /**
  * `selectRound`'s own config shape: `GameRoundConfig`'s `prioritizeWeakItems`
  * made optional here (rather than `Pick`, which would keep it required) so
  * every caller that predates weighting — every existing test, and any
  * caller that never intends to weight — keeps compiling unchanged.
+ * `includeTonePractice` is already optional on `GameRoundConfig` itself, so
+ * `Pick` carries it through unchanged.
  */
-type SelectRoundConfig = Pick<GameRoundConfig, "pools" | "itemCount"> & {
+type SelectRoundConfig = Pick<
+	GameRoundConfig,
+	"pools" | "itemCount" | "includeTonePractice"
+> & {
 	readonly prioritizeWeakItems?: boolean;
 };
 
@@ -30,6 +39,15 @@ type SelectRoundConfig = Pick<GameRoundConfig, "pools" | "itemCount"> & {
  * each drawn item a challenge direction. Adding a pool is adding a source
  * to the array; weighting (task 3.1) is supplying `weightOf` to the sample
  * when `prioritizeWeakItems` is set — no other behavior changes.
+ *
+ * The optional `toneSource` is consulted separately, whenever
+ * `config.includeTonePractice` is set, regardless of `config.pools` — tone
+ * practice is independent of pool selection by design, so it has no honest
+ * `pool` value and is never one of `sources` (see `ToneGameItemSource`).
+ * Tone items are never scanned by `weightOfFor` (which only reads cards
+ * from the requested `pools`), so they always draw at the same neutral
+ * weight regardless of `prioritizeWeakItems` — a deliberate, tested choice,
+ * not an oversight.
  *
  * The optional `cardRepository` is read only for weighting, directly (the
  * same `easeFactor`/`lapseCount`/`repetitions` fields
@@ -41,13 +59,17 @@ export class GameItemSelectionService {
 	constructor(
 		private readonly sources: readonly GameItemSource[],
 		private readonly cardRepository?: CardRepository,
+		private readonly toneSource?: ToneGameItemSource,
 	) {}
 
 	selectRound(
 		config: SelectRoundConfig,
 		rng: RandomSource = Math.random,
 	): GameItem[] {
-		const eligible = this.eligibleContent(config.pools);
+		const eligible: GameItemContent[] = this.eligibleContent(config.pools);
+		if (config.includeTonePractice && this.toneSource) {
+			eligible.push(...this.toneSource.eligibleContent());
+		}
 		const weightOf =
 			config.prioritizeWeakItems && this.cardRepository
 				? this.weightOfFor(config.pools)
@@ -111,9 +133,10 @@ export class GameItemSelectionService {
 
 /**
  * A card's own item key, mirroring `itemKeyOf` in `PlayGameUseCase.ts` and
- * `SymbolGameItemSource`/`WordGameItemSource`'s own eligibility grouping.
- * Duplicated rather than imported: neither source exports its dedupe key,
- * and this service's own scope does not extend to changing them.
+ * the eligibility grouping of `SymbolGameItemSource`, `WordGameItemSource`
+ * and `SentenceGameItemSource`. Duplicated rather than imported: no source
+ * exports its dedupe key, and this service's own scope does not extend to
+ * changing them.
  */
 function itemKeyOfCard(card: ReviewableCard): string | null {
 	if (card instanceof ScriptPropertyCard) {
@@ -124,38 +147,82 @@ function itemKeyOfCard(card: ReviewableCard): string | null {
 		if (prefix !== "vocab" || !thai) return null;
 		return `word:${thai}`;
 	}
+	if (card instanceof SentenceReviewCard) {
+		return `sentence:${card.sentenceId}`;
+	}
+	// An `instanceof` chain cannot be made exhaustive by the compiler the way
+	// the `kind` switches below are — `ReviewableCard` is an open hierarchy.
+	// A card class this service does not recognise scores no weight rather
+	// than throwing; `weightOfFor`'s neutral fallback then applies.
 	return null;
 }
 
 function itemKeyOfContent(content: GameItemContent): string {
-	return content.kind === "symbol"
-		? `symbol:${content.symbolCharacter}`
-		: `word:${content.thaiWord}`;
+	switch (content.kind) {
+		case "symbol":
+			return `symbol:${content.symbolCharacter}`;
+		case "word":
+			return `word:${content.thaiWord}`;
+		case "sentence":
+			return `sentence:${content.sentenceId}`;
+		case "tone":
+			return `tone:${content.thaiWord}`;
+		default: {
+			const _never: never = content;
+			throw new Error(`unhandled game item content: ${JSON.stringify(_never)}`);
+		}
+	}
 }
 
 /**
  * An item with no audio can never be asked to hear anything — so it is
  * always assigned the direction that needs no audio (`reading` for a
- * symbol, `production` for a word), and no randomness is spent on it.
- * Otherwise the direction is a 50/50 draw.
+ * symbol, `production` for a word, `reading` for a sentence), and no
+ * randomness is spent on it. Otherwise the direction is a 50/50 draw.
+ *
+ * Exhaustive on `kind` rather than a two-armed ternary: a new
+ * `GameItemContent` member must be a compile error here, at the one place
+ * that decides directions, not a silent fallthrough into some other kind's
+ * rule.
  */
 function assignDirection(
 	content: GameItemContent,
 	rng: RandomSource,
 ): GameItem {
-	if (content.kind === "symbol") {
-		const challengeDirection: SymbolChallengeDirection = !content.audioUrl
-			? "reading"
-			: rng() < 0.5
-				? "dictation"
-				: "reading";
-		return { ...content, challengeDirection };
+	switch (content.kind) {
+		case "symbol": {
+			const challengeDirection: SymbolChallengeDirection = !content.audioUrl
+				? "reading"
+				: rng() < 0.5
+					? "dictation"
+					: "reading";
+			return { ...content, challengeDirection };
+		}
+		case "word": {
+			const challengeDirection: WordChallengeDirection = !content.audioUrl
+				? "production"
+				: rng() < 0.5
+					? "dictationTranslate"
+					: "production";
+			return { ...content, challengeDirection };
+		}
+		case "sentence": {
+			const challengeDirection: SentenceChallengeDirection = !content.audioUrl
+				? "reading"
+				: rng() < 0.5
+					? "listening"
+					: "reading";
+			return { ...content, challengeDirection };
+		}
+		case "tone": {
+			// A single self-assessment, never a direction choice — no
+			// randomness is ever spent on it.
+			const challengeDirection: ToneChallengeDirection = "identification";
+			return { ...content, challengeDirection };
+		}
+		default: {
+			const _never: never = content;
+			throw new Error(`unhandled game item content: ${JSON.stringify(_never)}`);
+		}
 	}
-
-	const challengeDirection: WordChallengeDirection = !content.audioUrl
-		? "production"
-		: rng() < 0.5
-			? "dictationTranslate"
-			: "production";
-	return { ...content, challengeDirection };
 }

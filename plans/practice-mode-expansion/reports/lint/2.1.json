@@ -1,0 +1,348 @@
+{
+  "version": 1,
+  "task": "2.1",
+  "pass": "before",
+  "result": {
+    "outcome": "incomplete",
+    "reason": "biome: biome did not resolve: 'biome' on PATH (30 entries). Its findings are missing from this report — that is a gap and not a pass."
+  },
+  "findings": [
+    {
+      "rule": "length",
+      "severity": "warning",
+      "tier": "function",
+      "measured": 887,
+      "threshold": 150,
+      "symbol": {
+        "kind": "function",
+        "name": "(anonymous)",
+        "path": "src/domain/game/services/GameItemSelectionService.test.ts",
+        "bytes": {
+          "startIndex": 5095,
+          "endIndex": 33095
+        },
+        "lines": {
+          "startRow": 205,
+          "endRow": 1091
+        }
+      }
+    },
+    {
+      "rule": "length",
+      "severity": "warning",
+      "tier": "function",
+      "measured": 175,
+      "threshold": 150,
+      "symbol": {
+        "kind": "function",
+        "name": "(anonymous)",
+        "path": "src/domain/game/services/GameItemSelectionService.test.ts",
+        "bytes": {
+          "startIndex": 27779,
+          "endIndex": 33091
+        },
+        "lines": {
+          "startRow": 916,
+          "endRow": 1090
+        }
+      }
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "toneVocabCardWith",
+        "path": "src/domain/game/services/GameItemSelectionService.test.ts",
+        "bytes": {
+          "startIndex": 28538,
+          "endIndex": 29104
+        },
+        "lines": {
+          "startRow": 950,
+          "endRow": 973
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "(anonymous)",
+        "path": "src/domain/game/services/GameItemSelectionService.test.ts",
+        "bytes": {
+          "startIndex": 29759,
+          "endIndex": 30524
+        },
+        "lines": {
+          "startRow": 992,
+          "endRow": 1013
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "(anonymous)",
+        "path": "src/domain/game/services/GameItemSelectionService.test.ts",
+        "bytes": {
+          "startIndex": 30608,
+          "endIndex": 31212
+        },
+        "lines": {
+          "startRow": 1015,
+          "endRow": 1038
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "cyclomatic-complexity",
+      "severity": "warning",
+      "measured": 11,
+      "threshold": 10,
+      "tier": "function",
+      "symbol": {
+        "kind": "function",
+        "name": "assignDirection",
+        "path": "src/domain/game/services/GameItemSelectionService.ts",
+        "bytes": {
+          "startIndex": 7247,
+          "endIndex": 8388
+        },
+        "lines": {
+          "startRow": 187,
+          "endRow": 227
+        }
+      }
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 4.88,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "assignDirection",
+        "path": "src/domain/game/services/GameItemSelectionService.ts",
+        "bytes": {
+          "startIndex": 7247,
+          "endIndex": 8388
+        },
+        "lines": {
+          "startRow": 187,
+          "endRow": 227
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "vocabEntry",
+        "path": "src/domain/game/services/ToneGameItemSource.test.ts",
+        "bytes": {
+          "startIndex": 736,
+          "endIndex": 1173
+        },
+        "lines": {
+          "startRow": 22,
+          "endRow": 41
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 1.83,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "(anonymous)",
+        "path": "src/domain/game/services/ToneGameItemSource.test.ts",
+        "bytes": {
+          "startIndex": 1874,
+          "endIndex": 5180
+        },
+        "lines": {
+          "startRow": 75,
+          "endRow": 183
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "(anonymous)",
+        "path": "src/domain/game/services/ToneGameItemSource.test.ts",
+        "bytes": {
+          "startIndex": 2700,
+          "endIndex": 3227
+        },
+        "lines": {
+          "startRow": 102,
+          "endRow": 125
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 1.63,
+      "threshold": 5,
+      "tier": "file",
+      "path": "src/domain/game/services/ToneGameItemSource.test.ts",
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "eligibleContent",
+        "path": "src/domain/game/services/ToneGameItemSource.ts",
+        "bytes": {
+          "startIndex": 2328,
+          "endIndex": 2908
+        },
+        "lines": {
+          "startRow": 55,
+          "endRow": 78
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "length",
+      "severity": "warning",
+      "tier": "function",
+      "measured": 96,
+      "threshold": 50,
+      "symbol": {
+        "kind": "function",
+        "name": "generateVocabCards",
+        "path": "src/domain/vocabulary/services/VocabCardGenerator.ts",
+        "bytes": {
+          "startIndex": 3011,
+          "endIndex": 5656
+        },
+        "lines": {
+          "startRow": 92,
+          "endRow": 187
+        }
+      }
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 1,
+      "tier": "function",
+      "symbol": {
+        "name": "generateVocabCards",
+        "path": "src/domain/vocabulary/services/VocabCardGenerator.ts",
+        "bytes": {
+          "startIndex": 3004,
+          "endIndex": 5656
+        },
+        "lines": {
+          "startRow": 92,
+          "endRow": 187
+        }
+      },
+      "check": "undocumented-export"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 1,
+      "threshold": 0,
+      "check": "commented-out-code",
+      "tier": "function",
+      "symbol": {
+        "name": "(commented-out code)",
+        "path": "src/domain/vocabulary/services/VocabCardGenerator.ts",
+        "bytes": {
+          "startIndex": 4820,
+          "endIndex": 4840
+        },
+        "lines": {
+          "startRow": 158,
+          "endRow": 158
+        }
+      }
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "(anonymous)",
+        "path": "src/domain/vocabulary/services/toneSyllables.test.ts",
+        "bytes": {
+          "startIndex": 787,
+          "endIndex": 1607
+        },
+        "lines": {
+          "startRow": 37,
+          "endRow": 65
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "file",
+      "path": "src/domain/vocabulary/services/toneSyllables.test.ts",
+      "check": "density-below-floor"
+    }
+  ],
+  "adapters": [
+    {
+      "tool": "biome",
+      "selection": {
+        "evidence": "configured",
+        "by": "biome.json"
+      },
+      "program": null,
+      "result": {
+        "outcome": "unsupported",
+        "reason": "biome did not resolve: 'biome' on PATH (30 entries). Its findings are missing from this report — that is a gap and not a pass."
+      },
+      "files": 8,
+      "findings": 0,
+      "refusedPaths": 0,
+      "outsideAnalysis": 0,
+      "refusedShape": 0
+    }
+  ]
+}

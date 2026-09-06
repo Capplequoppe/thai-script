@@ -1,0 +1,11 @@
+# `verify` digests, one line per task: <sha256>  <task_id>  <task_status>.
+# The status is the one the task carried when this baseline was written.
+06f6abe60c969939e14ad124509f06297859213be03950728cc9197727d3f2bc  1.1  pending
+b356c327d90a1db54fadb98a7b2d9a37f7345dfcb77c55e8f06425f127ded7ef  1.2  pending
+c4f8a6ddb63c39423a7a127eb7512335069ab8ad17755c2f8aebb182aabdd168  1.3  pending
+b4a95b39ece26e44b783598619686f21cdc95a965ee30cd70db7d7e5feef156f  2.1  pending
+b356c327d90a1db54fadb98a7b2d9a37f7345dfcb77c55e8f06425f127ded7ef  2.2  pending
+b5b374393e996f5a782947f3cbbc18942bda1ccf80a3e8b44462ce04accddd32  2.3  pending
+cb5035fd87cd77b124af9999b7c13034c95d3d8a7ea93b58ce04bc2e369b0663  3.1  pending
+f438d8b1c2a39499d46a3f6ddd4416f56fffb75d4f9fc4b1227b2a74aaef2256  3.2  pending
+feb9ce30684030029444fef8613f2d4f8c0c948623b31fdb4ff1047ecbf96d8f  3.3  pending

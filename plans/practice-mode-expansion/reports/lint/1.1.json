@@ -1,0 +1,29 @@
+{
+  "version": 1,
+  "task": "1.1",
+  "pass": "after",
+  "result": {
+    "outcome": "unsupported",
+    "reason": "plans/practice-mode-expansion/phase-1-sentence-reading/task-1.1-sentence-domain-model-and-source.md: no grammar covers '.md' files"
+  },
+  "findings": [],
+  "adapters": [
+    {
+      "tool": "biome",
+      "selection": {
+        "evidence": "configured",
+        "by": "biome.json"
+      },
+      "program": null,
+      "result": {
+        "outcome": "unsupported",
+        "reason": "biome did not resolve: 'biome' on PATH (30 entries). Its findings are missing from this report — that is a gap and not a pass."
+      },
+      "files": 2,
+      "findings": 0,
+      "refusedPaths": 0,
+      "outsideAnalysis": 0,
+      "refusedShape": 0
+    }
+  ]
+}

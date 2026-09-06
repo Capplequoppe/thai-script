@@ -4,6 +4,7 @@ import { Link, MemoryRouter, Route, Routes } from "react-router";
 import { describe, expect, it, vi } from "vitest";
 import { PlayGameUseCase } from "../../application/use-cases/PlayGameUseCase";
 import { GameItemSelectionService } from "../../domain/game/services/GameItemSelectionService";
+import { SentenceGameItemSource } from "../../domain/game/services/SentenceGameItemSource";
 import { SymbolGameItemSource } from "../../domain/game/services/SymbolGameItemSource";
 import { WordGameItemSource } from "../../domain/game/services/WordGameItemSource";
 import {
@@ -11,11 +12,17 @@ import {
 	WEAK_SYMBOL,
 } from "../../domain/game/test-fixtures/weakStrongFixture";
 import type {
+	CompositionItemContent,
 	GameHistoryEntry,
 	GameItem,
+	SentenceChallengeDirection,
+	SentenceItemContent,
+	ToneItemContent,
 	WordChallengeDirection,
 	WordItemContent,
 } from "../../domain/game/types";
+import sentenceData from "../../domain/sentence/data/sentences.json";
+import type { SentenceEntry } from "../../domain/sentence/types";
 import { SrsSchedule } from "../../domain/srs/value-objects/SrsSchedule";
 import vocabularyData from "../../domain/vocabulary/data/vocabulary.json";
 import { VocabCard } from "../../domain/vocabulary/entities/VocabCard";
@@ -29,13 +36,17 @@ import {
 	CorruptJsonStore,
 	canvas2d,
 	createdAudioUrls,
+	FIRST_GRAMMAR_POINT_ID,
 	getFakeLocalStorage,
 	makeFixedRoundGame,
 	makeGame,
 	makeHistoryEntry,
 	makeScriptCard,
+	makeSentenceCard,
 	makeSymbolItem,
 	renderWithApp,
+	UNLOCKS_FIRST_GRAMMAR_POINT,
+	UNLOCKS_FIRST_TWO_GRAMMAR_POINTS,
 } from "../test-utils/renderWithApp";
 import { Dashboard } from "./Dashboard";
 import { GamePage } from "./GamePage";
@@ -103,6 +114,44 @@ function vocabCardDTO(thai: string, property = "thaiToEnglish") {
 	};
 }
 
+/** A raw `SentenceReviewCard` DTO as it sits inside the persisted SRS blob. */
+function sentenceCardDTO(sentenceId: string) {
+	return {
+		id: `sentence:${sentenceId}:readingComprehension`,
+		question: `question for ${sentenceId}`,
+		correctAnswer: "answer",
+		choices: ["answer", "other"],
+		srs: {
+			easeFactor: 2,
+			interval: 10,
+			repetitions: 0,
+			learningStep: 1,
+			nextReviewDate: "2026-01-01T00:00:00.000Z",
+			lastReviewDate: null,
+			lapseCount: 0,
+		},
+		sentenceId,
+		property: "readingComprehension",
+	};
+}
+
+/** A `SentenceGameItem` with a pre-assigned direction, for fixed-round tests. */
+function makeSentenceItem(
+	sentenceId: string,
+	challengeDirection: SentenceChallengeDirection,
+	overrides: Partial<Omit<SentenceItemContent, "kind">> = {},
+): GameItem {
+	return {
+		kind: "sentence",
+		sentenceId,
+		thaiText: `thai ${sentenceId}`,
+		englishMeaning: `${sentenceId} meaning`,
+		audioUrl: `/audio/${sentenceId}.mp3`,
+		...overrides,
+		challengeDirection,
+	};
+}
+
 /** A `WordGameItem` with a pre-assigned direction, for fixed-round tests. */
 function makeWordItem(
 	thaiWord: string,
@@ -116,6 +165,73 @@ function makeWordItem(
 		audioUrl: `/audio/${thaiWord}.mp3`,
 		...overrides,
 		challengeDirection,
+	};
+}
+
+/**
+ * A `ToneGameItem`, for fixed-round tests. Tone items have one direction
+ * by design, so there is nothing to pass for it.
+ */
+function makeToneItem(
+	thaiWord: string,
+	overrides: Partial<Omit<ToneItemContent, "kind">> = {},
+): GameItem {
+	return {
+		kind: "tone",
+		thaiWord,
+		syllables: [{ text: thaiWord, tone: "falling" }],
+		audioUrl: `/audio/${thaiWord}.mp3`,
+		...overrides,
+		challengeDirection: "identification",
+	};
+}
+
+/**
+ * A `CompositionGameItem`, for fixed-round tests. Composition has one
+ * direction by design, so there is nothing to pass for it.
+ */
+function makeCompositionItem(
+	grammarId: string,
+	overrides: Partial<Omit<CompositionItemContent, "kind">> = {},
+): GameItem {
+	return {
+		kind: "composition",
+		grammarId,
+		englishMeaning: "He eats rice.",
+		tiles: ["ข้าว", "เขา", "กิน"],
+		correctOrder: ["เขา", "กิน", "ข้าว"],
+		...overrides,
+		challengeDirection: "build",
+	};
+}
+
+/**
+ * A raw *graduated* `VocabCard` DTO — `srs.learningStep: null` is what
+ * `GrammarService` counts toward grammar prerequisites.
+ */
+function graduatedVocabCardDTO(thai: string) {
+	const dto = vocabCardDTO(thai);
+	return { ...dto, srs: { ...dto.srs, learningStep: null } };
+}
+
+/** A raw `GrammarReviewCard` DTO as it sits inside the persisted SRS blob. */
+function grammarCardDTO(grammarId: string) {
+	return {
+		id: `grammar:${grammarId}:recognition`,
+		question: `question for ${grammarId}`,
+		correctAnswer: "answer",
+		choices: ["answer", "other"],
+		srs: {
+			easeFactor: 2,
+			interval: 10,
+			repetitions: 0,
+			learningStep: 1,
+			nextReviewDate: "2026-01-01T00:00:00.000Z",
+			lastReviewDate: null,
+			lapseCount: 0,
+		},
+		grammarId,
+		property: "recognition",
 	};
 }
 
@@ -133,25 +249,35 @@ function vocabCard(thai: string, property = "thaiToEnglish"): VocabCard {
 }
 
 /**
- * A real `PlayGameUseCase` wired over both pools — `makeGame` in
- * `renderWithApp.tsx` only registers `SymbolGameItemSource` (phase 1's
- * seam), so a real Words/Mix round needs its own selection service here.
+ * A real `PlayGameUseCase` wired over all three pools — `makeAppValue` in
+ * `renderWithApp.tsx` registers every production source too, but seeds
+ * vocab cards only through its tone/graduated-vocab options, so a round
+ * needing arbitrary eligible vocab words builds its own card repository
+ * here.
  */
 function makeMixGame(
 	symbolChars: readonly string[],
 	vocabThaiWords: readonly string[],
+	sentenceIds: readonly string[] = [],
 ): { game: PlayGameUseCase } {
 	const cardRepo = new StorageCardRepository(new InMemoryStorage());
 	cardRepo.saveAll(symbolChars.map(makeScriptCard));
 	cardRepo.saveAll(vocabThaiWords.map((thai) => vocabCard(thai)));
+	cardRepo.saveAll(sentenceIds.map(makeSentenceCard));
 	const game = new PlayGameUseCase(
 		new GameItemSelectionService([
 			new SymbolGameItemSource(cardRepo),
 			new WordGameItemSource(cardRepo, vocabularyData as VocabEntry[]),
+			new SentenceGameItemSource(
+				cardRepo,
+				sentenceData as unknown as SentenceEntry[],
+			),
 		]),
 		new StorageGameHistoryRepository(
 			new InMemoryJsonStore<GameHistoryEntry[]>(),
 		),
+		// No grammar wired: composition mode is out of this factory's scope.
+		() => [],
 	);
 	return { game };
 }
@@ -336,9 +462,11 @@ describe("GamePage", () => {
 	});
 
 	// AC6
-	it("keeps start unavailable and explains when no symbols are eligible", () => {
+	it("keeps start unavailable and explains when the default-checked pool has nothing eligible", () => {
 		renderWithApp(<GamePage />);
-		expect(screen.getByText(/No symbols to practice yet/)).toBeTruthy();
+		expect(
+			screen.getByText(/Nothing to practice yet in the selected pools/),
+		).toBeTruthy();
 		expect(screen.queryByRole("button", { name: "Start Round" })).toBeNull();
 	});
 
@@ -503,6 +631,7 @@ describe("GamePage", () => {
 		});
 		const { game } = makeFixedRoundGame([dictation, production]);
 		renderWithApp(<GamePage />, { game });
+		fireEvent.click(screen.getByLabelText("Symbols"));
 		fireEvent.click(screen.getByLabelText("Words"));
 		startRound();
 
@@ -523,7 +652,8 @@ describe("GamePage", () => {
 		expect(screen.getByText("Round Complete")).toBeTruthy();
 	});
 
-	// Task 2.3 AC2
+	// Task 2.3 AC2 — "mix" is no longer its own option: checking Words while
+	// Symbols stays checked is the mix.
 	it("Mix: dispatches each item to its correct organism by kind and direction", () => {
 		const symbolItem = makeSymbolItem("ม", "reading");
 		const wordItem = makeWordItem("แมว", "production", {
@@ -531,7 +661,7 @@ describe("GamePage", () => {
 		});
 		const { game } = makeFixedRoundGame([symbolItem, wordItem]);
 		renderWithApp(<GamePage />, { game });
-		fireEvent.click(screen.getByLabelText("Mix"));
+		fireEvent.click(screen.getByLabelText("Words"));
 		startRound();
 
 		// First item: a symbol reading challenge.
@@ -551,15 +681,22 @@ describe("GamePage", () => {
 	});
 
 	// Task 2.3 AC3
-	it("keeps start unavailable and explains why for Words and Mix with no eligible items", () => {
+	it("keeps start unavailable and explains it for any checked set with nothing eligible", () => {
 		renderWithApp(<GamePage />);
 
+		// Words alone.
+		fireEvent.click(screen.getByLabelText("Symbols"));
 		fireEvent.click(screen.getByLabelText("Words"));
-		expect(screen.getByText(/No words to practice yet/)).toBeTruthy();
+		expect(
+			screen.getByText(/Nothing to practice yet in the selected pools/),
+		).toBeTruthy();
 		expect(screen.queryByRole("button", { name: "Start Round" })).toBeNull();
 
-		fireEvent.click(screen.getByLabelText("Mix"));
-		expect(screen.getByText(/No items to practice yet/)).toBeTruthy();
+		// Symbols + Words together, still nothing eligible anywhere.
+		fireEvent.click(screen.getByLabelText("Symbols"));
+		expect(
+			screen.getByText(/Nothing to practice yet in the selected pools/),
+		).toBeTruthy();
 		expect(screen.queryByRole("button", { name: "Start Round" })).toBeNull();
 	});
 
@@ -591,6 +728,7 @@ describe("GamePage", () => {
 			</AppProvider>,
 		);
 
+		fireEvent.click(screen.getByLabelText("Symbols"));
 		fireEvent.click(screen.getByLabelText("Words"));
 		setCount("2");
 		startRound();
@@ -635,7 +773,7 @@ describe("GamePage", () => {
 			</AppProvider>,
 		);
 
-		fireEvent.click(screen.getByLabelText("Mix"));
+		fireEvent.click(screen.getByLabelText("Words"));
 		setCount("3");
 		startRound();
 
@@ -662,14 +800,17 @@ describe("GamePage", () => {
 		const { game } = makeFixedRoundGame([makeWordItem("แมว", "production")]);
 		renderWithApp(<GamePage />, { game });
 
+		// Words alone.
+		fireEvent.click(screen.getByLabelText("Symbols"));
 		fireEvent.click(screen.getByLabelText("Words"));
 		startRound();
 		reveal();
 		rate(/Good/);
 		expect(screen.getByText("Round Complete")).toBeTruthy();
 
+		// Symbols back on: a Symbols + Words round.
 		fireEvent.click(screen.getByRole("button", { name: "Play Again" }));
-		fireEvent.click(screen.getByLabelText("Mix"));
+		fireEvent.click(screen.getByLabelText("Symbols"));
 		startRound();
 		reveal();
 		rate(/Good/);
@@ -702,8 +843,8 @@ describe("GamePage", () => {
 		expect(screen.queryByText(/undefined/i)).toBeNull();
 	});
 
-	// Task 2.3 AC7
-	it("defaults the pool selector to Symbols", () => {
+	// Task 2.3 AC7 / task 1.3 AC6 — only Symbols is checked by default.
+	it("defaults the pool selection to Symbols alone", () => {
 		renderWithApp(<GamePage />, {}, { symbols: ["ม"] });
 
 		expect((screen.getByLabelText("Symbols") as HTMLInputElement).checked).toBe(
@@ -712,9 +853,9 @@ describe("GamePage", () => {
 		expect((screen.getByLabelText("Words") as HTMLInputElement).checked).toBe(
 			false,
 		);
-		expect((screen.getByLabelText("Mix") as HTMLInputElement).checked).toBe(
-			false,
-		);
+		expect(
+			(screen.getByLabelText("Sentence Reading") as HTMLInputElement).checked,
+		).toBe(false);
 	});
 
 	// Task 2.3 AC8
@@ -730,7 +871,7 @@ describe("GamePage", () => {
 		const vocabWords = ["ที่", "ได้", "จะ", "นี้"];
 		const { game } = makeMixGame(symbolChars, vocabWords);
 		renderWithApp(<GamePage />, { game });
-		fireEvent.click(screen.getByLabelText("Mix"));
+		fireEvent.click(screen.getByLabelText("Words"));
 		setCount("6");
 		startRound();
 
@@ -757,25 +898,40 @@ describe("GamePage", () => {
 		expect(sawWord).toBe(true);
 	});
 
-	// Task 2.3 AC9
-	it("labels each pool-selector option accessibly and keeps them keyboard-operable", () => {
+	// Task 2.3 AC9 / task 1.3 AC8 — the radio group's mutual exclusion is
+	// gone by design: pool checkboxes are independent, and checking one must
+	// never uncheck another.
+	it("labels each pool checkbox accessibly and keeps them independently keyboard-operable", () => {
 		renderWithApp(<GamePage />, {}, { symbols: ["ม"] });
 
-		const symbolsChoice = screen.getByLabelText("Symbols") as HTMLInputElement;
-		const wordsChoice = screen.getByLabelText("Words") as HTMLInputElement;
-		const mixChoice = screen.getByLabelText("Mix") as HTMLInputElement;
+		const symbolsBox = screen.getByLabelText("Symbols") as HTMLInputElement;
+		const wordsBox = screen.getByLabelText("Words") as HTMLInputElement;
+		const sentencesBox = screen.getByLabelText(
+			"Sentence Reading",
+		) as HTMLInputElement;
+		expect(symbolsBox.type).toBe("checkbox");
+		expect(wordsBox.type).toBe("checkbox");
+		expect(sentencesBox.type).toBe("checkbox");
 
-		wordsChoice.focus();
-		expect(document.activeElement).toBe(wordsChoice);
-		fireEvent.click(wordsChoice);
-		expect(wordsChoice.checked).toBe(true);
-		expect(symbolsChoice.checked).toBe(false);
+		wordsBox.focus();
+		expect(document.activeElement).toBe(wordsBox);
+		// jsdom cannot synthesize the browser's Space-key default action on a
+		// focused checkbox; activating the focused element is its stand-in.
+		fireEvent.click(wordsBox);
+		expect(wordsBox.checked).toBe(true);
+		expect(symbolsBox.checked).toBe(true);
 
-		mixChoice.focus();
-		expect(document.activeElement).toBe(mixChoice);
-		fireEvent.click(mixChoice);
-		expect(mixChoice.checked).toBe(true);
-		expect(wordsChoice.checked).toBe(false);
+		sentencesBox.focus();
+		expect(document.activeElement).toBe(sentencesBox);
+		fireEvent.click(sentencesBox);
+		expect(sentencesBox.checked).toBe(true);
+		expect(wordsBox.checked).toBe(true);
+		expect(symbolsBox.checked).toBe(true);
+
+		fireEvent.click(symbolsBox);
+		expect(symbolsBox.checked).toBe(false);
+		expect(wordsBox.checked).toBe(true);
+		expect(sentencesBox.checked).toBe(true);
 	});
 
 	// Task 3.2 AC1
@@ -790,6 +946,7 @@ describe("GamePage", () => {
 			new StorageGameHistoryRepository(
 				new InMemoryJsonStore<GameHistoryEntry[]>(),
 			),
+			() => [],
 		);
 		// task 1.1/2.1's own unweighted algorithm, called directly with no
 		// `cardRepository` at all (so it *cannot* weight) — the expected
@@ -836,6 +993,7 @@ describe("GamePage", () => {
 			new StorageGameHistoryRepository(
 				new InMemoryJsonStore<GameHistoryEntry[]>(),
 			),
+			() => [],
 		);
 		renderWithApp(<GamePage />, { game });
 
@@ -864,7 +1022,7 @@ describe("GamePage", () => {
 	});
 
 	// Task 3.2 AC3
-	it("toggle + zero-eligible-pool interaction: start stays blocked regardless of toggle state", () => {
+	it("toggle and zero-eligible-pool interaction: start stays blocked regardless of toggle state", () => {
 		// Symbols has one eligible item (so the toggle actually exists to
 		// flip); Words has none — the interaction this AC names is that
 		// having switched the toggle on does not rescue a pool with nothing
@@ -878,15 +1036,19 @@ describe("GamePage", () => {
 		).toBe(true);
 
 		fireEvent.click(screen.getByLabelText("Words"));
+		fireEvent.click(screen.getByLabelText("Symbols"));
 
-		expect(screen.getByText(/No words to practice yet/)).toBeTruthy();
+		expect(
+			screen.getByText(/Nothing to practice yet in the selected pools/),
+		).toBeTruthy();
 		expect(screen.queryByRole("button", { name: "Start Round" })).toBeNull();
 		// The whole setup form (toggle included) is hidden once nothing is
 		// eligible — there is no rendered toggle left to have "rescued" start.
 		expect(screen.queryByLabelText("Prioritize weak items")).toBeNull();
 
-		// And switching back confirms the earlier toggle wasn't lost, silently
-		// undone, or somehow left in a state that unblocks start on its own.
+		// And re-checking Symbols confirms the earlier toggle wasn't lost,
+		// silently undone, or somehow left in a state that unblocks start on
+		// its own.
 		fireEvent.click(screen.getByLabelText("Symbols"));
 		expect(
 			(screen.getByLabelText("Prioritize weak items") as HTMLInputElement)
@@ -913,5 +1075,900 @@ describe("GamePage", () => {
 
 		fireEvent.click(toggle);
 		expect(toggle.checked).toBe(false);
+	});
+
+	// Task 1.3 AC1 — Words has four eligible items in the repository, so a
+	// broken pool filter would both inflate the eligible count and let word
+	// items into the draw; requesting everything eligible from the two
+	// checked pools makes both halves deterministic, not statistical.
+	it("draws only from Symbols and Sentence Reading when Words is left unchecked", () => {
+		const symbolChars = ["ม", "น"];
+		const vocabWords = ["ที่", "ได้", "จะ", "นี้"];
+		const { game } = makeMixGame(symbolChars, vocabWords, [
+			"basic-001",
+			"basic-002",
+		]);
+		renderWithApp(<GamePage />, { game });
+		fireEvent.click(screen.getByLabelText("Sentence Reading"));
+
+		// 2 symbols + 2 sentences — Words' four items are not counted.
+		expect(
+			(screen.getByLabelText("Items per round") as HTMLInputElement).max,
+		).toBe("4");
+
+		setCount("4");
+		startRound();
+
+		let screensTraversed = 0;
+		let sawSymbol = false;
+		let sawSentence = false;
+		while (
+			screen.queryByText("Round Complete") === null &&
+			screensTraversed < 10
+		) {
+			reveal();
+			if (symbolChars.some((c) => screen.queryByText(c) !== null)) {
+				sawSymbol = true;
+			}
+			if (screen.queryByText("Read this sentence aloud") !== null) {
+				sawSentence = true;
+			}
+			for (const word of vocabWords) {
+				expect(screen.queryByText(word)).toBeNull();
+			}
+			rate(/Good/);
+			screensTraversed += 1;
+		}
+		expect(screensTraversed).toBe(4);
+		expect(sawSymbol).toBe(true);
+		expect(sawSentence).toBe(true);
+	});
+
+	// Task 1.3 AC4
+	it("dispatches sentence items to the listening or reading organism by challengeDirection", () => {
+		const listening = makeSentenceItem("s-1", "listening", {
+			thaiText: "มา กัน",
+			englishMeaning: "Come together",
+		});
+		const reading = makeSentenceItem("s-2", "reading", {
+			thaiText: "มี ดี",
+			englishMeaning: "Have good (things)",
+		});
+		const { game } = makeFixedRoundGame([listening, reading]);
+		renderWithApp(<GamePage />, { game });
+		startRound();
+
+		// Listening: audio up front, the Thai text hidden until reveal.
+		expect(createdAudioUrls()).toContain("/audio/s-1.mp3");
+		expect(
+			screen.getByText("Listen, then work out what the sentence says"),
+		).toBeTruthy();
+		expect(screen.queryByText("มา กัน")).toBeNull();
+		reveal();
+		expect(screen.getByText("มา กัน")).toBeTruthy();
+		expect(screen.getByText("Come together")).toBeTruthy();
+		rate(/Good/);
+
+		// Reading: the Thai text up front, no audio before its reveal.
+		expect(screen.getByText("Read this sentence aloud")).toBeTruthy();
+		expect(screen.getByText("มี ดี")).toBeTruthy();
+		expect(createdAudioUrls()).not.toContain("/audio/s-2.mp3");
+		reveal();
+		expect(createdAudioUrls()).toContain("/audio/s-2.mp3");
+		expect(screen.getByText("Have good (things)")).toBeTruthy();
+		rate(/Good/);
+
+		expect(screen.getByText("Round Complete")).toBeTruthy();
+	});
+
+	// Task 1.3 AC5 — extends the script/vocab byte-identity proofs to the
+	// sentence cards this phase introduces, through the real AppProvider.
+	it("leaves the whole thai-srs-state blob byte-identical after a full Sentence Reading round through the real AppProvider", () => {
+		const seeded = JSON.stringify({
+			completedLessons: [1],
+			currentLesson: 2,
+			cards: {},
+			vocabCards: {},
+			grammarCards: {},
+			sentenceCards: {
+				"sentence:basic-001:readingComprehension": sentenceCardDTO("basic-001"),
+				"sentence:basic-002:readingComprehension": sentenceCardDTO("basic-002"),
+			},
+			sessionHistory: [],
+			achievements: [],
+		});
+		getFakeLocalStorage().setItem("thai-srs-state", seeded);
+
+		render(
+			<AppProvider>
+				<MemoryRouter initialEntries={["/game"]}>
+					<Routes>
+						<Route path="/game" element={<GamePage />} />
+					</Routes>
+				</MemoryRouter>
+			</AppProvider>,
+		);
+
+		fireEvent.click(screen.getByLabelText("Symbols"));
+		fireEvent.click(screen.getByLabelText("Sentence Reading"));
+		setCount("2");
+		startRound();
+		for (const rating of [/Again/, /Good/]) {
+			reveal();
+			rate(rating);
+		}
+		expect(screen.getByText("Round Complete")).toBeTruthy();
+
+		expect(
+			getFakeLocalStorage().getItem("thai-srs-game-history"),
+		).not.toBeNull();
+		expect(getFakeLocalStorage().getItem("thai-srs-state")).toBe(seeded);
+	});
+
+	// Task 1.3 AC5 — the mixed Symbols + Sentence Reading half of the proof.
+	it("leaves the whole thai-srs-state blob byte-identical after a full mixed Symbols and Sentence Reading round through the real AppProvider", () => {
+		const seeded = JSON.stringify({
+			completedLessons: [1],
+			currentLesson: 2,
+			cards: {
+				"ม-recognition": scriptCardDTO("ม"),
+				"น-recognition": scriptCardDTO("น"),
+			},
+			vocabCards: {},
+			grammarCards: {},
+			sentenceCards: {
+				"sentence:basic-001:readingComprehension": sentenceCardDTO("basic-001"),
+			},
+			sessionHistory: [],
+			achievements: [],
+		});
+		getFakeLocalStorage().setItem("thai-srs-state", seeded);
+
+		render(
+			<AppProvider>
+				<MemoryRouter initialEntries={["/game"]}>
+					<Routes>
+						<Route path="/game" element={<GamePage />} />
+					</Routes>
+				</MemoryRouter>
+			</AppProvider>,
+		);
+
+		fireEvent.click(screen.getByLabelText("Sentence Reading"));
+		setCount("3");
+		startRound();
+
+		let screensTraversed = 0;
+		while (
+			screen.queryByText("Round Complete") === null &&
+			screensTraversed < 10
+		) {
+			reveal();
+			rate(/Good/);
+			screensTraversed += 1;
+		}
+		expect(screensTraversed).toBe(3);
+		expect(screen.getByText("Round Complete")).toBeTruthy();
+
+		expect(
+			getFakeLocalStorage().getItem("thai-srs-game-history"),
+		).not.toBeNull();
+		expect(getFakeLocalStorage().getItem("thai-srs-state")).toBe(seeded);
+	});
+
+	// Task 1.3 AC6 — the two empty states are different situations and must
+	// never collapse into one text; a checked-but-empty pool beside a
+	// non-empty one is not an empty state at all.
+	it("distinguishes zero pools checked from a checked-but-empty pool, and still starts from the non-empty one", () => {
+		renderWithApp(<GamePage />, {}, { symbols: ["ม", "น"] });
+
+		// Zero pools checked — its own message.
+		fireEvent.click(screen.getByLabelText("Symbols"));
+		expect(
+			// A substring match: this copy also names the tone toggle since
+			// task 2.3 made an all-unchecked state rescuable by it.
+			screen.getByText(/Select at least one pool to practice/),
+		).toBeTruthy();
+		expect(screen.queryByRole("button", { name: "Start Round" })).toBeNull();
+
+		// Sentence Reading alone with nothing eligible — a different message.
+		fireEvent.click(screen.getByLabelText("Sentence Reading"));
+		expect(
+			screen.getByText(/Nothing to practice yet in the selected pools/),
+		).toBeTruthy();
+		expect(
+			screen.queryByText(/Select at least one pool to practice/),
+		).toBeNull();
+		expect(screen.queryByRole("button", { name: "Start Round" })).toBeNull();
+
+		// Symbols back on beside the empty Sentence Reading pool: the round
+		// starts, drawing only from Symbols.
+		fireEvent.click(screen.getByLabelText("Symbols"));
+		setCount("2");
+		startRound();
+		let screensTraversed = 0;
+		while (
+			screen.queryByText("Round Complete") === null &&
+			screensTraversed < 10
+		) {
+			expect(screen.queryByText("Read this sentence aloud")).toBeNull();
+			expect(
+				screen.queryByText("Listen, then work out what the sentence says"),
+			).toBeNull();
+			reveal();
+			rate(/Good/);
+			screensTraversed += 1;
+		}
+		expect(screensTraversed).toBe(2);
+	});
+
+	// Task 1.3 AC7 — fixture-level label check; AC11 below is the real
+	// storage round-trip.
+	it("labels a sentence-inclusive history entry sensibly, never 'undefined'", () => {
+		const historyStore = new InMemoryJsonStore<GameHistoryEntry[]>();
+		historyStore.save([
+			makeHistoryEntry({ id: "e1", pools: ["sentence"], itemCount: 3 }),
+			makeHistoryEntry({
+				id: "e2",
+				playedAt: "2026-09-02T10:00:00.000Z",
+				pools: ["script", "sentence"],
+				itemCount: 5,
+			}),
+		]);
+		const game = makeGame({ symbols: ["ม"], historyStore });
+		renderWithApp(<GamePage />, { game });
+
+		expect(screen.getByText("Sentence Reading · 3 items")).toBeTruthy();
+		expect(
+			screen.getByText("Symbols + Sentence Reading · 5 items"),
+		).toBeTruthy();
+		expect(screen.queryByText(/undefined/i)).toBeNull();
+	});
+
+	// Task 1.3 AC9 — two consecutive same-direction sentence items reuse the
+	// component instance without a remount, and here deliberately share one
+	// audioUrl: only an identity-keyed reset/replay passes.
+	it("resets reveal and replays audio across two consecutive sentence reading items sharing one audioUrl", () => {
+		const shared = "/audio/shared-sentence.mp3";
+		const first = makeSentenceItem("s-1", "reading", {
+			thaiText: "มา กัน",
+			englishMeaning: "Come together",
+			audioUrl: shared,
+		});
+		const second = makeSentenceItem("s-2", "reading", {
+			thaiText: "มี ดี",
+			englishMeaning: "Have good (things)",
+			audioUrl: shared,
+		});
+		const { game } = makeFixedRoundGame([first, second]);
+		renderWithApp(<GamePage />, { game });
+		startRound();
+
+		reveal();
+		expect(createdAudioUrls().filter((url) => url === shared)).toHaveLength(1);
+		rate(/Good/);
+
+		// Second item: unrevealed again despite the identical audioUrl...
+		expect(screen.getByText("มี ดี")).toBeTruthy();
+		expect(screen.getByRole("button", { name: "Show Answer" })).toBeTruthy();
+		expect(screen.queryByRole("button", { name: /Again/ })).toBeNull();
+		reveal();
+		// ...and its own reveal plays the audio again.
+		expect(createdAudioUrls().filter((url) => url === shared)).toHaveLength(2);
+		expect(screen.getByText("Have good (things)")).toBeTruthy();
+	});
+
+	// Task 1.3 AC10 — the derived `pools` value must stay reference-stable
+	// across unrelated re-renders: the count-reset effect is keyed on it.
+	it("keeps a typed item count across unrelated toggles but resets it when the checked pools change", () => {
+		renderWithApp(<GamePage />, {}, { symbols: ["ม", "น", "ง"] });
+		const countValue = () =>
+			(screen.getByLabelText("Items per round") as HTMLInputElement).value;
+
+		setCount("2");
+		expect(countValue()).toBe("2");
+
+		fireEvent.click(screen.getByLabelText("Write on paper"));
+		expect(countValue()).toBe("2");
+		fireEvent.click(screen.getByLabelText("Prioritize weak items"));
+		expect(countValue()).toBe("2");
+
+		// A genuine pool change is exactly what does reset it.
+		fireEvent.click(screen.getByLabelText("Words"));
+		expect(countValue()).toBe("3");
+	});
+
+	// Task 1.3 AC11 — the one case that plays a real round and re-reads it
+	// through the real AppProvider's LocalStorageJsonStore and shape guard:
+	// task 1.1's pool-allowlist fix must hold end to end, or this round would
+	// come back "unavailable" (and the next save would erase the history).
+	it("round-trips a Sentence Reading round through the real AppProvider's history storage", () => {
+		const seeded = JSON.stringify({
+			completedLessons: [1],
+			currentLesson: 2,
+			cards: {},
+			vocabCards: {},
+			grammarCards: {},
+			sentenceCards: {
+				"sentence:basic-001:readingComprehension": sentenceCardDTO("basic-001"),
+				"sentence:basic-002:readingComprehension": sentenceCardDTO("basic-002"),
+			},
+			sessionHistory: [],
+			achievements: [],
+		});
+		getFakeLocalStorage().setItem("thai-srs-state", seeded);
+
+		render(
+			<AppProvider>
+				<MemoryRouter initialEntries={["/game"]}>
+					<Routes>
+						<Route path="/game" element={<GamePage />} />
+					</Routes>
+				</MemoryRouter>
+			</AppProvider>,
+		);
+
+		fireEvent.click(screen.getByLabelText("Symbols"));
+		fireEvent.click(screen.getByLabelText("Sentence Reading"));
+		setCount("2");
+		startRound();
+		for (const rating of [/Good/, /Easy/]) {
+			reveal();
+			rate(rating);
+		}
+		expect(screen.getByText("Round Complete")).toBeTruthy();
+
+		fireEvent.click(screen.getByRole("button", { name: "Play Again" }));
+		expect(screen.getByText("Sentence Reading · 2 items")).toBeTruthy();
+		expect(screen.queryByText(/history is unavailable/i)).toBeNull();
+		expect(screen.queryByText("No games played yet.")).toBeNull();
+	});
+
+	// Task 1.3 AC12 — with only Sentence Reading checked, Input Mode would
+	// control nothing (sentences have no write-input), so it is hidden.
+	it("hides Input Mode when only Sentence Reading is checked and restores it with a write-input pool", () => {
+		renderWithApp(
+			<GamePage />,
+			{},
+			{ symbols: ["ม"], sentences: ["basic-001"] },
+		);
+
+		expect(screen.getByLabelText("Draw on canvas")).toBeTruthy();
+
+		fireEvent.click(screen.getByLabelText("Symbols"));
+		fireEvent.click(screen.getByLabelText("Sentence Reading"));
+
+		expect(screen.queryByLabelText("Draw on canvas")).toBeNull();
+		expect(screen.queryByText("Input mode")).toBeNull();
+		// The rest of the setup form is still there and usable.
+		expect(screen.getByRole("button", { name: "Start Round" })).toBeTruthy();
+
+		fireEvent.click(screen.getByLabelText("Symbols"));
+		expect(screen.getByLabelText("Draw on canvas")).toBeTruthy();
+	});
+	// --- Task 2.3: Tone Identification ---
+
+	// Four real vocabulary entries, each with a determinable tone, so a
+	// seeded `toneIdentification` card makes exactly four words eligible.
+	const TONE_WORDS = ["ที่", "ได้", "จะ", "นี้"] as const;
+	const TONE_PROMPT = "Say this word's tones aloud";
+
+	// Tone AC3, AC7
+	it("leaves the Tone Identification toggle unchecked by default and keeps it accessibly labeled and keyboard-operable", () => {
+		renderWithApp(
+			<GamePage />,
+			{},
+			{ symbols: ["ม"], toneWords: [...TONE_WORDS] },
+		);
+
+		const toggle = screen.getByLabelText(
+			"Tone Identification",
+		) as HTMLInputElement;
+		expect(toggle.type).toBe("checkbox");
+		expect(toggle.checked).toBe(false);
+
+		toggle.focus();
+		expect(document.activeElement).toBe(toggle);
+		// jsdom cannot synthesize the browser's Space-key default action on a
+		// focused checkbox; activating the focused element is its stand-in.
+		fireEvent.click(toggle);
+		expect(toggle.checked).toBe(true);
+		fireEvent.click(toggle);
+		expect(toggle.checked).toBe(false);
+	});
+
+	// Tone AC3 — the toggle is combinable with any pool selection, and an
+	// unchecked toggle must never let a tone item into the round.
+	it("includes tone items only when the toggle is checked, alongside the checked pools", () => {
+		renderWithApp(
+			<GamePage />,
+			{},
+			{ symbols: ["ม", "น", "ง"], toneWords: [...TONE_WORDS] },
+		);
+
+		// Unchecked: Symbols' three items and nothing else.
+		setCount("3");
+		startRound();
+		for (let i = 0; i < 3; i += 1) {
+			expect(screen.queryByText(TONE_PROMPT)).toBeNull();
+			reveal();
+			rate(/Good/);
+		}
+		expect(screen.getByText("Round Complete")).toBeTruthy();
+		fireEvent.click(screen.getByRole("button", { name: "Play Again" }));
+
+		// Checked, with Symbols still checked: tone items now appear.
+		fireEvent.click(screen.getByLabelText("Tone Identification"));
+		setCount("7");
+		startRound();
+		let sawTone = false;
+		let sawSymbol = false;
+		let screensTraversed = 0;
+		while (
+			screen.queryByText("Round Complete") === null &&
+			screensTraversed < 10
+		) {
+			if (screen.queryByText(TONE_PROMPT) !== null) sawTone = true;
+			if (screen.queryByText("Say this symbol aloud") !== null)
+				sawSymbol = true;
+			reveal();
+			rate(/Good/);
+			screensTraversed += 1;
+		}
+		expect(sawTone).toBe(true);
+		expect(sawSymbol).toBe(true);
+		// Seven screens: three symbols plus four tone-eligible words.
+		expect(screensTraversed).toBe(7);
+	});
+
+	// Tone AC4
+	it("dispatches a tone item to the Tone Identification organism", () => {
+		const { game } = makeFixedRoundGame([
+			makeToneItem("นี้", { syllables: [{ text: "นี้", tone: "high" }] }),
+		]);
+		renderWithApp(<GamePage />, { game });
+		startRound();
+
+		// Text and audio together on mount — the tone organism's prompt.
+		expect(screen.getByText(TONE_PROMPT)).toBeTruthy();
+		expect(screen.getByText("นี้")).toBeTruthy();
+		expect(createdAudioUrls()).toContain("/audio/นี้.mp3");
+		expect(screen.queryByText("high")).toBeNull();
+
+		reveal();
+		expect(screen.getByText("high")).toBeTruthy();
+		rate(/Good/);
+		expect(screen.getByText("Round Complete")).toBeTruthy();
+	});
+
+	// Tone AC5 — the critical case: extends the script/vocab/sentence
+	// byte-identity proofs to the tone-practice path, through the real
+	// AppProvider (which is what wires the real `ToneGameItemSource`).
+	it("leaves the whole thai-srs-state blob byte-identical after a full tone round through the real AppProvider", () => {
+		const seeded = JSON.stringify({
+			completedLessons: [1],
+			currentLesson: 2,
+			cards: {},
+			vocabCards: {
+				"vocab:ที่:thaiToEnglish": vocabCardDTO("ที่"),
+				"vocab:ที่:toneIdentification": vocabCardDTO("ที่", "toneIdentification"),
+				"vocab:ได้:toneIdentification": vocabCardDTO("ได้", "toneIdentification"),
+			},
+			grammarCards: {},
+			sentenceCards: {},
+			sessionHistory: [],
+			achievements: [],
+		});
+		getFakeLocalStorage().setItem("thai-srs-state", seeded);
+
+		render(
+			<AppProvider>
+				<MemoryRouter initialEntries={["/game"]}>
+					<Routes>
+						<Route path="/game" element={<GamePage />} />
+					</Routes>
+				</MemoryRouter>
+			</AppProvider>,
+		);
+
+		fireEvent.click(screen.getByLabelText("Symbols"));
+		fireEvent.click(screen.getByLabelText("Tone Identification"));
+		setCount("2");
+		startRound();
+		for (const rating of [/Again/, /Easy/]) {
+			expect(screen.getByText(TONE_PROMPT)).toBeTruthy();
+			reveal();
+			rate(rating);
+		}
+		expect(screen.getByText("Round Complete")).toBeTruthy();
+
+		// The round itself persisted — to its own key...
+		expect(
+			getFakeLocalStorage().getItem("thai-srs-game-history"),
+		).not.toBeNull();
+		// ...while the whole SRS blob is byte-identical.
+		expect(getFakeLocalStorage().getItem("thai-srs-state")).toBe(seeded);
+	});
+
+	// Tone AC6 — the state task 2.1's pool-independent design exists to
+	// allow: no pool checked at all, tone practice alone.
+	it("starts a tone-only round with no pool checked and the toggle checked", () => {
+		renderWithApp(
+			<GamePage />,
+			{},
+			{ symbols: ["ม"], toneWords: [...TONE_WORDS] },
+		);
+
+		fireEvent.click(screen.getByLabelText("Symbols"));
+		fireEvent.click(screen.getByLabelText("Tone Identification"));
+
+		// Zero pools is no longer an empty state once tone practice is on.
+		expect(
+			screen.queryByText(/Select at least one pool to practice/),
+		).toBeNull();
+		expect(
+			(screen.getByLabelText("Items per round") as HTMLInputElement).max,
+		).toBe("4");
+
+		setCount("4");
+		startRound();
+		for (let i = 0; i < 4; i += 1) {
+			expect(screen.getByText(TONE_PROMPT)).toBeTruthy();
+			expect(screen.queryByText("Say this symbol aloud")).toBeNull();
+			reveal();
+			rate(/Good/);
+		}
+		expect(screen.getByText("Round Complete")).toBeTruthy();
+	});
+
+	// Tone AC6 — the other end: the toggle on with nothing tone-eligible
+	// must say so about tone, not about pools the learner never checked.
+	it("explains an empty tone selection in its own words, never the pool-empty message", () => {
+		renderWithApp(<GamePage />, {}, { symbols: ["ม"] });
+
+		fireEvent.click(screen.getByLabelText("Symbols"));
+		fireEvent.click(screen.getByLabelText("Tone Identification"));
+
+		expect(
+			screen.getByText(/No words with identifiable tones yet/),
+		).toBeTruthy();
+		expect(
+			screen.queryByText(/Nothing to practice yet in the selected pools/),
+		).toBeNull();
+		expect(
+			screen.queryByText(/Select at least one pool to practice/),
+		).toBeNull();
+		expect(screen.queryByRole("button", { name: "Start Round" })).toBeNull();
+	});
+
+	// Tone AC8 — the count is what proves `includeTonePractice` reaches
+	// `countEligibleItems` and not merely `startRound`: 3 symbols + 4
+	// tone-eligible words is a cap of 7, and an unthreaded toggle leaves it 3.
+	it("counts tone items in the eligible cap when the toggle is checked", () => {
+		renderWithApp(
+			<GamePage />,
+			{},
+			{ symbols: ["ม", "น", "ง"], toneWords: [...TONE_WORDS] },
+		);
+		const countInput = () =>
+			screen.getByLabelText("Items per round") as HTMLInputElement;
+
+		expect(countInput().max).toBe("3");
+
+		fireEvent.click(screen.getByLabelText("Tone Identification"));
+		expect(countInput().max).toBe("7");
+		expect(screen.getByText("Whole number from 1 to 7")).toBeTruthy();
+
+		// And unchecking it puts the cap back — the count is derived, not a
+		// one-way widening.
+		fireEvent.click(screen.getByLabelText("Tone Identification"));
+		expect(countInput().max).toBe("3");
+	});
+
+	// Tone AC9 — two consecutive tone items reuse the component instance
+	// without a remount, and here deliberately share one audioUrl: only an
+	// identity-keyed reset/replay passes.
+	it("resets reveal and replays audio across two consecutive tone items sharing one audioUrl", () => {
+		const shared = "/audio/shared-word.mp3";
+		const first = makeToneItem("ที่", {
+			syllables: [{ text: "ที่", tone: "falling" }],
+			audioUrl: shared,
+		});
+		const second = makeToneItem("นี้", {
+			syllables: [{ text: "นี้", tone: "high" }],
+			audioUrl: shared,
+		});
+		const { game } = makeFixedRoundGame([first, second]);
+		renderWithApp(<GamePage />, { game });
+		startRound();
+
+		expect(createdAudioUrls().filter((url) => url === shared)).toHaveLength(1);
+		reveal();
+		expect(screen.getByText("falling")).toBeTruthy();
+		rate(/Good/);
+
+		// Second item: unrevealed again despite the identical audioUrl...
+		expect(screen.getByRole("button", { name: "Show Answer" })).toBeTruthy();
+		expect(screen.queryByText("falling")).toBeNull();
+		expect(screen.getByText("นี้")).toBeTruthy();
+		expect(screen.queryByRole("button", { name: /Again/ })).toBeNull();
+		// ...and its own mount played the audio again.
+		expect(createdAudioUrls().filter((url) => url === shared)).toHaveLength(2);
+		reveal();
+		expect(screen.getByText("high")).toBeTruthy();
+	});
+
+	// ——— Task 3.3: Sentence Composition mode ———
+
+	// Composition AC2 — an item-count-only setup step whose cap comes from
+	// `countEligibleCompositionItems` (the unlocked grammar set), proven by
+	// the cap *changing* between modes: 3 practice-eligible symbols against
+	// exactly 1 unlocked grammar point.
+	it("Sentence Composition mode shows an item-count-only setup whose cap comes from unlocked grammar", () => {
+		renderWithApp(
+			<GamePage />,
+			{},
+			{
+				symbols: ["ม", "น", "ง"],
+				graduatedVocab: UNLOCKS_FIRST_GRAMMAR_POINT,
+			},
+		);
+		const countInput = () =>
+			screen.getByLabelText("Items per round") as HTMLInputElement;
+
+		expect(countInput().max).toBe("3");
+
+		fireEvent.click(screen.getByLabelText("Sentence Composition"));
+
+		// No pool checkboxes, no tone toggle, no input mode, no weak-item
+		// toggle — the count is the whole setup step.
+		expect(screen.queryByLabelText("Symbols")).toBeNull();
+		expect(screen.queryByLabelText("Words")).toBeNull();
+		expect(screen.queryByLabelText("Sentence Reading")).toBeNull();
+		expect(screen.queryByLabelText("Tone Identification")).toBeNull();
+		expect(screen.queryByLabelText("Draw on canvas")).toBeNull();
+		expect(screen.queryByLabelText("Write on paper")).toBeNull();
+		expect(screen.queryByLabelText("Prioritize weak items")).toBeNull();
+
+		// The composition-path cap, not the practice one.
+		expect(countInput().max).toBe("1");
+		expect(screen.getByText("Whole number from 1 to 1")).toBeTruthy();
+
+		// And switching back restores the practice cap — the two counts are
+		// two mechanisms, not one shared stale value.
+		fireEvent.click(screen.getByLabelText("Practice"));
+		expect(countInput().max).toBe("3");
+	});
+
+	// Composition AC3
+	it("dispatches a composition item to the Sentence Composition organism", () => {
+		const { game } = makeFixedRoundGame([makeCompositionItem("svo-basic")]);
+		renderWithApp(<GamePage />, { game });
+
+		fireEvent.click(screen.getByLabelText("Sentence Composition"));
+		startRound();
+
+		expect(screen.getByText("Build this sentence in Thai")).toBeTruthy();
+		expect(screen.getByText("He eats rice.")).toBeTruthy();
+		expect(screen.getByRole("button", { name: "เขา" })).toBeTruthy();
+		// No other organism's prompt leaked in.
+		expect(screen.queryByText("Say this symbol aloud")).toBeNull();
+		expect(screen.queryByText(TONE_PROMPT)).toBeNull();
+	});
+
+	// Composition AC4 — the phase's end-to-end criterion, half one: a full
+	// composition round through the real AppProvider (real GrammarService
+	// unlock closure, real storage) leaves the SRS blob byte-identical.
+	// The seeded state carries vocab, grammar, and sentence cards together,
+	// with enough graduated vocab to unlock the first grammar point.
+	it("leaves the whole thai-srs-state blob byte-identical after a full composition round through the real AppProvider", () => {
+		const seeded = JSON.stringify({
+			completedLessons: [1],
+			currentLesson: 2,
+			cards: {},
+			vocabCards: Object.fromEntries(
+				UNLOCKS_FIRST_GRAMMAR_POINT.map((thai) => [
+					`vocab:${thai}:thaiToEnglish`,
+					graduatedVocabCardDTO(thai),
+				]),
+			),
+			grammarCards: {
+				[`grammar:${FIRST_GRAMMAR_POINT_ID}:recognition`]: grammarCardDTO(
+					FIRST_GRAMMAR_POINT_ID,
+				),
+			},
+			sentenceCards: {
+				"sentence:basic-001:readingComprehension": sentenceCardDTO("basic-001"),
+			},
+			sessionHistory: [],
+			achievements: [],
+		});
+		getFakeLocalStorage().setItem("thai-srs-state", seeded);
+
+		render(
+			<AppProvider>
+				<MemoryRouter initialEntries={["/game"]}>
+					<Routes>
+						<Route path="/game" element={<GamePage />} />
+					</Routes>
+				</MemoryRouter>
+			</AppProvider>,
+		);
+
+		fireEvent.click(screen.getByLabelText("Sentence Composition"));
+		// Exactly the first grammar point is unlocked, so the round is one
+		// item — genuinely tiny by design, not a symptom.
+		expect(
+			(screen.getByLabelText("Items per round") as HTMLInputElement).max,
+		).toBe("1");
+		startRound();
+
+		expect(screen.getByText("Build this sentence in Thai")).toBeTruthy();
+		reveal();
+		rate(/Good/);
+		expect(screen.getByText("Round Complete")).toBeTruthy();
+
+		// The round itself persisted — to its own key...
+		expect(
+			getFakeLocalStorage().getItem("thai-srs-game-history"),
+		).not.toBeNull();
+		// ...while the whole SRS blob is byte-identical.
+		expect(getFakeLocalStorage().getItem("thai-srs-state")).toBe(seeded);
+	});
+
+	// Composition AC5 — zero unlocked grammar points: its own explanation,
+	// never a practice pool message, and no way to start.
+	it("blocks Sentence Composition with its own explanation when nothing is unlocked", () => {
+		renderWithApp(<GamePage />, {}, { symbols: ["ม"] });
+
+		fireEvent.click(screen.getByLabelText("Sentence Composition"));
+
+		expect(
+			screen.getByText(/No unlocked grammar points to build from yet/),
+		).toBeTruthy();
+		expect(
+			screen.queryByText(/Select at least one pool to practice/),
+		).toBeNull();
+		expect(
+			screen.queryByText(/Nothing to practice yet in the selected pools/),
+		).toBeNull();
+		expect(
+			screen.queryByText(/No words with identifiable tones yet/),
+		).toBeNull();
+		expect(screen.queryByRole("button", { name: "Start Round" })).toBeNull();
+		expect(screen.queryByLabelText("Items per round")).toBeNull();
+	});
+
+	// Composition AC5 — a genuinely small supply: exactly two unlocked
+	// grammar points (the first learned, the second's prerequisites met)
+	// state the true range and reject an over-large request before start,
+	// never silently clamping to a shorter round.
+	it("states the true range for two unlocked grammar points and rejects an over-large request before start", () => {
+		renderWithApp(
+			<GamePage />,
+			{},
+			{
+				graduatedVocab: UNLOCKS_FIRST_TWO_GRAMMAR_POINTS,
+				learnedGrammar: [FIRST_GRAMMAR_POINT_ID],
+			},
+		);
+
+		fireEvent.click(screen.getByLabelText("Sentence Composition"));
+
+		expect(
+			(screen.getByLabelText("Items per round") as HTMLInputElement).max,
+		).toBe("2");
+		expect(screen.getByText("Whole number from 1 to 2")).toBeTruthy();
+
+		const start = screen.getByRole("button", {
+			name: "Start Round",
+		}) as HTMLButtonElement;
+		setCount("3");
+		expect(start.disabled).toBe(true);
+		startRound();
+		expect(screen.queryByText("Build this sentence in Thai")).toBeNull();
+
+		setCount("2");
+		expect(start.disabled).toBe(false);
+	});
+
+	// Composition AC6 — a pure rendering test: `kind` is normalized at the
+	// repository boundary (task 3.2), so the list needs no legacy branch and
+	// a composition entry gets its own label, distinct from every pool label.
+	it("renders a composition history entry with its own label distinct from pool labels", () => {
+		const historyStore = new InMemoryJsonStore<GameHistoryEntry[]>();
+		historyStore.save([
+			makeHistoryEntry({ id: "practice-1" }),
+			{
+				kind: "composition",
+				id: "composition-1",
+				playedAt: "2026-09-02T10:00:00.000Z",
+				itemCount: 3,
+				summary: {
+					ratingCounts: { 1: 0, 2: 0, 3: 1, 4: 1, 5: 1 },
+					ratedCount: 3,
+					accuracy: 67,
+				},
+			},
+		]);
+		const game = makeGame({ symbols: ["ม"], historyStore });
+		renderWithApp(<GamePage />, { game });
+
+		expect(screen.getByText("Sentence Composition · 3 items")).toBeTruthy();
+		expect(screen.getByText("Symbols · 4 items")).toBeTruthy();
+	});
+
+	// Composition AC7 — the phase's end-to-end criterion, half two: a round
+	// completed through the actual page persists `kind: "composition"`,
+	// proving `handleRate`'s saveHistory call site branches on mode instead
+	// of always taking the practice shape.
+	it("a composition round completed through the page writes a composition-kind entry with no pool label", () => {
+		const { game, historyStore } = makeFixedRoundGame([
+			makeCompositionItem("svo-basic"),
+		]);
+		renderWithApp(<GamePage />, { game });
+
+		fireEvent.click(screen.getByLabelText("Sentence Composition"));
+		startRound();
+		reveal();
+		rate(/Good/);
+		expect(screen.getByText("Round Complete")).toBeTruthy();
+
+		const stored = historyStore.load();
+		if (stored.status !== "ok") {
+			throw new Error(`expected a stored history, got "${stored.status}"`);
+		}
+		expect(stored.value).toHaveLength(1);
+		const entry = stored.value[0];
+		expect(entry.kind).toBe("composition");
+		expect("pools" in entry).toBe(false);
+
+		// And the page renders it with the composition label, no pool label.
+		fireEvent.click(screen.getByRole("button", { name: "Play Again" }));
+		expect(screen.getByText("Sentence Composition · 1 items")).toBeTruthy();
+		expect(screen.queryByText(/Symbols ·/)).toBeNull();
+	});
+
+	// Composition AC8 — two consecutive composition items reuse the organism
+	// instance without a remount; the second must start unbuilt and
+	// unrevealed, sharing tiles with the first so a leaked used-index would
+	// show.
+	it("resets tile and reveal state across two consecutive composition items", () => {
+		const first = makeCompositionItem("svo-basic");
+		const second = makeCompositionItem("question-mai", {
+			englishMeaning: "Do you eat rice?",
+			tiles: ["ไหม", "คุณ", "กิน", "ข้าว"],
+			correctOrder: ["คุณ", "กิน", "ข้าว", "ไหม"],
+		});
+		const { game } = makeFixedRoundGame([first, second]);
+		renderWithApp(<GamePage />, { game });
+
+		fireEvent.click(screen.getByLabelText("Sentence Composition"));
+		startRound();
+
+		fireEvent.click(screen.getByRole("button", { name: "เขา" }));
+		fireEvent.click(screen.getByRole("button", { name: "กิน" }));
+		expect(screen.getByText("เขา กิน")).toBeTruthy();
+		reveal();
+		expect(screen.getByText("เขา กิน ข้าว")).toBeTruthy();
+		rate(/Good/);
+
+		// Second item: its own prompt, nothing built, unrevealed, and the
+		// tiles shared with the first item tappable again.
+		expect(screen.getByText("Do you eat rice?")).toBeTruthy();
+		expect(screen.queryByText("เขา กิน")).toBeNull();
+		expect(
+			screen.getByText("Tap the word tiles below to build it"),
+		).toBeTruthy();
+		expect(screen.getByRole("button", { name: "Show Answer" })).toBeTruthy();
+		expect(screen.queryByRole("button", { name: /Good/ })).toBeNull();
+		expect(
+			(screen.getByRole("button", { name: "กิน" }) as HTMLButtonElement)
+				.disabled,
+		).toBe(false);
+		expect(
+			(screen.getByRole("button", { name: "ข้าว" }) as HTMLButtonElement)
+				.disabled,
+		).toBe(false);
 	});
 });

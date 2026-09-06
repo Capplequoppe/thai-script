@@ -1,5 +1,8 @@
 import { afterEach, beforeEach, describe, expect, it } from "vitest";
-import type { GameHistoryEntry } from "../../domain/game/types";
+import type {
+	GameHistoryEntry,
+	PracticeHistoryEntry,
+} from "../../domain/game/types";
 import { InMemoryJsonStore, LocalStorageJsonStore } from "./JsonStore";
 import { LocalStorageAdapter } from "./Storage";
 import {
@@ -11,9 +14,10 @@ import {
 function makeEntry(
 	id: string,
 	playedAt: string,
-	overrides: Partial<GameHistoryEntry> = {},
-): GameHistoryEntry {
+	overrides: Partial<PracticeHistoryEntry> = {},
+): PracticeHistoryEntry {
 	return {
+		kind: "practice",
 		id,
 		playedAt,
 		pools: ["script"],
@@ -187,6 +191,144 @@ describe("StorageGameHistoryRepository", () => {
 		expect(repo.list()).toEqual({
 			status: "ok",
 			entries: [makeEntry("a", "2026-01-01T00:00:00.000Z")],
+		});
+	});
+
+	it("AC8: a sentence-pool entry survives the real store and leaves an existing entry untouched", () => {
+		// The guard rejects the *entire* stored array if one entry fails it,
+		// and `save()` then rebuilds history from the empty list — so a pool
+		// the allowlist has not been taught about does not lose one round, it
+		// loses the learner's whole game history. Deliberately run through
+		// `LocalStorageJsonStore`, not `InMemoryJsonStore`: the in-memory
+		// store applies no shape guard and cannot see this class of bug.
+		const existing = makeEntry("script-round", "2026-01-01T00:00:00.000Z", {
+			pools: ["script"],
+		});
+		newLocalStorageRepository().save(existing);
+
+		const sentenceRound = makeEntry(
+			"sentence-round",
+			"2026-01-02T00:00:00.000Z",
+			{ pools: ["sentence"] },
+		);
+		newLocalStorageRepository().save(sentenceRound);
+
+		const result = newLocalStorageRepository().list();
+		expect(result).toEqual({
+			status: "ok",
+			entries: [sentenceRound, existing],
+		});
+	});
+
+	it("AC8: a mixed script-plus-sentence pool entry round-trips through the real store", () => {
+		const mixed = makeEntry("mixed", "2026-01-01T00:00:00.000Z", {
+			pools: ["script", "sentence"],
+		});
+		newLocalStorageRepository().save(mixed);
+
+		expect(newLocalStorageRepository().list()).toEqual({
+			status: "ok",
+			entries: [mixed],
+		});
+	});
+
+	it("AC8: an entry naming a pool the game never draws from is still rejected", () => {
+		// The allowlist widened to exactly `GameCardPool`, not to "any
+		// string": a foreign or corrupt blob must still be caught.
+		fakeLocalStorage.setItem(
+			GAME_HISTORY_STORAGE_KEY,
+			JSON.stringify([
+				{ ...makeEntry("a", "2026-01-01T00:00:00.000Z"), pools: ["grammar"] },
+			]),
+		);
+
+		expect(newLocalStorageRepository().list()).toEqual({
+			status: "unavailable",
+		});
+	});
+
+	it("Task 3.2 AC4: a legacy entry, a practice entry and a composition entry all survive one read, legacy normalized", () => {
+		// Seeded as raw JSON through the REAL guard, because that is the only
+		// way to write the shape this test is about: an entry with no `kind`
+		// field at all, as every round played before this plan wrote it. One
+		// failing entry rejects the entire stored array and the next save()
+		// then overwrites the learner's whole history, so "all three present"
+		// is the assertion that matters, not just "the legacy one parses".
+		const legacy = {
+			id: "legacy",
+			playedAt: "2026-01-01T00:00:00.000Z",
+			pools: ["script"],
+			itemCount: 5,
+			summary: {
+				ratingCounts: { 1: 0, 2: 0, 3: 1, 4: 3, 5: 1 },
+				ratedCount: 5,
+				accuracy: 100,
+			},
+		};
+		const practice = {
+			...legacy,
+			id: "practice",
+			kind: "practice",
+			playedAt: "2026-01-02T00:00:00.000Z",
+		};
+		const composition = {
+			id: "composition",
+			kind: "composition",
+			playedAt: "2026-01-03T00:00:00.000Z",
+			itemCount: 2,
+			summary: {
+				ratingCounts: { 1: 0, 2: 1, 3: 0, 4: 1, 5: 0 },
+				ratedCount: 2,
+				accuracy: 50,
+			},
+		};
+		fakeLocalStorage.setItem(
+			GAME_HISTORY_STORAGE_KEY,
+			JSON.stringify([legacy, practice, composition]),
+		);
+
+		const result = newLocalStorageRepository().list();
+
+		expect(result).toEqual({
+			status: "ok",
+			entries: [composition, practice, { ...legacy, kind: "practice" }],
+		});
+	});
+
+	it("Task 3.2 AC4: an entry whose kind is neither practice nor composition is still rejected", () => {
+		fakeLocalStorage.setItem(
+			GAME_HISTORY_STORAGE_KEY,
+			JSON.stringify([
+				{ ...makeEntry("a", "2026-01-01T00:00:00.000Z"), kind: "grammar" },
+			]),
+		);
+
+		expect(newLocalStorageRepository().list()).toEqual({
+			status: "unavailable",
+		});
+	});
+
+	it("Task 3.2 AC4: a composition entry saved through this repository round-trips beside a practice entry", () => {
+		const repo = newLocalStorageRepository();
+		const practice = makeEntry("practice", "2026-01-01T00:00:00.000Z");
+		repo.save(practice);
+
+		const composition: GameHistoryEntry = {
+			kind: "composition",
+			id: "composition",
+			playedAt: "2026-01-02T00:00:00.000Z",
+			itemCount: 1,
+			summary: {
+				ratingCounts: { 1: 0, 2: 0, 3: 0, 4: 1, 5: 0 },
+				ratedCount: 1,
+				accuracy: 100,
+			},
+		};
+		newLocalStorageRepository().save(composition);
+
+		expect(newLocalStorageRepository().list()).toEqual({
+			status: "ok",
+			entries: [composition, practice],
 		});
 	});
 
