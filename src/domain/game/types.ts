@@ -2,12 +2,18 @@ import type { CardPool } from "../shared/CardPool";
 import type { RecallRating } from "../shared/types";
 
 /**
- * The practice game draws only from the two pools that hold learnable
- * "items" a person can be quizzed on in both directions. It is an
- * `Extract` of `CardPool` rather than a separate vocabulary so the two
- * concepts never drift apart.
+ * The practice game draws only from the pools that hold learnable "items" a
+ * person can be quizzed on in both directions. It is an `Extract` of
+ * `CardPool` rather than a separate vocabulary so the two concepts never
+ * drift apart.
+ *
+ * Growing this type does *not* on its own update every place that has to
+ * know the full set: `StorageGameHistoryRepository`'s persisted-entry shape
+ * guard derives its allowlist from a `Record<GameCardPool, true>` anchor
+ * precisely so that adding a member here is a compile error there rather
+ * than a silently stale duplicate.
  */
-export type GameCardPool = Extract<CardPool, "script" | "vocab">;
+export type GameCardPool = Extract<CardPool, "script" | "vocab" | "sentence">;
 
 /** A source of randomness returning a number in `[0, 1)`. */
 export type RandomSource = () => number;
@@ -30,9 +36,22 @@ export type SymbolChallengeDirection = "dictation" | "reading";
  */
 export type WordChallengeDirection = "dictationTranslate" | "production";
 
+/**
+ * `listening` — hear the sentence, reveal the Thai text and its English.
+ * `reading` — see the Thai text, say it, reveal the audio. Which one a
+ * given sentence gets is randomized per round, never configured — except
+ * that a sentence with no audio can only ever be `reading`
+ * (`assignDirection`). Every sentence in the shipped `sentences.json` is
+ * audio-less today, so `listening` is currently unreachable in practice;
+ * it becomes reachable the moment sentence audio exists, with no code
+ * change. See CONTEXT.md.
+ */
+export type SentenceChallengeDirection = "listening" | "reading";
+
 export type GameChallengeDirection =
 	| SymbolChallengeDirection
-	| WordChallengeDirection;
+	| WordChallengeDirection
+	| SentenceChallengeDirection;
 
 /**
  * Content for one symbol, sourced from `script/data/symbols.ts` — never
@@ -68,8 +87,28 @@ export interface WordItemContent {
 	readonly audioUrl?: string;
 }
 
+/**
+ * Content for one sentence, sourced from its `SentenceEntry` — never from
+ * an individual `SentenceCard`, whose `question`/`correctAnswer` are
+ * specific to the `SentenceProperty` that card reviews (a
+ * `listeningComprehension` card and a `readingComprehension` card for the
+ * same sentence disagree by design).
+ *
+ * `sentenceId` is the item's identity — the key a round dedupes on.
+ */
+export interface SentenceItemContent {
+	readonly kind: "sentence";
+	readonly sentenceId: string;
+	readonly thaiText: string;
+	readonly englishMeaning: string;
+	readonly audioUrl?: string;
+}
+
 /** Content for one game item, before a direction has been assigned. */
-export type GameItemContent = SymbolItemContent | WordItemContent;
+export type GameItemContent =
+	| SymbolItemContent
+	| WordItemContent
+	| SentenceItemContent;
 
 export type SymbolGameItem = SymbolItemContent & {
 	readonly challengeDirection: SymbolChallengeDirection;
@@ -79,13 +118,25 @@ export type WordGameItem = WordItemContent & {
 	readonly challengeDirection: WordChallengeDirection;
 };
 
+export type SentenceGameItem = SentenceItemContent & {
+	readonly challengeDirection: SentenceChallengeDirection;
+};
+
 /**
- * One item as it is played. A discriminated union on `kind`; phase 1's
- * `"symbol"` member and phase 2's `"word"` member are independent variants,
- * so every consumer that already narrows on `kind` is unaffected by this
+ * Every item that reaches play through a `GameItemSource` and the shared
+ * draw pipeline (`sampleWithoutReplacement` + `assignDirection`) — one
+ * variant per `GameItemContent` member, each intersecting in the direction
+ * that content type's own rule assigned.
+ */
+export type SourcedGameItem = SymbolGameItem | WordGameItem | SentenceGameItem;
+
+/**
+ * One item as it is played. A discriminated union on `kind`; the
+ * `"symbol"`, `"word"` and `"sentence"` members are independent variants,
+ * so every consumer that already narrows on `kind` is unaffected by an
  * addition.
  */
-export type GameItem = SymbolGameItem | WordGameItem;
+export type GameItem = SourcedGameItem;
 
 /** Supplies the eligible content for exactly one pool. */
 export interface GameItemSource {
@@ -104,9 +155,9 @@ export interface GameRoundConfig {
 export interface GameRatingRecord {
 	/**
 	 * The item's identity, prefixed with `kind` (`"symbol:..."` /
-	 * `"word:..."`) so a symbol character can never collide with a vocab
-	 * word of the same Thai text in a mixed-pool round — see
-	 * `itemKeyOf` in `PlayGameUseCase.ts`.
+	 * `"word:..."` / `"sentence:..."`) so a symbol character can never
+	 * collide with a vocab word of the same Thai text in a mixed-pool round
+	 * — see `itemKeyOf` in `PlayGameUseCase.ts`.
 	 */
 	readonly itemKey: string;
 	readonly kind: GameItem["kind"];

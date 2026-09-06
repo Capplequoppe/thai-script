@@ -12,13 +12,33 @@ import type { JsonShapeGuard, JsonStore } from "./JsonStore";
  */
 export const GAME_HISTORY_STORAGE_KEY = "thai-srs-game-history";
 
-const GAME_CARD_POOLS: readonly GameCardPool[] = ["script", "vocab"];
+/**
+ * The allowlist this file's shape guard checks a persisted `pools` entry
+ * against, derived from `GameCardPool` rather than hand-maintained beside
+ * it. A `Record<GameCardPool, true>` must name every member, so adding a
+ * pool to `GameCardPool` is a compile error *here* — which is the whole
+ * point.
+ *
+ * A hand-written `readonly GameCardPool[]` (what this was) type-checks
+ * happily while missing members, and a missing member is not a cosmetic
+ * gap: `isGameHistoryEntry` failing one entry makes `isGameHistoryEntryArray`
+ * reject the *entire* stored array, `list()` report `unavailable`, and the
+ * next `save()` overwrite the learner's whole game history with the single
+ * new entry. That is exactly what the first `pools: ["sentence"]` round
+ * would have done.
+ */
+const GAME_CARD_POOL_ALLOWLIST: Record<GameCardPool, true> = {
+	script: true,
+	vocab: true,
+	sentence: true,
+};
+
+const GAME_CARD_POOLS: ReadonlySet<string> = new Set(
+	Object.keys(GAME_CARD_POOL_ALLOWLIST),
+);
 
 function isGameCardPool(value: unknown): value is GameCardPool {
-	return (
-		typeof value === "string" &&
-		(GAME_CARD_POOLS as readonly string[]).includes(value)
-	);
+	return typeof value === "string" && GAME_CARD_POOLS.has(value);
 }
 
 /**

@@ -190,6 +190,59 @@ describe("StorageGameHistoryRepository", () => {
 		});
 	});
 
+	it("AC8: a sentence-pool entry survives the real store and leaves an existing entry untouched", () => {
+		// The guard rejects the *entire* stored array if one entry fails it,
+		// and `save()` then rebuilds history from the empty list — so a pool
+		// the allowlist has not been taught about does not lose one round, it
+		// loses the learner's whole game history. Deliberately run through
+		// `LocalStorageJsonStore`, not `InMemoryJsonStore`: the in-memory
+		// store applies no shape guard and cannot see this class of bug.
+		const existing = makeEntry("script-round", "2026-01-01T00:00:00.000Z", {
+			pools: ["script"],
+		});
+		newLocalStorageRepository().save(existing);
+
+		const sentenceRound = makeEntry(
+			"sentence-round",
+			"2026-01-02T00:00:00.000Z",
+			{ pools: ["sentence"] },
+		);
+		newLocalStorageRepository().save(sentenceRound);
+
+		const result = newLocalStorageRepository().list();
+		expect(result).toEqual({
+			status: "ok",
+			entries: [sentenceRound, existing],
+		});
+	});
+
+	it("AC8: a mixed script-plus-sentence pool entry round-trips through the real store", () => {
+		const mixed = makeEntry("mixed", "2026-01-01T00:00:00.000Z", {
+			pools: ["script", "sentence"],
+		});
+		newLocalStorageRepository().save(mixed);
+
+		expect(newLocalStorageRepository().list()).toEqual({
+			status: "ok",
+			entries: [mixed],
+		});
+	});
+
+	it("AC8: an entry naming a pool the game never draws from is still rejected", () => {
+		// The allowlist widened to exactly `GameCardPool`, not to "any
+		// string": a foreign or corrupt blob must still be caught.
+		fakeLocalStorage.setItem(
+			GAME_HISTORY_STORAGE_KEY,
+			JSON.stringify([
+				{ ...makeEntry("a", "2026-01-01T00:00:00.000Z"), pools: ["grammar"] },
+			]),
+		);
+
+		expect(newLocalStorageRepository().list()).toEqual({
+			status: "unavailable",
+		});
+	});
+
 	it("round-trips through an InMemoryJsonStore too", () => {
 		const store = new InMemoryJsonStore<GameHistoryEntry[]>();
 		const repo = new StorageGameHistoryRepository(store);

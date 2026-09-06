@@ -13,7 +13,7 @@ covers:
   - src/infrastructure/persistence/StorageGameHistoryRepository.test.ts
 status: draft
 task_id: "1.1"
-task_status: pending
+task_status: complete
 depends_on: []
 size: large
 verify:

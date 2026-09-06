@@ -2,6 +2,9 @@ import { describe, expect, it } from "vitest";
 import type { CardRepository } from "../../ports/CardRepository";
 import { consonants } from "../../script/data/symbols";
 import { ScriptPropertyCard } from "../../script/entities/ScriptPropertyCard";
+import realSentenceData from "../../sentence/data/sentences.json";
+import { SentenceReviewCard } from "../../sentence/entities/SentenceReviewCard";
+import type { SentenceEntry } from "../../sentence/types";
 import type { CardPool } from "../../shared/CardPool";
 import type { PropertyType } from "../../shared/types";
 import { SrsSchedule } from "../../srs/value-objects/SrsSchedule";
@@ -21,6 +24,7 @@ import type {
 	RandomSource,
 } from "../types";
 import { GameItemSelectionService } from "./GameItemSelectionService";
+import { SentenceGameItemSource } from "./SentenceGameItemSource";
 import { SymbolGameItemSource } from "./SymbolGameItemSource";
 import { WordGameItemSource } from "./WordGameItemSource";
 
@@ -39,6 +43,19 @@ function wordContent(thaiWord: string, audioUrl?: string): GameItemContent {
 		kind: "word",
 		thaiWord,
 		englishMeaning: `meaning of ${thaiWord}`,
+		audioUrl,
+	};
+}
+
+function sentenceContent(
+	sentenceId: string,
+	audioUrl?: string,
+): GameItemContent {
+	return {
+		kind: "sentence",
+		sentenceId,
+		thaiText: `thai of ${sentenceId}`,
+		englishMeaning: `meaning of ${sentenceId}`,
 		audioUrl,
 	};
 }
@@ -117,6 +134,7 @@ function vocabCardWith(
 function repositoryOf(
 	scriptCards: readonly ScriptPropertyCard[],
 	vocabCards: readonly VocabCard[],
+	sentenceCards: readonly SentenceReviewCard[] = [],
 ): CardRepository {
 	return {
 		findById: () => null,
@@ -124,12 +142,53 @@ function repositoryOf(
 		findAll: (pool: CardPool) => {
 			if (pool === "script") return [...scriptCards];
 			if (pool === "vocab") return [...vocabCards];
+			if (pool === "sentence") return [...sentenceCards];
 			return [];
 		},
 		save: () => {},
 		saveAll: () => {},
 		remove: () => {},
 	};
+}
+
+/** A `SentenceReviewCard` with an explicit SRS history — for weighting tests. */
+function sentenceCardWith(
+	sentenceId: string,
+	property: string,
+	easeFactor: number,
+	lapseCount: number,
+	repetitions: number,
+): SentenceReviewCard {
+	return SentenceReviewCard.fromDTO({
+		id: `sentence:${sentenceId}:${property}`,
+		question: "question",
+		correctAnswer: "answer",
+		choices: ["answer"],
+		srs: {
+			easeFactor,
+			interval: 10,
+			repetitions,
+			learningStep: null,
+			nextReviewDate: "2026-01-01T00:00:00.000Z",
+			lastReviewDate: "2026-01-01T00:00:00.000Z",
+			lapseCount,
+		},
+		sentenceId,
+		property,
+	});
+}
+
+/** Counts how many times the round asked for randomness. */
+function countingSource(
+	values: readonly number[],
+): RandomSource & { calls: number } {
+	let index = 0;
+	const source = (() => {
+		source.calls++;
+		return values[index++ % values.length] as number;
+	}) as RandomSource & { calls: number };
+	source.calls = 0;
+	return source;
 }
 
 function scripted(values: readonly number[]): RandomSource {
@@ -628,6 +687,229 @@ describe("GameItemSelectionService", () => {
 			expect(
 				round.map((item) => (item.kind === "word" ? item.thaiWord : null)),
 			).toEqual(["แมว"]);
+		});
+	});
+
+	describe("sentence pool (task 1.1)", () => {
+		const FIVE_SENTENCES = ["s1", "s2", "s3", "s4", "s5"].map((id) =>
+			sentenceContent(id, `/audio/${id}.mp3`),
+		);
+
+		it("AC1: returns sentence items with the SentenceGameItem shape for pools including 'sentence'", () => {
+			const service = new GameItemSelectionService([
+				sourceOf("sentence", [
+					sentenceContent("basic-001", "/audio/basic-001.mp3"),
+				]),
+			]);
+
+			const round = service.selectRound(
+				{ pools: ["sentence"], itemCount: 1 },
+				scripted([0.0, 0.9]),
+			);
+
+			expect(round).toEqual([
+				{
+					kind: "sentence",
+					sentenceId: "basic-001",
+					thaiText: "thai of basic-001",
+					englishMeaning: "meaning of basic-001",
+					audioUrl: "/audio/basic-001.mp3",
+					challengeDirection: "reading",
+				},
+			]);
+		});
+
+		it("AC1: a Symbols + Sentence Reading round returns both kinds, and only those", () => {
+			const service = new GameItemSelectionService([
+				sourceOf("script", FIVE),
+				sourceOf("vocab", [wordContent("unused", "/audio/unused.mp3")]),
+				sourceOf("sentence", FIVE_SENTENCES),
+			]);
+
+			const round = service.selectRound(
+				{ pools: ["script", "sentence"], itemCount: 10 },
+				scripted([0.5]),
+			);
+
+			expect(round).toHaveLength(10);
+			expect([...new Set(round.map((item) => item.kind))].sort()).toEqual([
+				"sentence",
+				"symbol",
+			]);
+		});
+
+		it("AC1: returns only sentence items for pools:['sentence']", () => {
+			const service = new GameItemSelectionService([
+				sourceOf("script", FIVE),
+				sourceOf("sentence", FIVE_SENTENCES),
+			]);
+
+			const round = service.selectRound(
+				{ pools: ["sentence"], itemCount: 10 },
+				scripted([0.5]),
+			);
+
+			expect(round.map((item) => item.kind)).toEqual(Array(5).fill("sentence"));
+		});
+
+		it("AC3: an audio-less sentence is 'reading' and spends no randomness on its direction", () => {
+			const service = new GameItemSelectionService([
+				sourceOf("sentence", [sentenceContent("silent")]),
+			]);
+			const rng = countingSource([0.0]);
+
+			const round = service.selectRound(
+				{ pools: ["sentence"], itemCount: 1 },
+				rng,
+			);
+
+			expect(round.map((item) => item.challengeDirection)).toEqual(["reading"]);
+			// Exactly one roll: the draw itself. Zero were spent assigning the
+			// direction — the same rule the audio-less symbol follows.
+			expect(rng.calls).toBe(1);
+		});
+
+		it("AC3: an audio-bearing sentence does spend one roll on its direction", () => {
+			// The control for the case above: without it, `calls === 1` could
+			// mean "the direction costs nothing" or "the draw costs nothing".
+			const service = new GameItemSelectionService([
+				sourceOf("sentence", [sentenceContent("loud", "/audio/loud.mp3")]),
+			]);
+			const rng = countingSource([0.0]);
+
+			service.selectRound({ pools: ["sentence"], itemCount: 1 }, rng);
+
+			expect(rng.calls).toBe(2);
+		});
+
+		it("AC3: every item from the real shipped sentences.json is assigned 'reading'", () => {
+			// Not a statistical sample: today's data has no audio at all, so the
+			// audio-gated rule makes "listening" unreachable. A future data drop
+			// that adds audio makes this fail loudly rather than quietly
+			// changing what a learner is asked to do.
+			const sentences = realSentenceData as unknown as SentenceEntry[];
+			expect(sentences.length).toBeGreaterThan(0);
+
+			const cards = sentences.map((entry) =>
+				sentenceCardWith(entry.id, "readingComprehension", 2.5, 0, 3),
+			);
+			const repository = repositoryOf([], [], cards);
+			const service = new GameItemSelectionService([
+				new SentenceGameItemSource(repository, sentences),
+			]);
+
+			const round = service.selectRound(
+				{ pools: ["sentence"], itemCount: sentences.length },
+				scripted([0.0, 0.3, 0.6, 0.9]),
+			);
+
+			expect(round).toHaveLength(sentences.length);
+			expect(
+				round
+					.map((item) => item.challengeDirection)
+					.filter((d) => d !== "reading"),
+			).toEqual([]);
+		});
+
+		it("AC4: assigns the exact sentence direction sequence a seeded source dictates", () => {
+			const service = new GameItemSelectionService([
+				sourceOf("sentence", FIVE_SENTENCES),
+			]);
+
+			// Draws: 0.0 of 5 -> "s1"; 0.75 of the remaining 4 -> "s5";
+			// 0.5 of the remaining 3 -> "s3". Then one roll per item:
+			// 0.1 < 0.5 -> listening, 0.9 -> reading, 0.49 < 0.5 -> listening.
+			const round = service.selectRound(
+				{ pools: ["sentence"], itemCount: 3 },
+				scripted([0.0, 0.75, 0.5, 0.1, 0.9, 0.49]),
+			);
+
+			expect(
+				round.map((item) => [
+					item.kind === "sentence" ? item.sentenceId : null,
+					item.challengeDirection,
+				]),
+			).toEqual([
+				["s1", "listening"],
+				["s5", "reading"],
+				["s3", "listening"],
+			]);
+		});
+
+		it("treats a sentence with cards under several SentenceProperty values as one item", () => {
+			const entry: SentenceEntry = {
+				id: "basic-001",
+				thai: "มา กิน กัน",
+				romanization: "maa gin gan",
+				english: "Come eat together",
+				words: ["มา", "กิน", "กัน"],
+				difficulty: 1,
+				thai_audio_file: null,
+				cards: { readingComprehension: { distractors: [] } },
+			};
+			const repository = repositoryOf(
+				[],
+				[],
+				[
+					sentenceCardWith("basic-001", "readingComprehension", 2.5, 0, 3),
+					sentenceCardWith("basic-001", "listeningComprehension", 2.5, 0, 3),
+				],
+			);
+			const service = new GameItemSelectionService([
+				new SentenceGameItemSource(repository, [entry]),
+			]);
+
+			const round = service.selectRound(
+				{ pools: ["sentence"], itemCount: 5 },
+				scripted([0.5]),
+			);
+
+			expect(round).toHaveLength(1);
+		});
+
+		it("AC7: weak-item weighting draws a low-ease sentence ahead of a high-ease one", () => {
+			// Weak deliberately placed last, as in the symbol AC4 case above: a
+			// plain uniform draw of 1 with roll 0.5 over three items lands on
+			// the second, so only real weighting picks the weak sentence. This
+			// is the direct proof that `itemKeyOfCard`'s new SentenceReviewCard
+			// branch contributes a genuine weight rather than falling through
+			// to `weightOfFor`'s neutral `?? 1`.
+			const entries: SentenceEntry[] = ["strong", "fresh", "weak"].map(
+				(id) => ({
+					id,
+					thai: `thai of ${id}`,
+					romanization: id,
+					english: `english of ${id}`,
+					words: ["a"],
+					difficulty: 1,
+					thai_audio_file: null,
+					cards: { readingComprehension: { distractors: [] } },
+				}),
+			);
+			const cards = [
+				sentenceCardWith("strong", "readingComprehension", 2.8, 0, 8),
+				sentenceCardWith("fresh", "readingComprehension", 2.5, 0, 0),
+				// Two cards for the weak sentence: the worse of the two drives
+				// its weight, exercising `worstStats`' grouping by the new key.
+				sentenceCardWith("weak", "readingComprehension", 1.3, 4, 5),
+				sentenceCardWith("weak", "listeningComprehension", 2.9, 0, 6),
+			];
+			const repository = repositoryOf([], [], cards);
+			const service = new GameItemSelectionService(
+				[new SentenceGameItemSource(repository, entries)],
+				repository,
+			);
+
+			const round = service.selectRound(
+				{ pools: ["sentence"], itemCount: 1, prioritizeWeakItems: true },
+				weightedSeed(),
+			);
+
+			expect(
+				round.map((item) =>
+					item.kind === "sentence" ? item.sentenceId : null,
+				),
+			).toEqual(["weak"]);
 		});
 	});
 });

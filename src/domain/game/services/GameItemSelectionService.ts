@@ -1,5 +1,6 @@
 import type { CardRepository } from "../../ports/CardRepository";
 import { ScriptPropertyCard } from "../../script/entities/ScriptPropertyCard";
+import { SentenceReviewCard } from "../../sentence/entities/SentenceReviewCard";
 import type { ReviewableCard } from "../../srs/entities/ReviewableCard";
 import { VocabCard } from "../../vocabulary/entities/VocabCard";
 import type {
@@ -9,6 +10,7 @@ import type {
 	GameItemSource,
 	GameRoundConfig,
 	RandomSource,
+	SentenceChallengeDirection,
 	SymbolChallengeDirection,
 	WordChallengeDirection,
 } from "../types";
@@ -124,38 +126,74 @@ function itemKeyOfCard(card: ReviewableCard): string | null {
 		if (prefix !== "vocab" || !thai) return null;
 		return `word:${thai}`;
 	}
+	if (card instanceof SentenceReviewCard) {
+		return `sentence:${card.sentenceId}`;
+	}
+	// An `instanceof` chain cannot be made exhaustive by the compiler the way
+	// the `kind` switches below are — `ReviewableCard` is an open hierarchy.
+	// A card class this service does not recognise scores no weight rather
+	// than throwing; `weightOfFor`'s neutral fallback then applies.
 	return null;
 }
 
 function itemKeyOfContent(content: GameItemContent): string {
-	return content.kind === "symbol"
-		? `symbol:${content.symbolCharacter}`
-		: `word:${content.thaiWord}`;
+	switch (content.kind) {
+		case "symbol":
+			return `symbol:${content.symbolCharacter}`;
+		case "word":
+			return `word:${content.thaiWord}`;
+		case "sentence":
+			return `sentence:${content.sentenceId}`;
+		default: {
+			const _never: never = content;
+			throw new Error(`unhandled game item content: ${JSON.stringify(_never)}`);
+		}
+	}
 }
 
 /**
  * An item with no audio can never be asked to hear anything — so it is
  * always assigned the direction that needs no audio (`reading` for a
- * symbol, `production` for a word), and no randomness is spent on it.
- * Otherwise the direction is a 50/50 draw.
+ * symbol, `production` for a word, `reading` for a sentence), and no
+ * randomness is spent on it. Otherwise the direction is a 50/50 draw.
+ *
+ * Exhaustive on `kind` rather than a two-armed ternary: a new
+ * `GameItemContent` member must be a compile error here, at the one place
+ * that decides directions, not a silent fallthrough into some other kind's
+ * rule.
  */
 function assignDirection(
 	content: GameItemContent,
 	rng: RandomSource,
 ): GameItem {
-	if (content.kind === "symbol") {
-		const challengeDirection: SymbolChallengeDirection = !content.audioUrl
-			? "reading"
-			: rng() < 0.5
-				? "dictation"
-				: "reading";
-		return { ...content, challengeDirection };
+	switch (content.kind) {
+		case "symbol": {
+			const challengeDirection: SymbolChallengeDirection = !content.audioUrl
+				? "reading"
+				: rng() < 0.5
+					? "dictation"
+					: "reading";
+			return { ...content, challengeDirection };
+		}
+		case "word": {
+			const challengeDirection: WordChallengeDirection = !content.audioUrl
+				? "production"
+				: rng() < 0.5
+					? "dictationTranslate"
+					: "production";
+			return { ...content, challengeDirection };
+		}
+		case "sentence": {
+			const challengeDirection: SentenceChallengeDirection = !content.audioUrl
+				? "reading"
+				: rng() < 0.5
+					? "listening"
+					: "reading";
+			return { ...content, challengeDirection };
+		}
+		default: {
+			const _never: never = content;
+			throw new Error(`unhandled game item content: ${JSON.stringify(_never)}`);
+		}
 	}
-
-	const challengeDirection: WordChallengeDirection = !content.audioUrl
-		? "production"
-		: rng() < 0.5
-			? "dictationTranslate"
-			: "production";
-	return { ...content, challengeDirection };
 }
