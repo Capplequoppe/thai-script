@@ -1,0 +1,119 @@
+{
+  "version": 1,
+  "task": "2.2",
+  "pass": "after",
+  "result": {
+    "outcome": "unsupported",
+    "reason": "src/presentation/context/AppContext.tsx: no grammar covers '.tsx' files — 5 violations were measured before this and are not shown"
+  },
+  "findings": [
+    {
+      "rule": "length",
+      "severity": "warning",
+      "tier": "function",
+      "measured": 364,
+      "threshold": 150,
+      "symbol": {
+        "kind": "function",
+        "name": "(anonymous)",
+        "path": "src/application/use-cases/PlayGameUseCase.test.ts",
+        "bytes": {
+          "startIndex": 6064,
+          "endIndex": 18341
+        },
+        "lines": {
+          "startRow": 207,
+          "endRow": 570
+        }
+      }
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "setUp",
+        "path": "src/application/use-cases/PlayGameUseCase.test.ts",
+        "bytes": {
+          "startIndex": 3801,
+          "endIndex": 4587
+        },
+        "lines": {
+          "startRow": 136,
+          "endRow": 156
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "setUpFullyWiredGame",
+        "path": "src/application/use-cases/PlayGameUseCase.test.ts",
+        "bytes": {
+          "startIndex": 4803,
+          "endIndex": 5738
+        },
+        "lines": {
+          "startRow": 163,
+          "endRow": 193
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 4.4,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "(anonymous)",
+        "path": "src/application/use-cases/PlayGameUseCase.test.ts",
+        "bytes": {
+          "startIndex": 6064,
+          "endIndex": 18341
+        },
+        "lines": {
+          "startRow": 207,
+          "endRow": 570
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 3.68,
+      "threshold": 5,
+      "tier": "file",
+      "path": "src/application/use-cases/PlayGameUseCase.test.ts",
+      "check": "density-below-floor"
+    }
+  ],
+  "adapters": [
+    {
+      "tool": "biome",
+      "selection": {
+        "evidence": "configured",
+        "by": "biome.json"
+      },
+      "program": null,
+      "result": {
+        "outcome": "unsupported",
+        "reason": "biome did not resolve: 'biome' on PATH (30 entries). Its findings are missing from this report — that is a gap and not a pass."
+      },
+      "files": 1,
+      "findings": 0,
+      "refusedPaths": 0,
+      "outsideAnalysis": 0,
+      "refusedShape": 0
+    }
+  ]
+}

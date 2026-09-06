@@ -1,0 +1,119 @@
+{
+  "version": 1,
+  "task": "3.1",
+  "pass": "before",
+  "result": {
+    "outcome": "incomplete",
+    "reason": "biome: biome did not resolve: 'biome' on PATH (30 entries). Its findings are missing from this report — that is a gap and not a pass."
+  },
+  "findings": [
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "entry",
+        "path": "src/domain/game/services/compositionSelection.test.ts",
+        "bytes": {
+          "startIndex": 648,
+          "endIndex": 1338
+        },
+        "lines": {
+          "startRow": 18,
+          "endRow": 52
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 2.91,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "(anonymous)",
+        "path": "src/domain/game/services/compositionSelection.test.ts",
+        "bytes": {
+          "startIndex": 1375,
+          "endIndex": 4345
+        },
+        "lines": {
+          "startRow": 54,
+          "endRow": 156
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "(anonymous)",
+        "path": "src/domain/game/services/compositionSelection.test.ts",
+        "bytes": {
+          "startIndex": 1964,
+          "endIndex": 2691
+        },
+        "lines": {
+          "startRow": 68,
+          "endRow": 100
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 4.46,
+      "threshold": 5,
+      "tier": "file",
+      "path": "src/domain/game/services/compositionSelection.test.ts",
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "selectCompositionRound",
+        "path": "src/domain/game/services/compositionSelection.ts",
+        "bytes": {
+          "startIndex": 1615,
+          "endIndex": 2326
+        },
+        "lines": {
+          "startRow": 38,
+          "endRow": 65
+        }
+      },
+      "check": "density-below-floor"
+    }
+  ],
+  "adapters": [
+    {
+      "tool": "biome",
+      "selection": {
+        "evidence": "configured",
+        "by": "biome.json"
+      },
+      "program": null,
+      "result": {
+        "outcome": "unsupported",
+        "reason": "biome did not resolve: 'biome' on PATH (30 entries). Its findings are missing from this report — that is a gap and not a pass."
+      },
+      "files": 3,
+      "findings": 0,
+      "refusedPaths": 0,
+      "outsideAnalysis": 0,
+      "refusedShape": 0
+    }
+  ]
+}

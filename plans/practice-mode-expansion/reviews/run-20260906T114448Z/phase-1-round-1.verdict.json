@@ -1,0 +1,181 @@
+{
+  "findings": [
+    {
+      "id": "F1",
+      "action": "fixed",
+      "message": "Task 1.2's three new PlayGameUseCase.test.ts cases (AC1-AC3) each duplicated an identical ~30-line three-pool fixture (symbol/sentence/vocab cards, entries, and the sourcesFactory wiring all three GameItemSources) verbatim. Extracted a shared setUpFullyWiredGame() helper next to the existing setUp() and rewired all three tests to use it — net -58 lines, same assertions, all 21 tests in the file still pass and tsc/biome are clean.",
+      "severity": 3,
+      "effort": 1,
+      "file": "src/application/use-cases/PlayGameUseCase.test.ts",
+      "line": 315,
+      "category": "duplication"
+    },
+    {
+      "id": "F2",
+      "action": "fixed",
+      "message": "The same task 1.2 tests used `sourcesFactory?: (repo: CardRepository) => any` and `let ratings: any[] = []`, throwing away type-checking in new code sitting right next to the file's existing, properly-typed pattern (`ReturnType<PlayGameUseCase[\"recordRating\"]>`, used elsewhere in this same file). Retyped the factory to `readonly GameItemSource[]` and the ratings accumulator to `ReturnType<PlayGameUseCase[\"recordRating\"]>`; also fixed one biome formatting violation the new SentenceGameItemSource wiring line in AppContext.tsx left behind. All targeted tests, tsc --noEmit -p tsconfig.domain-check.json, biome check, and npm run build pass on the resulting tree.",
+      "severity": 2,
+      "effort": 1,
+      "file": "src/application/use-cases/PlayGameUseCase.test.ts",
+      "line": 119,
+      "category": "type-safety"
+    }
+  ],
+  "lessons": [
+    {
+      "lesson": "When a phase's diff-stat looks smaller than the task description implies (e.g. types.ts showing only a 1-line comment change for a task described as adding several new type members), check git log first — earlier continuation rounds for the same task may have already landed the substantive change, and only the delta since the last review is shown."
+    }
+  ],
+  "acValidations": [
+    {
+      "task_id": "1.1",
+      "criterion": "AC1",
+      "locator": "src/domain/game/services/GameItemSelectionService.test.ts::AC1: returns sentence items with the SentenceGameItem shape for pools including 'sentence'",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "1.1",
+      "criterion": "AC2",
+      "locator": "src/domain/game/services/SentenceGameItemSource.test.ts::AC2: takes content from the SentenceEntry, never from any card's own fields",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "1.1",
+      "criterion": "AC3",
+      "locator": "src/domain/game/services/GameItemSelectionService.test.ts::AC3: an audio-less sentence is 'reading' and spends no randomness on its direction",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "1.1",
+      "criterion": "AC4",
+      "locator": "src/domain/game/services/GameItemSelectionService.test.ts::AC4: assigns the exact sentence direction sequence a seeded source dictates",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "1.1",
+      "criterion": "AC5",
+      "locator": "none",
+      "verdict": "none"
+    },
+    {
+      "task_id": "1.1",
+      "criterion": "AC6",
+      "locator": "src/domain/game/services/SentenceGameItemSource.test.ts::AC6: excludes a sentence card whose sentenceId has no matching entry",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "1.1",
+      "criterion": "AC7",
+      "locator": "src/domain/game/services/GameItemSelectionService.test.ts::AC7: weak-item weighting draws a low-ease sentence ahead of a high-ease one",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "1.1",
+      "criterion": "AC8",
+      "locator": "src/infrastructure/persistence/StorageGameHistoryRepository.test.ts::AC8: a sentence-pool entry survives the real store and leaves an existing entry untouched",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "1.1",
+      "criterion": "AC9",
+      "locator": "none",
+      "verdict": "none"
+    },
+    {
+      "task_id": "1.2",
+      "criterion": "AC1",
+      "locator": "src/application/use-cases/PlayGameUseCase.test.ts::Task 1.2 AC1: a sentence item's itemKey is sentence:{sentenceId} and does not collide with symbol/word keys",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "1.2",
+      "criterion": "AC2",
+      "locator": "src/application/use-cases/PlayGameUseCase.test.ts::Task 1.2 AC2: starting a round with 'sentence' pool returns sentence items alongside symbol/word items",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "1.2",
+      "criterion": "AC3",
+      "locator": "src/application/use-cases/PlayGameUseCase.test.ts::Task 1.2 AC3: starting a round with only 'script' through the fully-wired service returns only symbol items",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "1.3",
+      "criterion": "AC1",
+      "locator": "src/presentation/pages/GamePage.test.tsx::draws only from Symbols and Sentence Reading when Words is left unchecked",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "1.3",
+      "criterion": "AC2",
+      "locator": "src/presentation/components/organisms/SentenceListeningChallenge.test.tsx::auto-plays the sentence audio on mount, offers no write-input, and reveals the Thai text and meaning",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "1.3",
+      "criterion": "AC3",
+      "locator": "src/presentation/components/organisms/SentenceReadingChallenge.test.tsx::shows the Thai text with no premature audio, then reveals via audio and meaning",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "1.3",
+      "criterion": "AC4",
+      "locator": "src/presentation/pages/GamePage.test.tsx::dispatches sentence items to the listening or reading organism by challengeDirection",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "1.3",
+      "criterion": "AC5",
+      "locator": "src/presentation/pages/GamePage.test.tsx::leaves the whole thai-srs-state blob byte-identical after a full Sentence Reading round through the real AppProvider",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "1.3",
+      "criterion": "AC6",
+      "locator": "src/presentation/pages/GamePage.test.tsx::distinguishes zero pools checked from a checked-but-empty pool, and still starts from the non-empty one",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "1.3",
+      "criterion": "AC7",
+      "locator": "src/presentation/pages/GamePage.test.tsx::labels a sentence-inclusive history entry sensibly, never 'undefined'",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "1.3",
+      "criterion": "AC8",
+      "locator": "src/presentation/pages/GamePage.test.tsx::labels each pool checkbox accessibly and keeps them independently keyboard-operable",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "1.3",
+      "criterion": "AC9",
+      "locator": "src/presentation/pages/GamePage.test.tsx::resets reveal and replays audio across two consecutive sentence reading items sharing one audioUrl",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "1.3",
+      "criterion": "AC10",
+      "locator": "src/presentation/pages/GamePage.test.tsx::keeps a typed item count across unrelated toggles but resets it when the checked pools change",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "1.3",
+      "criterion": "AC11",
+      "locator": "src/presentation/pages/GamePage.test.tsx::round-trips a Sentence Reading round through the real AppProvider's history storage",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "1.3",
+      "criterion": "AC12",
+      "locator": "src/presentation/pages/GamePage.test.tsx::hides Input Mode when only Sentence Reading is checked and restores it with a write-input pool",
+      "verdict": "valid"
+    }
+  ],
+  "reviewedAt": "217619a9d027a5a75debe25684d2b266b36f0a75",
+  "answersAt": "404f58622a588e24",
+  "enforcement": [
+    "reviewer edited 1 path(s) the plan does not declare and they were reverted: plans/practice-mode-expansion/resources.jsonl"
+  ],
+  "repairsVerified": true
+}

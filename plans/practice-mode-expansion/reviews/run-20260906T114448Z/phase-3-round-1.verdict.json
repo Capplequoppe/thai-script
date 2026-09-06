@@ -1,0 +1,159 @@
+{
+  "findings": [
+    {
+      "id": "F1",
+      "action": "leave-as-is",
+      "message": "Task 3.1's criteria ledger marks AC1–AC7 as `[none]` (\"no automated test claims this criterion\"), but `src/domain/game/services/compositionSelection.test.ts` in the diff contains a dedicated test for each of those exact ACs (e.g. AC1's permutation check through AC7's out-of-range-index fallback), plus a full domain-suite green run recorded in the executor summary. The ledger's ac_tests mapping for task 3.1 appears stale/unfilled because the task never reached `task_status: complete` (two continuation rounds are recorded), not because the tests don't exist. Runner-side tracking gap, not a code defect — raising once per policy.",
+      "severity": 2,
+      "effort": 9,
+      "why_not_fixed": "This is the plan-runner's own criteria/ac_tests bookkeeping (task 3.1 never reached `complete`), not code under this phase's covers, and matches the standing policy's instruction to report an orchestration defect once and leave it to a human.",
+      "file": "plans/practice-mode-expansion/phase-3-sentence-composition/task-3.1-composition-selection.md",
+      "category": "orchestration"
+    }
+  ],
+  "acValidations": [
+    {
+      "task_id": "3.1",
+      "criterion": "AC1",
+      "locator": "src/domain/game/services/compositionSelection.test.ts::produces tiles that are a permutation of the canonical example's words (AC1)",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "3.1",
+      "criterion": "AC2",
+      "locator": "src/domain/game/services/compositionSelection.test.ts::falls back to a later example when the canonical one has no words (AC2)",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "3.1",
+      "criterion": "AC3",
+      "locator": "src/domain/game/services/compositionSelection.test.ts::excludes an entry with no example carrying a words breakdown (AC3)",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "3.1",
+      "criterion": "AC4",
+      "locator": "src/domain/game/services/compositionSelection.test.ts::returns an empty result for zero unlocked entries, without throwing (AC4)",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "3.1",
+      "criterion": "AC5",
+      "locator": "src/domain/game/services/compositionSelection.test.ts::shuffles tiles into the exact permutation a seeded source picks (AC5)",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "3.1",
+      "criterion": "AC6",
+      "locator": "src/domain/game/services/compositionSelection.test.ts::caps the result at the number of eligible entries when over-requested (AC6)",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "3.1",
+      "criterion": "AC7",
+      "locator": "src/domain/game/services/compositionSelection.test.ts::falls back rather than throwing when correctExample is out of range (AC7)",
+      "verdict": "valid",
+      "evidence": "exampleWithWordsOf uses optional chaining on the indexed example and falls back to examples.find(...); AC7 mutation (forcing null when canonical is undefined) was red-proven per the executor summary."
+    },
+    {
+      "task_id": "3.1",
+      "criterion": "AC8",
+      "locator": "none",
+      "verdict": "none",
+      "evidence": "Structural property verified by reading src/domain/game/types.ts: CompositionItemContent is unioned only into GameItem, not into GameItemContent/SourcedGameItem; GameItemContent = SymbolItemContent | WordItemContent | SentenceItemContent | ToneItemContent."
+    },
+    {
+      "task_id": "3.2",
+      "criterion": "AC1",
+      "locator": "src/application/use-cases/PlayGameUseCase.test.ts::Task 3.2 AC1: a composition item's itemKey is its grammarId prefixed composition",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "3.2",
+      "criterion": "AC2",
+      "locator": "src/application/use-cases/PlayGameUseCase.test.ts::Task 3.2 AC2: startCompositionRound returns exactly this round for this fixture and seed",
+      "verdict": "valid",
+      "evidence": "Asserts an exact literal array, not a second call to selectCompositionRound, satisfying the anti-delegation-mirroring requirement."
+    },
+    {
+      "task_id": "3.2",
+      "criterion": "AC3",
+      "locator": "none",
+      "verdict": "none",
+      "evidence": "unlockedGrammarPoints is a required (non-optional) constructor parameter in PlayGameUseCase.ts; omitting it is a TypeScript error, verified by tsc --noEmit -p tsconfig.domain-check.json per the task's own gate."
+    },
+    {
+      "task_id": "3.2",
+      "criterion": "AC4",
+      "locator": "src/infrastructure/persistence/StorageGameHistoryRepository.test.ts::Task 3.2 AC4: a legacy entry, a practice entry and a composition entry all survive one read, legacy normalized",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "3.2",
+      "criterion": "AC5",
+      "locator": "src/application/use-cases/PlayGameUseCase.test.ts::Task 3.2 AC5: a practice round and a composition round on one instance each save their own entry",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "3.2",
+      "criterion": "AC6",
+      "locator": "none",
+      "verdict": "none",
+      "evidence": "Read directly in the diff: AppContext.tsx's hunk only adds two import lines and, inside the existing PlayGameUseCase construction, a new SentenceGameItemSource array entry, a ToneGameItemSource argument, and a trailing grammar-provider argument — no existing line is deleted or rewritten (+12/-0)."
+    },
+    {
+      "task_id": "3.3",
+      "criterion": "AC1",
+      "locator": "src/presentation/components/organisms/SentenceCompositionChallenge.test.tsx::builds by tapping tiles with backspace and reveals the correct order with rating buttons only after",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "3.3",
+      "criterion": "AC2",
+      "locator": "src/presentation/pages/GamePage.test.tsx::Sentence Composition mode shows an item-count-only setup whose cap comes from unlocked grammar",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "3.3",
+      "criterion": "AC3",
+      "locator": "src/presentation/pages/GamePage.test.tsx::dispatches a composition item to the Sentence Composition organism",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "3.3",
+      "criterion": "AC4",
+      "locator": "src/presentation/pages/GamePage.test.tsx::leaves the whole thai-srs-state blob byte-identical after a full composition round through the real AppProvider",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "3.3",
+      "criterion": "AC5",
+      "locator": "src/presentation/pages/GamePage.test.tsx::states the true range for two unlocked grammar points and rejects an over-large request before start",
+      "verdict": "valid",
+      "evidence": "Zero-eligible half covered by the adjacent test 'blocks Sentence Composition with its own explanation when nothing is unlocked'."
+    },
+    {
+      "task_id": "3.3",
+      "criterion": "AC6",
+      "locator": "src/presentation/pages/GamePage.test.tsx::renders a composition history entry with its own label distinct from pool labels",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "3.3",
+      "criterion": "AC7",
+      "locator": "src/presentation/pages/GamePage.test.tsx::a composition round completed through the page writes a composition-kind entry with no pool label",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "3.3",
+      "criterion": "AC8",
+      "locator": "src/presentation/pages/GamePage.test.tsx::resets tile and reveal state across two consecutive composition items",
+      "verdict": "valid"
+    }
+  ],
+  "reviewedAt": "a3276788eeb987f9a11df0db2782ecbafce7ce57",
+  "answersAt": "404f58622a588e24",
+  "enforcement": [
+    "reviewer edited 1 path(s) the plan does not declare and they were reverted: plans/practice-mode-expansion/resources.jsonl"
+  ]
+}

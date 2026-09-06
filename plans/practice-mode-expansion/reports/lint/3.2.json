@@ -1,0 +1,279 @@
+{
+  "version": 1,
+  "task": "3.2",
+  "pass": "before",
+  "result": {
+    "outcome": "unsupported",
+    "reason": "plans/practice-mode-expansion/phase-3-sentence-composition/task-3.2-wire-composition-rounds.md: no grammar covers '.md' files (and 2 more) — 13 violations were measured before this and are not shown"
+  },
+  "findings": [
+    {
+      "rule": "length",
+      "severity": "warning",
+      "tier": "function",
+      "measured": 365,
+      "threshold": 150,
+      "symbol": {
+        "kind": "function",
+        "name": "(anonymous)",
+        "path": "src/application/use-cases/PlayGameUseCase.test.ts",
+        "bytes": {
+          "startIndex": 6239,
+          "endIndex": 18590
+        },
+        "lines": {
+          "startRow": 216,
+          "endRow": 580
+        }
+      }
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "setUp",
+        "path": "src/application/use-cases/PlayGameUseCase.test.ts",
+        "bytes": {
+          "startIndex": 3865,
+          "endIndex": 4762
+        },
+        "lines": {
+          "startRow": 137,
+          "endRow": 165
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 4.38,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "(anonymous)",
+        "path": "src/application/use-cases/PlayGameUseCase.test.ts",
+        "bytes": {
+          "startIndex": 6239,
+          "endIndex": 18590
+        },
+        "lines": {
+          "startRow": 216,
+          "endRow": 580
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "(anonymous)",
+        "path": "src/application/use-cases/PlayGameUseCase.test.ts",
+        "bytes": {
+          "startIndex": 6907,
+          "endIndex": 7666
+        },
+        "lines": {
+          "startRow": 231,
+          "endRow": 255
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "(anonymous)",
+        "path": "src/application/use-cases/PlayGameUseCase.test.ts",
+        "bytes": {
+          "startIndex": 11180,
+          "endIndex": 11924
+        },
+        "lines": {
+          "startRow": 353,
+          "endRow": 375
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "grammarEntry",
+        "path": "src/application/use-cases/PlayGameUseCase.test.ts",
+        "bytes": {
+          "startIndex": 18732,
+          "endIndex": 19325
+        },
+        "lines": {
+          "startRow": 586,
+          "endRow": 611
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 2.75,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "(anonymous)",
+        "path": "src/application/use-cases/PlayGameUseCase.test.ts",
+        "bytes": {
+          "startIndex": 19848,
+          "endIndex": 23281
+        },
+        "lines": {
+          "startRow": 625,
+          "endRow": 733
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "(anonymous)",
+        "path": "src/application/use-cases/PlayGameUseCase.test.ts",
+        "bytes": {
+          "startIndex": 21864,
+          "endIndex": 23277
+        },
+        "lines": {
+          "startRow": 681,
+          "endRow": 732
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 4.5,
+      "threshold": 5,
+      "tier": "file",
+      "path": "src/application/use-cases/PlayGameUseCase.test.ts",
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "length",
+      "severity": "warning",
+      "tier": "function",
+      "measured": 254,
+      "threshold": 150,
+      "symbol": {
+        "kind": "function",
+        "name": "(anonymous)",
+        "path": "src/infrastructure/persistence/StorageGameHistoryRepository.test.ts",
+        "bytes": {
+          "startIndex": 2301,
+          "endIndex": 10390
+        },
+        "lines": {
+          "startRow": 92,
+          "endRow": 345
+        }
+      }
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "(anonymous)",
+        "path": "src/infrastructure/persistence/StorageGameHistoryRepository.test.ts",
+        "bytes": {
+          "startIndex": 9396,
+          "endIndex": 9970
+        },
+        "lines": {
+          "startRow": 310,
+          "endRow": 332
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "cyclomatic-complexity",
+      "severity": "warning",
+      "measured": 12,
+      "threshold": 10,
+      "tier": "function",
+      "symbol": {
+        "kind": "function",
+        "name": "isGameHistoryEntry",
+        "path": "src/infrastructure/persistence/StorageGameHistoryRepository.ts",
+        "bytes": {
+          "startIndex": 3799,
+          "endIndex": 4453
+        },
+        "lines": {
+          "startRow": 103,
+          "endRow": 125
+        }
+      }
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "isGameHistoryEntry",
+        "path": "src/infrastructure/persistence/StorageGameHistoryRepository.ts",
+        "bytes": {
+          "startIndex": 3799,
+          "endIndex": 4453
+        },
+        "lines": {
+          "startRow": 103,
+          "endRow": 125
+        }
+      },
+      "check": "density-below-floor"
+    }
+  ],
+  "adapters": [
+    {
+      "tool": "biome",
+      "selection": {
+        "evidence": "configured",
+        "by": "biome.json"
+      },
+      "program": null,
+      "result": {
+        "outcome": "unsupported",
+        "reason": "biome did not resolve: 'biome' on PATH (30 entries). Its findings are missing from this report — that is a gap and not a pass."
+      },
+      "files": 6,
+      "findings": 0,
+      "refusedPaths": 0,
+      "outsideAnalysis": 0,
+      "refusedShape": 0
+    }
+  ]
+}

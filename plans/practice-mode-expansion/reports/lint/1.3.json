@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "task": "1.3",
+  "pass": "after",
+  "result": {
+    "outcome": "unsupported",
+    "reason": "plans/practice-mode-expansion/phase-1-sentence-reading/task-1.3-sentence-challenge-organisms-and-multiselect.md: no grammar covers '.md' files (and 8 more)"
+  },
+  "findings": [],
+  "adapters": []
+}

@@ -1,0 +1,129 @@
+{
+  "findings": [],
+  "lessons": [
+    {
+      "lesson": "When a fix lands mid-review (e.g. GameHistoryList.poolsLabel), verify the invariant it relies on actually holds elsewhere in the codebase (here: GamePage's start-gating ensures pools:[] implies tone-only) rather than trusting the fixer's own account."
+    }
+  ],
+  "acValidations": [
+    {
+      "task_id": "2.1",
+      "criterion": "AC1",
+      "locator": "src/domain/game/services/ToneGameItemSource.test.ts::AC1: content matches toneSyllablesOf(entry)/entry.thai, even when the card's own syllables field is absent",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "2.1",
+      "criterion": "AC2",
+      "locator": "src/domain/game/services/ToneGameItemSource.test.ts::AC2: a word with no toneIdentification card is excluded from tone eligibility",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "2.1",
+      "criterion": "AC3",
+      "locator": "src/domain/game/services/ToneGameItemSource.test.ts::AC3: a tone item's audioUrl comes from the matching VocabEntry's thai_audio_file",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "2.1",
+      "criterion": "AC4",
+      "locator": "src/domain/game/services/GameItemSelectionService.test.ts::AC4: includeTonePractice returns tone items even when 'vocab' is not in pools",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "2.1",
+      "criterion": "AC5",
+      "locator": "src/domain/game/services/GameItemSelectionService.test.ts::AC5: includeTonePractice omitted or false never returns a tone item",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "2.1",
+      "criterion": "AC6",
+      "locator": "src/domain/game/services/GameItemSelectionService.test.ts::AC6: every tone item's challengeDirection is the single defined literal",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "2.1",
+      "criterion": "AC7",
+      "locator": "src/domain/vocabulary/services/toneSyllables.test.ts::AC7: keeps only syllables with a non-null, non-empty tone, mapped to {text, tone}",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "2.1",
+      "criterion": "AC8",
+      "locator": "src/domain/game/services/GameItemSelectionService.test.ts::AC8: prioritizeWeakItems has no effect on tone item selection, even while it genuinely weights vocab",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "2.2",
+      "criterion": "AC1",
+      "locator": "src/application/use-cases/PlayGameUseCase.test.ts::Task 2.2 AC1: a tone item's itemKey is tone:{thaiWord} and does not collide with word item keys",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "2.2",
+      "criterion": "AC2",
+      "locator": "src/application/use-cases/PlayGameUseCase.test.ts::Task 2.2 AC2: with pools: ['script'] and includeTonePractice: true, tone items still appear even though 'vocab' is not in pools",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "2.3",
+      "criterion": "AC1",
+      "locator": "src/presentation/components/organisms/ToneIdentificationChallenge.test.tsx::shows the Thai word and plays its audio together on mount... / presents no write-input before or after the reveal",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "2.3",
+      "criterion": "AC2",
+      "locator": "src/presentation/components/organisms/ToneIdentificationChallenge.test.tsx::constructs no Audio at all for a word with no audioUrl",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "2.3",
+      "criterion": "AC3",
+      "locator": "src/presentation/pages/GamePage.test.tsx::leaves the Tone Identification toggle unchecked by default... / includes tone items only when the toggle is checked, alongside the checked pools",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "2.3",
+      "criterion": "AC4",
+      "locator": "src/presentation/pages/GamePage.test.tsx::dispatches a tone item to the Tone Identification organism",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "2.3",
+      "criterion": "AC5",
+      "locator": "src/presentation/pages/GamePage.test.tsx::leaves the whole thai-srs-state blob byte-identical after a full tone round through the real AppProvider",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "2.3",
+      "criterion": "AC6",
+      "locator": "src/presentation/pages/GamePage.test.tsx::starts a tone-only round with no pool checked and the toggle checked / explains an empty tone selection in its own words, never the pool-empty message",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "2.3",
+      "criterion": "AC7",
+      "locator": "src/presentation/pages/GamePage.test.tsx::leaves the Tone Identification toggle unchecked by default and keeps it accessibly labeled and keyboard-operable",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "2.3",
+      "criterion": "AC8",
+      "locator": "src/presentation/pages/GamePage.test.tsx::counts tone items in the eligible cap when the toggle is checked",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "2.3",
+      "criterion": "AC9",
+      "locator": "src/presentation/pages/GamePage.test.tsx::resets reveal and replays audio across two consecutive tone items sharing one audioUrl",
+      "verdict": "valid"
+    }
+  ],
+  "reviewedAt": "020ad710c8ce4f3f636f67f9653a567c7a2335bd",
+  "answersAt": "404f58622a588e24",
+  "enforcement": [
+    "reviewer edited 1 path(s) the plan does not declare and they were reverted: plans/practice-mode-expansion/resources.jsonl"
+  ]
+}

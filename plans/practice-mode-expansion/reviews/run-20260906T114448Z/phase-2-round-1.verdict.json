@@ -1,0 +1,153 @@
+{
+  "findings": [
+    {
+      "id": "F1",
+      "action": "auto-fix",
+      "message": "GameHistoryList.tsx's poolsLabel() mislabels a legitimate tone-only round (pools: []) as 'Symbols', because it treats an empty pools array the same as the pre-existing legacy 'pools field predates this entry' case. This phase's own design (task 2.1's AC4, exercised end-to-end by task 2.3's zero-pools-plus-tone test) makes pools: [] a normal, common outcome, not just a legacy artifact, but the file that renders it is outside every task's covers in this phase (and not named anywhere in the plan), so nobody is scoped to fix it.",
+      "severity": 5,
+      "effort": 5,
+      "why_not_fixed": "src/presentation/components/molecules/GameHistoryList.tsx is not covered by task 2.3 or any other task in this phase or plan; editing it here would exceed this review's repair scope.",
+      "effort_basis": "Fixing it correctly needs a way to tell 'legacy-undefined' apart from 'deliberate tone-only' (GameHistoryEntry has no field recording that a round included tone practice at all) plus a render-test proof in GameHistoryList's own suite — and the file is not in any task's `covers` in this plan."
+    }
+  ],
+  "acValidations": [
+    {
+      "task_id": "2.1",
+      "criterion": "AC1",
+      "locator": "src/domain/game/services/ToneGameItemSource.test.ts::AC1: content matches toneSyllablesOf(entry)/entry.thai, even when the card's own syllables field is absent / content ignores a mismatched syllables field on the card itself",
+      "verdict": "valid",
+      "evidence": "Fixture VocabEntry with syllables carrying tones vs. a card with syllables absent (no argument passed) and a second card with a mismatched syllables field; both assert eligibleContent() equals toneSyllablesOf(entry)-derived content, proving content never comes from the card."
+    },
+    {
+      "task_id": "2.1",
+      "criterion": "AC2",
+      "locator": "src/domain/game/services/ToneGameItemSource.test.ts::AC2: a word with no toneIdentification card is excluded from tone eligibility",
+      "verdict": "valid",
+      "evidence": "A card with property 'thaiToEnglish' (no toneIdentification card) yields eligibleContent() === []."
+    },
+    {
+      "task_id": "2.1",
+      "criterion": "AC3",
+      "locator": "src/domain/game/services/ToneGameItemSource.test.ts::AC3: a tone item's audioUrl comes from the matching VocabEntry's thai_audio_file",
+      "verdict": "valid",
+      "evidence": "Asserts eligibleContent()[0].audioUrl equals entry.thai_audio_file; a no-audio-file case asserts audioUrl undefined."
+    },
+    {
+      "task_id": "2.1",
+      "criterion": "AC4",
+      "locator": "src/domain/game/services/GameItemSelectionService.test.ts::AC4: includeTonePractice returns tone items even when 'vocab' is not in pools",
+      "verdict": "valid",
+      "evidence": "Service constructed with sources=[script only] and a separate toneSource; selectRound({pools:['script'], includeTonePractice:true}) returns a tone item, proving the separate-constructor-slot design."
+    },
+    {
+      "task_id": "2.1",
+      "criterion": "AC5",
+      "locator": "src/domain/game/services/GameItemSelectionService.test.ts::AC5: includeTonePractice omitted or false never returns a tone item",
+      "verdict": "valid",
+      "evidence": "Both omitted and explicit-false configs asserted to never include a kind:'tone' item."
+    },
+    {
+      "task_id": "2.1",
+      "criterion": "AC6",
+      "locator": "src/domain/game/services/GameItemSelectionService.test.ts::AC6: every tone item's challengeDirection is the single defined literal",
+      "verdict": "valid",
+      "evidence": "Asserts round deep-equals a tone item with challengeDirection: 'identification', never randomized."
+    },
+    {
+      "task_id": "2.1",
+      "criterion": "AC7",
+      "locator": "src/domain/vocabulary/services/toneSyllables.test.ts::AC7: keeps only syllables with a non-null, non-empty tone, mapped to {text, tone}",
+      "verdict": "valid",
+      "evidence": "Filters out null/empty-tone syllables, keeps determinable ones, matches VocabCardGenerator's inline logic which now calls the same helper (refactor-safety confirmed by shared call site)."
+    },
+    {
+      "task_id": "2.1",
+      "criterion": "AC8",
+      "locator": "src/domain/game/services/GameItemSelectionService.test.ts::AC8: prioritizeWeakItems has no effect on tone item selection, even while it genuinely weights vocab",
+      "verdict": "valid",
+      "evidence": "Real cardRepository with heavily-lapsed vs. fresh toneIdentification cards; itemKeyOfCard maps both to 'word:'-prefixed keys (real weights populated) but itemKeyOfContent for tone items uses 'tone:'-prefixed keys (never matched), so both draw near-equally across 200 seeded rounds — a direct proof, not just an absence-of-effect observation."
+    },
+    {
+      "task_id": "2.2",
+      "criterion": "AC1",
+      "locator": "src/application/use-cases/PlayGameUseCase.test.ts::Task 2.2 AC1: a tone item's itemKey is tone:{thaiWord} and does not collide with word item keys",
+      "verdict": "valid",
+      "evidence": "Red-proved (red-proofs/2.2.md AC1): mutating itemKeyOf's tone case to 'word:' causes the not-collide assertion to fail. Green test confirms tone:มา vs word:มา are distinct keys."
+    },
+    {
+      "task_id": "2.2",
+      "criterion": "AC2",
+      "locator": "src/application/use-cases/PlayGameUseCase.test.ts::Task 2.2 AC2: with pools: ['script'] and includeTonePractice: true, tone items still appear even though 'vocab' is not in pools",
+      "verdict": "valid",
+      "evidence": "Red-proved (red-proofs/2.2.md AC2): removing ToneGameItemSource wiring from AppContext.tsx's construction causes the toContain('tone') assertion to fail."
+    },
+    {
+      "task_id": "2.3",
+      "criterion": "AC1",
+      "locator": "src/presentation/components/organisms/ToneIdentificationChallenge.test.tsx::shows the Thai word and plays its audio together on mount... / presents no write-input before or after the reveal",
+      "verdict": "valid",
+      "evidence": "Asserts text+audio together on mount, no textbox/canvas at any point, and per-syllable tone reveal after clicking Show Answer."
+    },
+    {
+      "task_id": "2.3",
+      "criterion": "AC2",
+      "locator": "src/presentation/components/organisms/ToneIdentificationChallenge.test.tsx::constructs no Audio at all for a word with no audioUrl",
+      "verdict": "valid",
+      "evidence": "createdAudioUrls() asserted empty for an item with audioUrl undefined, both before and after reveal."
+    },
+    {
+      "task_id": "2.3",
+      "criterion": "AC3",
+      "locator": "src/presentation/pages/GamePage.test.tsx::leaves the Tone Identification toggle unchecked by default... / includes tone items only when the toggle is checked, alongside the checked pools",
+      "verdict": "valid",
+      "evidence": "Toggle default-unchecked asserted; unchecked round shows only Symbols items over 3 screens, checked round (Symbols still checked) shows both tone and symbol prompts across 7 screens."
+    },
+    {
+      "task_id": "2.3",
+      "criterion": "AC4",
+      "locator": "src/presentation/pages/GamePage.test.tsx::dispatches a tone item to the Tone Identification organism",
+      "verdict": "valid",
+      "evidence": "Fixed-round game with a kind:'tone' item; asserts the tone prompt/text/audio render and reveal shows the syllable's tone."
+    },
+    {
+      "task_id": "2.3",
+      "criterion": "AC5",
+      "locator": "src/presentation/pages/GamePage.test.tsx::leaves the whole thai-srs-state blob byte-identical after a full tone round through the real AppProvider",
+      "verdict": "valid",
+      "evidence": "Seeds thai-srs-state with vocab+toneIdentification cards, plays a full 2-item tone round through the real AppProvider/AppContext wiring to completion, asserts the seeded state string is byte-identical afterward while a separate game-history key was written."
+    },
+    {
+      "task_id": "2.3",
+      "criterion": "AC6",
+      "locator": "src/presentation/pages/GamePage.test.tsx::starts a tone-only round with no pool checked and the toggle checked / explains an empty tone selection in its own words, never the pool-empty message",
+      "verdict": "valid",
+      "evidence": "First case: zero pools + tone checked + tone-eligible words present -> start available, all 4 items are tone-only. Second, separate case: tone checked with zero tone-eligible words -> distinct 'No words with identifiable tones yet' message, not the pool-empty or nothing-eligible text."
+    },
+    {
+      "task_id": "2.3",
+      "criterion": "AC7",
+      "locator": "src/presentation/pages/GamePage.test.tsx::leaves the Tone Identification toggle unchecked by default and keeps it accessibly labeled and keyboard-operable",
+      "verdict": "valid",
+      "evidence": "getByLabelText resolves the toggle (accessible label association via htmlFor/id), .focus() + click toggles checked state."
+    },
+    {
+      "task_id": "2.3",
+      "criterion": "AC8",
+      "locator": "src/presentation/pages/GamePage.test.tsx::counts tone items in the eligible cap when the toggle is checked",
+      "verdict": "valid",
+      "evidence": "3 eligible symbols + 4 tone-eligible words: cap is 3 unchecked, 7 when Tone Identification is checked, back to 3 when unchecked again — proves includeTonePractice threads into countEligibleItems, not just startRound."
+    },
+    {
+      "task_id": "2.3",
+      "criterion": "AC9",
+      "locator": "src/presentation/pages/GamePage.test.tsx::resets reveal and replays audio across two consecutive tone items sharing one audioUrl (also src/presentation/components/organisms/ToneIdentificationChallenge.test.tsx's own identically-purposed case)",
+      "verdict": "valid",
+      "evidence": "Two fixed tone items sharing one audioUrl; after rating the first, the second renders unrevealed ('Show Answer' button, no leaked tone text) and replays audio a second time — proves reset/replay is keyed on item identity (thaiWord), not audioUrl."
+    }
+  ],
+  "reviewedAt": "8e055b8a121fcafd4a983199d6c242d969666da5",
+  "answersAt": "404f58622a588e24",
+  "enforcement": [
+    "reviewer edited 1 path(s) the plan does not declare and they were reverted: plans/practice-mode-expansion/resources.jsonl"
+  ]
+}

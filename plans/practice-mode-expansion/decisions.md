@@ -56,7 +56,5 @@ gates" section for the full rationale. Task 1.1's `task_status` reset to
 
 **Applied:**
 
-yes — tsconfig.domain-check.json added; verify lists amended in
-task-1.1, task-1.2, task-2.1, task-2.2, task-3.1, task-3.2; task 1.1
-reset to pending; `docs-nav plan check` clean.
+answered — later raisings are dispatched as work, not asked again
 
