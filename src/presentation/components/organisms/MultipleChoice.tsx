@@ -78,7 +78,14 @@ export function MultipleChoice({
 
 	const cardProperty =
 		"property" in card ? (card as Record<string, unknown>).property : null;
-	const isAudioRecognition = cardProperty === "audioRecognition";
+	// Both are "hear it, then pick the meaning" cards — vocab/symbol's own
+	// audioRecognition property and a sentence's listeningComprehension
+	// property (which has no symbolCharacter/promptWord of its own for the
+	// boxes below to key off, so without this it would fall through to no
+	// audio at all).
+	const playsAudioUpfront =
+		cardProperty === "audioRecognition" ||
+		cardProperty === "listeningComprehension";
 	const hideAudioHint =
 		cardProperty === "recognition" || cardProperty === "initialSound";
 	const symbolChar =
@@ -106,10 +113,10 @@ export function MultipleChoice({
 	}, [card.id]);
 
 	useEffect(() => {
-		if (isAudioRecognition && card.audioUrl) {
+		if (playsAudioUpfront && card.audioUrl) {
 			new Audio(card.audioUrl).play().catch(() => {});
 		}
-	}, [isAudioRecognition, card.audioUrl]);
+	}, [playsAudioUpfront, card.audioUrl]);
 
 	const handleSelect = useCallback(
 		(choice: string) => {
@@ -138,7 +145,7 @@ export function MultipleChoice({
 
 	return (
 		<div className="space-y-6">
-			{isAudioRecognition && card.audioUrl ? (
+			{playsAudioUpfront && card.audioUrl ? (
 				<div className="text-center">
 					<button
 						type="button"

@@ -173,14 +173,15 @@ describe("SentenceGameItemSource", () => {
 		).toEqual([]);
 	});
 
-	it("AC3: the real shipped sentences.json carries no audio at all", () => {
-		// The regression guard behind AC3's second half: if a future data drop
-		// adds audio, this fails loudly and the "every item is reading" claim
-		// in GameItemSelectionService.test.ts must be revisited rather than
-		// silently becoming a coincidence.
+	it("AC3: the real shipped sentences.json now carries audio for every sentence", () => {
+		// This test used to assert the opposite — no sentence had audio — as a
+		// canary: "if a future data drop adds audio, this fails loudly and the
+		// 'every item is reading' claim in GameItemSelectionService.test.ts
+		// must be revisited rather than silently becoming a coincidence." That
+		// data drop has happened; this locks in the new state instead.
 		expect(REAL_SENTENCES.length).toBeGreaterThan(0);
 		expect(
-			REAL_SENTENCES.filter((entry) => entry.thai_audio_file !== null),
+			REAL_SENTENCES.filter((entry) => entry.thai_audio_file == null),
 		).toEqual([]);
 	});
 });

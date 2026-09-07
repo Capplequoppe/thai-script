@@ -1110,7 +1110,18 @@ describe("GamePage", () => {
 			if (symbolChars.some((c) => screen.queryByText(c) !== null)) {
 				sawSymbol = true;
 			}
-			if (screen.queryByText("Read this sentence aloud") !== null) {
+			// A sentence item's direction (reading/listening/segmentation) is
+			// an unseeded random draw here, and every real shipped sentence now
+			// carries audio (see thai_audio_file wiring), so any of the three
+			// prompts can appear — asserting on only one flakes whenever the
+			// draw lands on another.
+			if (
+				screen.queryByText("Read this sentence aloud") !== null ||
+				screen.queryByText("Listen, then work out what the sentence says") !==
+					null ||
+				screen.queryByText("Tap between the words to split this sentence") !==
+					null
+			) {
 				sawSentence = true;
 			}
 			for (const word of vocabWords) {

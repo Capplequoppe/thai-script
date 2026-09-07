@@ -41,6 +41,14 @@ export function Flashcard({ card, onRate }: Props) {
 		"promptWord" in card
 			? ((card as Record<string, unknown>).promptWord as string)
 			: "";
+	// Every other card shape with audio (symbol, vocab) already gets a player
+	// via the boxes below — this is only true for a shape with none of them,
+	// which today means a sentence's `selfValidation` card: its `audioUrl` is
+	// the *answer's* pronunciation, so it belongs in the reveal, not before
+	// it (hearing it first would answer the challenge — see
+	// `SentenceReadingChallenge`'s own doc comment for the same rule).
+	const hasTopAudio =
+		isAudioRecognition || Boolean(symbolChar) || Boolean(promptWord);
 
 	const stage = card.srs
 		? SrsStage.fromScheduleData(card.srs.learningStep, card.srs.interval)
@@ -56,6 +64,13 @@ export function Flashcard({ card, onRate }: Props) {
 			new Audio(card.audioUrl).play().catch(() => {});
 		}
 	}, [isAudioRecognition, card.audioUrl]);
+
+	// biome-ignore lint/correctness/useExhaustiveDependencies: fires once per reveal, not on every audioUrl/hasTopAudio identity change
+	useEffect(() => {
+		if (revealed && !hasTopAudio && card.audioUrl) {
+			new Audio(card.audioUrl).play().catch(() => {});
+		}
+	}, [revealed]);
 
 	const handleReveal = useCallback(() => {
 		setRevealed(true);
@@ -165,11 +180,29 @@ export function Flashcard({ card, onRate }: Props) {
 						style={{ background: "var(--color-surface-2)" }}
 					>
 						<p
-							className="text-2xl font-bold"
+							className={`text-2xl font-bold${!hasTopAudio && card.audioUrl ? " thai" : ""}`}
 							style={{ color: "var(--color-primary)" }}
 						>
 							{card.correctAnswer}
 						</p>
+						{!hasTopAudio && card.audioUrl && (
+							<button
+								type="button"
+								onClick={() => {
+									if (card.audioUrl) {
+										new Audio(card.audioUrl).play().catch(() => {});
+									}
+								}}
+								className="mt-3 inline-flex items-center justify-center w-12 h-12 rounded-full text-2xl transition-colors"
+								style={{
+									background: "var(--color-surface)",
+									color: "var(--color-primary)",
+								}}
+								aria-label="Replay pronunciation"
+							>
+								🔊
+							</button>
+						)}
 					</div>
 					<RatingButtons onRate={handleRate} />
 				</div>
