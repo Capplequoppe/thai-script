@@ -7,6 +7,7 @@ import {
 	toneRules,
 	vowels,
 } from "../../script/data/symbols";
+import { reconcileGeneratedCards } from "../../shared/services/reconcileCards";
 import { VocabCard } from "../entities/VocabCard";
 import type { VocabEntry, VocabLessonSummary, VocabularyCard } from "../types";
 import { generateVocabCards } from "./VocabCardGenerator";
@@ -222,5 +223,27 @@ export class VocabularyService {
 					(a.rank ?? Number.POSITIVE_INFINITY) -
 					(b.rank ?? Number.POSITIVE_INFINITY),
 			);
+	}
+
+	/**
+	 * Backfills already-learned words with any card the current generator
+	 * would now produce for them that isn't persisted yet (e.g. audio landing
+	 * for a word learned before it had any), or an `audioUrl` on a persisted
+	 * card that previously had none. See `reconcileGeneratedCards` for the
+	 * exact, deliberately narrow rules.
+	 */
+	reconcileCards(): void {
+		const persisted = (this.cardRepo.findAll("vocab") as VocabCard[]).map(
+			(card) => card.toDTO() as VocabularyCard,
+		);
+		const introducedChars = this.getMasteredCharacters();
+		const generated = this.getLearnedEntries().flatMap((entry) =>
+			generateVocabCards(entry, this.vocabulary, introducedChars),
+		);
+
+		const toSave = reconcileGeneratedCards(persisted, generated);
+		if (toSave.length === 0) return;
+
+		this.cardRepo.saveAll(toSave.map((dto) => VocabCard.fromDTO(dto)));
 	}
 }

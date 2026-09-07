@@ -47,7 +47,7 @@
     "romanization": "dâj",
     "word_class": "aux",
     "english": "can",
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/word-daj.mp3",
     "english_audio_file": null,
     "image_file": "/thai-script/vocabulary/images/2 ได้.png",
     "samples": [
@@ -172,7 +172,7 @@
     "romanization": "wâː",
     "word_class": "conj",
     "english": "that; think",
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/word-wa.mp3",
     "english_audio_file": null,
     "image_file": "/thai-script/vocabulary/images/5 ว่า.png",
     "samples": [
@@ -214,7 +214,7 @@
     "romanization": "pen",
     "word_class": "v",
     "english": "is; be able",
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/word-pen.mp3",
     "english_audio_file": null,
     "image_file": "/thai-script/vocabulary/images/6 เป็น.png",
     "samples": [
@@ -257,7 +257,7 @@
     "romanization": "miː",
     "word_class": "v",
     "english": "have; there is",
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/word-mi.mp3",
     "english_audio_file": null,
     "image_file": "/thai-script/vocabulary/images/7 มี.png",
     "description": "มี (mii) means “to have” or “there is/there are” in Thai. It expresses possession when followed by a noun. For example, ฉันมีเงิน means “I have money.” Thai does not use a separate verb for “there is,” so มี also expresses existence. For example, มีคนอยู่ข้างนอก means “There is a person outside.” In this sense, it indicates that something exists in a location or situation. The negative form is ไม่มี, which means “do not have” or “there is not.” For example, ฉันไม่มีเวลา means “I don’t have time.” มี does not change form for tense; time is shown through context or additional words. It can be used with both concrete objects and abstract ideas. For instance, มีความสุข means “to have happiness” or “to be happy.” In Thai, possession and existence are closely related concepts and both use มี. The word often appears near the beginning of a sentence when expressing existence. It is one of the most common and essential verbs in Thai. In summary, มี indicates that something exists or is possessed within a person’s or situation’s domain.",
@@ -384,7 +384,7 @@
     "romanization": "kʰɔ̌ːŋ",
     "word_class": "prep",
     "english": "of",
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/word-kh.mp3",
     "english_audio_file": null,
     "image_file": "/thai-script/vocabulary/images/10 ของ.png",
     "samples": [
@@ -427,7 +427,7 @@
     "romanization": "kàp",
     "word_class": "prep",
     "english": "with",
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/word-kap.mp3",
     "english_audio_file": null,
     "image_file": "/thai-script/vocabulary/images/11 กับ.png",
     "samples": [
@@ -469,7 +469,7 @@
     "romanization": "mâj",
     "word_class": "adv",
     "english": "not",
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/word-maj.mp3",
     "english_audio_file": null,
     "image_file": "/thai-script/vocabulary/images/12 ไม่.png",
     "samples": [
@@ -511,7 +511,7 @@
     "romanization": "lɛ́ʔ",
     "word_class": "conj",
     "english": "and",
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/word-l.mp3",
     "english_audio_file": null,
     "image_file": "/thai-script/vocabulary/images/13 และ.png",
     "samples": [
@@ -888,7 +888,7 @@
     "romanization": "tʰɯ̌ŋ",
     "word_class": "v",
     "english": "reach; arrive at",
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/word-th.mp3",
     "english_audio_file": null,
     "image_file": null,
     "samples": [
@@ -930,7 +930,7 @@
     "romanization": "kwàː",
     "word_class": "conj",
     "english": "than",
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/word-kwa.mp3",
     "english_audio_file": null,
     "image_file": null,
     "samples": [
@@ -1402,7 +1402,7 @@
     "romanization": "mâːk",
     "word_class": "adv",
     "english": "much",
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/word-mak.mp3",
     "english_audio_file": null,
     "image_file": "/thai-script/vocabulary/images/34 มาก.png",
     "samples": [
@@ -1444,7 +1444,7 @@
     "romanization": "lɛ́ːw",
     "word_class": "adv",
     "english": "already",
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/word-lw.mp3",
     "english_audio_file": null,
     "image_file": null,
     "samples": [
@@ -1528,7 +1528,7 @@
     "romanization": "wáj",
     "word_class": "v",
     "english": "to put in place; trust; to preserve",
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/word-waj.mp3",
     "english_audio_file": null,
     "image_file": null,
     "samples": [
@@ -1959,7 +1959,7 @@
     "romanization": "sɯ̂ŋ",
     "word_class": "conj",
     "english": "which",
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/word-s.mp3",
     "english_audio_file": null,
     "image_file": null,
     "samples": [
@@ -2085,7 +2085,7 @@
     "romanization": "tuːa",
     "word_class": "n",
     "english": "body",
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/word-tua.mp3",
     "english_audio_file": null,
     "image_file": null,
     "samples": [
@@ -2210,7 +2210,7 @@
     "romanization": "baːŋ",
     "word_class": "det",
     "english": "some; thin",
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/word-ba.mp3",
     "english_audio_file": null,
     "image_file": null,
     "samples": [
@@ -2252,7 +2252,7 @@
     "romanization": "ʔìːk",
     "word_class": "adv",
     "english": "more",
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/word-ik.mp3",
     "english_audio_file": null,
     "image_file": null,
     "samples": [
@@ -2294,7 +2294,7 @@
     "romanization": "tʰam hâj",
     "word_class": "v",
     "english": "make",
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/word-tham-haj.mp3",
     "english_audio_file": null,
     "image_file": null,
     "samples": [
@@ -2390,7 +2390,7 @@
     "romanization": "bɛ̀ːp",
     "word_class": "n",
     "english": "model; style",
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/word-bp.mp3",
     "english_audio_file": null,
     "image_file": null,
     "samples": [
@@ -2570,7 +2570,7 @@
     "romanization": "doːj",
     "word_class": "prep",
     "english": "by",
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/word-doj.mp3",
     "english_audio_file": null,
     "image_file": null,
     "samples": [
@@ -2697,7 +2697,7 @@
     "romanization": "tɕɯŋ",
     "word_class": "conj",
     "english": "therefore",
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/word-t-3.mp3",
     "english_audio_file": null,
     "image_file": "/thai-script/vocabulary/images/63 จึง.png",
     "samples": [
@@ -2781,7 +2781,7 @@
     "romanization": "kʰráŋ",
     "word_class": "clf",
     "english": "time",
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/word-khra.mp3",
     "english_audio_file": null,
     "image_file": null,
     "samples": [
@@ -3719,7 +3719,7 @@
     "romanization": "ʔàːt",
     "word_class": "aux",
     "english": "may",
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/word-at.mp3",
     "english_audio_file": null,
     "image_file": null,
     "samples": [
@@ -3761,7 +3761,7 @@
     "romanization": "kʰà nàːt",
     "word_class": "n",
     "english": "size",
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/word-kha-nat.mp3",
     "english_audio_file": null,
     "image_file": null,
     "samples": [
@@ -4242,7 +4242,7 @@
     "romanization": "tɔ̀ː paj",
     "word_class": "adv",
     "english": "next",
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/word-t-paj.mp3",
     "english_audio_file": null,
     "image_file": null,
     "samples": [
@@ -4337,7 +4337,7 @@
     "romanization": "hɛ̀ŋ",
     "word_class": "clf",
     "english": "location; place; spot",
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/word-h.mp3",
     "english_audio_file": null,
     "image_file": null,
     "samples": [
@@ -4463,7 +4463,7 @@
     "romanization": "sǎm ràp",
     "word_class": "prep",
     "english": "for",
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/word-sam-rap.mp3",
     "english_audio_file": null,
     "image_file": null,
     "samples": [
@@ -4700,7 +4700,7 @@
     "romanization": "kʰun",
     "word_class": "pron",
     "english": "you",
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/word-khun.mp3",
     "english_audio_file": null,
     "image_file": null,
     "samples": [
@@ -5334,7 +5334,7 @@
     "romanization": "tʰâw nán",
     "word_class": "adv",
     "english": "only",
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/word-thaw-nan.mp3",
     "english_audio_file": null,
     "image_file": null,
     "samples": [
@@ -5757,7 +5757,7 @@
     "romanization": "pràʔ tʰêːt",
     "word_class": "n",
     "english": "country",
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/word-pra-thet.mp3",
     "english_audio_file": null,
     "image_file": null,
     "samples": [
@@ -6215,7 +6215,7 @@
     "romanization": "dâj ráp",
     "word_class": "v",
     "english": "receive",
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/word-daj-rap.mp3",
     "english_audio_file": null,
     "image_file": null,
     "samples": [
@@ -6978,7 +6978,7 @@
     "romanization": "kam laŋ",
     "word_class": "n",
     "english": "power",
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/word-kam-la.mp3",
     "english_audio_file": null,
     "image_file": null,
     "samples": [
@@ -7033,7 +7033,7 @@
     "romanization": "pan hǎː",
     "word_class": "n",
     "english": "problem",
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/word-pan-ha.mp3",
     "english_audio_file": null,
     "image_file": null,
     "samples": [
@@ -7129,7 +7129,7 @@
     "romanization": "nâː",
     "word_class": "aux",
     "english": "ought to",
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/word-na-2.mp3",
     "english_audio_file": null,
     "image_file": null,
     "samples": [
@@ -7436,7 +7436,7 @@
     "romanization": "tɕiŋ",
     "word_class": "adj",
     "english": "real",
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/word-ti.mp3",
     "english_audio_file": null,
     "image_file": null,
     "samples": [
@@ -7833,7 +7833,7 @@
     "romanization": "mâj wâː",
     "word_class": "conj",
     "english": "regardless of; no matter what",
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/word-maj-wa.mp3",
     "english_audio_file": null,
     "image_file": null,
     "samples": [
@@ -8480,7 +8480,7 @@
     "romanization": "tʰîː maː",
     "word_class": "n",
     "english": "origin; source; cause",
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/word-thi-ma.mp3",
     "english_audio_file": null,
     "image_file": null,
     "samples": [
@@ -8535,7 +8535,7 @@
     "romanization": "tuːa ʔeːŋ",
     "word_class": "pron",
     "english": "itself",
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/word-tua-e.mp3",
     "english_audio_file": null,
     "image_file": null,
     "samples": [
@@ -9400,7 +9400,7 @@
     "romanization": "ruːam",
     "word_class": "v",
     "english": "including",
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/word-ruam-2.mp3",
     "english_audio_file": null,
     "image_file": null,
     "samples": [
@@ -9568,7 +9568,7 @@
     "romanization": "tɕʰǎn",
     "word_class": "pron",
     "english": "I (mostly female)",
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/word-than.mp3",
     "english_audio_file": null,
     "image_file": null,
     "samples": [
@@ -9610,7 +9610,7 @@
     "romanization": "tɕʰaːj",
     "word_class": "n",
     "english": "man",
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/word-thaj.mp3",
     "english_audio_file": null,
     "image_file": null,
     "samples": [
@@ -9652,7 +9652,7 @@
     "romanization": "daŋ",
     "word_class": "adj",
     "english": "as; loud",
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/word-da.mp3",
     "english_audio_file": null,
     "image_file": null,
     "samples": [
@@ -9792,7 +9792,7 @@
     "romanization": "mɛ̂ː",
     "word_class": "n",
     "english": "mother",
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/word-m.mp3",
     "english_audio_file": null,
     "image_file": null,
     "samples": [
@@ -24184,7 +24184,7 @@
     "romanization": "nɔːn",
     "word_class": "v",
     "english": "lie down; sleep",
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/word-nn.mp3",
     "english_audio_file": null,
     "image_file": null,
     "samples": [
@@ -57009,7 +57009,7 @@
     "romanization": "dɯ̀ːm",
     "word_class": "",
     "english": "drink",
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/word-dm.mp3",
     "english_audio_file": null,
     "image_file": null,
     "samples": [
@@ -146534,7 +146534,7 @@
     "romanization": "sà wàt diː",
     "word_class": "",
     "english": "hello",
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/word-sa-wat-di.mp3",
     "english_audio_file": null,
     "image_file": null,
     "samples": [
@@ -301364,7 +301364,7 @@
     "toneRules": [
       "low-dead-short"
     ],
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/word-khrap.mp3",
     "english_audio_file": null,
     "image_file": "/thai-script/vocabulary/images/4 ครับ.png",
     "samples": [
@@ -301732,7 +301732,7 @@
       "low-mayek",
       "low-mayek"
     ],
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/word-thii-nan.mp3",
     "english_audio_file": null,
     "image_file": null,
     "samples": [
@@ -301789,7 +301789,7 @@
       "high-live",
       "mid-live"
     ],
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/word-sa-baai-dii.mp3",
     "english_audio_file": null,
     "image_file": null,
     "samples": [

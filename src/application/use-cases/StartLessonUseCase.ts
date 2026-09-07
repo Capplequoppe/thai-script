@@ -135,4 +135,17 @@ export class StartLessonUseCase {
 	getSentenceLearnedCount(): number {
 		return this.sentenceService.getLearnedCount();
 	}
+
+	/**
+	 * Backfills every already-learned item across all four domains with any
+	 * card the current generators would now produce for it that isn't
+	 * persisted yet, or an `audioUrl` a persisted card previously lacked. See
+	 * each service's `reconcileCards()` for the exact rules.
+	 */
+	reconcileAllContent(): void {
+		this.scriptService.reconcileCards();
+		this.vocabService.reconcileCards();
+		this.grammarService.reconcileCards();
+		this.sentenceService.reconcileCards();
+	}
 }

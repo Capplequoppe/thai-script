@@ -2,7 +2,10 @@ import { describe, expect, it } from "vitest";
 import { InMemoryStorage } from "../../../infrastructure/persistence/Storage";
 import { StorageCardRepository } from "../../../infrastructure/persistence/StorageCardRepository";
 import { ApprenticeService } from "../../shared/services/ApprenticeService";
+import { DEFAULT_SRS_DATA } from "../../shared/types";
+import { RecallRating } from "../../srs/value-objects/RecallRating";
 import type { VocabEntry } from "../../vocabulary/types";
+import { GrammarReviewCard } from "../entities/GrammarReviewCard";
 import type { GrammarEntry } from "../types";
 import { GrammarService } from "./GrammarLessonService";
 
@@ -521,6 +524,67 @@ describe("GrammarService", () => {
 			service.startLesson();
 
 			expect(service.getLearnedCount()).toBe(2);
+		});
+	});
+
+	describe("reconcileCards", () => {
+		it("backfills a missing card for an already-learned grammar point, without touching its sibling's srs", () => {
+			const storage = new InMemoryStorage();
+			const cardRepo = new StorageCardRepository(storage);
+			const g1 = makeGrammarEntry("g1", 1, { minVocabByClass: {} });
+
+			// Simulate the learner having only `recognition` persisted — as if
+			// `application` is a card type that only became eligible later.
+			const recognition = GrammarReviewCard.fromDTO({
+				id: "grammar:g1:recognition",
+				question: g1.cards.recognition.question,
+				correctAnswer: g1.cards.recognition.correctAnswer,
+				choices: [g1.cards.recognition.correctAnswer, "d1", "d2", "d3"],
+				srs: { ...DEFAULT_SRS_DATA },
+				grammarId: "g1",
+				property: "recognition",
+			});
+			cardRepo.saveAll([recognition]);
+
+			recognition.recordReview(RecallRating.GOOD, new Date().toISOString());
+			cardRepo.save(recognition);
+			const ratedRepetitions = recognition.schedule.repetitions;
+			expect(ratedRepetitions).toBeGreaterThan(0);
+
+			expect(
+				cardRepo
+					.findAll("grammar")
+					.some((c) => c.id === "grammar:g1:application"),
+			).toBe(false);
+
+			const service = new GrammarService(cardRepo, [g1]);
+			service.reconcileCards();
+
+			const persistedAfter = cardRepo.findAll("grammar");
+			const application = persistedAfter.find(
+				(c) => c.id === "grammar:g1:application",
+			);
+			expect(application).toBeDefined();
+			expect(application?.schedule.repetitions).toBe(0);
+
+			const recognitionAfter = persistedAfter.find(
+				(c) => c.id === "grammar:g1:recognition",
+			);
+			expect(recognitionAfter?.schedule.repetitions).toBe(ratedRepetitions);
+		});
+
+		it("is a no-op for a grammar point the learner hasn't started yet", () => {
+			const storage = new InMemoryStorage();
+			const g1 = makeGrammarEntry("g1", 1, { minVocabByClass: {} });
+			const service = new GrammarService(new StorageCardRepository(storage), [
+				g1,
+			]);
+
+			service.reconcileCards();
+
+			expect(
+				new StorageCardRepository(storage).findAll("grammar"),
+			).toHaveLength(0);
 		});
 	});
 });
