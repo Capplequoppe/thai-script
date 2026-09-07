@@ -4,6 +4,7 @@ import { Button } from "@/presentation/components/ui/button";
 import { Card } from "@/presentation/components/ui/card";
 import { SectionHeader } from "../components/atoms/SectionHeader";
 import { ForecastCell } from "../components/molecules/ForecastCell";
+import { LearnableCallout } from "../components/molecules/LearnableCallout";
 import { QuickActionCard } from "../components/molecules/QuickActionCard";
 import { StagePill } from "../components/molecules/StagePill";
 import {
@@ -22,6 +23,10 @@ const STAGES = [
 	"Burned",
 ] as const;
 
+function newCountLabel(count: number, noun: string): string {
+	return `${count} new ${noun}${count === 1 ? "" : "s"}`;
+}
+
 export function Dashboard() {
 	const { state, lesson, review, dashboard, vocab } = useApp();
 	const navigate = useNavigate();
@@ -29,6 +34,8 @@ export function Dashboard() {
 	const nextLesson = lesson.getNextScript();
 	const nextVocabLesson =
 		lesson.getVocabUnlockedCount() > 0 ? vocab.getNextLesson() : null;
+	const nextGrammarLesson = lesson.getNextGrammar();
+	const nextSentenceLesson = lesson.getNextSentence();
 	const scriptDueCount = review.getDueCount("script");
 	const vocabDueCount = review.getDueCount("vocab");
 	const grammarDueCount = review.getDueCount("grammar");
@@ -146,7 +153,8 @@ export function Dashboard() {
 				)}
 			</div>
 
-			{/* 2. Secondary Actions (2-col) */}
+			{/* 2. Secondary Actions (2-col) — evergreen entry points, always in the
+			    same two slots regardless of what else is unlocked. */}
 			<div className="grid grid-cols-2 gap-3">
 				{nextLesson ? (
 					<QuickActionCard
@@ -157,31 +165,8 @@ export function Dashboard() {
 				) : (
 					<QuickActionCard label="Script" value="All done ✓" disabled />
 				)}
-				{lesson.getGrammarUnlockedCount() > 0 ? (
-					<QuickActionCard
-						label="Grammar"
-						value={`${review.getDueCount("grammar")} due`}
-						onClick={() => navigate("/grammar")}
-					/>
-				) : lesson.getVocabUnlockedCount() > 0 ? (
-					<QuickActionCard
-						label="Vocabulary"
-						value={
-							nextVocabLesson && vocabDueCount > 0
-								? `${nextVocabLesson.words.length} new · ${vocabDueCount} due`
-								: nextVocabLesson
-									? `${nextVocabLesson.words.length} new words`
-									: vocabDueCount > 0
-										? `${vocabDueCount} due`
-										: "Up to date"
-						}
-						onClick={() => navigate("/vocabulary")}
-					/>
-				) : (
-					<QuickActionCard label="Vocabulary" value="Locked" disabled />
-				)}
 				{/* Mobile-reachable entry point for the practice game — the
-				    5-icon mobile tab row has no room for a sixth icon. */}
+				    mobile tab row has no room for it. */}
 				<QuickActionCard
 					label="Game"
 					value="Practice round"
@@ -189,34 +174,45 @@ export function Dashboard() {
 				/>
 			</div>
 
-			{/* Vocab lesson callout — shown when grammar is also taking the right slot */}
-			{lesson.getGrammarUnlockedCount() > 0 && nextVocabLesson && (
-				<div
-					className="rounded-xl p-4 flex items-center justify-between gap-3"
-					style={{
-						background:
-							"color-mix(in srgb, var(--color-enlightened) 10%, var(--color-surface))",
-						border:
-							"1px solid color-mix(in srgb, var(--color-enlightened) 25%, transparent)",
-					}}
-				>
-					<div>
-						<div className="font-semibold text-sm">Vocab Lesson Ready</div>
-						<div
-							className="text-xs mt-0.5"
-							style={{ color: "var(--color-text-muted)" }}
-						>
-							{nextVocabLesson.words.length} new words unlocked
-						</div>
-					</div>
-					<Button
-						type="button"
-						onClick={() => navigate("/vocabulary")}
-						style={{ background: "var(--color-enlightened)", color: "#fff" }}
-						className="shrink-0 px-4 py-2 rounded-xl text-sm font-semibold"
-					>
-						Learn
-					</Button>
+			{/* Ready to Learn — every pool with new content ready, regardless of
+			    whether anything is due for review (due reviews are the primary
+			    action card above; this is about content the learner hasn't seen
+			    yet). Each entry mirrors StartLessonUseCase's own gating (rank
+			    window, prerequisites, apprentice cap), so a callout here always
+			    means starting that lesson will actually work. */}
+			{(nextVocabLesson || nextGrammarLesson || nextSentenceLesson) && (
+				<div className="space-y-3">
+					<SectionHeader className="mb-1">Ready to Learn</SectionHeader>
+					{nextVocabLesson && (
+						<LearnableCallout
+							label="Vocabulary"
+							detail={newCountLabel(nextVocabLesson.words.length, "word")}
+							onClick={() => navigate("/vocabulary")}
+							accentColor="var(--color-enlightened)"
+						/>
+					)}
+					{nextGrammarLesson && (
+						<LearnableCallout
+							label="Grammar"
+							detail={newCountLabel(
+								nextGrammarLesson.grammarPoints.length,
+								"grammar point",
+							)}
+							onClick={() => navigate("/grammar")}
+							accentColor="var(--color-guru)"
+						/>
+					)}
+					{nextSentenceLesson && (
+						<LearnableCallout
+							label="Sentences"
+							detail={newCountLabel(
+								nextSentenceLesson.sentences.length,
+								"sentence",
+							)}
+							onClick={() => navigate("/sentences")}
+							accentColor="var(--color-master)"
+						/>
+					)}
 				</div>
 			)}
 
