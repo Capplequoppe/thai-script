@@ -1,3 +1,4 @@
+import { withDottedCircles } from "../../utils/thaiText";
 import { PlayAudioButton } from "./PlayAudioButton";
 
 interface Props {
@@ -20,7 +21,7 @@ export function ThaiCharDisplay({
 				className={`thai font-normal ${className ?? "text-8xl"}`}
 				style={{ lineHeight: 1.15 }}
 			>
-				{character}
+				{withDottedCircles(character)}
 			</span>
 			{audioUrl && !hideAudio && (
 				<PlayAudioButton audioUrl={audioUrl} className="ml-3 w-10 h-10" />

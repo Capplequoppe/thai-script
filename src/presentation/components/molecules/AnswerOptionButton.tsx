@@ -1,14 +1,10 @@
 import type { CSSProperties } from "react";
+import { withDottedCircles } from "../../utils/thaiText";
 
 const THAI_NUMERALS = ["๑", "๒", "๓", "๔"] as const;
 
-// Thai combining marks (above/below vowels, tone marks) are invisible without
-// a base character. Prefix them with ◌ (dotted circle) for display.
-const THAI_COMBINING = /^[\u0E31\u0E34-\u0E3A\u0E47-\u0E4E]/;
 function displayChoice(choice: string): string {
-	return THAI_COMBINING.test(choice.trimStart())
-		? `◌${choice.trimStart()}`
-		: choice;
+	return withDottedCircles(choice.trimStart());
 }
 
 interface Props {

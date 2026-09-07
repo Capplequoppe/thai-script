@@ -18,6 +18,7 @@ import {
 	VowelCard,
 } from "../components/organisms/SymbolCard";
 import { useApp } from "../hooks/useApp";
+import { withDottedCircles } from "../utils/thaiText";
 
 type Tab = "consonants" | "vowels" | "toneMarks" | "vocabulary" | "videos";
 
@@ -312,7 +313,9 @@ export function LearnedItemsPage() {
 							style={{ background: "var(--color-surface-2)" }}
 						>
 							{c.audioUrl && <TileAudioButton audioUrl={c.audioUrl} />}
-							<span className="thai text-4xl">{c.character}</span>
+							<span className="thai text-4xl">
+								{withDottedCircles(c.character)}
+							</span>
 							<span
 								className="text-[10px] mt-1 truncate w-full text-center"
 								style={{ color: "var(--color-text-muted)" }}
@@ -336,7 +339,9 @@ export function LearnedItemsPage() {
 							style={{ background: "var(--color-surface-2)" }}
 						>
 							{v.audioUrl && <TileAudioButton audioUrl={v.audioUrl} />}
-							<span className="thai text-4xl">{v.character}</span>
+							<span className="thai text-4xl">
+								{withDottedCircles(v.character)}
+							</span>
 							<span
 								className="text-[10px] mt-1"
 								style={{ color: "var(--color-text-muted)" }}
@@ -374,7 +379,9 @@ export function LearnedItemsPage() {
 							style={{ background: "var(--color-surface-2)" }}
 						>
 							{t.audioUrl && <TileAudioButton audioUrl={t.audioUrl} />}
-							<span className="thai text-4xl">{t.character}</span>
+							<span className="thai text-4xl">
+								{withDottedCircles(t.character)}
+							</span>
 							<span
 								className="text-[10px] mt-1"
 								style={{ color: "var(--color-text-muted)" }}

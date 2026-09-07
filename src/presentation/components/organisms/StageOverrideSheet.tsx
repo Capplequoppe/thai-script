@@ -1,6 +1,7 @@
 import { useState } from "react";
 import type { CardPool } from "../../../domain/shared/CardPool";
 import { SrsStage } from "../../../domain/srs/value-objects/SrsStage";
+import { withDottedCircles } from "../../utils/thaiText";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "../ui/dialog";
 
 const STAGE_ORDER: Record<string, number> = {
@@ -123,7 +124,10 @@ export function StageOverrideSheet({
 						className="text-base font-semibold"
 						style={{ color: "var(--color-text)" }}
 					>
-						Override Stage: <span className="thai font-bold">{itemLabel}</span>
+						Override Stage:{" "}
+						<span className="thai font-bold">
+							{withDottedCircles(itemLabel)}
+						</span>
 					</DialogTitle>
 				</DialogHeader>
 
