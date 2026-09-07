@@ -55,6 +55,7 @@ import { SentenceReviewCard } from "../../domain/sentence/entities/SentenceRevie
 import { SentenceService } from "../../domain/sentence/services/SentenceLessonService";
 import type { SentenceEntry } from "../../domain/sentence/types";
 import { ReviewService } from "../../domain/session/services/ReviewService";
+import type { ReviewableCard } from "../../domain/srs/entities/ReviewableCard";
 import { ApprenticeService } from "../../domain/shared/services/ApprenticeService";
 import { LeechService } from "../../domain/shared/services/LeechService";
 import vocabularyData from "../../domain/vocabulary/data/vocabulary.json";
@@ -246,6 +247,27 @@ export function makeSentenceCard(sentenceId: string): SentenceReviewCard {
 		srs: { ...DEFAULT_SRS },
 		sentenceId,
 		property: "readingComprehension",
+	});
+}
+
+/**
+ * One `selfValidation` sentence review card for `sentenceId`, matching what
+ * `SentenceCardGenerator` actually produces for that property: an empty
+ * `choices` array (it's a produce-then-self-rate card, never a
+ * multiple-choice one) at the same non-null `learningStep` every freshly
+ * learned card starts at.
+ */
+export function makeSelfValidationSentenceCard(
+	sentenceId: string,
+): SentenceReviewCard {
+	return SentenceReviewCard.fromDTO({
+		id: `sentence:${sentenceId}:selfValidation`,
+		question: `question for ${sentenceId}`,
+		correctAnswer: "answer",
+		choices: [],
+		srs: { ...DEFAULT_SRS },
+		sentenceId,
+		property: "selfValidation",
 	});
 }
 
@@ -564,6 +586,12 @@ export interface MakeAppValueOptions {
 	 * unlock once their own prerequisites are met.
 	 */
 	learnedGrammar?: readonly string[];
+	/**
+	 * Pre-built cards to seed as-is, for shapes the named options above don't
+	 * cover (e.g. a `selfValidation` sentence card, built with
+	 * `makeSelfValidationSentenceCard`).
+	 */
+	extraCards?: readonly ReviewableCard[];
 }
 
 /**
@@ -608,6 +636,7 @@ export function makeAppValue(options: MakeAppValueOptions = {}): AppHarness {
 	cardRepo.saveAll((options.toneWords ?? []).map(makeToneVocabCard));
 	cardRepo.saveAll((options.graduatedVocab ?? []).map(makeGraduatedVocabCard));
 	cardRepo.saveAll((options.learnedGrammar ?? []).map(makeGrammarCard));
+	cardRepo.saveAll([...(options.extraCards ?? [])]);
 
 	const historyStore = new InMemoryJsonStore<GameHistoryEntry[]>();
 	// Register every source the real `AppContext.tsx` registers — a harness
@@ -683,6 +712,7 @@ export function renderWithApp(
 		toneWords: options.toneWords,
 		graduatedVocab: options.graduatedVocab,
 		learnedGrammar: options.learnedGrammar,
+		extraCards: options.extraCards,
 	});
 	const value: AppContextValue = { ...app.value, ...overrides };
 	const result = render(
