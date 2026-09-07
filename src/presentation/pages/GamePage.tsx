@@ -16,6 +16,7 @@ import { GameRoundSummary } from "../components/organisms/GameRoundSummary";
 import { SentenceCompositionChallenge } from "../components/organisms/SentenceCompositionChallenge";
 import { SentenceListeningChallenge } from "../components/organisms/SentenceListeningChallenge";
 import { SentenceReadingChallenge } from "../components/organisms/SentenceReadingChallenge";
+import { SentenceSegmentationChallenge } from "../components/organisms/SentenceSegmentationChallenge";
 import { SymbolDictationChallenge } from "../components/organisms/SymbolDictationChallenge";
 import { SymbolReadingChallenge } from "../components/organisms/SymbolReadingChallenge";
 import { ToneIdentificationChallenge } from "../components/organisms/ToneIdentificationChallenge";
@@ -195,11 +196,20 @@ function renderChallenge(
 				/>
 			);
 		case "sentence":
-			return item.challengeDirection === "listening" ? (
-				<SentenceListeningChallenge item={item} onRate={onRate} />
-			) : (
-				<SentenceReadingChallenge item={item} onRate={onRate} />
-			);
+			switch (item.challengeDirection) {
+				case "listening":
+					return <SentenceListeningChallenge item={item} onRate={onRate} />;
+				case "segmentation":
+					return <SentenceSegmentationChallenge item={item} onRate={onRate} />;
+				case "reading":
+					return <SentenceReadingChallenge item={item} onRate={onRate} />;
+				default: {
+					const _never: never = item;
+					throw new Error(
+						`unhandled sentence direction: ${JSON.stringify(_never)}`,
+					);
+				}
+			}
 		case "tone":
 			return <ToneIdentificationChallenge item={item} onRate={onRate} />;
 		case "composition":
