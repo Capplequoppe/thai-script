@@ -1,7 +1,11 @@
 // @vitest-environment jsdom
 import { fireEvent, screen } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
-import { createdAudioUrls, renderWithApp } from "../test-utils/renderWithApp";
+import {
+	createdAudioUrls,
+	makeSelfValidationSentenceCard,
+	renderWithApp,
+} from "../test-utils/renderWithApp";
 import { SentencePage } from "./SentencePage";
 
 describe("SentencePage — lesson intro audio", () => {
@@ -34,5 +38,31 @@ describe("SentencePage — lesson intro audio", () => {
 		expect(createdAudioUrls()).toContain(
 			"/thai-script/audio/sentence-maa-gin-gan.mp3",
 		);
+	});
+});
+
+describe("SentencePage — review dispatch", () => {
+	// A `selfValidation` card's `choices` are always empty by construction
+	// (SentenceCardGenerator) — it's a produce-then-self-rate card, never a
+	// multiple-choice one. ReviewService.startReviewSession picks
+	// "multipleChoice"/"flashcard" from generic SRS progress
+	// (`learningStep === null`), which is right for card shapes that support
+	// both, but a freshly-learned `selfValidation` card has a non-null
+	// `learningStep` (see DEFAULT_SRS) — routing it to `MultipleChoice`
+	// renders an empty choice grid with no way to answer.
+	it("renders a selfValidation due card as a Flashcard, not an empty choice grid", () => {
+		renderWithApp(
+			<SentencePage />,
+			{},
+			{ extraCards: [makeSelfValidationSentenceCard("basic-001")] },
+		);
+
+		fireEvent.click(
+			screen.getByRole("button", { name: /Review \d+ Due Sentence Cards?/ }),
+		);
+
+		expect(
+			screen.getByRole("button", { name: /Show Answer/ }),
+		).toBeTruthy();
 	});
 });

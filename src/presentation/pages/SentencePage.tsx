@@ -577,7 +577,15 @@ export function SentencePage() {
 						className="h-1.5"
 					/>
 				</div>
-				{current.mode === "multipleChoice" ? (
+				{"property" in current.card &&
+				(current.card as unknown as SentenceCard).property ===
+					"selfValidation" ? (
+					<Flashcard card={current.card} onRate={handleReviewAdvance} />
+				) : "property" in current.card &&
+					(current.card as unknown as SentenceCard).property ===
+						"sentenceBuilding" ? (
+					<SentenceBuilder card={current.card} onAnswer={handleMcAnswer} />
+				) : current.mode === "multipleChoice" ? (
 					<MultipleChoice card={current.card} onAnswer={handleMcAnswer} />
 				) : (
 					<Flashcard card={current.card} onRate={handleReviewAdvance} />
