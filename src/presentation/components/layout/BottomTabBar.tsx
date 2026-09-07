@@ -71,6 +71,43 @@ function BookIcon() {
 	);
 }
 
+function ScrollIcon() {
+	return (
+		<svg
+			viewBox="0 0 24 24"
+			fill="currentColor"
+			className="w-6 h-6"
+			aria-hidden="true"
+		>
+			<title>Grammar</title>
+			<rect x="5" y="6" width="14" height="12" opacity="0.15" />
+			<ellipse cx="12" cy="6" rx="7" ry="2" opacity="0.9" />
+			<ellipse cx="12" cy="18" rx="7" ry="2" opacity="0.9" />
+			<rect x="8" y="9.3" width="8" height="1.3" rx="0.65" opacity="0.6" />
+			<rect x="8" y="12.3" width="8" height="1.3" rx="0.65" opacity="0.6" />
+		</svg>
+	);
+}
+
+function ChatIcon() {
+	return (
+		<svg
+			viewBox="0 0 24 24"
+			fill="currentColor"
+			className="w-6 h-6"
+			aria-hidden="true"
+		>
+			<title>Sentences</title>
+			<path
+				d="M4 5a2 2 0 012-2h12a2 2 0 012 2v9a2 2 0 01-2 2H9l-4 4v-4a2 2 0 01-2-2V5z"
+				opacity="0.5"
+			/>
+			<rect x="7" y="8.25" width="10" height="1.5" rx="0.75" opacity="0.9" />
+			<rect x="7" y="11.75" width="6" height="1.5" rx="0.75" opacity="0.9" />
+		</svg>
+	);
+}
+
 function GearIcon() {
 	return (
 		<svg
@@ -119,6 +156,19 @@ export function BottomTabBar({
 		{ to: "/items", end: false, label: "Items", icon: <GemIcon /> },
 		...(vocabUnlocked
 			? [{ to: "/vocab", end: false, label: "Vocab", icon: <BookIcon /> }]
+			: []),
+		...(grammarUnlocked
+			? [{ to: "/grammar", end: false, label: "Grammar", icon: <ScrollIcon /> }]
+			: []),
+		...(sentenceUnlocked
+			? [
+					{
+						to: "/sentences",
+						end: false,
+						label: "Sentences",
+						icon: <ChatIcon />,
+					},
+				]
 			: []),
 		{ to: "/progress", end: false, label: "Progress", icon: <PagodaIcon /> },
 		{ to: "/settings", end: false, label: "Settings", icon: <GearIcon /> },
@@ -194,26 +244,6 @@ export function BottomTabBar({
 					>
 						Game
 					</NavLink>
-					{grammarUnlocked && (
-						<NavLink
-							to="/grammar"
-							className={({ isActive }) =>
-								`text-sm font-medium transition-colors ${isActive ? ACTIVE : INACTIVE}`
-							}
-						>
-							Grammar
-						</NavLink>
-					)}
-					{sentenceUnlocked && (
-						<NavLink
-							to="/sentences"
-							className={({ isActive }) =>
-								`text-sm font-medium transition-colors ${isActive ? ACTIVE : INACTIVE}`
-							}
-						>
-							Sentences
-						</NavLink>
-					)}
 				</nav>
 			)}
 		</>
