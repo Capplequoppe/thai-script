@@ -1125,7 +1125,7 @@ describe("GamePage", () => {
 	});
 
 	// Task 1.3 AC4
-	it("dispatches sentence items to the listening or reading organism by challengeDirection", () => {
+	it("dispatches sentence items to the listening, reading, or segmentation organism by challengeDirection", () => {
 		const listening = makeSentenceItem("s-1", "listening", {
 			thaiText: "มา กัน",
 			englishMeaning: "Come together",
@@ -1134,7 +1134,11 @@ describe("GamePage", () => {
 			thaiText: "มี ดี",
 			englishMeaning: "Have good (things)",
 		});
-		const { game } = makeFixedRoundGame([listening, reading]);
+		const segmentation = makeSentenceItem("s-3", "segmentation", {
+			thaiText: "มา กิน กัน",
+			englishMeaning: "Come eat together",
+		});
+		const { game } = makeFixedRoundGame([listening, reading, segmentation]);
 		renderWithApp(<GamePage />, { game });
 		startRound();
 
@@ -1156,6 +1160,17 @@ describe("GamePage", () => {
 		reveal();
 		expect(createdAudioUrls()).toContain("/audio/s-2.mp3");
 		expect(screen.getByText("Have good (things)")).toBeTruthy();
+		rate(/Good/);
+
+		// Segmentation: the concatenated puzzle up front, the split and
+		// gloss hidden until reveal.
+		expect(
+			screen.getByText("Tap between the words to split this sentence"),
+		).toBeTruthy();
+		expect(screen.queryByText("Come eat together")).toBeNull();
+		reveal();
+		expect(screen.getByText("กิน")).toBeTruthy();
+		expect(screen.getByText("Come eat together")).toBeTruthy();
 		rate(/Good/);
 
 		expect(screen.getByText("Round Complete")).toBeTruthy();

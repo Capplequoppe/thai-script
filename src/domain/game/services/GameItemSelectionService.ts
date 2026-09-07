@@ -175,10 +175,14 @@ function itemKeyOfContent(content: GameItemContent): string {
 }
 
 /**
- * An item with no audio can never be asked to hear anything — so it is
- * always assigned the direction that needs no audio (`reading` for a
- * symbol, `production` for a word, `reading` for a sentence), and no
- * randomness is spent on it. Otherwise the direction is a 50/50 draw.
+ * An item with no audio can never be asked to hear anything — so a symbol
+ * or word with no audio is always assigned the direction that needs no
+ * audio (`reading`, `production`) and spends no randomness on it. A
+ * sentence is different: `segmentation` is a pure-text exercise that never
+ * needs audio, so an audio-less sentence still rolls between `segmentation`
+ * and `reading` — only `listening` is ever audio-gated. Otherwise (audio
+ * present) the direction is an even draw across every direction the kind
+ * has.
  *
  * Exhaustive on `kind` rather than a two-armed ternary: a new
  * `GameItemContent` member must be a compile error here, at the one place
@@ -208,10 +212,10 @@ function assignDirection(
 		}
 		case "sentence": {
 			const challengeDirection: SentenceChallengeDirection = !content.audioUrl
-				? "reading"
-				: rng() < 0.5
-					? "listening"
-					: "reading";
+				? rng() < 0.5
+					? "segmentation"
+					: "reading"
+				: sentenceDirectionFromRoll(rng());
 			return { ...content, challengeDirection };
 		}
 		case "tone": {
@@ -225,4 +229,11 @@ function assignDirection(
 			throw new Error(`unhandled game item content: ${JSON.stringify(_never)}`);
 		}
 	}
+}
+
+/** An even three-way split of one roll, for an audio-bearing sentence. */
+function sentenceDirectionFromRoll(roll: number): SentenceChallengeDirection {
+	if (roll < 1 / 3) return "listening";
+	if (roll < 2 / 3) return "segmentation";
+	return "reading";
 }

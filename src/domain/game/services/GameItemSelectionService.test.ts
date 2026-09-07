@@ -753,11 +753,11 @@ describe("GameItemSelectionService", () => {
 			expect(round.map((item) => item.kind)).toEqual(Array(5).fill("sentence"));
 		});
 
-		it("AC3: an audio-less sentence is 'reading' and spends no randomness on its direction", () => {
+		it("AC3: an audio-less sentence rolls between segmentation and reading, spending one roll on the direction", () => {
 			const service = new GameItemSelectionService([
 				sourceOf("sentence", [sentenceContent("silent")]),
 			]);
-			const rng = countingSource([0.0]);
+			const rng = countingSource([0.0, 0.9]);
 
 			const round = service.selectRound(
 				{ pools: ["sentence"], itemCount: 1 },
@@ -765,9 +765,30 @@ describe("GameItemSelectionService", () => {
 			);
 
 			expect(round.map((item) => item.challengeDirection)).toEqual(["reading"]);
-			// Exactly one roll: the draw itself. Zero were spent assigning the
-			// direction — the same rule the audio-less symbol follows.
-			expect(rng.calls).toBe(1);
+			// Two rolls: the draw, then the direction roll. Segmentation needs
+			// no audio, so — unlike a symbol or word, and unlike a sentence
+			// before this direction existed — an audio-less sentence can no
+			// longer take a zero-roll shortcut on its direction.
+			expect(rng.calls).toBe(2);
+		});
+
+		it("AC3: an audio-less sentence never rolls 'listening', and both 'reading' and 'segmentation' are reachable", () => {
+			const service = new GameItemSelectionService([
+				sourceOf("sentence", [sentenceContent("silent")]),
+			]);
+			const rng = scripted([0.05, 0.2, 0.35, 0.5, 0.65, 0.8, 0.95]);
+			const directions = new Set<string>();
+
+			for (let round = 0; round < 50; round++) {
+				for (const item of service.selectRound(
+					{ pools: ["sentence"], itemCount: 1 },
+					rng,
+				)) {
+					directions.add(item.challengeDirection);
+				}
+			}
+
+			expect([...directions].sort()).toEqual(["reading", "segmentation"]);
 		});
 
 		it("AC3: an audio-bearing sentence does spend one roll on its direction", () => {
@@ -783,7 +804,7 @@ describe("GameItemSelectionService", () => {
 			expect(rng.calls).toBe(2);
 		});
 
-		it("AC3: every item from the real shipped sentences.json is assigned 'reading'", () => {
+		it("AC3: every item from the real shipped sentences.json is 'reading' or 'segmentation', never 'listening'", () => {
 			// Not a statistical sample: today's data has no audio at all, so the
 			// audio-gated rule makes "listening" unreachable. A future data drop
 			// that adds audio makes this fail loudly rather than quietly
@@ -808,7 +829,7 @@ describe("GameItemSelectionService", () => {
 			expect(
 				round
 					.map((item) => item.challengeDirection)
-					.filter((d) => d !== "reading"),
+					.filter((d) => d !== "reading" && d !== "segmentation"),
 			).toEqual([]);
 		});
 
@@ -818,8 +839,10 @@ describe("GameItemSelectionService", () => {
 			]);
 
 			// Draws: 0.0 of 5 -> "s1"; 0.75 of the remaining 4 -> "s5";
-			// 0.5 of the remaining 3 -> "s3". Then one roll per item:
-			// 0.1 < 0.5 -> listening, 0.9 -> reading, 0.49 < 0.5 -> listening.
+			// 0.5 of the remaining 3 -> "s3". Then one direction roll per item
+			// (each is audio-bearing, so each gets the even three-way split:
+			// <1/3 listening, <2/3 segmentation, else reading): 0.1 ->
+			// listening, 0.9 -> reading, 0.49 -> segmentation.
 			const round = service.selectRound(
 				{ pools: ["sentence"], itemCount: 3 },
 				scripted([0.0, 0.75, 0.5, 0.1, 0.9, 0.49]),
@@ -833,7 +856,7 @@ describe("GameItemSelectionService", () => {
 			).toEqual([
 				["s1", "listening"],
 				["s5", "reading"],
-				["s3", "listening"],
+				["s3", "segmentation"],
 			]);
 		});
 

@@ -38,15 +38,20 @@ export type WordChallengeDirection = "dictationTranslate" | "production";
 
 /**
  * `listening` — hear the sentence, reveal the Thai text and its English.
- * `reading` — see the Thai text, say it, reveal the audio. Which one a
- * given sentence gets is randomized per round, never configured — except
- * that a sentence with no audio can only ever be `reading`
- * (`assignDirection`). Every sentence in the shipped `sentences.json` is
- * audio-less today, so `listening` is currently unreachable in practice;
- * it becomes reachable the moment sentence audio exists, with no code
- * change. See CONTEXT.md.
+ * `reading` — see the Thai text, say it, reveal the audio. `segmentation` —
+ * see the Thai text with its spaces stripped, tap to mark where the words
+ * split, reveal the correct split (a pure-text exercise, independent of
+ * audio). Which one a given sentence gets is randomized per round, never
+ * configured — except that a sentence with no audio can never be
+ * `listening` (`assignDirection`). Every sentence in the shipped
+ * `sentences.json` is audio-less today, so `listening` is currently
+ * unreachable in practice; it becomes reachable the moment sentence audio
+ * exists, with no code change. See CONTEXT.md.
  */
-export type SentenceChallengeDirection = "listening" | "reading";
+export type SentenceChallengeDirection =
+	| "listening"
+	| "reading"
+	| "segmentation";
 
 /**
  * Tone identification is a single self-assessment — did the learner
@@ -114,6 +119,11 @@ export interface WordItemContent {
  * same sentence disagree by design).
  *
  * `sentenceId` is the item's identity — the key a round dedupes on.
+ *
+ * `thaiText` is space-joined between words (matching `SentenceEntry.thai`,
+ * which is always exactly `words.join(" ")`) — the `segmentation` direction
+ * strips those spaces for its puzzle display and splits on them for its
+ * answer key, rather than this content carrying a separate word list.
  */
 export interface SentenceItemContent {
 	readonly kind: "sentence";
