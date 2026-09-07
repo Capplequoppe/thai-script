@@ -804,16 +804,16 @@ describe("GameItemSelectionService", () => {
 			expect(rng.calls).toBe(2);
 		});
 
-		it("AC3: every item from the real shipped sentences.json now carries audio, so 'listening' is reachable", () => {
+		it("AC3: real shipped sentences.json entries with audio make 'listening' reachable", () => {
 			// This test used to prove "listening" unreachable, back when every
 			// shipped sentence was audio-less (see SentenceGameItemSource.test.ts's
-			// own canary for that history). Real audio now exists for every
-			// sentence, so this locks in the new state: every direction drawn
-			// is one of the three valid ones, and "listening" — the thing this
-			// test used to prove impossible — is actually reached.
+			// own canary for that history). Real audio landed for all 55
+			// original sentences (PR #14), then a further content drop added
+			// 121 more sentences with no audio yet — so this now only asserts
+			// "at least one is audio-backed", not "every one is".
 			const sentences = realSentenceData as unknown as SentenceEntry[];
 			expect(sentences.length).toBeGreaterThan(0);
-			expect(sentences.every((entry) => entry.thai_audio_file != null)).toBe(
+			expect(sentences.some((entry) => entry.thai_audio_file != null)).toBe(
 				true,
 			);
 

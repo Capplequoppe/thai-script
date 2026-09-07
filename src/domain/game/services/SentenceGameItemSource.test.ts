@@ -173,15 +173,21 @@ describe("SentenceGameItemSource", () => {
 		).toEqual([]);
 	});
 
-	it("AC3: the real shipped sentences.json now carries audio for every sentence", () => {
+	it("AC3: the real shipped sentences.json carries audio for at least one sentence", () => {
 		// This test used to assert the opposite — no sentence had audio — as a
 		// canary: "if a future data drop adds audio, this fails loudly and the
 		// 'every item is reading' claim in GameItemSelectionService.test.ts
 		// must be revisited rather than silently becoming a coincidence." That
-		// data drop has happened; this locks in the new state instead.
+		// data drop happened (PR #14, all 55 sentences at the time), then a
+		// further content drop added 121 sentences with no audio yet (pending
+		// a future ElevenLabs batch) — so the invariant worth locking in now
+		// is "some sentences are audio-backed", not "all of them are".
 		expect(REAL_SENTENCES.length).toBeGreaterThan(0);
-		expect(
-			REAL_SENTENCES.filter((entry) => entry.thai_audio_file == null),
-		).toEqual([]);
+		expect(REAL_SENTENCES.some((entry) => entry.thai_audio_file != null)).toBe(
+			true,
+		);
+		expect(REAL_SENTENCES.some((entry) => entry.thai_audio_file == null)).toBe(
+			true,
+		);
 	});
 });
