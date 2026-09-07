@@ -804,13 +804,18 @@ describe("GameItemSelectionService", () => {
 			expect(rng.calls).toBe(2);
 		});
 
-		it("AC3: every item from the real shipped sentences.json is 'reading' or 'segmentation', never 'listening'", () => {
-			// Not a statistical sample: today's data has no audio at all, so the
-			// audio-gated rule makes "listening" unreachable. A future data drop
-			// that adds audio makes this fail loudly rather than quietly
-			// changing what a learner is asked to do.
+		it("AC3: every item from the real shipped sentences.json now carries audio, so 'listening' is reachable", () => {
+			// This test used to prove "listening" unreachable, back when every
+			// shipped sentence was audio-less (see SentenceGameItemSource.test.ts's
+			// own canary for that history). Real audio now exists for every
+			// sentence, so this locks in the new state: every direction drawn
+			// is one of the three valid ones, and "listening" — the thing this
+			// test used to prove impossible — is actually reached.
 			const sentences = realSentenceData as unknown as SentenceEntry[];
 			expect(sentences.length).toBeGreaterThan(0);
+			expect(sentences.every((entry) => entry.thai_audio_file != null)).toBe(
+				true,
+			);
 
 			const cards = sentences.map((entry) =>
 				sentenceCardWith(entry.id, "readingComprehension", 2.5, 0, 3),
@@ -822,15 +827,15 @@ describe("GameItemSelectionService", () => {
 
 			const round = service.selectRound(
 				{ pools: ["sentence"], itemCount: sentences.length },
-				scripted([0.0, 0.3, 0.6, 0.9]),
+				scripted([0.0, 0.2, 0.5, 0.8]),
 			);
 
 			expect(round).toHaveLength(sentences.length);
-			expect(
-				round
-					.map((item) => item.challengeDirection)
-					.filter((d) => d !== "reading" && d !== "segmentation"),
-			).toEqual([]);
+			const directions = new Set(round.map((item) => item.challengeDirection));
+			for (const d of directions) {
+				expect(["listening", "segmentation", "reading"]).toContain(d);
+			}
+			expect(directions.has("listening")).toBe(true);
 		});
 
 		it("AC4: assigns the exact sentence direction sequence a seeded source dictates", () => {
