@@ -106,4 +106,8 @@ export class SentenceService {
 
 		this.cardRepo.saveAll(toSave.map((dto) => SentenceReviewCard.fromDTO(dto)));
 	}
+
+	getEntry(id: string): SentenceEntry | null {
+		return this.sentenceData.find((entry) => entry.id === id) ?? null;
+	}
 }
