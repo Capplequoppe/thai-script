@@ -1509,7 +1509,14 @@ describe("GamePage", () => {
 			screensTraversed < 10
 		) {
 			if (screen.queryByText(TONE_PROMPT) !== null) sawTone = true;
-			if (screen.queryByText("Say this symbol aloud") !== null)
+			// A symbol item's challenge direction ("reading" vs "dictation") is
+			// assigned by a coin flip (`assignDirection`, uncontrolled here), so
+			// its prompt is one of two texts — asserting on only one flakes
+			// whenever all drawn symbols happen to land on the other.
+			if (
+				screen.queryByText("Say this symbol aloud") !== null ||
+				screen.queryByText(/Listen, then write the symbol/) !== null
+			)
 				sawSymbol = true;
 			reveal();
 			rate(/Good/);
