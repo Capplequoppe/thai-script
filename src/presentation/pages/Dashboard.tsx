@@ -226,7 +226,7 @@ export function Dashboard() {
 								key={stage}
 								stage={stage}
 								count={stages[stage.toLowerCase() as keyof typeof stages]}
-								onClick={() => navigate("/progress")}
+								onClick={() => navigate(`/progress/${stage}`)}
 							/>
 						))}
 					</div>

@@ -102,7 +102,7 @@ function VideoPlayer({
 	);
 }
 
-function propertyLabel(property: string): string {
+export function propertyLabel(property: string): string {
 	const labels: Record<string, string> = {
 		recognition: "Recognition",
 		class: "Class",

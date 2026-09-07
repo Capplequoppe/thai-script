@@ -196,4 +196,8 @@ export class GrammarService {
 
 		this.cardRepo.saveAll(toSave.map((dto) => GrammarReviewCard.fromDTO(dto)));
 	}
+
+	getEntry(id: string): GrammarEntry | null {
+		return this.grammarData.find((entry) => entry.id === id) ?? null;
+	}
 }

@@ -10,6 +10,7 @@ import { ProgressPage } from "./pages/ProgressPage";
 import { ReviewPage } from "./pages/ReviewPage";
 import { SentencePage } from "./pages/SentencePage";
 import { SettingsPage } from "./pages/SettingsPage";
+import { StageItemsPage } from "./pages/StageItemsPage";
 import { VocabListPage } from "./pages/VocabListPage";
 import { VocabularyPage } from "./pages/VocabularyPage";
 
@@ -25,6 +26,7 @@ export function App() {
 						<Route path="/game" element={<GamePage />} />
 						<Route path="/items" element={<LearnedItemsPage />} />
 						<Route path="/progress" element={<ProgressPage />} />
+						<Route path="/progress/:stage" element={<StageItemsPage />} />
 						<Route path="/settings" element={<SettingsPage />} />
 						<Route path="/vocabulary" element={<VocabularyPage />} />
 						<Route path="/grammar" element={<GrammarPage />} />

@@ -1,6 +1,7 @@
 import type { GrammarService } from "../../domain/grammar/services/GrammarLessonService";
 import type {
 	GrammarCard,
+	GrammarEntry,
 	GrammarLessonSummary,
 } from "../../domain/grammar/types";
 import type {
@@ -11,6 +12,7 @@ import type {
 import type { SentenceService } from "../../domain/sentence/services/SentenceLessonService";
 import type {
 	SentenceCard,
+	SentenceEntry,
 	SentenceLessonSummary,
 } from "../../domain/sentence/types";
 import type { VocabularyService } from "../../domain/vocabulary/services/VocabularyLessonService";
@@ -118,6 +120,10 @@ export class StartLessonUseCase {
 		return this.grammarService.getLearnedCount();
 	}
 
+	getGrammarEntry(id: string): GrammarEntry | null {
+		return this.grammarService.getEntry(id);
+	}
+
 	// --- Sentence lessons ---
 
 	startSentence(): SentenceCard[] | null {
@@ -130,6 +136,10 @@ export class StartLessonUseCase {
 
 	getSentenceUnlockedCount(): number {
 		return this.sentenceService.getUnlockedCount();
+	}
+
+	getSentenceEntry(id: string): SentenceEntry | null {
+		return this.sentenceService.getEntry(id);
 	}
 
 	getSentenceLearnedCount(): number {
