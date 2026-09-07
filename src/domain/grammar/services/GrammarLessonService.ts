@@ -1,5 +1,6 @@
 import type { CardRepository } from "../../ports/CardRepository";
 import type { ApprenticeService } from "../../shared/services/ApprenticeService";
+import { reconcileGeneratedCards } from "../../shared/services/reconcileCards";
 import type { VocabEntry } from "../../vocabulary/types";
 import { GrammarReviewCard } from "../entities/GrammarReviewCard";
 import type { GrammarCard, GrammarEntry, GrammarLessonSummary } from "../types";
@@ -159,5 +160,40 @@ export class GrammarService {
 		const grammarCards = this.cardRepo.findAll("grammar");
 		return new Set(grammarCards.map((c) => (c as GrammarReviewCard).grammarId))
 			.size;
+	}
+
+	private getLearnedGrammarEntries(): GrammarEntry[] {
+		const grammarCards = this.cardRepo.findAll("grammar");
+		const learnedGrammarIds = new Set(
+			grammarCards.map((c) => (c as GrammarReviewCard).grammarId),
+		);
+		return this.grammarData.filter((entry) => learnedGrammarIds.has(entry.id));
+	}
+
+	/**
+	 * Backfills already-learned grammar points with any card the current
+	 * generator would now produce for them that isn't persisted yet, or an
+	 * `audioUrl` on a persisted card that previously had none. See
+	 * `reconcileGeneratedCards` for the exact, deliberately narrow rules.
+	 * `generateGrammarCards` has no audio/data-gated branching today (always
+	 * emits `recognition`+`application`), so this is currently a no-op here —
+	 * harmless, and future-proofs it for free if that ever changes.
+	 */
+	reconcileCards(): void {
+		const persisted = (
+			this.cardRepo.findAll("grammar") as GrammarReviewCard[]
+		).map((card) => card.toDTO() as GrammarCard);
+		const vocabCounts = this.getMasteredVocabCounts();
+		const masteredVocabEntries = this.getMasteredVocabEntries(
+			vocabCounts.graduatedWords,
+		);
+		const generated = this.getLearnedGrammarEntries().flatMap((entry) =>
+			generateGrammarCards(entry, masteredVocabEntries),
+		);
+
+		const toSave = reconcileGeneratedCards(persisted, generated);
+		if (toSave.length === 0) return;
+
+		this.cardRepo.saveAll(toSave.map((dto) => GrammarReviewCard.fromDTO(dto)));
 	}
 }

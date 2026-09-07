@@ -8,6 +8,7 @@ import {
 	MAX_SCRIPT_APPRENTICE_ITEMS,
 } from "../../shared/services/ApprenticeService";
 import type { SrsData } from "../../shared/types";
+import { RecallRating } from "../../srs/value-objects/RecallRating";
 import { LearningService } from "./ScriptLessonService";
 
 describe("LearningService", () => {
@@ -225,6 +226,57 @@ describe("LearningService", () => {
 			const result = service.startLesson(1);
 			expect(result).not.toBeNull();
 			expect(result?.lessonNumber).toBe(1);
+		});
+	});
+
+	describe("reconcileCards", () => {
+		it("backfills a persisted card's audioUrl once completed lessons regain it, without touching other cards' srs", () => {
+			service.startLesson(1);
+			service.completeLesson(1);
+
+			const persistedBefore = cardRepo.findAll("script");
+			expect(persistedBefore.length).toBeGreaterThan(0);
+			const targetBefore = persistedBefore.find((c) => c.audioUrl);
+			if (!targetBefore) {
+				throw new Error("expected at least one card with audioUrl");
+			}
+			const targetId = targetBefore.id;
+			const realAudioUrl = targetBefore.audioUrl;
+
+			// Simulate the card having been persisted before it had audio.
+			const state = storage.load();
+			const raw = state.cards[targetId] as { audioUrl?: string };
+			raw.audioUrl = undefined;
+			storage.save(state);
+
+			// Give it a review history distinct from a fresh card, from a fresh
+			// domain instance that reflects the audioUrl-less storage above.
+			const target = cardRepo.findById(targetId, "script");
+			if (!target) throw new Error("expected card to still exist");
+			target.recordReview(RecallRating.GOOD, new Date().toISOString());
+			cardRepo.save(target);
+			const ratedRepetitions = target.schedule.repetitions;
+			expect(ratedRepetitions).toBeGreaterThan(0);
+			expect(
+				cardRepo.findAll("script").find((c) => c.id === targetId)?.audioUrl,
+			).toBeUndefined();
+
+			service.reconcileCards();
+
+			const persistedAfter = cardRepo.findAll("script");
+			const patched = persistedAfter.find((c) => c.id === target.id);
+			expect(patched?.audioUrl).toBe(realAudioUrl);
+			expect(patched?.schedule.repetitions).toBe(ratedRepetitions);
+
+			// An untouched sibling card is unaffected.
+			const sibling = persistedAfter.find((c) => c.id !== target.id);
+			expect(sibling?.schedule.repetitions).toBe(0);
+		});
+
+		it("is a no-op when no lessons are completed", () => {
+			service.reconcileCards();
+
+			expect(cardRepo.findAll("script")).toHaveLength(0);
 		});
 	});
 });

@@ -3,6 +3,7 @@ import { InMemoryStorage } from "../../../infrastructure/persistence/Storage";
 import { StorageCardRepository } from "../../../infrastructure/persistence/StorageCardRepository";
 import { StorageLearnerStateRepository } from "../../../infrastructure/persistence/StorageLearnerStateRepository";
 import { ApprenticeService } from "../../shared/services/ApprenticeService";
+import { RecallRating } from "../../srs/value-objects/RecallRating";
 import { VocabularyService } from "../../vocabulary/services/VocabularyLessonService";
 import type { VocabEntry } from "../../vocabulary/types";
 import type { SentenceEntry } from "../types";
@@ -259,6 +260,75 @@ describe("SentenceService", () => {
 			service.startLesson();
 
 			expect(service.getLearnedCount()).toBe(2);
+		});
+	});
+
+	describe("reconcileCards", () => {
+		it("backfills listeningComprehension for an already-learned sentence once it gains audio, without touching readingComprehension's srs", () => {
+			const storage = new InMemoryStorage();
+			const s1 = makeSentenceEntry("s1", ["มา"]);
+			const vocabEntries = [makeVocabEntry("มา")];
+			seedVocabCards(storage, ["มา"]);
+
+			// Learn the sentence before it has audio.
+			const bootstrap = createService(storage, [s1], vocabEntries);
+			bootstrap.startLesson();
+
+			const cardRepo = new StorageCardRepository(storage);
+			const readingBefore = cardRepo
+				.findAll("sentence")
+				.find((c) => c.id === "sentence:s1:readingComprehension");
+			expect(readingBefore).toBeDefined();
+			expect(
+				cardRepo
+					.findAll("sentence")
+					.some((c) => c.id === "sentence:s1:listeningComprehension"),
+			).toBe(false);
+
+			readingBefore?.recordReview(RecallRating.GOOD, new Date().toISOString());
+			cardRepo.save(readingBefore as never);
+			const ratedRepetitions = readingBefore?.schedule.repetitions;
+			expect(ratedRepetitions).toBeGreaterThan(0);
+
+			// Reboot with the content patch: the sentence now has audio.
+			const s1WithAudio: SentenceEntry = {
+				...s1,
+				thai_audio_file: "/thai-script/audio/sentence-maa.mp3",
+				cards: {
+					...s1.cards,
+					listeningComprehension: {
+						distractors: ["wrong1", "wrong2", "wrong3"],
+					},
+				},
+			};
+			const service = createService(storage, [s1WithAudio], vocabEntries);
+			service.reconcileCards();
+
+			const persistedAfter = cardRepo.findAll("sentence");
+			const listening = persistedAfter.find(
+				(c) => c.id === "sentence:s1:listeningComprehension",
+			);
+			expect(listening).toBeDefined();
+			expect(listening?.audioUrl).toBe("/thai-script/audio/sentence-maa.mp3");
+			expect(listening?.schedule.repetitions).toBe(0);
+
+			const readingAfter = persistedAfter.find(
+				(c) => c.id === "sentence:s1:readingComprehension",
+			);
+			expect(readingAfter?.schedule.repetitions).toBe(ratedRepetitions);
+		});
+
+		it("is a no-op for a sentence the learner hasn't started yet", () => {
+			const storage = new InMemoryStorage();
+			const s1 = makeSentenceEntry("s1", ["มา"]);
+			const vocabEntries = [makeVocabEntry("มา")];
+			seedVocabCards(storage, ["มา"]);
+			const service = createService(storage, [s1], vocabEntries);
+
+			service.reconcileCards();
+
+			const cardRepo = new StorageCardRepository(storage);
+			expect(cardRepo.findAll("sentence")).toHaveLength(0);
 		});
 	});
 });

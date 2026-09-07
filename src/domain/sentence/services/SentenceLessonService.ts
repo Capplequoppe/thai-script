@@ -1,5 +1,6 @@
 import type { CardRepository } from "../../ports/CardRepository";
 import type { ApprenticeService } from "../../shared/services/ApprenticeService";
+import { reconcileGeneratedCards } from "../../shared/services/reconcileCards";
 import type { VocabularyService } from "../../vocabulary/services/VocabularyLessonService";
 import { SentenceReviewCard } from "../entities/SentenceReviewCard";
 import type {
@@ -73,5 +74,36 @@ export class SentenceService {
 		return new Set(
 			sentenceCards.map((c) => (c as SentenceReviewCard).sentenceId),
 		).size;
+	}
+
+	private getLearnedSentenceEntries(): SentenceEntry[] {
+		const sentenceCards = this.cardRepo.findAll("sentence");
+		const learnedSentenceIds = new Set(
+			sentenceCards.map((c) => (c as SentenceReviewCard).sentenceId),
+		);
+		return this.sentenceData.filter((entry) =>
+			learnedSentenceIds.has(entry.id),
+		);
+	}
+
+	/**
+	 * Backfills already-learned sentences with any card the current generator
+	 * would now produce for them that isn't persisted yet (e.g. audio landing
+	 * for a sentence learned before it had any), or an `audioUrl` on a
+	 * persisted card that previously had none. See `reconcileGeneratedCards`
+	 * for the exact, deliberately narrow rules.
+	 */
+	reconcileCards(): void {
+		const persisted = (
+			this.cardRepo.findAll("sentence") as SentenceReviewCard[]
+		).map((card) => card.toDTO() as SentenceCard);
+		const generated = this.getLearnedSentenceEntries().flatMap((entry) =>
+			generateSentenceCards(entry),
+		);
+
+		const toSave = reconcileGeneratedCards(persisted, generated);
+		if (toSave.length === 0) return;
+
+		this.cardRepo.saveAll(toSave.map((dto) => SentenceReviewCard.fromDTO(dto)));
 	}
 }

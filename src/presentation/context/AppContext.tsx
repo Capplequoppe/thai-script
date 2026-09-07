@@ -81,6 +81,11 @@ const lessonUseCase = new StartLessonUseCase(
 	grammarService,
 	sentenceService,
 );
+// Runs once per app boot, before `AppProvider`'s first `storage.load()` — so
+// the very first state the UI sees already reflects any backfilled cards.
+// See CONTEXT.md / the reconcile plan for why this is safe to run
+// unconditionally (additive-only, no SRS-state loss for existing cards).
+lessonUseCase.reconcileAllContent();
 const reviewUseCase = new ConductReviewUseCase(
 	reviewService,
 	notificationScheduler,

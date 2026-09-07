@@ -3,6 +3,9 @@ import { InMemoryStorage } from "../../../infrastructure/persistence/Storage";
 import { StorageCardRepository } from "../../../infrastructure/persistence/StorageCardRepository";
 import { StorageLearnerStateRepository } from "../../../infrastructure/persistence/StorageLearnerStateRepository";
 import type { SrsData } from "../../shared/types";
+import { DEFAULT_SRS_DATA } from "../../shared/types";
+import { RecallRating } from "../../srs/value-objects/RecallRating";
+import { VocabCard } from "../entities/VocabCard";
 import type { VocabEntry } from "../types";
 import { VocabularyService } from "./VocabularyLessonService";
 
@@ -614,6 +617,70 @@ describe("VocabularyService", () => {
 			const vocabulary = [makeEntry()];
 			const service = new VocabularyService(cardRepo, stateRepo, vocabulary);
 			expect(service.getNextLesson()).not.toBeNull();
+		});
+	});
+
+	describe("reconcileCards", () => {
+		it("backfills an audio-gated card for an already-learned word once it gains audio, without touching its other cards' srs", () => {
+			// Learn the word before it has audio: only the two always-generated
+			// cards exist. Seeded directly (bypassing lesson unlock/generation)
+			// since reconcileCards only cares that a card already exists.
+			const thaiToEnglish = VocabCard.fromDTO({
+				id: "vocab:มา:thaiToEnglish",
+				question: "What does this word mean?",
+				correctAnswer: "to come",
+				choices: ["to come", "to go"],
+				srs: DEFAULT_SRS_DATA,
+				promptWord: "มา",
+				property: "thaiToEnglish",
+			});
+			cardRepo.saveAll([thaiToEnglish]);
+
+			// Rate it, giving it a review history distinct from a fresh card.
+			thaiToEnglish.recordReview(RecallRating.GOOD, new Date().toISOString());
+			cardRepo.save(thaiToEnglish);
+			const ratedRepetitions = thaiToEnglish.schedule.repetitions;
+			expect(ratedRepetitions).toBeGreaterThan(0);
+
+			expect(
+				cardRepo
+					.findAll("vocab")
+					.some((c) => c.id === "vocab:มา:audioRecognition"),
+			).toBe(false);
+
+			// Reboot with the content patch: the word now has audio.
+			const withAudio = makeEntry({
+				thai: "มา",
+				thai_audio_file: "/thai-script/vocabulary/audio/maa_th.mp3",
+			});
+			const service = new VocabularyService(cardRepo, stateRepo, [withAudio]);
+			service.reconcileCards();
+
+			const persistedAfter = cardRepo.findAll("vocab");
+			const audioRecognition = persistedAfter.find(
+				(c) => c.id === "vocab:มา:audioRecognition",
+			);
+			expect(audioRecognition).toBeDefined();
+			expect(audioRecognition?.audioUrl).toBe(
+				"/thai-script/vocabulary/audio/maa_th.mp3",
+			);
+			// Newly-added card starts fresh, not graduated.
+			expect(audioRecognition?.schedule.repetitions).toBe(0);
+
+			// The sibling card's review history survives untouched.
+			const thaiToEnglishAfter = persistedAfter.find(
+				(c) => c.id === "vocab:มา:thaiToEnglish",
+			);
+			expect(thaiToEnglishAfter?.schedule.repetitions).toBe(ratedRepetitions);
+		});
+
+		it("is a no-op for a word the learner hasn't started yet", () => {
+			const vocabulary = [makeEntry({ thai_audio_file: "/audio/maa.mp3" })];
+			const service = new VocabularyService(cardRepo, stateRepo, vocabulary);
+
+			service.reconcileCards();
+
+			expect(cardRepo.findAll("vocab")).toHaveLength(0);
 		});
 	});
 });

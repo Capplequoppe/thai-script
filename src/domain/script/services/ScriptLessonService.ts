@@ -1,6 +1,7 @@
 import type { CardRepository } from "../../ports/CardRepository";
 import type { LearnerStateRepository } from "../../ports/LearnerStateRepository";
 import type { ApprenticeService } from "../../shared/services/ApprenticeService";
+import { reconcileGeneratedCards } from "../../shared/services/reconcileCards";
 import type { PropertyCard } from "../../shared/types";
 import { SrsSchedule } from "../../srs/value-objects/SrsSchedule";
 import {
@@ -243,5 +244,25 @@ export class LearningService {
 
 	isNextLessonAvailable(): boolean {
 		return this.getNextLesson() !== null;
+	}
+
+	/**
+	 * Backfills already-completed lessons with any card the current generator
+	 * would now produce for them that isn't persisted yet, or an `audioUrl`
+	 * on a persisted card that previously had none. See
+	 * `reconcileGeneratedCards` for the exact, deliberately narrow rules.
+	 */
+	reconcileCards(): void {
+		const persisted = (
+			this.cardRepo.findAll("script") as ScriptPropertyCard[]
+		).map((card) => card.toDTO() as PropertyCard);
+		const generated = this.stateRepo
+			.getCompletedLessons()
+			.flatMap((lessonNumber) => generateCardsForLesson(lessonNumber));
+
+		const toSave = reconcileGeneratedCards(persisted, generated);
+		if (toSave.length === 0) return;
+
+		this.cardRepo.saveAll(toSave.map(toEntity));
 	}
 }
