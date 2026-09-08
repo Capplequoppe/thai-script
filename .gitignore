@@ -47,3 +47,6 @@ scripts/.venv/
 .claude/settings.local.json
 .claude/agent-memory/
 .codegraph/
+
+# Local backup of original lesson videos before re-encoding (not tracked)
+video-originals/
