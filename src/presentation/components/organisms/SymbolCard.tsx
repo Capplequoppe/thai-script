@@ -3,6 +3,7 @@ import type {
 	ToneMarkSummary,
 	VowelSummary,
 } from "../../../domain/script/services/ScriptLessonService";
+import { classColor } from "../../utils/consonantClassColor";
 import { ClassBadge } from "../atoms/ClassBadge";
 import { ThaiCharDisplay } from "../atoms/ThaiCharDisplay";
 import { MnemonicBlock } from "../molecules/MnemonicBlock";
@@ -22,6 +23,7 @@ export function ConsonantCard({
 					character={c.character}
 					className="text-[96px]"
 					audioUrl={c.audioUrl}
+					color={classColor(c.classType)}
 				/>
 				<h2 className="text-2xl font-semibold mt-2">{c.nameRomanized}</h2>
 				<p

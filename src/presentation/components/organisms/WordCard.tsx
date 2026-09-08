@@ -1,4 +1,5 @@
 import type { VocabEntry } from "../../../domain/vocabulary/types";
+import { classBadgeStyle, classColor } from "../../utils/consonantClassColor";
 import { MnemonicBlock } from "../molecules/MnemonicBlock";
 
 function PlayAudioButton({ audioUrl }: { audioUrl: string }) {
@@ -33,29 +34,6 @@ function InlinePlayButton({ audioUrl }: { audioUrl: string }) {
 			<span className="text-xs">🔊</span>
 		</button>
 	);
-}
-
-function consonantClassStyle(cls: string): React.CSSProperties {
-	if (cls === "mid") {
-		return {
-			background:
-				"color-mix(in srgb, var(--color-master) 12%, var(--color-surface))",
-			color: "var(--color-master)",
-		};
-	}
-	if (cls === "high") {
-		return {
-			background:
-				"color-mix(in srgb, var(--color-enlightened) 12%, var(--color-surface))",
-			color: "var(--color-enlightened)",
-		};
-	}
-	// low
-	return {
-		background:
-			"color-mix(in srgb, var(--color-enlightened) 12%, var(--color-surface))",
-		color: "var(--color-enlightened)",
-	};
 }
 
 function syllableTypeStyle(type: string): React.CSSProperties {
@@ -93,7 +71,9 @@ export function WordCard({ word }: { word: VocabEntry }) {
 						/>
 					</div>
 				)}
-				<span className="thai text-[72px]" style={{ lineHeight: 1.15 }}>{word.thai}</span>
+				<span className="thai text-[72px]" style={{ lineHeight: 1.15 }}>
+					{word.thai}
+				</span>
 				{word.thai_audio_file && (
 					<PlayAudioButton audioUrl={word.thai_audio_file} />
 				)}
@@ -152,7 +132,7 @@ export function WordCard({ word }: { word: VocabEntry }) {
 										{syl.consonantClass && (
 											<span
 												className="px-2 py-0.5 rounded font-semibold capitalize"
-												style={consonantClassStyle(syl.consonantClass)}
+												style={classBadgeStyle(syl.consonantClass)}
 											>
 												{syl.consonantClass}
 											</span>
@@ -189,7 +169,11 @@ export function WordCard({ word }: { word: VocabEntry }) {
 												<span className="opacity-60">initial </span>
 												<span
 													className="thai text-sm font-semibold"
-													style={{ color: "var(--color-text)" }}
+													style={{
+														color:
+															classColor(syl.consonantClass) ??
+															"var(--color-text)",
+													}}
 												>
 													{syl.initialConsonant}
 												</span>

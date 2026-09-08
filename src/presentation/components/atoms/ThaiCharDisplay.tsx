@@ -7,6 +7,8 @@ interface Props {
 	className?: string;
 	audioUrl?: string;
 	hideAudio?: boolean;
+	/** CSS color value, e.g. from consonantClassColor.classColor(). Omit for default text color. */
+	color?: string;
 }
 
 export function ThaiCharDisplay({
@@ -14,12 +16,13 @@ export function ThaiCharDisplay({
 	className,
 	audioUrl,
 	hideAudio,
+	color,
 }: Props) {
 	return (
 		<div className="flex items-center justify-center">
 			<span
 				className={`thai font-normal ${className ?? "text-8xl"}`}
-				style={{ lineHeight: 1.15 }}
+				style={{ lineHeight: 1.15, color }}
 			>
 				{withDottedCircles(character)}
 			</span>

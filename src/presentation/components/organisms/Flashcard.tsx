@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import type { RecallRating } from "../../../domain/shared/types";
 import { SrsStage } from "../../../domain/srs/value-objects/SrsStage";
+import { classColor } from "../../utils/consonantClassColor";
 import { StageDot } from "../atoms/StageDot";
 import { ThaiCharDisplay } from "../atoms/ThaiCharDisplay";
 import { RatingButtons } from "./RatingButtons";
@@ -37,6 +38,10 @@ export function Flashcard({ card, onRate }: Props) {
 		"symbolCharacter" in card
 			? ((card as Record<string, unknown>).symbolCharacter as string)
 			: "";
+	const symbolClass =
+		"consonantClass" in card
+			? ((card as Record<string, unknown>).consonantClass as string | undefined)
+			: undefined;
 	const promptWord =
 		"promptWord" in card
 			? ((card as Record<string, unknown>).promptWord as string)
@@ -138,6 +143,7 @@ export function Flashcard({ card, onRate }: Props) {
 							className="text-8xl"
 							audioUrl={card.audioUrl}
 							hideAudio={hideAudioHint}
+							color={classColor(symbolClass)}
 						/>
 					</div>
 				) : promptWord ? (

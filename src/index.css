@@ -31,6 +31,12 @@
 	--color-master:      #257A5A;
 	--color-enlightened: #1A3A6B;
 	--color-burned:      #C9A227;
+
+	/* Consonant Class Colors — dedicated hues, kept distinct from SRS
+	   stage colors above so class-coloring never reads as a mastery signal. */
+	--color-class-low:   #2E7D6B;
+	--color-class-mid:   #7A5AAE;
+	--color-class-high:  #A8433A;
 }
 
 /* ===== Reusable Component Primitives ===== */

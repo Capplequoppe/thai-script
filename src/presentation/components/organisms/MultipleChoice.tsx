@@ -5,6 +5,7 @@ import {
 	useRef,
 	useState,
 } from "react";
+import { classColor } from "../../utils/consonantClassColor";
 import { PlayAudioButton } from "../atoms/PlayAudioButton";
 import { ThaiCharDisplay } from "../atoms/ThaiCharDisplay";
 import { AnswerOptionButton } from "../molecules/AnswerOptionButton";
@@ -92,6 +93,10 @@ export function MultipleChoice({
 		"symbolCharacter" in card
 			? ((card as Record<string, unknown>).symbolCharacter as string)
 			: "";
+	const symbolClass =
+		"consonantClass" in card
+			? ((card as Record<string, unknown>).consonantClass as string | undefined)
+			: undefined;
 	const promptWord =
 		"promptWord" in card
 			? ((card as Record<string, unknown>).promptWord as string)
@@ -177,6 +182,7 @@ export function MultipleChoice({
 						className="text-[10rem]"
 						audioUrl={card.audioUrl}
 						hideAudio={hideAudioHint}
+						color={classColor(symbolClass)}
 					/>
 				</div>
 			) : promptWord ? (

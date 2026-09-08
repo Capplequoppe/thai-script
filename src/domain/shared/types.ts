@@ -76,6 +76,12 @@ export interface PropertyCard extends SrsCard {
 	symbolCharacter: string;
 	property: PropertyType | "toneRule";
 	lessonNumber: number;
+	/**
+	 * Class of the consonant shown via `symbolCharacter`, for glyph color-coding.
+	 * Deliberately omitted on the "class" property card itself — that card is
+	 * the retrieval test for this exact fact, so it must render with no color hint.
+	 */
+	consonantClass?: string;
 }
 
 // --- Quiz Types ---
