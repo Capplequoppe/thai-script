@@ -10,13 +10,13 @@ import type { SrsCard } from "../types";
  *   landed) — returned as-is, with whatever fresh `srs` the generator gave
  *   it.
  * - A generated id already present in `persisted` is returned ONLY when the
- *   persisted card has no `audioUrl` and the generated one does, in which
- *   case just that field is copied onto the *persisted* DTO — `srs`,
- *   `question`, `correctAnswer`, and `choices` always come from what's
- *   persisted, never the freshly generated card. Every generator shuffles
- *   `choices` with `Math.random()` on each call, so a full overwrite would
- *   rewrite already-learned cards' choices on nearly every boot for no
- *   actual content change.
+ *   persisted card is missing `audioUrl` or `consonantClass` and the
+ *   generated one has it, in which case just that field is copied onto the
+ *   *persisted* DTO — `srs`, `question`, `correctAnswer`, and `choices`
+ *   always come from what's persisted, never the freshly generated card.
+ *   Every generator shuffles `choices` with `Math.random()` on each call, so
+ *   a full overwrite would rewrite already-learned cards' choices on nearly
+ *   every boot for no actual content change.
  * - A persisted id absent from `generated` is left alone — this never
  *   deletes anything.
  */
@@ -33,8 +33,19 @@ export function reconcileGeneratedCards<T extends SrsCard>(
 			toSave.push(card);
 			continue;
 		}
+
+		const patch: Partial<T> = {};
 		if (!existing.audioUrl && card.audioUrl) {
-			toSave.push({ ...existing, audioUrl: card.audioUrl });
+			patch.audioUrl = card.audioUrl;
+		}
+		const existingClass = (existing as Record<string, unknown>).consonantClass;
+		const generatedClass = (card as Record<string, unknown>).consonantClass;
+		if (!existingClass && generatedClass) {
+			(patch as Record<string, unknown>).consonantClass = generatedClass;
+		}
+
+		if (Object.keys(patch).length > 0) {
+			toSave.push({ ...existing, ...patch });
 		}
 	}
 

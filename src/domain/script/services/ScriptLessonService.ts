@@ -80,6 +80,7 @@ function toEntity(dto: PropertyCard): ScriptPropertyCard {
 		dto.property,
 		dto.lessonNumber,
 		dto.audioUrl,
+		dto.consonantClass,
 	);
 }
 

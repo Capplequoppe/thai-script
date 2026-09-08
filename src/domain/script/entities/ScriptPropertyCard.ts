@@ -14,6 +14,7 @@ export class ScriptPropertyCard extends ReviewableCard {
 		readonly property: PropertyType | "toneRule",
 		readonly lessonNumber: number,
 		audioUrl?: string,
+		readonly consonantClass?: string,
 	) {
 		super(id, question, correctAnswer, choices, schedule, audioUrl);
 	}
@@ -33,6 +34,7 @@ export class ScriptPropertyCard extends ReviewableCard {
 			symbolCharacter: this.symbolCharacter,
 			property: this.property,
 			lessonNumber: this.lessonNumber,
+			consonantClass: this.consonantClass,
 		};
 	}
 
@@ -46,6 +48,7 @@ export class ScriptPropertyCard extends ReviewableCard {
 		property: PropertyType | "toneRule";
 		lessonNumber: number;
 		audioUrl?: string;
+		consonantClass?: string;
 	}): ScriptPropertyCard {
 		return new ScriptPropertyCard(
 			dto.id,
@@ -57,6 +60,7 @@ export class ScriptPropertyCard extends ReviewableCard {
 			dto.property,
 			dto.lessonNumber,
 			dto.audioUrl,
+			dto.consonantClass,
 		);
 	}
 }

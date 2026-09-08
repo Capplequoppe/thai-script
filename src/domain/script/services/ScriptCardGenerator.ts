@@ -149,8 +149,11 @@ function generateConsonantCards(c: ThaiConsonant): PropertyCard[] {
 		choices: pickChoices(c.nameRomanized, consonantRomanizedPool),
 		srs,
 		lessonNumber: lesson,
+		consonantClass: c.classType,
 	};
 
+	// No `consonantClass` here: this card's question IS "what class is this
+	// consonant", so the glyph must render with no color hint.
 	const classCard: PropertyCard = {
 		id: `${c.character}:class`,
 		symbolCharacter: c.character,
@@ -174,6 +177,7 @@ function generateConsonantCards(c: ThaiConsonant): PropertyCard[] {
 		choices: pickChoices(normalizedInitial, normalizedInitialSoundPool),
 		srs: SrsSchedule.initial().toDTO(),
 		lessonNumber: lesson,
+		consonantClass: c.classType,
 	};
 
 	const normalizedFinal = normalizeFinalSound(c.finalSound);
@@ -187,6 +191,7 @@ function generateConsonantCards(c: ThaiConsonant): PropertyCard[] {
 		choices: pickChoices(normalizedFinal, normalizedFinalSoundPool),
 		srs: SrsSchedule.initial().toDTO(),
 		lessonNumber: lesson,
+		consonantClass: c.classType,
 	};
 
 	const deadLiveAnswer = c.hasDeadEnding ? "dead ending" : "live ending";
@@ -200,6 +205,7 @@ function generateConsonantCards(c: ThaiConsonant): PropertyCard[] {
 		choices: pickChoices(deadLiveAnswer, deadLivePool),
 		srs: SrsSchedule.initial().toDTO(),
 		lessonNumber: lesson,
+		consonantClass: c.classType,
 	};
 
 	const cards = [recognition, classCard, initialSound, finalSound, deadLive];
@@ -215,6 +221,7 @@ function generateConsonantCards(c: ThaiConsonant): PropertyCard[] {
 			choices: pickChoices(c.character, consonantCharPool),
 			srs: SrsSchedule.initial().toDTO(),
 			lessonNumber: lesson,
+			consonantClass: c.classType,
 		});
 	}
 
