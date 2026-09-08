@@ -1,4 +1,5 @@
 import type { CSSProperties } from "react";
+import type { ScaffoldLevel } from "./srsFade";
 
 // Single source of truth for how consonant class maps to color, so the
 // mnemonic stays consistent everywhere it appears (glyphs, badges, syllable
@@ -16,6 +17,24 @@ export function classColor(
 ): string | undefined {
 	if (!classType) return undefined;
 	return CLASS_COLOR_VAR[classType];
+}
+
+/**
+ * Class color at a given scaffold level: full color while a word is still
+ * being learned, blended halfway toward default text color once it's
+ * "fading" (Enlightened), and plain default text color once "none"
+ * (Burned) — a mastered word should read like unmarked Thai text.
+ */
+export function classColorForLevel(
+	classType: string | null | undefined,
+	level: ScaffoldLevel,
+): string | undefined {
+	const color = classColor(classType);
+	if (!color || level === "none") return undefined;
+	if (level === "fading") {
+		return `color-mix(in srgb, ${color} 50%, var(--color-text))`;
+	}
+	return color;
 }
 
 export function classBadgeStyle(
