@@ -1,5 +1,10 @@
 import type { VocabEntry } from "../../../domain/vocabulary/types";
-import { classBadgeStyle, classColor } from "../../utils/consonantClassColor";
+import {
+	classBadgeStyle,
+	classColorForLevel,
+} from "../../utils/consonantClassColor";
+import { scaffoldLevel } from "../../utils/srsFade";
+import { ToneContourIcon } from "../atoms/ToneContourIcon";
 import { MnemonicBlock } from "../molecules/MnemonicBlock";
 
 function PlayAudioButton({ audioUrl }: { audioUrl: string }) {
@@ -51,11 +56,19 @@ function syllableTypeStyle(type: string): React.CSSProperties {
 	};
 }
 
-export function WordCard({ word }: { word: VocabEntry }) {
+export function WordCard({
+	word,
+	stageName,
+}: {
+	word: VocabEntry;
+	/** This word's SRS stage name (e.g. "Burned"), if known — fades the color/tone scaffolding as mastery grows. Omit for a not-yet-reviewed word, which gets full scaffolding. */
+	stageName?: string | null;
+}) {
 	const hasDecomposition = word.syllables.some(
 		(s) => s.initialConsonant || s.vowel || s.finalConsonant,
 	);
 	const visibleSamples = word.samples.filter((s) => s.thai);
+	const level = scaffoldLevel(stageName);
 
 	return (
 		<div className="space-y-4">
@@ -139,13 +152,21 @@ export function WordCard({ word }: { word: VocabEntry }) {
 										)}
 										{syl.tone && (
 											<span
-												className="px-2 py-0.5 rounded font-semibold"
+												className="flex items-center gap-1 px-2 py-0.5 rounded font-semibold"
 												style={{
 													background:
 														"color-mix(in srgb, var(--color-primary) 12%, var(--color-surface))",
 													color: "var(--color-primary)",
 												}}
 											>
+												{level !== "none" && (
+													<ToneContourIcon
+														tone={syl.tone}
+														style={{
+															opacity: level === "fading" ? 0.5 : 1,
+														}}
+													/>
+												)}
 												{syl.tone}
 											</span>
 										)}
@@ -171,7 +192,7 @@ export function WordCard({ word }: { word: VocabEntry }) {
 													className="thai text-sm font-semibold"
 													style={{
 														color:
-															classColor(syl.consonantClass) ??
+															classColorForLevel(syl.consonantClass, level) ??
 															"var(--color-text)",
 													}}
 												>

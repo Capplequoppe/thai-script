@@ -307,7 +307,10 @@ export function VocabListPage() {
 					<div className="flex justify-center">
 						<StageBadge stage={getWordStage(selectedEntry.thai)} />
 					</div>
-					<WordCard word={selectedEntry} />
+					<WordCard
+						word={selectedEntry}
+						stageName={getWordStage(selectedEntry.thai)}
+					/>
 					<div className="flex justify-center">
 						<button
 							type="button"
