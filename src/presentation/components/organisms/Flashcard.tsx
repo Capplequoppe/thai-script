@@ -31,7 +31,14 @@ export function Flashcard({ card, onRate }: Props) {
 
 	const cardProperty =
 		"property" in card ? (card as Record<string, unknown>).property : null;
-	const isAudioRecognition = cardProperty === "audioRecognition";
+	// Both are "hear it, then recall the meaning" cards — vocab/symbol's own
+	// audioRecognition property and a sentence's listeningComprehension
+	// property (which has no symbolCharacter/promptWord of its own for the
+	// boxes below to key off, so without this it would fall through to no
+	// audio at all) — mirrors MultipleChoice's playsAudioUpfront.
+	const playsAudioUpfront =
+		cardProperty === "audioRecognition" ||
+		cardProperty === "listeningComprehension";
 	const hideAudioHint =
 		cardProperty === "recognition" || cardProperty === "initialSound";
 	const symbolChar =
@@ -53,7 +60,7 @@ export function Flashcard({ card, onRate }: Props) {
 	// it (hearing it first would answer the challenge — see
 	// `SentenceReadingChallenge`'s own doc comment for the same rule).
 	const hasTopAudio =
-		isAudioRecognition || Boolean(symbolChar) || Boolean(promptWord);
+		playsAudioUpfront || Boolean(symbolChar) || Boolean(promptWord);
 
 	const stage = card.srs
 		? SrsStage.fromScheduleData(card.srs.learningStep, card.srs.interval)
@@ -65,10 +72,10 @@ export function Flashcard({ card, onRate }: Props) {
 	}, [card.id]);
 
 	useEffect(() => {
-		if (isAudioRecognition && card.audioUrl) {
+		if (playsAudioUpfront && card.audioUrl) {
 			new Audio(card.audioUrl).play().catch(() => {});
 		}
-	}, [isAudioRecognition, card.audioUrl]);
+	}, [playsAudioUpfront, card.audioUrl]);
 
 	// biome-ignore lint/correctness/useExhaustiveDependencies: fires once per reveal, not on every audioUrl/hasTopAudio identity change
 	useEffect(() => {
@@ -117,7 +124,7 @@ export function Flashcard({ card, onRate }: Props) {
 					</div>
 				)}
 
-				{isAudioRecognition && card.audioUrl ? (
+				{playsAudioUpfront && card.audioUrl ? (
 					<div className="text-center">
 						<button
 							type="button"

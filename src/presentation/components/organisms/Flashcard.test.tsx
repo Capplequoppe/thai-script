@@ -13,6 +13,15 @@ const SELF_VALIDATION_CARD = {
 	property: "selfValidation",
 };
 
+const LISTENING_COMPREHENSION_CARD = {
+	id: "sentence:basic-001:listeningComprehension",
+	question: "Listen to the sentence. What does it mean?",
+	correctAnswer: "Come eat together",
+	choices: [],
+	audioUrl: "/thai-script/audio/sentence-maa-gin-gan.mp3",
+	property: "listeningComprehension",
+};
+
 const SYMBOL_CARD = {
 	id: "ม:class",
 	question: "What class is this consonant?",
@@ -65,6 +74,34 @@ describe("Flashcard — sentence audio (selfValidation)", () => {
 
 		expect(onRate).toHaveBeenCalledTimes(1);
 		expect(onRate.mock.calls[0]?.[0]).toBe(4);
+	});
+});
+
+describe("Flashcard — sentence listening comprehension audio", () => {
+	// listeningComprehension has no symbolCharacter/promptWord of its own for
+	// the existing boxes to key off — see the component's own doc comment on
+	// `playsAudioUpfront`. Unlike selfValidation, this one plays immediately:
+	// "hear it, then recall the meaning" is the whole point of this card, the
+	// same as vocab/symbol's audioRecognition property.
+	it("auto-plays audio on mount and offers a replay button before reveal", () => {
+		render(<Flashcard card={LISTENING_COMPREHENSION_CARD} onRate={vi.fn()} />);
+
+		expect(createdAudioUrls()).toContain(
+			"/thai-script/audio/sentence-maa-gin-gan.mp3",
+		);
+		expect(
+			screen.getByRole("button", { name: "Replay pronunciation" }),
+		).toBeTruthy();
+	});
+
+	it("does not also add the reveal-time replay button", () => {
+		render(<Flashcard card={LISTENING_COMPREHENSION_CARD} onRate={vi.fn()} />);
+
+		reveal();
+
+		expect(
+			screen.getAllByRole("button", { name: "Replay pronunciation" }),
+		).toHaveLength(1);
 	});
 });
 
