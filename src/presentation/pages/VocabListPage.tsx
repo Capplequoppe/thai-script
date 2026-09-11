@@ -3,51 +3,19 @@ import { useNavigate } from "react-router";
 import { SrsStage } from "../../domain/srs/value-objects/SrsStage";
 import type { VocabProperty } from "../../domain/vocabulary/types";
 import { StageBadge } from "../components/molecules/StageBadge";
+import { WordClassTabs } from "../components/molecules/WordClassTabs";
 import {
 	type ItemCard,
 	StageOverrideSheet,
 } from "../components/organisms/StageOverrideSheet";
 import { WordCard } from "../components/organisms/WordCard";
 import { useApp } from "../hooks/useApp";
-
-// ---------------------------------------------------------------------------
-// Word-class display names
-// ---------------------------------------------------------------------------
-
-const WORD_CLASS_LABELS: Record<string, string> = {
-	n: "Nouns",
-	v: "Verbs",
-	adj: "Adjectives",
-	adv: "Adverbs",
-	part: "Particles",
-	conj: "Conjunctions",
-	pron: "Pronouns",
-	clf: "Classifiers",
-	int: "Interjections",
-	prep: "Prepositions",
-};
-
-// Preferred tab ordering for known classes
-const CLASS_ORDER = [
-	"n",
-	"v",
-	"adj",
-	"adv",
-	"part",
-	"conj",
-	"pron",
-	"clf",
-	"int",
-	"prep",
-];
-
-// Sentinel for words with empty or unrecognised word_class
-const OTHER_KEY = "__other__";
-
-function toTabKey(word_class: string): string {
-	if (!word_class || !(word_class in WORD_CLASS_LABELS)) return OTHER_KEY;
-	return word_class;
-}
+import { bestVocabStage } from "../utils/vocabStage";
+import {
+	buildWordClassTabs,
+	filterByWordClassTab,
+	WORD_CLASS_LABELS,
+} from "../utils/wordClass";
 
 // ---------------------------------------------------------------------------
 // Page
@@ -76,81 +44,20 @@ export function VocabListPage() {
 	);
 
 	// Derive the SRS stage for a word from its best (most-advanced) card
-	const getWordStage = (thai: string): string => {
-		const cards = Object.values(state.vocabCards).filter(
-			(c) => c.id.split(":")[1] === thai,
-		);
-		if (cards.length === 0) return "Apprentice";
-		const stageOrder = [
-			"Apprentice",
-			"Guru",
-			"Master",
-			"Enlightened",
-			"Burned",
-		];
-		const stages = cards.map((c) =>
-			SrsStage.fromScheduleData(c.srs.learningStep, c.srs.interval),
-		);
-		const best = stages.reduce((a, b) =>
-			stageOrder.indexOf(b.name) > stageOrder.indexOf(a.name) ? b : a,
-		);
-		return best.name;
-	};
+	const getWordStage = (thai: string): string =>
+		bestVocabStage(thai, state.vocabCards);
 
-	// Count learned words per class
-	const classCounts = useMemo(() => {
-		const counts = new Map<string, number>();
-		for (const entry of learnedEntries) {
-			const key = toTabKey(entry.word_class);
-			counts.set(key, (counts.get(key) ?? 0) + 1);
-		}
-		return counts;
-	}, [learnedEntries]);
-
-	// Build ordered tab list
-	const tabs = useMemo(() => {
-		const present = new Set(classCounts.keys());
-		const result: Array<{ key: string; label: string; count: number }> = [
-			{ key: "all", label: "All", count: learnedEntries.length },
-		];
-		for (const cls of CLASS_ORDER) {
-			if (present.has(cls)) {
-				result.push({
-					key: cls,
-					label: WORD_CLASS_LABELS[cls] ?? cls,
-					count: classCounts.get(cls) ?? 0,
-				});
-			}
-		}
-		for (const key of present) {
-			if (key !== OTHER_KEY && !CLASS_ORDER.includes(key)) {
-				result.push({
-					key,
-					label: WORD_CLASS_LABELS[key] ?? key,
-					count: classCounts.get(key) ?? 0,
-				});
-			}
-		}
-		if (present.has(OTHER_KEY)) {
-			result.push({
-				key: OTHER_KEY,
-				label: "Other",
-				count: classCounts.get(OTHER_KEY) ?? 0,
-			});
-		}
-		return result;
-	}, [classCounts, learnedEntries.length]);
+	// Build ordered tab list, counted over learned words
+	const tabs = useMemo(
+		() => buildWordClassTabs(learnedEntries),
+		[learnedEntries],
+	);
 
 	// Filter entries for current tab
-	const filteredEntries = useMemo(() => {
-		if (classFilter === "all") return learnedEntries;
-		if (classFilter === OTHER_KEY) {
-			return learnedEntries.filter(
-				(e) => !e.word_class || !(e.word_class in WORD_CLASS_LABELS),
-			);
-		}
-		return learnedEntries.filter((e) => e.word_class === classFilter);
-	}, [learnedEntries, classFilter]);
+	const filteredEntries = useMemo(
+		() => filterByWordClassTab(learnedEntries, classFilter),
+		[learnedEntries, classFilter],
+	);
 
 	const selectedEntry = selectedThai
 		? (learnedEntries.find((e) => e.thai === selectedThai) ?? null)
@@ -197,43 +104,27 @@ export function VocabListPage() {
 				>
 					← {selectedThai ? "Back to list" : "Back"}
 				</button>
-				<h1 className="text-2xl font-bold">Vocabulary</h1>
+				<h1 className="text-2xl font-bold flex-1">Vocabulary</h1>
+				{!selectedThai && (
+					<button
+						type="button"
+						onClick={() => navigate("/dictionary")}
+						className="text-sm hover:underline"
+						style={{ color: "var(--color-primary)" }}
+					>
+						Dictionary →
+					</button>
+				)}
 			</div>
 
 			{!selectedThai && (
 				<>
 					{/* Word-class tabs */}
-					<div
-						className="flex gap-1 rounded-xl p-1 overflow-x-auto"
-						style={{ background: "var(--color-surface-2)" }}
-					>
-						{tabs.map(({ key, label, count }) => (
-							<button
-								type="button"
-								key={key}
-								onClick={() => setClassFilter(key)}
-								className="flex-shrink-0 py-2 px-3 rounded-lg text-sm font-medium transition-colors"
-								style={
-									classFilter === key
-										? {
-												background: "var(--color-surface)",
-												color: "var(--color-text)",
-												boxShadow:
-													"0 1px 3px color-mix(in srgb, var(--color-text) 10%, transparent)",
-											}
-										: { color: "var(--color-text-muted)" }
-								}
-							>
-								{label}{" "}
-								<span
-									className="text-xs"
-									style={{ color: "var(--color-text-muted)" }}
-								>
-									({count})
-								</span>
-							</button>
-						))}
-					</div>
+					<WordClassTabs
+						tabs={tabs}
+						activeKey={classFilter}
+						onSelect={setClassFilter}
+					/>
 
 					{/* Word grid */}
 					<div className="grid grid-cols-3 gap-2">

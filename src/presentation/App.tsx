@@ -2,6 +2,7 @@ import { HashRouter, Navigate, Route, Routes } from "react-router";
 import { Layout } from "./components/layout/Layout";
 import { AppProvider } from "./context/AppContext";
 import { Dashboard } from "./pages/Dashboard";
+import { DictionaryPage } from "./pages/DictionaryPage";
 import { GamePage } from "./pages/GamePage";
 import { GrammarPage } from "./pages/GrammarPage";
 import { LearnedItemsPage } from "./pages/LearnedItemsPage";
@@ -32,6 +33,7 @@ export function App() {
 						<Route path="/grammar" element={<GrammarPage />} />
 						<Route path="/sentences" element={<SentencePage />} />
 						<Route path="/vocab" element={<VocabListPage />} />
+						<Route path="/dictionary" element={<DictionaryPage />} />
 						<Route path="*" element={<Navigate to="/" replace />} />
 					</Route>
 				</Routes>
