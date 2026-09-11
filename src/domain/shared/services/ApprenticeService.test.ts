@@ -4,12 +4,14 @@ import { StorageCardRepository } from "../../../infrastructure/persistence/Stora
 import { GrammarReviewCard } from "../../grammar/entities/GrammarReviewCard";
 import type { CardRepository } from "../../ports/CardRepository";
 import { ScriptPropertyCard } from "../../script/entities/ScriptPropertyCard";
+import { SentenceReviewCard } from "../../sentence/entities/SentenceReviewCard";
 import { SrsSchedule } from "../../srs/value-objects/SrsSchedule";
 import { VocabCard } from "../../vocabulary/entities/VocabCard";
 import {
 	ApprenticeService,
 	MAX_APPRENTICE_ITEMS,
 	MAX_SCRIPT_APPRENTICE_ITEMS,
+	MAX_SENTENCE_APPRENTICE_ITEMS,
 } from "./ApprenticeService";
 
 function learningSchedule(): SrsSchedule {
@@ -50,6 +52,22 @@ function makeVocabCard(id: string, inLearning: boolean): VocabCard {
 		inLearning ? learningSchedule() : graduatedSchedule(),
 		"มา",
 		"thaiToEnglish",
+	);
+}
+
+function makeSentenceCard(
+	id: string,
+	sentenceId: string,
+	inLearning: boolean,
+): SentenceReviewCard {
+	return new SentenceReviewCard(
+		id,
+		"test",
+		"test",
+		["test"],
+		inLearning ? learningSchedule() : graduatedSchedule(),
+		sentenceId,
+		"readingComprehension",
 	);
 }
 
@@ -133,6 +151,62 @@ describe("ApprenticeService", () => {
 				expect(service.canStartLesson("grammar")).toBe(false);
 			});
 		});
+
+		describe("sentence-specific limit", () => {
+			it("uses sentence-specific limit of 60 distinct sentences", () => {
+				for (let i = 0; i < MAX_SENTENCE_APPRENTICE_ITEMS; i++) {
+					cardRepo.save(makeSentenceCard(`sc${i}`, `sentence${i}`, true));
+				}
+				expect(service.canStartLesson("sentence")).toBe(false);
+			});
+
+			it("allows sentence lessons when below 60 distinct sentences", () => {
+				for (let i = 0; i < MAX_SENTENCE_APPRENTICE_ITEMS - 1; i++) {
+					cardRepo.save(makeSentenceCard(`sc${i}`, `sentence${i}`, true));
+				}
+				expect(service.canStartLesson("sentence")).toBe(true);
+			});
+
+			it("counts multiple cards for the same sentence as one toward the cap", () => {
+				for (let i = 0; i < MAX_SENTENCE_APPRENTICE_ITEMS; i++) {
+					// 3 cards per sentence, same sentenceId — still only 60 distinct sentences
+					cardRepo.save(makeSentenceCard(`sc${i}a`, `sentence${i}`, true));
+					cardRepo.save(makeSentenceCard(`sc${i}b`, `sentence${i}`, true));
+					cardRepo.save(makeSentenceCard(`sc${i}c`, `sentence${i}`, true));
+				}
+				expect(service.canStartLesson("sentence")).toBe(false);
+				expect(service.getSentenceApprenticeCount()).toBe(
+					MAX_SENTENCE_APPRENTICE_ITEMS,
+				);
+			});
+
+			it("does not count graduated sentence cards toward the cap", () => {
+				for (let i = 0; i < MAX_SENTENCE_APPRENTICE_ITEMS; i++) {
+					cardRepo.save(makeSentenceCard(`sc${i}`, `sentence${i}`, false));
+				}
+				expect(service.canStartLesson("sentence")).toBe(true);
+			});
+		});
+
+		describe("sentence cards excluded from the shared vocab/grammar limit", () => {
+			it("does not count sentence cards toward the combined limit for vocab", () => {
+				for (let i = 0; i < MAX_APPRENTICE_ITEMS; i++) {
+					cardRepo.save(makeSentenceCard(`sc${i}`, `sentence${i}`, true));
+				}
+				expect(service.canStartLesson("vocab")).toBe(true);
+				expect(service.canStartLesson()).toBe(true);
+			});
+
+			it("still blocks vocab/grammar once non-sentence cards hit the combined limit", () => {
+				for (let i = 0; i < MAX_APPRENTICE_ITEMS; i++) {
+					cardRepo.save(makeVocabCard(`v${i}`, true));
+				}
+				for (let i = 0; i < 10; i++) {
+					cardRepo.save(makeSentenceCard(`sc${i}`, `sentence${i}`, true));
+				}
+				expect(service.canStartLesson("grammar")).toBe(false);
+			});
+		});
 	});
 
 	describe("getApprenticeCountForPool", () => {
@@ -199,6 +273,26 @@ describe("ApprenticeService", () => {
 			cardRepo.save(makeScriptCard("s1", true));
 
 			const stats = customService.getApprenticeStats();
+			expect(stats.isAtLimit).toBe(true);
+		});
+
+		it("does not count sentence cards toward isAtLimit", () => {
+			const customService = new ApprenticeService(cardRepo, 1);
+			cardRepo.save(makeSentenceCard("sc1", "sentence1", true));
+			cardRepo.save(makeSentenceCard("sc2", "sentence2", true));
+
+			const stats = customService.getApprenticeStats();
+			expect(stats.total).toBe(2);
+			expect(stats.isAtLimit).toBe(false);
+		});
+
+		it("includes sentence cards in total but reports isAtLimit off the non-sentence sum", () => {
+			const customService = new ApprenticeService(cardRepo, 1);
+			cardRepo.save(makeVocabCard("v1", true));
+			cardRepo.save(makeSentenceCard("sc1", "sentence1", true));
+
+			const stats = customService.getApprenticeStats();
+			expect(stats.total).toBe(2);
 			expect(stats.isAtLimit).toBe(true);
 		});
 	});

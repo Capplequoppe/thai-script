@@ -53,4 +53,14 @@ export abstract class ReviewableCard {
 	}
 
 	abstract get pool(): CardPool;
+
+	/**
+	 * Identity used to group related cards together (e.g. Apprentice-cap
+	 * counting). Defaults to the card's own id; a subclass whose cards fan
+	 * out from a single learning item (e.g. one sentence's several property
+	 * cards) overrides this to that shared item's id.
+	 */
+	get groupKey(): string {
+		return this.id;
+	}
 }

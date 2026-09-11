@@ -2,10 +2,15 @@ import { describe, expect, it } from "vitest";
 import { InMemoryStorage } from "../../../infrastructure/persistence/Storage";
 import { StorageCardRepository } from "../../../infrastructure/persistence/StorageCardRepository";
 import { StorageLearnerStateRepository } from "../../../infrastructure/persistence/StorageLearnerStateRepository";
-import { ApprenticeService } from "../../shared/services/ApprenticeService";
+import {
+	ApprenticeService,
+	MAX_SENTENCE_APPRENTICE_ITEMS,
+} from "../../shared/services/ApprenticeService";
 import { RecallRating } from "../../srs/value-objects/RecallRating";
+import { SrsSchedule } from "../../srs/value-objects/SrsSchedule";
 import { VocabularyService } from "../../vocabulary/services/VocabularyLessonService";
 import type { VocabEntry } from "../../vocabulary/types";
+import { SentenceReviewCard } from "../entities/SentenceReviewCard";
 import type { SentenceEntry } from "../types";
 import { SentenceService } from "./SentenceLessonService";
 
@@ -188,16 +193,43 @@ describe("SentenceService", () => {
 			expect(lesson?.sentences).toHaveLength(3);
 		});
 
-		it("returns null when at apprentice limit", () => {
+		it("returns null when at the sentence-specific apprentice limit", () => {
 			const storage = new InMemoryStorage();
 			const s1 = makeSentenceEntry("s1", ["มา"]);
 			const vocabEntries = [makeVocabEntry("มา")];
 			seedVocabCards(storage, ["มา"]);
 			const cardRepo = new StorageCardRepository(storage);
-			const apprentice = new ApprenticeService(cardRepo, 0);
+			for (let i = 0; i < MAX_SENTENCE_APPRENTICE_ITEMS; i++) {
+				cardRepo.save(
+					new SentenceReviewCard(
+						`existing:${i}`,
+						"q",
+						"a",
+						["a"],
+						SrsSchedule.initial(),
+						`existing-sentence-${i}`,
+						"readingComprehension",
+					),
+				);
+			}
+			const apprentice = new ApprenticeService(cardRepo);
 			const service = createService(storage, [s1], vocabEntries, apprentice);
 
 			expect(service.getNextLesson()).toBeNull();
+		});
+
+		it("is not blocked by the shared vocab/grammar limit even when it is exhausted", () => {
+			const storage = new InMemoryStorage();
+			const s1 = makeSentenceEntry("s1", ["มา"]);
+			const vocabEntries = [makeVocabEntry("มา")];
+			seedVocabCards(storage, ["มา"]);
+			const cardRepo = new StorageCardRepository(storage);
+			// A custom limit of 0 exhausts the shared vocab/grammar budget, but
+			// must not block sentences — they're gated by their own cap.
+			const apprentice = new ApprenticeService(cardRepo, 0);
+			const service = createService(storage, [s1], vocabEntries, apprentice);
+
+			expect(service.getNextLesson()).not.toBeNull();
 		});
 	});
 

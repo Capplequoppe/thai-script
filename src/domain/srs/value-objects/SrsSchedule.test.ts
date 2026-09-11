@@ -622,6 +622,116 @@ describe("overrideStage", () => {
 	});
 });
 
+describe("SrsSchedule.initial with a custom learning ladder", () => {
+	it("starts at the given startStep instead of the default 1", () => {
+		const schedule = SrsSchedule.initial(NOW, [0, 10], [0, 10], 0);
+		expect(schedule.learningStep).toBe(0);
+		expect(schedule.interval).toBe(0);
+		expect(schedule.nextReviewDate).toBe(NOW);
+	});
+
+	it("graduates after exactly 2 correct answers on a 2-step ladder", () => {
+		let card = SrsSchedule.initial(NOW, [0, 10], [0, 10], 0);
+
+		card = card.applyReview(RecallRating.GOOD, NOW);
+		expect(card.learningStep).toBe(1);
+		expect(card.interval).toBe(10);
+
+		card = card.applyReview(RecallRating.GOOD, NOW);
+		expect(card.learningStep).toBeNull();
+		expect(card.interval).toBe(2880);
+	});
+
+	it("default initial() is unaffected (still starts at step 1 on the 4-step ladder)", () => {
+		const schedule = SrsSchedule.initial(NOW);
+		expect(schedule.learningStep).toBe(1);
+		expect(schedule.interval).toBe(10);
+	});
+});
+
+describe("SrsSchedule.fromDTO with a custom learning ladder", () => {
+	it("uses the custom learningSteps for subsequent applyReview calls", () => {
+		const dto = {
+			easeFactor: 2.5,
+			interval: 10,
+			repetitions: 0,
+			learningStep: 1,
+			nextReviewDate: NOW,
+			lastReviewDate: null,
+			lapseCount: 0,
+		};
+		const card = SrsSchedule.fromDTO(dto, [0, 10], [0, 10]);
+		const result = card.applyReview(RecallRating.GOOD, NOW);
+		expect(result.learningStep).toBeNull();
+		expect(result.interval).toBe(2880);
+	});
+
+	it("a lapsed graduated card re-graduates after 2 corrects on a custom relearning ladder", () => {
+		const graduated = SrsSchedule.fromDTO(
+			{
+				easeFactor: 2.0,
+				interval: 4320,
+				repetitions: 5,
+				learningStep: null,
+				nextReviewDate: NOW,
+				lastReviewDate: NOW,
+				lapseCount: 0,
+			},
+			[0, 10],
+			[0, 10],
+		);
+
+		let lapsed = graduated.applyReview(RecallRating.AGAIN, NOW);
+		expect(lapsed.learningStep).toBe(0);
+
+		lapsed = lapsed.applyReview(RecallRating.GOOD, NOW);
+		expect(lapsed.learningStep).toBe(1);
+
+		lapsed = lapsed.applyReview(RecallRating.GOOD, NOW);
+		expect(lapsed.learningStep).toBeNull();
+		expect(lapsed.interval).toBe(2880);
+	});
+
+	it("WRONG-lapse interval reads from the instance's own relearningSteps, not the global default", () => {
+		const graduated = SrsSchedule.fromDTO(
+			{
+				easeFactor: 2.0,
+				interval: 4320,
+				repetitions: 5,
+				learningStep: null,
+				nextReviewDate: NOW,
+				lastReviewDate: NOW,
+				lapseCount: 0,
+			},
+			[0, 7, 33, 500],
+			[0, 7, 33],
+		);
+
+		const lapsed = graduated.applyReview(RecallRating.WRONG, NOW);
+		expect(lapsed.learningStep).toBe(1);
+		expect(lapsed.interval).toBe(7);
+	});
+
+	it("overrideStage(Apprentice) interval reads from the instance's own step ladder", () => {
+		const graduated = SrsSchedule.fromDTO(
+			{
+				easeFactor: 2.0,
+				interval: 4320,
+				repetitions: 5,
+				learningStep: null,
+				nextReviewDate: NOW,
+				lastReviewDate: NOW,
+				lapseCount: 0,
+			},
+			[0, 7, 33, 500],
+			[0, 7, 33],
+		);
+
+		const overridden = graduated.overrideStage(SrsStage.APPRENTICE, NOW);
+		expect(overridden.interval).toBe(7);
+	});
+});
+
 describe("Relearning steps (lapsed cards)", () => {
 	it("lapsed card uses shorter relearning steps [0, 10, 60]", () => {
 		const card = makeGraduatedSchedule({ easeFactor: 2.0 });

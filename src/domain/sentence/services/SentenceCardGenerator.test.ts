@@ -1,4 +1,6 @@
 import { describe, expect, it } from "vitest";
+import { RecallRating } from "../../srs/value-objects/RecallRating";
+import { SentenceReviewCard } from "../entities/SentenceReviewCard";
 import type { SentenceEntry } from "../types";
 import { generateSentenceCards } from "./SentenceCardGenerator";
 
@@ -112,13 +114,28 @@ describe("generateSentenceCards", () => {
 		expect(sv!.audioUrl).toBe("/audio/greet-001.mp3");
 	});
 
-	it("cards have initialized SRS data", () => {
+	it("cards have initialized SRS data on the 2-step sentence learning ladder", () => {
 		const cards = generateSentenceCards(makeSentenceEntry());
 		for (const card of cards) {
 			expect(card.srs.easeFactor).toBe(2.5);
-			expect(card.srs.learningStep).toBe(1);
+			expect(card.srs.learningStep).toBe(0);
+			expect(card.srs.interval).toBe(0);
 			expect(card.srs.lapseCount).toBe(0);
 		}
+	});
+
+	it("a generated card graduates after exactly 2 correct answers", () => {
+		const cards = generateSentenceCards(makeSentenceEntry());
+		const dto = cards[0]!;
+		const now = "2026-01-01T00:00:00.000Z";
+
+		const card = SentenceReviewCard.fromDTO({ ...dto, srs: dto.srs });
+		card.recordReview(RecallRating.GOOD, now);
+		expect(card.schedule.learningStep).toBe(1);
+
+		card.recordReview(RecallRating.GOOD, now);
+		expect(card.schedule.learningStep).toBeNull();
+		expect(card.schedule.interval).toBe(2880);
 	});
 
 	it("does not generate audio-dependent cards when no audio", () => {

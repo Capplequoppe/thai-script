@@ -19,6 +19,7 @@ export interface SrsDataDTO {
 
 const LEARNING_STEPS_MINUTES = [0, 10, 60, 480] as const;
 const RELEARNING_STEPS_MINUTES = [0, 10, 60] as const;
+export const SENTENCE_LEARNING_STEPS = [0, 10] as const;
 const GRADUATING_INTERVAL_MINUTES = 2880;
 const MAX_INTERVAL_MINUTES = 259200;
 const MIN_GRADUATED_INTERVAL_MINUTES = 1440;
@@ -48,6 +49,8 @@ export class SrsSchedule {
 		readonly nextReviewDate: string,
 		readonly lastReviewDate: string | null,
 		readonly lapseCount: number,
+		private readonly learningSteps: readonly number[] = LEARNING_STEPS_MINUTES,
+		private readonly relearningSteps: readonly number[] = RELEARNING_STEPS_MINUTES,
 	) {}
 
 	get stage(): SrsStage {
@@ -63,9 +66,7 @@ export class SrsSchedule {
 	}
 
 	private get activeSteps(): readonly number[] {
-		return this.lapseCount > 0
-			? RELEARNING_STEPS_MINUTES
-			: LEARNING_STEPS_MINUTES;
+		return this.lapseCount > 0 ? this.relearningSteps : this.learningSteps;
 	}
 
 	isDue(now: string): boolean {
@@ -92,6 +93,8 @@ export class SrsSchedule {
 			addMinutesToIso(currentTime, GRADUATING_INTERVAL_MINUTES),
 			currentTime,
 			this.lapseCount,
+			this.learningSteps,
+			this.relearningSteps,
 		);
 	}
 
@@ -103,12 +106,14 @@ export class SrsSchedule {
 		if (targetStage === SrsStage.APPRENTICE) {
 			return new SrsSchedule(
 				this.easeFactor,
-				LEARNING_STEPS_MINUTES[1],
+				this.activeSteps[1],
 				this.repetitions,
 				1,
 				currentTime,
 				this.lastReviewDate,
 				this.lapseCount,
+				this.learningSteps,
+				this.relearningSteps,
 			);
 		}
 
@@ -121,6 +126,8 @@ export class SrsSchedule {
 				currentTime,
 				this.lastReviewDate,
 				this.lapseCount,
+				this.learningSteps,
+				this.relearningSteps,
 			);
 		}
 
@@ -134,6 +141,8 @@ export class SrsSchedule {
 				addMinutesToIso(currentTime, interval),
 				this.lastReviewDate,
 				this.lapseCount,
+				this.learningSteps,
+				this.relearningSteps,
 			);
 		}
 
@@ -147,6 +156,8 @@ export class SrsSchedule {
 				addMinutesToIso(currentTime, interval),
 				this.lastReviewDate,
 				this.lapseCount,
+				this.learningSteps,
+				this.relearningSteps,
 			);
 		}
 
@@ -160,22 +171,31 @@ export class SrsSchedule {
 				addMinutesToIso(currentTime, interval),
 				this.lastReviewDate,
 				this.lapseCount,
+				this.learningSteps,
+				this.relearningSteps,
 			);
 		}
 
 		throw new Error(`Unhandled stage: ${targetStage.name}`);
 	}
 
-	static initial(now?: string): SrsSchedule {
+	static initial(
+		now?: string,
+		learningSteps: readonly number[] = LEARNING_STEPS_MINUTES,
+		relearningSteps: readonly number[] = RELEARNING_STEPS_MINUTES,
+		startStep = 1,
+	): SrsSchedule {
 		const currentTime = now ?? new Date().toISOString();
 		return new SrsSchedule(
 			EaseFactor.default(),
-			LEARNING_STEPS_MINUTES[1],
+			learningSteps[startStep] ?? 0,
 			0,
-			1,
-			addMinutesToIso(currentTime, LEARNING_STEPS_MINUTES[1]),
+			startStep,
+			addMinutesToIso(currentTime, learningSteps[startStep] ?? 0),
 			null,
 			0,
+			learningSteps,
+			relearningSteps,
 		);
 	}
 
@@ -191,7 +211,11 @@ export class SrsSchedule {
 		};
 	}
 
-	static fromDTO(dto: SrsDataDTO): SrsSchedule {
+	static fromDTO(
+		dto: SrsDataDTO,
+		learningSteps: readonly number[] = LEARNING_STEPS_MINUTES,
+		relearningSteps: readonly number[] = RELEARNING_STEPS_MINUTES,
+	): SrsSchedule {
 		return new SrsSchedule(
 			EaseFactor.create(dto.easeFactor),
 			dto.interval,
@@ -200,6 +224,8 @@ export class SrsSchedule {
 			dto.nextReviewDate,
 			dto.lastReviewDate,
 			dto.lapseCount ?? 0,
+			learningSteps,
+			relearningSteps,
 		);
 	}
 
@@ -240,6 +266,8 @@ export class SrsSchedule {
 			interval === 0 ? now : addMinutesToIso(now, interval),
 			now,
 			this.lapseCount,
+			this.learningSteps,
+			this.relearningSteps,
 		);
 	}
 
@@ -252,6 +280,8 @@ export class SrsSchedule {
 			addMinutesToIso(now, GRADUATING_INTERVAL_MINUTES),
 			now,
 			this.lapseCount,
+			this.learningSteps,
+			this.relearningSteps,
 		);
 	}
 
@@ -274,18 +304,22 @@ export class SrsSchedule {
 					now,
 					now,
 					this.lapseCount + 1,
+					this.learningSteps,
+					this.relearningSteps,
 				);
 			}
 			case 2: {
 				newEf = this.easeFactor.adjust(-0.2);
 				return new SrsSchedule(
 					newEf,
-					LEARNING_STEPS_MINUTES[1],
+					this.relearningSteps[1] ?? 0,
 					this.repetitions + 1,
 					1,
-					addMinutesToIso(now, LEARNING_STEPS_MINUTES[1]),
+					addMinutesToIso(now, this.relearningSteps[1] ?? 0),
 					now,
 					this.lapseCount + 1,
+					this.learningSteps,
+					this.relearningSteps,
 				);
 			}
 			case 3: {
@@ -322,6 +356,8 @@ export class SrsSchedule {
 			addMinutesToIso(now, newInterval),
 			now,
 			this.lapseCount,
+			this.learningSteps,
+			this.relearningSteps,
 		);
 	}
 }

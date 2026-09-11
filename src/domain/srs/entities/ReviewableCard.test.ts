@@ -123,6 +123,11 @@ describe("ReviewableCard", () => {
 		expect(card.pool).toBe("script");
 	});
 
+	it("groupKey defaults to the card's id", () => {
+		const card = makeCard();
+		expect(card.groupKey).toBe(card.id);
+	});
+
 	describe("overrideStage", () => {
 		it("sets stage to BURNED when called with SrsStage.BURNED", () => {
 			const card = makeCard();

@@ -1,6 +1,9 @@
 import type { CardPool } from "../../shared/CardPool";
 import { ReviewableCard } from "../../srs/entities/ReviewableCard";
-import { SrsSchedule } from "../../srs/value-objects/SrsSchedule";
+import {
+	SENTENCE_LEARNING_STEPS,
+	SrsSchedule,
+} from "../../srs/value-objects/SrsSchedule";
 
 export class SentenceReviewCard extends ReviewableCard {
 	constructor(
@@ -18,6 +21,10 @@ export class SentenceReviewCard extends ReviewableCard {
 
 	get pool(): CardPool {
 		return "sentence";
+	}
+
+	get groupKey(): string {
+		return this.sentenceId;
 	}
 
 	toDTO() {
@@ -48,7 +55,11 @@ export class SentenceReviewCard extends ReviewableCard {
 			dto.question,
 			dto.correctAnswer,
 			dto.choices,
-			SrsSchedule.fromDTO(dto.srs),
+			SrsSchedule.fromDTO(
+				dto.srs,
+				SENTENCE_LEARNING_STEPS,
+				SENTENCE_LEARNING_STEPS,
+			),
 			dto.sentenceId,
 			dto.property,
 			dto.audioUrl,

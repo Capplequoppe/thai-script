@@ -43,7 +43,10 @@ export class SentenceService {
 	}
 
 	getNextLesson(): SentenceLessonSummary | null {
-		if (this.apprenticeService && !this.apprenticeService.canStartLesson()) {
+		if (
+			this.apprenticeService &&
+			!this.apprenticeService.canStartLesson("sentence")
+		) {
 			return null;
 		}
 		const unlearned = this.getUnlearnedSentences();
