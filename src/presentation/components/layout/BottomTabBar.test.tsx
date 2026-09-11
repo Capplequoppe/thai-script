@@ -34,6 +34,7 @@ describe("BottomTabBar", () => {
 		expect(screen.getByRole("link", { name: "Home" })).toBeTruthy();
 		expect(screen.getByRole("link", { name: "Items" })).toBeTruthy();
 		expect(screen.queryByRole("link", { name: "Vocab" })).toBeNull();
+		expect(screen.queryByRole("link", { name: "Dictionary" })).toBeNull();
 		expect(screen.queryByRole("link", { name: "Grammar" })).toBeNull();
 		expect(screen.queryByRole("link", { name: "Sentences" })).toBeNull();
 	});
@@ -56,6 +57,7 @@ describe("BottomTabBar", () => {
 		);
 
 		expect(screen.getByRole("link", { name: "Vocab" })).toBeTruthy();
+		expect(screen.getByRole("link", { name: "Dictionary" })).toBeTruthy();
 		expect(screen.getByRole("link", { name: "Grammar" })).toBeTruthy();
 		expect(screen.getByRole("link", { name: "Sentences" })).toBeTruthy();
 	});

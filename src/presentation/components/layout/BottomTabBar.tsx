@@ -71,6 +71,36 @@ function BookIcon() {
 	);
 }
 
+function SearchIcon() {
+	return (
+		<svg
+			viewBox="0 0 24 24"
+			fill="currentColor"
+			className="w-6 h-6"
+			aria-hidden="true"
+		>
+			<title>Dictionary</title>
+			<circle cx="10" cy="10" r="6.5" opacity="0.15" />
+			<circle
+				cx="10"
+				cy="10"
+				r="6.5"
+				fill="none"
+				stroke="currentColor"
+				strokeWidth="2"
+			/>
+			<rect
+				x="14.8"
+				y="14.8"
+				width="2.4"
+				height="7.5"
+				rx="1.2"
+				transform="rotate(45 14.8 14.8)"
+			/>
+		</svg>
+	);
+}
+
 function ScrollIcon() {
 	return (
 		<svg
@@ -155,7 +185,15 @@ export function BottomTabBar({
 		},
 		{ to: "/items", end: false, label: "Items", icon: <GemIcon /> },
 		...(vocabUnlocked
-			? [{ to: "/vocab", end: false, label: "Vocab", icon: <BookIcon /> }]
+			? [
+					{ to: "/vocab", end: false, label: "Vocab", icon: <BookIcon /> },
+					{
+						to: "/dictionary",
+						end: false,
+						label: "Dictionary",
+						icon: <SearchIcon />,
+					},
+				]
 			: []),
 		...(grammarUnlocked
 			? [{ to: "/grammar", end: false, label: "Grammar", icon: <ScrollIcon /> }]
@@ -184,14 +222,14 @@ export function BottomTabBar({
 					borderTop: "1px solid var(--color-border)",
 				}}
 			>
-				<div className="flex justify-around items-center h-16 px-2">
+				<div className="flex items-center gap-1 h-16 px-2 overflow-x-auto">
 					{tabs.map(({ to, end, label, icon, badge }) => (
 						<NavLink
 							key={to}
 							to={to}
 							end={end}
 							className={({ isActive }) =>
-								`flex flex-col items-center gap-0.5 text-[10px] font-medium relative px-3 py-1 transition-colors ${
+								`flex flex-shrink-0 flex-col items-center gap-0.5 text-[10px] font-medium relative px-3 py-1 transition-colors ${
 									isActive ? ACTIVE : INACTIVE
 								}`
 							}
