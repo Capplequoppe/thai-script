@@ -26,4 +26,16 @@ describe("withDottedCircles", () => {
 		expect(withDottedCircles("")).toBe("");
 		expect(withDottedCircles("abc")).toBe("abc");
 	});
+
+	// Symbol data's standalone "above" vowels use a leading space as a filler
+	// placeholder (สระ อี/อิ/อึ/อื), inconsistently with siblings like "ั" that
+	// use none at all — see the component's own doc comment. The space must
+	// not survive alongside the inserted circle, or the mark renders with a
+	// stray gap in front of it.
+	it("replaces a leading filler space with the dotted circle instead of keeping both", () => {
+		expect(withDottedCircles(" ี")).toBe("◌ี");
+		expect(withDottedCircles(" ิ")).toBe("◌ิ");
+		expect(withDottedCircles(" ึ")).toBe("◌ึ");
+		expect(withDottedCircles(" ื")).toBe("◌ื");
+	});
 });
