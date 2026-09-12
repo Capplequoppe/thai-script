@@ -5,7 +5,6 @@ description: >
   Record of the naturalness read-through of backend/data/conversationStarters.json
   that AC3 requires, and an honest statement of what this note does and does not establish.
 status: draft
-task_id: "2.2"
 covers:
   - backend/data/conversationStarters.json
 ---
