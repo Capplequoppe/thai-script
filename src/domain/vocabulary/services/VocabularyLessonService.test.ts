@@ -2,6 +2,7 @@ import { beforeEach, describe, expect, it } from "vitest";
 import { InMemoryStorage } from "../../../infrastructure/persistence/Storage";
 import { StorageCardRepository } from "../../../infrastructure/persistence/StorageCardRepository";
 import { StorageLearnerStateRepository } from "../../../infrastructure/persistence/StorageLearnerStateRepository";
+import { ApprenticeService } from "../../shared/services/ApprenticeService";
 import type { SrsData } from "../../shared/types";
 import { DEFAULT_SRS_DATA } from "../../shared/types";
 import { RecallRating } from "../../srs/value-objects/RecallRating";
@@ -544,11 +545,10 @@ describe("VocabularyService", () => {
 			};
 		}
 
-		it("getNextLesson returns null when 20 distinct vocab words are at apprentice stage", () => {
+		function seedApprenticeWords(count: number): void {
 			const state = storage.load();
 			state.completedLessons = [1, 2];
-			// Add 20 distinct words in apprentice stage
-			for (let i = 0; i < 20; i++) {
+			for (let i = 0; i < count; i++) {
 				const word = `word${i}`;
 				state.vocabCards[`vocab:${word}:thaiToEnglish`] = makeLearningVocabCard(
 					word,
@@ -556,26 +556,38 @@ describe("VocabularyService", () => {
 				) as SrsData;
 			}
 			storage.save(state);
+		}
 
+		it("without an ApprenticeService, gating is a no-op regardless of apprentice word count", () => {
+			seedApprenticeWords(20);
 			const vocabulary = [makeEntry()];
 			const service = new VocabularyService(cardRepo, stateRepo, vocabulary);
+			expect(service.getNextLesson()).not.toBeNull();
+		});
+
+		it("getNextLesson returns null once the ApprenticeService's general limit is reached", () => {
+			seedApprenticeWords(20);
+			const vocabulary = [makeEntry()];
+			const apprenticeService = new ApprenticeService(cardRepo, 20);
+			const service = new VocabularyService(
+				cardRepo,
+				stateRepo,
+				vocabulary,
+				apprenticeService,
+			);
 			expect(service.getNextLesson()).toBeNull();
 		});
 
-		it("generateLessonCards returns null when 20 distinct vocab words are at apprentice stage", () => {
-			const state = storage.load();
-			state.completedLessons = [1, 2];
-			for (let i = 0; i < 20; i++) {
-				const word = `word${i}`;
-				state.vocabCards[`vocab:${word}:thaiToEnglish`] = makeLearningVocabCard(
-					word,
-					"thaiToEnglish",
-				) as SrsData;
-			}
-			storage.save(state);
-
+		it("generateLessonCards returns null once the ApprenticeService's general limit is reached", () => {
+			seedApprenticeWords(20);
 			const vocabulary = [makeEntry()];
-			const service = new VocabularyService(cardRepo, stateRepo, vocabulary);
+			const apprenticeService = new ApprenticeService(cardRepo, 20);
+			const service = new VocabularyService(
+				cardRepo,
+				stateRepo,
+				vocabulary,
+				apprenticeService,
+			);
 			expect(service.generateLessonCards()).toBeNull();
 		});
 
@@ -597,25 +609,47 @@ describe("VocabularyService", () => {
 			storage.save(state);
 
 			const vocabulary = [makeEntry()];
-			const service = new VocabularyService(cardRepo, stateRepo, vocabulary);
+			const apprenticeService = new ApprenticeService(cardRepo, 20);
+			const service = new VocabularyService(
+				cardRepo,
+				stateRepo,
+				vocabulary,
+				apprenticeService,
+			);
 			// Only 19 distinct words — should still be allowed
 			expect(service.getNextLesson()).not.toBeNull();
 		});
 
-		it("allows new lessons when fewer than 20 words are at apprentice stage", () => {
-			const state = storage.load();
-			state.completedLessons = [1, 2];
-			for (let i = 0; i < 5; i++) {
-				const word = `word${i}`;
-				state.vocabCards[`vocab:${word}:thaiToEnglish`] = makeLearningVocabCard(
-					word,
-					"thaiToEnglish",
-				) as SrsData;
-			}
-			storage.save(state);
-
+		it("allows new lessons when fewer than the limit's words are at apprentice stage", () => {
+			seedApprenticeWords(5);
 			const vocabulary = [makeEntry()];
-			const service = new VocabularyService(cardRepo, stateRepo, vocabulary);
+			const apprenticeService = new ApprenticeService(cardRepo, 20);
+			const service = new VocabularyService(
+				cardRepo,
+				stateRepo,
+				vocabulary,
+				apprenticeService,
+			);
+			expect(service.getNextLesson()).not.toBeNull();
+		});
+
+		// This is the actual bug report: raising "Vocabulary & Grammar" in
+		// Settings did nothing for vocab, because vocab never consulted
+		// ApprenticeService/the stored limits at all — it had its own
+		// permanently-hardcoded 20-word ceiling. Wiring it through
+		// ApprenticeService.canStartLesson("vocab") is what makes the
+		// settings-adjustable general limit actually take effect here.
+		it("respects a raised general apprentice limit from settings", () => {
+			seedApprenticeWords(25); // more than the old hardcoded 20
+			stateRepo.setApprenticeLimits({ general: 150, script: 35, sentence: 60 });
+			const vocabulary = [makeEntry()];
+			const apprenticeService = new ApprenticeService(cardRepo, 100, stateRepo);
+			const service = new VocabularyService(
+				cardRepo,
+				stateRepo,
+				vocabulary,
+				apprenticeService,
+			);
 			expect(service.getNextLesson()).not.toBeNull();
 		});
 	});

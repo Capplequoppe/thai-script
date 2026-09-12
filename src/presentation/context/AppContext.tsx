@@ -66,6 +66,7 @@ const vocabularyService = new VocabularyService(
 	cardRepo,
 	stateRepo,
 	vocabularyData as VocabEntry[],
+	apprenticeService,
 );
 const grammarService = new GrammarService(
 	cardRepo,

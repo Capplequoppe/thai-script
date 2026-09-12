@@ -57,6 +57,18 @@ export class ApprenticeService {
 	}
 
 	/**
+	 * Distinct in-progress vocab words, not raw cards — a word fans out into
+	 * several property cards (thaiToEnglish, spelling, audio, ...), but they
+	 * represent one learning item for backpressure purposes.
+	 */
+	getVocabApprenticeCount(): number {
+		const cards = this.cardRepo
+			.findAll("vocab")
+			.filter((card) => card.schedule.isInLearning);
+		return new Set(cards.map((card) => card.groupKey)).size;
+	}
+
+	/**
 	 * Sum of in-learning cards across every pool except sentence. Sentences
 	 * are compositional application of already-learned vocab/grammar, not new
 	 * atomic memorization, so they're gated by their own cap
@@ -83,6 +95,12 @@ export class ApprenticeService {
 			return (
 				this.getSentenceApprenticeCount() <
 				(limits?.sentence ?? MAX_SENTENCE_APPRENTICE_ITEMS)
+			);
+		}
+		if (pool === "vocab") {
+			return (
+				this.getVocabApprenticeCount() <
+				(limits?.general ?? this.apprenticeLimit)
 			);
 		}
 		return (

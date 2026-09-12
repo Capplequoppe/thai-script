@@ -7,6 +7,7 @@ import {
 	toneRules,
 	vowels,
 } from "../../script/data/symbols";
+import type { ApprenticeService } from "../../shared/services/ApprenticeService";
 import { reconcileGeneratedCards } from "../../shared/services/reconcileCards";
 import { VocabCard } from "../entities/VocabCard";
 import type { VocabEntry, VocabLessonSummary, VocabularyCard } from "../types";
@@ -14,13 +15,13 @@ import { generateVocabCards } from "./VocabCardGenerator";
 
 const BATCH_SIZE = 5;
 const RANK_WINDOW_SIZE = 50;
-const MAX_VOCAB_APPRENTICE_WORDS = 20;
 
 export class VocabularyService {
 	constructor(
 		private readonly cardRepo: CardRepository,
 		private readonly stateRepo: LearnerStateRepository,
 		private readonly vocabulary: VocabEntry[],
+		private readonly apprenticeService?: ApprenticeService,
 	) {}
 
 	/** Extract the Thai word from a vocab card ID (format: vocab:{thai}:{property}). */
@@ -34,18 +35,6 @@ export class VocabularyService {
 		return new Set(
 			vocabCards.map((c) => VocabularyService.thaiWordFromId(c.id)),
 		);
-	}
-
-	/** Count of distinct Thai words currently at apprentice stage (isInLearning). */
-	private getApprenticeVocabWordCount(): number {
-		const vocabCards = this.cardRepo.findAll("vocab");
-		const apprenticeWords = new Set<string>();
-		for (const card of vocabCards) {
-			if (card.schedule.isInLearning) {
-				apprenticeWords.add(VocabularyService.thaiWordFromId(card.id));
-			}
-		}
-		return apprenticeWords.size;
 	}
 
 	/** Get set of all Thai characters mastered from completed script lessons. */
@@ -168,7 +157,10 @@ export class VocabularyService {
 
 	/** Next batch of words to learn (up to BATCH_SIZE). */
 	getNextLesson(): VocabLessonSummary | null {
-		if (this.getApprenticeVocabWordCount() >= MAX_VOCAB_APPRENTICE_WORDS) {
+		if (
+			this.apprenticeService &&
+			!this.apprenticeService.canStartLesson("vocab")
+		) {
 			return null;
 		}
 
@@ -179,7 +171,10 @@ export class VocabularyService {
 
 	/** Generate cards for the next lesson batch WITHOUT persisting them. */
 	generateLessonCards(): VocabularyCard[] | null {
-		if (this.getApprenticeVocabWordCount() >= MAX_VOCAB_APPRENTICE_WORDS) {
+		if (
+			this.apprenticeService &&
+			!this.apprenticeService.canStartLesson("vocab")
+		) {
 			return null;
 		}
 

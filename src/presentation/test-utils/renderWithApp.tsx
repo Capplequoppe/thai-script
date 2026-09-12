@@ -624,6 +624,7 @@ export function makeAppValue(options: MakeAppValueOptions = {}): AppHarness {
 		cardRepo,
 		stateRepo,
 		vocabularyData as VocabEntry[],
+		apprenticeService,
 	);
 	const grammarService = new GrammarService(
 		cardRepo,

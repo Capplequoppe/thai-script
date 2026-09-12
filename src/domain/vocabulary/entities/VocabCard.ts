@@ -22,6 +22,10 @@ export class VocabCard extends ReviewableCard {
 		return "vocab";
 	}
 
+	get groupKey(): string {
+		return this.promptWord;
+	}
+
 	toDTO() {
 		return {
 			id: this.id,

@@ -66,6 +66,22 @@ function makeVocabCard(id: string, inLearning: boolean): VocabCard {
 	);
 }
 
+function makeVocabCardWithWord(
+	id: string,
+	promptWord: string,
+	inLearning: boolean,
+): VocabCard {
+	return new VocabCard(
+		id,
+		"test",
+		"test",
+		["test"],
+		inLearning ? learningSchedule() : graduatedSchedule(),
+		promptWord,
+		"thaiToEnglish",
+	);
+}
+
 function makeSentenceCard(
 	id: string,
 	sentenceId: string,
@@ -196,6 +212,51 @@ describe("ApprenticeService", () => {
 					cardRepo.save(makeSentenceCard(`sc${i}`, `sentence${i}`, false));
 				}
 				expect(service.canStartLesson("sentence")).toBe(true);
+			});
+		});
+
+		describe("vocab-specific counting", () => {
+			it("counts multiple cards for the same word as one toward the cap", () => {
+				// makeVocabCard always uses promptWord "มา" — 5 cards, 1 distinct word.
+				for (let i = 0; i < 5; i++) {
+					cardRepo.save(makeVocabCard(`v${i}`, true));
+				}
+				expect(service.getVocabApprenticeCount()).toBe(1);
+				expect(service.canStartLesson("vocab")).toBe(true);
+			});
+
+			it("does not count graduated vocab cards toward the cap", () => {
+				cardRepo.save(makeVocabCard("v1", false));
+				expect(service.getVocabApprenticeCount()).toBe(0);
+			});
+
+			it("uses the stateRepo's general limit, not a hardcoded 20-word ceiling", () => {
+				// This is the actual bug report: raising the "Vocabulary & Grammar"
+				// setting past 20 previously did nothing for vocab, because vocab
+				// never consulted ApprenticeService/the stored limits.
+				const withRaisedLimit = new ApprenticeService(
+					cardRepo,
+					MAX_APPRENTICE_ITEMS,
+					fakeStateRepo({ general: 150, script: 35, sentence: 60 }),
+				);
+				for (let i = 0; i < 25; i++) {
+					// distinct promptWords, so 25 distinct in-learning words
+					cardRepo.save(makeVocabCardWithWord(`v${i}`, `word${i}`, true));
+				}
+				expect(withRaisedLimit.getVocabApprenticeCount()).toBe(25);
+				expect(withRaisedLimit.canStartLesson("vocab")).toBe(true);
+			});
+
+			it("still blocks vocab once distinct words reach the stateRepo's general limit", () => {
+				const withLoweredLimit = new ApprenticeService(
+					cardRepo,
+					MAX_APPRENTICE_ITEMS,
+					fakeStateRepo({ general: 20, script: 35, sentence: 60 }),
+				);
+				for (let i = 0; i < 20; i++) {
+					cardRepo.save(makeVocabCardWithWord(`v${i}`, `word${i}`, true));
+				}
+				expect(withLoweredLimit.canStartLesson("vocab")).toBe(false);
 			});
 		});
 
