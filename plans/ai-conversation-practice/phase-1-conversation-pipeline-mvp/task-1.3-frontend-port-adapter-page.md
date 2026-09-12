@@ -35,6 +35,32 @@ ac_enforcement:
   - "AC9 -> a case: a fetch that resolves with a non-2xx status (500, 422, 404) is mapped to {status: \"unavailable\"} (or a distinct {status: \"error\"} member), never treated as {status: \"ok\"} with a garbage/missing verdict field, and never thrown as an unhandled parse error"
   - "AC10 -> a case: a fetch that never settles within a bounded timeout (an AbortController-backed deadline) produces the same unavailable/error result as a rejected fetch, proven with a stubbed fetch returning a promise that never resolves"
   - "AC11 -> a case: useMicRecorder's denied state (mic permission refused) renders a distinct message from both the idle state and the backend-unavailable message; a generic recorder error state renders a third, distinct message"
+ac_tests:
+  - "AC1 -> src/infrastructure/conversation/HttpConversationPracticeClient.test.ts::GETs the contracted opening endpoint and decodes the audio with the response's own MIME type"
+  - "AC2 -> src/infrastructure/conversation/HttpConversationPracticeClient.test.ts::POSTs the contracted body including the recorded blob's own MIME type, and maps the response into the domain verdict shape"
+  - "AC3 -> src/infrastructure/conversation/HttpConversationPracticeClient.test.ts::resolves both calls to unavailable when fetch rejects because the backend is not running"
+  - "AC4 -> src/presentation/pages/ConversationPracticePage.test.tsx::says the backend is not running and offers no record control that would do nothing"
+  - "AC5 -> src/presentation/pages/ConversationPracticePage.test.tsx::shows the Thai question text and replays its audio on demand"
+  - "AC6 -> src/presentation/pages/ConversationPracticePage.test.tsx::drives the recorder from idle to stopped and hands the recorded blob to judgeReply"
+  - "AC7 -> src/presentation/pages/ConversationPracticePage.test.tsx::renders the unscored verdict in its own words"
+  - "AC9 -> src/infrastructure/conversation/HttpConversationPracticeClient.test.ts::treats a 500 response as unavailable even when its body is contract-shaped"
+  - "AC10 -> src/infrastructure/conversation/HttpConversationPracticeClient.test.ts::resolves to unavailable within the bounded timeout when the request never settles"
+  - "AC11 -> src/presentation/pages/ConversationPracticePage.test.tsx::shows a microphone-access message distinct from the backend-unavailable one when permission is denied"
+red_proof:
+  - "AC1 -> In HttpConversationPracticeClient.fetchJson, changed the request URL from `${CONVERSATION_BACKEND_BASE_URL}${path}` to `${CONVERSATION_BACKEND_BASE_URL}/api${path}`. Verified from t… [see red-proofs/]"
+  - "AC2 -> In judgeReply, replaced `reply_audio_mime_type: replyAudio.type` with a hardcoded `\"audio/wav\"` — the mistake CONTEXT.md warns about, since MediaRecorder's format is browser-chosen.… [see red-proofs/]"
+  - "AC3 -> Removed the `.catch(() => null)` on the in-flight request promise in fetchJson, so a rejecting fetch propagates. The `Caused by:` line is the mutant's own rejection surfacing throug… [see red-proofs/]"
+  - "AC9 -> Removed the status check in fetchJson: `return response.ok ? await response.json() : null;` → `return await response.json();`. The test had to be strengthened first — with a FastAPI… [see red-proofs/]"
+  - "AC10 -> Removed the deadline from the race in fetchJson (`Promise.race([attempt, deadline])` → `return await attempt;`), leaving only the AbortController, which a stubbed never-settling fet… [see red-proofs/]"
+  - "AC4 -> Added `<Button onClick={start}>Record your reply</Button>` to the page's backend-unavailable branch — a record control that would silently do nothing, since there is no question to… [see red-proofs/]"
+  - "AC5 -> Changed the replay handler's `new Audio(questionAudioUrl)` to `new Audio(\"\")`, so the button still exists and still plays, but plays the wrong thing. The `createdAudioUrls()` assertion fired."
+  - "AC6 -> Changed the judge call from `judgeReply(questionText, audioBlob)` to `judgeReply(questionText, new Blob([], { type: \"audio/wav\" }))` — judgeReply is still called with a Blob, but no… [see red-proofs/]"
+  - "AC7 -> Collapsed unscored into fail at the render site: `VERDICT_PRESENTATION[judgement.verdict]` → `VERDICT_PRESENTATION[judgement.verdict === \"unscored\" ? \"fail\" : judgement.verdict]`. W… [see red-proofs/]"
+  - "AC11 -> Made the page's `state === \"denied\"` branch render BACKEND_UNAVAILABLE_MESSAGE instead of its own copy — exactly the conflation the criterion forbids. Both the positive and the nega… [see red-proofs/]"
+lint:
+  before: 14
+  after: 14
+  outcome: unsupported
 generated: {by: claude-sonnet-5/agent, at: 2026-09-11}
 profile_version: 1
 weight_votes:
