@@ -65,3 +65,25 @@ Phase 2's concurrent task (bank.py, personalized /conversation/opening) edits fi
 <!-- lesson id=L10 from=reviewer:2 scope=plan -->
 
 A task's own executor-narrated red/green proof in its summary is not the same as a recorded red-proofs/<task>.md artifact — check the file actually exists on disk before trusting the ledger's [red] marks; task 2.3 completed with correct tests but no such file, silently degrading its ledger entries to [none].
+## L11 — task 3.1 · run-20260912T154629Z
+
+<!-- lesson id=L11 from=3.1 scope=dependents -->
+
+The session endpoints are POST /conversation/session/start, /{id}/judge and /{id}/next; /next answers either a question or {exhausted: true, question_text: null, ...}, and an unknown or evicted session id is 404 with no separate 'expired' state. /conversation/opening and /conversation/judge are still live — 3.1 could not remove them, their tests are outside… [clipped — full text in the transcript]
+
+## L12 — task 3.1 · run-20260912T154629Z
+
+<!-- lesson id=L12 from=3.1 scope=dependents -->
+
+The /next lock is only provably load-bearing because the asked-id is recorded AFTER the awaited TTS call, so the await sits inside the read-modify-write window. Moving the record before synthesis would close the window and quietly turn the AC5 concurrency test into one that passes with or without the lock.
+
+## L13 — task 3.1 · run-20260912T154629Z
+
+<!-- lesson id=L13 from=3.1 scope=plan -->
+
+A builtins.open guard cannot cover the whole conversation pipeline: TTS necessarily writes its output file and faster_whisper.audio imports lazily on the first judged reply. The AC4 disk-write test pre-imports the decoder and stubs app.pipeline.synthesize_question, leaving everything the session store actually does under a write-mode guard on builtins.open, io.open and os.open.
+## L14 — task reviewer:2 · run-20260912T200014Z
+
+<!-- lesson id=L14 from=reviewer:2 scope=plan -->
+
+When two phases share a covered file (e.g. ConversationPracticePage.tsx owned by both phase 2's 2.1 and phase 3's gate task), a later phase landing can silently delete the earlier phase's test for a now-gate-unreachable state, orphaning a completed AC with no signal except a criteria-ledger 'plan no longer maps it to any test' note. Worth a phase-boundary c… [clipped — full text in the transcript]

@@ -314,3 +314,4 @@
 {"ts":"2026-09-12T17:22:30.437Z","run_id":"run-20260912T154629Z","rss_bytes":2743984128,"cpu_percent":115.9,"processes":21,"in_flight":["3.1","3.2"]}
 {"ts":"2026-09-12T17:22:45.437Z","run_id":"run-20260912T154629Z","rss_bytes":2688716800,"cpu_percent":128.9,"processes":21,"in_flight":["3.1","3.2"]}
 {"ts":"2026-09-12T17:23:00.439Z","run_id":"run-20260912T154629Z","rss_bytes":2495729664,"cpu_percent":45,"processes":21,"in_flight":["3.1","3.2"]}
+{"ts":"2026-09-12T20:23:05.025Z","run_id":"run-20260912T202134Z","rss_bytes":541855744,"cpu_percent":12.3,"processes":5,"in_flight":[]}

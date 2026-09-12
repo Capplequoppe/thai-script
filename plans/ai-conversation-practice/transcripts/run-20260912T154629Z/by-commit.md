@@ -8,4 +8,6 @@ narrative reconstructed from the agent transcript that produced it.
 | `10293d3d6af9` | `2.3` | chore(plan): mark task 2.3 complete | [narrative](commits/10293d3d6af9.md) |
 | `15ae0b803fc3` | — | fix(e2e): block service workers in the conversation-practice project | [narrative](commits/15ae0b803fc3.md) |
 | `47b3f309f59c` | `2.3` | feat(conversation): pick the opening question from the bank by known vocabulary | [narrative](commits/47b3f309f59c.md) |
+| `6e754ff71d8a` | `3.1` | feat(conversation): in-memory multi-turn sessions with a continue endpoint | [narrative](commits/6e754ff71d8a.md) |
 | `b8dd664aaf2f` | — | fix(e2e): stop Vite watching non-source dirs to kill spurious dev reloads | [narrative](commits/b8dd664aaf2f.md) |
+| `c2a49c62d275` | `3.1` | docs(conversation): correct comments the session split falsified | [narrative](commits/c2a49c62d275.md) |

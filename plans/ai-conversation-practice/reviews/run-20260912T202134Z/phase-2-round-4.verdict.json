@@ -1,0 +1,88 @@
+{
+  "findings": [],
+  "acValidations": [
+    {
+      "task_id": "2.1",
+      "criterion": "AC1",
+      "locator": "src/infrastructure/conversation/HttpConversationPracticeClient.test.ts::accepts a realistic 600-word known-word snapshot without truncating it",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "2.1",
+      "criterion": "AC2",
+      "locator": "src/presentation/pages/ConversationPracticePage.test.tsx::sends the learner's real learned-vocabulary set, not a placeholder list",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "2.1",
+      "criterion": "AC3",
+      "locator": "src/presentation/pages/ConversationPracticePage.test.tsx::maps a learner with no learned words to a real empty array, not an omitted field",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "2.2",
+      "criterion": "AC1",
+      "locator": "scripts/generate-conversation-bank/tests/test_filtering.py::test_rejects_a_candidate_containing_a_word_outside_the_tier",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "2.2",
+      "criterion": "AC2",
+      "locator": "scripts/generate-conversation-bank/tests/test_shipped_bank.py::test_every_entrys_words_are_the_tokenization_of_its_thai",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "2.2",
+      "criterion": "AC3",
+      "locator": "none",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "2.2",
+      "criterion": "AC4",
+      "locator": "scripts/generate-conversation-bank/tests/test_bank_build.py::test_an_entrys_id_is_derived_from_its_own_thai_text",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "2.2",
+      "criterion": "AC5",
+      "locator": "scripts/generate-conversation-bank/tests/test_generation_gpu.py::test_the_real_pipeline_fills_a_small_tier",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "2.2",
+      "criterion": "AC6",
+      "locator": "scripts/generate-conversation-bank/tests/test_shipped_bank.py::test_every_tier_holds_at_least_the_minimum_number_of_entries",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "2.3",
+      "criterion": "AC1",
+      "locator": "backend/tests/test_bank.py::test_gappy_known_words_select_an_entry_built_only_from_them",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "2.3",
+      "criterion": "AC2",
+      "locator": "backend/tests/test_bank.py::test_the_highest_qualifying_tier_wins",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "2.3",
+      "criterion": "AC3",
+      "locator": "backend/tests/test_bank.py::test_an_empty_known_word_set_returns_a_smallest_tier_entry",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "2.3",
+      "criterion": "AC4",
+      "locator": "e2e/conversation-practice.spec.ts::two learners with different vocabulary get different questions",
+      "verdict": "valid"
+    }
+  ],
+  "reviewedAt": "31ff743804d4ddb0fc6f7ff1a3b467cd175f2545",
+  "answersAt": "42dabf5ed33737e3",
+  "enforcement": [
+    "reviewer edited 1 path(s) the plan does not declare and they were reverted: plans/ai-conversation-practice/resources.jsonl"
+  ]
+}

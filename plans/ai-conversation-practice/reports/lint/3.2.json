@@ -1,0 +1,99 @@
+{
+  "version": 1,
+  "task": "3.2",
+  "pass": "before",
+  "result": {
+    "outcome": "unsupported",
+    "reason": "plans/ai-conversation-practice/metrics.jsonl: no grammar covers '.jsonl' files (and 4 more) — 4 violations were measured before this and are not shown"
+  },
+  "findings": [
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 2.5,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "seedLearnedVocabulary",
+        "path": "e2e/fixtures/seedLearner.ts",
+        "bytes": {
+          "startIndex": 3651,
+          "endIndex": 5544
+        },
+        "lines": {
+          "startRow": 112,
+          "endRow": 191
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 2.94,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "(anonymous)",
+        "path": "e2e/fixtures/seedLearner.ts",
+        "bytes": {
+          "startIndex": 3900,
+          "endIndex": 5460
+        },
+        "lines": {
+          "startRow": 120,
+          "endRow": 187
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "(anonymous)",
+        "path": "src/domain/conversation/services/ConversationUnlockService.test.ts",
+        "bytes": {
+          "startIndex": 196,
+          "endIndex": 1574
+        },
+        "lines": {
+          "startRow": 7,
+          "endRow": 54
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "file",
+      "path": "src/domain/conversation/services/ConversationUnlockService.test.ts",
+      "check": "density-below-floor"
+    }
+  ],
+  "adapters": [
+    {
+      "tool": "biome",
+      "selection": {
+        "evidence": "configured",
+        "by": "biome.json"
+      },
+      "program": null,
+      "result": {
+        "outcome": "unsupported",
+        "reason": "biome did not resolve: 'biome' on PATH (31 entries). Its findings are missing from this report — that is a gap and not a pass."
+      },
+      "files": 4,
+      "findings": 0,
+      "refusedPaths": 0,
+      "outsideAnalysis": 0,
+      "refusedShape": 0
+    }
+  ]
+}
