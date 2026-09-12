@@ -65,8 +65,15 @@ export function DictionaryPage() {
 					e.thai.toLowerCase().includes(query),
 			);
 		const primary = matches(unlockedWords);
+		// Only reach into the full ~5,000-word vocabulary once the query is
+		// specific enough, and cap how many of those extra matches render —
+		// a one- or two-letter query against every word in the dictionary
+		// would otherwise flood the grid with thousands of tiles.
+		if (query.length < 2) return primary;
 		const primaryThai = new Set(primary.map((e) => e.thai));
-		const extra = matches(allWords).filter((e) => !primaryThai.has(e.thai));
+		const extra = matches(allWords)
+			.filter((e) => !primaryThai.has(e.thai))
+			.slice(0, 50);
 		return [...primary, ...extra];
 	}, [unlockedWords, allWords, search]);
 
@@ -94,6 +101,28 @@ export function DictionaryPage() {
 	const selectedEntry = selectedThai
 		? (allWords.find((e) => e.thai === selectedThai) ?? null)
 		: null;
+
+	// biome-ignore lint/correctness/useExhaustiveDependencies: vocab is a stable service; completedLessons/vocabCards changing drives re-computation
+	const selectedIsPullable = useMemo(
+		() => (selectedEntry ? vocab.isPullable(selectedEntry) : false),
+		[selectedEntry, state.completedLessons, state.vocabCards],
+	);
+
+	// biome-ignore lint/correctness/useExhaustiveDependencies: vocab is a stable service; completedLessons/vocabCards changing drives re-computation
+	const selectedMissingPrerequisites = useMemo(
+		() =>
+			selectedEntry
+				? vocab.getMissingPrerequisites(selectedEntry)
+				: { characters: [], toneRules: [] },
+		[selectedEntry, state.completedLessons, state.vocabCards],
+	);
+
+	// biome-ignore lint/correctness/useExhaustiveDependencies: sentence is a stable service; completedLessons/vocabCards changing drives re-computation
+	const selectedSuggestions = useMemo(
+		() =>
+			selectedEntry ? sentence.getUnlockSuggestions(selectedEntry.thai) : [],
+		[selectedEntry, state.completedLessons, state.vocabCards],
+	);
 
 	if (unlockedWords.length === 0) {
 		return (
@@ -201,8 +230,11 @@ export function DictionaryPage() {
 						<div className="grid grid-cols-3 gap-2">
 							{sortedEntries.map((entry) => {
 								const isPullableOnly =
-									!unlockedThai.has(entry.thai) && pullableThai.has(entry.thai);
+									!learnedThai.has(entry.thai) &&
+									!unlockedThai.has(entry.thai) &&
+									pullableThai.has(entry.thai);
 								const isLocked =
+									!learnedThai.has(entry.thai) &&
 									!unlockedThai.has(entry.thai) &&
 									!pullableThai.has(entry.thai);
 								return (
@@ -334,10 +366,8 @@ export function DictionaryPage() {
 							<PullInVocabButton
 								key={selectedEntry.thai}
 								thai={selectedEntry.thai}
-								isPullable={vocab.isPullable(selectedEntry)}
-								missingPrerequisites={vocab.getMissingPrerequisites(
-									selectedEntry,
-								)}
+								isPullable={selectedIsPullable}
+								missingPrerequisites={selectedMissingPrerequisites}
 								onPullIn={(thai) => {
 									const ok = lesson.pullInVocabWord(thai);
 									if (ok) refresh();
@@ -345,9 +375,12 @@ export function DictionaryPage() {
 								}}
 							/>
 							<SentenceUnlockSuggestions
-								suggestions={sentence.getUnlockSuggestions(selectedEntry.thai)}
+								suggestions={selectedSuggestions}
+								anchorIsPullable={selectedIsPullable}
 								onPullInWord={(thai) => {
-									if (lesson.pullInVocabWord(thai)) refresh();
+									const ok = lesson.pullInVocabWord(thai);
+									if (ok) refresh();
+									return ok;
 								}}
 							/>
 						</>

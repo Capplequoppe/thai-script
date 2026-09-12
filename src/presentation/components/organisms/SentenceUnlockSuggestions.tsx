@@ -1,14 +1,21 @@
+import { useState } from "react";
 import type { UnlockSuggestion } from "../../../domain/sentence/services/SentenceLessonService";
 
 interface Props {
 	suggestions: UnlockSuggestion[];
-	onPullInWord: (thai: string) => void;
+	/** Whether the word this panel is shown for is itself pullable right now — a sentence with zero other missing words still needs THIS word pulled in first if it isn't pullable yet. */
+	anchorIsPullable: boolean;
+	/** Attempt to pull in a missing word; returns whether it actually succeeded (false = apprentice cap reached). */
+	onPullInWord: (thai: string) => boolean;
 }
 
 export function SentenceUnlockSuggestions({
 	suggestions,
+	anchorIsPullable,
 	onPullInWord,
 }: Props) {
+	const [capBlocked, setCapBlocked] = useState(false);
+
 	if (suggestions.length === 0) return null;
 
 	return (
@@ -31,10 +38,7 @@ export function SentenceUnlockSuggestions({
 						style={{ borderBottom: "1px solid var(--color-border)" }}
 					>
 						<p className="thai text-base">{sentence.thai}</p>
-						<p
-							className="text-sm"
-							style={{ color: "var(--color-text-muted)" }}
-						>
+						<p className="text-sm" style={{ color: "var(--color-text-muted)" }}>
 							{sentence.english}
 						</p>
 						{missingWords.length === 0 ? (
@@ -42,7 +46,9 @@ export function SentenceUnlockSuggestions({
 								className="text-xs font-semibold"
 								style={{ color: "var(--color-master)" }}
 							>
-								Unlocks immediately
+								{anchorIsPullable
+									? "Unlocks immediately"
+									: "Unlocks once you learn this word"}
 							</span>
 						) : (
 							<div className="flex flex-wrap items-center gap-1 mt-1">
@@ -56,7 +62,10 @@ export function SentenceUnlockSuggestions({
 									<button
 										key={word}
 										type="button"
-										onClick={() => onPullInWord(word)}
+										onClick={() => {
+											const ok = onPullInWord(word);
+											setCapBlocked(!ok);
+										}}
 										className="thai text-xs px-2 py-0.5 rounded"
 										style={{
 											background: "var(--color-surface)",
@@ -71,6 +80,11 @@ export function SentenceUnlockSuggestions({
 					</div>
 				))}
 			</div>
+			{capBlocked && (
+				<p className="text-sm mt-3" style={{ color: "var(--color-danger)" }}>
+					Too many words in progress — clear some reviews first.
+				</p>
+			)}
 		</div>
 	);
 }
