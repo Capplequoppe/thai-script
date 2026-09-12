@@ -1,7 +1,7 @@
 {
   "version": 1,
   "task": "1.3",
-  "pass": "before",
+  "pass": "after",
   "result": {
     "outcome": "unsupported",
     "reason": "plans/ai-conversation-practice/phase-1-conversation-pipeline-mvp/task-1.3-frontend-port-adapter-page.md: no grammar covers '.md' files (and 6 more) — 14 violations were measured before this and are not shown"
