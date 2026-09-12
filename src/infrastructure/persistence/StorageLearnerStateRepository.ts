@@ -1,5 +1,5 @@
 import type { LearnerStateRepository } from "../../domain/ports/LearnerStateRepository";
-import type { SessionSummary } from "../../domain/shared/types";
+import type { PendingCatchUp, SessionSummary } from "../../domain/shared/types";
 import type { IStorage } from "./Storage";
 
 export class StorageLearnerStateRepository implements LearnerStateRepository {
@@ -56,6 +56,33 @@ export class StorageLearnerStateRepository implements LearnerStateRepository {
 			state.achievements = [...achievements, id];
 			this.storage.save(state);
 		}
+	}
+
+	getPendingCatchUps(): PendingCatchUp[] {
+		return this.storage.load().pendingCatchUps ?? [];
+	}
+
+	addPendingCatchUp(lessonNumber: number, cardIds: string[]): void {
+		const state = this.storage.load();
+		const pendingCatchUps = state.pendingCatchUps ?? [];
+		const existing = pendingCatchUps.find(
+			(p) => p.lessonNumber === lessonNumber,
+		);
+		if (existing) {
+			existing.cardIds = [...new Set([...existing.cardIds, ...cardIds])];
+		} else {
+			pendingCatchUps.push({ lessonNumber, cardIds: [...cardIds] });
+		}
+		state.pendingCatchUps = pendingCatchUps;
+		this.storage.save(state);
+	}
+
+	clearPendingCatchUp(lessonNumber: number): void {
+		const state = this.storage.load();
+		state.pendingCatchUps = (state.pendingCatchUps ?? []).filter(
+			(p) => p.lessonNumber !== lessonNumber,
+		);
+		this.storage.save(state);
 	}
 
 	reset(): void {

@@ -74,5 +74,6 @@ export function mergeLearnerStates(
 		sentenceCards,
 		sessionHistory: [...sessionMap.values()],
 		achievements,
+		pendingCatchUps: current.pendingCatchUps,
 	};
 }

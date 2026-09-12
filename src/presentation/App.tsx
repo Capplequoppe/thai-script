@@ -1,6 +1,7 @@
 import { HashRouter, Navigate, Route, Routes } from "react-router";
 import { Layout } from "./components/layout/Layout";
 import { AppProvider } from "./context/AppContext";
+import { CatchUpPage } from "./pages/CatchUpPage";
 import { Dashboard } from "./pages/Dashboard";
 import { DictionaryPage } from "./pages/DictionaryPage";
 import { GamePage } from "./pages/GamePage";
@@ -23,6 +24,7 @@ export function App() {
 					<Route element={<Layout />}>
 						<Route path="/" element={<Dashboard />} />
 						<Route path="/lesson/:lessonNumber" element={<LessonPage />} />
+						<Route path="/catch-up/:lessonNumber" element={<CatchUpPage />} />
 						<Route path="/review" element={<ReviewPage />} />
 						<Route path="/game" element={<GamePage />} />
 						<Route path="/items" element={<LearnedItemsPage />} />

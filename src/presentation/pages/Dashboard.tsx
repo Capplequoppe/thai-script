@@ -2,6 +2,7 @@ import { useNavigate } from "react-router";
 import { Badge } from "@/presentation/components/ui/badge";
 import { Button } from "@/presentation/components/ui/button";
 import { Card } from "@/presentation/components/ui/card";
+import type { LessonSummary } from "../../domain/script/services/ScriptLessonService";
 import { SectionHeader } from "../components/atoms/SectionHeader";
 import { ForecastCell } from "../components/molecules/ForecastCell";
 import { LearnableCallout } from "../components/molecules/LearnableCallout";
@@ -27,6 +28,17 @@ function newCountLabel(count: number, noun: string): string {
 	return `${count} new ${noun}${count === 1 ? "" : "s"}`;
 }
 
+function pendingCatchUpItemCount(summary: LessonSummary): number {
+	return (
+		summary.consonants.length +
+		summary.vowels.length +
+		summary.toneMarks.length +
+		summary.rareVowels.length +
+		summary.numerals.length +
+		summary.toneRules.length
+	);
+}
+
 export function Dashboard() {
 	const { state, lesson, review, dashboard, vocab } = useApp();
 	const navigate = useNavigate();
@@ -36,6 +48,7 @@ export function Dashboard() {
 		lesson.getVocabUnlockedCount() > 0 ? vocab.getNextLesson() : null;
 	const nextGrammarLesson = lesson.getNextGrammar();
 	const nextSentenceLesson = lesson.getNextSentence();
+	const pendingCatchUps = lesson.getPendingCatchUps();
 	const scriptDueCount = review.getDueCount("script");
 	const vocabDueCount = review.getDueCount("vocab");
 	const grammarDueCount = review.getDueCount("grammar");
@@ -180,9 +193,21 @@ export function Dashboard() {
 			    yet). Each entry mirrors StartLessonUseCase's own gating (rank
 			    window, prerequisites, apprentice cap), so a callout here always
 			    means starting that lesson will actually work. */}
-			{(nextVocabLesson || nextGrammarLesson || nextSentenceLesson) && (
+			{(nextVocabLesson ||
+				nextGrammarLesson ||
+				nextSentenceLesson ||
+				pendingCatchUps.length > 0) && (
 				<div className="space-y-3">
 					<SectionHeader className="mb-1">Ready to Learn</SectionHeader>
+					{pendingCatchUps.map((p) => (
+						<LearnableCallout
+							key={p.lessonNumber}
+							label={`Lesson ${p.lessonNumber} Update`}
+							detail={newCountLabel(pendingCatchUpItemCount(p.summary), "item")}
+							onClick={() => navigate(`/catch-up/${p.lessonNumber}`)}
+							accentColor="var(--color-accent)"
+						/>
+					))}
 					{nextVocabLesson && (
 						<LearnableCallout
 							label="Vocabulary"

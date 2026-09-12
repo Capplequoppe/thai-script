@@ -297,18 +297,95 @@ export class LearningService {
 	 * would now produce for them that isn't persisted yet, or an `audioUrl`
 	 * on a persisted card that previously had none. See
 	 * `reconcileGeneratedCards` for the exact, deliberately narrow rules.
+	 *
+	 * A card id that's genuinely new (not just patched) is recorded as a
+	 * pending catch-up for its lesson, so the learner gets a one-time intro
+	 * to it instead of it appearing cold in review — see `getPendingCatchUps`.
 	 */
 	reconcileCards(): void {
 		const persisted = (
 			this.cardRepo.findAll("script") as ScriptPropertyCard[]
 		).map((card) => card.toDTO() as PropertyCard);
+		const persistedIds = new Set(persisted.map((card) => card.id));
 		const generated = this.stateRepo
 			.getCompletedLessons()
 			.flatMap((lessonNumber) => generateCardsForLesson(lessonNumber));
+
+		const newlyBackfilled = generated.filter(
+			(card) => !persistedIds.has(card.id),
+		);
+		const newIdsByLesson = new Map<number, string[]>();
+		for (const card of newlyBackfilled) {
+			const ids = newIdsByLesson.get(card.lessonNumber) ?? [];
+			ids.push(card.id);
+			newIdsByLesson.set(card.lessonNumber, ids);
+		}
+		for (const [lessonNumber, cardIds] of newIdsByLesson) {
+			this.stateRepo.addPendingCatchUp(lessonNumber, cardIds);
+		}
 
 		const toSave = reconcileGeneratedCards(persisted, generated);
 		if (toSave.length === 0) return;
 
 		this.cardRepo.saveAll(toSave.map(toEntity));
+	}
+
+	/**
+	 * Already-completed lessons that gained new content since the learner
+	 * finished them (e.g. a symbol category wired up after the fact), scoped
+	 * down to just the new items so `LessonIntro` can walk through them
+	 * without repeating what was already taught.
+	 */
+	getPendingCatchUps(): Array<{
+		lessonNumber: number;
+		summary: LessonSummary;
+	}> {
+		const allCards = this.cardRepo.findAll("script") as ScriptPropertyCard[];
+
+		return this.stateRepo
+			.getPendingCatchUps()
+			.map(({ lessonNumber, cardIds }) => {
+				const idSet = new Set(cardIds);
+				// A tone rule card has no glyph (`symbolCharacter` is ""), so it's
+				// keyed by its own card id instead, which is exactly the id
+				// `getLessonSummary` puts on `ToneRuleSummary.id`.
+				const newKeys = new Set(
+					allCards
+						.filter((card) => idSet.has(card.id))
+						.map((card) => card.symbolCharacter || card.id),
+				);
+				const full = this.getLessonSummary(lessonNumber);
+				return {
+					lessonNumber,
+					summary: {
+						...full,
+						videoUrl: undefined,
+						consonants: full.consonants.filter((c) => newKeys.has(c.character)),
+						vowels: full.vowels.filter((v) => newKeys.has(v.character)),
+						toneMarks: full.toneMarks.filter((t) => newKeys.has(t.character)),
+						rareVowels: full.rareVowels.filter((v) => newKeys.has(v.character)),
+						numerals: full.numerals.filter((n) => newKeys.has(n.character)),
+						toneRules: full.toneRules.filter((r) => newKeys.has(r.id)),
+					},
+				};
+			});
+	}
+
+	/** The actual review cards (with live SRS state) for a pending catch-up. */
+	getPendingCatchUpCards(lessonNumber: number): PropertyCard[] {
+		const pending = this.stateRepo
+			.getPendingCatchUps()
+			.find((p) => p.lessonNumber === lessonNumber);
+		if (!pending) return [];
+
+		const idSet = new Set(pending.cardIds);
+		return (this.cardRepo.findAll("script") as ScriptPropertyCard[])
+			.filter((card) => idSet.has(card.id))
+			.map((card) => card.toDTO() as PropertyCard);
+	}
+
+	/** Marks a pending catch-up as seen once the learner completes its intro. */
+	dismissPendingCatchUp(lessonNumber: number): void {
+		this.stateRepo.clearPendingCatchUp(lessonNumber);
 	}
 }

@@ -15,6 +15,7 @@ import type {
 	SentenceEntry,
 	SentenceLessonSummary,
 } from "../../domain/sentence/types";
+import type { PropertyCard } from "../../domain/shared/types";
 import type { VocabularyService } from "../../domain/vocabulary/services/VocabularyLessonService";
 import type {
 	VocabEntry,
@@ -66,6 +67,21 @@ export class StartLessonUseCase {
 		percentage: number;
 	} {
 		return this.scriptService.getLessonMasteryProgress(lessonNumber);
+	}
+
+	getPendingCatchUps(): Array<{
+		lessonNumber: number;
+		summary: LessonSummary;
+	}> {
+		return this.scriptService.getPendingCatchUps();
+	}
+
+	getPendingCatchUpCards(lessonNumber: number): PropertyCard[] {
+		return this.scriptService.getPendingCatchUpCards(lessonNumber);
+	}
+
+	dismissPendingCatchUp(lessonNumber: number): void {
+		this.scriptService.dismissPendingCatchUp(lessonNumber);
 	}
 
 	// --- Vocabulary lessons ---

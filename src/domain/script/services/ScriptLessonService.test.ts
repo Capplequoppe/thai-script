@@ -308,4 +308,78 @@ describe("LearningService", () => {
 			expect(cardRepo.findAll("script")).toHaveLength(0);
 		});
 	});
+
+	describe("pending catch-ups", () => {
+		function completeLessonsUpTo(n: number): void {
+			for (let i = 1; i <= n; i++) {
+				service.startLesson(i);
+				service.completeLesson(i);
+			}
+		}
+
+		function deleteCardsStartingWith(prefix: string): void {
+			const state = storage.load();
+			for (const id of Object.keys(state.cards)) {
+				if (id.startsWith(prefix)) delete state.cards[id];
+			}
+			storage.save(state);
+		}
+
+		it("has nothing pending before any reconcile runs", () => {
+			completeLessonsUpTo(22);
+			expect(service.getPendingCatchUps()).toHaveLength(0);
+		});
+
+		it("flags a pending catch-up scoped to just the backfilled items", () => {
+			completeLessonsUpTo(22);
+			// Simulate lesson 22 having been completed before rare vowels were
+			// wired into card generation.
+			deleteCardsStartingWith("ฤ:");
+			deleteCardsStartingWith("ฤๅ:");
+			deleteCardsStartingWith("ฦ:");
+			deleteCardsStartingWith("ฦๅ:");
+
+			service.reconcileCards();
+
+			const pending = service.getPendingCatchUps();
+			expect(pending).toHaveLength(1);
+			expect(pending[0]?.lessonNumber).toBe(22);
+			expect(pending[0]?.summary.rareVowels.map((v) => v.character)).toEqual([
+				"ฤ",
+				"ฤๅ",
+				"ฦ",
+				"ฦๅ",
+			]);
+			// Consonants ฃ, ฅ, ฌ from the same lesson were never removed, so
+			// they aren't part of the catch-up.
+			expect(pending[0]?.summary.consonants).toHaveLength(0);
+			expect(pending[0]?.summary.videoUrl).toBeUndefined();
+		});
+
+		it("getPendingCatchUpCards returns only the pending items' live review cards", () => {
+			completeLessonsUpTo(22);
+			deleteCardsStartingWith("ฤ:");
+			service.reconcileCards();
+
+			const cards = service.getPendingCatchUpCards(22);
+			expect(cards.length).toBeGreaterThan(0);
+			expect(cards.every((c) => c.id.startsWith("ฤ:"))).toBe(true);
+		});
+
+		it("returns no cards for a lesson with nothing pending", () => {
+			completeLessonsUpTo(22);
+			expect(service.getPendingCatchUpCards(22)).toHaveLength(0);
+		});
+
+		it("dismissPendingCatchUp clears the pending entry", () => {
+			completeLessonsUpTo(22);
+			deleteCardsStartingWith("ฤ:");
+			service.reconcileCards();
+			expect(service.getPendingCatchUps()).toHaveLength(1);
+
+			service.dismissPendingCatchUp(22);
+
+			expect(service.getPendingCatchUps()).toHaveLength(0);
+		});
+	});
 });

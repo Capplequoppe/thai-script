@@ -147,6 +147,17 @@ export interface SessionSummary {
 
 // --- Storage State ---
 
+/**
+ * Tracks script content that `reconcileCards()` backfilled into an
+ * already-completed lesson (e.g. a symbol category wired up after the
+ * learner finished that lesson) so the UI can walk them through a one-time
+ * catch-up intro before those cards show up cold in review.
+ */
+export interface PendingCatchUp {
+	lessonNumber: number;
+	cardIds: string[];
+}
+
 export interface LearnerState {
 	completedLessons: number[];
 	currentLesson: number | null;
@@ -156,6 +167,7 @@ export interface LearnerState {
 	sentenceCards: Record<string, SentenceCard>;
 	sessionHistory: SessionSummary[];
 	achievements: string[];
+	pendingCatchUps?: PendingCatchUp[];
 }
 
 export const INITIAL_LEARNER_STATE: LearnerState = {
