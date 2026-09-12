@@ -56,7 +56,7 @@ decline — the tests themselves are real and correct (verified directly), and r
 
 **Applied:**
 
-answered — declined, not raised again
+declined — closed; later raisings are settled without asking again
 
 ## 1ecbe61f — continuation-3.2 · continuation/3.2 · Task 3.2 — the continuation bound
 
@@ -77,5 +77,30 @@ B (done directly to `complete`, not `pending` — see task 3.2's own "Cross-Task
 
 **Applied:**
 
-answered — task 3.2 taken by hand and marked complete
+answered — later raisings are dispatched as work, not asked again
+
+## 1b2f771f — F3 · phase 2 round 2 · src/presentation/pages/ConversationPracticePage.test.tsx
+
+Task 2.1's AC3 ('a learner with no learned words yet sends an empty list, not a missing field or a crash — a real, tested state') had its only page-level proof deleted in this diff with no replacement. `ConversationPracticePage.test.tsx`'s test 'still sends a request, with a real empty array, for a learner with no learned words yet' (which rendered the page with no graduated vocab and asserted `port.openingCalls[0]` was `[]`) is gone; the file now defaults every render to `UNLOCKED_VOCAB` (220 words) because phase 3's unlock gate (landed concurrently in the same file) makes the zero-known-words state unreachable through the real page — `checkConversationUnlock` requires `vocab.getLearnedCount() >= MIN_VOCAB_COUNT` (200), and in both the app and this test harness that count is backed by the same underlying card set as `getLearnedEntries()`, so 'unlocked' and 'zero known words' can never co-occur. The two new 'unlock gate' tests prove the page never calls the backend at all below threshold, which is a real and useful property, but it is a different claim from AC3's — it doesn't show that an in-range learner's real (possibly gappy-down-to-empty at low counts, though not literally zero above 200) snapshot round-trips as an honest array. The adapter-level test in `HttpConversationPracticeClient.test.ts` ('sends an empty known-word list as a real empty array, not an omitted field') still proves the wire-format half of AC3 (empty array, not an omitted field) independent of the page, but nothing now proves the *page's own* mapping (`vocab.getLearnedEntries().map(e => e.thai)`) doesn't crash or misbehave when that array happens to be empty — a defensive property that's currently unreachable in production (thanks to a positive `MIN_VOCAB_COUNT`) but was deliberately tested before the gate existed.
+
+> This block's id includes the finding's wording, because the review supplied no
+> criterion to anchor it to. If a later review rewords this finding it will be
+> asked again as a new block, and this answer will stay here unattached.
+
+**Scored severity 5/10, effort 7/10** — the effort is the cost of the repair including proving it safe. It reached you because a real defect that is expensive to fix is the one case where spending without your agreement is itself the risk.
+
+**Options:**
+
+- **A** — Accept the adapter-level test (`HttpConversationPracticeClient.test.ts`'s 'sends an empty known-word list as a real empty array, not an omitted field') as sufficient proof of AC3's substance, and record that the page-level empty-vocabulary scenario is now unreachable by design once phase 3's gate landed (MIN_VOCAB_COUNT=200 > 0 makes 'unlocked' and 'zero known words' mutually exclusive).  ← recommended
+  No new test needed now; the ledger's AC3 entry should be understood as satisfied by a test at a different layer than originally scoped. If a later change ever lowers MIN_VOCAB_COUNT toward 0, this gap becomes live again with nothing flagging it.
+- **B** — Restore page-level coverage for the empty-known-words send path by making it testable independent of the unlock gate (e.g. extract the known-words-effect into a unit that can be exercised without satisfying `checkConversationUnlock`, or accept a test-only override).
+  Preserves a defensive regression test against a future gate-threshold change, but adds test/production surface area whose only job is guarding a currently-unreachable state, and risks colliding with whatever task is concurrently editing this same file's gate wiring.
+
+**Answer:**
+
+A
+
+**Applied:**
+
+answered — later raisings are dispatched as work, not asked again
 
