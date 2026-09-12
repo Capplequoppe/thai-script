@@ -121,6 +121,15 @@ this phase, no streaming). A missing or malformed body (e.g. no
 `known_words` field) is `422` (Pydantic validation, no custom logic).
 Placeholder in task 1.1: `501 Not Implemented`.
 
+A bodyless `GET /conversation/opening` also exists, undocumented in the
+OpenAPI schema, behaving exactly like a `POST` with `known_words: []`.
+It is **not part of this contract** — no caller should use it. It
+exists only because task 1.1/1.2's own tests (`backend/tests/`) predate
+this task and still call the old bodyless `GET`; task 2.1 is not scoped
+to edit those test files, so the alias keeps them passing without
+duplicating the pipeline. Remove it once those tests are updated to
+`POST`.
+
 ### `POST /conversation/judge`
 
 Request body:

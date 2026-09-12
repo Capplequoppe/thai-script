@@ -187,6 +187,23 @@ async def opening(payload: OpeningRequest) -> OpeningResponse:
     return await run_serialized(_opening_pipeline, payload)
 
 
+@app.get("/conversation/opening", response_model=OpeningResponse, include_in_schema=False)
+async def opening_get_compat() -> OpeningResponse:
+    """Back-compat shim, not part of the documented contract.
+
+    Task 2.1's real contract (`docs/conversation-backend-api.md`) is the
+    `POST` above, carrying the learner's known-word snapshot — that is
+    what `HttpConversationPracticeClient` calls. This bodyless `GET`
+    alias exists only because `backend/tests/test_health.py` and
+    `backend/tests/test_pipeline.py` (task 1.1/1.2's files, outside task
+    2.1's own `covers`) still call the old bodyless `GET` and this task
+    is not scoped to edit them. It behaves exactly like a `POST` with an
+    empty `known_words` list — no different pipeline path, no separate
+    behavior to keep in sync.
+    """
+    return await run_serialized(_opening_pipeline, OpeningRequest(known_words=[]))
+
+
 @app.post("/conversation/judge", response_model=JudgeResponse)
 async def judge(payload: JudgeRequest) -> JudgeResponse:
     return await run_serialized(_judge_pipeline, payload)
