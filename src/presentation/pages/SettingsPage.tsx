@@ -4,6 +4,16 @@ import { Button } from "@/presentation/components/ui/button";
 import { ConfirmDialog } from "../components/molecules/ConfirmDialog";
 import { useApp } from "../hooks/useApp";
 
+const MIN_APPRENTICE_LIMIT = 1;
+const MAX_APPRENTICE_LIMIT = 500;
+
+function parseLimit(value: string): number | null {
+	if (!/^\d+$/.test(value.trim())) return null;
+	const n = Number(value);
+	if (n < MIN_APPRENTICE_LIMIT || n > MAX_APPRENTICE_LIMIT) return null;
+	return n;
+}
+
 export function SettingsPage() {
 	const { data, refresh } = useApp();
 	const navigate = useNavigate();
@@ -13,6 +23,37 @@ export function SettingsPage() {
 		message: string;
 	} | null>(null);
 	const [resetOpen, setResetOpen] = useState(false);
+
+	const initialLimits = data.getApprenticeLimits();
+	const [generalLimit, setGeneralLimit] = useState(
+		String(initialLimits.general),
+	);
+	const [scriptLimit, setScriptLimit] = useState(String(initialLimits.script));
+	const [sentenceLimit, setSentenceLimit] = useState(
+		String(initialLimits.sentence),
+	);
+	const [limitsStatus, setLimitsStatus] = useState<{
+		type: "success" | "error";
+		message: string;
+	} | null>(null);
+
+	function handleSaveLimits() {
+		const general = parseLimit(generalLimit);
+		const script = parseLimit(scriptLimit);
+		const sentence = parseLimit(sentenceLimit);
+
+		if (general === null || script === null || sentence === null) {
+			setLimitsStatus({
+				type: "error",
+				message: `Each limit must be a whole number between ${MIN_APPRENTICE_LIMIT} and ${MAX_APPRENTICE_LIMIT}.`,
+			});
+			return;
+		}
+
+		data.setApprenticeLimits({ general, script, sentence });
+		refresh();
+		setLimitsStatus({ type: "success", message: "Learning pace saved." });
+	}
 
 	function handleExport() {
 		const json = data.exportData();
@@ -106,6 +147,86 @@ export function SettingsPage() {
 						}}
 					>
 						{importStatus.message}
+					</p>
+				)}
+			</section>
+
+			{/* Learning Pace */}
+			<section className="space-y-2">
+				<h2
+					className="text-sm font-semibold"
+					style={{ color: "var(--color-text-muted)" }}
+				>
+					Learning Pace
+				</h2>
+				<p className="text-sm" style={{ color: "var(--color-text-muted)" }}>
+					Adjust how many items you can have in progress at once for each
+					content type.
+				</p>
+				<div className="grid grid-cols-1 gap-3 max-w-xs">
+					<label
+						htmlFor="apprentice-limit-general"
+						className="text-sm flex flex-col gap-1"
+					>
+						Vocabulary &amp; Grammar
+						<input
+							id="apprentice-limit-general"
+							type="number"
+							min={MIN_APPRENTICE_LIMIT}
+							max={MAX_APPRENTICE_LIMIT}
+							value={generalLimit}
+							onChange={(e) => setGeneralLimit(e.target.value)}
+							className="rounded-md border px-3 py-2 text-sm"
+							style={{ borderColor: "var(--color-border)" }}
+						/>
+					</label>
+					<label
+						htmlFor="apprentice-limit-script"
+						className="text-sm flex flex-col gap-1"
+					>
+						Script
+						<input
+							id="apprentice-limit-script"
+							type="number"
+							min={MIN_APPRENTICE_LIMIT}
+							max={MAX_APPRENTICE_LIMIT}
+							value={scriptLimit}
+							onChange={(e) => setScriptLimit(e.target.value)}
+							className="rounded-md border px-3 py-2 text-sm"
+							style={{ borderColor: "var(--color-border)" }}
+						/>
+					</label>
+					<label
+						htmlFor="apprentice-limit-sentence"
+						className="text-sm flex flex-col gap-1"
+					>
+						Sentences
+						<input
+							id="apprentice-limit-sentence"
+							type="number"
+							min={MIN_APPRENTICE_LIMIT}
+							max={MAX_APPRENTICE_LIMIT}
+							value={sentenceLimit}
+							onChange={(e) => setSentenceLimit(e.target.value)}
+							className="rounded-md border px-3 py-2 text-sm"
+							style={{ borderColor: "var(--color-border)" }}
+						/>
+					</label>
+				</div>
+				<Button type="button" onClick={handleSaveLimits}>
+					Save Learning Pace
+				</Button>
+				{limitsStatus && (
+					<p
+						className="text-sm"
+						style={{
+							color:
+								limitsStatus.type === "success"
+									? "var(--color-master)"
+									: "var(--color-danger)",
+						}}
+					>
+						{limitsStatus.message}
 					</p>
 				)}
 			</section>

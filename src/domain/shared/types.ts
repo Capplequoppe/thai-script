@@ -148,6 +148,17 @@ export interface SessionSummary {
 // --- Storage State ---
 
 /**
+ * User-adjustable overrides for ApprenticeService's backpressure caps.
+ * Optional on LearnerState — when absent, the repository layer falls back to
+ * ApprenticeService's DEFAULT_APPRENTICE_LIMITS.
+ */
+export interface ApprenticeLimits {
+	general: number;
+	script: number;
+	sentence: number;
+}
+
+/**
  * Tracks script content that `reconcileCards()` backfilled into an
  * already-completed lesson (e.g. a symbol category wired up after the
  * learner finished that lesson) so the UI can walk them through a one-time
@@ -167,6 +178,7 @@ export interface LearnerState {
 	sentenceCards: Record<string, SentenceCard>;
 	sessionHistory: SessionSummary[];
 	achievements: string[];
+	apprenticeLimits?: ApprenticeLimits;
 	pendingCatchUps?: PendingCatchUp[];
 }
 

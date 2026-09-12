@@ -1,5 +1,10 @@
 import type { LearnerStateRepository } from "../../domain/ports/LearnerStateRepository";
-import type { PendingCatchUp, SessionSummary } from "../../domain/shared/types";
+import { DEFAULT_APPRENTICE_LIMITS } from "../../domain/shared/services/ApprenticeService";
+import type {
+	ApprenticeLimits,
+	PendingCatchUp,
+	SessionSummary,
+} from "../../domain/shared/types";
 import type { IStorage } from "./Storage";
 
 export class StorageLearnerStateRepository implements LearnerStateRepository {
@@ -82,6 +87,16 @@ export class StorageLearnerStateRepository implements LearnerStateRepository {
 		state.pendingCatchUps = (state.pendingCatchUps ?? []).filter(
 			(p) => p.lessonNumber !== lessonNumber,
 		);
+		this.storage.save(state);
+	}
+
+	getApprenticeLimits(): ApprenticeLimits {
+		return this.storage.load().apprenticeLimits ?? DEFAULT_APPRENTICE_LIMITS;
+	}
+
+	setApprenticeLimits(limits: ApprenticeLimits): void {
+		const state = this.storage.load();
+		state.apprenticeLimits = limits;
 		this.storage.save(state);
 	}
 

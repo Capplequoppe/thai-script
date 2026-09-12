@@ -27,7 +27,10 @@ import { SentenceService } from "../../domain/sentence/services/SentenceLessonSe
 import type { SentenceEntry } from "../../domain/sentence/types";
 import { ReviewService } from "../../domain/session/services/ReviewService";
 import { AchievementService } from "../../domain/shared/services/AchievementService";
-import { ApprenticeService } from "../../domain/shared/services/ApprenticeService";
+import {
+	ApprenticeService,
+	MAX_APPRENTICE_ITEMS,
+} from "../../domain/shared/services/ApprenticeService";
 import { LeechService } from "../../domain/shared/services/LeechService";
 import type { LearnerState, SessionSummary } from "../../domain/shared/types";
 import vocabularyData from "../../domain/vocabulary/data/vocabulary.json";
@@ -46,9 +49,13 @@ import { StorageLearnerStateRepository } from "../../infrastructure/persistence/
 
 const storage = new LocalStorageAdapter();
 const cardRepo = new StorageCardRepository(storage);
-const apprenticeService = new ApprenticeService(cardRepo);
-const leechService = new LeechService(cardRepo);
 const stateRepo = new StorageLearnerStateRepository(storage);
+const apprenticeService = new ApprenticeService(
+	cardRepo,
+	MAX_APPRENTICE_ITEMS,
+	stateRepo,
+);
+const leechService = new LeechService(cardRepo);
 const learningService = new LearningService(
 	cardRepo,
 	stateRepo,

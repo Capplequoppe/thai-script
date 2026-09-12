@@ -3,6 +3,7 @@ import { InMemoryStorage } from "../../../infrastructure/persistence/Storage";
 import { StorageCardRepository } from "../../../infrastructure/persistence/StorageCardRepository";
 import { GrammarReviewCard } from "../../grammar/entities/GrammarReviewCard";
 import type { CardRepository } from "../../ports/CardRepository";
+import type { LearnerStateRepository } from "../../ports/LearnerStateRepository";
 import { ScriptPropertyCard } from "../../script/entities/ScriptPropertyCard";
 import { SentenceReviewCard } from "../../sentence/entities/SentenceReviewCard";
 import { SrsSchedule } from "../../srs/value-objects/SrsSchedule";
@@ -13,6 +14,16 @@ import {
 	MAX_SCRIPT_APPRENTICE_ITEMS,
 	MAX_SENTENCE_APPRENTICE_ITEMS,
 } from "./ApprenticeService";
+
+function fakeStateRepo(limits: {
+	general: number;
+	script: number;
+	sentence: number;
+}): LearnerStateRepository {
+	return {
+		getApprenticeLimits: () => limits,
+	} as unknown as LearnerStateRepository;
+}
 
 function learningSchedule(): SrsSchedule {
 	return SrsSchedule.initial();
@@ -205,6 +216,48 @@ describe("ApprenticeService", () => {
 					cardRepo.save(makeSentenceCard(`sc${i}`, `sentence${i}`, true));
 				}
 				expect(service.canStartLesson("grammar")).toBe(false);
+			});
+		});
+
+		describe("with a stateRepo supplying custom limits", () => {
+			it("uses the stateRepo's general limit over the constructor default", () => {
+				const withRepo = new ApprenticeService(
+					cardRepo,
+					MAX_APPRENTICE_ITEMS,
+					fakeStateRepo({ general: 1, script: 35, sentence: 60 }),
+				);
+				cardRepo.save(makeVocabCard("v1", true));
+
+				expect(withRepo.canStartLesson("vocab")).toBe(false);
+			});
+
+			it("uses the stateRepo's script limit over MAX_SCRIPT_APPRENTICE_ITEMS", () => {
+				const withRepo = new ApprenticeService(
+					cardRepo,
+					MAX_APPRENTICE_ITEMS,
+					fakeStateRepo({ general: 100, script: 1, sentence: 60 }),
+				);
+				cardRepo.save(makeScriptCard("s1", true));
+
+				expect(withRepo.canStartLesson("script")).toBe(false);
+			});
+
+			it("uses the stateRepo's sentence limit over MAX_SENTENCE_APPRENTICE_ITEMS", () => {
+				const withRepo = new ApprenticeService(
+					cardRepo,
+					MAX_APPRENTICE_ITEMS,
+					fakeStateRepo({ general: 100, script: 35, sentence: 1 }),
+				);
+				cardRepo.save(makeSentenceCard("sc1", "sentence1", true));
+
+				expect(withRepo.canStartLesson("sentence")).toBe(false);
+			});
+
+			it("without a stateRepo, behavior is unchanged from the hardcoded constants", () => {
+				for (let i = 0; i < MAX_SCRIPT_APPRENTICE_ITEMS - 1; i++) {
+					cardRepo.save(makeScriptCard(`s${i}`, true));
+				}
+				expect(service.canStartLesson("script")).toBe(true);
 			});
 		});
 	});

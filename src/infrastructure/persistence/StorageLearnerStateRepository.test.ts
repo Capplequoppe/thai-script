@@ -1,4 +1,5 @@
 import { beforeEach, describe, expect, it } from "vitest";
+import { DEFAULT_APPRENTICE_LIMITS } from "../../domain/shared/services/ApprenticeService";
 import type { SessionSummary } from "../../domain/shared/types";
 import { InMemoryStorage } from "./Storage";
 import { StorageLearnerStateRepository } from "./StorageLearnerStateRepository";
@@ -141,6 +142,27 @@ describe("StorageLearnerStateRepository", () => {
 			const achievements = repo.getAchievements();
 			expect(achievements).toContain("first_lesson");
 			expect(achievements).toContain("first_review");
+		});
+	});
+
+	describe("apprentice limits", () => {
+		it("returns DEFAULT_APPRENTICE_LIMITS when never customized", () => {
+			expect(repo.getApprenticeLimits()).toEqual(DEFAULT_APPRENTICE_LIMITS);
+		});
+
+		it("returns the custom limits after setting them", () => {
+			repo.setApprenticeLimits({ general: 150, script: 20, sentence: 80 });
+			expect(repo.getApprenticeLimits()).toEqual({
+				general: 150,
+				script: 20,
+				sentence: 80,
+			});
+		});
+
+		it("persists across reset to DEFAULT_APPRENTICE_LIMITS", () => {
+			repo.setApprenticeLimits({ general: 150, script: 20, sentence: 80 });
+			repo.reset();
+			expect(repo.getApprenticeLimits()).toEqual(DEFAULT_APPRENTICE_LIMITS);
 		});
 	});
 

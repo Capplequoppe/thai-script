@@ -1,10 +1,18 @@
 import type { CardRepository } from "../../ports/CardRepository";
+import type { LearnerStateRepository } from "../../ports/LearnerStateRepository";
+import type { ApprenticeLimits } from "../../shared/types";
 import type { CardPool } from "../CardPool";
 import { CardPools } from "../CardPool";
 
 export const MAX_APPRENTICE_ITEMS = 100;
 export const MAX_SCRIPT_APPRENTICE_ITEMS = 35;
 export const MAX_SENTENCE_APPRENTICE_ITEMS = 60;
+
+export const DEFAULT_APPRENTICE_LIMITS: ApprenticeLimits = {
+	general: MAX_APPRENTICE_ITEMS,
+	script: MAX_SCRIPT_APPRENTICE_ITEMS,
+	sentence: MAX_SENTENCE_APPRENTICE_ITEMS,
+};
 
 export interface ApprenticeStats {
 	total: number;
@@ -17,6 +25,7 @@ export class ApprenticeService {
 	constructor(
 		private readonly cardRepo: CardRepository,
 		private readonly apprenticeLimit: number = MAX_APPRENTICE_ITEMS,
+		private readonly stateRepo?: LearnerStateRepository,
 	) {}
 
 	getApprenticeCount(): number {
@@ -63,18 +72,28 @@ export class ApprenticeService {
 	}
 
 	canStartLesson(pool?: CardPool): boolean {
+		const limits = this.stateRepo?.getApprenticeLimits();
 		if (pool === "script") {
 			return (
-				this.getApprenticeCountForPool("script") < MAX_SCRIPT_APPRENTICE_ITEMS
+				this.getApprenticeCountForPool("script") <
+				(limits?.script ?? MAX_SCRIPT_APPRENTICE_ITEMS)
 			);
 		}
 		if (pool === "sentence") {
-			return this.getSentenceApprenticeCount() < MAX_SENTENCE_APPRENTICE_ITEMS;
+			return (
+				this.getSentenceApprenticeCount() <
+				(limits?.sentence ?? MAX_SENTENCE_APPRENTICE_ITEMS)
+			);
 		}
-		return this.getNonSentenceApprenticeCount() < this.apprenticeLimit;
+		return (
+			this.getNonSentenceApprenticeCount() <
+			(limits?.general ?? this.apprenticeLimit)
+		);
 	}
 
 	getApprenticeStats(): ApprenticeStats {
+		const limits = this.stateRepo?.getApprenticeLimits();
+		const generalLimit = limits?.general ?? this.apprenticeLimit;
 		const counts: Record<string, number> = {};
 		for (const pool of CardPools.all()) {
 			counts[pool] = this.getApprenticeCountForPool(pool);
@@ -84,8 +103,8 @@ export class ApprenticeService {
 		return {
 			total,
 			byPool: counts as Record<CardPool, number>,
-			limit: this.apprenticeLimit,
-			isAtLimit: nonSentenceTotal >= this.apprenticeLimit,
+			limit: generalLimit,
+			isAtLimit: nonSentenceTotal >= generalLimit,
 		};
 	}
 }
