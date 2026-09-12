@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { RecallRating } from "./RecallRating";
 import type { ResponseTimingData, SrsDataDTO } from "./SrsSchedule";
-import { SrsSchedule } from "./SrsSchedule";
+import { LAPSE_RECOVERY_INTERVAL_MINUTES, SrsSchedule } from "./SrsSchedule";
 import { SrsStage } from "./SrsStage";
 
 const NOW = "2026-02-25T12:00:00.000Z";
@@ -189,21 +189,43 @@ describe("SrsSchedule.applyReview - Graduated Phase", () => {
 		expect(result.interval).toBe(1440);
 	});
 
-	it("Wrong lapses to learning step 1, ease drops by 0.2", () => {
+	// A lapse on an already-graduated card stays graduated (no multi-step
+	// relearning ladder to climb back out of) — it just gets a short,
+	// fixed recovery interval. One correct answer next time is enough.
+	it("Wrong stays graduated with the fixed recovery interval, ease drops by 0.2", () => {
 		const card = makeGraduatedSchedule({ easeFactor: 2.0 });
 		const result = card.applyReview(RecallRating.WRONG, NOW);
-		expect(result.learningStep).toBe(1);
-		expect(result.interval).toBe(10);
+		expect(result.learningStep).toBeNull();
+		expect(result.interval).toBe(LAPSE_RECOVERY_INTERVAL_MINUTES);
+		expect(result.nextReviewDate).toBe(
+			addMinutes(NOW, LAPSE_RECOVERY_INTERVAL_MINUTES),
+		);
 		expect(result.easeFactor.value).toBe(1.8);
+		expect(result.lapseCount).toBe(1);
 	});
 
-	it("Again lapses to learning step 0, ease drops by 0.3", () => {
+	it("Again stays graduated with the fixed recovery interval, ease drops by 0.3", () => {
 		const card = makeGraduatedSchedule({ easeFactor: 2.0 });
 		const result = card.applyReview(RecallRating.AGAIN, NOW);
-		expect(result.learningStep).toBe(0);
-		expect(result.interval).toBe(0);
+		expect(result.learningStep).toBeNull();
+		expect(result.interval).toBe(LAPSE_RECOVERY_INTERVAL_MINUTES);
+		expect(result.nextReviewDate).toBe(
+			addMinutes(NOW, LAPSE_RECOVERY_INTERVAL_MINUTES),
+		);
 		expect(result.easeFactor.value).toBe(1.7);
-		expect(result.nextReviewDate).toBe(NOW);
+		expect(result.lapseCount).toBe(1);
+	});
+
+	it("a lapse is never immediately due again — it always lands in the future", () => {
+		const card = makeGraduatedSchedule({ easeFactor: 2.0 });
+		const again = card.applyReview(RecallRating.AGAIN, NOW);
+		const wrong = card.applyReview(RecallRating.WRONG, NOW);
+		expect(new Date(again.nextReviewDate).getTime()).toBeGreaterThan(
+			new Date(NOW).getTime(),
+		);
+		expect(new Date(wrong.nextReviewDate).getTime()).toBeGreaterThan(
+			new Date(NOW).getTime(),
+		);
 	});
 
 	it("ease factor never drops below 1.3", () => {
@@ -666,7 +688,7 @@ describe("SrsSchedule.fromDTO with a custom learning ladder", () => {
 		expect(result.interval).toBe(2880);
 	});
 
-	it("a lapsed graduated card re-graduates after 2 corrects on a custom relearning ladder", () => {
+	it("a lapse on a graduated card stays graduated even with a custom relearning ladder", () => {
 		const graduated = SrsSchedule.fromDTO(
 			{
 				easeFactor: 2.0,
@@ -681,18 +703,20 @@ describe("SrsSchedule.fromDTO with a custom learning ladder", () => {
 			[0, 10],
 		);
 
-		let lapsed = graduated.applyReview(RecallRating.AGAIN, NOW);
-		expect(lapsed.learningStep).toBe(0);
-
-		lapsed = lapsed.applyReview(RecallRating.GOOD, NOW);
-		expect(lapsed.learningStep).toBe(1);
-
-		lapsed = lapsed.applyReview(RecallRating.GOOD, NOW);
+		const lapsed = graduated.applyReview(RecallRating.AGAIN, NOW);
 		expect(lapsed.learningStep).toBeNull();
-		expect(lapsed.interval).toBe(2880);
+		expect(lapsed.interval).toBe(LAPSE_RECOVERY_INTERVAL_MINUTES);
+
+		// One good answer afterward resumes normal ease-based growth — no
+		// ladder to climb.
+		const regrown = lapsed.applyReview(RecallRating.GOOD, NOW);
+		expect(regrown.learningStep).toBeNull();
+		expect(regrown.interval).toBe(
+			Math.round(LAPSE_RECOVERY_INTERVAL_MINUTES * lapsed.easeFactor.value),
+		);
 	});
 
-	it("WRONG-lapse interval reads from the instance's own relearningSteps, not the global default", () => {
+	it("WRONG-lapse interval ignores the instance's own relearningSteps — it's always the fixed recovery interval", () => {
 		const graduated = SrsSchedule.fromDTO(
 			{
 				easeFactor: 2.0,
@@ -708,8 +732,8 @@ describe("SrsSchedule.fromDTO with a custom learning ladder", () => {
 		);
 
 		const lapsed = graduated.applyReview(RecallRating.WRONG, NOW);
-		expect(lapsed.learningStep).toBe(1);
-		expect(lapsed.interval).toBe(7);
+		expect(lapsed.learningStep).toBeNull();
+		expect(lapsed.interval).toBe(LAPSE_RECOVERY_INTERVAL_MINUTES);
 	});
 
 	it("overrideStage(Apprentice) interval reads from the instance's own step ladder", () => {
@@ -732,39 +756,43 @@ describe("SrsSchedule.fromDTO with a custom learning ladder", () => {
 	});
 });
 
-describe("Relearning steps (lapsed cards)", () => {
-	it("lapsed card uses shorter relearning steps [0, 10, 60]", () => {
+describe("Lapse recovery (graduated cards)", () => {
+	it("AGAIN goes straight to the recovery interval — no relearning ladder to climb", () => {
 		const card = makeGraduatedSchedule({ easeFactor: 2.0 });
-		let lapsed = card.applyReview(RecallRating.AGAIN, NOW);
-		expect(lapsed.learningStep).toBe(0);
-		expect(lapsed.lapseCount).toBe(1);
-
-		lapsed = lapsed.applyReview(RecallRating.GOOD, NOW);
-		expect(lapsed.learningStep).toBe(1);
-		expect(lapsed.interval).toBe(10);
-
-		lapsed = lapsed.applyReview(RecallRating.GOOD, NOW);
-		expect(lapsed.learningStep).toBe(2);
-		expect(lapsed.interval).toBe(60);
-
-		lapsed = lapsed.applyReview(RecallRating.GOOD, NOW);
+		const lapsed = card.applyReview(RecallRating.AGAIN, NOW);
 		expect(lapsed.learningStep).toBeNull();
-		expect(lapsed.interval).toBe(2880);
+		expect(lapsed.lapseCount).toBe(1);
+		expect(lapsed.interval).toBe(LAPSE_RECOVERY_INTERVAL_MINUTES);
+
+		// A single correct answer afterward is enough — normal ease-based
+		// growth resumes immediately, not another relearning step.
+		const regrown = lapsed.applyReview(RecallRating.GOOD, NOW);
+		expect(regrown.learningStep).toBeNull();
+		expect(regrown.interval).toBe(
+			Math.round(LAPSE_RECOVERY_INTERVAL_MINUTES * lapsed.easeFactor.value),
+		);
 	});
 
-	it("WRONG lapse relearns from step 1 and graduates after step 2", () => {
+	it("WRONG also goes straight to the recovery interval", () => {
 		const card = makeGraduatedSchedule({ easeFactor: 2.0 });
-		let lapsed = card.applyReview(RecallRating.WRONG, NOW);
-		expect(lapsed.learningStep).toBe(1);
-		expect(lapsed.lapseCount).toBe(1);
-
-		lapsed = lapsed.applyReview(RecallRating.GOOD, NOW);
-		expect(lapsed.learningStep).toBe(2);
-		expect(lapsed.interval).toBe(60);
-
-		lapsed = lapsed.applyReview(RecallRating.GOOD, NOW);
+		const lapsed = card.applyReview(RecallRating.WRONG, NOW);
 		expect(lapsed.learningStep).toBeNull();
-		expect(lapsed.interval).toBe(2880);
+		expect(lapsed.lapseCount).toBe(1);
+		expect(lapsed.interval).toBe(LAPSE_RECOVERY_INTERVAL_MINUTES);
+
+		const regrown = lapsed.applyReview(RecallRating.GOOD, NOW);
+		expect(regrown.learningStep).toBeNull();
+		expect(regrown.interval).toBe(
+			Math.round(LAPSE_RECOVERY_INTERVAL_MINUTES * lapsed.easeFactor.value),
+		);
+	});
+
+	it("a slow-but-correct (Hard) answer right after a lapse still graduates fine — no ladder to get stuck on", () => {
+		const card = makeGraduatedSchedule({ easeFactor: 2.0 });
+		const lapsed = card.applyReview(RecallRating.AGAIN, NOW);
+		const afterHard = lapsed.applyReview(RecallRating.HARD, NOW);
+		expect(afterHard.learningStep).toBeNull();
+		expect(afterHard.interval).toBeGreaterThan(0);
 	});
 
 	it("new card (lapseCount 0) uses full learning steps [0, 10, 60, 480]", () => {

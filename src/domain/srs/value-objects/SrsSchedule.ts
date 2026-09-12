@@ -23,6 +23,16 @@ export const SENTENCE_LEARNING_STEPS = [0, 10] as const;
 const GRADUATING_INTERVAL_MINUTES = 2880;
 const MAX_INTERVAL_MINUTES = 259200;
 const MIN_GRADUATED_INTERVAL_MINUTES = 1440;
+/**
+ * A lapse (Again/Wrong) on an already-graduated card no longer drops it back
+ * into the multi-step relearning ladder — that required 2-3 more correct
+ * answers in a row (and a slow-but-correct "Hard" answer didn't even advance
+ * the ladder), turning one mistake into many repeated reviews of the same
+ * item. Instead it stays graduated with a short-but-real interval: one
+ * correct answer next time is enough, and normal ease-based growth resumes
+ * from there.
+ */
+export const LAPSE_RECOVERY_INTERVAL_MINUTES = 240; // 4 hours
 
 function addMinutesToIso(iso: string, minutes: number): string {
 	const d = new Date(iso);
@@ -296,31 +306,13 @@ export class SrsSchedule {
 		switch (rating.value) {
 			case 1: {
 				newEf = this.easeFactor.adjust(-0.3);
-				return new SrsSchedule(
-					newEf,
-					0,
-					this.repetitions + 1,
-					0,
-					now,
-					now,
-					this.lapseCount + 1,
-					this.learningSteps,
-					this.relearningSteps,
-				);
+				newInterval = LAPSE_RECOVERY_INTERVAL_MINUTES;
+				break;
 			}
 			case 2: {
 				newEf = this.easeFactor.adjust(-0.2);
-				return new SrsSchedule(
-					newEf,
-					this.relearningSteps[1] ?? 0,
-					this.repetitions + 1,
-					1,
-					addMinutesToIso(now, this.relearningSteps[1] ?? 0),
-					now,
-					this.lapseCount + 1,
-					this.learningSteps,
-					this.relearningSteps,
-				);
+				newInterval = LAPSE_RECOVERY_INTERVAL_MINUTES;
+				break;
 			}
 			case 3: {
 				newEf = this.easeFactor.adjust(-0.15);
@@ -342,11 +334,17 @@ export class SrsSchedule {
 			}
 		}
 
-		if (timing) {
+		// A lapse's recovery interval is a fixed, deliberately short window —
+		// timing modulation (which stretches/shrinks based on response speed)
+		// only makes sense for the normal growth path.
+		if (timing && !rating.isLapse) {
 			newInterval = applyTimingModulation(newInterval, timing);
 		}
 
 		newInterval = Math.min(newInterval, MAX_INTERVAL_MINUTES);
+		const newLapseCount = rating.isLapse
+			? this.lapseCount + 1
+			: this.lapseCount;
 
 		return new SrsSchedule(
 			newEf,
@@ -355,7 +353,7 @@ export class SrsSchedule {
 			null,
 			addMinutesToIso(now, newInterval),
 			now,
-			this.lapseCount,
+			newLapseCount,
 			this.learningSteps,
 			this.relearningSteps,
 		);

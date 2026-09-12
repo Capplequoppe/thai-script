@@ -1,6 +1,7 @@
 import { beforeEach, describe, expect, it } from "vitest";
 import type { LearnerState } from "./domain/shared/types";
 import { INITIAL_LEARNER_STATE } from "./domain/shared/types";
+import { LAPSE_RECOVERY_INTERVAL_MINUTES } from "./domain/srs/value-objects/SrsSchedule";
 import {
 	InMemoryStorage,
 	migrateState,
@@ -119,7 +120,7 @@ describe("migrateState", () => {
 		expect(card.srs.lapseCount).toBe(0);
 	});
 
-	it("does not alter cards that already have learningStep", () => {
+	it("does not alter a brand-new card still climbing its first-ever learning ladder", () => {
 		const oldState = {
 			completedLessons: [1],
 			currentLesson: null,
@@ -139,7 +140,7 @@ describe("migrateState", () => {
 						learningStep: 2,
 						nextReviewDate: new Date().toISOString(),
 						lastReviewDate: null,
-						lapseCount: 1,
+						lapseCount: 0,
 					},
 				},
 			},
@@ -151,7 +152,55 @@ describe("migrateState", () => {
 		const card = state.cards["test:recognition"]!;
 
 		expect(card.srs.learningStep).toBe(2);
+		expect(card.srs.lapseCount).toBe(0);
+	});
+
+	// This is the fast-forward fix: a lapse used to drop a graduated card into
+	// a multi-step relearning ladder needing 2-3 more correct answers before
+	// it graduated again. A card mid-that-ladder (lapseCount > 0) gets bumped
+	// straight back to graduated, with a short recovery interval, instead of
+	// being left to climb out the old way.
+	it("fast-forwards a card stuck mid-relearning from a past lapse back to graduated", () => {
+		const oldState = {
+			completedLessons: [1],
+			currentLesson: null,
+			cards: {
+				"test:recognition": {
+					id: "test:recognition",
+					symbolCharacter: "ก",
+					property: "recognition",
+					lessonNumber: 1,
+					question: "What is this?",
+					correctAnswer: "ko kai",
+					choices: ["ko kai", "kho khai"],
+					srs: {
+						easeFactor: 1.8,
+						interval: 10,
+						repetitions: 6,
+						learningStep: 1,
+						nextReviewDate: new Date().toISOString(),
+						lastReviewDate: null,
+						lapseCount: 1,
+					},
+				},
+			},
+			vocabCards: {},
+			sessionHistory: [],
+		} as unknown as LearnerState;
+
+		const now = "2026-03-01T00:00:00.000Z";
+		const state = migrateState(oldState, now);
+		const card = state.cards["test:recognition"]!;
+
+		expect(card.srs.learningStep).toBeNull();
 		expect(card.srs.lapseCount).toBe(1);
+		expect(card.srs.easeFactor).toBe(1.8);
+		expect(card.srs.interval).toBe(LAPSE_RECOVERY_INTERVAL_MINUTES);
+		expect(card.srs.nextReviewDate).toBe(
+			new Date(
+				new Date(now).getTime() + LAPSE_RECOVERY_INTERVAL_MINUTES * 60_000,
+			).toISOString(),
+		);
 	});
 
 	it("migrates vocab cards missing learningStep", () => {

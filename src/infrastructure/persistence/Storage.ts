@@ -1,5 +1,6 @@
 import type { LearnerState, SrsCard } from "../../domain/shared/types";
 import { INITIAL_LEARNER_STATE } from "../../domain/shared/types";
+import { LAPSE_RECOVERY_INTERVAL_MINUTES } from "../../domain/srs/value-objects/SrsSchedule";
 import { mergeLearnerStates } from "./MergeService";
 import { validateLearnerState } from "./Validation";
 
@@ -13,7 +14,7 @@ interface LegacySrsData {
 	lapseCount?: number;
 }
 
-function migrateSrsCard(card: SrsCard): void {
+function migrateSrsCard(card: SrsCard, now: string): void {
 	const srs = card.srs as LegacySrsData;
 	if (srs.learningStep === undefined) {
 		srs.learningStep = null;
@@ -21,14 +22,30 @@ function migrateSrsCard(card: SrsCard): void {
 	if (srs.lapseCount === undefined) {
 		srs.lapseCount = 0;
 	}
+	// A card stuck mid-relearning from a lapse recorded under the old
+	// multi-step relearning ladder (2-3 more correct answers required to
+	// re-graduate) — fast-forward it back to graduated now that a lapse no
+	// longer re-enters that ladder. A brand-new item still climbing its
+	// first-ever learning ladder always has lapseCount 0 (only
+	// handleGraduatedPhase increments it), so this never touches those.
+	if (srs.lapseCount > 0 && srs.learningStep !== null) {
+		srs.learningStep = null;
+		srs.interval = LAPSE_RECOVERY_INTERVAL_MINUTES;
+		srs.nextReviewDate = new Date(
+			new Date(now).getTime() + LAPSE_RECOVERY_INTERVAL_MINUTES * 60_000,
+		).toISOString();
+	}
 }
 
-export function migrateState(state: LearnerState): LearnerState {
+export function migrateState(
+	state: LearnerState,
+	now: string = new Date().toISOString(),
+): LearnerState {
 	for (const card of Object.values(state.cards)) {
-		migrateSrsCard(card);
+		migrateSrsCard(card, now);
 	}
 	for (const card of Object.values(state.vocabCards ?? {})) {
-		migrateSrsCard(card);
+		migrateSrsCard(card, now);
 		// Migrate legacy wordThai → promptWord
 		const legacy = card as unknown as Record<string, unknown>;
 		if ("wordThai" in legacy && !("promptWord" in legacy)) {
@@ -37,10 +54,10 @@ export function migrateState(state: LearnerState): LearnerState {
 		}
 	}
 	for (const card of Object.values(state.grammarCards ?? {})) {
-		migrateSrsCard(card);
+		migrateSrsCard(card, now);
 	}
 	for (const card of Object.values(state.sentenceCards ?? {})) {
-		migrateSrsCard(card);
+		migrateSrsCard(card, now);
 	}
 	return state;
 }
