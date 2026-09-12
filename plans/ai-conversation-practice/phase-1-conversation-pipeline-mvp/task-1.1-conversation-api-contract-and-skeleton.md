@@ -11,7 +11,7 @@ covers:
   - docs/conversation-backend-api.md
 status: draft
 task_id: "1.1"
-task_status: pending
+task_status: complete
 depends_on: []
 size: medium
 verify:
@@ -25,6 +25,23 @@ ac_enforcement:
   - "AC5 -> a case in test_health.py: an OPTIONS preflight on /conversation/judge from the allowed dev origin (http://localhost:5173) returns the CORS allow-origin header; the same preflight from a foreign Origin header does not"
   - "AC6 -> none - verified by reading backend/app/main.py: uvicorn's bind address is 127.0.0.1, never 0.0.0.0, in every documented run command (CONTEXT.md, this task, task 1.4)"
   - "AC7 -> a non-GPU case in conftest.py/test_health.py using fake model objects: two overlapping requests to a handler wrapping a fake blocking call never execute the fake concurrently (proven by a shared counter/flag the fakes increment and check), and /health responds while one is in flight"
+ac_tests:
+  - "AC1 -> backend/tests/test_health.py::test_health_before_any_model_is_loaded"
+  - "AC2 -> none"
+  - "AC3 -> none"
+  - "AC4 -> backend/tests/test_health.py::test_judge_missing_required_field_is_422"
+  - "AC5 -> backend/tests/test_health.py::test_cors_preflight_rejected_from_foreign_origin"
+  - "AC6 -> none"
+  - "AC7 -> backend/tests/test_health.py::test_concurrent_judge_calls_never_overlap_and_health_stays_responsive"
+red_proof:
+  - "AC1 -> Changed HealthResponse's models_loaded to whisper=True in app/main.py's /health handler."
+  - "AC4 -> Gave JudgeRequest.reply_audio_base64 a default value (str = \"\") in app/schemas.py, making it optional."
+  - "AC5 -> Set ALLOWED_ORIGINS = [\"http://evil.example\"] in app/main.py (the dev origin no longer allowed, and the foreign origin allowed)."
+  - "AC7 -> Removed 'async with MODEL_LOCK:' from run_serialized in app/main.py, leaving only the asyncio.to_thread call (no serialization)."
+lint:
+  before: 3
+  after: 3
+  outcome: unsupported
 generated: {by: claude-sonnet-5/agent, at: 2026-09-11}
 profile_version: 1
 weight_votes:
