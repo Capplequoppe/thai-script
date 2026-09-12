@@ -1,0 +1,127 @@
+{
+  "version": 1,
+  "task": "2.1",
+  "pass": "before",
+  "result": {
+    "outcome": "unsupported",
+    "reason": "docs/conversation-backend-api.md: no grammar covers '.md' files (and 2 more) — 5 violations were measured before this and are not shown"
+  },
+  "findings": [
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "file",
+      "path": "backend/app/schemas.py",
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 2.44,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "(anonymous)",
+        "path": "src/infrastructure/conversation/HttpConversationPracticeClient.test.ts",
+        "bytes": {
+          "startIndex": 999,
+          "endIndex": 3673
+        },
+        "lines": {
+          "startRow": 39,
+          "endRow": 120
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "(anonymous)",
+        "path": "src/infrastructure/conversation/HttpConversationPracticeClient.test.ts",
+        "bytes": {
+          "startIndex": 6489,
+          "endIndex": 7188
+        },
+        "lines": {
+          "startRow": 203,
+          "endRow": 228
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 4.01,
+      "threshold": 5,
+      "tier": "file",
+      "path": "src/infrastructure/conversation/HttpConversationPracticeClient.test.ts",
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 2.94,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "getOpening",
+        "path": "src/infrastructure/conversation/HttpConversationPracticeClient.ts",
+        "bytes": {
+          "startIndex": 4031,
+          "endIndex": 4917
+        },
+        "lines": {
+          "startRow": 110,
+          "endRow": 143
+        }
+      },
+      "check": "density-below-floor"
+    }
+  ],
+  "adapters": [
+    {
+      "tool": "biome",
+      "selection": {
+        "evidence": "configured",
+        "by": "biome.json"
+      },
+      "program": null,
+      "result": {
+        "outcome": "unsupported",
+        "reason": "biome did not resolve: 'biome' on PATH (31 entries). Its findings are missing from this report — that is a gap and not a pass."
+      },
+      "files": 3,
+      "findings": 0,
+      "refusedPaths": 0,
+      "outsideAnalysis": 0,
+      "refusedShape": 0
+    },
+    {
+      "tool": "ruff",
+      "selection": {
+        "evidence": "none",
+        "considered": [
+          "ruff"
+        ]
+      },
+      "program": null,
+      "result": {
+        "outcome": "unsupported",
+        "reason": "no native linter covered these files: looked for a configuration file for ruff at the repository root, and for ruff on PATH in a repository of that ecosystem. Their findings are missing from this report — that is a gap and not a pass."
+      },
+      "files": 2,
+      "findings": 0,
+      "refusedPaths": 0,
+      "outsideAnalysis": 0,
+      "refusedShape": 0
+    }
+  ]
+}

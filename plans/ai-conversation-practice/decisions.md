@@ -38,5 +38,23 @@ A
 
 **Applied:**
 
+answered — later raisings are dispatched as work, not asked again
+
+## 9f6a4b82 — F1 · phase 2 round 1 · plans/ai-conversation-practice/red-proofs/2.3.md
+
+Task 2.3 shipped as `complete` with real, correct tests for all four of its own acceptance criteria (AC1-AC4 in backend/tests/test_bank.py and the e2e AC4 case), and the executor's own summary narrates having proven each one red-then-green by mutation — but no `plans/ai-conversation-practice/red-proofs/2.3.md` was ever written, unlike every other completed task in this phase (2.1.md and 2.2.md both exist). The criteria ledger reflects this gap by falling back to `[none]`/`intended:` placeholder text copied from the task description, rather than `[red]`, even though the tests plainly exist and assert the right things (verified by reading them and cross-checking the shipped bank/vocabulary files directly). This is a process/audit-trail gap in how task 2.3's completion was recorded, not a code defect inside the diff, and I have deliberately not tried to reconstruct the missing red-proof myself (re-deriving it by reading the test against the implementation, or re-running mutation tests, is exactly the cost this record exists to remove, and is against this role's standing policy).
+
+> This block's id includes the finding's wording, because the review supplied no
+> criterion to anchor it to. If a later review rewords this finding it will be
+> asked again as a new block, and this answer will stay here unattached.
+
+**Scored severity 5/10, effort 8/10** — the effort is the cost of the repair including proving it safe. It reached you because a real defect that is expensive to fix is the one case where spending without your agreement is itself the risk.
+
+**Answer:**
+
+<!-- name an option letter (A, B, …), write your own answer, or write `decline` to close this without acting on it — a declined finding is settled and is never raised again. Blank means still undecided, and leaves the phase open. -->
+
+**Applied:**
+
 not yet — awaiting an answer
 

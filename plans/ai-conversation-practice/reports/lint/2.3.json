@@ -1,0 +1,118 @@
+{
+  "version": 1,
+  "task": "2.3",
+  "pass": "before",
+  "result": {
+    "outcome": "unsupported",
+    "reason": "plans/ai-conversation-practice/phase-2-personalized-content/task-2.3-backend-tiered-selection.md: no grammar covers '.md' files — 4 violations were measured before this and are not shown"
+  },
+  "findings": [
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "select_entry",
+        "path": "backend/app/bank.py",
+        "bytes": {
+          "startIndex": 2528,
+          "endIndex": 3764
+        },
+        "lines": {
+          "startRow": 71,
+          "endRow": 93
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 2.86,
+      "threshold": 5,
+      "tier": "file",
+      "path": "backend/app/bank.py",
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "gappy_known_words",
+        "path": "backend/tests/test_bank.py",
+        "bytes": {
+          "startIndex": 1725,
+          "endIndex": 2669
+        },
+        "lines": {
+          "startRow": 56,
+          "endRow": 75
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 4,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "seedLearnedVocabulary",
+        "path": "e2e/fixtures/seedLearner.ts",
+        "bytes": {
+          "startIndex": 2450,
+          "endIndex": 3679
+        },
+        "lines": {
+          "startRow": 73,
+          "endRow": 122
+        }
+      },
+      "check": "density-below-floor"
+    }
+  ],
+  "adapters": [
+    {
+      "tool": "biome",
+      "selection": {
+        "evidence": "configured",
+        "by": "biome.json"
+      },
+      "program": null,
+      "result": {
+        "outcome": "unsupported",
+        "reason": "biome did not resolve: 'biome' on PATH (31 entries). Its findings are missing from this report — that is a gap and not a pass."
+      },
+      "files": 3,
+      "findings": 0,
+      "refusedPaths": 0,
+      "outsideAnalysis": 0,
+      "refusedShape": 0
+    },
+    {
+      "tool": "ruff",
+      "selection": {
+        "evidence": "none",
+        "considered": [
+          "ruff"
+        ]
+      },
+      "program": null,
+      "result": {
+        "outcome": "unsupported",
+        "reason": "no native linter covered these files: looked for a configuration file for ruff at the repository root, and for ruff on PATH in a repository of that ecosystem. Their findings are missing from this report — that is a gap and not a pass."
+      },
+      "files": 5,
+      "findings": 0,
+      "refusedPaths": 0,
+      "outsideAnalysis": 0,
+      "refusedShape": 0
+    }
+  ]
+}

@@ -50,3 +50,18 @@ The conversation route is `<Route path="/conversation">` under the app's HashRou
 <!-- lesson id=L7 from=1.3 scope=plan -->
 
 Capture red-proof output with the runner's full failure block, not a grep: my greps dropped the deciding TestingLibraryElementError line from the AC7 proof, leaving a paraphrase in the artefact where the assertion should be. A non-2xx test also only proves the response.ok check if the error body is contract-shaped — with a FastAPI {detail} envelope the mutant still returned unavailable.
+## L8 — task 2.1 · run-20260912T123636Z
+
+<!-- lesson id=L8 from=2.1 scope=plan -->
+
+Task 2.1's covers list excludes backend/tests, so AC1's backend-side "accepts a 600-word body" half has no in-scope test file to hold it — it was left as an honest waiver rather than an out-of-scope write. A later task that touches backend/tests could close this gap.
+## L9 — task reviewer:1 · run-20260912T154629Z
+
+<!-- lesson id=L9 from=reviewer:1 scope=plan -->
+
+Phase 2's concurrent task (bank.py, personalized /conversation/opening) edits files phase 1 also covers (backend/app/main.py, pipeline.py, test_pipeline.py, e2e specs) while bank.py itself stays untracked mid-flight; reviewing phase 1 mid-run means judging code whose import target isn't yet committed. Checked it works but this is a real cross-phase collision surface, not a hypothetical one.
+## L10 — task reviewer:2 · run-20260912T154629Z
+
+<!-- lesson id=L10 from=reviewer:2 scope=plan -->
+
+A task's own executor-narrated red/green proof in its summary is not the same as a recorded red-proofs/<task>.md artifact — check the file actually exists on disk before trusting the ledger's [red] marks; task 2.3 completed with correct tests but no such file, silently degrading its ledger entries to [none].
