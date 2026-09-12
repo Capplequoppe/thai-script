@@ -168,10 +168,137 @@ Placeholder in task 1.1: well-formed bodies get `501 Not Implemented`;
 malformed bodies still get `422` (validation runs before the handler
 body).
 
+## Conversation sessions (phase 3)
+
+A session is one multi-turn conversation: several question / spoken
+reply / verdict exchanges in a row, each new question drawn from the
+bank and never one this session has already asked.
+
+All session state is **in this process's memory only** — `app/session.py`
+— and never persisted. A backend restart loses an in-progress
+conversation; it never loses SRS state, which is entirely browser-side.
+The store is **bounded** (`MAX_SESSIONS = 500`) and drops the oldest
+session when a new one pushes it over. There is **no time-based
+expiry**: an evicted id and an id that never existed are the same
+`404`, so the frontend has no third state to handle.
+
+`session_id` is server-generated and opaque (a `uuid4` hex). It is
+never derived from the learner's snapshot: two learners — or one
+learner starting twice — can hold an identical snapshot, and a
+content-derived key would collide their histories.
+
+### `POST /conversation/session/start`
+
+Request body: exactly `/conversation/opening`'s, deliberately —
+
+```json
+{
+  "known_words": ["สวัสดี", "ขอบคุณ", "..."]
+}
+```
+
+There is no separate "vocabulary/grammar snapshot" shape, and no
+`known_grammar_ids` field: nothing in this plan reads a grammar-id list
+back. The snapshot is **frozen for the session's life** — re-reading it
+mid-session could move the matched tier under the learner and make
+"already asked" meaningless.
+
+Response `200`:
+
+```json
+{
+  "session_id": "b3f1c0a24d7e4a5f9c8e1d2b3a4f5061",
+  "question_text": "สบายดีไหม",
+  "question_audio_base64": "<base64-encoded audio bytes>",
+  "question_audio_mime_type": "audio/wav"
+}
+```
+
+The question content is exactly `/conversation/opening`'s — the same
+bank, the same per-learner selection — now inside a session that
+remembers it was asked.
+
+### `POST /conversation/session/{session_id}/judge`
+
+Request body and response are exactly `/conversation/judge`'s
+(`question_text`, `reply_audio_base64`, `reply_audio_mime_type` →
+`transcript`, `verdict`, `feedback_en`, with the same three-state
+`verdict`). The difference is that the judged turn is recorded into the
+session's history.
+
+An unrecognized `session_id` is `404` (see below). Body validation is
+FastAPI's own, so a malformed body is `422` even for a valid session.
+
+### `POST /conversation/session/{session_id}/next`
+
+No request body.
+
+Response `200`, a question:
+
+```json
+{
+  "exhausted": false,
+  "question_text": "ไปไหนมา",
+  "question_audio_base64": "<base64-encoded audio bytes>",
+  "question_audio_mime_type": "audio/wav"
+}
+```
+
+Response `200`, no content left:
+
+```json
+{
+  "exhausted": true,
+  "question_text": null,
+  "question_audio_base64": null,
+  "question_audio_mime_type": null
+}
+```
+
+`exhausted` is a **named field, not an empty `200` and not an error**.
+The bank can be smaller than a session is long, so "this tier has no
+unasked entry left" is a normal end to a conversation and must stay
+distinguishable from "selecting an entry went wrong" — the same
+never-asked / empty / failed distinction the judge endpoint's
+`"unscored"` verdict exists for. The endpoint stays `exhausted: true`
+on every further call; it never wraps around to a repeat.
+
+Selection excludes the ids this session has already asked
+(`app.bank.select_entry`'s `exclude_ids`), narrowing the *candidates*
+within the learner's matched tier and never the tier itself — a session
+stays at one difficulty rather than sliding down to easier entries as
+it goes on.
+
+Two overlapping `/next` calls on one session (a double-click, or React
+StrictMode double-invoking an effect in development) can never both be
+served the same question, nor collapse into a single advance: the
+select → synthesize → record sequence is held under that session's own
+`asyncio.Lock`. The lock is **per session**, so unrelated sessions still
+run concurrently; only the three models remain globally serialized
+behind `MODEL_LOCK`.
+
+### Retiring `/conversation/opening` and `/conversation/judge`
+
+Once the session endpoints exist the standalone pair has no caller this
+plan builds: task 3.3 switches `ConversationPracticePage` to the
+session endpoints exclusively. They are **scheduled for removal** and
+nothing new should be built against them.
+
+They are still live as of task 3.1 for one reason:
+`backend/tests/test_health.py` and `backend/tests/test_pipeline.py`
+exercise them directly, and neither file is inside task 3.1's
+`covers`, so removing the routes here would have left the backend
+suite red with no in-scope way to fix it. Removing them needs a task
+that owns those two test files as well as `backend/app/main.py`.
+
 ## Error shapes
 
 - `422 Unprocessable Entity` — FastAPI/Pydantic request validation
   failure (missing/malformed field). Standard FastAPI error body.
+- `404 Not Found` — a session endpoint was given a `session_id` this
+  process does not hold: unknown, mistyped, evicted under the store's
+  size cap, or lost to a restart. One state, never a distinct
+  "expired" status, and never a silently created new session.
 - `501 Not Implemented` — endpoint recognized, pipeline not wired yet
   (task 1.1 only; task 1.2 replaces these with real responses).
 - Any other server-side failure surfaces as a `5xx` with a plain-text

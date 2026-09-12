@@ -11,7 +11,7 @@ covers:
   - docs/conversation-backend-api.md
 status: draft
 task_id: "3.1"
-task_status: pending
+task_status: complete
 depends_on: ["1.2"]
 size: large
 verify:

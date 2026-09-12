@@ -39,7 +39,7 @@ from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 
 from app import pipeline
-from app.bank import load_bank
+from app.bank import load_bank, select_entry
 from app.models import ModelRegistry, load_models_into
 from app.pipeline import UndecodableAudioError
 from app.schemas import (
@@ -49,6 +49,14 @@ from app.schemas import (
     ModelsLoaded,
     OpeningRequest,
     OpeningResponse,
+)
+from app.session import (
+    NextQuestionResponse,
+    SessionStartRequest,
+    SessionStartResponse,
+    SessionState,
+    SessionStore,
+    Turn,
 )
 
 # Vite's default dev server origin, plus its 127.0.0.1 equivalent —
@@ -78,6 +86,11 @@ async def lifespan(app: FastAPI):
     # loud at startup rather than per learner if it is missing or empty.
     if getattr(app.state, "bank", None) is None:
         app.state.bank = load_bank()
+    # Phase 3's conversation sessions: built once here for the same
+    # reason, and bounded (app/session.py) so a client that starts
+    # sessions in a loop can't grow this process without end.
+    if getattr(app.state, "sessions", None) is None:
+        app.state.sessions = SessionStore()
     yield
 
 
@@ -216,3 +229,108 @@ async def opening_get_compat() -> OpeningResponse:
 @app.post("/conversation/judge", response_model=JudgeResponse)
 async def judge(payload: JudgeRequest) -> JudgeResponse:
     return await run_serialized(_judge_pipeline, payload)
+
+
+# ---------------------------------------------------------------------------
+# Conversation sessions (phase 3)
+# ---------------------------------------------------------------------------
+
+
+def _require_session(session_id: str) -> SessionState:
+    """The live session with this id, or a 404.
+
+    An id this process does not hold is a `404` whether it never
+    existed, was mistyped, or was evicted under the store's size cap —
+    one state, not three, so the frontend has nothing extra to
+    special-case. It is never turned into a freshly created session:
+    that would silently hand the learner an empty history and re-ask a
+    question they had already answered.
+    """
+    state = app.state.sessions.get(session_id)
+    if state is None:
+        raise HTTPException(status_code=404, detail="unknown session id")
+    return state
+
+
+async def _ask_next_question(state: SessionState) -> tuple[str, str, str] | None:
+    """Select, speak and record this session's next unasked question.
+
+    Returns (question_text, audio_base64, mime_type), or `None` when the
+    session's matched tier holds nothing it has not already been asked.
+
+    **The caller holds `state.lock` around this whole call.** Selection
+    reads `state.asked_ids` and the recording writes it, with an `await`
+    (the TTS call) in between — without the lock two overlapping `/next`
+    requests would both read the same asked-set, both pick the same
+    entry, and both return it as "new". Recording only after synthesis
+    succeeds is deliberate too: a question the learner never heard
+    because TTS failed should not be burned for the rest of the session.
+    """
+    registry = _registry()
+    _require_loaded(registry.tts_loaded, "tts")
+    entry = select_entry(state.known_words, app.state.bank, exclude_ids=state.asked_ids)
+    if entry is None:
+        return None
+    audio_bytes, mime_type = await run_serialized(
+        pipeline.synthesize_question, registry.tts, entry.thai
+    )
+    state.asked_ids.add(entry.id)
+    return entry.thai, base64.b64encode(audio_bytes).decode("ascii"), mime_type
+
+
+@app.post("/conversation/session/start", response_model=SessionStartResponse)
+async def session_start(payload: SessionStartRequest) -> SessionStartResponse:
+    # Checked before the session exists, so a process that cannot speak
+    # answers 501 without first leaving an unusable session in the store.
+    _require_loaded(_registry().tts_loaded, "tts")
+    state = app.state.sessions.start(payload.known_words)
+    # Nobody else can hold this id yet, so there is nothing to race with
+    # here; taken anyway to keep `_ask_next_question`'s "caller holds the
+    # lock" contract unconditional rather than true at one call site only.
+    async with state.lock:
+        question = await _ask_next_question(state)
+    if question is None:
+        # Only reachable with a bank whose matched tier is empty, which
+        # `load_bank` already refuses at startup. A 500 rather than an
+        # `exhausted` response: a session with no first question at all
+        # is a server misconfiguration, not an end-of-content state.
+        raise HTTPException(
+            status_code=500, detail="the conversation-starter bank offered no question"
+        )
+    question_text, audio_base64, mime_type = question
+    return SessionStartResponse(
+        session_id=state.session_id,
+        question_text=question_text,
+        question_audio_base64=audio_base64,
+        question_audio_mime_type=mime_type,
+    )
+
+
+@app.post("/conversation/session/{session_id}/judge", response_model=JudgeResponse)
+async def session_judge(session_id: str, payload: JudgeRequest) -> JudgeResponse:
+    state = _require_session(session_id)
+    response = await run_serialized(_judge_pipeline, payload)
+    state.history.append(
+        Turn(
+            question_text=payload.question_text,
+            transcript=response.transcript,
+            verdict=response.verdict,
+            feedback_en=response.feedback_en,
+        )
+    )
+    return response
+
+
+@app.post("/conversation/session/{session_id}/next", response_model=NextQuestionResponse)
+async def session_next(session_id: str) -> NextQuestionResponse:
+    state = _require_session(session_id)
+    async with state.lock:
+        question = await _ask_next_question(state)
+    if question is None:
+        return NextQuestionResponse(exhausted=True)
+    question_text, audio_base64, mime_type = question
+    return NextQuestionResponse(
+        question_text=question_text,
+        question_audio_base64=audio_base64,
+        question_audio_mime_type=mime_type,
+    )
