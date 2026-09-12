@@ -118,6 +118,18 @@ export class StartLessonUseCase {
 		return this.vocabService.getLearnedCount();
 	}
 
+	/**
+	 * Manually pull a word into the SRS system outside normal rank-window
+	 * progression. Returns false if it's not pullable (script not mastered,
+	 * already learned, or not a real word) or the apprentice cap blocks it.
+	 */
+	pullInVocabWord(thai: string): boolean {
+		const cards = this.vocabService.generateCardsForWord(thai);
+		if (!cards) return false;
+		this.vocabService.commitLessonCards(cards);
+		return true;
+	}
+
 	// --- Grammar lessons ---
 
 	startGrammar(): GrammarCard[] | null {

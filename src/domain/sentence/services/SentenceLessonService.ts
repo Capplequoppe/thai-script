@@ -10,6 +10,12 @@ import type {
 } from "../types";
 import { generateSentenceCards } from "./SentenceCardGenerator";
 
+export interface UnlockSuggestion {
+	sentence: SentenceEntry;
+	/** Other words in the sentence not yet learned. Empty means `thai` alone unlocks it. */
+	missingWords: string[];
+}
+
 const BATCH_SIZE = 3;
 
 export class SentenceService {
@@ -30,6 +36,33 @@ export class SentenceService {
 		return [...this.sentenceData]
 			.filter((entry) => entry.words.every((word) => learnedWords.has(word)))
 			.sort((a, b) => a.difficulty - b.difficulty);
+	}
+
+	/**
+	 * Sentences containing `thai`, each with its other still-missing words —
+	 * but only sentences where every missing word is itself pullable are
+	 * included, so every suggestion is actually actionable right now.
+	 * Sorted by missingWords.length ascending (sentences `thai` alone would
+	 * unlock come first), capped to 5.
+	 */
+	getUnlockSuggestions(thai: string): UnlockSuggestion[] {
+		const learnedWords = this.getLearnedWordSet();
+		const pullableThai = new Set(
+			this.vocabService.getPullableWords().map((e) => e.thai),
+		);
+
+		const suggestions = this.sentenceData
+			.filter((entry) => entry.words.includes(thai))
+			.map((entry) => ({
+				sentence: entry,
+				missingWords: entry.words.filter(
+					(w) => w !== thai && !learnedWords.has(w),
+				),
+			}))
+			.filter((s) => s.missingWords.every((w) => pullableThai.has(w)));
+
+		suggestions.sort((a, b) => a.missingWords.length - b.missingWords.length);
+		return suggestions.slice(0, 5);
 	}
 
 	getUnlearnedSentences(): SentenceEntry[] {

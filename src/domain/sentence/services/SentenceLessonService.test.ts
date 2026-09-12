@@ -166,6 +166,83 @@ describe("SentenceService", () => {
 		});
 	});
 
+	describe("getUnlockSuggestions", () => {
+		it("includes a sentence with no other missing words, flagged empty", () => {
+			const storage = new InMemoryStorage();
+			const s1 = makeSentenceEntry("s1", ["มา", "กิน"]);
+			const vocabEntries = [makeVocabEntry("มา"), makeVocabEntry("กิน")];
+			seedVocabCards(storage, ["กิน"]);
+			const service = createService(storage, [s1], vocabEntries);
+
+			const suggestions = service.getUnlockSuggestions("มา");
+			expect(suggestions).toHaveLength(1);
+			expect(suggestions[0]?.sentence.id).toBe("s1");
+			expect(suggestions[0]?.missingWords).toEqual([]);
+		});
+
+		it("includes a sentence with a still-missing but pullable other word", () => {
+			const storage = new InMemoryStorage();
+			const s1 = makeSentenceEntry("s1", ["มา", "กิน"]);
+			const vocabEntries = [makeVocabEntry("มา"), makeVocabEntry("กิน")];
+			const service = createService(storage, [s1], vocabEntries);
+
+			const suggestions = service.getUnlockSuggestions("มา");
+			expect(suggestions).toHaveLength(1);
+			expect(suggestions[0]?.missingWords).toEqual(["กิน"]);
+		});
+
+		it("excludes a sentence whose missing word isn't pullable", () => {
+			const storage = new InMemoryStorage();
+			const s1 = makeSentenceEntry("s1", ["มา", "ยัง"]);
+			const vocabEntries = [makeVocabEntry("มา")]; // "ยัง" isn't in the vocabulary at all
+			const service = createService(storage, [s1], vocabEntries);
+
+			expect(service.getUnlockSuggestions("มา")).toEqual([]);
+		});
+
+		it("excludes sentences that don't contain the word", () => {
+			const storage = new InMemoryStorage();
+			const s1 = makeSentenceEntry("s1", ["กิน", "ข้าว"]);
+			const vocabEntries = [makeVocabEntry("กิน"), makeVocabEntry("ข้าว")];
+			const service = createService(storage, [s1], vocabEntries);
+
+			expect(service.getUnlockSuggestions("มา")).toEqual([]);
+		});
+
+		it("sorts fewest-missing-first", () => {
+			const storage = new InMemoryStorage();
+			const sentences = [
+				makeSentenceEntry("two-missing", ["มา", "กิน", "ข้าว"]),
+				makeSentenceEntry("zero-missing", ["มา"]),
+				makeSentenceEntry("one-missing", ["มา", "กิน"]),
+			];
+			const vocabEntries = [
+				makeVocabEntry("มา"),
+				makeVocabEntry("กิน"),
+				makeVocabEntry("ข้าว"),
+			];
+			const service = createService(storage, sentences, vocabEntries);
+
+			const suggestions = service.getUnlockSuggestions("มา");
+			expect(suggestions.map((s) => s.sentence.id)).toEqual([
+				"zero-missing",
+				"one-missing",
+				"two-missing",
+			]);
+		});
+
+		it("caps suggestions at 5", () => {
+			const storage = new InMemoryStorage();
+			const sentences = Array.from({ length: 7 }, (_, i) =>
+				makeSentenceEntry(`s${i}`, ["มา"]),
+			);
+			const vocabEntries = [makeVocabEntry("มา")];
+			const service = createService(storage, sentences, vocabEntries);
+
+			expect(service.getUnlockSuggestions("มา")).toHaveLength(5);
+		});
+	});
+
 	describe("getNextLesson", () => {
 		it("returns null when nothing is unlocked", () => {
 			const storage = new InMemoryStorage();

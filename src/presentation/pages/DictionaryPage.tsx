@@ -1,8 +1,10 @@
 import { useMemo, useState } from "react";
 import { useNavigate } from "react-router";
 import { StageDot } from "../components/atoms/StageDot";
+import { PullInVocabButton } from "../components/molecules/PullInVocabButton";
 import { StageBadge } from "../components/molecules/StageBadge";
 import { WordClassTabs } from "../components/molecules/WordClassTabs";
+import { SentenceUnlockSuggestions } from "../components/organisms/SentenceUnlockSuggestions";
 import { WordCard } from "../components/organisms/WordCard";
 import { useApp } from "../hooks/useApp";
 import { bestVocabStage } from "../utils/vocabStage";
@@ -15,7 +17,7 @@ import {
 type SortMode = "frequency" | "alpha";
 
 export function DictionaryPage() {
-	const { vocab, state } = useApp();
+	const { vocab, sentence, lesson, state, refresh } = useApp();
 	const navigate = useNavigate();
 	const [search, setSearch] = useState("");
 	const [sortMode, setSortMode] = useState<SortMode>("frequency");
@@ -34,15 +36,46 @@ export function DictionaryPage() {
 		[state.vocabCards],
 	);
 
+	// biome-ignore lint/correctness/useExhaustiveDependencies: vocab is a stable service; its backing array never changes at runtime
+	const allWords = useMemo(() => vocab.getAllWords(), []);
+
+	// biome-ignore lint/correctness/useExhaustiveDependencies: vocab is a stable service; completedLessons/vocabCards changing drives re-computation
+	const pullableWords = useMemo(
+		() => vocab.getPullableWords(),
+		[state.completedLessons, state.vocabCards],
+	);
+
+	const unlockedThai = useMemo(
+		() => new Set(unlockedWords.map((e) => e.thai)),
+		[unlockedWords],
+	);
+
+	const pullableThai = useMemo(
+		() => new Set(pullableWords.map((e) => e.thai)),
+		[pullableWords],
+	);
+
 	const searched = useMemo(() => {
 		const query = search.trim().toLowerCase();
 		if (!query) return unlockedWords;
-		return unlockedWords.filter(
-			(e) =>
-				e.english.toLowerCase().includes(query) ||
-				e.thai.toLowerCase().includes(query),
-		);
-	}, [unlockedWords, search]);
+		const matches = (list: typeof unlockedWords) =>
+			list.filter(
+				(e) =>
+					e.english.toLowerCase().includes(query) ||
+					e.thai.toLowerCase().includes(query),
+			);
+		const primary = matches(unlockedWords);
+		// Only reach into the full ~5,000-word vocabulary once the query is
+		// specific enough, and cap how many of those extra matches render —
+		// a one- or two-letter query against every word in the dictionary
+		// would otherwise flood the grid with thousands of tiles.
+		if (query.length < 2) return primary;
+		const primaryThai = new Set(primary.map((e) => e.thai));
+		const extra = matches(allWords)
+			.filter((e) => !primaryThai.has(e.thai))
+			.slice(0, 50);
+		return [...primary, ...extra];
+	}, [unlockedWords, allWords, search]);
 
 	const tabs = useMemo(() => buildWordClassTabs(searched), [searched]);
 
@@ -66,8 +99,30 @@ export function DictionaryPage() {
 	}, [classFiltered, sortMode]);
 
 	const selectedEntry = selectedThai
-		? (unlockedWords.find((e) => e.thai === selectedThai) ?? null)
+		? (allWords.find((e) => e.thai === selectedThai) ?? null)
 		: null;
+
+	// biome-ignore lint/correctness/useExhaustiveDependencies: vocab is a stable service; completedLessons/vocabCards changing drives re-computation
+	const selectedIsPullable = useMemo(
+		() => (selectedEntry ? vocab.isPullable(selectedEntry) : false),
+		[selectedEntry, state.completedLessons, state.vocabCards],
+	);
+
+	// biome-ignore lint/correctness/useExhaustiveDependencies: vocab is a stable service; completedLessons/vocabCards changing drives re-computation
+	const selectedMissingPrerequisites = useMemo(
+		() =>
+			selectedEntry
+				? vocab.getMissingPrerequisites(selectedEntry)
+				: { characters: [], toneRules: [] },
+		[selectedEntry, state.completedLessons, state.vocabCards],
+	);
+
+	// biome-ignore lint/correctness/useExhaustiveDependencies: sentence is a stable service; completedLessons/vocabCards changing drives re-computation
+	const selectedSuggestions = useMemo(
+		() =>
+			selectedEntry ? sentence.getUnlockSuggestions(selectedEntry.thai) : [],
+		[selectedEntry, state.completedLessons, state.vocabCards],
+	);
 
 	if (unlockedWords.length === 0) {
 		return (
@@ -173,73 +228,115 @@ export function DictionaryPage() {
 					) : (
 						/* Word grid */
 						<div className="grid grid-cols-3 gap-2">
-							{sortedEntries.map((entry) => (
-								<button
-									type="button"
-									key={entry.thai}
-									onClick={() => setSelectedThai(entry.thai)}
-									className="relative flex flex-col items-center p-3 rounded-xl text-center"
-									style={{ background: "var(--color-surface-2)" }}
-								>
-									{learnedThai.has(entry.thai) && (
-										<span className="absolute top-1 left-1">
-											<StageDot
-												stageName={bestVocabStage(entry.thai, state.vocabCards)}
-											/>
-										</span>
-									)}
-									{entry.thai_audio_file && (
-										// biome-ignore lint/a11y/useSemanticElements: nested interactive element for audio
-										<span
-											role="button"
-											tabIndex={-1}
-											onClick={(e) => {
-												e.stopPropagation();
-												new Audio(entry.thai_audio_file as string)
-													.play()
-													.catch(() => {});
-											}}
-											onKeyDown={(e) => {
-												if (e.key === "Enter") {
+							{sortedEntries.map((entry) => {
+								const isPullableOnly =
+									!learnedThai.has(entry.thai) &&
+									!unlockedThai.has(entry.thai) &&
+									pullableThai.has(entry.thai);
+								const isLocked =
+									!learnedThai.has(entry.thai) &&
+									!unlockedThai.has(entry.thai) &&
+									!pullableThai.has(entry.thai);
+								return (
+									<button
+										type="button"
+										key={entry.thai}
+										onClick={() => setSelectedThai(entry.thai)}
+										className="relative flex flex-col items-center p-3 rounded-xl text-center"
+										style={{
+											background: "var(--color-surface-2)",
+											...(isPullableOnly && {
+												border: "1px dashed var(--color-border)",
+											}),
+											...(isLocked && { opacity: 0.6 }),
+										}}
+									>
+										{learnedThai.has(entry.thai) && (
+											<span className="absolute top-1 left-1">
+												<StageDot
+													stageName={bestVocabStage(
+														entry.thai,
+														state.vocabCards,
+													)}
+												/>
+											</span>
+										)}
+										{isPullableOnly && (
+											<span
+												className="absolute top-1 left-1 text-[9px] px-1 rounded"
+												style={{
+													background: "var(--color-surface)",
+													color: "var(--color-text-muted)",
+												}}
+											>
+												not yet due
+											</span>
+										)}
+										{isLocked && (
+											<span
+												className="absolute top-1 left-1 text-[9px] px-1 rounded"
+												style={{
+													background: "var(--color-surface)",
+													color: "var(--color-text-muted)",
+												}}
+											>
+												locked
+											</span>
+										)}
+										{entry.thai_audio_file && (
+											// biome-ignore lint/a11y/useSemanticElements: nested interactive element for audio
+											<span
+												role="button"
+												tabIndex={-1}
+												onClick={(e) => {
 													e.stopPropagation();
 													new Audio(entry.thai_audio_file as string)
 														.play()
 														.catch(() => {});
-												}
-											}}
-											className="absolute top-1 right-1 text-xs opacity-50 hover:opacity-100 cursor-pointer"
-											aria-label="Play pronunciation"
-										>
-											🔊
-										</span>
-									)}
-									<span className="thai text-3xl">{entry.thai}</span>
-									<span
-										className="text-[10px] mt-0.5"
-										style={{ color: "var(--color-text-muted)" }}
-									>
-										{entry.romanization}
-									</span>
-									<span
-										className="text-[10px] mt-0.5 truncate w-full"
-										style={{ color: "var(--color-text-muted)" }}
-									>
-										{entry.english}
-									</span>
-									{entry.word_class && (
+												}}
+												onKeyDown={(e) => {
+													if (e.key === "Enter") {
+														e.stopPropagation();
+														new Audio(entry.thai_audio_file as string)
+															.play()
+															.catch(() => {});
+													}
+												}}
+												className="absolute top-1 right-1 text-xs opacity-50 hover:opacity-100 cursor-pointer"
+												aria-label="Play pronunciation"
+											>
+												🔊
+											</span>
+										)}
+										<span className="thai text-3xl">{entry.thai}</span>
 										<span
-											className="text-[9px] mt-0.5 px-1.5 rounded"
-											style={{
-												background:
-													"color-mix(in srgb, var(--color-primary) 10%, var(--color-surface))",
-												color: "var(--color-primary)",
-											}}
+											className="text-[10px] mt-0.5"
+											style={{ color: "var(--color-text-muted)" }}
 										>
-											{WORD_CLASS_LABELS[entry.word_class] ?? entry.word_class}
+											{entry.romanization}
 										</span>
-									)}
-								</button>
-							))}
+										<span
+											className="text-[10px] mt-0.5 truncate w-full"
+											style={{ color: "var(--color-text-muted)" }}
+										>
+											{entry.english}
+										</span>
+										{entry.word_class && (
+											<span
+												className="text-[9px] mt-0.5 px-1.5 rounded"
+												style={{
+													background:
+														"color-mix(in srgb, var(--color-primary) 10%, var(--color-surface))",
+													color: "var(--color-primary)",
+												}}
+											>
+												{WORD_CLASS_LABELS[entry.word_class] ??
+													entry.word_class}
+											</span>
+										)}
+									</button>
+								);
+							})}
 						</div>
 					)}
 				</>
@@ -264,6 +361,30 @@ export function DictionaryPage() {
 								: null
 						}
 					/>
+					{!learnedThai.has(selectedEntry.thai) && (
+						<>
+							<PullInVocabButton
+								key={selectedEntry.thai}
+								thai={selectedEntry.thai}
+								isPullable={selectedIsPullable}
+								missingPrerequisites={selectedMissingPrerequisites}
+								onPullIn={(thai) => {
+									const ok = lesson.pullInVocabWord(thai);
+									if (ok) refresh();
+									return ok;
+								}}
+							/>
+							<SentenceUnlockSuggestions
+								suggestions={selectedSuggestions}
+								anchorIsPullable={selectedIsPullable}
+								onPullInWord={(thai) => {
+									const ok = lesson.pullInVocabWord(thai);
+									if (ok) refresh();
+									return ok;
+								}}
+							/>
+						</>
+					)}
 				</div>
 			)}
 		</div>

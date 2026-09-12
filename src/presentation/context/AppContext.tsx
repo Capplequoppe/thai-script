@@ -143,6 +143,7 @@ export interface AppContextValue {
 	data: ManageDataUseCase;
 	items: ManageItemsUseCase;
 	vocab: VocabularyService;
+	sentence: SentenceService;
 	game: PlayGameUseCase;
 	checkAchievements: (summary: SessionSummary) => string[];
 }
@@ -188,6 +189,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
 			data: dataUseCase,
 			items: itemsUseCase,
 			vocab: vocabularyService,
+			sentence: sentenceService,
 			game: gameUseCase,
 			checkAchievements,
 		}),

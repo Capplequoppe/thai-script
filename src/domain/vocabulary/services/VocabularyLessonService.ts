@@ -221,6 +221,72 @@ export class VocabularyService {
 	}
 
 	/**
+	 * Script (characters + tone rules) is fully mastered and the word has no
+	 * cards yet. Ignores rank/rank-window entirely — unlike getUnlockedWords,
+	 * this is about script readiness only.
+	 */
+	isPullable(entry: VocabEntry): boolean {
+		const learnedThaiWords = this.getLearnedThaiWords();
+		if (learnedThaiWords.has(entry.thai)) return false;
+		const chars = this.getMasteredCharacters();
+		const rules = this.getMasteredToneRules();
+		return this.isWordMastered(entry, chars, rules);
+	}
+
+	/** Every vocabulary entry that isPullable(), regardless of rank (including rank: null entries). */
+	getPullableWords(): VocabEntry[] {
+		const learnedThaiWords = this.getLearnedThaiWords();
+		const chars = this.getMasteredCharacters();
+		const rules = this.getMasteredToneRules();
+		return this.vocabulary.filter(
+			(entry) =>
+				!learnedThaiWords.has(entry.thai) &&
+				this.isWordMastered(entry, chars, rules),
+		);
+	}
+
+	/** Which characters/tone rules are still missing for a word (for a "why is this locked" explanation). Empty arrays for a fully mastered word. */
+	getMissingPrerequisites(entry: VocabEntry): {
+		characters: string[];
+		toneRules: string[];
+	} {
+		const chars = this.getMasteredCharacters();
+		const rules = this.getMasteredToneRules();
+		return {
+			characters: entry.characters.filter((ch) => !chars.has(ch)),
+			toneRules: entry.toneRules.filter((r) => !rules.has(r)),
+		};
+	}
+
+	/**
+	 * Generate (but do not persist) cards for one specific word, bypassing
+	 * the rank-window/batch selection getNextLesson() uses. Returns null if
+	 * the word doesn't exist, isn't pullable, or the apprentice cap blocks
+	 * starting it (the same canStartLesson("vocab") check
+	 * generateLessonCards() makes — enforced here explicitly since this path
+	 * doesn't go through getNextLesson()).
+	 */
+	generateCardsForWord(thai: string): VocabularyCard[] | null {
+		if (
+			this.apprenticeService &&
+			!this.apprenticeService.canStartLesson("vocab")
+		) {
+			return null;
+		}
+
+		const entry = this.vocabulary.find((e) => e.thai === thai);
+		if (!entry || !this.isPullable(entry)) return null;
+
+		const introducedChars = this.getMasteredCharacters();
+		return generateVocabCards(entry, this.vocabulary, introducedChars);
+	}
+
+	/** Every vocabulary entry, regardless of mastery, rank, or learned state. */
+	getAllWords(): VocabEntry[] {
+		return this.vocabulary;
+	}
+
+	/**
 	 * Backfills already-learned words with any card the current generator
 	 * would now produce for them that isn't persisted yet (e.g. audio landing
 	 * for a word learned before it had any), or an `audioUrl` on a persisted

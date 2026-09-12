@@ -692,6 +692,7 @@ export function makeAppValue(options: MakeAppValueOptions = {}): AppHarness {
 		data: new ManageDataUseCase(stateRepo),
 		items: new ManageItemsUseCase(cardRepo),
 		vocab: vocabularyService,
+		sentence: sentenceService,
 		checkAchievements: () => [],
 		game,
 	};
