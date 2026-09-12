@@ -46,6 +46,18 @@ export default defineConfig({
 			timeout: 5 * 60_000,
 			use: {
 				...devices["Desktop Chrome"],
+				// The app's own PWA service worker (`src/main.tsx`) can finish
+				// installing and `clients.claim()` an already-open tab mid-test,
+				// which forces a full navigation of the page under test — a
+				// multi-second reload that lands squarely inside this suite's
+				// record → judge round trip (unlike the app's other, much
+				// shorter-lived specs, which don't keep a page open long enough
+				// to observe it). Blocked here, not by editing `main.tsx`: this
+				// suite drives a fixed WAV through a UI still mid-recording when
+				// that reload can land, and the resulting mid-flow reset was
+				// observed resetting the recorder to "idle" — a test-timing
+				// hazard, not a behavior this suite is scoped to change.
+				serviceWorkers: "block",
 				launchOptions: {
 					args: [
 						"--use-fake-device-for-media-stream",
