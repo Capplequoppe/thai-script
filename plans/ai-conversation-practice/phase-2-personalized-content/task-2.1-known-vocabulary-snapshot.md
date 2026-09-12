@@ -14,7 +14,7 @@ covers:
   - src/presentation/pages/ConversationPracticePage.test.tsx
 status: draft
 task_id: "2.1"
-task_status: pending
+task_status: complete
 depends_on: ["1.2", "1.3"]
 size: medium
 verify:
@@ -25,6 +25,15 @@ ac_enforcement:
   - "AC1 -> a case in HttpConversationPracticeClient.test.ts: getOpening(knownWords) POSTs a JSON body {known_words: string[]} to /conversation/opening, and a backend non-GPU case asserts the route accepts a realistic 600-word body without a 431/connection reset"
   - "AC2 -> a case in ConversationPracticePage.test.tsx: the page calls getOpening with the REAL learner's known-word list, sourced from VocabularyLessonService.getLearnedEntries() (via AppContext, not a hardcoded/fixture list), proven by asserting the exact word set a seeded harness produces reaches the stub port call"
   - "AC3 -> a case: a learner with zero learned words still calls getOpening with an empty array, never omits the field or crashes - the empty-vocabulary case is a real, testable state, not an assumed-never-happens one"
+ac_tests:
+  - "AC1 -> src/infrastructure/conversation/HttpConversationPracticeClient.test.ts::accepts a realistic 600-word known-word snapshot without truncating it"
+  - "AC2 -> src/presentation/pages/ConversationPracticePage.test.tsx::sends the learner's real learned-vocabulary set, not a placeholder list"
+  - "AC3 -> src/presentation/pages/ConversationPracticePage.test.tsx::still sends a request, with a real empty array, for a learner with no learned words yet"
+red_proof:
+  - "AC3 -> In ConversationPracticePage.tsx, changed conversationPractice.getOpening(knownWords) to getOpening([\"mutated-nonempty\"]) so a zero-vocab learner would still send a non-empty array."
+red_proof_waived:
+  - "AC1 -> traced: The backend-acceptance half of AC1 (\"a backend non-GPU case asserts the route accepts a realistic 600-word body without a 431/connection reset\") would live in backend/tests, which t… [see red-proofs/]"
+  - "AC2 -> traced: Covered by the same file/mechanism as AC3 (both assert port.openingCalls[0] in ConversationPracticePage.test.tsx); rather than run a second near-duplicate mutation on the sibling as… [see red-proofs/]"
 generated: {by: claude-sonnet-5/agent, at: 2026-09-11}
 profile_version: 1
 weight_votes:
