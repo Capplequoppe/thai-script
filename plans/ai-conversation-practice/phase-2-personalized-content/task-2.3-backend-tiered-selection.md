@@ -12,7 +12,7 @@ covers:
   - e2e/fixtures/seedLearner.ts
 status: draft
 task_id: "2.3"
-task_status: pending
+task_status: complete
 depends_on: ["1.2", "1.4", "2.1", "2.2"]
 size: large
 verify:
