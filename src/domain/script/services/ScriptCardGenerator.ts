@@ -1,19 +1,25 @@
 import type {
 	ConsonantProperty,
+	NumeralProperty,
 	PropertyCard,
+	RareVowelProperty,
 	ToneMarkProperty,
 	VowelProperty,
 } from "../../shared/types";
 import { SrsSchedule } from "../../srs/value-objects/SrsSchedule";
 import {
 	consonants,
+	type RareVowel,
+	rareVowels,
 	type ThaiConsonant,
+	type ThaiNumeral,
 	ThaiSymbolClass,
 	type ThaiToneMark,
 	type ThaiVowel,
 	type ToneMarkRule,
 	type ToneRule,
 	type ToneValue,
+	thaiNumerals,
 	toneMarkRules,
 	toneMarks,
 	toneRules,
@@ -104,6 +110,13 @@ const vowelPositionPool = [...new Set(vowels.map((v) => v.position))];
 
 const toneMarkCharPool = toneMarks.map((t) => t.character);
 const toneValuePool: ToneValue[] = ["mid", "low", "falling", "high", "rising"];
+
+const rareVowelNamePool = rareVowels.map((v) => v.name);
+const rareVowelPronunciationPool = rareVowels.map((v) => v.pronunciation);
+
+const numeralValuePool = thaiNumerals.map((n) => String(n.arabic));
+const numeralWordPool = thaiNumerals.map((n) => n.word);
+const numeralRomanizationPool = thaiNumerals.map((n) => n.romanization);
 
 // ---------------------------------------------------------------------------
 // Utility: Pick multiple-choice options
@@ -367,6 +380,92 @@ function generateToneMarkCards(t: ThaiToneMark): PropertyCard[] {
 }
 
 // ---------------------------------------------------------------------------
+// Rare Vowel Cards (3 per vowel — no audio, no consonant-relative position)
+// ---------------------------------------------------------------------------
+
+function generateRareVowelCards(v: RareVowel): PropertyCard[] {
+	const lesson = v.lesson;
+
+	const recognition: PropertyCard = {
+		id: `${v.character}:recognition`,
+		symbolCharacter: v.character,
+		property: "recognition" as RareVowelProperty,
+		question: "What is the name of this rare vowel?",
+		correctAnswer: v.name,
+		choices: pickChoices(v.name, rareVowelNamePool),
+		srs: SrsSchedule.initial().toDTO(),
+		lessonNumber: lesson,
+	};
+
+	const pronunciation: PropertyCard = {
+		id: `${v.character}:pronunciation`,
+		symbolCharacter: v.character,
+		property: "pronunciation" as RareVowelProperty,
+		question: "How is this rare vowel pronounced?",
+		correctAnswer: v.pronunciation,
+		choices: pickChoices(v.pronunciation, rareVowelPronunciationPool),
+		srs: SrsSchedule.initial().toDTO(),
+		lessonNumber: lesson,
+	};
+
+	const lengthCard: PropertyCard = {
+		id: `${v.character}:length`,
+		symbolCharacter: v.character,
+		property: "length" as RareVowelProperty,
+		question: "Is this vowel short or long?",
+		correctAnswer: v.length,
+		choices: pickChoices(v.length, vowelLengthPool),
+		srs: SrsSchedule.initial().toDTO(),
+		lessonNumber: lesson,
+	};
+
+	return [recognition, pronunciation, lengthCard];
+}
+
+// ---------------------------------------------------------------------------
+// Numeral Cards (3 per digit)
+// ---------------------------------------------------------------------------
+
+function generateNumeralCards(n: ThaiNumeral): PropertyCard[] {
+	const lesson = n.lesson;
+
+	const value: PropertyCard = {
+		id: `${n.thai}:value`,
+		symbolCharacter: n.thai,
+		property: "value" as NumeralProperty,
+		question: "What Arabic numeral is this Thai digit?",
+		correctAnswer: String(n.arabic),
+		choices: pickChoices(String(n.arabic), numeralValuePool),
+		srs: SrsSchedule.initial().toDTO(),
+		lessonNumber: lesson,
+	};
+
+	const word: PropertyCard = {
+		id: `${n.thai}:word`,
+		symbolCharacter: n.thai,
+		property: "word" as NumeralProperty,
+		question: "What is the Thai word for this number?",
+		correctAnswer: n.word,
+		choices: pickChoices(n.word, numeralWordPool),
+		srs: SrsSchedule.initial().toDTO(),
+		lessonNumber: lesson,
+	};
+
+	const romanization: PropertyCard = {
+		id: `${n.thai}:romanization`,
+		symbolCharacter: n.thai,
+		property: "romanization" as NumeralProperty,
+		question: "How is the Thai word for this number pronounced?",
+		correctAnswer: n.romanization,
+		choices: pickChoices(n.romanization, numeralRomanizationPool),
+		srs: SrsSchedule.initial().toDTO(),
+		lessonNumber: lesson,
+	};
+
+	return [value, word, romanization];
+}
+
+// ---------------------------------------------------------------------------
 // Tone Rule Cards
 // ---------------------------------------------------------------------------
 
@@ -429,7 +528,22 @@ export function generateCardsForLesson(lesson: number): PropertyCard[] {
 		.filter((t) => t.lesson === lesson)
 		.flatMap(generateToneMarkCards);
 
+	const rareVowelCards = rareVowels
+		.filter((v) => v.lesson === lesson)
+		.flatMap(generateRareVowelCards);
+
+	const numeralCards = thaiNumerals
+		.filter((n) => n.lesson === lesson)
+		.flatMap(generateNumeralCards);
+
 	const toneCards = generateToneRuleCards(lesson);
 
-	return [...consonantCards, ...vowelCards, ...toneMarkCards, ...toneCards];
+	return [
+		...consonantCards,
+		...vowelCards,
+		...toneMarkCards,
+		...rareVowelCards,
+		...numeralCards,
+		...toneCards,
+	];
 }

@@ -7,9 +7,11 @@ import { SrsSchedule } from "../../srs/value-objects/SrsSchedule";
 import {
 	getSymbolsByLesson,
 	lessons,
+	rareVowels,
 	ThaiConsonant,
 	ThaiToneMark,
 	ThaiVowel,
+	thaiNumerals,
 	toneMarkRules,
 	toneRules,
 } from "../data/symbols";
@@ -58,6 +60,26 @@ export interface ToneMarkSummary {
 	audioUrl?: string;
 }
 
+export interface RareVowelSummary {
+	character: string;
+	name: string;
+	pronunciation: string;
+	length: string;
+	notes: string;
+}
+
+export interface NumeralSummary {
+	character: string;
+	arabic: number;
+	word: string;
+	romanization: string;
+}
+
+export interface ToneRuleSummary {
+	id: string;
+	description: string;
+}
+
 export interface LessonSummary {
 	lessonNumber: number;
 	title: string;
@@ -66,7 +88,9 @@ export interface LessonSummary {
 	consonants: ConsonantSummary[];
 	vowels: VowelSummary[];
 	toneMarks: ToneMarkSummary[];
-	toneRules: Array<{ description: string }>;
+	rareVowels: RareVowelSummary[];
+	numerals: NumeralSummary[];
+	toneRules: ToneRuleSummary[];
 }
 
 function toEntity(dto: PropertyCard): ScriptPropertyCard {
@@ -208,13 +232,34 @@ export class LearningService {
 					lowClassTone: t.lowClassTone,
 					audioUrl: t.audioUrl,
 				})),
+			rareVowels: rareVowels
+				.filter((v) => v.lesson === lessonNumber)
+				.map((v) => ({
+					character: v.character,
+					name: v.name,
+					pronunciation: v.pronunciation,
+					length: v.length,
+					notes: v.notes,
+				})),
+			numerals: thaiNumerals
+				.filter((n) => n.lesson === lessonNumber)
+				.map((n) => ({
+					character: n.thai,
+					arabic: n.arabic,
+					word: n.word,
+					romanization: n.romanization,
+				})),
 			toneRules: [
 				...toneRules
 					.filter((r) => r.lesson === lessonNumber)
-					.map((r) => ({ description: r.description })),
+					.map((r) => ({
+						id: `tone-rule:${r.id}`,
+						description: r.description,
+					})),
 				...toneMarkRules
 					.filter((r) => r.lesson === lessonNumber)
 					.map((r) => ({
+						id: `tone-mark-rule:${r.toneMarkName}-${r.consonantClass}`,
 						description: `${r.toneMarkName} on ${r.consonantClass} class = ${r.resultingTone} tone`,
 					})),
 			],

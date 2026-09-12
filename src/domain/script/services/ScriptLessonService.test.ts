@@ -115,6 +115,35 @@ describe("LearningService", () => {
 			expect(summary.lessonNumber).toBe(1);
 			expect(summary.consonants.length).toBeGreaterThan(0);
 		});
+
+		it("includes rare vowels for lesson 22", () => {
+			const summary = service.getLessonSummary(22);
+			expect(summary.rareVowels.map((v) => v.character)).toEqual([
+				"ฤ",
+				"ฤๅ",
+				"ฦ",
+				"ฦๅ",
+			]);
+		});
+
+		it("includes numerals for lesson 23", () => {
+			const summary = service.getLessonSummary(23);
+			expect(summary.numerals.map((n) => n.character)).toEqual(["๑", "๒", "๓"]);
+		});
+
+		it("includes tone rule ids matching their generated card ids", () => {
+			const summary = service.getLessonSummary(2);
+			expect(summary.toneRules).toEqual([
+				{ id: "tone-rule:low-live", description: expect.any(String) },
+			]);
+		});
+
+		it("includes tone mark rule ids matching their generated card ids", () => {
+			const summary = service.getLessonSummary(17);
+			const ids = summary.toneRules.map((r) => r.id);
+			expect(ids).toContain("tone-mark-rule:mai ek-mid");
+			expect(ids).toContain("tone-mark-rule:mai tho-mid");
+		});
 	});
 
 	describe("mastery gating", () => {

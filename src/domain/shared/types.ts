@@ -61,7 +61,14 @@ export type ToneMarkProperty =
 	| "recognition"
 	| "effectPerClass"
 	| "audioRecognition";
-export type PropertyType = ConsonantProperty | VowelProperty | ToneMarkProperty;
+export type RareVowelProperty = "recognition" | "pronunciation" | "length";
+export type NumeralProperty = "value" | "word" | "romanization";
+export type PropertyType =
+	| ConsonantProperty
+	| VowelProperty
+	| ToneMarkProperty
+	| RareVowelProperty
+	| NumeralProperty;
 
 export interface SrsCard {
 	id: string;

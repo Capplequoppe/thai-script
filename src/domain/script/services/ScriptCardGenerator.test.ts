@@ -76,6 +76,31 @@ describe("generateCardsForLesson", () => {
 			).toBeUndefined();
 		}
 	});
+
+	it("generates 3 property cards per rare vowel for lesson 22 (ฤ, ฤๅ, ฦ, ฦๅ)", () => {
+		const cards = generateCardsForLesson(22);
+		for (const char of ["ฤ", "ฤๅ", "ฦ", "ฦๅ"]) {
+			const charCards = cards.filter((c) => c.id.startsWith(`${char}:`));
+			expect(charCards).toHaveLength(3);
+		}
+	});
+
+	it("generates 3 property cards per numeral for lesson 23 (๑, ๒, ๓)", () => {
+		const cards = generateCardsForLesson(23);
+		for (const char of ["๑", "๒", "๓"]) {
+			const charCards = cards.filter((c) => c.id.startsWith(`${char}:`));
+			expect(charCards).toHaveLength(3);
+		}
+	});
+
+	it("numeral cards quiz the arabic value, Thai word, and romanization", () => {
+		const cards = generateCardsForLesson(23);
+		const oneCards = cards.filter((c) => c.id.startsWith("๑:"));
+		const byProperty = Object.fromEntries(oneCards.map((c) => [c.property, c]));
+		expect(byProperty.value?.correctAnswer).toBe("1");
+		expect(byProperty.word?.correctAnswer).toBe("หนึ่ง");
+		expect(byProperty.romanization?.correctAnswer).toBe("nueng");
+	});
 });
 
 describe("generateToneRuleCards", () => {

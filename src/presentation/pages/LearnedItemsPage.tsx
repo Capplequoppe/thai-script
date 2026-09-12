@@ -3,7 +3,10 @@ import { useNavigate } from "react-router";
 import type {
 	ConsonantSummary,
 	LessonSummary,
+	NumeralSummary,
+	RareVowelSummary,
 	ToneMarkSummary,
+	ToneRuleSummary,
 	VowelSummary,
 } from "../../domain/script/services/ScriptLessonService";
 import { SrsStage } from "../../domain/srs/value-objects/SrsStage";
@@ -14,13 +17,24 @@ import {
 } from "../components/organisms/StageOverrideSheet";
 import {
 	ConsonantCard,
+	NumeralCard,
+	RareVowelCard,
 	ToneMarkCard,
+	ToneRuleCard,
 	VowelCard,
 } from "../components/organisms/SymbolCard";
 import { useApp } from "../hooks/useApp";
 import { withDottedCircles } from "../utils/thaiText";
 
-type Tab = "consonants" | "vowels" | "toneMarks" | "vocabulary" | "videos";
+type Tab =
+	| "consonants"
+	| "vowels"
+	| "toneMarks"
+	| "toneRules"
+	| "rareVowels"
+	| "numerals"
+	| "vocabulary"
+	| "videos";
 
 function isEmbedUrl(url: string): boolean {
 	return (
@@ -113,6 +127,11 @@ export function propertyLabel(property: string): string {
 		length: "Length",
 		position: "Position",
 		effectPerClass: "Effect per Class",
+		pronunciation: "Pronunciation",
+		value: "Value",
+		word: "Word",
+		romanization: "Romanization",
+		toneRule: "Tone Rule",
 	};
 	return labels[property] ?? property;
 }
@@ -125,10 +144,21 @@ export function LearnedItemsPage() {
 	const navigate = useNavigate();
 
 	// Collect all learned items across completed lessons
-	const { consonants, vowels, toneMarks, videos } = useMemo(() => {
+	const {
+		consonants,
+		vowels,
+		toneMarks,
+		toneRules,
+		rareVowels,
+		numerals,
+		videos,
+	} = useMemo(() => {
 		const c: ConsonantSummary[] = [];
 		const v: VowelSummary[] = [];
 		const t: ToneMarkSummary[] = [];
+		const tr: ToneRuleSummary[] = [];
+		const rv: RareVowelSummary[] = [];
+		const nm: NumeralSummary[] = [];
 		const vids: LessonSummary[] = [];
 
 		for (const lessonNum of [...state.completedLessons].sort((a, b) => a - b)) {
@@ -136,12 +166,23 @@ export function LearnedItemsPage() {
 			c.push(...summary.consonants);
 			v.push(...summary.vowels);
 			t.push(...summary.toneMarks);
+			tr.push(...summary.toneRules);
+			rv.push(...summary.rareVowels);
+			nm.push(...summary.numerals);
 			if (summary.videoUrl) {
 				vids.push(summary);
 			}
 		}
 
-		return { consonants: c, vowels: v, toneMarks: t, videos: vids };
+		return {
+			consonants: c,
+			vowels: v,
+			toneMarks: t,
+			toneRules: tr,
+			rareVowels: rv,
+			numerals: nm,
+			videos: vids,
+		};
 	}, [state.completedLessons, lesson]);
 
 	const vocabWordCount = useMemo(() => {
@@ -157,10 +198,32 @@ export function LearnedItemsPage() {
 		if (tab === "consonants") return consonants[selectedIdx] ?? null;
 		if (tab === "vowels") return vowels[selectedIdx] ?? null;
 		if (tab === "toneMarks") return toneMarks[selectedIdx] ?? null;
+		if (tab === "rareVowels") return rareVowels[selectedIdx] ?? null;
+		if (tab === "numerals") return numerals[selectedIdx] ?? null;
 		return null;
-	}, [tab, selectedIdx, consonants, vowels, toneMarks]);
+	}, [tab, selectedIdx, consonants, vowels, toneMarks, rareVowels, numerals]);
+
+	// Tone rules aren't glyphs (no `.character`), so they're tracked separately
+	// and matched to their single review card by id rather than symbolCharacter.
+	const selectedToneRule = useMemo(() => {
+		if (tab !== "toneRules" || selectedIdx === null) return null;
+		return toneRules[selectedIdx] ?? null;
+	}, [tab, selectedIdx, toneRules]);
 
 	const overrideCards: ItemCard[] = useMemo(() => {
+		if (selectedToneRule) {
+			return Object.values(state.cards)
+				.filter((card) => card.id === selectedToneRule.id)
+				.map((card) => ({
+					id: card.id,
+					pool: "script" as const,
+					label: propertyLabel(card.property),
+					currentStage: SrsStage.fromScheduleData(
+						card.srs.learningStep,
+						card.srs.interval,
+					),
+				}));
+		}
 		if (!selectedSymbol) return [];
 		return Object.values(state.cards)
 			.filter((card) => card.symbolCharacter === selectedSymbol.character)
@@ -173,18 +236,43 @@ export function LearnedItemsPage() {
 					card.srs.interval,
 				),
 			}));
-	}, [selectedSymbol, state.cards]);
+	}, [selectedSymbol, selectedToneRule, state.cards]);
 
 	const tabs: { key: Tab; label: string; count: number }[] = [
 		{ key: "consonants", label: "Consonants", count: consonants.length },
 		{ key: "vowels", label: "Vowels", count: vowels.length },
 		{ key: "toneMarks", label: "Tones", count: toneMarks.length },
+		{ key: "toneRules", label: "Tone Rules", count: toneRules.length },
+		...(rareVowels.length > 0
+			? [
+					{
+						key: "rareVowels" as const,
+						label: "Rare Vowels",
+						count: rareVowels.length,
+					},
+				]
+			: []),
+		...(numerals.length > 0
+			? [
+					{
+						key: "numerals" as const,
+						label: "Numerals",
+						count: numerals.length,
+					},
+				]
+			: []),
 		{ key: "vocabulary", label: "Vocab", count: vocabWordCount },
 		{ key: "videos", label: "Videos", count: videos.length },
 	];
 
 	const total =
-		consonants.length + vowels.length + toneMarks.length + vocabWordCount;
+		consonants.length +
+		vowels.length +
+		toneMarks.length +
+		toneRules.length +
+		rareVowels.length +
+		numerals.length +
+		vocabWordCount;
 
 	if (total === 0) {
 		return (
@@ -270,7 +358,16 @@ export function LearnedItemsPage() {
 					{tab === "toneMarks" && toneMarks[selectedIdx] && (
 						<ToneMarkCard t={toneMarks[selectedIdx]} />
 					)}
-					{selectedSymbol && (
+					{tab === "rareVowels" && rareVowels[selectedIdx] && (
+						<RareVowelCard v={rareVowels[selectedIdx]} />
+					)}
+					{tab === "numerals" && numerals[selectedIdx] && (
+						<NumeralCard n={numerals[selectedIdx]} />
+					)}
+					{tab === "toneRules" && toneRules[selectedIdx] && (
+						<ToneRuleCard description={toneRules[selectedIdx].description} />
+					)}
+					{(selectedSymbol || selectedToneRule) && (
 						<>
 							<button
 								type="button"
@@ -289,7 +386,11 @@ export function LearnedItemsPage() {
 							<StageOverrideSheet
 								open={overrideOpen}
 								onClose={() => setOverrideOpen(false)}
-								itemLabel={selectedSymbol.character}
+								itemLabel={
+									selectedToneRule
+										? selectedToneRule.description
+										: (selectedSymbol?.character ?? "")
+								}
 								cards={overrideCards}
 								onOverride={(id, pool, stage) => {
 									items.overrideCardStage(id, pool, stage);
@@ -387,6 +488,68 @@ export function LearnedItemsPage() {
 								style={{ color: "var(--color-text-muted)" }}
 							>
 								{t.name}
+							</span>
+						</button>
+					))}
+				</div>
+			)}
+
+			{selectedIdx === null && tab === "toneRules" && (
+				<div className="space-y-2">
+					{toneRules.map((r, i) => (
+						<button
+							type="button"
+							key={r.id}
+							onClick={() => setSelectedIdx(i)}
+							className="w-full text-left p-3 rounded-xl text-sm transition-colors"
+							style={{ background: "var(--color-surface-2)" }}
+						>
+							{r.description}
+						</button>
+					))}
+				</div>
+			)}
+
+			{selectedIdx === null && tab === "rareVowels" && (
+				<div className="grid grid-cols-4 gap-2">
+					{rareVowels.map((v, i) => (
+						<button
+							type="button"
+							key={v.character}
+							onClick={() => setSelectedIdx(i)}
+							className="relative flex flex-col items-center p-3 rounded-xl transition-colors"
+							style={{ background: "var(--color-surface-2)" }}
+						>
+							<span className="thai text-4xl">
+								{withDottedCircles(v.character)}
+							</span>
+							<span
+								className="text-[10px] mt-1"
+								style={{ color: "var(--color-text-muted)" }}
+							>
+								{v.name}
+							</span>
+						</button>
+					))}
+				</div>
+			)}
+
+			{selectedIdx === null && tab === "numerals" && (
+				<div className="grid grid-cols-4 gap-2">
+					{numerals.map((n, i) => (
+						<button
+							type="button"
+							key={n.character}
+							onClick={() => setSelectedIdx(i)}
+							className="relative flex flex-col items-center p-3 rounded-xl transition-colors"
+							style={{ background: "var(--color-surface-2)" }}
+						>
+							<span className="thai text-4xl">{n.character}</span>
+							<span
+								className="text-[10px] mt-1"
+								style={{ color: "var(--color-text-muted)" }}
+							>
+								{n.word} ({n.arabic})
 							</span>
 						</button>
 					))}
