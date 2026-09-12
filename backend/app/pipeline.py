@@ -90,6 +90,11 @@ def synthesize_opening(tts_pipeline: Any) -> tuple[str, bytes, str]:
             output_file=str(output_path),
         )
         audio_bytes = output_path.read_bytes()
+    if not audio_bytes:
+        # Synthesis that "succeeded" but produced nothing must fail
+        # loudly (a 5xx, like any other synthesis exception) — never
+        # ship as a confident 200 whose audio is zero bytes.
+        raise RuntimeError("TTS synthesis produced an empty audio file for the opening question")
     return OPENING_QUESTION_TEXT, audio_bytes, OPENING_AUDIO_MIME_TYPE
 
 

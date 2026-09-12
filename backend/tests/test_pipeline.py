@@ -190,6 +190,21 @@ def test_fake_tts_pipeline_alone_drives_opening_synthesis():
     assert call["ref_text"] == pipeline.REFERENCE_CLIP_TRANSCRIPT
 
 
+def test_empty_tts_synthesis_raises_instead_of_shipping_zero_audio():
+    class EmptyOutputTTSPipeline:
+        """Degenerate stand-in: 'succeeds' but writes zero bytes."""
+
+        def __call__(self, text, ref_voice, output_file, ref_text=None, **kwargs):
+            Path(output_file).write_bytes(b"")
+            return output_file
+
+    # Found-nothing must be as loud as failed: an empty synthesis file
+    # becomes an exception (a 5xx at the HTTP layer), never a 200 whose
+    # audio is zero bytes.
+    with pytest.raises(RuntimeError, match="empty audio"):
+        pipeline.synthesize_opening(EmptyOutputTTSPipeline())
+
+
 def test_opening_endpoint_returns_fake_synthesis(fake_model_client):
     response = fake_model_client.get("/conversation/opening")
 
@@ -300,8 +315,13 @@ def test_injection_cannot_bypass_the_fixed_verdict_extraction():
 # hand-verified (scrambled order fails; terse passes; "I don't know"
 # passes) — checked in so a later judge_prompt.py edit can't silently
 # regress exactly these. The plain correct/off-topic replies are
-# synthesized per-run from the already-loaded TTS instead (no fixture
-# file needed to keep them stable — any on-topic/off-topic sentence do).
+# synthesized per-run from the already-loaded TTS instead: their value
+# is being plainly on/off topic, not a nuance worth repository bytes.
+# The exact texts below were picked because they render cleanly through
+# the cloned voice — an earlier two-phrase correct-reply candidate
+# synthesized with a leading artifact Whisper heard as an extra word
+# (see the manual note), so don't swap these for arbitrary sentences
+# without re-checking the rendition.
 _NUANCED_FIXTURE_FILES = {
     "scrambled": "judge_scrambled.wav",
     "terse": "judge_terse.wav",

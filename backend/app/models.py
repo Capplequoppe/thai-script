@@ -146,10 +146,15 @@ def load_tts() -> Any:
 async def load_models_into(registry: ModelRegistry) -> None:
     """Load all three models sequentially into `registry`.
 
-    Each field is assigned as that model finishes, so `/health`'s
-    per-model flags flip independently during a cold start. Loading runs
-    in a worker thread; the single startup call site (`app.main`'s
-    lifespan) is the only writer, so no lock is needed here.
+    Each field is assigned as that model finishes, so the registry's
+    per-model flags are truthful at every instant. Note that in
+    production nothing can observe a partial state over HTTP: the
+    server only starts accepting connections after the lifespan (and
+    therefore this function) returns — the per-model shape is what
+    `/health` reads and what tests exercise by seeding partial
+    registries. Loading runs in a worker thread; the single startup
+    call site (`app.main`'s lifespan) is the only writer, so no lock is
+    needed here.
     """
     registry.whisper = await asyncio.to_thread(load_whisper)
     judge_llm, judge_tokenizer = await asyncio.to_thread(load_judge)

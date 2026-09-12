@@ -12,10 +12,11 @@ Two properties task 1.1 decided are kept exactly:
   — this endpoint drives a local GPU with no auth, so a wildcard would
   make it callable by any page the user happens to have open.
 - **Concurrency**: handlers are `async def`; the blocking pipeline
-  calls run through `run_serialized` (one module-level `asyncio.Lock`,
-  held only around the model work), so `/health` keeps answering while
-  a call is in flight and two overlapping requests never hit the GPU at
-  the same time (proven in `backend/tests/test_health.py`).
+  bodies run through `run_serialized` (one module-level `asyncio.Lock`
+  held around each body — input decoding plus its model calls, never a
+  whole request), so `/health` keeps answering while a call is in
+  flight and two overlapping requests never hit the GPU at the same
+  time (proven in `backend/tests/test_health.py`).
 
 Model presence: production startup loads all three models before the
 server accepts requests, so a served request can rely on them. The only
@@ -84,9 +85,10 @@ app.add_middleware(
 
 # Serializes access to the local models (STT, judge LLM, TTS) — the
 # backend is single-process, single-GPU, synchronous per request (see
-# the plan's CONTEXT.md). Held only around a model call, never around
-# an entire request, so unrelated routes such as /health are never
-# blocked by one in flight.
+# the plan's CONTEXT.md). Held around a pipeline body (the cheap input
+# decoding plus its model calls), never around an entire request, and
+# never by /health — so unrelated routes are never blocked by a model
+# call in flight.
 MODEL_LOCK = asyncio.Lock()
 
 

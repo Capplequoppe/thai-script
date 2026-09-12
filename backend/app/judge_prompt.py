@@ -102,9 +102,11 @@ def build_judge_messages(question_text: str, transcript: str) -> list[dict[str, 
     ]
 
 
-# FAIL_TOKEN before PASS_TOKEN so ไม่ผ่าน can never be half-matched as
-# its ผ่าน suffix; both anchored to the marker so free text elsewhere in
-# the completion (echoed injection, chatty preamble) is never a verdict.
+# Anchored to the marker, so free text elsewhere in the completion
+# (echoed injection, chatty preamble) is never read as a verdict. The
+# FAIL-before-PASS order is belt-and-braces only: the anchor alone
+# already keeps ไม่ผ่าน from being half-matched as its ผ่าน suffix,
+# since ผ่าน cannot match at a position that starts with ไ.
 _RESULT_RE = re.compile(rf"{RESULT_MARKER}\s*:\s*(?P<token>{FAIL_TOKEN}|{PASS_TOKEN})")
 _REASON_RE = re.compile(rf"{REASON_MARKER}\s*:\s*(?P<reason>[^\n]+)")
 
