@@ -1,0 +1,157 @@
+{
+  "version": 1,
+  "task": "2.2",
+  "pass": "after",
+  "result": {
+    "outcome": "unsupported",
+    "reason": "backend/data/conversationStarters.json: no grammar covers '.json' files (and 4 more) — 9 violations were measured before this and are not shown"
+  },
+  "findings": [
+    {
+      "rule": "length",
+      "severity": "warning",
+      "tier": "function",
+      "measured": 53,
+      "threshold": 50,
+      "symbol": {
+        "kind": "function",
+        "name": "main",
+        "path": "scripts/generate-conversation-bank/src/generate_conversation_bank/__main__.py",
+        "bytes": {
+          "startIndex": 840,
+          "endIndex": 3011
+        },
+        "lines": {
+          "startRow": 29,
+          "endRow": 81
+        }
+      }
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 4.65,
+      "threshold": 5,
+      "tier": "file",
+      "path": "scripts/generate-conversation-bank/src/generate_conversation_bank/__main__.py",
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 2.3,
+      "threshold": 5,
+      "tier": "file",
+      "path": "scripts/generate-conversation-bank/src/generate_conversation_bank/bank.py",
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 4.69,
+      "threshold": 5,
+      "tier": "file",
+      "path": "scripts/generate-conversation-bank/src/generate_conversation_bank/filtering.py",
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "length",
+      "severity": "warning",
+      "tier": "function",
+      "measured": 55,
+      "threshold": 50,
+      "symbol": {
+        "kind": "function",
+        "name": "generate_tier",
+        "path": "scripts/generate-conversation-bank/src/generate_conversation_bank/generation.py",
+        "bytes": {
+          "startIndex": 3841,
+          "endIndex": 6105
+        },
+        "lines": {
+          "startRow": 97,
+          "endRow": 151
+        }
+      }
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 3.33,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "complete",
+        "path": "scripts/generate-conversation-bank/src/generate_conversation_bank/generation.py",
+        "bytes": {
+          "startIndex": 7008,
+          "endIndex": 8107
+        },
+        "lines": {
+          "startRow": 180,
+          "endRow": 209
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 1.79,
+      "threshold": 5,
+      "tier": "file",
+      "path": "scripts/generate-conversation-bank/src/generate_conversation_bank/quality.py",
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "build_tiers",
+        "path": "scripts/generate-conversation-bank/src/generate_conversation_bank/tiers.py",
+        "bytes": {
+          "startIndex": 1485,
+          "endIndex": 2421
+        },
+        "lines": {
+          "startRow": 51,
+          "endRow": 71
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 2.78,
+      "threshold": 5,
+      "tier": "file",
+      "path": "scripts/generate-conversation-bank/src/generate_conversation_bank/tiers.py",
+      "check": "density-below-floor"
+    }
+  ],
+  "adapters": [
+    {
+      "tool": "ruff",
+      "selection": {
+        "evidence": "none",
+        "considered": [
+          "ruff"
+        ]
+      },
+      "program": null,
+      "result": {
+        "outcome": "unsupported",
+        "reason": "no native linter covered these files: looked for a configuration file for ruff at the repository root, and for ruff on PATH in a repository of that ecosystem. Their findings are missing from this report — that is a gap and not a pass."
+      },
+      "files": 14,
+      "findings": 0,
+      "refusedPaths": 0,
+      "outsideAnalysis": 0,
+      "refusedShape": 0
+    }
+  ]
+}
