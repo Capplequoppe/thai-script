@@ -5,4 +5,8 @@ narrative reconstructed from the agent transcript that produced it.
 
 | Commit | Task | Subject | Reasoning |
 |---|---|---|---|
+| `3d3e7604d44c` | `1.3` | Add conversation practice port, HTTP adapter and /conversation page | [narrative](commits/3d3e7604d44c.md) |
 | `4af75c9d01a3` | `1.1` | Add conversation backend API contract + FastAPI project skeleton | [narrative](commits/4af75c9d01a3.md) |
+| `7c666bb4b990` | `2.2` | Add offline generator and curated conversation-starter bank | [narrative](commits/7c666bb4b990.md) |
+| `98ecb14d9194` | `1.3` | Self-review repairs: harness docstring and verdict-arm consistency | [narrative](commits/98ecb14d9194.md) |
+| `f5c2d983eaac` | `2.2` | Fix docstrings the quality gate falsified, drop unreached knobs | [narrative](commits/f5c2d983eaac.md) |
