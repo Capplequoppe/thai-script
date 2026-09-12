@@ -804,18 +804,21 @@ describe("GameItemSelectionService", () => {
 			expect(rng.calls).toBe(2);
 		});
 
-		it("AC3: every item from the real shipped sentences.json now carries audio, so 'listening' is reachable", () => {
+		it("AC3: the real shipped sentences.json still has enough audio-bearing sentences that 'listening' is reachable", () => {
 			// This test used to prove "listening" unreachable, back when every
 			// shipped sentence was audio-less (see SentenceGameItemSource.test.ts's
-			// own canary for that history). Real audio now exists for every
-			// sentence, so this locks in the new state: every direction drawn
+			// own canary for that history). Real audio exists for the original
+			// 177 sentences, so this locks in that floor: every direction drawn
 			// is one of the three valid ones, and "listening" — the thing this
-			// test used to prove impossible — is actually reached.
+			// test used to prove impossible — is actually reached. Sentence
+			// batches added afterwards may be audio-less (see the sibling
+			// canary's comment), so this checks a coverage floor rather than
+			// 100% of the current file.
 			const sentences = realSentenceData as unknown as SentenceEntry[];
 			expect(sentences.length).toBeGreaterThan(0);
-			expect(sentences.every((entry) => entry.thai_audio_file != null)).toBe(
-				true,
-			);
+			expect(
+				sentences.filter((entry) => entry.thai_audio_file != null).length,
+			).toBeGreaterThanOrEqual(177);
 
 			const cards = sentences.map((entry) =>
 				sentenceCardWith(entry.id, "readingComprehension", 2.5, 0, 3),
@@ -825,9 +828,19 @@ describe("GameItemSelectionService", () => {
 				new SentenceGameItemSource(repository, sentences),
 			]);
 
+			// A single repeating 0.0, not a handful of cycling values: with the
+			// content pool now well past a thousand sentences, a short cycling
+			// sequence's exact interleaving between "which item is picked next"
+			// and "which direction it rolls" drifts with the pool's size, so a
+			// value that landed on an audio-bearing sentence's direction roll at
+			// one pool size can miss on another — which is exactly what started
+			// failing here as more sentences were added. 0.0 sidesteps that: it
+			// is < 1/3 (assignDirection's own listening threshold), so every
+			// audio-bearing sentence's direction roll lands on "listening"
+			// regardless of pool size or selection order.
 			const round = service.selectRound(
 				{ pools: ["sentence"], itemCount: sentences.length },
-				scripted([0.0, 0.2, 0.5, 0.8]),
+				scripted([0.0]),
 			);
 
 			expect(round).toHaveLength(sentences.length);

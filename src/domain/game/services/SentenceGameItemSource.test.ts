@@ -173,15 +173,21 @@ describe("SentenceGameItemSource", () => {
 		).toEqual([]);
 	});
 
-	it("AC3: the real shipped sentences.json now carries audio for every sentence", () => {
+	it("AC3: shipped sentences.json still carries audio for its original 177 sentences", () => {
 		// This test used to assert the opposite — no sentence had audio — as a
 		// canary: "if a future data drop adds audio, this fails loudly and the
 		// 'every item is reading' claim in GameItemSelectionService.test.ts
 		// must be revisited rather than silently becoming a coincidence." That
-		// data drop has happened; this locks in the new state instead.
+		// data drop happened for the original 177 sentences, locking in a new
+		// state: every one of THOSE sentences carries audio. Content batches
+		// added afterwards (e.g. the survival-vocabulary sentence batches)
+		// intentionally ship without audio yet — no TTS/recording pipeline
+		// exists in this repo — pending a separate backfill, so this only
+		// guards against losing audio coverage below that original baseline,
+		// not against the file growing with audio-less entries.
 		expect(REAL_SENTENCES.length).toBeGreaterThan(0);
 		expect(
-			REAL_SENTENCES.filter((entry) => entry.thai_audio_file == null),
-		).toEqual([]);
+			REAL_SENTENCES.filter((entry) => entry.thai_audio_file != null).length,
+		).toBeGreaterThanOrEqual(177);
 	});
 });
