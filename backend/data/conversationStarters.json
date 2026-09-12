@@ -1,17 +1,5 @@
 [
   {
-    "id": "cs-24d174d73afb",
-    "tier": 1,
-    "thai": "ทำอะไรอย่างไรครับ",
-    "english": "How do you do something?",
-    "words": [
-      "ทำ",
-      "อะไร",
-      "อย่างไร",
-      "ครับ"
-    ]
-  },
-  {
     "id": "cs-2559f01aabb0",
     "tier": 1,
     "thai": "ทำอะไรกันครับ",
@@ -118,7 +106,7 @@
     "id": "cs-94758020a38e",
     "tier": 1,
     "thai": "นี้ทำอะไรไหมครับ",
-    "english": "What is this used for, sir?",
+    "english": "Does this do anything, sir?",
     "words": [
       "นี้",
       "ทำ",
@@ -167,7 +155,7 @@
     "id": "cs-1a7dafa0aeeb",
     "tier": 2,
     "thai": "นี้ทำอะไรอยู่คะ",
-    "english": "What are you doing?",
+    "english": "What is this doing?",
     "words": [
       "นี้",
       "ทำ",
@@ -254,7 +242,7 @@
     "id": "cs-904fe49c2747",
     "tier": 2,
     "thai": "ไม่ชอบคนไหนครับ",
-    "english": "I don't like anyone.",
+    "english": "Which person don't you like?",
     "words": [
       "ไม่",
       "ชอบ",
@@ -279,7 +267,7 @@
     "id": "cs-ac134a3c0ee0",
     "tier": 2,
     "thai": "ไม่ชอบทำอะไรครับ",
-    "english": "I don't like doing anything.",
+    "english": "What don't you like doing?",
     "words": [
       "ไม่",
       "ชอบ",
@@ -371,7 +359,7 @@
     "id": "cs-8ff6b245784d",
     "tier": 3,
     "thai": "นี้ทำอะไรค่ะ",
-    "english": "What is this?",
+    "english": "What does this do?",
     "words": [
       "นี้",
       "ทำ",
@@ -449,7 +437,7 @@
     "id": "cs-ce676fd3cc97",
     "tier": 3,
     "thai": "ทำอะไรอยู่ไหมครับ",
-    "english": "What are you doing?",
+    "english": "Are you doing something right now?",
     "words": [
       "ทำ",
       "อะไร",
@@ -485,38 +473,23 @@
     ]
   },
   {
-    "id": "cs-39b2db14b31c",
+    "id": "cs-0d369bc55bf6",
     "tier": 4,
-    "thai": "ทำอะไรเพื่ออะไรคะ",
-    "english": "What do you do for what?",
+    "thai": "มาที่นี่เพื่ออะไรครับ",
+    "english": "What did you come here for?",
     "words": [
-      "ทำ",
-      "อะไร",
+      "มา",
+      "ที่นี่",
       "เพื่อ",
       "อะไร",
-      "คะ"
-    ]
-  },
-  {
-    "id": "cs-4314a8be9e18",
-    "tier": 4,
-    "thai": "สวัสดีคะ คุณสบายดีกับเราไหม",
-    "english": "Hello, are you comfortable with us?",
-    "words": [
-      "สวัสดี",
-      "คะ",
-      "คุณ",
-      "สบายดี",
-      "กับ",
-      "เรา",
-      "ไหม"
+      "ครับ"
     ]
   },
   {
     "id": "cs-49f5d7e3d3d4",
     "tier": 4,
     "thai": "ทำอะไรที่นี่ครับ",
-    "english": "What are we doing here?",
+    "english": "What are you doing here?",
     "words": [
       "ทำ",
       "อะไร",
@@ -540,11 +513,37 @@
     "id": "cs-6817fe7ac42b",
     "tier": 4,
     "thai": "ทำอะไรที่นี่คะ",
-    "english": "What are we doing here?",
+    "english": "What are you doing here?",
     "words": [
       "ทำ",
       "อะไร",
       "ที่นี่",
+      "คะ"
+    ]
+  },
+  {
+    "id": "cs-6b0767339f99",
+    "tier": 4,
+    "thai": "มาที่นี่เพื่ออะไรคะ",
+    "english": "What did you come here for?",
+    "words": [
+      "มา",
+      "ที่นี่",
+      "เพื่อ",
+      "อะไร",
+      "คะ"
+    ]
+  },
+  {
+    "id": "cs-795fe5a22948",
+    "tier": 4,
+    "thai": "ไปกับเราไหมคะ",
+    "english": "Are you coming with us?",
+    "words": [
+      "ไป",
+      "กับ",
+      "เรา",
+      "ไหม",
       "คะ"
     ]
   },
@@ -571,19 +570,6 @@
       "ทำ",
       "อะไร",
       "คะ"
-    ]
-  },
-  {
-    "id": "cs-b06b8a30b7c1",
-    "tier": 4,
-    "thai": "ทำอะไรเพื่ออะไรครับ",
-    "english": "What do you do for what?",
-    "words": [
-      "ทำ",
-      "อะไร",
-      "เพื่อ",
-      "อะไร",
-      "ครับ"
     ]
   },
   {
@@ -665,7 +651,7 @@
     "id": "cs-902d4ff4fbc8",
     "tier": 5,
     "thai": "ไปไหนไหมครับ",
-    "english": "Where are you going, sir?",
+    "english": "Are you going anywhere, sir?",
     "words": [
       "ไป",
       "ไหน",
@@ -705,7 +691,7 @@
     "id": "cs-df89e5fc9466",
     "tier": 5,
     "thai": "ไปไหนไหมคะ",
-    "english": "Where are you going, dear?",
+    "english": "Are you going anywhere, dear?",
     "words": [
       "ไป",
       "ไหน",
