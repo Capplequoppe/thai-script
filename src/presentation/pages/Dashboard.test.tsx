@@ -2,11 +2,22 @@
 import { fireEvent, screen } from "@testing-library/react";
 import { Route, Routes } from "react-router";
 import { describe, expect, it } from "vitest";
+import { MIN_GRAMMAR_POINTS } from "../../domain/conversation/services/ConversationUnlockService";
+import grammarData from "../../domain/grammar/data/grammar.json";
+import vocabularyData from "../../domain/vocabulary/data/vocabulary.json";
 import {
 	renderWithApp,
 	UNLOCKS_FIRST_GRAMMAR_POINT,
 } from "../test-utils/renderWithApp";
 import { Dashboard } from "./Dashboard";
+
+/** A learner comfortably above both conversation-practice unlock thresholds. */
+const UNLOCKED_VOCAB: string[] = (vocabularyData as { thai: string }[])
+	.slice(0, 220)
+	.map((entry) => entry.thai);
+const UNLOCKED_GRAMMAR: string[] = (grammarData as { id: string }[])
+	.slice(0, MIN_GRAMMAR_POINTS)
+	.map((entry) => entry.id);
 
 describe("Dashboard — Ready to Learn", () => {
 	// A brand-new account: nothing unlocked anywhere yet.
@@ -74,5 +85,44 @@ describe("Dashboard — Ready to Learn", () => {
 		expect(screen.getByText("1 new grammar point")).toBeTruthy();
 		expect(screen.getByText("2 new sentences")).toBeTruthy();
 		expect(screen.getAllByText("Learn")).toHaveLength(2);
+	});
+});
+
+describe("Dashboard — Conversation Practice gate", () => {
+	it("shows a locked tile naming the words gap, with no onClick, below the vocab threshold", () => {
+		renderWithApp(
+			<Routes>
+				<Route path="/" element={<Dashboard />} />
+				<Route path="/conversation" element={<div>Conversation Page</div>} />
+			</Routes>,
+			{},
+			{ graduatedVocab: ["มา", "กิน", "กัน"], learnedGrammar: UNLOCKED_GRAMMAR },
+		);
+
+		expect(screen.getByText("Conversation Practice")).toBeTruthy();
+		expect(screen.getByText("3/200 words learned")).toBeTruthy();
+
+		// No onClick handler at all — a click produces no navigation, since
+		// QuickActionCard has no disabled DOM attribute/ARIA state to assert
+		// against (only conditional styling).
+		fireEvent.click(screen.getByText("Conversation Practice"));
+		expect(screen.queryByText("Conversation Page")).toBeNull();
+	});
+
+	it("shows an unlocked, navigable tile once both thresholds are met", () => {
+		renderWithApp(
+			<Routes>
+				<Route path="/" element={<Dashboard />} />
+				<Route path="/conversation" element={<div>Conversation Page</div>} />
+			</Routes>,
+			{},
+			{ graduatedVocab: UNLOCKED_VOCAB, learnedGrammar: UNLOCKED_GRAMMAR },
+		);
+
+		expect(screen.getByText("Conversation Practice")).toBeTruthy();
+		expect(screen.getByText("Start a session")).toBeTruthy();
+
+		fireEvent.click(screen.getByText("Conversation Practice"));
+		expect(screen.getByText("Conversation Page")).toBeTruthy();
 	});
 });

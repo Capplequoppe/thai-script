@@ -11,9 +11,14 @@ covers:
   - src/presentation/pages/ConversationPracticePage.test.tsx
   - e2e/conversation-gate.spec.ts
   - e2e/fixtures/seedLearner.ts
+  - playwright.config.ts
+  - e2e/conversation-backend.setup.ts
+  - e2e/conversation-practice.spec.ts
+  - e2e/conversation-practice-fail.spec.ts
+  - backend/tests/fixtures/reply-pass.wav
 status: draft
 task_id: "3.2"
-task_status: pending
+task_status: complete
 depends_on: ["2.3"]
 size: medium
 verify:
@@ -28,6 +33,14 @@ ac_enforcement:
   - "AC5 -> a case, seeded above threshold: the tile has an onClick handler and navigates to /conversation on click"
   - "AC6 -> a case in ConversationPracticePage.test.tsx: navigating to /conversation directly (bypassing the Dashboard tile) while below threshold still shows the locked explanation, never the live recording UI - the gate is enforced at the page, not only hidden at the entry point"
   - "AC7 -> a new e2e/conversation-gate.spec.ts, in the conversation-practice Playwright project, using e2e/fixtures/seedLearner.ts (task 2.3): a learner seeded below threshold who navigates directly to /thai-script/conversation (typed URL, not a tile click - the Vite base path per vite.config.ts's base: \"/thai-script/\", not the bare /conversation a unit test's MemoryRouter uses) sees the locked explanation and the page never calls the backend at all (asserted via page.route interception - zero requests to the conversation API); a learner seeded above threshold sees the unlocked Dashboard tile and can navigate through it - this is this feature's OWN e2e proof, independent of task 3.3's multi-turn session proof, so a gating regression fails here without needing a real multi-turn session to even start"
+ac_tests:
+  - "AC1 -> src/domain/conversation/services/ConversationUnlockService.test.ts::vocab below MIN_VOCAB_COUNT locks regardless of grammar"
+  - "AC2 -> src/domain/conversation/services/ConversationUnlockService.test.ts::grammar below MIN_GRAMMAR_POINTS locks regardless of vocab"
+  - "AC3 -> src/domain/conversation/services/ConversationUnlockService.test.ts::both thresholds met (including exactly at the boundary) unlocks"
+  - "AC4 -> src/presentation/pages/Dashboard.test.tsx::below threshold shows no onClick and names the gap"
+  - "AC5 -> src/presentation/pages/Dashboard.test.tsx::above threshold has onClick and navigates"
+  - "AC6 -> src/presentation/pages/ConversationPracticePage.test.tsx::direct navigation below threshold still shows the locked explanation"
+  - "AC7 -> e2e/conversation-gate.spec.ts::a below-threshold learner sees the locked explanation and the page never calls the backend; e2e/conversation-gate.spec.ts::an above-threshold learner sees the unlocked Dashboard tile and can navigate through it"
 generated: {by: claude-sonnet-5/agent, at: 2026-09-11}
 profile_version: 1
 weight_votes:
@@ -171,3 +184,53 @@ bundled Playwright spec whose failure wouldn't say which half broke.
   locked explanation, zero backend requests.
 - Seeded above-threshold learner (e2e): unlocked Dashboard tile,
   navigates through to `/conversation`.
+
+## Cross-Task Regression Fixed During Integration (decision `1ecbe61f`)
+
+The executor's own unit-level ACs (1-6) and new `conversation-gate.spec.ts`
+(AC7) all passed on their own, but the task's `verify` gate
+(`npm run test:e2e -- --project=conversation-practice`, the full suite)
+failed: this gate correctly requires ≥200 vocab **and** ≥5 grammar
+points, but tasks 1.4's and 2.3's own e2e fixtures (already-shipped,
+outside this task's `covers`) only ever seeded vocabulary — 0 grammar
+cards — so they now fail the new combined threshold and see the locked
+page instead of the live UI. The executor correctly identified this,
+extended `seedLearner.ts` with a backward-compatible
+`learnedGrammarIds` parameter for its own new spec to use, and
+correctly refused to edit the out-of-scope fixture files itself — but
+then reported `task_status: complete` despite its own gate still
+failing, and ran out of its continuation budget (decision `1ecbe61f`,
+option A/B/C) before a human intervened.
+
+Resolved by hand, at the user's direction, rather than raising
+`--max-continuations` for another paid attempt (option A) or splitting
+the task (option C) — the fix was already understood and small:
+
+- **`playwright.config.ts`**: the `conversation-practice` project's
+  `testMatch` didn't include `conversation-gate.spec.ts` at all, so the
+  new AC7 spec silently never ran under the gate command that names it
+  — widened to `/conversation-(practice(-fail)?|gate)\.spec\.ts/`.
+- **`e2e/conversation-practice.spec.ts` / `-fail.spec.ts`**: every
+  seeding call that reaches `/conversation` now also seeds
+  `firstGrammarIds(5)`, and the two-learner personalization case's
+  vocab counts were bumped from 150/400 (150 is now below
+  `MIN_VOCAB_COUNT` outright) to 220/250 — chosen because, against the
+  real shipped bank, 220 and 400 turned out to select the *same* entry
+  (selection is a hash-based tie-break among qualifying entries, not
+  monotonic in word count), while 220 and 250 were confirmed to differ.
+- **`backend/tests/fixtures/reply-pass.wav`**: task 1.4's fixture
+  answered the old fixed opening question ("สบายดีไหม"); phase 2 made
+  the question personalized, and a 220-word learner is now asked
+  something else entirely ("กำลังทำอะไรครับ" — "What are you doing?").
+  Regenerated to answer the question a seeded learner is actually
+  asked now, via the same TTS-voice-cloning approach task 1.4 used.
+- **`e2e/conversation-backend.setup.ts`**: hardened, unrelated to the
+  above but discovered while re-running the suite — a stale backend
+  process from an earlier interrupted worktree session had held port
+  8000 for 32 minutes, silently absorbing every request this suite made
+  with a fresh setup script that never actually managed to bind. Setup
+  now kills whatever already holds port 8000 before spawning.
+
+All 9 cases in the `conversation-practice` project pass (33.6s) after
+these fixes. `plans/ai-conversation-practice/decisions.md`'s
+`1ecbe61f` block is answered `B` — this was taken by hand.

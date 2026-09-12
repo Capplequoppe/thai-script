@@ -1,7 +1,7 @@
 import path from "node:path";
 import { expect, test } from "@playwright/test";
 import type { APIRequestContext } from "@playwright/test";
-import { seedLearnedVocabulary } from "./fixtures/seedLearner";
+import { firstGrammarIds, seedLearnedVocabulary } from "./fixtures/seedLearner";
 
 /**
  * AC3's off-topic-reply case, split into its own file: Playwright refuses a
@@ -69,7 +69,8 @@ test("a fake-mic off-topic reply drives a real fail verdict, visibly distinct fr
 	// drawn from the bank by known vocabulary, not a fixed string, so the
 	// question locator asserts presence/content rather than an exact Thai
 	// string that content changes could invalidate.
-	await seedLearnedVocabulary(page, 150);
+	// Phase 3's gate (task 3.2) requires both a vocab AND a grammar count.
+	await seedLearnedVocabulary(page, 220, 7, firstGrammarIds(5));
 	await page.goto("/thai-script/#/conversation");
 	const question = page.locator('p[lang="th"]');
 	await expect(question).toBeVisible({ timeout: 30_000 });

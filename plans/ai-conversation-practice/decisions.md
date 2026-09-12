@@ -58,3 +58,24 @@ Task 2.3 shipped as `complete` with real, correct tests for all four of its own 
 
 not yet — awaiting an answer
 
+## 1ecbe61f — continuation-3.2 · continuation/3.2 · Task 3.2 — the continuation bound
+
+Task 3.2 could not fix itself. The runner handed the failure back to the executor's own session for every continuation this run was allowed to spend, and the task is still not green. Continuing is no longer the runner's call — the remedy on record for this cause is that the executor's own session is shown the failure and fixes it, and it has now been tried to the bound. What is left is a larger bound, or you.
+
+**Options:**
+
+- **A** — raise `--max-continuations` above 2
+  2 continuation(s) were spent against a bound of 2 and the gate is still red. Worth it only if the last attempt was closer than the first: every continuation is a paid invocation, and a task that cannot fix itself in a bounded number of attempts usually has a problem no further attempt will find
+- **B** — take this task by hand, then reset its `task_status` to `pending`
+  the ending the runner has always had — the next run re-reads the plan and picks the task up from wherever you left the tree
+- **C** — narrow task 3.2, or split the part that will not go green into its own task
+  for work that turned out to be two jobs — the half that passes lands, and the half that does not stops holding everything downstream of it
+
+**Answer:**
+
+B (done directly to `complete`, not `pending` — see task 3.2's own "Cross-Task Regression Fixed During Integration" section for the fix: the executor had already correctly diagnosed the cause and extended `seedLearner.ts`; what was missing was widening `playwright.config.ts`'s `testMatch` to actually run its new spec, updating the pre-existing fixtures in `conversation-practice.spec.ts`/`-fail.spec.ts` to seed grammar too, regenerating `reply-pass.wav` to answer the now-personalized opening question, and hardening `conversation-backend.setup.ts` against a stale process found holding port 8000. All 9 e2e cases pass.)
+
+**Applied:**
+
+answered — task 3.2 taken by hand and marked complete
+

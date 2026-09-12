@@ -1,5 +1,10 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { Button } from "@/presentation/components/ui/button";
+import {
+	checkConversationUnlock,
+	MIN_GRAMMAR_POINTS,
+	MIN_VOCAB_COUNT,
+} from "../../domain/conversation/services/ConversationUnlockService";
 import type {
 	ConversationJudgeResult,
 	ConversationOpeningResult,
@@ -49,7 +54,11 @@ const BACKEND_UNAVAILABLE_MESSAGE =
  * not this task's call to make.
  */
 export function ConversationPracticePage() {
-	const { conversationPractice, vocab } = useApp();
+	const { conversationPractice, vocab, lesson } = useApp();
+	const unlock = checkConversationUnlock(
+		vocab.getLearnedCount(),
+		lesson.getGrammarLearnedCount(),
+	);
 	const [opening, setOpening] = useState<ConversationOpeningResult | null>(
 		null,
 	);
@@ -61,6 +70,10 @@ export function ConversationPracticePage() {
 	const audioRef = useRef<HTMLAudioElement | null>(null);
 
 	useEffect(() => {
+		// The gate is enforced here too, not only by hiding the Dashboard
+		// tile (task 3.2 AC6/AC7) — a learner who navigates here directly
+		// while below threshold must never reach the backend at all.
+		if (!unlock.unlocked) return;
 		let cancelled = false;
 		// The learner's real known-vocabulary snapshot, sourced from their
 		// SRS state — never a placeholder list. A learner with nothing
@@ -72,7 +85,7 @@ export function ConversationPracticePage() {
 		return () => {
 			cancelled = true;
 		};
-	}, [conversationPractice, vocab]);
+	}, [conversationPractice, vocab, unlock.unlocked]);
 
 	const questionText = opening?.status === "ok" ? opening.questionText : null;
 	const questionAudioUrl =
@@ -119,6 +132,27 @@ export function ConversationPracticePage() {
 	function tryAgain() {
 		setJudgement(null);
 		reset();
+	}
+
+	// The actual security/product boundary (task 3.2's Architectural
+	// Decision) — the Dashboard tile hiding the entry point is only a
+	// discoverability affordance on top of this. A learner who types the
+	// URL directly while below threshold sees this, never the live
+	// recording UI, and nothing above has called the backend to get here.
+	if (!unlock.unlocked) {
+		return (
+			<div className="space-y-4 p-4">
+				<h1 className="text-xl font-semibold">Conversation practice</h1>
+				<p role="alert">
+					Conversation practice unlocks once you know at least {MIN_VOCAB_COUNT}{" "}
+					words and {MIN_GRAMMAR_POINTS} grammar points.
+					{unlock.vocabNeeded > 0 &&
+						` ${unlock.vocabNeeded} more word${unlock.vocabNeeded === 1 ? "" : "s"} needed.`}
+					{unlock.grammarNeeded > 0 &&
+						` ${unlock.grammarNeeded} more grammar point${unlock.grammarNeeded === 1 ? "" : "s"} needed.`}
+				</p>
+			</div>
+		);
 	}
 
 	if (opening === null) {

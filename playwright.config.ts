@@ -35,7 +35,7 @@ export default defineConfig({
 		},
 		{
 			name: "conversation-practice",
-			testMatch: /conversation-practice(-fail)?\.spec\.ts/,
+			testMatch: /conversation-(practice(-fail)?|gate)\.spec\.ts/,
 			dependencies: ["conversation-backend-setup"],
 			teardown: "conversation-backend-teardown",
 			// Single-process, single-GPU, synchronous-per-request backend

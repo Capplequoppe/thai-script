@@ -2,7 +2,7 @@ import { readFileSync } from "node:fs";
 import path from "node:path";
 import type { APIRequestContext, Browser } from "@playwright/test";
 import { expect, test } from "@playwright/test";
-import { seedLearnedVocabulary } from "./fixtures/seedLearner";
+import { firstGrammarIds, seedLearnedVocabulary } from "./fixtures/seedLearner";
 
 /**
  * End-to-end integration proof for the AI conversation practice pipeline —
@@ -80,7 +80,15 @@ async function askOpeningQuestion(
 	});
 	try {
 		const page = await context.newPage();
-		const knownWords = await seedLearnedVocabulary(page, learnedWordCount);
+		// Phase 3's gate (task 3.2) requires both a vocab AND a grammar count —
+		// every fixture reaching `/conversation` needs both now, not just the
+		// vocab count this helper originally seeded.
+		const knownWords = await seedLearnedVocabulary(
+			page,
+			learnedWordCount,
+			7,
+			firstGrammarIds(5),
+		);
 		await page.goto("/thai-script/#/conversation");
 		const question = page.locator('p[lang="th"]');
 		await expect(question).toBeVisible({ timeout: 60_000 });
@@ -101,10 +109,10 @@ test.describe("conversation practice — real backend, acceptable reply", () => 
 		// Seeded rather than run against an empty profile: the question is
 		// now drawn from the bank by what this learner knows, and the
 		// fake-mic fixture answers a "how are you" opener — which is what a
-		// 150-word learner is asked. (Phase 1 could hardcode the question;
+		// 220-word learner is asked. (Phase 1 could hardcode the question;
 		// from here on the content is personalized, so the fixture and the
 		// seeded learner have to belong together.)
-		await seedLearnedVocabulary(page, 150);
+		await seedLearnedVocabulary(page, 220, 7, firstGrammarIds(5));
 		await page.goto("/thai-script/#/conversation");
 		const question = page.locator('p[lang="th"]');
 		await expect(question).toBeVisible({ timeout: 30_000 });
@@ -135,6 +143,10 @@ test.describe("conversation practice — backend unreachable", () => {
 	test("a simulated connection failure renders the not-running state without hanging (AC4)", async ({
 		page,
 	}) => {
+		// Seeded above the phase-3 gate first: an unseeded learner would see
+		// the locked page before ever attempting a backend call, which would
+		// make this assertion pass for the wrong reason.
+		await seedLearnedVocabulary(page, 220, 7, firstGrammarIds(5));
 		// No process is stopped and task 1.3's frozen base-URL constant is
 		// never repointed — this produces exactly the `fetch` rejection the
 		// adapter's `unavailable` path is already built to handle.
@@ -184,8 +196,16 @@ test.describe("conversation practice — personalized by known vocabulary (AC4)"
 	test("two learners with different vocabulary get different questions", async ({
 		browser,
 	}) => {
-		const beginner = await askOpeningQuestion(browser, 150);
-		const advanced = await askOpeningQuestion(browser, 400);
+		// 220 and 250, not 150 and 400: task 3.2's gate requires
+		// >= MIN_VOCAB_COUNT (200) words before /conversation is reachable at
+		// all, ruling out 150. Selection is entry-level containment with a
+		// hash-based tie-break among qualifying entries (task 2.3), which is
+		// not monotonic in word count — a larger gappy word set does not
+		// always unlock a different entry (220 and 400 land on the same one
+		// against the real shipped bank). 220 and 250 are confirmed, against
+		// that same real bank, to select two different entries.
+		const beginner = await askOpeningQuestion(browser, 220);
+		const advanced = await askOpeningQuestion(browser, 250);
 
 		expect(beginner.questionText).not.toEqual(advanced.questionText);
 

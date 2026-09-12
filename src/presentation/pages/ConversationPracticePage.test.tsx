@@ -1,7 +1,10 @@
 // @vitest-environment jsdom
 import { act, fireEvent, screen, waitFor } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
+import { MIN_GRAMMAR_POINTS } from "../../domain/conversation/services/ConversationUnlockService";
 import type { ConversationVerdict } from "../../domain/conversation/types";
+import grammarData from "../../domain/grammar/data/grammar.json";
+import vocabularyData from "../../domain/vocabulary/data/vocabulary.json";
 import {
 	createdAudioUrls,
 	MIC_FIXTURE_MIME_TYPE,
@@ -10,6 +13,18 @@ import {
 	setMicPermission,
 } from "../test-utils/renderWithApp";
 import { ConversationPracticePage } from "./ConversationPracticePage";
+
+/**
+ * A learner comfortably above both unlock thresholds — the baseline every
+ * test in this file renders with unless it's specifically exercising the
+ * lock itself (see the "the unlock gate" describe block below).
+ */
+const UNLOCKED_VOCAB: string[] = (vocabularyData as { thai: string }[])
+	.slice(0, 220)
+	.map((entry) => entry.thai);
+const UNLOCKED_GRAMMAR: string[] = (grammarData as { id: string }[])
+	.slice(0, MIN_GRAMMAR_POINTS)
+	.map((entry) => entry.id);
 
 function portWithOpening<T extends StubConversationPracticePort>(
 	port: T = new StubConversationPracticePort() as T,
@@ -24,12 +39,18 @@ function portWithOpening<T extends StubConversationPracticePort>(
 
 function renderPage(
 	port: StubConversationPracticePort,
-	graduatedVocab?: readonly string[],
+	options: {
+		graduatedVocab?: readonly string[];
+		learnedGrammar?: readonly string[];
+	} = {},
 ) {
 	return renderWithApp(
 		<ConversationPracticePage />,
 		{ conversationPractice: port },
-		{ graduatedVocab },
+		{
+			graduatedVocab: options.graduatedVocab ?? UNLOCKED_VOCAB,
+			learnedGrammar: options.learnedGrammar ?? UNLOCKED_GRAMMAR,
+		},
 	);
 }
 
@@ -86,26 +107,47 @@ describe("ConversationPracticePage — the opening question", () => {
 
 describe("ConversationPracticePage — the known-vocabulary snapshot it sends", () => {
 	it("sends the learner's real learned-vocabulary set, not a placeholder list", async () => {
-		const words = ["มา", "กิน", "กัน"];
 		const port = portWithOpening(new TrackingConversationPracticePort());
 
-		renderPage(port, words);
-
-		await screen.findByText("สบายดีไหม");
-
-		expect(port.openingCalls).toHaveLength(1);
-		expect(new Set(port.openingCalls[0])).toEqual(new Set(words));
-	});
-
-	it("still sends a request, with a real empty array, for a learner with no learned words yet", async () => {
-		const port = portWithOpening(new TrackingConversationPracticePort());
-
+		// Below the unlock threshold, the page never reaches this call at all
+		// (see the "the unlock gate" tests below) — so the only known-words
+		// snapshot reachable through the real page is an above-threshold
+		// learner's real, non-empty set, asserted here to be exactly what
+		// was learned, never a placeholder.
 		renderPage(port);
 
 		await screen.findByText("สบายดีไหม");
 
 		expect(port.openingCalls).toHaveLength(1);
-		expect(port.openingCalls[0]).toEqual([]);
+		expect(new Set(port.openingCalls[0])).toEqual(new Set(UNLOCKED_VOCAB));
+	});
+});
+
+describe("ConversationPracticePage — the unlock gate", () => {
+	it("shows the locked explanation, never the live recording UI, for a learner navigating here directly below threshold", async () => {
+		const port = new TrackingConversationPracticePort();
+		portWithOpening(port);
+
+		renderPage(port, { graduatedVocab: [], learnedGrammar: [] });
+
+		const alert = await screen.findByRole("alert");
+		expect(alert.textContent).toMatch(/unlocks once you know/i);
+		expect(screen.queryByRole("button", { name: /record/i })).toBeNull();
+		expect(screen.queryByText("สบายดีไหม")).toBeNull();
+		// The strongest proof "locked" isn't a label in front of a live,
+		// reachable flow: the backend is never even asked for a question.
+		expect(port.openingCalls).toHaveLength(0);
+	});
+
+	it("stays locked when only the grammar threshold is unmet, even with plenty of vocabulary", async () => {
+		const port = new TrackingConversationPracticePort();
+		portWithOpening(port);
+
+		renderPage(port, { graduatedVocab: UNLOCKED_VOCAB, learnedGrammar: [] });
+
+		const alert = await screen.findByRole("alert");
+		expect(alert.textContent).toMatch(/grammar point/i);
+		expect(port.openingCalls).toHaveLength(0);
 	});
 });
 

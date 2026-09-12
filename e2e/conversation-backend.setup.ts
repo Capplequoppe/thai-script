@@ -1,4 +1,4 @@
-import { spawn } from "node:child_process";
+import { execSync, spawn } from "node:child_process";
 import { writeFileSync } from "node:fs";
 import path from "node:path";
 import { test } from "@playwright/test";
@@ -21,7 +21,41 @@ import { test } from "@playwright/test";
  */
 const PID_FILE = path.join(process.cwd(), ".e2e-conversation-backend.pid");
 
+/**
+ * A prior run's teardown can be skipped entirely (a killed test process, an
+ * interrupted worktree session) and leave a stale backend still holding the
+ * port — silently, since a new spawn on an already-bound port just fails
+ * without this run ever noticing, and whatever answered every request was
+ * that stale process's own (possibly stale-worktree) code. Observed twice:
+ * once from a manually-interrupted session, once from a plan-runner
+ * executor's worktree left running 32 minutes past its own session end.
+ */
+function killWhateverIsOnPort8000(): void {
+	let pids: string[];
+	try {
+		pids = execSync("lsof -ti tcp:8000", { encoding: "utf-8" })
+			.split("\n")
+			.map((line) => line.trim())
+			.filter(Boolean);
+	} catch {
+		return; // Nothing listening — the common case.
+	}
+	for (const pid of pids) {
+		try {
+			process.kill(-Number(pid), "SIGTERM");
+		} catch {
+			// Already gone, or not a process-group leader — try it directly.
+			try {
+				process.kill(Number(pid), "SIGTERM");
+			} catch {
+				// Gone.
+			}
+		}
+	}
+}
+
 test("start the conversation backend", async () => {
+	killWhateverIsOnPort8000();
 	const proc = spawn(
 		"uv",
 		["run", "--project", ".", "uvicorn", "app.main:app", "--host", "127.0.0.1", "--port", "8000"],
