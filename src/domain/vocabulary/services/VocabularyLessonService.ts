@@ -258,6 +258,29 @@ export class VocabularyService {
 		};
 	}
 
+	/**
+	 * Generate (but do not persist) cards for one specific word, bypassing
+	 * the rank-window/batch selection getNextLesson() uses. Returns null if
+	 * the word doesn't exist, isn't pullable, or the apprentice cap blocks
+	 * starting it (the same canStartLesson("vocab") check
+	 * generateLessonCards() makes — enforced here explicitly since this path
+	 * doesn't go through getNextLesson()).
+	 */
+	generateCardsForWord(thai: string): VocabularyCard[] | null {
+		if (
+			this.apprenticeService &&
+			!this.apprenticeService.canStartLesson("vocab")
+		) {
+			return null;
+		}
+
+		const entry = this.vocabulary.find((e) => e.thai === thai);
+		if (!entry || !this.isPullable(entry)) return null;
+
+		const introducedChars = this.getMasteredCharacters();
+		return generateVocabCards(entry, this.vocabulary, introducedChars);
+	}
+
 	/** Every vocabulary entry, regardless of mastery, rank, or learned state. */
 	getAllWords(): VocabEntry[] {
 		return this.vocabulary;

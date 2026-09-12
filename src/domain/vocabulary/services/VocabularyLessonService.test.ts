@@ -570,6 +570,54 @@ describe("VocabularyService", () => {
 		});
 	});
 
+	describe("generateCardsForWord", () => {
+		it("generates cards for a pullable word", () => {
+			const vocabulary = [makeEntry()];
+			const service = new VocabularyService(cardRepo, stateRepo, vocabulary);
+			const state = storage.load();
+			state.completedLessons = [1, 2];
+			storage.save(state);
+
+			const cards = service.generateCardsForWord("มา");
+			expect(cards).not.toBeNull();
+			expect(cards?.map((c) => c.property)).toContain("thaiToEnglish");
+		});
+
+		it("returns null for a word whose script isn't mastered", () => {
+			const vocabulary = [makeEntry()];
+			const service = new VocabularyService(cardRepo, stateRepo, vocabulary);
+
+			expect(service.generateCardsForWord("มา")).toBeNull();
+		});
+
+		it("returns null for a word not in the vocabulary list", () => {
+			const vocabulary = [makeEntry()];
+			const service = new VocabularyService(cardRepo, stateRepo, vocabulary);
+			const state = storage.load();
+			state.completedLessons = [1, 2];
+			storage.save(state);
+
+			expect(service.generateCardsForWord("ไม่มี")).toBeNull();
+		});
+
+		it("returns null when the apprentice cap blocks starting vocab", () => {
+			const vocabulary = [makeEntry()];
+			const apprenticeService = new ApprenticeService(cardRepo, 0, stateRepo);
+			const service = new VocabularyService(
+				cardRepo,
+				stateRepo,
+				vocabulary,
+				apprenticeService,
+			);
+			const state = storage.load();
+			state.completedLessons = [1, 2];
+			storage.save(state);
+			stateRepo.setApprenticeLimits({ general: 0, script: 35, sentence: 60 });
+
+			expect(service.generateCardsForWord("มา")).toBeNull();
+		});
+	});
+
 	it("anchors rank window to the first unlearned word regardless of mastery", () => {
 		const vocabulary = [
 			// Rank 1: NOT mastered (requires unknown character ก)
