@@ -1,9 +1,10 @@
 """Tests for the scaffolded conversation-backend API contract.
 
 Only the shapes and error/CORS/concurrency behavior task 1.1 owns are
-tested here — `/conversation/opening` and `/conversation/judge`'s
-happy paths are still `501` in this task; their real behavior is task
-1.2's to test.
+tested here. The routes exercised are the session endpoints (task
+3.1) — the standalone `/conversation/opening`/`/conversation/judge`
+pair these tests originally targeted was retired in task 3.4, once its
+frontend caller (task 3.3) no longer called them.
 """
 
 from __future__ import annotations
@@ -31,7 +32,10 @@ def test_health_before_any_model_is_loaded(client):
 
 
 def test_judge_with_no_body_is_422(client):
-    response = client.post("/conversation/judge")
+    # Body validation runs before the session lookup, so a placeholder
+    # id is fine here — the empty registry never gets far enough to
+    # care whether it is real.
+    response = client.post("/conversation/session/placeholder/judge")
 
     assert response.status_code == 422
 
@@ -39,26 +43,43 @@ def test_judge_with_no_body_is_422(client):
 def test_judge_missing_required_field_is_422(client):
     body = {k: v for k, v in VALID_JUDGE_BODY.items() if k != "reply_audio_base64"}
 
-    response = client.post("/conversation/judge", json=body)
+    response = client.post("/conversation/session/placeholder/judge", json=body)
 
     assert response.status_code == 422
 
 
-def test_opening_is_not_yet_implemented(client):
-    response = client.get("/conversation/opening")
+def test_session_start_is_not_yet_implemented(client):
+    # session_start's first line requires tts_loaded, checked before a
+    # session is ever created — an empty registry 501s immediately,
+    # the same "not yet implemented" state the retired standalone
+    # `/conversation/opening` reported.
+    response = client.post("/conversation/session/start", json={"known_words": []})
 
     assert response.status_code == 501
 
 
-def test_judge_with_well_formed_body_is_not_yet_implemented(client):
-    response = client.post("/conversation/judge", json=VALID_JUDGE_BODY)
+def test_judge_on_a_real_session_is_not_yet_implemented_while_whisper_is_unloaded(
+    tts_only_client,
+):
+    # tts is loaded (so a session can exist at all), whisper/judge are
+    # not — the state session_judge's own model-loaded check reports as
+    # 501, distinct from the 404 an unknown session id gets.
+    start = tts_only_client.post(
+        "/conversation/session/start", json={"known_words": []}
+    )
+    assert start.status_code == 200
+    session_id = start.json()["session_id"]
+
+    response = tts_only_client.post(
+        f"/conversation/session/{session_id}/judge", json=VALID_JUDGE_BODY
+    )
 
     assert response.status_code == 501
 
 
 def test_cors_preflight_allowed_from_dev_origin(client):
     response = client.options(
-        "/conversation/judge",
+        "/conversation/session/placeholder/judge",
         headers={
             "origin": "http://localhost:5173",
             "access-control-request-method": "POST",
@@ -70,7 +91,7 @@ def test_cors_preflight_allowed_from_dev_origin(client):
 
 def test_cors_preflight_rejected_from_foreign_origin(client):
     response = client.options(
-        "/conversation/judge",
+        "/conversation/session/placeholder/judge",
         headers={
             "origin": "http://evil.example",
             "access-control-request-method": "POST",
@@ -81,12 +102,20 @@ def test_cors_preflight_rejected_from_foreign_origin(client):
 
 
 def test_concurrent_judge_calls_never_overlap_and_health_stays_responsive(
-    client, concurrency_probe: ConcurrencyProbe
+    tts_only_client, concurrency_probe: ConcurrencyProbe
 ):
+    start = tts_only_client.post(
+        "/conversation/session/start", json={"known_words": []}
+    )
+    assert start.status_code == 200
+    session_id = start.json()["session_id"]
+
     results: list[int] = []
 
     def call_judge():
-        response = client.post("/conversation/judge", json=VALID_JUDGE_BODY)
+        response = tts_only_client.post(
+            f"/conversation/session/{session_id}/judge", json=VALID_JUDGE_BODY
+        )
         results.append(response.status_code)
 
     threads = [threading.Thread(target=call_judge) for _ in range(2)]
@@ -97,7 +126,7 @@ def test_concurrent_judge_calls_never_overlap_and_health_stays_responsive(
     # confirm /health -- which never takes MODEL_LOCK -- still answers
     # immediately instead of queueing behind it.
     time.sleep(0.05)
-    health_response = client.get("/health")
+    health_response = tts_only_client.get("/health")
 
     for thread in threads:
         thread.join()

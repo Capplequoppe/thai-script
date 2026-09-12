@@ -53,6 +53,23 @@ def judge_body(audio_bytes: bytes, mime_type: str = "audio/wav") -> dict:
     }
 
 
+def start_session(client, known_words: list[str] | None = None) -> str:
+    """Start a session against `client` and return its id.
+
+    The standalone `/conversation/opening`/`/conversation/judge` pair
+    these HTTP-level tests originally called was retired in task 3.4;
+    every one of them now goes through a session (task 3.1) instead,
+    which is why a fake TTS is required even for tests that only care
+    about the judge path — a session id has to exist before there is
+    anything to judge against.
+    """
+    response = client.post(
+        "/conversation/session/start", json={"known_words": known_words or []}
+    )
+    assert response.status_code == 200, response.text
+    return response.json()["session_id"]
+
+
 # ---------------------------------------------------------------------------
 # Verdict extraction (supporting the AC4/AC9 cases below)
 # ---------------------------------------------------------------------------
@@ -85,10 +102,13 @@ def test_unparseable_judge_response_is_unscored_never_500_never_fail():
         whisper=FakeWhisperModel(transcript="สบายดีครับ"),
         judge_llm=FakeJudgeLLM(response="What a lovely reply, full marks!"),
         judge_tokenizer=FakeJudgeTokenizer(),
-        # No TTS fake: the judge path must not depend on it.
+        tts=FakeTTSPipeline(),  # only to get a real session id to judge against
     )
     with seeded_client(registry) as client:
-        response = client.post("/conversation/judge", json=judge_body(tiny_wav_bytes()))
+        session_id = start_session(client)
+        response = client.post(
+            f"/conversation/session/{session_id}/judge", json=judge_body(tiny_wav_bytes())
+        )
 
     assert response.status_code == 200  # never a raw 500 to the learner
     body = response.json()
@@ -148,14 +168,18 @@ def test_three_system_failure_causes_have_three_pairwise_distinct_messages():
 
 
 def test_undecodable_reply_audio_is_a_422_client_error_not_a_500(fake_model_client):
+    session_id = start_session(fake_model_client)
+
     # (i) present but not valid base64 at all
     not_base64 = judge_body(b"")
     not_base64["reply_audio_base64"] = "!!!this is not base64!!!"
-    response_bad_base64 = fake_model_client.post("/conversation/judge", json=not_base64)
+    response_bad_base64 = fake_model_client.post(
+        f"/conversation/session/{session_id}/judge", json=not_base64
+    )
 
     # (ii) valid base64 of bytes that are not any audio container
     response_bad_container = fake_model_client.post(
-        "/conversation/judge",
+        f"/conversation/session/{session_id}/judge",
         json=judge_body(b"\x00\x01 definitely not audio " * 64, "audio/webm;codecs=opus"),
     )
 
@@ -229,26 +253,33 @@ def test_empty_tts_synthesis_raises_instead_of_shipping_zero_audio():
         pipeline.synthesize_opening(EmptyOutputTTSPipeline(), [], load_bank())
 
 
-def test_opening_endpoint_returns_fake_synthesis(fake_model_client):
-    response = fake_model_client.get("/conversation/opening")
+def test_session_start_returns_fake_synthesis(fake_model_client):
+    # A learner with nothing known yet: the simplest exchange the bank
+    # holds, never an error (task 2.3's resolved empty-vocabulary
+    # decision, exercised here through the real session-start route).
+    response = fake_model_client.post(
+        "/conversation/session/start", json={"known_words": []}
+    )
 
     assert response.status_code == 200
     body = response.json()
-    # The bodyless GET is a learner with nothing known yet: the simplest
-    # exchange the bank holds, never an error.
     assert body["question_text"] == select_entry([], load_bank()).thai
     assert body["question_audio_mime_type"] == "audio/wav"
     audio = base64.b64decode(body["question_audio_base64"])
     assert len(audio) > 0
 
 
-def test_opening_endpoint_asks_two_learners_different_questions(fake_model_client):
+def test_session_start_asks_two_learners_different_questions(fake_model_client):
     bank = load_bank()
     beginner = [word for entry in bank if entry.tier == 1 for word in entry.words]
     advanced = [word for entry in bank for word in entry.words]
 
-    first = fake_model_client.post("/conversation/opening", json={"known_words": beginner})
-    second = fake_model_client.post("/conversation/opening", json={"known_words": advanced})
+    first = fake_model_client.post(
+        "/conversation/session/start", json={"known_words": beginner}
+    )
+    second = fake_model_client.post(
+        "/conversation/session/start", json={"known_words": advanced}
+    )
 
     assert first.status_code == 200
     assert second.status_code == 200
@@ -435,7 +466,7 @@ def test_health_reports_all_models_loaded_and_gpu_resident(gpu_client):
 
 @pytest.mark.gpu
 def test_opening_speaks_the_selected_question_as_decodable_audio(gpu_client):
-    response = gpu_client.get("/conversation/opening")
+    response = gpu_client.post("/conversation/session/start", json={"known_words": []})
 
     assert response.status_code == 200
     body = response.json()
@@ -457,8 +488,10 @@ def test_opening_speaks_the_selected_question_as_decodable_audio(gpu_client):
 def test_judging_a_real_spoken_reply_parses_into_a_valid_shape(
     gpu_client, real_reply_wavs, case
 ):
+    session_id = start_session(gpu_client)
     response = gpu_client.post(
-        "/conversation/judge", json=judge_body(real_reply_wavs[case].read_bytes())
+        f"/conversation/session/{session_id}/judge",
+        json=judge_body(real_reply_wavs[case].read_bytes()),
     )
 
     assert response.status_code == 200
@@ -478,8 +511,11 @@ def test_judging_a_real_spoken_reply_parses_into_a_valid_shape(
 @pytest.mark.gpu
 def test_true_silence_through_real_whisper_is_unscored_as_empty_transcript(gpu_client):
     silence = (FIXTURES_DIR / "silence.wav").read_bytes()
+    session_id = start_session(gpu_client)
 
-    response = gpu_client.post("/conversation/judge", json=judge_body(silence))
+    response = gpu_client.post(
+        f"/conversation/session/{session_id}/judge", json=judge_body(silence)
+    )
 
     assert response.status_code == 200
     body = response.json()

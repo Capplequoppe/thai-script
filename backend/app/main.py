@@ -54,8 +54,6 @@ from app.schemas import (
     JudgeRequest,
     JudgeResponse,
     ModelsLoaded,
-    OpeningRequest,
-    OpeningResponse,
 )
 from app.session import (
     NextQuestionResponse,
@@ -145,28 +143,13 @@ def _require_loaded(loaded: bool, model_name: str) -> None:
         )
 
 
-def _opening_pipeline(payload: OpeningRequest) -> OpeningResponse:
-    """Blocking body of POST /conversation/opening (runs under MODEL_LOCK).
-
-    `payload.known_words` is the learner's own known-vocabulary snapshot;
-    it picks which bank entry gets spoken (`app.bank.select_entry`), so
-    two learners at different points in the course are asked different
-    questions.
-    """
-    registry = _registry()
-    _require_loaded(registry.tts_loaded, "tts")
-    question_text, audio_bytes, mime_type = pipeline.synthesize_opening(
-        registry.tts, payload.known_words, app.state.bank
-    )
-    return OpeningResponse(
-        question_text=question_text,
-        question_audio_base64=base64.b64encode(audio_bytes).decode("ascii"),
-        question_audio_mime_type=mime_type,
-    )
-
-
 def _judge_pipeline(payload: JudgeRequest) -> JudgeResponse:
-    """Blocking body of POST /conversation/judge (runs under MODEL_LOCK)."""
+    """Blocking body of a judge call, standalone or session-scoped (runs under MODEL_LOCK).
+
+    Shared by `session_judge` — there is only one caller left since
+    task 3.4 retired the standalone `/conversation/judge` route this
+    docstring originally described.
+    """
     registry = _registry()
     _require_loaded(registry.whisper_loaded, "whisper")
     _require_loaded(registry.judge_loaded, "judge")
@@ -211,32 +194,6 @@ async def health() -> HealthResponse:
         ),
     )
 
-
-@app.post("/conversation/opening", response_model=OpeningResponse)
-async def opening(payload: OpeningRequest) -> OpeningResponse:
-    return await run_serialized(_opening_pipeline, payload)
-
-
-@app.get("/conversation/opening", response_model=OpeningResponse, include_in_schema=False)
-async def opening_get_compat() -> OpeningResponse:
-    """Back-compat shim, not part of the documented contract.
-
-    Task 2.1's real contract (`docs/conversation-backend-api.md`) is the
-    `POST` above, carrying the learner's known-word snapshot — that is
-    what `HttpConversationPracticeClient` calls. This bodyless `GET`
-    alias exists only because `backend/tests/test_health.py` and
-    `backend/tests/test_pipeline.py` (task 1.1/1.2's files, outside task
-    2.1's own `covers`) still call the old bodyless `GET` and this task
-    is not scoped to edit them. It behaves exactly like a `POST` with an
-    empty `known_words` list — no different pipeline path, no separate
-    behavior to keep in sync.
-    """
-    return await run_serialized(_opening_pipeline, OpeningRequest(known_words=[]))
-
-
-@app.post("/conversation/judge", response_model=JudgeResponse)
-async def judge(payload: JudgeRequest) -> JudgeResponse:
-    return await run_serialized(_judge_pipeline, payload)
 
 
 # ---------------------------------------------------------------------------

@@ -196,6 +196,20 @@ def fake_model_client(fake_registry: ModelRegistry):
         yield test_client
 
 
+@pytest.fixture()
+def tts_only_client():
+    """TTS faked, whisper/judge left unloaded.
+
+    A session can be created (session_start only requires tts_loaded),
+    but session_judge still hits the whisper/judge 501-not-loaded
+    branch, or — for tests that monkeypatch `_judge_pipeline` directly
+    — never reaches that check at all. Exists for the two tests that
+    need a *real* session id without needing whisper/judge faked too.
+    """
+    with seeded_client(ModelRegistry(tts=FakeTTSPipeline())) as test_client:
+        yield test_client
+
+
 @pytest.fixture(scope="session")
 def gpu_client():
     """App started with NO pre-seeded registry: the real lifespan loads

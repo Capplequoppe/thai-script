@@ -132,9 +132,10 @@ class SessionStore:
 class SessionStartRequest(BaseModel):
     """The learner's known-vocabulary snapshot.
 
-    Exactly task 2.1's `/conversation/opening` body, deliberately: there
-    is no separate "vocabulary/grammar snapshot" shape, because nothing
-    in this plan reads a grammar-id list back.
+    Deliberately just this one field: there is no separate
+    "vocabulary/grammar snapshot" shape, because nothing in this plan
+    reads a grammar-id list back (task 2.1's decision, when this shape
+    still lived on the now-retired `/conversation/opening`).
     """
 
     known_words: list[str]

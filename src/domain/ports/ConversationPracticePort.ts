@@ -9,10 +9,11 @@ import type {
  * multi-turn session, advance through it, judge each spoken reply.
  *
  * Phase 1/2's single-exchange methods (`getOpening`, a session-less
- * `judgeReply`) are retired here (task 3.3) — their backend routes are
- * retired in the same phase (task 3.1), and this app has exactly one
- * consumer of this port, so there is no reason to keep two ways to start a
- * conversation live at once.
+ * `judgeReply`) were retired here (task 3.3); their backend routes
+ * (`/conversation/opening`, `/conversation/judge`) were retired
+ * separately (task 3.4 — task 3.1 declared this but did not actually
+ * do it). This app has exactly one consumer of this port, so there is
+ * no reason to keep two ways to start a conversation live at once.
  *
  * No method rejects — an unreachable or failing backend arrives as the
  * `"unavailable"` member of the relevant result union (see

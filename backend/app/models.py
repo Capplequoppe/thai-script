@@ -183,7 +183,8 @@ def _warm_up_tts(tts: Any) -> None:
     """Synthesize the real opening question once, discarding the result.
 
     Same rationale as the other two warm-ups; this one also happens to
-    exercise the exact call `POST /conversation/opening` makes.
+    exercise the exact call `session_start` (and, before task 3.4
+    retired it, the standalone `/conversation/opening`) makes.
     """
     from app.pipeline import synthesize_opening
 

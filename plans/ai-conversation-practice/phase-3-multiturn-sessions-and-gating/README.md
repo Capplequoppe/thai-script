@@ -47,6 +47,7 @@ conversation practice mode" as discussed with the user actually exists.
 | 3.1 | Backend session state + a "continue" endpoint | 1.2 |
 | 3.2 | Frontend unlock gate (unit + its own e2e proof) | 2.3 |
 | 3.3 | Multi-turn session UI + end-to-end proof | 1.4, 3.1, 3.2 |
+| 3.4 | Retire the standalone opening/judge endpoints | 3.1, 3.3 |
 
 3.1 (`backend/`) and 3.2 (`src/domain`/`src/presentation`, the gate
 logic, its UI, and its own e2e case) are disjoint in `covers` and
@@ -68,3 +69,14 @@ parallel against a contract nobody has written yet. That's a real
 difference in shape, not an oversight — phase 1 needed a seam because
 1.2 and 1.3 built concurrently against an unwritten contract; 3.1 and
 3.3 don't, since 3.3 starts only once 3.1's contract already exists.
+
+**3.4, added after review, closes a gap task 3.1 declared but did not
+deliver**: task 3.1's own Architectural Decision commits to retiring
+`/conversation/opening`/`/conversation/judge` once the session
+endpoints exist, but the backend test files that exercised them
+directly (task 1.1/1.2's, outside task 3.1's `covers`) meant it never
+actually happened — confirmed independently by a phase 3 review
+(decision `bcb3cf9c`). 3.4 depends on both 3.1 (the routes it should
+have retired) and 3.3 (the frontend side must already be retired
+before the backend side follows) and migrates the affected tests onto
+the session endpoints before deleting the routes for real.
