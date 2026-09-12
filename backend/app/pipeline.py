@@ -17,15 +17,14 @@ from __future__ import annotations
 
 import io
 import tempfile
+from collections.abc import Sequence
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Any, Literal
 
+from app.bank import BankEntry, load_bank, select_entry
 from app.judge_prompt import build_judge_messages, parse_judge_response
 
-# The one fixed exchange of phase 1. Phase 2 replaces the *caller* with
-# bank-selected content, not this function's shape.
-OPENING_QUESTION_TEXT = "สบายดีไหม"
 OPENING_AUDIO_MIME_TYPE = "audio/wav"
 
 REFERENCE_CLIP_PATH = Path(__file__).resolve().parent.parent / "assets" / "reference_clip.wav"
@@ -75,16 +74,30 @@ class JudgeOutcome:
     feedback_en: str
 
 
-def synthesize_opening(tts_pipeline: Any) -> tuple[str, bytes, str]:
-    """Speak the fixed opening question in the cloned voice.
+def synthesize_opening(
+    tts_pipeline: Any,
+    known_words: Sequence[str] = (),
+    bank: Sequence[BankEntry] | None = None,
+) -> tuple[str, bytes, str]:
+    """Speak this learner's opening question in the cloned voice.
 
-    Returns (question_text, audio_bytes, mime_type). The reference clip
-    and its transcript are the checked-in pair under `backend/assets/`.
+    The question is picked from the pre-generated bank by what this
+    learner actually knows (`app.bank.select_entry`) — never generated
+    live. Returns (question_text, audio_bytes, mime_type); the reference
+    clip and its transcript are the checked-in pair under
+    `backend/assets/`.
+
+    The defaults are for callers with no learner at all — `models.py`'s
+    startup warm-up, which just needs *a* question spoken: no known words
+    is the brand-new learner's case, and the bank then comes from its
+    committed location rather than from `app.state`. Request handling
+    passes both explicitly.
     """
+    entry = select_entry(known_words, bank if bank is not None else load_bank())
     with tempfile.TemporaryDirectory(prefix="conversation-tts-") as tmp_dir:
         output_path = Path(tmp_dir) / "opening.wav"
         tts_pipeline(
-            text=OPENING_QUESTION_TEXT,
+            text=entry.thai,
             ref_voice=str(REFERENCE_CLIP_PATH),
             ref_text=REFERENCE_CLIP_TRANSCRIPT,
             output_file=str(output_path),
@@ -95,7 +108,7 @@ def synthesize_opening(tts_pipeline: Any) -> tuple[str, bytes, str]:
         # loudly (a 5xx, like any other synthesis exception) — never
         # ship as a confident 200 whose audio is zero bytes.
         raise RuntimeError("TTS synthesis produced an empty audio file for the opening question")
-    return OPENING_QUESTION_TEXT, audio_bytes, OPENING_AUDIO_MIME_TYPE
+    return entry.thai, audio_bytes, OPENING_AUDIO_MIME_TYPE
 
 
 def _decode_reply_audio(reply_audio_bytes: bytes, reply_audio_mime_type: str) -> Any:

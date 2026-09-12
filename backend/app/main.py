@@ -39,6 +39,7 @@ from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 
 from app import pipeline
+from app.bank import load_bank
 from app.models import ModelRegistry, load_models_into
 from app.pipeline import UndecodableAudioError
 from app.schemas import (
@@ -62,7 +63,7 @@ ALLOWED_ORIGINS = [
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    """Load all three models once, before the server accepts requests.
+    """Load all three models and the question bank, before serving requests.
 
     Tests pre-seed `app.state.models` (with fakes, or empty) before
     startup; a pre-seeded registry is used as-is and nothing loads —
@@ -72,6 +73,11 @@ async def lifespan(app: FastAPI):
     if getattr(app.state, "models", None) is None:
         app.state.models = ModelRegistry()
         await load_models_into(app.state.models)
+    # The conversation-starter bank: a small JSON file, read once here
+    # for the same reason the models are — no per-request file I/O — and
+    # loud at startup rather than per learner if it is missing or empty.
+    if getattr(app.state, "bank", None) is None:
+        app.state.bank = load_bank()
     yield
 
 
@@ -121,13 +127,16 @@ def _require_loaded(loaded: bool, model_name: str) -> None:
 def _opening_pipeline(payload: OpeningRequest) -> OpeningResponse:
     """Blocking body of POST /conversation/opening (runs under MODEL_LOCK).
 
-    `payload.known_words` is accepted and validated here (task 2.1) but not
-    yet read — the bank and tier-selection logic that consumes it is task
-    2.2/2.3's; this phase still always synthesizes the one fixed question.
+    `payload.known_words` is the learner's own known-vocabulary snapshot;
+    it picks which bank entry gets spoken (`app.bank.select_entry`), so
+    two learners at different points in the course are asked different
+    questions.
     """
     registry = _registry()
     _require_loaded(registry.tts_loaded, "tts")
-    question_text, audio_bytes, mime_type = pipeline.synthesize_opening(registry.tts)
+    question_text, audio_bytes, mime_type = pipeline.synthesize_opening(
+        registry.tts, payload.known_words, app.state.bank
+    )
     return OpeningResponse(
         question_text=question_text,
         question_audio_base64=base64.b64encode(audio_bytes).decode("ascii"),

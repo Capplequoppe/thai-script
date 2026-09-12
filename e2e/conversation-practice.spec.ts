@@ -1,5 +1,8 @@
+import { readFileSync } from "node:fs";
+import path from "node:path";
+import type { APIRequestContext, Browser } from "@playwright/test";
 import { expect, test } from "@playwright/test";
-import type { APIRequestContext } from "@playwright/test";
+import { seedLearnedVocabulary } from "./fixtures/seedLearner";
 
 /**
  * End-to-end integration proof for the AI conversation practice pipeline —
@@ -17,6 +20,10 @@ import type { APIRequestContext } from "@playwright/test";
  */
 
 const HEALTH_URL = "http://localhost:8000/health";
+const BANK_JSON = path.resolve(
+	process.cwd(),
+	"backend/data/conversationStarters.json",
+);
 const READY_TIMEOUT_MS = 4 * 60_000;
 const READY_POLL_INTERVAL_MS = 2_000;
 
@@ -49,6 +56,40 @@ async function waitForBackendReady(request: APIRequestContext): Promise<void> {
 	);
 }
 
+interface BankEntry {
+	tier: number;
+	thai: string;
+	words: string[];
+}
+
+function bankEntries(): BankEntry[] {
+	return JSON.parse(readFileSync(BANK_JSON, "utf8")) as BankEntry[];
+}
+
+/**
+ * One learner's whole opening exchange: seed their progress, open
+ * `/conversation`, and read back the question the real backend picked from
+ * the real bank for them.
+ */
+async function askOpeningQuestion(
+	browser: Browser,
+	learnedWordCount: number,
+): Promise<{ knownWords: string[]; questionText: string }> {
+	const context = await browser.newContext({
+		baseURL: test.info().project.use.baseURL,
+	});
+	try {
+		const page = await context.newPage();
+		const knownWords = await seedLearnedVocabulary(page, learnedWordCount);
+		await page.goto("/thai-script/#/conversation");
+		const question = page.locator('p[lang="th"]');
+		await expect(question).toBeVisible({ timeout: 60_000 });
+		return { knownWords, questionText: (await question.innerText()).trim() };
+	} finally {
+		await context.close();
+	}
+}
+
 test.describe("conversation practice — real backend, acceptable reply", () => {
 	test.beforeAll(async ({ request }) => {
 		await waitForBackendReady(request);
@@ -57,8 +98,17 @@ test.describe("conversation practice — real backend, acceptable reply", () => 
 	test("a fake-mic pass reply drives a real pass verdict (AC2)", async ({
 		page,
 	}) => {
+		// Seeded rather than run against an empty profile: the question is
+		// now drawn from the bank by what this learner knows, and the
+		// fake-mic fixture answers a "how are you" opener — which is what a
+		// 150-word learner is asked. (Phase 1 could hardcode the question;
+		// from here on the content is personalized, so the fixture and the
+		// seeded learner have to belong together.)
+		await seedLearnedVocabulary(page, 150);
 		await page.goto("/thai-script/#/conversation");
-		await expect(page.getByText("สบายดีไหม")).toBeVisible({ timeout: 30_000 });
+		const question = page.locator('p[lang="th"]');
+		await expect(question).toBeVisible({ timeout: 30_000 });
+		expect((await question.innerText()).trim().length).toBeGreaterThan(0);
 
 		await page.getByRole("button", { name: "Record your reply" }).click();
 		await page.waitForTimeout(3_000);
@@ -102,3 +152,56 @@ test.describe("conversation practice — backend unreachable", () => {
 // and confirms it's audible, intelligible Thai in the cloned voice. No
 // automated test can judge audio quality — see this task's manual
 // verification note.
+
+// The seeding helper itself, proven on its own before anything below leans
+// on it: a silently-wrong localStorage DTO shape would otherwise produce an
+// empty learner that still passes every assertion about "two different
+// questions" for entirely the wrong reason. Deliberately outside the
+// backend-dependent describe below — what the app makes of seeded progress
+// is not a question about the conversation backend.
+test.describe("seeded learner state", () => {
+	test("seedLearnedVocabulary produces a learner the app really sees", async ({
+		page,
+	}) => {
+		const knownWords = await seedLearnedVocabulary(page, 150);
+		expect(knownWords).toHaveLength(150);
+
+		await page.goto("/thai-script/#/");
+
+		// One due vocabulary card per seeded word, counted by the app's own
+		// SRS state — not by reading back what the helper just wrote.
+		await expect(page.getByRole("button", { name: "Vocab (150)" })).toBeVisible(
+			{ timeout: 30_000 },
+		);
+	});
+});
+
+test.describe("conversation practice — personalized by known vocabulary (AC4)", () => {
+	test.beforeAll(async ({ request }) => {
+		await waitForBackendReady(request);
+	});
+
+	test("two learners with different vocabulary get different questions", async ({
+		browser,
+	}) => {
+		const beginner = await askOpeningQuestion(browser, 150);
+		const advanced = await askOpeningQuestion(browser, 400);
+
+		expect(beginner.questionText).not.toEqual(advanced.questionText);
+
+		// And each question is one that learner could actually understand:
+		// every word in it is a word they know.
+		const entries = bankEntries();
+		for (const learner of [beginner, advanced]) {
+			const entry = entries.find((e) => e.thai === learner.questionText);
+			expect(
+				entry,
+				`"${learner.questionText}" is not an entry in the shipped bank`,
+			).toBeDefined();
+			const known = new Set(learner.knownWords);
+			expect(
+				(entry as BankEntry).words.filter((word) => !known.has(word)),
+			).toEqual([]);
+		}
+	});
+});

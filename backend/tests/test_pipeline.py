@@ -8,7 +8,7 @@ properties of this code, not of any model.
 `gpu`-marked tests load the three real models once (session-scoped
 `gpu_client`) and are run manually on real hardware, never in the
 default suite: they prove the premises the fakes encode (models load
-GPU-resident, TTS speaks the fixed question, real speech judges into a
+GPU-resident, TTS speaks the selected question, real speech judges into a
 valid shape, real Whisper returns nothing for true silence).
 """
 
@@ -22,6 +22,7 @@ from pathlib import Path
 import pytest
 
 from app import pipeline
+from app.bank import load_bank, select_entry
 from app.judge_prompt import (
     TRANSCRIPT_FENCE_CLOSE,
     TRANSCRIPT_FENCE_OPEN,
@@ -39,7 +40,9 @@ from tests.conftest import (
 )
 
 FIXTURES_DIR = Path(__file__).parent / "fixtures"
-QUESTION = pipeline.OPENING_QUESTION_TEXT
+# Just the question a judge request carries — the judge is told what was
+# asked, whatever the bank picked for that learner.
+QUESTION = "สบายดีไหม"
 
 
 def judge_body(audio_bytes: bytes, mime_type: str = "audio/wav") -> dict:
@@ -175,10 +178,16 @@ def test_fake_tts_pipeline_alone_drives_opening_synthesis():
     # fakes, no gpu marker: the shape task 3.1's TTS-only session-start
     # path will rely on.
     fake_tts = FakeTTSPipeline()
+    bank = load_bank()
+    known_words = [word for entry in bank if entry.tier == 1 for word in entry.words]
 
-    question_text, audio_bytes, mime_type = pipeline.synthesize_opening(fake_tts)
+    question_text, audio_bytes, mime_type = pipeline.synthesize_opening(
+        fake_tts, known_words, bank
+    )
 
-    assert question_text == "สบายดีไหม"
+    # The question is whatever the bank selects for this learner, and it
+    # is that exact text the voice is asked to speak.
+    assert question_text == select_entry(known_words, bank).thai
     assert mime_type == "audio/wav"
     with wave.open(io.BytesIO(audio_bytes)) as wav:
         assert wav.getnframes() > 0
@@ -186,8 +195,23 @@ def test_fake_tts_pipeline_alone_drives_opening_synthesis():
     # The voice-cloning wiring: the checked-in reference clip and its
     # transcript go into every synthesis call.
     (call,) = fake_tts.calls
+    assert call["text"] == question_text
     assert call["ref_voice"].endswith("assets/reference_clip.wav")
     assert call["ref_text"] == pipeline.REFERENCE_CLIP_TRANSCRIPT
+
+
+def test_the_startup_warm_up_synthesizes_with_no_learner_at_all():
+    # `app.models._warm_up_tts` calls `synthesize_opening(tts)` with
+    # nothing else — it has no learner to speak for. A signature change
+    # that breaks that call takes the whole backend down at *startup*,
+    # where every test using fakes still passes and only a real launch
+    # fails, so it is pinned here.
+    fake_tts = FakeTTSPipeline()
+
+    question_text, audio_bytes, _ = pipeline.synthesize_opening(fake_tts)
+
+    assert question_text == select_entry([], load_bank()).thai
+    assert audio_bytes
 
 
 def test_empty_tts_synthesis_raises_instead_of_shipping_zero_audio():
@@ -202,7 +226,7 @@ def test_empty_tts_synthesis_raises_instead_of_shipping_zero_audio():
     # becomes an exception (a 5xx at the HTTP layer), never a 200 whose
     # audio is zero bytes.
     with pytest.raises(RuntimeError, match="empty audio"):
-        pipeline.synthesize_opening(EmptyOutputTTSPipeline())
+        pipeline.synthesize_opening(EmptyOutputTTSPipeline(), [], load_bank())
 
 
 def test_opening_endpoint_returns_fake_synthesis(fake_model_client):
@@ -210,10 +234,31 @@ def test_opening_endpoint_returns_fake_synthesis(fake_model_client):
 
     assert response.status_code == 200
     body = response.json()
-    assert body["question_text"] == "สบายดีไหม"
+    # The bodyless GET is a learner with nothing known yet: the simplest
+    # exchange the bank holds, never an error.
+    assert body["question_text"] == select_entry([], load_bank()).thai
     assert body["question_audio_mime_type"] == "audio/wav"
     audio = base64.b64decode(body["question_audio_base64"])
     assert len(audio) > 0
+
+
+def test_opening_endpoint_asks_two_learners_different_questions(fake_model_client):
+    bank = load_bank()
+    beginner = [word for entry in bank if entry.tier == 1 for word in entry.words]
+    advanced = [word for entry in bank for word in entry.words]
+
+    first = fake_model_client.post("/conversation/opening", json={"known_words": beginner})
+    second = fake_model_client.post("/conversation/opening", json={"known_words": advanced})
+
+    assert first.status_code == 200
+    assert second.status_code == 200
+    beginner_question = first.json()["question_text"]
+    advanced_question = second.json()["question_text"]
+    assert beginner_question != advanced_question
+    # Each learner is only ever asked something built from their own words.
+    by_text = {entry.thai: entry for entry in bank}
+    assert set(by_text[beginner_question].words) <= set(beginner)
+    assert set(by_text[advanced_question].words) <= set(advanced)
 
 
 def test_health_reports_true_per_model_from_the_registry(fake_model_client):
@@ -389,12 +434,12 @@ def test_health_reports_all_models_loaded_and_gpu_resident(gpu_client):
 
 
 @pytest.mark.gpu
-def test_opening_speaks_the_fixed_question_as_decodable_audio(gpu_client):
+def test_opening_speaks_the_selected_question_as_decodable_audio(gpu_client):
     response = gpu_client.get("/conversation/opening")
 
     assert response.status_code == 200
     body = response.json()
-    assert body["question_text"] == "สบายดีไหม"
+    assert body["question_text"] == select_entry([], load_bank()).thai
     assert body["question_audio_mime_type"] == "audio/wav"
 
     audio_bytes = base64.b64decode(body["question_audio_base64"])
