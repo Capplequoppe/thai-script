@@ -1,3 +1,4 @@
+import path from "node:path";
 import { defineConfig, devices } from "@playwright/test";
 
 export default defineConfig({
@@ -15,6 +16,48 @@ export default defineConfig({
 		{
 			name: "chromium",
 			use: { ...devices["Desktop Chrome"] },
+		},
+		// The conversation-practice suite gets its own isolated project rather
+		// than joining the shared `webServer` array above: that array starts
+		// unconditionally for every project regardless of `--project`
+		// filtering, so a second (GPU-backed) entry there would force the
+		// `chromium` project's existing home/lesson-intro specs to also boot
+		// the backend. Playwright's setup/teardown dependency mechanism scopes
+		// process lifecycle to only the projects that declare it.
+		{
+			name: "conversation-backend-setup",
+			testMatch: /conversation-backend\.setup\.ts/,
+			teardown: "conversation-backend-teardown",
+		},
+		{
+			name: "conversation-backend-teardown",
+			testMatch: /conversation-backend\.teardown\.ts/,
+		},
+		{
+			name: "conversation-practice",
+			testMatch: /conversation-practice(-fail)?\.spec\.ts/,
+			dependencies: ["conversation-backend-setup"],
+			teardown: "conversation-backend-teardown",
+			// Single-process, single-GPU, synchronous-per-request backend
+			// (CONTEXT.md) — concurrent cases would serialize behind the GPU
+			// and time out looking like flakes.
+			fullyParallel: false,
+			workers: 1,
+			timeout: 5 * 60_000,
+			use: {
+				...devices["Desktop Chrome"],
+				launchOptions: {
+					args: [
+						"--use-fake-device-for-media-stream",
+						"--use-fake-ui-for-media-stream",
+						"--use-file-for-fake-audio-capture=" +
+							path.resolve(
+								process.cwd(),
+								"backend/tests/fixtures/reply-pass.wav",
+							),
+					],
+				},
+			},
 		},
 	],
 	webServer: {
