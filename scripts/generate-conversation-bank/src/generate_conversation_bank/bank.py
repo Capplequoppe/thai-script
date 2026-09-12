@@ -26,7 +26,14 @@ _ID_HEX_LENGTH = 12
 
 @dataclass(frozen=True)
 class Candidate:
-    """A generated line that has already survived the compliance filter."""
+    """One line destined for the bank, before it is given an id.
+
+    Generation only ever builds these from lines that cleared both the
+    compliance filter and the quality gate — but `__main__.load_existing`
+    also rebuilds them from an already-shipped file, which a human may have
+    edited since. So this type asserts nothing about what a line has passed;
+    the tests over the shipped bank are what hold that line.
+    """
 
     tier: int
     thai: str

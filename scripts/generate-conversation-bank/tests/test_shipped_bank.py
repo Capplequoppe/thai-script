@@ -13,6 +13,7 @@ import pytest
 from generate_conversation_bank.bank import MIN_ENTRIES_PER_TIER, entry_id
 from generate_conversation_bank.filtering import tokenize
 from generate_conversation_bank.paths import BANK_JSON
+from generate_conversation_bank.quality import quality_issues
 from generate_conversation_bank.tiers import TIER_SIZES, build_tiers
 
 REQUIRED_KEYS = {"id", "tier", "thai", "english", "words"}
@@ -79,3 +80,12 @@ def test_no_entry_uses_a_word_outside_its_own_tier(bank: list[dict]) -> None:
             word for word in entry["words"] if word not in allowed_by_tier[entry["tier"]]
         ]
         assert not outside, f"{entry['id']} uses {outside} outside tier {entry['tier']}"
+
+
+def test_no_entry_has_a_machine_detectable_quality_defect(bank: list[dict]) -> None:
+    # The sibling of the check above. The compliance filter had a hand-edit
+    # guard and the quality gate did not, even though the README asks a human
+    # to edit this file — so a review could have reintroduced a mixed-particle
+    # line or a statement and nothing would have said so.
+    for entry in bank:
+        assert quality_issues(entry["thai"]) == (), f"{entry['id']}: {entry['thai']}"

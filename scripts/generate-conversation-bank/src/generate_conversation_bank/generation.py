@@ -13,7 +13,6 @@ the id scheme and the serializer — and therefore the default, non-GPU test run
 from __future__ import annotations
 
 import re
-from collections.abc import Sequence
 from typing import Protocol
 
 from .bank import MIN_ENTRIES_PER_TIER, Candidate
@@ -38,9 +37,16 @@ TOPICS: tuple[str, ...] = (
     "how the other person is feeling",
 )
 
-#: Sampling temperatures, low first. The spike validated this range; a later
-#: round only relaxes sampling if an earlier, tighter one did not yield enough.
+#: Sampling temperatures, low first: a later round only relaxes sampling if an
+#: earlier, tighter one did not yield enough. Chosen here, not inherited from
+#: the spike — the spike's own temperatures are not recorded in this plan.
 TEMPERATURE_LADDER: tuple[float, ...] = (0.3, 0.5, 0.7, 0.9)
+
+#: Candidates requested per round, and the cap on rounds before a tier gives up
+#: short. Tuning knobs: change them here rather than threading them through
+#: every caller, none of which has ever wanted anything but these.
+CANDIDATES_PER_ROUND = 10
+MAX_ROUNDS = 24
 
 _SYSTEM_PROMPT = """You write opening questions for a Thai conversation-practice app used by beginners.
 
@@ -95,41 +101,50 @@ def generate_tier(
     *,
     min_entries: int = MIN_ENTRIES_PER_TIER,
     exclude: frozenset[str] = frozenset(),
-    per_round: int = 10,
-    max_rounds: int = 24,
-    topics: Sequence[str] = TOPICS,
-    temperatures: Sequence[float] = TEMPERATURE_LADDER,
 ) -> list[Candidate]:
-    """Draw candidates for one tier until `min_entries` survive the filter.
+    """Draw candidates for one tier until `min_entries` clear both gates.
+
+    A kept line has passed the compliance filter *and* `quality_issues` — the
+    first run was 100% compliant and still shipped mixed-particle lines and
+    statements, so compliance alone is not the bar.
 
     Looping — rather than shipping whatever a single pass happens to produce —
-    is what makes AC6's per-tier floor a guarantee instead of a hope.
+    is what makes AC6's per-tier floor a guarantee instead of a hope. It is
+    still only a best effort: after MAX_ROUNDS this returns what it has, which
+    may be fewer than `min_entries`, and the caller sees the shortfall in the
+    count it prints.
 
     `exclude` is the Thai texts the bank already holds. A larger tier allows
     every word a smaller one does, so it re-proposes the smaller tier's lines
     constantly; without this, `build_bank`'s de-duplication would silently
     charge those back to the lower tier and leave this one short.
     """
-    kept: dict[str, tuple[str, ...]] = {}
+    # Insertion-ordered set of accepted lines. The tokens `check_compliance`
+    # computed are deliberately NOT carried in here: `make_entry` re-derives
+    # them from `thai`, which keeps `words == tokenize(thai)` true even for an
+    # entry a human hand-edited after review.
+    kept: dict[str, None] = {}
     allowed = tier.allowed
 
-    for round_index in range(max_rounds):
+    for round_index in range(MAX_ROUNDS):
         if len(kept) >= min_entries:
             break
 
-        topic = topics[round_index % len(topics)]
-        temperature = temperatures[min(round_index // len(topics), len(temperatures) - 1)]
-        system, user = _prompt_for(tier, topic, per_round)
+        topic = TOPICS[round_index % len(TOPICS)]
+        rung = min(round_index // len(TOPICS), len(TEMPERATURE_LADDER) - 1)
+        system, user = _prompt_for(tier, topic, CANDIDATES_PER_ROUND)
 
         raw = model.complete(
-            system, user, temperature=temperature, max_new_tokens=48 * per_round
+            system,
+            user,
+            temperature=TEMPERATURE_LADDER[rung],
+            max_new_tokens=48 * CANDIDATES_PER_ROUND,
         )
         for line in parse_lines(raw):
             if line in kept or line in exclude:
                 continue
-            result = check_compliance(line, allowed)
-            if result.compliant and not quality_issues(line):
-                kept[line] = result.words
+            if check_compliance(line, allowed).compliant and not quality_issues(line):
+                kept[line] = None
 
     return [
         Candidate(tier=tier.number, thai=thai, english=translate(model, thai))

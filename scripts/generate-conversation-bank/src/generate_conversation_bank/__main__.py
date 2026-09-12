@@ -29,8 +29,18 @@ def load_existing(path: Path) -> list[Candidate]:
 
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(prog="generate-conversation-bank")
-    parser.add_argument("--output", type=Path, default=BANK_JSON)
-    parser.add_argument("--min-entries", type=int, default=MIN_ENTRIES_PER_TIER)
+    parser.add_argument(
+        "--output",
+        type=Path,
+        default=BANK_JSON,
+        help="bank file to merge into and rewrite (default: %(default)s)",
+    )
+    parser.add_argument(
+        "--min-entries",
+        type=int,
+        default=MIN_ENTRIES_PER_TIER,
+        help="entries each tier must hold before it is skipped (default: %(default)s)",
+    )
     parser.add_argument(
         "--tier",
         type=int,

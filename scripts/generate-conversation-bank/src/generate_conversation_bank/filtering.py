@@ -5,9 +5,13 @@ allowed-word-set check — reused verbatim as this tool's *selection* step. Ther
 is deliberately no second implementation: a candidate is kept only when every
 token of its Thai text is a word the tier allows.
 
-The tokenizer runs here anyway, so each kept candidate carries its tokens
-forward as its `words` list. That is what lets the live backend's selection be
-a pure set operation with no tokenizer dependency of its own.
+`tokenize` is also the single definition of an entry's `words` list, which is
+what lets the live backend's selection be a pure set operation with no
+tokenizer dependency of its own. Note that `bank.make_entry` calls `tokenize`
+again rather than reusing the tokens from a `FilterResult`: deriving `words`
+from `thai` at serialization time is what keeps `words == tokenize(thai)` true
+for an entry a human hand-edited after the review step, not only for one this
+tool generated.
 """
 
 from __future__ import annotations

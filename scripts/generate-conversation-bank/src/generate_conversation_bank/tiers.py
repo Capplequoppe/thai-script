@@ -53,8 +53,19 @@ def build_tiers(
     ranked_words: list[str] | None = None,
     sizes: tuple[int, ...] = TIER_SIZES,
 ) -> list[Tier]:
-    """Tier N allows the first `sizes[N - 1]` ranked words."""
+    """Tier N allows the first `sizes[N - 1]` ranked words.
+
+    Raises if there are not enough ranked words to fill the largest tier. A
+    short vocabulary would otherwise slice down silently and hand back a Tier
+    whose `size` says 600 while it holds 30 words — a wrong answer that looks
+    exactly like a right one, and one every caller here would go on to trust.
+    """
     words = ranked_words if ranked_words is not None else load_ranked_words()
+    if len(words) < max(sizes):
+        raise ValueError(
+            f"vocabulary yields only {len(words)} ranked words, fewer than the "
+            f"largest tier size {max(sizes)}; tiers would be silently truncated"
+        )
     return [
         Tier(number=index + 1, size=size, words=tuple(words[:size]))
         for index, size in enumerate(sizes)
