@@ -1,6 +1,7 @@
 import { HashRouter, Navigate, Route, Routes } from "react-router";
 import { Layout } from "./components/layout/Layout";
 import { AppProvider } from "./context/AppContext";
+import { ConversationPracticePage } from "./pages/ConversationPracticePage";
 import { Dashboard } from "./pages/Dashboard";
 import { GamePage } from "./pages/GamePage";
 import { GrammarPage } from "./pages/GrammarPage";
@@ -31,6 +32,12 @@ export function App() {
 						<Route path="/vocabulary" element={<VocabularyPage />} />
 						<Route path="/grammar" element={<GrammarPage />} />
 						<Route path="/sentences" element={<SentencePage />} />
+						{/* Reached as `#/conversation` in production — every route
+						    here lives under the `HashRouter` above. */}
+						<Route
+							path="/conversation"
+							element={<ConversationPracticePage />}
+						/>
 						<Route path="/vocab" element={<VocabListPage />} />
 						<Route path="*" element={<Navigate to="/" replace />} />
 					</Route>

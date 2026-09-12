@@ -15,7 +15,14 @@
  *   `play`/`pause` for any real media element;
  * - a stubbed `HTMLCanvasElement.getContext` returning a shared recording
  *   2D context (jsdom has none without the `canvas` package), which also
- *   lets tests observe `clearRect` calls.
+ *   lets tests observe `clearRect` calls;
+ * - `URL.createObjectURL`/`revokeObjectURL` (jsdom implements neither), so
+ *   any code that turns a `Blob` into a playable URL runs instead of
+ *   throwing;
+ * - a `MediaRecorder` recording one fixed `Blob` and a
+ *   `navigator.mediaDevices.getUserMedia` whose outcome `setMicPermission`
+ *   chooses (jsdom has neither) — between them enough for a test to drive
+ *   `useMicRecorder`'s real state machine, refusal included.
  *
  * Test files still need their own `// @vitest-environment jsdom` docblock —
  * the pragma only works in the test file itself.
@@ -30,6 +37,10 @@ import { ManageItemsUseCase } from "../../application/use-cases/ManageItemsUseCa
 import { PlayGameUseCase } from "../../application/use-cases/PlayGameUseCase";
 import { QueryDashboardUseCase } from "../../application/use-cases/QueryDashboardUseCase";
 import { StartLessonUseCase } from "../../application/use-cases/StartLessonUseCase";
+import type {
+	ConversationJudgeResult,
+	ConversationOpeningResult,
+} from "../../domain/conversation/types";
 import type { GameHistoryRepository } from "../../domain/game/ports/GameHistoryRepository";
 import { GameItemSelectionService } from "../../domain/game/services/GameItemSelectionService";
 import { SentenceGameItemSource } from "../../domain/game/services/SentenceGameItemSource";
@@ -48,6 +59,7 @@ import grammarData from "../../domain/grammar/data/grammar.json";
 import { GrammarReviewCard } from "../../domain/grammar/entities/GrammarReviewCard";
 import { GrammarService } from "../../domain/grammar/services/GrammarLessonService";
 import type { GrammarEntry } from "../../domain/grammar/types";
+import type { ConversationPracticePort } from "../../domain/ports/ConversationPracticePort";
 import { ScriptPropertyCard } from "../../domain/script/entities/ScriptPropertyCard";
 import { LearningService } from "../../domain/script/services/ScriptLessonService";
 import sentenceData from "../../domain/sentence/data/sentences.json";
@@ -55,9 +67,9 @@ import { SentenceReviewCard } from "../../domain/sentence/entities/SentenceRevie
 import { SentenceService } from "../../domain/sentence/services/SentenceLessonService";
 import type { SentenceEntry } from "../../domain/sentence/types";
 import { ReviewService } from "../../domain/session/services/ReviewService";
-import type { ReviewableCard } from "../../domain/srs/entities/ReviewableCard";
 import { ApprenticeService } from "../../domain/shared/services/ApprenticeService";
 import { LeechService } from "../../domain/shared/services/LeechService";
+import type { ReviewableCard } from "../../domain/srs/entities/ReviewableCard";
 import vocabularyData from "../../domain/vocabulary/data/vocabulary.json";
 import { VocabCard } from "../../domain/vocabulary/entities/VocabCard";
 import { toneSyllablesOf } from "../../domain/vocabulary/services/toneSyllables";
@@ -135,6 +147,55 @@ export function createdAudioUrls(): readonly string[] {
 	return StubAudio.createdUrls;
 }
 
+// --- Object-URL stub (jsdom implements neither create nor revoke) ---
+
+let objectUrlCount = 0;
+
+// --- Microphone stubs (jsdom has neither `MediaRecorder` nor `mediaDevices`) ---
+
+/** The MIME type and bytes every stubbed recording produces. */
+export const MIC_FIXTURE_MIME_TYPE = "audio/webm;codecs=opus";
+const MIC_FIXTURE_BYTES = Uint8Array.from([0x1a, 0x45, 0xdf, 0xa3]);
+
+export type MicPermission = "granted" | "denied" | "error";
+
+let micPermission: MicPermission = "granted";
+
+/**
+ * What the next `getUserMedia` call does: hand back a stream, refuse with a
+ * `NotAllowedError` (the permission prompt declined), or fail some other way
+ * — the three outcomes `useMicRecorder` maps to `recording`/`denied`/`error`.
+ * Resets to `"granted"` before each test.
+ */
+export function setMicPermission(permission: MicPermission): void {
+	micPermission = permission;
+}
+
+/**
+ * A `MediaRecorder` that records one fixed `Blob`. `stop()` synchronously
+ * emits the fixture and fires `onstop`, so a test drives the real
+ * `useMicRecorder` state machine without any timing games.
+ */
+export class StubMediaRecorder {
+	state: "inactive" | "recording" = "inactive";
+	ondataavailable: ((event: { data: Blob }) => void) | null = null;
+	onstop: (() => void) | null = null;
+
+	readonly mimeType = MIC_FIXTURE_MIME_TYPE;
+
+	start(): void {
+		this.state = "recording";
+	}
+
+	stop(): void {
+		this.state = "inactive";
+		this.ondataavailable?.({
+			data: new Blob([MIC_FIXTURE_BYTES], { type: MIC_FIXTURE_MIME_TYPE }),
+		});
+		this.onstop?.();
+	}
+}
+
 // --- Canvas 2D stub (jsdom has no 2D context without the canvas package) ---
 
 export const canvas2d = {
@@ -154,6 +215,31 @@ beforeEach(() => {
 	globalThis.localStorage = fakeLocalStorage;
 	globalThis.Audio = StubAudio as unknown as typeof Audio;
 	StubAudio.createdUrls = [];
+	objectUrlCount = 0;
+	URL.createObjectURL = () => {
+		objectUrlCount += 1;
+		return `blob:test/${objectUrlCount}`;
+	};
+	URL.revokeObjectURL = () => {};
+	micPermission = "granted";
+	globalThis.MediaRecorder =
+		StubMediaRecorder as unknown as typeof MediaRecorder;
+	Object.defineProperty(globalThis.navigator, "mediaDevices", {
+		configurable: true,
+		value: {
+			getUserMedia: async () => {
+				if (micPermission === "denied") {
+					throw new DOMException("Permission denied", "NotAllowedError");
+				}
+				if (micPermission === "error") {
+					throw new Error("No recording device");
+				}
+				return {
+					getTracks: () => [{ stop: () => {} }],
+				} as unknown as MediaStream;
+			},
+		},
+	});
 	canvas2d.clearRect.mockClear();
 	canvas2d.beginPath.mockClear();
 	canvas2d.moveTo.mockClear();
@@ -552,6 +638,31 @@ export function makeFixedRoundGame(
 	return { game, historyStore };
 }
 
+// --- Conversation practice port stub ---
+
+/**
+ * A `ConversationPracticePort` that answers with whatever the test sets and
+ * records what it was asked. Defaults to `"unavailable"` on both calls — the
+ * honest default for a harness with no backend behind it.
+ */
+export class StubConversationPracticePort implements ConversationPracticePort {
+	opening: ConversationOpeningResult = { status: "unavailable" };
+	judgement: ConversationJudgeResult = { status: "unavailable" };
+	readonly judgeCalls: { questionText: string; replyAudio: Blob }[] = [];
+
+	async getOpening(): Promise<ConversationOpeningResult> {
+		return this.opening;
+	}
+
+	async judgeReply(
+		questionText: string,
+		replyAudio: Blob,
+	): Promise<ConversationJudgeResult> {
+		this.judgeCalls.push({ questionText, replyAudio });
+		return this.judgement;
+	}
+}
+
 // --- The harness itself ---
 
 export interface AppHarness {
@@ -684,6 +795,7 @@ export function makeAppValue(options: MakeAppValueOptions = {}): AppHarness {
 		data: new ManageDataUseCase(stateRepo),
 		items: new ManageItemsUseCase(cardRepo),
 		vocab: vocabularyService,
+		conversationPractice: new StubConversationPracticePort(),
 		checkAchievements: () => [],
 		game,
 	};
