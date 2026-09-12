@@ -46,6 +46,7 @@ from app.schemas import (
     JudgeRequest,
     JudgeResponse,
     ModelsLoaded,
+    OpeningRequest,
     OpeningResponse,
 )
 
@@ -117,8 +118,13 @@ def _require_loaded(loaded: bool, model_name: str) -> None:
         )
 
 
-def _opening_pipeline() -> OpeningResponse:
-    """Blocking body of GET /conversation/opening (runs under MODEL_LOCK)."""
+def _opening_pipeline(payload: OpeningRequest) -> OpeningResponse:
+    """Blocking body of POST /conversation/opening (runs under MODEL_LOCK).
+
+    `payload.known_words` is accepted and validated here (task 2.1) but not
+    yet read — the bank and tier-selection logic that consumes it is task
+    2.2/2.3's; this phase still always synthesizes the one fixed question.
+    """
     registry = _registry()
     _require_loaded(registry.tts_loaded, "tts")
     question_text, audio_bytes, mime_type = pipeline.synthesize_opening(registry.tts)
@@ -176,9 +182,9 @@ async def health() -> HealthResponse:
     )
 
 
-@app.get("/conversation/opening", response_model=OpeningResponse)
-async def opening() -> OpeningResponse:
-    return await run_serialized(_opening_pipeline)
+@app.post("/conversation/opening", response_model=OpeningResponse)
+async def opening(payload: OpeningRequest) -> OpeningResponse:
+    return await run_serialized(_opening_pipeline, payload)
 
 
 @app.post("/conversation/judge", response_model=JudgeResponse)

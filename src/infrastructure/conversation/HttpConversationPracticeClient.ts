@@ -108,8 +108,14 @@ async function toBase64(blob: Blob): Promise<string> {
 export class HttpConversationPracticeClient
 	implements ConversationPracticePort
 {
-	async getOpening(): Promise<ConversationOpeningResult> {
-		const body = asRecord(await fetchJson("/conversation/opening"));
+	async getOpening(knownWords: string[]): Promise<ConversationOpeningResult> {
+		const body = asRecord(
+			await fetchJson("/conversation/opening", {
+				method: "POST",
+				headers: { "Content-Type": "application/json" },
+				body: JSON.stringify({ known_words: knownWords }),
+			}),
+		);
 		if (!body) return { status: "unavailable" };
 
 		const { question_text, question_audio_base64, question_audio_mime_type } =

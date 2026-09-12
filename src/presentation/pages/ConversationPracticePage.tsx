@@ -49,7 +49,7 @@ const BACKEND_UNAVAILABLE_MESSAGE =
  * not this task's call to make.
  */
 export function ConversationPracticePage() {
-	const { conversationPractice } = useApp();
+	const { conversationPractice, vocab } = useApp();
 	const [opening, setOpening] = useState<ConversationOpeningResult | null>(
 		null,
 	);
@@ -62,13 +62,17 @@ export function ConversationPracticePage() {
 
 	useEffect(() => {
 		let cancelled = false;
-		conversationPractice.getOpening().then((result) => {
+		// The learner's real known-vocabulary snapshot, sourced from their
+		// SRS state — never a placeholder list. A learner with nothing
+		// learned yet sends a real empty array, not an omitted field.
+		const knownWords = vocab.getLearnedEntries().map((entry) => entry.thai);
+		conversationPractice.getOpening(knownWords).then((result) => {
 			if (!cancelled) setOpening(result);
 		});
 		return () => {
 			cancelled = true;
 		};
-	}, [conversationPractice]);
+	}, [conversationPractice, vocab]);
 
 	const questionText = opening?.status === "ok" ? opening.questionText : null;
 	const questionAudioUrl =

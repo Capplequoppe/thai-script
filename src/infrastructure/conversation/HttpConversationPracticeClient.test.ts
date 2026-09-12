@@ -38,7 +38,7 @@ afterEach(() => {
 });
 
 describe("HttpConversationPracticeClient.getOpening", () => {
-	it("GETs the contracted opening endpoint and decodes the audio with the response's own MIME type", async () => {
+	it("POSTs the known-word snapshot to the contracted opening endpoint and decodes the audio with the response's own MIME type", async () => {
 		const audioBytes = Uint8Array.from([0xde, 0xad, 0xbe, 0xef]);
 		const fetchSpy = stubFetch(async () =>
 			jsonResponse({
@@ -48,11 +48,17 @@ describe("HttpConversationPracticeClient.getOpening", () => {
 			}),
 		);
 
-		const result = await new HttpConversationPracticeClient().getOpening();
+		const result = await new HttpConversationPracticeClient().getOpening([
+			"สวัสดี",
+			"ขอบคุณ",
+		]);
 
 		const [url, init] = fetchSpy.mock.calls[0] as [string, RequestInit];
 		expect(url).toBe(`${CONVERSATION_BACKEND_BASE_URL}/conversation/opening`);
-		expect(init.method ?? "GET").toBe("GET");
+		expect(init.method).toBe("POST");
+		expect(JSON.parse(init.body as string)).toEqual({
+			known_words: ["สวัสดี", "ขอบคุณ"],
+		});
 
 		expect(result).toEqual({
 			status: "ok",
@@ -77,9 +83,40 @@ describe("HttpConversationPracticeClient.getOpening", () => {
 			}),
 		);
 
-		await new HttpConversationPracticeClient().getOpening();
+		await new HttpConversationPracticeClient().getOpening([]);
 
 		expect(objectUrlBlobs[0].type).toBe("audio/mpeg");
+	});
+
+	it("sends an empty known-word list as a real empty array, not an omitted field", async () => {
+		const fetchSpy = stubFetch(async () =>
+			jsonResponse({
+				question_text: "สบายดีไหม",
+				question_audio_base64: btoa("x"),
+				question_audio_mime_type: "audio/wav",
+			}),
+		);
+
+		await new HttpConversationPracticeClient().getOpening([]);
+
+		const [, init] = fetchSpy.mock.calls[0] as [string, RequestInit];
+		expect(JSON.parse(init.body as string)).toEqual({ known_words: [] });
+	});
+
+	it("accepts a realistic 600-word known-word snapshot without truncating it", async () => {
+		const bigVocab = Array.from({ length: 600 }, (_, i) => `คำที่${i}`);
+		const fetchSpy = stubFetch(async () =>
+			jsonResponse({
+				question_text: "สบายดีไหม",
+				question_audio_base64: btoa("x"),
+				question_audio_mime_type: "audio/wav",
+			}),
+		);
+
+		await new HttpConversationPracticeClient().getOpening(bigVocab);
+
+		const [, init] = fetchSpy.mock.calls[0] as [string, RequestInit];
+		expect(JSON.parse(init.body as string).known_words).toHaveLength(600);
 	});
 });
 
@@ -148,7 +185,7 @@ describe("HttpConversationPracticeClient — the backend not answering", () => {
 		});
 		const client = new HttpConversationPracticeClient();
 
-		await expect(client.getOpening()).resolves.toEqual({
+		await expect(client.getOpening([])).resolves.toEqual({
 			status: "unavailable",
 		});
 		await expect(
@@ -183,7 +220,7 @@ describe("HttpConversationPracticeClient — the backend not answering", () => {
 			);
 			const client = new HttpConversationPracticeClient();
 
-			await expect(client.getOpening()).resolves.toEqual({
+			await expect(client.getOpening([])).resolves.toEqual({
 				status: "unavailable",
 			});
 			await expect(
@@ -202,7 +239,7 @@ describe("HttpConversationPracticeClient — the backend not answering", () => {
 		}));
 
 		await expect(
-			new HttpConversationPracticeClient().getOpening(),
+			new HttpConversationPracticeClient().getOpening([]),
 		).resolves.toEqual({ status: "unavailable" });
 	});
 
@@ -221,7 +258,7 @@ describe("HttpConversationPracticeClient — the backend not answering", () => {
 		vi.useFakeTimers();
 		stubFetch(() => new Promise(() => {}));
 
-		const pending = new HttpConversationPracticeClient().getOpening();
+		const pending = new HttpConversationPracticeClient().getOpening([]);
 		let settled = false;
 		void pending.then(() => {
 			settled = true;

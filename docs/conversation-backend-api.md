@@ -72,9 +72,36 @@ say *which* model is still loading. This endpoint is fully implemented
 from task 1.1 onward, before any model-loading code exists (all three
 values are `false` until task 1.2 adds real loading).
 
-### `GET /conversation/opening`
+### `POST /conversation/opening`
 
-No request body.
+Request body:
+
+```json
+{
+  "known_words": ["สวัสดี", "ขอบคุณ", "..."]
+}
+```
+
+`known_words` is the learner's own known-vocabulary snapshot — every
+Thai word their SRS state already counts as learned
+(`VocabularyLessonService.getLearnedEntries()` on the frontend), sent
+fresh with every request rather than cached server-side. It is a
+**required field, always an array** — a learner with no learned words
+yet sends `known_words: []`, never an omitted field. **Task 2.1 only
+carries this value from the browser to the backend and validates its
+shape; the backend does not yet read it to change what question it
+returns** — that selection logic (a pre-generated, filtered content
+bank, tiered by vocabulary size) is task 2.2/2.3's. No
+`known_grammar_ids` field exists or is planned: nothing in this plan
+reads one back (see phase 2's README for why).
+
+A `POST` with a body was chosen over keeping `GET` with query
+parameters: comma-separated known-words on a query string, once
+percent-encoded, would put a 200-word learner (already phase 3's own
+unlock threshold) at roughly 7.4KB of request line and the largest bank
+tier (600 words) at roughly 22KB — past the request-line limits most
+servers (including uvicorn's h11 backend) enforce by default. A POST
+body has no such ceiling.
 
 Response `200`:
 
@@ -90,8 +117,9 @@ Returns the one fixed opening question for this phase, spoken by the
 voice-cloned TTS. `question_audio_mime_type` is whatever MIME type the
 backend actually encoded the synthesized audio as (a simple,
 non-chunked response — there is exactly one short clip to return in
-this phase, no streaming). Placeholder in task 1.1: `501 Not
-Implemented`.
+this phase, no streaming). A missing or malformed body (e.g. no
+`known_words` field) is `422` (Pydantic validation, no custom logic).
+Placeholder in task 1.1: `501 Not Implemented`.
 
 ### `POST /conversation/judge`
 

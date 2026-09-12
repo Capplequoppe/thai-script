@@ -11,8 +11,9 @@ import {
 } from "../test-utils/renderWithApp";
 import { ConversationPracticePage } from "./ConversationPracticePage";
 
-function portWithOpening(): StubConversationPracticePort {
-	const port = new StubConversationPracticePort();
+function portWithOpening<T extends StubConversationPracticePort>(
+	port: T = new StubConversationPracticePort() as T,
+): T {
 	port.opening = {
 		status: "ok",
 		questionText: "สบายดีไหม",
@@ -21,10 +22,30 @@ function portWithOpening(): StubConversationPracticePort {
 	return port;
 }
 
-function renderPage(port: StubConversationPracticePort) {
-	return renderWithApp(<ConversationPracticePage />, {
-		conversationPractice: port,
-	});
+function renderPage(
+	port: StubConversationPracticePort,
+	graduatedVocab?: readonly string[],
+) {
+	return renderWithApp(
+		<ConversationPracticePage />,
+		{ conversationPractice: port },
+		{ graduatedVocab },
+	);
+}
+
+/**
+ * Wraps the harness's stub port to record the known-word list each
+ * `getOpening` call was actually sent — the stub itself only records
+ * `judgeReply` calls, so this test-local subclass is what proves AC2/AC3
+ * without touching the shared harness.
+ */
+class TrackingConversationPracticePort extends StubConversationPracticePort {
+	readonly openingCalls: string[][] = [];
+
+	override async getOpening(knownWords: string[] = []) {
+		this.openingCalls.push(knownWords);
+		return super.getOpening();
+	}
 }
 
 /** Record → stop, driving the real `useMicRecorder` state machine. */
@@ -60,6 +81,31 @@ describe("ConversationPracticePage — the opening question", () => {
 		fireEvent.click(screen.getByRole("button", { name: "Play question" }));
 
 		expect(createdAudioUrls()).toContain("blob:question-audio");
+	});
+});
+
+describe("ConversationPracticePage — the known-vocabulary snapshot it sends", () => {
+	it("sends the learner's real learned-vocabulary set, not a placeholder list", async () => {
+		const words = ["มา", "กิน", "กัน"];
+		const port = portWithOpening(new TrackingConversationPracticePort());
+
+		renderPage(port, words);
+
+		await screen.findByText("สบายดีไหม");
+
+		expect(port.openingCalls).toHaveLength(1);
+		expect(new Set(port.openingCalls[0])).toEqual(new Set(words));
+	});
+
+	it("still sends a request, with a real empty array, for a learner with no learned words yet", async () => {
+		const port = portWithOpening(new TrackingConversationPracticePort());
+
+		renderPage(port);
+
+		await screen.findByText("สบายดีไหม");
+
+		expect(port.openingCalls).toHaveLength(1);
+		expect(port.openingCalls[0]).toEqual([]);
 	});
 });
 

@@ -24,6 +24,18 @@ class HealthResponse(BaseModel):
     models_loaded: ModelsLoaded
 
 
+class OpeningRequest(BaseModel):
+    """The learner's known-vocabulary snapshot, sent with every opening request.
+
+    Task 2.1 only carries this from the browser to the backend; the bank
+    file and the tier-selection logic that actually reads it are task
+    2.2/2.3's. Until then it is accepted and validated but not consumed —
+    the opening pipeline still returns the one fixed question.
+    """
+
+    known_words: list[str]
+
+
 class OpeningResponse(BaseModel):
     question_text: str
     question_audio_base64: str
