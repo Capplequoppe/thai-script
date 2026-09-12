@@ -1,0 +1,729 @@
+[
+  {
+    "id": "cs-24d174d73afb",
+    "tier": 1,
+    "thai": "ทำอะไรอย่างไรครับ",
+    "english": "How do you do something?",
+    "words": [
+      "ทำ",
+      "อะไร",
+      "อย่างไร",
+      "ครับ"
+    ]
+  },
+  {
+    "id": "cs-2559f01aabb0",
+    "tier": 1,
+    "thai": "ทำอะไรกันครับ",
+    "english": "What are you doing?",
+    "words": [
+      "ทำ",
+      "อะไร",
+      "กัน",
+      "ครับ"
+    ]
+  },
+  {
+    "id": "cs-32a073bc6e5e",
+    "tier": 1,
+    "thai": "กินอะไรมาแล้วครับ",
+    "english": "What have you eaten already?",
+    "words": [
+      "กิน",
+      "อะไร",
+      "มา",
+      "แล้ว",
+      "ครับ"
+    ]
+  },
+  {
+    "id": "cs-72b968e395a0",
+    "tier": 1,
+    "thai": "สวัสดีครับ คุณสบายดีไหมครับ",
+    "english": "Hello, how are you doing?",
+    "words": [
+      "สวัสดี",
+      "ครับ",
+      "คุณ",
+      "สบายดี",
+      "ไหม",
+      "ครับ"
+    ]
+  },
+  {
+    "id": "cs-799ce20d91cb",
+    "tier": 1,
+    "thai": "ชอบกินอะไรครับ",
+    "english": "What do you like to eat?",
+    "words": [
+      "ชอบ",
+      "กิน",
+      "อะไร",
+      "ครับ"
+    ]
+  },
+  {
+    "id": "cs-79dc2896b59c",
+    "tier": 1,
+    "thai": "สวัสดีครับ คุณสบายดีมั้ยครับ",
+    "english": "Hello, how are you doing?",
+    "words": [
+      "สวัสดี",
+      "ครับ",
+      "คุณ",
+      "สบายดี",
+      "มั้ย",
+      "ครับ"
+    ]
+  },
+  {
+    "id": "cs-7da8a81ed953",
+    "tier": 1,
+    "thai": "สวัสดีค่ะ คุณสบายดีมั้ยคะ",
+    "english": "Hello, how are you doing?",
+    "words": [
+      "สวัสดี",
+      "ค่ะ",
+      "คุณ",
+      "สบายดี",
+      "มั้ย",
+      "คะ"
+    ]
+  },
+  {
+    "id": "cs-83641196537e",
+    "tier": 1,
+    "thai": "ทำอะไรอยู่คะ",
+    "english": "What are you doing?",
+    "words": [
+      "ทำ",
+      "อะไร",
+      "อยู่",
+      "คะ"
+    ]
+  },
+  {
+    "id": "cs-881e0bcbafab",
+    "tier": 1,
+    "thai": "ที่นี่ทำอะไรครับ",
+    "english": "What's happening here?",
+    "words": [
+      "ที่นี่",
+      "ทำ",
+      "อะไร",
+      "ครับ"
+    ]
+  },
+  {
+    "id": "cs-94758020a38e",
+    "tier": 1,
+    "thai": "นี้ทำอะไรไหมครับ",
+    "english": "What is this used for, sir?",
+    "words": [
+      "นี้",
+      "ทำ",
+      "อะไร",
+      "ไหม",
+      "ครับ"
+    ]
+  },
+  {
+    "id": "cs-bae36890b9b9",
+    "tier": 1,
+    "thai": "ทำอะไรกันคะ",
+    "english": "What are you doing?",
+    "words": [
+      "ทำ",
+      "อะไร",
+      "กัน",
+      "คะ"
+    ]
+  },
+  {
+    "id": "cs-11924afc6d1d",
+    "tier": 2,
+    "thai": "อาหารอร่อยไหมครับ",
+    "english": "Is the food tasty?",
+    "words": [
+      "อาหาร",
+      "อร่อย",
+      "ไหม",
+      "ครับ"
+    ]
+  },
+  {
+    "id": "cs-1284a6f90b0b",
+    "tier": 2,
+    "thai": "ไม่ชอบอะไรครับ",
+    "english": "What don't you like?",
+    "words": [
+      "ไม่",
+      "ชอบ",
+      "อะไร",
+      "ครับ"
+    ]
+  },
+  {
+    "id": "cs-1a7dafa0aeeb",
+    "tier": 2,
+    "thai": "นี้ทำอะไรอยู่คะ",
+    "english": "What are you doing?",
+    "words": [
+      "นี้",
+      "ทำ",
+      "อะไร",
+      "อยู่",
+      "คะ"
+    ]
+  },
+  {
+    "id": "cs-343d23af0e30",
+    "tier": 2,
+    "thai": "ชอบทำอะไรครับ",
+    "english": "What do you like to do?",
+    "words": [
+      "ชอบ",
+      "ทำ",
+      "อะไร",
+      "ครับ"
+    ]
+  },
+  {
+    "id": "cs-3e0cd62c6bae",
+    "tier": 2,
+    "thai": "ชอบคนไหนครับ",
+    "english": "Who do you like?",
+    "words": [
+      "ชอบ",
+      "คน",
+      "ไหน",
+      "ครับ"
+    ]
+  },
+  {
+    "id": "cs-47dd50ffcc85",
+    "tier": 2,
+    "thai": "จะไปไหนครับ",
+    "english": "Where are you going?",
+    "words": [
+      "จะ",
+      "ไป",
+      "ไหน",
+      "ครับ"
+    ]
+  },
+  {
+    "id": "cs-47ec44ae4990",
+    "tier": 2,
+    "thai": "ชอบอย่างไรครับ",
+    "english": "How do you like it?",
+    "words": [
+      "ชอบ",
+      "อย่างไร",
+      "ครับ"
+    ]
+  },
+  {
+    "id": "cs-6a5dc260801a",
+    "tier": 2,
+    "thai": "คุณชอบอาหารที่นี่มั้ยคะ",
+    "english": "Do you like the food here?",
+    "words": [
+      "คุณ",
+      "ชอบ",
+      "อาหาร",
+      "ที่นี่",
+      "มั้ย",
+      "คะ"
+    ]
+  },
+  {
+    "id": "cs-86baacc4794c",
+    "tier": 2,
+    "thai": "ทำอะไรมาแล้วครับ",
+    "english": "What have you been up to?",
+    "words": [
+      "ทำ",
+      "อะไร",
+      "มา",
+      "แล้ว",
+      "ครับ"
+    ]
+  },
+  {
+    "id": "cs-904fe49c2747",
+    "tier": 2,
+    "thai": "ไม่ชอบคนไหนครับ",
+    "english": "I don't like anyone.",
+    "words": [
+      "ไม่",
+      "ชอบ",
+      "คน",
+      "ไหน",
+      "ครับ"
+    ]
+  },
+  {
+    "id": "cs-91a776037f02",
+    "tier": 2,
+    "thai": "ไม่ชอบอย่างไรครับ",
+    "english": "How do you not like it?",
+    "words": [
+      "ไม่",
+      "ชอบ",
+      "อย่างไร",
+      "ครับ"
+    ]
+  },
+  {
+    "id": "cs-ac134a3c0ee0",
+    "tier": 2,
+    "thai": "ไม่ชอบทำอะไรครับ",
+    "english": "I don't like doing anything.",
+    "words": [
+      "ไม่",
+      "ชอบ",
+      "ทำ",
+      "อะไร",
+      "ครับ"
+    ]
+  },
+  {
+    "id": "cs-ad8469146954",
+    "tier": 2,
+    "thai": "คุณชอบแม่ของคุณมั้ยคะ",
+    "english": "Do you like your mother?",
+    "words": [
+      "คุณ",
+      "ชอบ",
+      "แม่",
+      "ของ",
+      "คุณ",
+      "มั้ย",
+      "คะ"
+    ]
+  },
+  {
+    "id": "cs-d527803c3e0f",
+    "tier": 2,
+    "thai": "ไปไหนครับ",
+    "english": "Where are you going?",
+    "words": [
+      "ไป",
+      "ไหน",
+      "ครับ"
+    ]
+  },
+  {
+    "id": "cs-26b47c6f7233",
+    "tier": 3,
+    "thai": "ทำอะไรอยู่ครับ",
+    "english": "What are you doing?",
+    "words": [
+      "ทำ",
+      "อะไร",
+      "อยู่",
+      "ครับ"
+    ]
+  },
+  {
+    "id": "cs-2b9df4637bb7",
+    "tier": 3,
+    "thai": "สวัสดีค่ะ คุณสบายดีไหมคะ",
+    "english": "Hello, how are you doing?",
+    "words": [
+      "สวัสดี",
+      "ค่ะ",
+      "คุณ",
+      "สบายดี",
+      "ไหม",
+      "คะ"
+    ]
+  },
+  {
+    "id": "cs-3fd471a909e2",
+    "tier": 3,
+    "thai": "สวัสดีครับ ท่านสบายดีไหมครับ",
+    "english": "Hello, how are you doing?",
+    "words": [
+      "สวัสดี",
+      "ครับ",
+      "ท่าน",
+      "สบายดี",
+      "ไหม",
+      "ครับ"
+    ]
+  },
+  {
+    "id": "cs-84a28bbc7f04",
+    "tier": 3,
+    "thai": "สวัสดีค่ะ สบายดีไหมคะ",
+    "english": "Hello, how are you doing?",
+    "words": [
+      "สวัสดี",
+      "ค่ะ",
+      "สบายดี",
+      "ไหม",
+      "คะ"
+    ]
+  },
+  {
+    "id": "cs-8ff6b245784d",
+    "tier": 3,
+    "thai": "นี้ทำอะไรค่ะ",
+    "english": "What is this?",
+    "words": [
+      "นี้",
+      "ทำ",
+      "อะไร",
+      "ค่ะ"
+    ]
+  },
+  {
+    "id": "cs-90bbb0914779",
+    "tier": 3,
+    "thai": "คุณอยากกินอะไรไหมคะ",
+    "english": "Do you want to eat something?",
+    "words": [
+      "คุณ",
+      "อยาก",
+      "กิน",
+      "อะไร",
+      "ไหม",
+      "คะ"
+    ]
+  },
+  {
+    "id": "cs-b0d91d148c19",
+    "tier": 3,
+    "thai": "กำลังทำอะไรคะ",
+    "english": "What are you doing?",
+    "words": [
+      "กำลัง",
+      "ทำ",
+      "อะไร",
+      "คะ"
+    ]
+  },
+  {
+    "id": "cs-bcfaed5c0eec",
+    "tier": 3,
+    "thai": "ทำอะไรกันอยู่ครับ",
+    "english": "What are you guys doing?",
+    "words": [
+      "ทำ",
+      "อะไร",
+      "กัน",
+      "อยู่",
+      "ครับ"
+    ]
+  },
+  {
+    "id": "cs-bf8d50a7173c",
+    "tier": 3,
+    "thai": "นี้กำลังทำอะไรคะ",
+    "english": "What is this doing?",
+    "words": [
+      "นี้",
+      "กำลัง",
+      "ทำ",
+      "อะไร",
+      "คะ"
+    ]
+  },
+  {
+    "id": "cs-c7dfcaba6f32",
+    "tier": 3,
+    "thai": "สวัสดีค่ะ ท่านสบายดีไหมคะ",
+    "english": "Hello, how are you doing?",
+    "words": [
+      "สวัสดี",
+      "ค่ะ",
+      "ท่าน",
+      "สบายดี",
+      "ไหม",
+      "คะ"
+    ]
+  },
+  {
+    "id": "cs-ce676fd3cc97",
+    "tier": 3,
+    "thai": "ทำอะไรอยู่ไหมครับ",
+    "english": "What are you doing?",
+    "words": [
+      "ทำ",
+      "อะไร",
+      "อยู่",
+      "ไหม",
+      "ครับ"
+    ]
+  },
+  {
+    "id": "cs-149b8bcc68d3",
+    "tier": 4,
+    "thai": "ทำอะไรได้ไหมครับ",
+    "english": "Can you do anything?",
+    "words": [
+      "ทำ",
+      "อะไร",
+      "ได้",
+      "ไหม",
+      "ครับ"
+    ]
+  },
+  {
+    "id": "cs-1c5ba5a62649",
+    "tier": 4,
+    "thai": "สวัสดีครับ คุณสบายดีหรือเปล่า",
+    "english": "Hello, how are you doing?",
+    "words": [
+      "สวัสดี",
+      "ครับ",
+      "คุณ",
+      "สบายดี",
+      "หรือเปล่า"
+    ]
+  },
+  {
+    "id": "cs-39b2db14b31c",
+    "tier": 4,
+    "thai": "ทำอะไรเพื่ออะไรคะ",
+    "english": "What do you do for what?",
+    "words": [
+      "ทำ",
+      "อะไร",
+      "เพื่อ",
+      "อะไร",
+      "คะ"
+    ]
+  },
+  {
+    "id": "cs-4314a8be9e18",
+    "tier": 4,
+    "thai": "สวัสดีคะ คุณสบายดีกับเราไหม",
+    "english": "Hello, are you comfortable with us?",
+    "words": [
+      "สวัสดี",
+      "คะ",
+      "คุณ",
+      "สบายดี",
+      "กับ",
+      "เรา",
+      "ไหม"
+    ]
+  },
+  {
+    "id": "cs-49f5d7e3d3d4",
+    "tier": 4,
+    "thai": "ทำอะไรที่นี่ครับ",
+    "english": "What are we doing here?",
+    "words": [
+      "ทำ",
+      "อะไร",
+      "ที่นี่",
+      "ครับ"
+    ]
+  },
+  {
+    "id": "cs-4a1b74f8b21b",
+    "tier": 4,
+    "thai": "ทำอะไรได้คะ",
+    "english": "What can you do?",
+    "words": [
+      "ทำ",
+      "อะไร",
+      "ได้",
+      "คะ"
+    ]
+  },
+  {
+    "id": "cs-6817fe7ac42b",
+    "tier": 4,
+    "thai": "ทำอะไรที่นี่คะ",
+    "english": "What are we doing here?",
+    "words": [
+      "ทำ",
+      "อะไร",
+      "ที่นี่",
+      "คะ"
+    ]
+  },
+  {
+    "id": "cs-786a8b6a1420",
+    "tier": 4,
+    "thai": "สวัสดีคะ คุณสบายดีมั้ย",
+    "english": "Hello, how are you doing?",
+    "words": [
+      "สวัสดี",
+      "คะ",
+      "คุณ",
+      "สบายดี",
+      "มั้ย"
+    ]
+  },
+  {
+    "id": "cs-ac0b5b950559",
+    "tier": 4,
+    "thai": "นี้ทำอะไรคะ",
+    "english": "What is this for?",
+    "words": [
+      "นี้",
+      "ทำ",
+      "อะไร",
+      "คะ"
+    ]
+  },
+  {
+    "id": "cs-b06b8a30b7c1",
+    "tier": 4,
+    "thai": "ทำอะไรเพื่ออะไรครับ",
+    "english": "What do you do for what?",
+    "words": [
+      "ทำ",
+      "อะไร",
+      "เพื่อ",
+      "อะไร",
+      "ครับ"
+    ]
+  },
+  {
+    "id": "cs-be4878c2ad4d",
+    "tier": 4,
+    "thai": "สวัสดีคะ คุณสบายดีหรือเปล่า",
+    "english": "Hello, how are you doing?",
+    "words": [
+      "สวัสดี",
+      "คะ",
+      "คุณ",
+      "สบายดี",
+      "หรือเปล่า"
+    ]
+  },
+  {
+    "id": "cs-cefae1fbcd22",
+    "tier": 4,
+    "thai": "สวัสดีครับ คุณสบายดีไหม",
+    "english": "Hello, how are you doing?",
+    "words": [
+      "สวัสดี",
+      "ครับ",
+      "คุณ",
+      "สบายดี",
+      "ไหม"
+    ]
+  },
+  {
+    "id": "cs-d6737b9fcd93",
+    "tier": 4,
+    "thai": "สวัสดีครับ คุณสบายดีมั้ย",
+    "english": "Hello, how are you doing?",
+    "words": [
+      "สวัสดี",
+      "ครับ",
+      "คุณ",
+      "สบายดี",
+      "มั้ย"
+    ]
+  },
+  {
+    "id": "cs-148f1c4847b7",
+    "tier": 5,
+    "thai": "ที่นี่ไปไหนครับ",
+    "english": "Where am I going from here?",
+    "words": [
+      "ที่นี่",
+      "ไป",
+      "ไหน",
+      "ครับ"
+    ]
+  },
+  {
+    "id": "cs-56cb1f7209cf",
+    "tier": 5,
+    "thai": "กำลังทำอะไรครับ",
+    "english": "What are you doing?",
+    "words": [
+      "กำลัง",
+      "ทำ",
+      "อะไร",
+      "ครับ"
+    ]
+  },
+  {
+    "id": "cs-7fe291b2165c",
+    "tier": 5,
+    "thai": "ที่นั่นไปไหนค่ะ",
+    "english": "Where is that going?",
+    "words": [
+      "ที่นั่น",
+      "ไป",
+      "ไหน",
+      "ค่ะ"
+    ]
+  },
+  {
+    "id": "cs-902d4ff4fbc8",
+    "tier": 5,
+    "thai": "ไปไหนไหมครับ",
+    "english": "Where are you going, sir?",
+    "words": [
+      "ไป",
+      "ไหน",
+      "ไหม",
+      "ครับ"
+    ]
+  },
+  {
+    "id": "cs-a6d4526e18b0",
+    "tier": 5,
+    "thai": "สวัสดีคะ คุณสบายดีไหม",
+    "english": "Hello, how are you doing?",
+    "words": [
+      "สวัสดี",
+      "คะ",
+      "คุณ",
+      "สบายดี",
+      "ไหม"
+    ]
+  },
+  {
+    "id": "cs-aeb19d56b0f1",
+    "tier": 5,
+    "thai": "คุณชอบอาหารไหนมากที่สุดครับ",
+    "english": "Which food do you like the most?",
+    "words": [
+      "คุณ",
+      "ชอบ",
+      "อาหาร",
+      "ไหน",
+      "มาก",
+      "ที่สุด",
+      "ครับ"
+    ]
+  },
+  {
+    "id": "cs-df89e5fc9466",
+    "tier": 5,
+    "thai": "ไปไหนไหมคะ",
+    "english": "Where are you going, dear?",
+    "words": [
+      "ไป",
+      "ไหน",
+      "ไหม",
+      "คะ"
+    ]
+  },
+  {
+    "id": "cs-e54e90a79dec",
+    "tier": 5,
+    "thai": "สวัสดีค่ะ คุณสบายดีมั้ย",
+    "english": "Hello, how are you doing?",
+    "words": [
+      "สวัสดี",
+      "ค่ะ",
+      "คุณ",
+      "สบายดี",
+      "มั้ย"
+    ]
+  }
+]
