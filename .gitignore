@@ -41,7 +41,14 @@ storage/
 .pnpm-store/
 .worktrees/
 scripts/.venv/
+backend/.venv/
 */Thai Alphabet/**
+
+# Python
+__pycache__/
+*.pyc
+.pytest_cache/
+.ruff_cache/
 
 # Claude Code local tooling (machine-local, not app source)
 .claude/settings.local.json

@@ -1,0 +1,30 @@
+[project]
+name = "conversation-backend"
+version = "0.1.0"
+description = "Local backend for AI conversation practice mode: STT, judge LLM, TTS."
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "fastapi>=0.115",
+    "uvicorn>=0.30",
+]
+
+[dependency-groups]
+dev = [
+    "pytest>=8.0",
+    "ruff>=0.6",
+    "httpx>=0.27",
+]
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+testpaths = ["tests"]
+markers = [
+    "gpu: requires a real GPU and model weights",
+]
+
+[tool.ruff]
+extend-exclude = ["vendor"]
+
+[tool.uv]
+package = false
