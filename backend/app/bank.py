@@ -20,7 +20,7 @@ from __future__ import annotations
 
 import hashlib
 import json
-from collections.abc import Iterable, Sequence
+from collections.abc import Collection, Iterable, Sequence
 from dataclasses import dataclass
 from pathlib import Path
 
@@ -69,8 +69,12 @@ def load_bank(path: Path | None = None) -> tuple[BankEntry, ...]:
     return entries
 
 
-def select_entry(known_words: Iterable[str], bank: Sequence[BankEntry]) -> BankEntry:
-    """Pick the opening question for a learner with `known_words`.
+def select_entry(
+    known_words: Iterable[str],
+    bank: Sequence[BankEntry],
+    exclude_ids: Collection[str] = (),
+) -> BankEntry | None:
+    """Pick a question for a learner with `known_words`, or `None`.
 
     Qualifying entries are those built entirely from words this learner
     knows; among them the highest `tier` wins (difficulty tie-break). A
@@ -78,20 +82,39 @@ def select_entry(known_words: Iterable[str], bank: Sequence[BankEntry]) -> BankE
     known words at all — gets a smallest-tier entry, which is a minimal
     but real exchange, never an error or an empty response.
 
+    `exclude_ids` is how a phase-3 session asks for "anything in this
+    tier I have not already been asked" without duplicating the matching
+    rule above. It narrows the *candidates*, never the tier: the tier is
+    a property of the learner's snapshot, so a session stays at one
+    difficulty instead of sliding down to easier entries as it goes on.
+    Once every entry in the matched tier is excluded the answer is
+    `None` — genuinely out of content, which the caller reports as an
+    explicit exhausted state rather than as a repeat or an error. With
+    no exclusions (the default) the bank is non-empty by `load_bank`'s
+    own check, so `None` cannot happen.
+
     The final pick is a hash of the known-word set, not `random.choice`:
-    reloading `/conversation` before phase 3's session concept exists asks
-    the same question again rather than a different one every refresh.
+    reloading `/conversation` asks the same opening question again rather
+    than a different one every refresh.
     """
     known = set(known_words)
+    candidates = [
+        entry for entry in _matched_tier(known, bank) if entry.id not in exclude_ids
+    ]
+    if not candidates:
+        return None
+    candidates.sort(key=lambda entry: entry.id)
+    return candidates[_stable_index(known, len(candidates))]
+
+
+def _matched_tier(known: set[str], bank: Sequence[BankEntry]) -> list[BankEntry]:
+    """The entries this learner's snapshot matches, before any exclusion."""
     qualifying = [entry for entry in bank if known.issuperset(entry.words)]
     if qualifying:
         hardest = max(entry.tier for entry in qualifying)
-        candidates = [entry for entry in qualifying if entry.tier == hardest]
-    else:
-        simplest = min(entry.tier for entry in bank)
-        candidates = [entry for entry in bank if entry.tier == simplest]
-    candidates.sort(key=lambda entry: entry.id)
-    return candidates[_stable_index(known, len(candidates))]
+        return [entry for entry in qualifying if entry.tier == hardest]
+    simplest = min(entry.tier for entry in bank)
+    return [entry for entry in bank if entry.tier == simplest]
 
 
 def _stable_index(known: set[str], modulus: int) -> int:

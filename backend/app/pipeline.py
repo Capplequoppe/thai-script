@@ -1,6 +1,6 @@
-"""The conversation pipeline: TTS opening synthesis and reply judging.
+"""The conversation pipeline: TTS question synthesis and reply judging.
 
-Two pure-ish, synchronous functions that take *loaded* model objects
+Pure-ish, synchronous functions that take *loaded* model objects
 plus request data and return response data — no FastAPI, no HTTP, no
 imports from `app.models` — so tests call them directly with per-model
 fakes (`backend/tests/conftest.py`) and never need a GPU for logic that
@@ -79,13 +79,11 @@ def synthesize_opening(
     known_words: Sequence[str] = (),
     bank: Sequence[BankEntry] | None = None,
 ) -> tuple[str, bytes, str]:
-    """Speak this learner's opening question in the cloned voice.
+    """Pick this learner's opening question and speak it.
 
-    The question is picked from the pre-generated bank by what this
-    learner actually knows (`app.bank.select_entry`) — never generated
-    live. Returns (question_text, audio_bytes, mime_type); the reference
-    clip and its transcript are the checked-in pair under
-    `backend/assets/`.
+    The question comes from the pre-generated bank via
+    `app.bank.select_entry` — never generated live. Returns
+    (question_text, audio_bytes, mime_type).
 
     The defaults are for callers with no learner at all — `models.py`'s
     startup warm-up, which just needs *a* question spoken: no known words
@@ -94,10 +92,27 @@ def synthesize_opening(
     passes both explicitly.
     """
     entry = select_entry(known_words, bank if bank is not None else load_bank())
+    if entry is None:
+        # Unreachable with no exclusions — `load_bank` rejects an empty
+        # bank, so the matched tier always holds at least one entry.
+        # Kept as a loud failure rather than an unchecked `None` deref.
+        raise RuntimeError("the conversation-starter bank offered no question")
+    audio_bytes, mime_type = synthesize_question(tts_pipeline, entry.thai)
+    return entry.thai, audio_bytes, mime_type
+
+
+def synthesize_question(tts_pipeline: Any, text: str) -> tuple[bytes, str]:
+    """Speak one already-chosen question in the cloned voice.
+
+    Separate from choosing it, because a session (`app.session`) picks
+    its own next entry — excluding what it has already asked — and then
+    needs exactly this half. The reference clip and its transcript are
+    the checked-in pair under `backend/assets/`.
+    """
     with tempfile.TemporaryDirectory(prefix="conversation-tts-") as tmp_dir:
-        output_path = Path(tmp_dir) / "opening.wav"
+        output_path = Path(tmp_dir) / "question.wav"
         tts_pipeline(
-            text=entry.thai,
+            text=text,
             ref_voice=str(REFERENCE_CLIP_PATH),
             ref_text=REFERENCE_CLIP_TRANSCRIPT,
             output_file=str(output_path),
@@ -107,8 +122,8 @@ def synthesize_opening(
         # Synthesis that "succeeded" but produced nothing must fail
         # loudly (a 5xx, like any other synthesis exception) — never
         # ship as a confident 200 whose audio is zero bytes.
-        raise RuntimeError("TTS synthesis produced an empty audio file for the opening question")
-    return entry.thai, audio_bytes, OPENING_AUDIO_MIME_TYPE
+        raise RuntimeError("TTS synthesis produced an empty audio file for the question")
+    return audio_bytes, OPENING_AUDIO_MIME_TYPE
 
 
 def _decode_reply_audio(reply_audio_bytes: bytes, reply_audio_mime_type: str) -> Any:
