@@ -143,21 +143,76 @@ def load_tts() -> Any:
     )
 
 
-async def load_models_into(registry: ModelRegistry) -> None:
-    """Load all three models sequentially into `registry`.
+def _warm_up_whisper(whisper: Any) -> None:
+    """Run one throwaway transcription so CUDA/cuDNN kernel selection and
+    ctranslate2's own first-call setup happen during startup.
 
-    Each field is assigned as that model finishes, so the registry's
-    per-model flags are truthful at every instant. Note that in
-    production nothing can observe a partial state over HTTP: the
-    server only starts accepting connections after the lifespan (and
-    therefore this function) returns — the per-model shape is what
-    `/health` reads and what tests exercise by seeding partial
-    registries. Loading runs in a worker thread; the single startup
-    call site (`app.main`'s lifespan) is the only writer, so no lock is
-    needed here.
+    Plan CONTEXT.md's ~1.1s/19s figure is a *warm* measurement — the
+    first call on a freshly loaded model pays extra, unpredictable
+    one-time cost that would otherwise land on the learner's first
+    reply instead of on startup.
     """
-    registry.whisper = await asyncio.to_thread(load_whisper)
+    import io
+    import wave
+
+    from faster_whisper.audio import decode_audio
+
+    buffer = io.BytesIO()
+    with wave.open(buffer, "wb") as wav_file:
+        wav_file.setnchannels(1)
+        wav_file.setsampwidth(2)
+        wav_file.setframerate(16000)
+        wav_file.writeframes(b"\x00\x00" * 1600)  # 0.1s of silence
+    decoded = decode_audio(io.BytesIO(buffer.getvalue()))
+    segments, _info = whisper.transcribe(decoded, language="th", vad_filter=True)
+    list(segments)  # force the lazy generator through a real decode pass
+
+
+def _warm_up_judge(llm: Any, tokenizer: Any) -> None:
+    """Run one throwaway judge generation for the same reason as above —
+    first-call CUDA graph/kernel setup, not startup weight loading.
+    """
+    from app.judge_prompt import build_judge_messages
+    from app.pipeline import _generate_judge_completion
+
+    messages = build_judge_messages("สบายดีไหม", "สบายดีครับ")
+    _generate_judge_completion(llm, tokenizer, messages)
+
+
+def _warm_up_tts(tts: Any) -> None:
+    """Synthesize the real opening question once, discarding the result.
+
+    Same rationale as the other two warm-ups; this one also happens to
+    exercise the exact call `POST /conversation/opening` makes.
+    """
+    from app.pipeline import synthesize_opening
+
+    synthesize_opening(tts)
+
+
+async def load_models_into(registry: ModelRegistry) -> None:
+    """Load all three models sequentially into `registry`, each followed
+    by a throwaway warm-up call before its field is assigned.
+
+    Each field is assigned only once that model is actually ready for a
+    fast real request, so the registry's per-model flags are truthful
+    at every instant. Note that in production nothing can observe a
+    partial state over HTTP: the server only starts accepting
+    connections after the lifespan (and therefore this function)
+    returns — the per-model shape is what `/health` reads and what
+    tests exercise by seeding partial registries. Loading runs in a
+    worker thread; the single startup call site (`app.main`'s
+    lifespan) is the only writer, so no lock is needed here.
+    """
+    whisper = await asyncio.to_thread(load_whisper)
+    await asyncio.to_thread(_warm_up_whisper, whisper)
+    registry.whisper = whisper
+
     judge_llm, judge_tokenizer = await asyncio.to_thread(load_judge)
+    await asyncio.to_thread(_warm_up_judge, judge_llm, judge_tokenizer)
     registry.judge_llm = judge_llm
     registry.judge_tokenizer = judge_tokenizer
-    registry.tts = await asyncio.to_thread(load_tts)
+
+    tts = await asyncio.to_thread(load_tts)
+    await asyncio.to_thread(_warm_up_tts, tts)
+    registry.tts = tts
