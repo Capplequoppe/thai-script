@@ -1674,6 +1674,26 @@ describe("GamePage", () => {
 		expect(screen.queryByRole("button", { name: "Start Round" })).toBeNull();
 	});
 
+	// The block-level empty state above only fires when NOTHING is eligible
+	// at all — with a pool also checked (Symbols is checked by default) and
+	// eligible on its own, the round starts "successfully" using only pool
+	// items, silently including zero tone items with no explanation. The
+	// toggle needs its own always-visible warning for this case, since the
+	// combined `eligibleCount` being positive says nothing about whether
+	// tone practice itself contributed anything.
+	it("warns beside the toggle when tone has nothing eligible even though a checked pool does", () => {
+		renderWithApp(<GamePage />, {}, { symbols: ["ม"] });
+
+		fireEvent.click(screen.getByLabelText("Tone Identification"));
+
+		// The round can still start — Symbols alone is eligible — so the
+		// block-level empty state must not appear here.
+		expect(screen.getByRole("button", { name: "Start Round" })).toBeTruthy();
+		expect(
+			screen.getByText(/No words with identifiable tones yet/),
+		).toBeTruthy();
+	});
+
 	// Tone AC8 — the count is what proves `includeTonePractice` reaches
 	// `countEligibleItems` and not merely `startRound`: 3 symbols + 4
 	// tone-eligible words is a cap of 7, and an unthreaded toggle leaves it 3.
