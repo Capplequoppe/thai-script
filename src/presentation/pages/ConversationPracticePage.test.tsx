@@ -9,10 +9,14 @@ import {
 	createdAudioUrls,
 	MIC_FIXTURE_MIME_TYPE,
 	renderWithApp,
+	revokedObjectUrls,
 	StubConversationPracticePort,
 	setMicPermission,
 } from "../test-utils/renderWithApp";
-import { ConversationPracticePage, knownWordsFor } from "./ConversationPracticePage";
+import {
+	ConversationPracticePage,
+	knownWordsFor,
+} from "./ConversationPracticePage";
 
 /**
  * A learner comfortably above both unlock thresholds — the baseline every
@@ -26,11 +30,12 @@ const UNLOCKED_GRAMMAR: string[] = (grammarData as { id: string }[])
 	.slice(0, MIN_GRAMMAR_POINTS)
 	.map((entry) => entry.id);
 
-function portWithOpening<T extends StubConversationPracticePort>(
+function portWithSession<T extends StubConversationPracticePort>(
 	port: T = new StubConversationPracticePort() as T,
 ): T {
-	port.opening = {
+	port.session = {
 		status: "ok",
+		sessionId: "sess-1",
 		questionText: "สบายดีไหม",
 		questionAudioUrl: "blob:question-audio",
 	};
@@ -54,21 +59,6 @@ function renderPage(
 	);
 }
 
-/**
- * Wraps the harness's stub port to record the known-word list each
- * `getOpening` call was actually sent — the stub itself only records
- * `judgeReply` calls, so this test-local subclass is what proves AC2/AC3
- * without touching the shared harness.
- */
-class TrackingConversationPracticePort extends StubConversationPracticePort {
-	readonly openingCalls: string[][] = [];
-
-	override async getOpening(knownWords: string[] = []) {
-		this.openingCalls.push(knownWords);
-		return super.getOpening();
-	}
-}
-
 /** Record → stop, driving the real `useMicRecorder` state machine. */
 async function recordAndStop() {
 	const recordButton = await screen.findByRole("button", {
@@ -84,7 +74,7 @@ async function recordAndStop() {
 
 describe("ConversationPracticePage — backend unavailable", () => {
 	it("says the backend is not running and offers no record control that would do nothing", async () => {
-		// The stub port's default: both calls answer `"unavailable"`.
+		// The stub port's default: every call answers `"unavailable"`.
 		renderPage(new StubConversationPracticePort());
 
 		const alert = await screen.findByRole("alert");
@@ -95,7 +85,7 @@ describe("ConversationPracticePage — backend unavailable", () => {
 
 describe("ConversationPracticePage — the opening question", () => {
 	it("shows the Thai question text and replays its audio on demand", async () => {
-		renderPage(portWithOpening());
+		renderPage(portWithSession());
 
 		expect(await screen.findByText("สบายดีไหม")).toBeTruthy();
 
@@ -107,7 +97,7 @@ describe("ConversationPracticePage — the opening question", () => {
 
 describe("ConversationPracticePage — the known-vocabulary snapshot it sends", () => {
 	it("sends the learner's real learned-vocabulary set, not a placeholder list", async () => {
-		const port = portWithOpening(new TrackingConversationPracticePort());
+		const port = portWithSession();
 
 		// Below the unlock threshold, the page never reaches this call at all
 		// (see the "the unlock gate" tests below) — so the only known-words
@@ -118,8 +108,8 @@ describe("ConversationPracticePage — the known-vocabulary snapshot it sends", 
 
 		await screen.findByText("สบายดีไหม");
 
-		expect(port.openingCalls).toHaveLength(1);
-		expect(new Set(port.openingCalls[0])).toEqual(new Set(UNLOCKED_VOCAB));
+		expect(port.startSessionCalls).toHaveLength(1);
+		expect(new Set(port.startSessionCalls[0])).toEqual(new Set(UNLOCKED_VOCAB));
 	});
 
 	// A learner with zero known words is unreachable through a real render of
@@ -136,8 +126,7 @@ describe("ConversationPracticePage — the known-vocabulary snapshot it sends", 
 
 describe("ConversationPracticePage — the unlock gate", () => {
 	it("shows the locked explanation, never the live recording UI, for a learner navigating here directly below threshold", async () => {
-		const port = new TrackingConversationPracticePort();
-		portWithOpening(port);
+		const port = portWithSession();
 
 		renderPage(port, { graduatedVocab: [], learnedGrammar: [] });
 
@@ -147,24 +136,23 @@ describe("ConversationPracticePage — the unlock gate", () => {
 		expect(screen.queryByText("สบายดีไหม")).toBeNull();
 		// The strongest proof "locked" isn't a label in front of a live,
 		// reachable flow: the backend is never even asked for a question.
-		expect(port.openingCalls).toHaveLength(0);
+		expect(port.startSessionCalls).toHaveLength(0);
 	});
 
 	it("stays locked when only the grammar threshold is unmet, even with plenty of vocabulary", async () => {
-		const port = new TrackingConversationPracticePort();
-		portWithOpening(port);
+		const port = portWithSession();
 
 		renderPage(port, { graduatedVocab: UNLOCKED_VOCAB, learnedGrammar: [] });
 
 		const alert = await screen.findByRole("alert");
 		expect(alert.textContent).toMatch(/grammar point/i);
-		expect(port.openingCalls).toHaveLength(0);
+		expect(port.startSessionCalls).toHaveLength(0);
 	});
 });
 
 describe("ConversationPracticePage — recording a reply", () => {
-	it("drives the recorder from idle to stopped and hands the recorded blob to judgeReply", async () => {
-		const port = portWithOpening();
+	it("drives the recorder from idle to stopped and hands the recorded blob and session id to judgeReply", async () => {
+		const port = portWithSession();
 		port.judgement = {
 			status: "ok",
 			transcript: "สบายดีค่ะ",
@@ -177,6 +165,7 @@ describe("ConversationPracticePage — recording a reply", () => {
 
 		await waitFor(() => expect(port.judgeCalls).toHaveLength(1));
 		const [call] = port.judgeCalls;
+		expect(call.sessionId).toBe("sess-1");
 		expect(call.questionText).toBe("สบายดีไหม");
 		expect(call.replyAudio).toBeInstanceOf(Blob);
 		expect(call.replyAudio.type).toBe(MIC_FIXTURE_MIME_TYPE);
@@ -184,7 +173,7 @@ describe("ConversationPracticePage — recording a reply", () => {
 	});
 });
 
-describe("ConversationPracticePage — verdicts", () => {
+describe("ConversationPracticePage — verdicts and the running tally", () => {
 	const expectations: Record<ConversationVerdict, RegExp> = {
 		pass: /Good answer/,
 		fail: /Not quite/,
@@ -192,13 +181,21 @@ describe("ConversationPracticePage — verdicts", () => {
 	};
 
 	for (const verdict of ["pass", "fail", "unscored"] as ConversationVerdict[]) {
-		it(`renders the ${verdict} verdict in its own words`, async () => {
-			const port = portWithOpening();
+		it(`renders the ${verdict} verdict in its own words, and after advancing to the next question`, async () => {
+			const port = portWithSession();
 			port.judgement = {
 				status: "ok",
 				transcript: "สบายดีค่ะ",
 				verdict,
 				feedbackEn: "Some feedback.",
+			};
+			// A real next question, not the default `exhausted` — otherwise
+			// the page would move straight to the summary before this test
+			// could observe the per-turn verdict rendering (AC1).
+			port.nextResult = {
+				status: "ok",
+				questionText: "กำลังทำอะไรครับ",
+				questionAudioUrl: "blob:next-question",
 			};
 			renderPage(port);
 
@@ -216,16 +213,28 @@ describe("ConversationPracticePage — verdicts", () => {
 				if (other === verdict) continue;
 				expect(screen.queryByText(expectations[other])).toBeNull();
 			}
+
+			// AC1: automatically advanced to the following question, no
+			// manual step, no full reload.
+			expect(await screen.findByText("กำลังทำอะไรครับ")).toBeTruthy();
 		});
 	}
 
 	it("does not read an unscored turn as the learner's own mistake", async () => {
-		const port = portWithOpening();
+		const port = portWithSession();
 		port.judgement = {
 			status: "ok",
 			transcript: "",
 			verdict: "unscored",
 			feedbackEn: "The judge's answer could not be read.",
+		};
+		// A real next question, not the default `exhausted` — otherwise the
+		// page moves straight to the summary before this test could observe
+		// the per-turn verdict note.
+		port.nextResult = {
+			status: "ok",
+			questionText: "กำลังทำอะไรครับ",
+			questionAudioUrl: "blob:next-question",
 		};
 		renderPage(port);
 
@@ -233,12 +242,128 @@ describe("ConversationPracticePage — verdicts", () => {
 
 		expect(await screen.findByText(/does not count against you/i)).toBeTruthy();
 	});
+
+	it("distinguishes pass/fail/unscored in the running tally across three turns (AC1)", async () => {
+		const port = portWithSession();
+		port.judgements.push(
+			{ status: "ok", transcript: "a", verdict: "pass", feedbackEn: "" },
+			{ status: "ok", transcript: "b", verdict: "fail", feedbackEn: "" },
+		);
+		port.judgement = {
+			status: "ok",
+			transcript: "c",
+			verdict: "unscored",
+			feedbackEn: "",
+		};
+		port.nextResults.push(
+			{ status: "ok", questionText: "q2", questionAudioUrl: "blob:q2" },
+			{ status: "ok", questionText: "q3", questionAudioUrl: "blob:q3" },
+		);
+		renderPage(port);
+
+		await recordAndStop();
+		await screen.findByText("q2");
+		expect(screen.getByText(/1 passed \/ 1 asked/i)).toBeTruthy();
+
+		await recordAndStop();
+		await screen.findByText("q3");
+		expect(screen.getByText(/1 passed \/ 2 asked/i)).toBeTruthy();
+
+		await recordAndStop();
+		// unscored is named separately, never folded into "failed" or "passed".
+		await screen.findByText(/1 passed \/ 3 asked, 1 unscored/i);
+	});
+});
+
+describe("ConversationPracticePage — session exhaustion (AC2)", () => {
+	it("ends the session at a summary naming all three tally components, rather than hanging on a question that will never come", async () => {
+		const port = portWithSession();
+		port.judgement = {
+			status: "ok",
+			transcript: "สบายดีค่ะ",
+			verdict: "pass",
+			feedbackEn: "Correct.",
+		};
+		// Default `nextResult` is already `exhausted`.
+		renderPage(port);
+
+		await recordAndStop();
+
+		const summary = await screen.findByRole("status");
+		expect(summary.textContent).toMatch(/1 passed \/ 1 asked/i);
+		// The recording UI is gone — nothing left to answer.
+		expect(screen.queryByRole("button", { name: /record/i })).toBeNull();
+	});
+});
+
+describe("ConversationPracticePage — a mid-session backend failure (AC3)", () => {
+	it("shows the established unavailable state without discarding the tally already earned", async () => {
+		const port = portWithSession();
+		port.judgements.push({
+			status: "ok",
+			transcript: "a",
+			verdict: "pass",
+			feedbackEn: "",
+		});
+		port.nextResults.push({
+			status: "ok",
+			questionText: "q2",
+			questionAudioUrl: "blob:q2",
+		});
+		// The second turn's judge call fails.
+		port.judgement = { status: "unavailable" };
+		renderPage(port);
+
+		await recordAndStop();
+		await screen.findByText("q2");
+		await recordAndStop();
+
+		const alert = await screen.findByRole("alert");
+		expect(alert.textContent).toMatch(/backend is not running/i);
+		const tallyLine = await screen.findByRole("status");
+		expect(tallyLine.textContent).toMatch(/1 passed \/ 1 asked/i);
+	});
+});
+
+describe("ConversationPracticePage — question-audio blob URLs (AC4)", () => {
+	it("revokes the previous question's blob URL when the page advances to the next one", async () => {
+		const port = portWithSession();
+		port.judgement = {
+			status: "ok",
+			transcript: "a",
+			verdict: "pass",
+			feedbackEn: "",
+		};
+		port.nextResult = {
+			status: "ok",
+			questionText: "q2",
+			questionAudioUrl: "blob:q2",
+		};
+		renderPage(port);
+
+		await screen.findByText("สบายดีไหม");
+		expect(revokedObjectUrls()).not.toContain("blob:question-audio");
+
+		await recordAndStop();
+		await screen.findByText("q2");
+
+		expect(revokedObjectUrls()).toContain("blob:question-audio");
+	});
+
+	it("revokes the active question's blob URL on unmount", async () => {
+		const { unmount } = renderPage(portWithSession());
+		await screen.findByText("สบายดีไหม");
+
+		unmount();
+
+		expect(revokedObjectUrls()).toContain("blob:question-audio");
+	});
 });
 
 describe("ConversationPracticePage — microphone failures", () => {
 	it("shows a microphone-access message distinct from the backend-unavailable one when permission is denied", async () => {
 		setMicPermission("denied");
-		renderPage(portWithOpening());
+		renderPage(portWithSession());
 
 		const recordButton = await screen.findByRole("button", {
 			name: "Record your reply",
@@ -254,7 +379,7 @@ describe("ConversationPracticePage — microphone failures", () => {
 
 	it("shows a third, distinct message for a generic recorder failure", async () => {
 		setMicPermission("error");
-		renderPage(portWithOpening());
+		renderPage(portWithSession());
 
 		const recordButton = await screen.findByRole("button", {
 			name: "Record your reply",

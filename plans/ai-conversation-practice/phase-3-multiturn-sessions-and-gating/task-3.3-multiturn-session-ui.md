@@ -9,10 +9,13 @@ covers:
   - src/infrastructure/conversation/HttpConversationPracticeClient.test.ts
   - src/presentation/pages/ConversationPracticePage.tsx
   - src/presentation/pages/ConversationPracticePage.test.tsx
+  - src/presentation/test-utils/renderWithApp.tsx
   - e2e/conversation-practice.spec.ts
+  - e2e/conversation-practice-fail.spec.ts
+  - e2e/conversation-backend.setup.ts
 status: draft
 task_id: "3.3"
-task_status: pending
+task_status: complete
 depends_on: ["1.4", "3.1", "3.2"]
 size: x-large
 gate: human
@@ -26,6 +29,13 @@ ac_enforcement:
   - "AC4 -> a case: the question audio blob URL created via URL.createObjectURL is revoked (URL.revokeObjectURL) when the page advances to the next question and on unmount - a multi-turn session creates one blob per question, and a first draft never revoked any of them, leaking one object URL per turn for the session's lifetime"
   - "AC5 -> extends e2e/conversation-practice.spec.ts (task 1.4): an above-threshold seeded run (task 2.3's seedLearner.ts) completes a real 3-turn session (three fake-mic record/stop cycles against the real backend and bank) and sees a summary correctly naming how many of the 3 passed - this spec no longer asserts the locked path at all, since task 3.2's own e2e/conversation-gate.spec.ts is that proof now"
   - "AC6 -> none - manual: a person runs a real session end to end with their own voice (not the fake-mic fixture) at least once, confirming the full multi-turn loop feels usable - recorded as a close-out note, matching task 1.4's AC5 precedent for what automated tests can't judge"
+ac_tests:
+  - "AC1 -> src/presentation/pages/ConversationPracticePage.test.tsx::distinguishes pass/fail/unscored in the running tally across three turns (AC1)"
+  - "AC2 -> src/presentation/pages/ConversationPracticePage.test.tsx::ends the session at a summary naming all three tally components, rather than hanging on a question that will never come"
+  - "AC3 -> src/presentation/pages/ConversationPracticePage.test.tsx::shows the established unavailable state without discarding the tally already earned"
+  - "AC4 -> src/presentation/pages/ConversationPracticePage.test.tsx::revokes the previous question's blob URL when the page advances to the next one; src/presentation/pages/ConversationPracticePage.test.tsx::revokes the active question's blob URL on unmount"
+  - "AC5 -> e2e/conversation-practice.spec.ts::completes three real turns end to end against the real backend and bank, with a summary naming the total"
+  - "AC6 -> none"
 generated: {by: claude-sonnet-5/agent, at: 2026-09-11}
 profile_version: 1
 weight_votes:
@@ -147,3 +157,67 @@ file-level dependency, not just an API one.
 - `getOpening`/single-exchange `judgeReply`: removed from
   `ConversationPracticePort` and its HTTP client — confirmed by their
   absence, not a still-passing test against a removed method.
+
+## Manual Verification (this task's `gate: human`)
+
+Performed in an interactive session, at the user's explicit direction,
+matching task 1.4's precedent.
+
+**Implementation.** `ConversationPracticePort`/`HttpConversationPracticeClient`
+now expose `startSession`/`next`/`judgeReply(sessionId, ...)` against
+task 3.1's three endpoints; `getOpening` and the single-exchange
+`judgeReply(questionText, blob)` are gone, not deprecated alongside
+them. `ConversationPracticePage` is a small state machine
+(`loading → active ⇄ active → summary`, plus `unavailable` from any
+state) with a `{passed, failed, unscored}` tally never collapsed into
+two buckets, and the active question's blob URL is revoked the moment
+a new one replaces it (a ref, not React state, since revocation is a
+side effect with no render of its own). All frontend/unit gates pass
+(`npm test`: 40 tests across the four covered files, plus the wider
+`src` suite — 71 files / 802 tests — confirmed unaffected; `tsc -b`
+clean; `biome check` clean). The full e2e suite passes 10/10 (~1
+minute) including a new real 3-turn session case for AC5.
+
+**A genuine bank-selection edge found while writing the AC5 e2e
+case.** The default `gapEvery=7` `seedLearnedVocabulary` fixture only
+ever qualifies for **2** of the top tier's 8 entries (task 2.2 AC6),
+at *any* known-word count up to the full 600-word ceiling — checked
+directly against the real shipped bank and `select_entry`, not
+assumed. Short conversational entries lean on common function words
+that keep landing on a 1-in-7 gap position, so removing them
+disqualifies most of the tier regardless of how many other words are
+known. This is a real, if narrow, sharp edge in the entry-level
+containment design (tasks 2.2/2.3): a realistically-gappy learner can
+be "vocabulary-rich" by count while still only ever seeing 2 of a
+tier's entries. AC5's own test uses `gapEvery=15` to route around it
+(reaching all 8 qualifying entries) rather than changing the
+production selection logic, since fixing the underlying bias would be
+new scope for tasks 2.2/2.3, not this task — flagged here for the
+plan owner to decide whether it's worth a follow-up.
+
+**Task 3.1's own retirement claim did not hold — left as-is, not
+fixed here.** Task 3.1's Description states it "removes their route
+handlers from `backend/app/main.py`" for the phase-1/2 standalone
+endpoints (`/conversation/opening` — both `POST` and the `GET`
+back-compat shim — and `/conversation/judge`). Checked directly
+against `backend/app/main.py`: **both are still live**, alongside the
+new session routes. This task's own frontend retirement (the port and
+HTTP client no longer call them) is real and complete, but the
+backend surface was not actually cleaned up as the plan's
+Architectural Decision describes. Not fixed in this task: doing so
+would mean rewriting large parts of `backend/tests/test_health.py` and
+`backend/tests/test_pipeline.py` (598 lines combined), which prove
+*other* tasks' acceptance criteria (1.1, 1.2, 2.3's AC4) and are
+outside this task's `covers` — the same reasoning task 3.1's own
+Architectural Decision gives for why the two sides must retire
+together, now working in reverse to argue against a unilateral
+backend change from here. Recorded as a known gap for the plan owner:
+the dead routes are unreachable from the shipped frontend but still
+present a small unnecessary trust-boundary surface (SA-1/QA-31's
+"any local origin can reach the backend" finding applies to them too).
+
+**AC6 — no human has run a real voice session yet.** This session has
+no microphone (see task 1.4's own AC5 note for the same constraint).
+The mechanic is proven end to end with the fake-mic fixture (AC5); the
+subjective "does a real multi-turn conversation feel usable" judgment
+AC6 asks for is still open until a person actually tries it.

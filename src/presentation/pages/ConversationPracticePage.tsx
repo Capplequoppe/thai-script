@@ -7,7 +7,6 @@ import {
 } from "../../domain/conversation/services/ConversationUnlockService";
 import type {
 	ConversationJudgeResult,
-	ConversationOpeningResult,
 	ConversationVerdict,
 } from "../../domain/conversation/types";
 import type { VocabularyService } from "../../domain/vocabulary/services/VocabularyLessonService";
@@ -58,15 +57,55 @@ export function knownWordsFor(
 	return vocab.getLearnedEntries().map((entry) => entry.thai);
 }
 
+interface SessionQuestion {
+	sessionId: string;
+	questionText: string;
+	questionAudioUrl: string;
+}
+
+/** Pass/fail/unscored, kept as three separate counts (never collapsed). */
+interface Tally {
+	passed: number;
+	failed: number;
+	unscored: number;
+}
+
+const EMPTY_TALLY: Tally = { passed: 0, failed: 0, unscored: 0 };
+
+function tallyTotal(tally: Tally): number {
+	return tally.passed + tally.failed + tally.unscored;
+}
+
+function tallyAfter(tally: Tally, verdict: ConversationVerdict): Tally {
+	return {
+		passed: tally.passed + (verdict === "pass" ? 1 : 0),
+		failed: tally.failed + (verdict === "fail" ? 1 : 0),
+		unscored: tally.unscored + (verdict === "unscored" ? 1 : 0),
+	};
+}
+
+/** e.g. "2 passed / 3 asked, 1 unscored" — always names all three components. */
+function tallySummary(tally: Tally): string {
+	const base = `${tally.passed} passed / ${tallyTotal(tally)} asked`;
+	return tally.unscored > 0 ? `${base}, ${tally.unscored} unscored` : base;
+}
+
+type Phase =
+	| { kind: "loading" }
+	| { kind: "unavailable" }
+	| { kind: "active"; question: SessionQuestion }
+	| { kind: "summary" };
+
 /**
- * Spoken conversation practice: hear one Thai question, record a reply, see
- * whether the local backend judged it as an acceptable answer.
+ * Spoken conversation practice: a multi-turn session against the real
+ * backend — hear a question, record a reply, see whether it was judged an
+ * acceptable answer, then automatically move to the next question until the
+ * bank's matched tier runs out.
  *
- * Phase 1 asks exactly one hardcoded question — real, vocabulary-scoped
- * content is phase 2's job. There is deliberately no self-rating, no SRS
- * card and no history entry: a judge verdict is a different kind of signal
- * from a recall rating, and how it should feed the scheduler, if at all, is
- * not this task's call to make.
+ * There is deliberately no self-rating, no SRS card and no history entry: a
+ * judge verdict is a different kind of signal from a recall rating, and how
+ * it should feed the scheduler, if at all, is not this task's call to make
+ * (see the Architectural Decision in this task's plan document).
  */
 export function ConversationPracticePage() {
 	const { conversationPractice, vocab, lesson } = useApp();
@@ -74,64 +113,127 @@ export function ConversationPracticePage() {
 		vocab.getLearnedCount(),
 		lesson.getGrammarLearnedCount(),
 	);
-	const [opening, setOpening] = useState<ConversationOpeningResult | null>(
-		null,
-	);
-	const [judgement, setJudgement] = useState<ConversationJudgeResult | null>(
-		null,
-	);
+	const [phase, setPhase] = useState<Phase>({ kind: "loading" });
+	const [tally, setTally] = useState<Tally>(EMPTY_TALLY);
 	const [judging, setJudging] = useState(false);
+	const [lastJudgement, setLastJudgement] =
+		useState<ConversationJudgeResult | null>(null);
 	const { state, audioBlob, start, stop, reset } = useMicRecorder();
 	const audioRef = useRef<HTMLAudioElement | null>(null);
+	// The currently-live question's blob URL, so the previous one can be
+	// revoked the moment a new one replaces it — a multi-turn session
+	// creates one blob per question, and none of them are otherwise ever
+	// released for the session's lifetime (AC4).
+	const activeAudioUrlRef = useRef<string | null>(null);
 
+	const setActiveQuestion = useCallback((question: SessionQuestion) => {
+		if (
+			activeAudioUrlRef.current &&
+			activeAudioUrlRef.current !== question.questionAudioUrl
+		) {
+			URL.revokeObjectURL(activeAudioUrlRef.current);
+		}
+		activeAudioUrlRef.current = question.questionAudioUrl;
+		setPhase({ kind: "active", question });
+	}, []);
+
+	useEffect(
+		() => () => {
+			if (activeAudioUrlRef.current) {
+				URL.revokeObjectURL(activeAudioUrlRef.current);
+				activeAudioUrlRef.current = null;
+			}
+		},
+		[],
+	);
+
+	// Starts the session once, only for an unlocked learner — the gate is
+	// enforced here too, not only by hiding the Dashboard tile (task 3.2
+	// AC6/AC7): a learner who navigates here directly while below threshold
+	// must never reach the backend at all.
 	useEffect(() => {
-		// The gate is enforced here too, not only by hiding the Dashboard
-		// tile (task 3.2 AC6/AC7) — a learner who navigates here directly
-		// while below threshold must never reach the backend at all.
 		if (!unlock.unlocked) return;
 		let cancelled = false;
-		const knownWords = knownWordsFor(vocab);
-		conversationPractice.getOpening(knownWords).then((result) => {
-			if (!cancelled) setOpening(result);
+		conversationPractice.startSession(knownWordsFor(vocab)).then((result) => {
+			if (cancelled) return;
+			if (result.status === "unavailable") {
+				setPhase({ kind: "unavailable" });
+				return;
+			}
+			setActiveQuestion({
+				sessionId: result.sessionId,
+				questionText: result.questionText,
+				questionAudioUrl: result.questionAudioUrl,
+			});
 		});
 		return () => {
 			cancelled = true;
 		};
-	}, [conversationPractice, vocab, unlock.unlocked]);
+	}, [conversationPractice, vocab, unlock.unlocked, setActiveQuestion]);
 
-	const questionText = opening?.status === "ok" ? opening.questionText : null;
-	const questionAudioUrl =
-		opening?.status === "ok" ? opening.questionAudioUrl : null;
+	const activeQuestion = phase.kind === "active" ? phase.question : null;
 
-	// One finished take → one judgement. Keyed on the blob's identity, so a
+	// One finished take → judge it, then automatically advance (AC1) —
+	// never a manual "next" step. Keyed on the blob's identity, so a
 	// re-render never re-submits the same recording.
 	useEffect(() => {
-		if (state !== "stopped" || !audioBlob || !questionText) return;
+		if (state !== "stopped" || !audioBlob || !activeQuestion) return;
+		const { sessionId, questionText } = activeQuestion;
 		let cancelled = false;
 		setJudging(true);
-		conversationPractice.judgeReply(questionText, audioBlob).then((result) => {
-			if (cancelled) return;
-			setJudgement(result);
-			setJudging(false);
-		});
+		conversationPractice
+			.judgeReply(sessionId, questionText, audioBlob)
+			.then(async (judgement) => {
+				if (cancelled) return;
+				if (judgement.status === "unavailable") {
+					setJudging(false);
+					setPhase({ kind: "unavailable" });
+					return;
+				}
+				setLastJudgement(judgement);
+				setTally((t) => tallyAfter(t, judgement.verdict));
+
+				const nextResult = await conversationPractice.next(sessionId);
+				if (cancelled) return;
+				setJudging(false);
+				reset();
+				if (nextResult.status === "unavailable") {
+					setPhase({ kind: "unavailable" });
+				} else if (nextResult.status === "exhausted") {
+					setPhase({ kind: "summary" });
+				} else {
+					setActiveQuestion({
+						sessionId,
+						questionText: nextResult.questionText,
+						questionAudioUrl: nextResult.questionAudioUrl,
+					});
+				}
+			});
 		return () => {
 			cancelled = true;
 		};
-	}, [state, audioBlob, questionText, conversationPractice]);
+	}, [
+		state,
+		audioBlob,
+		activeQuestion,
+		conversationPractice,
+		reset,
+		setActiveQuestion,
+	]);
 
 	// Same replay convention as SentenceListeningChallenge /
 	// SymbolDictationChallenge: a fresh `Audio` per press, the previous one
 	// stopped first, rejections swallowed (autoplay policy).
 	const playQuestion = useCallback(() => {
-		if (!questionAudioUrl) return;
+		if (!activeQuestion) return;
 		if (audioRef.current) {
 			audioRef.current.pause();
 			audioRef.current.currentTime = 0;
 		}
-		const audio = new Audio(questionAudioUrl);
+		const audio = new Audio(activeQuestion.questionAudioUrl);
 		audioRef.current = audio;
 		audio.play().catch(() => {});
-	}, [questionAudioUrl]);
+	}, [activeQuestion]);
 
 	useEffect(
 		() => () => {
@@ -140,11 +242,6 @@ export function ConversationPracticePage() {
 		},
 		[],
 	);
-
-	function tryAgain() {
-		setJudgement(null);
-		reset();
-	}
 
 	// The actual security/product boundary (task 3.2's Architectural
 	// Decision) — the Dashboard tile hiding the entry point is only a
@@ -167,28 +264,46 @@ export function ConversationPracticePage() {
 		);
 	}
 
-	if (opening === null) {
+	if (phase.kind === "loading") {
 		return <p className="p-4">Connecting to the conversation backend…</p>;
 	}
 
 	// No question means nothing to reply to — so no record control at all,
-	// rather than one that would silently do nothing.
-	if (opening.status === "unavailable") {
+	// rather than one that would silently do nothing. The tally so far stays
+	// visible: a learner who got through three questions before the backend
+	// dropped should still see it, not nothing (AC3).
+	if (phase.kind === "unavailable") {
 		return (
 			<div className="space-y-4 p-4">
 				<h1 className="text-xl font-semibold">Conversation practice</h1>
+				{tallyTotal(tally) > 0 && (
+					<output>{tallySummary(tally)} so far.</output>
+				)}
 				<p role="alert">{BACKEND_UNAVAILABLE_MESSAGE}</p>
 			</div>
 		);
 	}
 
+	if (phase.kind === "summary") {
+		return (
+			<div className="space-y-4 p-4">
+				<h1 className="text-xl font-semibold">Conversation practice</h1>
+				<output>{tallySummary(tally)}.</output>
+			</div>
+		);
+	}
+
+	const { questionText } = phase.question;
+
 	return (
 		<div className="space-y-6 p-4">
 			<h1 className="text-xl font-semibold">Conversation practice</h1>
 
+			{tallyTotal(tally) > 0 && <p>{tallySummary(tally)} so far.</p>}
+
 			<section className="space-y-3 text-center">
 				<p className="text-3xl" lang="th">
-					{opening.questionText}
+					{questionText}
 				</p>
 				<button
 					type="button"
@@ -205,7 +320,9 @@ export function ConversationPracticePage() {
 			</section>
 
 			<section className="space-y-3">
-				{state === "idle" && <Button onClick={start}>Record your reply</Button>}
+				{state === "idle" && !judging && (
+					<Button onClick={start}>Record your reply</Button>
+				)}
 				{state === "recording" && (
 					<Button onClick={stop}>Stop recording</Button>
 				)}
@@ -221,24 +338,24 @@ export function ConversationPracticePage() {
 						is connected and try again.
 					</p>
 				)}
-				{state === "stopped" && judging && <p>Judging your reply…</p>}
-				{state === "stopped" && judgement?.status === "unavailable" && (
-					<p role="alert">{BACKEND_UNAVAILABLE_MESSAGE}</p>
-				)}
-				{state === "stopped" && judgement?.status === "ok" && (
+				{judging && <p>Judging your reply…</p>}
+				{!judging && lastJudgement?.status === "ok" && (
 					<div className="space-y-1">
-						<p style={{ color: VERDICT_PRESENTATION[judgement.verdict].color }}>
-							<strong>{VERDICT_PRESENTATION[judgement.verdict].label}</strong>
+						<p
+							style={{
+								color: VERDICT_PRESENTATION[lastJudgement.verdict].color,
+							}}
+						>
+							<strong>
+								{VERDICT_PRESENTATION[lastJudgement.verdict].label}
+							</strong>
 						</p>
-						<p>{VERDICT_PRESENTATION[judgement.verdict].note}</p>
+						<p>{VERDICT_PRESENTATION[lastJudgement.verdict].note}</p>
 						<p>
-							We heard: <span lang="th">{judgement.transcript}</span>
+							We heard: <span lang="th">{lastJudgement.transcript}</span>
 						</p>
-						<p>{judgement.feedbackEn}</p>
+						<p>{lastJudgement.feedbackEn}</p>
 					</div>
-				)}
-				{state === "stopped" && !judging && (
-					<Button onClick={tryAgain}>Record another reply</Button>
 				)}
 			</section>
 		</div>

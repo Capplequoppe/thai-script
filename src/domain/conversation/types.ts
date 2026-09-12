@@ -13,9 +13,28 @@
  * indistinguishable the way they do when a caller forgets a try/catch.
  */
 
-/** The AI partner's opening turn: Thai text plus playable audio. */
-export type ConversationOpeningResult =
+/**
+ * Starting a session: the AI partner's first turn, plus the session id every
+ * later call in this session must carry.
+ */
+export type ConversationSessionStartResult =
+	| {
+			status: "ok";
+			sessionId: string;
+			questionText: string;
+			questionAudioUrl: string;
+	  }
+	| { status: "unavailable" };
+
+/**
+ * Advancing to the next question in an already-started session.
+ * `"exhausted"` is a named state, not an error: the matched tier had no
+ * unasked entry left, which is a normal, expected end to a session (task
+ * 3.1) — distinct from the backend simply not answering.
+ */
+export type ConversationNextResult =
 	| { status: "ok"; questionText: string; questionAudioUrl: string }
+	| { status: "exhausted" }
 	| { status: "unavailable" };
 
 /**

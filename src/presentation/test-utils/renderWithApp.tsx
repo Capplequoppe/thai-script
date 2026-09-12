@@ -39,7 +39,8 @@ import { QueryDashboardUseCase } from "../../application/use-cases/QueryDashboar
 import { StartLessonUseCase } from "../../application/use-cases/StartLessonUseCase";
 import type {
 	ConversationJudgeResult,
-	ConversationOpeningResult,
+	ConversationNextResult,
+	ConversationSessionStartResult,
 } from "../../domain/conversation/types";
 import type { GameHistoryRepository } from "../../domain/game/ports/GameHistoryRepository";
 import { GameItemSelectionService } from "../../domain/game/services/GameItemSelectionService";
@@ -150,6 +151,12 @@ export function createdAudioUrls(): readonly string[] {
 // --- Object-URL stub (jsdom implements neither create nor revoke) ---
 
 let objectUrlCount = 0;
+let revokedUrls: string[] = [];
+
+/** URLs passed to `URL.revokeObjectURL` since the current test began. */
+export function revokedObjectUrls(): readonly string[] {
+	return revokedUrls;
+}
 
 // --- Microphone stubs (jsdom has neither `MediaRecorder` nor `mediaDevices`) ---
 
@@ -216,11 +223,14 @@ beforeEach(() => {
 	globalThis.Audio = StubAudio as unknown as typeof Audio;
 	StubAudio.createdUrls = [];
 	objectUrlCount = 0;
+	revokedUrls = [];
 	URL.createObjectURL = () => {
 		objectUrlCount += 1;
 		return `blob:test/${objectUrlCount}`;
 	};
-	URL.revokeObjectURL = () => {};
+	URL.revokeObjectURL = (url: string) => {
+		revokedUrls.push(url);
+	};
 	micPermission = "granted";
 	globalThis.MediaRecorder =
 		StubMediaRecorder as unknown as typeof MediaRecorder;
@@ -642,24 +652,52 @@ export function makeFixedRoundGame(
 
 /**
  * A `ConversationPracticePort` that answers with whatever the test sets and
- * records what it was asked. Defaults to `"unavailable"` on both calls — the
+ * records what it was asked. Defaults to `"unavailable"` on every call — the
  * honest default for a harness with no backend behind it.
+ *
+ * `next` and `judgement` are queues, not single values: a multi-turn test
+ * (task 3.3) drives several turns in one render, and each one needs its own
+ * answer — `nextResults`/`judgements` are shifted one at a time, falling
+ * back to the last-set single value once exhausted so a single-turn test
+ * can keep just setting `.judgement`/`.session` without touching the queues.
  */
 export class StubConversationPracticePort implements ConversationPracticePort {
-	opening: ConversationOpeningResult = { status: "unavailable" };
+	session: ConversationSessionStartResult = { status: "unavailable" };
 	judgement: ConversationJudgeResult = { status: "unavailable" };
-	readonly judgeCalls: { questionText: string; replyAudio: Blob }[] = [];
+	nextResult: ConversationNextResult = { status: "exhausted" };
+	readonly nextResults: ConversationNextResult[] = [];
+	readonly judgements: ConversationJudgeResult[] = [];
+	readonly startSessionCalls: string[][] = [];
+	readonly nextCalls: string[] = [];
+	readonly judgeCalls: {
+		sessionId: string;
+		questionText: string;
+		replyAudio: Blob;
+	}[] = [];
 
-	async getOpening(): Promise<ConversationOpeningResult> {
-		return this.opening;
+	async startSession(
+		knownWords: string[],
+	): Promise<ConversationSessionStartResult> {
+		this.startSessionCalls.push(knownWords);
+		return this.session;
+	}
+
+	async next(sessionId: string): Promise<ConversationNextResult> {
+		this.nextCalls.push(sessionId);
+		return this.nextResults.length > 0
+			? (this.nextResults.shift() as ConversationNextResult)
+			: this.nextResult;
 	}
 
 	async judgeReply(
+		sessionId: string,
 		questionText: string,
 		replyAudio: Blob,
 	): Promise<ConversationJudgeResult> {
-		this.judgeCalls.push({ questionText, replyAudio });
-		return this.judgement;
+		this.judgeCalls.push({ sessionId, questionText, replyAudio });
+		return this.judgements.length > 0
+			? (this.judgements.shift() as ConversationJudgeResult)
+			: this.judgement;
 	}
 }
 

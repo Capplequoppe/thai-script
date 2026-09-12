@@ -1,6 +1,7 @@
 import type {
 	ConversationJudgeResult,
-	ConversationOpeningResult,
+	ConversationNextResult,
+	ConversationSessionStartResult,
 	ConversationVerdict,
 } from "../../domain/conversation/types";
 import type { ConversationPracticePort } from "../../domain/ports/ConversationPracticePort";
@@ -95,6 +96,33 @@ async function toBase64(blob: Blob): Promise<string> {
 	return btoa(binary);
 }
 
+/** Reads `{question_text, question_audio_base64, question_audio_mime_type}` off `body`, or `null` if any is missing/not a string. */
+function questionFields(
+	body: Record<string, unknown>,
+): { questionText: string; questionAudioUrl: string } | null {
+	const { question_text, question_audio_base64, question_audio_mime_type } =
+		body;
+	if (
+		!isString(question_text) ||
+		!isString(question_audio_base64) ||
+		!isString(question_audio_mime_type)
+	) {
+		return null;
+	}
+	try {
+		return {
+			questionText: question_text,
+			questionAudioUrl: toBlobUrl(
+				question_audio_base64,
+				question_audio_mime_type,
+			),
+		};
+	} catch {
+		// Undecodable base64 is a backend that isn't answering usefully.
+		return null;
+	}
+}
+
 /**
  * `ConversationPracticePort` over the local backend's HTTP contract
  * (`docs/conversation-backend-api.md`).
@@ -108,42 +136,42 @@ async function toBase64(blob: Blob): Promise<string> {
 export class HttpConversationPracticeClient
 	implements ConversationPracticePort
 {
-	async getOpening(knownWords: string[]): Promise<ConversationOpeningResult> {
+	async startSession(
+		knownWords: string[],
+	): Promise<ConversationSessionStartResult> {
 		const body = asRecord(
-			await fetchJson("/conversation/opening", {
+			await fetchJson("/conversation/session/start", {
 				method: "POST",
 				headers: { "Content-Type": "application/json" },
 				body: JSON.stringify({ known_words: knownWords }),
 			}),
 		);
+		if (!body || !isString(body.session_id)) return { status: "unavailable" };
+
+		const question = questionFields(body);
+		if (!question) return { status: "unavailable" };
+
+		return { status: "ok", sessionId: body.session_id, ...question };
+	}
+
+	async next(sessionId: string): Promise<ConversationNextResult> {
+		const body = asRecord(
+			await fetchJson(
+				`/conversation/session/${encodeURIComponent(sessionId)}/next`,
+				{ method: "POST" },
+			),
+		);
 		if (!body) return { status: "unavailable" };
+		if (body.exhausted === true) return { status: "exhausted" };
 
-		const { question_text, question_audio_base64, question_audio_mime_type } =
-			body;
-		if (
-			!isString(question_text) ||
-			!isString(question_audio_base64) ||
-			!isString(question_audio_mime_type)
-		) {
-			return { status: "unavailable" };
-		}
+		const question = questionFields(body);
+		if (!question) return { status: "unavailable" };
 
-		try {
-			return {
-				status: "ok",
-				questionText: question_text,
-				questionAudioUrl: toBlobUrl(
-					question_audio_base64,
-					question_audio_mime_type,
-				),
-			};
-		} catch {
-			// Undecodable base64 is a backend that isn't answering usefully.
-			return { status: "unavailable" };
-		}
+		return { status: "ok", ...question };
 	}
 
 	async judgeReply(
+		sessionId: string,
 		questionText: string,
 		replyAudio: Blob,
 	): Promise<ConversationJudgeResult> {
@@ -155,15 +183,18 @@ export class HttpConversationPracticeClient
 		}
 
 		const body = asRecord(
-			await fetchJson("/conversation/judge", {
-				method: "POST",
-				headers: { "Content-Type": "application/json" },
-				body: JSON.stringify({
-					question_text: questionText,
-					reply_audio_base64: replyAudioBase64,
-					reply_audio_mime_type: replyAudio.type,
-				}),
-			}),
+			await fetchJson(
+				`/conversation/session/${encodeURIComponent(sessionId)}/judge`,
+				{
+					method: "POST",
+					headers: { "Content-Type": "application/json" },
+					body: JSON.stringify({
+						question_text: questionText,
+						reply_audio_base64: replyAudioBase64,
+						reply_audio_mime_type: replyAudio.type,
+					}),
+				},
+			),
 		);
 		if (!body) return { status: "unavailable" };
 

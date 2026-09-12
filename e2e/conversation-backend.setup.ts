@@ -58,7 +58,17 @@ test("start the conversation backend", async () => {
 	killWhateverIsOnPort8000();
 	const proc = spawn(
 		"uv",
-		["run", "--project", ".", "uvicorn", "app.main:app", "--host", "127.0.0.1", "--port", "8000"],
+		[
+			"run",
+			"--project",
+			".",
+			"uvicorn",
+			"app.main:app",
+			"--host",
+			"127.0.0.1",
+			"--port",
+			"8000",
+		],
 		{
 			cwd: path.join(process.cwd(), "backend"),
 			detached: true,

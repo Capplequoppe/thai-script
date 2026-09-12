@@ -1,6 +1,6 @@
 import path from "node:path";
-import { expect, test } from "@playwright/test";
 import type { APIRequestContext } from "@playwright/test";
+import { expect, test } from "@playwright/test";
 import { firstGrammarIds, seedLearnedVocabulary } from "./fixtures/seedLearner";
 
 /**

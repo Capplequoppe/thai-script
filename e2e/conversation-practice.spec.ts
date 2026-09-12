@@ -188,6 +188,70 @@ test.describe("seeded learner state", () => {
 	});
 });
 
+test.describe("conversation practice — a real multi-turn session (task 3.3 AC5)", () => {
+	test.beforeAll(async ({ request }) => {
+		await waitForBackendReady(request);
+	});
+
+	test("completes three real turns end to end against the real backend and bank, with a summary naming the total", async ({
+		page,
+	}) => {
+		// This spec's own locked-path proof was retired (task 3.2 owns it
+		// now, in e2e/conversation-gate.spec.ts) — this test only proves the
+		// multi-turn session mechanic for an already-unlocked learner.
+		//
+		// gapEvery=15, not the default 7: checked directly against the real
+		// shipped bank, a 1-in-7 gappy set only ever qualifies for 2 of tier
+		// 5's 8 entries at ANY word count up to 600 (common short-sentence
+		// function words keep landing on a gap position) — a real, if
+		// narrow, edge in task 2.2/2.3's entry-level containment design,
+		// not a bug in this test. A wider gap avoids it and reaches all 8
+		// qualifying entries, giving headroom for three non-repeating turns.
+		await seedLearnedVocabulary(page, 250, 15, firstGrammarIds(5));
+		await page.goto("/thai-script/#/conversation");
+
+		for (let turn = 1; turn <= 3; turn++) {
+			const question = page.locator('p[lang="th"]');
+			await expect(question).toBeVisible({ timeout: 60_000 });
+			const questionText = (await question.innerText()).trim();
+			expect(questionText.length).toBeGreaterThan(0);
+
+			await page.getByRole("button", { name: "Record your reply" }).click();
+			await page.waitForTimeout(3_000);
+			await page.getByRole("button", { name: "Stop recording" }).click();
+
+			// Transcript non-empty BEFORE the verdict, same discipline AC2
+			// established — a capture-timing miss must report as "nothing
+			// was heard", never as a false verdict.
+			await expect(page.getByText("We heard:")).toBeVisible({
+				timeout: 30_000,
+			});
+			const transcript = await page.locator('span[lang="th"]').textContent();
+			expect(transcript?.trim().length ?? 0).toBeGreaterThan(0);
+
+			if (turn < 3) {
+				// AC1: automatically advances to a genuinely different
+				// question, with no manual step and no full page reload.
+				await page.waitForFunction(
+					(prevText) =>
+						document.querySelector('p[lang="th"]')?.textContent?.trim() !==
+						prevText,
+					questionText,
+					{ timeout: 60_000 },
+				);
+			}
+		}
+
+		// Real judge verdicts vary by question and reply content, so this
+		// proves the mechanic (three real record -> judge -> next cycles,
+		// tallied correctly) rather than a specific pass count — the tally
+		// names all three components (AC1) and totals exactly 3 asked.
+		await expect(page.getByText(/\d+ passed \/ 3 asked/)).toBeVisible({
+			timeout: 30_000,
+		});
+	});
+});
+
 test.describe("conversation practice — personalized by known vocabulary (AC4)", () => {
 	test.beforeAll(async ({ request }) => {
 		await waitForBackendReady(request);
