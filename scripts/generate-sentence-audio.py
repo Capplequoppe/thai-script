@@ -23,23 +23,37 @@ Per sentence:
      clips the first phoneme.
   4. **Encode** to mono 44.1kHz ~64kbps mp3 — matching the 177 clips
      already shipped in `public/audio/`.
-  5. **Verify by transcribing the encoded mp3 back** through Whisper and
-     comparing it to the intended text. **This check is not a formality
-     — it fails often, and for a real reason.** F5-TTS voice cloning
-     regularly bleeds a fragment of the *reference clip's* tail into the
-     head of the generated audio (a clip for "สภาพอากาศวันนี้…" comes
-     back transcribing as "เขียวคจีสภาพอากาศวันนี้…" — "เขียวขจี" being
-     the reference recording's last word), and very short texts get a
-     duration estimate so tight the utterance is unintelligible. Both
-     are per-seed, so a failed take whose intended sentence *is* intact
-     is first repaired — Whisper's word timestamps say where the bleed
-     ends, and the head is cut there — and the repair is then put
-     through the same round-trip, which is what catches the cut that
-     ate a real first syllable. A take that neither passes nor repairs
-     is retried at a different seed and, for texts short enough that
-     time is the problem, a slower speed. Only audio that survives its
-     own round-trip is written and wired in; anything that never does is
-     reported for a human.
+  5. **Verify by transcribing the encoded mp3 back** through Whisper.
+     **This is not a formality — takes fail it constantly, for reasons
+     that are audible.** F5-TTS voice cloning echoes the tail of the
+     *reference clip* into the head of the generated audio: a clip for
+     "สภาพอากาศวันนี้…" comes back as "เขียวคจีสภาพอากาศวันนี้…",
+     "เขียวขจี" being the reference recording's last word. Because the
+     generated window is a fixed length derived from character count,
+     an echo at the front also squeezes the sentence itself into less
+     time, so a bled take is a *rushed* take.
+
+     Three checks, because no one of them sees all of it:
+
+     - **The transcript must match.** Catches an echo Whisper heard as
+       words, and a garbled utterance.
+     - **The first word must start when the padding ends.** Catches the
+       rest: `vad_filter` drops non-speech before transcription, so an
+       echo Whisper classed as noise leaves a *perfect* transcript.
+       Measured on shipped clips — a 0.94s head gap behind a
+       character-exact transcript. Without this check they pass.
+     - **The delivery must not be rushed.** The reference voice runs at
+       ~106ms/char; a clean take lands at 96-108. Anything much faster
+       is a take that spent its opening on an echo.
+
+     A take failing any of them is retried, along two axes. **Seed**
+     is the cheap one — the echo is a property of the sampled
+     trajectory, so a fresh seed often just doesn't have it. **The
+     reference clip** is the second, and it is not redundant with the
+     first: sentences exist that fail all twelve seeds on one clip and
+     pass on another, in both directions. `speed`, `cfg_strength` and
+     `nfe_step` were all measured and are *not* levers — slowing speed
+     down enlarges the window the echo grows into, making it worse.
 
 Filenames follow the existing convention, `sentence-<romanization-slug>.mp3`
 — `audio_slug` below reproduces all 177 committed filenames exactly from
@@ -64,6 +78,8 @@ import sys
 import tempfile
 import time
 import unicodedata
+from collections.abc import Sequence
+from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
 
@@ -81,19 +97,44 @@ MP3_BITRATE = "64k"
 TRIM_THRESHOLD_DBFS = -45.0
 TRIM_WINDOW_MS = 10
 
-# Retry ladder. Seeds first, at natural speed: the reference-tail bleed is
-# a property of the sampled trajectory, so a different seed usually just
-# doesn't have it. Slower speeds come later and exist for short texts,
-# where F5-TTS derives the generated duration from character count and
-# leaves a two-syllable utterance ~0.4s to happen in — too rushed to be
-# recognisable at any seed.
-RETRY_SEEDS = (42, 1, 2, 3, 7, 11)
-RETRY_SPEEDS = (1.0, 0.85, 0.7)
+# The reference echo is a property of the sampled trajectory, so a fresh
+# seed usually just doesn't have it — measured at roughly a 1-in-3 hit
+# rate per take, which is what sets this list's length. Speed is
+# deliberately NOT a lever: 1.0, 0.85, 0.75 and 0.65 were measured, and
+# every reduction made the echo *longer* ("เขียวขจี" grew to
+# "มีต้นไม้เขียวขจี" at 0.65), because a slower speed buys a longer
+# window and the echo expands to fill it.
+RETRY_SEEDS = (42, 1, 2, 3, 7, 11, 13, 17, 19, 23, 29, 31)
+SYNTHESIS_SPEED = 1.0
 
-# Cut this much *before* the intended sentence's first transcribed
-# character when repairing a bleed, so ASR's idea of the word boundary
-# being a few milliseconds late doesn't shave the opening consonant.
-HEAD_TRIM_MARGIN_SECONDS = 0.06
+# Extra reference clips, tried in order once every seed on the previous
+# one has failed. All are cuts of the same personal recording as the
+# conversation backend's own clip, so the voice never changes — only
+# which few seconds of it the model is conditioned on, which measurably
+# decides whether a given sentence comes out clean. Their transcripts
+# are Whisper's, produced once by this script's own --backend-dir model.
+EXTRA_REFERENCES_MANIFEST = Path(__file__).resolve().parent / "assets" / "reference-clips.json"
+
+# The reference recording speaks at 6.15s / 58 characters = 106 ms/char.
+# Clean takes land at 96-108; takes that open with an echo are squeezed
+# to 64-91, which is the "far too fast" a listener notices immediately.
+REFERENCE_MS_PER_CHAR = 106.0
+
+# How late the first transcribed word may start, relative to the end of
+# the padding, before the gap is treated as audible content Whisper's
+# VAD threw away rather than ordinary timestamp slop.
+HEAD_GAP_TOLERANCE_SECONDS = 0.12
+
+# F5-TTS paces the utterance to fill its whole window, so the final
+# syllable habitually runs into the last sample at near-full level — the
+# raw output was measured going from 0 dBFS to digital silence inside one
+# 20ms window, which is heard as the last syllable being chopped off.
+# Nothing is actually missing (the transcript is exact); what is missing
+# is the decay. A short fade supplies it. Rejecting these instead was
+# measured to reject nearly every take, since almost all of them end this
+# way — this is how the model behaves, not a defect in a given take.
+FADE_IN_MS = 10
+FADE_OUT_MS = 35
 
 # Characters that carry no pronunciation difference and so must not count
 # against the STT round-trip: ASCII/Thai punctuation and all whitespace.
@@ -183,9 +224,43 @@ def assign_filenames(sentences: list[dict[str, Any]]) -> dict[str, str]:
     return names
 
 
-def retry_plan(max_attempts: int) -> list[tuple[int, float]]:
-    """The (seed, speed) ladder, longest-odds last."""
-    plan = [(seed, speed) for speed in RETRY_SPEEDS for seed in RETRY_SEEDS]
+@dataclass(frozen=True)
+class Reference:
+    """One voice-cloning reference: a clip and its exact transcript."""
+
+    name: str
+    audio_path: Path
+    transcript: str
+
+
+def load_references(pipeline: Any, manifest_path: Path) -> list[Reference]:
+    """The conversation backend's own clip first, then the extras.
+
+    The backend's clip leads because it is the voice the conversation
+    feature ships, and most sentences never need anything else.
+    """
+    references = [
+        Reference("backend", pipeline.REFERENCE_CLIP_PATH, pipeline.REFERENCE_CLIP_TRANSCRIPT)
+    ]
+    if manifest_path.is_file():
+        for entry in json.loads(manifest_path.read_text(encoding="utf-8")):
+            references.append(
+                Reference(
+                    entry["name"], manifest_path.parent / entry["audio"], entry["transcript"]
+                )
+            )
+    return references
+
+
+def retry_plan(references: Sequence[Reference], max_attempts: int) -> list[tuple[Reference, int]]:
+    """Every (reference, seed) pair to try, cheapest-first.
+
+    Seeds are exhausted on one reference before moving to the next,
+    rather than interleaved: the leading reference clears most sentences
+    within a couple of takes, so interleaving would only spread the
+    common case across more clips for no gain.
+    """
+    plan = [(reference, seed) for reference in references for seed in RETRY_SEEDS]
     return plan[:max_attempts]
 
 
@@ -236,9 +311,33 @@ def trim_and_pad(mono: Any, sample_rate: int, pad_ms: int) -> tuple[Any, float]:
         # empty file, and let the STT check be the thing that fails it.
         start, end = 0, len(mono)
 
-    speech = mono[start:end]
+    speech = mono[start:end].copy()
+    _apply_fades(speech, sample_rate)
     pad = np.zeros(int(sample_rate * pad_ms / 1000), dtype="float32")
     return np.concatenate([pad, speech, pad]), len(speech) / sample_rate
+
+
+def _apply_fades(speech: Any, sample_rate: int) -> None:
+    """Ease the clip in and out, in place.
+
+    The fade-out is the one that matters: it turns the model's habit of
+    ending at full level into a decay, which is the difference between a
+    last syllable that sounds finished and one that sounds chopped off.
+    The fade-in is just click insurance at the trim point. Both are
+    raised-cosine rather than linear, so neither is audible as a shape of
+    its own.
+    """
+    import numpy as np
+
+    for length_ms, at_start in ((FADE_IN_MS, True), (FADE_OUT_MS, False)):
+        n = min(int(sample_rate * length_ms / 1000), len(speech))
+        if n <= 1:
+            continue
+        ramp = (1 - np.cos(np.linspace(0, np.pi, n, dtype="float32"))) / 2
+        if at_start:
+            speech[:n] *= ramp
+        else:
+            speech[-n:] *= ramp[::-1]
 
 
 def encode_mp3(wav_bytes: bytes) -> bytes:
@@ -290,25 +389,24 @@ def import_backend(backend_dir: Path) -> tuple[Any, Any]:
     return models, pipeline
 
 
-def synthesize(tts: Any, pipeline: Any, text: str, seed: int, speed: float) -> bytes:
+def synthesize(tts: Any, reference: Reference, text: str, seed: int) -> bytes:
     """One take, at a given seed and speed.
 
-    `app.pipeline.synthesize_question` would do all of this, but it fixes
-    both knobs — deliberately, since the conversation feature wants one
-    question to sound the same every time. Batch generation needs the
-    opposite: a rejected take must be retried differently, or it just
-    fails identically forever. The reference clip and its transcript
-    still come from that module, so the voice is the same voice.
+    `app.pipeline.synthesize_question` would do all of this, but it pins
+    both the seed and the reference clip — deliberately, since the
+    conversation feature wants one question to sound the same every
+    time. Batch generation needs the opposite: a rejected take must be
+    retried differently, or it just fails identically forever.
     """
     tts.model_config.seed = seed
     with tempfile.TemporaryDirectory(prefix="sentence-tts-") as tmp_dir:
         output_path = Path(tmp_dir) / "take.wav"
         tts(
             text=text,
-            ref_voice=str(pipeline.REFERENCE_CLIP_PATH),
-            ref_text=pipeline.REFERENCE_CLIP_TRANSCRIPT,
+            ref_voice=str(reference.audio_path),
+            ref_text=reference.transcript,
             output_file=str(output_path),
-            speed=speed,
+            speed=SYNTHESIS_SPEED,
         )
         wav_bytes = output_path.read_bytes()
     if not wav_bytes:
@@ -340,20 +438,6 @@ def transcribe(whisper: Any, mp3_bytes: bytes) -> tuple[str, list[tuple[str, flo
     return "".join(text_parts).strip(), timeline
 
 
-def head_trim_point(expected: str, timeline: list[tuple[str, float]]) -> float | None:
-    """Where the intended sentence starts, if something precedes it.
-
-    `None` when there is nothing to cut — the sentence already starts at
-    the top, or the transcript matched too poorly to locate it at all.
-    """
-    actual = "".join(char for char, _ in timeline)
-    matcher = difflib.SequenceMatcher(None, comparable(expected), actual, autojunk=False)
-    blocks = [block for block in matcher.get_matching_blocks() if block.size]
-    if not blocks or blocks[0].b == 0:
-        return None
-    return max(0.0, timeline[blocks[0].b][1] - HEAD_TRIM_MARGIN_SECONDS)
-
-
 # --------------------------------------------------------------------------
 # Main
 # --------------------------------------------------------------------------
@@ -362,78 +446,69 @@ def head_trim_point(expected: str, timeline: list[tuple[str, float]]) -> float |
 def generate_one(
     *,
     tts: Any,
-    pipeline: Any,
+    references: Sequence[Reference],
     whisper: Any | None,
     text: str,
     args: argparse.Namespace,
 ) -> tuple[bytes | None, dict[str, Any]]:
-    """Take after take until one passes its own STT round-trip.
+    """Take after take until one clears every gate.
 
     Returns (mp3_bytes_or_None, record_fields). A `None` first element
     means every take was rejected; the record then carries the best
-    one's numbers so a human can see how close it got.
+    one's numbers and the reason it lost, so a human can see how close
+    it got and to what.
     """
     attempts: list[dict[str, Any]] = []
     best: tuple[tuple[float, int], dict[str, Any]] | None = None
+    chars = len(comparable(text))
 
-    def passes(coverage: float, extra: int) -> bool:
-        return coverage >= args.min_coverage and extra <= args.max_extra_chars
-
-    for index, (seed, speed) in enumerate(retry_plan(args.max_attempts), start=1):
-        raw_wav = synthesize(tts, pipeline, text, seed, speed)
+    for index, (reference, seed) in enumerate(retry_plan(references, args.max_attempts), start=1):
+        raw_wav = synthesize(tts, reference, text, seed)
         mono, sample_rate = load_mono(raw_wav)
         padded, speech_seconds = trim_and_pad(mono, sample_rate, args.pad_ms)
         mp3_bytes = encode_mp3(to_wav(padded, sample_rate))
         attempt: dict[str, Any] = {
             "attempt": index,
             "seed": seed,
-            "speed": speed,
+            "reference": reference.name,
             "speech_seconds": round(speech_seconds, 3),
+            "ms_per_char": round(1000 * speech_seconds / chars, 1) if chars else 0.0,
         }
 
         if whisper is None:
             attempts.append(attempt | {"verified": False})
-            return mp3_bytes, {"attempts": attempts, "speech_seconds": attempt["speech_seconds"]}
+            return mp3_bytes, {"attempts": attempts, **attempt}
 
         transcript, timeline = transcribe(whisper, mp3_bytes)
         coverage, extra = compare_transcript(text, transcript)
-        attempt |= {"transcript": transcript, "coverage": round(coverage, 4), "extra_chars": extra}
+        # Whisper times the clip it was given, padding included, so the
+        # first word of a clean take starts exactly where the padding
+        # ends. Anything appreciably later is audio that is in the file
+        # but not in the transcript.
+        head_gap = (timeline[0][1] - args.pad_ms / 1000) if timeline else float("inf")
+        attempt |= {
+            "transcript": transcript,
+            "coverage": round(coverage, 4),
+            "extra_chars": extra,
+            "head_gap": round(head_gap, 3) if timeline else None,
+        }
 
-        if not passes(coverage, extra) and index > args.repair_after:
-            # The intended sentence is usually still in there, intact,
-            # with a fragment of the reference clip glued to its front.
-            # Cut that off and re-run the identical check on the result:
-            # a cut that took a real syllable with it fails here rather
-            # than shipping, which is the only reason trusting it is safe.
-            cut = head_trim_point(text, timeline)
-            if cut:
-                repaired, speech_seconds = trim_and_pad(
-                    padded[int(cut * sample_rate) :], sample_rate, args.pad_ms
-                )
-                repaired_mp3 = encode_mp3(to_wav(repaired, sample_rate))
-                repaired_transcript, _ = transcribe(whisper, repaired_mp3)
-                coverage, extra = compare_transcript(text, repaired_transcript)
-                attempt |= {
-                    "head_trim_seconds": round(cut, 3),
-                    "transcript": repaired_transcript,
-                    "coverage": round(coverage, 4),
-                    "extra_chars": extra,
-                    "speech_seconds": round(speech_seconds, 3),
-                }
-                mp3_bytes = repaired_mp3
-
+        reason = None
+        if coverage < args.min_coverage:
+            reason = f"transcript covers only {coverage:.0%} of the text"
+        elif extra > args.max_extra_chars:
+            reason = f"{extra} transcribed characters that are not in the text"
+        elif head_gap > HEAD_GAP_TOLERANCE_SECONDS:
+            reason = f"{head_gap:.2f}s of untranscribed audio before the first word"
+        elif attempt["ms_per_char"] < args.min_ms_per_char:
+            reason = f"rushed: {attempt['ms_per_char']:.0f} ms/char"
+        attempt["reason"] = reason
         attempts.append(attempt)
-        if passes(coverage, extra):
-            return mp3_bytes, {
-                "attempts": attempts,
-                "transcript": attempt["transcript"],
-                "coverage": attempt["coverage"],
-                "extra_chars": attempt["extra_chars"],
-                "head_trim_seconds": attempt.get("head_trim_seconds"),
-                "speech_seconds": attempt["speech_seconds"],
-            }
-        # Rank rejected takes by coverage first, then by how little junk
-        # they carry — the report's "closest miss" for a human reviewer.
+
+        if reason is None:
+            return mp3_bytes, {"attempts": attempts, **attempt}
+        # Rank losers by coverage, then by how little junk they carry,
+        # so the report's "closest miss" is the most informative one.
         score = (coverage, -extra)
         if best is None or score > best[0]:
             best = (score, attempt)
@@ -454,23 +529,25 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     parser.add_argument("--limit", type=int, default=0, help="Generate at most N missing clips (0 = all)")
     parser.add_argument("--pad-ms", type=int, default=300,
                         help="Silence padded onto each end (default: %(default)s)")
-    parser.add_argument("--max-attempts", type=int, default=2 * len(RETRY_SEEDS),
-                        help="Takes per sentence before giving up and leaving it without audio "
-                             "(default: %(default)s). Very short sentences — two syllables, no "
-                             "context for the model to lean on — are the ones that exhaust this, "
+    parser.add_argument("--references", type=Path, default=EXTRA_REFERENCES_MANIFEST,
+                        help="JSON manifest of extra reference clips to fall back to "
+                             "(default: %(default)s)")
+    parser.add_argument("--max-attempts", type=int, default=3 * len(RETRY_SEEDS),
+                        help="Takes per sentence, across all reference clips, before giving up "
+                             "and leaving it without audio (default: %(default)s). Most sentences "
+                             "pass in one or two; the budget exists for the minority that echo on "
+                             "every seed of the first clip. Very short sentences — two syllables, "
+                             "no context for the model to lean on — are the ones that exhaust it, "
                              "and a cutoff is cheaper than a length rule guessed in advance: "
                              "which short sentences the voice handles badly is decided per "
                              "sentence by the round-trip, not by character count")
-    parser.add_argument("--repair-after", type=int, default=4,
-                        help="Takes to spend looking for a naturally clean one before allowing the "
-                             "head-trim repair. F5-TTS fits the utterance into a duration derived "
-                             "from character count, so a take that spends its opening on a bleed "
-                             "speaks the actual sentence ~20%% faster to fit — cutting the bleed "
-                             "off leaves correct but rushed audio. Worth a few cheap takes to "
-                             "avoid; the repair is still there for sentences that never come out "
-                             "clean (default: %(default)s)")
     parser.add_argument("--min-coverage", type=float, default=0.9,
                         help="Fraction of the intended text the transcript must contain")
+    parser.add_argument("--min-ms-per-char", type=float, default=88.0,
+                        help=f"Slowest-acceptable delivery, in milliseconds of speech per "
+                             f"character. The reference voice runs at {REFERENCE_MS_PER_CHAR:.0f}; "
+                             f"a take opening with a reference echo is squeezed well below this "
+                             f"(default: %(default)s)")
     parser.add_argument("--max-extra-chars", type=int, default=1,
                         help="Transcript characters matching nothing in the intended text that a "
                              "clip may still pass with. Deliberately near-zero and NOT scaled to "
@@ -511,6 +588,8 @@ def main(argv: list[str] | None = None) -> int:
         return 0
 
     models, pipeline = import_backend(args.backend_dir)
+    references = load_references(pipeline, args.references)
+    print(f"references: {', '.join(r.name for r in references)}", flush=True)
 
     print(f"loading TTS ({models.TTS_CHECKPOINT}) …", flush=True)
     tts = models.load_tts()
@@ -545,7 +624,7 @@ def main(argv: list[str] | None = None) -> int:
         started = time.perf_counter()
         try:
             mp3_bytes, detail = generate_one(
-                tts=tts, pipeline=pipeline, whisper=whisper, text=text, args=args
+                tts=tts, references=references, whisper=whisper, text=text, args=args
             )
         except Exception as exc:  # noqa: BLE001 — one bad sentence must not
             # abandon a 773-clip batch; it is recorded and the run continues.
@@ -558,18 +637,18 @@ def main(argv: list[str] | None = None) -> int:
 
         if mp3_bytes is None:
             miss = record["best_attempt"]
-            results.append(record | {"status": "rejected", "reason": "no take passed the STT round-trip"})
-            print(f"{prefix} REJECT after {len(record['attempts'])} takes — "
-                  f"best coverage {miss['coverage']:.2f}, extra {miss['extra_chars']} "
-                  f"(want {text!r}, got {miss['transcript']!r})", flush=True)
+            results.append(record | {"status": "rejected", "reason": miss["reason"]})
+            print(f"{prefix} REJECT after {len(record['attempts'])} takes — closest miss: "
+                  f"{miss['reason']} (want {text!r}, got {miss['transcript']!r})", flush=True)
             continue
 
         destination.parent.mkdir(parents=True, exist_ok=True)
         destination.write_bytes(mp3_bytes)
         results.append(record | {"status": "ok", "bytes": len(mp3_bytes)})
         takes = len(record["attempts"])
-        print(f"{prefix} ok {record['speech_seconds']:.2f}s "
-              f"take {takes} ({record['elapsed_seconds']:.1f}s) → {filename}", flush=True)
+        print(f"{prefix} ok {record['speech_seconds']:.2f}s {record['ms_per_char']:.0f}ms/ch "
+              f"take {takes} ref={record['reference']} ({record['elapsed_seconds']:.1f}s) "
+              f"→ {filename}", flush=True)
 
     if args.write_json:
         # "skipped" counts as much as "ok": its clip is on disk and passed
