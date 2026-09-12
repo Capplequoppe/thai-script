@@ -131,3 +131,28 @@ A — done: extracted `knownWordsFor(vocab)` in `ConversationPracticePage.tsx` a
 
 answered — later raisings are dispatched as work, not asked again
 
+## bcb3cf9c — F1 · phase 3 round 1 · backend/app/main.py
+
+Task 3.1's own description and Architectural Decision commit to removing `/conversation/opening` and `/conversation/judge` from `backend/app/main.py` ("This task removes their route handlers... and their entries from docs/conversation-backend-api.md"), but both routes are still live in `main.py` (lines 215-235, 237-239) and still documented (docs/conversation-backend-api.md's own 'Retiring' section admits this). The reason is real and well-documented: `backend/tests/test_health.py` and `backend/tests/test_pipeline.py` exercise these routes directly to prove task 1.1's CORS/concurrency/501 contract and task 1.2's judge behavior, and rewriting those tests to exercise the same properties through the session endpoints instead is substantial, cross-cutting work (verified: test_health.py's five judge/opening-route tests are the *only* vehicle it has for proving CORS-allow, CORS-reject, and the two-call concurrency/health-stays-responsive behavior). `ConversationPracticePort`'s own doc comment compounds this by asserting a falsehood: "their backend routes are retired in the same phase (task 3.1)" (ConversationPracticePort.ts line ~15) — the frontend side is retired, the backend side is not. Net effect: the plan's stated trust-boundary mitigation (retiring dead surface reachable by any local origin, per the plan README's Trust Boundary Inventory) was not actually delivered, and no task in phase 3 owns the fix — task 3.1 explicitly scoped it out, task 3.3 explicitly declined to touch it (documented in its own Manual Verification section) as being outside its covers.
+
+> This block's id includes the finding's wording, because the review supplied no
+> criterion to anchor it to. If a later review rewords this finding it will be
+> asked again as a new block, and this answer will stay here unattached.
+
+**Scored severity 4/10, effort 8/10** — the effort is the cost of the repair including proving it safe. It reached you because a real defect that is expensive to fix is the one case where spending without your agreement is itself the risk.
+
+**Options:**
+
+- **A** — Accept as a documented, deliberate known gap for now (current state)
+  The dead routes stay reachable by any local origin per the plan's own Trust Boundary Inventory (SA-1/QA-31) — low practical risk on a local-only single-user tool, but the plan's stated mitigation is not actually in place.
+- **B** — Add a new task (or extend an existing one's covers) to migrate test_health.py/test_pipeline.py's CORS/concurrency/501 proofs onto the session endpoints and then delete the two routes  ← recommended
+  Closes the gap properly but is real new scope this phase did not budget for.
+
+**Answer:**
+
+B — done as task 3.4: migrated backend/tests/test_health.py and test_pipeline.py's HTTP-level cases onto the session endpoints (a new tts_only_client fixture covers the "real session, whisper/judge still unloaded" case), then deleted /conversation/opening (POST + GET shim) and /conversation/judge, the dead _opening_pipeline helper, and the dead OpeningRequest/OpeningResponse schemas. Updated docs/conversation-backend-api.md and ConversationPracticePort.ts's own doc comment to match. 39/39 non-GPU backend tests pass, ruff clean, full e2e suite still 10/10.
+
+**Applied:**
+
+answered — task 3.4 done and marked complete
+
