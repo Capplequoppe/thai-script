@@ -52,11 +52,11 @@ Task 2.3 shipped as `complete` with real, correct tests for all four of its own 
 
 **Answer:**
 
-<!-- name an option letter (A, B, …), write your own answer, or write `decline` to close this without acting on it — a declined finding is settled and is never raised again. Blank means still undecided, and leaves the phase open. -->
+decline — the tests themselves are real and correct (verified directly), and reconstructing the missing red-proof retroactively costs more than the gap is worth. Accepted as a known audit-trail omission for task 2.3, same reasoning as 0247e163's option A.
 
 **Applied:**
 
-not yet — awaiting an answer
+answered — declined, not raised again
 
 ## 1ecbe61f — continuation-3.2 · continuation/3.2 · Task 3.2 — the continuation bound
 
