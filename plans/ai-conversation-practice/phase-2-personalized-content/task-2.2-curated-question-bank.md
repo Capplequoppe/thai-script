@@ -7,7 +7,7 @@ covers:
   - backend/data/conversationStarters.json
 status: draft
 task_id: "2.2"
-task_status: pending
+task_status: complete
 depends_on: []
 size: large
 verify:
@@ -20,6 +20,24 @@ ac_enforcement:
   - "AC4b -> a non-GPU test: an entry's id is derived from a stable hash of its own Thai text, not from generation order - so a re-run that produces different candidates (a real GPU run is not guaranteed byte-identical across driver/batching changes) still can't renumber an unchanged entry"
   - "AC5 -> a GPU-marked test: running the full generation pipeline against a small fixture vocabulary tier produces at least 8 surviving entries - a real, run-once check that the model+filter pipeline actually produces enough usable content, separate from AC1's fixed-input filter-correctness test"
   - "AC6 -> a non-GPU test: every tier in the shipped bank (once generated) holds at least 8 entries - phase 3's three-turn sessions need headroom to avoid exhausting a tier mid-session"
+ac_tests:
+  - "AC1 -> scripts/generate-conversation-bank/tests/test_filtering.py::test_rejects_a_candidate_containing_a_word_outside_the_tier"
+  - "AC2 -> scripts/generate-conversation-bank/tests/test_shipped_bank.py::test_every_entrys_words_are_the_tokenization_of_its_thai"
+  - "AC3 -> none"
+  - "AC5 -> scripts/generate-conversation-bank/tests/test_generation_gpu.py::test_the_real_pipeline_fills_a_small_tier"
+  - "AC6 -> scripts/generate-conversation-bank/tests/test_shipped_bank.py::test_every_tier_holds_at_least_the_minimum_number_of_entries"
+  - "AC4 -> scripts/generate-conversation-bank/tests/test_bank_build.py::test_an_entrys_id_is_derived_from_its_own_thai_text"
+red_proof:
+  - "AC1 -> In filtering.py check_compliance, replaced the allowed-set comprehension with `violations = ()` — the filter pretends every token is in the tier. Reverted and re-ran green. KIND: re… [see red-proofs/]"
+  - "AC2 -> Backed up the shipped bank, then truncated the first entry's `words` array by one token so it no longer equals the newmm tokenization of its `thai`. Restored from backup; all shippe… [see red-proofs/]"
+  - "AC6 -> In the same mutated copy of the shipped bank, removed every tier-5 entry, taking that tier below MIN_ENTRIES_PER_TIER. Restored from backup and re-ran green. KIND: real assertion fa… [see red-proofs/]"
+  - "AC4 -> In bank.py, replaced the sha256-of-normalized-Thai entry_id with a module-level counter (`_COUNTER[0] += 1; return f\"{ID_PREFIX}{_COUNTER[0]:04d}\"`) — ids from generation order, whi… [see red-proofs/]"
+red_proof_waived:
+  - "AC5 -> traced: The test's substrate only exists after this change: the generation pipeline (generation.py, QwenChatModel, generate_tier) is created by this task, so before it there was nothing to… [see red-proofs/]"
+lint:
+  before: 7
+  after: 9
+  outcome: unsupported
 generated: {by: claude-sonnet-5/agent, at: 2026-09-11}
 profile_version: 1
 weight_votes:
