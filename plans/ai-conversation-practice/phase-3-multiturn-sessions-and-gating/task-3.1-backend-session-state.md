@@ -23,6 +23,24 @@ ac_enforcement:
   - "AC4 -> a non-GPU test asserting the session store never touches disk across a full start/judge/next lifecycle (monkeypatch builtins.open, or an equivalent filesystem-write guard, to fail the test if called) - a genuine in-memory-only proof, replacing a first draft's AC4 that only proved a freshly-constructed empty dict has no keys in it, which was true by construction and proved nothing about the real store"
   - "AC5 -> a non-GPU test: two concurrent /next calls against the same session_id (e.g. asyncio.gather of two requests, simulating a double-click or a React StrictMode double-invoke) never both return the same question, and never both succeed in advancing the asked-set past a single entry for one logical 'next' - protected by the same async def + asyncio.Lock pattern task 1.1 required for the judge endpoint, scoped per-session so unrelated sessions still run concurrently"
   - "AC6 -> a non-GPU test: the session store enforces a maximum size (e.g. 500 concurrent sessions); starting one more than the cap evicts the oldest session first, and the evicted session's id then behaves exactly like AC3's unknown-id case"
+ac_tests:
+  - "AC1 -> backend/tests/test_session.py::test_next_after_a_judged_turn_asks_a_different_question"
+  - "AC2 -> backend/tests/test_session.py::test_exhausting_the_tier_returns_exhausted_rather_than_repeating"
+  - "AC3 -> backend/tests/test_session.py::test_next_on_an_unknown_session_is_404"
+  - "AC4 -> backend/tests/test_session.py::test_a_full_lifecycle_never_writes_to_disk"
+  - "AC5 -> backend/tests/test_session.py::test_concurrent_next_calls_never_serve_the_same_question"
+  - "AC6 -> backend/tests/test_session.py::test_an_evicted_session_behaves_exactly_like_an_unknown_one"
+red_proof:
+  - "AC1 -> In backend/app/bank.py, made select_entry ignore its exclude_ids parameter entirely: replaced the filtered comprehension with `candidates = list(_matched_tier(known, bank))`. /next… [see red-proofs/]"
+  - "AC2 -> In backend/app/bank.py, replaced `if not candidates: return None` with a silent wrap-around: `if not candidates: candidates = list(_matched_tier(known, bank))` — the exact repeat-in… [see red-proofs/]"
+  - "AC3 -> In backend/app/session.py, made SessionStore.get silently create a session for an unrecognized id instead of returning None. /next then answered 200 with a real question for an id t… [see red-proofs/]"
+  - "AC4 -> In backend/app/session.py, made SessionStore.start append the new session id to /tmp/mutant-sessions.log — a one-line persistence of session state. Verified against red-proofs/3.1.m… [see red-proofs/]"
+  - "AC5 -> In backend/app/main.py, removed the per-session lock from the /next handler (`async with state.lock:` dropped, body dedented). Both threads then read the same asked-set across the a… [see red-proofs/]"
+  - "AC6 -> In backend/app/session.py, deleted the eviction loop from SessionStore.start. With a cap-of-1 store the first session survived a second start, so its id answered 200 instead of beha… [see red-proofs/]"
+lint:
+  before: 5
+  after: 5
+  outcome: unsupported
 generated: {by: claude-sonnet-5/agent, at: 2026-09-11}
 profile_version: 1
 weight_votes:
