@@ -10,6 +10,7 @@ import type {
 	ConversationOpeningResult,
 	ConversationVerdict,
 } from "../../domain/conversation/types";
+import type { VocabularyService } from "../../domain/vocabulary/services/VocabularyLessonService";
 import { useApp } from "../hooks/useApp";
 import { useMicRecorder } from "../hooks/useMicRecorder";
 
@@ -44,6 +45,20 @@ const BACKEND_UNAVAILABLE_MESSAGE =
 	"The conversation backend is not running, so there is nothing to talk to yet. Start it locally and reload this page.";
 
 /**
+ * The learner's known-word snapshot sent with the opening request — never a
+ * placeholder, and a real empty array (not an omitted field) when nothing is
+ * learned yet. Extracted so this mapping stays unit-testable independent of
+ * the unlock gate, which makes the zero-known-words case unreachable through
+ * a real render once a learner is actually below `MIN_VOCAB_COUNT` (a
+ * positive count is required to unlock the page in the first place).
+ */
+export function knownWordsFor(
+	vocab: Pick<VocabularyService, "getLearnedEntries">,
+): string[] {
+	return vocab.getLearnedEntries().map((entry) => entry.thai);
+}
+
+/**
  * Spoken conversation practice: hear one Thai question, record a reply, see
  * whether the local backend judged it as an acceptable answer.
  *
@@ -75,10 +90,7 @@ export function ConversationPracticePage() {
 		// while below threshold must never reach the backend at all.
 		if (!unlock.unlocked) return;
 		let cancelled = false;
-		// The learner's real known-vocabulary snapshot, sourced from their
-		// SRS state — never a placeholder list. A learner with nothing
-		// learned yet sends a real empty array, not an omitted field.
-		const knownWords = vocab.getLearnedEntries().map((entry) => entry.thai);
+		const knownWords = knownWordsFor(vocab);
 		conversationPractice.getOpening(knownWords).then((result) => {
 			if (!cancelled) setOpening(result);
 		});

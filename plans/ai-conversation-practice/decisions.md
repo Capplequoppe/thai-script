@@ -104,3 +104,30 @@ A
 
 answered — later raisings are dispatched as work, not asked again
 
+## aef1a949 — F1 · phase 2 round 3 · src/presentation/pages/ConversationPracticePage.test.tsx
+
+Confirmed still open from the previous round (F3), unchanged since: task 2.1's AC3 ('a learner with no learned words yet sends an empty list, not a missing field or a crash — a real, tested state') has no page-level proof anymore. The only test that ever exercised it — 'still sends a request, with a real empty array, for a learner with no learned words yet' — is gone; every render in this file now seeds graduatedVocab with UNLOCKED_VOCAB (220 words) because phase 3's gate (checkConversationUnlock, landed in the same file) makes the request-effect never fire below MIN_VOCAB_COUNT=200, and the harness's graduatedVocab option seeds both vocab.getLearnedCount() and vocab.getLearnedEntries() from the same card set, so 'unlocked' and 'zero known words' can never co-occur through the normal renderPage() path. The wire-format half of AC3 (empty array, not an omitted field) is still proven at the adapter level (HttpConversationPracticeClient.test.ts), but nothing now proves the page's own mapping (vocab.getLearnedEntries().map(e => e.thai), line 81) behaves correctly when that array is empty. Failure scenario: no live production risk today (the gate makes the branch unreachable while vocab count is 0), but the ledger and task document both still claim an automated page-level proof for AC3 that no longer exists — a future change to the mapping expression could regress silently with no test to catch it, and an auditor reading the ledger would believe it's covered when it isn't.
+
+> This block's id includes the finding's wording, because the review supplied no
+> criterion to anchor it to. If a later review rewords this finding it will be
+> asked again as a new block, and this answer will stay here unattached.
+
+**Scored severity 4/10, effort 7/10** — the effort is the cost of the repair including proving it safe. It reached you because a real defect that is expensive to fix is the one case where spending without your agreement is itself the risk.
+
+**Options:**
+
+- **A** — Extract the known-words mapping (vocab.getLearnedEntries().map(e => e.thai)) into a small named function and unit-test it directly with a stub returning zero entries.  ← recommended
+  Restores an automated, isolated proof that an empty entry list maps to a real empty array; cheapest and matches the harness's existing style, but tests the mapping in isolation rather than the full page flow AC3's wording implied.
+- **B** — Add a page-level test that stubs/mocks checkConversationUnlock (or the vocab port directly) so the request effect fires with zero known words despite being below the real MIN_VOCAB_COUNT gate.
+  Restores full-page coverage matching AC3's original wording exactly, but exercises a learner state (unlocked with zero vocabulary) that can never occur in production once the gate is enforced, and introduces module-mocking not otherwise used in this test file.
+- **C** — Formally re-scope AC3 to the adapter-level test only (HttpConversationPracticeClient.test.ts already proves empty array vs. omitted field over the wire) and record that the page-level half is superseded by phase 3's gate.
+  No code change needed, but leaves the page's own mapping logic with no dedicated test — a defensible position only if the plan explicitly accepts that AC3's page-level clause is now moot.
+
+**Answer:**
+
+A — done: extracted `knownWordsFor(vocab)` in `ConversationPracticePage.tsx` and added a direct unit test in `ConversationPracticePage.test.tsx` asserting a stub with zero learned entries maps to a real empty array. 13/13 page tests pass, `tsc -b` clean.
+
+**Applied:**
+
+answered — later raisings are dispatched as work, not asked again
+

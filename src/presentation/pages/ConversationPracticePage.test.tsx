@@ -12,7 +12,7 @@ import {
 	StubConversationPracticePort,
 	setMicPermission,
 } from "../test-utils/renderWithApp";
-import { ConversationPracticePage } from "./ConversationPracticePage";
+import { ConversationPracticePage, knownWordsFor } from "./ConversationPracticePage";
 
 /**
  * A learner comfortably above both unlock thresholds — the baseline every
@@ -120,6 +120,17 @@ describe("ConversationPracticePage — the known-vocabulary snapshot it sends", 
 
 		expect(port.openingCalls).toHaveLength(1);
 		expect(new Set(port.openingCalls[0])).toEqual(new Set(UNLOCKED_VOCAB));
+	});
+
+	// A learner with zero known words is unreachable through a real render of
+	// this page once the unlock gate requires a positive MIN_VOCAB_COUNT —
+	// "unlocked" and "zero known words" can never co-occur (see "the unlock
+	// gate" below). `knownWordsFor` is extracted specifically so this mapping
+	// stays unit-testable on its own: a learner with nothing learned yet must
+	// still map to a real empty array, never an omitted field or a throw.
+	it("maps a learner with no learned words to a real empty array, not an omitted field", () => {
+		const emptyVocab = { getLearnedEntries: () => [] };
+		expect(knownWordsFor(emptyVocab)).toEqual([]);
 	});
 });
 
