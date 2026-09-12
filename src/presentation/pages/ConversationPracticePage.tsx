@@ -175,7 +175,7 @@ export function ConversationPracticePage() {
 				{state === "stopped" && judgement?.status === "unavailable" && (
 					<p role="alert">{BACKEND_UNAVAILABLE_MESSAGE}</p>
 				)}
-				{judgement?.status === "ok" && (
+				{state === "stopped" && judgement?.status === "ok" && (
 					<div className="space-y-1">
 						<p style={{ color: VERDICT_PRESENTATION[judgement.verdict].color }}>
 							<strong>{VERDICT_PRESENTATION[judgement.verdict].label}</strong>

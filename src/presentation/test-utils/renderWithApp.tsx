@@ -15,7 +15,14 @@
  *   `play`/`pause` for any real media element;
  * - a stubbed `HTMLCanvasElement.getContext` returning a shared recording
  *   2D context (jsdom has none without the `canvas` package), which also
- *   lets tests observe `clearRect` calls.
+ *   lets tests observe `clearRect` calls;
+ * - `URL.createObjectURL`/`revokeObjectURL` (jsdom implements neither), so
+ *   any code that turns a `Blob` into a playable URL runs instead of
+ *   throwing;
+ * - a `MediaRecorder` recording one fixed `Blob` and a
+ *   `navigator.mediaDevices.getUserMedia` whose outcome `setMicPermission`
+ *   chooses (jsdom has neither) — between them enough for a test to drive
+ *   `useMicRecorder`'s real state machine, refusal included.
  *
  * Test files still need their own `// @vitest-environment jsdom` docblock —
  * the pragma only works in the test file itself.
