@@ -70,7 +70,8 @@ class SessionState:
     known_words: tuple[str, ...]
     asked_ids: set[str] = field(default_factory=set)
     history: list[Turn] = field(default_factory=list)
-    #: Guards the read-select-synthesize-record sequence in `/next`.
+    #: Guards the select-synthesize-record sequence in `/session/start`
+    #: and `/session/{id}/next`.
     #: Per session, never global, so two learners' sessions still run
     #: concurrently — the only thing that must not interleave is two
     #: `/next` calls on the *same* session (a double-click, or React
@@ -121,9 +122,6 @@ class SessionStore:
         learner has already been asked.
         """
         return self._sessions.get(session_id)
-
-    def __len__(self) -> int:
-        return len(self._sessions)
 
     @property
     def session_ids(self) -> tuple[str, ...]:

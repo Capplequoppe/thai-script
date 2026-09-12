@@ -18,6 +18,13 @@ Two properties task 1.1 decided are kept exactly:
   flight and two overlapping requests never hit the GPU at the same
   time (proven in `backend/tests/test_health.py`).
 
+`MODEL_LOCK` is no longer the module's only lock: phase 3 gave each
+conversation session its own (`app/session.py`), held around the
+select-synthesize-record sequence in `/conversation/session/*`. The
+two are always taken in that order — session lock first, then
+`MODEL_LOCK` inside `run_serialized` — and never the reverse, so they
+cannot deadlock against each other.
+
 Model presence: production startup loads all three models before the
 server accepts requests, so a served request can rely on them. The only
 process that can lack a model is one whose startup was pre-seeded by a
@@ -71,7 +78,8 @@ ALLOWED_ORIGINS = [
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    """Load all three models and the question bank, before serving requests.
+    """Load all three models, the question bank and the session store,
+    before serving requests.
 
     Tests pre-seed `app.state.models` (with fakes, or empty) before
     startup; a pre-seeded registry is used as-is and nothing loads —
@@ -309,6 +317,11 @@ async def session_start(payload: SessionStartRequest) -> SessionStartResponse:
 @app.post("/conversation/session/{session_id}/judge", response_model=JudgeResponse)
 async def session_judge(session_id: str, payload: JudgeRequest) -> JudgeResponse:
     state = _require_session(session_id)
+    # No session lock here, unlike `/start` and `/next`: this appends one
+    # turn to `history` and reads nothing back, so there is no
+    # read-modify-write window for a second call to land inside. Taking
+    # the lock would only make a slow judge call block the `/next` that
+    # follows it.
     response = await run_serialized(_judge_pipeline, payload)
     state.history.append(
         Turn(

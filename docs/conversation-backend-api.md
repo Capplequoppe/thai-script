@@ -37,6 +37,11 @@ around the model call itself — never around a whole request — so
 `/health` keeps answering while a judge call is in flight, and two
 overlapping requests never hit the GPU at the same time.
 
+This is not the only lock from phase 3 onward: each conversation session
+also holds its own (see *Conversation sessions* below), taken around the
+session's own state and always *outside* `MODEL_LOCK`, never the
+reverse.
+
 ## Audio encoding
 
 Audio is carried as base64 inside a JSON body, paired with the MIME

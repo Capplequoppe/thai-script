@@ -206,7 +206,7 @@ def no_disk_writes(monkeypatch: pytest.MonkeyPatch):
     return guarded_open
 
 
-def test_a_full_lifecycle_never_touches_the_filesystem(
+def test_a_full_lifecycle_never_writes_to_disk(
     fake_model_client, monkeypatch: pytest.MonkeyPatch, no_disk_writes
 ):
     # Two things on this path write to disk for reasons that have
@@ -283,8 +283,8 @@ def test_store_evicts_the_oldest_session_past_its_cap():
     second = store.start(["ข"])
     third = store.start(["ค"])
 
-    assert len(store) == 2
     assert store.get(first.session_id) is None
+    # Both the bound and the order it evicts in, from one assertion.
     assert store.session_ids == (second.session_id, third.session_id)
 
 

@@ -1,6 +1,6 @@
-"""The conversation pipeline: TTS opening synthesis and reply judging.
+"""The conversation pipeline: TTS question synthesis and reply judging.
 
-Two pure-ish, synchronous functions that take *loaded* model objects
+Pure-ish, synchronous functions that take *loaded* model objects
 plus request data and return response data — no FastAPI, no HTTP, no
 imports from `app.models` — so tests call them directly with per-model
 fakes (`backend/tests/conftest.py`) and never need a GPU for logic that
