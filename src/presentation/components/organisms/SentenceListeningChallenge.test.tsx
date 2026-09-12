@@ -36,7 +36,8 @@ describe("SentenceListeningChallenge", () => {
 		expect(screen.queryByText("Come eat together")).toBeNull();
 
 		reveal();
-		expect(screen.getByText("มา กิน กัน")).toBeTruthy();
+		expect(screen.getByText("มากินกัน")).toBeTruthy();
+		expect(screen.queryByText("มา กิน กัน")).toBeNull();
 		expect(screen.getByText("Come eat together")).toBeTruthy();
 	});
 

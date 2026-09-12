@@ -55,9 +55,12 @@ function makeSentenceEntryWithAudio(
 }
 
 describe("generateSentenceCards", () => {
-	it("generates exactly 1 card for entry without audio", () => {
+	it("generates reading comprehension + sentence spelling for entry without audio", () => {
 		const cards = generateSentenceCards(makeSentenceEntry());
-		expect(cards).toHaveLength(1);
+		expect(cards).toHaveLength(2);
+		expect(cards.map((c) => c.property).sort()).toEqual(
+			["readingComprehension", "sentenceBuilding"].sort(),
+		);
 	});
 
 	it("generates 4 cards for entry with audio and all card types", () => {
@@ -91,17 +94,26 @@ describe("generateSentenceCards", () => {
 		expect(lc!.choices).toContain("Come eat together");
 	});
 
-	it("sentence building card contains sentence chars and distractors", () => {
+	it("sentence spelling card tiles are exactly the sentence's own characters, no distractors", () => {
 		const cards = generateSentenceCards(makeSentenceEntryWithAudio());
 		const sb = cards.find((c) => c.property === "sentenceBuilding");
 		expect(sb).toBeDefined();
 		expect(sb!.correctAnswer).toBe("มา กิน กัน");
+		expect(sb!.question).toBe("Come eat together");
 		expect(sb!.audioUrl).toBe("/audio/greet-001.mp3");
-		// Should contain the sentence characters plus distractor characters
 		const sentenceChars = [..."มากินกัน"];
-		for (const ch of sentenceChars) {
-			expect(sb!.choices).toContain(ch);
-		}
+		expect(sb!.choices.slice().sort()).toEqual(sentenceChars.slice().sort());
+	});
+
+	it("sentence spelling card is generated even without audio or distractor data", () => {
+		const cards = generateSentenceCards(makeSentenceEntry());
+		const sb = cards.find((c) => c.property === "sentenceBuilding");
+		expect(sb).toBeDefined();
+		expect(sb!.correctAnswer).toBe("มา กิน กัน");
+		expect(sb!.question).toBe("Come eat together");
+		expect(sb!.audioUrl).toBeUndefined();
+		const sentenceChars = [..."มากินกัน"];
+		expect(sb!.choices.slice().sort()).toEqual(sentenceChars.slice().sort());
 	});
 
 	it("self-validation card is flashcard style with no choices", () => {
@@ -143,9 +155,8 @@ describe("generateSentenceCards", () => {
 		expect(
 			cards.find((c) => c.property === "listeningComprehension"),
 		).toBeUndefined();
-		expect(
-			cards.find((c) => c.property === "sentenceBuilding"),
-		).toBeUndefined();
 		expect(cards.find((c) => c.property === "selfValidation")).toBeUndefined();
+		// Spelling is not audio-dependent — it's still generated.
+		expect(cards.find((c) => c.property === "sentenceBuilding")).toBeDefined();
 	});
 });

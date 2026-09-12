@@ -27,3 +27,14 @@ export function withDottedCircles(text: string): string {
 	}
 	return result;
 }
+
+/**
+ * Sentence data stores words space-joined (e.g. "มา กิน กัน") so generators
+ * can split on words, but real Thai text has no spaces between words —
+ * showing the spaced form as a reading prompt scaffolds away the one skill
+ * (finding word boundaries by eye) fluent reading actually requires. Strips
+ * that scaffolding for display; the underlying data keeps its spaces.
+ */
+export function stripWordSpacing(text: string): string {
+	return text.replace(/\s+/g, "");
+}

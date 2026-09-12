@@ -10,8 +10,8 @@ import { SectionHeader } from "../components/atoms/SectionHeader";
 import { SessionStatGrid } from "../components/molecules/SessionStatGrid";
 import { AchievementBadge } from "../components/organisms/AchievementBadge";
 import { Flashcard } from "../components/organisms/Flashcard";
-import { MultipleChoice } from "../components/organisms/MultipleChoice";
 import { SentenceBuilder } from "../components/organisms/SentenceBuilder";
+import { SentenceSelfReviewCard } from "../components/organisms/SentenceSelfReviewCard";
 import { useApp } from "../hooks/useApp";
 import { useReviewSession } from "../hooks/useReviewSession";
 import { useSessionFlow } from "../hooks/useSessionFlow";
@@ -139,7 +139,14 @@ function SentenceQuizCard({
 	switch (card.property) {
 		case "readingComprehension":
 		case "listeningComprehension":
-			return <MultipleChoice card={card} onAnswer={onAnswer} />;
+			return (
+				<SentenceSelfReviewCard
+					card={card}
+					onRate={(rating, responseTimeMs) =>
+						onAnswer(rating >= 3, responseTimeMs)
+					}
+				/>
+			);
 		case "sentenceBuilding":
 			return <SentenceBuilder card={card} onAnswer={onAnswer} />;
 		case "selfValidation":
@@ -577,19 +584,41 @@ export function SentencePage() {
 						className="h-1.5"
 					/>
 				</div>
-				{"property" in current.card &&
-				(current.card as unknown as SentenceCard).property ===
-					"selfValidation" ? (
-					<Flashcard card={current.card} onRate={handleReviewAdvance} />
-				) : "property" in current.card &&
-					(current.card as unknown as SentenceCard).property ===
-						"sentenceBuilding" ? (
-					<SentenceBuilder card={current.card} onAnswer={handleMcAnswer} />
-				) : current.mode === "multipleChoice" ? (
-					<MultipleChoice card={current.card} onAnswer={handleMcAnswer} />
-				) : (
-					<Flashcard card={current.card} onRate={handleReviewAdvance} />
-				)}
+				{(() => {
+					const property =
+						"property" in current.card
+							? (current.card as unknown as SentenceCard).property
+							: null;
+					// Self-rated properties go straight to handleReviewAdvance so the
+					// real 1-5 rating reaches SRS scheduling — collapsing it to
+					// correct/incorrect first (as handleMcAnswer does) would throw
+					// away the Hard/Good/Easy distinction that drives ease-factor
+					// growth. sentenceBuilding is the one exact-match property left
+					// (multiple choice is no longer used for any sentence card), so
+					// it's the only case still going through handleMcAnswer.
+					if (property === "selfValidation") {
+						return (
+							<Flashcard card={current.card} onRate={handleReviewAdvance} />
+						);
+					}
+					if (
+						property === "readingComprehension" ||
+						property === "listeningComprehension"
+					) {
+						return (
+							<SentenceSelfReviewCard
+								card={current.card as unknown as SentenceCard}
+								onRate={handleReviewAdvance}
+							/>
+						);
+					}
+					if (property === "sentenceBuilding") {
+						return (
+							<SentenceBuilder card={current.card} onAnswer={handleMcAnswer} />
+						);
+					}
+					return <Flashcard card={current.card} onRate={handleReviewAdvance} />;
+				})()}
 			</div>
 		);
 	}

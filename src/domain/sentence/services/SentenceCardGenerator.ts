@@ -63,22 +63,24 @@ export function generateSentenceCards(entry: SentenceEntry): SentenceCard[] {
 		});
 	}
 
-	// 3. Sentence building (if audio exists)
-	if (entry.thai_audio_file && entry.cards.sentenceBuilding) {
-		const sentenceChars = [...entry.thai].filter((ch) => ch !== " ");
-		const allChars = shuffle([
-			...sentenceChars,
-			...entry.cards.sentenceBuilding.characterDistractors,
-		]);
+	// 3. Sentence spelling — always available. Tiles are just the sentence's
+	// own characters (no distractors: `cards.sentenceBuilding` distractor
+	// data is never populated in shipped content, and this exercise works
+	// fine without it — putting the exact tiles in order is already a real
+	// spelling test). The prompt is the English translation rather than
+	// audio, since most sentences have none; when audio does exist it's
+	// offered as an optional replay, not a requirement to generate the card.
+	{
+		const sentenceChars = shuffle([...entry.thai].filter((ch) => ch !== " "));
 		cards.push({
 			id: `sentence:${entry.id}:sentenceBuilding`,
 			sentenceId: entry.id,
 			property: "sentenceBuilding",
-			question: "Listen and build the sentence",
+			question: entry.english,
 			correctAnswer: entry.thai,
-			choices: allChars,
+			choices: sentenceChars,
 			srs: initialSentenceSchedule(),
-			audioUrl: entry.thai_audio_file,
+			audioUrl: entry.thai_audio_file ?? undefined,
 		});
 	}
 

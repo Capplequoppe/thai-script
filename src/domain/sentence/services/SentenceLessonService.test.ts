@@ -320,13 +320,14 @@ describe("SentenceService", () => {
 
 			const cards = service.startLesson();
 			expect(cards).not.toBeNull();
-			expect(cards).toHaveLength(1); // reading comprehension only (no audio)
+			expect(cards).toHaveLength(2); // reading comprehension + spelling (no audio)
 
 			const state = storage.load();
-			expect(Object.keys(state.sentenceCards)).toHaveLength(1);
+			expect(Object.keys(state.sentenceCards)).toHaveLength(2);
 			expect(
 				state.sentenceCards["sentence:s1:readingComprehension"],
 			).toBeDefined();
+			expect(state.sentenceCards["sentence:s1:sentenceBuilding"]).toBeDefined();
 		});
 
 		it("returns null when nothing to learn", () => {

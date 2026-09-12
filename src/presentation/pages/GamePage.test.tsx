@@ -1158,15 +1158,15 @@ describe("GamePage", () => {
 		expect(
 			screen.getByText("Listen, then work out what the sentence says"),
 		).toBeTruthy();
-		expect(screen.queryByText("มา กัน")).toBeNull();
+		expect(screen.queryByText("มากัน")).toBeNull();
 		reveal();
-		expect(screen.getByText("มา กัน")).toBeTruthy();
+		expect(screen.getByText("มากัน")).toBeTruthy();
 		expect(screen.getByText("Come together")).toBeTruthy();
 		rate(/Good/);
 
 		// Reading: the Thai text up front, no audio before its reveal.
 		expect(screen.getByText("Read this sentence aloud")).toBeTruthy();
-		expect(screen.getByText("มี ดี")).toBeTruthy();
+		expect(screen.getByText("มีดี")).toBeTruthy();
 		expect(createdAudioUrls()).not.toContain("/audio/s-2.mp3");
 		reveal();
 		expect(createdAudioUrls()).toContain("/audio/s-2.mp3");
@@ -1375,7 +1375,7 @@ describe("GamePage", () => {
 		rate(/Good/);
 
 		// Second item: unrevealed again despite the identical audioUrl...
-		expect(screen.getByText("มี ดี")).toBeTruthy();
+		expect(screen.getByText("มีดี")).toBeTruthy();
 		expect(screen.getByRole("button", { name: "Show Answer" })).toBeTruthy();
 		expect(screen.queryByRole("button", { name: /Again/ })).toBeNull();
 		reveal();
