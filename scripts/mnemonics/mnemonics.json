@@ -2,7 +2,7 @@
   "_note": "Authored mnemonics and illustration scenes. `rank` is the join key into src/domain/vocabulary/data/vocabulary.json (unique across all 4147 ranked entries; `thai` is NOT unique — 139 spellings repeat). Only `mnemonic` is merged into vocabulary.json and shipped to the browser; everything else is build-time input for scripts/generate-mnemonic-images.py. Style, aspect ratio, quality and negative prompt live in that script, never here.",
   "_tone_glyphs": {
     "—": "mid — flat, sits in the middle",
-    "▁": "low — flat, sits at the bottom",
+    "_": "low — flat, sits at the bottom",
     "↓": "falling — starts high, drops",
     "▲": "high — up and taut",
     "↑": "rising — climbs, like a question"
@@ -34,7 +34,7 @@
       "romanization": "tɕàʔ",
       "english": "will",
       "anchor": "JA!",
-      "mnemonic": "A German friend is asked about every plan for the week — the beach, the diving, the noodles — and answers each one with a short flat \"Ja.\" Said the English way, jà. Every ja shoves the action into the future. That is จะ. (▁ low and clipped, each ja a single short beat)",
+      "mnemonic": "A German friend is asked about every plan for the week — the beach, the diving, the noodles — and answers each one with a short flat \"Ja.\" Said the English way, jà. Every ja shoves the action into the future. That is จะ. (_ low and clipped, each ja a single short beat)",
       "headline": "Jà.",
       "scene": "A sunburnt traveller counting plans off on his fingers to a grinning backpacker sitting on a guesthouse step, who is nodding firmly with one thumb raised. Dive gear and a packed rucksack lean against the wall beside them. Bright morning light."
     },
@@ -134,7 +134,7 @@
       "romanization": "kàp",
       "english": "with",
       "anchor": "CUP",
-      "mnemonic": "Two friends on a bench are handed one cup between them and drink it together, heads almost touching, one on each side of it. Coffee with milk, her with him — everything paired goes through kàp. (▁ low and flat, a cup set down on the table)",
+      "mnemonic": "Two friends on a bench are handed one cup between them and drink it together, heads almost touching, one on each side of it. Coffee with milk, her with him — everything paired goes through kàp. (_ low and flat, a cup set down on the table)",
       "headline": "…kàp…",
       "scene": "Two young friends on a low bench at a roadside drinks stall, leaning in from opposite sides to share a single tall iced coffee with two straws, shoulders touching, both laughing. Plastic stools, a steel kettle, dappled light through leaves."
     },
@@ -184,7 +184,7 @@
       "romanization": "khàawp-khun",
       "english": "thank",
       "anchor": "COP + KHUN",
-      "mnemonic": "A traffic cop hands back the wallet you dropped, and the thanks is already built into the word: คุณ khun means you, so khàawp-khun is thanks-you, and the cop is standing right there to collect it. Palms together, head down, the first syllable sitting low. (▁ khàawp drops low, then khun levels out flat and mid)",
+      "mnemonic": "A traffic cop hands back the wallet you dropped, and the thanks is already built into the word: คุณ khun means you, so khàawp-khun is thanks-you, and the cop is standing right there to collect it. Palms together, head down, the first syllable sitting low. (_ khàawp drops low, then khun levels out flat and mid)",
       "headline": "Khàawp-khun.",
       "scene": "A young woman bows deeply from the waist, folded almost double, hugging a battered leather wallet against her chest with both arms. A traffic policeman in a white helmet stands still behind her. Rain slicks the street corner; headlights glare off the wet tarmac."
     },
@@ -194,7 +194,7 @@
       "romanization": "khàawp-khun",
       "english": "Thank you!",
       "anchor": "COP + KHUN (you)",
-      "mnemonic": "A cop hands back the wallet you dropped and you press your palms together: khàawp-khun. Stretch that cop out long — khàawp — and remember what the end of it is: khun, the ordinary Thai word for you. Thanking someone is literally handing them a you. (▁ khàawp sits low, then khun levels out flat)",
+      "mnemonic": "A cop hands back the wallet you dropped and you press your palms together: khàawp-khun. Stretch that cop out long — khàawp — and remember what the end of it is: khun, the ordinary Thai word for you. Thanking someone is literally handing them a you. (_ khàawp sits low, then khun levels out flat)",
       "headline": "khàawp-khun.",
       "scene": "A uniformed Thai police officer on a busy pavement holds out a worn leather wallet to a young woman, who has stopped mid-step and raised both hands pressed together in front of her face, head bowed, smiling."
     },
@@ -244,7 +244,7 @@
       "romanization": "tɕàːk",
       "english": "from",
       "anchor": "JACK",
-      "mnemonic": "A man called Jack turns up at the door with a battered suitcase plastered in shipping labels from a dozen countries. Where is he from? All of it. Jàak marks where a thing comes from — the starting point, never the destination. (▁ low and flat, a plain statement of origin)",
+      "mnemonic": "A man called Jack turns up at the door with a battered suitcase plastered in shipping labels from a dozen countries. Where is he from? All of it. Jàak marks where a thing comes from — the starting point, never the destination. (_ low and flat, a plain statement of origin)",
       "headline": "jàak.",
       "scene": "A traveller standing on a wooden doorstep at dusk with a battered leather suitcase bound in rope and worn straps, hat in hand, rain on his shoulders. The door is opening, warm light spilling onto him. A quiet street behind."
     },
@@ -364,7 +364,7 @@
       "romanization": "thîi-yùu",
       "english": "address",
       "anchor": "TEE + YOU",
-      "mnemonic": "Two words already in the bag: thîi, the place, and yùu, to be living there. The place you live is your address. A postman holds up a parcel at the mouth of the lane and asks only that, and the whole street points at one gate. (▁ the second syllable settles low, fixed to the ground)",
+      "mnemonic": "Two words already in the bag: thîi, the place, and yùu, to be living there. The place you live is your address. A postman holds up a parcel at the mouth of the lane and asks only that, and the whole street points at one gate. (_ the second syllable settles low, fixed to the ground)",
       "headline": "thîi-yùu?",
       "scene": "A postman standing at the mouth of a narrow residential lane holding a brown parcel up in one hand. Four neighbours on doorsteps and balconies all point toward the same green gate further down. Washing lines, scooters, hot flat light."
     },
@@ -384,7 +384,7 @@
       "romanization": "tɛ̀ː",
       "english": "but",
       "anchor": "TEAR (rip)",
-      "mnemonic": "The contract is signed, everyone is smiling — but then the lawyer tears the last page clean off. Tɛ̀ɛ is that tear: everything before it stands, and what comes after changes it. Say it like 'tear' with the R swallowed. (▁ low and flat, the paper comes away without drama)",
+      "mnemonic": "The contract is signed, everyone is smiling — but then the lawyer tears the last page clean off. Tɛ̀ɛ is that tear: everything before it stands, and what comes after changes it. Say it like 'tear' with the R swallowed. (_ low and flat, the paper comes away without drama)",
       "headline": "tɛ̀ɛ…",
       "scene": "A lawyer standing at the head of a long table rips the bottom sheet clean off a stapled contract, the torn strip curling in his raised fist. Seated figures around the table sit frozen, smiles stuck. Cold boardroom light, city glass behind."
     },
@@ -394,7 +394,7 @@
       "romanization": "jùː",
       "english": "located; present; exists",
       "anchor": "YOU",
-      "mnemonic": "A phone call in the middle of a market: where are you? The answer is one flat low word — yùu — and an arm goes straight up above the crowd so the caller can see where he is. yùu is being somewhere. (▁ low and flat, the voice sits still like the man)",
+      "mnemonic": "A phone call in the middle of a market: where are you? The answer is one flat low word — yùu — and an arm goes straight up above the crowd so the caller can see where he is. yùu is being somewhere. (_ low and flat, the voice sits still like the man)",
       "headline": "…yùu.",
       "scene": "A man stands dead still in a packed night market with one arm stretched straight up above the heads around him and a phone pressed to his other ear. The crowd streams past him in a blur. String lights, food steam, warm night."
     },
@@ -454,7 +454,7 @@
       "romanization": "jàːŋ",
       "english": "type; like",
       "anchor": "YANG",
-      "mnemonic": "A tea seller sets out two jars, one dark and one pale, and asks which yang you want. Every yin has its yang; every thing has its yàang — its sort, its kind, its type. (▁ low and flat, a plain sorting question)",
+      "mnemonic": "A tea seller sets out two jars, one dark and one pale, and asks which yang you want. Every yin has its yang; every thing has its yàang — its sort, its kind, its type. (_ low and flat, a plain sorting question)",
       "headline": "yàang nǎi?",
       "scene": "A tea seller behind a narrow counter with two open glass jars in front of her, one full of dark twisted leaves, one full of pale curled ones, holding a palm out over each."
     },
@@ -534,7 +534,7 @@
       "romanization": "nɔ̀ːj",
       "english": "a bit; somewhat",
       "anchor": "NOY",
-      "mnemonic": "She asks for chilli and the cook reaches for the whole jar. \"Nòi!\" — voice dropping low as she pinches her fingers a centimetre apart. Just a bit. (▁ low and small, the voice shrinks with the gesture)",
+      "mnemonic": "She asks for chilli and the cook reaches for the whole jar. \"Nòi!\" — voice dropping low as she pinches her fingers a centimetre apart. Just a bit. (_ low and small, the voice shrinks with the gesture)",
       "headline": "Nòi!",
       "scene": "A woman holds one hand up close to the camera and pinches her thumb and forefinger almost shut, a single flake of dried red chilli caught between the fingertips. Her face behind the hand is screwed up in alarm. Plain blurred background, soft daylight."
     },
@@ -544,7 +544,7 @@
       "romanization": "rʉ̌ʉ-plàaw",
       "english": "or not? (question)",
       "anchor": "PLOUGH = blank",
-      "mnemonic": "At the end of the row the farmer tips the plough up and puts the question to the field: another furrow, or nothing? plàao means blank, empty — so rɯ̌ɯ-plàao is literally \"or empty?\", the yes-or-no bolted to the end of a sentence. (▁ the second word drops low, the plough set down)",
+      "mnemonic": "At the end of the row the farmer tips the plough up and puts the question to the field: another furrow, or nothing? plàao means blank, empty — so rɯ̌ɯ-plàao is literally \"or empty?\", the yes-or-no bolted to the end of a sentence. (_ the second word drops low, the plough set down)",
       "headline": "…rɯ̌ɯ-plàao?",
       "scene": "A farmer at the end of a half-ploughed paddy at sunset, one hand resting on the upturned handle of a wooden plough, looking back along the furrow. Half the field is turned dark earth, half is bare dry ground."
     },
@@ -554,7 +554,7 @@
       "romanization": "thùuk",
       "english": "cheap",
       "anchor": "TOOK",
-      "mnemonic": "The vendor names a price so small that the shopper has already walked off with the shirt. It took almost nothing. Thùuk is cheap — and, awkwardly for the learner, also correct. (▁ low and flat, a short blunt word for a short blunt price)",
+      "mnemonic": "The vendor names a price so small that the shopper has already walked off with the shirt. It took almost nothing. Thùuk is cheap — and, awkwardly for the learner, also correct. (_ low and flat, a short blunt word for a short blunt price)",
       "headline": "thùuk.",
       "scene": "A shopper strides away down a covered market aisle with a folded shirt tucked under one arm, holding a single small coin up in his raised free hand and grinning back over his shoulder. Hanging garments, strip lights, a crowded aisle behind him."
     },
@@ -744,7 +744,7 @@
       "romanization": "kìː",
       "english": "how many",
       "anchor": "KEY",
-      "mnemonic": "An old janitor lifts a keyring so heavy it needs both hands — hundreds of keys fanning out like a metal peacock. Someone asks the only sensible question: \"Kìi?\" How many keys? (▁ low and flat, a short blunt question)",
+      "mnemonic": "An old janitor lifts a keyring so heavy it needs both hands — hundreds of keys fanning out like a metal peacock. Someone asks the only sensible question: \"Kìi?\" How many keys? (_ low and flat, a short blunt question)",
       "headline": "Kìi?",
       "scene": "An elderly janitor hoists an enormous iron keyring with both hands, hundreds of keys fanned out in a glinting spray. A student beside him stares up, counting. Dim school corridor, shafts of window light."
     },
@@ -814,7 +814,7 @@
       "romanization": "jàːk",
       "english": "want",
       "anchor": "YAK",
-      "mnemonic": "A boy at the zoo railing points at the yak and will not be moved: he wants it, wants to take it home. jàak is wanting — a long low ache of a word with a yak at the end of it. (▁ low and flat, the want settles in and stays)",
+      "mnemonic": "A boy at the zoo railing points at the yak and will not be moved: he wants it, wants to take it home. jàak is wanting — a long low ache of a word with a yak at the end of it. (_ low and flat, the want settles in and stays)",
       "headline": "jàak…",
       "scene": "A small boy gripping a zoo railing with both hands, cheek pressed between the bars, staring longingly at a huge shaggy yak chewing in its enclosure. His mother tugs gently at his hood from behind. Grey overcast light, damp ground."
     },
@@ -854,7 +854,7 @@
       "romanization": "dɯ̀ːm",
       "english": "to drink",
       "anchor": "DOOM",
-      "mnemonic": "A man raises his glass and intones \"dɯɯm…\" like a funeral bell — the last drink before DOOM. The trick is the lips: say DOOM while grinning, lips pulled wide instead of pushed forward, and you land the Thai vowel exactly. (▁ low and heavy, like the glass coming back down on the table)",
+      "mnemonic": "A man raises his glass and intones \"dɯɯm…\" like a funeral bell — the last drink before DOOM. The trick is the lips: say DOOM while grinning, lips pulled wide instead of pushed forward, and you land the Thai vowel exactly. (_ low and heavy, like the glass coming back down on the table)",
       "headline": "dɯɯm…",
       "scene": "A lone man at a long empty banquet table in a candlelit hall, raising a heavy glass in a solemn toast, grinning oddly wide as he does it. Behind him a huge cracked bronze bell hangs in the shadows. Guttering candles, long shadows, a sense of last things."
     },
@@ -934,7 +934,7 @@
       "romanization": "ʔìːk",
       "english": "more",
       "anchor": "EEK",
-      "mnemonic": "A mouse crosses the kitchen floor and the cook shrieks — eek — then another, then another. Each one gets its own eek. ʔìik is more: again, another one. (▁ low and flat, and by the third mouse the eek has gone tired)",
+      "mnemonic": "A mouse crosses the kitchen floor and the cook shrieks — eek — then another, then another. Each one gets its own eek. ʔìik is more: again, another one. (_ low and flat, and by the third mouse the eek has gone tired)",
       "headline": "…ʔìik.",
       "scene": "A cook standing on a kitchen chair with her apron gathered in both fists, looking down at three mice crossing the tiled floor in single file, her expression more weary than frightened. Copper pans, a pot left steaming on the stove."
     },
@@ -1014,7 +1014,7 @@
       "romanization": "sì",
       "english": "urging particle",
       "anchor": "SEE (go on)",
-      "mnemonic": "The diver hesitates on the rock and her friend flicks a hand at the water: go on, see, just jump. sì is that flick — the little push on the end of an order that turns it into encouragement. (▁ low and clipped, over before it starts)",
+      "mnemonic": "The diver hesitates on the rock and her friend flicks a hand at the water: go on, see, just jump. sì is that flick — the little push on the end of an order that turns it into encouragement. (_ low and clipped, over before it starts)",
       "headline": "…sì!",
       "scene": "Two teenagers on a river rock in swimwear; one stands at the edge with arms wrapped round herself, the other sits behind flicking an open hand towards the green water below, grinning. Jungle bank, sun flashing on the water."
     },
@@ -1044,7 +1044,7 @@
       "romanization": "bɛ̀ːp",
       "english": "model; style",
       "anchor": "BAP",
-      "mnemonic": "A baker's tray of identical round baps with one plaited loaf among them — a different bɛ̀ɛp, the same dough. Bɛ̀ɛp is the model, the kind, the way a thing is made or worn. (▁ low and flat, a plain word for a plain thing)",
+      "mnemonic": "A baker's tray of identical round baps with one plaited loaf among them — a different bɛ̀ɛp, the same dough. Bɛ̀ɛp is the model, the kind, the way a thing is made or worn. (_ low and flat, a plain word for a plain thing)",
       "headline": "bɛ̀ɛp nǎi?",
       "scene": "A bakery window tray packed with identical round bread rolls, one plaited loaf sitting among them, slightly larger. Flour on the tray, tongs resting on the edge, a child's face reflected in the glass. Morning light."
     },
@@ -1054,7 +1054,7 @@
       "romanization": "ʔɔ̀ːk",
       "english": "exit",
       "anchor": "ORC (thrown out)",
-      "mnemonic": "An orc is thrown out of the tavern and lands in the street — out, and staying out. ɔ̀ɔk is going out: the exit, the way out, the thing that leaves. (▁ low and flat, the sound of the door shutting behind him)",
+      "mnemonic": "An orc is thrown out of the tavern and lands in the street — out, and staying out. ɔ̀ɔk is going out: the exit, the way out, the thing that leaves. (_ low and flat, the sound of the door shutting behind him)",
       "headline": "ʔɔ̀ɔk!",
       "scene": "A heavy tavern door swinging shut while a large green-skinned brute in patched leather sits stunned in the muddy street outside, his helmet rolling away. A pair of hands still visible at the doorframe. Lantern light spilling out, wet cobbles, night."
     },
@@ -1064,7 +1064,7 @@
       "romanization": "tʰîː sùt",
       "english": "most",
       "anchor": "TEE + SOOT",
-      "mnemonic": "The place word thîi plus sùt, the end: the point right at the end of the line. A sweep climbs out on top of the tallest chimney in the city, black with soot, every other stack below him. The most, the -est of anything. (▁ the last syllable drops low and stops)",
+      "mnemonic": "The place word thîi plus sùt, the end: the point right at the end of the line. A sweep climbs out on top of the tallest chimney in the city, black with soot, every other stack below him. The most, the -est of anything. (_ the last syllable drops low and stops)",
       "headline": "thîi-sùt.",
       "scene": "A chimney sweep sitting astride the rim of the tallest brick chimney above a city of smaller stacks and rooftops, soot-blackened, brushes slung on his back. Smoke drifting below him. Cold dawn, pale sky."
     },
@@ -1114,7 +1114,7 @@
       "romanization": "bɔ̀ːk",
       "english": "tell",
       "anchor": "BAWK",
-      "mnemonic": "One hen finds the split feed sack and immediately tells the whole yard about it — bawk, bawk, bawk — until every bird in the place is running. Bɔ̀ɔk is to tell: news, instructions, or the truth. (▁ low and flat, a plain announcement)",
+      "mnemonic": "One hen finds the split feed sack and immediately tells the whole yard about it — bawk, bawk, bawk — until every bird in the place is running. Bɔ̀ɔk is to tell: news, instructions, or the truth. (_ low and flat, a plain announcement)",
       "headline": "bɔ̀ɔk.",
       "scene": "A hen stands on a burst sack of grain with her beak wide open mid-squawk, both wings half spread and her neck thrown forward. Other hens come running across the farmyard behind her. Spilled feed, trampled straw, hard morning light."
     },
@@ -1154,7 +1154,7 @@
       "romanization": "rɔ̀ːk",
       "english": "surely not; of course not",
       "anchor": "ROCK",
-      "mnemonic": "You suggest something ridiculous. Your friend shakes her head once and sets a heavy rock down on the table between you. Solid as a rock: no, definitely not, don't even think it. (▁ low and flat, the last word on the matter)",
+      "mnemonic": "You suggest something ridiculous. Your friend shakes her head once and sets a heavy rock down on the table between you. Solid as a rock: no, definitely not, don't even think it. (_ low and flat, the last word on the matter)",
       "headline": "…ròok.",
       "scene": "A woman at a small cafe table slams a heavy grey river stone down onto the tabletop, her arm still straight, her head turned firmly aside, eyebrows raised. Coffee cups jump on their saucers. Bright window light behind her."
     },
@@ -1164,7 +1164,7 @@
       "romanization": "lɛ̀ʔ",
       "english": "emphatic particle — that's the one",
       "anchor": "LEH!",
-      "mnemonic": "A chef scans a row of identical mangoes, then slaps one down on the board — \"nîi lɛ̀!\" — that one. The word is over before it starts, cut off short like the slap itself. (▁ low and clipped, stopped dead at the end)",
+      "mnemonic": "A chef scans a row of identical mangoes, then slaps one down on the board — \"nîi lɛ̀!\" — that one. The word is over before it starts, cut off short like the slap itself. (_ low and clipped, stopped dead at the end)",
       "headline": "…lɛ̀!",
       "scene": "A market chef's hands above a wooden board, having just slapped one mango down hard onto it; the other identical mangoes are lined up untouched behind. Slight motion blur on the striking hand, a puff of disturbed flour or dust rising from the board. Overhead market lighting, close crop."
     },
@@ -1184,7 +1184,7 @@
       "romanization": "thə̀",
       "english": "let's; go ahead (persuasion)",
       "anchor": "TUH",
-      "mnemonic": "Four friends outside a karaoke bar and one of them still hesitating on the step. The others tug his sleeve: pai thə̀ — go on, let's. It is the softest possible shove, the syllable that turns an order into a let's. (▁ low and short, gone almost before it starts)",
+      "mnemonic": "Four friends outside a karaoke bar and one of them still hesitating on the step. The others tug his sleeve: pai thə̀ — go on, let's. It is the softest possible shove, the syllable that turns an order into a let's. (_ low and short, gone almost before it starts)",
       "headline": "pai thə̀!",
       "scene": "A young woman grips a friend by the sleeve and hauls him with her whole body toward a glowing karaoke doorway, laughing, leaning into the pull. He stumbles along after her. Wet pavement, reflected neon, scooters parked along the kerb."
     },
@@ -1254,7 +1254,7 @@
       "romanization": "tɔ̀ː",
       "english": "to; connector; per",
       "anchor": "TORE",
-      "mnemonic": "A rope tore in two and the sailor splices the ends back together, turn by turn, one length carried on into the next. tɔ̀ɔ is joining on: continue, connect, and so much each. (▁ low and flat, the steady pull of the splice)",
+      "mnemonic": "A rope tore in two and the sailor splices the ends back together, turn by turn, one length carried on into the next. tɔ̀ɔ is joining on: continue, connect, and so much each. (_ low and flat, the steady pull of the splice)",
       "headline": "tɔ̀ɔ…",
       "scene": "Close view of a sailor's weathered hands splicing two frayed rope ends together on a boat deck, the strands interwoven halfway, a marlinspike gripped in his teeth. Coiled rope, wet planks, bright sea glare behind."
     },
@@ -1334,7 +1334,7 @@
       "romanization": "tɕàːj",
       "english": "to pay",
       "anchor": "CHAI",
-      "mnemonic": "You jàai for your chai. The two words sit almost on top of each other — the drink and the paying for it — so every cup you buy is a free rehearsal. (▁ low, the flat sound of coins going down on the counter)",
+      "mnemonic": "You jàai for your chai. The two words sit almost on top of each other — the drink and the paying for it — so every cup you buy is a free rehearsal. (_ low, the flat sound of coins going down on the counter)",
       "headline": "jàai for chai.",
       "scene": "A customer brings a fistful of coins down onto a wooden counter with a flat open hand, arm straight, leaning hard over the stall. A tall glass of milky orange iced tea steams beside the coins. Sunlit street behind."
     },
@@ -1344,7 +1344,7 @@
       "romanization": "à-ràwy",
       "english": "delicious",
       "anchor": "a ROY",
-      "mnemonic": "One spoonful and the man at the counter shuts his eyes, presses a hand flat to his chest and cannot say anything at all except à-rɔ̀y. The cook everyone on the street calls Roy points at him with the tongs. A Roy, and a review that needs no words. (▁ low, the voice drops as the eyes close)",
+      "mnemonic": "One spoonful and the man at the counter shuts his eyes, presses a hand flat to his chest and cannot say anything at all except à-rɔ̀y. The cook everyone on the street calls Roy points at him with the tongs. A Roy, and a review that needs no words. (_ low, the voice drops as the eyes close)",
       "headline": "à-rɔ̀y…",
       "scene": "A diner at a stall counter sits with eyes squeezed shut, one hand pressed to his chest, spoon still in his mouth, bowl emptied. The grinning cook points at him with tongs. Wok flame, warm bulbs."
     },
@@ -1354,7 +1354,7 @@
       "romanization": "à-ràwy",
       "english": "Delicious!",
       "anchor": "a ROYAL",
-      "mnemonic": "Take royal and drop the -al: a-roy. A king in full robes has folded himself onto a plastic stool at a noodle cart, taken one mouthful and closed his eyes. The royal verdict on street food, and the whole court leaning in to watch him give it. (▁ the last syllable drops low and satisfied)",
+      "mnemonic": "Take royal and drop the -al: a-roy. A king in full robes has folded himself onto a plastic stool at a noodle cart, taken one mouthful and closed his eyes. The royal verdict on street food, and the whole court leaning in to watch him give it. (_ the last syllable drops low and satisfied)",
       "headline": "à-ròi!",
       "scene": "A king in an embroidered robe and gold circlet perched on a low plastic stool at a night-market noodle cart, eyes closed in bliss, a laden spoon halfway to his mouth. The vendor grins over her steaming pot; two courtiers in uniform wait awkwardly behind."
     },
@@ -1434,7 +1434,7 @@
       "romanization": "hàːk",
       "english": "if",
       "anchor": "HARK",
-      "mnemonic": "The night watchman stops dead on the stair — hark, if that was a footstep, someone is in the house. hàak is the if that opens the sentence: everything hangs on what he hears next. (▁ low and flat, said under the breath)",
+      "mnemonic": "The night watchman stops dead on the stair — hark, if that was a footstep, someone is in the house. hàak is the if that opens the sentence: everything hangs on what he hears next. (_ low and flat, said under the breath)",
       "headline": "hàak…",
       "scene": "A night watchman frozen halfway up a dark wooden staircase, lantern lowered, head turned to listen, one foot still raised above the next step. Long shadows up the wall, a half-open door above him, faint moonlight."
     },
@@ -1444,7 +1444,7 @@
       "romanization": "gòoet",
       "english": "be born",
       "anchor": "GERT (as in dirt)",
-      "mnemonic": "A green shoot breaks the crust of a cracked field: everything that is born comes up out of the dirt. Gɤ̀ɤt rhymes with dirt with a hard G on the front — to be born, to arise, to happen at all. (▁ low and flat, the first quiet moment of a life)",
+      "mnemonic": "A green shoot breaks the crust of a cracked field: everything that is born comes up out of the dirt. Gɤ̀ɤt rhymes with dirt with a hard G on the front — to be born, to arise, to happen at all. (_ low and flat, the first quiet moment of a life)",
       "headline": "gɤ̀ɤt.",
       "scene": "Close view of a single green seedling pushing up through hard cracked earth, soil crumbs lifted on its bent head. A wide dry field blurred behind. First light, long low shadows."
     },
@@ -1474,7 +1474,7 @@
       "romanization": "màj",
       "english": "new",
       "anchor": "MY (brand new)",
-      "mnemonic": "A boy wheels a bicycle out of the shop and will not let anyone else touch the handlebars: mine, and never anyone's before. mài is new, and it sounds exactly like that my. (▁ low and flat, said with both hands on the bars)",
+      "mnemonic": "A boy wheels a bicycle out of the shop and will not let anyone else touch the handlebars: mine, and never anyone's before. mài is new, and it sounds exactly like that my. (_ low and flat, said with both hands on the bars)",
       "headline": "…mài.",
       "scene": "A boy gripping the handlebars of a gleaming new bicycle just outside a shop doorway, shoulders hunched protectively, while two other children reach towards it. A shop window full of bicycles behind, hard sunlight on the pavement."
     },
@@ -1494,7 +1494,7 @@
       "romanization": "sùːan",
       "english": "section",
       "anchor": "SWAN",
-      "mnemonic": "The cake is cut into slices and a sugar swan is set on each one — one swan, one portion, and nobody gets two. sùan is the share: the section, the part of the whole. (▁ low and flat, the knife going straight down)",
+      "mnemonic": "The cake is cut into slices and a sugar swan is set on each one — one swan, one portion, and nobody gets two. sùan is the share: the section, the part of the whole. (_ low and flat, the knife going straight down)",
       "headline": "…sùan.",
       "scene": "An overhead view of a large round cake cut into eight even slices on a table, a small white sugar swan standing on each slice, hands reaching in from several sides. A bright party cloth, scattered crumbs."
     },
@@ -1554,7 +1554,7 @@
       "romanization": "ʔàːt",
       "english": "may",
       "anchor": "ART (no R)",
-      "mnemonic": "Two people stand in front of a canvas of splashes with their heads tilted. It might be art. It might not. Àat is exactly that hedge — may, might, possibly — said like 'art' with the R swallowed. (▁ low and flat, no commitment in the voice)",
+      "mnemonic": "Two people stand in front of a canvas of splashes with their heads tilted. It might be art. It might not. Àat is exactly that hedge — may, might, possibly — said like 'art' with the R swallowed. (_ low and flat, no commitment in the voice)",
       "headline": "àat.",
       "scene": "A man stands well back from an enormous splattered canvas on a white gallery wall, his head tilted hard to one side and his weight slumped onto one hip, arms folded. Spotlights, polished concrete floor, bare walls stretching away."
     },
@@ -1564,7 +1564,7 @@
       "romanization": "kʰà nàːt",
       "english": "size",
       "anchor": "ka + GNAT",
-      "mnemonic": "The shopkeeper asks what size and the customer holds up a gnat between finger and thumb: that big. kha-nàat is size — from a gnat to an elephant, it is the same word. (▁ the second syllable drops low and flat, the fingers pinching shut)",
+      "mnemonic": "The shopkeeper asks what size and the customer holds up a gnat between finger and thumb: that big. kha-nàat is size — from a gnat to an elephant, it is the same word. (_ the second syllable drops low and flat, the fingers pinching shut)",
       "headline": "kha-nàat.",
       "scene": "A woman raises one hand in front of a plain pale wall and pinches her thumb and forefinger almost shut, squinting hard at the tiny gap between them, her whole face leaning in toward her fingers. Soft even light, nothing else in the frame."
     },
@@ -1574,7 +1574,7 @@
       "romanization": "ʔɯ̀ːn",
       "english": "another",
       "anchor": "OON (lips wide)",
-      "mnemonic": "Ask for a different room and the clerk turns to the board of hanging keys for another one. Say 'oon' with the lips spread flat, not pushed forward, and you have ɯ̀ɯn: the other one, some other, a different one from this. (▁ low and flat, a plain alternative)",
+      "mnemonic": "Ask for a different room and the clerk turns to the board of hanging keys for another one. Say 'oon' with the lips spread flat, not pushed forward, and you have ɯ̀ɯn: the other one, some other, a different one from this. (_ low and flat, a plain alternative)",
       "headline": "ʔɯ̀ɯn.",
       "scene": "A hotel clerk reaches high above her head and lifts a key off a hook on a board of hanging keys, her whole body stretched up. A guest's suitcase stands alone on the floor by the desk. Warm lobby lamplight."
     },
@@ -1614,7 +1614,7 @@
       "romanization": "dèk",
       "english": "child",
       "anchor": "DECK",
-      "mnemonic": "A small boy has claimed the rail at the stern of the ferry and is shouting at the wake. The deck is his. Dèk is a child — short, blunt and low, like the boards under his feet. (▁ low and flat, a short stamp of a word)",
+      "mnemonic": "A small boy has claimed the rail at the stern of the ferry and is shouting at the wake. The deck is his. Dèk is a child — short, blunt and low, like the boards under his feet. (_ low and flat, a short stamp of a word)",
       "headline": "dèk.",
       "scene": "A small boy grips the stern rail of a wooden ferry and leans far out over the churning white wake, mouth open in a shout, hair flattened by the wind. Passengers sit in the shade behind him. Hard glare off the water."
     },
@@ -1664,7 +1664,7 @@
       "romanization": "gàawn",
       "english": "before",
       "anchor": "GONE",
-      "mnemonic": "He gets to the buffet one minute late and the tray is already gone. He should have come before. Gɔ̀ɔn is before, first, ahead of the other thing. (▁ low and flat, the word lands after the fact)",
+      "mnemonic": "He gets to the buffet one minute late and the tray is already gone. He should have come before. Gɔ̀ɔn is before, first, ahead of the other thing. (_ low and flat, the word lands after the fact)",
       "headline": "gɔ̀ɔn.",
       "scene": "A man in a suit stands over an empty steel serving tray with his arms hanging and his shoulders dropped, staring down at the tongs lying across bare smeared metal. Stacked chairs and emptied trays fill the hall behind him. Cold strip lighting."
     },
@@ -1674,7 +1674,7 @@
       "romanization": "bplìian",
       "english": "transfer",
       "anchor": "p + LEAN",
-      "mnemonic": "The bus swings round the bend and every standing passenger leans the same way; at the next stop they all get off and change to another bus. Put a p on lean — plìan — and you have changing, switching, transferring. (▁ low and flat, the lean held steady through the bend)",
+      "mnemonic": "The bus swings round the bend and every standing passenger leans the same way; at the next stop they all get off and change to another bus. Put a p on lean — plìan — and you have changing, switching, transferring. (_ low and flat, the lean held steady through the bend)",
       "headline": "plìan.",
       "scene": "The interior of a crowded bus taking a sharp bend, every standing passenger leaning the same way in unison with hands on the overhead rail. Through the windows another bus waits at a stop ahead. Hot daylight, dust on the glass."
     },
@@ -1684,7 +1684,7 @@
       "romanization": "tàːŋ",
       "english": "different",
       "anchor": "TANG (flavour)",
-      "mnemonic": "Two cooks taste from the same pot and disagree: one gets a sharp citrus tang, the other gets nothing at all. Different tongues, different tàang. Tàang is different, other, not the same. (▁ low and flat, said with a shrug)",
+      "mnemonic": "Two cooks taste from the same pot and disagree: one gets a sharp citrus tang, the other gets nothing at all. Different tongues, different tàang. Tàang is different, other, not the same. (_ low and flat, said with a shrug)",
       "headline": "tàang.",
       "scene": "Two cooks either side of a steaming stockpot, each with a tasting spoon halfway to their mouth. One is wincing hard, the other shrugging with eyebrows raised. Steel kitchen, steam, overhead lamps."
     },
@@ -1694,7 +1694,7 @@
       "romanization": "tɔ̀ː paj",
       "english": "next",
       "anchor": "JOIN ON + GO",
-      "mnemonic": "ต่อ joins on and ไป goes: together they mean carry on to the one after this. The relay runner takes the baton and is gone before the first has stopped — tɔ̀ɔ-pai, next. (▁ the first syllable drops low, the second runs off with him)",
+      "mnemonic": "ต่อ joins on and ไป goes: together they mean carry on to the one after this. The relay runner takes the baton and is gone before the first has stopped — tɔ̀ɔ-pai, next. (_ the first syllable drops low, the second runs off with him)",
       "headline": "tɔ̀ɔ-pai.",
       "scene": "A relay handover on a running track: one runner at full stretch pressing a baton into the open backward-reaching hand of the next, who is already accelerating away. Painted lanes, a blurred stadium behind, harsh floodlight."
     },
@@ -1704,7 +1704,7 @@
       "romanization": "hɛ̀ŋ",
       "english": "location; place; spot",
       "anchor": "HEN + hum",
-      "mnemonic": "A hen picks one spot in the whole yard and settles into it; no other spot will do. Say hen and let the end hum in your nose — hɛ̀ng — the place, that particular spot. (▁ low and flat, the hen settling into the dust)",
+      "mnemonic": "A hen picks one spot in the whole yard and settles into it; no other spot will do. Say hen and let the end hum in your nose — hɛ̀ng — the place, that particular spot. (_ low and flat, the hen settling into the dust)",
       "headline": "hɛ̀ng.",
       "scene": "A single brown hen settled in a shallow dust hollow in the exact middle of an otherwise empty farmyard, feathers fluffed and eyes half shut, while other hens wander round the edges. Hard midday sun, a sharp shadow beneath her."
     },
@@ -1724,7 +1724,7 @@
       "romanization": "yài",
       "english": "big",
       "anchor": "YIkes",
-      "mnemonic": "The lid comes off the basket and the fish inside is longer than the man holding it — yikes. Cut it down to yài and you have big: the fish, the house, the boss. (▁ low and flat, the word lands like the fish on the deck)",
+      "mnemonic": "The lid comes off the basket and the fish inside is longer than the man holding it — yikes. Cut it down to yài and you have big: the fish, the house, the boss. (_ low and flat, the word lands like the fish on the deck)",
       "headline": "yài!",
       "scene": "A fisherman on a dock struggling to hold up an enormous fish longer than he is tall, knees buckling, mouth open in astonishment, while a small crowd of onlookers backs away. Bright harbour light, boats and nets behind."
     },
@@ -1734,7 +1734,7 @@
       "romanization": "sǎm ràp",
       "english": "for",
       "anchor": "SAM + RAP",
-      "mnemonic": "Ràp, to receive, is sitting inside it: sǎm-ràp marks whoever receives the thing. A boy hands over a brown-paper parcel wrapped for a man named Sam — Sam-rap — and it is for him, nobody else. (▁ the second syllable drops low, the parcel changes hands)",
+      "mnemonic": "Ràp, to receive, is sitting inside it: sǎm-ràp marks whoever receives the thing. A boy hands over a brown-paper parcel wrapped for a man named Sam — Sam-rap — and it is for him, nobody else. (_ the second syllable drops low, the parcel changes hands)",
       "headline": "sǎm-ràp Sam.",
       "scene": "A boy on a doorstep holds a brown-paper parcel tied with string out at full arm's length, pushing it forward with both hands. A man's hands reach in from the edge of the frame to take it. Terrace houses, milk bottles, flat morning light."
     },
@@ -1814,7 +1814,7 @@
       "romanization": "sìŋ",
       "english": "thing",
       "anchor": "SING",
-      "mnemonic": "A busker will sing about anything you drop in his hat — a spanner, an apple, somebody's lost glove. Every one of them is a sìng: a thing, any thing at all. (▁ low and flat, the most ordinary word there is)",
+      "mnemonic": "A busker will sing about anything you drop in his hat — a spanner, an apple, somebody's lost glove. Every one of them is a sìng: a thing, any thing at all. (_ low and flat, the most ordinary word there is)",
       "headline": "sìng.",
       "scene": "A street busker with a guitar mid-song, an upturned hat at his feet holding a spanner, an apple and a single glove instead of coins. Two passers-by grinning. Shopfronts, pavement, afternoon light."
     },
@@ -1844,7 +1844,7 @@
       "romanization": "sàŋ",
       "english": "to order",
       "anchor": "SUNG",
-      "mnemonic": "The waiter refuses to take a spoken order — everything must be sung. The customer stands, hand on heart, and sings her dinner across the restaurant. You sàng what you sung. (▁ low and flat, even when sung badly)",
+      "mnemonic": "The waiter refuses to take a spoken order — everything must be sung. The customer stands, hand on heart, and sings her dinner across the restaurant. You sàng what you sung. (_ low and flat, even when sung badly)",
       "headline": "sàng!",
       "scene": "A woman rises from her restaurant table, one hand on her heart and the other arm flung wide, head back and mouth open in full song. White tablecloths and turned heads around her, a waiter halted mid-step, warm chandelier light."
     },
@@ -1864,7 +1864,7 @@
       "romanization": "dtàt",
       "english": "cut",
       "anchor": "TATtoo",
-      "mnemonic": "The tattooist stops the needle dead and cuts the line off clean rather than carry it round the arm. tàt is cutting — hair, cloth, price, a line stopped short. (▁ low and flat, the word cut off as sharply as the line)",
+      "mnemonic": "The tattooist stops the needle dead and cuts the line off clean rather than carry it round the arm. tàt is cutting — hair, cloth, price, a line stopped short. (_ low and flat, the word cut off as sharply as the line)",
       "headline": "tàt.",
       "scene": "Close view of a tattooist's gloved hands lifting the needle away from a forearm, a bold black line ending abruptly mid-curve on the skin. Ink pots, a wiped paper towel, harsh angled lamp light."
     },
@@ -1894,7 +1894,7 @@
       "romanization": "pʰìt",
       "english": "wrong",
       "anchor": "PIT",
-      "mnemonic": "He takes the turning everyone warned him about and walks straight into the pit, mud up to his chest, looking up at the path he should have taken. phìt is wrong — the wrong one, the mistake. (▁ low and flat, the bottom of the pit)",
+      "mnemonic": "He takes the turning everyone warned him about and walks straight into the pit, mud up to his chest, looking up at the path he should have taken. phìt is wrong — the wrong one, the mistake. (_ low and flat, the bottom of the pit)",
       "headline": "phìt.",
       "scene": "A man standing chest-deep in a muddy pit in a jungle path, arms out for balance, looking up at the proper trail curving safely past above him. Broken branches around the pit edge, green shade, damp earth."
     },
@@ -1934,7 +1934,7 @@
       "romanization": "pʰàːn",
       "english": "pass",
       "anchor": "PAN (long ah)",
-      "mnemonic": "A bucket chain at a house fire: the pan of water goes from hand to hand, past each person and on to the next. Say pan with the long ah of father — phàan — to pass by, to go through. (▁ low and flat, the steady rhythm of the chain)",
+      "mnemonic": "A bucket chain at a house fire: the pan of water goes from hand to hand, past each person and on to the next. Say pan with the long ah of father — phàan — to pass by, to go through. (_ low and flat, the steady rhythm of the chain)",
       "headline": "phàan.",
       "scene": "A line of villagers strung between a well and a burning wooden house at night, passing a metal pan of water hand to hand, faces lit orange. Smoke and sparks rising, buckets scattered on the ground."
     },
@@ -1944,7 +1944,7 @@
       "romanization": "bàːt",
       "english": "baht (Thai currency)",
       "anchor": "BOUGHT",
-      "mnemonic": "Whatever you bought, you bought it in bàat. The English past tense and the Thai currency are the same sound, and the one always follows the other. (▁ low and flat, the sound of a note being laid down)",
+      "mnemonic": "Whatever you bought, you bought it in bàat. The English past tense and the Thai currency are the same sound, and the one always follows the other. (_ low and flat, the sound of a note being laid down)",
       "headline": "bàat.",
       "scene": "A close overhead view of a market transaction: a hand laying purple and green Thai banknotes down onto a wooden counter, beside a wrapped parcel tied with string that has just been paid for. The vendor's hands rest on the parcel, about to push it across. Warm stall lighting."
     },
@@ -1964,7 +1964,7 @@
       "romanization": "tâŋ tɛ̀ː",
       "english": "since",
       "anchor": "TANG + TAY",
-      "mnemonic": "Set it down, and from that moment on: tâng, to set up, plus tɛ̀ɛ. The jar was stood on the trestle at dawn and has not moved since. Tâng-tɛ̀ɛ marks the point something started and kept going from. (▁ the second syllable drops low, the line running on from there)",
+      "mnemonic": "Set it down, and from that moment on: tâng, to set up, plus tɛ̀ɛ. The jar was stood on the trestle at dawn and has not moved since. Tâng-tɛ̀ɛ marks the point something started and kept going from. (_ the second syllable drops low, the line running on from there)",
       "headline": "tâng-tɛ̀ɛ",
       "scene": "A market at dusk, stalls packed away, one bare wooden trestle left with a single heavy glass jar standing on it exactly where it was put. Empty aisle, litter, long orange shadows."
     },
@@ -2034,7 +2034,7 @@
       "romanization": "nɔ̂ːk tɕàːk",
       "english": "in addition to",
       "anchor": "KNOCK + JACK",
-      "mnemonic": "Outside plus from: nɔ̂ɔk, the knock at the door, and jàak, Jack with his suitcase. Everyone came except Jack, who never got past the step — apart from him, the party was complete. (▁ the last syllable settles low, the door stays shut)",
+      "mnemonic": "Outside plus from: nɔ̂ɔk, the knock at the door, and jàak, Jack with his suitcase. Everyone came except Jack, who never got past the step — apart from him, the party was complete. (_ the last syllable settles low, the door stays shut)",
       "headline": "nɔ̂ɔk-jàak Jack",
       "scene": "A lit front room full of people seen through a window from the dark street, and one man standing outside on the path with a suitcase, looking in. Rain on the glass, his breath fogging, streetlight behind him."
     },
@@ -2044,7 +2044,7 @@
       "romanization": "àan",
       "english": "read",
       "anchor": "AUNt (no t)",
-      "mnemonic": "An aunt reads to the whole room without once looking up, one finger moving down the page, and nobody dares interrupt. Say aunt and drop the t: àan, to read. (▁ low and flat, a quiet voice that never lifts)",
+      "mnemonic": "An aunt reads to the whole room without once looking up, one finger moving down the page, and nobody dares interrupt. Say aunt and drop the t: àan, to read. (_ low and flat, a quiet voice that never lifts)",
       "headline": "àan.",
       "scene": "An elderly aunt in an armchair reading aloud from an open book on her lap, one finger tracing down the page, four children sitting cross-legged on the floor around her, rapt. Lamplight, drawn curtains, evening."
     },
@@ -2074,7 +2074,7 @@
       "romanization": "glàp",
       "english": "return",
       "anchor": "CLAP",
-      "mnemonic": "The teacher claps once and every child turns round and comes straight back from the far end of the field. klàp is going back — back home, back the way you came. (▁ low and flat, one clap, no echo)",
+      "mnemonic": "The teacher claps once and every child turns round and comes straight back from the far end of the field. klàp is going back — back home, back the way you came. (_ low and flat, one clap, no echo)",
       "headline": "klàp!",
       "scene": "A teacher at the edge of a school field with hands just brought together in a clap, while thirty children scattered across the grass all turn at once and begin running back towards her. Dust, long shadows, late afternoon."
     },
@@ -2144,7 +2144,7 @@
       "romanization": "fàːj",
       "english": "party; side",
       "anchor": "FIE!",
-      "mnemonic": "Two lines of men lean back on the same rope, one line each side of the mud, and fie on the other lot. Each fàai is a side — and there are only ever two worth naming. (▁ low and flat, the strain held steady)",
+      "mnemonic": "Two lines of men lean back on the same rope, one line each side of the mud, and fie on the other lot. Each fàai is a side — and there are only ever two worth naming. (_ low and flat, the strain held steady)",
       "headline": "fàai.",
       "scene": "A tug of war across a muddy ditch at a village fair: two lines of men leaning far back on one rope, heels dug in, faces straining, a crowd shouting on both banks. Churned mud, bright overcast light."
     },
@@ -2204,7 +2204,7 @@
       "romanization": "sòng",
       "english": "submit",
       "anchor": "SONG (sent off)",
-      "mnemonic": "She seals her song inside the envelope and pushes it through the slot of the competition box. sòng is sending: a letter, a parcel, a child off to school. (▁ low and flat, the envelope dropping out of sight)",
+      "mnemonic": "She seals her song inside the envelope and pushes it through the slot of the competition box. sòng is sending: a letter, a parcel, a child off to school. (_ low and flat, the envelope dropping out of sight)",
       "headline": "sòng.",
       "scene": "A woman's hand pushing a sealed envelope through the slot of a large wooden competition box in a hotel lobby, a queue behind her holding envelopes of their own. Polished floor, potted palms, bright lobby light."
     },
@@ -2364,7 +2364,7 @@
       "romanization": "tà lɔ̀ːt",
       "english": "throughout; always",
       "anchor": "ta-LOT",
-      "mnemonic": "The night coach runs the whole lot of the way without stopping once — all night, no gap. Tà-lɔ̀ɔt is throughout: all night, all year, always, the stretch with nothing broken in it. (▁ both syllables low and flat, unbroken)",
+      "mnemonic": "The night coach runs the whole lot of the way without stopping once — all night, no gap. Tà-lɔ̀ɔt is throughout: all night, all year, always, the stretch with nothing broken in it. (_ both syllables low and flat, unbroken)",
       "headline": "tà-lɔ̀ɔt.",
       "scene": "A night coach seen from behind on an empty straight highway, tail lights receding, the road running dead ahead to a vanishing point under a sky full of stars. Dark fields either side."
     },
@@ -2414,7 +2414,7 @@
       "romanization": "ʔaː kàːt",
       "english": "air; weather",
       "anchor": "a CAT",
-      "mnemonic": "A cat on a windowsill lifts its nose, reads the air and knows the rain is coming an hour before you do. aa-kàat is both the air and what it is doing — weather. (▁ the second syllable settles low, like the cat)",
+      "mnemonic": "A cat on a windowsill lifts its nose, reads the air and knows the rain is coming an hour before you do. aa-kàat is both the air and what it is doing — weather. (_ the second syllable settles low, like the cat)",
       "headline": "aa-kàat.",
       "scene": "A cat sitting upright on an open wooden windowsill, nose lifted and eyes half closed, whiskers catching the wind. Beyond the window a dark bank of monsoon cloud is rolling in over rooftops while the street below is still in sunshine. Curtains lifting in the draught."
     },
@@ -2434,7 +2434,7 @@
       "romanization": "kèp",
       "english": "store; put away",
       "anchor": "KEPt (no t)",
-      "mnemonic": "Everything she has ever kept is in that cupboard: string, buttons, the good tin. Say kept and drop the t — kèp — to put away and keep. (▁ low and flat, the door pushed quietly shut)",
+      "mnemonic": "Everything she has ever kept is in that cupboard: string, buttons, the good tin. Say kept and drop the t — kèp — to put away and keep. (_ low and flat, the door pushed quietly shut)",
       "headline": "kèp.",
       "scene": "An old woman easing a crowded cupboard door shut with both hands, the shelves inside packed with tins, jars, folded cloth and coiled string. A dim kitchen, one window, soft grey daylight."
     },
@@ -2474,7 +2474,7 @@
       "romanization": "kɛ̀ː",
       "english": "to; old",
       "anchor": "CARE for the old",
-      "mnemonic": "The old man will not be helped up the step; his daughter hovers behind him with both hands out, caring, not touching. kɛ̀ɛ is old — old enough to refuse the arm. (▁ low and flat, said without any fuss)",
+      "mnemonic": "The old man will not be helped up the step; his daughter hovers behind him with both hands out, caring, not touching. kɛ̀ɛ is old — old enough to refuse the arm. (_ low and flat, said without any fuss)",
       "headline": "kɛ̀ɛ.",
       "scene": "A very old man gripping a doorframe to haul himself up a high wooden step, jaw set, while his middle-aged daughter hovers behind with both hands raised and not quite touching him. A village house, bright doorway light."
     },
@@ -2514,7 +2514,7 @@
       "romanization": "jàt",
       "english": "arrange",
       "anchor": "JUT (none jutting)",
-      "mnemonic": "The florist turns each stem until not one of them juts out of line, then ties the whole thing off. tɕàt is arranging — putting things where they belong, nothing sticking out. (▁ low and flat, each stem pressed down into place)",
+      "mnemonic": "The florist turns each stem until not one of them juts out of line, then ties the whole thing off. tɕàt is arranging — putting things where they belong, nothing sticking out. (_ low and flat, each stem pressed down into place)",
       "headline": "tɕàt.",
       "scene": "A florist's hands turning and pressing the stems of a large bouquet into alignment on a workbench, a length of twine held ready between her teeth. Cut stems and leaves scattered across the bench, cool shopfront daylight."
     },
@@ -2614,7 +2614,7 @@
       "romanization": "tʰáŋ mòt",
       "english": "total",
       "anchor": "TANG + MOTH",
-      "mnemonic": "Open the wardrobe and the moths have had the lot — every coat, every jumper, nothing left. tʰáng-mòt is all of it, the whole total, with mòt meaning used up entirely. (▁ the second syllable drops flat, nothing left to say)",
+      "mnemonic": "Open the wardrobe and the moths have had the lot — every coat, every jumper, nothing left. tʰáng-mòt is all of it, the whole total, with mòt meaning used up entirely. (_ the second syllable drops flat, nothing left to say)",
       "headline": "tʰáng-mòt.",
       "scene": "An open wardrobe of ruined woollen clothes hanging in shreds with holes through every garment, a few moths still fluttering in the dim interior while a woman stands staring with her hands at her sides. A bedroom, grey window light."
     },
@@ -2654,7 +2654,7 @@
       "romanization": "klùm",
       "english": "group",
       "anchor": "GLOOM",
-      "mnemonic": "Six teenagers packed under one shop awning in the rain, shoulders touching, all in the gloom together. Klùm is a group — the huddle, the bunch, the lot of them. (▁ low and flat, nobody moving)",
+      "mnemonic": "Six teenagers packed under one shop awning in the rain, shoulders touching, all in the gloom together. Klùm is a group — the huddle, the bunch, the lot of them. (_ low and flat, nobody moving)",
       "headline": "klùm.",
       "scene": "Six teenagers crammed under a narrow shop awning in heavy rain, shoulders pressed together, bags held over heads. Grey street, water sheeting off the awning edge, closed shutters behind them."
     },
@@ -2744,7 +2744,7 @@
       "romanization": "ʔoː kàːt",
       "english": "chance",
       "anchor": "OH + CAT",
-      "mnemonic": "The door swings open for one second and the cat is through it and gone — oh, the cat. ʔoo-kàat is a chance: the gap, and whether you went through it. (▁ the second syllable drops low, the door swinging shut)",
+      "mnemonic": "The door swings open for one second and the cat is through it and gone — oh, the cat. ʔoo-kàat is a chance: the gap, and whether you went through it. (_ the second syllable drops low, the door swinging shut)",
       "headline": "ʔoo-kàat!",
       "scene": "A cat streaking through the narrowing gap of a front door that is swinging shut, only its tail and hind legs still inside, while a man with shopping bags stands startled in the doorway. Hallway light, a rainy street behind."
     },
@@ -2894,7 +2894,7 @@
       "romanization": "ráʔ dàp",
       "english": "level; grade",
       "anchor": "ra-DAB",
-      "mnemonic": "The decorator dabs a mark of paint along the wall at exactly the height of his string line, each dab level with the last one. Rá-dàp is the level: the grade, the rank, the height a thing has got to. (▁ the second syllable drops low, the dab lands)",
+      "mnemonic": "The decorator dabs a mark of paint along the wall at exactly the height of his string line, each dab level with the last one. Rá-dàp is the level: the grade, the rank, the height a thing has got to. (_ the second syllable drops low, the dab lands)",
       "headline": "rá-dàp.",
       "scene": "A decorator stretches up on his toes and presses a loaded brush flat against the wall, arm extended along a taut string line pinned across the bare room. Small paint marks follow the line. Ladder, dust sheets, open tin, flat daylight."
     },
@@ -2904,7 +2904,7 @@
       "romanization": "bpòoet",
       "english": "turn on",
       "anchor": "PERT (no r)",
-      "mnemonic": "A pert little housemaid throws the shutters back and the whole room fills with light. Say pert without the r and with an unaspirated p — bpə̀ət — to open, to switch on. (▁ low and flat, the shutters banging back)",
+      "mnemonic": "A pert little housemaid throws the shutters back and the whole room fills with light. Say pert without the r and with an unaspirated p — bpə̀ət — to open, to switch on. (_ low and flat, the shutters banging back)",
       "headline": "bpə̀ət.",
       "scene": "A young housemaid in an apron flinging a pair of tall wooden shutters wide open in a dark panelled room, morning light flooding across the floorboards with dust hanging in the beam. Her face turned into the light."
     },
@@ -2914,7 +2914,7 @@
       "romanization": "bpòoet",
       "english": "open",
       "anchor": "PERT",
-      "mnemonic": "Pert, like the shop that opens dead on time with its shutter snapped up in one movement. Bpɤ̀ɤt rhymes with pert and means to open — a door, a shop, a bottle, a switch. (▁ low and flat, the shutter goes up in one go)",
+      "mnemonic": "Pert, like the shop that opens dead on time with its shutter snapped up in one movement. Bpɤ̀ɤt rhymes with pert and means to open — a door, a shop, a bottle, a switch. (_ low and flat, the shutter goes up in one go)",
       "headline": "bpɤ̀ɤt.",
       "scene": "A shopkeeper rolling a metal shutter up above his head in one sweep, the dark shop interior appearing beneath it. Empty street, awning half unfurled, first pale light down the road."
     },
@@ -2984,7 +2984,7 @@
       "romanization": "tìt",
       "english": "stick; attached to",
       "anchor": "TIT (the bird)",
-      "mnemonic": "A tit — the small bird — clamps onto the fat ball hanging from the branch and hangs there upside down for an hour, refusing to let go. Tìt is stuck to, attached to, caught on, addicted to. (▁ low and flat, clamped on)",
+      "mnemonic": "A tit — the small bird — clamps onto the fat ball hanging from the branch and hangs there upside down for an hour, refusing to let go. Tìt is stuck to, attached to, caught on, addicted to. (_ low and flat, clamped on)",
       "headline": "tìt.",
       "scene": "A small blue and yellow bird clinging upside down to a hanging fat ball on a bare winter branch, wings tight to its body, claws locked. Frost on the twigs, pale garden behind."
     },
@@ -3024,7 +3024,7 @@
       "romanization": "ráʔ bòp",
       "english": "system",
       "anchor": "ra-BOP",
-      "mnemonic": "An old post room where every canister goes bop into its brass tube and lands in the right room three floors away. Rá-bòp is the system: the works, the way the parts fit together. (▁ the second syllable drops low, the canister lands)",
+      "mnemonic": "An old post room where every canister goes bop into its brass tube and lands in the right room three floors away. Rá-bòp is the system: the works, the way the parts fit together. (_ the second syllable drops low, the canister lands)",
       "headline": "rá-bòp.",
       "scene": "A sorting room walled with brass pneumatic tubes, one canister dropping into a wire basket while a clerk in shirtsleeves reaches for it. Other clerks at benches, dusty light from high windows."
     },
@@ -3074,7 +3074,7 @@
       "romanization": "rúː tɕàk",
       "english": "know (someone)",
       "anchor": "know JACK",
-      "mnemonic": "English has half of it already: you don't know jack. Rúu is to know and jàk finishes it — rúu-jàk is knowing a person, being acquainted. Two men shake hands at a party and find they grew up on the same lane. (▁ the second syllable drops low, the handshake lands)",
+      "mnemonic": "English has half of it already: you don't know jack. Rúu is to know and jàk finishes it — rúu-jàk is knowing a person, being acquainted. Two men shake hands at a party and find they grew up on the same lane. (_ the second syllable drops low, the handshake lands)",
       "headline": "rúu-jàk!",
       "scene": "Two middle-aged men gripping each other's hand at a crowded party, both leaning back with their free hands on each other's shoulders, mouths open in recognition. Drinks abandoned on a sideboard, warm light."
     },
@@ -3284,7 +3284,7 @@
       "romanization": "sùː",
       "english": "to",
       "anchor": "SUE",
-      "mnemonic": "Sue stands in the middle of the room and the room comes to her: the rug rucking up, the chairs walking on their legs, an orange rolling across the boards. Everything goes to Sue. sùu is that word and nothing more. To, towards, into. (▁ low and flat, a short word that only points)",
+      "mnemonic": "Sue stands in the middle of the room and the room comes to her: the rug rucking up, the chairs walking on their legs, an orange rolling across the boards. Everything goes to Sue. sùu is that word and nothing more. To, towards, into. (_ low and flat, a short word that only points)",
       "headline": "…sùu Sue.",
       "scene": "A living room where the furniture is sliding across the floorboards toward a woman standing calmly in the centre, arms at her sides. A rug rucks up at her feet, two chairs tilt toward her mid-slide, an orange rolls across the boards."
     },
@@ -3304,7 +3304,7 @@
       "romanization": "rúu-sùek",
       "english": "feel",
       "anchor": "ROO = KNOW",
-      "mnemonic": "This one is built, not borrowed. rúu on its own is to know. Stretch it into rúu-sùek and the knowing leaves the head and drops into the body: a woman stops in a doorway with her hand flat on her chest, knowing a thing before she has any words for it. Knowing, felt. (▁ the second syllable falls low and short, a knock under the ribs)",
+      "mnemonic": "This one is built, not borrowed. rúu on its own is to know. Stretch it into rúu-sùek and the knowing leaves the head and drops into the body: a woman stops in a doorway with her hand flat on her chest, knowing a thing before she has any words for it. Knowing, felt. (_ the second syllable falls low and short, a knock under the ribs)",
       "headline": "rúu-sùek.",
       "scene": "A woman stands motionless in a kitchen doorway, one hand pressed flat over her heart, eyes lowered, caught in the instant of registering something. A phone lies face down on the counter behind her. Late afternoon light."
     },
@@ -3324,7 +3324,7 @@
       "romanization": "phàk",
       "english": "vegetable",
       "anchor": "PACK",
-      "mnemonic": "She asked for one carrot. The grocer hands over a pack so enormous she has to hug it with both arms, greens bursting out of the top and over her face, the single carrot still held up in her fingers. A whole pack of phàk. (▁ low and clipped, stopped dead by the k)",
+      "mnemonic": "She asked for one carrot. The grocer hands over a pack so enormous she has to hug it with both arms, greens bursting out of the top and over her face, the single carrot still held up in her fingers. A whole pack of phàk. (_ low and clipped, stopped dead by the k)",
       "headline": "phàk!",
       "scene": "A small woman staggers backwards under an enormous wrapped bundle of vegetables clamped in both arms, knees buckling, leafy greens and one long carrot bursting out over her face. Market stalls and crates of produce behind her, bright morning sun."
     },
@@ -3414,7 +3414,7 @@
       "romanization": "kʰwaːm rúː sɯ̀k",
       "english": "feeling",
       "anchor": "QUALM",
-      "mnemonic": "A qualm is a feeling that will not sit still, and kʰwaam is how the Thai starts. kʰwaam- is the noun-maker: stick it on rúu-sɯ̀k, to sense, and you get the sensing itself — the feeling. Qualm first, every time. (▁ the last syllable sinks low, the way a qualm settles in the stomach)",
+      "mnemonic": "A qualm is a feeling that will not sit still, and kʰwaam is how the Thai starts. kʰwaam- is the noun-maker: stick it on rúu-sɯ̀k, to sense, and you get the sensing itself — the feeling. Qualm first, every time. (_ the last syllable sinks low, the way a qualm settles in the stomach)",
       "headline": "kʰwaam-rúu-sɯ̀k.",
       "scene": "A man alone at a kitchen table late at night, one hand pressed flat against his stomach, brow furrowed, staring past an untouched bowl of rice. A single bulb on a cord swings very slightly above him, shadows tilting across the wall."
     },
@@ -3444,7 +3444,7 @@
       "romanization": "tɛ̀ŋ",
       "english": "to dress; to write/compose",
       "anchor": "TANGO - O",
-      "mnemonic": "Knock the O off TANGO and you have tɛ̀ng. Nobody dances a tango in their work clothes: the word is getting dressed, arranged, put together properly. The same verb composes a song — cloth or music, it is all arranging. (▁ low and flat, the pause before the music starts)",
+      "mnemonic": "Knock the O off TANGO and you have tɛ̀ng. Nobody dances a tango in their work clothes: the word is getting dressed, arranged, put together properly. The same verb composes a song — cloth or music, it is all arranging. (_ low and flat, the pause before the music starts)",
       "headline": "tɛ̀ng.",
       "scene": "A woman in a fitted scarlet dance dress stands in a dressing-room doorway with both arms raised above her head, turning on one heel so the skirt swings wide. A rail of costumes and a dressmaker's dummy crowd the room behind her. Bare bulbs."
     },
@@ -3454,7 +3454,7 @@
       "romanization": "sà-ngòp",
       "english": "calm",
       "anchor": "SANG + OP",
-      "mnemonic": "The child on the trolley is terrified, so the anaesthetist leans down and sings to her — quietly, badly — right up to the moment she goes under. She sang, then the op, and between the two of them everything went completely still. Say SANG OP and let the ng slide across. (▁ low and flat, the voice settling to nothing)",
+      "mnemonic": "The child on the trolley is terrified, so the anaesthetist leans down and sings to her — quietly, badly — right up to the moment she goes under. She sang, then the op, and between the two of them everything went completely still. Say SANG OP and let the ng slide across. (_ low and flat, the voice settling to nothing)",
       "headline": "sà-ngòp.",
       "scene": "An anaesthetist in scrubs bends over a child on a trolley, one hand holding hers, mouth open in quiet song. The child's eyes are half closed, her other hand limp. Hospital corridor, theatre doors spilling white light."
     },
@@ -3474,7 +3474,7 @@
       "romanization": "pà kà tìʔ",
       "english": "normal",
       "anchor": "PACK A TEA",
-      "mnemonic": "Every morning at the same hour he packs a tea into the same dented flask and takes the same seat on the same bus. pà-kà-tì — pack a tea — is the way things normally are: ordinary, usual, nothing out of place. (▁ low and flat throughout, nothing remarkable happens)",
+      "mnemonic": "Every morning at the same hour he packs a tea into the same dented flask and takes the same seat on the same bus. pà-kà-tì — pack a tea — is the way things normally are: ordinary, usual, nothing out of place. (_ low and flat throughout, nothing remarkable happens)",
       "headline": "pà-kà-tì.",
       "scene": "A middle-aged man in a work shirt tips a spoonful of tea leaves into a dented steel flask held up in his other hand, standing at a small kitchen table. His lunch tin, coat and keys lie squared up beside him. Grey dawn light."
     },
@@ -3494,7 +3494,7 @@
       "romanization": "jùt",
       "english": "dot",
       "anchor": "JUT",
-      "mnemonic": "The gallery is silent. The artist's arm juts out, the brush touches the huge white canvas once, and that is the whole painting: one black dot in the middle of all that space. jùt is the dot. A jab, and stop. (▁ low and clipped, over as soon as it starts)",
+      "mnemonic": "The gallery is silent. The artist's arm juts out, the brush touches the huge white canvas once, and that is the whole painting: one black dot in the middle of all that space. jùt is the dot. A jab, and stop. (_ low and clipped, over as soon as it starts)",
       "headline": "jùt.",
       "scene": "A white gallery wall holding one enormous blank canvas with a single small black dot at its centre. The artist stands close, arm still thrust forward, a fine brush in hand, the paint still wet."
     },
@@ -3514,7 +3514,7 @@
       "romanization": "sòːt",
       "english": "single; unmarried",
       "anchor": "S + OAT",
-      "mnemonic": "Put an S in front of OAT and stop there: sòot. One man, one bowl of oats, one spoon, at a table laid for one, with five chairs still tucked in. Nobody to cook for and nobody cooking for him. (▁ low and flat, as small as the bowl)",
+      "mnemonic": "Put an S in front of OAT and stop there: sòot. One man, one bowl of oats, one spoon, at a table laid for one, with five chairs still tucked in. Nobody to cook for and nobody cooking for him. (_ low and flat, as small as the bowl)",
       "headline": "sòot.",
       "scene": "A man sits alone at one end of a long kitchen table eating porridge from a single bowl, one chair pulled out and five tucked in. A single mug and spoon on the drainer. Grey morning light."
     },
@@ -3564,7 +3564,7 @@
       "romanization": "nùeng",
       "english": "one",
       "anchor": "NOONG, lips wide",
-      "mnemonic": "A man at the bar holds one finger up over the crowd. Say noong — but grinning, lips pulled wide rather than rounded — and you land the Thai vowel: nɯ̀ng. One finger, one beer, one short low syllable. (▁ low and short, over almost before it starts)",
+      "mnemonic": "A man at the bar holds one finger up over the crowd. Say noong — but grinning, lips pulled wide rather than rounded — and you land the Thai vowel: nɯ̀ng. One finger, one beer, one short low syllable. (_ low and short, over almost before it starts)",
       "headline": "Nɯ̀ng!",
       "scene": "A man thrusts one arm straight up above the heads of a crowded bar, a single finger extended high, grinning broadly with his lips pulled wide. Bottles glow behind the counter, shoulders press close around him, low night light."
     },
@@ -3594,7 +3594,7 @@
       "romanization": "sìi",
       "english": "four",
       "anchor": "SEE four ways",
-      "mnemonic": "Stand in the middle of a crossroads and you can see four ways at once. Thai calls that place a sìi-yɛ̂ɛk, a four-split, because sìi is four — and it sounds like exactly what you do standing there. (▁ low and flat, a short glance down each road)",
+      "mnemonic": "Stand in the middle of a crossroads and you can see four ways at once. Thai calls that place a sìi-yɛ̂ɛk, a four-split, because sìi is four — and it sounds like exactly what you do standing there. (_ low and flat, a short glance down each road)",
       "headline": "Sìi.",
       "scene": "Seen from above: a dusty rural crossroads at midday where two straight roads meet, each of the four arms running away to the horizon across parched fields."
     },
@@ -3614,7 +3614,7 @@
       "romanization": "hòk",
       "english": "six",
       "anchor": "HOCK",
-      "mnemonic": "Six ham hocks hang from six hooks in the butcher's window, and he counts them off along the rail with the back of his knife. Hock, hòk: the meat and the number are the same short syllable, and both stop dead at the k. (▁ low and blunt, cut off at the end)",
+      "mnemonic": "Six ham hocks hang from six hooks in the butcher's window, and he counts them off along the rail with the back of his knife. Hock, hòk: the meat and the number are the same short syllable, and both stop dead at the k. (_ low and blunt, cut off at the end)",
       "headline": "hòk.",
       "scene": "A butcher's window seen from inside the shop: six cured ham hocks hanging in a row from hooks on a steel rail. A butcher in a striped apron runs the back of a knife along them, lips moving as he counts."
     },
@@ -3624,7 +3624,7 @@
       "romanization": "jèt",
       "english": "seven",
       "anchor": "JET",
-      "mnemonic": "Seven jets tear across the sky in one arrowhead, trailing coloured smoke. Count them off as they pass — jèt — one blunt syllable for each. Seven jets, and jèt is seven. (▁ low and flat, short and hard as a jet going over)",
+      "mnemonic": "Seven jets tear across the sky in one arrowhead, trailing coloured smoke. Count them off as they pass — jèt — one blunt syllable for each. Seven jets, and jèt is seven. (_ low and flat, short and hard as a jet going over)",
       "headline": "Jèt!",
       "scene": "Seven fighter jets in a tight arrowhead formation streaking low across a clear blue sky, coloured smoke trails fanning out behind them. Along the bottom of the frame, a crowd of upturned silhouetted faces and raised hands."
     },
@@ -3634,7 +3634,7 @@
       "romanization": "bpàaet",
       "english": "eight",
       "anchor": "BAT",
-      "mnemonic": "An octopus gets into the cricket bag and comes up with a bat in every arm — eight arms, eight bats, all swinging at once while the fielders back away. BAT gives you bpàaet, and the animal does the counting for you. (▁ low and flat, cut off short by the t)",
+      "mnemonic": "An octopus gets into the cricket bag and comes up with a bat in every arm — eight arms, eight bats, all swinging at once while the fielders back away. BAT gives you bpàaet, and the animal does the counting for you. (_ low and flat, cut off short by the t)",
       "headline": "bpàaet!",
       "scene": "An octopus rises out of a cricket bag with a wooden bat gripped in each of its eight arms, all raised at different angles, as two fielders stumble backwards, caps falling off. Village green, sunny afternoon."
     },
@@ -3654,7 +3654,7 @@
       "romanization": "sìp",
       "english": "ten",
       "anchor": "SIP",
-      "mnemonic": "Ten small glasses along the counter and one sip from each: by the last of them she has counted the whole row without thinking about it. sìp is ten, and ten sips is the row. (▁ low and flat, short as a single dry sip)",
+      "mnemonic": "Ten small glasses along the counter and one sip from each: by the last of them she has counted the whole row without thinking about it. sìp is ten, and ten sips is the row. (_ low and flat, short as a single dry sip)",
       "headline": "Sìp.",
       "scene": "A long cellar counter lined with ten small tasting glasses. Nine stand drained; a sommelier lifts the tenth to her lips, eyes closed, her other hand spread flat on the wood. Oak barrels stacked behind her, warm lamplight."
     },
@@ -3664,7 +3664,7 @@
       "romanization": "yîi-sìp",
       "english": "twenty",
       "anchor": "TWO TENS",
-      "mnemonic": "sìp is ten, and twenty is two tens — but not sǎwng-sìp, as you would expect. Thai keeps an older word for two in this one slot and puts it on the front: yîi-sìp. Two towers of ten coins side by side, one of them noticeably more tarnished than the other. (▁ the second half drops low and short, stopped by the p)",
+      "mnemonic": "sìp is ten, and twenty is two tens — but not sǎwng-sìp, as you would expect. Thai keeps an older word for two in this one slot and puts it on the front: yîi-sìp. Two towers of ten coins side by side, one of them noticeably more tarnished than the other. (_ the second half drops low and short, stopped by the p)",
       "headline": "yîi-sìp.",
       "scene": "Two neat towers of ten coins each standing side by side on a dark wooden counter, one tower bright and the other badly tarnished, a shopkeeper's hand resting beside them. Low warm light raking across the coins, long shadows behind."
     },
@@ -3704,7 +3704,7 @@
       "romanization": "fà-ràng-sèet",
       "english": "France",
       "anchor": "FRANÇAIS",
-      "mnemonic": "It is the French word for French, slowed down and given a Thai mouth: français becomes fà-ràng-sèet. The middle of it, farang, is also the everyday Thai word for a Westerner, so France comes out as the farang country. (▁ the first two syllables sit low and short)",
+      "mnemonic": "It is the French word for French, slowed down and given a Thai mouth: français becomes fà-ràng-sèet. The middle of it, farang, is also the everyday Thai word for a Westerner, so France comes out as the farang country. (_ the first two syllables sit low and short)",
       "headline": "fà-ràng-sèet.",
       "scene": "A pavement café under a wrought-iron balcony on a grey morning in Paris. A man in a beret plays an accordion beside a round marble table set with coffee and croissants; the great iron tower stands hazy at the end of the street. Wet cobbles, bare plane trees."
     },
@@ -3714,7 +3714,7 @@
       "romanization": "ang-grìt",
       "english": "England",
       "anchor": "ANGRY + T",
-      "mnemonic": "Take ANGRY and stop it dead with a t: ang-grìt. A bowler-hatted man stands in the rain glaring at a cup of tea gone stone cold, furious and entirely silent about it. That is England. (▁ the second syllable drops low and stops short)",
+      "mnemonic": "Take ANGRY and stop it dead with a t: ang-grìt. A bowler-hatted man stands in the rain glaring at a cup of tea gone stone cold, furious and entirely silent about it. That is England. (_ the second syllable drops low and stops short)",
       "headline": "ang-grìt.",
       "scene": "A man in a bowler hat and a long dark coat stands rigid under a black umbrella in sheeting rain, glaring down at a cup and saucer balanced on a low wall, his face red with fury. Grey street, running gutters, flat light."
     },
@@ -3734,7 +3734,7 @@
       "romanization": "laa gɔ̀ɔn",
       "english": "goodbye",
       "anchor": "LA + GONE",
-      "mnemonic": "She sings one last la— down the platform and then she is gone. laa-gɔ̀ɔn: a la, and gone. It is the goodbye for someone leaving properly, not the see-you-tomorrow kind. (▁ gɔ̀ɔn drops low, the sound of a door pulled shut)",
+      "mnemonic": "She sings one last la— down the platform and then she is gone. laa-gɔ̀ɔn: a la, and gone. It is the goodbye for someone leaving properly, not the see-you-tomorrow kind. (_ gɔ̀ɔn drops low, the sound of a door pulled shut)",
       "headline": "Laa-gɔ̀ɔn…",
       "scene": "A woman leans far out of the window of a moving railway carriage with one arm raised high in a wave, mouth open mid-note, hair blowing back. The emptying platform slides away behind her. Dusk, lamps coming on along the track."
     },
@@ -3794,7 +3794,7 @@
       "romanization": "klàːw",
       "english": "say",
       "anchor": "CLOWN - N",
-      "mnemonic": "Take CLOWN and drop the n: klàao. In the middle of the chaos the clown climbs onto a chair, takes his hat off, holds it over his heart and makes a short and entirely serious speech to the ring. klàao is saying as a formal act — stating a thing aloud. (▁ low and flat, the voice of someone being serious for once)",
+      "mnemonic": "Take CLOWN and drop the n: klàao. In the middle of the chaos the clown climbs onto a chair, takes his hat off, holds it over his heart and makes a short and entirely serious speech to the ring. klàao is saying as a formal act — stating a thing aloud. (_ low and flat, the voice of someone being serious for once)",
       "headline": "klàao.",
       "scene": "A clown in full paint stands on a wooden chair with his hat held over his heart, mouth open mid-speech, completely solemn. Acrobats and a small elephant have stopped to listen. Circus ring, one spotlight, sawdust."
     },
@@ -3844,7 +3844,7 @@
       "romanization": "gài",
       "english": "chicken",
       "anchor": "GUY",
-      "mnemonic": "A rooster struts down the middle of the lane like he owns it — that guy. gài is chicken, and the cockerel is the guy who runs the yard: the dog steps round him, the hens get out of the way. (▁ low and flat, one short cluck)",
+      "mnemonic": "A rooster struts down the middle of the lane like he owns it — that guy. gài is chicken, and the cockerel is the guy who runs the yard: the dog steps round him, the hens get out of the way. (_ low and flat, one short cluck)",
       "headline": "Gài!",
       "scene": "An enormous glossy rooster struts down the centre of a village lane, chest thrown out, tail high, one foot lifted mid-step. A dog and two hens have stepped aside onto the verge. Wooden houses, mist between them, low golden light."
     },
@@ -3854,7 +3854,7 @@
       "romanization": "gài",
       "english": "chicken",
       "anchor": "GUY",
-      "mnemonic": "The cockerel owns the yard. Chest out, wings flared, beak up, squaring off against a dog twice his size and winning, while the hens watch from the coop door. Some guy, says the farmer. gài is the bird, GUY is the sound. (▁ low and flat, a short blunt syllable)",
+      "mnemonic": "The cockerel owns the yard. Chest out, wings flared, beak up, squaring off against a dog twice his size and winning, while the hens watch from the coop door. Some guy, says the farmer. gài is the bird, GUY is the sound. (_ low and flat, a short blunt syllable)",
       "headline": "gài.",
       "scene": "A bantam cockerel stands chest out with wings flared and beak raised, squaring up to a dog twice his size that backs away with ears flat. Hens watch from a coop doorway. Dusty farmyard, golden evening light."
     },
@@ -3874,7 +3874,7 @@
       "romanization": "kìːaw kàp",
       "english": "about",
       "anchor": "HOOK + WITH",
-      "mnemonic": "kìaw is to hook — the curved blade that catches a whole armful of stalks in one pull. kàp is with. Hooked-with is how Thai says about: whatever catches on the subject comes up along with it. (▁ both syllables sit low and flat)",
+      "mnemonic": "kìaw is to hook — the curved blade that catches a whole armful of stalks in one pull. kàp is with. Hooked-with is how Thai says about: whatever catches on the subject comes up along with it. (_ both syllables sit low and flat)",
       "headline": "…kìaw-kàp…",
       "scene": "Close on a farmer's hands in a paddy field: a curved sickle pulled through a stand of golden rice, a thick armful of stalks caught in the hook and bending with it, chaff flying up."
     },
@@ -3914,7 +3914,7 @@
       "romanization": "sèet-thà-gìt",
       "english": "economy",
       "anchor": "SATE A GIT",
-      "mnemonic": "A whole country's work runs up one long table and into the mouth of a single vast man: farmers, bakers, dockers, all of it passed hand over hand to sate a git. SATE, A, GIT — sèet-thà-gìt, the machine that moves everything somewhere. (▁ low and clipped, the last syllable stopped dead)",
+      "mnemonic": "A whole country's work runs up one long table and into the mouth of a single vast man: farmers, bakers, dockers, all of it passed hand over hand to sate a git. SATE, A, GIT — sèet-thà-gìt, the machine that moves everything somewhere. (_ low and clipped, the last syllable stopped dead)",
       "headline": "sèet-thà-gìt.",
       "scene": "Farmers, bakers and dock workers pass laden platters hand over hand up an impossibly long banquet table to an enormously fat man in evening dress being fed from silver dishes. Chandeliers, deep shadows, soot on their faces."
     },
@@ -3984,7 +3984,7 @@
       "romanization": "tòk",
       "english": "fall",
       "anchor": "TOCK",
-      "mnemonic": "Tick, and on the tock the coconut lets go. It is a hand's width above the dust now, directly over a man who has slept through the whole business. ตก is anything that falls: rain, prices, a man off a ladder. (▁ low and short, the sound of the landing)",
+      "mnemonic": "Tick, and on the tock the coconut lets go. It is a hand's width above the dust now, directly over a man who has slept through the whole business. ตก is anything that falls: rain, prices, a man off a ladder. (_ low and short, the sound of the landing)",
       "headline": "tòk.",
       "scene": "A man sprawls asleep on his back beneath a coconut palm, hat over his face, arms flung out in the dust. A large green coconut hangs frozen in the air a hand's width above his chest. Harsh noon glare, hard black shadows."
     },
@@ -4044,7 +4044,7 @@
       "romanization": "sàj",
       "english": "put",
       "anchor": "SIGH",
-      "mnemonic": "The cook sighs, then tips one more fistful of chilli into the wok anyway. sài is that: to put something in, or on — the chilli into the pot, the shirt onto your back, the sugar into the cup. (▁ low, the sound of a long breath going out)",
+      "mnemonic": "The cook sighs, then tips one more fistful of chilli into the wok anyway. sài is that: to put something in, or on — the chilli into the pot, the shirt onto your back, the sugar into the cup. (_ low, the sound of a long breath going out)",
       "headline": "sài.",
       "scene": "Close on a blackened wok over a flame, a cook's hand tipping a fistful of dried red chillies into it. Steam and smoke rise into her face; her eyes are half closed and her cheeks puffed as she breathes out."
     },
@@ -4074,7 +4074,7 @@
       "romanization": "kʰàːt",
       "english": "lack; incomplete",
       "anchor": "CART",
-      "mnemonic": "The cart sits tilted in the road with one wheel gone entirely, its axle down in the dirt and fruit spilled everywhere. kʰàat is what is wrong with it: short of something, missing a piece, not complete. (▁ low and flat, stopped short)",
+      "mnemonic": "The cart sits tilted in the road with one wheel gone entirely, its axle down in the dirt and fruit spilled everywhere. kʰàat is what is wrong with it: short of something, missing a piece, not complete. (_ low and flat, stopped short)",
       "headline": "kʰàat.",
       "scene": "A wooden handcart tipped at a steep angle in a dusty lane, one wheel missing altogether and its bare axle resting in the dirt, oranges spilled across the ground. An old vendor stands with hands on hips staring at the empty axle."
     },
@@ -4104,7 +4104,7 @@
       "romanization": "làk",
       "english": "main; principle",
       "anchor": "LUCK",
-      "mnemonic": "People press gold leaf onto the great city pillar and ask it for luck. làk is the pillar itself — and from there, anything central: the main thing, the principle that everything else is built around. (▁ low and short, solid as the stone)",
+      "mnemonic": "People press gold leaf onto the great city pillar and ask it for luck. làk is the pillar itself — and from there, anything central: the main thing, the principle that everything else is built around. (_ low and short, solid as the stone)",
       "headline": "làk.",
       "scene": "A gilded stone pillar inside a shrine, heaped with marigold garlands at its base. A kneeling woman presses a square of gold leaf onto it with her thumb; incense smoke drifts across and other worshippers blur behind her in the warm dim light."
     },
@@ -4244,7 +4244,7 @@
       "romanization": "pʰàʔ lìt",
       "english": "manufacture",
       "anchor": "PALLET",
-      "mnemonic": "At the end of the line the robot arm swings a box down and stacks it onto a wooden pallet, thump, and the pallet fills and another comes up empty behind it. pà-lìt is the making itself: what a factory does all day, every day. (▁ low and flat, the thump of the pallet taking the weight)",
+      "mnemonic": "At the end of the line the robot arm swings a box down and stacks it onto a wooden pallet, thump, and the pallet fills and another comes up empty behind it. pà-lìt is the making itself: what a factory does all day, every day. (_ low and flat, the thump of the pallet taking the weight)",
       "headline": "pà-lìt.",
       "scene": "A yellow robot arm swings a plain sealed box down onto a wooden pallet already stacked shoulder-high with identical boxes. The assembly line runs away behind it, a forklift waiting to one side with its forks raised. Hard factory light."
     },
@@ -4344,7 +4344,7 @@
       "romanization": "pà tìʔ bàt",
       "english": "practice; perform",
       "anchor": "PAT-TEE-BAT",
-      "mnemonic": "Batting practice in the cage: he pats a ball onto the tee, squares up, bats it away, and then does the whole thing again, and again, two hundred times before the light goes. Pat, tee, bat — pà-tì-bàt, doing a thing over and over until the body owns it. (▁ low and clipped, the flat crack of the bat)",
+      "mnemonic": "Batting practice in the cage: he pats a ball onto the tee, squares up, bats it away, and then does the whole thing again, and again, two hundred times before the light goes. Pat, tee, bat — pà-tì-bàt, doing a thing over and over until the body owns it. (_ low and clipped, the flat crack of the bat)",
       "headline": "pà-tì-bàt.",
       "scene": "A player in a helmet places a ball onto a tee with one hand, bat resting on his shoulder, a dozen balls already scattered in the netting behind him. Batting cage at dusk, floodlight glare, dust."
     },

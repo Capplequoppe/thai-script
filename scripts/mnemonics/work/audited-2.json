@@ -145,7 +145,7 @@
  {
   "rank": 32,
   "thai": "จาก",
-  "mnemonic": "A man called Jack turns up at the door with a battered suitcase plastered in shipping labels from a dozen countries. Where is he from? All of it. Jàak marks where a thing comes from — the starting point, never the destination. (▁ low and flat, a plain statement of origin)",
+  "mnemonic": "A man called Jack turns up at the door with a battered suitcase plastered in shipping labels from a dozen countries. Where is he from? All of it. Jàak marks where a thing comes from — the starting point, never the destination. (_ low and flat, a plain statement of origin)",
   "anchor": "JACK",
   "headline": "jàak.",
   "scene": "A traveller standing on a wooden doorstep at dusk with a battered leather suitcase bound in rope and worn straps, hat in hand, rain on his shoulders. The door is opening, warm light spilling onto him. A quiet street behind.",
@@ -222,7 +222,7 @@
  {
   "rank": 46,
   "thai": "ที่อยู่",
-  "mnemonic": "Two words already in the bag: thîi, the place, and yùu, to be living there. The place you live is your address. A postman holds up a parcel at the mouth of the lane and asks only that, and the whole street points at one gate. (▁ the second syllable settles low, fixed to the ground)",
+  "mnemonic": "Two words already in the bag: thîi, the place, and yùu, to be living there. The place you live is your address. A postman holds up a parcel at the mouth of the lane and asks only that, and the whole street points at one gate. (_ the second syllable settles low, fixed to the ground)",
   "anchor": "TEE + YOU",
   "headline": "thîi-yùu?",
   "scene": "A postman standing at the mouth of a narrow residential lane holding a brown parcel up in one hand. Four neighbours on doorsteps and balconies all point toward the same green gate further down. Washing lines, scooters, hot flat light.",
@@ -233,7 +233,7 @@
  {
   "rank": 48,
   "thai": "แต่",
-  "mnemonic": "The contract is signed, everyone is smiling — but then the lawyer tears the last page clean off. Tɛ̀ɛ is that tear: everything before it stands, and what comes after changes it. Say it like 'tear' with the R swallowed. (▁ low and flat, the paper comes away without drama)",
+  "mnemonic": "The contract is signed, everyone is smiling — but then the lawyer tears the last page clean off. Tɛ̀ɛ is that tear: everything before it stands, and what comes after changes it. Say it like 'tear' with the R swallowed. (_ low and flat, the paper comes away without drama)",
   "anchor": "TEAR (rip)",
   "headline": "tɛ̀ɛ…",
   "scene": "A lawyer standing at the head of a long table rips the bottom sheet clean off a stapled contract, the torn strip curling in his raised fist. Seated figures around the table sit frozen, smiles stuck. Cold boardroom light, city glass behind.",
@@ -277,7 +277,7 @@
  {
   "rank": 56,
   "thai": "อย่าง",
-  "mnemonic": "A tea seller sets out two jars, one dark and one pale, and asks which yang you want. Every yin has its yang; every thing has its yàang — its sort, its kind, its type. (▁ low and flat, a plain sorting question)",
+  "mnemonic": "A tea seller sets out two jars, one dark and one pale, and asks which yang you want. Every yin has its yang; every thing has its yàang — its sort, its kind, its type. (_ low and flat, a plain sorting question)",
   "anchor": "YANG",
   "headline": "yàang nǎi?",
   "scene": "A tea seller behind a narrow counter with two open glass jars in front of her, one full of dark twisted leaves, one full of pale curled ones, holding a palm out over each.",
@@ -332,7 +332,7 @@
  {
   "rank": 66,
   "thai": "ถูก",
-  "mnemonic": "The vendor names a price so small that the shopper has already walked off with the shirt. It took almost nothing. Thùuk is cheap — and, awkwardly for the learner, also correct. (▁ low and flat, a short blunt word for a short blunt price)",
+  "mnemonic": "The vendor names a price so small that the shopper has already walked off with the shirt. It took almost nothing. Thùuk is cheap — and, awkwardly for the learner, also correct. (_ low and flat, a short blunt word for a short blunt price)",
   "anchor": "TOOK",
   "headline": "thùuk.",
   "scene": "A shopper strides away down a covered market aisle with a folded shirt tucked under one arm, holding a single small coin up in his raised free hand and grinning back over his shoulder. Hanging garments, strip lights, a crowded aisle behind him.",
@@ -596,7 +596,7 @@
  {
   "rank": 120,
   "thai": "แบบ",
-  "mnemonic": "A baker's tray of identical round baps with one plaited loaf among them — a different bɛ̀ɛp, the same dough. Bɛ̀ɛp is the model, the kind, the way a thing is made or worn. (▁ low and flat, a plain word for a plain thing)",
+  "mnemonic": "A baker's tray of identical round baps with one plaited loaf among them — a different bɛ̀ɛp, the same dough. Bɛ̀ɛp is the model, the kind, the way a thing is made or worn. (_ low and flat, a plain word for a plain thing)",
   "anchor": "BAP",
   "headline": "bɛ̀ɛp nǎi?",
   "scene": "A bakery window tray packed with identical round bread rolls, one plaited loaf sitting among them, slightly larger. Flour on the tray, tongs resting on the edge, a child's face reflected in the glass. Morning light.",
@@ -607,7 +607,7 @@
  {
   "rank": 122,
   "thai": "ที่สุด",
-  "mnemonic": "The place word thîi plus sùt, the end: the point right at the end of the line. A sweep climbs out on top of the tallest chimney in the city, black with soot, every other stack below him. The most, the -est of anything. (▁ the last syllable drops low and stops)",
+  "mnemonic": "The place word thîi plus sùt, the end: the point right at the end of the line. A sweep climbs out on top of the tallest chimney in the city, black with soot, every other stack below him. The most, the -est of anything. (_ the last syllable drops low and stops)",
   "anchor": "TEE + SOOT",
   "headline": "thîi-sùt.",
   "scene": "A chimney sweep sitting astride the rim of the tallest brick chimney above a city of smaller stacks and rooftops, soot-blackened, brushes slung on his back. Smoke drifting below him. Cold dawn, pale sky.",
@@ -640,7 +640,7 @@
  {
   "rank": 128,
   "thai": "บอก",
-  "mnemonic": "One hen finds the split feed sack and immediately tells the whole yard about it — bawk, bawk, bawk — until every bird in the place is running. Bɔ̀ɔk is to tell: news, instructions, or the truth. (▁ low and flat, a plain announcement)",
+  "mnemonic": "One hen finds the split feed sack and immediately tells the whole yard about it — bawk, bawk, bawk — until every bird in the place is running. Bɔ̀ɔk is to tell: news, instructions, or the truth. (_ low and flat, a plain announcement)",
   "anchor": "BAWK",
   "headline": "bɔ̀ɔk.",
   "scene": "A hen stands on a burst sack of grain with her beak wide open mid-squawk, both wings half spread and her neck thrown forward. Other hens come running across the farmyard behind her. Spilled feed, trampled straw, hard morning light.",
@@ -673,7 +673,7 @@
  {
   "rank": 136,
   "thai": "เถอะ",
-  "mnemonic": "Four friends outside a karaoke bar and one of them still hesitating on the step. The others tug his sleeve: pai thə̀ — go on, let's. It is the softest possible shove, the syllable that turns an order into a let's. (▁ low and short, gone almost before it starts)",
+  "mnemonic": "Four friends outside a karaoke bar and one of them still hesitating on the step. The others tug his sleeve: pai thə̀ — go on, let's. It is the softest possible shove, the syllable that turns an order into a let's. (_ low and short, gone almost before it starts)",
   "anchor": "TUH",
   "headline": "pai thə̀!",
   "scene": "A young woman grips a friend by the sleeve and hauls him with her whole body toward a glowing karaoke doorway, laughing, leaning into the pull. He stumbles along after her. Wet pavement, reflected neon, scooters parked along the kerb.",
@@ -783,7 +783,7 @@
  {
   "rank": 163,
   "thai": "เกิด",
-  "mnemonic": "A green shoot breaks the crust of a cracked field: everything that is born comes up out of the dirt. Gɤ̀ɤt rhymes with dirt with a hard G on the front — to be born, to arise, to happen at all. (▁ low and flat, the first quiet moment of a life)",
+  "mnemonic": "A green shoot breaks the crust of a cracked field: everything that is born comes up out of the dirt. Gɤ̀ɤt rhymes with dirt with a hard G on the front — to be born, to arise, to happen at all. (_ low and flat, the first quiet moment of a life)",
   "anchor": "GERT (as in dirt)",
   "headline": "gɤ̀ɤt.",
   "scene": "Close view of a single green seedling pushing up through hard cracked earth, soil crumbs lifted on its bent head. A wide dry field blurred behind. First light, long low shadows.",
@@ -849,7 +849,7 @@
  {
   "rank": 175,
   "thai": "อาจ",
-  "mnemonic": "Two people stand in front of a canvas of splashes with their heads tilted. It might be art. It might not. Àat is exactly that hedge — may, might, possibly — said like 'art' with the R swallowed. (▁ low and flat, no commitment in the voice)",
+  "mnemonic": "Two people stand in front of a canvas of splashes with their heads tilted. It might be art. It might not. Àat is exactly that hedge — may, might, possibly — said like 'art' with the R swallowed. (_ low and flat, no commitment in the voice)",
   "anchor": "ART (no R)",
   "headline": "àat.",
   "scene": "A man stands well back from an enormous splattered canvas on a white gallery wall, his head tilted hard to one side and his weight slumped onto one hip, arms folded. Spotlights, polished concrete floor, bare walls stretching away.",
@@ -860,7 +860,7 @@
  {
   "rank": 177,
   "thai": "อื่น",
-  "mnemonic": "Ask for a different room and the clerk turns to the board of hanging keys for another one. Say 'oon' with the lips spread flat, not pushed forward, and you have ɯ̀ɯn: the other one, some other, a different one from this. (▁ low and flat, a plain alternative)",
+  "mnemonic": "Ask for a different room and the clerk turns to the board of hanging keys for another one. Say 'oon' with the lips spread flat, not pushed forward, and you have ɯ̀ɯn: the other one, some other, a different one from this. (_ low and flat, a plain alternative)",
   "anchor": "OON (lips wide)",
   "headline": "ʔɯ̀ɯn.",
   "scene": "A hotel clerk reaches high above her head and lifts a key off a hook on a board of hanging keys, her whole body stretched up. A guest's suitcase stands alone on the floor by the desk. Warm lobby lamplight.",
@@ -882,7 +882,7 @@
  {
   "rank": 181,
   "thai": "เด็ก",
-  "mnemonic": "A small boy has claimed the rail at the stern of the ferry and is shouting at the wake. The deck is his. Dèk is a child — short, blunt and low, like the boards under his feet. (▁ low and flat, a short stamp of a word)",
+  "mnemonic": "A small boy has claimed the rail at the stern of the ferry and is shouting at the wake. The deck is his. Dèk is a child — short, blunt and low, like the boards under his feet. (_ low and flat, a short stamp of a word)",
   "anchor": "DECK",
   "headline": "dèk.",
   "scene": "A small boy grips the stern rail of a wooden ferry and leans far out over the churning white wake, mouth open in a shout, hair flattened by the wind. Passengers sit in the shade behind him. Hard glare off the water.",
@@ -904,7 +904,7 @@
  {
   "rank": 186,
   "thai": "ก่อน",
-  "mnemonic": "He gets to the buffet one minute late and the tray is already gone. He should have come before. Gɔ̀ɔn is before, first, ahead of the other thing. (▁ low and flat, the word lands after the fact)",
+  "mnemonic": "He gets to the buffet one minute late and the tray is already gone. He should have come before. Gɔ̀ɔn is before, first, ahead of the other thing. (_ low and flat, the word lands after the fact)",
   "anchor": "GONE",
   "headline": "gɔ̀ɔn.",
   "scene": "A man in a suit stands over an empty steel serving tray with his arms hanging and his shoulders dropped, staring down at the tongs lying across bare smeared metal. Stacked chairs and emptied trays fill the hall behind him. Cold strip lighting.",
@@ -915,7 +915,7 @@
  {
   "rank": 188,
   "thai": "ต่าง",
-  "mnemonic": "Two cooks taste from the same pot and disagree: one gets a sharp citrus tang, the other gets nothing at all. Different tongues, different tàang. Tàang is different, other, not the same. (▁ low and flat, said with a shrug)",
+  "mnemonic": "Two cooks taste from the same pot and disagree: one gets a sharp citrus tang, the other gets nothing at all. Different tongues, different tàang. Tàang is different, other, not the same. (_ low and flat, said with a shrug)",
   "anchor": "TANG (flavour)",
   "headline": "tàang.",
   "scene": "Two cooks either side of a steaming stockpot, each with a tasting spoon halfway to their mouth. One is wincing hard, the other shrugging with eyebrows raised. Steel kitchen, steam, overhead lamps.",
@@ -948,7 +948,7 @@
  {
   "rank": 194,
   "thai": "สำหรับ",
-  "mnemonic": "Ràp, to receive, is sitting inside it: sǎm-ràp marks whoever receives the thing. A boy hands over a brown-paper parcel wrapped for a man named Sam — Sam-rap — and it is for him, nobody else. (▁ the second syllable drops low, the parcel changes hands)",
+  "mnemonic": "Ràp, to receive, is sitting inside it: sǎm-ràp marks whoever receives the thing. A boy hands over a brown-paper parcel wrapped for a man named Sam — Sam-rap — and it is for him, nobody else. (_ the second syllable drops low, the parcel changes hands)",
   "anchor": "SAM + RAP",
   "headline": "sǎm-ràp Sam.",
   "scene": "A boy on a doorstep holds a brown-paper parcel tied with string out at full arm's length, pushing it forward with both hands. A man's hands reach in from the edge of the frame to take it. Terrace houses, milk bottles, flat morning light.",
@@ -992,7 +992,7 @@
  {
   "rank": 202,
   "thai": "สิ่ง",
-  "mnemonic": "A busker will sing about anything you drop in his hat — a spanner, an apple, somebody's lost glove. Every one of them is a sìng: a thing, any thing at all. (▁ low and flat, the most ordinary word there is)",
+  "mnemonic": "A busker will sing about anything you drop in his hat — a spanner, an apple, somebody's lost glove. Every one of them is a sìng: a thing, any thing at all. (_ low and flat, the most ordinary word there is)",
   "anchor": "SING",
   "headline": "sìng.",
   "scene": "A street busker with a guitar mid-song, an upturned hat at his feet holding a spanner, an apple and a single glove instead of coins. Two passers-by grinning. Shopfronts, pavement, afternoon light.",
@@ -1069,7 +1069,7 @@
  {
   "rank": 219,
   "thai": "ตั้งแต่",
-  "mnemonic": "Set it down, and from that moment on: tâng, to set up, plus tɛ̀ɛ. The jar was stood on the trestle at dawn and has not moved since. Tâng-tɛ̀ɛ marks the point something started and kept going from. (▁ the second syllable drops low, the line running on from there)",
+  "mnemonic": "Set it down, and from that moment on: tâng, to set up, plus tɛ̀ɛ. The jar was stood on the trestle at dawn and has not moved since. Tâng-tɛ̀ɛ marks the point something started and kept going from. (_ the second syllable drops low, the line running on from there)",
   "anchor": "TANG + TAY",
   "headline": "tâng-tɛ̀ɛ",
   "scene": "A market at dusk, stalls packed away, one bare wooden trestle left with a single heavy glass jar standing on it exactly where it was put. Empty aisle, litter, long orange shadows.",
@@ -1091,7 +1091,7 @@
  {
   "rank": 226,
   "thai": "นอกจาก",
-  "mnemonic": "Outside plus from: nɔ̂ɔk, the knock at the door, and jàak, Jack with his suitcase. Everyone came except Jack, who never got past the step — apart from him, the party was complete. (▁ the last syllable settles low, the door stays shut)",
+  "mnemonic": "Outside plus from: nɔ̂ɔk, the knock at the door, and jàak, Jack with his suitcase. Everyone came except Jack, who never got past the step — apart from him, the party was complete. (_ the last syllable settles low, the door stays shut)",
   "anchor": "KNOCK + JACK",
   "headline": "nɔ̂ɔk-jàak Jack",
   "scene": "A lit front room full of people seen through a window from the dark street, and one man standing outside on the path with a suitcase, looking in. Rain on the glass, his breath fogging, streetlight behind him.",
@@ -1267,7 +1267,7 @@
  {
   "rank": 264,
   "thai": "ตลอด",
-  "mnemonic": "The night coach runs the whole lot of the way without stopping once — all night, no gap. Tà-lɔ̀ɔt is throughout: all night, all year, always, the stretch with nothing broken in it. (▁ both syllables low and flat, unbroken)",
+  "mnemonic": "The night coach runs the whole lot of the way without stopping once — all night, no gap. Tà-lɔ̀ɔt is throughout: all night, all year, always, the stretch with nothing broken in it. (_ both syllables low and flat, unbroken)",
   "anchor": "ta-LOT",
   "headline": "tà-lɔ̀ɔt.",
   "scene": "A night coach seen from behind on an empty straight highway, tail lights receding, the road running dead ahead to a vanishing point under a sky full of stars. Dark fields either side.",
@@ -1432,7 +1432,7 @@
  {
   "rank": 295,
   "thai": "กลุ่ม",
-  "mnemonic": "Six teenagers packed under one shop awning in the rain, shoulders touching, all in the gloom together. Klùm is a group — the huddle, the bunch, the lot of them. (▁ low and flat, nobody moving)",
+  "mnemonic": "Six teenagers packed under one shop awning in the rain, shoulders touching, all in the gloom together. Klùm is a group — the huddle, the bunch, the lot of them. (_ low and flat, nobody moving)",
   "anchor": "GLOOM",
   "headline": "klùm.",
   "scene": "Six teenagers crammed under a narrow shop awning in heavy rain, shoulders pressed together, bags held over heads. Grey street, water sheeting off the awning edge, closed shutters behind them.",
@@ -1542,7 +1542,7 @@
  {
   "rank": 319,
   "thai": "ระดับ",
-  "mnemonic": "The decorator dabs a mark of paint along the wall at exactly the height of his string line, each dab level with the last one. Rá-dàp is the level: the grade, the rank, the height a thing has got to. (▁ the second syllable drops low, the dab lands)",
+  "mnemonic": "The decorator dabs a mark of paint along the wall at exactly the height of his string line, each dab level with the last one. Rá-dàp is the level: the grade, the rank, the height a thing has got to. (_ the second syllable drops low, the dab lands)",
   "anchor": "ra-DAB",
   "headline": "rá-dàp.",
   "scene": "A decorator stretches up on his toes and presses a loaded brush flat against the wall, arm extended along a taut string line pinned across the bare room. Small paint marks follow the line. Ladder, dust sheets, open tin, flat daylight.",
@@ -1553,7 +1553,7 @@
  {
   "rank": 321,
   "thai": "เปิด",
-  "mnemonic": "Pert, like the shop that opens dead on time with its shutter snapped up in one movement. Bpɤ̀ɤt rhymes with pert and means to open — a door, a shop, a bottle, a switch. (▁ low and flat, the shutter goes up in one go)",
+  "mnemonic": "Pert, like the shop that opens dead on time with its shutter snapped up in one movement. Bpɤ̀ɤt rhymes with pert and means to open — a door, a shop, a bottle, a switch. (_ low and flat, the shutter goes up in one go)",
   "anchor": "PERT",
   "headline": "bpɤ̀ɤt.",
   "scene": "A shopkeeper rolling a metal shutter up above his head in one sweep, the dark shop interior appearing beneath it. Empty street, awning half unfurled, first pale light down the road.",
@@ -1597,7 +1597,7 @@
  {
   "rank": 329,
   "thai": "ติด",
-  "mnemonic": "A tit — the small bird — clamps onto the fat ball hanging from the branch and hangs there upside down for an hour, refusing to let go. Tìt is stuck to, attached to, caught on, addicted to. (▁ low and flat, clamped on)",
+  "mnemonic": "A tit — the small bird — clamps onto the fat ball hanging from the branch and hangs there upside down for an hour, refusing to let go. Tìt is stuck to, attached to, caught on, addicted to. (_ low and flat, clamped on)",
   "anchor": "TIT (the bird)",
   "headline": "tìt.",
   "scene": "A small blue and yellow bird clinging upside down to a hanging fat ball on a bare winter branch, wings tight to its body, claws locked. Frost on the twigs, pale garden behind.",
@@ -1619,7 +1619,7 @@
  {
   "rank": 333,
   "thai": "ระบบ",
-  "mnemonic": "An old post room where every canister goes bop into its brass tube and lands in the right room three floors away. Rá-bòp is the system: the works, the way the parts fit together. (▁ the second syllable drops low, the canister lands)",
+  "mnemonic": "An old post room where every canister goes bop into its brass tube and lands in the right room three floors away. Rá-bòp is the system: the works, the way the parts fit together. (_ the second syllable drops low, the canister lands)",
   "anchor": "ra-BOP",
   "headline": "rá-bòp.",
   "scene": "A sorting room walled with brass pneumatic tubes, one canister dropping into a wire basket while a clerk in shirtsleeves reaches for it. Other clerks at benches, dusty light from high windows.",
@@ -1641,7 +1641,7 @@
  {
   "rank": 338,
   "thai": "รู้จัก",
-  "mnemonic": "English has half of it already: you don't know jack. Rúu is to know and jàk finishes it — rúu-jàk is knowing a person, being acquainted. Two men shake hands at a party and find they grew up on the same lane. (▁ the second syllable drops low, the handshake lands)",
+  "mnemonic": "English has half of it already: you don't know jack. Rúu is to know and jàk finishes it — rúu-jàk is knowing a person, being acquainted. Two men shake hands at a party and find they grew up on the same lane. (_ the second syllable drops low, the handshake lands)",
   "anchor": "know JACK",
   "headline": "rúu-jàk!",
   "scene": "Two middle-aged men gripping each other's hand at a crowded party, both leaning back with their free hands on each other's shoulders, mouths open in recognition. Drinks abandoned on a sideboard, warm light.",

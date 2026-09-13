@@ -42,7 +42,7 @@ admitting there is no hook.
 | glyph | tone | feels like |
 |---|---|---|
 | `—` | mid | flat, sits in the middle |
-| `▁` | low | flat, sits at the bottom |
+| `_` | low | flat, sits at the bottom |
 | `↓` | falling | starts high, drops |
 | `▲` | high | up and taut |
 | `↑` | rising | climbs, like a question |
@@ -54,7 +54,7 @@ diacritic on each syllable of the romanization:
 
 | diacritic | tone | glyph |
 |---|---|---|
-| `à` grave | low | `▁` |
+| `à` grave | low | `_` |
 | `á` acute | high | `▲` |
 | `â` circumflex | falling | `↓` |
 | `ǎ` caron | rising | `↑` |
@@ -65,7 +65,7 @@ the tone that carries the word's character (usually the stressed final
 syllable) rather than listing every syllable mechanically.
 
 Tone notes should be physical: `(↓ voice drops, generous gesture)`,
-`(▲ high, a small bright voice)`, `(▁ low and small, the voice shrinks with the
+`(▲ high, a small bright voice)`, `(_ low and small, the voice shrinks with the
 gesture)`. Not `(falling tone)`.
 
 ## Worked examples
@@ -76,12 +76,12 @@ gesture)`. Not `(falling tone)`.
 
 > **หน่อย** *nɔ̀i* — a bit — She asks for chilli and the cook reaches for the
 > whole jar. "**Nòi**!" — voice dropping low as she pinches her fingers a
-> centimetre apart. Just a bit. (▁ low and small, the voice shrinks with the
+> centimetre apart. Just a bit. (_ low and small, the voice shrinks with the
 > gesture)
 
 > **กี่** *kìi* — how many — An old janitor lifts a keyring so heavy it needs
 > both hands — hundreds of **keys** fanning out like a metal peacock. Someone
-> asks the only sensible question: "Kìi?" How many keys? (▁ low and flat, a
+> asks the only sensible question: "Kìi?" How many keys? (_ low and flat, a
 > short blunt question)
 
 Note what these share: one anchor, one scene, the meaning is *what happens*

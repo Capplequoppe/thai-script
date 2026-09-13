@@ -28,7 +28,7 @@ DIACRITIC_TONES = {
     "̂": "falling",   # â
     "̌": "rising",    # ǎ
 }
-TONE_GLYPHS = {"mid": "—", "low": "▁", "falling": "↓", "high": "▲", "rising": "↑"}
+TONE_GLYPHS = {"mid": "—", "low": "_", "falling": "↓", "high": "▲", "rising": "↑"}
 GLYPH_TONES = {glyph: tone for tone, glyph in TONE_GLYPHS.items()}
 
 
