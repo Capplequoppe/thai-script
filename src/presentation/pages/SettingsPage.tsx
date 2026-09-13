@@ -2,8 +2,10 @@ import { useRef, useState } from "react";
 import { useNavigate } from "react-router";
 import { Button } from "@/presentation/components/ui/button";
 import {
+	clearConversationBackendUrl,
 	getConversationBackendToken,
 	getConversationBackendUrl,
+	getConversationBackendUrlOverride,
 	setConversationBackendToken,
 	setConversationBackendUrl,
 } from "../../infrastructure/conversation/ConversationBackendSettings";
@@ -53,7 +55,13 @@ export function SettingsPage() {
 		message: string;
 	} | null>(null);
 
-	const [backendUrl, setBackendUrl] = useState(getConversationBackendUrl());
+	// The raw override (or "" when automatic) — never the resolved value,
+	// so an unmodified Save can't silently freeze today's automatic
+	// address in as an explicit one (see
+	// `getConversationBackendUrlOverride`'s own doc comment).
+	const [backendUrl, setBackendUrl] = useState(
+		getConversationBackendUrlOverride() ?? "",
+	);
 	const [backendToken, setBackendToken] = useState(
 		getConversationBackendToken(),
 	);
@@ -63,20 +71,33 @@ export function SettingsPage() {
 	} | null>(null);
 
 	function handleSaveBackendSettings() {
-		if (!isPlausibleBackendUrl(backendUrl)) {
+		const trimmed = backendUrl.trim();
+		if (trimmed.length > 0 && !isPlausibleBackendUrl(trimmed)) {
 			setBackendUrlStatus({
 				type: "error",
 				message: "Enter a full address, e.g. http://192.168.1.23:8000.",
 			});
 			return;
 		}
-		setConversationBackendUrl(backendUrl);
+		setConversationBackendUrl(trimmed);
 		setConversationBackendToken(backendToken);
-		setBackendUrl(getConversationBackendUrl());
+		setBackendUrl(getConversationBackendUrlOverride() ?? "");
 		setBackendToken(getConversationBackendToken());
 		setBackendUrlStatus({
 			type: "success",
-			message: "Backend settings saved.",
+			message:
+				trimmed.length > 0
+					? "Backend settings saved."
+					: "Backend settings saved — using the automatic address.",
+		});
+	}
+
+	function handleResetBackendUrl() {
+		clearConversationBackendUrl();
+		setBackendUrl(getConversationBackendUrlOverride() ?? "");
+		setBackendUrlStatus({
+			type: "success",
+			message: "Backend address reset to automatic.",
 		});
 	}
 
@@ -283,11 +304,11 @@ export function SettingsPage() {
 					Conversation Backend
 				</h2>
 				<p className="text-sm" style={{ color: "var(--color-text-muted)" }}>
-					Where this device looks for the conversation-practice backend. Leave
-					this as-is if the backend runs on this same device. To practice from a
-					phone while the backend runs on another machine — a PC on the same
-					network, or reachable from anywhere via a Cloudflare Tunnel — enter
-					its address here.
+					Where this device looks for the conversation-practice backend. Empty
+					means automatic — this deployment's own current address, kept up to
+					date by the backend machine — which is right for most phones. Set an
+					address only to reach a specific backend directly (e.g. a PC on the
+					same LAN); "Reset Address to Automatic" below clears an override.
 				</p>
 				<div className="grid grid-cols-1 gap-3 max-w-xs">
 					<label
@@ -299,7 +320,7 @@ export function SettingsPage() {
 							id="conversation-backend-url"
 							type="text"
 							inputMode="url"
-							placeholder="http://192.168.1.23:8000"
+							placeholder={`automatic (currently ${getConversationBackendUrl()})`}
 							value={backendUrl}
 							onChange={(e) => setBackendUrl(e.target.value)}
 							className="rounded-md border px-3 py-2 text-sm"
@@ -330,9 +351,18 @@ export function SettingsPage() {
 					CONVERSATION_BACKEND_TOKEN when starting it, in which case the same
 					value goes here (see backend/README.md).
 				</p>
-				<Button type="button" onClick={handleSaveBackendSettings}>
-					Save Backend Settings
-				</Button>
+				<div className="flex gap-2">
+					<Button type="button" onClick={handleSaveBackendSettings}>
+						Save Backend Settings
+					</Button>
+					<Button
+						type="button"
+						variant="secondary"
+						onClick={handleResetBackendUrl}
+					>
+						Reset Address to Automatic
+					</Button>
+				</div>
 				{backendUrlStatus && (
 					<p
 						className="text-sm"
