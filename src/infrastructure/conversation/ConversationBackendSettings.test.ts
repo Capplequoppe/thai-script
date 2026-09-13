@@ -2,7 +2,9 @@ import { afterEach, beforeEach, describe, expect, it } from "vitest";
 import {
 	CONVERSATION_BACKEND_URL_STORAGE_KEY,
 	DEFAULT_CONVERSATION_BACKEND_URL,
+	getConversationBackendToken,
 	getConversationBackendUrl,
+	setConversationBackendToken,
 	setConversationBackendUrl,
 } from "./ConversationBackendSettings";
 
@@ -90,5 +92,50 @@ describe("setConversationBackendUrl", () => {
 		setConversationBackendUrl("http://192.168.1.23:8000");
 		setConversationBackendUrl("   ");
 		expect(getConversationBackendUrl()).toBe(DEFAULT_CONVERSATION_BACKEND_URL);
+	});
+
+	it("leaves an already-saved auth token untouched", () => {
+		setConversationBackendToken("s3cret");
+		setConversationBackendUrl("http://192.168.1.23:8000");
+		expect(getConversationBackendToken()).toBe("s3cret");
+	});
+});
+
+describe("getConversationBackendToken", () => {
+	it("defaults to empty when nothing has been saved", () => {
+		expect(getConversationBackendToken()).toBe("");
+	});
+
+	it("returns whatever setConversationBackendToken last saved", () => {
+		setConversationBackendToken("s3cret");
+		expect(getConversationBackendToken()).toBe("s3cret");
+	});
+
+	it("reads as empty against a blob saved before this field existed", () => {
+		fakeLocalStorage.setItem(
+			CONVERSATION_BACKEND_URL_STORAGE_KEY,
+			JSON.stringify({ baseUrl: "http://192.168.1.23:8000" }),
+		);
+		expect(getConversationBackendToken()).toBe("");
+		expect(getConversationBackendUrl()).toBe("http://192.168.1.23:8000");
+	});
+});
+
+describe("setConversationBackendToken", () => {
+	it("trims surrounding whitespace before saving", () => {
+		setConversationBackendToken("  s3cret  ");
+		expect(getConversationBackendToken()).toBe("s3cret");
+	});
+
+	it("accepts an empty value as a real state, not rejected back to anything", () => {
+		setConversationBackendToken("s3cret");
+		setConversationBackendToken("");
+		expect(getConversationBackendToken()).toBe("");
+	});
+
+	it("leaves the already-saved backend URL untouched", () => {
+		setConversationBackendUrl("http://192.168.1.23:8000");
+		setConversationBackendToken("s3cret");
+		expect(getConversationBackendUrl()).toBe("http://192.168.1.23:8000");
 	});
 });
