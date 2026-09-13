@@ -27,7 +27,7 @@ MNEMONICS = REPO_ROOT / "scripts" / "mnemonics" / "mnemonics.json"
 VOCABULARY = REPO_ROOT / "src" / "domain" / "vocabulary" / "data" / "vocabulary.json"
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from tones import GLYPH_TONES, syllable_tones  # noqa: E402
+from tones import GLYPH_TONES, resolved_tones  # noqa: E402
 
 MAX_ANCHOR = 18
 MIN_MNEMONIC_WORDS = 20
@@ -102,15 +102,16 @@ def validate(entry: dict, vocab: dict, seen: set[int]) -> list[str]:
     # Tone: the glyph must name a tone this word actually carries, read from
     # the romanization — see `tones.py` for why not `syllables[].tone`.
     glyphs = {ch for ch in mnemonic if ch in GLYPH_TONES}
-    actual = set(syllable_tones(target["romanization"]))
+    actual = resolved_tones(target)
     if not glyphs:
         problems.append("no tone glyph in the mnemonic")
-    elif actual:
-        claimed = {GLYPH_TONES[g] for g in glyphs}
-        if not (claimed & actual):
-            problems.append(
-                f"tone glyph claims {sorted(claimed)} but syllables are {sorted(actual)}"
-            )
+        return problems
+
+    claimed = {GLYPH_TONES[g] for g in glyphs}
+    if actual and not (claimed & actual):
+        problems.append(
+            f"tone glyph claims {sorted(claimed)} but the word carries {sorted(actual)}"
+        )
     return problems
 
 
