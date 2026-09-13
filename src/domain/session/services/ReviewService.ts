@@ -149,15 +149,23 @@ export class ReviewService {
 		return summary;
 	}
 
-	getNextReviewDate(pool: CardPool = "script"): Date | null {
+	/**
+	 * Earliest review date across the pool's non-burned cards.
+	 *
+	 * `after` restricts the search to dates strictly later than it, which is
+	 * what notification scheduling needs: a card that is *already* due has a
+	 * date in the past, and re-notifying about it is noise, not a reminder.
+	 */
+	getNextReviewDate(pool: CardPool = "script", after?: Date): Date | null {
 		const cards = this.cardRepo.findAll(pool);
 		if (cards.length === 0) return null;
 
+		const floor = after ? after.getTime() : Number.NEGATIVE_INFINITY;
 		let earliest = Infinity;
 		for (const card of cards) {
 			if (card.schedule.isBurned) continue;
 			const d = new Date(card.schedule.nextReviewDate).getTime();
-			if (d < earliest) earliest = d;
+			if (d > floor && d < earliest) earliest = d;
 		}
 		return earliest === Infinity ? null : new Date(earliest);
 	}

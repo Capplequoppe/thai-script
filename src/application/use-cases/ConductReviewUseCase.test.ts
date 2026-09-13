@@ -6,6 +6,7 @@ import type {
 	ReviewForecast,
 	ReviewService,
 } from "../../domain/session/services/ReviewService";
+import type { CardPool } from "../../domain/shared/CardPool";
 import type { SessionSummary } from "../../domain/shared/types";
 import type { ReviewableCard } from "../../domain/srs/entities/ReviewableCard";
 import { ConductReviewUseCase } from "./ConductReviewUseCase";
@@ -129,8 +130,12 @@ describe("ConductReviewUseCase", () => {
 		it("schedules notification when permission is granted and cards are due", () => {
 			mockNotificationPort.permission = "granted";
 			const futureDate = new Date(Date.now() + 60_000);
-			mockReviewService.getNextReviewDate.mockReturnValue(futureDate);
-			mockReviewService.getNumDueCards.mockReturnValue(3);
+			mockReviewService.getNextReviewDate.mockImplementation(
+				(pool: CardPool) => (pool === "script" ? futureDate : null),
+			);
+			mockReviewService.getNumDueCards.mockImplementation((_at, pool) =>
+				pool === "script" ? 3 : 0,
+			);
 
 			useCase.recordReview("card-1", 4);
 
@@ -171,6 +176,105 @@ describe("ConductReviewUseCase", () => {
 				1,
 			);
 		});
+
+		it("only considers review dates in the future", () => {
+			mockNotificationPort.permission = "granted";
+			mockReviewService.getNextReviewDate.mockReturnValue(
+				new Date(Date.now() + 60_000),
+			);
+
+			useCase.recordReview("card-1", 4);
+
+			for (const [, after] of mockReviewService.getNextReviewDate.mock
+				.calls as [unknown, Date][]) {
+				expect(after.getTime()).toBeGreaterThan(Date.now() - 5_000);
+			}
+		});
+
+		it("counts the cards that will be due once the reminder fires", () => {
+			mockNotificationPort.permission = "granted";
+			const futureDate = new Date(Date.now() + 600_000);
+			mockReviewService.getNextReviewDate.mockImplementation(
+				(pool: CardPool) => (pool === "vocab" ? futureDate : null),
+			);
+			mockReviewService.getNumDueCards.mockImplementation((_at, pool) =>
+				pool === "vocab" ? 7 : 0,
+			);
+
+			useCase.recordReview("card-1", 4);
+
+			expect(mockReviewService.getNumDueCards).toHaveBeenCalledWith(
+				futureDate.toISOString(),
+				"vocab",
+			);
+			expect(mockNotificationPort.scheduleNext).toHaveBeenCalledWith(
+				futureDate,
+				7,
+			);
+		});
+
+		it("reports the due count across every pool, not just script", () => {
+			// The reminder has to agree with the in-app badge, which sums all
+			// four pools — a `ReviewService` default would have said "script".
+			mockNotificationPort.permission = "granted";
+			const soon = new Date(Date.now() + 60_000);
+			const later = new Date(Date.now() + 600_000);
+			const perPoolDate: Record<string, Date> = {
+				script: later,
+				vocab: soon,
+				grammar: later,
+				sentence: later,
+			};
+			const perPoolDue: Record<string, number> = {
+				script: 4,
+				vocab: 1,
+				grammar: 2,
+				sentence: 3,
+			};
+			mockReviewService.getNextReviewDate.mockImplementation(
+				(pool: CardPool) => perPoolDate[pool] ?? null,
+			);
+			mockReviewService.getNumDueCards.mockImplementation(
+				(_at, pool: CardPool) => perPoolDue[pool] ?? 0,
+			);
+
+			useCase.recordReview("card-1", 4);
+
+			// Earliest future date across the pools, carrying every pool's count.
+			expect(mockNotificationPort.scheduleNext).toHaveBeenCalledWith(soon, 10);
+		});
+
+		it("ignores pools that have no future review date", () => {
+			mockNotificationPort.permission = "granted";
+			const futureDate = new Date(Date.now() + 60_000);
+			mockReviewService.getNextReviewDate.mockImplementation(
+				(pool: CardPool) => (pool === "grammar" ? futureDate : null),
+			);
+			mockReviewService.getNumDueCards.mockImplementation(
+				(_at, pool: CardPool) => (pool === "grammar" ? 5 : 0),
+			);
+
+			useCase.recordReview("card-1", 4);
+
+			expect(mockNotificationPort.scheduleNext).toHaveBeenCalledWith(
+				futureDate,
+				5,
+			);
+		});
+
+		it("cancels rather than firing an immediate reminder mid-session", () => {
+			// Cards left over from the session are still due *now*, so there is no
+			// future date to arm: the learner must not be notified about the very
+			// cards they are answering.
+			mockNotificationPort.permission = "granted";
+			mockReviewService.getNextReviewDate.mockReturnValue(null);
+			mockReviewService.getNumDueCards.mockReturnValue(9);
+
+			useCase.recordReview("card-1", 4);
+
+			expect(mockNotificationPort.scheduleNext).not.toHaveBeenCalled();
+			expect(mockNotificationPort.cancel).toHaveBeenCalled();
+		});
 	});
 
 	describe("startSession", () => {
@@ -209,8 +313,12 @@ describe("ConductReviewUseCase", () => {
 		it("schedules notification after ending session", () => {
 			mockNotificationPort.permission = "granted";
 			const futureDate = new Date(Date.now() + 60_000);
-			mockReviewService.getNextReviewDate.mockReturnValue(futureDate);
-			mockReviewService.getNumDueCards.mockReturnValue(2);
+			mockReviewService.getNextReviewDate.mockImplementation(
+				(pool: CardPool) => (pool === "script" ? futureDate : null),
+			);
+			mockReviewService.getNumDueCards.mockImplementation((_at, pool) =>
+				pool === "script" ? 2 : 0,
+			);
 
 			const session: ActiveReviewSession = {
 				id: "s1",
@@ -283,8 +391,12 @@ describe("ConductReviewUseCase", () => {
 		it("delegates to review service and schedules notification", () => {
 			mockNotificationPort.permission = "granted";
 			const futureDate = new Date(Date.now() + 60_000);
-			mockReviewService.getNextReviewDate.mockReturnValue(futureDate);
-			mockReviewService.getNumDueCards.mockReturnValue(1);
+			mockReviewService.getNextReviewDate.mockImplementation(
+				(pool: CardPool) => (pool === "script" ? futureDate : null),
+			);
+			mockReviewService.getNumDueCards.mockImplementation((_at, pool) =>
+				pool === "script" ? 1 : 0,
+			);
 
 			useCase.resurrectCard("card-1", "vocab");
 
