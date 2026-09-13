@@ -18,13 +18,12 @@ from __future__ import annotations
 GENERATION_SIZE = (1216, 832)
 SHIPPED_SIZE = (1024, 683)
 
-STYLE_SUFFIX = (
-    "anime illustration, clean confident ink linework, soft watercolour wash, "
-    "warm golden key light with cool blue shadows, floating dust motes and "
-    "bokeh sparkles, visible paper grain, rich saturated palette, "
-    "expressive faces, cinematic composition, detailed background, "
-    "storybook illustration, masterpiece, best quality"
-)
+# Deliberately short. Both text encoders truncate at 77 tokens and the scene
+# needs most of that budget: an earlier 58-token version left no room, and
+# moving it to `prompt_2` instead — SDXL's dominant encoder — swamped the
+# scene completely and produced three generic anime portraits with no cat, no
+# keyring and no SWAT team in them. Style is a seasoning here, not the dish.
+STYLE_SUFFIX = "anime illustration, watercolour, warm golden light, paper grain"
 
 # Diffusion models cannot spell, and cannot render Thai script at all. Every
 # caption is composited afterwards with a real font (see `compose.py`), so the
@@ -41,7 +40,19 @@ NEGATIVE_PROMPT = (
 GUIDANCE_SCALE = 6.5
 INFERENCE_STEPS = 32
 
+# Both CLIP text encoders hard-truncate at 77 tokens, silently. Concatenating
+# scene and style gave 112-140 tokens, so the style was cut off entirely and
+# the first spike came back near-monochrome and semi-photographic — none of
+# "soft watercolour wash", "warm golden key light" or "rich saturated palette"
+# ever reached the model.
+#
+# SDXL has two text encoders and `prompt_2` feeds the second, so the scene and
+# the style each get a budget of their own instead of competing for one.
+# Both encoders get the same text: SDXL expects them aligned, and splitting
+# scene from style across them makes whichever encoder holds the style win.
+MAX_PROMPT_TOKENS = 77
+
 
 def build_prompt(scene: str) -> str:
-    """The full positive prompt for one word: its scene, then the house style."""
+    """Scene first, style appended — the scene must survive any truncation."""
     return f"{scene.strip().rstrip('.')}. {STYLE_SUFFIX}"
