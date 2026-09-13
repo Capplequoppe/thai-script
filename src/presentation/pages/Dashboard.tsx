@@ -9,6 +9,7 @@ import {
 	MIN_VOCAB_COUNT,
 } from "../../domain/conversation/services/ConversationUnlockService";
 import type { LessonSummary } from "../../domain/script/services/ScriptLessonService";
+import { GearIcon } from "../components/atoms/GearIcon";
 import { SectionHeader } from "../components/atoms/SectionHeader";
 import { ForecastCell } from "../components/molecules/ForecastCell";
 import { LearnableCallout } from "../components/molecules/LearnableCallout";
@@ -130,6 +131,21 @@ export function Dashboard() {
 
 	return (
 		<div className="space-y-6 py-4">
+			{/* Settings left the mobile tab bar to get it down to five, so Home
+			    carries it — Home is one tap from anywhere, and Settings is the
+			    lowest-frequency destination in the app. Hidden on desktop, where
+			    the header bar has a permanent Settings link of its own. */}
+			<div className="flex md:hidden justify-end -mb-2">
+				<button
+					type="button"
+					aria-label="Settings"
+					onClick={() => navigate("/settings")}
+					className="p-1 text-[var(--color-text-muted)] hover:text-[var(--color-text)] transition-colors"
+				>
+					<GearIcon className="w-6 h-6" />
+				</button>
+			</div>
+
 			<NotificationBanner />
 
 			{/* 1. Primary Action Card */}
