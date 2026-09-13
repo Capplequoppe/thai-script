@@ -8,7 +8,6 @@ import type {
 import { type CardPool, CardPools } from "../../domain/shared/CardPool";
 import type { RecallRating, SessionSummary } from "../../domain/shared/types";
 import type { ReviewableCard } from "../../domain/srs/entities/ReviewableCard";
-import type { ResponseTimingData } from "../../domain/srs/value-objects/SrsSchedule";
 
 export class ConductReviewUseCase {
 	constructor(
@@ -28,17 +27,11 @@ export class ConductReviewUseCase {
 		);
 	}
 
-	recordReview(
-		cardId: string,
-		rating: RecallRating,
-		pool?: CardPool,
-		timing?: ResponseTimingData,
-	): string {
+	recordReview(cardId: string, rating: RecallRating, pool?: CardPool): string {
 		const newStage = this.reviewService.recordReview(
 			cardId,
 			rating,
 			undefined,
-			timing,
 			pool,
 		);
 		this.scheduleNotification();

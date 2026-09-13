@@ -7,7 +7,6 @@ import type {
 } from "../../shared/types";
 import type { ReviewableCard } from "../../srs/entities/ReviewableCard";
 import { RecallRating } from "../../srs/value-objects/RecallRating";
-import type { ResponseTimingData } from "../../srs/value-objects/SrsSchedule";
 
 export interface ReviewQuizCard {
 	card: ReviewableCard;
@@ -57,14 +56,13 @@ export class ReviewService {
 		cardId: string,
 		rating: RawRecallRating,
 		now?: string,
-		timing?: ResponseTimingData,
 		pool: CardPool = "script",
 	): string {
 		const card = this.cardRepo.findById(cardId, pool);
 		if (!card) throw new Error(`Card not found: ${cardId}`);
 
 		const currentTime = now ?? new Date().toISOString();
-		card.recordReview(RecallRating.fromRaw(rating), currentTime, timing);
+		card.recordReview(RecallRating.fromRaw(rating), currentTime);
 		this.cardRepo.save(card);
 		return card.schedule.stage.name;
 	}

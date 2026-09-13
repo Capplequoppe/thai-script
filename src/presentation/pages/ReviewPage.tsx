@@ -92,8 +92,8 @@ export function ReviewPage() {
 	);
 
 	const handleMcAnswer = useCallback(
-		(correct: boolean, responseTimeMs?: number) => {
-			handleAdvance(ratingFromCorrectness(correct, responseTimeMs));
+		(correct: boolean) => {
+			handleAdvance(ratingFromCorrectness(correct));
 		},
 		[handleAdvance],
 	);

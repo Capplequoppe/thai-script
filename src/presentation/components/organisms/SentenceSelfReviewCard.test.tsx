@@ -32,7 +32,7 @@ describe("SentenceSelfReviewCard", () => {
 		expect(screen.getByText("Come eat together")).toBeTruthy();
 
 		fireEvent.click(screen.getByRole("button", { name: /Good/ }));
-		expect(onRate).toHaveBeenCalledWith(4, expect.any(Number));
+		expect(onRate).toHaveBeenCalledWith(4);
 	});
 
 	it("plays audio upfront for listeningComprehension and never shows the fixed instruction question as Thai text", () => {
@@ -73,6 +73,6 @@ describe("SentenceSelfReviewCard", () => {
 
 		reveal();
 		fireEvent.click(screen.getByRole("button", { name: /Wrong/ }));
-		expect(onRate).toHaveBeenCalledWith(2, expect.any(Number));
+		expect(onRate).toHaveBeenCalledWith(2);
 	});
 });

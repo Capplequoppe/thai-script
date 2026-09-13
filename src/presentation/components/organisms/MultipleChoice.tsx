@@ -64,7 +64,7 @@ interface QuizCardView {
 
 interface Props {
 	card: QuizCardView;
-	onAnswer: (correct: boolean, responseTimeMs: number) => void;
+	onAnswer: (correct: boolean) => void;
 	mnemonicExpanded?: boolean;
 }
 
@@ -75,7 +75,6 @@ export function MultipleChoice({
 }: Props) {
 	const [selected, setSelected] = useState<string | null>(null);
 	const [revealed, setRevealed] = useState(false);
-	const displayedAtRef = useRef(Date.now());
 
 	const cardProperty =
 		"property" in card ? (card as Record<string, unknown>).property : null;
@@ -114,7 +113,6 @@ export function MultipleChoice({
 	useEffect(() => {
 		setSelected(null);
 		setRevealed(false);
-		displayedAtRef.current = Date.now();
 	}, [card.id]);
 
 	useEffect(() => {
@@ -126,11 +124,10 @@ export function MultipleChoice({
 	const handleSelect = useCallback(
 		(choice: string) => {
 			if (revealed) return;
-			const elapsed = Date.now() - displayedAtRef.current;
 			setSelected(choice);
 			setRevealed(true);
 			const correct = choice === card.correctAnswer;
-			setTimeout(() => onAnswer(correct, elapsed), correct ? 500 : 5000);
+			setTimeout(() => onAnswer(correct), correct ? 500 : 5000);
 		},
 		[card.correctAnswer, onAnswer, revealed],
 	);
