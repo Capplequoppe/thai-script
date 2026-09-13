@@ -38,9 +38,7 @@ describe("SentenceBuilder", () => {
 
 		fireEvent.click(screen.getByRole("button", { name: "Check" }));
 
-		await waitFor(() =>
-			expect(onAnswer).toHaveBeenCalledWith(true, expect.any(Number)),
-		);
+		await waitFor(() => expect(onAnswer).toHaveBeenCalledWith(true));
 	});
 
 	it("never disables a tile after tapping it, only once the answer is checked", () => {

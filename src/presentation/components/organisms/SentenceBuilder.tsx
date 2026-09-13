@@ -9,7 +9,7 @@ interface SentenceBuilderProps {
 		choices: readonly string[];
 		audioUrl?: string;
 	};
-	onAnswer: (correct: boolean, responseTimeMs: number) => void;
+	onAnswer: (correct: boolean) => void;
 }
 
 export function SentenceBuilder({ card, onAnswer }: SentenceBuilderProps) {
@@ -17,7 +17,6 @@ export function SentenceBuilder({ card, onAnswer }: SentenceBuilderProps) {
 	const [feedback, setFeedback] = useState<"correct" | "incorrect" | null>(
 		null,
 	);
-	const displayedAtRef = useRef(Date.now());
 	const audioRef = useRef<HTMLAudioElement | null>(null);
 
 	const playAudio = useCallback(() => {
@@ -36,7 +35,6 @@ export function SentenceBuilder({ card, onAnswer }: SentenceBuilderProps) {
 	useEffect(() => {
 		setBuilt([]);
 		setFeedback(null);
-		displayedAtRef.current = Date.now();
 	}, [card.id]);
 
 	// Auto-play audio on mount / card change
@@ -66,9 +64,8 @@ export function SentenceBuilder({ card, onAnswer }: SentenceBuilderProps) {
 		const builtString = built.join("");
 		const correctChars = [...card.correctAnswer].filter((ch) => ch !== " ");
 		const isCorrect = builtString === correctChars.join("");
-		const elapsed = Date.now() - displayedAtRef.current;
 		setFeedback(isCorrect ? "correct" : "incorrect");
-		setTimeout(() => onAnswer(isCorrect, elapsed), isCorrect ? 500 : 3000);
+		setTimeout(() => onAnswer(isCorrect), isCorrect ? 500 : 3000);
 	}, [built, card.correctAnswer, feedback, onAnswer]);
 
 	return (
