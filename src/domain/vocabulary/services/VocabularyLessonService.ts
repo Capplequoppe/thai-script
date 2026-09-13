@@ -11,6 +11,7 @@ import type { ApprenticeService } from "../../shared/services/ApprenticeService"
 import { reconcileGeneratedCards } from "../../shared/services/reconcileCards";
 import { VocabCard } from "../entities/VocabCard";
 import type { VocabEntry, VocabLessonSummary, VocabularyCard } from "../types";
+import { repairToneAnswers } from "./repairToneAnswers";
 import { generateVocabCards } from "./VocabCardGenerator";
 
 const BATCH_SIZE = 5;
@@ -292,6 +293,9 @@ export class VocabularyService {
 	 * for a word learned before it had any), or an `audioUrl` on a persisted
 	 * card that previously had none. See `reconcileGeneratedCards` for the
 	 * exact, deliberately narrow rules.
+	 *
+	 * Tone-identification cards get one extra repair on top of those rules —
+	 * see `repairToneAnswers`.
 	 */
 	reconcileCards(): void {
 		const persisted = (this.cardRepo.findAll("vocab") as VocabCard[]).map(
@@ -302,7 +306,10 @@ export class VocabularyService {
 			generateVocabCards(entry, this.vocabulary, introducedChars),
 		);
 
-		const toSave = reconcileGeneratedCards(persisted, generated);
+		const toSave = [
+			...reconcileGeneratedCards(persisted, generated),
+			...repairToneAnswers(persisted, generated),
+		];
 		if (toSave.length === 0) return;
 
 		this.cardRepo.saveAll(toSave.map((dto) => VocabCard.fromDTO(dto)));

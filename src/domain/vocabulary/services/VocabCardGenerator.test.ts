@@ -48,6 +48,10 @@ const testWordWithTones: VocabEntry = {
 	...testWord,
 	thai: "สวัสดี",
 	english: "hello",
+	// Two syllables carrying low and mid, agreeing with `syllables` below:
+	// `toneSyllablesOf` resolves the tone against the romanization and drops a
+	// word whose two sources disagree about how many syllables it has.
+	romanization: "sà dii",
 	syllables: [
 		{
 			text: "สวัส",
