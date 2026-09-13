@@ -90,9 +90,9 @@
   {
     "rank": 17,
     "thai": "ของ",
-    "mnemonic": "A giant ape sits on a mountain of treasure and pats each piece in turn: the crown, the anchor, the ship's bell. All of it is the treasure of Kong. khǔǔng hooks a thing to its owner. (↑ rising, the voice climbs as he lifts each piece)",
+    "mnemonic": "A giant ape sits on a mountain of treasure and pats each piece in turn: the crown, the anchor, the ship's bell. All of it is the treasure of Kong. khɔ̌ɔng hooks a thing to its owner. (↑ rising, the voice climbs as he lifts each piece)",
     "anchor": "KONG",
-    "headline": "…khǔǔng Kong.",
+    "headline": "…khɔ̌ɔng Kong.",
     "scene": "A colossal ape seated on a heaped mound of gold, crowns and ship's anchors on a rocky island, holding one glittering crown up to the light between two fingers, thoroughly satisfied. Tiny sailors stare up from a boat far below. Dawn sky.",
     "rating": 3,
     "verdict": "replaced",
@@ -354,7 +354,7 @@
   {
     "rank": 69,
     "thai": "เพราะ",
-    "mnemonic": "Someone asks how he does it and the man taps his own chest with the butt of his cue: because he is a pro. That is the whole answer — prɔ́, the word that hands you the reason. (— level and matter-of-fact, nothing to argue with)",
+    "mnemonic": "Someone asks how he does it and the man taps his own chest with the butt of his cue: because he is a pro. That is the whole answer — prɔ́, the word that hands you the reason. (▲ high and taut, snapped out with the tap of the cue)",
     "anchor": "PRO",
     "headline": "…prɔ́.",
     "scene": "A snooker hall. A man in a waistcoat leans on his cue after a shot, tapping his own chest with two fingers, eyebrows raised, entirely unbothered. Onlookers round the table stare at the perfectly potted balls. Low hanging lamp, green baize, smoke.",
@@ -497,12 +497,12 @@
   {
     "rank": 101,
     "thai": "อายุ",
-    "mnemonic": "A fortune teller peers over her cards, jabs a finger at you and says \"Ah — YOU!\" She has guessed your age to the year. aa-yú is the number of years you have. (↓ the second syllable snaps down on YOU)",
-    "anchor": null,
-    "headline": null,
-    "scene": null,
-    "rating": 5,
-    "verdict": "kept",
+    "mnemonic": "A fortune teller peers over her cards, jabs a finger across the table and says \"Ah — YOU!\" She has guessed your age to the year, and the YOU comes out bright and hard and stays up there. aa-yú is the number of years you have. (▲ the second syllable snaps up high on YOU and holds)",
+    "anchor": "ah-YOU",
+    "headline": "Ah — YOU!",
+    "scene": "A fortune teller's booth draped in red cloth. An old woman with rings on every finger leans across a spread of cards and jabs one finger directly at the viewer, eyes wide with certainty. Beside the cards sits a small ornate abacus with a row of beads pushed across. Candles, incense smoke, deep shadows.",
+    "rating": 2,
+    "verdict": "replaced",
     "skip_reason": null
   },
   {
@@ -530,9 +530,9 @@
   {
     "rank": 107,
     "thai": "อีก",
-    "mnemonic": "A mouse crosses the kitchen floor and the cook shrieks — eek — then another, then another. Each one gets its own eek. ʔîik is more: again, another one. (▁ low and flat — by the third mouse the eek has gone flat and tired)",
+    "mnemonic": "A mouse crosses the kitchen floor and the cook shrieks — eek — then another, then another. Each one gets its own eek. ʔìik is more: again, another one. (▁ low and flat, and by the third mouse the eek has gone tired)",
     "anchor": "EEK",
-    "headline": "…ʔîik.",
+    "headline": "…ʔìik.",
     "scene": "A cook standing on a kitchen chair with her apron gathered in both fists, looking down at three mice crossing the tiled floor in single file, her expression more weary than frightened. Copper pans, a pot left steaming on the stove.",
     "rating": 2,
     "verdict": "replaced",
@@ -728,12 +728,12 @@
   {
     "rank": 145,
     "thai": "ลด",
-    "mnemonic": "A shopkeeper slaps a new price tag over the old one — a LOT has come off. lót is the cut itself: prices, speed, weight, volume, anything that comes down. (↓ falls sharply, like the price)",
-    "anchor": null,
-    "headline": null,
-    "scene": null,
-    "rating": 5,
-    "verdict": "kept",
+    "mnemonic": "A shopkeeper slaps a fat red starburst over the old one in the window and a LOT has come off. lót is the cut itself — prices, speed, weight, volume, anything that comes down — but the voice does not come down with it. It snaps up bright and stays up. (▲ high and taut, called over his shoulder from the step stool)",
+    "anchor": "a LOT off",
+    "headline": "lót!",
+    "scene": "A grinning shopkeeper on a step stool inside a shopfront window, pressing a huge red starburst sticker over a smaller one on the glass, the corner of the old one still peeling up. Shoppers outside press in to look. Bright commercial lighting, festive clutter, goods stacked behind him.",
+    "rating": 2,
+    "verdict": "replaced",
     "skip_reason": null
   },
   {
@@ -893,7 +893,7 @@
   {
     "rank": 183,
     "thai": "ชีวิต",
-    "mnemonic": "Ask the hundred-year-old woman how she managed it and she taps her temple: cheer, and wit. chii-wít is a life — the whole span of one, in two syllables. (↓ the second syllable drops as her finger taps)",
+    "mnemonic": "Ask the hundred-year-old woman how she managed it and she taps her temple: cheer, and wit. chii-wít is a life — the whole span of one, in two syllables. (▲ the second syllable snaps up high as her finger taps)",
     "anchor": "CHEER + WIT",
     "headline": "chii-wít.",
     "scene": "A very old woman on a wooden porch chair, laughing, tapping her own temple with one crooked finger while three young people crouch around her listening. Cats on the steps, potted plants, soft late afternoon light.",
@@ -1212,9 +1212,9 @@
   {
     "rank": 253,
     "thai": "ปัญหา",
-    "mnemonic": "The pan handle comes away in his hand and the whole dinner goes across the floor — pan-hǒa. The ha on the end climbs like a question nobody can answer. (↑ the second syllable climbs, both hands thrown up)",
+    "mnemonic": "The pan handle comes away in his hand and the whole dinner goes across the floor — pan-hǎa. The ha on the end climbs like a question nobody can answer. (↑ the second syllable climbs, both hands thrown up)",
     "anchor": "PAN + HAndle",
-    "headline": "pan-hǒa!",
+    "headline": "pan-hǎa!",
     "scene": "A cook in a home kitchen holding a detached pan handle in one hand and staring down at an upturned pan and a curry spreading across the tiles, a cat already approaching the edge of the mess. Hard overhead light.",
     "rating": 2,
     "verdict": "replaced",
