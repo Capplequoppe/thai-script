@@ -34,6 +34,7 @@ function card(
 	sentenceId: string,
 	nextReviewDate: string,
 	property: SentenceProperty = "readingComprehension",
+	lastReviewDate: string | null = at(-DAY),
 ): SentenceReviewCard {
 	return new SentenceReviewCard(
 		`sentence:${sentenceId}:${property}`,
@@ -46,7 +47,7 @@ function card(
 			repetitions: 1,
 			learningStep: null,
 			nextReviewDate,
-			lastReviewDate: null,
+			lastReviewDate,
 		}),
 		sentenceId,
 		property,
@@ -203,17 +204,25 @@ describe("SentenceCoverageSelector", () => {
 		});
 	});
 
-	describe("coverage from cards that are not in the session", () => {
-		it("skips a sentence whose words another sentence already has scheduled far ahead", () => {
+	describe("what counts as having been seen", () => {
+		it("counts material as seen when a sentence carrying it was answered, even one that is not due", () => {
 			const sentences = [
-				entry("s1", ["common"]),
-				entry("s2", ["common", "rare"]),
-				entry("s3", ["common"]),
+				entry("s1", ["shared"]),
+				entry("s2", ["fresh"]),
+				entry("s3", ["shared"]),
 			];
-			const dueCards = [card("s1", at(-DAY)), card("s2", at(-DAY))];
-			// Not due, so not reviewable today — but it is why "common" needs
-			// no help from this session.
-			const scheduledAhead = card("s3", at(30 * DAY));
+			// s3 was answered a minute ago and pushed out, so it is not in this
+			// session — but "shared" has just been exercised all the same.
+			const scheduledAhead = card(
+				"s3",
+				at(30 * DAY),
+				"readingComprehension",
+				at(-60_000),
+			);
+			const dueCards = [
+				card("s1", at(-DAY), "readingComprehension", at(-10 * DAY)),
+				card("s2", at(-DAY), "readingComprehension", at(-10 * DAY)),
+			];
 
 			const selected = new SentenceCoverageSelector(sentences, 1).select({
 				dueCards,
@@ -224,28 +233,61 @@ describe("SentenceCoverageSelector", () => {
 			expect(sentenceIdsOf(selected)).toEqual(["s2"]);
 		});
 
-		it("ranks a word the learner just failed above one they just passed", () => {
-			// `p` is carried by a sentence pushed 30 days out (passed);
-			// `f` by one demoted to due-now (failed). Both candidates below
-			// also carry the same neutral word `k`, so the only difference
-			// between them is which of `p`/`f` they re-expose.
+		it("ranks by how stale a sentence's material is, not by how much of it there is", () => {
+			// Chosen so the two scorings disagree: `long` holds five tokens at
+			// 3 days (sum 15 days, mean 3) against `short`'s single token at 10
+			// (sum 10, mean 10). Summing picks `long` purely for being longer —
+			// the defect this replaced, which on real data made four-word
+			// sentences crowd out two-word ones regardless of staleness.
 			const sentences = [
-				entry("passed", ["p"]),
-				entry("failed", ["f"]),
-				entry("c1", ["p", "k"]),
-				entry("c2", ["f", "k"]),
+				entry("short", ["a"]),
+				entry("long", ["b", "c", "d", "e", "f"]),
 			];
-			const passed = card("passed", at(30 * DAY));
-			const failed = card("failed", at(0));
-			const dueCards = [failed, card("c1", at(-DAY)), card("c2", at(-DAY))];
+			const cards = [
+				card("short", at(-DAY), "readingComprehension", at(-10 * DAY)),
+				card("long", at(-DAY), "readingComprehension", at(-3 * DAY)),
+			];
 
-			const selected = new SentenceCoverageSelector(sentences, 1).select({
-				dueCards,
-				allCards: [...dueCards, passed],
-				now: NOW,
-			});
+			const chosen = sentenceIdsOf(
+				allDue(new SentenceCoverageSelector(sentences, 1), cards),
+			);
 
-			expect(sentenceIdsOf(selected)).toEqual(["c2"]);
+			expect(chosen).toEqual(["short"]);
+		});
+
+		it("outranks a sentence answered minutes ago with one unseen for days", () => {
+			const sentences = [entry("justDone", ["a"]), entry("neglected", ["b"])];
+			const cards = [
+				// Both due: `justDone` is on the 10-minute sentence learning step.
+				card(
+					"justDone",
+					at(-5 * 60_000),
+					"readingComprehension",
+					at(-15 * 60_000),
+				),
+				card("neglected", at(-DAY), "readingComprehension", at(-7 * DAY)),
+			];
+
+			const chosen = sentenceIdsOf(
+				allDue(new SentenceCoverageSelector(sentences, 1), cards),
+			);
+
+			expect(chosen).toEqual(["neglected"]);
+		});
+
+		it("puts material the learner has never seen ahead of anything they have", () => {
+			const sentences = [entry("seenLongAgo", ["a"]), entry("brandNew", ["b"])];
+			const cards = [
+				card("seenLongAgo", at(-DAY), "readingComprehension", at(-90 * DAY)),
+				// Never answered: lastReviewDate is null.
+				card("brandNew", at(-DAY), "readingComprehension", null),
+			];
+
+			const chosen = sentenceIdsOf(
+				allDue(new SentenceCoverageSelector(sentences, 1), cards),
+			);
+
+			expect(chosen).toEqual(["brandNew"]);
 		});
 	});
 

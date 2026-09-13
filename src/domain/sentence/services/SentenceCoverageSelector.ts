@@ -17,6 +17,12 @@ import type { SentenceEntry, SentenceProperty } from "../types";
  */
 export const DEFAULT_SENTENCE_BUDGET = 12;
 
+/**
+ * Staleness assigned to material the learner has never been shown, so that
+ * it outranks anything they have seen while keeping every score finite.
+ */
+const NEVER_SEEN_STALENESS_MS = 365 * 24 * 60 * 60_000;
+
 /** Stable within-sentence card order; the session shuffles afterwards. */
 const PROPERTY_ORDER: readonly SentenceProperty[] = [
 	"readingComprehension",
@@ -41,18 +47,31 @@ const PROPERTY_ORDER: readonly SentenceProperty[] = [
  *    because they share words; picking one credits those words, which
  *    collapses the score of everything sharing them. No similarity metric
  *    or threshold is involved.
- *  - **Ubiquitous function words stop driving selection.** A word carried
- *    by some sentence scheduled far ahead is already covered and adds
- *    nothing, so sentences carrying rare material outrank sentences built
- *    from `ครับ`/`ไม่`/`ดี`.
+ *  - **Ubiquitous function words stop driving selection.** A word exercised
+ *    by any recent sentence is fresh and contributes nothing, so sentences
+ *    carrying neglected material outrank sentences built from
+ *    `ครับ`/`ไม่`/`ดี`.
  *
- * Coverage is derived entirely from schedules already on disk — a card's
- * `nextReviewDate` is how long its material is spoken for — so this adds no
- * persisted state and needs no migration. Crediting is proportional to
- * success for free: a passed card pushes its date out by the new interval,
- * while a failed one is demoted to "due now" and therefore buys its words
- * no coverage at all. Material the learner got wrong stays stale and
- * returns in a *different* sentence.
+ * Staleness is read from `lastReviewDate` on cards already on disk, so this
+ * adds no persisted state and needs no migration.
+ *
+ * **Recency ranks; the scheduler still gates.** This decides the order of
+ * what is already due — `ReviewService` hands it the due set, and a card the
+ * SRS is not asking for cannot be chosen however stale its words. That split
+ * is deliberate: "when is this at risk of being forgotten" and "how long
+ * since the learner exercised this pattern" are different questions on
+ * different clocks, and an earlier version of this class answered both from
+ * `nextReviewDate`. The result was perverse — sentences ride the two-rung
+ * `SENTENCE_LEARNING_STEPS` ladder, so one answered correctly came back ten
+ * minutes later and outranked material untouched for a week, and a session
+ * repeated 10 of its 12 sentences from the one before it.
+ *
+ * A sentence is a pattern to exercise, not a string to memorise; re-showing
+ * one soon after the last time trains recitation of that sentence rather
+ * than the grammar it demonstrates. Failing a sentence is therefore not a
+ * reason to rank it up here — the SRS already brings a failed card back
+ * sooner, and when it does, its words are exactly as stale as the schedule
+ * says they are.
  */
 export class SentenceCoverageSelector implements SessionCardSelector {
 	private readonly sentencesById: ReadonlyMap<string, SentenceEntry>;
@@ -75,9 +94,9 @@ export class SentenceCoverageSelector implements SessionCardSelector {
 		}
 
 		const { dueBySentence, unattributed } = this.groupDueCards(input.dueCards);
-		const coveredUntil = this.coverageHorizons(input.allCards);
+		const lastSeen = this.lastSeenByToken(input.allCards);
 
-		const chosen = this.pickSentences(dueBySentence, coveredUntil, nowMs);
+		const chosen = this.pickSentences(dueBySentence, lastSeen, nowMs);
 
 		const selected: ReviewableCard[] = [];
 		for (const sentenceId of chosen) {
@@ -116,39 +135,45 @@ export class SentenceCoverageSelector implements SessionCardSelector {
 	}
 
 	/**
-	 * For every token, the furthest-out date any sentence carrying it is
-	 * scheduled for — i.e. how long that material is already spoken for.
+	 * For every token, when the learner last actually saw it in a sentence.
+	 *
+	 * `lastReviewDate`, not `nextReviewDate`: the question is "how long since
+	 * this was exercised", which is a fact about the past. Reading it off the
+	 * schedule instead conflates it with "when is this at risk of being
+	 * forgotten" — a different question, answered on a different clock, and
+	 * the source of the defect this replaced.
 	 */
-	private coverageHorizons(
+	private lastSeenByToken(
 		allCards: readonly ReviewableCard[],
 	): Map<string, number> {
-		const coveredUntil = new Map<string, number>();
+		const lastSeen = new Map<string, number>();
 
 		for (const card of allCards) {
 			const entry = this.entryFor(card);
 			if (!entry) continue;
-			const until = Date.parse(card.schedule.nextReviewDate);
-			if (Number.isNaN(until)) continue;
+			if (!card.schedule.lastReviewDate) continue;
+			const seenAt = Date.parse(card.schedule.lastReviewDate);
+			if (Number.isNaN(seenAt)) continue;
 
 			for (const token of tokensOf(entry)) {
-				const current = coveredUntil.get(token);
-				if (current === undefined || until > current) {
-					coveredUntil.set(token, until);
+				const current = lastSeen.get(token);
+				if (current === undefined || seenAt > current) {
+					lastSeen.set(token, seenAt);
 				}
 			}
 		}
 
-		return coveredUntil;
+		return lastSeen;
 	}
 
 	/**
-	 * Greedy weighted set cover: repeatedly take the sentence carrying the
-	 * most uncovered material, then credit that material so the next pick
-	 * can't lean on it again.
+	 * Greedy set cover: repeatedly take the sentence whose material has gone
+	 * longest unseen, then mark that material seen so the next pick can't
+	 * lean on it again.
 	 */
 	private pickSentences(
 		dueBySentence: ReadonlyMap<string, SentenceReviewCard[]>,
-		coveredUntil: Map<string, number>,
+		lastSeen: Map<string, number>,
 		nowMs: number,
 	): string[] {
 		const candidates = [...dueBySentence.keys()].sort();
@@ -166,8 +191,8 @@ export class SentenceCoverageSelector implements SessionCardSelector {
 				const entry = this.sentencesById.get(sentenceId);
 				if (!entry) continue;
 
-				const score = coverageDeficitOf(entry, coveredUntil, nowMs);
-				// Equal deficits leave nothing to distinguish candidates, so
+				const score = stalenessOf(entry, lastSeen, nowMs);
+				// Equal staleness leaves nothing to distinguish candidates, so
 				// fall back to the plain SRS question: which has been waiting
 				// longest? (Ties beyond that go to the lowest id, so a session
 				// is a function of state alone and tests can assert on it.)
@@ -185,13 +210,13 @@ export class SentenceCoverageSelector implements SessionCardSelector {
 
 			const entry = this.sentencesById.get(best);
 			if (!entry) continue;
+			// Mark this pick's material seen, exactly as answering it will, so
+			// a near-duplicate later in the same session is ranked against it
+			// on the same scale as a sentence practised in an earlier one.
 			for (const token of tokensOf(entry)) {
-				// Never pull a horizon backwards: material already spoken for
-				// past `now` must not become *more* attractive because a
-				// sentence carrying it was just picked.
-				const current = coveredUntil.get(token);
+				const current = lastSeen.get(token);
 				if (current === undefined || current < nowMs) {
-					coveredUntil.set(token, nowMs);
+					lastSeen.set(token, nowMs);
 				}
 			}
 		}
@@ -218,37 +243,31 @@ function tokensOf(entry: SentenceEntry): Set<string> {
 }
 
 /**
- * How badly this sentence's material wants exposure, in summed milliseconds.
+ * How long this sentence's material has gone unseen, in milliseconds.
  *
- * Deliberately signed. A token scheduled into the future scores *negative* —
- * it is already spoken for, and a sentence built from such tokens teaches
- * nothing that isn't covered. That sign is what makes crediting proportional
- * to success without any extra bookkeeping:
- *
- *   passed (pushed out an interval)  →  strongly negative
- *   failed (demoted to "due now")    →  zero
- *   long uncovered                   →  strongly positive
- *
- * so material the learner got wrong outranks material they just got right,
- * and both lose to material nothing has covered in weeks. Clamping the
- * per-token term at zero would collapse the first two cases into a tie.
- *
- * The sum is bounded in practice: `SrsSchedule` caps an interval at 180
- * days, so no single token can swamp the rest.
+ * The **mean** across its tokens, not the sum. A sum ranks by sentence
+ * length once the per-token terms share a sign, which is exactly what went
+ * wrong before: with a small known vocabulary every token carries a similar
+ * term, so summing made a four-word sentence score four times whatever a
+ * two-word one scored and the selector simply sorted by length. The mean
+ * asks the question that was intended — "how stale is this sentence's
+ * material, on average" — independently of how much material it holds.
  */
-function coverageDeficitOf(
+function stalenessOf(
 	entry: SentenceEntry,
-	coveredUntil: ReadonlyMap<string, number>,
+	lastSeen: ReadonlyMap<string, number>,
 	nowMs: number,
 ): number {
+	const tokens = tokensOf(entry);
 	let total = 0;
-	for (const token of tokensOf(entry)) {
-		// A token absent from the map belongs to no scheduled card at all.
-		// `nowMs` scores it neutral rather than infinite, which keeps the sum
-		// finite and comparable.
-		total += nowMs - (coveredUntil.get(token) ?? nowMs);
+	for (const token of tokens) {
+		const seenAt = lastSeen.get(token);
+		total +=
+			seenAt === undefined
+				? NEVER_SEEN_STALENESS_MS
+				: Math.max(0, nowMs - seenAt);
 	}
-	return total;
+	return total / tokens.size;
 }
 
 function earliestDueAt(cards: readonly ReviewableCard[]): number {
