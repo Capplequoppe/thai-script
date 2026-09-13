@@ -4,6 +4,10 @@ import { StorageCardRepository } from "../../../infrastructure/persistence/Stora
 import { StorageLearnerStateRepository } from "../../../infrastructure/persistence/StorageLearnerStateRepository";
 import type { GrammarCard } from "../../grammar/types";
 import { LearningService } from "../../script/services/ScriptLessonService";
+import type {
+	SessionCardSelectionInput,
+	SessionCardSelector,
+} from "../../shared/SessionCardSelector";
 import { DEFAULT_SRS_DATA } from "../../shared/types";
 import type { VocabularyCard } from "../../vocabulary/types";
 import { ReviewService } from "./ReviewService";
@@ -451,6 +455,51 @@ describe("ReviewService", () => {
 				"grammar",
 			);
 			expect(summary.type).toBe("grammar-review");
+		});
+	});
+
+	describe("pool-specific card selectors", () => {
+		it("delegates selection for a pool that registers one", () => {
+			const cardRepo = new StorageCardRepository(storage);
+			const stateRepo = new StorageLearnerStateRepository(storage);
+			const seen: SessionCardSelectionInput[] = [];
+			const takeFirst: SessionCardSelector = {
+				select: (input) => {
+					seen.push(input);
+					return input.dueCards.slice(0, 1);
+				},
+			};
+			const service = new ReviewService(cardRepo, stateRepo, {
+				script: takeFirst,
+			});
+
+			const session = service.startReviewSession(undefined, FUTURE_NOW);
+
+			expect(session.cards).toHaveLength(1);
+			expect(seen).toHaveLength(1);
+			expect(seen[0]?.now).toBe(FUTURE_NOW);
+			// The selector is handed the whole pool, not just what is due —
+			// coverage-style selection needs the not-due cards as well.
+			expect(seen[0]?.allCards.length).toBeGreaterThanOrEqual(
+				seen[0]?.dueCards.length ?? 0,
+			);
+		});
+
+		it("leaves pools without a selector on the default ordering", () => {
+			const cardRepo = new StorageCardRepository(storage);
+			const stateRepo = new StorageLearnerStateRepository(storage);
+			const never: SessionCardSelector = {
+				select: () => {
+					throw new Error("must not be consulted for the script pool");
+				},
+			};
+			const service = new ReviewService(cardRepo, stateRepo, {
+				sentence: never,
+			});
+
+			const session = service.startReviewSession(undefined, FUTURE_NOW);
+
+			expect(session.cards.length).toBeGreaterThan(0);
 		});
 	});
 });

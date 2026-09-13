@@ -52,6 +52,7 @@ import { ScriptPropertyCard } from "../../domain/script/entities/ScriptPropertyC
 import { LearningService } from "../../domain/script/services/ScriptLessonService";
 import sentenceData from "../../domain/sentence/data/sentences.json";
 import { SentenceReviewCard } from "../../domain/sentence/entities/SentenceReviewCard";
+import { SentenceCoverageSelector } from "../../domain/sentence/services/SentenceCoverageSelector";
 import { SentenceService } from "../../domain/sentence/services/SentenceLessonService";
 import type { SentenceEntry } from "../../domain/sentence/types";
 import { ReviewService } from "../../domain/session/services/ReviewService";
@@ -619,7 +620,13 @@ export function makeAppValue(options: MakeAppValueOptions = {}): AppHarness {
 		stateRepo,
 		apprenticeService,
 	);
-	const reviewService = new ReviewService(cardRepo, stateRepo);
+	const reviewService = new ReviewService(cardRepo, stateRepo, {
+		// Sentence sessions are chosen by coverage of the material rather than
+		// by per-card overdueness — see `SentenceCoverageSelector`.
+		sentence: new SentenceCoverageSelector(
+			sentenceData as unknown as SentenceEntry[],
+		),
+	});
 	const vocabularyService = new VocabularyService(
 		cardRepo,
 		stateRepo,

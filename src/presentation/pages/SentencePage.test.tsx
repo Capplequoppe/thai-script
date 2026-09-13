@@ -94,9 +94,7 @@ describe("SentencePage — review dispatch", () => {
 			{ extraCards: [makeSelfValidationSentenceCard("basic-001")] },
 		);
 
-		fireEvent.click(
-			screen.getByRole("button", { name: /Review \d+ Due Sentence Cards?/ }),
-		);
+		fireEvent.click(screen.getByRole("button", { name: /Practice Sentences/ }));
 
 		expect(screen.getByRole("button", { name: /Show Answer/ })).toBeTruthy();
 	});

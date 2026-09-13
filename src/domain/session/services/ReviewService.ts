@@ -1,6 +1,7 @@
 import type { CardRepository } from "../../ports/CardRepository";
 import type { LearnerStateRepository } from "../../ports/LearnerStateRepository";
 import type { CardPool } from "../../shared/CardPool";
+import type { SessionCardSelector } from "../../shared/SessionCardSelector";
 import type {
 	RecallRating as RawRecallRating,
 	SessionSummary,
@@ -42,6 +43,14 @@ export class ReviewService {
 	constructor(
 		private readonly cardRepo: CardRepository,
 		private readonly stateRepo: LearnerStateRepository,
+		/**
+		 * Per-pool overrides for how a session's cards are chosen. A pool
+		 * without one keeps the default "most overdue first" ordering, which
+		 * is correct wherever the card is itself the thing being remembered.
+		 */
+		private readonly selectors: Partial<
+			Record<CardPool, SessionCardSelector>
+		> = {},
 	) {}
 
 	getDueCards(now?: string, pool: CardPool = "script"): ReviewableCard[] {
@@ -69,21 +78,37 @@ export class ReviewService {
 		return card.schedule.stage.name;
 	}
 
-	startReviewSession(
+	/** The default selection: most overdue first, ties to the weakest card. */
+	private static byOverdueness(
+		dueCards: readonly ReviewableCard[],
 		maxCards?: number,
-		now?: string,
-		pool: CardPool = "script",
-	): ActiveReviewSession {
-		const dueCards = this.getDueCards(now, pool);
-
-		const sorted = dueCards.sort((a, b) => {
+	): ReviewableCard[] {
+		const sorted = [...dueCards].sort((a, b) => {
 			const aDate = new Date(a.schedule.nextReviewDate).getTime();
 			const bDate = new Date(b.schedule.nextReviewDate).getTime();
 			if (aDate !== bDate) return aDate - bDate;
 			return a.schedule.easeFactor.value - b.schedule.easeFactor.value;
 		});
+		return maxCards ? sorted.slice(0, maxCards) : sorted;
+	}
 
-		const selected = maxCards ? sorted.slice(0, maxCards) : sorted;
+	startReviewSession(
+		maxCards?: number,
+		now?: string,
+		pool: CardPool = "script",
+	): ActiveReviewSession {
+		const currentTime = now ?? new Date().toISOString();
+		const dueCards = this.getDueCards(currentTime, pool);
+
+		const selector = this.selectors[pool];
+		const selected = selector
+			? selector.select({
+					dueCards,
+					allCards: this.cardRepo.findAll(pool),
+					maxCards,
+					now: currentTime,
+				})
+			: ReviewService.byOverdueness(dueCards, maxCards);
 
 		const quizCards: ReviewQuizCard[] = selected.map((card) => ({
 			card,
@@ -105,7 +130,7 @@ export class ReviewService {
 		return {
 			id: crypto.randomUUID(),
 			cards: quizCards,
-			startedAt: now ?? new Date().toISOString(),
+			startedAt: currentTime,
 			results: [],
 		};
 	}
