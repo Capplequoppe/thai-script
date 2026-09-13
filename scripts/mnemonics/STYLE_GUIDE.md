@@ -98,6 +98,18 @@ beyond one. British spelling.
 Each mnemonic also needs a `scene`: what the picture should show, as a single
 paragraph of 30–60 words, in plain visual language.
 
+- **One action, performed by one person, and make them the grammatical
+  subject of the first sentence.** This is the rule the renders actually turn
+  on. A scene asking two people to act at once reliably loses one of them, and
+  a gesture buried mid-sentence behind a crowd is not rendered at all.
+- **Prefer whole-body actions to fine hand gestures.** An arm raised overhead,
+  a keyring hoisted, a paw pushing a glass off a table — these render. A
+  pinched thumb and forefinger, two fingers tapping a chest, palms pressed
+  together — these are unreliable, and they lose outright to any strong prop
+  in the frame: a snooker table or a bowl of noodles pulls the model back to
+  its stock rendering and the hand does something generic. If the mnemonic
+  turns on a small gesture, either make that gesture the only thing in the
+  scene or find a bigger movement that carries the same idea.
 - Describe **only what is visible**. No narration, no "he realises that…".
 - **Never mention text, letters, words, signs, captions or writing.** Captions
   are composited afterwards with a real font; a diffusion model cannot spell
