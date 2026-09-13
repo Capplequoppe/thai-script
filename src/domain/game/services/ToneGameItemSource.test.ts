@@ -23,7 +23,7 @@ function syllable(text: string, tone: string | null): SyllableInfo {
 function vocabEntry(overrides: Partial<VocabEntry> = {}): VocabEntry {
 	return {
 		thai: "แมว",
-		romanization: "mǎeo",
+		romanization: "maeo",
 		word_class: "noun",
 		english: "cat",
 		rank: 1,

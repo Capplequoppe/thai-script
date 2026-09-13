@@ -959,10 +959,6 @@ describe("GameItemSelectionService", () => {
 		function toneVocabEntry(thai: string, audioUrl?: string): VocabEntry {
 			return {
 				...vocabEntry(thai, audioUrl),
-				// The caron carries the rising tone the syllable claims —
-				// `toneSyllablesOf` resolves against the romanization, and an
-				// undiacriticked one would mean mid.
-				romanization: "mǎeo",
 				syllables: [{ ...syllable("rising"), text: thai }],
 			};
 		}
