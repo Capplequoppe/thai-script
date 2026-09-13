@@ -27,12 +27,17 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 from compose import compose, output_path  # noqa: E402
 from style import (  # noqa: E402
+    FLUX_GUIDANCE,
+    FLUX_MAX_SEQUENCE_LENGTH,
+    FLUX_MODEL_ID,
+    FLUX_STEPS,
     GENERATION_SIZE,
     GUIDANCE_SCALE,
     INFERENCE_STEPS,
     MAX_PROMPT_TOKENS,
     NEGATIVE_PROMPT,
     SHIPPED_SIZE,
+    build_flux_prompt,
     build_prompt,
 )
 
@@ -65,8 +70,21 @@ class Result:
     detail: str = ""
 
 
-def load_pipeline():
+def load_pipeline(backend: str):
     import torch
+
+    if backend == "flux":
+        from diffusers import FluxPipeline
+
+        pipe = FluxPipeline.from_pretrained(FLUX_MODEL_ID, torch_dtype=torch.bfloat16)
+        # The transformer, T5, CLIP and VAE together exceed 24 GB, so components
+        # are moved onto the GPU only while they are being used. Slower per
+        # image than resident weights, and the difference between running and
+        # not running on this card.
+        pipe.enable_model_cpu_offload()
+        pipe.set_progress_bar_config(disable=True)
+        return pipe
+
     from diffusers import StableDiffusionXLPipeline
 
     pipe = StableDiffusionXLPipeline.from_pretrained(
@@ -105,28 +123,44 @@ def generate_one(pipe, score, entry: dict, out_dir: Path, args) -> Result:
 
     rank, thai = entry["rank"], entry["thai"]
     scene = entry["scene"]
-    prompt = build_prompt(scene)
-    # Truncation is silent, and silently losing the tail of a scene is how the
-    # first spike shipped images with no style on them at all. Refuse instead.
-    token_count = len(pipe.tokenizer(prompt)["input_ids"])
-    if token_count > MAX_PROMPT_TOKENS:
-        return Result(
-            rank, thai, "error", 0.0, None, None,
-            f"prompt is {token_count} tokens, over the {MAX_PROMPT_TOKENS} limit",
-        )
+    flux = args.backend == "flux"
+    prompt = build_flux_prompt(scene) if flux else build_prompt(scene)
+    if not flux:
+        # Truncation is silent, and silently losing the tail of a scene is how
+        # the first spike shipped images with no style on them at all. Refuse
+        # instead. FLUX's T5 encoder has room to spare, so this is SDXL-only.
+        token_count = len(pipe.tokenizer(prompt)["input_ids"])
+        if token_count > MAX_PROMPT_TOKENS:
+            return Result(
+                rank, thai, "error", 0.0, None, None,
+                f"prompt is {token_count} tokens, over the {MAX_PROMPT_TOKENS} limit",
+            )
     best = (0.0, None, None)
 
     for seed in SEEDS[: args.max_takes]:
-        generator = torch.Generator(device="cuda").manual_seed(seed)
-        image = pipe(
-            prompt=prompt,
-            negative_prompt=NEGATIVE_PROMPT,
-            width=GENERATION_SIZE[0],
-            height=GENERATION_SIZE[1],
-            guidance_scale=GUIDANCE_SCALE,
-            num_inference_steps=INFERENCE_STEPS,
-            generator=generator,
-        ).images[0]
+        generator = torch.Generator(device="cpu").manual_seed(seed)
+        if flux:
+            # Schnell is guidance-distilled: no negative prompt, guidance 0,
+            # four steps.
+            image = pipe(
+                prompt=prompt,
+                width=GENERATION_SIZE[0],
+                height=GENERATION_SIZE[1],
+                guidance_scale=FLUX_GUIDANCE,
+                num_inference_steps=FLUX_STEPS,
+                max_sequence_length=FLUX_MAX_SEQUENCE_LENGTH,
+                generator=generator,
+            ).images[0]
+        else:
+            image = pipe(
+                prompt=prompt,
+                negative_prompt=NEGATIVE_PROMPT,
+                width=GENERATION_SIZE[0],
+                height=GENERATION_SIZE[1],
+                guidance_scale=GUIDANCE_SCALE,
+                num_inference_steps=INFERENCE_STEPS,
+                generator=generator,
+            ).images[0]
 
         value = score(image, scene)
         if value > best[0]:
@@ -175,6 +209,12 @@ def main() -> int:
         help="wire image_file into vocabulary.json for everything that succeeded",
     )
     parser.add_argument("--force", action="store_true", help="re-render existing files")
+    parser.add_argument(
+        "--backend",
+        choices=("sdxl", "flux"),
+        default="sdxl",
+        help="which local diffusion model to render with",
+    )
     args = parser.parse_args()
     if args.report:
         args.min_score = -1.0
@@ -199,8 +239,9 @@ def main() -> int:
         return 0
 
     print(f"rendering {len(entries)} illustrations")
-    print(f"loading {MODEL_ID} …")
-    pipe = load_pipeline()
+    model = FLUX_MODEL_ID if args.backend == "flux" else MODEL_ID
+    print(f"loading {model} …")
+    pipe = load_pipeline(args.backend)
     print(f"loading {CLIP_MODEL_ID} …")
     score = load_scorer()
 

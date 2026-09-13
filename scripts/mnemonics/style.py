@@ -57,3 +57,33 @@ MAX_PROMPT_TOKENS = 77
 def build_prompt(scene: str) -> str:
     """Scene first, style appended — the scene must survive any truncation."""
     return f"{scene.strip().rstrip('.')}. {STYLE_SUFFIX}"
+
+
+# --- FLUX ---------------------------------------------------------------
+#
+# FLUX.1-schnell rather than -dev: dev is a gated repository needing an HF
+# token, schnell is Apache-2.0 and ungated. Schnell is guidance-distilled, so
+# it takes 4 steps and ignores a negative prompt entirely — the "no text"
+# instruction that SDXL gets negatively has to be carried by the scene not
+# mentioning text in the first place, which the authoring rule already
+# enforces.
+#
+# Its T5 encoder takes 512 tokens against CLIP's 77, so the style can be
+# spelled out properly here instead of being cut to 13 tokens to leave room.
+FLUX_MODEL_ID = "black-forest-labs/FLUX.1-schnell"
+FLUX_STEPS = 4
+FLUX_GUIDANCE = 0.0
+FLUX_MAX_SEQUENCE_LENGTH = 512
+
+FLUX_STYLE_SUFFIX = (
+    "Anime illustration with clean confident ink linework and a soft "
+    "watercolour wash. Warm golden key light against cool blue shadows, "
+    "drifting dust motes, visible paper grain, rich saturated colour. "
+    "Expressive faces, cinematic composition, detailed background. "
+    "No text, letters, numbers or signage anywhere in the image."
+)
+
+
+def build_flux_prompt(scene: str) -> str:
+    """Scene first, then the house style — room for both under T5's 512."""
+    return f"{scene.strip().rstrip('.')}. {FLUX_STYLE_SUFFIX}"
