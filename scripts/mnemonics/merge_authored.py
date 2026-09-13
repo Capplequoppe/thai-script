@@ -33,7 +33,12 @@ MAX_ANCHOR = 18
 MIN_MNEMONIC_WORDS = 20
 MAX_MNEMONIC_WORDS = 140
 MIN_SCENE_WORDS = 15
-MAX_SCENE_WORDS = 90
+# A loose sanity bound only. What actually constrains a scene is CLIP's
+# 77-token limit once the 13-token style suffix is added, and words map to
+# tokens at anywhere from 1.2 to 1.9 depending on the vocabulary — so a word
+# count tight enough to guarantee the token limit would reject scenes that fit.
+# `generate_images.py` refuses on the real token count; that is the authority.
+MAX_SCENE_WORDS = 55
 
 # The generator is told not to draw text; a scene that asks for it anyway
 # produces an unfixable image, so it is refused at the door.

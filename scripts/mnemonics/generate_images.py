@@ -30,6 +30,7 @@ from style import (  # noqa: E402
     GENERATION_SIZE,
     GUIDANCE_SCALE,
     INFERENCE_STEPS,
+    MAX_PROMPT_TOKENS,
     NEGATIVE_PROMPT,
     SHIPPED_SIZE,
     build_prompt,
@@ -105,6 +106,14 @@ def generate_one(pipe, score, entry: dict, out_dir: Path, args) -> Result:
     rank, thai = entry["rank"], entry["thai"]
     scene = entry["scene"]
     prompt = build_prompt(scene)
+    # Truncation is silent, and silently losing the tail of a scene is how the
+    # first spike shipped images with no style on them at all. Refuse instead.
+    token_count = len(pipe.tokenizer(prompt)["input_ids"])
+    if token_count > MAX_PROMPT_TOKENS:
+        return Result(
+            rank, thai, "error", 0.0, None, None,
+            f"prompt is {token_count} tokens, over the {MAX_PROMPT_TOKENS} limit",
+        )
     best = (0.0, None, None)
 
     for seed in SEEDS[: args.max_takes]:
