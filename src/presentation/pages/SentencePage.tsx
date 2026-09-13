@@ -389,8 +389,12 @@ export function SentencePage() {
 							className="w-full"
 							onClick={handleStartReview}
 						>
-							Review {dueSentenceCards} Due Sentence Card
-							{dueSentenceCards !== 1 ? "s" : ""}
+							{/* Deliberately uncounted: a session draws from a bounded
+							    number of sentences (see `SentenceCoverageSelector`),
+							    so promising the full backlog here would overstate what
+							    pressing this actually delivers. The backlog stays
+							    visible in the "Due" stat above. */}
+							Practice Sentences
 						</Button>
 					)}
 				</div>

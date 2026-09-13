@@ -24,6 +24,7 @@ import type { GrammarEntry } from "../../domain/grammar/types";
 import type { ConversationPracticePort } from "../../domain/ports/ConversationPracticePort";
 import { LearningService } from "../../domain/script/services/ScriptLessonService";
 import sentenceData from "../../domain/sentence/data/sentences.json";
+import { SentenceCoverageSelector } from "../../domain/sentence/services/SentenceCoverageSelector";
 import { SentenceService } from "../../domain/sentence/services/SentenceLessonService";
 import type { SentenceEntry } from "../../domain/sentence/types";
 import { ReviewService } from "../../domain/session/services/ReviewService";
@@ -63,7 +64,13 @@ const learningService = new LearningService(
 	stateRepo,
 	apprenticeService,
 );
-const reviewService = new ReviewService(cardRepo, stateRepo);
+const reviewService = new ReviewService(cardRepo, stateRepo, {
+	// Sentence sessions are chosen by coverage of the material rather than
+	// by per-card overdueness — see `SentenceCoverageSelector`.
+	sentence: new SentenceCoverageSelector(
+		sentenceData as unknown as SentenceEntry[],
+	),
+});
 const vocabularyService = new VocabularyService(
 	cardRepo,
 	stateRepo,
