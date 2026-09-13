@@ -36,6 +36,10 @@ from style import (  # noqa: E402
     INFERENCE_STEPS,
     MAX_PROMPT_TOKENS,
     NEGATIVE_PROMPT,
+    PIXART_GUIDANCE,
+    PIXART_MAX_SEQUENCE_LENGTH,
+    PIXART_MODEL_ID,
+    PIXART_STEPS,
     SHIPPED_SIZE,
     build_flux_prompt,
     build_prompt,
@@ -72,6 +76,15 @@ class Result:
 
 def load_pipeline(backend: str):
     import torch
+
+    if backend == "pixart":
+        from diffusers import PixArtSigmaPipeline
+
+        pipe = PixArtSigmaPipeline.from_pretrained(
+            PIXART_MODEL_ID, torch_dtype=torch.float16
+        ).to("cuda")
+        pipe.set_progress_bar_config(disable=True)
+        return pipe
 
     if backend == "flux":
         from diffusers import FluxPipeline
@@ -123,9 +136,10 @@ def generate_one(pipe, score, entry: dict, out_dir: Path, args) -> Result:
 
     rank, thai = entry["rank"], entry["thai"]
     scene = entry["scene"]
+    t5 = args.backend in {"flux", "pixart"}
     flux = args.backend == "flux"
-    prompt = build_flux_prompt(scene) if flux else build_prompt(scene)
-    if not flux:
+    prompt = build_flux_prompt(scene) if t5 else build_prompt(scene)
+    if not t5:
         # Truncation is silent, and silently losing the tail of a scene is how
         # the first spike shipped images with no style on them at all. Refuse
         # instead. FLUX's T5 encoder has room to spare, so this is SDXL-only.
@@ -139,7 +153,18 @@ def generate_one(pipe, score, entry: dict, out_dir: Path, args) -> Result:
 
     for seed in SEEDS[: args.max_takes]:
         generator = torch.Generator(device="cpu").manual_seed(seed)
-        if flux:
+        if args.backend == "pixart":
+            image = pipe(
+                prompt=prompt,
+                negative_prompt=NEGATIVE_PROMPT,
+                width=GENERATION_SIZE[0],
+                height=GENERATION_SIZE[1],
+                guidance_scale=PIXART_GUIDANCE,
+                num_inference_steps=PIXART_STEPS,
+                max_sequence_length=PIXART_MAX_SEQUENCE_LENGTH,
+                generator=generator,
+            ).images[0]
+        elif flux:
             # Schnell is guidance-distilled: no negative prompt, guidance 0,
             # four steps.
             image = pipe(
@@ -211,7 +236,7 @@ def main() -> int:
     parser.add_argument("--force", action="store_true", help="re-render existing files")
     parser.add_argument(
         "--backend",
-        choices=("sdxl", "flux"),
+        choices=("sdxl", "pixart", "flux"),
         default="sdxl",
         help="which local diffusion model to render with",
     )
@@ -239,7 +264,9 @@ def main() -> int:
         return 0
 
     print(f"rendering {len(entries)} illustrations")
-    model = FLUX_MODEL_ID if args.backend == "flux" else MODEL_ID
+    model = {"flux": FLUX_MODEL_ID, "pixart": PIXART_MODEL_ID}.get(
+        args.backend, MODEL_ID
+    )
     print(f"loading {model} …")
     pipe = load_pipeline(args.backend)
     print(f"loading {CLIP_MODEL_ID} …")

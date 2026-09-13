@@ -71,6 +71,19 @@ def build_prompt(scene: str) -> str:
 # Its T5 encoder takes 512 tokens against CLIP's 77, so the style can be
 # spelled out properly here instead of being cut to 13 tokens to leave room.
 FLUX_MODEL_ID = "black-forest-labs/FLUX.1-schnell"
+# Both FLUX repositories are gated (`gated=auto`): reaching them needs the
+# licence accepted on huggingface.co and a token in the environment. With no
+# token present the download fails with a 401 before a single byte arrives.
+FLUX_REQUIRES_TOKEN = True
+
+# PixArt-Sigma is the ungated alternative with the property that actually
+# matters here — a T5 text encoder instead of CLIP, which is what buys prompt
+# adherence. 0.6B transformer, so it fits a 4090 with room to spare, and its
+# 300-token budget is still four times CLIP's 77.
+PIXART_MODEL_ID = "PixArt-alpha/PixArt-Sigma-XL-2-1024-MS"
+PIXART_STEPS = 25
+PIXART_GUIDANCE = 4.5
+PIXART_MAX_SEQUENCE_LENGTH = 300
 FLUX_STEPS = 4
 FLUX_GUIDANCE = 0.0
 FLUX_MAX_SEQUENCE_LENGTH = 512
@@ -85,5 +98,10 @@ FLUX_STYLE_SUFFIX = (
 
 
 def build_flux_prompt(scene: str) -> str:
-    """Scene first, then the house style — room for both under T5's 512."""
+    """Scene first, then the house style — room for both under a T5 budget.
+
+    Shared by the FLUX and PixArt backends: both encode with T5, so both have
+    the headroom to state the style in sentences rather than the 13-token
+    shorthand CLIP forced.
+    """
     return f"{scene.strip().rstrip('.')}. {FLUX_STYLE_SUFFIX}"
