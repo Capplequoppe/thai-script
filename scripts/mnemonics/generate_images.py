@@ -220,7 +220,7 @@ def generate_one(pipe, score, entry: dict, out_dir: Path, args) -> Result:
     )
     path = output_path(out_dir, rank, thai)
     path.parent.mkdir(parents=True, exist_ok=True)
-    final.save(path, quality=92, optimize=True)
+    final.save(path, quality=args.quality, optimize=True)
     return Result(rank, thai, "ok", value, seed, path)
 
 
@@ -244,7 +244,7 @@ def recompose(entries: list[dict], args) -> int:
             )
         destination = output_path(args.out_dir, entry["rank"], entry["thai"])
         destination.parent.mkdir(parents=True, exist_ok=True)
-        final.save(destination, quality=92, optimize=True)
+        final.save(destination, quality=args.quality, optimize=True)
         written += 1
     print(f"recomposed {written} captions; {missing} had no saved base")
     return 0
@@ -268,6 +268,15 @@ def main() -> int:
         help="wire image_file into vocabulary.json for everything that succeeded",
     )
     parser.add_argument("--force", action="store_true", help="re-render existing files")
+    parser.add_argument(
+        "--quality",
+        type=int,
+        default=84,
+        help="JPEG quality for the shipped image. Measured on this art, 84 is "
+        "33%% smaller than 92 and visually identical at 2x zoom — the style is "
+        "flat watercolour washes, which is the easiest thing there is to "
+        "compress. These are cached on a phone, so the bytes matter.",
+    )
     parser.add_argument(
         "--base-dir",
         type=Path,
