@@ -54,6 +54,25 @@ function PagodaIcon() {
 	);
 }
 
+function GraduationIcon() {
+	return (
+		<svg
+			viewBox="0 0 24 24"
+			fill="currentColor"
+			className="w-6 h-6"
+			aria-hidden="true"
+		>
+			<title>Learn</title>
+			<path d="M12 4L2 8.5l10 4.5 10-4.5L12 4z" opacity="0.9" />
+			<path
+				d="M6 11v4.2c0 1.6 2.7 2.8 6 2.8s6-1.2 6-2.8V11l-6 2.7L6 11z"
+				opacity="0.5"
+			/>
+			<rect x="20.4" y="8.5" width="1.2" height="6" rx="0.6" opacity="0.7" />
+		</svg>
+	);
+}
+
 function SearchIcon() {
 	return (
 		<svg
@@ -84,65 +103,8 @@ function SearchIcon() {
 	);
 }
 
-function ScrollIcon() {
-	return (
-		<svg
-			viewBox="0 0 24 24"
-			fill="currentColor"
-			className="w-6 h-6"
-			aria-hidden="true"
-		>
-			<title>Grammar</title>
-			<rect x="5" y="6" width="14" height="12" opacity="0.15" />
-			<ellipse cx="12" cy="6" rx="7" ry="2" opacity="0.9" />
-			<ellipse cx="12" cy="18" rx="7" ry="2" opacity="0.9" />
-			<rect x="8" y="9.3" width="8" height="1.3" rx="0.65" opacity="0.6" />
-			<rect x="8" y="12.3" width="8" height="1.3" rx="0.65" opacity="0.6" />
-		</svg>
-	);
-}
-
-function ChatIcon() {
-	return (
-		<svg
-			viewBox="0 0 24 24"
-			fill="currentColor"
-			className="w-6 h-6"
-			aria-hidden="true"
-		>
-			<title>Sentences</title>
-			<path
-				d="M4 5a2 2 0 012-2h12a2 2 0 012 2v9a2 2 0 01-2 2H9l-4 4v-4a2 2 0 01-2-2V5z"
-				opacity="0.5"
-			/>
-			<rect x="7" y="8.25" width="10" height="1.5" rx="0.75" opacity="0.9" />
-			<rect x="7" y="11.75" width="6" height="1.5" rx="0.75" opacity="0.9" />
-		</svg>
-	);
-}
-
-function GearIcon() {
-	return (
-		<svg
-			viewBox="0 0 24 24"
-			fill="currentColor"
-			className="w-6 h-6"
-			aria-hidden="true"
-		>
-			<title>Settings</title>
-			<path d="M12 15a3 3 0 100-6 3 3 0 000 6z" opacity="0.9" />
-			<path
-				d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-2 2 2 2 0 01-2-2v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 01-2-2 2 2 0 012-2h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 012-2 2 2 2 0 012 2v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 012 2 2 2 0 01-2 2h-.09a1.65 1.65 0 00-1.51 1z"
-				opacity="0.5"
-			/>
-		</svg>
-	);
-}
-
 interface BottomTabBarProps {
 	vocabUnlocked: boolean;
-	grammarUnlocked: boolean;
-	sentenceUnlocked: boolean;
 	dueCount: number;
 	mobileOnly?: boolean;
 }
@@ -153,8 +115,6 @@ const INACTIVE =
 
 export function BottomTabBar({
 	vocabUnlocked,
-	grammarUnlocked,
-	sentenceUnlocked,
 	dueCount,
 	mobileOnly = false,
 }: BottomTabBarProps) {
@@ -166,6 +126,7 @@ export function BottomTabBar({
 			icon: <LotusIcon />,
 			badge: dueCount > 0 ? dueCount : undefined,
 		},
+		{ to: "/learn", end: false, label: "Learn", icon: <GraduationIcon /> },
 		{ to: "/items", end: false, label: "Items", icon: <GemIcon /> },
 		...(vocabUnlocked
 			? [
@@ -177,21 +138,7 @@ export function BottomTabBar({
 					},
 				]
 			: []),
-		...(grammarUnlocked
-			? [{ to: "/grammar", end: false, label: "Grammar", icon: <ScrollIcon /> }]
-			: []),
-		...(sentenceUnlocked
-			? [
-					{
-						to: "/sentences",
-						end: false,
-						label: "Sentences",
-						icon: <ChatIcon />,
-					},
-				]
-			: []),
 		{ to: "/progress", end: false, label: "Progress", icon: <PagodaIcon /> },
-		{ to: "/settings", end: false, label: "Settings", icon: <GearIcon /> },
 	];
 
 	return (
@@ -256,14 +203,6 @@ export function BottomTabBar({
 							)}
 						</NavLink>
 					))}
-					<NavLink
-						to="/game"
-						className={({ isActive }) =>
-							`text-sm font-medium transition-colors ${isActive ? ACTIVE : INACTIVE}`
-						}
-					>
-						Game
-					</NavLink>
 				</nav>
 			)}
 		</>
