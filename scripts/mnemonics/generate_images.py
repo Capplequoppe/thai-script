@@ -237,8 +237,10 @@ def main() -> int:
     parser.add_argument(
         "--backend",
         choices=("sdxl", "pixart", "flux"),
-        default="sdxl",
-        help="which local diffusion model to render with",
+        default="pixart",
+        help="which local diffusion model to render with; pixart lands the "
+        "action where sdxl does not, and unlike flux it takes a negative "
+        "prompt, which is what keeps text out of the frame",
     )
     args = parser.parse_args()
     if args.report:
