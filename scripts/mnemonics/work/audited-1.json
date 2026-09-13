@@ -38,7 +38,7 @@
   "mnemonic": "คะ and ค่ะ are the same soft syllable from the same woman; only the pitch differs. ค่ะ drops, and that is a full stop. คะ stays up high and holds the sentence open, because a question cannot end flat. The pitch is the question mark. (▲ high and taut, the sentence left hanging)",
   "anchor": "high = question",
   "headline": "…khá?",
-  "scene": "A shopkeeper in her doorway leaning slightly towards a customer, one eyebrow lifted, chin raised, palm open in a polite enquiring gesture. Beside her a second woman stands square and settled, hands folded, head level. Warm afternoon light through the open shopfront.",
+  "scene": "A shopkeeper leans forward in her doorway and opens both arms wide, palms turned up, chin lifted and head tilted back in a questioning shrug. Baskets of fruit flank the step beside her. Warm afternoon light floods the open shopfront.",
   "rating": 2,
   "verdict": "replaced",
   "skip_reason": null
@@ -170,7 +170,7 @@
   "mnemonic": "A vendor lifts a glass of orange tea and raises her eyebrows: this one? The customer nods once, hard. \"Châi.\" Yes — chai, that is the one. (↓ falling, the voice drops with the nod)",
   "anchor": "CHAI",
   "headline": "Châi.",
-  "scene": "A morning tea cart where the vendor holds a tall glass of milky orange iced tea up across the counter, eyebrows raised in question, while the customer opposite nods once, firmly, finger already pointing at the glass. Ice bucket, steam, sunlit street.",
+  "scene": "A customer drives his head down in one hard nod, his whole arm flung out to point at a tall glass of milky orange iced tea standing on the cart counter. Ice bucket, curling steam, sunlit street behind him.",
   "rating": 2,
   "verdict": "replaced",
   "skip_reason": null
@@ -214,7 +214,7 @@
   "mnemonic": "The cow lows exactly when the pail is set down, not a moment before. Say moo with the lips pulled wide in a grin instead of pushed forward and you have mɯ̂a: the word that marks the moment something happens. (↓ falling, the moo drops away at the end)",
   "anchor": "MOO (lips wide)",
   "headline": "mɯ̂a…",
-  "scene": "A dairy shed at dawn. A farmer crouched on a low stool has just set a steel pail down under a cow, whose head is thrown back mid-bellow, mouth wide. Straw, a hanging lamp, cold blue light through the open door.",
+  "scene": "A farmer swings a steel pail down onto the straw beneath a cow, arm extended, body low over a milking stool. The cow's head is thrown back, mouth wide. Cold blue dawn through the open shed door, a lamp hanging above.",
   "rating": 2,
   "verdict": "replaced",
   "skip_reason": null
@@ -247,7 +247,7 @@
   "mnemonic": "A phone call in the middle of a market: where are you? The answer is one flat low word — yùu — and an arm goes straight up above the crowd so the caller can see where he is. yùu is being somewhere. (▁ low and flat, the voice sits still like the man)",
   "anchor": "YOU",
   "headline": "…yùu.",
-  "scene": "A crowded night market seen from slightly above. One man stands motionless among the moving crowd with a phone to his ear and his free arm raised straight up, waving. Everyone else is blurred with movement. String lights, food steam.",
+  "scene": "A man stands dead still in a packed night market with one arm stretched straight up above the heads around him and a phone pressed to his other ear. The crowd streams past him in a blur. String lights, food steam, warm night.",
   "rating": 2,
   "verdict": "replaced",
   "skip_reason": null
@@ -357,7 +357,7 @@
   "mnemonic": "Someone asks how he does it and the man taps his own chest with the butt of his cue: because he is a pro. That is the whole answer — prɔ́, the word that hands you the reason. (▲ high and taut, snapped out with the tap of the cue)",
   "anchor": "PRO",
   "headline": "…prɔ́.",
-  "scene": "A snooker hall. A man in a waistcoat leans on his cue after a shot, tapping his own chest with two fingers, eyebrows raised, entirely unbothered. Onlookers round the table stare at the perfectly potted balls. Low hanging lamp, green baize, smoke.",
+  "scene": "A man in a waistcoat thumps the butt of his snooker cue against his own chest, chin lifted, shoulders thrown back, one eyebrow raised. Behind him a green baize table sits under a low hanging lamp, smoke drifting through the beam.",
   "rating": 3,
   "verdict": "replaced",
   "skip_reason": null
@@ -434,7 +434,7 @@
   "mnemonic": "He cannot get the sentence out, so he puts the words down one at a time like stones across a stream until they reach the far bank. Say put with a long oo: phûut, to speak. (↓ falling, each word dropped into place)",
   "anchor": "PUT (long oo)",
   "headline": "phûut.",
-  "scene": "A man crouched at the edge of a shallow stream placing flat stepping stones into the water one by one, a line of them already reaching halfway across to a woman waiting on the far bank. Morning mist, reeds, soft grey light.",
+  "scene": "A man crouches at the edge of a shallow stream and lowers a flat stepping stone into the water with both hands. A line of stones already reaches halfway to the far bank. Morning mist over the reeds, soft grey light on the water.",
   "rating": 3,
   "verdict": "replaced",
   "skip_reason": null
@@ -500,7 +500,7 @@
   "mnemonic": "A fortune teller peers over her cards, jabs a finger across the table and says \"Ah — YOU!\" She has guessed your age to the year, and the YOU comes out bright and hard and stays up there. aa-yú is the number of years you have. (▲ the second syllable snaps up high on YOU and holds)",
   "anchor": "ah-YOU",
   "headline": "Ah — YOU!",
-  "scene": "A fortune teller's booth draped in red cloth. An old woman with rings on every finger leans across a spread of cards and jabs one finger directly at the viewer, eyes wide with certainty.",
+  "scene": "An old fortune teller lunges across a spread of cards and throws one arm straight out at the viewer, finger extended, rings on every finger, eyes wide and certain. Heavy red cloth drapes the booth behind her. Candlelight, deep shadow.",
   "rating": 2,
   "verdict": "replaced",
   "skip_reason": null
@@ -522,7 +522,7 @@
   "mnemonic": "Hum an ng in the nose, then say earn — ngɤɤn, the money you earn. Notes counted onto the tray one at a time; the same word whether it is coins, notes or a salary. (— flat and level, an even count)",
   "anchor": "ng + EARN",
   "headline": "ngɤɤn.",
-  "scene": "A market trader's hands counting banknotes one by one from a fat roll onto a metal tray on the counter, a queue of customers waiting beyond. Overhead strip light, produce crates stacked behind, late afternoon.",
+  "scene": "A market trader's hands counting gold coins one by one from a fat roll onto a metal tray on the counter, a queue of customers waiting beyond. Overhead strip light, produce crates stacked behind, late afternoon.",
   "rating": 2,
   "verdict": "replaced",
   "skip_reason": null
@@ -775,7 +775,7 @@
   "mnemonic": "The twin of หน่อย, but the voice stays up high. A boy holds the bag upside down over his palm: one chilli left, nɔ́ɔi, that is all there is. (▲ high and taut, held up like the chilli itself)",
   "anchor": "NOY (held high)",
   "headline": "nɔ́ɔi.",
-  "scene": "A boy holding a nearly empty paper bag upside down over his open palm with a single small red chilli sitting in it, arm raised so a woman at a stove can see.",
+  "scene": "A boy raises a nearly empty paper bag high overhead and shakes it upside down over his open palm, where one small red chilli has landed. Kitchen shelves and a steaming pot stand behind him. Warm afternoon light through a window.",
   "rating": 2,
   "verdict": "replaced",
   "skip_reason": null
@@ -863,7 +863,7 @@
   "mnemonic": "The shopkeeper asks what size and the customer holds up a gnat between finger and thumb: that big. kha-nàat is size — from a gnat to an elephant, it is the same word. (▁ the second syllable drops low and flat, the fingers pinching shut)",
   "anchor": "ka + GNAT",
   "headline": "kha-nàat.",
-  "scene": "A shopkeeper leaning over a counter squinting at a customer's raised hand, finger and thumb pinched almost shut on something too small to see, while the shelves behind hold enormous rolled mats beside tiny jars. Warm shop light.",
+  "scene": "A woman raises one hand in front of a plain pale wall and pinches her thumb and forefinger almost shut, squinting hard at the tiny gap between them, her whole face leaning in toward her fingers. Soft even light, nothing else in the frame.",
   "rating": 2,
   "verdict": "replaced",
   "skip_reason": null

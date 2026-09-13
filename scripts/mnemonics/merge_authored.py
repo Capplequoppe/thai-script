@@ -45,7 +45,8 @@ MAX_SCENE_WORDS = 55
 FORBIDDEN_IN_SCENE = re.compile(
     r"\b(text|letter|letters|word|words|writing|written|write|caption|sign|signs|"
     r"signage|label|labelled|labeled|banner|poster|billboard|inscription|"
-    r"headline|subtitle|logo|slogan|spelled|spelling|numeral|handwriting)\b",
+    r"headline|subtitle|logo|slogan|spelled|spelling|numeral|numerals|"
+    r"handwriting|price tag|banknote|banknotes)\b",
     re.IGNORECASE,
 )
 

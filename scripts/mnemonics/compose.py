@@ -179,16 +179,39 @@ def compose(
         width=max(1, width // 700),
     )
 
-    size = _fit(draw, caption, plaque_w - 4 * inset, int(plaque_h * 0.46))
-    text_w = _measure(draw, caption, size)
+    # Shrinking to fit has a floor: a gloss like "polite particle (female,
+    # statement)" on one line ends up too small to read at all, which defeats
+    # the point of compositing the caption rather than letting the model draw
+    # it. Below that floor, break the caption across two lines instead.
+    available = plaque_w - 4 * inset
+    single = int(plaque_h * 0.46)
+    size = _fit(draw, caption, available, single)
+    lines = [caption]
+    # Measured across the corpus: single-line fits land between 28 and 42px,
+    # so a threshold below ~0.85 never fires. 0.85 catches the 17 longest
+    # captions — the verbose particle glosses — and leaves the other 419
+    # on one line.
+    if size < single * 0.85:
+        head = f"{anchor}  →  {thai}"
+        lines = [head, english]
+        size = min(
+            _fit(draw, head, available, int(plaque_h * 0.38)),
+            _fit(draw, english, available, int(plaque_h * 0.38)),
+        )
+
     ascent, descent = _font(_family_path(_FALLBACK_METRIC), size).getmetrics()
-    _draw_mixed(
-        draw,
-        (left + (plaque_w - text_w) / 2, top + (plaque_h - (ascent + descent)) / 2),
-        caption,
-        size,
-        PLAQUE_TEXT,
-    )
+    line_height = ascent + descent
+    block = line_height * len(lines)
+    y = top + (plaque_h - block) / 2
+    for line in lines:
+        _draw_mixed(
+            draw,
+            (left + (plaque_w - _measure(draw, line, size)) / 2, y),
+            line,
+            size,
+            PLAQUE_TEXT,
+        )
+        y += line_height
     return canvas
 
 
