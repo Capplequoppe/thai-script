@@ -5,7 +5,19 @@ import type {
 	ConversationVerdict,
 } from "../../domain/conversation/types";
 import type { ConversationPracticePort } from "../../domain/ports/ConversationPracticePort";
-import { getConversationBackendUrl } from "./ConversationBackendSettings";
+import {
+	getConversationBackendToken,
+	getConversationBackendUrl,
+} from "./ConversationBackendSettings";
+
+/**
+ * Must match the backend's own `X-Conversation-Backend-Token` check
+ * (`backend/app/main.py`'s `_require_valid_token`) — sent only when a
+ * token is actually set (empty means "this backend needs none", the
+ * same-machine/LAN default), so a request against an unconfigured
+ * backend carries no extra header at all.
+ */
+const BACKEND_TOKEN_HEADER = "X-Conversation-Backend-Token";
 
 /**
  * Generous on purpose: a cold backend loads Whisper, a 7B judge model and
@@ -56,8 +68,12 @@ async function fetchJson(
 		}, CONVERSATION_REQUEST_TIMEOUT_MS);
 	});
 	const attempt = (async (): Promise<unknown> => {
+		const headers = new Headers(init.headers);
+		const token = getConversationBackendToken();
+		if (token) headers.set(BACKEND_TOKEN_HEADER, token);
 		const response = await fetch(`${getConversationBackendUrl()}${path}`, {
 			...init,
+			headers,
 			signal: controller.signal,
 		});
 		return response.ok ? await response.json() : null;

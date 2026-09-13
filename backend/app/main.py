@@ -40,10 +40,11 @@ import asyncio
 import base64
 import binascii
 import os
+import secrets
 from collections.abc import Callable
 from contextlib import asynccontextmanager
 
-from fastapi import FastAPI, HTTPException
+from fastapi import Depends, FastAPI, Header, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 
 from app import pipeline
@@ -158,6 +159,30 @@ def _registry() -> ModelRegistry:
     return registry if registry is not None else ModelRegistry()
 
 
+def _require_valid_token(
+    x_conversation_backend_token: str | None = Header(default=None),
+) -> None:
+    """Rejects the request unless it carries CONVERSATION_BACKEND_TOKEN.
+
+    A no-op when that env var is unset — the default, same-machine/LAN
+    setup this backend originally shipped with, where CORS plus a
+    trusted network was the whole boundary. Once a tunnel (Cloudflare or
+    otherwise) puts this backend on the public internet, CORS stops
+    meaning anything (it only gates a browser tab, not a direct
+    request) — setting this env var is what actually keeps an
+    unauthenticated request from ever reaching the pipeline
+    (backend/README.md). Read fresh per request, not cached at import,
+    so a test can toggle it with `monkeypatch.setenv` with no reload.
+    """
+    expected = os.environ.get("CONVERSATION_BACKEND_TOKEN", "")
+    if not expected:
+        return
+    if not x_conversation_backend_token or not secrets.compare_digest(
+        x_conversation_backend_token, expected
+    ):
+        raise HTTPException(status_code=401, detail="missing or invalid backend token")
+
+
 def _require_loaded(loaded: bool, model_name: str) -> None:
     if not loaded:
         raise HTTPException(
@@ -266,7 +291,11 @@ async def _ask_next_question(state: SessionState) -> tuple[str, str, str] | None
     return entry.thai, base64.b64encode(audio_bytes).decode("ascii"), mime_type
 
 
-@app.post("/conversation/session/start", response_model=SessionStartResponse)
+@app.post(
+    "/conversation/session/start",
+    response_model=SessionStartResponse,
+    dependencies=[Depends(_require_valid_token)],
+)
 async def session_start(payload: SessionStartRequest) -> SessionStartResponse:
     # Checked before the session exists, so a process that cannot speak
     # answers 501 without first leaving an unusable session in the store.
@@ -294,7 +323,11 @@ async def session_start(payload: SessionStartRequest) -> SessionStartResponse:
     )
 
 
-@app.post("/conversation/session/{session_id}/judge", response_model=JudgeResponse)
+@app.post(
+    "/conversation/session/{session_id}/judge",
+    response_model=JudgeResponse,
+    dependencies=[Depends(_require_valid_token)],
+)
 async def session_judge(session_id: str, payload: JudgeRequest) -> JudgeResponse:
     state = _require_session(session_id)
     # No session lock here, unlike `/start` and `/next`: this appends one
@@ -314,7 +347,11 @@ async def session_judge(session_id: str, payload: JudgeRequest) -> JudgeResponse
     return response
 
 
-@app.post("/conversation/session/{session_id}/next", response_model=NextQuestionResponse)
+@app.post(
+    "/conversation/session/{session_id}/next",
+    response_model=NextQuestionResponse,
+    dependencies=[Depends(_require_valid_token)],
+)
 async def session_next(session_id: str) -> NextQuestionResponse:
     state = _require_session(session_id)
     async with state.lock:

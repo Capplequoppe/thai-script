@@ -7,7 +7,8 @@ import { LocalStorageJsonStore } from "../persistence/JsonStore";
  * conversation backend, not learner progress — it must survive "Reset All
  * Progress" and never travel inside an exported/imported progress file
  * (importing a friend's export would otherwise silently repoint your app
- * at their LAN backend). Mirrors `StorageGameHistoryRepository`'s own key,
+ * at their LAN backend, or leak an auth token into a progress file the
+ * learner might share). Mirrors `StorageGameHistoryRepository`'s own key,
  * for the same reason.
  */
 export const CONVERSATION_BACKEND_URL_STORAGE_KEY =
@@ -20,22 +21,38 @@ export const CONVERSATION_BACKEND_URL_STORAGE_KEY =
  */
 export const DEFAULT_CONVERSATION_BACKEND_URL = "http://localhost:8000";
 
-interface ConversationBackendSettings {
+/**
+ * `authToken` is optional in storage (blobs written before it existed have
+ * none) — an absent or empty token means "send no auth header", the same
+ * no-op state the backend's own `CONVERSATION_BACKEND_TOKEN` check treats
+ * an unset env var as.
+ */
+interface StoredConversationBackendSettings {
 	readonly baseUrl: string;
+	readonly authToken?: string;
 }
 
-const isConversationBackendSettings: JsonShapeGuard<
-	ConversationBackendSettings
-> = (value): value is ConversationBackendSettings => {
+const isStoredConversationBackendSettings: JsonShapeGuard<
+	StoredConversationBackendSettings
+> = (value): value is StoredConversationBackendSettings => {
 	if (value === null || typeof value !== "object") return false;
-	const { baseUrl } = value as Record<string, unknown>;
-	return typeof baseUrl === "string" && baseUrl.trim().length > 0;
+	const { baseUrl, authToken } = value as Record<string, unknown>;
+	if (typeof baseUrl !== "string" || baseUrl.trim().length === 0) return false;
+	return authToken === undefined || typeof authToken === "string";
 };
 
-const store: JsonStore<ConversationBackendSettings> = new LocalStorageJsonStore(
-	CONVERSATION_BACKEND_URL_STORAGE_KEY,
-	isConversationBackendSettings,
-);
+const store: JsonStore<StoredConversationBackendSettings> =
+	new LocalStorageJsonStore(
+		CONVERSATION_BACKEND_URL_STORAGE_KEY,
+		isStoredConversationBackendSettings,
+	);
+
+function load(): StoredConversationBackendSettings {
+	const result = store.load();
+	return result.status === "ok"
+		? result.value
+		: { baseUrl: DEFAULT_CONVERSATION_BACKEND_URL, authToken: "" };
+}
 
 /**
  * Where this browser should send conversation-practice requests.
@@ -44,21 +61,42 @@ const store: JsonStore<ConversationBackendSettings> = new LocalStorageJsonStore(
  * value — never throws and never returns a blank string.
  */
 export function getConversationBackendUrl(): string {
-	const result = store.load();
-	return result.status === "ok"
-		? result.value.baseUrl
-		: DEFAULT_CONVERSATION_BACKEND_URL;
+	return load().baseUrl;
 }
 
 /**
- * Persists `baseUrl` for future requests. A blank/whitespace-only value
- * resets to the default rather than saving something
- * `getConversationBackendUrl` would just reject back to the default
- * anyway.
+ * The shared secret to send as `X-Conversation-Backend-Token` — an empty
+ * string means "send nothing", the correct behavior against a backend
+ * with no `CONVERSATION_BACKEND_TOKEN` configured (the same-machine/LAN
+ * default). Only meaningful once the backend is reachable from outside a
+ * trusted network (e.g. a Cloudflare Tunnel) and its own token is set —
+ * see `backend/README.md`.
+ */
+export function getConversationBackendToken(): string {
+	return load().authToken ?? "";
+}
+
+/**
+ * Persists `baseUrl` for future requests, preserving whatever auth token
+ * is already saved. A blank/whitespace-only value resets to the default
+ * rather than saving something `getConversationBackendUrl` would just
+ * reject back to the default anyway.
  */
 export function setConversationBackendUrl(baseUrl: string): void {
 	const trimmed = baseUrl.trim();
+	const current = load();
 	store.save({
 		baseUrl: trimmed.length > 0 ? trimmed : DEFAULT_CONVERSATION_BACKEND_URL,
+		authToken: current.authToken ?? "",
 	});
+}
+
+/**
+ * Persists the auth token for future requests, preserving the already
+ * saved backend URL. An empty string is a real, valid state (no token
+ * sent), not rejected back to some default.
+ */
+export function setConversationBackendToken(authToken: string): void {
+	const current = load();
+	store.save({ baseUrl: current.baseUrl, authToken: authToken.trim() });
 }
