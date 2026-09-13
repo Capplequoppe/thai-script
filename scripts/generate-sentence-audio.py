@@ -139,6 +139,8 @@ FADE_OUT_MS = 35
 # Characters that carry no pronunciation difference and so must not count
 # against the STT round-trip: ASCII/Thai punctuation and all whitespace.
 _IGNORED_IN_COMPARISON = re.compile(r"[\s.,!?;:\"'`()\[\]{}…ๆฯ๏๚๛-]+")
+_DIGITS = re.compile(r"[0-9๐-๙]+")
+_THAI_DIGIT_TABLE = str.maketrans("๐๑๒๓๔๕๖๗๘๙", "0123456789")
 
 
 # --------------------------------------------------------------------------
@@ -167,28 +169,68 @@ def spoken_text(sentence: dict[str, Any]) -> str:
 
 
 def comparable(text: str) -> str:
-    """Normalize for the STT round-trip comparison."""
-    return _IGNORED_IN_COMPARISON.sub("", unicodedata.normalize("NFC", text))
+    """Normalize for the STT round-trip comparison.
 
-
-def compare_transcript(expected: str, actual: str) -> tuple[float, int]:
-    """Score an STT round-trip as (coverage, extra_characters).
-
-    Two separate questions, because a plain similarity ratio answers
-    neither well. *Coverage* — how much of the intended sentence the
-    transcript actually contains — catches a garbled or truncated
-    utterance. *Extra* — transcript characters belonging to no match —
-    catches the reference-clip bleed, which leaves the intended sentence
-    fully intact and merely glues a foreign fragment to its front. A
-    ratio scores that around 0.88, indistinguishable from ordinary ASR
-    noise; `extra` scores it 8 characters, which is unambiguous.
+    Digits are spelled out because the two sides disagree on notation
+    for the same speech: the sentence library writes "ยี่สิบ" and
+    Whisper transcribes the very same audio as "20". Comparing those
+    literally fails a clip that is perfectly correct, so both sides are
+    put into words first.
     """
+    folded = _DIGITS.sub(_spell_number, unicodedata.normalize("NFC", text))
+    return _IGNORED_IN_COMPARISON.sub("", folded)
+
+
+def _spell_number(match: re.Match[str]) -> str:
+    """Render a run of Arabic or Thai digits as Thai words."""
+    digits = match.group(0).translate(_THAI_DIGIT_TABLE)
+    try:
+        from pythainlp.util import num_to_thaiword
+
+        return num_to_thaiword(int(digits))
+    except Exception:  # noqa: BLE001 — a number this helper can't render
+        # (out of range, or pythainlp absent) must not abort a batch; the
+        # literal digits simply stay, and the clip is judged on the rest.
+        return match.group(0)
+
+
+@dataclass(frozen=True)
+class TranscriptMatch:
+    """How a transcript lines up with the sentence it should be.
+
+    *Coverage* catches a garbled or truncated utterance. The three
+    *extra* counts — transcript characters belonging to no match — are
+    kept apart because they mean opposite things. Extra at an **edge**
+    is the reference-clip echo, which leaves the sentence fully intact
+    and glues a foreign fragment to its front: a similarity ratio scores
+    that ~0.88, indistinguishable from ASR noise, while `leading` scores
+    it 8 characters, which is unambiguous. Extra in the **middle** is
+    almost always ASR spelling variation on the same sound — "บิล"
+    transcribed as "บิลล์" — which is not an audio defect at all. One
+    number could not be strict enough for the first and lenient enough
+    for the second.
+    """
+
+    coverage: float
+    leading: int
+    trailing: int
+    internal: int
+
+
+def compare_transcript(expected: str, actual: str) -> TranscriptMatch:
     exp, act = comparable(expected), comparable(actual)
     if not exp:
-        return 0.0, len(act)
+        return TranscriptMatch(0.0, len(act), 0, 0)
     matcher = difflib.SequenceMatcher(None, exp, act, autojunk=False)
-    matched = sum(block.size for block in matcher.get_matching_blocks())
-    return matched / len(exp), len(act) - matched
+    blocks = [block for block in matcher.get_matching_blocks() if block.size]
+    if not blocks:
+        return TranscriptMatch(0.0, len(act), 0, 0)
+    matched = sum(block.size for block in blocks)
+    leading = blocks[0].b
+    trailing = len(act) - (blocks[-1].b + blocks[-1].size)
+    return TranscriptMatch(
+        matched / len(exp), leading, trailing, len(act) - matched - leading - trailing
+    )
 
 
 
@@ -480,7 +522,7 @@ def generate_one(
             return mp3_bytes, {"attempts": attempts, **attempt}
 
         transcript, timeline = transcribe(whisper, mp3_bytes)
-        coverage, extra = compare_transcript(text, transcript)
+        match = compare_transcript(text, transcript)
         # Whisper times the clip it was given, padding included, so the
         # first word of a clean take starts exactly where the padding
         # ends. Anything appreciably later is audio that is in the file
@@ -488,16 +530,22 @@ def generate_one(
         head_gap = (timeline[0][1] - args.pad_ms / 1000) if timeline else float("inf")
         attempt |= {
             "transcript": transcript,
-            "coverage": round(coverage, 4),
-            "extra_chars": extra,
+            "coverage": round(match.coverage, 4),
+            "extra_leading": match.leading,
+            "extra_trailing": match.trailing,
+            "extra_internal": match.internal,
             "head_gap": round(head_gap, 3) if timeline else None,
         }
 
         reason = None
-        if coverage < args.min_coverage:
-            reason = f"transcript covers only {coverage:.0%} of the text"
-        elif extra > args.max_extra_chars:
-            reason = f"{extra} transcribed characters that are not in the text"
+        if match.coverage < args.min_coverage:
+            reason = f"transcript covers only {match.coverage:.0%} of the text"
+        elif match.leading > args.max_extra_chars:
+            reason = f"{match.leading} transcribed characters before the sentence"
+        elif match.trailing > args.max_extra_chars:
+            reason = f"{match.trailing} transcribed characters after the sentence"
+        elif match.internal > args.max_internal_extra_chars:
+            reason = f"{match.internal} transcribed characters inside the sentence"
         elif head_gap > HEAD_GAP_TOLERANCE_SECONDS:
             reason = f"{head_gap:.2f}s of untranscribed audio before the first word"
         elif attempt["ms_per_char"] < args.min_ms_per_char:
@@ -509,7 +557,7 @@ def generate_one(
             return mp3_bytes, {"attempts": attempts, **attempt}
         # Rank losers by coverage, then by how little junk they carry,
         # so the report's "closest miss" is the most informative one.
-        score = (coverage, -extra)
+        score = (match.coverage, -(match.leading + match.trailing + match.internal))
         if best is None or score > best[0]:
             best = (score, attempt)
 
