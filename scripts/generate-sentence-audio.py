@@ -597,11 +597,16 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
                              f"a take opening with a reference echo is squeezed well below this "
                              f"(default: %(default)s)")
     parser.add_argument("--max-extra-chars", type=int, default=1,
-                        help="Transcript characters matching nothing in the intended text that a "
-                             "clip may still pass with. Deliberately near-zero and NOT scaled to "
-                             "sentence length: the failure being caught is a foreign fragment "
-                             "spliced onto an otherwise perfect sentence, which a long sentence "
-                             "hides just as badly as a short one")
+                        help="Transcribed characters allowed before or after the sentence. "
+                             "Deliberately near-zero and NOT scaled to sentence length: the "
+                             "failure being caught is a foreign fragment spliced onto an "
+                             "otherwise perfect sentence, which a long sentence hides just as "
+                             "badly as a short one")
+    parser.add_argument("--max-internal-extra-chars", type=int, default=2,
+                        help="Transcribed characters allowed *inside* the sentence. More "
+                             "forgiving than the edges on purpose: mid-sentence extras are ASR "
+                             "spelling variation on the same sound (\"บิล\" heard as \"บิลล์\"), "
+                             "not the echo the edge limits exist to catch")
     parser.add_argument("--force", action="store_true", help="Regenerate even if the mp3 already exists")
     parser.add_argument("--no-verify", action="store_true",
                         help="Skip the STT round-trip. Off the happy path: retries have nothing to "
