@@ -1,0 +1,122 @@
+{
+  "findings": [
+    {
+      "id": "F3",
+      "action": "user-decision",
+      "message": "Task 2.1's AC3 ('a learner with no learned words yet sends an empty list, not a missing field or a crash — a real, tested state') had its only page-level proof deleted in this diff with no replacement. `ConversationPracticePage.test.tsx`'s test 'still sends a request, with a real empty array, for a learner with no learned words yet' (which rendered the page with no graduated vocab and asserted `port.openingCalls[0]` was `[]`) is gone; the file now defaults every render to `UNLOCKED_VOCAB` (220 words) because phase 3's unlock gate (landed concurrently in the same file) makes the zero-known-words state unreachable through the real page — `checkConversationUnlock` requires `vocab.getLearnedCount() >= MIN_VOCAB_COUNT` (200), and in both the app and this test harness that count is backed by the same underlying card set as `getLearnedEntries()`, so 'unlocked' and 'zero known words' can never co-occur. The two new 'unlock gate' tests prove the page never calls the backend at all below threshold, which is a real and useful property, but it is a different claim from AC3's — it doesn't show that an in-range learner's real (possibly gappy-down-to-empty at low counts, though not literally zero above 200) snapshot round-trips as an honest array. The adapter-level test in `HttpConversationPracticeClient.test.ts` ('sends an empty known-word list as a real empty array, not an omitted field') still proves the wire-format half of AC3 (empty array, not an omitted field) independent of the page, but nothing now proves the *page's own* mapping (`vocab.getLearnedEntries().map(e => e.thai)`) doesn't crash or misbehave when that array happens to be empty — a defensive property that's currently unreachable in production (thanks to a positive `MIN_VOCAB_COUNT`) but was deliberately tested before the gate existed.",
+      "severity": 5,
+      "effort": 7,
+      "attribution": "conflicting-ac",
+      "why_not_fixed": "Properly resolving this requires a product decision this reviewer isn't positioned to make alone: whether AC3's page-level claim should be considered formally superseded by the gate (since the state it tested is now provably unreachable given MIN_VOCAB_COUNT=200 > 0), or whether defensive page-level coverage should be restored by decoupling the known-words send path from the unlock check for testability. The second option would mean editing `ConversationPracticePage.tsx`'s effect/gate wiring, which is the exact surface a concurrently-running task in this plan (phase 3's session integration, which already touched this same file per the diff) is liable to also be editing right now — the concurrent-work note explicitly warns against colliding with that. Filing it rather than guessing at the architecture change keeps the decision with whoever owns that file next.",
+      "file": "src/presentation/pages/ConversationPracticePage.test.tsx",
+      "options": [
+        {
+          "option": "Accept the adapter-level test (`HttpConversationPracticeClient.test.ts`'s 'sends an empty known-word list as a real empty array, not an omitted field') as sufficient proof of AC3's substance, and record that the page-level empty-vocabulary scenario is now unreachable by design once phase 3's gate landed (MIN_VOCAB_COUNT=200 > 0 makes 'unlocked' and 'zero known words' mutually exclusive).",
+          "consequence": "No new test needed now; the ledger's AC3 entry should be understood as satisfied by a test at a different layer than originally scoped. If a later change ever lowers MIN_VOCAB_COUNT toward 0, this gap becomes live again with nothing flagging it."
+        },
+        {
+          "option": "Restore page-level coverage for the empty-known-words send path by making it testable independent of the unlock gate (e.g. extract the known-words-effect into a unit that can be exercised without satisfying `checkConversationUnlock`, or accept a test-only override).",
+          "consequence": "Preserves a defensive regression test against a future gate-threshold change, but adds test/production surface area whose only job is guarding a currently-unreachable state, and risks colliding with whatever task is concurrently editing this same file's gate wiring."
+        }
+      ],
+      "recommendation": "Accept the adapter-level test (`HttpConversationPracticeClient.test.ts`'s 'sends an empty known-word list as a real empty array, not an omitted field') as sufficient proof of AC3's substance, and record that the page-level empty-vocabulary scenario is now unreachable by design once phase 3's gate landed (MIN_VOCAB_COUNT=200 > 0 makes 'unlocked' and 'zero known words' mutually exclusive)."
+    }
+  ],
+  "lessons": [
+    {
+      "lesson": "When two phases share a covered file (e.g. ConversationPracticePage.tsx owned by both phase 2's 2.1 and phase 3's gate task), a later phase landing can silently delete the earlier phase's test for a now-gate-unreachable state, orphaning a completed AC with no signal except a criteria-ledger 'plan no longer maps it to any test' note. Worth a phase-boundary c… [clipped — full text in the transcript]"
+    }
+  ],
+  "acValidations": [
+    {
+      "task_id": "2.1",
+      "criterion": "AC1",
+      "locator": "src/infrastructure/conversation/HttpConversationPracticeClient.test.ts::accepts a realistic 600-word known-word snapshot without truncating it",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "2.1",
+      "criterion": "AC2",
+      "locator": "src/presentation/pages/ConversationPracticePage.test.tsx::sends the learner's real learned-vocabulary set, not a placeholder list",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "2.1",
+      "criterion": "AC3",
+      "locator": "src/presentation/pages/ConversationPracticePage.test.tsx (test deleted in this diff; not replaced)",
+      "verdict": "missing"
+    },
+    {
+      "task_id": "2.2",
+      "criterion": "AC1",
+      "locator": "scripts/generate-conversation-bank/tests/test_filtering.py::test_rejects_a_candidate_containing_a_word_outside_the_tier",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "2.2",
+      "criterion": "AC2",
+      "locator": "scripts/generate-conversation-bank/tests/test_shipped_bank.py::test_every_entrys_words_are_the_tokenization_of_its_thai",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "2.2",
+      "criterion": "AC3",
+      "locator": "none — manual human-review step per task's Architectural Decision",
+      "verdict": "none"
+    },
+    {
+      "task_id": "2.2",
+      "criterion": "AC4",
+      "locator": "scripts/generate-conversation-bank/tests/test_bank_build.py::test_an_entrys_id_is_derived_from_its_own_thai_text",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "2.2",
+      "criterion": "AC5",
+      "locator": "scripts/generate-conversation-bank/tests/test_generation_gpu.py::test_the_real_pipeline_fills_a_small_tier",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "2.2",
+      "criterion": "AC6",
+      "locator": "scripts/generate-conversation-bank/tests/test_shipped_bank.py::test_every_tier_holds_at_least_the_minimum_number_of_entries",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "2.3",
+      "criterion": "AC1",
+      "locator": "backend/tests/test_bank.py::test_gappy_known_words_select_an_entry_built_only_from_them",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "2.3",
+      "criterion": "AC2",
+      "locator": "backend/tests/test_bank.py::test_the_highest_qualifying_tier_wins",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "2.3",
+      "criterion": "AC3",
+      "locator": "backend/tests/test_bank.py::test_an_empty_known_word_set_returns_a_smallest_tier_entry",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "2.3",
+      "criterion": "AC4",
+      "locator": "e2e/conversation-practice.spec.ts::two learners with different vocabulary get different questions",
+      "verdict": "valid"
+    }
+  ],
+  "reviewedAt": "524565e60aefad5c70b7121c6990cd1c8748a7fd",
+  "answersAt": "d9c27482d0f73e98",
+  "enforcement": [
+    "reviewer edited 1 path(s) the plan does not declare and they were reverted: plans/ai-conversation-practice/resources.jsonl"
+  ],
+  "triage": [
+    {
+      "id": "F3",
+      "verdict": "human",
+      "reason": "Changes the scope of what satisfies AC3 (from page-level to adapter-level test coverage); requires product/architecture judgment on whether defensive tests for architecturally-unreachable states are valuable, and whether the unlock gate threshold is stable enough to not need regression protection"
+    }
+  ]
+}

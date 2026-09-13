@@ -1,0 +1,221 @@
+{
+  "findings": [],
+  "lessons": [
+    {
+      "lesson": "Phase 2's concurrent task (bank.py, personalized /conversation/opening) edits files phase 1 also covers (backend/app/main.py, pipeline.py, test_pipeline.py, e2e specs) while bank.py itself stays untracked mid-flight; reviewing phase 1 mid-run means judging code whose import target isn't yet committed. Checked it works but this is a real cross-phase collision surface, not a hypothetical one."
+    }
+  ],
+  "acValidations": [
+    {
+      "task_id": "1.1",
+      "criterion": "AC1",
+      "locator": "backend/tests/test_health.py::test_health_before_any_model_is_loaded",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "1.1",
+      "criterion": "AC2",
+      "locator": "docs/conversation-backend-api.md",
+      "verdict": "none"
+    },
+    {
+      "task_id": "1.1",
+      "criterion": "AC3",
+      "locator": "backend ruff config (extend-exclude vendor)",
+      "verdict": "none"
+    },
+    {
+      "task_id": "1.1",
+      "criterion": "AC4",
+      "locator": "backend/tests/test_health.py::test_judge_missing_required_field_is_422",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "1.1",
+      "criterion": "AC5",
+      "locator": "backend/tests/test_health.py::test_cors_preflight_rejected_from_foreign_origin",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "1.1",
+      "criterion": "AC6",
+      "locator": "backend/app/main.py (manual read: bind 127.0.0.1)",
+      "verdict": "none"
+    },
+    {
+      "task_id": "1.1",
+      "criterion": "AC7",
+      "locator": "backend/tests/test_health.py::test_concurrent_judge_calls_never_overlap_and_health_stays_responsive",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "1.2",
+      "criterion": "AC1",
+      "locator": "backend/tests/test_pipeline.py::test_health_reports_all_models_loaded_and_gpu_resident",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "1.2",
+      "criterion": "AC2",
+      "locator": "backend/tests/test_pipeline.py::test_opening_speaks_the_selected_question_as_decodable_audio",
+      "verdict": "valid",
+      "evidence": "renamed from test_..._fixed_question... to reflect phase-2 bank selection; still asserts MIME type + decodable non-empty audio + the (now selected) question text"
+    },
+    {
+      "task_id": "1.2",
+      "criterion": "AC3",
+      "locator": "backend/tests/test_pipeline.py::test_judging_a_real_spoken_reply_parses_into_a_valid_shape",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "1.2",
+      "criterion": "AC4",
+      "locator": "backend/tests/test_pipeline.py::test_unparseable_judge_response_is_unscored_never_500_never_fail",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "1.2",
+      "criterion": "AC5",
+      "locator": "backend/tests/test_pipeline.py::test_three_system_failure_causes_have_three_pairwise_distinct_messages",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "1.2",
+      "criterion": "AC6",
+      "locator": "backend/tests/test_pipeline.py::test_true_silence_through_real_whisper_is_unscored_as_empty_transcript",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "1.2",
+      "criterion": "AC7",
+      "locator": "backend/tests/test_pipeline.py::test_undecodable_reply_audio_is_a_422_client_error_not_a_500",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "1.2",
+      "criterion": "AC8",
+      "locator": "backend/tests/test_pipeline.py::test_fake_tts_pipeline_alone_drives_opening_synthesis",
+      "verdict": "valid",
+      "evidence": "updated for the bank param but still exercises only the fake TTS pipeline, no whisper/judge fakes, no gpu marker"
+    },
+    {
+      "task_id": "1.2",
+      "criterion": "AC9",
+      "locator": "backend/tests/test_pipeline.py::test_injection_cannot_bypass_the_fixed_verdict_extraction",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "1.3",
+      "criterion": "AC1",
+      "locator": "src/infrastructure/conversation/HttpConversationPracticeClient.test.ts (getOpening)",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "1.3",
+      "criterion": "AC2",
+      "locator": "src/infrastructure/conversation/HttpConversationPracticeClient.test.ts (judgeReply)",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "1.3",
+      "criterion": "AC3",
+      "locator": "src/infrastructure/conversation/HttpConversationPracticeClient.test.ts::resolves both calls to unavailable when fetch rejects because the backend is not running",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "1.3",
+      "criterion": "AC4",
+      "locator": "src/presentation/pages/ConversationPracticePage.test.tsx::says the backend is not running and offers no record control that would do nothing",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "1.3",
+      "criterion": "AC5",
+      "locator": "src/presentation/pages/ConversationPracticePage.test.tsx::shows the Thai question text and replays its audio on demand",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "1.3",
+      "criterion": "AC6",
+      "locator": "src/presentation/pages/ConversationPracticePage.test.tsx::drives the recorder from idle to stopped and hands the recorded blob to judgeReply",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "1.3",
+      "criterion": "AC7",
+      "locator": "src/presentation/pages/ConversationPracticePage.test.tsx (pass/fail/unscored rendering)",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "1.3",
+      "criterion": "AC8",
+      "locator": "src/presentation/App.test.tsx::reaches the conversation practice page at its real hash URL",
+      "verdict": "valid",
+      "evidence": "AC8a in the task doc; ledger row for AC8 says [none] but the real test exists"
+    },
+    {
+      "task_id": "1.3",
+      "criterion": "AC9",
+      "locator": "src/presentation/App.test.tsx::carries a real HttpConversationPracticeClient in its provider value",
+      "verdict": "valid",
+      "evidence": "this is the task's AC8b; ledger row's positional label/locator is shifted by the doc's own numbering bug, verified against the actual test file directly"
+    },
+    {
+      "task_id": "1.3",
+      "criterion": "AC10",
+      "locator": "src/infrastructure/conversation/HttpConversationPracticeClient.test.ts::treats a {status} response as unavailable even when its body is contract-shaped",
+      "verdict": "valid",
+      "evidence": "this is the task's non-2xx-unavailable criterion; ledger locator was shifted"
+    },
+    {
+      "task_id": "1.3",
+      "criterion": "AC11",
+      "locator": "src/infrastructure/conversation/HttpConversationPracticeClient.test.ts::resolves to unavailable within the bounded timeout when the request never settles",
+      "verdict": "valid",
+      "evidence": "this is the task's bounded-timeout criterion; ledger locator was shifted"
+    },
+    {
+      "task_id": "1.3",
+      "criterion": "AC12",
+      "locator": "src/presentation/pages/ConversationPracticePage.test.tsx::shows a microphone-access message distinct from the backend-unavailable one when permission is denied; and ::shows a third, distinct message for a generic recorder failure",
+      "verdict": "valid",
+      "evidence": "ledger marks this [none] due to the doc's own label-shift bug, but real automated coverage exists for both the mic-denied and generic-recorder-error messages"
+    },
+    {
+      "task_id": "1.4",
+      "criterion": "AC1",
+      "locator": "e2e/conversation-practice.spec.ts beforeAll (waitForBackendReady, per-model poll)",
+      "verdict": "valid",
+      "evidence": "implicit per task's own close-out note; both real-backend beforeAll hooks passing proves the per-model poll succeeded"
+    },
+    {
+      "task_id": "1.4",
+      "criterion": "AC2",
+      "locator": "e2e/conversation-practice.spec.ts::a fake-mic pass reply drives a real pass verdict (AC2)",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "1.4",
+      "criterion": "AC3",
+      "locator": "e2e/conversation-practice-fail.spec.ts::a fake-mic off-topic reply drives a real fail verdict, visibly distinct from pass (AC3)",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "1.4",
+      "criterion": "AC4",
+      "locator": "e2e/conversation-practice.spec.ts::a simulated connection failure renders the not-running state without hanging (AC4)",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "1.4",
+      "criterion": "AC5",
+      "locator": "manual verification note in task 1.4's close-out",
+      "verdict": "none"
+    }
+  ],
+  "reviewedAt": "b8dd664aaf2fea67a62ee702edb1b43ab61d3180",
+  "answersAt": "30cd9d9a860d6e04",
+  "enforcement": [
+    "reviewer edited 1 path(s) the plan does not declare and they were reverted: plans/ai-conversation-practice/resources.jsonl"
+  ]
+}

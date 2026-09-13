@@ -1,0 +1,34 @@
+Command: npm run test:e2e -- e2e/conversation-practice.spec.ts -g "a fake-mic pass reply drives a real pass verdict"
+(the real gate is: npm run test:e2e -- --project=conversation-practice)
+
+This Playwright case ("a fake-mic pass reply drives a real pass verdict (AC2)")
+passed before today's change. It now fails. Two independent runs failed
+DIFFERENTLY, which is the thing to explain:
+
+Run A (with `await seedLearnedVocabulary(page, 150)` at the top of the test):
+  [conversation-practice] Error: locator.click: Test timeout of 300000ms exceeded.
+  Call log: waiting for getByRole('button', { name: 'Stop recording' })
+  Final page snapshot: idle state, question "สวัสดีค่ะ คุณสบายดีมั้ย" visible,
+  button "Record your reply" still showing.
+
+Run B (same test with the seeding line removed):
+  [conversation-practice] Error: expect(locator).toBeVisible() failed,
+  element(s) not found, waiting for getByText('We heard:')
+  Final page snapshot: idle state again, question "นี้ทำอะไรไหมครับ" visible,
+  button "Record your reply" showing.
+
+In BOTH runs the [chromium] project ALSO ran the same spec file and failed at
+`locator.click` waiting for 'Stop recording' after 30s — that project has no
+--use-fake-device-for-media-stream / --use-file-for-fake-audio-capture launch
+args, so it is expected to fail; but it means two Chromium instances run this
+same spec concurrently (2 workers), which the real gate
+(--project=conversation-practice) does NOT do.
+
+QUESTION (answer in at most 10 lines, with file:line):
+Is the conversation-practice failure caused by (a) the concurrent [chromium]
+copy of the same spec competing for the fake audio capture device / the
+single-GPU backend, or (b) something about the page itself (useMicRecorder's
+getUserMedia never resolving, the page remounting back to idle)? Decide by
+running ONLY the conversation-practice project:
+  npm run test:e2e -- --project=conversation-practice -g "pass verdict"
+and report whether it passes in isolation. Do not edit any file.

@@ -1,0 +1,56 @@
+[project]
+name = "conversation-backend"
+version = "0.1.0"
+description = "Local backend for AI conversation practice mode: STT, judge LLM, TTS."
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "fastapi>=0.115",
+    "uvicorn>=0.30",
+    # STT — faster-whisper large-v3; also the decoder (PyAV) for inbound
+    # browser audio, which is whatever MediaRecorder emitted, never
+    # assumed WAV (see docs/conversation-backend-api.md).
+    "faster-whisper>=1.1",
+    # Judge LLM — Qwen/Qwen2.5-7B-Instruct. transformers 5.x:
+    # apply_chat_template(..., return_tensors="pt") returns a
+    # BatchEncoding dict, not a bare tensor (plan CONTEXT.md) — re-check
+    # that call in app/pipeline.py before re-pinning.
+    "transformers>=5,<6",
+    "torch>=2.0",
+    "accelerate>=1.0",
+    # ctranslate2 (faster-whisper's engine) dlopens libcublas.so.12 /
+    # libcudnn*.so.9, but the PyPI torch build bundles CUDA 13 (.so.13)
+    # — these cu12 wheels supply the missing libraries, preloaded via
+    # ctypes in app/models.py before the first Whisper call.
+    "nvidia-cublas-cu12>=12.6",
+    "nvidia-cudnn-cu12>=9.5",
+    # TTS — the vendored ThonburianTTS (backend/vendor/flowtts) imports
+    # the f5_tts package plus the libraries below at inference time.
+    "f5-tts>=1.1",
+    "cached-path",
+    "hydra-core>=1.3",
+    "omegaconf",
+    "pydub",
+    "pythainlp",
+    "soundfile",
+]
+
+[dependency-groups]
+dev = [
+    "pytest>=8.0",
+    "ruff>=0.6",
+    "httpx>=0.27",
+]
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+testpaths = ["tests"]
+markers = [
+    "gpu: requires a real GPU and model weights",
+]
+
+[tool.ruff]
+extend-exclude = ["vendor"]
+
+[tool.uv]
+package = false

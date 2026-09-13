@@ -1,0 +1,123 @@
+{
+  "findings": [
+    {
+      "id": "F1",
+      "action": "user-decision",
+      "message": "Task 2.3 shipped as `complete` with real, correct tests for all four of its own acceptance criteria (AC1-AC4 in backend/tests/test_bank.py and the e2e AC4 case), and the executor's own summary narrates having proven each one red-then-green by mutation — but no `plans/ai-conversation-practice/red-proofs/2.3.md` was ever written, unlike every other completed task in this phase (2.1.md and 2.2.md both exist). The criteria ledger reflects this gap by falling back to `[none]`/`intended:` placeholder text copied from the task description, rather than `[red]`, even though the tests plainly exist and assert the right things (verified by reading them and cross-checking the shipped bank/vocabulary files directly). This is a process/audit-trail gap in how task 2.3's completion was recorded, not a code defect inside the diff, and I have deliberately not tried to reconstruct the missing red-proof myself (re-deriving it by reading the test against the implementation, or re-running mutation tests, is exactly the cost this record exists to remove, and is against this role's standing policy).",
+      "severity": 5,
+      "effort": 8,
+      "attribution": "orchestration",
+      "why_not_fixed": "Producing this artifact requires either a human/runner re-invoking the recording step (a process/tooling gap, closer to orchestration than to a defect in the reviewed diff) or a reviewer re-deriving red proofs by mutation, which this role is explicitly told not to do. I cannot bound which of those is the right fix from the diff alone.",
+      "file": "plans/ai-conversation-practice/red-proofs/2.3.md",
+      "category": "process-gap"
+    },
+    {
+      "id": "F2",
+      "action": "leave-as-is",
+      "message": "`backend/app/schemas.py`'s `OpeningRequest` docstring (written by task 2.1) still says 'accepted and validated but not consumed — the opening pipeline still returns the one fixed question,' which task 2.3's diff makes false: `known_words` now drives `select_entry` and picks a real bank entry. The file itself has no changes in this diff and isn't in task 2.3's `covers`, so I left it rather than editing outside the diff, but a future reader of `schemas.py` alone would be misled about what the field does.",
+      "severity": 2,
+      "effort": 1,
+      "why_not_fixed": "schemas.py is not touched by this diff and is not in task 2.3's covers list (it belongs to task 2.1, already complete); editing a file outside the diff/phase covers is outside this review's edit scope.",
+      "file": "backend/app/schemas.py",
+      "line": 32,
+      "category": "stale-comment"
+    }
+  ],
+  "lessons": [
+    {
+      "lesson": "A task's own executor-narrated red/green proof in its summary is not the same as a recorded red-proofs/<task>.md artifact — check the file actually exists on disk before trusting the ledger's [red] marks; task 2.3 completed with correct tests but no such file, silently degrading its ledger entries to [none]."
+    }
+  ],
+  "acValidations": [
+    {
+      "task_id": "2.1",
+      "criterion": "AC1",
+      "locator": "src/infrastructure/conversation/HttpConversationPracticeClient.test.ts::accepts a realistic 600-word known-word snapshot without truncating it",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "2.1",
+      "criterion": "AC2",
+      "locator": "src/presentation/pages/ConversationPracticePage.test.tsx::sends the learner's real learned-vocabulary set, not a placeholder list",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "2.1",
+      "criterion": "AC3",
+      "locator": "src/presentation/pages/ConversationPracticePage.test.tsx::still sends a request, with a real empty array, for a learner with no learned words yet",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "2.2",
+      "criterion": "AC1",
+      "locator": "scripts/generate-conversation-bank/tests/test_filtering.py::test_rejects_a_candidate_containing_a_word_outside_the_tier",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "2.2",
+      "criterion": "AC2",
+      "locator": "scripts/generate-conversation-bank/tests/test_shipped_bank.py::test_every_entrys_words_are_the_tokenization_of_its_thai",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "2.2",
+      "criterion": "AC3",
+      "locator": "none — human-review close-out note, not a test; a compliance/tokenization filter structurally cannot judge naturalness or conversational appropriateness",
+      "verdict": "none"
+    },
+    {
+      "task_id": "2.2",
+      "criterion": "AC4",
+      "locator": "scripts/generate-conversation-bank/tests/test_bank_build.py::test_an_entrys_id_is_derived_from_its_own_thai_text",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "2.2",
+      "criterion": "AC5",
+      "locator": "scripts/generate-conversation-bank/tests/test_generation_gpu.py::test_the_real_pipeline_fills_a_small_tier",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "2.2",
+      "criterion": "AC6",
+      "locator": "scripts/generate-conversation-bank/tests/test_shipped_bank.py::test_every_tier_holds_at_least_the_minimum_number_of_entries",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "2.3",
+      "criterion": "AC1",
+      "locator": "backend/tests/test_bank.py::test_gappy_known_words_select_an_entry_built_only_from_them",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "2.3",
+      "criterion": "AC2",
+      "locator": "backend/tests/test_bank.py::test_the_highest_qualifying_tier_wins",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "2.3",
+      "criterion": "AC3",
+      "locator": "backend/tests/test_bank.py::test_an_empty_known_word_set_returns_a_smallest_tier_entry",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "2.3",
+      "criterion": "AC4",
+      "locator": "e2e/conversation-practice.spec.ts::two learners with different vocabulary get different questions (preceded by seedLearnedVocabulary produces a learner the app really sees)",
+      "verdict": "valid"
+    }
+  ],
+  "reviewedAt": "10293d3d6af9cd811091b8ee470f730f5a5bbf6c",
+  "answersAt": "30cd9d9a860d6e04",
+  "enforcement": [
+    "reviewer edited 1 path(s) the plan does not declare and they were reverted: plans/ai-conversation-practice/resources.jsonl"
+  ],
+  "triage": [
+    {
+      "id": "F1",
+      "verdict": "human",
+      "reason": "Missing red-proof audit artifact. Reviewer deliberately did not reconstruct it due to standing policy. This is a policy decision (whether to create the file or accept the gap) that requires human judgment, not a code defect with clear fix options."
+    }
+  ]
+}

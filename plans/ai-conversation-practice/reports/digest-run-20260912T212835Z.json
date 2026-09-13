@@ -1,0 +1,75 @@
+{
+  "formatVersion": "1",
+  "runId": "run-20260912T212835Z",
+  "status": "incomplete",
+  "degraded": [
+    {
+      "input": "run: health delta",
+      "state": "partial",
+      "reason": "1 of 1 changed file(s) could not be fully measured: 'plans/ai-conversation-practice/phase-2-personalized-content/task-2.2-ac3-human-review.md' unmeasured"
+    }
+  ],
+  "header": {
+    "healthDelta": {
+      "state": "partial",
+      "value": {
+        "kind": "health-delta",
+        "fromRef": "396fc177281189de3b2d1ea597f4f3bf79c44409",
+        "toRef": "959447542bdc9df0f048d7e9f1683a67d7181b56",
+        "files": [
+          {
+            "path": "plans/ai-conversation-practice/phase-2-personalized-content/task-2.2-ac3-human-review.md",
+            "delta": {
+              "state": "unmeasured",
+              "reason": "no grammar covers 'plans/ai-conversation-practice/phase-2-personalized-content/task-2.2-ac3-human-review.md'",
+              "affected": []
+            }
+          }
+        ],
+        "skipped": {
+          "deleted": 0,
+          "renamed-without-edit": 0,
+          "binary": 0,
+          "symlink": 0,
+          "submodule": 0
+        },
+        "refused": 0
+      },
+      "reason": "1 of 1 changed file(s) could not be fully measured: 'plans/ai-conversation-practice/phase-2-personalized-content/task-2.2-ac3-human-review.md' unmeasured"
+    },
+    "conformance": {
+      "reviewerValidation": {
+        "state": "measured",
+        "value": {
+          "count": 0,
+          "total": 0
+        }
+      },
+      "redBeforeGreen": {
+        "state": "measured",
+        "value": {
+          "count": 0,
+          "total": 0
+        }
+      },
+      "coversWarnings": {
+        "state": "measured",
+        "value": []
+      },
+      "worstContinuationRounds": {
+        "state": "measured",
+        "value": 0
+      },
+      "inheritedGates": {
+        "state": "measured",
+        "value": []
+      },
+      "worstRedGreenCycles": {
+        "state": "measured",
+        "value": 0
+      }
+    },
+    "flags": []
+  },
+  "tasks": []
+}

@@ -3,6 +3,11 @@ import { useNavigate } from "react-router";
 import { Badge } from "@/presentation/components/ui/badge";
 import { Button } from "@/presentation/components/ui/button";
 import { Card } from "@/presentation/components/ui/card";
+import {
+	checkConversationUnlock,
+	MIN_GRAMMAR_POINTS,
+	MIN_VOCAB_COUNT,
+} from "../../domain/conversation/services/ConversationUnlockService";
 import type { LessonSummary } from "../../domain/script/services/ScriptLessonService";
 import { SectionHeader } from "../components/atoms/SectionHeader";
 import { ForecastCell } from "../components/molecules/ForecastCell";
@@ -29,6 +34,21 @@ function newCountLabel(count: number, noun: string): string {
 	return `${count} new ${noun}${count === 1 ? "" : "s"}`;
 }
 
+/**
+ * Names the specific gap still blocking conversation practice — the vocab
+ * gap if any remains, otherwise the grammar gap. Never a bare "locked"
+ * label: every other locked/unlocked surface in this app names a number.
+ */
+function conversationGapMessage(
+	learnedVocabCount: number,
+	learnedGrammarCount: number,
+): string {
+	if (learnedVocabCount < MIN_VOCAB_COUNT) {
+		return `${learnedVocabCount}/${MIN_VOCAB_COUNT} words learned`;
+	}
+	return `${learnedGrammarCount}/${MIN_GRAMMAR_POINTS} grammar points learned`;
+}
+
 function pendingCatchUpItemCount(summary: LessonSummary): number {
 	return (
 		summary.consonants.length +
@@ -43,6 +63,11 @@ function pendingCatchUpItemCount(summary: LessonSummary): number {
 export function Dashboard() {
 	const { state, lesson, review, dashboard, vocab } = useApp();
 	const navigate = useNavigate();
+
+	const conversationUnlock = checkConversationUnlock(
+		vocab.getLearnedCount(),
+		lesson.getGrammarLearnedCount(),
+	);
 
 	// Every one of these reads the learner state back out of storage and
 	// rebuilds card entities — `getStageCounts` and `getForecast` do it once
@@ -220,6 +245,30 @@ export function Dashboard() {
 					value="Practice round"
 					onClick={() => navigate("/game")}
 				/>
+			</div>
+
+			{/* Conversation practice — reuses QuickActionCard in both states
+			    (see task 3.2's Architectural Decision) rather than a second
+			    visual treatment. The lock is enforced again at the page itself
+			    (ConversationPracticePage), so this tile is a discoverability
+			    affordance only, never the actual boundary. */}
+			<div className="grid grid-cols-1 gap-3">
+				{conversationUnlock.unlocked ? (
+					<QuickActionCard
+						label="Conversation Practice"
+						value="Start a session"
+						onClick={() => navigate("/conversation")}
+					/>
+				) : (
+					<QuickActionCard
+						label="Conversation Practice"
+						value={conversationGapMessage(
+							vocab.getLearnedCount(),
+							lesson.getGrammarLearnedCount(),
+						)}
+						disabled
+					/>
+				)}
 			</div>
 
 			{/* Ready to Learn — every pool with new content ready, regardless of

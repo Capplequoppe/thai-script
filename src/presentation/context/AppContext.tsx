@@ -21,6 +21,7 @@ import type { GameHistoryEntry } from "../../domain/game/types";
 import grammarData from "../../domain/grammar/data/grammar.json";
 import { GrammarService } from "../../domain/grammar/services/GrammarLessonService";
 import type { GrammarEntry } from "../../domain/grammar/types";
+import type { ConversationPracticePort } from "../../domain/ports/ConversationPracticePort";
 import { LearningService } from "../../domain/script/services/ScriptLessonService";
 import sentenceData from "../../domain/sentence/data/sentences.json";
 import { SentenceService } from "../../domain/sentence/services/SentenceLessonService";
@@ -36,6 +37,7 @@ import type { LearnerState, SessionSummary } from "../../domain/shared/types";
 import vocabularyData from "../../domain/vocabulary/data/vocabulary.json";
 import { VocabularyService } from "../../domain/vocabulary/services/VocabularyLessonService";
 import type { VocabEntry } from "../../domain/vocabulary/types";
+import { HttpConversationPracticeClient } from "../../infrastructure/conversation/HttpConversationPracticeClient";
 import { NotificationScheduler } from "../../infrastructure/notifications/NotificationScheduler";
 import { LocalStorageJsonStore } from "../../infrastructure/persistence/JsonStore";
 import { LocalStorageAdapter } from "../../infrastructure/persistence/Storage";
@@ -81,6 +83,11 @@ const sentenceService = new SentenceService(
 	apprenticeService,
 );
 const notificationScheduler = new NotificationScheduler();
+// The local conversation backend. Constructed unconditionally: it holds no
+// connection, and an unreachable backend is a `"unavailable"` result the
+// page renders, never a construction-time failure (the deployed GitHub
+// Pages build can never reach it at all).
+const conversationPractice = new HttpConversationPracticeClient();
 const achievementService = new AchievementService();
 
 const lessonUseCase = new StartLessonUseCase(
@@ -145,6 +152,7 @@ export interface AppContextValue {
 	vocab: VocabularyService;
 	sentence: SentenceService;
 	game: PlayGameUseCase;
+	conversationPractice: ConversationPracticePort;
 	checkAchievements: (summary: SessionSummary) => string[];
 }
 
@@ -198,6 +206,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
 			vocab: vocabularyService,
 			sentence: sentenceService,
 			game: gameUseCase,
+			conversationPractice,
 			checkAchievements,
 		}),
 		[state, refresh, checkAchievements],

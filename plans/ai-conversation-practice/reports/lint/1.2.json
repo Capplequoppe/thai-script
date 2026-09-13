@@ -1,0 +1,5673 @@
+{
+  "version": 1,
+  "task": "1.2",
+  "pass": "after",
+  "result": {
+    "outcome": "unsupported",
+    "reason": "backend/pyproject.toml: no grammar covers '.toml' files (and 27 more) — 303 violations were measured before this and are not shown"
+  },
+  "findings": [
+    {
+      "rule": "argument-count",
+      "severity": "warning",
+      "measured": 6,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "kind": "function",
+        "name": "judge_reply",
+        "path": "backend/app/pipeline.py",
+        "bytes": {
+          "startIndex": 5177,
+          "endIndex": 7069
+        },
+        "lines": {
+          "startRow": 128,
+          "endRow": 169
+        }
+      }
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 4.88,
+      "threshold": 5,
+      "tier": "file",
+      "path": "backend/tests/conftest.py",
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "length",
+      "severity": "warning",
+      "tier": "function",
+      "measured": 94,
+      "threshold": 50,
+      "symbol": {
+        "kind": "function",
+        "name": "__init__",
+        "path": "backend/vendor/flowtts/eval/ecapa_tdnn.py",
+        "bytes": {
+          "startIndex": 5596,
+          "endIndex": 9140
+        },
+        "lines": {
+          "startRow": 163,
+          "endRow": 256
+        }
+      }
+    },
+    {
+      "rule": "cyclomatic-complexity",
+      "severity": "warning",
+      "measured": 13,
+      "threshold": 10,
+      "tier": "function",
+      "symbol": {
+        "kind": "function",
+        "name": "__init__",
+        "path": "backend/vendor/flowtts/eval/ecapa_tdnn.py",
+        "bytes": {
+          "startIndex": 5596,
+          "endIndex": 9140
+        },
+        "lines": {
+          "startRow": 163,
+          "endRow": 256
+        }
+      }
+    },
+    {
+      "rule": "argument-count",
+      "severity": "warning",
+      "measured": 7,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "kind": "function",
+        "name": "__init__",
+        "path": "backend/vendor/flowtts/eval/ecapa_tdnn.py",
+        "bytes": {
+          "startIndex": 453,
+          "endIndex": 1119
+        },
+        "lines": {
+          "startRow": 20,
+          "endRow": 33
+        }
+      }
+    },
+    {
+      "rule": "argument-count",
+      "severity": "warning",
+      "measured": 7,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "kind": "function",
+        "name": "__init__",
+        "path": "backend/vendor/flowtts/eval/ecapa_tdnn.py",
+        "bytes": {
+          "startIndex": 1686,
+          "endIndex": 1973
+        },
+        "lines": {
+          "startRow": 59,
+          "endRow": 62
+        }
+      }
+    },
+    {
+      "rule": "argument-count",
+      "severity": "warning",
+      "measured": 8,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "kind": "function",
+        "name": "__init__",
+        "path": "backend/vendor/flowtts/eval/ecapa_tdnn.py",
+        "bytes": {
+          "startIndex": 2995,
+          "endIndex": 3769
+        },
+        "lines": {
+          "startRow": 100,
+          "endRow": 113
+        }
+      }
+    },
+    {
+      "rule": "argument-count",
+      "severity": "warning",
+      "measured": 9,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "kind": "function",
+        "name": "__init__",
+        "path": "backend/vendor/flowtts/eval/ecapa_tdnn.py",
+        "bytes": {
+          "startIndex": 5596,
+          "endIndex": 9140
+        },
+        "lines": {
+          "startRow": 163,
+          "endRow": 256
+        }
+      }
+    },
+    {
+      "rule": "argument-count",
+      "severity": "warning",
+      "measured": 7,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "kind": "function",
+        "name": "ECAPA_TDNN_SMALL",
+        "path": "backend/vendor/flowtts/eval/ecapa_tdnn.py",
+        "bytes": {
+          "startIndex": 10915,
+          "endIndex": 11364
+        },
+        "lines": {
+          "startRow": 311,
+          "endRow": 329
+        }
+      }
+    },
+    {
+      "rule": "naming",
+      "severity": "convention",
+      "measured": 1,
+      "threshold": 0,
+      "tier": "function",
+      "symbol": {
+        "kind": "class",
+        "name": "SE_Connect",
+        "path": "backend/vendor/flowtts/eval/ecapa_tdnn.py",
+        "bytes": {
+          "startIndex": 2088,
+          "endIndex": 2521
+        },
+        "lines": {
+          "startRow": 72,
+          "endRow": 84
+        }
+      }
+    },
+    {
+      "rule": "naming",
+      "severity": "convention",
+      "measured": 1,
+      "threshold": 0,
+      "tier": "function",
+      "symbol": {
+        "kind": "class",
+        "name": "SE_Res2Block",
+        "path": "backend/vendor/flowtts/eval/ecapa_tdnn.py",
+        "bytes": {
+          "startIndex": 2960,
+          "endIndex": 4049
+        },
+        "lines": {
+          "startRow": 99,
+          "endRow": 125
+        }
+      }
+    },
+    {
+      "rule": "naming",
+      "severity": "convention",
+      "measured": 1,
+      "threshold": 0,
+      "tier": "function",
+      "symbol": {
+        "kind": "class",
+        "name": "ECAPA_TDNN",
+        "path": "backend/vendor/flowtts/eval/ecapa_tdnn.py",
+        "bytes": {
+          "startIndex": 5563,
+          "endIndex": 10912
+        },
+        "lines": {
+          "startRow": 162,
+          "endRow": 308
+        }
+      }
+    },
+    {
+      "rule": "naming",
+      "severity": "convention",
+      "measured": 1,
+      "threshold": 0,
+      "tier": "function",
+      "symbol": {
+        "kind": "function",
+        "name": "ECAPA_TDNN_SMALL",
+        "path": "backend/vendor/flowtts/eval/ecapa_tdnn.py",
+        "bytes": {
+          "startIndex": 10915,
+          "endIndex": 11364
+        },
+        "lines": {
+          "startRow": 311,
+          "endRow": 329
+        }
+      }
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 2.13,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "__init__",
+        "path": "backend/vendor/flowtts/eval/ecapa_tdnn.py",
+        "bytes": {
+          "startIndex": 5596,
+          "endIndex": 9140
+        },
+        "lines": {
+          "startRow": 163,
+          "endRow": 256
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "get_feat",
+        "path": "backend/vendor/flowtts/eval/ecapa_tdnn.py",
+        "bytes": {
+          "startIndex": 9564,
+          "endIndex": 10545
+        },
+        "lines": {
+          "startRow": 269,
+          "endRow": 293
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 4.85,
+      "threshold": 5,
+      "tier": "file",
+      "path": "backend/vendor/flowtts/eval/ecapa_tdnn.py",
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "length",
+      "severity": "warning",
+      "tier": "function",
+      "measured": 163,
+      "threshold": 50,
+      "symbol": {
+        "kind": "function",
+        "name": "main",
+        "path": "backend/vendor/flowtts/eval/eval_infer_batch.py",
+        "bytes": {
+          "startIndex": 718,
+          "endIndex": 7300
+        },
+        "lines": {
+          "startRow": 36,
+          "endRow": 198
+        }
+      }
+    },
+    {
+      "rule": "cyclomatic-complexity",
+      "severity": "warning",
+      "measured": 19,
+      "threshold": 10,
+      "tier": "function",
+      "symbol": {
+        "kind": "function",
+        "name": "main",
+        "path": "backend/vendor/flowtts/eval/eval_infer_batch.py",
+        "bytes": {
+          "startIndex": 718,
+          "endIndex": 7300
+        },
+        "lines": {
+          "startRow": 36,
+          "endRow": 198
+        }
+      }
+    },
+    {
+      "rule": "nesting-depth",
+      "severity": "warning",
+      "measured": 5,
+      "threshold": 4,
+      "tier": "function",
+      "symbol": {
+        "kind": "function",
+        "name": "main",
+        "path": "backend/vendor/flowtts/eval/eval_infer_batch.py",
+        "bytes": {
+          "startIndex": 718,
+          "endIndex": 7300
+        },
+        "lines": {
+          "startRow": 36,
+          "endRow": 198
+        }
+      }
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 4.91,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "main",
+        "path": "backend/vendor/flowtts/eval/eval_infer_batch.py",
+        "bytes": {
+          "startIndex": 718,
+          "endIndex": 7300
+        },
+        "lines": {
+          "startRow": 36,
+          "endRow": 198
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 3.94,
+      "threshold": 5,
+      "tier": "file",
+      "path": "backend/vendor/flowtts/eval/eval_infer_batch.py",
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "length",
+      "severity": "warning",
+      "tier": "function",
+      "measured": 53,
+      "threshold": 50,
+      "symbol": {
+        "kind": "function",
+        "name": "main",
+        "path": "backend/vendor/flowtts/eval/eval_librispeech_test_clean.py",
+        "bytes": {
+          "startIndex": 1034,
+          "endIndex": 3340
+        },
+        "lines": {
+          "startRow": 33,
+          "endRow": 85
+        }
+      }
+    },
+    {
+      "rule": "length",
+      "severity": "warning",
+      "tier": "function",
+      "measured": 53,
+      "threshold": 50,
+      "symbol": {
+        "kind": "function",
+        "name": "main",
+        "path": "backend/vendor/flowtts/eval/eval_seedtts_testset.py",
+        "bytes": {
+          "startIndex": 884,
+          "endIndex": 3075
+        },
+        "lines": {
+          "startRow": 32,
+          "endRow": 84
+        }
+      }
+    },
+    {
+      "rule": "cyclomatic-complexity",
+      "severity": "warning",
+      "measured": 11,
+      "threshold": 10,
+      "tier": "function",
+      "symbol": {
+        "kind": "function",
+        "name": "main",
+        "path": "backend/vendor/flowtts/eval/eval_seedtts_testset.py",
+        "bytes": {
+          "startIndex": 884,
+          "endIndex": 3075
+        },
+        "lines": {
+          "startRow": 32,
+          "endRow": 84
+        }
+      }
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 4.49,
+      "threshold": 5,
+      "tier": "file",
+      "path": "backend/vendor/flowtts/eval/eval_seedtts_testset.py",
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "main",
+        "path": "backend/vendor/flowtts/eval/eval_utmos.py",
+        "bytes": {
+          "startIndex": 106,
+          "endIndex": 1518
+        },
+        "lines": {
+          "startRow": 9,
+          "endRow": 37
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "file",
+      "path": "backend/vendor/flowtts/eval/eval_utmos.py",
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "length",
+      "severity": "warning",
+      "tier": "function",
+      "measured": 133,
+      "threshold": 50,
+      "symbol": {
+        "kind": "function",
+        "name": "get_inference_prompt",
+        "path": "backend/vendor/flowtts/eval/utils_eval.py",
+        "bytes": {
+          "startIndex": 2609,
+          "endIndex": 7508
+        },
+        "lines": {
+          "startRow": 71,
+          "endRow": 203
+        }
+      }
+    },
+    {
+      "rule": "length",
+      "severity": "warning",
+      "tier": "function",
+      "measured": 69,
+      "threshold": 50,
+      "symbol": {
+        "kind": "function",
+        "name": "run_asr_wer",
+        "path": "backend/vendor/flowtts/eval/utils_eval.py",
+        "bytes": {
+          "startIndex": 10700,
+          "endIndex": 12748
+        },
+        "lines": {
+          "startRow": 304,
+          "endRow": 372
+        }
+      }
+    },
+    {
+      "rule": "cyclomatic-complexity",
+      "severity": "warning",
+      "measured": 13,
+      "threshold": 10,
+      "tier": "function",
+      "symbol": {
+        "kind": "function",
+        "name": "get_inference_prompt",
+        "path": "backend/vendor/flowtts/eval/utils_eval.py",
+        "bytes": {
+          "startIndex": 2609,
+          "endIndex": 7508
+        },
+        "lines": {
+          "startRow": 71,
+          "endRow": 203
+        }
+      }
+    },
+    {
+      "rule": "cyclomatic-complexity",
+      "severity": "warning",
+      "measured": 12,
+      "threshold": 10,
+      "tier": "function",
+      "symbol": {
+        "kind": "function",
+        "name": "run_asr_wer",
+        "path": "backend/vendor/flowtts/eval/utils_eval.py",
+        "bytes": {
+          "startIndex": 10700,
+          "endIndex": 12748
+        },
+        "lines": {
+          "startRow": 304,
+          "endRow": 372
+        }
+      }
+    },
+    {
+      "rule": "argument-count",
+      "severity": "warning",
+      "measured": 16,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "kind": "function",
+        "name": "get_inference_prompt",
+        "path": "backend/vendor/flowtts/eval/utils_eval.py",
+        "bytes": {
+          "startIndex": 2609,
+          "endIndex": 7508
+        },
+        "lines": {
+          "startRow": 71,
+          "endRow": 203
+        }
+      }
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "get_seed_tts_test",
+        "path": "backend/vendor/flowtts/eval/utils_eval.py",
+        "bytes": {
+          "startIndex": 7612,
+          "endIndex": 8647
+        },
+        "lines": {
+          "startRow": 210,
+          "endRow": 239
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "get_librispeech_test",
+        "path": "backend/vendor/flowtts/eval/utils_eval.py",
+        "bytes": {
+          "startIndex": 8701,
+          "endIndex": 9961
+        },
+        "lines": {
+          "startRow": 245,
+          "endRow": 276
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 2.5,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "run_sim",
+        "path": "backend/vendor/flowtts/eval/utils_eval.py",
+        "bytes": {
+          "startIndex": 12770,
+          "endIndex": 14104
+        },
+        "lines": {
+          "startRow": 378,
+          "endRow": 417
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "length",
+      "severity": "warning",
+      "measured": 418,
+      "threshold": 400,
+      "tier": "file",
+      "path": "backend/vendor/flowtts/eval/utils_eval.py"
+    },
+    {
+      "rule": "length",
+      "severity": "warning",
+      "tier": "function",
+      "measured": 75,
+      "threshold": 50,
+      "symbol": {
+        "kind": "function",
+        "name": "main",
+        "path": "backend/vendor/flowtts/infer/infer_cli.py",
+        "bytes": {
+          "startIndex": 8139,
+          "endIndex": 10729
+        },
+        "lines": {
+          "startRow": 289,
+          "endRow": 363
+        }
+      }
+    },
+    {
+      "rule": "cyclomatic-complexity",
+      "severity": "warning",
+      "measured": 12,
+      "threshold": 10,
+      "tier": "function",
+      "symbol": {
+        "kind": "function",
+        "name": "main",
+        "path": "backend/vendor/flowtts/infer/infer_cli.py",
+        "bytes": {
+          "startIndex": 8139,
+          "endIndex": 10729
+        },
+        "lines": {
+          "startRow": 289,
+          "endRow": 363
+        }
+      }
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 1.33,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "main",
+        "path": "backend/vendor/flowtts/infer/infer_cli.py",
+        "bytes": {
+          "startIndex": 8139,
+          "endIndex": 10729
+        },
+        "lines": {
+          "startRow": 289,
+          "endRow": 363
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 3.26,
+      "threshold": 5,
+      "tier": "file",
+      "path": "backend/vendor/flowtts/infer/infer_cli.py",
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "length",
+      "severity": "warning",
+      "measured": 2121,
+      "threshold": 2000,
+      "tier": "module",
+      "module": "backend/vendor/flowtts/infer",
+      "members": [
+        "backend/vendor/flowtts/infer/infer_cli.py",
+        "backend/vendor/flowtts/infer/infer_gradio.py",
+        "backend/vendor/flowtts/infer/speech_edit.py",
+        "backend/vendor/flowtts/infer/utils_infer.py"
+      ]
+    },
+    {
+      "rule": "length",
+      "severity": "warning",
+      "tier": "function",
+      "measured": 65,
+      "threshold": 50,
+      "symbol": {
+        "kind": "function",
+        "name": "infer",
+        "path": "backend/vendor/flowtts/infer/infer_gradio.py",
+        "bytes": {
+          "startIndex": 3000,
+          "endIndex": 5255
+        },
+        "lines": {
+          "startRow": 115,
+          "endRow": 179
+        }
+      }
+    },
+    {
+      "rule": "length",
+      "severity": "warning",
+      "tier": "function",
+      "measured": 61,
+      "threshold": 50,
+      "symbol": {
+        "kind": "function",
+        "name": "generate_multistyle_speech",
+        "path": "backend/vendor/flowtts/infer/infer_gradio.py",
+        "bytes": {
+          "startIndex": 15544,
+          "endIndex": 18178
+        },
+        "lines": {
+          "startRow": 433,
+          "endRow": 493
+        }
+      }
+    },
+    {
+      "rule": "cyclomatic-complexity",
+      "severity": "warning",
+      "measured": 11,
+      "threshold": 10,
+      "tier": "function",
+      "symbol": {
+        "kind": "function",
+        "name": "generate_multistyle_speech",
+        "path": "backend/vendor/flowtts/infer/infer_gradio.py",
+        "bytes": {
+          "startIndex": 15544,
+          "endIndex": 18178
+        },
+        "lines": {
+          "startRow": 433,
+          "endRow": 493
+        }
+      }
+    },
+    {
+      "rule": "argument-count",
+      "severity": "warning",
+      "measured": 9,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "kind": "function",
+        "name": "infer",
+        "path": "backend/vendor/flowtts/infer/infer_gradio.py",
+        "bytes": {
+          "startIndex": 3000,
+          "endIndex": 5255
+        },
+        "lines": {
+          "startRow": 115,
+          "endRow": 179
+        }
+      }
+    },
+    {
+      "rule": "argument-count",
+      "severity": "warning",
+      "measured": 7,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "kind": "function",
+        "name": "basic_tts",
+        "path": "backend/vendor/flowtts/infer/infer_gradio.py",
+        "bytes": {
+          "startIndex": 7429,
+          "endIndex": 8019
+        },
+        "lines": {
+          "startRow": 235,
+          "endRow": 254
+        }
+      }
+    },
+    {
+      "rule": "argument-count",
+      "severity": "warning",
+      "measured": 6,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "kind": "function",
+        "name": "main",
+        "path": "backend/vendor/flowtts/infer/infer_gradio.py",
+        "bytes": {
+          "startIndex": 34446,
+          "endIndex": 34740
+        },
+        "lines": {
+          "startRow": 926,
+          "endRow": 936
+        }
+      }
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "generate_response",
+        "path": "backend/vendor/flowtts/infer/infer_gradio.py",
+        "bytes": {
+          "startIndex": 2336,
+          "endIndex": 2982
+        },
+        "lines": {
+          "startRow": 92,
+          "endRow": 111
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 3.08,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "infer",
+        "path": "backend/vendor/flowtts/infer/infer_gradio.py",
+        "bytes": {
+          "startIndex": 3000,
+          "endIndex": 5255
+        },
+        "lines": {
+          "startRow": 115,
+          "endRow": 179
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "basic_tts",
+        "path": "backend/vendor/flowtts/infer/infer_gradio.py",
+        "bytes": {
+          "startIndex": 7429,
+          "endIndex": 8019
+        },
+        "lines": {
+          "startRow": 235,
+          "endRow": 254
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "process_audio_input",
+        "path": "backend/vendor/flowtts/infer/infer_gradio.py",
+        "bytes": {
+          "startIndex": 23811,
+          "endIndex": 24571
+        },
+        "lines": {
+          "startRow": 648,
+          "endRow": 668
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "generate_audio_response",
+        "path": "backend/vendor/flowtts/infer/infer_gradio.py",
+        "bytes": {
+          "startIndex": 24604,
+          "endIndex": 25349
+        },
+        "lines": {
+          "startRow": 671,
+          "endRow": 690
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 4.03,
+      "threshold": 5,
+      "tier": "file",
+      "path": "backend/vendor/flowtts/infer/infer_gradio.py",
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "length",
+      "severity": "warning",
+      "measured": 944,
+      "threshold": 400,
+      "tier": "file",
+      "path": "backend/vendor/flowtts/infer/infer_gradio.py"
+    },
+    {
+      "rule": "length",
+      "severity": "warning",
+      "tier": "function",
+      "measured": 69,
+      "threshold": 50,
+      "symbol": {
+        "kind": "function",
+        "name": "preprocess_ref_audio_text",
+        "path": "backend/vendor/flowtts/infer/utils_infer.py",
+        "bytes": {
+          "startIndex": 9558,
+          "endIndex": 12593
+        },
+        "lines": {
+          "startRow": 308,
+          "endRow": 376
+        }
+      }
+    },
+    {
+      "rule": "length",
+      "severity": "warning",
+      "tier": "function",
+      "measured": 147,
+      "threshold": 50,
+      "symbol": {
+        "kind": "function",
+        "name": "infer_batch_process",
+        "path": "backend/vendor/flowtts/infer/utils_infer.py",
+        "bytes": {
+          "startIndex": 14086,
+          "endIndex": 19599
+        },
+        "lines": {
+          "startRow": 433,
+          "endRow": 579
+        }
+      }
+    },
+    {
+      "rule": "cyclomatic-complexity",
+      "severity": "warning",
+      "measured": 13,
+      "threshold": 10,
+      "tier": "function",
+      "symbol": {
+        "kind": "function",
+        "name": "load_checkpoint",
+        "path": "backend/vendor/flowtts/infer/utils_infer.py",
+        "bytes": {
+          "startIndex": 6220,
+          "endIndex": 7770
+        },
+        "lines": {
+          "startRow": 200,
+          "endRow": 242
+        }
+      }
+    },
+    {
+      "rule": "cyclomatic-complexity",
+      "severity": "warning",
+      "measured": 15,
+      "threshold": 10,
+      "tier": "function",
+      "symbol": {
+        "kind": "function",
+        "name": "preprocess_ref_audio_text",
+        "path": "backend/vendor/flowtts/infer/utils_infer.py",
+        "bytes": {
+          "startIndex": 9558,
+          "endIndex": 12593
+        },
+        "lines": {
+          "startRow": 308,
+          "endRow": 376
+        }
+      }
+    },
+    {
+      "rule": "nesting-depth",
+      "severity": "warning",
+      "measured": 5,
+      "threshold": 4,
+      "tier": "function",
+      "symbol": {
+        "kind": "function",
+        "name": "preprocess_ref_audio_text",
+        "path": "backend/vendor/flowtts/infer/utils_infer.py",
+        "bytes": {
+          "startIndex": 9558,
+          "endIndex": 12593
+        },
+        "lines": {
+          "startRow": 308,
+          "endRow": 376
+        }
+      }
+    },
+    {
+      "rule": "cyclomatic-complexity",
+      "severity": "warning",
+      "measured": 17,
+      "threshold": 10,
+      "tier": "function",
+      "symbol": {
+        "kind": "function",
+        "name": "infer_batch_process",
+        "path": "backend/vendor/flowtts/infer/utils_infer.py",
+        "bytes": {
+          "startIndex": 14086,
+          "endIndex": 19599
+        },
+        "lines": {
+          "startRow": 433,
+          "endRow": 579
+        }
+      }
+    },
+    {
+      "rule": "nesting-depth",
+      "severity": "warning",
+      "measured": 5,
+      "threshold": 4,
+      "tier": "function",
+      "symbol": {
+        "kind": "function",
+        "name": "infer_batch_process",
+        "path": "backend/vendor/flowtts/infer/utils_infer.py",
+        "bytes": {
+          "startIndex": 14086,
+          "endIndex": 19599
+        },
+        "lines": {
+          "startRow": 433,
+          "endRow": 579
+        }
+      }
+    },
+    {
+      "rule": "argument-count",
+      "severity": "warning",
+      "measured": 8,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "kind": "function",
+        "name": "load_model",
+        "path": "backend/vendor/flowtts/infer/utils_infer.py",
+        "bytes": {
+          "startIndex": 7802,
+          "endIndex": 8969
+        },
+        "lines": {
+          "startRow": 248,
+          "endRow": 286
+        }
+      }
+    },
+    {
+      "rule": "argument-count",
+      "severity": "warning",
+      "measured": 16,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "kind": "function",
+        "name": "infer_process",
+        "path": "backend/vendor/flowtts/infer/utils_infer.py",
+        "bytes": {
+          "startIndex": 12672,
+          "endIndex": 14065
+        },
+        "lines": {
+          "startRow": 382,
+          "endRow": 427
+        }
+      }
+    },
+    {
+      "rule": "argument-count",
+      "severity": "warning",
+      "measured": 17,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "kind": "function",
+        "name": "infer_batch_process",
+        "path": "backend/vendor/flowtts/infer/utils_infer.py",
+        "bytes": {
+          "startIndex": 14086,
+          "endIndex": 19599
+        },
+        "lines": {
+          "startRow": 433,
+          "endRow": 579
+        }
+      }
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 3.57,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "chunk_text",
+        "path": "backend/vendor/flowtts/infer/utils_infer.py",
+        "bytes": {
+          "startIndex": 1483,
+          "endIndex": 2512
+        },
+        "lines": {
+          "startRow": 69,
+          "endRow": 96
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "load_vocoder",
+        "path": "backend/vendor/flowtts/infer/utils_infer.py",
+        "bytes": {
+          "startIndex": 2571,
+          "endIndex": 5028
+        },
+        "lines": {
+          "startRow": 101,
+          "endRow": 150
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "initialize_asr_pipeline",
+        "path": "backend/vendor/flowtts/infer/utils_infer.py",
+        "bytes": {
+          "startIndex": 5069,
+          "endIndex": 5746
+        },
+        "lines": {
+          "startRow": 157,
+          "endRow": 180
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 2.33,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "load_checkpoint",
+        "path": "backend/vendor/flowtts/infer/utils_infer.py",
+        "bytes": {
+          "startIndex": 6220,
+          "endIndex": 7770
+        },
+        "lines": {
+          "startRow": 200,
+          "endRow": 242
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "load_model",
+        "path": "backend/vendor/flowtts/infer/utils_infer.py",
+        "bytes": {
+          "startIndex": 7802,
+          "endIndex": 8969
+        },
+        "lines": {
+          "startRow": 248,
+          "endRow": 286
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 2.17,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "infer_process",
+        "path": "backend/vendor/flowtts/infer/utils_infer.py",
+        "bytes": {
+          "startIndex": 12672,
+          "endIndex": 14065
+        },
+        "lines": {
+          "startRow": 382,
+          "endRow": 427
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "length",
+      "severity": "warning",
+      "measured": 606,
+      "threshold": 400,
+      "tier": "file",
+      "path": "backend/vendor/flowtts/infer/utils_infer.py"
+    },
+    {
+      "rule": "length",
+      "severity": "warning",
+      "tier": "function",
+      "measured": 67,
+      "threshold": 50,
+      "symbol": {
+        "kind": "function",
+        "name": "__call__",
+        "path": "backend/vendor/flowtts/inference.py",
+        "bytes": {
+          "startIndex": 6705,
+          "endIndex": 9534
+        },
+        "lines": {
+          "startRow": 184,
+          "endRow": 250
+        }
+      }
+    },
+    {
+      "rule": "argument-count",
+      "severity": "warning",
+      "measured": 6,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "kind": "function",
+        "name": "__call__",
+        "path": "backend/vendor/flowtts/inference.py",
+        "bytes": {
+          "startIndex": 6705,
+          "endIndex": 9534
+        },
+        "lines": {
+          "startRow": 184,
+          "endRow": 250
+        }
+      }
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "split_text_into_sentences",
+        "path": "backend/vendor/flowtts/inference.py",
+        "bytes": {
+          "startIndex": 802,
+          "endIndex": 1569
+        },
+        "lines": {
+          "startRow": 29,
+          "endRow": 51
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 2.63,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "_process_audio_silence",
+        "path": "backend/vendor/flowtts/inference.py",
+        "bytes": {
+          "startIndex": 9540,
+          "endIndex": 11274
+        },
+        "lines": {
+          "startRow": 252,
+          "endRow": 289
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "voice_conversion",
+        "path": "backend/vendor/flowtts/inference.py",
+        "bytes": {
+          "startIndex": 11280,
+          "endIndex": 12829
+        },
+        "lines": {
+          "startRow": 291,
+          "endRow": 331
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 3.61,
+      "threshold": 5,
+      "tier": "file",
+      "path": "backend/vendor/flowtts/inference.py",
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "length",
+      "severity": "warning",
+      "tier": "function",
+      "measured": 83,
+      "threshold": 50,
+      "symbol": {
+        "kind": "function",
+        "name": "load_ema_model",
+        "path": "backend/vendor/flowtts/load_flowtts.py",
+        "bytes": {
+          "startIndex": 3808,
+          "endIndex": 7751
+        },
+        "lines": {
+          "startRow": 112,
+          "endRow": 194
+        }
+      }
+    },
+    {
+      "rule": "length",
+      "severity": "warning",
+      "tier": "function",
+      "measured": 79,
+      "threshold": 50,
+      "symbol": {
+        "kind": "function",
+        "name": "infer",
+        "path": "backend/vendor/flowtts/load_flowtts.py",
+        "bytes": {
+          "startIndex": 8909,
+          "endIndex": 11700
+        },
+        "lines": {
+          "startRow": 233,
+          "endRow": 311
+        }
+      }
+    },
+    {
+      "rule": "cyclomatic-complexity",
+      "severity": "warning",
+      "measured": 16,
+      "threshold": 10,
+      "tier": "function",
+      "symbol": {
+        "kind": "function",
+        "name": "load_ema_model",
+        "path": "backend/vendor/flowtts/load_flowtts.py",
+        "bytes": {
+          "startIndex": 3808,
+          "endIndex": 7751
+        },
+        "lines": {
+          "startRow": 112,
+          "endRow": 194
+        }
+      }
+    },
+    {
+      "rule": "nesting-depth",
+      "severity": "warning",
+      "measured": 5,
+      "threshold": 4,
+      "tier": "function",
+      "symbol": {
+        "kind": "function",
+        "name": "load_ema_model",
+        "path": "backend/vendor/flowtts/load_flowtts.py",
+        "bytes": {
+          "startIndex": 3808,
+          "endIndex": 7751
+        },
+        "lines": {
+          "startRow": 112,
+          "endRow": 194
+        }
+      }
+    },
+    {
+      "rule": "argument-count",
+      "severity": "warning",
+      "measured": 10,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "kind": "function",
+        "name": "__init__",
+        "path": "backend/vendor/flowtts/load_flowtts.py",
+        "bytes": {
+          "startIndex": 1424,
+          "endIndex": 3223
+        },
+        "lines": {
+          "startRow": 49,
+          "endRow": 97
+        }
+      }
+    },
+    {
+      "rule": "argument-count",
+      "severity": "warning",
+      "measured": 7,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "kind": "function",
+        "name": "load_ema_model",
+        "path": "backend/vendor/flowtts/load_flowtts.py",
+        "bytes": {
+          "startIndex": 3808,
+          "endIndex": 7751
+        },
+        "lines": {
+          "startRow": 112,
+          "endRow": 194
+        }
+      }
+    },
+    {
+      "rule": "argument-count",
+      "severity": "warning",
+      "measured": 16,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "kind": "function",
+        "name": "infer",
+        "path": "backend/vendor/flowtts/load_flowtts.py",
+        "bytes": {
+          "startIndex": 8909,
+          "endIndex": 11700
+        },
+        "lines": {
+          "startRow": 233,
+          "endRow": 311
+        }
+      }
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "load_ema_model",
+        "path": "backend/vendor/flowtts/load_flowtts.py",
+        "bytes": {
+          "startIndex": 3808,
+          "endIndex": 7751
+        },
+        "lines": {
+          "startRow": 112,
+          "endRow": 194
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 3.53,
+      "threshold": 5,
+      "tier": "file",
+      "path": "backend/vendor/flowtts/load_flowtts.py",
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "length",
+      "severity": "warning",
+      "tier": "function",
+      "measured": 57,
+      "threshold": 50,
+      "symbol": {
+        "kind": "function",
+        "name": "__init__",
+        "path": "backend/vendor/flowtts/model/backbones/dit.py",
+        "bytes": {
+          "startIndex": 3386,
+          "endIndex": 5062
+        },
+        "lines": {
+          "startRow": 103,
+          "endRow": 159
+        }
+      }
+    },
+    {
+      "rule": "argument-count",
+      "severity": "warning",
+      "measured": 15,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "kind": "function",
+        "name": "__init__",
+        "path": "backend/vendor/flowtts/model/backbones/dit.py",
+        "bytes": {
+          "startIndex": 3386,
+          "endIndex": 5062
+        },
+        "lines": {
+          "startRow": 103,
+          "endRow": 159
+        }
+      }
+    },
+    {
+      "rule": "argument-count",
+      "severity": "warning",
+      "measured": 8,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "kind": "function",
+        "name": "forward",
+        "path": "backend/vendor/flowtts/model/backbones/dit.py",
+        "bytes": {
+          "startIndex": 5890,
+          "endIndex": 7880
+        },
+        "lines": {
+          "startRow": 184,
+          "endRow": 232
+        }
+      }
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "__init__",
+        "path": "backend/vendor/flowtts/model/backbones/dit.py",
+        "bytes": {
+          "startIndex": 3386,
+          "endIndex": 5062
+        },
+        "lines": {
+          "startRow": 103,
+          "endRow": 159
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 4.08,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "forward",
+        "path": "backend/vendor/flowtts/model/backbones/dit.py",
+        "bytes": {
+          "startIndex": 5890,
+          "endIndex": 7880
+        },
+        "lines": {
+          "startRow": 184,
+          "endRow": 232
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 4.72,
+      "threshold": 5,
+      "tier": "file",
+      "path": "backend/vendor/flowtts/model/backbones/dit.py",
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "argument-count",
+      "severity": "warning",
+      "measured": 10,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "kind": "function",
+        "name": "__init__",
+        "path": "backend/vendor/flowtts/model/backbones/mmdit.py",
+        "bytes": {
+          "startIndex": 2401,
+          "endIndex": 3647
+        },
+        "lines": {
+          "startRow": 85,
+          "endRow": 128
+        }
+      }
+    },
+    {
+      "rule": "argument-count",
+      "severity": "warning",
+      "measured": 8,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "kind": "function",
+        "name": "forward",
+        "path": "backend/vendor/flowtts/model/backbones/mmdit.py",
+        "bytes": {
+          "startIndex": 4374,
+          "endIndex": 5971
+        },
+        "lines": {
+          "startRow": 147,
+          "endRow": 188
+        }
+      }
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 4.55,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "forward",
+        "path": "backend/vendor/flowtts/model/backbones/mmdit.py",
+        "bytes": {
+          "startIndex": 908,
+          "endIndex": 1765
+        },
+        "lines": {
+          "startRow": 39,
+          "endRow": 60
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "__init__",
+        "path": "backend/vendor/flowtts/model/backbones/mmdit.py",
+        "bytes": {
+          "startIndex": 2401,
+          "endIndex": 3647
+        },
+        "lines": {
+          "startRow": 85,
+          "endRow": 128
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 2.38,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "forward",
+        "path": "backend/vendor/flowtts/model/backbones/mmdit.py",
+        "bytes": {
+          "startIndex": 4374,
+          "endIndex": 5971
+        },
+        "lines": {
+          "startRow": 147,
+          "endRow": 188
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 3.7,
+      "threshold": 5,
+      "tier": "file",
+      "path": "backend/vendor/flowtts/model/backbones/mmdit.py",
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "length",
+      "severity": "warning",
+      "tier": "function",
+      "measured": 73,
+      "threshold": 50,
+      "symbol": {
+        "kind": "function",
+        "name": "__init__",
+        "path": "backend/vendor/flowtts/model/backbones/unett.py",
+        "bytes": {
+          "startIndex": 3456,
+          "endIndex": 5659
+        },
+        "lines": {
+          "startRow": 106,
+          "endRow": 178
+        }
+      }
+    },
+    {
+      "rule": "length",
+      "severity": "warning",
+      "tier": "function",
+      "measured": 67,
+      "threshold": 50,
+      "symbol": {
+        "kind": "function",
+        "name": "forward",
+        "path": "backend/vendor/flowtts/model/backbones/unett.py",
+        "bytes": {
+          "startIndex": 5747,
+          "endIndex": 8266
+        },
+        "lines": {
+          "startRow": 183,
+          "endRow": 249
+        }
+      }
+    },
+    {
+      "rule": "cyclomatic-complexity",
+      "severity": "warning",
+      "measured": 12,
+      "threshold": 10,
+      "tier": "function",
+      "symbol": {
+        "kind": "function",
+        "name": "forward",
+        "path": "backend/vendor/flowtts/model/backbones/unett.py",
+        "bytes": {
+          "startIndex": 5747,
+          "endIndex": 8266
+        },
+        "lines": {
+          "startRow": 183,
+          "endRow": 249
+        }
+      }
+    },
+    {
+      "rule": "argument-count",
+      "severity": "warning",
+      "measured": 14,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "kind": "function",
+        "name": "__init__",
+        "path": "backend/vendor/flowtts/model/backbones/unett.py",
+        "bytes": {
+          "startIndex": 3456,
+          "endIndex": 5659
+        },
+        "lines": {
+          "startRow": 106,
+          "endRow": 178
+        }
+      }
+    },
+    {
+      "rule": "argument-count",
+      "severity": "warning",
+      "measured": 8,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "kind": "function",
+        "name": "forward",
+        "path": "backend/vendor/flowtts/model/backbones/unett.py",
+        "bytes": {
+          "startIndex": 5747,
+          "endIndex": 8266
+        },
+        "lines": {
+          "startRow": 183,
+          "endRow": 249
+        }
+      }
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 1.37,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "__init__",
+        "path": "backend/vendor/flowtts/model/backbones/unett.py",
+        "bytes": {
+          "startIndex": 3456,
+          "endIndex": 5659
+        },
+        "lines": {
+          "startRow": 106,
+          "endRow": 178
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 4.8,
+      "threshold": 5,
+      "tier": "file",
+      "path": "backend/vendor/flowtts/model/backbones/unett.py",
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "length",
+      "severity": "warning",
+      "tier": "function",
+      "measured": 127,
+      "threshold": 50,
+      "symbol": {
+        "kind": "function",
+        "name": "sample",
+        "path": "backend/vendor/flowtts/model/cfm.py",
+        "bytes": {
+          "startIndex": 1930,
+          "endIndex": 6569
+        },
+        "lines": {
+          "startRow": 81,
+          "endRow": 207
+        }
+      }
+    },
+    {
+      "rule": "length",
+      "severity": "warning",
+      "tier": "function",
+      "measured": 74,
+      "threshold": 50,
+      "symbol": {
+        "kind": "function",
+        "name": "forward",
+        "path": "backend/vendor/flowtts/model/cfm.py",
+        "bytes": {
+          "startIndex": 6575,
+          "endIndex": 9355
+        },
+        "lines": {
+          "startRow": 209,
+          "endRow": 282
+        }
+      }
+    },
+    {
+      "rule": "cyclomatic-complexity",
+      "severity": "warning",
+      "measured": 15,
+      "threshold": 10,
+      "tier": "function",
+      "symbol": {
+        "kind": "function",
+        "name": "sample",
+        "path": "backend/vendor/flowtts/model/cfm.py",
+        "bytes": {
+          "startIndex": 1930,
+          "endIndex": 6569
+        },
+        "lines": {
+          "startRow": 81,
+          "endRow": 207
+        }
+      }
+    },
+    {
+      "rule": "argument-count",
+      "severity": "warning",
+      "measured": 10,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "kind": "function",
+        "name": "__init__",
+        "path": "backend/vendor/flowtts/model/cfm.py",
+        "bytes": {
+          "startIndex": 553,
+          "endIndex": 1820
+        },
+        "lines": {
+          "startRow": 32,
+          "endRow": 74
+        }
+      }
+    },
+    {
+      "rule": "argument-count",
+      "severity": "warning",
+      "measured": 14,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "kind": "function",
+        "name": "sample",
+        "path": "backend/vendor/flowtts/model/cfm.py",
+        "bytes": {
+          "startIndex": 1930,
+          "endIndex": 6569
+        },
+        "lines": {
+          "startRow": 81,
+          "endRow": 207
+        }
+      }
+    },
+    {
+      "rule": "length",
+      "severity": "warning",
+      "tier": "function",
+      "measured": 61,
+      "threshold": 50,
+      "symbol": {
+        "kind": "function",
+        "name": "load_dataset",
+        "path": "backend/vendor/flowtts/model/dataset.py",
+        "bytes": {
+          "startIndex": 7768,
+          "endIndex": 10302
+        },
+        "lines": {
+          "startRow": 242,
+          "endRow": 302
+        }
+      }
+    },
+    {
+      "rule": "argument-count",
+      "severity": "warning",
+      "measured": 7,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "kind": "function",
+        "name": "__init__",
+        "path": "backend/vendor/flowtts/model/dataset.py",
+        "bytes": {
+          "startIndex": 393,
+          "endIndex": 1021
+        },
+        "lines": {
+          "startRow": 17,
+          "endRow": 38
+        }
+      }
+    },
+    {
+      "rule": "argument-count",
+      "severity": "warning",
+      "measured": 10,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "kind": "function",
+        "name": "__init__",
+        "path": "backend/vendor/flowtts/model/dataset.py",
+        "bytes": {
+          "startIndex": 2274,
+          "endIndex": 3373
+        },
+        "lines": {
+          "startRow": 82,
+          "endRow": 115
+        }
+      }
+    },
+    {
+      "rule": "argument-count",
+      "severity": "warning",
+      "measured": 6,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "kind": "function",
+        "name": "load_dataset",
+        "path": "backend/vendor/flowtts/model/dataset.py",
+        "bytes": {
+          "startIndex": 7768,
+          "endIndex": 10302
+        },
+        "lines": {
+          "startRow": 242,
+          "endRow": 302
+        }
+      }
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "__init__",
+        "path": "backend/vendor/flowtts/model/dataset.py",
+        "bytes": {
+          "startIndex": 393,
+          "endIndex": 1021
+        },
+        "lines": {
+          "startRow": 17,
+          "endRow": 38
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 3.33,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "__getitem__",
+        "path": "backend/vendor/flowtts/model/dataset.py",
+        "bytes": {
+          "startIndex": 1328,
+          "endIndex": 2237
+        },
+        "lines": {
+          "startRow": 49,
+          "endRow": 78
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "__init__",
+        "path": "backend/vendor/flowtts/model/dataset.py",
+        "bytes": {
+          "startIndex": 2274,
+          "endIndex": 3373
+        },
+        "lines": {
+          "startRow": 82,
+          "endRow": 115
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 2.27,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "__init__",
+        "path": "backend/vendor/flowtts/model/dataset.py",
+        "bytes": {
+          "startIndex": 5374,
+          "endIndex": 7010
+        },
+        "lines": {
+          "startRow": 174,
+          "endRow": 217
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "load_dataset",
+        "path": "backend/vendor/flowtts/model/dataset.py",
+        "bytes": {
+          "startIndex": 7768,
+          "endIndex": 10302
+        },
+        "lines": {
+          "startRow": 242,
+          "endRow": 302
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "collate_fn",
+        "path": "backend/vendor/flowtts/model/dataset.py",
+        "bytes": {
+          "startIndex": 10319,
+          "endIndex": 11064
+        },
+        "lines": {
+          "startRow": 308,
+          "endRow": 329
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 3.33,
+      "threshold": 5,
+      "tier": "file",
+      "path": "backend/vendor/flowtts/model/dataset.py",
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "length",
+      "severity": "warning",
+      "tier": "function",
+      "measured": 56,
+      "threshold": 50,
+      "symbol": {
+        "kind": "function",
+        "name": "__init__",
+        "path": "backend/vendor/flowtts/model/modules.py",
+        "bytes": {
+          "startIndex": 10947,
+          "endIndex": 12993
+        },
+        "lines": {
+          "startRow": 360,
+          "endRow": 415
+        }
+      }
+    },
+    {
+      "rule": "length",
+      "severity": "warning",
+      "tier": "function",
+      "measured": 62,
+      "threshold": 50,
+      "symbol": {
+        "kind": "function",
+        "name": "__call__",
+        "path": "backend/vendor/flowtts/model/modules.py",
+        "bytes": {
+          "startIndex": 13753,
+          "endIndex": 16141
+        },
+        "lines": {
+          "startRow": 441,
+          "endRow": 502
+        }
+      }
+    },
+    {
+      "rule": "length",
+      "severity": "warning",
+      "tier": "function",
+      "measured": 91,
+      "threshold": 50,
+      "symbol": {
+        "kind": "function",
+        "name": "__call__",
+        "path": "backend/vendor/flowtts/model/modules.py",
+        "bytes": {
+          "startIndex": 16323,
+          "endIndex": 19968
+        },
+        "lines": {
+          "startRow": 513,
+          "endRow": 603
+        }
+      }
+    },
+    {
+      "rule": "cyclomatic-complexity",
+      "severity": "warning",
+      "measured": 12,
+      "threshold": 10,
+      "tier": "function",
+      "symbol": {
+        "kind": "function",
+        "name": "__call__",
+        "path": "backend/vendor/flowtts/model/modules.py",
+        "bytes": {
+          "startIndex": 16323,
+          "endIndex": 19968
+        },
+        "lines": {
+          "startRow": 513,
+          "endRow": 603
+        }
+      }
+    },
+    {
+      "rule": "argument-count",
+      "severity": "warning",
+      "measured": 9,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "kind": "function",
+        "name": "get_bigvgan_mel_spectrogram",
+        "path": "backend/vendor/flowtts/model/modules.py",
+        "bytes": {
+          "startIndex": 446,
+          "endIndex": 1876
+        },
+        "lines": {
+          "startRow": 29,
+          "endRow": 71
+        }
+      }
+    },
+    {
+      "rule": "argument-count",
+      "severity": "warning",
+      "measured": 6,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "kind": "function",
+        "name": "get_vocos_mel_spectrogram",
+        "path": "backend/vendor/flowtts/model/modules.py",
+        "bytes": {
+          "startIndex": 1879,
+          "endIndex": 2563
+        },
+        "lines": {
+          "startRow": 74,
+          "endRow": 100
+        }
+      }
+    },
+    {
+      "rule": "argument-count",
+      "severity": "warning",
+      "measured": 6,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "kind": "function",
+        "name": "__init__",
+        "path": "backend/vendor/flowtts/model/modules.py",
+        "bytes": {
+          "startIndex": 2596,
+          "endIndex": 3406
+        },
+        "lines": {
+          "startRow": 104,
+          "endRow": 127
+        }
+      }
+    },
+    {
+      "rule": "argument-count",
+      "severity": "warning",
+      "measured": 8,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "kind": "function",
+        "name": "__init__",
+        "path": "backend/vendor/flowtts/model/modules.py",
+        "bytes": {
+          "startIndex": 10947,
+          "endIndex": 12993
+        },
+        "lines": {
+          "startRow": 360,
+          "endRow": 415
+        }
+      }
+    },
+    {
+      "rule": "argument-count",
+      "severity": "warning",
+      "measured": 6,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "kind": "function",
+        "name": "__call__",
+        "path": "backend/vendor/flowtts/model/modules.py",
+        "bytes": {
+          "startIndex": 16323,
+          "endIndex": 19968
+        },
+        "lines": {
+          "startRow": 513,
+          "endRow": 603
+        }
+      }
+    },
+    {
+      "rule": "argument-count",
+      "severity": "warning",
+      "measured": 7,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "kind": "function",
+        "name": "__init__",
+        "path": "backend/vendor/flowtts/model/modules.py",
+        "bytes": {
+          "startIndex": 20016,
+          "endIndex": 20593
+        },
+        "lines": {
+          "startRow": 610,
+          "endRow": 624
+        }
+      }
+    },
+    {
+      "rule": "argument-count",
+      "severity": "warning",
+      "measured": 8,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "kind": "function",
+        "name": "__init__",
+        "path": "backend/vendor/flowtts/model/modules.py",
+        "bytes": {
+          "startIndex": 21548,
+          "endIndex": 22758
+        },
+        "lines": {
+          "startRow": 656,
+          "endRow": 684
+        }
+      }
+    },
+    {
+      "rule": "argument-count",
+      "severity": "warning",
+      "measured": 6,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "kind": "function",
+        "name": "forward",
+        "path": "backend/vendor/flowtts/model/modules.py",
+        "bytes": {
+          "startIndex": 22764,
+          "endIndex": 24040
+        },
+        "lines": {
+          "startRow": 686,
+          "endRow": 714
+        }
+      }
+    },
+    {
+      "rule": "naming",
+      "severity": "convention",
+      "measured": 1,
+      "threshold": 0,
+      "tier": "function",
+      "symbol": {
+        "kind": "class",
+        "name": "AdaLayerNorm_Final",
+        "path": "backend/vendor/flowtts/model/modules.py",
+        "bytes": {
+          "startIndex": 9808,
+          "endIndex": 10265
+        },
+        "lines": {
+          "startRow": 321,
+          "endRow": 335
+        }
+      }
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "get_bigvgan_mel_spectrogram",
+        "path": "backend/vendor/flowtts/model/modules.py",
+        "bytes": {
+          "startIndex": 446,
+          "endIndex": 1876
+        },
+        "lines": {
+          "startRow": 29,
+          "endRow": 71
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "get_vocos_mel_spectrogram",
+        "path": "backend/vendor/flowtts/model/modules.py",
+        "bytes": {
+          "startIndex": 1879,
+          "endIndex": 2563
+        },
+        "lines": {
+          "startRow": 74,
+          "endRow": 100
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "__init__",
+        "path": "backend/vendor/flowtts/model/modules.py",
+        "bytes": {
+          "startIndex": 2596,
+          "endIndex": 3406
+        },
+        "lines": {
+          "startRow": 104,
+          "endRow": 127
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "__init__",
+        "path": "backend/vendor/flowtts/model/modules.py",
+        "bytes": {
+          "startIndex": 10947,
+          "endIndex": 12993
+        },
+        "lines": {
+          "startRow": 360,
+          "endRow": 415
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "__init__",
+        "path": "backend/vendor/flowtts/model/modules.py",
+        "bytes": {
+          "startIndex": 21548,
+          "endIndex": 22758
+        },
+        "lines": {
+          "startRow": 656,
+          "endRow": 684
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "length",
+      "severity": "warning",
+      "measured": 731,
+      "threshold": 400,
+      "tier": "file",
+      "path": "backend/vendor/flowtts/model/modules.py"
+    },
+    {
+      "rule": "length",
+      "severity": "warning",
+      "tier": "function",
+      "measured": 115,
+      "threshold": 50,
+      "symbol": {
+        "kind": "function",
+        "name": "__init__",
+        "path": "backend/vendor/flowtts/model/trainer.py",
+        "bytes": {
+          "startIndex": 589,
+          "endIndex": 5200
+        },
+        "lines": {
+          "startRow": 25,
+          "endRow": 139
+        }
+      }
+    },
+    {
+      "rule": "length",
+      "severity": "warning",
+      "tier": "function",
+      "measured": 79,
+      "threshold": 50,
+      "symbol": {
+        "kind": "function",
+        "name": "load_checkpoint",
+        "path": "backend/vendor/flowtts/model/trainer.py",
+        "bytes": {
+          "startIndex": 7195,
+          "endIndex": 11297
+        },
+        "lines": {
+          "startRow": 180,
+          "endRow": 258
+        }
+      }
+    },
+    {
+      "rule": "length",
+      "severity": "warning",
+      "tier": "function",
+      "measured": 178,
+      "threshold": 50,
+      "symbol": {
+        "kind": "function",
+        "name": "train",
+        "path": "backend/vendor/flowtts/model/trainer.py",
+        "bytes": {
+          "startIndex": 11303,
+          "endIndex": 20424
+        },
+        "lines": {
+          "startRow": 260,
+          "endRow": 437
+        }
+      }
+    },
+    {
+      "rule": "cyclomatic-complexity",
+      "severity": "warning",
+      "measured": 11,
+      "threshold": 10,
+      "tier": "function",
+      "symbol": {
+        "kind": "function",
+        "name": "__init__",
+        "path": "backend/vendor/flowtts/model/trainer.py",
+        "bytes": {
+          "startIndex": 589,
+          "endIndex": 5200
+        },
+        "lines": {
+          "startRow": 25,
+          "endRow": 139
+        }
+      }
+    },
+    {
+      "rule": "cyclomatic-complexity",
+      "severity": "warning",
+      "measured": 12,
+      "threshold": 10,
+      "tier": "function",
+      "symbol": {
+        "kind": "function",
+        "name": "save_checkpoint",
+        "path": "backend/vendor/flowtts/model/trainer.py",
+        "bytes": {
+          "startIndex": 5292,
+          "endIndex": 7189
+        },
+        "lines": {
+          "startRow": 145,
+          "endRow": 178
+        }
+      }
+    },
+    {
+      "rule": "cyclomatic-complexity",
+      "severity": "warning",
+      "measured": 31,
+      "threshold": 10,
+      "tier": "function",
+      "symbol": {
+        "kind": "function",
+        "name": "load_checkpoint",
+        "path": "backend/vendor/flowtts/model/trainer.py",
+        "bytes": {
+          "startIndex": 7195,
+          "endIndex": 11297
+        },
+        "lines": {
+          "startRow": 180,
+          "endRow": 258
+        }
+      }
+    },
+    {
+      "rule": "cyclomatic-complexity",
+      "severity": "warning",
+      "measured": 29,
+      "threshold": 10,
+      "tier": "function",
+      "symbol": {
+        "kind": "function",
+        "name": "train",
+        "path": "backend/vendor/flowtts/model/trainer.py",
+        "bytes": {
+          "startIndex": 11303,
+          "endIndex": 20424
+        },
+        "lines": {
+          "startRow": 260,
+          "endRow": 437
+        }
+      }
+    },
+    {
+      "rule": "nesting-depth",
+      "severity": "warning",
+      "measured": 6,
+      "threshold": 4,
+      "tier": "function",
+      "symbol": {
+        "kind": "function",
+        "name": "train",
+        "path": "backend/vendor/flowtts/model/trainer.py",
+        "bytes": {
+          "startIndex": 11303,
+          "endIndex": 20424
+        },
+        "lines": {
+          "startRow": 260,
+          "endRow": 437
+        }
+      }
+    },
+    {
+      "rule": "argument-count",
+      "severity": "warning",
+      "measured": 27,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "kind": "function",
+        "name": "__init__",
+        "path": "backend/vendor/flowtts/model/trainer.py",
+        "bytes": {
+          "startIndex": 589,
+          "endIndex": 5200
+        },
+        "lines": {
+          "startRow": 25,
+          "endRow": 139
+        }
+      }
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0.87,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "__init__",
+        "path": "backend/vendor/flowtts/model/trainer.py",
+        "bytes": {
+          "startIndex": 589,
+          "endIndex": 5200
+        },
+        "lines": {
+          "startRow": 25,
+          "endRow": 139
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 2.94,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "save_checkpoint",
+        "path": "backend/vendor/flowtts/model/trainer.py",
+        "bytes": {
+          "startIndex": 5292,
+          "endIndex": 7189
+        },
+        "lines": {
+          "startRow": 145,
+          "endRow": 178
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 2.81,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "train",
+        "path": "backend/vendor/flowtts/model/trainer.py",
+        "bytes": {
+          "startIndex": 11303,
+          "endIndex": 20424
+        },
+        "lines": {
+          "startRow": 260,
+          "endRow": 437
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 3.42,
+      "threshold": 5,
+      "tier": "file",
+      "path": "backend/vendor/flowtts/model/trainer.py",
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "length",
+      "severity": "warning",
+      "measured": 438,
+      "threshold": 400,
+      "tier": "file",
+      "path": "backend/vendor/flowtts/model/trainer.py"
+    },
+    {
+      "rule": "cyclomatic-complexity",
+      "severity": "warning",
+      "measured": 15,
+      "threshold": 10,
+      "tier": "function",
+      "symbol": {
+        "kind": "function",
+        "name": "convert_char_to_pinyin",
+        "path": "backend/vendor/flowtts/model/utils.py",
+        "bytes": {
+          "startIndex": 4290,
+          "endIndex": 6008
+        },
+        "lines": {
+          "startRow": 136,
+          "endRow": 177
+        }
+      }
+    },
+    {
+      "rule": "nesting-depth",
+      "severity": "warning",
+      "measured": 5,
+      "threshold": 4,
+      "tier": "function",
+      "symbol": {
+        "kind": "function",
+        "name": "convert_char_to_pinyin",
+        "path": "backend/vendor/flowtts/model/utils.py",
+        "bytes": {
+          "startIndex": 4290,
+          "endIndex": 6008
+        },
+        "lines": {
+          "startRow": 136,
+          "endRow": 177
+        }
+      }
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "get_tokenizer",
+        "path": "backend/vendor/flowtts/model/utils.py",
+        "bytes": {
+          "startIndex": 2728,
+          "endIndex": 4260
+        },
+        "lines": {
+          "startRow": 100,
+          "endRow": 130
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "convert_char_to_pinyin",
+        "path": "backend/vendor/flowtts/model/utils.py",
+        "bytes": {
+          "startIndex": 4290,
+          "endIndex": 6008
+        },
+        "lines": {
+          "startRow": 136,
+          "endRow": 177
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 4.17,
+      "threshold": 5,
+      "tier": "file",
+      "path": "backend/vendor/flowtts/model/utils.py",
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "length",
+      "severity": "warning",
+      "tier": "function",
+      "measured": 54,
+      "threshold": 50,
+      "symbol": {
+        "kind": "function",
+        "name": "get_args",
+        "path": "backend/vendor/flowtts/runtime/triton_trtllm/benchmark.py",
+        "bytes": {
+          "startIndex": 1888,
+          "endIndex": 3703
+        },
+        "lines": {
+          "startRow": 56,
+          "endRow": 109
+        }
+      }
+    },
+    {
+      "rule": "length",
+      "severity": "warning",
+      "tier": "function",
+      "measured": 75,
+      "threshold": 50,
+      "symbol": {
+        "kind": "function",
+        "name": "data_collator",
+        "path": "backend/vendor/flowtts/runtime/triton_trtllm/benchmark.py",
+        "bytes": {
+          "startIndex": 4051,
+          "endIndex": 7031
+        },
+        "lines": {
+          "startRow": 122,
+          "endRow": 196
+        }
+      }
+    },
+    {
+      "rule": "length",
+      "severity": "warning",
+      "tier": "function",
+      "measured": 194,
+      "threshold": 50,
+      "symbol": {
+        "kind": "function",
+        "name": "main",
+        "path": "backend/vendor/flowtts/runtime/triton_trtllm/benchmark.py",
+        "bytes": {
+          "startIndex": 13815,
+          "endIndex": 21706
+        },
+        "lines": {
+          "startRow": 359,
+          "endRow": 552
+        }
+      }
+    },
+    {
+      "rule": "cyclomatic-complexity",
+      "severity": "warning",
+      "measured": 14,
+      "threshold": 10,
+      "tier": "function",
+      "symbol": {
+        "kind": "function",
+        "name": "convert_char_to_pinyin",
+        "path": "backend/vendor/flowtts/runtime/triton_trtllm/benchmark.py",
+        "bytes": {
+          "startIndex": 8424,
+          "endIndex": 10088
+        },
+        "lines": {
+          "startRow": 233,
+          "endRow": 268
+        }
+      }
+    },
+    {
+      "rule": "nesting-depth",
+      "severity": "warning",
+      "measured": 5,
+      "threshold": 4,
+      "tier": "function",
+      "symbol": {
+        "kind": "function",
+        "name": "convert_char_to_pinyin",
+        "path": "backend/vendor/flowtts/runtime/triton_trtllm/benchmark.py",
+        "bytes": {
+          "startIndex": 8424,
+          "endIndex": 10088
+        },
+        "lines": {
+          "startRow": 233,
+          "endRow": 268
+        }
+      }
+    },
+    {
+      "rule": "cyclomatic-complexity",
+      "severity": "warning",
+      "measured": 24,
+      "threshold": 10,
+      "tier": "function",
+      "symbol": {
+        "kind": "function",
+        "name": "main",
+        "path": "backend/vendor/flowtts/runtime/triton_trtllm/benchmark.py",
+        "bytes": {
+          "startIndex": 13815,
+          "endIndex": 21706
+        },
+        "lines": {
+          "startRow": 359,
+          "endRow": 552
+        }
+      }
+    },
+    {
+      "rule": "argument-count",
+      "severity": "warning",
+      "measured": 6,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "kind": "function",
+        "name": "load_vocoder",
+        "path": "backend/vendor/flowtts/runtime/triton_trtllm/benchmark.py",
+        "bytes": {
+          "startIndex": 10469,
+          "endIndex": 12216
+        },
+        "lines": {
+          "startRow": 281,
+          "endRow": 312
+        }
+      }
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "get_args",
+        "path": "backend/vendor/flowtts/runtime/triton_trtllm/benchmark.py",
+        "bytes": {
+          "startIndex": 1888,
+          "endIndex": 3703
+        },
+        "lines": {
+          "startRow": 56,
+          "endRow": 109
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "data_collator",
+        "path": "backend/vendor/flowtts/runtime/triton_trtllm/benchmark.py",
+        "bytes": {
+          "startIndex": 4051,
+          "endIndex": 7031
+        },
+        "lines": {
+          "startRow": 122,
+          "endRow": 196
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "convert_char_to_pinyin",
+        "path": "backend/vendor/flowtts/runtime/triton_trtllm/benchmark.py",
+        "bytes": {
+          "startIndex": 8424,
+          "endIndex": 10088
+        },
+        "lines": {
+          "startRow": 233,
+          "endRow": 268
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 3.13,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "load_vocoder",
+        "path": "backend/vendor/flowtts/runtime/triton_trtllm/benchmark.py",
+        "bytes": {
+          "startIndex": 10469,
+          "endIndex": 12216
+        },
+        "lines": {
+          "startRow": 281,
+          "endRow": 312
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 3.09,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "main",
+        "path": "backend/vendor/flowtts/runtime/triton_trtllm/benchmark.py",
+        "bytes": {
+          "startIndex": 13815,
+          "endIndex": 21706
+        },
+        "lines": {
+          "startRow": 359,
+          "endRow": 552
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 4.49,
+      "threshold": 5,
+      "tier": "file",
+      "path": "backend/vendor/flowtts/runtime/triton_trtllm/benchmark.py",
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "length",
+      "severity": "warning",
+      "measured": 557,
+      "threshold": 400,
+      "tier": "file",
+      "path": "backend/vendor/flowtts/runtime/triton_trtllm/benchmark.py"
+    },
+    {
+      "rule": "length",
+      "severity": "warning",
+      "tier": "function",
+      "measured": 54,
+      "threshold": 50,
+      "symbol": {
+        "kind": "function",
+        "name": "write_triton_stats",
+        "path": "backend/vendor/flowtts/runtime/triton_trtllm/client_grpc.py",
+        "bytes": {
+          "startIndex": 1748,
+          "endIndex": 5520
+        },
+        "lines": {
+          "startRow": 59,
+          "endRow": 112
+        }
+      }
+    },
+    {
+      "rule": "length",
+      "severity": "warning",
+      "tier": "function",
+      "measured": 106,
+      "threshold": 50,
+      "symbol": {
+        "kind": "function",
+        "name": "get_args",
+        "path": "backend/vendor/flowtts/runtime/triton_trtllm/client_grpc.py",
+        "bytes": {
+          "startIndex": 5523,
+          "endIndex": 8094
+        },
+        "lines": {
+          "startRow": 115,
+          "endRow": 220
+        }
+      }
+    },
+    {
+      "rule": "length",
+      "severity": "warning",
+      "tier": "function",
+      "measured": 79,
+      "threshold": 50,
+      "symbol": {
+        "kind": "function",
+        "name": "send",
+        "path": "backend/vendor/flowtts/runtime/triton_trtllm/client_grpc.py",
+        "bytes": {
+          "startIndex": 8649,
+          "endIndex": 11671
+        },
+        "lines": {
+          "startRow": 238,
+          "endRow": 316
+        }
+      }
+    },
+    {
+      "rule": "length",
+      "severity": "warning",
+      "tier": "function",
+      "measured": 103,
+      "threshold": 50,
+      "symbol": {
+        "kind": "function",
+        "name": "main",
+        "path": "backend/vendor/flowtts/runtime/triton_trtllm/client_grpc.py",
+        "bytes": {
+          "startIndex": 12952,
+          "endIndex": 16776
+        },
+        "lines": {
+          "startRow": 363,
+          "endRow": 465
+        }
+      }
+    },
+    {
+      "rule": "argument-count",
+      "severity": "warning",
+      "measured": 9,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "kind": "function",
+        "name": "send",
+        "path": "backend/vendor/flowtts/runtime/triton_trtllm/client_grpc.py",
+        "bytes": {
+          "startIndex": 8649,
+          "endIndex": 11671
+        },
+        "lines": {
+          "startRow": 238,
+          "endRow": 316
+        }
+      }
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 1.85,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "write_triton_stats",
+        "path": "backend/vendor/flowtts/runtime/triton_trtllm/client_grpc.py",
+        "bytes": {
+          "startIndex": 1748,
+          "endIndex": 5520
+        },
+        "lines": {
+          "startRow": 59,
+          "endRow": 112
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "get_args",
+        "path": "backend/vendor/flowtts/runtime/triton_trtllm/client_grpc.py",
+        "bytes": {
+          "startIndex": 5523,
+          "endIndex": 8094
+        },
+        "lines": {
+          "startRow": 115,
+          "endRow": 220
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 1.27,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "send",
+        "path": "backend/vendor/flowtts/runtime/triton_trtllm/client_grpc.py",
+        "bytes": {
+          "startIndex": 8649,
+          "endIndex": 11671
+        },
+        "lines": {
+          "startRow": 238,
+          "endRow": 316
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "split_data",
+        "path": "backend/vendor/flowtts/runtime/triton_trtllm/client_grpc.py",
+        "bytes": {
+          "startIndex": 12485,
+          "endIndex": 12949
+        },
+        "lines": {
+          "startRow": 340,
+          "endRow": 360
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "main",
+        "path": "backend/vendor/flowtts/runtime/triton_trtllm/client_grpc.py",
+        "bytes": {
+          "startIndex": 12952,
+          "endIndex": 16776
+        },
+        "lines": {
+          "startRow": 363,
+          "endRow": 465
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 4.26,
+      "threshold": 5,
+      "tier": "file",
+      "path": "backend/vendor/flowtts/runtime/triton_trtllm/client_grpc.py",
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "length",
+      "severity": "warning",
+      "measured": 470,
+      "threshold": 400,
+      "tier": "file",
+      "path": "backend/vendor/flowtts/runtime/triton_trtllm/client_grpc.py"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "get_args",
+        "path": "backend/vendor/flowtts/runtime/triton_trtllm/client_http.py",
+        "bytes": {
+          "startIndex": 1618,
+          "endIndex": 2938
+        },
+        "lines": {
+          "startRow": 31,
+          "endRow": 76
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "prepare_request",
+        "path": "backend/vendor/flowtts/runtime/triton_trtllm/client_http.py",
+        "bytes": {
+          "startIndex": 2941,
+          "endIndex": 3812
+        },
+        "lines": {
+          "startRow": 79,
+          "endRow": 104
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "length",
+      "severity": "warning",
+      "tier": "function",
+      "measured": 99,
+      "threshold": 50,
+      "symbol": {
+        "kind": "function",
+        "name": "__init__",
+        "path": "backend/vendor/flowtts/runtime/triton_trtllm/model_repo_f5_tts/f5_tts/1/f5_tts_trtllm.py",
+        "bytes": {
+          "startIndex": 5093,
+          "endIndex": 9676
+        },
+        "lines": {
+          "startRow": 133,
+          "endRow": 231
+        }
+      }
+    },
+    {
+      "rule": "length",
+      "severity": "warning",
+      "tier": "function",
+      "measured": 76,
+      "threshold": 50,
+      "symbol": {
+        "kind": "function",
+        "name": "forward",
+        "path": "backend/vendor/flowtts/runtime/triton_trtllm/model_repo_f5_tts/f5_tts/1/f5_tts_trtllm.py",
+        "bytes": {
+          "startIndex": 11088,
+          "endIndex": 14093
+        },
+        "lines": {
+          "startRow": 267,
+          "endRow": 342
+        }
+      }
+    },
+    {
+      "rule": "length",
+      "severity": "warning",
+      "tier": "function",
+      "measured": 87,
+      "threshold": 50,
+      "symbol": {
+        "kind": "function",
+        "name": "sample",
+        "path": "backend/vendor/flowtts/runtime/triton_trtllm/model_repo_f5_tts/f5_tts/1/f5_tts_trtllm.py",
+        "bytes": {
+          "startIndex": 14099,
+          "endIndex": 18342
+        },
+        "lines": {
+          "startRow": 344,
+          "endRow": 430
+        }
+      }
+    },
+    {
+      "rule": "cyclomatic-complexity",
+      "severity": "warning",
+      "measured": 16,
+      "threshold": 10,
+      "tier": "function",
+      "symbol": {
+        "kind": "function",
+        "name": "sample",
+        "path": "backend/vendor/flowtts/runtime/triton_trtllm/model_repo_f5_tts/f5_tts/1/f5_tts_trtllm.py",
+        "bytes": {
+          "startIndex": 14099,
+          "endIndex": 18342
+        },
+        "lines": {
+          "startRow": 344,
+          "endRow": 430
+        }
+      }
+    },
+    {
+      "rule": "argument-count",
+      "severity": "warning",
+      "measured": 6,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "kind": "function",
+        "name": "__init__",
+        "path": "backend/vendor/flowtts/runtime/triton_trtllm/model_repo_f5_tts/f5_tts/1/f5_tts_trtllm.py",
+        "bytes": {
+          "startIndex": 5093,
+          "endIndex": 9676
+        },
+        "lines": {
+          "startRow": 133,
+          "endRow": 231
+        }
+      }
+    },
+    {
+      "rule": "argument-count",
+      "severity": "warning",
+      "measured": 8,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "kind": "function",
+        "name": "forward",
+        "path": "backend/vendor/flowtts/runtime/triton_trtllm/model_repo_f5_tts/f5_tts/1/f5_tts_trtllm.py",
+        "bytes": {
+          "startIndex": 11088,
+          "endIndex": 14093
+        },
+        "lines": {
+          "startRow": 267,
+          "endRow": 342
+        }
+      }
+    },
+    {
+      "rule": "argument-count",
+      "severity": "warning",
+      "measured": 6,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "kind": "function",
+        "name": "sample",
+        "path": "backend/vendor/flowtts/runtime/triton_trtllm/model_repo_f5_tts/f5_tts/1/f5_tts_trtllm.py",
+        "bytes": {
+          "startIndex": 14099,
+          "endIndex": 18342
+        },
+        "lines": {
+          "startRow": 344,
+          "endRow": 430
+        }
+      }
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 2.02,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "__init__",
+        "path": "backend/vendor/flowtts/runtime/triton_trtllm/model_repo_f5_tts/f5_tts/1/f5_tts_trtllm.py",
+        "bytes": {
+          "startIndex": 5093,
+          "endIndex": 9676
+        },
+        "lines": {
+          "startRow": 133,
+          "endRow": 231
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 4.6,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "sample",
+        "path": "backend/vendor/flowtts/runtime/triton_trtllm/model_repo_f5_tts/f5_tts/1/f5_tts_trtllm.py",
+        "bytes": {
+          "startIndex": 14099,
+          "endIndex": 18342
+        },
+        "lines": {
+          "startRow": 344,
+          "endRow": 430
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "length",
+      "severity": "warning",
+      "measured": 431,
+      "threshold": 400,
+      "tier": "file",
+      "path": "backend/vendor/flowtts/runtime/triton_trtllm/model_repo_f5_tts/f5_tts/1/f5_tts_trtllm.py"
+    },
+    {
+      "rule": "length",
+      "severity": "warning",
+      "tier": "function",
+      "measured": 100,
+      "threshold": 50,
+      "symbol": {
+        "kind": "function",
+        "name": "execute",
+        "path": "backend/vendor/flowtts/runtime/triton_trtllm/model_repo_f5_tts/f5_tts/1/model.py",
+        "bytes": {
+          "startIndex": 7632,
+          "endIndex": 12176
+        },
+        "lines": {
+          "startRow": 175,
+          "endRow": 274
+        }
+      }
+    },
+    {
+      "rule": "cyclomatic-complexity",
+      "severity": "warning",
+      "measured": 14,
+      "threshold": 10,
+      "tier": "function",
+      "symbol": {
+        "kind": "function",
+        "name": "convert_char_to_pinyin",
+        "path": "backend/vendor/flowtts/runtime/triton_trtllm/model_repo_f5_tts/f5_tts/1/model.py",
+        "bytes": {
+          "startIndex": 2740,
+          "endIndex": 4404
+        },
+        "lines": {
+          "startRow": 56,
+          "endRow": 91
+        }
+      }
+    },
+    {
+      "rule": "nesting-depth",
+      "severity": "warning",
+      "measured": 5,
+      "threshold": 4,
+      "tier": "function",
+      "symbol": {
+        "kind": "function",
+        "name": "convert_char_to_pinyin",
+        "path": "backend/vendor/flowtts/runtime/triton_trtllm/model_repo_f5_tts/f5_tts/1/model.py",
+        "bytes": {
+          "startIndex": 2740,
+          "endIndex": 4404
+        },
+        "lines": {
+          "startRow": 56,
+          "endRow": 91
+        }
+      }
+    },
+    {
+      "rule": "cyclomatic-complexity",
+      "severity": "warning",
+      "measured": 14,
+      "threshold": 10,
+      "tier": "function",
+      "symbol": {
+        "kind": "function",
+        "name": "execute",
+        "path": "backend/vendor/flowtts/runtime/triton_trtllm/model_repo_f5_tts/f5_tts/1/model.py",
+        "bytes": {
+          "startIndex": 7632,
+          "endIndex": 12176
+        },
+        "lines": {
+          "startRow": 175,
+          "endRow": 274
+        }
+      }
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "convert_char_to_pinyin",
+        "path": "backend/vendor/flowtts/runtime/triton_trtllm/model_repo_f5_tts/f5_tts/1/model.py",
+        "bytes": {
+          "startIndex": 2740,
+          "endIndex": 4404
+        },
+        "lines": {
+          "startRow": 56,
+          "endRow": 91
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "initialize",
+        "path": "backend/vendor/flowtts/runtime/triton_trtllm/model_repo_f5_tts/f5_tts/1/model.py",
+        "bytes": {
+          "startIndex": 4731,
+          "endIndex": 6734
+        },
+        "lines": {
+          "startRow": 104,
+          "endRow": 152
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "execute",
+        "path": "backend/vendor/flowtts/runtime/triton_trtllm/model_repo_f5_tts/f5_tts/1/model.py",
+        "bytes": {
+          "startIndex": 7632,
+          "endIndex": 12176
+        },
+        "lines": {
+          "startRow": 175,
+          "endRow": 274
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "length",
+      "severity": "warning",
+      "tier": "function",
+      "measured": 144,
+      "threshold": 50,
+      "symbol": {
+        "kind": "function",
+        "name": "prepare_inputs",
+        "path": "backend/vendor/flowtts/runtime/triton_trtllm/patch/f5tts/model.py",
+        "bytes": {
+          "startIndex": 2562,
+          "endIndex": 7592
+        },
+        "lines": {
+          "startRow": 81,
+          "endRow": 224
+        }
+      }
+    },
+    {
+      "rule": "argument-count",
+      "severity": "warning",
+      "measured": 7,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "kind": "function",
+        "name": "forward",
+        "path": "backend/vendor/flowtts/runtime/triton_trtllm/patch/f5tts/model.py",
+        "bytes": {
+          "startIndex": 1988,
+          "endIndex": 2556
+        },
+        "lines": {
+          "startRow": 63,
+          "endRow": 79
+        }
+      }
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "__init__",
+        "path": "backend/vendor/flowtts/runtime/triton_trtllm/patch/f5tts/model.py",
+        "bytes": {
+          "startIndex": 1059,
+          "endIndex": 1982
+        },
+        "lines": {
+          "startRow": 38,
+          "endRow": 61
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "prepare_inputs",
+        "path": "backend/vendor/flowtts/runtime/triton_trtllm/patch/f5tts/model.py",
+        "bytes": {
+          "startIndex": 2562,
+          "endIndex": 7592
+        },
+        "lines": {
+          "startRow": 81,
+          "endRow": 224
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "file",
+      "path": "backend/vendor/flowtts/runtime/triton_trtllm/patch/f5tts/model.py",
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "length",
+      "severity": "warning",
+      "tier": "function",
+      "measured": 71,
+      "threshold": 50,
+      "symbol": {
+        "kind": "function",
+        "name": "__init__",
+        "path": "backend/vendor/flowtts/runtime/triton_trtllm/patch/f5tts/modules.py",
+        "bytes": {
+          "startIndex": 3210,
+          "endIndex": 5707
+        },
+        "lines": {
+          "startRow": 107,
+          "endRow": 177
+        }
+      }
+    },
+    {
+      "rule": "length",
+      "severity": "warning",
+      "tier": "function",
+      "measured": 99,
+      "threshold": 50,
+      "symbol": {
+        "kind": "function",
+        "name": "__call__",
+        "path": "backend/vendor/flowtts/runtime/triton_trtllm/patch/f5tts/modules.py",
+        "bytes": {
+          "startIndex": 8634,
+          "endIndex": 12565
+        },
+        "lines": {
+          "startRow": 251,
+          "endRow": 349
+        }
+      }
+    },
+    {
+      "rule": "argument-count",
+      "severity": "warning",
+      "measured": 7,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "kind": "function",
+        "name": "__init__",
+        "path": "backend/vendor/flowtts/runtime/triton_trtllm/patch/f5tts/modules.py",
+        "bytes": {
+          "startIndex": 3210,
+          "endIndex": 5707
+        },
+        "lines": {
+          "startRow": 107,
+          "endRow": 177
+        }
+      }
+    },
+    {
+      "rule": "argument-count",
+      "severity": "warning",
+      "measured": 8,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "kind": "function",
+        "name": "forward",
+        "path": "backend/vendor/flowtts/runtime/triton_trtllm/patch/f5tts/modules.py",
+        "bytes": {
+          "startIndex": 5713,
+          "endIndex": 6282
+        },
+        "lines": {
+          "startRow": 179,
+          "endRow": 195
+        }
+      }
+    },
+    {
+      "rule": "argument-count",
+      "severity": "warning",
+      "measured": 7,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "kind": "function",
+        "name": "__call__",
+        "path": "backend/vendor/flowtts/runtime/triton_trtllm/patch/f5tts/modules.py",
+        "bytes": {
+          "startIndex": 8634,
+          "endIndex": 12565
+        },
+        "lines": {
+          "startRow": 251,
+          "endRow": 349
+        }
+      }
+    },
+    {
+      "rule": "argument-count",
+      "severity": "warning",
+      "measured": 7,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "kind": "function",
+        "name": "forward",
+        "path": "backend/vendor/flowtts/runtime/triton_trtllm/patch/f5tts/modules.py",
+        "bytes": {
+          "startIndex": 13085,
+          "endIndex": 14365
+        },
+        "lines": {
+          "startRow": 369,
+          "endRow": 395
+        }
+      }
+    },
+    {
+      "rule": "naming",
+      "severity": "convention",
+      "measured": 1,
+      "threshold": 0,
+      "tier": "function",
+      "symbol": {
+        "kind": "class",
+        "name": "AdaLayerNormZero_Final",
+        "path": "backend/vendor/flowtts/runtime/triton_trtllm/patch/f5tts/modules.py",
+        "bytes": {
+          "startIndex": 1776,
+          "endIndex": 2412
+        },
+        "lines": {
+          "startRow": 67,
+          "endRow": 84
+        }
+      }
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "__init__",
+        "path": "backend/vendor/flowtts/runtime/triton_trtllm/patch/f5tts/modules.py",
+        "bytes": {
+          "startIndex": 3210,
+          "endIndex": 5707
+        },
+        "lines": {
+          "startRow": 107,
+          "endRow": 177
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "rotate_every_two_3dim",
+        "path": "backend/vendor/flowtts/runtime/triton_trtllm/patch/f5tts/modules.py",
+        "bytes": {
+          "startIndex": 6285,
+          "endIndex": 7444
+        },
+        "lines": {
+          "startRow": 198,
+          "endRow": 224
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 4.04,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "__call__",
+        "path": "backend/vendor/flowtts/runtime/triton_trtllm/patch/f5tts/modules.py",
+        "bytes": {
+          "startIndex": 8634,
+          "endIndex": 12565
+        },
+        "lines": {
+          "startRow": 251,
+          "endRow": 349
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 2.68,
+      "threshold": 5,
+      "tier": "file",
+      "path": "backend/vendor/flowtts/runtime/triton_trtllm/patch/f5tts/modules.py",
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "length",
+      "severity": "warning",
+      "measured": 410,
+      "threshold": 400,
+      "tier": "file",
+      "path": "backend/vendor/flowtts/runtime/triton_trtllm/patch/f5tts/modules.py"
+    },
+    {
+      "rule": "argument-count",
+      "severity": "warning",
+      "measured": 7,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "kind": "function",
+        "name": "__init__",
+        "path": "backend/vendor/flowtts/runtime/triton_trtllm/scripts/conv_stft.py",
+        "bytes": {
+          "startIndex": 2095,
+          "endIndex": 4010
+        },
+        "lines": {
+          "startRow": 52,
+          "endRow": 97
+        }
+      }
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "__init__",
+        "path": "backend/vendor/flowtts/runtime/triton_trtllm/scripts/conv_stft.py",
+        "bytes": {
+          "startIndex": 2095,
+          "endIndex": 4010
+        },
+        "lines": {
+          "startRow": 52,
+          "endRow": 97
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "__init_kernel__",
+        "path": "backend/vendor/flowtts/runtime/triton_trtllm/scripts/conv_stft.py",
+        "bytes": {
+          "startIndex": 4016,
+          "endIndex": 6029
+        },
+        "lines": {
+          "startRow": 99,
+          "endRow": 142
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "transform",
+        "path": "backend/vendor/flowtts/runtime/triton_trtllm/scripts/conv_stft.py",
+        "bytes": {
+          "startIndex": 6321,
+          "endIndex": 7892
+        },
+        "lines": {
+          "startRow": 154,
+          "endRow": 189
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "inverse",
+        "path": "backend/vendor/flowtts/runtime/triton_trtllm/scripts/conv_stft.py",
+        "bytes": {
+          "startIndex": 7898,
+          "endIndex": 9677
+        },
+        "lines": {
+          "startRow": 191,
+          "endRow": 232
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "length",
+      "severity": "warning",
+      "tier": "function",
+      "measured": 69,
+      "threshold": 50,
+      "symbol": {
+        "kind": "function",
+        "name": "convert_timm_dit",
+        "path": "backend/vendor/flowtts/runtime/triton_trtllm/scripts/convert_checkpoint.py",
+        "bytes": {
+          "startIndex": 14501,
+          "endIndex": 17536
+        },
+        "lines": {
+          "startRow": 200,
+          "endRow": 268
+        }
+      }
+    },
+    {
+      "rule": "cyclomatic-complexity",
+      "severity": "warning",
+      "measured": 17,
+      "threshold": 10,
+      "tier": "function",
+      "symbol": {
+        "kind": "function",
+        "name": "convert_timm_dit",
+        "path": "backend/vendor/flowtts/runtime/triton_trtllm/scripts/convert_checkpoint.py",
+        "bytes": {
+          "startIndex": 14501,
+          "endIndex": 17536
+        },
+        "lines": {
+          "startRow": 200,
+          "endRow": 268
+        }
+      }
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "parse_arguments",
+        "path": "backend/vendor/flowtts/runtime/triton_trtllm/scripts/convert_checkpoint.py",
+        "bytes": {
+          "startIndex": 12970,
+          "endIndex": 14498
+        },
+        "lines": {
+          "startRow": 170,
+          "endRow": 197
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 1.45,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "convert_timm_dit",
+        "path": "backend/vendor/flowtts/runtime/triton_trtllm/scripts/convert_checkpoint.py",
+        "bytes": {
+          "startIndex": 14501,
+          "endIndex": 17536
+        },
+        "lines": {
+          "startRow": 200,
+          "endRow": 268
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0.84,
+      "threshold": 5,
+      "tier": "file",
+      "path": "backend/vendor/flowtts/runtime/triton_trtllm/scripts/convert_checkpoint.py",
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "naming",
+      "severity": "convention",
+      "measured": 1,
+      "threshold": 0,
+      "tier": "function",
+      "symbol": {
+        "kind": "function",
+        "name": "export_VocosVocoder",
+        "path": "backend/vendor/flowtts/runtime/triton_trtllm/scripts/export_vocoder_to_onnx.py",
+        "bytes": {
+          "startIndex": 2394,
+          "endIndex": 3273
+        },
+        "lines": {
+          "startRow": 76,
+          "endRow": 106
+        }
+      }
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "export_VocosVocoder",
+        "path": "backend/vendor/flowtts/runtime/triton_trtllm/scripts/export_vocoder_to_onnx.py",
+        "bytes": {
+          "startIndex": 2394,
+          "endIndex": 3273
+        },
+        "lines": {
+          "startRow": 76,
+          "endRow": 106
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 4.76,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "load_vocoder",
+        "path": "backend/vendor/flowtts/runtime/triton_trtllm/scripts/export_vocoder_to_onnx.py",
+        "bytes": {
+          "startIndex": 3276,
+          "endIndex": 4471
+        },
+        "lines": {
+          "startRow": 109,
+          "endRow": 129
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "naming",
+      "severity": "convention",
+      "measured": 1,
+      "threshold": 0,
+      "tier": "function",
+      "symbol": {
+        "kind": "function",
+        "name": "listen_to_F5TTS",
+        "path": "backend/vendor/flowtts/socket_client.py",
+        "bytes": {
+          "startIndex": 170,
+          "endIndex": 1729
+        },
+        "lines": {
+          "startRow": 11,
+          "endRow": 54
+        }
+      }
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "listen_to_F5TTS",
+        "path": "backend/vendor/flowtts/socket_client.py",
+        "bytes": {
+          "startIndex": 170,
+          "endIndex": 1729
+        },
+        "lines": {
+          "startRow": 11,
+          "endRow": 54
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "play_audio_stream",
+        "path": "backend/vendor/flowtts/socket_client.py",
+        "bytes": {
+          "startIndex": 488,
+          "endIndex": 1411
+        },
+        "lines": {
+          "startRow": 18,
+          "endRow": 43
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "file",
+      "path": "backend/vendor/flowtts/socket_client.py",
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "argument-count",
+      "severity": "warning",
+      "measured": 7,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "kind": "function",
+        "name": "__init__",
+        "path": "backend/vendor/flowtts/socket_server.py",
+        "bytes": {
+          "startIndex": 2002,
+          "endIndex": 2995
+        },
+        "lines": {
+          "startRow": 71,
+          "endRow": 93
+        }
+      }
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "__init__",
+        "path": "backend/vendor/flowtts/socket_server.py",
+        "bytes": {
+          "startIndex": 2002,
+          "endIndex": 2995
+        },
+        "lines": {
+          "startRow": 71,
+          "endRow": 93
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "handle_client",
+        "path": "backend/vendor/flowtts/socket_server.py",
+        "bytes": {
+          "startIndex": 6171,
+          "endIndex": 6966
+        },
+        "lines": {
+          "startRow": 178,
+          "endRow": 198
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 2.25,
+      "threshold": 5,
+      "tier": "file",
+      "path": "backend/vendor/flowtts/socket_server.py",
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "length",
+      "severity": "warning",
+      "tier": "function",
+      "measured": 63,
+      "threshold": 50,
+      "symbol": {
+        "kind": "function",
+        "name": "prepare_csv_wavs_dir",
+        "path": "backend/vendor/flowtts/train/datasets/prepare_csv_wavs.py",
+        "bytes": {
+          "startIndex": 2722,
+          "endIndex": 5361
+        },
+        "lines": {
+          "startRow": 92,
+          "endRow": 154
+        }
+      }
+    },
+    {
+      "rule": "cyclomatic-complexity",
+      "severity": "warning",
+      "measured": 12,
+      "threshold": 10,
+      "tier": "function",
+      "symbol": {
+        "kind": "function",
+        "name": "prepare_csv_wavs_dir",
+        "path": "backend/vendor/flowtts/train/datasets/prepare_csv_wavs.py",
+        "bytes": {
+          "startIndex": 2722,
+          "endIndex": 5361
+        },
+        "lines": {
+          "startRow": 92,
+          "endRow": 154
+        }
+      }
+    },
+    {
+      "rule": "nesting-depth",
+      "severity": "warning",
+      "measured": 6,
+      "threshold": 4,
+      "tier": "function",
+      "symbol": {
+        "kind": "function",
+        "name": "prepare_csv_wavs_dir",
+        "path": "backend/vendor/flowtts/train/datasets/prepare_csv_wavs.py",
+        "bytes": {
+          "startIndex": 2722,
+          "endIndex": 5361
+        },
+        "lines": {
+          "startRow": 92,
+          "endRow": 154
+        }
+      }
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "get_audio_duration",
+        "path": "backend/vendor/flowtts/train/datasets/prepare_csv_wavs.py",
+        "bytes": {
+          "startIndex": 5364,
+          "endIndex": 6557
+        },
+        "lines": {
+          "startRow": 157,
+          "endRow": 186
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "length",
+      "severity": "warning",
+      "tier": "function",
+      "measured": 57,
+      "threshold": 50,
+      "symbol": {
+        "kind": "function",
+        "name": "main",
+        "path": "backend/vendor/flowtts/train/datasets/prepare_emilia.py",
+        "bytes": {
+          "startIndex": 4125,
+          "endIndex": 6515
+        },
+        "lines": {
+          "startRow": 148,
+          "endRow": 204
+        }
+      }
+    },
+    {
+      "rule": "cyclomatic-complexity",
+      "severity": "warning",
+      "measured": 13,
+      "threshold": 10,
+      "tier": "function",
+      "symbol": {
+        "kind": "function",
+        "name": "deal_with_audio_dir",
+        "path": "backend/vendor/flowtts/train/datasets/prepare_emilia.py",
+        "bytes": {
+          "startIndex": 2591,
+          "endIndex": 4122
+        },
+        "lines": {
+          "startRow": 112,
+          "endRow": 145
+        }
+      }
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "deal_with_audio_dir",
+        "path": "backend/vendor/flowtts/train/datasets/prepare_emilia.py",
+        "bytes": {
+          "startIndex": 2591,
+          "endIndex": 4122
+        },
+        "lines": {
+          "startRow": 112,
+          "endRow": 145
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "process_audio_directory",
+        "path": "backend/vendor/flowtts/train/datasets/prepare_emilia_v2.py",
+        "bytes": {
+          "startIndex": 459,
+          "endIndex": 1309
+        },
+        "lines": {
+          "startRow": 20,
+          "endRow": 40
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "main",
+        "path": "backend/vendor/flowtts/train/datasets/prepare_emilia_v2.py",
+        "bytes": {
+          "startIndex": 1312,
+          "endIndex": 2809
+        },
+        "lines": {
+          "startRow": 43,
+          "endRow": 81
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 4.26,
+      "threshold": 5,
+      "tier": "file",
+      "path": "backend/vendor/flowtts/train/datasets/prepare_emilia_v2.py",
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "cyclomatic-complexity",
+      "severity": "warning",
+      "measured": 12,
+      "threshold": 10,
+      "tier": "function",
+      "symbol": {
+        "kind": "function",
+        "name": "main",
+        "path": "backend/vendor/flowtts/train/datasets/prepare_wenetspeech4tts.py",
+        "bytes": {
+          "startIndex": 1341,
+          "endIndex": 3298
+        },
+        "lines": {
+          "startRow": 47,
+          "endRow": 91
+        }
+      }
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "deal_with_sub_path_files",
+        "path": "backend/vendor/flowtts/train/datasets/prepare_wenetspeech4tts.py",
+        "bytes": {
+          "startIndex": 353,
+          "endIndex": 1338
+        },
+        "lines": {
+          "startRow": 19,
+          "endRow": 44
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 2.22,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "main",
+        "path": "backend/vendor/flowtts/train/datasets/prepare_wenetspeech4tts.py",
+        "bytes": {
+          "startIndex": 1341,
+          "endIndex": 3298
+        },
+        "lines": {
+          "startRow": 47,
+          "endRow": 91
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "length",
+      "severity": "warning",
+      "tier": "function",
+      "measured": 53,
+      "threshold": 50,
+      "symbol": {
+        "kind": "function",
+        "name": "parse_args",
+        "path": "backend/vendor/flowtts/train/finetune_cli.py",
+        "bytes": {
+          "startIndex": 557,
+          "endIndex": 3164
+        },
+        "lines": {
+          "startRow": 22,
+          "endRow": 74
+        }
+      }
+    },
+    {
+      "rule": "length",
+      "severity": "warning",
+      "tier": "function",
+      "measured": 130,
+      "threshold": 50,
+      "symbol": {
+        "kind": "function",
+        "name": "main",
+        "path": "backend/vendor/flowtts/train/finetune_cli.py",
+        "bytes": {
+          "startIndex": 3245,
+          "endIndex": 7552
+        },
+        "lines": {
+          "startRow": 80,
+          "endRow": 209
+        }
+      }
+    },
+    {
+      "rule": "cyclomatic-complexity",
+      "severity": "warning",
+      "measured": 16,
+      "threshold": 10,
+      "tier": "function",
+      "symbol": {
+        "kind": "function",
+        "name": "main",
+        "path": "backend/vendor/flowtts/train/finetune_cli.py",
+        "bytes": {
+          "startIndex": 3245,
+          "endIndex": 7552
+        },
+        "lines": {
+          "startRow": 80,
+          "endRow": 209
+        }
+      }
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "parse_args",
+        "path": "backend/vendor/flowtts/train/finetune_cli.py",
+        "bytes": {
+          "startIndex": 557,
+          "endIndex": 3164
+        },
+        "lines": {
+          "startRow": 22,
+          "endRow": 74
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 1.54,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "main",
+        "path": "backend/vendor/flowtts/train/finetune_cli.py",
+        "bytes": {
+          "startIndex": 3245,
+          "endIndex": 7552
+        },
+        "lines": {
+          "startRow": 80,
+          "endRow": 209
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 2.34,
+      "threshold": 5,
+      "tier": "file",
+      "path": "backend/vendor/flowtts/train/finetune_cli.py",
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "length",
+      "severity": "warning",
+      "measured": 2190,
+      "threshold": 2000,
+      "tier": "module",
+      "module": "backend/vendor/flowtts/train",
+      "members": [
+        "backend/vendor/flowtts/train/finetune_cli.py",
+        "backend/vendor/flowtts/train/finetune_gradio.py",
+        "backend/vendor/flowtts/train/train.py"
+      ]
+    },
+    {
+      "rule": "length",
+      "severity": "warning",
+      "tier": "function",
+      "measured": 58,
+      "threshold": 50,
+      "symbol": {
+        "kind": "function",
+        "name": "load_settings",
+        "path": "backend/vendor/flowtts/train/finetune_gradio.py",
+        "bytes": {
+          "startIndex": 2848,
+          "endIndex": 4954
+        },
+        "lines": {
+          "startRow": 113,
+          "endRow": 170
+        }
+      }
+    },
+    {
+      "rule": "length",
+      "severity": "warning",
+      "tier": "function",
+      "measured": 86,
+      "threshold": 50,
+      "symbol": {
+        "kind": "function",
+        "name": "slice",
+        "path": "backend/vendor/flowtts/train/finetune_gradio.py",
+        "bytes": {
+          "startIndex": 7704,
+          "endIndex": 11967
+        },
+        "lines": {
+          "startRow": 247,
+          "endRow": 332
+        }
+      }
+    },
+    {
+      "rule": "length",
+      "severity": "warning",
+      "tier": "function",
+      "measured": 256,
+      "threshold": 50,
+      "symbol": {
+        "kind": "function",
+        "name": "start_training",
+        "path": "backend/vendor/flowtts/train/finetune_gradio.py",
+        "bytes": {
+          "startIndex": 12685,
+          "endIndex": 21500
+        },
+        "lines": {
+          "startRow": 364,
+          "endRow": 619
+        }
+      }
+    },
+    {
+      "rule": "length",
+      "severity": "warning",
+      "tier": "function",
+      "measured": 69,
+      "threshold": 50,
+      "symbol": {
+        "kind": "function",
+        "name": "transcribe_all",
+        "path": "backend/vendor/flowtts/train/finetune_gradio.py",
+        "bytes": {
+          "startIndex": 22674,
+          "endIndex": 25038
+        },
+        "lines": {
+          "startRow": 657,
+          "endRow": 725
+        }
+      }
+    },
+    {
+      "rule": "length",
+      "severity": "warning",
+      "tier": "function",
+      "measured": 108,
+      "threshold": 50,
+      "symbol": {
+        "kind": "function",
+        "name": "create_metadata",
+        "path": "backend/vendor/flowtts/train/finetune_gradio.py",
+        "bytes": {
+          "startIndex": 26540,
+          "endIndex": 30482
+        },
+        "lines": {
+          "startRow": 766,
+          "endRow": 873
+        }
+      }
+    },
+    {
+      "rule": "length",
+      "severity": "warning",
+      "tier": "function",
+      "measured": 87,
+      "threshold": 50,
+      "symbol": {
+        "kind": "function",
+        "name": "calculate_train",
+        "path": "backend/vendor/flowtts/train/finetune_gradio.py",
+        "bytes": {
+          "startIndex": 30576,
+          "endIndex": 33259
+        },
+        "lines": {
+          "startRow": 880,
+          "endRow": 966
+        }
+      }
+    },
+    {
+      "rule": "length",
+      "severity": "warning",
+      "tier": "function",
+      "measured": 61,
+      "threshold": 50,
+      "symbol": {
+        "kind": "function",
+        "name": "vocab_extend",
+        "path": "backend/vendor/flowtts/train/finetune_gradio.py",
+        "bytes": {
+          "startIndex": 35768,
+          "endIndex": 37977
+        },
+        "lines": {
+          "startRow": 1038,
+          "endRow": 1098
+        }
+      }
+    },
+    {
+      "rule": "length",
+      "severity": "warning",
+      "tier": "function",
+      "measured": 52,
+      "threshold": 50,
+      "symbol": {
+        "kind": "function",
+        "name": "get_gpu_stats",
+        "path": "backend/vendor/flowtts/train/finetune_gradio.py",
+        "bytes": {
+          "startIndex": 44678,
+          "endIndex": 46900
+        },
+        "lines": {
+          "startRow": 1304,
+          "endRow": 1355
+        }
+      }
+    },
+    {
+      "rule": "cyclomatic-complexity",
+      "severity": "warning",
+      "measured": 22,
+      "threshold": 10,
+      "tier": "function",
+      "symbol": {
+        "kind": "function",
+        "name": "slice",
+        "path": "backend/vendor/flowtts/train/finetune_gradio.py",
+        "bytes": {
+          "startIndex": 7704,
+          "endIndex": 11967
+        },
+        "lines": {
+          "startRow": 247,
+          "endRow": 332
+        }
+      }
+    },
+    {
+      "rule": "cyclomatic-complexity",
+      "severity": "warning",
+      "measured": 32,
+      "threshold": 10,
+      "tier": "function",
+      "symbol": {
+        "kind": "function",
+        "name": "start_training",
+        "path": "backend/vendor/flowtts/train/finetune_gradio.py",
+        "bytes": {
+          "startIndex": 12685,
+          "endIndex": 21500
+        },
+        "lines": {
+          "startRow": 364,
+          "endRow": 619
+        }
+      }
+    },
+    {
+      "rule": "nesting-depth",
+      "severity": "warning",
+      "measured": 6,
+      "threshold": 4,
+      "tier": "function",
+      "symbol": {
+        "kind": "function",
+        "name": "start_training",
+        "path": "backend/vendor/flowtts/train/finetune_gradio.py",
+        "bytes": {
+          "startIndex": 12685,
+          "endIndex": 21500
+        },
+        "lines": {
+          "startRow": 364,
+          "endRow": 619
+        }
+      }
+    },
+    {
+      "rule": "cyclomatic-complexity",
+      "severity": "warning",
+      "measured": 14,
+      "threshold": 10,
+      "tier": "function",
+      "symbol": {
+        "kind": "function",
+        "name": "transcribe_all",
+        "path": "backend/vendor/flowtts/train/finetune_gradio.py",
+        "bytes": {
+          "startIndex": 22674,
+          "endIndex": 25038
+        },
+        "lines": {
+          "startRow": 657,
+          "endRow": 725
+        }
+      }
+    },
+    {
+      "rule": "cyclomatic-complexity",
+      "severity": "warning",
+      "measured": 21,
+      "threshold": 10,
+      "tier": "function",
+      "symbol": {
+        "kind": "function",
+        "name": "create_metadata",
+        "path": "backend/vendor/flowtts/train/finetune_gradio.py",
+        "bytes": {
+          "startIndex": 26540,
+          "endIndex": 30482
+        },
+        "lines": {
+          "startRow": 766,
+          "endRow": 873
+        }
+      }
+    },
+    {
+      "rule": "cyclomatic-complexity",
+      "severity": "warning",
+      "measured": 13,
+      "threshold": 10,
+      "tier": "function",
+      "symbol": {
+        "kind": "function",
+        "name": "calculate_train",
+        "path": "backend/vendor/flowtts/train/finetune_gradio.py",
+        "bytes": {
+          "startIndex": 30576,
+          "endIndex": 33259
+        },
+        "lines": {
+          "startRow": 880,
+          "endRow": 966
+        }
+      }
+    },
+    {
+      "rule": "cyclomatic-complexity",
+      "severity": "warning",
+      "measured": 11,
+      "threshold": 10,
+      "tier": "function",
+      "symbol": {
+        "kind": "function",
+        "name": "vocab_extend",
+        "path": "backend/vendor/flowtts/train/finetune_gradio.py",
+        "bytes": {
+          "startIndex": 35768,
+          "endIndex": 37977
+        },
+        "lines": {
+          "startRow": 1038,
+          "endRow": 1098
+        }
+      }
+    },
+    {
+      "rule": "cyclomatic-complexity",
+      "severity": "warning",
+      "measured": 11,
+      "threshold": 10,
+      "tier": "function",
+      "symbol": {
+        "kind": "function",
+        "name": "infer",
+        "path": "backend/vendor/flowtts/train/finetune_gradio.py",
+        "bytes": {
+          "startIndex": 40833,
+          "endIndex": 42356
+        },
+        "lines": {
+          "startRow": 1197,
+          "endRow": 1242
+        }
+      }
+    },
+    {
+      "rule": "cyclomatic-complexity",
+      "severity": "warning",
+      "measured": 12,
+      "threshold": 10,
+      "tier": "function",
+      "symbol": {
+        "kind": "function",
+        "name": "get_checkpoints_project",
+        "path": "backend/vendor/flowtts/train/finetune_gradio.py",
+        "bytes": {
+          "startIndex": 42500,
+          "endIndex": 43885
+        },
+        "lines": {
+          "startRow": 1249,
+          "endRow": 1280
+        }
+      }
+    },
+    {
+      "rule": "argument-count",
+      "severity": "warning",
+      "measured": 20,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "kind": "function",
+        "name": "save_settings",
+        "path": "backend/vendor/flowtts/train/finetune_gradio.py",
+        "bytes": {
+          "startIndex": 1276,
+          "endIndex": 2812
+        },
+        "lines": {
+          "startRow": 60,
+          "endRow": 109
+        }
+      }
+    },
+    {
+      "rule": "argument-count",
+      "severity": "warning",
+      "measured": 6,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "kind": "function",
+        "name": "__init__",
+        "path": "backend/vendor/flowtts/train/finetune_gradio.py",
+        "bytes": {
+          "startIndex": 6434,
+          "endIndex": 7386
+        },
+        "lines": {
+          "startRow": 219,
+          "endRow": 238
+        }
+      }
+    },
+    {
+      "rule": "argument-count",
+      "severity": "warning",
+      "measured": 21,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "kind": "function",
+        "name": "start_training",
+        "path": "backend/vendor/flowtts/train/finetune_gradio.py",
+        "bytes": {
+          "startIndex": 12685,
+          "endIndex": 21500
+        },
+        "lines": {
+          "startRow": 364,
+          "endRow": 619
+        }
+      }
+    },
+    {
+      "rule": "argument-count",
+      "severity": "warning",
+      "measured": 8,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "kind": "function",
+        "name": "calculate_train",
+        "path": "backend/vendor/flowtts/train/finetune_gradio.py",
+        "bytes": {
+          "startIndex": 30576,
+          "endIndex": 33259
+        },
+        "lines": {
+          "startRow": 880,
+          "endRow": 966
+        }
+      }
+    },
+    {
+      "rule": "argument-count",
+      "severity": "warning",
+      "measured": 11,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "kind": "function",
+        "name": "infer",
+        "path": "backend/vendor/flowtts/train/finetune_gradio.py",
+        "bytes": {
+          "startIndex": 40833,
+          "endIndex": 42356
+        },
+        "lines": {
+          "startRow": 1197,
+          "endRow": 1242
+        }
+      }
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "save_settings",
+        "path": "backend/vendor/flowtts/train/finetune_gradio.py",
+        "bytes": {
+          "startIndex": 1276,
+          "endIndex": 2812
+        },
+        "lines": {
+          "startRow": 60,
+          "endRow": 109
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "__init__",
+        "path": "backend/vendor/flowtts/train/finetune_gradio.py",
+        "bytes": {
+          "startIndex": 6434,
+          "endIndex": 7386
+        },
+        "lines": {
+          "startRow": 219,
+          "endRow": 238
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 3.52,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "start_training",
+        "path": "backend/vendor/flowtts/train/finetune_gradio.py",
+        "bytes": {
+          "startIndex": 12685,
+          "endIndex": 21500
+        },
+        "lines": {
+          "startRow": 364,
+          "endRow": 619
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "transcribe_all",
+        "path": "backend/vendor/flowtts/train/finetune_gradio.py",
+        "bytes": {
+          "startIndex": 22674,
+          "endIndex": 25038
+        },
+        "lines": {
+          "startRow": 657,
+          "endRow": 725
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "create_metadata",
+        "path": "backend/vendor/flowtts/train/finetune_gradio.py",
+        "bytes": {
+          "startIndex": 26540,
+          "endIndex": 30482
+        },
+        "lines": {
+          "startRow": 766,
+          "endRow": 873
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 2.3,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "calculate_train",
+        "path": "backend/vendor/flowtts/train/finetune_gradio.py",
+        "bytes": {
+          "startIndex": 30576,
+          "endIndex": 33259
+        },
+        "lines": {
+          "startRow": 880,
+          "endRow": 966
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "prune_checkpoint",
+        "path": "backend/vendor/flowtts/train/finetune_gradio.py",
+        "bytes": {
+          "startIndex": 33262,
+          "endIndex": 34313
+        },
+        "lines": {
+          "startRow": 969,
+          "endRow": 991
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "expand_model_embeddings",
+        "path": "backend/vendor/flowtts/train/finetune_gradio.py",
+        "bytes": {
+          "startIndex": 34316,
+          "endIndex": 35703
+        },
+        "lines": {
+          "startRow": 994,
+          "endRow": 1031
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 1.64,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "vocab_extend",
+        "path": "backend/vendor/flowtts/train/finetune_gradio.py",
+        "bytes": {
+          "startIndex": 35768,
+          "endIndex": 37977
+        },
+        "lines": {
+          "startRow": 1038,
+          "endRow": 1098
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "vocab_check",
+        "path": "backend/vendor/flowtts/train/finetune_gradio.py",
+        "bytes": {
+          "startIndex": 37980,
+          "endIndex": 39310
+        },
+        "lines": {
+          "startRow": 1101,
+          "endRow": 1143
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 3.7,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "get_random_sample_transcribe",
+        "path": "backend/vendor/flowtts/train/finetune_gradio.py",
+        "bytes": {
+          "startIndex": 39855,
+          "endIndex": 40662
+        },
+        "lines": {
+          "startRow": 1159,
+          "endRow": 1185
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "infer",
+        "path": "backend/vendor/flowtts/train/finetune_gradio.py",
+        "bytes": {
+          "startIndex": 40833,
+          "endIndex": 42356
+        },
+        "lines": {
+          "startRow": 1197,
+          "endRow": 1242
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "get_gpu_stats",
+        "path": "backend/vendor/flowtts/train/finetune_gradio.py",
+        "bytes": {
+          "startIndex": 44678,
+          "endIndex": 46900
+        },
+        "lines": {
+          "startRow": 1304,
+          "endRow": 1355
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "setup_load_settings",
+        "path": "backend/vendor/flowtts/train/finetune_gradio.py",
+        "bytes": {
+          "startIndex": 62779,
+          "endIndex": 63596
+        },
+        "lines": {
+          "startRow": 1749,
+          "endRow": 1771
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 2.26,
+      "threshold": 5,
+      "tier": "file",
+      "path": "backend/vendor/flowtts/train/finetune_gradio.py",
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "length",
+      "severity": "warning",
+      "measured": 1900,
+      "threshold": 400,
+      "tier": "file",
+      "path": "backend/vendor/flowtts/train/finetune_gradio.py"
+    },
+    {
+      "rule": "length",
+      "severity": "warning",
+      "tier": "function",
+      "measured": 56,
+      "threshold": 50,
+      "symbol": {
+        "kind": "function",
+        "name": "main",
+        "path": "backend/vendor/flowtts/train/train.py",
+        "bytes": {
+          "startIndex": 464,
+          "endIndex": 2898
+        },
+        "lines": {
+          "startRow": 16,
+          "endRow": 71
+        }
+      }
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "split_text_into_sentences",
+        "path": "backend/vendor/flowtts/utils.py",
+        "bytes": {
+          "startIndex": 530,
+          "endIndex": 1297
+        },
+        "lines": {
+          "startRow": 17,
+          "endRow": 39
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "file",
+      "path": "backend/vendor/flowtts/utils.py",
+      "check": "density-below-floor"
+    }
+  ],
+  "adapters": [
+    {
+      "tool": "ruff",
+      "selection": {
+        "evidence": "none",
+        "considered": [
+          "ruff"
+        ]
+      },
+      "program": null,
+      "result": {
+        "outcome": "unsupported",
+        "reason": "no native linter covered these files: looked for a configuration file for ruff at the repository root, and for ruff on PATH in a repository of that ecosystem. Their findings are missing from this report — that is a gap and not a pass."
+      },
+      "files": 54,
+      "findings": 0,
+      "refusedPaths": 0,
+      "outsideAnalysis": 0,
+      "refusedShape": 0
+    }
+  ]
+}

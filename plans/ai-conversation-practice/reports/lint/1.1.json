@@ -1,0 +1,59 @@
+{
+  "version": 1,
+  "task": "1.1",
+  "pass": "after",
+  "result": {
+    "outcome": "unsupported",
+    "reason": ".gitignore: no grammar covers '.gitignore' files (and 5 more) — 3 violations were measured before this and are not shown"
+  },
+  "findings": [
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "file",
+      "path": "backend/app/schemas.py",
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "file",
+      "path": "backend/tests/conftest.py",
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 2.8,
+      "threshold": 5,
+      "tier": "file",
+      "path": "backend/tests/test_health.py",
+      "check": "density-below-floor"
+    }
+  ],
+  "adapters": [
+    {
+      "tool": "ruff",
+      "selection": {
+        "evidence": "none",
+        "considered": [
+          "ruff"
+        ]
+      },
+      "program": null,
+      "result": {
+        "outcome": "unsupported",
+        "reason": "no native linter covered these files: looked for a configuration file for ruff at the repository root, and for ruff on PATH in a repository of that ecosystem. Their findings are missing from this report — that is a gap and not a pass."
+      },
+      "files": 4,
+      "findings": 0,
+      "refusedPaths": 0,
+      "outsideAnalysis": 0,
+      "refusedShape": 0
+    }
+  ]
+}

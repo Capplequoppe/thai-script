@@ -1,0 +1,59 @@
+{
+  "formatVersion": "1",
+  "runId": "run-20260912T202134Z",
+  "status": "built",
+  "degraded": [],
+  "header": {
+    "healthDelta": {
+      "state": "measured",
+      "value": {
+        "kind": "health-delta",
+        "fromRef": "31ff743804d4ddb0fc6f7ff1a3b467cd175f2545",
+        "toRef": "31ff743804d4ddb0fc6f7ff1a3b467cd175f2545",
+        "files": [],
+        "skipped": {
+          "deleted": 0,
+          "renamed-without-edit": 0,
+          "binary": 0,
+          "symlink": 0,
+          "submodule": 0
+        },
+        "refused": 0
+      }
+    },
+    "conformance": {
+      "reviewerValidation": {
+        "state": "measured",
+        "value": {
+          "count": 0,
+          "total": 0
+        }
+      },
+      "redBeforeGreen": {
+        "state": "measured",
+        "value": {
+          "count": 0,
+          "total": 0
+        }
+      },
+      "coversWarnings": {
+        "state": "measured",
+        "value": []
+      },
+      "worstContinuationRounds": {
+        "state": "measured",
+        "value": 0
+      },
+      "inheritedGates": {
+        "state": "measured",
+        "value": []
+      },
+      "worstRedGreenCycles": {
+        "state": "measured",
+        "value": 0
+      }
+    },
+    "flags": []
+  },
+  "tasks": []
+}

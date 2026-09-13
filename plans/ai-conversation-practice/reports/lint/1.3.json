@@ -1,0 +1,299 @@
+{
+  "version": 1,
+  "task": "1.3",
+  "pass": "after",
+  "result": {
+    "outcome": "unsupported",
+    "reason": "plans/ai-conversation-practice/phase-1-conversation-pipeline-mvp/task-1.3-frontend-port-adapter-page.md: no grammar covers '.md' files (and 6 more) — 14 violations were measured before this and are not shown"
+  },
+  "findings": [
+    {
+      "rule": "naming",
+      "severity": "convention",
+      "measured": 1,
+      "threshold": 0,
+      "tier": "function",
+      "symbol": {
+        "kind": "function",
+        "name": "URL.createObjectURL",
+        "path": "src/infrastructure/conversation/HttpConversationPracticeClient.test.ts",
+        "bytes": {
+          "startIndex": 742,
+          "endIndex": 838
+        },
+        "lines": {
+          "startRow": 27,
+          "endRow": 30
+        }
+      }
+    },
+    {
+      "rule": "naming",
+      "severity": "convention",
+      "measured": 1,
+      "threshold": 0,
+      "tier": "function",
+      "symbol": {
+        "kind": "function",
+        "name": "URL.revokeObjectURL",
+        "path": "src/infrastructure/conversation/HttpConversationPracticeClient.test.ts",
+        "bytes": {
+          "startIndex": 863,
+          "endIndex": 871
+        },
+        "lines": {
+          "startRow": 31,
+          "endRow": 31
+        }
+      }
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 4.44,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "(anonymous)",
+        "path": "src/infrastructure/conversation/HttpConversationPracticeClient.test.ts",
+        "bytes": {
+          "startIndex": 999,
+          "endIndex": 2472
+        },
+        "lines": {
+          "startRow": 39,
+          "endRow": 83
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "(anonymous)",
+        "path": "src/infrastructure/conversation/HttpConversationPracticeClient.test.ts",
+        "bytes": {
+          "startIndex": 2530,
+          "endIndex": 4174
+        },
+        "lines": {
+          "startRow": 85,
+          "endRow": 141
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "(anonymous)",
+        "path": "src/infrastructure/conversation/HttpConversationPracticeClient.test.ts",
+        "bytes": {
+          "startIndex": 2668,
+          "endIndex": 3601
+        },
+        "lines": {
+          "startRow": 86,
+          "endRow": 118
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "(anonymous)",
+        "path": "src/infrastructure/conversation/HttpConversationPracticeClient.test.ts",
+        "bytes": {
+          "startIndex": 3693,
+          "endIndex": 4170
+        },
+        "lines": {
+          "startRow": 120,
+          "endRow": 140
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "(anonymous)",
+        "path": "src/infrastructure/conversation/HttpConversationPracticeClient.test.ts",
+        "bytes": {
+          "startIndex": 5286,
+          "endIndex": 5983
+        },
+        "lines": {
+          "startRow": 166,
+          "endRow": 191
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 4.64,
+      "threshold": 5,
+      "tier": "file",
+      "path": "src/infrastructure/conversation/HttpConversationPracticeClient.test.ts",
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "fetchJson",
+        "path": "src/infrastructure/conversation/HttpConversationPracticeClient.ts",
+        "bytes": {
+          "startIndex": 1993,
+          "endIndex": 2694
+        },
+        "lines": {
+          "startRow": 51,
+          "endRow": 76
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 3.57,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "getOpening",
+        "path": "src/infrastructure/conversation/HttpConversationPracticeClient.ts",
+        "bytes": {
+          "startIndex": 4031,
+          "endIndex": 4753
+        },
+        "lines": {
+          "startRow": 110,
+          "endRow": 137
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "judgeReply",
+        "path": "src/infrastructure/conversation/HttpConversationPracticeClient.ts",
+        "bytes": {
+          "startIndex": 4756,
+          "endIndex": 5623
+        },
+        "lines": {
+          "startRow": 139,
+          "endRow": 173
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "length",
+      "severity": "warning",
+      "tier": "function",
+      "measured": 60,
+      "threshold": 50,
+      "symbol": {
+        "kind": "function",
+        "name": "useMicRecorder",
+        "path": "src/presentation/hooks/useMicRecorder.ts",
+        "bytes": {
+          "startIndex": 442,
+          "endIndex": 2027
+        },
+        "lines": {
+          "startRow": 15,
+          "endRow": 74
+        }
+      }
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "useMicRecorder",
+        "path": "src/presentation/hooks/useMicRecorder.ts",
+        "bytes": {
+          "startIndex": 442,
+          "endIndex": 2027
+        },
+        "lines": {
+          "startRow": 15,
+          "endRow": 74
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "(anonymous)",
+        "path": "src/presentation/hooks/useMicRecorder.ts",
+        "bytes": {
+          "startIndex": 926,
+          "endIndex": 1658
+        },
+        "lines": {
+          "startRow": 27,
+          "endRow": 57
+        }
+      },
+      "check": "density-below-floor"
+    }
+  ],
+  "adapters": [
+    {
+      "tool": "biome",
+      "selection": {
+        "evidence": "configured",
+        "by": "biome.json"
+      },
+      "program": null,
+      "result": {
+        "outcome": "unsupported",
+        "reason": "biome did not resolve: 'biome' on PATH (31 entries). Its findings are missing from this report — that is a gap and not a pass."
+      },
+      "files": 5,
+      "findings": 0,
+      "refusedPaths": 0,
+      "outsideAnalysis": 0,
+      "refusedShape": 0
+    }
+  ]
+}

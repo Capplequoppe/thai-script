@@ -1,0 +1,121 @@
+{
+  "version": 1,
+  "task": "3.1",
+  "pass": "after",
+  "result": {
+    "outcome": "unsupported",
+    "reason": "docs/conversation-backend-api.md: no grammar covers '.md' files (and 2 more) — 5 violations were measured before this and are not shown"
+  },
+  "findings": [
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "select_entry",
+        "path": "backend/app/bank.py",
+        "bytes": {
+          "startIndex": 2540,
+          "endIndex": 4264
+        },
+        "lines": {
+          "startRow": 71,
+          "endRow": 106
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 2.34,
+      "threshold": 5,
+      "tier": "file",
+      "path": "backend/app/bank.py",
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "_ask_next_question",
+        "path": "backend/app/main.py",
+        "bytes": {
+          "startIndex": 9955,
+          "endIndex": 11198
+        },
+        "lines": {
+          "startRow": 262,
+          "endRow": 285
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 4.76,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "test_exhausting_the_tier_returns_exhausted_rather_than_repeating",
+        "path": "backend/tests/test_session.py",
+        "bytes": {
+          "startIndex": 4297,
+          "endIndex": 5210
+        },
+        "lines": {
+          "startRow": 122,
+          "endRow": 142
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "no_disk_writes",
+        "path": "backend/tests/test_session.py",
+        "bytes": {
+          "startIndex": 6460,
+          "endIndex": 7669
+        },
+        "lines": {
+          "startRow": 179,
+          "endRow": 205
+        }
+      },
+      "check": "density-below-floor"
+    }
+  ],
+  "adapters": [
+    {
+      "tool": "ruff",
+      "selection": {
+        "evidence": "none",
+        "considered": [
+          "ruff"
+        ]
+      },
+      "program": null,
+      "result": {
+        "outcome": "unsupported",
+        "reason": "no native linter covered these files: looked for a configuration file for ruff at the repository root, and for ruff on PATH in a repository of that ecosystem. Their findings are missing from this report — that is a gap and not a pass."
+      },
+      "files": 5,
+      "findings": 0,
+      "refusedPaths": 0,
+      "outsideAnalysis": 0,
+      "refusedShape": 0
+    }
+  ]
+}
