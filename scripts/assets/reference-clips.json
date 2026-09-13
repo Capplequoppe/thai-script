@@ -1,0 +1,12 @@
+[
+  {
+    "name": "meal",
+    "audio": "reference-clip-meal.wav",
+    "transcript": "หลังจากนั้นก็แวะกินข้าวที่ร้านอาหารเล็กๆริมทางอาหารอร่อยมากและราคาไม่แพงเลย"
+  },
+  {
+    "name": "trees",
+    "audio": "reference-clip-trees.wav",
+    "transcript": "มีต้นไม้เขียวขจีและนกร้องเพลงอยู่รอบตัว"
+  }
+]

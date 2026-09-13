@@ -61,7 +61,14 @@ export type ToneMarkProperty =
 	| "recognition"
 	| "effectPerClass"
 	| "audioRecognition";
-export type PropertyType = ConsonantProperty | VowelProperty | ToneMarkProperty;
+export type RareVowelProperty = "recognition" | "pronunciation" | "length";
+export type NumeralProperty = "value" | "word" | "romanization";
+export type PropertyType =
+	| ConsonantProperty
+	| VowelProperty
+	| ToneMarkProperty
+	| RareVowelProperty
+	| NumeralProperty;
 
 export interface SrsCard {
 	id: string;
@@ -140,6 +147,28 @@ export interface SessionSummary {
 
 // --- Storage State ---
 
+/**
+ * User-adjustable overrides for ApprenticeService's backpressure caps.
+ * Optional on LearnerState — when absent, the repository layer falls back to
+ * ApprenticeService's DEFAULT_APPRENTICE_LIMITS.
+ */
+export interface ApprenticeLimits {
+	general: number;
+	script: number;
+	sentence: number;
+}
+
+/**
+ * Tracks script content that `reconcileCards()` backfilled into an
+ * already-completed lesson (e.g. a symbol category wired up after the
+ * learner finished that lesson) so the UI can walk them through a one-time
+ * catch-up intro before those cards show up cold in review.
+ */
+export interface PendingCatchUp {
+	lessonNumber: number;
+	cardIds: string[];
+}
+
 export interface LearnerState {
 	completedLessons: number[];
 	currentLesson: number | null;
@@ -149,6 +178,8 @@ export interface LearnerState {
 	sentenceCards: Record<string, SentenceCard>;
 	sessionHistory: SessionSummary[];
 	achievements: string[];
+	apprenticeLimits?: ApprenticeLimits;
+	pendingCatchUps?: PendingCatchUp[];
 }
 
 export const INITIAL_LEARNER_STATE: LearnerState = {

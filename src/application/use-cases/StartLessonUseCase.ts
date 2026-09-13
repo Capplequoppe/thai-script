@@ -15,6 +15,7 @@ import type {
 	SentenceEntry,
 	SentenceLessonSummary,
 } from "../../domain/sentence/types";
+import type { PropertyCard } from "../../domain/shared/types";
 import type { VocabularyService } from "../../domain/vocabulary/services/VocabularyLessonService";
 import type {
 	VocabEntry,
@@ -68,6 +69,21 @@ export class StartLessonUseCase {
 		return this.scriptService.getLessonMasteryProgress(lessonNumber);
 	}
 
+	getPendingCatchUps(): Array<{
+		lessonNumber: number;
+		summary: LessonSummary;
+	}> {
+		return this.scriptService.getPendingCatchUps();
+	}
+
+	getPendingCatchUpCards(lessonNumber: number): PropertyCard[] {
+		return this.scriptService.getPendingCatchUpCards(lessonNumber);
+	}
+
+	dismissPendingCatchUp(lessonNumber: number): void {
+		this.scriptService.dismissPendingCatchUp(lessonNumber);
+	}
+
 	// --- Vocabulary lessons ---
 
 	prepareVocabLesson(): VocabularyCard[] | null {
@@ -100,6 +116,18 @@ export class StartLessonUseCase {
 
 	getVocabLearnedCount(): number {
 		return this.vocabService.getLearnedCount();
+	}
+
+	/**
+	 * Manually pull a word into the SRS system outside normal rank-window
+	 * progression. Returns false if it's not pullable (script not mastered,
+	 * already learned, or not a real word) or the apprentice cap blocks it.
+	 */
+	pullInVocabWord(thai: string): boolean {
+		const cards = this.vocabService.generateCardsForWord(thai);
+		if (!cards) return false;
+		this.vocabService.commitLessonCards(cards);
+		return true;
 	}
 
 	// --- Grammar lessons ---

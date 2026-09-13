@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import type { SentenceGameItem } from "../../../domain/game/types";
 import type { RecallRating } from "../../../domain/shared/types";
+import { stripWordSpacing } from "../../utils/thaiText";
 import { RatingButtons } from "./RatingButtons";
 
 interface Props {
@@ -9,13 +10,15 @@ interface Props {
 }
 
 /**
- * See it, say it: the Thai sentence is shown, the learner reads it aloud,
- * and the reveal shows the English meaning — playing the pronunciation
- * only when the sentence has audio at all. No audio is constructed before
- * the reveal (hearing it first would answer the challenge), and none is
- * ever constructed for an audio-less item — which is every sentence in the
- * shipped data today, so the audio-less reveal is the normal case, not an
- * edge case (see CONTEXT.md). There is deliberately no write-input — a
+ * See it, say it: the Thai sentence is shown with its word spaces stripped
+ * (real Thai text has none — showing it pre-split would scaffold away the
+ * word-boundary-finding this is meant to train), the learner reads it
+ * aloud, and the reveal shows the English meaning — playing the
+ * pronunciation only when the sentence has audio at all. No audio is
+ * constructed before the reveal (hearing it first would answer the
+ * challenge), and none is ever constructed for an audio-less item — not
+ * every sentence has audio, so the audio-less reveal is a normal case, not
+ * an edge case (see CONTEXT.md). There is deliberately no write-input — a
  * whole sentence is not something this feature asks anyone to write.
  *
  * Reset is keyed on the item's own identity (`sentenceId`), never on
@@ -69,10 +72,10 @@ export function SentenceReadingChallenge({ item, onRate }: Props) {
 					Read this sentence aloud
 				</p>
 				<p
-					className="text-center text-4xl font-bold py-6 leading-relaxed"
+					className="thai text-center text-4xl font-bold py-6 leading-relaxed"
 					style={{ color: "var(--color-text)" }}
 				>
-					{item.thaiText}
+					{stripWordSpacing(item.thaiText)}
 				</p>
 			</div>
 

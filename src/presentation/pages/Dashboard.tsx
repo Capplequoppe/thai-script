@@ -1,3 +1,4 @@
+import { useMemo } from "react";
 import { useNavigate } from "react-router";
 import { Badge } from "@/presentation/components/ui/badge";
 import { Button } from "@/presentation/components/ui/button";
@@ -7,6 +8,7 @@ import {
 	MIN_GRAMMAR_POINTS,
 	MIN_VOCAB_COUNT,
 } from "../../domain/conversation/services/ConversationUnlockService";
+import type { LessonSummary } from "../../domain/script/services/ScriptLessonService";
 import { SectionHeader } from "../components/atoms/SectionHeader";
 import { ForecastCell } from "../components/molecules/ForecastCell";
 import { LearnableCallout } from "../components/molecules/LearnableCallout";
@@ -47,6 +49,17 @@ function conversationGapMessage(
 	return `${learnedGrammarCount}/${MIN_GRAMMAR_POINTS} grammar points learned`;
 }
 
+function pendingCatchUpItemCount(summary: LessonSummary): number {
+	return (
+		summary.consonants.length +
+		summary.vowels.length +
+		summary.toneMarks.length +
+		summary.rareVowels.length +
+		summary.numerals.length +
+		summary.toneRules.length
+	);
+}
+
 export function Dashboard() {
 	const { state, lesson, review, dashboard, vocab } = useApp();
 	const navigate = useNavigate();
@@ -56,21 +69,56 @@ export function Dashboard() {
 		lesson.getGrammarLearnedCount(),
 	);
 
-	const nextLesson = lesson.getNextScript();
-	const nextVocabLesson =
-		lesson.getVocabUnlockedCount() > 0 ? vocab.getNextLesson() : null;
-	const nextGrammarLesson = lesson.getNextGrammar();
-	const nextSentenceLesson = lesson.getNextSentence();
-	const scriptDueCount = review.getDueCount("script");
-	const vocabDueCount = review.getDueCount("vocab");
-	const grammarDueCount = review.getDueCount("grammar");
-	const sentenceDueCount = review.getDueCount("sentence");
-	const dueCount =
-		scriptDueCount + vocabDueCount + grammarDueCount + sentenceDueCount;
-	const timeUntilNextReview = review.getTimeUntilNextReview();
-	const forecast = review.getForecast();
-	const leechCount = dashboard.getLeechCount();
-	const stages = dashboard.getStageCounts();
+	// Every one of these reads the learner state back out of storage and
+	// rebuilds card entities — `getStageCounts` and `getForecast` do it once
+	// per card pool. Called straight from the render body they re-ran on
+	// every render of the page; they depend only on the learner state, so
+	// they are computed once per state instead.
+	// `state` is deliberately the cache key: it is the identity that changes
+	// when the stored learner state changes, which is what these repository
+	// reads actually depend on.
+	// biome-ignore lint/correctness/useExhaustiveDependencies: explained above
+	const d = useMemo(() => {
+		const scriptDueCount = review.getDueCount("script");
+		const vocabDueCount = review.getDueCount("vocab");
+		const grammarDueCount = review.getDueCount("grammar");
+		const sentenceDueCount = review.getDueCount("sentence");
+		return {
+			nextLesson: lesson.getNextScript(),
+			nextVocabLesson:
+				lesson.getVocabUnlockedCount() > 0 ? vocab.getNextLesson() : null,
+			nextGrammarLesson: lesson.getNextGrammar(),
+			nextSentenceLesson: lesson.getNextSentence(),
+			pendingCatchUps: lesson.getPendingCatchUps(),
+			scriptDueCount,
+			vocabDueCount,
+			grammarDueCount,
+			sentenceDueCount,
+			dueCount:
+				scriptDueCount + vocabDueCount + grammarDueCount + sentenceDueCount,
+			timeUntilNextReview: review.getTimeUntilNextReview(),
+			forecast: review.getForecast(),
+			leechCount: dashboard.getLeechCount(),
+			stages: dashboard.getStageCounts(),
+		};
+	}, [state, lesson, review, dashboard, vocab]);
+
+	const {
+		nextLesson,
+		nextVocabLesson,
+		nextGrammarLesson,
+		nextSentenceLesson,
+		pendingCatchUps,
+		scriptDueCount,
+		vocabDueCount,
+		grammarDueCount,
+		sentenceDueCount,
+		dueCount,
+		timeUntilNextReview,
+		forecast,
+		leechCount,
+		stages,
+	} = d;
 	const achievements = state.achievements ?? [];
 	const reviewButtonCount = [
 		scriptDueCount,
@@ -229,9 +277,21 @@ export function Dashboard() {
 			    yet). Each entry mirrors StartLessonUseCase's own gating (rank
 			    window, prerequisites, apprentice cap), so a callout here always
 			    means starting that lesson will actually work. */}
-			{(nextVocabLesson || nextGrammarLesson || nextSentenceLesson) && (
+			{(nextVocabLesson ||
+				nextGrammarLesson ||
+				nextSentenceLesson ||
+				pendingCatchUps.length > 0) && (
 				<div className="space-y-3">
 					<SectionHeader className="mb-1">Ready to Learn</SectionHeader>
+					{pendingCatchUps.map((p) => (
+						<LearnableCallout
+							key={p.lessonNumber}
+							label={`Lesson ${p.lessonNumber} Update`}
+							detail={newCountLabel(pendingCatchUpItemCount(p.summary), "item")}
+							onClick={() => navigate(`/catch-up/${p.lessonNumber}`)}
+							accentColor="var(--color-accent)"
+						/>
+					))}
 					{nextVocabLesson && (
 						<LearnableCallout
 							label="Vocabulary"

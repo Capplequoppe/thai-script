@@ -2,10 +2,15 @@ import { describe, expect, it } from "vitest";
 import { InMemoryStorage } from "../../../infrastructure/persistence/Storage";
 import { StorageCardRepository } from "../../../infrastructure/persistence/StorageCardRepository";
 import { StorageLearnerStateRepository } from "../../../infrastructure/persistence/StorageLearnerStateRepository";
-import { ApprenticeService } from "../../shared/services/ApprenticeService";
+import {
+	ApprenticeService,
+	MAX_SENTENCE_APPRENTICE_ITEMS,
+} from "../../shared/services/ApprenticeService";
 import { RecallRating } from "../../srs/value-objects/RecallRating";
+import { SrsSchedule } from "../../srs/value-objects/SrsSchedule";
 import { VocabularyService } from "../../vocabulary/services/VocabularyLessonService";
 import type { VocabEntry } from "../../vocabulary/types";
+import { SentenceReviewCard } from "../entities/SentenceReviewCard";
 import type { SentenceEntry } from "../types";
 import { SentenceService } from "./SentenceLessonService";
 
@@ -161,6 +166,83 @@ describe("SentenceService", () => {
 		});
 	});
 
+	describe("getUnlockSuggestions", () => {
+		it("includes a sentence with no other missing words, flagged empty", () => {
+			const storage = new InMemoryStorage();
+			const s1 = makeSentenceEntry("s1", ["มา", "กิน"]);
+			const vocabEntries = [makeVocabEntry("มา"), makeVocabEntry("กิน")];
+			seedVocabCards(storage, ["กิน"]);
+			const service = createService(storage, [s1], vocabEntries);
+
+			const suggestions = service.getUnlockSuggestions("มา");
+			expect(suggestions).toHaveLength(1);
+			expect(suggestions[0]?.sentence.id).toBe("s1");
+			expect(suggestions[0]?.missingWords).toEqual([]);
+		});
+
+		it("includes a sentence with a still-missing but pullable other word", () => {
+			const storage = new InMemoryStorage();
+			const s1 = makeSentenceEntry("s1", ["มา", "กิน"]);
+			const vocabEntries = [makeVocabEntry("มา"), makeVocabEntry("กิน")];
+			const service = createService(storage, [s1], vocabEntries);
+
+			const suggestions = service.getUnlockSuggestions("มา");
+			expect(suggestions).toHaveLength(1);
+			expect(suggestions[0]?.missingWords).toEqual(["กิน"]);
+		});
+
+		it("excludes a sentence whose missing word isn't pullable", () => {
+			const storage = new InMemoryStorage();
+			const s1 = makeSentenceEntry("s1", ["มา", "ยัง"]);
+			const vocabEntries = [makeVocabEntry("มา")]; // "ยัง" isn't in the vocabulary at all
+			const service = createService(storage, [s1], vocabEntries);
+
+			expect(service.getUnlockSuggestions("มา")).toEqual([]);
+		});
+
+		it("excludes sentences that don't contain the word", () => {
+			const storage = new InMemoryStorage();
+			const s1 = makeSentenceEntry("s1", ["กิน", "ข้าว"]);
+			const vocabEntries = [makeVocabEntry("กิน"), makeVocabEntry("ข้าว")];
+			const service = createService(storage, [s1], vocabEntries);
+
+			expect(service.getUnlockSuggestions("มา")).toEqual([]);
+		});
+
+		it("sorts fewest-missing-first", () => {
+			const storage = new InMemoryStorage();
+			const sentences = [
+				makeSentenceEntry("two-missing", ["มา", "กิน", "ข้าว"]),
+				makeSentenceEntry("zero-missing", ["มา"]),
+				makeSentenceEntry("one-missing", ["มา", "กิน"]),
+			];
+			const vocabEntries = [
+				makeVocabEntry("มา"),
+				makeVocabEntry("กิน"),
+				makeVocabEntry("ข้าว"),
+			];
+			const service = createService(storage, sentences, vocabEntries);
+
+			const suggestions = service.getUnlockSuggestions("มา");
+			expect(suggestions.map((s) => s.sentence.id)).toEqual([
+				"zero-missing",
+				"one-missing",
+				"two-missing",
+			]);
+		});
+
+		it("caps suggestions at 5", () => {
+			const storage = new InMemoryStorage();
+			const sentences = Array.from({ length: 7 }, (_, i) =>
+				makeSentenceEntry(`s${i}`, ["มา"]),
+			);
+			const vocabEntries = [makeVocabEntry("มา")];
+			const service = createService(storage, sentences, vocabEntries);
+
+			expect(service.getUnlockSuggestions("มา")).toHaveLength(5);
+		});
+	});
+
 	describe("getNextLesson", () => {
 		it("returns null when nothing is unlocked", () => {
 			const storage = new InMemoryStorage();
@@ -188,16 +270,43 @@ describe("SentenceService", () => {
 			expect(lesson?.sentences).toHaveLength(3);
 		});
 
-		it("returns null when at apprentice limit", () => {
+		it("returns null when at the sentence-specific apprentice limit", () => {
 			const storage = new InMemoryStorage();
 			const s1 = makeSentenceEntry("s1", ["มา"]);
 			const vocabEntries = [makeVocabEntry("มา")];
 			seedVocabCards(storage, ["มา"]);
 			const cardRepo = new StorageCardRepository(storage);
-			const apprentice = new ApprenticeService(cardRepo, 0);
+			for (let i = 0; i < MAX_SENTENCE_APPRENTICE_ITEMS; i++) {
+				cardRepo.save(
+					new SentenceReviewCard(
+						`existing:${i}`,
+						"q",
+						"a",
+						["a"],
+						SrsSchedule.initial(),
+						`existing-sentence-${i}`,
+						"readingComprehension",
+					),
+				);
+			}
+			const apprentice = new ApprenticeService(cardRepo);
 			const service = createService(storage, [s1], vocabEntries, apprentice);
 
 			expect(service.getNextLesson()).toBeNull();
+		});
+
+		it("is not blocked by the shared vocab/grammar limit even when it is exhausted", () => {
+			const storage = new InMemoryStorage();
+			const s1 = makeSentenceEntry("s1", ["มา"]);
+			const vocabEntries = [makeVocabEntry("มา")];
+			seedVocabCards(storage, ["มา"]);
+			const cardRepo = new StorageCardRepository(storage);
+			// A custom limit of 0 exhausts the shared vocab/grammar budget, but
+			// must not block sentences — they're gated by their own cap.
+			const apprentice = new ApprenticeService(cardRepo, 0);
+			const service = createService(storage, [s1], vocabEntries, apprentice);
+
+			expect(service.getNextLesson()).not.toBeNull();
 		});
 	});
 
@@ -211,13 +320,14 @@ describe("SentenceService", () => {
 
 			const cards = service.startLesson();
 			expect(cards).not.toBeNull();
-			expect(cards).toHaveLength(1); // reading comprehension only (no audio)
+			expect(cards).toHaveLength(2); // reading comprehension + spelling (no audio)
 
 			const state = storage.load();
-			expect(Object.keys(state.sentenceCards)).toHaveLength(1);
+			expect(Object.keys(state.sentenceCards)).toHaveLength(2);
 			expect(
 				state.sentenceCards["sentence:s1:readingComprehension"],
 			).toBeDefined();
+			expect(state.sentenceCards["sentence:s1:sentenceBuilding"]).toBeDefined();
 		});
 
 		it("returns null when nothing to learn", () => {

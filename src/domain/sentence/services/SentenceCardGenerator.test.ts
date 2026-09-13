@@ -1,4 +1,6 @@
 import { describe, expect, it } from "vitest";
+import { RecallRating } from "../../srs/value-objects/RecallRating";
+import { SentenceReviewCard } from "../entities/SentenceReviewCard";
 import type { SentenceEntry } from "../types";
 import { generateSentenceCards } from "./SentenceCardGenerator";
 
@@ -53,9 +55,12 @@ function makeSentenceEntryWithAudio(
 }
 
 describe("generateSentenceCards", () => {
-	it("generates exactly 1 card for entry without audio", () => {
+	it("generates reading comprehension + sentence spelling for entry without audio", () => {
 		const cards = generateSentenceCards(makeSentenceEntry());
-		expect(cards).toHaveLength(1);
+		expect(cards).toHaveLength(2);
+		expect(cards.map((c) => c.property).sort()).toEqual(
+			["readingComprehension", "sentenceBuilding"].sort(),
+		);
 	});
 
 	it("generates 4 cards for entry with audio and all card types", () => {
@@ -89,17 +94,26 @@ describe("generateSentenceCards", () => {
 		expect(lc!.choices).toContain("Come eat together");
 	});
 
-	it("sentence building card contains sentence chars and distractors", () => {
+	it("sentence spelling card tiles are exactly the sentence's own characters, no distractors", () => {
 		const cards = generateSentenceCards(makeSentenceEntryWithAudio());
 		const sb = cards.find((c) => c.property === "sentenceBuilding");
 		expect(sb).toBeDefined();
 		expect(sb!.correctAnswer).toBe("มา กิน กัน");
+		expect(sb!.question).toBe("Come eat together");
 		expect(sb!.audioUrl).toBe("/audio/greet-001.mp3");
-		// Should contain the sentence characters plus distractor characters
 		const sentenceChars = [..."มากินกัน"];
-		for (const ch of sentenceChars) {
-			expect(sb!.choices).toContain(ch);
-		}
+		expect(sb!.choices.slice().sort()).toEqual(sentenceChars.slice().sort());
+	});
+
+	it("sentence spelling card is generated even without audio or distractor data", () => {
+		const cards = generateSentenceCards(makeSentenceEntry());
+		const sb = cards.find((c) => c.property === "sentenceBuilding");
+		expect(sb).toBeDefined();
+		expect(sb!.correctAnswer).toBe("มา กิน กัน");
+		expect(sb!.question).toBe("Come eat together");
+		expect(sb!.audioUrl).toBeUndefined();
+		const sentenceChars = [..."มากินกัน"];
+		expect(sb!.choices.slice().sort()).toEqual(sentenceChars.slice().sort());
 	});
 
 	it("self-validation card is flashcard style with no choices", () => {
@@ -112,13 +126,28 @@ describe("generateSentenceCards", () => {
 		expect(sv!.audioUrl).toBe("/audio/greet-001.mp3");
 	});
 
-	it("cards have initialized SRS data", () => {
+	it("cards have initialized SRS data on the 2-step sentence learning ladder", () => {
 		const cards = generateSentenceCards(makeSentenceEntry());
 		for (const card of cards) {
 			expect(card.srs.easeFactor).toBe(2.5);
-			expect(card.srs.learningStep).toBe(1);
+			expect(card.srs.learningStep).toBe(0);
+			expect(card.srs.interval).toBe(0);
 			expect(card.srs.lapseCount).toBe(0);
 		}
+	});
+
+	it("a generated card graduates after exactly 2 correct answers", () => {
+		const cards = generateSentenceCards(makeSentenceEntry());
+		const dto = cards[0]!;
+		const now = "2026-01-01T00:00:00.000Z";
+
+		const card = SentenceReviewCard.fromDTO({ ...dto, srs: dto.srs });
+		card.recordReview(RecallRating.GOOD, now);
+		expect(card.schedule.learningStep).toBe(1);
+
+		card.recordReview(RecallRating.GOOD, now);
+		expect(card.schedule.learningStep).toBeNull();
+		expect(card.schedule.interval).toBe(2880);
 	});
 
 	it("does not generate audio-dependent cards when no audio", () => {
@@ -126,9 +155,8 @@ describe("generateSentenceCards", () => {
 		expect(
 			cards.find((c) => c.property === "listeningComprehension"),
 		).toBeUndefined();
-		expect(
-			cards.find((c) => c.property === "sentenceBuilding"),
-		).toBeUndefined();
 		expect(cards.find((c) => c.property === "selfValidation")).toBeUndefined();
+		// Spelling is not audio-dependent — it's still generated.
+		expect(cards.find((c) => c.property === "sentenceBuilding")).toBeDefined();
 	});
 });

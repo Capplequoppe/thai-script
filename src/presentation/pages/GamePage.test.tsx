@@ -1158,15 +1158,15 @@ describe("GamePage", () => {
 		expect(
 			screen.getByText("Listen, then work out what the sentence says"),
 		).toBeTruthy();
-		expect(screen.queryByText("มา กัน")).toBeNull();
+		expect(screen.queryByText("มากัน")).toBeNull();
 		reveal();
-		expect(screen.getByText("มา กัน")).toBeTruthy();
+		expect(screen.getByText("มากัน")).toBeTruthy();
 		expect(screen.getByText("Come together")).toBeTruthy();
 		rate(/Good/);
 
 		// Reading: the Thai text up front, no audio before its reveal.
 		expect(screen.getByText("Read this sentence aloud")).toBeTruthy();
-		expect(screen.getByText("มี ดี")).toBeTruthy();
+		expect(screen.getByText("มีดี")).toBeTruthy();
 		expect(createdAudioUrls()).not.toContain("/audio/s-2.mp3");
 		reveal();
 		expect(createdAudioUrls()).toContain("/audio/s-2.mp3");
@@ -1375,7 +1375,7 @@ describe("GamePage", () => {
 		rate(/Good/);
 
 		// Second item: unrevealed again despite the identical audioUrl...
-		expect(screen.getByText("มี ดี")).toBeTruthy();
+		expect(screen.getByText("มีดี")).toBeTruthy();
 		expect(screen.getByRole("button", { name: "Show Answer" })).toBeTruthy();
 		expect(screen.queryByRole("button", { name: /Again/ })).toBeNull();
 		reveal();
@@ -1672,6 +1672,26 @@ describe("GamePage", () => {
 			screen.queryByText(/Select at least one pool to practice/),
 		).toBeNull();
 		expect(screen.queryByRole("button", { name: "Start Round" })).toBeNull();
+	});
+
+	// The block-level empty state above only fires when NOTHING is eligible
+	// at all — with a pool also checked (Symbols is checked by default) and
+	// eligible on its own, the round starts "successfully" using only pool
+	// items, silently including zero tone items with no explanation. The
+	// toggle needs its own always-visible warning for this case, since the
+	// combined `eligibleCount` being positive says nothing about whether
+	// tone practice itself contributed anything.
+	it("warns beside the toggle when tone has nothing eligible even though a checked pool does", () => {
+		renderWithApp(<GamePage />, {}, { symbols: ["ม"] });
+
+		fireEvent.click(screen.getByLabelText("Tone Identification"));
+
+		// The round can still start — Symbols alone is eligible — so the
+		// block-level empty state must not appear here.
+		expect(screen.getByRole("button", { name: "Start Round" })).toBeTruthy();
+		expect(
+			screen.getByText(/No words with identifiable tones yet/),
+		).toBeTruthy();
 	});
 
 	// Tone AC8 — the count is what proves `includeTonePractice` reaches

@@ -1,4 +1,8 @@
-import type { SessionSummary } from "../../domain/shared/types";
+import type {
+	ApprenticeLimits,
+	PendingCatchUp,
+	SessionSummary,
+} from "../../domain/shared/types";
 
 export interface LearnerStateRepository {
 	getCompletedLessons(): number[];
@@ -10,6 +14,11 @@ export interface LearnerStateRepository {
 	addSession(summary: SessionSummary): void;
 	getAchievements(): string[];
 	addAchievement(id: string): void;
+	getPendingCatchUps(): PendingCatchUp[];
+	addPendingCatchUp(lessonNumber: number, cardIds: string[]): void;
+	clearPendingCatchUp(lessonNumber: number): void;
+	getApprenticeLimits(): ApprenticeLimits;
+	setApprenticeLimits(limits: ApprenticeLimits): void;
 	reset(): void;
 	exportData(): string;
 	importData(json: string): void;

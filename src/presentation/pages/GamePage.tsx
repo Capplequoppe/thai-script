@@ -279,6 +279,15 @@ export function GamePage() {
 					includeTonePractice,
 				);
 	}, [game, phase, mode, pools, prioritizeWeakItems, includeTonePractice]);
+	// Tone eligibility on its own, independent of `pools` (see
+	// ToneGameItemSource) and computed separately from `eligibleCount`: that
+	// combined count can be positive from the checked pools alone even when
+	// tone practice itself has nothing to draw from, which would otherwise
+	// mask a zero here — see the inline warning under the toggle below.
+	const toneEligibleCount = useMemo(() => {
+		if (phase !== "setup" || mode === "composition") return 0;
+		return countEligibleItems(game, [], false, true);
+	}, [game, phase, mode]);
 	const [countInput, setCountInput] = useState<string>(() =>
 		eligibleCount > 0
 			? String(Math.min(DEFAULT_ITEM_COUNT, eligibleCount))
@@ -564,10 +573,20 @@ export function GamePage() {
 						</div>
 						<p
 							className="text-xs mt-1"
-							style={{ color: "var(--color-text-muted)" }}
+							style={{
+								color:
+									includeTonePractice &&
+									toneEligibleCount === 0 &&
+									eligibleCount > 0
+										? "var(--color-danger)"
+										: "var(--color-text-muted)",
+							}}
 						>
-							Adds tone-pattern items from your vocabulary, whichever pools are
-							checked.
+							{includeTonePractice &&
+							toneEligibleCount === 0 &&
+							eligibleCount > 0
+								? NO_TONE_ELIGIBLE_MESSAGE
+								: "Adds tone-pattern items from your vocabulary, whichever pools are checked."}
 						</p>
 					</div>
 				</>

@@ -6,6 +6,7 @@ import { MIN_GRAMMAR_POINTS } from "../../domain/conversation/services/Conversat
 import grammarData from "../../domain/grammar/data/grammar.json";
 import vocabularyData from "../../domain/vocabulary/data/vocabulary.json";
 import {
+	makeAppValue,
 	renderWithApp,
 	UNLOCKS_FIRST_GRAMMAR_POINT,
 } from "../test-utils/renderWithApp";
@@ -85,6 +86,48 @@ describe("Dashboard — Ready to Learn", () => {
 		expect(screen.getByText("1 new grammar point")).toBeTruthy();
 		expect(screen.getByText("2 new sentences")).toBeTruthy();
 		expect(screen.getAllByText("Learn")).toHaveLength(2);
+	});
+
+	// reconcileCards() backfilling genuinely new cards into an
+	// already-completed lesson (e.g. a symbol category wired up after the
+	// learner finished it) should surface as its own callout linking to the
+	// catch-up intro, not show up cold in review with no explanation.
+	it("shows a pending catch-up callout and navigates to its catch-up page", () => {
+		const app = makeAppValue();
+		const state = app.storage.load();
+		state.completedLessons.push(22);
+		app.storage.save(state);
+		app.value.lesson.reconcileAllContent();
+
+		const pending = app.value.lesson.getPendingCatchUps();
+		expect(pending).toHaveLength(1);
+		const summary = pending[0]?.summary;
+		if (!summary) throw new Error("expected a pending catch-up summary");
+		const expectedCount =
+			summary.consonants.length +
+			summary.vowels.length +
+			summary.toneMarks.length +
+			summary.rareVowels.length +
+			summary.numerals.length +
+			summary.toneRules.length;
+
+		renderWithApp(
+			<Routes>
+				<Route path="/" element={<Dashboard />} />
+				<Route
+					path="/catch-up/:lessonNumber"
+					element={<div>Catch Up Page</div>}
+				/>
+			</Routes>,
+			app.value,
+		);
+
+		expect(screen.getByText("Ready to Learn")).toBeTruthy();
+		expect(screen.getByText("Lesson 22 Update")).toBeTruthy();
+		expect(screen.getByText(`${expectedCount} new items`)).toBeTruthy();
+
+		fireEvent.click(screen.getByText("Learn"));
+		expect(screen.getByText("Catch Up Page")).toBeTruthy();
 	});
 });
 

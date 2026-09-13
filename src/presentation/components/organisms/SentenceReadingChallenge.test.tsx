@@ -23,10 +23,11 @@ function reveal() {
 
 describe("SentenceReadingChallenge", () => {
 	// AC3
-	it("shows the Thai text with no premature audio, then reveals via audio and meaning", () => {
+	it("shows the Thai text concatenated (no word spaces) with no premature audio, then reveals via audio and meaning", () => {
 		render(<SentenceReadingChallenge item={makeItem()} onRate={vi.fn()} />);
 
-		expect(screen.getByText("มา กิน กัน")).toBeTruthy();
+		expect(screen.getByText("มากินกัน")).toBeTruthy();
+		expect(screen.queryByText("มา กิน กัน")).toBeNull();
 		// Hearing the sentence first would answer the challenge.
 		expect(createdAudioUrls()).toHaveLength(0);
 		expect(screen.queryByText("Come eat together")).toBeNull();
@@ -51,7 +52,7 @@ describe("SentenceReadingChallenge", () => {
 			/>,
 		);
 
-		expect(screen.getByText("มา กิน กัน")).toBeTruthy();
+		expect(screen.getByText("มากินกัน")).toBeTruthy();
 		reveal();
 
 		expect(screen.getByText("Come eat together")).toBeTruthy();
@@ -90,7 +91,7 @@ describe("SentenceReadingChallenge", () => {
 
 		rerender(<SentenceReadingChallenge item={second} onRate={vi.fn()} />);
 
-		expect(screen.getByText("มี ดี")).toBeTruthy();
+		expect(screen.getByText("มีดี")).toBeTruthy();
 		expect(screen.queryByText("Have good (things)")).toBeNull();
 		expect(screen.getByRole("button", { name: "Show Answer" })).toBeTruthy();
 	});

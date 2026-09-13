@@ -1,11 +1,185 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import type { ToneGameItem } from "../../../domain/game/types";
 import type { RecallRating } from "../../../domain/shared/types";
+import { useMicRecorder } from "../../hooks/useMicRecorder";
+import { useToneAttempt } from "../../hooks/useToneAttempt";
+import { PitchContourOverlay } from "../molecules/PitchContourOverlay";
 import { RatingButtons } from "./RatingButtons";
 
 interface Props {
 	item: ToneGameItem;
 	onRate: (rating: RecallRating) => void;
+}
+
+/**
+ * Records the learner's attempt, scores it against `audioUrl` by pitch
+ * contour (see `useToneAttempt`), and shows the result — but never touches
+ * `onRate` itself. The score is a hint the learner reads before pressing a
+ * rating button themselves, not an auto-grade: matches this whole feature's
+ * "nothing here is auto-graded" design (see the module doc comment below).
+ */
+function ToneRecordingPractice({ audioUrl }: { audioUrl: string }) {
+	const mic = useMicRecorder();
+	const attempt = useToneAttempt(audioUrl);
+	const [attemptPlaybackUrl, setAttemptPlaybackUrl] = useState<string | null>(
+		null,
+	);
+
+	// biome-ignore lint/correctness/useExhaustiveDependencies: analyze is stable for a given audioUrl; re-running on mic.audioBlob identity is the point
+	useEffect(() => {
+		if (mic.audioBlob) attempt.analyze(mic.audioBlob);
+	}, [mic.audioBlob]);
+
+	useEffect(() => {
+		if (!mic.audioBlob) {
+			setAttemptPlaybackUrl(null);
+			return;
+		}
+		const url = URL.createObjectURL(mic.audioBlob);
+		setAttemptPlaybackUrl(url);
+		return () => URL.revokeObjectURL(url);
+	}, [mic.audioBlob]);
+
+	const tryAgain = useCallback(() => {
+		mic.reset();
+		attempt.reset();
+	}, [mic, attempt]);
+
+	return (
+		<div
+			className="rounded-xl p-4 space-y-3"
+			style={{ background: "var(--color-surface-2)" }}
+		>
+			<p
+				className="text-center text-sm"
+				style={{ color: "var(--color-text-muted)" }}
+			>
+				Record yourself saying it
+			</p>
+
+			{mic.state === "idle" && (
+				<button
+					type="button"
+					onClick={mic.start}
+					className="w-full py-3 rounded-lg text-sm font-semibold transition-colors"
+					style={{ background: "var(--color-primary)", color: "white" }}
+				>
+					🎤 Record
+				</button>
+			)}
+
+			{mic.state === "recording" && (
+				<button
+					type="button"
+					onClick={mic.stop}
+					className="w-full py-3 rounded-lg text-sm font-semibold transition-colors"
+					style={{ background: "var(--color-danger)", color: "white" }}
+				>
+					⏹ Stop
+				</button>
+			)}
+
+			{mic.state === "denied" && (
+				<p
+					className="text-center text-sm"
+					style={{ color: "var(--color-danger)" }}
+				>
+					Microphone access is needed to try this.
+				</p>
+			)}
+
+			{mic.state === "error" && (
+				<p
+					className="text-center text-sm"
+					style={{ color: "var(--color-danger)" }}
+				>
+					Something went wrong recording audio.
+				</p>
+			)}
+
+			{attempt.status === "analyzing" && (
+				<p
+					className="text-center text-sm"
+					style={{ color: "var(--color-text-muted)" }}
+				>
+					Analyzing…
+				</p>
+			)}
+
+			{attempt.status === "error" && (
+				<div className="space-y-2 text-center">
+					<p className="text-sm" style={{ color: "var(--color-danger)" }}>
+						Couldn't hear you clearly — try again.
+					</p>
+					<button
+						type="button"
+						onClick={tryAgain}
+						className="text-sm underline"
+						style={{ color: "var(--color-primary)" }}
+					>
+						Record again
+					</button>
+				</div>
+			)}
+
+			{attempt.status === "done" && attempt.result && (
+				<div className="space-y-3">
+					<PitchContourOverlay
+						referenceContour={attempt.result.referenceContour}
+						attemptContour={attempt.result.attemptContour}
+					/>
+					<div className="flex items-center justify-center gap-3">
+						<span
+							className="px-3 py-1 rounded-full text-xs font-semibold"
+							style={{
+								background:
+									attempt.result.label === "excellent"
+										? "color-mix(in srgb, var(--color-master) 20%, var(--color-surface))"
+										: attempt.result.label === "good"
+											? "color-mix(in srgb, var(--color-accent) 20%, var(--color-surface))"
+											: "color-mix(in srgb, var(--color-danger) 20%, var(--color-surface))",
+								color:
+									attempt.result.label === "excellent"
+										? "var(--color-master)"
+										: attempt.result.label === "good"
+											? "var(--color-accent-h)"
+											: "var(--color-danger)",
+							}}
+						>
+							{attempt.result.label === "excellent"
+								? "Excellent match"
+								: attempt.result.label === "good"
+									? "Good match"
+									: "Needs work"}
+						</span>
+						{attemptPlaybackUrl && (
+							<button
+								type="button"
+								onClick={() =>
+									new Audio(attemptPlaybackUrl).play().catch(() => {})
+								}
+								className="text-sm underline"
+								style={{ color: "var(--color-primary)" }}
+								aria-label="Play your recording"
+							>
+								▶ Play yours
+							</button>
+						)}
+					</div>
+					<div className="text-center">
+						<button
+							type="button"
+							onClick={tryAgain}
+							className="text-sm underline"
+							style={{ color: "var(--color-text-muted)" }}
+						>
+							Record again
+						</button>
+					</div>
+				</div>
+			)}
+		</div>
+	);
 }
 
 /**
@@ -146,6 +320,7 @@ export function ToneIdentificationChallenge({ item, onRate }: Props) {
 							))}
 						</ul>
 					</div>
+					{item.audioUrl && <ToneRecordingPractice audioUrl={item.audioUrl} />}
 					<RatingButtons onRate={onRate} />
 				</div>
 			)}

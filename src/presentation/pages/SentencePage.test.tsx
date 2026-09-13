@@ -41,6 +41,43 @@ describe("SentencePage — lesson intro audio", () => {
 	});
 });
 
+describe("SentencePage — quiz translation self-review", () => {
+	// Multiple-choice distractor translations can mark a technically-correct
+	// rewording wrong, so readingComprehension/listeningComprehension are
+	// self-rated (see SentenceSelfReviewCard) instead — same as every other
+	// self-graded property in this app.
+	it("shows the first quiz card's sentence concatenated and self-rated, not as multiple choice", () => {
+		renderWithApp(
+			<SentencePage />,
+			{},
+			{
+				graduatedVocab: ["มา", "กิน", "กัน"],
+			},
+		);
+
+		fireEvent.click(
+			screen.getByRole("button", { name: /Learn \d+ New Sentences?/ }),
+		);
+
+		while (!screen.queryByRole("button", { name: "Start Quiz" })) {
+			fireEvent.click(screen.getByRole("button", { name: "Next" }));
+		}
+		fireEvent.click(screen.getByRole("button", { name: "Start Quiz" }));
+
+		// basic-001's readingComprehension card is first: concatenated Thai,
+		// no word-spaced form, no multiple-choice options.
+		expect(screen.getByText("มากินกัน")).toBeTruthy();
+		expect(screen.queryByText("มา กิน กัน")).toBeNull();
+		expect(
+			screen.queryByRole("button", { name: "Come eat together" }),
+		).toBeNull();
+
+		fireEvent.click(screen.getByRole("button", { name: /Show Answer/ }));
+		expect(screen.getByText("Come eat together")).toBeTruthy();
+		expect(screen.getByRole("button", { name: /Good/ })).toBeTruthy();
+	});
+});
+
 describe("SentencePage — review dispatch", () => {
 	// A `selfValidation` card's `choices` are always empty by construction
 	// (SentenceCardGenerator) — it's a produce-then-self-rate card, never a
@@ -61,8 +98,6 @@ describe("SentencePage — review dispatch", () => {
 			screen.getByRole("button", { name: /Review \d+ Due Sentence Cards?/ }),
 		);
 
-		expect(
-			screen.getByRole("button", { name: /Show Answer/ }),
-		).toBeTruthy();
+		expect(screen.getByRole("button", { name: /Show Answer/ })).toBeTruthy();
 	});
 });

@@ -7,6 +7,7 @@ import {
 	toneRules,
 	vowels,
 } from "../../script/data/symbols";
+import type { ApprenticeService } from "../../shared/services/ApprenticeService";
 import { reconcileGeneratedCards } from "../../shared/services/reconcileCards";
 import { VocabCard } from "../entities/VocabCard";
 import type { VocabEntry, VocabLessonSummary, VocabularyCard } from "../types";
@@ -14,13 +15,13 @@ import { generateVocabCards } from "./VocabCardGenerator";
 
 const BATCH_SIZE = 5;
 const RANK_WINDOW_SIZE = 50;
-const MAX_VOCAB_APPRENTICE_WORDS = 20;
 
 export class VocabularyService {
 	constructor(
 		private readonly cardRepo: CardRepository,
 		private readonly stateRepo: LearnerStateRepository,
 		private readonly vocabulary: VocabEntry[],
+		private readonly apprenticeService?: ApprenticeService,
 	) {}
 
 	/** Extract the Thai word from a vocab card ID (format: vocab:{thai}:{property}). */
@@ -34,18 +35,6 @@ export class VocabularyService {
 		return new Set(
 			vocabCards.map((c) => VocabularyService.thaiWordFromId(c.id)),
 		);
-	}
-
-	/** Count of distinct Thai words currently at apprentice stage (isInLearning). */
-	private getApprenticeVocabWordCount(): number {
-		const vocabCards = this.cardRepo.findAll("vocab");
-		const apprenticeWords = new Set<string>();
-		for (const card of vocabCards) {
-			if (card.schedule.isInLearning) {
-				apprenticeWords.add(VocabularyService.thaiWordFromId(card.id));
-			}
-		}
-		return apprenticeWords.size;
 	}
 
 	/** Get set of all Thai characters mastered from completed script lessons. */
@@ -168,7 +157,10 @@ export class VocabularyService {
 
 	/** Next batch of words to learn (up to BATCH_SIZE). */
 	getNextLesson(): VocabLessonSummary | null {
-		if (this.getApprenticeVocabWordCount() >= MAX_VOCAB_APPRENTICE_WORDS) {
+		if (
+			this.apprenticeService &&
+			!this.apprenticeService.canStartLesson("vocab")
+		) {
 			return null;
 		}
 
@@ -179,7 +171,10 @@ export class VocabularyService {
 
 	/** Generate cards for the next lesson batch WITHOUT persisting them. */
 	generateLessonCards(): VocabularyCard[] | null {
-		if (this.getApprenticeVocabWordCount() >= MAX_VOCAB_APPRENTICE_WORDS) {
+		if (
+			this.apprenticeService &&
+			!this.apprenticeService.canStartLesson("vocab")
+		) {
 			return null;
 		}
 
@@ -223,6 +218,72 @@ export class VocabularyService {
 					(a.rank ?? Number.POSITIVE_INFINITY) -
 					(b.rank ?? Number.POSITIVE_INFINITY),
 			);
+	}
+
+	/**
+	 * Script (characters + tone rules) is fully mastered and the word has no
+	 * cards yet. Ignores rank/rank-window entirely — unlike getUnlockedWords,
+	 * this is about script readiness only.
+	 */
+	isPullable(entry: VocabEntry): boolean {
+		const learnedThaiWords = this.getLearnedThaiWords();
+		if (learnedThaiWords.has(entry.thai)) return false;
+		const chars = this.getMasteredCharacters();
+		const rules = this.getMasteredToneRules();
+		return this.isWordMastered(entry, chars, rules);
+	}
+
+	/** Every vocabulary entry that isPullable(), regardless of rank (including rank: null entries). */
+	getPullableWords(): VocabEntry[] {
+		const learnedThaiWords = this.getLearnedThaiWords();
+		const chars = this.getMasteredCharacters();
+		const rules = this.getMasteredToneRules();
+		return this.vocabulary.filter(
+			(entry) =>
+				!learnedThaiWords.has(entry.thai) &&
+				this.isWordMastered(entry, chars, rules),
+		);
+	}
+
+	/** Which characters/tone rules are still missing for a word (for a "why is this locked" explanation). Empty arrays for a fully mastered word. */
+	getMissingPrerequisites(entry: VocabEntry): {
+		characters: string[];
+		toneRules: string[];
+	} {
+		const chars = this.getMasteredCharacters();
+		const rules = this.getMasteredToneRules();
+		return {
+			characters: entry.characters.filter((ch) => !chars.has(ch)),
+			toneRules: entry.toneRules.filter((r) => !rules.has(r)),
+		};
+	}
+
+	/**
+	 * Generate (but do not persist) cards for one specific word, bypassing
+	 * the rank-window/batch selection getNextLesson() uses. Returns null if
+	 * the word doesn't exist, isn't pullable, or the apprentice cap blocks
+	 * starting it (the same canStartLesson("vocab") check
+	 * generateLessonCards() makes — enforced here explicitly since this path
+	 * doesn't go through getNextLesson()).
+	 */
+	generateCardsForWord(thai: string): VocabularyCard[] | null {
+		if (
+			this.apprenticeService &&
+			!this.apprenticeService.canStartLesson("vocab")
+		) {
+			return null;
+		}
+
+		const entry = this.vocabulary.find((e) => e.thai === thai);
+		if (!entry || !this.isPullable(entry)) return null;
+
+		const introducedChars = this.getMasteredCharacters();
+		return generateVocabCards(entry, this.vocabulary, introducedChars);
+	}
+
+	/** Every vocabulary entry, regardless of mastery, rank, or learned state. */
+	getAllWords(): VocabEntry[] {
+		return this.vocabulary;
 	}
 
 	/**

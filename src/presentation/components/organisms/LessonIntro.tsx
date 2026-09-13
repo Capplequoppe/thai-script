@@ -3,6 +3,8 @@ import { Button } from "@/presentation/components/ui/button";
 import type { LessonSummary } from "../../../domain/script/services/ScriptLessonService";
 import {
 	ConsonantCard,
+	NumeralCard,
+	RareVowelCard,
 	ToneMarkCard,
 	ToneRuleCard,
 	VowelCard,
@@ -87,6 +89,14 @@ export function LessonIntro({ summary, onComplete }: Props) {
 		...summary.toneMarks.map((t) => ({
 			type: "tone mark",
 			render: () => <ToneMarkCard t={t} />,
+		})),
+		...summary.rareVowels.map((v) => ({
+			type: "rare vowel",
+			render: () => <RareVowelCard v={v} />,
+		})),
+		...summary.numerals.map((n) => ({
+			type: "numeral",
+			render: () => <NumeralCard n={n} />,
 		})),
 		...summary.toneRules.map((r) => ({
 			type: "tone rule",

@@ -2,6 +2,7 @@ import { beforeEach, describe, expect, it } from "vitest";
 import { InMemoryStorage } from "../../../infrastructure/persistence/Storage";
 import { StorageCardRepository } from "../../../infrastructure/persistence/StorageCardRepository";
 import { StorageLearnerStateRepository } from "../../../infrastructure/persistence/StorageLearnerStateRepository";
+import { ApprenticeService } from "../../shared/services/ApprenticeService";
 import type { SrsData } from "../../shared/types";
 import { DEFAULT_SRS_DATA } from "../../shared/types";
 import { RecallRating } from "../../srs/value-objects/RecallRating";
@@ -482,6 +483,141 @@ describe("VocabularyService", () => {
 		expect(service.getLearnedEntries()).toHaveLength(0);
 	});
 
+	describe("isPullable / getPullableWords / getMissingPrerequisites", () => {
+		it("isPullable is true for a mastered, uncarded word", () => {
+			const vocabulary = [makeEntry()];
+			const service = new VocabularyService(cardRepo, stateRepo, vocabulary);
+			const state = storage.load();
+			state.completedLessons = [1, 2];
+			storage.save(state);
+
+			expect(service.isPullable(vocabulary[0]!)).toBe(true);
+		});
+
+		it("isPullable is false once the word already has cards", () => {
+			const vocabulary = [makeEntry()];
+			const service = new VocabularyService(cardRepo, stateRepo, vocabulary);
+			const state = storage.load();
+			state.completedLessons = [1, 2];
+			storage.save(state);
+			cardRepo.saveAll([
+				VocabCard.fromDTO({
+					id: "vocab:มา:thaiToEnglish",
+					promptWord: "มา",
+					property: "thaiToEnglish",
+					question: "q",
+					correctAnswer: "a",
+					choices: ["a"],
+					srs: DEFAULT_SRS_DATA,
+				}),
+			]);
+
+			expect(service.isPullable(vocabulary[0]!)).toBe(false);
+		});
+
+		it("isPullable is false when script isn't mastered, regardless of rank", () => {
+			const vocabulary = [makeEntry({ rank: null })];
+			const service = new VocabularyService(cardRepo, stateRepo, vocabulary);
+
+			expect(service.isPullable(vocabulary[0]!)).toBe(false);
+		});
+
+		it("getPullableWords includes a mastered word with rank: null", () => {
+			const vocabulary = [makeEntry({ rank: null })];
+			const service = new VocabularyService(cardRepo, stateRepo, vocabulary);
+			const state = storage.load();
+			state.completedLessons = [1, 2];
+			storage.save(state);
+
+			const pullable = service.getPullableWords();
+			expect(pullable.map((e) => e.thai)).toEqual(["มา"]);
+		});
+
+		it("getMissingPrerequisites lists the still-missing tone rule when only characters are mastered", () => {
+			const vocabulary = [makeEntry()];
+			const service = new VocabularyService(cardRepo, stateRepo, vocabulary);
+			const state = storage.load();
+			state.completedLessons = [1]; // characters mastered, tone rule "low-live" (lesson 2) is not
+			storage.save(state);
+
+			expect(service.getMissingPrerequisites(vocabulary[0]!)).toEqual({
+				characters: [],
+				toneRules: ["low-live"],
+			});
+		});
+
+		it("getMissingPrerequisites returns empty arrays for a fully mastered word", () => {
+			const vocabulary = [makeEntry()];
+			const service = new VocabularyService(cardRepo, stateRepo, vocabulary);
+			const state = storage.load();
+			state.completedLessons = [1, 2];
+			storage.save(state);
+
+			expect(service.getMissingPrerequisites(vocabulary[0]!)).toEqual({
+				characters: [],
+				toneRules: [],
+			});
+		});
+
+		it("getAllWords returns every entry regardless of mastery, rank, or learned state", () => {
+			const vocabulary = [
+				makeEntry({ thai: "มา", rank: 1 }),
+				makeEntry({ thai: "นา", characters: ["น", "า"], rank: null }),
+			];
+			const service = new VocabularyService(cardRepo, stateRepo, vocabulary);
+
+			expect(service.getAllWords().map((e) => e.thai)).toEqual(["มา", "นา"]);
+		});
+	});
+
+	describe("generateCardsForWord", () => {
+		it("generates cards for a pullable word", () => {
+			const vocabulary = [makeEntry()];
+			const service = new VocabularyService(cardRepo, stateRepo, vocabulary);
+			const state = storage.load();
+			state.completedLessons = [1, 2];
+			storage.save(state);
+
+			const cards = service.generateCardsForWord("มา");
+			expect(cards).not.toBeNull();
+			expect(cards?.map((c) => c.property)).toContain("thaiToEnglish");
+		});
+
+		it("returns null for a word whose script isn't mastered", () => {
+			const vocabulary = [makeEntry()];
+			const service = new VocabularyService(cardRepo, stateRepo, vocabulary);
+
+			expect(service.generateCardsForWord("มา")).toBeNull();
+		});
+
+		it("returns null for a word not in the vocabulary list", () => {
+			const vocabulary = [makeEntry()];
+			const service = new VocabularyService(cardRepo, stateRepo, vocabulary);
+			const state = storage.load();
+			state.completedLessons = [1, 2];
+			storage.save(state);
+
+			expect(service.generateCardsForWord("ไม่มี")).toBeNull();
+		});
+
+		it("returns null when the apprentice cap blocks starting vocab", () => {
+			const vocabulary = [makeEntry()];
+			const apprenticeService = new ApprenticeService(cardRepo, 0, stateRepo);
+			const service = new VocabularyService(
+				cardRepo,
+				stateRepo,
+				vocabulary,
+				apprenticeService,
+			);
+			const state = storage.load();
+			state.completedLessons = [1, 2];
+			storage.save(state);
+			stateRepo.setApprenticeLimits({ general: 0, script: 35, sentence: 60 });
+
+			expect(service.generateCardsForWord("มา")).toBeNull();
+		});
+	});
+
 	it("anchors rank window to the first unlearned word regardless of mastery", () => {
 		const vocabulary = [
 			// Rank 1: NOT mastered (requires unknown character ก)
@@ -544,11 +680,10 @@ describe("VocabularyService", () => {
 			};
 		}
 
-		it("getNextLesson returns null when 20 distinct vocab words are at apprentice stage", () => {
+		function seedApprenticeWords(count: number): void {
 			const state = storage.load();
 			state.completedLessons = [1, 2];
-			// Add 20 distinct words in apprentice stage
-			for (let i = 0; i < 20; i++) {
+			for (let i = 0; i < count; i++) {
 				const word = `word${i}`;
 				state.vocabCards[`vocab:${word}:thaiToEnglish`] = makeLearningVocabCard(
 					word,
@@ -556,26 +691,38 @@ describe("VocabularyService", () => {
 				) as SrsData;
 			}
 			storage.save(state);
+		}
 
+		it("without an ApprenticeService, gating is a no-op regardless of apprentice word count", () => {
+			seedApprenticeWords(20);
 			const vocabulary = [makeEntry()];
 			const service = new VocabularyService(cardRepo, stateRepo, vocabulary);
+			expect(service.getNextLesson()).not.toBeNull();
+		});
+
+		it("getNextLesson returns null once the ApprenticeService's general limit is reached", () => {
+			seedApprenticeWords(20);
+			const vocabulary = [makeEntry()];
+			const apprenticeService = new ApprenticeService(cardRepo, 20);
+			const service = new VocabularyService(
+				cardRepo,
+				stateRepo,
+				vocabulary,
+				apprenticeService,
+			);
 			expect(service.getNextLesson()).toBeNull();
 		});
 
-		it("generateLessonCards returns null when 20 distinct vocab words are at apprentice stage", () => {
-			const state = storage.load();
-			state.completedLessons = [1, 2];
-			for (let i = 0; i < 20; i++) {
-				const word = `word${i}`;
-				state.vocabCards[`vocab:${word}:thaiToEnglish`] = makeLearningVocabCard(
-					word,
-					"thaiToEnglish",
-				) as SrsData;
-			}
-			storage.save(state);
-
+		it("generateLessonCards returns null once the ApprenticeService's general limit is reached", () => {
+			seedApprenticeWords(20);
 			const vocabulary = [makeEntry()];
-			const service = new VocabularyService(cardRepo, stateRepo, vocabulary);
+			const apprenticeService = new ApprenticeService(cardRepo, 20);
+			const service = new VocabularyService(
+				cardRepo,
+				stateRepo,
+				vocabulary,
+				apprenticeService,
+			);
 			expect(service.generateLessonCards()).toBeNull();
 		});
 
@@ -597,25 +744,47 @@ describe("VocabularyService", () => {
 			storage.save(state);
 
 			const vocabulary = [makeEntry()];
-			const service = new VocabularyService(cardRepo, stateRepo, vocabulary);
+			const apprenticeService = new ApprenticeService(cardRepo, 20);
+			const service = new VocabularyService(
+				cardRepo,
+				stateRepo,
+				vocabulary,
+				apprenticeService,
+			);
 			// Only 19 distinct words — should still be allowed
 			expect(service.getNextLesson()).not.toBeNull();
 		});
 
-		it("allows new lessons when fewer than 20 words are at apprentice stage", () => {
-			const state = storage.load();
-			state.completedLessons = [1, 2];
-			for (let i = 0; i < 5; i++) {
-				const word = `word${i}`;
-				state.vocabCards[`vocab:${word}:thaiToEnglish`] = makeLearningVocabCard(
-					word,
-					"thaiToEnglish",
-				) as SrsData;
-			}
-			storage.save(state);
-
+		it("allows new lessons when fewer than the limit's words are at apprentice stage", () => {
+			seedApprenticeWords(5);
 			const vocabulary = [makeEntry()];
-			const service = new VocabularyService(cardRepo, stateRepo, vocabulary);
+			const apprenticeService = new ApprenticeService(cardRepo, 20);
+			const service = new VocabularyService(
+				cardRepo,
+				stateRepo,
+				vocabulary,
+				apprenticeService,
+			);
+			expect(service.getNextLesson()).not.toBeNull();
+		});
+
+		// This is the actual bug report: raising "Vocabulary & Grammar" in
+		// Settings did nothing for vocab, because vocab never consulted
+		// ApprenticeService/the stored limits at all — it had its own
+		// permanently-hardcoded 20-word ceiling. Wiring it through
+		// ApprenticeService.canStartLesson("vocab") is what makes the
+		// settings-adjustable general limit actually take effect here.
+		it("respects a raised general apprentice limit from settings", () => {
+			seedApprenticeWords(25); // more than the old hardcoded 20
+			stateRepo.setApprenticeLimits({ general: 150, script: 35, sentence: 60 });
+			const vocabulary = [makeEntry()];
+			const apprenticeService = new ApprenticeService(cardRepo, 100, stateRepo);
+			const service = new VocabularyService(
+				cardRepo,
+				stateRepo,
+				vocabulary,
+				apprenticeService,
+			);
 			expect(service.getNextLesson()).not.toBeNull();
 		});
 	});

@@ -74,5 +74,7 @@ export function mergeLearnerStates(
 		sentenceCards,
 		sessionHistory: [...sessionMap.values()],
 		achievements,
+		apprenticeLimits: current.apprenticeLimits,
+		pendingCatchUps: current.pendingCatchUps,
 	};
 }

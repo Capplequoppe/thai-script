@@ -68,7 +68,10 @@ import { SentenceReviewCard } from "../../domain/sentence/entities/SentenceRevie
 import { SentenceService } from "../../domain/sentence/services/SentenceLessonService";
 import type { SentenceEntry } from "../../domain/sentence/types";
 import { ReviewService } from "../../domain/session/services/ReviewService";
-import { ApprenticeService } from "../../domain/shared/services/ApprenticeService";
+import {
+	ApprenticeService,
+	MAX_APPRENTICE_ITEMS,
+} from "../../domain/shared/services/ApprenticeService";
 import { LeechService } from "../../domain/shared/services/LeechService";
 import type { ReviewableCard } from "../../domain/srs/entities/ReviewableCard";
 import vocabularyData from "../../domain/vocabulary/data/vocabulary.json";
@@ -754,7 +757,11 @@ export function makeAppValue(options: MakeAppValueOptions = {}): AppHarness {
 	const storage = new InMemoryStorage();
 	const cardRepo = new StorageCardRepository(storage);
 	const stateRepo = new StorageLearnerStateRepository(storage);
-	const apprenticeService = new ApprenticeService(cardRepo);
+	const apprenticeService = new ApprenticeService(
+		cardRepo,
+		MAX_APPRENTICE_ITEMS,
+		stateRepo,
+	);
 	const leechService = new LeechService(cardRepo);
 	const learningService = new LearningService(
 		cardRepo,
@@ -766,6 +773,7 @@ export function makeAppValue(options: MakeAppValueOptions = {}): AppHarness {
 		cardRepo,
 		stateRepo,
 		vocabularyData as VocabEntry[],
+		apprenticeService,
 	);
 	const grammarService = new GrammarService(
 		cardRepo,
@@ -834,6 +842,7 @@ export function makeAppValue(options: MakeAppValueOptions = {}): AppHarness {
 		items: new ManageItemsUseCase(cardRepo),
 		vocab: vocabularyService,
 		conversationPractice: new StubConversationPracticePort(),
+		sentence: sentenceService,
 		checkAchievements: () => [],
 		game,
 	};

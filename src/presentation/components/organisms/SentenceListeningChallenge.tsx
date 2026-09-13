@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import type { SentenceGameItem } from "../../../domain/game/types";
 import type { RecallRating } from "../../../domain/shared/types";
+import { stripWordSpacing } from "../../utils/thaiText";
 import { RatingButtons } from "./RatingButtons";
 
 interface Props {
@@ -10,10 +11,11 @@ interface Props {
 
 /**
  * Hear it, understand it: the sentence's audio plays up front, the learner
- * works out what was said, then reveals the Thai text and English meaning
- * and self-rates. There is deliberately no write-input — a whole sentence
- * is not something this feature asks anyone to write (see task 1.3's
- * architectural decision).
+ * works out what was said, then reveals the Thai text (word spaces
+ * stripped — real Thai text has none) and English meaning and self-rates.
+ * There is deliberately no write-input — a whole sentence is not something
+ * this feature asks anyone to write (see task 1.3's architectural
+ * decision).
  *
  * Only reachable for an item with audio: `assignDirection` never assigns
  * `"listening"` to an audio-less sentence, and every sentence in the
@@ -104,10 +106,10 @@ export function SentenceListeningChallenge({ item, onRate }: Props) {
 						style={{ background: "var(--color-surface-2)" }}
 					>
 						<p
-							className="text-3xl font-bold leading-relaxed"
+							className="thai text-3xl font-bold leading-relaxed"
 							style={{ color: "var(--color-primary)" }}
 						>
-							{item.thaiText}
+							{stripWordSpacing(item.thaiText)}
 						</p>
 						<p
 							className="text-lg mt-2"

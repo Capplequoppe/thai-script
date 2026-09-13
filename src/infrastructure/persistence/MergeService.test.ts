@@ -80,6 +80,33 @@ describe("mergeLearnerStates", () => {
 		expect(result.currentLesson).toBe(3);
 	});
 
+	it("preserves current.apprenticeLimits, not incoming's", () => {
+		const current: LearnerState = {
+			...INITIAL_LEARNER_STATE,
+			apprenticeLimits: { general: 42, script: 10, sentence: 20 },
+		};
+		const incoming: LearnerState = {
+			...INITIAL_LEARNER_STATE,
+			apprenticeLimits: { general: 999, script: 999, sentence: 999 },
+		};
+		const result = mergeLearnerStates(current, incoming);
+		expect(result.apprenticeLimits).toEqual({
+			general: 42,
+			script: 10,
+			sentence: 20,
+		});
+	});
+
+	it("leaves apprenticeLimits undefined when current never set it", () => {
+		const current: LearnerState = { ...INITIAL_LEARNER_STATE };
+		const incoming: LearnerState = {
+			...INITIAL_LEARNER_STATE,
+			apprenticeLimits: { general: 999, script: 999, sentence: 999 },
+		};
+		const result = mergeLearnerStates(current, incoming);
+		expect(result.apprenticeLimits).toBeUndefined();
+	});
+
 	it("includes cards only in current", () => {
 		const current: LearnerState = {
 			...INITIAL_LEARNER_STATE,

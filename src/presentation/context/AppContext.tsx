@@ -28,7 +28,10 @@ import { SentenceService } from "../../domain/sentence/services/SentenceLessonSe
 import type { SentenceEntry } from "../../domain/sentence/types";
 import { ReviewService } from "../../domain/session/services/ReviewService";
 import { AchievementService } from "../../domain/shared/services/AchievementService";
-import { ApprenticeService } from "../../domain/shared/services/ApprenticeService";
+import {
+	ApprenticeService,
+	MAX_APPRENTICE_ITEMS,
+} from "../../domain/shared/services/ApprenticeService";
 import { LeechService } from "../../domain/shared/services/LeechService";
 import type { LearnerState, SessionSummary } from "../../domain/shared/types";
 import vocabularyData from "../../domain/vocabulary/data/vocabulary.json";
@@ -48,9 +51,13 @@ import { StorageLearnerStateRepository } from "../../infrastructure/persistence/
 
 const storage = new LocalStorageAdapter();
 const cardRepo = new StorageCardRepository(storage);
-const apprenticeService = new ApprenticeService(cardRepo);
-const leechService = new LeechService(cardRepo);
 const stateRepo = new StorageLearnerStateRepository(storage);
+const apprenticeService = new ApprenticeService(
+	cardRepo,
+	MAX_APPRENTICE_ITEMS,
+	stateRepo,
+);
+const leechService = new LeechService(cardRepo);
 const learningService = new LearningService(
 	cardRepo,
 	stateRepo,
@@ -61,6 +68,7 @@ const vocabularyService = new VocabularyService(
 	cardRepo,
 	stateRepo,
 	vocabularyData as VocabEntry[],
+	apprenticeService,
 );
 const grammarService = new GrammarService(
 	cardRepo,
@@ -142,6 +150,7 @@ export interface AppContextValue {
 	data: ManageDataUseCase;
 	items: ManageItemsUseCase;
 	vocab: VocabularyService;
+	sentence: SentenceService;
 	game: PlayGameUseCase;
 	conversationPractice: ConversationPracticePort;
 	checkAchievements: (summary: SessionSummary) => string[];
@@ -150,10 +159,17 @@ export interface AppContextValue {
 export const AppContext = createContext<AppContextValue | null>(null);
 
 export function AppProvider({ children }: { children: ReactNode }) {
-	const [state, setState] = useState<LearnerState>(() => storage.load());
+	const [state, setState] = useState<LearnerState>(() => ({
+		...storage.load(),
+	}));
 
+	// `storage.load()` returns its cached object live (see
+	// `LocalStorageAdapter`), so `setState(storage.load())` would be an
+	// `Object.is` no-op and the tree would never re-render after a review.
+	// The shallow copy is a fresh top-level identity over the same, already
+	// up-to-date nested data — cheap, and what every consumer keys off.
 	const refresh = useCallback(() => {
-		setState(storage.load());
+		setState({ ...storage.load() });
 	}, []);
 
 	const checkAchievements = useCallback((summary: SessionSummary): string[] => {
@@ -188,6 +204,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
 			data: dataUseCase,
 			items: itemsUseCase,
 			vocab: vocabularyService,
+			sentence: sentenceService,
 			game: gameUseCase,
 			conversationPractice,
 			checkAchievements,

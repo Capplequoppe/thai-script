@@ -1,5 +1,7 @@
 import type {
 	ConsonantSummary,
+	NumeralSummary,
+	RareVowelSummary,
 	ToneMarkSummary,
 	VowelSummary,
 } from "../../../domain/script/services/ScriptLessonService";
@@ -141,6 +143,58 @@ export function ToneMarkCard({ t }: { t: ToneMarkSummary }) {
 				{t.lowClassTone && (
 					<SymbolInfoRow label="Low class →" value={t.lowClassTone} />
 				)}
+			</div>
+		</div>
+	);
+}
+
+export function RareVowelCard({ v }: { v: RareVowelSummary }) {
+	return (
+		<div className="space-y-3">
+			<div className="text-center">
+				<ThaiCharDisplay character={v.character} className="text-[96px]" />
+				<h2 className="text-2xl font-semibold mt-2">{v.name}</h2>
+				<p className="text-sm" style={{ color: "var(--color-text-muted)" }}>
+					{v.pronunciation}
+				</p>
+			</div>
+
+			<div
+				className="rounded-xl p-4 space-y-0.5"
+				style={{ background: "var(--color-surface-2)" }}
+			>
+				<SymbolInfoRow
+					label="Length"
+					value={v.length}
+					valueStyle={{
+						color:
+							v.length === "long"
+								? "var(--color-enlightened)"
+								: "var(--color-guru)",
+					}}
+				/>
+			</div>
+
+			{v.notes && <MnemonicBlock text={v.notes} />}
+		</div>
+	);
+}
+
+export function NumeralCard({ n }: { n: NumeralSummary }) {
+	return (
+		<div className="space-y-3">
+			<div className="text-center">
+				<ThaiCharDisplay character={n.character} className="text-[96px]" />
+				<h2 className="text-2xl font-semibold mt-2">{n.arabic}</h2>
+				<p
+					className="thai text-lg"
+					style={{ color: "var(--color-text-muted)" }}
+				>
+					{n.word}
+				</p>
+				<p className="text-sm" style={{ color: "var(--color-text-muted)" }}>
+					{n.romanization}
+				</p>
 			</div>
 		</div>
 	);

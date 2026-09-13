@@ -1,9 +1,40 @@
 // @vitest-environment jsdom
 import { fireEvent, render, screen } from "@testing-library/react";
-import { describe, expect, it, vi } from "vitest";
+import { beforeEach, describe, expect, it, vi } from "vitest";
 import type { ToneGameItem } from "../../../domain/game/types";
+import { useMicRecorder } from "../../hooks/useMicRecorder";
+import { useToneAttempt } from "../../hooks/useToneAttempt";
 import { createdAudioUrls } from "../../test-utils/renderWithApp";
 import { ToneIdentificationChallenge } from "./ToneIdentificationChallenge";
+
+vi.mock("../../hooks/useMicRecorder");
+vi.mock("../../hooks/useToneAttempt");
+
+const mockUseMicRecorder = vi.mocked(useMicRecorder);
+const mockUseToneAttempt = vi.mocked(useToneAttempt);
+
+function mockMic(overrides: Partial<ReturnType<typeof useMicRecorder>> = {}) {
+	mockUseMicRecorder.mockReturnValue({
+		state: "idle",
+		audioBlob: null,
+		start: vi.fn(),
+		stop: vi.fn(),
+		reset: vi.fn(),
+		...overrides,
+	});
+}
+
+function mockAttempt(
+	overrides: Partial<ReturnType<typeof useToneAttempt>> = {},
+) {
+	mockUseToneAttempt.mockReturnValue({
+		status: "idle",
+		result: null,
+		analyze: vi.fn(),
+		reset: vi.fn(),
+		...overrides,
+	});
+}
 
 function makeItem(overrides: Partial<ToneGameItem> = {}): ToneGameItem {
 	return {
@@ -23,6 +54,11 @@ function makeItem(overrides: Partial<ToneGameItem> = {}): ToneGameItem {
 function reveal() {
 	fireEvent.click(screen.getByRole("button", { name: "Show Answer" }));
 }
+
+beforeEach(() => {
+	mockMic();
+	mockAttempt();
+});
 
 describe("ToneIdentificationChallenge", () => {
 	// AC1
@@ -104,5 +140,64 @@ describe("ToneIdentificationChallenge", () => {
 
 		reveal();
 		expect(screen.getByText("high")).toBeTruthy();
+	});
+
+	describe("recording practice", () => {
+		it("offers a record button once revealed, only when the item has audio", () => {
+			render(<ToneIdentificationChallenge item={makeItem()} onRate={vi.fn()} />);
+			reveal();
+
+			expect(screen.getByRole("button", { name: /Record/ })).toBeTruthy();
+		});
+
+		it("offers no recording section for an audio-less word", () => {
+			render(
+				<ToneIdentificationChallenge
+					item={makeItem({ audioUrl: undefined })}
+					onRate={vi.fn()}
+				/>,
+			);
+			reveal();
+
+			expect(screen.queryByText("Record yourself saying it")).toBeNull();
+		});
+
+		it("shows an analyzing state while the attempt is being scored", () => {
+			mockAttempt({ status: "analyzing" });
+			render(<ToneIdentificationChallenge item={makeItem()} onRate={vi.fn()} />);
+			reveal();
+
+			expect(screen.getByText("Analyzing…")).toBeTruthy();
+		});
+
+		it("shows the score, contour, and a way to record again once scored", () => {
+			mockAttempt({
+				status: "done",
+				result: {
+					referenceContour: [0, 1, 2],
+					attemptContour: [0, 1, 1.5],
+					score: 92,
+					label: "excellent",
+				},
+			});
+			render(<ToneIdentificationChallenge item={makeItem()} onRate={vi.fn()} />);
+			reveal();
+
+			expect(screen.getByText("Excellent match")).toBeTruthy();
+			expect(screen.getByRole("button", { name: "Record again" })).toBeTruthy();
+		});
+
+		// Mic permission is out of the learner's control moment-to-moment —
+		// rating the word they already saw and heard must stay reachable.
+		it("keeps RatingButtons reachable when microphone access is denied", () => {
+			mockMic({ state: "denied" });
+			render(<ToneIdentificationChallenge item={makeItem()} onRate={vi.fn()} />);
+			reveal();
+
+			expect(
+				screen.getByText("Microphone access is needed to try this."),
+			).toBeTruthy();
+			expect(screen.getByRole("button", { name: /Good/ })).toBeTruthy();
+		});
 	});
 });
