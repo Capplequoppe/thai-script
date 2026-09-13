@@ -151,10 +151,17 @@ export interface AppContextValue {
 export const AppContext = createContext<AppContextValue | null>(null);
 
 export function AppProvider({ children }: { children: ReactNode }) {
-	const [state, setState] = useState<LearnerState>(() => storage.load());
+	const [state, setState] = useState<LearnerState>(() => ({
+		...storage.load(),
+	}));
 
+	// `storage.load()` returns its cached object live (see
+	// `LocalStorageAdapter`), so `setState(storage.load())` would be an
+	// `Object.is` no-op and the tree would never re-render after a review.
+	// The shallow copy is a fresh top-level identity over the same, already
+	// up-to-date nested data — cheap, and what every consumer keys off.
 	const refresh = useCallback(() => {
-		setState(storage.load());
+		setState({ ...storage.load() });
 	}, []);
 
 	const checkAchievements = useCallback((summary: SessionSummary): string[] => {

@@ -1,3 +1,4 @@
+import { useMemo } from "react";
 import { useNavigate } from "react-router";
 import { Badge } from "@/presentation/components/ui/badge";
 import { Button } from "@/presentation/components/ui/button";
@@ -43,22 +44,56 @@ export function Dashboard() {
 	const { state, lesson, review, dashboard, vocab } = useApp();
 	const navigate = useNavigate();
 
-	const nextLesson = lesson.getNextScript();
-	const nextVocabLesson =
-		lesson.getVocabUnlockedCount() > 0 ? vocab.getNextLesson() : null;
-	const nextGrammarLesson = lesson.getNextGrammar();
-	const nextSentenceLesson = lesson.getNextSentence();
-	const pendingCatchUps = lesson.getPendingCatchUps();
-	const scriptDueCount = review.getDueCount("script");
-	const vocabDueCount = review.getDueCount("vocab");
-	const grammarDueCount = review.getDueCount("grammar");
-	const sentenceDueCount = review.getDueCount("sentence");
-	const dueCount =
-		scriptDueCount + vocabDueCount + grammarDueCount + sentenceDueCount;
-	const timeUntilNextReview = review.getTimeUntilNextReview();
-	const forecast = review.getForecast();
-	const leechCount = dashboard.getLeechCount();
-	const stages = dashboard.getStageCounts();
+	// Every one of these reads the learner state back out of storage and
+	// rebuilds card entities — `getStageCounts` and `getForecast` do it once
+	// per card pool. Called straight from the render body they re-ran on
+	// every render of the page; they depend only on the learner state, so
+	// they are computed once per state instead.
+	// `state` is deliberately the cache key: it is the identity that changes
+	// when the stored learner state changes, which is what these repository
+	// reads actually depend on.
+	// biome-ignore lint/correctness/useExhaustiveDependencies: explained above
+	const d = useMemo(() => {
+		const scriptDueCount = review.getDueCount("script");
+		const vocabDueCount = review.getDueCount("vocab");
+		const grammarDueCount = review.getDueCount("grammar");
+		const sentenceDueCount = review.getDueCount("sentence");
+		return {
+			nextLesson: lesson.getNextScript(),
+			nextVocabLesson:
+				lesson.getVocabUnlockedCount() > 0 ? vocab.getNextLesson() : null,
+			nextGrammarLesson: lesson.getNextGrammar(),
+			nextSentenceLesson: lesson.getNextSentence(),
+			pendingCatchUps: lesson.getPendingCatchUps(),
+			scriptDueCount,
+			vocabDueCount,
+			grammarDueCount,
+			sentenceDueCount,
+			dueCount:
+				scriptDueCount + vocabDueCount + grammarDueCount + sentenceDueCount,
+			timeUntilNextReview: review.getTimeUntilNextReview(),
+			forecast: review.getForecast(),
+			leechCount: dashboard.getLeechCount(),
+			stages: dashboard.getStageCounts(),
+		};
+	}, [state, lesson, review, dashboard, vocab]);
+
+	const {
+		nextLesson,
+		nextVocabLesson,
+		nextGrammarLesson,
+		nextSentenceLesson,
+		pendingCatchUps,
+		scriptDueCount,
+		vocabDueCount,
+		grammarDueCount,
+		sentenceDueCount,
+		dueCount,
+		timeUntilNextReview,
+		forecast,
+		leechCount,
+		stages,
+	} = d;
 	const achievements = state.achievements ?? [];
 	const reviewButtonCount = [
 		scriptDueCount,
