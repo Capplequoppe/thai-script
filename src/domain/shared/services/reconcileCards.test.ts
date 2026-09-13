@@ -68,6 +68,65 @@ describe("reconcileGeneratedCards", () => {
 		expect(reconcileGeneratedCards(persisted, generated)).toEqual([]);
 	});
 
+	// The `syllables` exception. `vocabulary.json`'s tones were wrong for
+	// ~14% of syllables until `scripts/enrich-vocabulary.py` was fixed, so a
+	// learner's already-generated toneIdentification card carries the old
+	// answer and `ToneQuiz` marks the right tone wrong until this corrects it.
+	it("adopts corrected syllables and correctAnswer onto an already-persisted tone card", () => {
+		const persisted = [
+			makeCard("vocab:รับ:toneIdentification", {
+				correctAnswer: "falling",
+				choices: [],
+				syllables: [{ text: "รับ", tone: "falling" }],
+				srs: { ...DEFAULT_SRS_DATA, repetitions: 7 },
+			}),
+		];
+		const generated = [
+			makeCard("vocab:รับ:toneIdentification", {
+				correctAnswer: "high",
+				choices: [],
+				syllables: [{ text: "รับ", tone: "high" }],
+			}),
+		];
+
+		const result = reconcileGeneratedCards(persisted, generated);
+
+		expect(result).toEqual([
+			{
+				...persisted[0],
+				correctAnswer: "high",
+				syllables: [{ text: "รับ", tone: "high" }],
+			},
+		]);
+		// The learner's own schedule survives the content correction.
+		expect(result[0]?.srs.repetitions).toBe(7);
+	});
+
+	it("leaves a tone card alone when its syllables already match", () => {
+		const card = {
+			correctAnswer: "high",
+			choices: [],
+			syllables: [{ text: "รับ", tone: "high" }],
+		};
+		const persisted = [makeCard("vocab:รับ:toneIdentification", card)];
+		const generated = [makeCard("vocab:รับ:toneIdentification", card)];
+
+		expect(reconcileGeneratedCards(persisted, generated)).toEqual([]);
+	});
+
+	// The reason `choices` is NOT in the exception: every generator reshuffles
+	// them per call, so adopting them would rewrite cards on nearly every boot.
+	it("still never adopts a generated question or choices", () => {
+		const persisted = [
+			makeCard("a", { question: "kept", choices: ["a", "b"] }),
+		];
+		const generated = [
+			makeCard("a", { question: "fresh", choices: ["b", "a"] }),
+		];
+
+		expect(reconcileGeneratedCards(persisted, generated)).toEqual([]);
+	});
+
 	it("ignores a persisted id that isn't in generated at all — never deletes", () => {
 		const persisted = [makeCard("a"), makeCard("stale")];
 		const generated = [makeCard("a")];

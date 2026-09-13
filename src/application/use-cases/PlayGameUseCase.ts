@@ -4,6 +4,8 @@ import type {
 } from "../../domain/game/ports/GameHistoryRepository";
 import { selectCompositionRound } from "../../domain/game/services/compositionSelection";
 import type { GameItemSelectionService } from "../../domain/game/services/GameItemSelectionService";
+import type { MinimalPairGameItemSource } from "../../domain/game/services/MinimalPairGameItemSource";
+import { selectMinimalPairRound } from "../../domain/game/services/minimalPairSelection";
 import type {
 	GameItem,
 	GameRatingRecord,
@@ -35,9 +37,13 @@ const CORRECT_RATINGS: ReadonlySet<RecallRating> = new Set([4, 5]);
  * `word:`, even though both hold a Thai word: a round can include a word's
  * `WordGameItem` and its `ToneGameItem` at once (task 2.2 wires
  * `includeTonePractice`), and those must rate as two separate items too.
- * A composition item's key is its `grammarId`, prefixed `composition:` —
- * mechanical exhaustiveness only; task 3.2 wires composition rounds
- * through this class's actual round-tracking.
+ * A composition item's key is its `grammarId`, prefixed `composition:`.
+ * A tone-pairs item's key is its target `thaiWord`, prefixed
+ * `minimalPair:` rather than reusing `tone:` or `word:` for the same
+ * reason those two are already distinct from each other: the same word can
+ * legitimately be asked as a plain word item, as a tone-pattern item and
+ * as a sound-alike discrimination, and those are three separate things to
+ * have got right.
  *
  * Exhaustive on `kind`: a new `GameItem` member must be a compile error
  * here rather than silently inheriting another kind's identity rule.
@@ -54,6 +60,8 @@ function itemKeyOf(item: GameItem): string {
 			return `tone:${item.thaiWord}`;
 		case "composition":
 			return `composition:${item.grammarId}`;
+		case "minimalPair":
+			return `minimalPair:${item.thaiWord}`;
 		default: {
 			const _never: never = item;
 			throw new Error(`unhandled game item: ${JSON.stringify(_never)}`);
@@ -71,9 +79,10 @@ function itemKeyOf(item: GameItem): string {
  *
  * No `CardRepository` — and no object able to write one — is ever received
  * here: only `GameItemSelectionService` (which wraps one, read-only), a
- * `GameHistoryRepository`, and a read-only capability for unlocked grammar
+ * `GameHistoryRepository`, a read-only capability for unlocked grammar
  * points (a function returning data, deliberately not `GrammarService`
- * itself). There is therefore no code path through this use case that could
+ * itself), and a `MinimalPairGameItemSource` (one read-only method over
+ * that same card port). There is therefore no code path through this use case that could
  * ever call `CardRepository.save` or `ReviewableCard.recordReview`: the
  * SRS-isolation guarantee is structural, not merely a rule nobody happens
  * to break.
@@ -105,6 +114,7 @@ export class PlayGameUseCase {
 		private readonly selectionService: GameItemSelectionService,
 		private readonly historyRepository: GameHistoryRepository,
 		private readonly unlockedGrammarPoints: () => readonly GrammarEntry[],
+		private readonly minimalPairSource: MinimalPairGameItemSource,
 	) {}
 
 	startRound(config: GameRoundConfig, rng?: RandomSource): GameItem[] {
@@ -120,6 +130,26 @@ export class PlayGameUseCase {
 	 */
 	startCompositionRound(count: number, rng?: RandomSource): GameItem[] {
 		return selectCompositionRound(this.unlockedGrammarPoints(), count, rng);
+	}
+
+	/**
+	 * A tone-pairs round over the sound-alike groups the learner has learned
+	 * both sides of. Like composition, not a `GameRoundConfig`: there are no
+	 * pools to pick, no input mode (nothing is written) and no weak-item
+	 * weighting — the eligible set is decided by which words sound alike and
+	 * which of them have recordings, neither of which is an SRS statistic.
+	 *
+	 * `MinimalPairGameItemSource` is read fresh per round for the same
+	 * reason `unlockedGrammarPoints` is called fresh: the learner's card set
+	 * grows between rounds, and a group becomes eligible the moment its
+	 * second member is introduced.
+	 */
+	startMinimalPairRound(count: number, rng?: RandomSource): GameItem[] {
+		return selectMinimalPairRound(
+			this.minimalPairSource.eligibleGroups(),
+			count,
+			rng,
+		);
 	}
 
 	/**

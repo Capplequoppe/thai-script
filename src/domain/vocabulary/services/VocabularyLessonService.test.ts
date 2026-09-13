@@ -843,6 +843,57 @@ describe("VocabularyService", () => {
 			expect(thaiToEnglishAfter?.schedule.repetitions).toBe(ratedRepetitions);
 		});
 
+		// The end-to-end half of `reconcileCards`' `syllables` exception: a
+		// learner who generated their tone card before `vocabulary.json`'s
+		// tones were corrected has the old answer persisted, and `ToneQuiz`
+		// grades against `correctAnswer` — so without this the right tone is
+		// marked wrong forever.
+		it("corrects a stale tone card's syllables and answer, keeping its schedule", () => {
+			const word = makeEntry({
+				thai: "รับ",
+				// The tone as it now is, after the enrichment fix.
+				syllables: [
+					{
+						text: "รับ",
+						initialConsonant: "ร",
+						vowel: "ั",
+						finalConsonant: "บ",
+						toneMark: null,
+						consonantClass: "low",
+						syllableType: "dead",
+						tone: "high",
+					},
+				],
+			});
+
+			// Seed the card as the old generator would have written it.
+			const stale = VocabCard.fromDTO({
+				id: "vocab:รับ:toneIdentification",
+				promptWord: "รับ",
+				property: "toneIdentification",
+				question: "What is the tone of each syllable?",
+				correctAnswer: "falling",
+				choices: [],
+				syllables: [{ text: "รับ", tone: "falling" }],
+				srs: { ...DEFAULT_SRS_DATA },
+			});
+			cardRepo.save(stale);
+			stale.recordReview(RecallRating.GOOD, new Date().toISOString());
+			cardRepo.save(stale);
+			const ratedRepetitions = stale.schedule.repetitions;
+			expect(ratedRepetitions).toBeGreaterThan(0);
+
+			new VocabularyService(cardRepo, stateRepo, [word]).reconcileCards();
+
+			const corrected = cardRepo
+				.findAll("vocab")
+				.find((c) => c.id === "vocab:รับ:toneIdentification") as VocabCard;
+			expect(corrected.correctAnswer).toBe("high");
+			expect(corrected.syllables).toEqual([{ text: "รับ", tone: "high" }]);
+			// A content correction, not a reset.
+			expect(corrected.schedule.repetitions).toBe(ratedRepetitions);
+		});
+
 		it("is a no-op for a word the learner hasn't started yet", () => {
 			const vocabulary = [makeEntry({ thai_audio_file: "/audio/maa.mp3" })];
 			const service = new VocabularyService(cardRepo, stateRepo, vocabulary);
