@@ -46,6 +46,12 @@ FORBIDDEN_IN_SCENE = re.compile(
 
 VALID_VERDICTS = {"written", "kept", "replaced", "skipped"}
 
+# The tone note is the final parenthetical. Scanning the whole mnemonic for
+# glyphs does not work: `—` is ordinary punctuation in this prose, so an em
+# dash anywhere in the story registered as a claimed mid tone and could mask a
+# genuinely wrong one by making the claimed set intersect by accident.
+TONE_NOTE = re.compile(r"\(([^()]*)\)\s*$")
+
 
 def words(text: str) -> int:
     return len(text.split())
@@ -101,7 +107,11 @@ def validate(entry: dict, vocab: dict, seen: set[int]) -> list[str]:
 
     # Tone: the glyph must name a tone this word actually carries, read from
     # the romanization — see `tones.py` for why not `syllables[].tone`.
-    glyphs = {ch for ch in mnemonic if ch in GLYPH_TONES}
+    note = TONE_NOTE.search(mnemonic.strip())
+    if note is None:
+        problems.append("no tone note in parentheses at the end of the mnemonic")
+        return problems
+    glyphs = {ch for ch in note.group(1) if ch in GLYPH_TONES}
     actual = resolved_tones(target)
     if not glyphs:
         problems.append("no tone glyph in the mnemonic")

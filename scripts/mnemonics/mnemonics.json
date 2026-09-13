@@ -29,6 +29,26 @@
       "scene": "Bustling Thai street market at golden hour. A smiling vendor in an apron holds a ripe mango out across her fruit stall. Facing her, a young foreign traveller points at his own chest with both index fingers, eyebrows raised high, mouth open in an exaggerated questioning expression. Baskets of tropical fruit and hanging bulbs frame them."
     },
     {
+      "rank": 26,
+      "thai": "ขอบคุณ",
+      "romanization": "khàawp-khun",
+      "english": "thank",
+      "anchor": "COP + KHUN",
+      "mnemonic": "A traffic cop hands back the wallet you dropped, and the thanks is already built into the word: คุณ khun means you, so khàawp-khun is thanks-you, and the cop is standing right there to collect it. Palms together, head down, the first syllable sitting low. (▁ khàawp drops low, then khun levels out flat and mid)",
+      "headline": "Khàawp-khun.",
+      "scene": "A Bangkok street corner in the rain. A traffic policeman in a white helmet holds out a battered leather wallet to a young woman, who has stopped mid-step and pressed her palms together in front of her face, head bowed, beaming. Wet tarmac, headlights, motorbikes blurred behind them."
+    },
+    {
+      "rank": 27,
+      "thai": "ขอบคุณ",
+      "romanization": "khàawp-khun",
+      "english": "Thank you!",
+      "anchor": "COP + KHUN (you)",
+      "mnemonic": "A cop hands back the wallet you dropped and you press your palms together: khàawp-khun. Stretch that cop out long — khàawp — and remember what the end of it is: khun, the ordinary Thai word for you. Thanking someone is literally handing them a you. (▁ khàawp sits low, then khun levels out flat)",
+      "headline": "khàawp-khun.",
+      "scene": "A uniformed Thai police officer on a busy pavement holds out a worn leather wallet to a young woman, who has stopped mid-step and raised both hands pressed together in front of her face, head bowed, smiling. Scooters and market stalls blurred behind them in warm afternoon light."
+    },
+    {
       "rank": 28,
       "thai": "ขอโทษ",
       "romanization": "khǎaw-thôot",
@@ -37,6 +57,16 @@
       "mnemonic": "A crow lands on a café table, caws once, then knocks the whole tote of pastries onto the pavement. It hops down beside the mess with its wings folded and its head bowed, apologising to the entire street. CAW plus TOTE: kǎaw-thôot, the bird with better manners than most. (↓ the voice drops on the second half, the bow of the head)",
       "headline": "kǎaw-thôot.",
       "scene": "A glossy black crow standing on a wet pavement beside an upended canvas tote bag, pastries scattered around it, its wings folded flat and its head bowed low toward a startled woman half risen from her café chair. Overturned chair, morning light on the wet stone."
+    },
+    {
+      "rank": 29,
+      "thai": "ขอโทษ",
+      "romanization": "khǎaw-thôot",
+      "english": "Excuse me.",
+      "anchor": "CAW + TOAST",
+      "mnemonic": "A man backing out of a café swings his bag into a waiter and a whole rack of toast goes up in the air. On the sill a crow caws. Caw, toast. He turns round with both hands raised, wincing, saying it twice over: khǎaw-thôot. (↑ khǎaw climbs like the crow, then thôot drops as he bows)",
+      "headline": "Khǎaw-thôot!",
+      "scene": "The doorway of a small café. A man in a raincoat has just knocked a waiter's tray and slices of toast hang in the air around them both. He is turned back toward the waiter, shoulders hunched, both hands raised in apology, face screwed up. A black crow on the window ledge, beak open. Morning light."
     },
     {
       "rank": 36,
@@ -79,6 +109,16 @@
       "scene": "A street food stall. The cook, grinning, is tipping an enormous jar of dried red chilli flakes toward a bowl of noodles. Across the counter a woman lunges forward with one hand raised in alarm, her other hand pinching thumb and forefinger a tiny distance apart. Steam, woks, stacked bowls, night market lights."
     },
     {
+      "rank": 72,
+      "thai": "กิน",
+      "romanization": "kin",
+      "english": "eat",
+      "anchor": "KIN",
+      "mnemonic": "Twelve people round one table, all of them kin, every hand reaching into the same bowls at once. kin is what they are doing and who they are doing it with: you eat with your kin. One flat syllable, no fuss, used all day long. (— flat and level, an unhurried everyday word)",
+      "headline": "kin.",
+      "scene": "An extended Thai family crowded round a low table heaped with shared dishes, a dozen hands reaching in at once, a grandmother spooning rice into a small child's bowl, everyone talking over each other. A warm hanging bulb overhead, evening dark beyond the open doorway."
+    },
+    {
       "rank": 73,
       "thai": "ทำไม",
       "romanization": "tham-mai",
@@ -109,6 +149,26 @@
       "scene": "An elderly janitor hoists an enormous iron keyring with both hands, hundreds of keys fanned out in a glinting spray. A student beside him stares up, counting. Dim school corridor, shafts of window light."
     },
     {
+      "rank": 88,
+      "thai": "เมื่อไหร่",
+      "romanization": "mûuea-rài",
+      "english": "when",
+      "anchor": "MOO + RYE",
+      "mnemonic": "A cow leans over the fence into the neighbour's rye field and moos, while the farmer stands beside it with his watch open, waiting on the crop. Moo, rye. mûuea-rài asks the only thing either of them wants to know: when. Say MOO with the lips pulled wide instead of pushed forward and the Thai vowel lands. (↓ mûuea drops, then rài falls away low)",
+      "headline": "mûuea-rài?",
+      "scene": "A brown cow with its head stretched over a wooden fence into a tall golden field of rye, mouth open mid-bellow. On the near side an old farmer in a straw hat holds a pocket watch open in his palm, looking at the crop rather than the cow. Late summer haze, low sun."
+    },
+    {
+      "rank": 93,
+      "thai": "นักเรียน",
+      "romanization": "nák-riian",
+      "english": "student",
+      "anchor": "a KNACK (nák-)",
+      "mnemonic": "nák- is the prefix Thai sticks on the front of anyone who does a thing. Hear it as a knack — the boy with a knack for it — and glue it to riian, to study. Knack for studying: a student. Learn nák- once and it hands you a dozen other people. (— riian levels out flat and patient at the end)",
+      "headline": null,
+      "scene": "A Thai schoolboy in a crisp white uniform sits at a wooden classroom desk, effortlessly spinning a globe on one fingertip while his classmates twist round in their seats to watch, delighted. Morning sun through louvred shutters, dust hanging in the light."
+    },
+    {
       "rank": 97,
       "thai": "พ่อ",
       "romanization": "pʰɔ̂ː",
@@ -119,6 +179,16 @@
       "scene": "Close view of a small boy's hand gripping the huge weathered calloused hand of his father, whose forearm fills the frame. The boy, about five, looks up with total trust; the father, a broad Thai labourer in a faded work shirt, looks down at him with a quiet smile. Warm kitchen light, out-of-focus home interior behind."
     },
     {
+      "rank": 98,
+      "thai": "ข้าว",
+      "romanization": "khàao",
+      "english": "rice",
+      "anchor": "COW",
+      "mnemonic": "A cow has got her whole head into the rice cauldron and will not come out. Grains fly across the kitchen floor. The farmer's voice comes down hard — khâao! — because that is his rice, a month of it, and a cow is eating it. (↓ falling, the shout drops as it lands)",
+      "headline": "Khâao!",
+      "scene": "A rustic Thai kitchen. A cow has pushed her head deep into an enormous steaming cauldron of white rice, grains scattered across the tiled floor. A farmer in a straw hat lunges at her with both arms raised, mouth wide. Steam, morning light through a slatted window."
+    },
+    {
       "rank": 99,
       "thai": "ดื่ม",
       "romanization": "dɯ̀ːm",
@@ -127,6 +197,16 @@
       "mnemonic": "A man raises his glass and intones \"dɯɯm…\" like a funeral bell — the last drink before DOOM. The trick is the lips: say DOOM while grinning, lips pulled wide instead of pushed forward, and you land the Thai vowel exactly. (▁ low and heavy, like the glass coming back down on the table)",
       "headline": "dɯɯm…",
       "scene": "A lone man at a long empty banquet table in a candlelit hall, raising a heavy glass in a solemn toast, grinning oddly wide as he does it. Behind him a huge cracked bronze bell hangs in the shadows. Guttering candles, long shadows, a sense of last things."
+    },
+    {
+      "rank": 100,
+      "thai": "น้ำ",
+      "romanization": "náam",
+      "english": "water",
+      "anchor": "NUMB",
+      "mnemonic": "He plunges both hands into the mountain stream and they go numb in seconds, that shocking cold where the fingers stop belonging to you. náam is water, and water this cold numbs. Short and high, up where the gasp is. (▲ high and taut, the sound of breath sucked in)",
+      "headline": "náam!",
+      "scene": "A young man crouched at the edge of a fast mountain stream, both hands submerged to the wrist in clear rushing water, face screwed up and mouth open in a gasp. Wet stones, spray hanging in the air, pine shadows, cold blue morning light."
     },
     {
       "rank": 101,
@@ -157,6 +237,16 @@
       "mnemonic": "The little one pipes up — \"Nóng!\" — high and bright, the small voice that always goes up at the end and always wants in. He is the one still waiting to grow. (▲ high, a small bright voice)",
       "headline": "Nóng!",
       "scene": "A small child jumping up with one arm stretched high, beaming, trying to be included in a group of older kids who are standing in a huddle above him. He is clearly the smallest by a head. Sunlit Thai schoolyard, dusty ground, green trees behind."
+    },
+    {
+      "rank": 131,
+      "thai": "ถาม",
+      "romanization": "thǎam",
+      "english": "ask",
+      "anchor": "TARMAC",
+      "mnemonic": "Halfway across the tarmac the traveller stops, turns to the ground crew and asks which way the gate is — tǎam — the voice climbing the way every question climbs. Take the tarm off tarmac and you have the Thai for ask. (↑ rising, the voice climbs like a hand going up)",
+      "headline": "Tǎam?",
+      "scene": "An airport apron at dusk. A traveller with a wheeled case has halted mid-stride on wet tarmac and turned to a ground marshal in a hi-vis vest, palms open in a questioning gesture. The marshal points away toward distant terminal lights. Puddles, reflected glow."
     },
     {
       "rank": 132,
@@ -219,6 +309,16 @@
       "scene": "A shopfront window. A grinning shopkeeper on a step stool slaps a huge red price tag over an old one, the old higher number still half visible underneath. Shoppers outside the glass are pressing in to look. Bright commercial lighting, sale banners, festive clutter."
     },
     {
+      "rank": 146,
+      "thai": "ห้อง",
+      "romanization": "hâawng",
+      "english": "room",
+      "anchor": "HONG (Kong)",
+      "mnemonic": "A rented room in a Hong Kong tower block, so small that a man standing in the middle of it reaches both walls without straightening his arms. Hong, hâawng: the room. This one is all the room there is, and the voice drops like the ceiling. (↓ falling, heavy and low)",
+      "headline": "hâawng.",
+      "scene": "A tiny high-rise flat. A man stands in the centre with both arms half raised, palms flat against opposite walls, a folded bed and a single hotplate crammed in behind him. Harsh bare bulb overhead, washing strung across one corner, city glow through a narrow slot of window."
+    },
+    {
       "rank": 147,
       "thai": "ร้าน",
       "romanization": "ráːn",
@@ -229,6 +329,16 @@
       "scene": "A proud middle-aged Thai woman standing in the open doorway of her small neighbourhood shop, arms folded, chin up, framed by shelves of goods stacked floor to ceiling behind her. A painted awning above the door, a scooter parked outside, early morning light down the street."
     },
     {
+      "rank": 148,
+      "thai": "ร้อน",
+      "romanization": "ráawn",
+      "english": "hot",
+      "anchor": "PRAWN - P",
+      "mnemonic": "Knock the P off PRAWN and you have ráawn. A fat prawn hits the grill bars and hisses, and the cook snatches his fingers back out of the flame with a yelp. Hot — the thing itself and the complaint about it, in one word. (▲ high and taut, the yelp of a burnt finger)",
+      "headline": "Ráawn!",
+      "scene": "Close on a charcoal grill at a night market: a fat prawn just dropped onto the glowing bars, flames curling up around its shell, the cook's hand jerking back with fingers splayed, his face screwed up mid-wince. Sparks, smoke, deep night behind."
+    },
+    {
       "rank": 149,
       "thai": "ร้อน",
       "romanization": "ráawn",
@@ -237,6 +347,16 @@
       "mnemonic": "Take PRAWN and knock the P off the front: ráawn. The cook flicks prawns onto a grill so fierce they curl and hiss the instant they land, and his hand snaps back from the bars with his fingers splayed. Everything about that grill is the word. (▲ high and taut, a yelp pitched at the top of the voice)",
       "headline": "ráawn!",
       "scene": "A street cook at a blazing charcoal grill, prawns hitting the bars and curling instantly in a burst of flame and steam, his hand jerked back with fingers splayed wide, face screwed up. Night market, orange firelight across his skin, dark crowd behind."
+    },
+    {
+      "rank": 150,
+      "thai": "เย็น",
+      "romanization": "yen",
+      "english": "cold",
+      "anchor": "YEN",
+      "mnemonic": "A single yen coin has been left in the freezer overnight and comes out furred with white frost, so cold it sticks to the fingertips that lift it. yen is cold, and the temperature never shifts while the voice holds it. (— flat and level, the cold does not move)",
+      "headline": "yen.",
+      "scene": "A close view of a hand holding a small coin, its face lost under white frost, fingertips pink and stuck to its surface, cold vapour spilling down from an open freezer behind. Blue-white light, ice crystals along the shelf edges, a dark kitchen beyond."
     },
     {
       "rank": 151,
@@ -257,6 +377,26 @@
       "mnemonic": "One spoonful and the man at the counter shuts his eyes, presses a hand flat to his chest and cannot say anything at all except à-rɔ̀y. The cook everyone on the street calls Roy points at him with the tongs. A Roy, and a review that needs no words. (▁ low, the voice drops as the eyes close)",
       "headline": "à-rɔ̀y…",
       "scene": "A night food stall. A diner at the counter sits with eyes squeezed shut and one hand pressed to his chest, spoon still in his mouth, an emptied bowl in front of him. The grinning cook behind the wok points at him with a pair of tongs. Steam, wok flame, strings of warm bulbs."
+    },
+    {
+      "rank": 154,
+      "thai": "อร่อย",
+      "romanization": "à-ràwy",
+      "english": "Delicious!",
+      "anchor": "a ROYAL",
+      "mnemonic": "Take royal and drop the -al: a-roy. A king in full robes has folded himself onto a plastic stool at a noodle cart, taken one mouthful and closed his eyes. The royal verdict on street food, and the whole court leaning in to watch him give it. (▁ the last syllable drops low and satisfied)",
+      "headline": "à-ròi!",
+      "scene": "A king in an embroidered robe and gold circlet perched on a low plastic stool at a night-market noodle cart, eyes closed in bliss, a laden spoon halfway to his mouth. The vendor grins over her steaming pot; two courtiers in uniform wait awkwardly behind. Hanging bulbs, steam, dark street."
+    },
+    {
+      "rank": 182,
+      "thai": "ราคา",
+      "romanization": "raa-khaa",
+      "english": "price",
+      "anchor": "RAH! + CAR",
+      "mnemonic": "The crowd goes rah as the car turns slowly on its stand, and a buyer at the rail holds up a fat brick of banknotes. raa-khaa — a rah and a car — is what the thing costs, and it is the one thing everybody came to hear. (— both syllables flat and level, a price stated plainly)",
+      "headline": "raa-khaa?",
+      "scene": "A motor show hall. A gleaming saloon revolves slowly on a turntable under white spotlights while a ring of onlookers cheer with arms raised. At the rail a buyer in a linen suit holds a thick brick of banknotes above his head."
     },
     {
       "rank": 192,
@@ -289,6 +429,26 @@
       "scene": "A restaurant dining room. A woman has risen from her table, one hand on her heart and the other flung out theatrically, singing her order toward a waiter who stands to attention with notepad raised, delighted. Other diners turn to watch. Warm chandelier light, white tablecloths."
     },
     {
+      "rank": 206,
+      "thai": "ใกล้",
+      "romanization": "glâi",
+      "english": "near",
+      "anchor": "falls = near",
+      "mnemonic": "ใกล้ klâi and ไกล klai are the same handful of sounds and only the tone separates them. The falling one is the one that comes down to you: a bird dropping onto an outstretched hand. The level one keeps going, out to the horizon. Near falls. Far stays flat. (↓ falling, the bird lands on the hand)",
+      "headline": "klâi.",
+      "scene": "A woman standing in an open field with one arm held out, a small bird just settling onto her fingers, wings still spread. Far behind her a second bird is a tiny speck against a pale sky above distant hills. Early morning, long grass, soft light."
+    },
+    {
+      "rank": 208,
+      "thai": "เพื่อน",
+      "romanization": "phûuean",
+      "english": "friend",
+      "anchor": "POO-AN (lips wide)",
+      "mnemonic": "Say poo-an, but grinning — lips pulled wide instead of pushed forward — and you land the Thai vowel exactly: phûuean. Two friends with their arms round each other's shoulders, both grinning like that, are the word and the way to say it in one picture. (↓ falling, warm, the voice settles)",
+      "headline": "phûuean.",
+      "scene": "Two young men on a beach at sunset with their arms slung round each other's shoulders, heads tipped together, both grinning enormously with lips pulled wide, sand on their knees, a football at their feet. Low orange sun flaring behind them, long shadows."
+    },
+    {
       "rank": 217,
       "thai": "บาท",
       "romanization": "bàːt",
@@ -309,6 +469,26 @@
       "scene": "A small child on a sofa with his head tipped back and his mouth wide open in a full-throated howl, both fists clenched. A parent leans in with a spoonful of dark red syrup in one hand and a small brown bottle in the other. Scattered toys, lamp-lit living room."
     },
     {
+      "rank": 223,
+      "thai": "ปลา",
+      "romanization": "bplaa",
+      "english": "fish",
+      "anchor": "PLA(za)",
+      "mnemonic": "Say the first syllable of plaza and stop there: plah. A silver fish the length of a man has come up out of the fountain in the town plaza and is flapping about on the flagstones while the whole square backs away from it. plaa is the fish. (— flat and level, said plainly)",
+      "headline": "plaa!",
+      "scene": "A paved town square at midday with an ornate fountain at its centre. An enormous silver fish lies flapping on the wet flagstones beside it, water spreading around it, spray still falling. A ring of startled people has backed away, one child pointing. Hard sunlight, pigeons scattering."
+    },
+    {
+      "rank": 224,
+      "thai": "ปลา",
+      "romanization": "bplaa",
+      "english": "fish",
+      "anchor": "BLAH",
+      "mnemonic": "A fat carp works its mouth against the glass — blah, blah, blah — silent, endless, never changing pitch. bplaa is fish, and the fish stands there saying its own name at you all afternoon. (— flat and level, one long unchanging blah)",
+      "headline": "blah, blah.",
+      "scene": "Close on a fat orange carp pressed against aquarium glass, mouth wide open mid-gulp, one round eye staring out. On the other side of the glass a bored child rests her chin on the rim, watching it. Green-lit water, rising bubbles."
+    },
+    {
       "rank": 228,
       "thai": "ไกล",
       "romanization": "glai",
@@ -317,6 +497,36 @@
       "mnemonic": "A glider slips its tow rope and simply keeps going — over the ridge, over the river, until it is a speck a watcher has to squint at. Say GLIDE and drop the d: glai. Whatever it is, it is a long way off. (— flat and level, the word carries without any effort at all)",
       "headline": "glai.",
       "scene": "A white sailplane far out over a vast green valley, tiny against an enormous sky, its tow rope falling away beneath it. On a grassy ridge in the foreground a figure shades their eyes with one hand, watching it shrink toward distant blue mountains. Late afternoon light, huge depth."
+    },
+    {
+      "rank": 231,
+      "thai": "สามี",
+      "romanization": "sǎa-mii",
+      "english": "husband",
+      "anchor": "saa-ME",
+      "mnemonic": "The bride has lost hers somewhere in a reception of two hundred guests, so she calls across the room. One man stands up in the middle of the tables, hand high, thumb jabbing at his own chest: saa, ME. A long open aah, then ME. That is the husband. (↑ sǎa climbs as the hand goes up, then mii sits flat)",
+      "headline": "saa— ME.",
+      "scene": "A crowded wedding reception. A bride in white stands on a chair scanning the room, and among the seated guests one man in a dinner jacket has risen, one hand high, the other thumb pointed at his own chest, grinning. Everyone else is turned toward him. Chandeliers, round tables, warm light."
+    },
+    {
+      "rank": 245,
+      "thai": "นั่ง",
+      "romanization": "nâng",
+      "english": "ride",
+      "anchor": "NUN + G",
+      "mnemonic": "Take a nun, add a g, and sit her down: nâng. In Thai you do not ride a bus, you sit it — nâng rót — so the word for sitting is also the word for riding. She drops onto the bench and the truck pulls away. (↓ falling, the weight of someone landing on a wooden bench)",
+      "headline": "nâng.",
+      "scene": "The open back of a red songthaew truck bumping along a country road, a nun in a white habit seated on the wooden bench among baskets of vegetables, one hand gripping the rail, her veil lifting in the wind. Dusty green roadside, low sun."
+    },
+    {
+      "rank": 251,
+      "thai": "ศูนย์",
+      "romanization": "sǔun",
+      "english": "zero",
+      "anchor": "SOON",
+      "mnemonic": "Soon, says the engineer, and the count runs down to nothing. sǔun is zero, and his fingers make the empty circle at the very moment the rocket goes. Soon arrives, the count empties out, and that emptiness is the word. (↑ rising, the voice climbs as the count runs out)",
+      "headline": "Sǔun.",
+      "scene": "A dim mission control room at night. An engineer leans back from a glowing console, one hand raised making a circle with thumb and forefinger, eyes on the wide window where a rocket lifts off its pad in a bloom of white exhaust."
     },
     {
       "rank": 269,
@@ -349,6 +559,26 @@
       "scene": "A man crouched on one knee in an open doorway, tying the laces of a work boot, head lifted toward a low orange sun rising over rooftops. Long shadows stretch back into the dim hallway behind him. Cool blue interior, warm gold spilling across the threshold."
     },
     {
+      "rank": 306,
+      "thai": "แพง",
+      "romanization": "phaaeng",
+      "english": "expensive",
+      "anchor": "PANG",
+      "mnemonic": "She lifts a tiny gold ring off the velvet and the jeweller calmly builds the stack of banknotes it will cost beside it, a stack taller than the ring is wide. The pang goes straight through her chest. phaaeng: expensive. (— flat and level, the price is not negotiable)",
+      "headline": "phaaeng.",
+      "scene": "A jeweller's counter under bright spotlights. A small gold ring sits on a velvet pad; beside it the jeweller has built a tall stack of banknotes. The customer has one hand pressed flat to her chest, leaning back, eyes wide. Glass cases, reflections, hushed shop interior."
+    },
+    {
+      "rank": 312,
+      "thai": "เช้า",
+      "romanization": "tɕʰáːw",
+      "english": "morning",
+      "anchor": "CHOW",
+      "mnemonic": "Dawn in a camp: the cook bangs a ladle on the pot and the whole sleepy line shuffles up for chow. Breakfast is the first thing that happens in a Thai morning, and cháaw is the morning itself. (▲ high and bright, a shout across a cold yard)",
+      "headline": "Cháaw!",
+      "scene": "Dawn in a field camp. A cook in an apron ladles steaming rice porridge into the tin bowls of a queue of sleepy workers, their breath showing in the cold. Pink light over a misty field, smoke rising from a fire behind them."
+    },
+    {
       "rank": 317,
       "thai": "หมอ",
       "romanization": "mǎaw",
@@ -357,6 +587,26 @@
       "mnemonic": "The doctor holds the stethoscope to a man's back and keeps circling one finger: more breath, and more, and more. Say MORE the British way, with no r on the end, and you have mǎaw — the one person who always wants another deep breath out of you. (↑ rising, climbing like the eyebrows above the mask)",
       "headline": "mǎaw.",
       "scene": "A doctor in a white coat pressing a stethoscope to the bare back of a seated patient, one finger raised and circling to ask for another breath. The patient's chest is swelled with held air, eyes wide. Bright clinic room, paper-covered couch, cool daylight from a high window."
+    },
+    {
+      "rank": 318,
+      "thai": "หมอ",
+      "romanization": "mǎaw",
+      "english": "doctor",
+      "anchor": "MORE",
+      "mnemonic": "The doctor tips a spoonful of syrup into the boy and, before he has finished swallowing, is already filling the spoon again. More. More rest, more water, more of this. mǎaw is the doctor, and more is what she always wants. (↑ rising, the voice lifts with the spoon)",
+      "headline": "mǎaw: more.",
+      "scene": "A small clinic room. A doctor in a white coat with a stethoscope round her neck holds a brimming spoon of dark syrup toward a boy on the examination couch, the bottle in her other hand already tilted to refill it. The boy is pulling back, cheeks bulging. Bright clean daylight."
+    },
+    {
+      "rank": 335,
+      "thai": "นาที",
+      "romanization": "naa-thii",
+      "english": "minute",
+      "anchor": "NAH + TEA",
+      "mnemonic": "Nah — the tea is not ready, it wants another minute. naa-thii is that gap exactly: the sand running through while the leaves open and nobody does anything useful. Nah, tea. Sixty seconds and not a second less. (— both syllables flat, the way a minute just sits there)",
+      "headline": "naa-thii.",
+      "scene": "A kitchen counter in morning light. A squat teapot steams beside a small hourglass timer, its sand halfway run through. A woman leans on folded arms at the counter, chin resting on her wrists, watching the sand fall, an empty mug beside her."
     },
     {
       "rank": 339,
@@ -369,6 +619,26 @@
       "scene": "The inside of a small car seen from the back seat. The instructor in the passenger seat slumps with his head tipped back and eyes shut, cheeks puffed in a long exhale, thumb jabbed back over his own left shoulder. The learner grips the wheel, glancing sideways. Flat grey daylight through the windscreen."
     },
     {
+      "rank": 342,
+      "thai": "สำคัญ",
+      "romanization": "sǎm-khan",
+      "english": "important",
+      "anchor": "SOME CAN",
+      "mnemonic": "The lifeboat is going down by the stern, so over the side go the suitcases, the chairs, the oars, everything. What he will not let go of is one dented tin can of water held hard against his chest. Some can. sǎm-khan is the thing that actually matters. (↑ sǎm climbs, then khan lands flat and certain)",
+      "headline": "sǎm-khan.",
+      "scene": "An overloaded wooden lifeboat low in a grey swell. A man at the stern heaves a suitcase over the side with one arm while the other clamps a dented tin can tight against his chest. Other passengers cling to the gunwales, soaked. Heavy cloud, spray, cold light."
+    },
+    {
+      "rank": 343,
+      "thai": "วัด",
+      "romanization": "wát",
+      "english": "measure",
+      "anchor": "WATT",
+      "mnemonic": "An electrician holds his meter up to a bare bulb to see how many watts it is pulling, and the needle swings across and settles. wát is that act — measuring, finding out how much of a thing there actually is. (▲ high and tight, the needle flicking up the dial)",
+      "headline": "wát.",
+      "scene": "A dim workshop. An electrician on a wooden stepladder holds a handheld meter up toward a bare bulb hanging on a cable, its needle mid-swing across a round dial, his face lit warm from below by the filament. Shadowed rafters and coiled cable behind."
+    },
+    {
       "rank": 344,
       "thai": "วัด",
       "romanization": "wát",
@@ -377,6 +647,36 @@
       "mnemonic": "A traveller points up at a gold-spired roof over a courtyard wall and turns up his palm: what is that? The old guide beside him only nods once and says wát. Question and answer are the same sound, and the answer is always a temple. (▲ high and taut, cut off short by the last consonant)",
       "headline": "Wát.",
       "scene": "A gold-spired Thai temple roof rising behind a courtyard wall. In front, a traveller with a camera points up at it with one arm, mouth open, the other palm turned up in a shrug, while an elderly guide beside him simply nods, hands clasped. Hot white sky, a monk in saffron passing behind."
+    },
+    {
+      "rank": 346,
+      "thai": "เล็ก",
+      "romanization": "lék",
+      "english": "small",
+      "anchor": "e-LEC-tron",
+      "mnemonic": "The lek hiding in the middle of electron is the Thai word for small — and an electron is the smallest thing anyone has ever bothered to name. A man stands in a hall of vast machinery built entirely to look at one speck. (▲ high and taut, said fast, a tiny word)",
+      "headline": "lék.",
+      "scene": "A cavernous laboratory hall filled with enormous copper coils and pipework. A physicist in a white coat stands dwarfed at the centre, bending to peer at a single minuscule point of blue light suspended between two great metal plates. Cold industrial lighting, deep shadows."
+    },
+    {
+      "rank": 348,
+      "thai": "ชาว",
+      "romanization": "tɕʰaːw",
+      "english": "people",
+      "anchor": "CHOW",
+      "mnemonic": "The chow bell goes at the end of harvest and the whole village comes: grandmothers, farmhands, babies on hips, every last one of them holding a bowl. ชาว is not a crowd, it is the folk of a place, the people of somewhere, and chow brings all of them out at once. (— flat and level, one long even call)",
+      "headline": "chaao!",
+      "scene": "A village clearing at dusk with a long trestle of steaming pots. A hundred villagers of every age converge on it from the fields and houses, bowls in hand, some running, an old woman carried between two grandsons. Lanterns strung overhead, dust in the air, last orange light."
+    },
+    {
+      "rank": 349,
+      "thai": "มากมาย",
+      "romanization": "mâːk maːj",
+      "english": "many",
+      "anchor": "MARK MY —",
+      "mnemonic": "Mark my— and he never finishes the sentence, because the crowd coming through the gate is past counting. mâak-maai is more than anyone can mark: many, plenty, loads of the stuff. (↓ falls hard on mâak, then maai levels out flat)",
+      "headline": "Mâak-maai!",
+      "scene": "A man stands on a wooden crate at the edge of a temple fairground, arm half raised and mouth open mid-sentence, overwhelmed as an enormous crowd streams past him in every direction and fills the frame to the horizon. Evening lanterns, dust in the air."
     },
     {
       "rank": 350,
@@ -389,6 +689,16 @@
       "scene": "An old hiker sitting on a boulder, sewing a fresh patch onto a battered canvas rucksack balanced across his knees, needle raised mid-stitch, small round glasses low on his nose. The pack is a quilt of mismatched patches and re-stitched straps. A mountain trail behind, cold clear morning light."
     },
     {
+      "rank": 351,
+      "thai": "แรง",
+      "romanization": "rɛːŋ",
+      "english": "force; strength; power; harsh",
+      "anchor": "RANG",
+      "mnemonic": "The fairground strongman brings the mallet down and the puck goes all the way up the tower: the bell at the top rang, and rang loud enough to stop the music. แรง is that. Force, power, the strength that made the bell speak. (— flat and level, held like a struck note)",
+      "headline": "…and it RANG.",
+      "scene": "A night fairground high striker. A heavily built man in a vest has just swung a mallet onto the pad, the puck streaking up the tower, and the brass bell at the top is jolting sideways mid-strike. A small crowd flinches back, lit by strings of coloured bulbs."
+    },
+    {
       "rank": 353,
       "thai": "ชาวบ้าน",
       "romanization": "tɕʰaːw bâːn",
@@ -397,6 +707,26 @@
       "mnemonic": "The whole village turns out for the harvest supper: every family at one long table down the middle of the barn, bowls going hand to hand over the heads of the children. Chow, in a barn. That crowd — not the town, not the government, the people of the place — is chaao-bâan. (↓ falling, the weight of the word comes down on bâan)",
       "headline": "chaao-bâan.",
       "scene": "The inside of a large timber barn at dusk, one long trestle table running its length with forty villagers of every age crowded along both sides, bowls of food passing hand to hand. Children underneath the table, a dog, hay bales to the rafters. Lantern light, blue evening through the open doors."
+    },
+    {
+      "rank": 354,
+      "thai": "ขาย",
+      "romanization": "kʰǎːj",
+      "english": "sell",
+      "anchor": "KAY(ak)",
+      "mnemonic": "Say the first syllable of kayak and stop there: kǎai. A river trader has eight of them roped nose to tail along the bank and is holding a ninth over his head, shouting across the water at the tourists. Whatever he has, he sells it. (↑ rising, the voice climbs like the arms)",
+      "headline": "kǎai!",
+      "scene": "A muddy riverbank lined with brightly painted kayaks roped nose to tail. A wiry trader in shorts stands on an upturned hull holding one small kayak above his head with both arms, shouting across the water toward a group of tourists on the far bank. Hot bright midday, brown river."
+    },
+    {
+      "rank": 355,
+      "thai": "ค่า",
+      "romanization": "kʰâː",
+      "english": "cost",
+      "anchor": "CAR = the cost",
+      "mnemonic": "Climbing out of the taxi you count coins into the driver's palm: the kʰâa, what the ride costs. It is the same khaa that ends raa-khaa, price — said on its own now, with the voice dropping as each coin goes down. (↓ falling, the drop of money leaving your hand)",
+      "headline": "khâa.",
+      "scene": "A night street, a taxi stopped at the kerb with its rear door open. A passenger leans to the driver's window counting coins one by one into his open palm, dashboard glow on both their faces, wet tarmac reflecting neon behind them."
     },
     {
       "rank": 356,
@@ -409,6 +739,26 @@
       "scene": "An enormous gorilla with heavy jowls seated on top of a mountain of crates, bicycles and furniture inside a warehouse, one fist mid-thump against his chest, the other arm flung wide over the heap. Small figures on the floor far below crane up at him. Dusty shafts of light from high windows."
     },
     {
+      "rank": 357,
+      "thai": "มุม",
+      "romanization": "mum",
+      "english": "angle; corner",
+      "anchor": "MUM",
+      "mnemonic": "Mum points, arm dead straight, at the place where the two walls meet, and the boy goes and stands in it. That exact meeting of two walls is the mum: the corner, the angle. Nobody argues with the arm. (— flat and level, no rise, no give)",
+      "headline": "mum.",
+      "scene": "A plain sitting room. A woman stands with her arm extended rigidly toward the corner where two walls meet; a small boy trudges toward it with his head down and one sock falling. Afternoon light through net curtains, an armchair pushed aside."
+    },
+    {
+      "rank": 358,
+      "thai": "เพิ่ม",
+      "romanization": "pʰɤ̂ːm",
+      "english": "add",
+      "anchor": "PERM",
+      "mnemonic": "The stylist keeps adding rollers to the perm — one more, one more, pʰɤ̂ɤm — until the head is twice the size it started. pʰɤ̂ɤm is to add on top of what is already there: more curls, more chilli, more money. (↓ falling and firm, another roller clamped on)",
+      "headline": "pʰɤ̂ɤm!",
+      "scene": "A salon chair under warm bulb-framed mirrors. A woman's head is piled absurdly high with dozens of coloured curlers, and the stylist leans in with yet another one held ready in her fingers, both of them laughing at the size of it."
+    },
+    {
       "rank": 359,
       "thai": "ใต้",
       "romanization": "tâj",
@@ -417,6 +767,16 @@
       "mnemonic": "He ducks under the table after a dropped coin and comes up short — his tie is pinned beneath the table leg and his neck will go no further. Under the table is where the tie is, and where he now lives. tâi. (↓ falling, the word drops with him)",
       "headline": "tâi.",
       "scene": "A man in a suit on hands and knees half beneath a heavy dining table, his neck yanked sideways because his necktie is trapped under one of the table legs. A dropped coin glints just past his fingertips. Guests' shoes and hems all around him. Low floor-level view, warm dining light above."
+    },
+    {
+      "rank": 361,
+      "thai": "คู่",
+      "romanization": "kʰûː",
+      "english": "pair",
+      "anchor": "COO",
+      "mnemonic": "Two doves on a wire, turned toward each other, cooing — khûu, khûu — and the rest of the wire completely empty. A khûu is a pair: never one, always two, and they only make that sound together. (↓ falling, the drop at the end of a dove's call)",
+      "headline": "khûu…",
+      "scene": "Two white doves perched side by side on a telephone wire against a pale dawn sky, heads turned toward one another, throats puffed out mid-call. The wire runs away empty in both directions. Soft cold light, a rooftop far below."
     },
     {
       "rank": 362,
@@ -429,6 +789,26 @@
       "scene": "A saffron-robed monk walking unhurried across a wide city road, hands folded, robes stirring in the wash of halted traffic. Cars, taxis and motorbikes stopped in both directions, drivers leaning out to watch him. Heat shimmer, exhaust haze, hard tropical sun."
     },
     {
+      "rank": 363,
+      "thai": "สู่",
+      "romanization": "sùː",
+      "english": "to",
+      "anchor": "SUE",
+      "mnemonic": "Sue stands in the middle of the room and the room comes to her: the rug rucking up, the chairs walking on their legs, an orange rolling across the boards. Everything goes to Sue. sùu is that word and nothing more. To, towards, into. (▁ low and flat, a short word that only points)",
+      "headline": "…sùu Sue.",
+      "scene": "A living room where the furniture is sliding across the floorboards toward a woman standing calmly in the centre, arms at her sides. A rug rucks up at her feet, two chairs tilt toward her mid-slide, an orange rolls across the boards. Lamplight, slightly tilted framing."
+    },
+    {
+      "rank": 364,
+      "thai": "พร้อม",
+      "romanization": "pʰrɔ́ːm",
+      "english": "simultaneously; ready",
+      "anchor": "PROM",
+      "mnemonic": "Prom night: the doors swing open and the whole class steps out in one movement, dressed and ready. pʰrɔ́ɔm is both halves of that — ready, and all at the same moment. (▲ high and taut, the held beat before everyone moves)",
+      "headline": "Pʰrɔ́ɔm!",
+      "scene": "The double doors of a school hall flung open at night, warm light spilling out behind a line of teenagers in formal dress stepping down onto the steps in perfect unison, mid-stride, chins up. Dark sky, camera flashes popping from the crowd below."
+    },
+    {
       "rank": 365,
       "thai": "รู้สึก",
       "romanization": "rúu-sùek",
@@ -437,6 +817,16 @@
       "mnemonic": "This one is built, not borrowed. rúu on its own is to know. Stretch it into rúu-sùek and the knowing leaves the head and drops into the body: a woman stops in a doorway with her hand flat on her chest, knowing a thing before she has any words for it. Knowing, felt. (▁ the second syllable falls low and short, a knock under the ribs)",
       "headline": "rúu-sùek.",
       "scene": "A woman standing motionless in a kitchen doorway with one hand pressed flat over her heart and her eyes lowered, caught in the instant of registering something. A phone lies face down on the counter behind her. Late afternoon light through the window, the rest of the room quiet and still."
+    },
+    {
+      "rank": 366,
+      "thai": "นี่",
+      "romanization": "nîː",
+      "english": "this",
+      "anchor": "KNEE",
+      "mnemonic": "The doctor asks which one is hurting and he smacks his own knee twice, hard: nîi. This one. Not that one, not the one from last year, this knee, the one he can reach and hit. นี่ always points at whatever is nearest to hand. (↓ falling, the voice drops with the hand)",
+      "headline": "Nîi.",
+      "scene": "A clinic examination room. A man sitting on the couch with both trouser legs rolled up slaps his own left knee with a flat palm, caught mid-strike, jaw set. The doctor leans in with a small torch, eyebrows up. Bright clinical light, paper-covered couch."
     },
     {
       "rank": 368,
@@ -449,6 +839,26 @@
       "scene": "A small woman in a market staggering backwards under an enormous wrapped pack of vegetables held in both arms, leafy greens bursting out of the top and across her face, one carrot pinched between her fingers. The grocer behind the stall grins with his hands on his hips. Bright morning market, stacked crates."
     },
     {
+      "rank": 369,
+      "thai": "หลังจาก",
+      "romanization": "lǎŋ tɕàːk",
+      "english": "after",
+      "anchor": "LUNG in a JAR",
+      "mnemonic": "On the museum shelf the heart comes first and the lung in the jar comes after it, always after, never before. Lung, jar: lǎng-jàak. Hear the lid click shut on the end of jàak, and remember that หลัง on its own means behind. (↑ lǎng climbs, then jàak drops low and clipped)",
+      "headline": "lǎng-jàak.",
+      "scene": "A dim museum shelf of specimen jars. A curator's gloved hand rests on the second jar, which holds a pale lung suspended in fluid; the first jar beside it holds a heart. A brass lamp throws a warm pool of light and the rest of the cabinet falls into shadow."
+    },
+    {
+      "rank": 370,
+      "thai": "หญิง",
+      "romanization": "jǐŋ",
+      "english": "female",
+      "anchor": "YIN + -ING",
+      "mnemonic": "Yin is the female half of the old pair. Finish it the way English finishes sing and you have jǐŋ, the word for female. A dancer turns slowly out of the light and into the dark, half bright and half shadow, all in one movement. (↑ rising, the voice climbs with the turn)",
+      "headline": "jǐŋ.",
+      "scene": "A dark stage. A Thai dancer in a gold headdress and long silk skirt turns slowly mid-movement, her curved fingers and the sweep of her skirt tracing a circle; one half of her lit warm, the other lost in shadow."
+    },
+    {
       "rank": 371,
       "thai": "แต่ละ",
       "romanization": "tɛ̀ː láʔ",
@@ -457,6 +867,26 @@
       "mnemonic": "The head teacher refuses to announce it to the room. She goes along the row and tells one child, then the next, then the next — tell a, tell a, tell a — until every single one of them has had it from her own mouth. tɛ̀ɛ-lá: each, taken one at a time. (▲ the second syllable snaps up high and stops dead)",
       "headline": "tɛ̀ɛ-lá.",
       "scene": "A school hall with a long row of seated children. A head teacher crouches beside one of them with a hand cupped to the child's ear, mid-whisper, while the children further down the row lean forward waiting their turn. Tall windows, dust hanging in the light, polished floorboards."
+    },
+    {
+      "rank": 372,
+      "thai": "ที่ไหน",
+      "romanization": "thîi-nǎi",
+      "english": "where",
+      "anchor": "TEA + nǎi",
+      "mnemonic": "He has turned the kitchen out looking for his tea: cupboard doors hanging open, tins on the floor, still no cup. Tea, where? ที่ marks the place and ไหน asks which one, so thîi-nǎi is simply which place. (↓ thîi drops, then nǎi climbs as his eyes come up)",
+      "headline": "Tea — thîi-nǎi?",
+      "scene": "A small kitchen turned upside down: every cupboard door hanging open, tins and jars crowding the worktop and the floor. A man stands in the middle of it with both palms turned up and his shoulders raised, staring at an empty shelf. Morning light, a cold kettle on the hob."
+    },
+    {
+      "rank": 373,
+      "thai": "สุดท้าย",
+      "romanization": "sùt tʰáːj",
+      "english": "final",
+      "anchor": "SOOT + TIE",
+      "mnemonic": "The sweep climbs down off the last chimney on the terrace, black with soot, and pulls his crooked tie straight. Soot and tie: sùt-tʰáai, the final one, the end of the row with nothing after it. (▲ tʰáai lifts high, the voice rising on the last of them)",
+      "headline": "sùt-tʰáai.",
+      "scene": "Dusk on a long terrace rooftop. A soot-blackened chimney sweep stands on the very last chimney pot of a row that recedes into the distance, straightening his crooked tie, brushes slung over one shoulder. Orange sun low behind the rooftops, smoke drifting."
     },
     {
       "rank": 374,
@@ -469,6 +899,16 @@
       "scene": "A street busker on a corner with a battered acoustic guitar, head tipped back and eyes shut mid-song, one foot tapping beside an open instrument case. A loose half-circle of passers-by has stopped, one child swaying. Evening city light, wet pavement throwing back shopfront glow."
     },
     {
+      "rank": 376,
+      "thai": "ยังคง",
+      "romanization": "jaŋ kʰoŋ",
+      "english": "still",
+      "anchor": "YOUNG KONG",
+      "mnemonic": "The great ape is still up on the tower, decades on, still young, still refusing to come down. Young Kong: jaŋ-kʰoŋ is still — not motionless, but unstopped, carrying on exactly as it was. (— both syllables flat and level, nothing has changed)",
+      "headline": "jaŋ-kʰoŋ.",
+      "scene": "A giant gorilla clinging to the spire of a skyscraper at dawn, one arm hooked round the mast, chest heaving, mist and rooftops far below. Pigeons wheel round him and one sits on his shoulder, entirely at home. Cold pink light."
+    },
+    {
       "rank": 377,
       "thai": "รอบ",
       "romanization": "rɔ̂ːp",
@@ -477,6 +917,16 @@
       "mnemonic": "Put an R in front of ORB: rɔ̂ɔp. In the lighthouse the great glass orb turns all night on its bearing, flinging the same beam over the same black water, round after round after round, and it will still be doing it at dawn. (↓ falling, the beam drops away as it swings past)",
       "headline": "rɔ̂ɔp.",
       "scene": "The lamp room of a lighthouse at night: an enormous glowing glass lens assembly turning on its bearing, one broad beam flung out across black sea and rocks far below. A keeper stands small beside it with a hand on the rail, his face lit and then dark. Deep night blue, hot amber light."
+    },
+    {
+      "rank": 379,
+      "thai": "ความรู้สึก",
+      "romanization": "kʰwaːm rúː sɯ̀k",
+      "english": "feeling",
+      "anchor": "QUALM",
+      "mnemonic": "A qualm is a feeling that will not sit still, and kʰwaam is how the Thai starts. kʰwaam- is the noun-maker: stick it on rúu-sɯ̀k, to sense, and you get the sensing itself — the feeling. Qualm first, every time. (▁ the last syllable sinks low, the way a qualm settles in the stomach)",
+      "headline": "kʰwaam-rúu-sɯ̀k.",
+      "scene": "A man alone at a kitchen table late at night, one hand pressed flat against his stomach, brow furrowed, staring past an untouched bowl of rice. A single bulb on a cord swings very slightly above him, shadows tilting across the wall."
     },
     {
       "rank": 380,
@@ -489,6 +939,26 @@
       "scene": "A close view of a sailor's weathered hands holding the frayed tip of a thick ship's rope, its separate strands sprung loose in every direction like a brush. Behind him the rope runs away taut across a wet deck toward a bollard. Grey sea light, salt spray in the air."
     },
     {
+      "rank": 381,
+      "thai": "ยาว",
+      "romanization": "yaao",
+      "english": "long",
+      "anchor": "YOWL - L",
+      "mnemonic": "A cat stretched the full length of a garden wall lets out a yowl that will not end, one flat note going on and on over the rooftops. Drop the L and there it is: yaao, long. The cat is long and the note is longer. (— dead level; the pitch never moves, it just keeps going)",
+      "headline": "yaaaao…",
+      "scene": "A long ginger cat stretched out at full length along the top of a garden wall at night, head back, mouth open in a howl. Rooftops and chimney pots recede behind it under a low moon; a light has come on in a window across the yard."
+    },
+    {
+      "rank": 382,
+      "thai": "แต่ง",
+      "romanization": "tɛ̀ŋ",
+      "english": "to dress; to write/compose",
+      "anchor": "TANGO - O",
+      "mnemonic": "Knock the O off TANGO and you have tɛ̀ng. Nobody dances a tango in their work clothes: the word is getting dressed, arranged, put together properly. The same verb composes a song — cloth or music, it is all arranging. (▁ low and flat, the pause before the music starts)",
+      "headline": "tɛ̀ng.",
+      "scene": "A dressing room doorway. A woman in a fitted scarlet dance dress stands with arms raised while an older dresser kneels to pin her hem; beside her a man in a black suit adjusts his cuffs. Beyond them a lit dance floor waits."
+    },
+    {
       "rank": 383,
       "thai": "สงบ",
       "romanization": "sà-ngòp",
@@ -497,6 +967,26 @@
       "mnemonic": "The child on the trolley is terrified, so the anaesthetist leans down and sings to her — quietly, badly — right up to the moment she goes under. She sang, then the op, and between the two of them everything went completely still. Say SANG OP and let the ng slide across. (▁ low and flat, the voice settling to nothing)",
       "headline": "sà-ngòp.",
       "scene": "A hospital corridor. An anaesthetist in scrubs bends over a child lying on a trolley, one hand holding hers, mouth open in quiet song. The child's eyes are half closed and her other hand has gone limp. Behind them the theatre doors stand open, spilling hard white light into the dim corridor."
+    },
+    {
+      "rank": 384,
+      "thai": "สนใจ",
+      "romanization": "sǒn tɕaj",
+      "english": "interested",
+      "anchor": "SON + CHAI",
+      "mnemonic": "A small son stands at the chai stall with his mouth open, following the long ribbon of tea as the vendor pours it from a pot held high into one held low. He has forgotten his own cup entirely. Son, chai: sǒn-jai is exactly that, your attention gone somewhere else. (↑ sǒn climbs, then jai lands flat where his eyes are)",
+      "headline": "sǒn-jai.",
+      "scene": "A street chai stall at dusk. A vendor pours a long ribbon of milky tea from a pot held high into another held low, steam curling off it. A boy of about seven stands at the counter, chin tilted up, mouth open, utterly transfixed, his own cup untouched beside him."
+    },
+    {
+      "rank": 385,
+      "thai": "ปกติ",
+      "romanization": "pà kà tìʔ",
+      "english": "normal",
+      "anchor": "PACK A TEA",
+      "mnemonic": "Every morning at the same hour he packs a tea into the same dented flask and takes the same seat on the same bus. pà-kà-tì — pack a tea — is the way things normally are: ordinary, usual, nothing out of place. (▁ low and flat throughout, nothing remarkable happens)",
+      "headline": "pà-kà-tì.",
+      "scene": "A small kitchen at dawn. A middle-aged man in a work shirt spoons tea into a dented steel flask; his lunch tin, coat and keys are laid out on the table in exactly their usual places. Grey early light, everything worn and familiar."
     },
     {
       "rank": 386,
@@ -509,6 +999,26 @@
       "scene": "A man in work clothes walking a long empty country road at dawn, a lunch tin swinging from one hand, his breath showing in the cold. The road runs on to a distant industrial yard on the horizon. Frost on the verges, low pink sun behind him, his shadow stretched far ahead."
     },
     {
+      "rank": 387,
+      "thai": "จุด",
+      "romanization": "jùt",
+      "english": "dot",
+      "anchor": "JUT",
+      "mnemonic": "The gallery is silent. The artist's arm juts out, the brush touches the huge white canvas once, and that is the whole painting: one black dot in the middle of all that space. jùt is the dot. A jab, and stop. (▁ low and clipped, over as soon as it starts)",
+      "headline": "jùt.",
+      "scene": "A white gallery wall holding one enormous blank canvas with a single small black dot at its centre. The artist stands close, arm still thrust forward, a fine brush in hand, the paint still wet. Two visitors watch from the far side of the polished floor. Cool even gallery light."
+    },
+    {
+      "rank": 388,
+      "thai": "ครู",
+      "romanization": "khruu",
+      "english": "teacher",
+      "anchor": "CREW",
+      "mnemonic": "She walks the line of her class the way a captain walks the deck in front of a crew — khruu, crew, the one who keeps the whole lot upright and moving in the same direction. One flat syllable, said with respect. (— flat and level, unhurried)",
+      "headline": "Khruu.",
+      "scene": "A sunlit Thai schoolyard. A teacher in a neat uniform walks slowly along a line of pupils standing to attention, hands clasped behind her back, inspecting them; the children stand straight-backed, one sneaking a grin. Dusty ground, green trees, hard morning light."
+    },
+    {
       "rank": 389,
       "thai": "โสด",
       "romanization": "sòːt",
@@ -517,6 +1027,26 @@
       "mnemonic": "Put an S in front of OAT and stop there: sòot. One man, one bowl of oats, one spoon, at a table laid for one, with five chairs still tucked in. Nobody to cook for and nobody cooking for him. (▁ low and flat, as small as the bowl)",
       "headline": "sòot.",
       "scene": "A man sitting alone at one end of a long kitchen table eating porridge from a single bowl, one chair pulled out and five others tucked in. A single mug and spoon on the drainer behind him. Grey morning light through a bare window, the room quiet and still."
+    },
+    {
+      "rank": 390,
+      "thai": "ยินดีที่ได้รู้จัก",
+      "romanization": "yin-dii thîi dâai rúu-jàk",
+      "english": "Nice to meet you.",
+      "anchor": "YIN + DEE",
+      "mnemonic": "ยินดี yin-dii is gladness: the two halves of the yin symbol clicking together, and ดี dii genuinely does mean good. The tail of the phrase, rúu-jàk, is knowing someone. Glad to have come to know you, and the whole thing lasts exactly one handshake. (— yin-dii sits flat and warm, then the end drops low on jàk)",
+      "headline": "yin-dii…",
+      "scene": "Two men meeting in a hotel lobby, hands clasped in a firm handshake, both leaning in slightly, genuinely pleased. Beneath their feet the polished floor carries a large circular inlay of two interlocking black and white teardrops. Tall windows, soft morning light, a plant in a brass pot."
+    },
+    {
+      "rank": 391,
+      "thai": "คุณสบายดีไหม",
+      "romanization": "khun sà-baai dii mǎi",
+      "english": "How are you?",
+      "anchor": "you + well + ?",
+      "mnemonic": "Four pieces you already own: khun, you; sà-baai, comfortable; dii, good; and mǎi, the little hook that turns anything into a question. Stack them in that order and you have asked after somebody's health. Nothing new to learn here, only the order. (↑ rising, the voice lifts on mǎi right at the end)",
+      "headline": "…sà-baai dii mǎi?",
+      "scene": "Two neighbours meeting on a narrow village lane in the morning. One clasps the other's hand in both of hers and leans in, eyebrows raised, mouth open mid-question, smiling warmly; the other smiles back. Laundry strung overhead, sunlight through leaves."
     },
     {
       "rank": 392,
@@ -529,6 +1059,26 @@
       "scene": "A woman in the doorway of a small house, one hand raised in an easy wave to a neighbour across the lane, shoulders loose, an unhurried smile. A hammock hangs on the veranda behind her. Late afternoon sun, washing on a line, everything settled."
     },
     {
+      "rank": 393,
+      "thai": "ไม่เป็นไร",
+      "romanization": "mâi bpen rai",
+      "english": "It's okay.",
+      "anchor": "MY BEN RYE",
+      "mnemonic": "Ben swings round with a glass of rye and puts the whole thing down your front. You look at the stain, look at Ben, and wave it away: mâi-bpen-rai. My, Ben, rye. Never mind, it is nothing, it is okay. (↓ mâi drops hard, then the last two float off flat)",
+      "headline": "mâi-bpen-rai.",
+      "scene": "A crowded wooden bar. A man has just turned with a tumbler and sloshed dark spirit down the front of another man's shirt; the glass is still tipped in his hand, his face frozen in horror. The soaked man is laughing, one hand raised palm out, entirely unbothered. Warm amber light, bottles behind."
+    },
+    {
+      "rank": 394,
+      "thai": "หนึ่ง",
+      "romanization": "nùeng",
+      "english": "one",
+      "anchor": "NOONG, lips wide",
+      "mnemonic": "A man at the bar holds one finger up over the crowd. Say noong — but grinning, lips pulled wide rather than rounded — and you land the Thai vowel: nɯ̀ng. One finger, one beer, one short low syllable. (▁ low and short, over almost before it starts)",
+      "headline": "Nɯ̀ng!",
+      "scene": "A crowded bar counter at night. A man leans in with one index finger raised high above the heads around him, grinning broadly with his lips pulled wide; the barman is already reaching for a glass. Bottles glinting on shelves, warm low light."
+    },
+    {
       "rank": 395,
       "thai": "สอง",
       "romanization": "sǎawng",
@@ -537,6 +1087,26 @@
       "mnemonic": "Two singers, one song. Neither will start without the other and neither can carry it alone, so they stand at the same microphone with their heads turned toward each other and take the same breath. sǎwng is two, and it sounds exactly like the thing it takes both of them to make. (↑ rising, the pitch climbs as they draw breath)",
       "headline": "sǎwng.",
       "scene": "Two singers side by side at a single microphone on a small stage, heads turned toward each other, mouths open on the same note, one hand each resting on the stand. A warm spotlight, a dark hall, two long shadows thrown back across the boards."
+    },
+    {
+      "rank": 396,
+      "thai": "สาม",
+      "romanization": "sǎam",
+      "english": "three",
+      "anchor": "PSALM",
+      "mnemonic": "The choir stalls seat sixty and three choristers have turned up. They sing the psalm anyway, and the one on the end holds up three fingers to count them all in. Psalm, sǎam, three: the hymn and the number come out of the mouth the same way. (↑ rising, the voice climbs like the three fingers)",
+      "headline": "sǎam.",
+      "scene": "A vast stone church interior with rows of empty carved choir stalls. Three choristers in red robes stand together in the middle of one row, mouths open in song; the nearest holds up three fingers at chest height. Candlelight, cold stone, an enormous dark space above them."
+    },
+    {
+      "rank": 397,
+      "thai": "สี่",
+      "romanization": "sìi",
+      "english": "four",
+      "anchor": "SEE four ways",
+      "mnemonic": "Stand in the middle of a crossroads and you can see four ways at once. Thai calls that place a sìi-yɛ̂ɛk, a four-split, because sìi is four — and it sounds like exactly what you do standing there. (▁ low and flat, a short glance down each road)",
+      "headline": "Sìi.",
+      "scene": "Seen from above: a dusty rural crossroads at midday where two straight roads meet, each of the four arms running away to the horizon across parched fields. A lone figure stands dead centre, shading their eyes, turned to look down one of them. Hard black shadows."
     },
     {
       "rank": 398,
@@ -549,6 +1119,26 @@
       "scene": "Two friends mid high-five on an outdoor basketball court, palms just meeting, both heads tipped back laughing, all five fingers of each hand spread wide and clearly visible. Hair and clothes still in motion. Bright afternoon light, chain-link fence behind them."
     },
     {
+      "rank": 399,
+      "thai": "หก",
+      "romanization": "hòk",
+      "english": "six",
+      "anchor": "HOCK",
+      "mnemonic": "Six ham hocks hang from six hooks in the butcher's window, and he counts them off along the rail with the back of his knife. Hock, hòk: the meat and the number are the same short syllable, and both stop dead at the k. (▁ low and blunt, cut off at the end)",
+      "headline": "hòk.",
+      "scene": "A butcher's window seen from inside the shop: six cured ham hocks hanging in a row from hooks on a steel rail. A butcher in a striped apron runs the back of a knife along them, lips moving as he counts. Tiled walls, sawdust floor, cold daylight through the glass."
+    },
+    {
+      "rank": 400,
+      "thai": "เจ็ด",
+      "romanization": "jèt",
+      "english": "seven",
+      "anchor": "JET",
+      "mnemonic": "Seven jets tear across the sky in one arrowhead, trailing coloured smoke. Count them off as they pass — jèt — one blunt syllable for each. Seven jets, and jèt is seven. (▁ low and flat, short and hard as a jet going over)",
+      "headline": "Jèt!",
+      "scene": "Seven fighter jets in a tight arrowhead formation streaking low across a clear blue sky, coloured smoke trails fanning out behind them. Along the bottom of the frame, a crowd of upturned silhouetted faces and raised hands."
+    },
+    {
       "rank": 401,
       "thai": "แปด",
       "romanization": "bpàaet",
@@ -557,6 +1147,26 @@
       "mnemonic": "An octopus gets into the cricket bag and comes up with a bat in every arm — eight arms, eight bats, all swinging at once while the fielders back away. BAT gives you bpàaet, and the animal does the counting for you. (▁ low and flat, cut off short by the t)",
       "headline": "bpàaet!",
       "scene": "An octopus rising out of a cricket bag on a village green with a wooden bat gripped in each of its eight arms, all raised at different angles. Two fielders stumble backwards with their hands up and their caps falling off. Sunny afternoon, white boundary rope, a pavilion in the distance."
+    },
+    {
+      "rank": 402,
+      "thai": "เก้า",
+      "romanization": "gâo",
+      "english": "nine",
+      "anchor": "COW",
+      "mnemonic": "The herd files into the milking shed and the farmer counts them through the gate. The ninth cow is always the one that stops in the doorway to think about it, and the gate comes down behind her. Nine cows: gâo. (↓ falling, the gate drops)",
+      "headline": "gâo.",
+      "scene": "A milking shed doorway at dusk. Eight cows are already inside the lit shed; the ninth stands square in the open gateway, head turned back, refusing to move. A farmer leans on the gatepost with one hand raised mid-count. Mud, straw, blue evening outside and yellow light within."
+    },
+    {
+      "rank": 403,
+      "thai": "สิบ",
+      "romanization": "sìp",
+      "english": "ten",
+      "anchor": "SIP",
+      "mnemonic": "Ten small glasses along the counter and one sip from each: by the last of them she has counted the whole row without thinking about it. sìp is ten, and ten sips is the row. (▁ low and flat, short as a single dry sip)",
+      "headline": "Sìp.",
+      "scene": "A long cellar counter lined with ten small tasting glasses. Nine stand drained; a sommelier lifts the tenth to her lips, eyes closed, her other hand spread flat on the wood. Oak barrels stacked behind her, warm lamplight."
     },
     {
       "rank": 404,
@@ -569,6 +1179,26 @@
       "scene": "Two neat towers of ten coins each standing side by side on a dark wooden counter, one tower bright and the other badly tarnished, a shopkeeper's hand resting beside them. Low warm light raking across the coins, long shadows behind."
     },
     {
+      "rank": 405,
+      "thai": "สัญชาติ",
+      "romanization": "sǎn-châat",
+      "english": "nationality",
+      "anchor": "SUN + CHART",
+      "mnemonic": "Sun, chart: sǎn-châat. Dawn comes up through the airport hall and the queue holds people dressed for a dozen different countries, every one of them waiting to answer the same question. Which nation are you. That answer is the sǎn-châat. (↑ sǎn climbs, then châat drops flat, like a stamp coming down)",
+      "headline": "sǎn-châat?",
+      "scene": "A glass-walled airport hall at sunrise, low orange light stretching across the floor. A long queue of travellers in varied traditional dress — embroidered coats, saris, robes, wool caps — waits at a booth where an officer leans forward with one hand outstretched, palm up. Long shadows, early-morning stillness."
+    },
+    {
+      "rank": 406,
+      "thai": "ยินดีต้อนรับ",
+      "romanization": "yin-dii dtâawn-ráp",
+      "english": "welcome",
+      "anchor": "glad + TORN-RAP",
+      "mnemonic": "Two halves, both honest. yin-dii is glad — the same glad you meet in pleased to meet you. dtâawn-ráp, torn and rap, is to receive. Glad to receive you is how Thai says welcome, and the door swings wide on the last syllable. (▲ ráp lifts high as the door swings wide)",
+      "headline": "Yin-dii dtâawn-ráp!",
+      "scene": "A wooden Thai house at dusk, its front door thrown wide. The owner stands in the warm light of the hallway with both arms spread and a jasmine garland over one wrist, beaming at three travellers coming up the path with bags on their shoulders."
+    },
+    {
       "rank": 407,
       "thai": "ด้วยความยินดี",
       "romanization": "dûuai khwaam-yin-dii",
@@ -577,6 +1207,46 @@
       "mnemonic": "It is with pleasure, word for word. dûuai is with. khwaam-yin-dii is the gladness, and dii, good, sits on the end of it. The porter sets the case down inside the door, straightens up, waves away the offered note and means every syllable. (— the last syllable lands flat and easy, no effort in it)",
       "headline": "dûuai khwaam-yin-dii.",
       "scene": "A hotel porter who has just set a heavy suitcase down inside a doorway, straightening up with one hand still on the handle and the other waving away a banknote held out by the guest, smiling broadly. Bright lobby, polished floor, morning light through glass doors."
+    },
+    {
+      "rank": 408,
+      "thai": "ฝรั่งเศส",
+      "romanization": "fà-ràng-sèet",
+      "english": "France",
+      "anchor": "FRANÇAIS",
+      "mnemonic": "It is the French word for French, slowed down and given a Thai mouth: français becomes fà-ràng-sèet. The middle of it, farang, is also the everyday Thai word for a Westerner, so France comes out as the farang country. (▁ the first two syllables sit low and short)",
+      "headline": "fà-ràng-sèet.",
+      "scene": "A pavement café under a wrought-iron balcony on a grey morning in Paris. A man in a beret plays an accordion beside a round marble table set with coffee and croissants; the great iron tower stands hazy at the end of the street. Wet cobbles, bare plane trees."
+    },
+    {
+      "rank": 409,
+      "thai": "อังกฤษ",
+      "romanization": "ang-grìt",
+      "english": "England",
+      "anchor": "ANGRY + T",
+      "mnemonic": "Take ANGRY and stop it dead with a t: ang-grìt. A bowler-hatted man stands in the rain glaring at a cup of tea gone stone cold, furious and entirely silent about it. That is England. (▁ the second syllable drops low and stops short)",
+      "headline": "ang-grìt.",
+      "scene": "A grey wet street. A man in a bowler hat and long dark coat stands under a black umbrella, rain sheeting off it, glaring down at a cup and saucer balanced on a low wall in front of him, his face red with contained fury."
+    },
+    {
+      "rank": 411,
+      "thai": "สเปน",
+      "romanization": "sà-bpeen",
+      "english": "Spain",
+      "anchor": "sa-PAIN",
+      "mnemonic": "Thai cannot begin a word with sp, so it slips a tiny sa in front and comes out with sa-bpeen: Spain, with a step taken in the doorway first. The heel comes down on the tiles and the guitar answers it. (— bpeen stays flat and level, like the long note held under the stamping)",
+      "headline": "sà-bpeen.",
+      "scene": "A sunlit whitewashed courtyard. A flamenco dancer in a red ruffled dress is caught mid-stamp, back arched, one arm curved high above her head; a guitarist sits behind her on a wooden chair, head bent over the strings. Hard shadows, terracotta pots, an old tiled floor."
+    },
+    {
+      "rank": 412,
+      "thai": "ลาก่อน",
+      "romanization": "laa gɔ̀ɔn",
+      "english": "goodbye",
+      "anchor": "LA + GONE",
+      "mnemonic": "She sings one last la— down the platform and then she is gone. laa-gɔ̀ɔn: a la, and gone. It is the goodbye for someone leaving properly, not the see-you-tomorrow kind. (▁ gɔ̀ɔn drops low, the sound of a door pulled shut)",
+      "headline": "Laa-gɔ̀ɔn…",
+      "scene": "A railway platform at dusk. A woman leans out of the window of a moving carriage with one arm raised in a wave, mouth open mid-note; on the emptying platform a man watches the train shrink away. Steam, low orange sun down the tracks."
     },
     {
       "rank": 413,
@@ -589,6 +1259,46 @@
       "scene": "A vast palace courtyard at dawn with rank upon rank of ceremonial guards in white and gold standing in perfect grid formation, filling the frame to the far wall. A single small figure on a high balcony looks down on them. Long shadows, pale gold light."
     },
     {
+      "rank": 414,
+      "thai": "ไทย",
+      "romanization": "thai",
+      "english": "Thai; Thailand",
+      "anchor": "THAI = free",
+      "mnemonic": "The word is already yours, but English says Thai with a dip in the middle of it and the Thai word does not move at all. Hold it dead level from start to finish. ไท also means free, which is why the country reads as the land of the free. (— perfectly flat; no rise, no drop, no dip)",
+      "headline": "thai.",
+      "scene": "A wide rice paddy at dawn, the flooded fields lying mirror-flat to the horizon. A farmer in a straw hat stands upright at the edge of the water, arms loose at his sides, looking level at the far bank where a golden temple spire catches the first light."
+    },
+    {
+      "rank": 415,
+      "thai": "สมัย",
+      "romanization": "sà mǎj",
+      "english": "period",
+      "anchor": "in MY day",
+      "mnemonic": "The old man's hand sweeps a wide arc: in my day— and he is off, describing a whole era. sà-mǎi is that era, a period, an age. The mǎi on the end climbs exactly like the mǎi that turns a sentence into a question. (↑ rising, the voice lifts as the hand sweeps)",
+      "headline": "…sà-mǎi.",
+      "scene": "An old man in a rattan chair on a wooden veranda, one hand raised and sweeping through a wide arc, eyes bright, mouth open mid-story. Four grandchildren sit cross-legged on the boards around him looking up. Late afternoon light through banana leaves."
+    },
+    {
+      "rank": 417,
+      "thai": "ดิน",
+      "romanization": "din",
+      "english": "soil",
+      "anchor": "DIN",
+      "mnemonic": "Three children are digging up the vegetable patch and the noise is tremendous: spades ringing on stone, shrieking, black earth going over the fence. A din. And din is the very stuff they are throwing about, the soil itself. (— flat and level, said as plainly as the ground)",
+      "headline": "din!",
+      "scene": "A back garden vegetable patch churned into a crater. Three children with spades fling dark crumbly soil over their shoulders, mouths open in shrieks, earth hanging in the air around them. A dog barks at the edge of the hole. Bright afternoon, washing on a line behind."
+    },
+    {
+      "rank": 418,
+      "thai": "ดิน",
+      "romanization": "din",
+      "english": "dirt",
+      "anchor": "DIN",
+      "mnemonic": "A yard full of children raising a din — and a cloud of dirt with it. Every shout brings up more dust; the din and the dirt come off the same ground. din is that earth under their bare feet. (— flat and level, one steady note under the noise)",
+      "headline": "din.",
+      "scene": "A bare dusty schoolyard in hard sunlight. Half a dozen barefoot children mid-chase, mouths open shouting, a thick golden cloud of dust boiling up around their feet; their shins and hands caked with dry earth. A wall and a mango tree behind."
+    },
+    {
       "rank": 419,
       "thai": "กล่าว",
       "romanization": "klàːw",
@@ -597,6 +1307,26 @@
       "mnemonic": "Take CLOWN and drop the n: klàao. In the middle of the chaos the clown climbs onto a chair, takes his hat off, holds it over his heart and makes a short and entirely serious speech to the ring. klàao is saying as a formal act — stating a thing aloud. (▁ low and flat, the voice of someone being serious for once)",
       "headline": "klàao.",
       "scene": "A circus ring. A clown in full paint stands on a wooden chair with his hat held over his heart, mouth open mid-speech, completely solemn. Acrobats and a small elephant have stopped to listen and the crowd in the dark stands beyond is silent. One spotlight, sawdust floor."
+    },
+    {
+      "rank": 420,
+      "thai": "กำหนด",
+      "romanization": "kam nòt",
+      "english": "specify; schedule",
+      "anchor": "COME + KNOT",
+      "mnemonic": "Nothing is settled until it is tied down. The old sailor takes the rope, finds the exact spot along it and pulls a hard knot into place. Come and knot it, kam-nòt, and now the date exists. It is the word for fixing a thing to a precise point: a deadline, a price, a rule. (— flat on kam, then nòt drops low as the knot pulls tight)",
+      "headline": "kam-nòt.",
+      "scene": "Close view of a weathered sailor's hands hauling a thick rope taut and pulling a knot tight at one point along it, the rest of the rope coiling away across the deck planks. Salt-stained fingers, frayed hemp, hard low sunlight across the wood."
+    },
+    {
+      "rank": 421,
+      "thai": "สอน",
+      "romanization": "sǎawn",
+      "english": "teach",
+      "anchor": "SAWN",
+      "mnemonic": "The old carpenter lays his hands over the boy's on the saw and pushes, pulls, pushes, until the plank is sawn through. He does not cut it for him. sǎawn is that: teaching, passing the thing on. (↑ rising, the voice climbs like the saw coming back up)",
+      "headline": "Sǎawn.",
+      "scene": "A dusty workshop. An old carpenter stands behind a boy at a sawhorse with his weathered hands laid over the boy's on the saw handle, a plank half cut through beneath them, curls of sawdust drifting in a shaft of light from a grimy window."
     },
     {
       "rank": 422,
@@ -609,6 +1339,26 @@
       "scene": "A car stopped at a rural fork in the road, seen head on. The driver, hands tense on the wheel, is turned to look down the right-hand branch with a worried frown while the front wheels have just begun to bite that way. Two dusty roads diverge around a lone tree. Flat afternoon light."
     },
     {
+      "rank": 424,
+      "thai": "ประจำ",
+      "romanization": "pràʔ tɕam",
+      "english": "regular",
+      "anchor": "your regular JAM",
+      "mnemonic": "Same road, same hour, same jam — your regular jam, every single morning of your life. pràʔ-tɕam is the thing that happens on schedule and is always there: the regular customer, the regular route, the usual. (— tɕam levels out flat, the same every single morning)",
+      "headline": "pràʔ-tɕam.",
+      "scene": "An elevated view of a city expressway at sunrise, solid with unmoving cars stretching to the horizon between hazy office towers. A single motorcyclist threads the narrow gap between two lanes. Long shadows, exhaust haze, flat gold light."
+    },
+    {
+      "rank": 427,
+      "thai": "ไก่",
+      "romanization": "gài",
+      "english": "chicken",
+      "anchor": "GUY",
+      "mnemonic": "A rooster struts down the middle of the lane like he owns it — that guy. gài is chicken, and the cockerel is the guy who runs the yard: the dog steps round him, the hens get out of the way. (▁ low and flat, one short cluck)",
+      "headline": "Gài!",
+      "scene": "A village lane at dawn. An enormous glossy rooster struts down the centre of it, chest thrown out and tail high, while a dog and two hens step aside onto the verge. Wooden houses either side, mist between them, low golden light."
+    },
+    {
       "rank": 428,
       "thai": "ไก่",
       "romanization": "gài",
@@ -617,6 +1367,26 @@
       "mnemonic": "The cockerel owns the yard. Chest out, wings flared, beak up, squaring off against a dog twice his size and winning, while the hens watch from the coop door. Some guy, says the farmer. gài is the bird, GUY is the sound. (▁ low and flat, a short blunt syllable)",
       "headline": "gài.",
       "scene": "A bantam cockerel in a farmyard standing chest out with wings flared and beak raised, squaring up to a large dog twice his size that is backing away with its ears flat. Hens watch from a coop doorway. Dusty yard, low golden evening light."
+    },
+    {
+      "rank": 429,
+      "thai": "จำเป็น",
+      "romanization": "tɕam pen",
+      "english": "necessary",
+      "anchor": "JAM + bpen",
+      "mnemonic": "A jar of jam is wedged under the door and it is the only thing holding the place open: take it away and everything shuts. เป็น bpen means to be, so jam-bpen is what has to be. Not wanted, not nice. Necessary. (— both syllables flat and level; there is nothing to argue with)",
+      "headline": "jam-bpen.",
+      "scene": "A heavy wooden door propped open by a squat jar of dark red jam jammed under its bottom edge, the door leaning its weight onto the glass. Beyond it a busy corridor of people passing through. Low camera angle close to the floor, hard daylight from the corridor."
+    },
+    {
+      "rank": 430,
+      "thai": "เกี่ยวกับ",
+      "romanization": "kìːaw kàp",
+      "english": "about",
+      "anchor": "HOOK + WITH",
+      "mnemonic": "kìaw is to hook — the curved blade that catches a whole armful of stalks in one pull. kàp is with. Hooked-with is how Thai says about: whatever catches on the subject comes up along with it. (▁ both syllables sit low and flat)",
+      "headline": "…kìaw-kàp…",
+      "scene": "Close on a farmer's hands in a paddy field: a curved sickle pulled through a stand of golden rice, a thick armful of stalks caught in the hook and bending with it, chaff flying up. Flooded fields and low hills behind, hard midday sun."
     },
     {
       "rank": 431,
@@ -639,6 +1409,16 @@
       "scene": "A man in an expensive overcoat standing in a cramped family shop, holding out an open cash box and a ring of keys with both hands toward an elderly couple behind the counter. The couple stare, one hand half raised. A large car waits at the kerb beyond the window. Cold daylight outside, warm light within."
     },
     {
+      "rank": 436,
+      "thai": "สภาพ",
+      "romanization": "sà pʰâːp",
+      "english": "condition",
+      "anchor": "SUB-PAR, plus p",
+      "mnemonic": "Everything in the room is sub-par. Put a p on the end of sub-par and you have sà-pʰâap: the condition a thing is in. Good or bad, it is the state of it — a room's, a car's, a body's after a long week. (↓ pʰâap drops away, like a shoulder sagging at the sight)",
+      "headline": "sà-pʰâap.",
+      "scene": "A man stands in the doorway of a small rented room with his arms folded, unimpressed. Peeling ceiling, a stained mattress on a bare frame, a bucket catching a drip, one naked bulb. Grey daylight through a cracked window, dust on the sill."
+    },
+    {
       "rank": 437,
       "thai": "เศรษฐกิจ",
       "romanization": "sèet-thà-gìt",
@@ -647,6 +1427,16 @@
       "mnemonic": "A whole country's work runs up one long table and into the mouth of a single vast man: farmers, bakers, dockers, all of it passed hand over hand to sate a git. SATE, A, GIT — sèet-thà-gìt, the machine that moves everything somewhere. (▁ low and clipped, the last syllable stopped dead)",
       "headline": "sèet-thà-gìt.",
       "scene": "A vast banquet hall with an impossibly long table receding into the distance. At the near end an enormously fat man in evening dress is being fed from silver dishes, while along the whole length of the table farmers, bakers and dock workers pass laden platters hand over hand toward him. Chandeliers, deep shadows, soot on the workers' faces."
+    },
+    {
+      "rank": 439,
+      "thai": "เช่า",
+      "romanization": "châo",
+      "english": "rent",
+      "anchor": "CHOW, dropped",
+      "mnemonic": "The same chow as cháaw, morning — but let the voice fall instead of holding it up high and the meaning changes to rent. The morning goes up; the rent comes down, out of your hand and into the landlady's. (↓ falling, the voice drops as the notes leave your fingers)",
+      "headline": "Châo.",
+      "scene": "A shophouse doorway at dusk. A young tenant counts banknotes one by one into the open palm of an elderly landlady, who holds a ring of keys in her other hand. His rucksack sits on the step; a narrow staircase rises into the dark behind her."
     },
     {
       "rank": 440,
@@ -669,6 +1459,26 @@
       "scene": "A steppe encampment of round felt tents in disarray, one pole leaning badly out of the line. A commander on horseback rides down the row pointing with a riding crop while people scramble to straighten ropes and stamp out a fire. Dust, wide grassland, low sun."
     },
     {
+      "rank": 444,
+      "thai": "โรงเรียน",
+      "romanization": "roong-riian",
+      "english": "school",
+      "anchor": "hall + learn",
+      "mnemonic": "โรง is the building — the same โรง that sits in cinema, hotel and factory — and เรียน is to learn. Put the hall and the learning together and school falls out of it: roong-riian, the learning hall. Take โรง away with you; it builds half a town. (— both syllables level and even, like a held bell)",
+      "headline": "roong-riian.",
+      "scene": "A school courtyard at morning assembly. Rows of children in white shirts and navy shorts stand in the dust facing a long low building with an open verandah, hands at their sides. A teacher stands at the front with one arm raised. The shadow of a flagpole, green trees, early sun."
+    },
+    {
+      "rank": 445,
+      "thai": "เล่า",
+      "romanization": "lâw",
+      "english": "tell; narrate",
+      "anchor": "aL-LOW me…",
+      "mnemonic": "Allow me, says the old man, and he is away into a story that lasts an hour. The low sitting inside allow is lâw: to tell, to narrate, to spin the whole thing out while everyone leans in closer. (↓ falling, the voice drops as he settles into it)",
+      "headline": "Lâw…",
+      "scene": "Night. A village elder sits on a low stool beside a cooking fire, hands mid-gesture shaping something large in the air, mouth open in speech. A ring of children and adults sit close around him, faces lit orange, leaning in. Dark trees beyond."
+    },
+    {
       "rank": 446,
       "thai": "มนุษย์",
       "romanization": "má nút",
@@ -677,6 +1487,26 @@
       "mnemonic": "Ma hands the child a nut and a rounded stone and guides her hands to show her how. Nothing else in that forest is doing anything of the kind. Ma, nut — má-nút, the one creature that makes a tool out of the world it finds. (▲ both syllables up high and taut, bright as the shell cracking)",
       "headline": "má-nút.",
       "scene": "A mother crouched on a forest floor guiding her small daughter's hands, which hold a rounded stone above a hard nut set on a flat rock. Both are wholly absorbed. Dappled green light through a high canopy, monkeys watching from a branch above them."
+    },
+    {
+      "rank": 447,
+      "thai": "ตก",
+      "romanization": "tòk",
+      "english": "fall",
+      "anchor": "TOCK",
+      "mnemonic": "Tick, and on the tock the coconut lets go. It is a hand's width above the dust now, directly over a man who has slept through the whole business. ตก is anything that falls: rain, prices, a man off a ladder. (▁ low and short, the sound of the landing)",
+      "headline": "tòk.",
+      "scene": "Beneath a coconut palm at noon. A large green coconut hangs frozen in the air a hand's width above the dusty ground, right beside a man dozing against the trunk with his hat over his face. A cat is already leaping clear. Hard light, sharp shadows."
+    },
+    {
+      "rank": 448,
+      "thai": "ชนิด",
+      "romanization": "tɕʰá nít",
+      "english": "class; sort; type",
+      "anchor": "cha + KNIT",
+      "mnemonic": "The knitter will not start until the wool is sorted — each kind in its own basket, thick with thick, red with red, no mixing. chá-nít is exactly that: the sort, the type, which kind of thing you are holding. (▲ both syllables high and quick, the snap of a decision)",
+      "headline": "chá-nít.",
+      "scene": "An old woman on a wooden veranda surrounded by six open baskets, each holding balls of wool of a different colour and thickness. She is placing one ball deliberately into its matching basket, knitting needles tucked under her arm. Soft afternoon light."
     },
     {
       "rank": 452,
@@ -689,6 +1519,26 @@
       "scene": "A barrister in a dark suit sitting on a crowded bus with a battered leather briefcase balanced across one raised knee, arms folded protectively over it, staring out of a rain-streaked window. Other passengers pressed in around him. Grey morning light, condensation on the glass."
     },
     {
+      "rank": 453,
+      "thai": "ตา",
+      "romanization": "dtaa",
+      "english": "eye",
+      "anchor": "TAR",
+      "mnemonic": "The road-mender wipes his forehead with a tarry glove and leaves a perfect black ring round one eye. Everybody who passes looks at that eye and at nothing else on him. dtaa is the eye, and the tar has drawn a circle round it. (— flat and level, an unblinking stare)",
+      "headline": "dtaa.",
+      "scene": "Close portrait of a road worker in a high-visibility vest staring straight at the viewer, one eye ringed with a smear of glossy black tar, the glove that did it still raised near his temple. Behind him a steaming tar barrel and a torn-up road. Flat overcast light."
+    },
+    {
+      "rank": 454,
+      "thai": "ตา",
+      "romanization": "dtaa",
+      "english": "grandfather",
+      "anchor": "TA (= eye too)",
+      "mnemonic": "dtaa is the eye. It is also your mother's father — the old man on the porch whose eye is on you the whole afternoon. One flat syllable, the same one you say as a casual ta, does both jobs: the watcher and the watching. (— flat and level, an unhurried old voice)",
+      "headline": "Dtaa.",
+      "scene": "Close portrait of an elderly Thai man seated on a wooden porch, deeply lined face, both hands resting on a walking stick, watching steadily with clear attentive eyes. Beyond him, softly out of focus, a small child plays in a green sunlit yard."
+    },
+    {
       "rank": 455,
       "thai": "ปัจจุบัน",
       "romanization": "pàt tɕùʔ ban",
@@ -697,6 +1547,16 @@
       "mnemonic": "A pat of butter running into a warm split bun, and a mouth halfway through the first chew. Not the bun from yesterday, not tomorrow's — this one, in your mouth, now. Pat, chew, bun: pàt-tɕù-ban, the present moment and nothing either side of it. (— the last syllable settles flat, right where you are)",
       "headline": "pàt-tɕù-ban.",
       "scene": "A close view of a person mid-bite into a warm split bun, a yellow pat of butter melting and running at the edge, crumbs on their lip, eyes closed in concentration. A kitchen table, a knife laid down, steam still rising from the cut face of the bun. Soft morning light."
+    },
+    {
+      "rank": 457,
+      "thai": "ใส่",
+      "romanization": "sàj",
+      "english": "put",
+      "anchor": "SIGH",
+      "mnemonic": "The cook sighs, then tips one more fistful of chilli into the wok anyway. sài is that: to put something in, or on — the chilli into the pot, the shirt onto your back, the sugar into the cup. (▁ low, the sound of a long breath going out)",
+      "headline": "sài.",
+      "scene": "Close on a blackened wok over a flame, a cook's hand tipping a fistful of dried red chillies into it. Steam and smoke rise into her face; her eyes are half closed and her cheeks puffed as she breathes out. Night market stall lights behind."
     },
     {
       "rank": 458,
@@ -709,6 +1569,26 @@
       "scene": "A rusted-out car sitting on flat tyres in a weed-choked back yard, its bonnet buckled by a young tree that has grown up through it, moss thick on the roof, one door hanging open on a broken hinge. Grass up to the wheel arches. Grey overcast light."
     },
     {
+      "rank": 459,
+      "thai": "ฝน",
+      "romanization": "fǒn",
+      "english": "rain",
+      "anchor": "PHONE",
+      "mnemonic": "A phone lies face down in a puddle in the middle of the road, ringing and ringing while the rain hammers it flat, and nobody is coming for it. fǒn is that rain, and the voice climbs the way a ring tone does. (↑ rising, the pitch lifts like a phone waiting to be answered)",
+      "headline": "fǒn.",
+      "scene": "A tarmac road in a downpour, seen low and close. A mobile phone lies face down in a shallow puddle, rain bouncing off its back in bright crowns. The street beyond dissolves into grey water and blurred headlights. Everything soaked, nobody in sight."
+    },
+    {
+      "rank": 460,
+      "thai": "ขาด",
+      "romanization": "kʰàːt",
+      "english": "lack; incomplete",
+      "anchor": "CART",
+      "mnemonic": "The cart sits tilted in the road with one wheel gone entirely, its axle down in the dirt and fruit spilled everywhere. kʰàat is what is wrong with it: short of something, missing a piece, not complete. (▁ low and flat, stopped short)",
+      "headline": "kʰàat.",
+      "scene": "A wooden handcart tipped at a steep angle in a dusty lane, one wheel missing altogether and its bare axle resting in the dirt, oranges spilled across the ground. An old vendor stands with hands on hips staring at the empty axle. Hot midday light."
+    },
+    {
       "rank": 461,
       "thai": "ข้อ",
       "romanization": "kʰɔ̂ː",
@@ -717,6 +1597,46 @@
       "mnemonic": "Split a length of bamboo and the hollow core is cut across at intervals by hard pale rings — the joints, the places where it is divided into separate sections. Say CORE the British way with no r on the end and you have kʰɔ̂ɔ. (↓ falling, dropping onto each hard ring in turn)",
       "headline": "kʰɔ̂ɔ.",
       "scene": "A length of thick green bamboo split lengthways on a workbench, its hollow interior divided at intervals by pale hard rings. A craftsman's thumb rests on one of the rings. Shavings across the bench, warm workshop light through a dusty window."
+    },
+    {
+      "rank": 462,
+      "thai": "รัฐ",
+      "romanization": "rát",
+      "english": "state",
+      "anchor": "RAT",
+      "mnemonic": "A rat is sitting up in the great carved chair at the head of the marble chamber, and the ministers file in and bow to it anyway. Wherever the power happens to be sitting, that is the rát: the state. (▲ high and taut, the way a title is announced)",
+      "headline": "rát.",
+      "scene": "A marble parliamentary chamber with columns and tiered benches. A large brown rat sits upright in the ornate carved chair on the raised dais, tail curled over the armrest. Two rows of officials in dark suits bow toward it, heads down. Shafts of dusty light from high windows."
+    },
+    {
+      "rank": 463,
+      "thai": "หลัก",
+      "romanization": "làk",
+      "english": "main; principle",
+      "anchor": "LUCK",
+      "mnemonic": "People press gold leaf onto the great city pillar and ask it for luck. làk is the pillar itself — and from there, anything central: the main thing, the principle that everything else is built around. (▁ low and short, solid as the stone)",
+      "headline": "làk.",
+      "scene": "A gilded stone pillar inside a shrine, heaped with marigold garlands at its base. A kneeling woman presses a square of gold leaf onto it with her thumb; incense smoke drifts across and other worshippers blur behind her in the warm dim light."
+    },
+    {
+      "rank": 465,
+      "thai": "สำเร็จ",
+      "romanization": "sǎm rèt",
+      "english": "success",
+      "anchor": "SOME RED",
+      "mnemonic": "Some red: the ribbon across the finish line. She takes it on the chest and it snaps and streams back off both shoulders, her arms already up. sǎm-rèt is that exact moment, the thing finished, the thing achieved. Clip the end of red short and the Thai is there. (↑ sǎm climbs, then rèt sits low and clipped as the ribbon breaks)",
+      "headline": "sǎm-rèt.",
+      "scene": "A runner breaking a broad red ribbon at a finish line, the ribbon torn and streaming back from her shoulders, both arms flung up, mouth open in a shout. Blurred crowd behind the barriers, other runners far back down the track. Bright hard stadium daylight."
+    },
+    {
+      "rank": 466,
+      "thai": "ความจริง",
+      "romanization": "khwaam-jing",
+      "english": "True.",
+      "anchor": "QUALM + JING",
+      "mnemonic": "kʰwaam- is the noun-maker again, the qualm sound on the front; jing is true. Strike a cracked bell and it thuds — strike a true one and it rings out clean, jing. kʰwaam-jing is the truth itself, the thing that rings. (— both syllables flat and level, no argument in it)",
+      "headline": "kʰwaam-jing.",
+      "scene": "A hand swings a padded wooden mallet against a great hanging bronze bell in a temple courtyard. The bell shivers with the strike and a dozen birds burst off the eaves above it. Clear morning light, swept stone, saffron robes blurred behind."
     },
     {
       "rank": 467,
@@ -729,6 +1649,16 @@
       "scene": "A row of seven small oil lamps along a stone windowsill, the first six burning and the seventh being lit by a hand holding a taper. Deep blue dusk beyond the window, warm pools of light on the stone, nothing else in the frame."
     },
     {
+      "rank": 468,
+      "thai": "วิธี",
+      "romanization": "wíʔ tʰiː",
+      "english": "method",
+      "anchor": "WITTY",
+      "mnemonic": "Four men are hammering at a coconut and getting nowhere. The cook walks over, turns it in her palm and opens it with one tap of the cleaver's spine. That is the witty way: wí-thii, the method. A hard t in the middle, never an English th. (— the second syllable holds flat and long, wi-THEE)",
+      "headline": "wí-thii.",
+      "scene": "An outdoor kitchen. Four men crouch over a coconut with hammers and a rock, husk fibres scattered everywhere. Beside them a small woman in an apron holds a coconut in one palm, the spine of her cleaver tapping its middle, the shell already opening cleanly in two. Amused glances, dappled shade."
+    },
+    {
       "rank": 470,
       "thai": "ชุด",
       "romanization": "tɕʰút",
@@ -737,6 +1667,16 @@
       "mnemonic": "Say the first half of CHUTNEY and stop: tɕʰút. He is two steps out of the door in the new outfit, pressed and immaculate, when the spoon tips and a gout of chutney lands down the whole front of it. The outfit was the point, and the outfit is finished. (▲ high and taut, the yelp he does not manage to swallow)",
       "headline": "tɕʰút!",
       "scene": "A young man frozen in a hallway doorway in a crisp new suit, arms held out from his sides, a bright orange-brown splatter of chutney down the front of his jacket. A tipped spoon still in one hand, a bowl on the hall table beside him. Harsh hallway light, his face aghast."
+    },
+    {
+      "rank": 472,
+      "thai": "ทาน",
+      "romanization": "thaan",
+      "english": "eat",
+      "anchor": "TAAN, polite kin",
+      "mnemonic": "At dawn a woman kneels and spoons rice into a monk's bowl, and he will thaan it. Where kin is blunt and everyday, thaan is the soft, polite word for eat — the one you use for a guest, an elder, a monk. (— flat and level, gently said)",
+      "headline": "thaan.",
+      "scene": "Dawn on a Thai street. A woman kneels barefoot on the pavement spooning rice into the alms bowl of a monk in saffron robes, his eyes lowered and head bowed; a line of monks waits behind him in the mist. Soft pink light, shuttered shopfronts."
     },
     {
       "rank": 473,
@@ -749,6 +1689,16 @@
       "scene": "A uniformed sentry standing rigid at a gatehouse in the rain, eyes fixed straight ahead, while a colleague beside him holds out a steaming enamel mug. The sentry has not moved at all. Water running off the peak of his cap, wet cobbles, grey dawn light."
     },
     {
+      "rank": 474,
+      "thai": "อำเภอ",
+      "romanization": "ʔam pʰɤː",
+      "english": "district",
+      "anchor": "AM + PURR",
+      "mnemonic": "Am-purr. Every cat owns a district: the wall, the three roofs and the alley it patrols twice a night, and it sits on the boundary at dusk to look the whole of it over. An amphoe is exactly that, the patch of country belonging to one office. (— both syllables flat and level, like the purr itself)",
+      "headline": "am-pʰəə.",
+      "scene": "A large cat sitting upright on a garden wall at dusk, tail curled round its feet, surveying a sprawl of tiled rooftops, alleys and treetops below. Lights are coming on in the houses. Its eyes are half closed and entirely proprietorial. Warm dusk, deep blue sky."
+    },
+    {
       "rank": 476,
       "thai": "เดินทาง",
       "romanization": "dooen-thaang",
@@ -757,6 +1707,26 @@
       "mnemonic": "Two pieces, and you have one of them already: dəən is the walk, thaang is the way or road. Walk plus way is how a man gets to work — the same wet pavement, the same hour, every morning of his life, in a river of other people doing exactly the same. (— both halves flat and level, the same every day)",
       "headline": "dəən-thaang.",
       "scene": "A man in a raincoat walking a wet city pavement in a stream of other commuters all heading the same direction, umbrellas overlapping, a bus pulling away from the kerb beside them. Shopfront light on the wet paving. Dark early morning, every face turned the same way."
+    },
+    {
+      "rank": 477,
+      "thai": "เดินทาง",
+      "romanization": "dooen-thaang",
+      "english": "travel",
+      "anchor": "walk + way",
+      "mnemonic": "เดิน is to walk, and it starts like earn with a d pushed in front of it; ทาง is the way, the road. Walk the way and you are travelling: dooen-thaang. The word is not about arriving anywhere, it is the going itself. (— both syllables flat and even, like a steady pace)",
+      "headline": "dooen-thaang.",
+      "scene": "A traveller with a heavy pack walking away from the viewer up a red dirt road that winds into green hills. Mist still lies in the valley to the left, the sun is just clearing the ridge, and a dog trots along at the traveller's heel. Long morning shadows."
+    },
+    {
+      "rank": 478,
+      "thai": "ทั่ว",
+      "romanization": "tʰûːa",
+      "english": "all; entire; complete",
+      "anchor": "TOUR",
+      "mnemonic": "A tour goes everywhere: every street, every corner, every last village on the map, with nothing at all left out. tʰûa is exactly that — throughout, all over, the entire lot of it, the whole country or the whole body. One word for the lot. (↓ falling, the voice sweeps down over the whole view)",
+      "headline": "tʰûa.",
+      "scene": "A traveller stands on a hilltop seen from behind with both arms spread wide, looking out over an entire valley of villages, winding roads and paddy fields that runs away in every direction to the hazy horizon. Morning mist, sun breaking through cloud."
     },
     {
       "rank": 479,
@@ -779,6 +1749,16 @@
       "scene": "A small living room in the evening. An older couple sit in two armchairs, one dozing with hands folded over a full stomach, the other slowly stirring a cup. A cat asleep on the rug, a cleared supper table behind them. Ordinary lamp light, curtains drawn, nothing remarkable anywhere in the room."
     },
     {
+      "rank": 483,
+      "thai": "ผลิต",
+      "romanization": "pʰàʔ lìt",
+      "english": "manufacture",
+      "anchor": "PALLET",
+      "mnemonic": "At the end of the line the robot arm swings a box down and stacks it onto a wooden pallet, thump, and the pallet fills and another comes up empty behind it. pà-lìt is the making itself: what a factory does all day, every day. (▁ low and flat, the thump of the pallet taking the weight)",
+      "headline": "pà-lìt.",
+      "scene": "A factory floor at the end of an assembly line. A yellow robot arm lowers a plain sealed box onto a wooden pallet already stacked shoulder-high with identical boxes; a forklift waits to one side with its forks raised. Overhead strip lighting, polished concrete, conveyor rollers."
+    },
+    {
       "rank": 485,
       "thai": "โต",
       "romanization": "toː",
@@ -787,6 +1767,26 @@
       "mnemonic": "The shoe has given up at the front and his big toe is straight out through the end of it. He has grown again, in a month, and the next pair will go the same way. TOE gives you toː: getting big, and the growing that does it. (— flat and level, steady as growth itself)",
       "headline": "toː.",
       "scene": "A close low view of a child's scuffed school shoe with the big toe pushed right through a split across the front, the foot planted on a doorstep. Blurred above and behind, a parent's hands hold a pencil flat against a doorframe already marked with faint height lines."
+    },
+    {
+      "rank": 486,
+      "thai": "พา",
+      "romanization": "pʰaː",
+      "english": "lead; carry",
+      "anchor": "PAH, not PAW",
+      "mnemonic": "พ่อ is PAW, the father, with a round aw in the middle. พา is PAH, with an open ah, and it means to take someone along with you. Here the pa does both: his hand closes round the child's wrist and he tows her through the crowd without breaking stride. (— flat and level, the pace never changes)",
+      "headline": "pʰaa.",
+      "scene": "A packed night market seen from behind. A tall father in a work shirt cuts through the crowd with a small girl's wrist held firmly in his hand, her feet skipping to keep up, her free hand clutching a skewer. Steam, hanging bulbs, shoulders and elbows all around."
+    },
+    {
+      "rank": 487,
+      "thai": "ยอมรับ",
+      "romanization": "jɔːm ráp",
+      "english": "accept",
+      "anchor": "yield + RAP",
+      "mnemonic": "jɔɔm is to give in; ráp is to receive. Give in and take it, and you have accepted. There is a rap at the door, and you can either leave it knocking or open up and receive whatever is standing out there. (▲ ráp snaps up high, the moment of taking it)",
+      "headline": "…ráp.",
+      "scene": "A man stands in his open front doorway at night, one hand still on the latch, taking a heavy wrapped parcel from a courier standing in the rain. His shoulders are dropped and his expression resigned but steady. Hall light spills onto wet steps."
     },
     {
       "rank": 488,
@@ -799,6 +1799,16 @@
       "scene": "A train standing at a platform with heat shimmer around its wheels and its doors open, a scattering of passengers with bags waiting along the platform edge, one of them leaning out to look up the track. High iron-and-glass roof, dusty shafts of light."
     },
     {
+      "rank": 490,
+      "thai": "ตัดสินใจ",
+      "romanization": "dtàt-sǐn-jai",
+      "english": "decide",
+      "anchor": "CUT + SIN + HEART",
+      "mnemonic": "tàt is cut and jai is heart, and the sǐn between them sounds like sin. To decide, in Thai, is to cut the sin out of your heart: end the dithering, choose the path, go. (↑ sǐn climbs in the middle, then jai lands flat and final)",
+      "headline": "Dtàt-sǐn-jai!",
+      "scene": "A woman stands at a fork in a forest path at dusk, pack already shouldered, one hand pressed flat over her heart and the other making a single decisive chopping motion in the air. Her body is turned toward the left-hand path. Mist between dark trees."
+    },
+    {
       "rank": 491,
       "thai": "อารมณ์",
       "romanization": "ʔaː rom",
@@ -807,6 +1817,26 @@
       "mnemonic": "Say AROMA and stop before the last vowel: aa-rom. Bread comes out of the oven and fills the house, and the man who came in slamming doors drops his bag, shuts his eyes and softens where he stands. The smell changed the mood, and the word is the mood. (— both syllables flat and even, settling)",
       "headline": "aa-rom.",
       "scene": "A kitchen doorway. A man still in his coat stands with his bag dropped at his feet and his shoulders come down, eyes half closed, facing a tray of loaves just lifted from the oven by someone else in the room. Steam rising off the bread. Warm oven light spilling into a dim hallway."
+    },
+    {
+      "rank": 492,
+      "thai": "ผู้ใหญ่",
+      "romanization": "phûu-yài",
+      "english": "adult",
+      "anchor": "big person",
+      "mnemonic": "ผู้ is the one-who, the same ผู้ that starts the words for man and woman, and ใหญ่ is big. An adult is simply the big one: the person who takes the jar off the top shelf without going up on anything. phûu-yài. (↓ phûu drops, then yài settles low, with the weight of being the big one)",
+      "headline": "phûu-yài.",
+      "scene": "A kitchen. A small girl up on tiptoe on a stool strains toward a plain jar on the highest shelf, fingers short of it by a foot. Beside her a tall woman lifts the same jar down one-handed without stretching, looking somewhere else entirely. Warm afternoon light, tiled wall, open cupboard."
+    },
+    {
+      "rank": 493,
+      "thai": "เสนอ",
+      "romanization": "sà-nǒoe",
+      "english": "put forward",
+      "anchor": "NURSE - S",
+      "mnemonic": "Knock the s off NURSE and you have the end of sà-nɤ̌ɤ. The theatre nurse holds the tray out flat, the instrument laid on it handle first, waiting for the surgeon to take it. That is what sà-nɤ̌ɤ does with an idea: puts it forward. (↑ rising, the voice lifts as the tray comes up)",
+      "headline": "sà-nɤ̌ɤ.",
+      "scene": "An operating theatre under a bright overhead lamp. A masked nurse in a green gown extends a steel tray toward a surgeon with both hands, a single clamp laid on it turned handle first. Everything beyond the lamp's circle falls into shadow."
     },
     {
       "rank": 494,
@@ -827,6 +1857,16 @@
       "mnemonic": "Batting practice in the cage: he pats a ball onto the tee, squares up, bats it away, and then does the whole thing again, and again, two hundred times before the light goes. Pat, tee, bat — pà-tì-bàt, doing a thing over and over until the body owns it. (▁ low and clipped, the flat crack of the bat)",
       "headline": "pà-tì-bàt.",
       "scene": "A batting cage at dusk. A young player in a helmet places a ball onto a rubber tee with one hand, bat resting on his shoulder, a dozen balls already scattered in the netting behind him. Floodlight glare, dust hanging in the air, a coach watching with folded arms."
+    },
+    {
+      "rank": 499,
+      "thai": "ข้อมูล",
+      "romanization": "khâaw-muun",
+      "english": "information",
+      "anchor": "CORE + MOON",
+      "mnemonic": "A geologist lifts a long core out of the ground under an enormous moon, and everything about the place is there in its bands. kʰɔ̂ɔ is a single item, muun is the raw stuff: core and moon together, kʰɔ̂ɔ-muun, the information. (↓ falls on kʰɔ̂ɔ, then muun levels out flat)",
+      "headline": "kʰɔ̂ɔ-muun.",
+      "scene": "Night in an open field. A geologist crouches holding up a long cylindrical soil core banded in coloured layers, turning it in gloved hands under the beam of a head torch. An enormous full moon sits low on the horizon; equipment cases lie open on the grass."
     },
     {
       "rank": 500,
