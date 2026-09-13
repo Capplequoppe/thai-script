@@ -41,7 +41,7 @@ const VERDICT_PRESENTATION: Record<
 };
 
 const BACKEND_UNAVAILABLE_MESSAGE =
-	"The conversation backend is not running, so there is nothing to talk to yet. Start it locally and reload this page.";
+	"The conversation backend isn't answering, so there is nothing to talk to yet. Make sure it's running and reachable, then check Settings → Conversation Backend for the right address before reloading this page.";
 
 /**
  * The learner's known-word snapshot sent with the opening request — never a

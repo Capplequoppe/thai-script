@@ -12,21 +12,50 @@ change.
 The backend is local-only: single-process, single-GPU, synchronous per
 request. It is never deployed alongside the app's static GitHub Pages
 build, which cannot reach `localhost` and must show a clear "backend
-not running" state instead of hanging or failing silently.
+not running" state instead of hanging or failing silently — unless the
+learner has pointed the app at a reachable backend on another device
+(see "Reaching it from another device" below).
 
 ## Bind address and CORS
 
-- uvicorn binds `127.0.0.1` explicitly, **never `0.0.0.0`** — this
-  backend drives a local GPU with no authentication and must not be
-  reachable from the network. Every documented run command uses
-  `--host 127.0.0.1`.
+- uvicorn binds `127.0.0.1` by default. Every documented run command
+  uses `--host 127.0.0.1` unless the learner deliberately opts into LAN
+  access (below) — this backend drives a local GPU with **no
+  authentication**, so its reachability is the whole security boundary.
 - Cross-origin requests are restricted to an explicit allowlist
   (`http://localhost:5173`, `http://127.0.0.1:5173` — Vite's dev
-  server), configured via `CORSMiddleware` in `backend/app/main.py`.
-  **Never `allow_origins=["*"]`** — a wildcard would let any page the
-  user happens to have open in the same browser call this endpoint.
-  Task 1.4 adds its Playwright e2e origin to this same allowlist if it
-  differs from the dev server's.
+  server, plus whatever origins `CONVERSATION_ALLOWED_ORIGINS` adds),
+  configured via `CORSMiddleware` in `backend/app/main.py`. **Never
+  `allow_origins=["*"]`** — a wildcard would let any page the user
+  happens to have open in the same browser call this endpoint. Task 1.4
+  added its Playwright e2e origin to this same allowlist.
+- **CORS is not an access-control mechanism against a direct request**
+  (curl, another process, a non-browser client) — it only restricts
+  what a *browser tab* is allowed to read back cross-origin. Once the
+  bind address makes the port reachable at all, anything that can
+  address it can call every route, allowlist or not.
+
+## Reaching it from another device (e.g. a phone on the same LAN)
+
+An explicit, per-run opt-in — never the default:
+
+```
+CONVERSATION_ALLOWED_ORIGINS="https://your-deployed-pwa.example" \
+  uv run --project backend uvicorn app.main:app --host 0.0.0.0 --reload
+```
+
+`--host 0.0.0.0` binds every network interface instead of only the
+loopback one; `CONVERSATION_ALLOWED_ORIGINS` (comma-separated) adds the
+phone's actual origin to the CORS allowlist. The frontend's own
+Settings page holds the corresponding "Conversation backend URL"
+field (`src/infrastructure/conversation/HttpConversationPracticeClient.ts`),
+which a learner points at `http://<the backend machine's LAN IP>:8000`.
+
+This closes no security gap by itself — see the CORS caveat above —
+and is appropriate only on a network the user trusts. It is the first
+step of a two-step plan: a private tunnel (Tailscale, Cloudflare
+Tunnel) is the intended way to reach the backend from outside the LAN,
+not opening the bind address to the public internet.
 
 ## Concurrency
 

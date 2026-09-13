@@ -5,14 +5,7 @@ import type {
 	ConversationVerdict,
 } from "../../domain/conversation/types";
 import type { ConversationPracticePort } from "../../domain/ports/ConversationPracticePort";
-
-/**
- * Where the local conversation backend listens (`docs/conversation-backend-api.md`).
- * A module constant, not user-configurable: the backend is a local-only,
- * single-user process, and the deployed GitHub Pages build can't reach it at
- * all — which is exactly the `"unavailable"` path below.
- */
-export const CONVERSATION_BACKEND_BASE_URL = "http://localhost:8000";
+import { getConversationBackendUrl } from "./ConversationBackendSettings";
 
 /**
  * Generous on purpose: a cold backend loads Whisper, a 7B judge model and
@@ -63,7 +56,7 @@ async function fetchJson(
 		}, CONVERSATION_REQUEST_TIMEOUT_MS);
 	});
 	const attempt = (async (): Promise<unknown> => {
-		const response = await fetch(`${CONVERSATION_BACKEND_BASE_URL}${path}`, {
+		const response = await fetch(`${getConversationBackendUrl()}${path}`, {
 			...init,
 			signal: controller.signal,
 		});

@@ -101,6 +101,35 @@ def test_cors_preflight_rejected_from_foreign_origin(client):
     assert "access-control-allow-origin" not in response.headers
 
 
+def test_allowed_origins_keeps_the_dev_server_defaults_with_no_env_var_set(
+    monkeypatch,
+):
+    monkeypatch.delenv("CONVERSATION_ALLOWED_ORIGINS", raising=False)
+    from app.main import _load_allowed_origins
+
+    assert _load_allowed_origins() == [
+        "http://localhost:5173",
+        "http://127.0.0.1:5173",
+    ]
+
+
+def test_allowed_origins_adds_every_comma_separated_entry_from_the_env_var(
+    monkeypatch,
+):
+    monkeypatch.setenv(
+        "CONVERSATION_ALLOWED_ORIGINS",
+        "https://phone.example, http://192.168.1.23:5173,,",
+    )
+    from app.main import _load_allowed_origins
+
+    assert _load_allowed_origins() == [
+        "http://localhost:5173",
+        "http://127.0.0.1:5173",
+        "https://phone.example",
+        "http://192.168.1.23:5173",
+    ]
+
+
 def test_concurrent_judge_calls_never_overlap_and_health_stays_responsive(
     tts_only_client, concurrency_probe: ConcurrencyProbe
 ):

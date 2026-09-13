@@ -39,6 +39,7 @@ from __future__ import annotations
 import asyncio
 import base64
 import binascii
+import os
 from collections.abc import Callable
 from contextlib import asynccontextmanager
 
@@ -65,13 +66,35 @@ from app.session import (
 )
 
 # Vite's default dev server origin, plus its 127.0.0.1 equivalent —
-# the only origins allowed to call this backend. Add task 1.4's
-# Playwright e2e origin here when that task defines it; never widen
-# this to a wildcard.
-ALLOWED_ORIGINS = [
+# always allowed, so the default same-machine dev flow needs no
+# configuration. A learner reaching this backend from another device
+# (e.g. a phone on the same LAN, hitting the deployed PWA's own origin)
+# adds that origin via CONVERSATION_ALLOWED_ORIGINS (comma-separated)
+# instead of editing this file — see backend/README.md. Still never a
+# wildcard: CORS only gates a *browser tab's* cross-origin fetch, not a
+# direct request (curl, another process) once the port is reachable at
+# all, but for the one channel it does cover, an explicit list — however
+# it's populated — stays cheaper than none.
+_DEFAULT_ALLOWED_ORIGINS = [
     "http://localhost:5173",
     "http://127.0.0.1:5173",
 ]
+
+
+def _load_allowed_origins() -> list[str]:
+    """The dev-server defaults, plus whatever CONVERSATION_ALLOWED_ORIGINS
+    (comma-separated) adds — a plain function, not inlined at import time,
+    so a test can exercise it against an arbitrary environment without
+    needing to reload this module.
+    """
+    extra = os.environ.get("CONVERSATION_ALLOWED_ORIGINS", "")
+    return [
+        *_DEFAULT_ALLOWED_ORIGINS,
+        *[origin.strip() for origin in extra.split(",") if origin.strip()],
+    ]
+
+
+ALLOWED_ORIGINS = _load_allowed_origins()
 
 
 @asynccontextmanager

@@ -1,6 +1,10 @@
 // @vitest-environment jsdom
 import { fireEvent, screen } from "@testing-library/react";
 import { describe, expect, it, vi } from "vitest";
+import {
+	DEFAULT_CONVERSATION_BACKEND_URL,
+	getConversationBackendUrl,
+} from "../../infrastructure/conversation/ConversationBackendSettings";
 import type { AppContextValue } from "../context/AppContext";
 import { renderWithApp } from "../test-utils/renderWithApp";
 import { SettingsPage } from "./SettingsPage";
@@ -100,5 +104,51 @@ describe("SettingsPage — Learning Pace", () => {
 		fireEvent.click(screen.getByText("Save Learning Pace"));
 
 		expect(data.setApprenticeLimits).not.toHaveBeenCalled();
+	});
+});
+
+describe("SettingsPage — Conversation Backend", () => {
+	it("prefills the backend address with the same-machine default", () => {
+		renderSettings();
+
+		expect(
+			(screen.getByLabelText("Backend address") as HTMLInputElement).value,
+		).toBe(DEFAULT_CONVERSATION_BACKEND_URL);
+	});
+
+	it("saves a valid LAN address and persists it", () => {
+		renderSettings();
+
+		fireEvent.change(screen.getByLabelText("Backend address"), {
+			target: { value: "http://192.168.1.23:8000" },
+		});
+		fireEvent.click(screen.getByText("Save Backend Address"));
+
+		expect(screen.getByText(/saved/i)).toBeTruthy();
+		expect(getConversationBackendUrl()).toBe("http://192.168.1.23:8000");
+	});
+
+	it("rejects an address with no scheme and does not persist it", () => {
+		renderSettings();
+
+		fireEvent.change(screen.getByLabelText("Backend address"), {
+			target: { value: "192.168.1.23:8000" },
+		});
+		fireEvent.click(screen.getByText("Save Backend Address"));
+
+		expect(screen.getByText(/enter a full address/i)).toBeTruthy();
+		expect(getConversationBackendUrl()).toBe(DEFAULT_CONVERSATION_BACKEND_URL);
+	});
+
+	it("rejects a blank address and does not persist it", () => {
+		renderSettings();
+
+		fireEvent.change(screen.getByLabelText("Backend address"), {
+			target: { value: "   " },
+		});
+		fireEvent.click(screen.getByText("Save Backend Address"));
+
+		expect(screen.getByText(/enter a full address/i)).toBeTruthy();
+		expect(getConversationBackendUrl()).toBe(DEFAULT_CONVERSATION_BACKEND_URL);
 	});
 });
