@@ -35,9 +35,21 @@ LABEL_TEXT = (30, 24, 16)
 
 
 def rank_of(path: Path) -> int:
-    """Files are named `<rank> <thai>.jpg`; sort by the number, not the string."""
+    """Leading number in `<n> <thai>.jpg`, for ordering only.
+
+    It is NOT reliably a vocabulary rank. The 37 hand-made illustrations
+    predate this pipeline and are numbered by their own sequence — `47 ลง.jpg`
+    is hand-made image 47, while vocabulary rank 47 is คน — so only 4 of them
+    happen to agree. Labels are matched on the Thai word instead.
+    """
     match = re.match(r"(\d+)\s", path.name)
     return int(match.group(1)) if match else 1 << 30
+
+
+def thai_of(path: Path) -> str:
+    """The word in `<n> <thai>.jpg`, which is what identifies the entry."""
+    match = re.match(r"\d+\s+(.+)$", path.stem)
+    return match.group(1) if match else path.stem
 
 
 def build(paths: list[Path], labels: dict[int, str], columns: int) -> Image.Image:
@@ -55,8 +67,8 @@ def build(paths: list[Path], labels: dict[int, str], columns: int) -> Image.Imag
         y = (index // columns) * (tile_height + LABEL_HEIGHT)
         with Image.open(path) as image:
             sheet.paste(image.convert("RGB").resize((TILE_WIDTH, tile_height)), (x, y))
-        rank = rank_of(path)
-        label = f"{rank}  {labels.get(rank, path.stem)}"
+        thai = thai_of(path)
+        label = labels.get(thai, path.stem)
         size = _fit(draw, label, TILE_WIDTH - 12, LABEL_HEIGHT - 8)
         _draw_mixed(draw, (x + 6, y + tile_height + 3), label, size, LABEL_TEXT)
     return sheet
@@ -74,7 +86,7 @@ def main() -> int:
     args = parser.parse_args()
 
     entries = json.loads(MNEMONICS.read_text(encoding="utf-8"))["entries"]
-    labels = {e["rank"]: f"{e['thai']} {e['english']}"[:34] for e in entries}
+    labels = {e["thai"]: f"{e['thai']} {e['english']}"[:34] for e in entries}
 
     paths = sorted(args.images.glob("*.jpg"), key=rank_of)
     if args.ranks:

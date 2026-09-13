@@ -203,6 +203,14 @@ def generate_one(pipe, score, entry: dict, out_dir: Path, args) -> Result:
         )
 
     image = image.resize(SHIPPED_SIZE, resample=1)  # LANCZOS
+    if args.base_dir:
+        # Keep the uncaptioned render. Compositing is cheap and diffusion is
+        # not, so a caption change should cost seconds rather than another
+        # pass over the whole corpus — which is exactly what the first
+        # contrast fix cost, for want of this.
+        base_path = output_path(args.base_dir, rank, thai)
+        base_path.parent.mkdir(parents=True, exist_ok=True)
+        image.save(base_path, quality=95)
     final = compose(
         image,
         anchor=entry.get("anchor") or entry["romanization"],
@@ -214,6 +222,32 @@ def generate_one(pipe, score, entry: dict, out_dir: Path, args) -> Result:
     path.parent.mkdir(parents=True, exist_ok=True)
     final.save(path, quality=92, optimize=True)
     return Result(rank, thai, "ok", value, seed, path)
+
+
+def recompose(entries: list[dict], args) -> int:
+    """Redraw captions onto already-generated bases. No GPU, no model."""
+    from PIL import Image
+
+    written = missing = 0
+    for entry in entries:
+        base = output_path(args.base_dir, entry["rank"], entry["thai"])
+        if not base.exists():
+            missing += 1
+            continue
+        with Image.open(base) as image:
+            final = compose(
+                image,
+                anchor=entry.get("anchor") or entry["romanization"],
+                thai=entry["thai"],
+                english=entry["english"],
+                headline=entry.get("headline"),
+            )
+        destination = output_path(args.out_dir, entry["rank"], entry["thai"])
+        destination.parent.mkdir(parents=True, exist_ok=True)
+        final.save(destination, quality=92, optimize=True)
+        written += 1
+    print(f"recomposed {written} captions; {missing} had no saved base")
+    return 0
 
 
 def main() -> int:
@@ -235,6 +269,18 @@ def main() -> int:
     )
     parser.add_argument("--force", action="store_true", help="re-render existing files")
     parser.add_argument(
+        "--base-dir",
+        type=Path,
+        help="also keep the uncaptioned render here, so captions can be "
+        "redrawn later without paying for diffusion again",
+    )
+    parser.add_argument(
+        "--recompose",
+        action="store_true",
+        help="skip generation entirely and redraw captions onto the saved "
+        "bases in --base-dir",
+    )
+    parser.add_argument(
         "--backend",
         choices=("sdxl", "pixart", "flux"),
         default="pixart",
@@ -252,7 +298,7 @@ def main() -> int:
     if args.ranks:
         wanted = {int(r) for r in args.ranks.split(",")}
         entries = [e for e in entries if e["rank"] in wanted]
-    if not args.force:
+    if not args.force and not args.recompose:
         entries = [
             e
             for e in entries
@@ -260,6 +306,12 @@ def main() -> int:
         ]
     if args.limit:
         entries = entries[: args.limit]
+
+    if args.recompose:
+        if not args.base_dir:
+            print("--recompose needs --base-dir", file=sys.stderr)
+            return 1
+        return recompose(entries, args)
 
     if not entries:
         print("nothing to render")
