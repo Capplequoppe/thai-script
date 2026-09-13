@@ -49,6 +49,18 @@ FORBIDDEN_IN_SCENE = re.compile(
     re.IGNORECASE,
 )
 
+# Objects a diffusion model renders *as* text or digits. Not banned — a closed
+# book or a distant clock tower is fine, and blurred numerals read as texture —
+# but worth surfacing, because a scene that asks one of these to be legible
+# ("a wall clock reads exactly twelve", "a price tag showing the new number")
+# is asking for the one thing the generator cannot do.
+LETTERED_OBJECTS = re.compile(
+    r"\b(price tag|receipt|ticket|menu|newspaper|magazine|calendar|clock|"
+    r"watch face|dial|licence plate|license plate|number|numbers|digit|digits|"
+    r"scoreboard|jersey|banknote|screen|monitor|keyboard|sheet music)\b",
+    re.IGNORECASE,
+)
+
 VALID_VERDICTS = {"written", "kept", "replaced", "skipped"}
 
 # The tone note is the final parenthetical. Scanning the whole mnemonic for
@@ -62,7 +74,9 @@ def words(text: str) -> int:
     return len(text.split())
 
 
-def validate(entry: dict, vocab: dict, seen: set[int]) -> list[str]:
+def validate(
+    entry: dict, vocab: dict, seen: set[int], warnings: list[str]
+) -> list[str]:
     """Every rule the style guide states, as a list of failures."""
     problems: list[str] = []
     rank = entry.get("rank")
@@ -109,6 +123,9 @@ def validate(entry: dict, vocab: dict, seen: set[int]) -> list[str]:
         banned = {m.group(0).lower() for m in FORBIDDEN_IN_SCENE.finditer(scene)}
         if banned:
             problems.append(f"scene asks for text the model cannot draw: {sorted(banned)}")
+        lettered = {m.group(0).lower() for m in LETTERED_OBJECTS.finditer(scene)}
+        if lettered:
+            warnings.append(f"scene names objects that render as text: {sorted(lettered)}")
 
     # Tone: the glyph must name a tone this word actually carries, read from
     # the romanization — see `tones.py` for why not `syllables[].tone`.
@@ -148,6 +165,7 @@ def main() -> int:
     by_rank = {e["rank"]: e for e in existing["entries"]}
 
     seen: set[int] = set()
+    warnings: list[str] = []
     accepted: list[dict] = []
     failures: list[tuple[Path, int, list[str]]] = []
     verdicts: Counter[str] = Counter()
@@ -163,7 +181,9 @@ def main() -> int:
             print(f"MALFORMED JSON: {path}: {exc}", file=sys.stderr)
             return 1
         for entry in batch:
-            problems = validate(entry, vocab, seen)
+            entry_warnings: list[str] = []
+            problems = validate(entry, vocab, seen, entry_warnings)
+            warnings += [f"rank {entry.get('rank')}: {w}" for w in entry_warnings]
             seen.add(entry.get("rank"))
             verdicts[entry.get("verdict", "?")] += 1
             if isinstance(entry.get("rating"), int):
@@ -184,6 +204,13 @@ def main() -> int:
         print(f"  {path.name} rank {rank}: {'; '.join(problems)}")
     if len(failures) > 40:
         print(f"  … and {len(failures) - 40} more")
+
+    if warnings:
+        print(f"warnings     : {len(warnings)} (not blocking)")
+        for w in warnings[:12]:
+            print(f"  {w}")
+        if len(warnings) > 12:
+            print(f"  … and {len(warnings) - 12} more")
 
     if failures and not args.allow_failures:
         print("\nrefusing to merge — fix the batches or pass --allow-failures")

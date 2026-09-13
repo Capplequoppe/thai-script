@@ -32,6 +32,7 @@ STYLE_SUFFIX = "anime illustration, watercolour, warm golden light, paper grain"
 NEGATIVE_PROMPT = (
     "text, letters, words, writing, caption, subtitle, signage, watermark, "
     "signature, logo, speech bubble, letterforms, gibberish text, "
+    "numbers, digits, numerals, clock face numbers, price tag, "
     "lowres, blurry, jpeg artifacts, deformed hands, extra fingers, "
     "extra limbs, mutated, disfigured, bad anatomy, ugly, "
     "photorealistic, 3d render, photograph"
