@@ -25,12 +25,11 @@ interface QuizCardView {
 
 interface Props {
 	card: QuizCardView;
-	onRate: (rating: RecallRating, responseTimeMs: number) => void;
+	onRate: (rating: RecallRating) => void;
 }
 
 export function DrawingQuiz({ card, onRate }: Props) {
 	const [revealed, setRevealed] = useState(false);
-	const revealedAtRef = useRef(0);
 	const canvasRef = useRef<DrawingCanvasHandle>(null);
 	const audioRef = useRef<HTMLAudioElement | null>(null);
 
@@ -72,13 +71,11 @@ export function DrawingQuiz({ card, onRate }: Props) {
 
 	const handleReveal = useCallback(() => {
 		setRevealed(true);
-		revealedAtRef.current = Date.now();
 	}, []);
 
 	const handleRate = useCallback(
 		(rating: RecallRating) => {
-			const elapsed = Date.now() - revealedAtRef.current;
-			onRate(rating, elapsed);
+			onRate(rating);
 		},
 		[onRate],
 	);

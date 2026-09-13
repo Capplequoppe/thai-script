@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { RecallRating } from "./RecallRating";
-import type { ResponseTimingData, SrsDataDTO } from "./SrsSchedule";
+import type { SrsDataDTO } from "./SrsSchedule";
 import { LAPSE_RECOVERY_INTERVAL_MINUTES, SrsSchedule } from "./SrsSchedule";
 import { SrsStage } from "./SrsStage";
 
@@ -257,107 +257,6 @@ describe("SrsSchedule.applyReview - Graduated Phase", () => {
 		const card = makeGraduatedSchedule();
 		const result = card.applyReview(RecallRating.GOOD, NOW);
 		expect(result.lastReviewDate).toBe(NOW);
-	});
-});
-
-describe("SrsSchedule.applyReview - Response Time Modulation", () => {
-	it("fast response (<0.7x average) gives 1.1x interval bonus", () => {
-		const card = makeGraduatedSchedule({ interval: 4320, easeFactor: 2.0 });
-		const timing: ResponseTimingData = {
-			responseTimeMs: 500,
-			averageResponseTimeMs: 1000,
-		};
-		const result = card.applyReview(RecallRating.GOOD, NOW, timing);
-		const baseInterval = Math.round(4320 * 2.0);
-		expect(result.interval).toBe(Math.round(baseInterval * 1.1));
-	});
-
-	it("normal response (0.7-1.3x average) has no change", () => {
-		const card = makeGraduatedSchedule({ interval: 4320, easeFactor: 2.0 });
-		const timing: ResponseTimingData = {
-			responseTimeMs: 1000,
-			averageResponseTimeMs: 1000,
-		};
-		const result = card.applyReview(RecallRating.GOOD, NOW, timing);
-		const baseInterval = Math.round(4320 * 2.0);
-		expect(result.interval).toBe(baseInterval);
-	});
-
-	it("slow response (>1.3x, <=2.0x average) gives 0.85x penalty", () => {
-		const card = makeGraduatedSchedule({ interval: 4320, easeFactor: 2.0 });
-		const timing: ResponseTimingData = {
-			responseTimeMs: 1500,
-			averageResponseTimeMs: 1000,
-		};
-		const result = card.applyReview(RecallRating.GOOD, NOW, timing);
-		const baseInterval = Math.round(4320 * 2.0);
-		expect(result.interval).toBe(Math.round(baseInterval * 0.85));
-	});
-
-	it("very slow response (>2.0x average) gives 0.7x penalty", () => {
-		const card = makeGraduatedSchedule({ interval: 4320, easeFactor: 2.0 });
-		const timing: ResponseTimingData = {
-			responseTimeMs: 2500,
-			averageResponseTimeMs: 1000,
-		};
-		const result = card.applyReview(RecallRating.GOOD, NOW, timing);
-		const baseInterval = Math.round(4320 * 2.0);
-		expect(result.interval).toBe(Math.round(baseInterval * 0.7));
-	});
-
-	it("no effect on learning phase cards", () => {
-		const card = makeLearningSchedule(1);
-		const timing: ResponseTimingData = {
-			responseTimeMs: 500,
-			averageResponseTimeMs: 1000,
-		};
-		const withTiming = card.applyReview(RecallRating.GOOD, NOW, timing);
-		const withoutTiming = card.applyReview(RecallRating.GOOD, NOW);
-		expect(withTiming.interval).toBe(withoutTiming.interval);
-	});
-
-	it("no effect on lapse resets (rating 1)", () => {
-		const card = makeGraduatedSchedule({ interval: 4320, easeFactor: 2.0 });
-		const timing: ResponseTimingData = {
-			responseTimeMs: 500,
-			averageResponseTimeMs: 1000,
-		};
-		const withTiming = card.applyReview(RecallRating.AGAIN, NOW, timing);
-		const withoutTiming = card.applyReview(RecallRating.AGAIN, NOW);
-		expect(withTiming.interval).toBe(withoutTiming.interval);
-	});
-
-	it("no effect on lapse resets (rating 2)", () => {
-		const card = makeGraduatedSchedule({ interval: 4320, easeFactor: 2.0 });
-		const timing: ResponseTimingData = {
-			responseTimeMs: 500,
-			averageResponseTimeMs: 1000,
-		};
-		const withTiming = card.applyReview(RecallRating.WRONG, NOW, timing);
-		const withoutTiming = card.applyReview(RecallRating.WRONG, NOW);
-		expect(withTiming.interval).toBe(withoutTiming.interval);
-	});
-
-	it("applies to rating 3 (Hard) on graduated cards", () => {
-		const card = makeGraduatedSchedule({ interval: 10000, easeFactor: 2.0 });
-		const timing: ResponseTimingData = {
-			responseTimeMs: 500,
-			averageResponseTimeMs: 1000,
-		};
-		const withTiming = card.applyReview(RecallRating.HARD, NOW, timing);
-		const withoutTiming = card.applyReview(RecallRating.HARD, NOW);
-		expect(withTiming.interval).toBe(Math.round(withoutTiming.interval * 1.1));
-	});
-
-	it("applies to rating 5 (Easy) on graduated cards", () => {
-		const card = makeGraduatedSchedule({ interval: 4320, easeFactor: 2.0 });
-		const timing: ResponseTimingData = {
-			responseTimeMs: 2500,
-			averageResponseTimeMs: 1000,
-		};
-		const result = card.applyReview(RecallRating.EASY, NOW, timing);
-		const baseInterval = Math.round(4320 * 2.0 * 1.3);
-		expect(result.interval).toBe(Math.round(baseInterval * 0.7));
 	});
 });
 

@@ -211,8 +211,8 @@ export function VocabularyPage() {
 	);
 
 	const handleMcAnswer = useCallback(
-		(correct: boolean, responseTimeMs?: number) => {
-			handleReviewAdvance(ratingFromCorrectness(correct, responseTimeMs));
+		(correct: boolean) => {
+			handleReviewAdvance(ratingFromCorrectness(correct));
 		},
 		[handleReviewAdvance],
 	);
