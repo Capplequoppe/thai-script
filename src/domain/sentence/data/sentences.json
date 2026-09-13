@@ -5075,7 +5075,7 @@
       "ครับ"
     ],
     "difficulty": 3,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-khun-ch-a-rai-krap.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -5105,7 +5105,7 @@
       "คะ"
     ],
     "difficulty": 3,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-khun-ch-a-rai-kha.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -5136,7 +5136,7 @@
       "ครับ"
     ],
     "difficulty": 4,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-phom-maa-jaak-ang-grit-krap.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -5167,7 +5167,7 @@
       "ค่ะ"
     ],
     "difficulty": 4,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-chan-maa-jaak-yii-bpun-kha.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -5198,7 +5198,7 @@
       "ครับ"
     ],
     "difficulty": 4,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-phom-maa-jaak-sa-bpeen-krap.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -5229,7 +5229,7 @@
       "ค่ะ"
     ],
     "difficulty": 4,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-chan-maa-jaak-fa-rang-seet-kha.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -5261,7 +5261,7 @@
       "ครับ"
     ],
     "difficulty": 5,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-khun-maa-jaak-thai-mai-krap.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -5292,7 +5292,7 @@
       "คะ"
     ],
     "difficulty": 4,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-khun-maa-jaak-thii-nai-kha.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -5324,7 +5324,7 @@
       "ครับ"
     ],
     "difficulty": 5,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-phom-aa-sai-yuu-thii-thai-krap.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -5355,7 +5355,7 @@
       "คะ"
     ],
     "difficulty": 4,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-khun-aa-sai-yuu-thii-nai-kha.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -5385,7 +5385,7 @@
       "ครับ"
     ],
     "difficulty": 3,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-khun-aa-yu-tao-rai-krap.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -5416,7 +5416,7 @@
       "ครับ"
     ],
     "difficulty": 4,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-phom-aa-yu-yii-sip-bpii-krap.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -5447,7 +5447,7 @@
       "ค่ะ"
     ],
     "difficulty": 4,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-chan-aa-yu-sip-bpii-kha.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -5507,7 +5507,7 @@
       "ค่ะ"
     ],
     "difficulty": 3,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-chan-bpen-khruu-kha.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -5537,7 +5537,7 @@
       "ครับ"
     ],
     "difficulty": 3,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-phom-bpen-maaw-krap.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -5567,7 +5567,7 @@
       "ค่ะ"
     ],
     "difficulty": 3,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-chan-bpen-pha-yaa-baan-kha.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -5597,7 +5597,7 @@
       "ครับ"
     ],
     "difficulty": 3,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-khun-tham-ngaan-thii-nai-krap.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -5627,7 +5627,7 @@
       "ครับ"
     ],
     "difficulty": 3,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-phom-dtaaeng-ngaan-lo-krap.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -5658,7 +5658,7 @@
       "ค่ะ"
     ],
     "difficulty": 4,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-chan-yang-soot-yuu-kha.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -5691,7 +5691,7 @@
       "ครับ"
     ],
     "difficulty": 5,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-phom-phuut-phaa-saa-thai-daai-nit-ni-krap.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -5723,7 +5723,7 @@
       "ค่ะ"
     ],
     "difficulty": 5,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-chan-phuut-phaa-saa-ang-grit-daai-kha.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -5756,7 +5756,7 @@
       "ครับ"
     ],
     "difficulty": 5,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-phom-phuut-phaa-saa-thai-mai-keng-krap.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -5785,7 +5785,7 @@
       "ครับ"
     ],
     "difficulty": 2,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-khp-khun-maak-krap.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -5814,7 +5814,7 @@
       "ค่ะ"
     ],
     "difficulty": 2,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-khp-khun-maak-kha.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -5842,7 +5842,7 @@
       "ครับ"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-yin-dii-thii-daai-ruu-jak-krap.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -5870,7 +5870,7 @@
       "ค่ะ"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-yin-dii-thii-daai-ruu-jak-kha.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -5898,7 +5898,7 @@
       "ครับ"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-khun-sa-baai-dii-mai-krap.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -5926,7 +5926,7 @@
       "คะ"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-khun-sa-baai-dii-mai-kha.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -5954,7 +5954,7 @@
       "ค่ะ"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-chan-sa-baai-dii-kha.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -5984,7 +5984,7 @@
       "ครับ"
     ],
     "difficulty": 3,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-khun-sa-baai-dii-mai-krap-2.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -6012,7 +6012,7 @@
       "ครับ"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-yin-dii-dtaawn-rap-krap.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -6040,7 +6040,7 @@
       "ค่ะ"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-yin-dii-dtaawn-rap-kha.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -6068,7 +6068,7 @@
       "ครับ"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-duuai-khwaam-yin-dii-krap.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -6096,7 +6096,7 @@
       "ค่ะ"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-duuai-khwaam-yin-dii-kha.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -6124,7 +6124,7 @@
       "ครับ"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-mai-bpen-rai-krap.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -6152,7 +6152,7 @@
       "ค่ะ"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-mai-bpen-rai-kha.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -6183,7 +6183,7 @@
       "ครับ"
     ],
     "difficulty": 4,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-an-nii-raa-khaa-tao-rai-krap.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -6214,7 +6214,7 @@
       "คะ"
     ],
     "difficulty": 4,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-an-nii-raa-khaa-tao-rai-kha.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -6245,7 +6245,7 @@
       "ครับ"
     ],
     "difficulty": 4,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-an-nii-gii-baat-krap.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -6275,7 +6275,7 @@
       "ครับ"
     ],
     "difficulty": 3,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-nueng-ri-baat-krap.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -6305,7 +6305,7 @@
       "ค่ะ"
     ],
     "difficulty": 3,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-saawng-ri-baat-kha.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -6335,7 +6335,7 @@
       "ครับ"
     ],
     "difficulty": 3,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-saam-ri-baat-krap.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -6365,7 +6365,7 @@
       "ค่ะ"
     ],
     "difficulty": 3,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-sii-ri-baat-kha.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -6395,7 +6395,7 @@
       "ครับ"
     ],
     "difficulty": 3,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-haa-ri-baat-krap.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -6425,7 +6425,7 @@
       "ค่ะ"
     ],
     "difficulty": 3,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-hok-ri-baat-kha.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -6455,7 +6455,7 @@
       "ครับ"
     ],
     "difficulty": 3,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-jet-ri-baat-krap.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -6485,7 +6485,7 @@
       "ค่ะ"
     ],
     "difficulty": 3,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-bpaaet-ri-baat-kha.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -6515,7 +6515,7 @@
       "ครับ"
     ],
     "difficulty": 3,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-gao-ri-baat-krap.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -6544,7 +6544,7 @@
       "ค่ะ"
     ],
     "difficulty": 2,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-sip-baat-kha.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -6573,7 +6573,7 @@
       "ครับ"
     ],
     "difficulty": 2,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-yii-sip-baat-krap.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -6602,7 +6602,7 @@
       "ค่ะ"
     ],
     "difficulty": 2,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-nueng-baat-kha.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -6632,7 +6632,7 @@
       "ครับ"
     ],
     "difficulty": 3,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-lot-daai-mai-krap.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -6663,7 +6663,7 @@
       "ค่ะ"
     ],
     "difficulty": 4,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-lot-ni-daai-mai-kha.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -6693,7 +6693,7 @@
       "ครับ"
     ],
     "difficulty": 3,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-kh-lot-ni-krap.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -6723,7 +6723,7 @@
       "ครับ"
     ],
     "difficulty": 3,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-phaaeng-bpai-ni-krap.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -6753,7 +6753,7 @@
       "ค่ะ"
     ],
     "difficulty": 3,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-phaaeng-bpai-ni-kha.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -6784,7 +6784,7 @@
       "ครับ"
     ],
     "difficulty": 4,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-raa-khaa-nii-thuuk-maak-krap.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -6815,7 +6815,7 @@
       "ค่ะ"
     ],
     "difficulty": 4,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-raa-khaa-nii-phaaeng-maak-kha.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -6845,7 +6845,7 @@
       "ครับ"
     ],
     "difficulty": 3,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-mii-suuan-lot-mai-krap.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -6874,7 +6874,7 @@
       "ครับ"
     ],
     "difficulty": 2,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-kh-bin-krap.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -6903,7 +6903,7 @@
       "ค่ะ"
     ],
     "difficulty": 2,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-kh-bin-kha.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -6933,7 +6933,7 @@
       "ครับ"
     ],
     "difficulty": 3,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-mii-bai-set-rap-ngoen-mai-krap.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -6962,7 +6962,7 @@
       "ครับ"
     ],
     "difficulty": 2,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-jaai-ngoen-sot-krap.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -6991,7 +6991,7 @@
       "ค่ะ"
     ],
     "difficulty": 2,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-jaai-ngoen-sot-kha.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -7021,7 +7021,7 @@
       "ครับ"
     ],
     "difficulty": 3,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-t-rng-daai-mai-krap.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -7051,7 +7051,7 @@
       "ค่ะ"
     ],
     "difficulty": 3,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-t-rng-mai-daai-kha.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -7081,7 +7081,7 @@
       "ครับ"
     ],
     "difficulty": 3,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-kh-mee-nuu-ni-krap.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -7111,7 +7111,7 @@
       "ค่ะ"
     ],
     "difficulty": 3,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-kh-mee-nuu-ni-kha.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -7173,7 +7173,7 @@
       "ค่ะ"
     ],
     "difficulty": 4,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-chan-ja-sang-gai-kha.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -7204,7 +7204,7 @@
       "ครับ"
     ],
     "difficulty": 4,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-ao-bplaa-nueng-jaan-krap.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -7235,7 +7235,7 @@
       "ค่ะ"
     ],
     "difficulty": 4,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-ao-khai-nueng-jaan-kha.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -7266,7 +7266,7 @@
       "ครับ"
     ],
     "difficulty": 4,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-kh-khaao-niiao-nueng-jaan-krap.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -7297,7 +7297,7 @@
       "ค่ะ"
     ],
     "difficulty": 4,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-kh-phon-la-maai-nueng-jaan-kha.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -7328,7 +7328,7 @@
       "ครับ"
     ],
     "difficulty": 4,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-kh-naam-nueng-ko-krap.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -7359,7 +7359,7 @@
       "ค่ะ"
     ],
     "difficulty": 4,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-kh-naam-nueng-ko-kha.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -7389,7 +7389,7 @@
       "ครับ"
     ],
     "difficulty": 3,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-mai-ao-phak-krap.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -7477,7 +7477,7 @@
       "ค่ะ"
     ],
     "difficulty": 2,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-waan-nit-ni-kha.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -7537,7 +7537,7 @@
       "ครับ"
     ],
     "difficulty": 4,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-aa-haan-nii-a-raauy-maak-krap.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -7568,7 +7568,7 @@
       "ค่ะ"
     ],
     "difficulty": 4,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-aa-haan-nii-mai-a-raauy-kha.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -7598,7 +7598,7 @@
       "ครับ"
     ],
     "difficulty": 3,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-phom-hiu-maak-krap.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -7628,7 +7628,7 @@
       "ค่ะ"
     ],
     "difficulty": 3,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-chan-hiu-maak-kha.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -7658,7 +7658,7 @@
       "ครับ"
     ],
     "difficulty": 3,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-haawng-naam-yuu-thii-nai-krap.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -7688,7 +7688,7 @@
       "คะ"
     ],
     "difficulty": 3,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-haawng-naam-yuu-thii-nai-kha.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -7718,7 +7718,7 @@
       "ครับ"
     ],
     "difficulty": 3,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-roong-rm-yuu-thii-nai-krap.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -7748,7 +7748,7 @@
       "คะ"
     ],
     "difficulty": 3,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-sa-thaa-nii-yuu-thii-nai-kha.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -7778,7 +7778,7 @@
       "ครับ"
     ],
     "difficulty": 3,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-bpai-thaang-nai-krap.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -7806,7 +7806,7 @@
       "ครับ"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-liiao-saai-krap.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -7834,7 +7834,7 @@
       "ค่ะ"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-liiao-khwaa-kha.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -7864,7 +7864,7 @@
       "ครับ"
     ],
     "difficulty": 3,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-bpai-thaang-saai-krap.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -7894,7 +7894,7 @@
       "ค่ะ"
     ],
     "difficulty": 3,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-bpai-thaang-khwaa-kha.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -7924,7 +7924,7 @@
       "ครับ"
     ],
     "difficulty": 3,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-dooen-trong-bpai-krap.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -7954,7 +7954,7 @@
       "ค่ะ"
     ],
     "difficulty": 3,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-dooen-trong-bpai-kha.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -7984,7 +7984,7 @@
       "ครับ"
     ],
     "difficulty": 3,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-haawng-naam-yuu-glai-krap.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -8014,7 +8014,7 @@
       "ค่ะ"
     ],
     "difficulty": 3,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-roong-rm-yuu-glai-kha.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -8045,7 +8045,7 @@
       "ครับ"
     ],
     "difficulty": 4,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-sa-thaa-nii-yuu-glai-mai-krap.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -8075,7 +8075,7 @@
       "ครับ"
     ],
     "difficulty": 3,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-haawng-naam-yuu-khaang-naa-krap.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -8105,7 +8105,7 @@
       "ค่ะ"
     ],
     "difficulty": 3,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-roong-rm-yuu-khaang-lang-kha.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -8136,7 +8136,7 @@
       "ครับ"
     ],
     "difficulty": 4,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-phom-ja-nang-tk-sii-krap.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -8198,7 +8198,7 @@
       "ครับ"
     ],
     "difficulty": 4,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-phom-ja-nang-rot-fai-krap.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -8229,7 +8229,7 @@
       "ครับ"
     ],
     "difficulty": 4,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-kh-dtuua-nueng-bai-krap.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -8260,7 +8260,7 @@
       "ค่ะ"
     ],
     "difficulty": 4,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-kh-dtuua-nueng-bai-kha.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -8290,7 +8290,7 @@
       "ครับ"
     ],
     "difficulty": 3,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-sa-naam-bin-yuu-thii-nai-krap.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -8321,7 +8321,7 @@
       "คะ"
     ],
     "difficulty": 4,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-sa-thaa-nii-rot-fai-yuu-thii-nai-kha.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -8351,7 +8351,7 @@
       "ครับ"
     ],
     "difficulty": 3,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-bpai-sa-naam-bin-tao-rai-krap.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -8382,7 +8382,7 @@
       "ครับ"
     ],
     "difficulty": 4,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-rot-mee-maa-gii-moong-krap.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -8413,7 +8413,7 @@
       "ครับ"
     ],
     "difficulty": 4,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-phom-ja-kap-rot-bpai-krap.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -8444,7 +8444,7 @@
       "ครับ"
     ],
     "difficulty": 4,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-khun-ja-kap-rot-mai-krap.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -8475,7 +8475,7 @@
       "ครับ"
     ],
     "difficulty": 4,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-kh-jaawng-dtuua-rot-fai-krap.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -8537,7 +8537,7 @@
       "ครับ"
     ],
     "difficulty": 4,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-tk-sii-maa-tng-lo-krap.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -8568,7 +8568,7 @@
       "ค่ะ"
     ],
     "difficulty": 4,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-rot-fai-maa-tng-lo-kha.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -8600,7 +8600,7 @@
       "ครับ"
     ],
     "difficulty": 5,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-phom-mai-chaawp-nang-m-t-saj-krap.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -8630,7 +8630,7 @@
       "ครับ"
     ],
     "difficulty": 3,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-wan-nii-wan-a-rai-krap.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -8659,7 +8659,7 @@
       "ค่ะ"
     ],
     "difficulty": 2,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-wan-nii-wan-jan-kha.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -8717,7 +8717,7 @@
       "ค่ะ"
     ],
     "difficulty": 2,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-wan-nii-wan-phut-kha.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -8746,7 +8746,7 @@
       "ครับ"
     ],
     "difficulty": 2,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-wan-nii-wan-pha-rue-hat-sa-baaw-dii-krap.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -8775,7 +8775,7 @@
       "ค่ะ"
     ],
     "difficulty": 2,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-wan-nii-wan-suk-kha.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -8804,7 +8804,7 @@
       "ครับ"
     ],
     "difficulty": 2,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-wan-nii-wan-sao-krap.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -8833,7 +8833,7 @@
       "ค่ะ"
     ],
     "difficulty": 2,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-wan-nii-wan-aa-thit-kha.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -8863,7 +8863,7 @@
       "ครับ"
     ],
     "difficulty": 3,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-phrung-nii-phop-gan-krap.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -8894,7 +8894,7 @@
       "ครับ"
     ],
     "difficulty": 4,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-muuea-waan-phom-bpai-tham-ngaan-krap.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -8925,7 +8925,7 @@
       "ครับ"
     ],
     "difficulty": 4,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-taao-nii-aa-gaat-dii-krap.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -8957,7 +8957,7 @@
       "ครับ"
     ],
     "difficulty": 5,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-dtaawn-yen-phom-ja-glap-baan-krap.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -8988,7 +8988,7 @@
       "ค่ะ"
     ],
     "difficulty": 4,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-klaang-kn-chan-mai-tham-ngaan-kha.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -9019,7 +9019,7 @@
       "ครับ"
     ],
     "difficulty": 4,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-dtn-nii-gii-moong-krap.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -9050,7 +9050,7 @@
       "ครับ"
     ],
     "difficulty": 4,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-dtn-nii-phom-dtng-bpai-krap.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -9080,7 +9080,7 @@
       "ครับ"
     ],
     "difficulty": 3,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-nat-gii-moong-krap.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -9138,7 +9138,7 @@
       "ครับ"
     ],
     "difficulty": 2,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-nueng-chuua-moong-krap.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -9167,7 +9167,7 @@
       "ค่ะ"
     ],
     "difficulty": 2,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-sip-naa-thii-kha.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -9196,7 +9196,7 @@
       "ครับ"
     ],
     "difficulty": 2,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-khrueng-chuua-moong-krap.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -9227,7 +9227,7 @@
       "ครับ"
     ],
     "difficulty": 4,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-phom-jaawng-haawng-wai-krap.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -9258,7 +9258,7 @@
       "ครับ"
     ],
     "difficulty": 4,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-kh-haawng-nueng-khuuen-krap.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -9289,7 +9289,7 @@
       "ค่ะ"
     ],
     "difficulty": 4,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-kh-haawng-saawng-khuuen-kha.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -9319,7 +9319,7 @@
       "ครับ"
     ],
     "difficulty": 3,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-mii-haawng-mai-krap.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -9349,7 +9349,7 @@
       "ครับ"
     ],
     "difficulty": 3,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-kh-gun-jaae-haawng-krap.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -9378,7 +9378,7 @@
       "ค่ะ"
     ],
     "difficulty": 2,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-kh-phaa-khon-nuu-kha.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -9409,7 +9409,7 @@
       "ครับ"
     ],
     "difficulty": 4,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-tiiang-nii-mai-sa-aat-krap.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -9439,7 +9439,7 @@
       "ค่ะ"
     ],
     "difficulty": 3,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-haawng-naam-sa-aat-maak-kha.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -9470,7 +9470,7 @@
       "ครับ"
     ],
     "difficulty": 4,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-phom-ja-pak-thii-nii-krap.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -9502,7 +9502,7 @@
       "ครับ"
     ],
     "difficulty": 5,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-khun-ja-pak-gii-khuuen-krap.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -9534,7 +9534,7 @@
       "ครับ"
     ],
     "difficulty": 5,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-phom-ja-pak-saam-khuuen-krap.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -9564,7 +9564,7 @@
       "ครับ"
     ],
     "difficulty": 3,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-chak-khrok-mai-dii-krap.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -9594,7 +9594,7 @@
       "ครับ"
     ],
     "difficulty": 3,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-mii-mai-krap.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -9653,7 +9653,7 @@
       "ครับ"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-chuuai-duuai-krap.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -9681,7 +9681,7 @@
       "ค่ะ"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-chuuai-duuai-kha.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -9711,7 +9711,7 @@
       "ครับ"
     ],
     "difficulty": 3,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-chuuai-phom-ni-krap.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -9741,7 +9741,7 @@
       "ค่ะ"
     ],
     "difficulty": 3,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-chuuai-chan-ni-kha.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -9770,7 +9770,7 @@
       "ครับ"
     ],
     "difficulty": 2,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-phom-bpuuai-krap.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -9799,7 +9799,7 @@
       "ค่ะ"
     ],
     "difficulty": 2,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-chan-bpuuai-kha.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -9829,7 +9829,7 @@
       "ครับ"
     ],
     "difficulty": 3,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-huua-phom-tep-krap.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -9859,7 +9859,7 @@
       "ค่ะ"
     ],
     "difficulty": 3,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-thaawng-chan-tep-kha.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -9889,7 +9889,7 @@
       "ครับ"
     ],
     "difficulty": 3,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-phom-mii-khai-krap.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -9919,7 +9919,7 @@
       "ครับ"
     ],
     "difficulty": 3,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-maaw-yuu-thii-nai-krap.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -9949,7 +9949,7 @@
       "คะ"
     ],
     "difficulty": 3,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-roong-pha-yaa-baan-yuu-thii-nai-kha.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -9979,7 +9979,7 @@
       "ครับ"
     ],
     "difficulty": 3,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-raan-khaai-yaa-yuu-thii-nai-krap.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -10009,7 +10009,7 @@
       "ครับ"
     ],
     "difficulty": 3,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-phom-dtawng-gaan-yaa-krap.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -10038,7 +10038,7 @@
       "ครับ"
     ],
     "difficulty": 2,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-riiak-dtam-ruuat-krap.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -10067,7 +10067,7 @@
       "ค่ะ"
     ],
     "difficulty": 2,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-riiak-maaw-kha.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -10096,7 +10096,7 @@
       "ครับ"
     ],
     "difficulty": 2,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-mii-u-bat-ti-het-krap.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -10125,7 +10125,7 @@
       "ค่ะ"
     ],
     "difficulty": 2,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-tuk-tn-maak-kha.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -10155,7 +10155,7 @@
       "ครับ"
     ],
     "difficulty": 3,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-sa-thaa-nii-dtam-ruuat-yuu-thii-nai-krap.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -10188,7 +10188,7 @@
       "ครับ"
     ],
     "difficulty": 5,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-krp-kruua-kng-phom-mii-sii-kon-krap.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -10221,7 +10221,7 @@
       "ค่ะ"
     ],
     "difficulty": 5,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-krp-kruua-kng-chan-mii-haa-kon-kha.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -10253,7 +10253,7 @@
       "ค่ะ"
     ],
     "difficulty": 5,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-nii-k-saa-mii-kng-chan-kha.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -10285,7 +10285,7 @@
       "ครับ"
     ],
     "difficulty": 5,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-nii-k-phan-ra-yaa-kng-phom-krap.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -10317,7 +10317,7 @@
       "ครับ"
     ],
     "difficulty": 5,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-nii-k-phii-chaai-kng-phom-krap.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -10349,7 +10349,7 @@
       "ค่ะ"
     ],
     "difficulty": 5,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-nii-k-naawng-chaai-kng-chan-kha.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -10381,7 +10381,7 @@
       "ครับ"
     ],
     "difficulty": 5,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-nii-k-phuuean-kng-phom-krap.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -10412,7 +10412,7 @@
       "ครับ"
     ],
     "difficulty": 4,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-khun-mii-phii-chaai-mai-krap.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -10443,7 +10443,7 @@
       "คะ"
     ],
     "difficulty": 4,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-khun-mii-naawng-chaai-mai-kha.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -10475,7 +10475,7 @@
       "ครับ"
     ],
     "difficulty": 5,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-phom-mii-phuuean-saawng-kon-krap.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -10507,7 +10507,7 @@
       "ค่ะ"
     ],
     "difficulty": 5,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-chan-mii-phuuean-saam-kon-kha.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -10540,7 +10540,7 @@
       "ค่ะ"
     ],
     "difficulty": 5,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-m-kng-chan-yuu-thii-thai-kha.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -10573,7 +10573,7 @@
       "ครับ"
     ],
     "difficulty": 5,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-ph-kng-phom-tham-ngaan-thii-ang-grit-krap.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -10605,7 +10605,7 @@
       "ครับ"
     ],
     "difficulty": 5,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-krp-kruua-kng-khun-yuu-thii-nai-krap.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -10635,7 +10635,7 @@
       "ครับ"
     ],
     "difficulty": 3,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-wan-nii-aa-gaat-rn-krap.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -10665,7 +10665,7 @@
       "ค่ะ"
     ],
     "difficulty": 3,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-wan-nii-aa-gaat-yen-kha.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -10695,7 +10695,7 @@
       "ครับ"
     ],
     "difficulty": 3,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-wan-nii-aa-gaat-naao-krap.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -10725,7 +10725,7 @@
       "ครับ"
     ],
     "difficulty": 3,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-phrung-nii-fon-tok-krap.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -10755,7 +10755,7 @@
       "ค่ะ"
     ],
     "difficulty": 3,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-wan-nii-fon-tok-kha.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -10785,7 +10785,7 @@
       "ครับ"
     ],
     "difficulty": 3,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-wan-nii-mii-lom-krap.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -10846,7 +10846,7 @@
       "ค่ะ"
     ],
     "difficulty": 3,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-aa-gaat-dii-maak-kha.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -10876,7 +10876,7 @@
       "ครับ"
     ],
     "difficulty": 3,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-aa-gaat-mai-dii-krap.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -10907,7 +10907,7 @@
       "ค่ะ"
     ],
     "difficulty": 4,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-phrung-nii-aa-gaat-ja-rn-kha.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -10939,7 +10939,7 @@
       "ครับ"
     ],
     "difficulty": 5,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-phom-mai-chaawp-aa-gaat-rn-krap.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -10970,7 +10970,7 @@
       "ค่ะ"
     ],
     "difficulty": 4,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-chan-chaawp-aa-gaat-yen-kha.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -11000,7 +11000,7 @@
       "ลูก"
     ],
     "difficulty": 3,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-m-hai-ngn-luuk.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -11029,7 +11029,7 @@
       "มาก"
     ],
     "difficulty": 2,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-raa-khaa-khn-maak.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -11061,7 +11061,7 @@
       "ครับ"
     ],
     "difficulty": 5,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-khun-maa-jaak-bpra-theet-a-rai-krap.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -11093,7 +11093,7 @@
       "ครับ"
     ],
     "difficulty": 5,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-thii-yuu-khng-khun-kh-a-rai-krap.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -11124,7 +11124,7 @@
       "ครับ"
     ],
     "difficulty": 4,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-khun-mii-wee-laa-mai-krap.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -11154,7 +11154,7 @@
       "ครับ"
     ],
     "difficulty": 3,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-phom-hen-khun-krap.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -11184,7 +11184,7 @@
       "ครับ"
     ],
     "difficulty": 3,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-khao-maa-si-krap.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -11216,7 +11216,7 @@
       "ไป"
     ],
     "difficulty": 5,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-thaa-khun-bpai-phom-k-bpai.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -11245,7 +11245,7 @@
       "ใหญ่"
     ],
     "difficulty": 2,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-mo-dtuua-yai.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -11275,7 +11275,7 @@
       "ครับ"
     ],
     "difficulty": 3,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-phom-tham-eeng-krap.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -11306,7 +11306,7 @@
       "ครับ"
     ],
     "difficulty": 4,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-phom-yuu-kap-khun-krap.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -11337,7 +11337,7 @@
       "ครับ"
     ],
     "difficulty": 4,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-phom-yuu-nai-baan-krap.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -11369,7 +11369,7 @@
       "ครับ"
     ],
     "difficulty": 5,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-phom-bpai-kap-khun-duai-krap.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -11399,7 +11399,7 @@
       "วัน"
     ],
     "difficulty": 3,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-phom-tham-ngaan-thang-wan.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -11429,7 +11429,7 @@
       "ถึง"
     ],
     "difficulty": 3,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-ma-phom-maa-thng.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -11458,7 +11458,7 @@
       "นะ"
     ],
     "difficulty": 2,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-bpai-gan-na.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -11490,7 +11490,7 @@
       "เวลา"
     ],
     "difficulty": 5,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-phom-chp-t-mai-mii-wee-laa.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -11519,7 +11519,7 @@
       "ดี"
     ],
     "difficulty": 2,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-rang-nii-dii.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -11547,7 +11547,7 @@
       "ก็ได้"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-bpai-k-dai.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -11577,7 +11577,7 @@
       "มาก"
     ],
     "difficulty": 3,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-thii-nan-mii-khon-maak.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -11607,7 +11607,7 @@
       "กว่า"
     ],
     "difficulty": 3,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-yaang-nii-dii-kwaa.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -11635,7 +11635,7 @@
       "รัก"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-khwaam-rak.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -11664,7 +11664,7 @@
       "หรือเปล่า"
     ],
     "difficulty": 2,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-khun-bpai-r-bplaaw.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -11693,7 +11693,7 @@
       "ตก"
     ],
     "difficulty": 2,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-phr-fon-dtok.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -11723,7 +11723,7 @@
       "ชอบ"
     ],
     "difficulty": 3,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-nang-s-sng-phom-chp.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -11751,7 +11751,7 @@
       "ลง"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-raa-khaa-lo.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -11781,7 +11781,7 @@
       "มาก"
     ],
     "difficulty": 3,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-phom-chai-ngn-maak.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -11811,7 +11811,7 @@
       "คุณ"
     ],
     "difficulty": 3,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-phom-tham-dtaam-khun.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -11841,7 +11841,7 @@
       "ชอบ"
     ],
     "difficulty": 3,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-baang-khon-mai-chp.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -11871,7 +11871,7 @@
       "ครับ"
     ],
     "difficulty": 3,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-kh-iik-ni-krap.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -11902,7 +11902,7 @@
       "หิว"
     ],
     "difficulty": 4,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-aa-haan-nii-tham-hai-phom-hiu.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -11930,7 +11930,7 @@
       "เดือน"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-nng-dan.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -11961,7 +11961,7 @@
       "ไหม"
     ],
     "difficulty": 4,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-phom-thaam-khun-dai-mai.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -11991,7 +11991,7 @@
       "คุณ"
     ],
     "difficulty": 3,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-phom-maa-pha-khun.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -12021,7 +12021,7 @@
       "เย็น"
     ],
     "difficulty": 3,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-fon-dtok-c-yen.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -12049,7 +12049,7 @@
       "ต่อ"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-phuut-t.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -12078,7 +12078,7 @@
       "หนึ่ง"
     ],
     "difficulty": 2,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-iik-krang-nng.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -12106,7 +12106,7 @@
       "ไหม"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-chai-mai.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -12164,7 +12164,7 @@
       "คน"
     ],
     "difficulty": 3,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-mii-khon-laai-khon.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -12193,7 +12193,7 @@
       "ชอบ"
     ],
     "difficulty": 2,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-thuk-khon-chp.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -12221,7 +12221,7 @@
       "น้อย"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-ngn-ni.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -12251,7 +12251,7 @@
       "ใหม่"
     ],
     "difficulty": 3,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-phom-mii-ngaan-mai.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -12283,7 +12283,7 @@
       "ไป"
     ],
     "difficulty": 5,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-haak-khun-bpai-phom-k-bpai.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -12312,7 +12312,7 @@
       "ที่นี่"
     ],
     "difficulty": 2,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-phom-gt-thii-nii.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -12340,7 +12340,7 @@
       "เวลา"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-dtang-wee-laa.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -12369,7 +12369,7 @@
       "ดี"
     ],
     "difficulty": 2,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-suuan-nii-dii.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -12398,7 +12398,7 @@
       "ของ"
     ],
     "difficulty": 2,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-phom-rap-khng.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -12426,7 +12426,7 @@
       "แรก"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-krang-rk.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -12455,7 +12455,7 @@
       "คน"
     ],
     "difficulty": 2,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-phiiang-nueng-khon.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -12484,7 +12484,7 @@
       "ไป"
     ],
     "difficulty": 2,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-phom-aat-bpai.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -12512,7 +12512,7 @@
       "ใหญ่"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-kha-naat-yai.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -12540,7 +12540,7 @@
       "อื่น"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-khon-n.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -12568,7 +12568,7 @@
       "ทำงาน"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-rm-tham-ngaan.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -12596,7 +12596,7 @@
       "ดี"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-chii-wit-dii.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -12624,7 +12624,7 @@
       "สูง"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-khon-suung.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -12652,7 +12652,7 @@
       "ไป"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-gaawn-bpai.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -12680,7 +12680,7 @@
       "ใจ"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-bpliian-jai.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -12708,7 +12708,7 @@
       "กัน"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-dtaang-gan.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -12736,7 +12736,7 @@
       "นี้"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-dt-bpai-nii.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -12764,7 +12764,7 @@
       "คุณ"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-sam-rap-khun.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -12793,7 +12793,7 @@
       "เมือง"
     ],
     "difficulty": 2,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-jai-glaang-mang.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -12821,7 +12821,7 @@
       "หน้า"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-daan-naa.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -12849,7 +12849,7 @@
       "บ้าน"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-nk-baan.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -12877,7 +12877,7 @@
       "ใหญ่"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-mang-yai.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -12906,7 +12906,7 @@
       "ดี"
     ],
     "difficulty": 2,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-sing-nii-dii.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -12934,7 +12934,7 @@
       "ผม"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-dtat-phom.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -12962,7 +12962,7 @@
       "ทาง"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-nam-thaang.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -12991,7 +12991,7 @@
       "ผิด"
     ],
     "difficulty": 2,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-phom-phuut-phit.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -13019,7 +13019,7 @@
       "เวลา"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-siia-wee-laa.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -13049,7 +13049,7 @@
       "ถึง"
     ],
     "difficulty": 3,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-jon-gwaa-ja-th.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -13079,7 +13079,7 @@
       "คุณ"
     ],
     "difficulty": 3,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-phom-khit-th-khun.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -13108,7 +13108,7 @@
       "เท่านั้น"
     ],
     "difficulty": 2,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-phom-ruu-thaw-nan.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -13138,7 +13138,7 @@
       "สิบ"
     ],
     "difficulty": 3,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-nap-nng-thng-sip.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -13167,7 +13167,7 @@
       "แล้ว"
     ],
     "difficulty": 2,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-phaan-maa-lo.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -13195,7 +13195,7 @@
       "เด็ก"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-tang-t-dek.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -13225,7 +13225,7 @@
       "ไทย"
     ],
     "difficulty": 3,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-phom-saa-maat-phuut-thai.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -13253,7 +13253,7 @@
       "สวย"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-phaap-suuai.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -13281,7 +13281,7 @@
       "นี้"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-nk-jaak-nii.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -13310,7 +13310,7 @@
       "ไป"
     ],
     "difficulty": 2,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-phom-khi-bpai.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -13338,7 +13338,7 @@
       "นี้"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-look-nii.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -13366,7 +13366,7 @@
       "นี้"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-kham-nii.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -13395,7 +13395,7 @@
       "แล้ว"
     ],
     "difficulty": 2,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-phom-khao-jai-lo.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -13423,7 +13423,7 @@
       "ของ"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-song-khng.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -13451,7 +13451,7 @@
       "ของ"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-th-khng.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -13480,7 +13480,7 @@
       "ยาก"
     ],
     "difficulty": 2,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-m-ja-yaak.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -13509,7 +13509,7 @@
       "ไป"
     ],
     "difficulty": 2,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-khun-khuan-bpai.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -13537,7 +13537,7 @@
       "กิน"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-gam-lang-gin.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -13565,7 +13565,7 @@
       "ปัญหา"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-mii-pan-haa.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -13593,7 +13593,7 @@
       "ของ"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-yok-khng.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -13621,7 +13621,7 @@
       "ต้น"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-tang-t-ton.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -13649,7 +13649,7 @@
       "กัน"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-man-gan.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -13678,7 +13678,7 @@
       "นี้"
     ],
     "difficulty": 2,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-maak-thao-nii.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -13707,7 +13707,7 @@
       "โต๊ะ"
     ],
     "difficulty": 2,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-yuu-bon-dto.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -13735,7 +13735,7 @@
       "ทำ"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-pha-yaa-yaam-tham.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -13763,7 +13763,7 @@
       "บ้าน"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-saang-baan.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -13791,7 +13791,7 @@
       "กัน"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-ruuam-gan.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -13819,7 +13819,7 @@
       "วัน"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-dta-lt-wan.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -13847,7 +13847,7 @@
       "นี้"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-chen-nii.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -13877,7 +13877,7 @@
       "ดี"
     ],
     "difficulty": 3,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-phom-khit-waa-dii.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -13905,7 +13905,7 @@
       "ทำงาน"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-gaan-tham-ngaan.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -13934,7 +13934,7 @@
       "สอง"
     ],
     "difficulty": 2,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-yuu-chan-sng.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -13962,7 +13962,7 @@
       "เถอะ"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-bpai-th.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -13990,7 +13990,7 @@
       "ซิ"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-duu-si.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -14019,7 +14019,7 @@
       "ล่ะ"
     ],
     "difficulty": 2,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-bpai-mai-la.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -14047,7 +14047,7 @@
       "เหรอ"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-jing-r.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -14075,7 +14075,7 @@
       "ที่สุด"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-dii-thii-sut.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -14104,7 +14104,7 @@
       "ผม"
     ],
     "difficulty": 2,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-tham-dooi-phom.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -14132,7 +14132,7 @@
       "งาน"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-haa-ngaan.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -14161,7 +14161,7 @@
       "หรอก"
     ],
     "difficulty": 2,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-mai-yaak-rk.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -14189,7 +14189,7 @@
       "แหละ"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-jing-l.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -14245,7 +14245,7 @@
       "มั้ง"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-dii-mang.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -14274,7 +14274,7 @@
       "มา"
     ],
     "difficulty": 2,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-phuu-thii-maa.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -14303,7 +14303,7 @@
       "วัด"
     ],
     "difficulty": 2,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-phra-thii-wat.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -14331,7 +14331,7 @@
       "เรียน"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-nak-riian.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -14359,7 +14359,7 @@
       "นี้"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-hng-nii.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -14390,7 +14390,7 @@
       "อะไร"
     ],
     "difficulty": 4,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-aa-chiip-khng-khun-kh-a-rai.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -14418,7 +14418,7 @@
       "ผม"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-song-phom.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -14446,7 +14446,7 @@
       "เดิม"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-bp-dm.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -14475,7 +14475,7 @@
       "ของ"
     ],
     "difficulty": 2,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-phom-dai-rap-khng.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -14505,7 +14505,7 @@
       "ดี"
     ],
     "difficulty": 3,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-ying-maak-ying-dii.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -14533,7 +14533,7 @@
       "ฝ่าย"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-iik-faai.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -14561,7 +14561,7 @@
       "เนื้อ"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-gin-nuuea.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -14590,7 +14590,7 @@
       "ศูนย์"
     ],
     "difficulty": 2,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-nap-jaak-suun.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -14620,7 +14620,7 @@
       "ไป"
     ],
     "difficulty": 3,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-khun-naa-ja-bpai.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -14649,7 +14649,7 @@
       "หนึ่ง"
     ],
     "difficulty": 2,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-khon-la-nng.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -14678,7 +14678,7 @@
       "นี้"
     ],
     "difficulty": 2,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-than-phuu-nii.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -14706,7 +14706,7 @@
       "อย่างไร"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-mai-waa-yaang-rai.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -14734,7 +14734,7 @@
       "ของ"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-gep-khng.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -14762,7 +14762,7 @@
       "ดี"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-phon-dii.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -14790,7 +14790,7 @@
       "บ้าง"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-mii-baang.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -14818,7 +14818,7 @@
       "แก่"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-khon-g.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -14847,7 +14847,7 @@
       "ดี"
     ],
     "difficulty": 2,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-glaai-bpen-khon-dii.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -14876,7 +14876,7 @@
       "นี้"
     ],
     "difficulty": 2,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-lang-jaak-nii.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -14904,7 +14904,7 @@
       "หลัง"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-jep-lang.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -14932,7 +14932,7 @@
       "งาน"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-jat-ngaan.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -14961,7 +14961,7 @@
       "นี้"
     ],
     "difficulty": 2,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-lak-an-nii.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -14989,7 +14989,7 @@
       "สวย"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-th-suuai.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -15018,7 +15018,7 @@
       "มา"
     ],
     "difficulty": 2,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-khong-mai-maa.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -15047,7 +15047,7 @@
       "เรื่อง"
     ],
     "difficulty": 2,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-thii-maa-khng-rang.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -15075,7 +15075,7 @@
       "ทำ"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-dtuua-eeng-tham.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -15103,7 +15103,7 @@
       "ไทย"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-tha-haan-thai.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -15132,7 +15132,7 @@
       "คิด"
     ],
     "difficulty": 2,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-sa-dng-khwaam-khit.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -15160,7 +15160,7 @@
       "นี้"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-thang-mot-nii.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -15188,7 +15188,7 @@
       "มาก"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-ngaai-maak.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -15216,7 +15216,7 @@
       "ทาง"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-ra-waang-thaang.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -15272,7 +15272,7 @@
       "ใหญ่"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-glum-yai.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -15300,7 +15300,7 @@
       "นี้"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-chuuang-nii.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -15328,7 +15328,7 @@
       "กัน"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-ruuam-gan-2.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -15356,7 +15356,7 @@
       "แดง"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-sii-dng.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -15385,7 +15385,7 @@
       "นี้"
     ],
     "difficulty": 2,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-chaai-khon-nii.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -15413,7 +15413,7 @@
       "ดัง"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-siiang-dang.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -15441,7 +15441,7 @@
       "โอกาส"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-mii-oo-gaat.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -15469,7 +15469,7 @@
       "มา"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-sa-m-maa.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -15498,7 +15498,7 @@
       "นี้"
     ],
     "difficulty": 2,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-naai-khon-nii.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -15526,7 +15526,7 @@
       "ชาติ"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-rak-chaat.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -15554,7 +15554,7 @@
       "แล้ว"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-saap-lo.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -15582,7 +15582,7 @@
       "ใจ"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-cha-jai.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -15610,7 +15610,7 @@
       "เอง"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-dton-eeng.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -15638,7 +15638,7 @@
       "สูง"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-ra-dap-suung.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -15666,7 +15666,7 @@
       "ไฟ"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-bpt-fai.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -15694,7 +15694,7 @@
       "ประตู"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-bpt-bpra-dtuu.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -15722,7 +15722,7 @@
       "บ้าน"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-phaai-nai-baan.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -15750,7 +15750,7 @@
       "อีก"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-la-iik.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -15778,7 +15778,7 @@
       "แทน"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-chai-thn.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -15806,7 +15806,7 @@
       "ดู"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-mng-duu.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -15834,7 +15834,7 @@
       "เรา"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-phuuak-rao.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -15862,7 +15862,7 @@
       "ผม"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-yaat-phom.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -15891,7 +15891,7 @@
       "สวย"
     ],
     "difficulty": 2,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-ruup-nii-suuai.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -15919,7 +15919,7 @@
       "ผนัง"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-dtit-pha-nang.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -15947,7 +15947,7 @@
       "ของ"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-waang-khng.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -15975,7 +15975,7 @@
       "แล้ว"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-naan-lo.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -16003,7 +16003,7 @@
       "ใหม่"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-ra-bop-mai.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -16032,7 +16032,7 @@
       "นี้"
     ],
     "difficulty": 2,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-phuu-ying-khon-nii.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -16060,7 +16060,7 @@
       "ตัวเอง"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-phat-tha-naa-dtuua-eeng.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -16088,7 +16088,7 @@
       "ไทย"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-sang-khom-thai.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -16116,7 +16116,7 @@
       "คุณ"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-ruu-jak-khun.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -16144,7 +16144,7 @@
       "มาก"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-jam-nuuan-maak.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -16172,7 +16172,7 @@
       "เกม"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-len-geem.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -16200,7 +16200,7 @@
       "มาก"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-sam-khan-maak.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -16229,7 +16229,7 @@
       "คุณ"
     ],
     "difficulty": 2,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-diiao-gan-gap-khun.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -16257,7 +16257,7 @@
       "เล็ก"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-dek-lek.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -16285,7 +16285,7 @@
       "ครับ"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-n-nn-krap.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -16313,7 +16313,7 @@
       "บ้าน"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-chaao-baan.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -16341,7 +16341,7 @@
       "มากมาย"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-khng-maak-maai.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -16369,7 +16369,7 @@
       "สุขภาพ"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-rak-saa-suk-kha-phaap.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -16397,7 +16397,7 @@
       "มาก"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-rng-maak.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -16425,7 +16425,7 @@
       "ใจ"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-suk-jai.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -16453,7 +16453,7 @@
       "ที่นี่"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-chaao-baan-thii-nii.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -16481,7 +16481,7 @@
       "ของ"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-khaai-khng.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -16509,7 +16509,7 @@
       "ค่า"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-mii-khaa.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -16537,7 +16537,7 @@
       "บ้าน"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-jao-khng-baan.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -16593,7 +16593,7 @@
       "เงิน"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-phm-ngn.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -16649,7 +16649,7 @@
       "ทาง"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-ra-ya-thaang.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -16677,7 +16677,7 @@
       "รัก"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-khuu-rak.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -16708,7 +16708,7 @@
       "มา"
     ],
     "difficulty": 4,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-phom-bk-waa-ja-maa.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -16738,7 +16738,7 @@
       "หน่อย"
     ],
     "difficulty": 3,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-hai-chan-duu-ni.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -16768,7 +16768,7 @@
       "ห้อง"
     ],
     "difficulty": 3,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-mii-khon-nai-hng.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -16796,7 +16796,7 @@
       "รถ"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-khn-rot.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -16825,7 +16825,7 @@
       "ครับ"
     ],
     "difficulty": 2,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-khp-khun-duai-krap.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -16853,7 +16853,7 @@
       "เดินทาง"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-gaan-dn-thaang.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -16881,7 +16881,7 @@
       "แล้ว"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-chai-lo.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -16938,7 +16938,7 @@
       "สวย"
     ],
     "difficulty": 2,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-bpra-theet-thai-suuai.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -16967,7 +16967,7 @@
       "คน"
     ],
     "difficulty": 2,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-thang-sng-khon.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -16996,7 +16996,7 @@
       "มา"
     ],
     "difficulty": 2,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-ma-khao-maa.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -17024,7 +17024,7 @@
       "สบาย"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-nang-sa-baai.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -17052,7 +17052,7 @@
       "นะ"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-gin-na.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -17082,7 +17082,7 @@
       "ผม"
     ],
     "difficulty": 3,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-nii-kh-thii-yuu-phom.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -17111,7 +17111,7 @@
       "แพง"
     ],
     "difficulty": 2,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-dii-t-phng.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -17140,7 +17140,7 @@
       "ก็ได้"
     ],
     "difficulty": 2,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-gin-a-rai-g-dai.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -17169,7 +17169,7 @@
       "กัน"
     ],
     "difficulty": 2,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-bpai-thii-nan-gan.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -17197,7 +17197,7 @@
       "อย่าง"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-laai-yaang.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -17226,7 +17226,7 @@
       "ดี"
     ],
     "difficulty": 2,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-khon-nan-dii.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -17254,7 +17254,7 @@
       "หรือเปล่า"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-a-ri-r-bplaao.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -17282,7 +17282,7 @@
       "ถูก"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-khng-thuuk.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -17310,7 +17310,7 @@
       "ไว้"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-gep-wai.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -17338,7 +17338,7 @@
       "อะไร"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-phr-a-rai.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -17367,7 +17367,7 @@
       "มา"
     ],
     "difficulty": 2,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-tham-mai-mai-maa.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -17395,7 +17395,7 @@
       "ด้วย"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-hen-duai.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -17423,7 +17423,7 @@
       "ห้อง"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-khao-hng.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -17451,7 +17451,7 @@
       "หนึ่ง"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-chan-nng.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -17479,7 +17479,7 @@
       "เลย"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-dii-li.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -17508,7 +17508,7 @@
       "เมื่อไหร่"
     ],
     "difficulty": 2,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-ja-maa-ma-rai.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -17537,7 +17537,7 @@
       "สำคัญ"
     ],
     "difficulty": 2,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-sing-sng-sam-khan.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -17565,7 +17565,7 @@
       "ลง"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-nang-long.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -17594,7 +17594,7 @@
       "เวลา"
     ],
     "difficulty": 2,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-thaa-mii-wee-laa.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -17622,7 +17622,7 @@
       "เล็ก"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-dtuua-lek.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -17650,7 +17650,7 @@
       "ดี"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-nak-riian-dii.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -17678,7 +17678,7 @@
       "มา"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-dtaam-maa.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -17706,7 +17706,7 @@
       "วัน"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-baang-wan.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -17735,7 +17735,7 @@
       "ขึ้น"
     ],
     "difficulty": 2,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-tham-hai-dii-khn.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -17763,7 +17763,7 @@
       "เพลง"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-fang-phleeng.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -17792,7 +17792,7 @@
       "ผม"
     ],
     "difficulty": 2,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-phii-sn-phom.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -17820,7 +17820,7 @@
       "เล็ก"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-nng-lek.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -17848,7 +17848,7 @@
       "อาหาร"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-raan-aa-haan.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -17876,7 +17876,7 @@
       "ที่สุด"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-a-ri-thii-sut.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -17905,7 +17905,7 @@
       "รถ"
     ],
     "difficulty": 2,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-bpai-dooi-rot.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -17933,7 +17933,7 @@
       "เงิน"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-haa-ngn.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -17961,7 +17961,7 @@
       "หน้า"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-dan-naa.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -17989,7 +17989,7 @@
       "ทาง"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-thaam-thaang.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -18018,7 +18018,7 @@
       "ครอบครัว"
     ],
     "difficulty": 2,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-tham-pha-khrp-khruua.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -18047,7 +18047,7 @@
       "กิน"
     ],
     "difficulty": 2,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-hiu-jng-gin.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -18075,7 +18075,7 @@
       "ต่อ"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-nap-t.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -18103,7 +18103,7 @@
       "วัน"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-thuk-wan.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -18131,7 +18131,7 @@
       "น้อย"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-phuut-ni.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -18160,7 +18160,7 @@
       "เวลา"
     ],
     "difficulty": 2,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-haak-mii-wee-laa.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -18189,7 +18189,7 @@
       "ขึ้น"
     ],
     "difficulty": 2,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-gt-a-rai-khn.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -18217,7 +18217,7 @@
       "ใจ"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-dtang-jai.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -18245,7 +18245,7 @@
       "ตัว"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-suuan-dtuua.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -18274,7 +18274,7 @@
       "ผม"
     ],
     "difficulty": 2,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-maa-rap-phom.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -18302,7 +18302,7 @@
       "แรก"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-wan-rk.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -18330,7 +18330,7 @@
       "นี้"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-phiiang-nii.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -18359,7 +18359,7 @@
       "ช้า"
     ],
     "difficulty": 2,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-aat-ja-chaa.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -18387,7 +18387,7 @@
       "เล็ก"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-kha-naat-lek.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -18415,7 +18415,7 @@
       "อื่น"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-thii-n.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -18443,7 +18443,7 @@
       "เรียน"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-rm-riian.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -18471,7 +18471,7 @@
       "ชีวิต"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-rak-chii-wit.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -18499,7 +18499,7 @@
       "ก่อน"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-kh-gn.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -18527,7 +18527,7 @@
       "ที่อยู่"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-bpliian-thii-yuu.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -18557,7 +18557,7 @@
       "กัน"
     ],
     "difficulty": 3,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-khwaam-khit-dtaang-gan.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -18585,7 +18585,7 @@
       "ต่อไป"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-aan-dt-bpai.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -18613,7 +18613,7 @@
       "แห่ง"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-laai-hng.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -18641,7 +18641,7 @@
       "อาชีพ"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-bpliian-aa-chiip.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -18670,7 +18670,7 @@
       "คุณ"
     ],
     "difficulty": 2,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-nii-sam-rap-khun.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -18698,7 +18698,7 @@
       "กลาง"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-dtrong-glaang.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -18726,7 +18726,7 @@
       "หลัง"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-daan-lang.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -18754,7 +18754,7 @@
       "เมือง"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-nk-mang.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -18782,7 +18782,7 @@
       "มา"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-nam-maa.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -18810,7 +18810,7 @@
       "ผิด"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-dtp-phit.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -18838,7 +18838,7 @@
       "เสีย"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-khng-siia.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -18866,7 +18866,7 @@
       "ผ่าน"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-dn-phaan.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -18896,7 +18896,7 @@
       "ดี"
     ],
     "difficulty": 3,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-dtn-chaao-aa-gaat-dii.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -18924,7 +18924,7 @@
       "ยา"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-gin-yaa.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -18954,7 +18954,7 @@
       "ไป"
     ],
     "difficulty": 3,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-phom-mai-saa-maat-bpai.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -18982,7 +18982,7 @@
       "อร่อย"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-bplaa-a-ri.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -19010,7 +19010,7 @@
       "ภาพ"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-duu-phaap.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -19038,7 +19038,7 @@
       "ผม"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-nk-jaak-phom.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -19066,7 +19066,7 @@
       "หนังสือ"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-aan-nang-s.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -19094,7 +19094,7 @@
       "ไกล"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-baan-glai.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -19123,7 +19123,7 @@
       "ไหม"
     ],
     "difficulty": 2,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-khi-gin-mai.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -19151,7 +19151,7 @@
       "มา"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-glap-maa.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -19179,7 +19179,7 @@
       "โลก"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-rp-look.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -19207,7 +19207,7 @@
       "สิ"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-gin-si.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -19236,7 +19236,7 @@
       "ล่ะ"
     ],
     "difficulty": 2,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-lo-khun-la.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -19293,7 +19293,7 @@
       "หรอก"
     ],
     "difficulty": 2,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-mai-phng-rk.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -19321,7 +19321,7 @@
       "แหละ"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-nan-l.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -19349,7 +19349,7 @@
       "เถอะ"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-gin-th.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -19377,7 +19377,7 @@
       "ซิ"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-bk-si.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -19405,7 +19405,7 @@
       "จ้ะ"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-dii-ja.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -19433,7 +19433,7 @@
       "มั้ง"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-bpai-mang.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -19461,7 +19461,7 @@
       "พระ"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-hen-phra.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -19489,7 +19489,7 @@
       "เขียน"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-nak-khiian.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -19517,7 +19517,7 @@
       "ภรรยา"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-rak-phan-ra-yaa.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -19546,7 +19546,7 @@
       "ผม"
     ],
     "difficulty": 2,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-dtng-ngaan-gap-phom.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -19575,7 +19575,7 @@
       "สวย"
     ],
     "difficulty": 2,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-song-nii-suuai.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -19603,7 +19603,7 @@
       "แล้ว"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-dtat-lo.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -19632,7 +19632,7 @@
       "เช้า"
     ],
     "difficulty": 2,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-r-jon-chaao.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -19660,7 +19660,7 @@
       "เท่านั้น"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-nng-thao-nan.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -19688,7 +19688,7 @@
       "สามี"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-rak-saa-mii.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -19716,7 +19716,7 @@
       "เดิม"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-khon-dm.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -19744,7 +19744,7 @@
       "เชิญ"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-dai-rap-chn.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -19772,7 +19772,7 @@
       "ขวา"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-faai-khwaa.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -19800,7 +19800,7 @@
       "พูด"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-kham-phuut.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -19829,7 +19829,7 @@
       "พรุ่งนี้"
     ],
     "difficulty": 2,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-phop-gan-phrung-nii.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -19858,7 +19858,7 @@
       "ไหม"
     ],
     "difficulty": 2,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-khun-khao-jai-mai.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -19887,7 +19887,7 @@
       "ผม"
     ],
     "difficulty": 2,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-song-hai-phom.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -19916,7 +19916,7 @@
       "อะไร"
     ],
     "difficulty": 2,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-man-kh-a-rai.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -19945,7 +19945,7 @@
       "ดี"
     ],
     "difficulty": 2,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-th-waa-dii.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -19973,7 +19973,7 @@
       "ไก่"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-nuuea-gai.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -20002,7 +20002,7 @@
       "ตก"
     ],
     "difficulty": 2,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-m-fon-dtok.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -20031,7 +20031,7 @@
       "พูด"
     ],
     "difficulty": 2,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-mai-khuuan-phuut.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -20060,7 +20060,7 @@
       "สิบ"
     ],
     "difficulty": 2,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-suun-thng-sip.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -20089,7 +20089,7 @@
       "ใจ"
     ],
     "difficulty": 2,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-mii-gam-lang-jai.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -20118,7 +20118,7 @@
       "ปัญหา"
     ],
     "difficulty": 2,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-mai-mii-pan-haa.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -20146,7 +20146,7 @@
       "มือ"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-yok-m.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -20174,7 +20174,7 @@
       "สนใจ"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-naa-son-jai.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -20202,7 +20202,7 @@
       "ต้น"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-rm-dton.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -20230,7 +20230,7 @@
       "เดิม"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-man-dm.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -20258,7 +20258,7 @@
       "กัน"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-thao-gan.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -20286,7 +20286,7 @@
       "ถนน"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-bon-tha-non.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -20315,7 +20315,7 @@
       "มาก"
     ],
     "difficulty": 2,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-pha-yaa-yaam-yaang-maak.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -20343,7 +20343,7 @@
       "ปัญหา"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-saang-pan-haa.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -20371,7 +20371,7 @@
       "ร่วม"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-khao-ruuam.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -20399,7 +20399,7 @@
       "ชีวิต"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-dta-lt-chii-wit.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -20427,7 +20427,7 @@
       "ผม"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-chen-phom.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -20456,7 +20456,7 @@
       "เท่าไหร่"
     ],
     "difficulty": 2,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-an-la-thao-rai.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -20484,7 +20484,7 @@
       "ครับ"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-than-krap.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -20512,7 +20512,7 @@
       "ใคร"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-mai-waa-khrai.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -20540,7 +20540,7 @@
       "งาน"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-phon-ngaan.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -20569,7 +20569,7 @@
       "ไหม"
     ],
     "difficulty": 2,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-gin-baang-mai.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -20598,7 +20598,7 @@
       "เขา"
     ],
     "difficulty": 2,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-hai-g-khao.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -20626,7 +20626,7 @@
       "เพื่อน"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-glaai-bpen-phan.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -20654,7 +20654,7 @@
       "ห้อง"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-jat-hng.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -20683,7 +20683,7 @@
       "ถูก"
     ],
     "difficulty": 2,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-lak-mai-thuuk.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -20712,7 +20712,7 @@
       "ใคร"
     ],
     "difficulty": 2,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-th-bpen-khrai.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -20741,7 +20741,7 @@
       "ดี"
     ],
     "difficulty": 2,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-khong-ja-dii.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -20770,7 +20770,7 @@
       "ที่มา"
     ],
     "difficulty": 2,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-mai-ruu-thii-maa.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -20798,7 +20798,7 @@
       "ทหาร"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-bpen-tha-haan.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -20827,7 +20827,7 @@
       "ดู"
     ],
     "difficulty": 2,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-sa-dng-hai-duu.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -20856,7 +20856,7 @@
       "คน"
     ],
     "difficulty": 2,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-thang-mot-gii-khon.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -20886,7 +20886,7 @@
       "ยาก"
     ],
     "difficulty": 3,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-phuut-ngaai-tham-yaak.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -20914,7 +20914,7 @@
       "เรา"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-ra-waang-rao.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -20943,7 +20943,7 @@
       "ก็ได้"
     ],
     "difficulty": 2,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-wee-laa-dai-g-dai.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -20971,7 +20971,7 @@
       "เพื่อน"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-glum-phan.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -20999,7 +20999,7 @@
       "เวลา"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-chuuang-wee-laa.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -21027,7 +21027,7 @@
       "แล้ว"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-ph-lo.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -21055,7 +21055,7 @@
       "รวม"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-raa-khaa-ruuam.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -21083,7 +21083,7 @@
       "ตา"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-sii-dtaa.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -21112,7 +21112,7 @@
       "ชาย"
     ],
     "difficulty": 2,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-ying-l-chaai.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -21140,7 +21140,7 @@
       "กว่า"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-dang-gwaa.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -21168,7 +21168,7 @@
       "โอกาส"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-hai-oo-gaat.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -21197,7 +21197,7 @@
       "เสมอ"
     ],
     "difficulty": 2,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-tham-dii-sa-m.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -21226,7 +21226,7 @@
       "แล้ว"
     ],
     "difficulty": 2,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-naai-maa-lo.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -21254,7 +21254,7 @@
       "หน้า"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-chaat-naa.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -21282,7 +21282,7 @@
       "เพลง"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-siiang-phleeng.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -21311,7 +21311,7 @@
       "ใหญ่"
     ],
     "difficulty": 2,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-roong-pha-yaa-baan-yai.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -21339,7 +21339,7 @@
       "ทราบ"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-mai-saap.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -21368,7 +21368,7 @@
       "จริง"
     ],
     "difficulty": 2,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-cha-waa-jing.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -21397,7 +21397,7 @@
       "เอง"
     ],
     "difficulty": 2,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-duai-dton-eeng.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -21425,7 +21425,7 @@
       "เดียวกัน"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-ra-dap-diiao-gan.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -21454,7 +21454,7 @@
       "สัปดาห์"
     ],
     "difficulty": 2,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-phaai-nai-nng-sap-daa.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -21483,7 +21483,7 @@
       "แล้ว"
     ],
     "difficulty": 2,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-mai-la-lo.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -21511,7 +21511,7 @@
       "กัน"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-thn-gan.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -21540,7 +21540,7 @@
       "เห็น"
     ],
     "difficulty": 2,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-mng-mai-hen.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -21568,7 +21568,7 @@
       "เขา"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-phuuak-khao.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -21597,7 +21597,7 @@
       "กัน"
     ],
     "difficulty": 2,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-bpen-yaat-gan.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -21626,7 +21626,7 @@
       "รูป"
     ],
     "difficulty": 2,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-ruup-sng-ruup.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -21655,7 +21655,7 @@
       "กัน"
     ],
     "difficulty": 2,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-dtit-dt-gan.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -21683,7 +21683,7 @@
       "ไว้"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-waang-wai.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -21711,7 +21711,7 @@
       "นาน"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-yuu-naan.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -21739,7 +21739,7 @@
       "ระบบ"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-khao-ra-bop.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -21767,7 +21767,7 @@
       "สวย"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-phuu-ying-suuai.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -21795,7 +21795,7 @@
       "นาที"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-haa-naa-thii.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -21823,7 +21823,7 @@
       "ประเทศ"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-phat-tha-naa-bpra-theet.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -21851,7 +21851,7 @@
       "ดี"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-sang-khom-dii.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -21879,7 +21879,7 @@
       "รู้จัก"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-mai-ruu-jak.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -21907,7 +21907,7 @@
       "ซ้าย"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-m-saai.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -21935,7 +21935,7 @@
       "คน"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-jam-nuuan-khon.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -21964,7 +21964,7 @@
       "เพื่อน"
     ],
     "difficulty": 2,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-len-gap-phan.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -21992,7 +21992,7 @@
       "วัด"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-bpai-wat.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -22021,7 +22021,7 @@
       "ดี"
     ],
     "difficulty": 2,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-n-nn-waa-dii.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -22049,7 +22049,7 @@
       "ไทย"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-chaao-thai.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -22077,7 +22077,7 @@
       "เหลือเกิน"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-maak-maai-la-gn.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -22105,7 +22105,7 @@
       "รักษา"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-chuai-rak-saa.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -22133,7 +22133,7 @@
       "แรง"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-lom-rng.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -22163,7 +22163,7 @@
       "มาก"
     ],
     "difficulty": 3,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-mii-khwaam-suk-maak.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -22192,7 +22192,7 @@
       "คน"
     ],
     "difficulty": 2,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-chaao-baan-thuk-khon.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -22220,7 +22220,7 @@
       "ถูก"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-khaai-thuuk.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -22250,7 +22250,7 @@
       "ไฟ"
     ],
     "difficulty": 3,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-khaa-naam-khaa-fai.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -22278,7 +22278,7 @@
       "ร้าน"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-jao-khng-raan.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -22306,7 +22306,7 @@
       "มอง"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-mum-mng.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -22334,7 +22334,7 @@
       "ขึ้น"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-phm-khn.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -22362,7 +22362,7 @@
       "ใต้"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-yuu-dtai.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -22390,7 +22390,7 @@
       "เวลา"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-ra-ya-wee-laa.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -22418,7 +22418,7 @@
       "กัน"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-khuu-gan.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -22446,7 +22446,7 @@
       "ถนน"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-khaam-tha-non.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -22475,7 +22475,7 @@
       "สำเร็จ"
     ],
     "difficulty": 2,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-suu-khwaam-sam-ret.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -22503,7 +22503,7 @@
       "ดี"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-ruu-sk-dii.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -22531,7 +22531,7 @@
       "หมด"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-khng-mot.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -22559,7 +22559,7 @@
       "ผัก"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-gin-phak.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -22587,7 +22587,7 @@
       "นั้น"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-lang-jaak-nan.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -22615,7 +22615,7 @@
       "คน"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-t-la-khon.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -22643,7 +22643,7 @@
       "สุดท้าย"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-krang-sut-thaai.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -22671,7 +22671,7 @@
       "วันนี้"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-jon-thng-wan-nii.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -22700,7 +22700,7 @@
       "เดิม"
     ],
     "difficulty": 2,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-yang-khong-man-dm.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -22728,7 +22728,7 @@
       "ผม"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-dtit-dt-phom.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -22756,7 +22756,7 @@
       "ดี"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-khwaam-ruu-sk-dii.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -22784,7 +22784,7 @@
       "ทาง"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-bplaai-thaang.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -22812,7 +22812,7 @@
       "ยาว"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-phom-yaao.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -22840,7 +22840,7 @@
       "ตัว"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-dtng-dtuua.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -22868,7 +22868,7 @@
       "สงบ"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-jai-sa-ngop.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -22896,7 +22896,7 @@
       "แรม"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-roong-rm.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -22924,7 +22924,7 @@
       "ไป"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-khaam-bpai.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -22953,7 +22953,7 @@
       "บ้าน"
     ],
     "difficulty": 2,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-glap-suu-baan.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -22981,7 +22981,7 @@
       "เสียใจ"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-ruu-sk-siia-jai.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -23009,7 +23009,7 @@
       "หมด"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-wee-laa-mot.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -23037,7 +23037,7 @@
       "กิน"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-lang-jaak-gin.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -23065,7 +23065,7 @@
       "สาว"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-ying-saao.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -23094,7 +23094,7 @@
       "วัน"
     ],
     "difficulty": 2,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-nai-t-la-wan.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -23122,7 +23122,7 @@
       "สุดท้าย"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-kham-sut-thaai.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -23150,7 +23150,7 @@
       "ตอนนี้"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-jon-thng-dtn-nii.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -23178,7 +23178,7 @@
       "รอ"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-yang-khong-r.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -23207,7 +23207,7 @@
       "สอง"
     ],
     "difficulty": 2,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-rp-thii-sng.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -23235,7 +23235,7 @@
       "กลับ"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-dtit-dt-glap.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -23263,7 +23263,7 @@
       "ความรู้สึก"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-khao-jai-khwaam-ruu-sk.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -23291,7 +23291,7 @@
       "เดือน"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-bplaai-dan.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -23319,7 +23319,7 @@
       "ไป"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-yaao-bpai.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -23347,7 +23347,7 @@
       "เพลง"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-dtng-phleeng.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -23375,7 +23375,7 @@
       "สงบ"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-mang-sa-ngop.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -23403,7 +23403,7 @@
       "สนใจ"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-mai-son-jai.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -23431,7 +23431,7 @@
       "สอน"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-khruu-sn.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -23459,7 +23459,7 @@
       "โสด"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-khao-soot.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -23488,7 +23488,7 @@
       "ขอบคุณ"
     ],
     "difficulty": 2,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-chan-sa-baai-dii-kha-khp-khun.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -23517,7 +23517,7 @@
       "โมง"
     ],
     "difficulty": 2,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-naa-li-gaa-hok-moong.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -23545,7 +23545,7 @@
       "วัน"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-jet-wan.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -23574,7 +23574,7 @@
       "เช้า"
     ],
     "difficulty": 2,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-bpt-moong-chaao.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -23630,7 +23630,7 @@
       "ฝรั่งเศส"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-aa-haan-fa-rang-seet.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -23658,7 +23658,7 @@
       "ญี่ปุ่น"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-rot-yii-bpun.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -23686,7 +23686,7 @@
       "สเปน"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-phaa-saa-sa-bpeen.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -23714,7 +23714,7 @@
       "หวาน"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-naam-waan.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -23742,7 +23742,7 @@
       "จำเป็น"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-mai-jam-bpen.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -23770,7 +23770,7 @@
       "รถ"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-chao-rot.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -23798,7 +23798,7 @@
       "ตำรวจ"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-phop-dtam-ruuat.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -23826,7 +23826,7 @@
       "ตา"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-bpit-dtaa.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -23854,7 +23854,7 @@
       "ไก่"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-khai-gai.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -23882,7 +23882,7 @@
       "สำเร็จ"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-tham-sam-ret.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -23910,7 +23910,7 @@
       "สัปดาห์"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-thuk-sap-daa.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -23939,7 +23939,7 @@
       "ทะเล"
     ],
     "difficulty": 2,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-dn-thaang-bpai-tha-lee.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -23967,7 +23967,7 @@
       "โต"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-dek-dtoo.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -23995,7 +23995,7 @@
       "ปกติ"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-dtaam-bpa-ga-dti.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -24023,7 +24023,7 @@
       "ปกติ"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-bpen-bpa-ga-dti.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -24051,7 +24051,7 @@
       "นี้"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-jut-nii.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -24080,7 +24080,7 @@
       "ต้น"
     ],
     "difficulty": 2,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-jut-rm-dton.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -24108,7 +24108,7 @@
       "ไทย"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-san-chaat-thai.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -24136,7 +24136,7 @@
       "อังกฤษ"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-san-chaat-ang-grit.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -24164,7 +24164,7 @@
       "นี้"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-sa-mai-nii.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -24192,7 +24192,7 @@
       "ก่อน"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-sa-mai-gn.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -24220,7 +24220,7 @@
       "ใหม่"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-khrang-mai.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -24248,7 +24248,7 @@
       "เครื่อง"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-bpt-khrang.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -24276,7 +24276,7 @@
       "ดี"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-din-dii.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -24304,7 +24304,7 @@
       "ดิน"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-len-din.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -24332,7 +24332,7 @@
       "ว่า"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-glaao-waa.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -24360,7 +24360,7 @@
       "กล่าว"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-kh-glaao.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -24388,7 +24388,7 @@
       "เวลา"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-gam-not-wee-laa.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -24417,7 +24417,7 @@
       "กำหนด"
     ],
     "difficulty": 2,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-dtaam-thii-gam-not.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -24446,7 +24446,7 @@
       "โมง"
     ],
     "difficulty": 2,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-bpra-maan-haa-moong.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -24474,7 +24474,7 @@
       "ประมาณ"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-raa-khaa-bpra-maan.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -24502,7 +24502,7 @@
       "ประจำ"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-ngaan-bpra-jam.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -24530,7 +24530,7 @@
       "ที่นี่"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-bpra-jam-thii-nii.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -24558,7 +24558,7 @@
       "ประโยชน์"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-mii-bpra-yoot.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -24586,7 +24586,7 @@
       "ประโยชน์"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-pha-bpra-yoot.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -24614,7 +24614,7 @@
       "อะไร"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-giiao-gap-a-rai.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -24643,7 +24643,7 @@
       "คุณ"
     ],
     "difficulty": 2,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-phuut-giiao-gap-khun.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -24671,7 +24671,7 @@
       "ไป"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-gn-bpai.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -24699,7 +24699,7 @@
       "เกิน"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-mai-gn.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -24728,7 +24728,7 @@
       "นี้"
     ],
     "difficulty": 2,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-naang-khon-nii.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -24756,7 +24756,7 @@
       "นาง"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-khun-naang.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -24784,7 +24784,7 @@
       "ดี"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-sa-phaap-dii.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -24812,7 +24812,7 @@
       "ห้อง"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-sa-phaap-hng.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -24840,7 +24840,7 @@
       "ดี"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-seet-tha-git-dii.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -24868,7 +24868,7 @@
       "ไทย"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-seet-tha-git-thai.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -24896,7 +24896,7 @@
       "ทะเล"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-bpai-tha-lee.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -24924,7 +24924,7 @@
       "สวย"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-tha-lee-suuai.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -24952,7 +24952,7 @@
       "แล้ว"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-dtaai-lo.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -24980,7 +24980,7 @@
       "ตาย"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-mai-dtaai.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -25008,7 +25008,7 @@
       "ดังกล่าว"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-rang-dang-glaao.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -25036,7 +25036,7 @@
       "ดังกล่าว"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-khon-dang-glaao.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -25065,7 +25065,7 @@
       "ไทย"
     ],
     "difficulty": 2,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-dooi-cha-ph-aa-haan-thai.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -25093,7 +25093,7 @@
       "คุณ"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-dooi-cha-ph-khun.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -25121,7 +25121,7 @@
       "เอง"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-jat-gaan-eeng.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -25149,7 +25149,7 @@
       "จัดการ"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-chuai-jat-gaan.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -25177,7 +25177,7 @@
       "โรงเรียน"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-bpai-roong-riian.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -25205,7 +25205,7 @@
       "ใหญ่"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-roong-riian-yai.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -25233,7 +25233,7 @@
       "เรื่อง"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-lao-rang.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -25262,7 +25262,7 @@
       "ฟัง"
     ],
     "difficulty": 2,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-lao-hai-fang.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -25291,7 +25291,7 @@
       "คน"
     ],
     "difficulty": 2,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-ma-nut-thuk-khon.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -25319,7 +25319,7 @@
       "มนุษย์"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-bpen-ma-nut.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -25347,7 +25347,7 @@
       "นี้"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-cha-nit-nii.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -25375,7 +25375,7 @@
       "ชนิด"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-laai-cha-nit.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -25403,7 +25403,7 @@
       "ไทย"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-bpra-chaa-chon-thai.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -25431,7 +25431,7 @@
       "ประชาชน"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-pha-bpra-chaa-chon.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -25460,7 +25460,7 @@
       "นี้"
     ],
     "difficulty": 2,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-nai-ga-ra-nii-nii.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -25488,7 +25488,7 @@
       "พิเศษ"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-ga-ra-nii-phi-seet.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -25516,7 +25516,7 @@
       "ปัจจุบัน"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-nai-bpat-ju-ban.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -25544,7 +25544,7 @@
       "นี้"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-bpat-ju-ban-nii.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -25572,7 +25572,7 @@
       "เสื้อ"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-sai-sa.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -25600,7 +25600,7 @@
       "ไว้"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-sai-wai.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -25628,7 +25628,7 @@
       "เรียน"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-khaat-riian.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -25656,7 +25656,7 @@
       "ขาด"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-mai-khaat.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -25685,7 +25685,7 @@
       "ยาก"
     ],
     "difficulty": 2,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-kh-nii-yaak.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -25713,7 +25713,7 @@
       "ข้อ"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-laai-kh.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -25741,7 +25741,7 @@
       "ไทย"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-rat-thai.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -25769,7 +25769,7 @@
       "รัฐ"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-bpen-rat.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -25797,7 +25797,7 @@
       "หลัก"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-jut-lak.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -25825,7 +25825,7 @@
       "หลัก"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-thaang-lak.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -25853,7 +25853,7 @@
       "เหนือ"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-thaang-na.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -25881,7 +25881,7 @@
       "กว่า"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-na-gwaa.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -25909,7 +25909,7 @@
       "คือ"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-khwaam-jing-kh.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -25937,7 +25937,7 @@
       "ความจริง"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-bk-khwaam-jing.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -25965,7 +25965,7 @@
       "ทำ"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-wi-thii-tham.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -25994,7 +25994,7 @@
       "ดี"
     ],
     "difficulty": 2,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-wi-thii-nii-dii.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -26022,7 +26022,7 @@
       "ดี"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-rang-raao-dii.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -26050,7 +26050,7 @@
       "เรื่องราว"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-lao-rang-raao.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -26078,7 +26078,7 @@
       "สวย"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-chut-suuai.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -26106,7 +26106,7 @@
       "ชุด"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-sai-chut.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -26134,7 +26134,7 @@
       "ทาน"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-chn-thaan.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -26162,7 +26162,7 @@
       "ข้าว"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-thaan-khaao.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -26191,7 +26191,7 @@
       "ผม"
     ],
     "difficulty": 2,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-naa-thii-khng-phom.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -26219,7 +26219,7 @@
       "หน้าที่"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-tham-naa-thii.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -26247,7 +26247,7 @@
       "นี้"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-am-ph-nii.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -26276,7 +26276,7 @@
       "ไหน"
     ],
     "difficulty": 2,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-yuu-am-ph-nai.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -26304,7 +26304,7 @@
       "ฉุกเฉิน"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-heet-chuk-chn.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -26333,7 +26333,7 @@
       "นี้"
     ],
     "difficulty": 2,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-duai-heet-nii.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -26361,7 +26361,7 @@
       "โลก"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-thuua-look.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -26389,7 +26389,7 @@
       "ประเทศ"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-thuua-bpra-theet.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -26448,7 +26448,7 @@
       "นี้"
     ],
     "difficulty": 3,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-mak-tham-bp-nii.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -26476,7 +26476,7 @@
       "ดู"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-phi-jaa-ra-naa-duu.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -26504,7 +26504,7 @@
       "พิจารณา"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-kh-phi-jaa-ra-naa.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -26532,7 +26532,7 @@
       "พิเศษ"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-aa-haan-phi-seet.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -26560,7 +26560,7 @@
       "ธรรมดา"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-rang-tham-ma-daa.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -26588,7 +26588,7 @@
       "ธรรมดา"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-khon-tham-ma-daa.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -26616,7 +26616,7 @@
       "ของ"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-pha-lit-khng.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -26645,7 +26645,7 @@
       "ไทย"
     ],
     "difficulty": 2,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-pha-lit-nai-thai.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -26673,7 +26673,7 @@
       "หนังสือ"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-phim-nang-s.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -26701,7 +26701,7 @@
       "งาน"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-phim-ngaan.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -26729,7 +26729,7 @@
       "ไป"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-phaa-bpai.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -26758,7 +26758,7 @@
       "บ้าน"
     ],
     "difficulty": 2,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-phaa-glap-baan.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -26787,7 +26787,7 @@
       "จริง"
     ],
     "difficulty": 2,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-ym-rap-waa-jing.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -26815,7 +26815,7 @@
       "ยอมรับ"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-mai-ym-rap.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -26843,7 +26843,7 @@
       "นี้"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-lak-sa-na-nii.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -26872,7 +26872,7 @@
       "ดี"
     ],
     "difficulty": 2,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-mii-lak-sa-na-dii.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -26901,7 +26901,7 @@
       "แล้ว"
     ],
     "difficulty": 2,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-phom-dtat-sin-jai-lo.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -26931,7 +26931,7 @@
       "ตัดสินใจ"
     ],
     "difficulty": 3,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-yaak-thii-ja-dtat-sin-jai.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -26959,7 +26959,7 @@
       "ดี"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-aa-rom-dii.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -26987,7 +26987,7 @@
       "อารมณ์"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-siia-aa-rom.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -27015,7 +27015,7 @@
       "ผู้ใหญ่"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-bpen-phuu-yai.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -27044,7 +27044,7 @@
       "คน"
     ],
     "difficulty": 2,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-phuu-yai-thuk-khon.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -27072,7 +27072,7 @@
       "เสนอ"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-kh-sa-n.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -27101,7 +27101,7 @@
       "คิด"
     ],
     "difficulty": 2,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-sa-n-khwaam-khit.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -27129,7 +27129,7 @@
       "กา"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-hen-gaa.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -27158,7 +27158,7 @@
       "หนึ่ง"
     ],
     "difficulty": 2,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-gaa-dtuua-nng.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -27186,7 +27186,7 @@
       "ตาม"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-bpa-dti-bat-dtaam.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -27214,7 +27214,7 @@
       "งาน"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-bpa-dti-bat-ngaan.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -27242,7 +27242,7 @@
       "งาน"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-dtam-nng-ngaan.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -27271,7 +27271,7 @@
       "ดี"
     ],
     "difficulty": 2,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-dtam-nng-thii-dii.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -27299,7 +27299,7 @@
       "นี้"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-kh-muun-nii.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -27327,7 +27327,7 @@
       "ข้อมูล"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-hai-kh-muun.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -27355,7 +27355,7 @@
       "ไทย"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-gaan-sk-saa-thai.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
@@ -27383,7 +27383,7 @@
       "การศึกษา"
     ],
     "difficulty": 1,
-    "thai_audio_file": null,
+    "thai_audio_file": "/thai-script/audio/sentence-pha-gaan-sk-saa.mp3",
     "cards": {
       "readingComprehension": {
         "distractors": [
