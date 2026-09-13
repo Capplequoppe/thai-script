@@ -9,7 +9,6 @@ import "../../test-utils/renderWithApp";
 import { BottomTabBar } from "./BottomTabBar";
 
 describe("BottomTabBar", () => {
-	// A learner who has completed no lessons yet: only the evergreen tabs.
 	// `mobileOnly` renders a single nav instance — without it, the component
 	// also renders its (CSS-hidden, but still present in jsdom) desktop nav
 	// alongside it, and every link would match twice.
@@ -18,66 +17,69 @@ describe("BottomTabBar", () => {
 	// label (e.g. LotusIcon's `<title>Home</title>` next to the "Home" tab
 	// text) — a plain text query would match both, so tabs are queried by
 	// link role/name instead, which correctly ignores the hidden icon title.
-	it("shows no Vocab, Grammar, or Sentences tab when nothing is unlocked", () => {
+	it("shows four evergreen tabs before vocabulary unlocks", () => {
 		render(
 			<MemoryRouter>
-				<BottomTabBar
-					vocabUnlocked={false}
-					grammarUnlocked={false}
-					sentenceUnlocked={false}
-					dueCount={0}
-					mobileOnly
-				/>
+				<BottomTabBar vocabUnlocked={false} dueCount={0} mobileOnly />
 			</MemoryRouter>,
 		);
 
 		expect(screen.getByRole("link", { name: "Home" })).toBeTruthy();
+		expect(screen.getByRole("link", { name: "Learn" })).toBeTruthy();
 		expect(screen.getByRole("link", { name: "Items" })).toBeTruthy();
-		expect(screen.queryByRole("link", { name: "Vocab" })).toBeNull();
+		expect(screen.getByRole("link", { name: "Progress" })).toBeTruthy();
 		expect(screen.queryByRole("link", { name: "Dictionary" })).toBeNull();
-		expect(screen.queryByRole("link", { name: "Grammar" })).toBeNull();
-		expect(screen.queryByRole("link", { name: "Sentences" })).toBeNull();
 	});
 
-	// The mobile bar (`mobileOnly`) previously had no Grammar/Sentences entry
-	// at all, regardless of unlock state — the only paths to those pages were
-	// the desktop-only nav and, for Grammar, the Dashboard's quick action.
-	// This is the regression the tab bar must not reintroduce.
-	it("gives the mobile bar Grammar and Sentences tabs once unlocked", () => {
+	it("adds the Dictionary tab once vocabulary unlocks", () => {
 		render(
 			<MemoryRouter>
-				<BottomTabBar
-					vocabUnlocked={true}
-					grammarUnlocked={true}
-					sentenceUnlocked={true}
-					dueCount={0}
-					mobileOnly
-				/>
+				<BottomTabBar vocabUnlocked={true} dueCount={0} mobileOnly />
 			</MemoryRouter>,
 		);
 
-		expect(screen.getByRole("link", { name: "Vocab" })).toBeTruthy();
 		expect(screen.getByRole("link", { name: "Dictionary" })).toBeTruthy();
-		expect(screen.getByRole("link", { name: "Grammar" })).toBeTruthy();
-		expect(screen.getByRole("link", { name: "Sentences" })).toBeTruthy();
 	});
 
-	// Unlocking one pool must not leak tabs for the others.
-	it("unlocks tabs independently per pool", () => {
+	// The point of the restructure. The bar is a fixed-height row with
+	// `overflow-x-auto`, so tabs past the fifth scroll off-screen on a phone
+	// with no affordance at all. Grammar, Sentences and Game became lanes in
+	// the Learn hub and Settings moved to the Home/desktop headers to buy that
+	// budget back — this is the regression that must not creep back in.
+	it("never exceeds five tabs, even fully unlocked", () => {
 		render(
 			<MemoryRouter>
-				<BottomTabBar
-					vocabUnlocked={false}
-					grammarUnlocked={true}
-					sentenceUnlocked={false}
-					dueCount={0}
-					mobileOnly
-				/>
+				<BottomTabBar vocabUnlocked={true} dueCount={12} mobileOnly />
 			</MemoryRouter>,
 		);
 
-		expect(screen.queryByRole("link", { name: "Vocab" })).toBeNull();
-		expect(screen.getByRole("link", { name: "Grammar" })).toBeTruthy();
-		expect(screen.queryByRole("link", { name: "Sentences" })).toBeNull();
+		expect(screen.getAllByRole("link")).toHaveLength(5);
+	});
+
+	// These are all still reachable — Grammar/Sentences/Game through the Learn
+	// hub, Settings through the headers — just not from here. `LearnPage.test`
+	// is what guards their reachability.
+	it("does not carry the destinations that moved off the bar", () => {
+		render(
+			<MemoryRouter>
+				<BottomTabBar vocabUnlocked={true} dueCount={0} mobileOnly />
+			</MemoryRouter>,
+		);
+
+		for (const gone of ["Grammar", "Sentences", "Game", "Settings", "Vocab"]) {
+			expect(screen.queryByRole("link", { name: gone })).toBeNull();
+		}
+	});
+
+	it("badges the Home tab with the due count", () => {
+		render(
+			<MemoryRouter>
+				<BottomTabBar vocabUnlocked={true} dueCount={7} mobileOnly />
+			</MemoryRouter>,
+		);
+
+		expect(screen.getByRole("link", { name: /Home/ }).textContent).toContain(
+			"7",
+		);
 	});
 });

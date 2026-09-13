@@ -12,6 +12,7 @@ import {
 	StageOverrideSheet,
 } from "../components/organisms/StageOverrideSheet";
 import { useApp } from "../hooks/useApp";
+import { VOCAB_PROPERTY_LABELS } from "../utils/propertyLabels";
 import { withDottedCircles } from "../utils/thaiText";
 import { propertyLabel } from "./LearnedItemsPage";
 
@@ -24,15 +25,6 @@ const POOL_TITLES: Record<CardPool, string> = {
 	vocab: "Vocabulary",
 	grammar: "Grammar",
 	sentence: "Sentences",
-};
-
-const VOCAB_PROPERTY_LABELS: Record<VocabProperty, string> = {
-	thaiToEnglish: "Thai → English",
-	englishToThai: "English → Thai",
-	audioRecognition: "Listening",
-	toneIdentification: "Tone",
-	spelling: "Spelling",
-	spellingFromAudio: "Spelling (Audio)",
 };
 
 const GRAMMAR_PROPERTY_LABELS: Record<GrammarCard["property"], string> = {

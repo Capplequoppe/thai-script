@@ -1,6 +1,11 @@
 // @vitest-environment jsdom
 import { fireEvent, screen } from "@testing-library/react";
 import { describe, expect, it, vi } from "vitest";
+import {
+	DEFAULT_CONVERSATION_BACKEND_URL,
+	getConversationBackendToken,
+	getConversationBackendUrl,
+} from "../../infrastructure/conversation/ConversationBackendSettings";
 import type { AppContextValue } from "../context/AppContext";
 import { renderWithApp } from "../test-utils/renderWithApp";
 import { SettingsPage } from "./SettingsPage";
@@ -100,5 +105,114 @@ describe("SettingsPage — Learning Pace", () => {
 		fireEvent.click(screen.getByText("Save Learning Pace"));
 
 		expect(data.setApprenticeLimits).not.toHaveBeenCalled();
+	});
+});
+
+describe("SettingsPage — Conversation Backend", () => {
+	it("starts blank (automatic) when no override has been saved", () => {
+		renderSettings();
+
+		expect(
+			(screen.getByLabelText("Backend address") as HTMLInputElement).value,
+		).toBe("");
+	});
+
+	it("saves a valid LAN address and persists it", () => {
+		renderSettings();
+
+		fireEvent.change(screen.getByLabelText("Backend address"), {
+			target: { value: "http://192.168.1.23:8000" },
+		});
+		fireEvent.click(screen.getByText("Save Backend Settings"));
+
+		expect(screen.getByText(/saved/i)).toBeTruthy();
+		expect(getConversationBackendUrl()).toBe("http://192.168.1.23:8000");
+	});
+
+	it("rejects an address with no scheme and does not persist it", () => {
+		renderSettings();
+
+		fireEvent.change(screen.getByLabelText("Backend address"), {
+			target: { value: "192.168.1.23:8000" },
+		});
+		fireEvent.click(screen.getByText("Save Backend Settings"));
+
+		expect(screen.getByText(/enter a full address/i)).toBeTruthy();
+		expect(getConversationBackendUrl()).toBe(DEFAULT_CONVERSATION_BACKEND_URL);
+	});
+
+	it("treats a blank address as choosing automatic, not as an error", () => {
+		renderSettings();
+
+		fireEvent.change(screen.getByLabelText("Backend address"), {
+			target: { value: "http://192.168.1.23:8000" },
+		});
+		fireEvent.click(screen.getByText("Save Backend Settings"));
+
+		fireEvent.change(screen.getByLabelText("Backend address"), {
+			target: { value: "   " },
+		});
+		fireEvent.click(screen.getByText("Save Backend Settings"));
+
+		expect(screen.getByText(/using the automatic address/i)).toBeTruthy();
+		expect(getConversationBackendUrl()).toBe(DEFAULT_CONVERSATION_BACKEND_URL);
+	});
+
+	it("resets a saved override back to automatic via its own button", () => {
+		renderSettings();
+
+		fireEvent.change(screen.getByLabelText("Backend address"), {
+			target: { value: "http://192.168.1.23:8000" },
+		});
+		fireEvent.click(screen.getByText("Save Backend Settings"));
+		expect(getConversationBackendUrl()).toBe("http://192.168.1.23:8000");
+
+		fireEvent.click(screen.getByText("Reset Address to Automatic"));
+
+		expect(getConversationBackendUrl()).toBe(DEFAULT_CONVERSATION_BACKEND_URL);
+		expect(
+			(screen.getByLabelText("Backend address") as HTMLInputElement).value,
+		).toBe("");
+	});
+
+	it("prefills the auth token as empty when none has been saved", () => {
+		renderSettings();
+
+		expect(
+			(screen.getByLabelText(/Auth token/) as HTMLInputElement).value,
+		).toBe("");
+	});
+
+	it("saves an auth token alongside the address", () => {
+		renderSettings();
+
+		fireEvent.change(screen.getByLabelText("Backend address"), {
+			target: { value: "https://conversation.example.com" },
+		});
+		fireEvent.change(screen.getByLabelText(/Auth token/), {
+			target: { value: "s3cret" },
+		});
+		fireEvent.click(screen.getByText("Save Backend Settings"));
+
+		expect(getConversationBackendUrl()).toBe(
+			"https://conversation.example.com",
+		);
+		expect(getConversationBackendToken()).toBe("s3cret");
+	});
+
+	it("saving a new address never clobbers an already-saved token", () => {
+		renderSettings();
+
+		fireEvent.change(screen.getByLabelText(/Auth token/), {
+			target: { value: "s3cret" },
+		});
+		fireEvent.click(screen.getByText("Save Backend Settings"));
+
+		fireEvent.change(screen.getByLabelText("Backend address"), {
+			target: { value: "http://192.168.1.23:8000" },
+		});
+		fireEvent.click(screen.getByText("Save Backend Settings"));
+
+		expect(getConversationBackendToken()).toBe("s3cret");
 	});
 });

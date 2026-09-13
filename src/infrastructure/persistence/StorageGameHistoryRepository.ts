@@ -68,16 +68,38 @@ function hasGameRoundSummaryShape(value: unknown): boolean {
  * The `kind` allowlist, derived from `GameHistoryEntry` the same way — and
  * for the same reason — as `GAME_CARD_POOL_ALLOWLIST` is derived from
  * `GameCardPool`: a new history-entry variant must be a compile error here
- * rather than a blob this guard silently rejects.
+ * rather than a blob this guard silently rejects. Its *value* says whether
+ * that kind of round carries `pools` — see `requiresPools`.
  */
-const GAME_HISTORY_KIND_ALLOWLIST: Record<GameHistoryEntry["kind"], true> = {
+const GAME_HISTORY_KIND_ALLOWLIST: Record<GameHistoryEntry["kind"], boolean> = {
 	practice: true,
-	composition: true,
+	composition: false,
+	minimalPair: false,
 };
 
 const GAME_HISTORY_KINDS: ReadonlySet<string> = new Set(
 	Object.keys(GAME_HISTORY_KIND_ALLOWLIST),
 );
+
+/**
+ * Whether an entry of this kind must carry a `pools` array. The value half
+ * of the allowlist above, rather than a second hand-written list beside it:
+ * a new pool-less round kind then cannot be added without saying so here,
+ * and saying nothing is not one of the options a `Record` over the union
+ * leaves open.
+ *
+ * Getting this wrong in the permissive direction is cheap (an entry keeps
+ * a field nothing reads); getting it wrong in the strict direction costs
+ * the learner their entire game history, because one rejected entry makes
+ * `isGameHistoryEntryArray` reject the whole array and the next `save()`
+ * writes over it. See the allowlist's own comment.
+ */
+function requiresPools(kind: string | undefined): boolean {
+	// A legacy entry has no `kind` at all and is normalized to "practice"
+	// on read (`withKind`), so it is held to the practice rule here too.
+	if (kind === undefined) return GAME_HISTORY_KIND_ALLOWLIST.practice;
+	return GAME_HISTORY_KIND_ALLOWLIST[kind as GameHistoryEntry["kind"]];
+}
 
 /**
  * One entry as it may be found in the store. `kind` is required on the
@@ -95,11 +117,11 @@ type PersistedGameHistoryEntry =
  * reject a corrupt or foreign blob, not a full domain-validity check.
  *
  * `kind` may be absent (every entry written before the field existed),
- * `"practice"` or `"composition"`; anything else is rejected. A composition
- * entry carries no `pools` — requiring the field regardless would reject
- * the entire stored array the first time a composition round was saved,
- * which is the same whole-history loss the pool allowlist above exists to
- * prevent.
+ * `"practice"`, `"composition"` or `"minimalPair"`; anything else is
+ * rejected. A composition or tone-pairs entry carries no `pools` —
+ * requiring the field regardless would reject the entire stored array the
+ * first time one of those rounds was saved, which is the same
+ * whole-history loss the pool allowlist above exists to prevent.
  */
 function isGameHistoryEntry(
 	value: unknown,
@@ -113,7 +135,7 @@ function isGameHistoryEntry(
 	}
 
 	const hasPools =
-		entry.kind === "composition" ||
+		!requiresPools(entry.kind) ||
 		(Array.isArray(entry.pools) && entry.pools.every(isGameCardPool));
 
 	return (

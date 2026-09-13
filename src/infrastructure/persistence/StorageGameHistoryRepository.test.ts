@@ -332,6 +332,59 @@ describe("StorageGameHistoryRepository", () => {
 		});
 	});
 
+	it("a tone-pairs entry round-trips beside a practice entry, carrying no pools", () => {
+		const repo = newLocalStorageRepository();
+		const practice = makeEntry("practice", "2026-01-01T00:00:00.000Z");
+		repo.save(practice);
+
+		const minimalPair: GameHistoryEntry = {
+			kind: "minimalPair",
+			id: "pairs",
+			playedAt: "2026-01-02T00:00:00.000Z",
+			itemCount: 4,
+			summary: {
+				ratingCounts: { 1: 0, 2: 1, 3: 0, 4: 3, 5: 0 },
+				ratedCount: 4,
+				accuracy: 75,
+			},
+		};
+		newLocalStorageRepository().save(minimalPair);
+
+		expect(newLocalStorageRepository().list()).toEqual({
+			status: "ok",
+			entries: [minimalPair, practice],
+		});
+	});
+
+	// The regression the pool allowlist's comment describes, for the newest
+	// pool-less kind: one rejected entry makes the whole array unreadable,
+	// and the next save writes over the learner's entire history.
+	it("does not lose the whole history when a stored tone-pairs entry sits beside a practice one", () => {
+		fakeLocalStorage.setItem(
+			GAME_HISTORY_STORAGE_KEY,
+			JSON.stringify([
+				makeEntry("a", "2026-01-01T00:00:00.000Z"),
+				{
+					kind: "minimalPair",
+					id: "pairs",
+					playedAt: "2026-01-02T00:00:00.000Z",
+					itemCount: 2,
+					summary: {
+						ratingCounts: { 1: 0, 2: 0, 3: 0, 4: 2, 5: 0 },
+						ratedCount: 2,
+						accuracy: 100,
+					},
+				},
+			]),
+		);
+
+		const result = newLocalStorageRepository().list();
+
+		expect(result.status).toBe("ok");
+		if (result.status !== "ok") return;
+		expect(result.entries).toHaveLength(2);
+	});
+
 	it("round-trips through an InMemoryJsonStore too", () => {
 		const store = new InMemoryJsonStore<GameHistoryEntry[]>();
 		const repo = new StorageGameHistoryRepository(store);

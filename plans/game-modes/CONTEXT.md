@@ -4,6 +4,9 @@ title: Execution context for the game-modes feature
 description: Repo orientation, conventions, quality gates, and rejected alternatives for adding self-graded practice game modes.
 covers:
   - src/domain/game
+  - scripts/enrich-vocabulary.py
+  - scripts/generate-tone-minimal-pairs.py
+  - scripts/generate-vocab-audio.py
   - src/application/use-cases/PlayGameUseCase.ts
   - src/infrastructure/persistence/StorageGameHistoryRepository.ts
   - src/presentation/pages/GamePage.tsx
@@ -143,6 +146,83 @@ brand-new items as weakest. Task 3.1 must state and test an explicit rule
   the setup screen's three choices map to `["script"]`/`["vocab"]`/
   `["script","vocab"]`).
 
+## Tone Pairs mode — the one auto-graded mode, and the data behind it
+
+A third `GameMode` beside `practice` and `composition` (`GamePage.tsx`), for
+listening exercises over words that sound alike except for their tone. Four
+directions (`MinimalPairChallengeDirection`), two per axis: `toneFromAudio`
+/ `audioFromTone` and `meaningFromAudio` / `audioFromMeaning`.
+
+**It auto-grades, and it is still SRS-isolated.** Every other organism here
+ends in `RatingButtons` because the app cannot see whether a drawn symbol
+was right. A multiple choice is different, so `MinimalPairChallenge` grades
+the answer itself and maps it to a `RecallRating` (`CORRECT_RATING` 4 /
+`INCORRECT_RATING` 2) before calling the same `onRate` every other organism
+calls. Nothing about the round pipeline changes, and the plan's #1 property
+— a round leaves the whole `thai-srs-state` blob byte-identical — holds
+unchanged and is proven for this mode the same way (`GamePage.test.tsx`).
+Auto-grading and SRS isolation are independent; this mode takes one and
+keeps the other.
+
+**Four directions in one organism**, against the one-organism-per-direction
+split above. That split earns its keep where the directions genuinely
+differ (canvas vs. reveal); here all four are the same pick-then-reveal
+mechanic differing only in which field is the prompt and which is the
+option's face. Splitting would make four copies of the grading mechanic.
+
+**Which words sound alike is generated offline, not computed at runtime**
+(`scripts/generate-tone-minimal-pairs.py` → `tone-minimal-pairs.json`).
+Neither field in `vocabulary.json` can decide it alone, and the reasons are
+worth knowing before touching any of this:
+
+- `VocabEntry.romanization` is **two incompatible schemes** — IPA for the
+  entries with a `source`, Paiboon+ for the ones without (which are, almost
+  exactly, the entries that have audio). The generator normalizes both onto
+  one ASCII phoneme alphabet; the raw strings never group across schemes.
+- `VocabEntry.syllables` is a **grapheme** decomposition. It reads หน้า as
+  ห + final น, drops the /l/ of กลัว, and calls ตลาด one syllable. Its
+  segmental fields cannot decide whether two words sound alike.
+- pythainlp `thaig2p` reads the script correctly but **silently truncates**
+  words it does not know (ถาวร → `tʰ aː`, กร → `k ɔː`) and sometimes
+  degenerates into repetition. On its own it pairs ถ้า with ถาวร and บ้าง
+  (long) with บัง (short).
+
+So the generator uses the normalized romanization as the key and requires
+two corroborations: the romanization and the stored breakdown must agree on
+the syllable count, and `thaig2p` must agree on the segments with a matching
+syllable count. 263 groups / 605 words survive.
+
+**A pre-existing bug this surfaced, since fixed.**
+`VocabEntry.syllables[].tone` was wrong for ~14% of syllables, and
+`ToneIdentificationChallenge` displays that field — so the existing
+tone-identification exercise was teaching the wrong tone. The cause was in
+`scripts/enrich-vocabulary.py`: `_determine_tone` never looked at vowel
+length (an abandoned "we need actual vowel info to distinguish" branch
+always fell through to `dead-long`), the short-vowel set omitted mai han
+akat (ั) and mai taikhu (็), karan (์) was ignored so a silenced consonant
+still counted as the final, and the last consonant was taken as the final
+even when it belonged to an onset cluster (ประ) or a ห นำ (แหละ).
+
+Tone is now derived from the tone-rule id — one function, so `tone` and
+`toneRules` cannot disagree — and cross-checked against the romanization
+accents, with the split described in that script's docstring: a syllable
+with a tone mark keeps the rule's answer (exceptionless), an unmarked one
+takes the transcriber's (loanwords). Agreement with the romanizations went
+from 77.4% to 99.76%; `scripts/tests/test_tone_rules.py` pins both the
+rules and the shipped file.
+
+The correction also grew this mode: 233 groups / 534 words became 263 /
+605, because far fewer words are now dropped for disagreeing with
+themselves.
+
+**Audio is the binding constraint, by design not by accident.** 143 of the
+605 grouped words have a clip today. The two `audioFrom*` directions need
+every option recorded; the two `*FromAudio` directions need only the
+target. That split is what makes the mode playable now and lets it get
+richer with no code change as `scripts/generate-vocab-audio.py` fills
+clips in — the same "becomes reachable the moment audio exists" shape the
+sentence `listening` direction already has.
+
 ## Rejected alternatives
 
 - **Game history as a `LearnerState` field**: rejected (see task 1.2).
@@ -151,9 +231,12 @@ brand-new items as weakest. Task 3.1 must state and test an explicit rule
   `ManageDataUseCase.exportData()` excludes it too. Intentional.
 - **One `GameChallenge` component branching on all 4 directions**: rejected
   for four small organisms, matching `DrawingQuiz`/`MultipleChoice`/
-  `SentenceBuilder`'s existing split.
-- **Automatic per-item correctness**: out of scope — every rating is the
-  human's own self-assessment.
+  `SentenceBuilder`'s existing split. (Tone Pairs is the stated exception —
+  see its section above.)
+- **Automatic per-item correctness**: out of scope for the pool-mixing
+  practice round — every rating there is the human's own self-assessment.
+  Tone Pairs is the stated exception: its questions are multiple choice, so
+  the app *can* see the answer. See its section above.
 - **One `GameItemSelectionService` accreting pool-specific logic ad hoc**:
   rejected. It composes `GameItemSource`s (one per pool) plus a free
   `sampleWithoutReplacement` function — decided in task 1.1 so phases 2/3

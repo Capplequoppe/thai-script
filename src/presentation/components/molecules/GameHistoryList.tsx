@@ -41,11 +41,14 @@ function poolsLabel(pools: readonly GameCardPool[] | undefined): string {
  * `entry.kind` is always present here — `StorageGameHistoryRepository`
  * normalizes entries persisted before the field existed on read (see
  * `GameHistoryEntry`) — so no legacy-`kind` branch belongs in this
- * component. Composition rounds carry no `pools` and get their own label,
- * deliberately distinct from every pool label above.
+ * component. Composition and tone-pairs rounds carry no `pools` and get
+ * their own labels, deliberately distinct from every pool label above —
+ * and from the "Tone Identification" a pool-less *practice* round shows,
+ * which is the different exercise that says a word's tones aloud.
  */
 function entryLabel(entry: GameHistoryEntry): string {
 	if (entry.kind === "composition") return "Sentence Composition";
+	if (entry.kind === "minimalPair") return "Tone Pairs";
 	return poolsLabel(entry.pools);
 }
 

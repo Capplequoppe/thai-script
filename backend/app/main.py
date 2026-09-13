@@ -39,10 +39,12 @@ from __future__ import annotations
 import asyncio
 import base64
 import binascii
+import os
+import secrets
 from collections.abc import Callable
 from contextlib import asynccontextmanager
 
-from fastapi import FastAPI, HTTPException
+from fastapi import Depends, FastAPI, Header, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 
 from app import pipeline
@@ -65,13 +67,35 @@ from app.session import (
 )
 
 # Vite's default dev server origin, plus its 127.0.0.1 equivalent —
-# the only origins allowed to call this backend. Add task 1.4's
-# Playwright e2e origin here when that task defines it; never widen
-# this to a wildcard.
-ALLOWED_ORIGINS = [
+# always allowed, so the default same-machine dev flow needs no
+# configuration. A learner reaching this backend from another device
+# (e.g. a phone on the same LAN, hitting the deployed PWA's own origin)
+# adds that origin via CONVERSATION_ALLOWED_ORIGINS (comma-separated)
+# instead of editing this file — see backend/README.md. Still never a
+# wildcard: CORS only gates a *browser tab's* cross-origin fetch, not a
+# direct request (curl, another process) once the port is reachable at
+# all, but for the one channel it does cover, an explicit list — however
+# it's populated — stays cheaper than none.
+_DEFAULT_ALLOWED_ORIGINS = [
     "http://localhost:5173",
     "http://127.0.0.1:5173",
 ]
+
+
+def _load_allowed_origins() -> list[str]:
+    """The dev-server defaults, plus whatever CONVERSATION_ALLOWED_ORIGINS
+    (comma-separated) adds — a plain function, not inlined at import time,
+    so a test can exercise it against an arbitrary environment without
+    needing to reload this module.
+    """
+    extra = os.environ.get("CONVERSATION_ALLOWED_ORIGINS", "")
+    return [
+        *_DEFAULT_ALLOWED_ORIGINS,
+        *[origin.strip() for origin in extra.split(",") if origin.strip()],
+    ]
+
+
+ALLOWED_ORIGINS = _load_allowed_origins()
 
 
 @asynccontextmanager
@@ -133,6 +157,30 @@ async def run_serialized(fn: Callable, *args, **kwargs):
 def _registry() -> ModelRegistry:
     registry = getattr(app.state, "models", None)
     return registry if registry is not None else ModelRegistry()
+
+
+def _require_valid_token(
+    x_conversation_backend_token: str | None = Header(default=None),
+) -> None:
+    """Rejects the request unless it carries CONVERSATION_BACKEND_TOKEN.
+
+    A no-op when that env var is unset — the default, same-machine/LAN
+    setup this backend originally shipped with, where CORS plus a
+    trusted network was the whole boundary. Once a tunnel (Cloudflare or
+    otherwise) puts this backend on the public internet, CORS stops
+    meaning anything (it only gates a browser tab, not a direct
+    request) — setting this env var is what actually keeps an
+    unauthenticated request from ever reaching the pipeline
+    (backend/README.md). Read fresh per request, not cached at import,
+    so a test can toggle it with `monkeypatch.setenv` with no reload.
+    """
+    expected = os.environ.get("CONVERSATION_BACKEND_TOKEN", "")
+    if not expected:
+        return
+    if not x_conversation_backend_token or not secrets.compare_digest(
+        x_conversation_backend_token, expected
+    ):
+        raise HTTPException(status_code=401, detail="missing or invalid backend token")
 
 
 def _require_loaded(loaded: bool, model_name: str) -> None:
@@ -243,7 +291,11 @@ async def _ask_next_question(state: SessionState) -> tuple[str, str, str] | None
     return entry.thai, base64.b64encode(audio_bytes).decode("ascii"), mime_type
 
 
-@app.post("/conversation/session/start", response_model=SessionStartResponse)
+@app.post(
+    "/conversation/session/start",
+    response_model=SessionStartResponse,
+    dependencies=[Depends(_require_valid_token)],
+)
 async def session_start(payload: SessionStartRequest) -> SessionStartResponse:
     # Checked before the session exists, so a process that cannot speak
     # answers 501 without first leaving an unusable session in the store.
@@ -271,7 +323,11 @@ async def session_start(payload: SessionStartRequest) -> SessionStartResponse:
     )
 
 
-@app.post("/conversation/session/{session_id}/judge", response_model=JudgeResponse)
+@app.post(
+    "/conversation/session/{session_id}/judge",
+    response_model=JudgeResponse,
+    dependencies=[Depends(_require_valid_token)],
+)
 async def session_judge(session_id: str, payload: JudgeRequest) -> JudgeResponse:
     state = _require_session(session_id)
     # No session lock here, unlike `/start` and `/next`: this appends one
@@ -291,7 +347,11 @@ async def session_judge(session_id: str, payload: JudgeRequest) -> JudgeResponse
     return response
 
 
-@app.post("/conversation/session/{session_id}/next", response_model=NextQuestionResponse)
+@app.post(
+    "/conversation/session/{session_id}/next",
+    response_model=NextQuestionResponse,
+    dependencies=[Depends(_require_valid_token)],
+)
 async def session_next(session_id: str) -> NextQuestionResponse:
     state = _require_session(session_id)
     async with state.lock:

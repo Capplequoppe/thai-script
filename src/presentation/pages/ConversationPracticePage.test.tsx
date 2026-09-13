@@ -73,12 +73,12 @@ async function recordAndStop() {
 }
 
 describe("ConversationPracticePage — backend unavailable", () => {
-	it("says the backend is not running and offers no record control that would do nothing", async () => {
+	it("says the backend is unavailable and offers no record control that would do nothing", async () => {
 		// The stub port's default: every call answers `"unavailable"`.
 		renderPage(new StubConversationPracticePort());
 
 		const alert = await screen.findByRole("alert");
-		expect(alert.textContent).toMatch(/backend is not running/i);
+		expect(alert.textContent).toMatch(/backend isn.t answering/i);
 		expect(screen.queryByRole("button", { name: /record/i })).toBeNull();
 	});
 });
@@ -319,7 +319,7 @@ describe("ConversationPracticePage — a mid-session backend failure (AC3)", () 
 		await recordAndStop();
 
 		const alert = await screen.findByRole("alert");
-		expect(alert.textContent).toMatch(/backend is not running/i);
+		expect(alert.textContent).toMatch(/backend isn.t answering/i);
 		const tallyLine = await screen.findByRole("status");
 		expect(tallyLine.textContent).toMatch(/1 passed \/ 1 asked/i);
 	});
@@ -374,7 +374,7 @@ describe("ConversationPracticePage — microphone failures", () => {
 
 		const alert = await screen.findByRole("alert");
 		expect(alert.textContent).toMatch(/Microphone access needed/i);
-		expect(alert.textContent).not.toMatch(/backend is not running/i);
+		expect(alert.textContent).not.toMatch(/backend isn.t answering/i);
 	});
 
 	it("shows a third, distinct message for a generic recorder failure", async () => {
@@ -391,6 +391,6 @@ describe("ConversationPracticePage — microphone failures", () => {
 		const alert = await screen.findByRole("alert");
 		expect(alert.textContent).toMatch(/microphone could not be started/i);
 		expect(alert.textContent).not.toMatch(/Microphone access needed/i);
-		expect(alert.textContent).not.toMatch(/backend is not running/i);
+		expect(alert.textContent).not.toMatch(/backend isn.t answering/i);
 	});
 });

@@ -1,10 +1,49 @@
 // @vitest-environment jsdom
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import {
-	CONVERSATION_BACKEND_BASE_URL,
+	DEFAULT_CONVERSATION_BACKEND_URL,
+	setConversationBackendToken,
+} from "./ConversationBackendSettings";
+import {
 	CONVERSATION_REQUEST_TIMEOUT_MS,
 	HttpConversationPracticeClient,
 } from "./HttpConversationPracticeClient";
+
+/**
+ * jsdom leaves `localStorage` unreliable in this repo's vitest setup (see
+ * `ConversationBackendSettings.test.ts`), so the token-header tests below
+ * install this stand-in themselves rather than relying on it — every
+ * other describe block here never touches `localStorage` at all, which is
+ * exactly what proves a request against an unconfigured backend carries
+ * no token header.
+ */
+class FakeLocalStorage implements Storage {
+	private store = new Map<string, string>();
+
+	get length(): number {
+		return this.store.size;
+	}
+
+	clear(): void {
+		this.store.clear();
+	}
+
+	getItem(key: string): string | null {
+		return this.store.has(key) ? (this.store.get(key) as string) : null;
+	}
+
+	key(index: number): string | null {
+		return Array.from(this.store.keys())[index] ?? null;
+	}
+
+	removeItem(key: string): void {
+		this.store.delete(key);
+	}
+
+	setItem(key: string, value: string): void {
+		this.store.set(key, value);
+	}
+}
 
 /** Blobs handed to `URL.createObjectURL`, newest last. */
 let objectUrlBlobs: Blob[] = [];
@@ -62,7 +101,7 @@ describe("HttpConversationPracticeClient.startSession", () => {
 
 		const [url, init] = fetchSpy.mock.calls[0] as [string, RequestInit];
 		expect(url).toBe(
-			`${CONVERSATION_BACKEND_BASE_URL}/conversation/session/start`,
+			`${DEFAULT_CONVERSATION_BACKEND_URL}/conversation/session/start`,
 		);
 		expect(init.method).toBe("POST");
 		expect(JSON.parse(init.body as string)).toEqual({
@@ -128,7 +167,7 @@ describe("HttpConversationPracticeClient.next", () => {
 
 		const [url, init] = fetchSpy.mock.calls[0] as [string, RequestInit];
 		expect(url).toBe(
-			`${CONVERSATION_BACKEND_BASE_URL}/conversation/session/sess-1/next`,
+			`${DEFAULT_CONVERSATION_BACKEND_URL}/conversation/session/sess-1/next`,
 		);
 		expect(init.method).toBe("POST");
 		expect(init.body).toBeUndefined();
@@ -169,7 +208,7 @@ describe("HttpConversationPracticeClient.judgeReply", () => {
 
 		const [url, init] = fetchSpy.mock.calls[0] as [string, RequestInit];
 		expect(url).toBe(
-			`${CONVERSATION_BACKEND_BASE_URL}/conversation/session/sess-1/judge`,
+			`${DEFAULT_CONVERSATION_BACKEND_URL}/conversation/session/sess-1/judge`,
 		);
 		expect(init.method).toBe("POST");
 		expect(JSON.parse(init.body as string)).toEqual({
@@ -320,5 +359,71 @@ describe("HttpConversationPracticeClient — the backend not answering", () => {
 		await vi.advanceTimersByTimeAsync(2);
 		expect(settled).toBe(true);
 		await expect(pending).resolves.toEqual({ status: "unavailable" });
+	});
+});
+
+describe("HttpConversationPracticeClient — the backend token header", () => {
+	let fakeLocalStorage: FakeLocalStorage;
+
+	beforeEach(() => {
+		fakeLocalStorage = new FakeLocalStorage();
+		globalThis.localStorage = fakeLocalStorage;
+	});
+
+	afterEach(() => {
+		Reflect.deleteProperty(globalThis, "localStorage");
+	});
+
+	it("sends no token header at all when none is configured", async () => {
+		const fetchSpy = stubFetch(async () =>
+			jsonResponse({ session_id: "sess-1", ...OPENING_QUESTION_BODY }),
+		);
+
+		await new HttpConversationPracticeClient().startSession([]);
+
+		const [, init] = fetchSpy.mock.calls[0] as [string, RequestInit];
+		expect((init.headers as Headers).has("X-Conversation-Backend-Token")).toBe(
+			false,
+		);
+	});
+
+	it("attaches the configured token to every call", async () => {
+		setConversationBackendToken("s3cret");
+		const fetchSpy = stubFetch(async () =>
+			jsonResponse({ session_id: "sess-1", ...OPENING_QUESTION_BODY }),
+		);
+
+		await new HttpConversationPracticeClient().startSession([]);
+
+		const [, init] = fetchSpy.mock.calls[0] as [string, RequestInit];
+		expect((init.headers as Headers).get("X-Conversation-Backend-Token")).toBe(
+			"s3cret",
+		);
+	});
+
+	it("still sends Content-Type alongside the token, never replacing it", async () => {
+		setConversationBackendToken("s3cret");
+		const fetchSpy = stubFetch(async () =>
+			jsonResponse({ session_id: "sess-1", ...OPENING_QUESTION_BODY }),
+		);
+
+		await new HttpConversationPracticeClient().startSession([]);
+
+		const [, init] = fetchSpy.mock.calls[0] as [string, RequestInit];
+		const headers = init.headers as Headers;
+		expect(headers.get("Content-Type")).toBe("application/json");
+		expect(headers.get("X-Conversation-Backend-Token")).toBe("s3cret");
+	});
+
+	it("attaches the token even to a request that otherwise sends no headers", async () => {
+		setConversationBackendToken("s3cret");
+		const fetchSpy = stubFetch(async () => jsonResponse({ exhausted: true }));
+
+		await new HttpConversationPracticeClient().next("sess-1");
+
+		const [, init] = fetchSpy.mock.calls[0] as [string, RequestInit];
+		expect((init.headers as Headers).get("X-Conversation-Backend-Token")).toBe(
+			"s3cret",
+		);
 	});
 });

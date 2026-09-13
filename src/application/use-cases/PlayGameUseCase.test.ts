@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 import type { GameHistoryRepository } from "../../domain/game/ports/GameHistoryRepository";
 import { GameItemSelectionService } from "../../domain/game/services/GameItemSelectionService";
+import { MinimalPairGameItemSource } from "../../domain/game/services/MinimalPairGameItemSource";
 import { SentenceGameItemSource } from "../../domain/game/services/SentenceGameItemSource";
 import { SymbolGameItemSource } from "../../domain/game/services/SymbolGameItemSource";
 import { ToneGameItemSource } from "../../domain/game/services/ToneGameItemSource";
@@ -143,6 +144,9 @@ function setUp(
 		words: readonly VocabEntry[],
 	) => ToneGameItemSource,
 	unlockedGrammarPoints?: () => readonly GrammarEntry[],
+	minimalPairSourceFactory?: (
+		repo: CardRepository,
+	) => MinimalPairGameItemSource,
 ) {
 	const cardRepository = repositoryOf(cardsByPool);
 	const sources = sourcesFactory
@@ -161,6 +165,8 @@ function setUp(
 		selectionService,
 		historyRepository,
 		unlockedGrammarPoints ?? (() => []),
+		minimalPairSourceFactory?.(cardRepository) ??
+			new MinimalPairGameItemSource(cardRepository, [], []),
 	);
 	return { cardRepository, selectionService, historyRepository, useCase };
 }
@@ -384,6 +390,7 @@ describe("PlayGameUseCase", () => {
 			new GameItemSelectionService([]),
 			failingHistoryRepository,
 			() => [],
+			new MinimalPairGameItemSource(repositoryOf({}), [], []),
 		);
 
 		expect(useCase.getHistory()).toEqual({ status: "unavailable" });

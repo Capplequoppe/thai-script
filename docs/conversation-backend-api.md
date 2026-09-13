@@ -12,21 +12,59 @@ change.
 The backend is local-only: single-process, single-GPU, synchronous per
 request. It is never deployed alongside the app's static GitHub Pages
 build, which cannot reach `localhost` and must show a clear "backend
-not running" state instead of hanging or failing silently.
+not running" state instead of hanging or failing silently — unless the
+learner has pointed the app at a reachable backend on another device
+(see "Reaching it from another device" below).
 
-## Bind address and CORS
+## Bind address, CORS, and the auth token
 
-- uvicorn binds `127.0.0.1` explicitly, **never `0.0.0.0`** — this
-  backend drives a local GPU with no authentication and must not be
-  reachable from the network. Every documented run command uses
-  `--host 127.0.0.1`.
+- uvicorn binds `127.0.0.1` by default. Every documented run command
+  uses `--host 127.0.0.1` unless the learner deliberately opts into LAN
+  access (below).
 - Cross-origin requests are restricted to an explicit allowlist
   (`http://localhost:5173`, `http://127.0.0.1:5173` — Vite's dev
-  server), configured via `CORSMiddleware` in `backend/app/main.py`.
-  **Never `allow_origins=["*"]`** — a wildcard would let any page the
-  user happens to have open in the same browser call this endpoint.
-  Task 1.4 adds its Playwright e2e origin to this same allowlist if it
-  differs from the dev server's.
+  server, plus whatever origins `CONVERSATION_ALLOWED_ORIGINS` adds),
+  configured via `CORSMiddleware` in `backend/app/main.py`. **Never
+  `allow_origins=["*"]`** — a wildcard would let any page the user
+  happens to have open in the same browser call this endpoint. Task 1.4
+  added its Playwright e2e origin to this same allowlist.
+- **CORS is not an access-control mechanism against a direct request**
+  (curl, another process, a non-browser client) — it only restricts
+  what a *browser tab* is allowed to read back cross-origin. Once the
+  bind address makes the port reachable at all, anything that can
+  address it can call every route, allowlist or not.
+- **`CONVERSATION_BACKEND_TOKEN`** is the actual access-control
+  mechanism, and the only one — unset by default (every request
+  accepted, same as before this env var existed). Once set, every
+  `/conversation/session/*` request must carry a matching
+  `X-Conversation-Backend-Token` header or get a `401` (checked via
+  FastAPI's dependency system, *before* the route handler runs — an
+  unrecognized `session_id` behind a wrong token still 401s, never
+  404s). `/health` is deliberately exempt: it does no GPU work and
+  leaks nothing beyond three booleans.
+
+## Reaching it from another device (e.g. a phone on the same LAN)
+
+An explicit, per-run opt-in — never the default:
+
+```
+CONVERSATION_ALLOWED_ORIGINS="https://your-deployed-pwa.example" \
+  uv run --project backend uvicorn app.main:app --host 0.0.0.0 --reload
+```
+
+`--host 0.0.0.0` binds every network interface instead of only the
+loopback one; `CONVERSATION_ALLOWED_ORIGINS` (comma-separated) adds the
+phone's actual origin to the CORS allowlist. The frontend's own
+Settings page holds the corresponding "Conversation Backend" section
+(`src/infrastructure/conversation/ConversationBackendSettings.ts`),
+which a learner points at `http://<the backend machine's LAN IP>:8000`.
+
+A LAN-only setup like this needs no token — the network itself is the
+trust boundary, and CORS covers the one channel (a browser tab) that
+matters on a machine you don't also expect curl-wielding strangers on.
+Reaching the backend from outside the LAN is a different story — see
+`backend/README.md`'s Cloudflare Tunnel section, where
+`CONVERSATION_BACKEND_TOKEN` stops being optional.
 
 ## Concurrency
 
@@ -235,6 +273,10 @@ behind `MODEL_LOCK`.
 
 ## Error shapes
 
+- `401 Unauthorized` — only possible when `CONVERSATION_BACKEND_TOKEN`
+  is set on the process; the request's `X-Conversation-Backend-Token`
+  header was missing or did not match. Checked before every other
+  route-specific error below, on every `/conversation/session/*` route.
 - `422 Unprocessable Entity` — FastAPI/Pydantic request validation
   failure (missing/malformed field). Standard FastAPI error body.
 - `404 Not Found` — a session endpoint was given a `session_id` this

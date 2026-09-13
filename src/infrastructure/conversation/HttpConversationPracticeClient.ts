@@ -5,14 +5,19 @@ import type {
 	ConversationVerdict,
 } from "../../domain/conversation/types";
 import type { ConversationPracticePort } from "../../domain/ports/ConversationPracticePort";
+import {
+	getConversationBackendToken,
+	getConversationBackendUrl,
+} from "./ConversationBackendSettings";
 
 /**
- * Where the local conversation backend listens (`docs/conversation-backend-api.md`).
- * A module constant, not user-configurable: the backend is a local-only,
- * single-user process, and the deployed GitHub Pages build can't reach it at
- * all — which is exactly the `"unavailable"` path below.
+ * Must match the backend's own `X-Conversation-Backend-Token` check
+ * (`backend/app/main.py`'s `_require_valid_token`) — sent only when a
+ * token is actually set (empty means "this backend needs none", the
+ * same-machine/LAN default), so a request against an unconfigured
+ * backend carries no extra header at all.
  */
-export const CONVERSATION_BACKEND_BASE_URL = "http://localhost:8000";
+const BACKEND_TOKEN_HEADER = "X-Conversation-Backend-Token";
 
 /**
  * Generous on purpose: a cold backend loads Whisper, a 7B judge model and
@@ -63,8 +68,12 @@ async function fetchJson(
 		}, CONVERSATION_REQUEST_TIMEOUT_MS);
 	});
 	const attempt = (async (): Promise<unknown> => {
-		const response = await fetch(`${CONVERSATION_BACKEND_BASE_URL}${path}`, {
+		const headers = new Headers(init.headers);
+		const token = getConversationBackendToken();
+		if (token) headers.set(BACKEND_TOKEN_HEADER, token);
+		const response = await fetch(`${getConversationBackendUrl()}${path}`, {
 			...init,
+			headers,
 			signal: controller.signal,
 		});
 		return response.ok ? await response.json() : null;

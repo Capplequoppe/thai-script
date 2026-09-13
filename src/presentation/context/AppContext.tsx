@@ -13,6 +13,7 @@ import { PlayGameUseCase } from "../../application/use-cases/PlayGameUseCase";
 import { QueryDashboardUseCase } from "../../application/use-cases/QueryDashboardUseCase";
 import { StartLessonUseCase } from "../../application/use-cases/StartLessonUseCase";
 import { GameItemSelectionService } from "../../domain/game/services/GameItemSelectionService";
+import { MinimalPairGameItemSource } from "../../domain/game/services/MinimalPairGameItemSource";
 import { SentenceGameItemSource } from "../../domain/game/services/SentenceGameItemSource";
 import { SymbolGameItemSource } from "../../domain/game/services/SymbolGameItemSource";
 import { ToneGameItemSource } from "../../domain/game/services/ToneGameItemSource";
@@ -35,9 +36,13 @@ import {
 } from "../../domain/shared/services/ApprenticeService";
 import { LeechService } from "../../domain/shared/services/LeechService";
 import type { LearnerState, SessionSummary } from "../../domain/shared/types";
+import toneMinimalPairData from "../../domain/vocabulary/data/tone-minimal-pairs.json";
 import vocabularyData from "../../domain/vocabulary/data/vocabulary.json";
 import { VocabularyService } from "../../domain/vocabulary/services/VocabularyLessonService";
-import type { VocabEntry } from "../../domain/vocabulary/types";
+import type {
+	ToneMinimalPairGroup,
+	VocabEntry,
+} from "../../domain/vocabulary/types";
 import { HttpConversationPracticeClient } from "../../infrastructure/conversation/HttpConversationPracticeClient";
 import { NotificationScheduler } from "../../infrastructure/notifications/NotificationScheduler";
 import { LocalStorageJsonStore } from "../../infrastructure/persistence/JsonStore";
@@ -146,6 +151,14 @@ const gameUseCase = new PlayGameUseCase(
 	// this closure, never `grammarService` itself, so it stays incapable of
 	// writing a card (SRS isolation, see PlayGameUseCase's class doc).
 	() => grammarService.getUnlockedGrammarPoints(),
+	// Which words sound alike comes from a generated data file, not from
+	// anything computed at runtime — see `scripts/generate-tone-minimal-
+	// pairs.py` for why neither `romanization` nor `syllables` can decide it.
+	new MinimalPairGameItemSource(
+		cardRepo,
+		vocabularyData as VocabEntry[],
+		toneMinimalPairData as ToneMinimalPairGroup[],
+	),
 );
 
 export interface AppContextValue {

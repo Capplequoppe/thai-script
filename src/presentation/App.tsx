@@ -8,13 +8,13 @@ import { DictionaryPage } from "./pages/DictionaryPage";
 import { GamePage } from "./pages/GamePage";
 import { GrammarPage } from "./pages/GrammarPage";
 import { LearnedItemsPage } from "./pages/LearnedItemsPage";
+import { LearnPage } from "./pages/LearnPage";
 import { LessonPage } from "./pages/LessonPage";
 import { ProgressPage } from "./pages/ProgressPage";
 import { ReviewPage } from "./pages/ReviewPage";
 import { SentencePage } from "./pages/SentencePage";
 import { SettingsPage } from "./pages/SettingsPage";
 import { StageItemsPage } from "./pages/StageItemsPage";
-import { VocabListPage } from "./pages/VocabListPage";
 import { VocabularyPage } from "./pages/VocabularyPage";
 
 export function App() {
@@ -28,6 +28,7 @@ export function App() {
 						<Route path="/catch-up/:lessonNumber" element={<CatchUpPage />} />
 						<Route path="/review" element={<ReviewPage />} />
 						<Route path="/game" element={<GamePage />} />
+						<Route path="/learn" element={<LearnPage />} />
 						<Route path="/items" element={<LearnedItemsPage />} />
 						<Route path="/progress" element={<ProgressPage />} />
 						<Route path="/progress/:stage" element={<StageItemsPage />} />
@@ -41,7 +42,12 @@ export function App() {
 							path="/conversation"
 							element={<ConversationPracticePage />}
 						/>
-						<Route path="/vocab" element={<VocabListPage />} />
+						{/* Vocabulary browsing merged into the Dictionary page — it
+						    shows learned words under its "Learned" scope. */}
+						<Route
+							path="/vocab"
+							element={<Navigate to="/dictionary" replace />}
+						/>
 						<Route path="/dictionary" element={<DictionaryPage />} />
 						<Route path="*" element={<Navigate to="/" replace />} />
 					</Route>
