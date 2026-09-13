@@ -1,9 +1,6 @@
 import type { CardPool } from "../../shared/CardPool";
 import type { RecallRating } from "../value-objects/RecallRating";
-import type {
-	ResponseTimingData,
-	SrsSchedule,
-} from "../value-objects/SrsSchedule";
+import type { SrsSchedule } from "../value-objects/SrsSchedule";
 import type { SrsStage } from "../value-objects/SrsStage";
 
 export abstract class ReviewableCard {
@@ -36,12 +33,8 @@ export abstract class ReviewableCard {
 		return this._schedule.lapseCount >= threshold;
 	}
 
-	recordReview(
-		rating: RecallRating,
-		now: string,
-		timing?: ResponseTimingData,
-	): void {
-		this._schedule = this._schedule.applyReview(rating, now, timing);
+	recordReview(rating: RecallRating, now: string): void {
+		this._schedule = this._schedule.applyReview(rating, now);
 	}
 
 	resurrect(now?: string): void {

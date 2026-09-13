@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 import { Button } from "@/presentation/components/ui/button";
 import type { VocabularyCard } from "../../../domain/vocabulary/types";
 import { useResetOnCardChange } from "../../hooks/useResetOnCardChange";
@@ -8,7 +8,7 @@ type Tone = (typeof TONES)[number];
 
 interface ToneQuizProps {
 	card: VocabularyCard;
-	onAnswer: (correct: boolean, responseTimeMs: number) => void;
+	onAnswer: (correct: boolean) => void;
 }
 
 export function ToneQuiz({ card, onAnswer }: ToneQuizProps) {
@@ -17,7 +17,6 @@ export function ToneQuiz({ card, onAnswer }: ToneQuizProps) {
 		syllables.map(() => null),
 	);
 	const [revealed, setRevealed] = useState(false);
-	const displayedAtRef = useRef(Date.now());
 
 	// Reset on new card during render, so the graded selections are never
 	// painted against the new card. See `useResetOnCardChange`.
@@ -25,11 +24,6 @@ export function ToneQuiz({ card, onAnswer }: ToneQuizProps) {
 		setSelections(syllables.map(() => null));
 		setRevealed(false);
 	});
-
-	// biome-ignore lint/correctness/useExhaustiveDependencies: card.id restarts the response timer when the card changes
-	useEffect(() => {
-		displayedAtRef.current = Date.now();
-	}, [card.id]);
 
 	const allSelected = selections.every((s) => s !== null);
 	const correctTones = useMemo(
@@ -52,9 +46,8 @@ export function ToneQuiz({ card, onAnswer }: ToneQuizProps) {
 	const handleCheck = useCallback(() => {
 		if (!allSelected || revealed) return;
 		setRevealed(true);
-		const elapsed = Date.now() - displayedAtRef.current;
 		const allCorrect = selections.every((sel, i) => sel === correctTones[i]);
-		setTimeout(() => onAnswer(allCorrect, elapsed), allCorrect ? 600 : 5000);
+		setTimeout(() => onAnswer(allCorrect), allCorrect ? 600 : 5000);
 	}, [allSelected, revealed, selections, correctTones, onAnswer]);
 
 	return (

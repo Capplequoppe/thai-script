@@ -2,11 +2,6 @@ import { EaseFactor } from "./EaseFactor";
 import type { RecallRating } from "./RecallRating";
 import { SrsStage } from "./SrsStage";
 
-export interface ResponseTimingData {
-	responseTimeMs: number;
-	averageResponseTimeMs: number;
-}
-
 export interface SrsDataDTO {
 	easeFactor: number;
 	interval: number;
@@ -37,17 +32,6 @@ export const LAPSE_RECOVERY_INTERVAL_MINUTES = 240; // 4 hours
 function addMinutesToIso(iso: string, minutes: number): string {
 	const d = new Date(iso);
 	return new Date(d.getTime() + minutes * 60_000).toISOString();
-}
-
-function applyTimingModulation(
-	interval: number,
-	timing: ResponseTimingData,
-): number {
-	const ratio = timing.responseTimeMs / timing.averageResponseTimeMs;
-	if (ratio < 0.7) return Math.round(interval * 1.1);
-	if (ratio > 2.0) return Math.round(interval * 0.7);
-	if (ratio > 1.3) return Math.round(interval * 0.85);
-	return interval;
 }
 
 export class SrsSchedule {
@@ -84,13 +68,9 @@ export class SrsSchedule {
 		return new Date(this.nextReviewDate) <= new Date(now);
 	}
 
-	applyReview(
-		rating: RecallRating,
-		now: string,
-		timing?: ResponseTimingData,
-	): SrsSchedule {
+	applyReview(rating: RecallRating, now: string): SrsSchedule {
 		if (this.isInLearning) return this.handleLearningPhase(rating, now);
-		return this.handleGraduatedPhase(rating, now, timing);
+		return this.handleGraduatedPhase(rating, now);
 	}
 
 	resurrect(now?: string): SrsSchedule {
@@ -295,11 +275,7 @@ export class SrsSchedule {
 		);
 	}
 
-	private handleGraduatedPhase(
-		rating: RecallRating,
-		now: string,
-		timing?: ResponseTimingData,
-	): SrsSchedule {
+	private handleGraduatedPhase(rating: RecallRating, now: string): SrsSchedule {
 		let newEf = this.easeFactor;
 		let newInterval: number;
 
@@ -332,13 +308,6 @@ export class SrsSchedule {
 				newInterval = Math.round(this.interval * this.easeFactor.value * 1.3);
 				break;
 			}
-		}
-
-		// A lapse's recovery interval is a fixed, deliberately short window —
-		// timing modulation (which stretches/shrinks based on response speed)
-		// only makes sense for the normal growth path.
-		if (timing && !rating.isLapse) {
-			newInterval = applyTimingModulation(newInterval, timing);
 		}
 
 		newInterval = Math.min(newInterval, MAX_INTERVAL_MINUTES);

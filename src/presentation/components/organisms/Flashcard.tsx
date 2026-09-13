@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import type { RecallRating } from "../../../domain/shared/types";
 import { SrsStage } from "../../../domain/srs/value-objects/SrsStage";
 import { useResetOnCardChange } from "../../hooks/useResetOnCardChange";
@@ -23,12 +23,11 @@ interface QuizCardView {
 
 interface Props {
 	card: QuizCardView;
-	onRate: (rating: RecallRating, responseTimeMs: number) => void;
+	onRate: (rating: RecallRating) => void;
 }
 
 export function Flashcard({ card, onRate }: Props) {
 	const [revealed, setRevealed] = useState(false);
-	const revealedAtRef = useRef(0);
 
 	const cardProperty =
 		"property" in card ? (card as Record<string, unknown>).property : null;
@@ -89,13 +88,11 @@ export function Flashcard({ card, onRate }: Props) {
 
 	const handleReveal = useCallback(() => {
 		setRevealed(true);
-		revealedAtRef.current = Date.now();
 	}, []);
 
 	const handleRate = useCallback(
 		(rating: RecallRating) => {
-			const elapsed = Date.now() - revealedAtRef.current;
-			onRate(rating, elapsed);
+			onRate(rating);
 		},
 		[onRate],
 	);

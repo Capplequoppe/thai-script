@@ -10,7 +10,7 @@ interface SentenceBuilderProps {
 		choices: readonly string[];
 		audioUrl?: string;
 	};
-	onAnswer: (correct: boolean, responseTimeMs: number) => void;
+	onAnswer: (correct: boolean) => void;
 }
 
 export function SentenceBuilder({ card, onAnswer }: SentenceBuilderProps) {
@@ -18,7 +18,6 @@ export function SentenceBuilder({ card, onAnswer }: SentenceBuilderProps) {
 	const [feedback, setFeedback] = useState<"correct" | "incorrect" | null>(
 		null,
 	);
-	const displayedAtRef = useRef(Date.now());
 	const audioRef = useRef<HTMLAudioElement | null>(null);
 
 	const playAudio = useCallback(() => {
@@ -39,11 +38,6 @@ export function SentenceBuilder({ card, onAnswer }: SentenceBuilderProps) {
 		setBuilt([]);
 		setFeedback(null);
 	});
-
-	// biome-ignore lint/correctness/useExhaustiveDependencies: card.id restarts the response timer when the card changes
-	useEffect(() => {
-		displayedAtRef.current = Date.now();
-	}, [card.id]);
 
 	// Auto-play audio on mount / card change
 	useEffect(() => {
@@ -72,9 +66,8 @@ export function SentenceBuilder({ card, onAnswer }: SentenceBuilderProps) {
 		const builtString = built.join("");
 		const correctChars = [...card.correctAnswer].filter((ch) => ch !== " ");
 		const isCorrect = builtString === correctChars.join("");
-		const elapsed = Date.now() - displayedAtRef.current;
 		setFeedback(isCorrect ? "correct" : "incorrect");
-		setTimeout(() => onAnswer(isCorrect, elapsed), isCorrect ? 500 : 3000);
+		setTimeout(() => onAnswer(isCorrect), isCorrect ? 500 : 3000);
 	}, [built, card.correctAnswer, feedback, onAnswer]);
 
 	return (

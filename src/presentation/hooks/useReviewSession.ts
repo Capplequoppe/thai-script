@@ -65,10 +65,8 @@ export function useReviewSession(
 	);
 
 	const handleMcAnswer = useCallback(
-		(correct: boolean, responseTimeMs?: number) => {
-			return handleReviewAdvance(
-				ratingFromCorrectness(correct, responseTimeMs),
-			);
+		(correct: boolean) => {
+			return handleReviewAdvance(ratingFromCorrectness(correct));
 		},
 		[handleReviewAdvance],
 	);

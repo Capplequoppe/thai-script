@@ -360,7 +360,7 @@ describe("ReviewService", () => {
 
 		it("recordReview updates vocab card SRS data", () => {
 			seedVocabCards(storage);
-			reviewService.recordReview("vocab-1", 4, FUTURE_NOW, undefined, "vocab");
+			reviewService.recordReview("vocab-1", 4, FUTURE_NOW, "vocab");
 
 			const state = storage.load();
 			const updated = state.vocabCards["vocab-1"]!;
@@ -456,7 +456,6 @@ describe("ReviewService", () => {
 				"grammar:g1:recognition",
 				4,
 				FUTURE_NOW,
-				undefined,
 				"grammar",
 			);
 

@@ -13,7 +13,7 @@ interface SentenceSelfReviewCardData {
 
 interface Props {
 	card: SentenceSelfReviewCardData;
-	onRate: (rating: RecallRating, responseTimeMs: number) => void;
+	onRate: (rating: RecallRating) => void;
 }
 
 /**
@@ -35,7 +35,6 @@ interface Props {
  */
 export function SentenceSelfReviewCard({ card, onRate }: Props) {
 	const [revealed, setRevealed] = useState(false);
-	const revealedAtRef = useRef(0);
 	const audioRef = useRef<HTMLAudioElement | null>(null);
 	const isListening = card.property === "listeningComprehension";
 
@@ -63,13 +62,11 @@ export function SentenceSelfReviewCard({ card, onRate }: Props) {
 
 	const handleReveal = useCallback(() => {
 		setRevealed(true);
-		revealedAtRef.current = Date.now();
 	}, []);
 
 	const handleRate = useCallback(
 		(rating: RecallRating) => {
-			const elapsed = Date.now() - revealedAtRef.current;
-			onRate(rating, elapsed);
+			onRate(rating);
 		},
 		[onRate],
 	);

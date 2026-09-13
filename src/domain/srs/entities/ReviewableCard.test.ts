@@ -98,7 +98,7 @@ describe("ReviewableCard", () => {
 		expect(card.schedule.repetitions).toBe(originalSchedule.repetitions + 1);
 	});
 
-	it("recordReview accepts optional timing data", () => {
+	it("recordReview advances the schedule from the supplied review moment", () => {
 		const dto = {
 			easeFactor: 2.5,
 			interval: 4320,
@@ -110,10 +110,7 @@ describe("ReviewableCard", () => {
 		};
 		const card = makeCard({ schedule: SrsSchedule.fromDTO(dto) });
 
-		card.recordReview(RecallRating.GOOD, "2025-01-04T00:00:00.000Z", {
-			responseTimeMs: 500,
-			averageResponseTimeMs: 1000,
-		});
+		card.recordReview(RecallRating.GOOD, "2025-01-04T00:00:00.000Z");
 
 		expect(card.schedule.lastReviewDate).toBe("2025-01-04T00:00:00.000Z");
 	});

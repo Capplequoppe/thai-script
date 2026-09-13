@@ -134,7 +134,7 @@ function SentenceQuizCard({
 	onAnswer,
 }: {
 	card: SentenceCard;
-	onAnswer: (correct: boolean, responseTimeMs: number) => void;
+	onAnswer: (correct: boolean) => void;
 }) {
 	switch (card.property) {
 		case "readingComprehension":
@@ -142,21 +142,14 @@ function SentenceQuizCard({
 			return (
 				<SentenceSelfReviewCard
 					card={card}
-					onRate={(rating, responseTimeMs) =>
-						onAnswer(rating >= 3, responseTimeMs)
-					}
+					onRate={(rating) => onAnswer(rating >= 3)}
 				/>
 			);
 		case "sentenceBuilding":
 			return <SentenceBuilder card={card} onAnswer={onAnswer} />;
 		case "selfValidation":
 			return (
-				<Flashcard
-					card={card}
-					onRate={(rating, responseTimeMs) =>
-						onAnswer(rating >= 3, responseTimeMs)
-					}
-				/>
+				<Flashcard card={card} onRate={(rating) => onAnswer(rating >= 3)} />
 			);
 		default:
 			return null;
@@ -281,8 +274,8 @@ export function SentencePage() {
 	);
 
 	const handleMcAnswer = useCallback(
-		(correct: boolean, responseTimeMs?: number) => {
-			handleReviewAdvance(ratingFromCorrectness(correct, responseTimeMs));
+		(correct: boolean) => {
+			handleReviewAdvance(ratingFromCorrectness(correct));
 		},
 		[handleReviewAdvance],
 	);

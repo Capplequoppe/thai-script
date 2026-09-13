@@ -113,16 +113,12 @@ describe("ConductReviewUseCase", () => {
 
 	describe("recordReview", () => {
 		it("delegates to review service with correct parameter order", () => {
-			useCase.recordReview("card-1", 4, "vocab", {
-				responseTimeMs: 500,
-				averageResponseTimeMs: 600,
-			});
+			useCase.recordReview("card-1", 4, "vocab");
 
 			expect(mockReviewService.recordReview).toHaveBeenCalledWith(
 				"card-1",
 				4,
 				undefined,
-				{ responseTimeMs: 500, averageResponseTimeMs: 600 },
 				"vocab",
 			);
 		});
