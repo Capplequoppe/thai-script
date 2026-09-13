@@ -18,7 +18,7 @@ describe("BottomTabBar", () => {
 	// label (e.g. LotusIcon's `<title>Home</title>` next to the "Home" tab
 	// text) — a plain text query would match both, so tabs are queried by
 	// link role/name instead, which correctly ignores the hidden icon title.
-	it("shows no Vocab, Grammar, or Sentences tab when nothing is unlocked", () => {
+	it("shows no Dictionary, Grammar, or Sentences tab when nothing is unlocked", () => {
 		render(
 			<MemoryRouter>
 				<BottomTabBar
@@ -33,12 +33,15 @@ describe("BottomTabBar", () => {
 
 		expect(screen.getByRole("link", { name: "Home" })).toBeTruthy();
 		expect(screen.getByRole("link", { name: "Items" })).toBeTruthy();
-		expect(screen.queryByRole("link", { name: "Vocab" })).toBeNull();
 		expect(screen.queryByRole("link", { name: "Dictionary" })).toBeNull();
 		expect(screen.queryByRole("link", { name: "Grammar" })).toBeNull();
 		expect(screen.queryByRole("link", { name: "Sentences" })).toBeNull();
 	});
 
+	// Vocabulary browsing lives entirely on the Dictionary tab now — the
+	// separate "Vocab" tab was a strict subset of it, so unlocking the vocab
+	// pool contributes exactly one tab.
+	//
 	// The mobile bar (`mobileOnly`) previously had no Grammar/Sentences entry
 	// at all, regardless of unlock state — the only paths to those pages were
 	// the desktop-only nav and, for Grammar, the Dashboard's quick action.
@@ -56,7 +59,6 @@ describe("BottomTabBar", () => {
 			</MemoryRouter>,
 		);
 
-		expect(screen.getByRole("link", { name: "Vocab" })).toBeTruthy();
 		expect(screen.getByRole("link", { name: "Dictionary" })).toBeTruthy();
 		expect(screen.getByRole("link", { name: "Grammar" })).toBeTruthy();
 		expect(screen.getByRole("link", { name: "Sentences" })).toBeTruthy();
@@ -76,7 +78,7 @@ describe("BottomTabBar", () => {
 			</MemoryRouter>,
 		);
 
-		expect(screen.queryByRole("link", { name: "Vocab" })).toBeNull();
+		expect(screen.queryByRole("link", { name: "Dictionary" })).toBeNull();
 		expect(screen.getByRole("link", { name: "Grammar" })).toBeTruthy();
 		expect(screen.queryByRole("link", { name: "Sentences" })).toBeNull();
 	});

@@ -33,7 +33,6 @@ type Tab =
 	| "toneRules"
 	| "rareVowels"
 	| "numerals"
-	| "vocabulary"
 	| "videos";
 
 function isEmbedUrl(url: string): boolean {
@@ -261,7 +260,6 @@ export function LearnedItemsPage() {
 					},
 				]
 			: []),
-		{ key: "vocabulary", label: "Vocab", count: vocabWordCount },
 		{ key: "videos", label: "Videos", count: videos.length },
 	];
 
@@ -288,7 +286,18 @@ export function LearnedItemsPage() {
 
 	return (
 		<div className="space-y-6 py-4">
-			<h1 className="text-2xl font-bold">Learned Items</h1>
+			<div className="flex items-center gap-3">
+				<h1 className="text-2xl font-bold flex-1">Learned Items</h1>
+				{/* Words live on the Dictionary page, under its "Learned" scope. */}
+				<button
+					type="button"
+					onClick={() => navigate("/dictionary")}
+					className="text-sm hover:underline"
+					style={{ color: "var(--color-primary)" }}
+				>
+					{vocabWordCount} word{vocabWordCount === 1 ? "" : "s"} &rarr;
+				</button>
+			</div>
 
 			{/* Tabs */}
 			<div className="overflow-x-auto -mx-4 px-4 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
@@ -301,10 +310,6 @@ export function LearnedItemsPage() {
 							type="button"
 							key={key}
 							onClick={() => {
-								if (key === "vocabulary") {
-									navigate("/vocab");
-									return;
-								}
 								setTab(key);
 								setSelectedIdx(null);
 							}}
@@ -333,7 +338,7 @@ export function LearnedItemsPage() {
 			</div>
 
 			{/* Detail view */}
-			{selectedIdx !== null && tab !== "videos" && tab !== "vocabulary" && (
+			{selectedIdx !== null && tab !== "videos" && (
 				<div
 					className="border rounded-xl p-4"
 					style={{ borderColor: "var(--color-border)" }}

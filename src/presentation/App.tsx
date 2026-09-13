@@ -14,7 +14,6 @@ import { ReviewPage } from "./pages/ReviewPage";
 import { SentencePage } from "./pages/SentencePage";
 import { SettingsPage } from "./pages/SettingsPage";
 import { StageItemsPage } from "./pages/StageItemsPage";
-import { VocabListPage } from "./pages/VocabListPage";
 import { VocabularyPage } from "./pages/VocabularyPage";
 
 export function App() {
@@ -41,7 +40,12 @@ export function App() {
 							path="/conversation"
 							element={<ConversationPracticePage />}
 						/>
-						<Route path="/vocab" element={<VocabListPage />} />
+						{/* Vocabulary browsing merged into the Dictionary page — it
+						    shows learned words under its "Learned" scope. */}
+						<Route
+							path="/vocab"
+							element={<Navigate to="/dictionary" replace />}
+						/>
 						<Route path="/dictionary" element={<DictionaryPage />} />
 						<Route path="*" element={<Navigate to="/" replace />} />
 					</Route>
