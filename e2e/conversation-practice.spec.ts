@@ -107,11 +107,15 @@ test.describe("conversation practice — real backend, acceptable reply", () => 
 		page,
 	}) => {
 		// Seeded rather than run against an empty profile: the question is
-		// now drawn from the bank by what this learner knows, and the
-		// fake-mic fixture answers a "how are you" opener — which is what a
-		// 220-word learner is asked. (Phase 1 could hardcode the question;
-		// from here on the content is personalized, so the fixture and the
-		// seeded learner have to belong together.)
+		// drawn from the bank by what this learner knows, and the fake-mic
+		// fixture answers "which food do you like most?" — the entry a
+		// 220-word learner is asked against the bank/vocabulary ranking as
+		// of 2026-09-13 (`backend/scripts/generate_reply_pass_fixture.py`).
+		// Selection is a hash over the known-word set (`app/bank.py`), so a
+		// future vocabulary reranking can shift which entry this count
+		// selects and desync the fixture again — regenerate it with that
+		// script if this test starts failing on a transcript/verdict
+		// mismatch rather than a timing one.
 		await seedLearnedVocabulary(page, 220, 7, firstGrammarIds(5));
 		await page.goto("/thai-script/#/conversation");
 		const question = page.locator('p[lang="th"]');
@@ -261,16 +265,22 @@ test.describe("conversation practice — personalized by known vocabulary (AC4)"
 	test("two learners with different vocabulary get different questions", async ({
 		browser,
 	}) => {
-		// 220 and 250, not 150 and 400: task 3.2's gate requires
+		// 220 and 265, not 150 and 400: task 3.2's gate requires
 		// >= MIN_VOCAB_COUNT (200) words before /conversation is reachable at
 		// all, ruling out 150. Selection is entry-level containment with a
 		// hash-based tie-break among qualifying entries (task 2.3), which is
 		// not monotonic in word count — a larger gappy word set does not
-		// always unlock a different entry (220 and 400 land on the same one
-		// against the real shipped bank). 220 and 250 are confirmed, against
-		// that same real bank, to select two different entries.
+		// always unlock a different entry, and a vocabulary reranking (e.g.
+		// "rerank vocabulary for survival Thai") reshuffles which count maps
+		// to which entry entirely, since the known-word set a count produces
+		// changes even though the count itself didn't (220 and 250 used to
+		// differ; a reranking made them collide, which is what broke this
+		// test before). 220 and 265 are reconfirmed, against the bank and
+		// vocabulary ranking as of 2026-09-13, to select two different
+		// entries — re-verify against `app/bank.py`'s `select_entry` if a
+		// future vocabulary change breaks this again.
 		const beginner = await askOpeningQuestion(browser, 220);
-		const advanced = await askOpeningQuestion(browser, 250);
+		const advanced = await askOpeningQuestion(browser, 265);
 
 		expect(beginner.questionText).not.toEqual(advanced.questionText);
 
