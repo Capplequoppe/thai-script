@@ -147,14 +147,15 @@ test.describe("conversation practice — backend unreachable", () => {
 		// the locked page before ever attempting a backend call, which would
 		// make this assertion pass for the wrong reason.
 		await seedLearnedVocabulary(page, 220, 7, firstGrammarIds(5));
-		// No process is stopped and task 1.3's frozen base-URL constant is
-		// never repointed — this produces exactly the `fetch` rejection the
-		// adapter's `unavailable` path is already built to handle.
+		// No process is stopped and the backend address setting is left at
+		// its default (localhost:8000) — this produces exactly the `fetch`
+		// rejection the adapter's `unavailable` path is already built to
+		// handle.
 		await page.route("**/localhost:8000/**", (route) =>
 			route.abort("connectionrefused"),
 		);
 		await page.goto("/thai-script/#/conversation");
-		await expect(page.getByRole("alert")).toContainText("not running", {
+		await expect(page.getByRole("alert")).toContainText("isn't answering", {
 			timeout: 15_000,
 		});
 	});

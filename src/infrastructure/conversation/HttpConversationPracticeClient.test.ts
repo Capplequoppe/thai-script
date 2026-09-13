@@ -1,7 +1,7 @@
 // @vitest-environment jsdom
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
+import { DEFAULT_CONVERSATION_BACKEND_URL } from "./ConversationBackendSettings";
 import {
-	CONVERSATION_BACKEND_BASE_URL,
 	CONVERSATION_REQUEST_TIMEOUT_MS,
 	HttpConversationPracticeClient,
 } from "./HttpConversationPracticeClient";
@@ -62,7 +62,7 @@ describe("HttpConversationPracticeClient.startSession", () => {
 
 		const [url, init] = fetchSpy.mock.calls[0] as [string, RequestInit];
 		expect(url).toBe(
-			`${CONVERSATION_BACKEND_BASE_URL}/conversation/session/start`,
+			`${DEFAULT_CONVERSATION_BACKEND_URL}/conversation/session/start`,
 		);
 		expect(init.method).toBe("POST");
 		expect(JSON.parse(init.body as string)).toEqual({
@@ -128,7 +128,7 @@ describe("HttpConversationPracticeClient.next", () => {
 
 		const [url, init] = fetchSpy.mock.calls[0] as [string, RequestInit];
 		expect(url).toBe(
-			`${CONVERSATION_BACKEND_BASE_URL}/conversation/session/sess-1/next`,
+			`${DEFAULT_CONVERSATION_BACKEND_URL}/conversation/session/sess-1/next`,
 		);
 		expect(init.method).toBe("POST");
 		expect(init.body).toBeUndefined();
@@ -169,7 +169,7 @@ describe("HttpConversationPracticeClient.judgeReply", () => {
 
 		const [url, init] = fetchSpy.mock.calls[0] as [string, RequestInit];
 		expect(url).toBe(
-			`${CONVERSATION_BACKEND_BASE_URL}/conversation/session/sess-1/judge`,
+			`${DEFAULT_CONVERSATION_BACKEND_URL}/conversation/session/sess-1/judge`,
 		);
 		expect(init.method).toBe("POST");
 		expect(JSON.parse(init.body as string)).toEqual({

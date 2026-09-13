@@ -1,6 +1,10 @@
 import { useRef, useState } from "react";
 import { useNavigate } from "react-router";
 import { Button } from "@/presentation/components/ui/button";
+import {
+	getConversationBackendUrl,
+	setConversationBackendUrl,
+} from "../../infrastructure/conversation/ConversationBackendSettings";
 import { ConfirmDialog } from "../components/molecules/ConfirmDialog";
 import { useApp } from "../hooks/useApp";
 
@@ -12,6 +16,16 @@ function parseLimit(value: string): number | null {
 	const n = Number(value);
 	if (n < MIN_APPRENTICE_LIMIT || n > MAX_APPRENTICE_LIMIT) return null;
 	return n;
+}
+
+/**
+ * Loose on purpose: this only guards against an obviously-wrong value
+ * (empty, or missing a scheme) before it's saved — the real test of
+ * whether it's *right* is whether the conversation backend answers, which
+ * `ConversationPracticePage` already reports.
+ */
+function isPlausibleBackendUrl(value: string): boolean {
+	return /^https?:\/\/.+/.test(value.trim());
 }
 
 export function SettingsPage() {
@@ -36,6 +50,25 @@ export function SettingsPage() {
 		type: "success" | "error";
 		message: string;
 	} | null>(null);
+
+	const [backendUrl, setBackendUrl] = useState(getConversationBackendUrl());
+	const [backendUrlStatus, setBackendUrlStatus] = useState<{
+		type: "success" | "error";
+		message: string;
+	} | null>(null);
+
+	function handleSaveBackendUrl() {
+		if (!isPlausibleBackendUrl(backendUrl)) {
+			setBackendUrlStatus({
+				type: "error",
+				message: "Enter a full address, e.g. http://192.168.1.23:8000.",
+			});
+			return;
+		}
+		setConversationBackendUrl(backendUrl);
+		setBackendUrl(getConversationBackendUrl());
+		setBackendUrlStatus({ type: "success", message: "Backend address saved." });
+	}
 
 	function handleSaveLimits() {
 		const general = parseLimit(generalLimit);
@@ -227,6 +260,55 @@ export function SettingsPage() {
 						}}
 					>
 						{limitsStatus.message}
+					</p>
+				)}
+			</section>
+
+			{/* Conversation Practice */}
+			<section className="space-y-2">
+				<h2
+					className="text-sm font-semibold"
+					style={{ color: "var(--color-text-muted)" }}
+				>
+					Conversation Backend
+				</h2>
+				<p className="text-sm" style={{ color: "var(--color-text-muted)" }}>
+					Where this device looks for the conversation-practice backend. Leave
+					this as-is if the backend runs on this same device. To practice from a
+					phone while the backend runs on another machine (e.g. a PC with a GPU)
+					on the same network, enter that machine's address here — there is no
+					authentication, so only do this on a network you trust.
+				</p>
+				<label
+					htmlFor="conversation-backend-url"
+					className="text-sm flex flex-col gap-1 max-w-xs"
+				>
+					Backend address
+					<input
+						id="conversation-backend-url"
+						type="text"
+						inputMode="url"
+						placeholder="http://192.168.1.23:8000"
+						value={backendUrl}
+						onChange={(e) => setBackendUrl(e.target.value)}
+						className="rounded-md border px-3 py-2 text-sm"
+						style={{ borderColor: "var(--color-border)" }}
+					/>
+				</label>
+				<Button type="button" onClick={handleSaveBackendUrl}>
+					Save Backend Address
+				</Button>
+				{backendUrlStatus && (
+					<p
+						className="text-sm"
+						style={{
+							color:
+								backendUrlStatus.type === "success"
+									? "var(--color-master)"
+									: "var(--color-danger)",
+						}}
+					>
+						{backendUrlStatus.message}
 					</p>
 				)}
 			</section>
