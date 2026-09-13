@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { Button } from "@/presentation/components/ui/button";
+import { useResetOnCardChange } from "../../hooks/useResetOnCardChange";
 
 interface SentenceBuilderProps {
 	card: {
@@ -31,11 +32,16 @@ export function SentenceBuilder({ card, onAnswer }: SentenceBuilderProps) {
 		audio.play().catch(() => {});
 	}, [card.audioUrl]);
 
-	// Reset state when card changes
-	// biome-ignore lint/correctness/useExhaustiveDependencies: card.id resets state when the card changes
-	useEffect(() => {
+	// Reset state when the card changes, during render — an effect resets after
+	// paint, flashing the previous sentence and its verdict against the new
+	// card. See `useResetOnCardChange`.
+	useResetOnCardChange(card.id, () => {
 		setBuilt([]);
 		setFeedback(null);
+	});
+
+	// biome-ignore lint/correctness/useExhaustiveDependencies: card.id restarts the response timer when the card changes
+	useEffect(() => {
 		displayedAtRef.current = Date.now();
 	}, [card.id]);
 

@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import type { RecallRating } from "../../../domain/shared/types";
 import { SrsStage } from "../../../domain/srs/value-objects/SrsStage";
+import { useResetOnCardChange } from "../../hooks/useResetOnCardChange";
 import {
 	DrawingCanvas,
 	type DrawingCanvasHandle,
@@ -48,10 +49,15 @@ export function DrawingQuiz({ card, onRate }: Props) {
 		audio.play().catch(() => {});
 	}, [card.audioUrl]);
 
-	// Reset state on card change
-	// biome-ignore lint/correctness/useExhaustiveDependencies: card.id resets state when the card changes
-	useEffect(() => {
+	// Reset state on card change — during render, so the answer is never painted
+	// for the new card (see `useResetOnCardChange`). Clearing the canvas is DOM
+	// work, so it stays in an effect.
+	useResetOnCardChange(card.id, () => {
 		setRevealed(false);
+	});
+
+	// biome-ignore lint/correctness/useExhaustiveDependencies: card.id clears the canvas when the card changes
+	useEffect(() => {
 		canvasRef.current?.clear();
 	}, [card.id]);
 
