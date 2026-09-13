@@ -109,12 +109,12 @@ describe("SettingsPage — Learning Pace", () => {
 });
 
 describe("SettingsPage — Conversation Backend", () => {
-	it("prefills the backend address with the same-machine default", () => {
+	it("starts blank (automatic) when no override has been saved", () => {
 		renderSettings();
 
 		expect(
 			(screen.getByLabelText("Backend address") as HTMLInputElement).value,
-		).toBe(DEFAULT_CONVERSATION_BACKEND_URL);
+		).toBe("");
 	});
 
 	it("saves a valid LAN address and persists it", () => {
@@ -141,16 +141,38 @@ describe("SettingsPage — Conversation Backend", () => {
 		expect(getConversationBackendUrl()).toBe(DEFAULT_CONVERSATION_BACKEND_URL);
 	});
 
-	it("rejects a blank address and does not persist it", () => {
+	it("treats a blank address as choosing automatic, not as an error", () => {
 		renderSettings();
+
+		fireEvent.change(screen.getByLabelText("Backend address"), {
+			target: { value: "http://192.168.1.23:8000" },
+		});
+		fireEvent.click(screen.getByText("Save Backend Settings"));
 
 		fireEvent.change(screen.getByLabelText("Backend address"), {
 			target: { value: "   " },
 		});
 		fireEvent.click(screen.getByText("Save Backend Settings"));
 
-		expect(screen.getByText(/enter a full address/i)).toBeTruthy();
+		expect(screen.getByText(/using the automatic address/i)).toBeTruthy();
 		expect(getConversationBackendUrl()).toBe(DEFAULT_CONVERSATION_BACKEND_URL);
+	});
+
+	it("resets a saved override back to automatic via its own button", () => {
+		renderSettings();
+
+		fireEvent.change(screen.getByLabelText("Backend address"), {
+			target: { value: "http://192.168.1.23:8000" },
+		});
+		fireEvent.click(screen.getByText("Save Backend Settings"));
+		expect(getConversationBackendUrl()).toBe("http://192.168.1.23:8000");
+
+		fireEvent.click(screen.getByText("Reset Address to Automatic"));
+
+		expect(getConversationBackendUrl()).toBe(DEFAULT_CONVERSATION_BACKEND_URL);
+		expect(
+			(screen.getByLabelText("Backend address") as HTMLInputElement).value,
+		).toBe("");
 	});
 
 	it("prefills the auth token as empty when none has been saved", () => {

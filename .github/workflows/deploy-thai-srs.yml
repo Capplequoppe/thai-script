@@ -47,6 +47,18 @@ jobs:
 
       - name: Build
         run: pnpm build
+        env:
+          # The current Cloudflare Tunnel URL for the conversation-practice
+          # backend, or empty on an ordinary push where nothing has set it —
+          # `ConversationBackendSettings.ts` falls back to the same-machine
+          # address either way. Kept current by
+          # `backend/scripts/run_with_tunnel.sh` (`gh variable set
+          # CONVERSATION_BACKEND_URL ...`), which also triggers this
+          # workflow via `workflow_dispatch` so a fresh tunnel URL reaches
+          # deployed devices without a code change. A public *address*
+          # only — never a secret, and never the auth token — see that
+          # settings file's own doc comment for why.
+          VITE_CONVERSATION_BACKEND_URL: ${{ vars.CONVERSATION_BACKEND_URL }}
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3

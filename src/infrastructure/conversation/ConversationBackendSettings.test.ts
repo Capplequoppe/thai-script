@@ -1,6 +1,7 @@
 import { afterEach, beforeEach, describe, expect, it } from "vitest";
 import {
 	CONVERSATION_BACKEND_URL_STORAGE_KEY,
+	clearConversationBackendUrl,
 	DEFAULT_CONVERSATION_BACKEND_URL,
 	getConversationBackendToken,
 	getConversationBackendUrl,
@@ -97,6 +98,31 @@ describe("setConversationBackendUrl", () => {
 	it("leaves an already-saved auth token untouched", () => {
 		setConversationBackendToken("s3cret");
 		setConversationBackendUrl("http://192.168.1.23:8000");
+		expect(getConversationBackendToken()).toBe("s3cret");
+	});
+});
+
+describe("clearConversationBackendUrl", () => {
+	it("removes a saved override so the default is used again", () => {
+		setConversationBackendUrl("http://192.168.1.23:8000");
+		clearConversationBackendUrl();
+		expect(getConversationBackendUrl()).toBe(DEFAULT_CONVERSATION_BACKEND_URL);
+	});
+
+	it("stores no baseUrl at all, not a frozen copy of today's default", () => {
+		setConversationBackendUrl("http://192.168.1.23:8000");
+		clearConversationBackendUrl();
+
+		const raw = JSON.parse(
+			fakeLocalStorage.getItem(CONVERSATION_BACKEND_URL_STORAGE_KEY) as string,
+		);
+		expect(raw.baseUrl).toBeUndefined();
+	});
+
+	it("leaves the auth token untouched", () => {
+		setConversationBackendToken("s3cret");
+		setConversationBackendUrl("http://192.168.1.23:8000");
+		clearConversationBackendUrl();
 		expect(getConversationBackendToken()).toBe("s3cret");
 	});
 });

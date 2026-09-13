@@ -79,8 +79,42 @@ when the tunnel already reaches it locally.
 
 Install `cloudflared` (see Cloudflare's docs for your OS), then:
 
-**Quick tunnel — no domain needed, URL changes every time.** The
-fastest way to try this or to use it occasionally:
+**Quick tunnel — no domain needed, URL changes every time.** No
+Cloudflare account or domain required, but the URL changes every time
+`cloudflared` restarts — the whole reason the script and the CI wiring
+below exist.
+
+```
+backend/scripts/run_with_tunnel.sh
+```
+
+Does everything by hand: generates and persists an auth token
+(`backend/.tunnel-token`, gitignored — reused across runs, never
+committed), starts uvicorn with it and the deployed PWA's real origin
+(read from the GitHub Pages API, so this stays correct even if the repo
+is renamed) allowed, starts the quick tunnel, and prints both the URL
+and the token. If `gh` is authenticated on this machine, it also:
+
+1. Sets the `CONVERSATION_BACKEND_URL` repo variable to the new URL
+   (`.github/workflows/deploy-thai-srs.yml` bakes this in as the
+   frontend's `DEFAULT_CONVERSATION_BACKEND_URL` at build time — see
+   `src/infrastructure/conversation/ConversationBackendSettings.ts`).
+2. Triggers a redeploy (`gh workflow run deploy-thai-srs.yml`).
+
+A phone that has never touched Settings (or has used "Reset Address to
+Automatic" there) picks up the new URL on its next reload, once that
+redeploy finishes — no manual re-entry needed for the *address*. **The
+auth token is a different story and always needs entering by hand,
+once per device**, in Settings → Conversation Backend → Auth token:
+it can never be baked into the build the way the URL is, because that
+build is a public static site anyone can read the source of. Stop the
+script with Ctrl+C; it cleans up both the backend and the tunnel.
+
+Without `gh` authenticated, everything above still runs except the two
+CI steps — the tunnel works, but every device needs both the URL and
+the token entered by hand in Settings.
+
+Doing this manually instead of via the script:
 
 ```
 CONVERSATION_BACKEND_TOKEN="a long random passphrase" \
@@ -91,10 +125,9 @@ cloudflared tunnel --url http://localhost:8000
 
 `cloudflared` prints a `https://<random-words>.trycloudflare.com` URL.
 Put that in the app's Settings → Conversation Backend address, and the
-same passphrase in its Auth token field. Restarting `cloudflared` gets
-you a *new* random URL — there's no account or domain involved, so
-Cloudflare has nothing to attach a stable name to. Re-enter it in
-Settings each time.
+same passphrase in its Auth token field — and repeat both by hand every
+time you restart `cloudflared`, since nothing here updates the CI
+default for you.
 
 **Named tunnel — a stable hostname, once you have a domain on your
 Cloudflare account.** A quick tunnel's random URL is fine occasionally,
@@ -126,3 +159,13 @@ in front of the hostname (requires the domain too) for a second gate
 that runs before Cloudflare even forwards the request to your
 machine — the token above still matters even with Access in front of
 it, in case Access is ever misconfigured or bypassed.
+
+A stable hostname never changes, so it only needs baking into the CI
+default *once*, by hand, rather than on every run — `run_with_tunnel.sh`
+is built around the quick tunnel's changing URL and isn't the right
+tool here:
+
+```
+gh variable set CONVERSATION_BACKEND_URL --body "https://conversation.yourdomain.com"
+gh workflow run deploy-thai-srs.yml
+```
