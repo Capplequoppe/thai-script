@@ -1,0 +1,75 @@
+{
+  "formatVersion": "1",
+  "runId": "run-20260912T204314Z",
+  "status": "incomplete",
+  "degraded": [
+    {
+      "input": "run: health delta",
+      "state": "partial",
+      "reason": "1 of 1 changed file(s) could not be fully measured: 'backend/data/conversationStarters.json' unmeasured"
+    }
+  ],
+  "header": {
+    "healthDelta": {
+      "state": "partial",
+      "value": {
+        "kind": "health-delta",
+        "fromRef": "fcd4caa78e87be0095e7a0d0c74391c13ed085a7",
+        "toRef": "81269fea23f61cb4ed8bf904b48c5d8b1acbd894",
+        "files": [
+          {
+            "path": "backend/data/conversationStarters.json",
+            "delta": {
+              "state": "unmeasured",
+              "reason": "no grammar covers 'backend/data/conversationStarters.json'",
+              "affected": []
+            }
+          }
+        ],
+        "skipped": {
+          "deleted": 0,
+          "renamed-without-edit": 0,
+          "binary": 0,
+          "symlink": 0,
+          "submodule": 0
+        },
+        "refused": 0
+      },
+      "reason": "1 of 1 changed file(s) could not be fully measured: 'backend/data/conversationStarters.json' unmeasured"
+    },
+    "conformance": {
+      "reviewerValidation": {
+        "state": "measured",
+        "value": {
+          "count": 0,
+          "total": 0
+        }
+      },
+      "redBeforeGreen": {
+        "state": "measured",
+        "value": {
+          "count": 0,
+          "total": 0
+        }
+      },
+      "coversWarnings": {
+        "state": "measured",
+        "value": []
+      },
+      "worstContinuationRounds": {
+        "state": "measured",
+        "value": 0
+      },
+      "inheritedGates": {
+        "state": "measured",
+        "value": []
+      },
+      "worstRedGreenCycles": {
+        "state": "measured",
+        "value": 0
+      }
+    },
+    "flags": []
+  },
+  "tasks": []
+}

@@ -154,5 +154,5 @@ B — done as task 3.4: migrated backend/tests/test_health.py and test_pipeline.
 
 **Applied:**
 
-answered — task 3.4 done and marked complete
+answered — later raisings are dispatched as work, not asked again
 

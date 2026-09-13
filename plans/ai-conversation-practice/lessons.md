@@ -87,3 +87,8 @@ A builtins.open guard cannot cover the whole conversation pipeline: TTS necessar
 <!-- lesson id=L14 from=reviewer:2 scope=plan -->
 
 When two phases share a covered file (e.g. ConversationPracticePage.tsx owned by both phase 2's 2.1 and phase 3's gate task), a later phase landing can silently delete the earlier phase's test for a now-gate-unreachable state, orphaning a completed AC with no signal except a criteria-ledger 'plan no longer maps it to any test' note. Worth a phase-boundary c… [clipped — full text in the transcript]
+## L15 — task reviewer:3 · run-20260912T204314Z
+
+<!-- lesson id=L15 from=reviewer:3 scope=plan -->
+
+When a task's covers list is narrower than the phase's covers list (e.g. task 3.1 covers only backend/tests/test_session.py, but the phase covers all of backend/tests), an executor correctly refuses to touch out-of-scope files even when its own task description demands it — the resulting gap (dead routes, a false 'retired' doc comment) is real and needs a p… [clipped — full text in the transcript]

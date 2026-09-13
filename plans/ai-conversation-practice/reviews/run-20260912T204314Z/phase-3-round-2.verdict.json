@@ -1,0 +1,124 @@
+{
+  "findings": [],
+  "acValidations": [
+    {
+      "task_id": "3.1",
+      "criterion": "AC1",
+      "locator": "backend/tests/test_session.py::test_next_after_a_judged_turn_asks_a_different_question",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "3.1",
+      "criterion": "AC2",
+      "locator": "backend/tests/test_session.py::test_exhausting_the_tier_returns_exhausted_rather_than_repeating",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "3.1",
+      "criterion": "AC3",
+      "locator": "backend/tests/test_session.py::test_next_on_an_unknown_session_is_404",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "3.1",
+      "criterion": "AC4",
+      "locator": "backend/tests/test_session.py::test_a_full_lifecycle_never_writes_to_disk",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "3.1",
+      "criterion": "AC5",
+      "locator": "backend/tests/test_session.py::test_concurrent_next_calls_never_serve_the_same_question",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "3.1",
+      "criterion": "AC6",
+      "locator": "backend/tests/test_session.py::test_an_evicted_session_behaves_exactly_like_an_unknown_one",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "3.2",
+      "criterion": "AC1",
+      "locator": "src/domain/conversation/services/ConversationUnlockService.test.ts::vocab below MIN_VOCAB_COUNT locks regardless of grammar",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "3.2",
+      "criterion": "AC2",
+      "locator": "src/domain/conversation/services/ConversationUnlockService.test.ts::grammar below MIN_GRAMMAR_POINTS locks regardless of vocab",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "3.2",
+      "criterion": "AC3",
+      "locator": "src/domain/conversation/services/ConversationUnlockService.test.ts::both thresholds met (including exactly at the boundary) unlocks",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "3.2",
+      "criterion": "AC4",
+      "locator": "src/presentation/pages/Dashboard.test.tsx::shows a locked tile naming the words gap, with no onClick, below the vocab threshold",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "3.2",
+      "criterion": "AC5",
+      "locator": "src/presentation/pages/Dashboard.test.tsx::shows an unlocked, navigable tile once both thresholds are met",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "3.2",
+      "criterion": "AC6",
+      "locator": "src/presentation/pages/ConversationPracticePage.test.tsx::direct navigation below threshold still shows the locked explanation",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "3.2",
+      "criterion": "AC7",
+      "locator": "e2e/conversation-gate.spec.ts::a below-threshold learner sees the locked explanation and the page never calls the backend",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "3.3",
+      "criterion": "AC1",
+      "locator": "src/presentation/pages/ConversationPracticePage.test.tsx::distinguishes pass/fail/unscored in the running tally across three turns (AC1)",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "3.3",
+      "criterion": "AC2",
+      "locator": "src/presentation/pages/ConversationPracticePage.test.tsx::ends the session at a summary naming all three tally components, rather than hanging on a question that will never come",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "3.3",
+      "criterion": "AC3",
+      "locator": "src/presentation/pages/ConversationPracticePage.test.tsx::shows the established unavailable state without discarding the tally already earned",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "3.3",
+      "criterion": "AC4",
+      "locator": "src/presentation/pages/ConversationPracticePage.test.tsx::revokes the previous question's blob URL when the page advances to the next one; ::revokes the active question's blob URL on unmount",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "3.3",
+      "criterion": "AC5",
+      "locator": "e2e/conversation-practice.spec.ts::completes three real turns end to end against the real backend and bank, with a summary naming the total",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "3.3",
+      "criterion": "AC6",
+      "locator": "none",
+      "verdict": "none"
+    }
+  ],
+  "reviewedAt": "fcd4caa78e87be0095e7a0d0c74391c13ed085a7",
+  "answersAt": "42dabf5ed33737e3",
+  "enforcement": [
+    "reviewer edited 1 path(s) the plan does not declare and they were reverted: plans/ai-conversation-practice/resources.jsonl"
+  ]
+}

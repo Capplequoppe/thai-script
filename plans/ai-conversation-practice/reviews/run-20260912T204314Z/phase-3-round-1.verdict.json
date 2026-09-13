@@ -1,0 +1,179 @@
+{
+  "findings": [
+    {
+      "id": "F1",
+      "action": "user-decision",
+      "message": "Task 3.1's own description and Architectural Decision commit to removing `/conversation/opening` and `/conversation/judge` from `backend/app/main.py` (\"This task removes their route handlers... and their entries from docs/conversation-backend-api.md\"), but both routes are still live in `main.py` (lines 215-235, 237-239) and still documented (docs/conversation-backend-api.md's own 'Retiring' section admits this). The reason is real and well-documented: `backend/tests/test_health.py` and `backend/tests/test_pipeline.py` exercise these routes directly to prove task 1.1's CORS/concurrency/501 contract and task 1.2's judge behavior, and rewriting those tests to exercise the same properties through the session endpoints instead is substantial, cross-cutting work (verified: test_health.py's five judge/opening-route tests are the *only* vehicle it has for proving CORS-allow, CORS-reject, and the two-call concurrency/health-stays-responsive behavior). `ConversationPracticePort`'s own doc comment compounds this by asserting a falsehood: \"their backend routes are retired in the same phase (task 3.1)\" (ConversationPracticePort.ts line ~15) — the frontend side is retired, the backend side is not. Net effect: the plan's stated trust-boundary mitigation (retiring dead surface reachable by any local origin, per the plan README's Trust Boundary Inventory) was not actually delivered, and no task in phase 3 owns the fix — task 3.1 explicitly scoped it out, task 3.3 explicitly declined to touch it (documented in its own Manual Verification section) as being outside its covers.",
+      "severity": 4,
+      "effort": 8,
+      "attribution": "plan-defect",
+      "why_not_fixed": "Fixing this safely means rewriting backend/tests/test_health.py's CORS/concurrency/501 proofs and backend/tests/test_pipeline.py's opening/judge happy-path proofs to exercise the same properties through the session endpoints instead — those files prove tasks 1.1/1.2's acceptance criteria, which are outside this phase's diff and already-settled. I cannot bound the blast radius of that rewrite from here (whether the session endpoints can even express a 'models not loaded yet' 501 state the same way, whether CORS needs its own now-route-agnostic test) without redoing work that belongs to a dedicated task, which is exactly what task 3.1's own docs conclude is needed.",
+      "file": "backend/app/main.py",
+      "line": 215,
+      "options": [
+        {
+          "option": "Accept as a documented, deliberate known gap for now (current state)",
+          "consequence": "The dead routes stay reachable by any local origin per the plan's own Trust Boundary Inventory (SA-1/QA-31) — low practical risk on a local-only single-user tool, but the plan's stated mitigation is not actually in place."
+        },
+        {
+          "option": "Add a new task (or extend an existing one's covers) to migrate test_health.py/test_pipeline.py's CORS/concurrency/501 proofs onto the session endpoints and then delete the two routes",
+          "consequence": "Closes the gap properly but is real new scope this phase did not budget for."
+        }
+      ],
+      "category": "plan-defect",
+      "recommendation": "Add a new task (or extend an existing one's covers) to migrate test_health.py/test_pipeline.py's CORS/concurrency/501 proofs onto the session endpoints and then delete the two routes"
+    },
+    {
+      "id": "F2",
+      "action": "user-decision",
+      "message": "Every unit-level acceptance criterion for tasks 3.2 and 3.3 (AC1-AC7 across both tasks) is marked [NO RED] in the criteria ledger — no red proof was ever recorded for any of them, unlike task 3.1 which has a full red proof for all six of its ACs. I spot-checked one (ConversationUnlockService's boundary logic) by mutating `checkConversationUnlock`'s unlocked condition to always-true and confirmed 3 of 5 tests in ConversationUnlockService.test.ts fail with the expected assertions, then reverted — so the tests that exist are real, not tautological. But this was never done for the other ~12 NO RED criteria (Dashboard gate behavior, ConversationPracticePage's tally/exhaustion/mid-session-failure/blob-revocation logic), so those tests have never been observed catching the regression they claim to guard against.",
+      "severity": 3,
+      "effort": 7,
+      "attribution": "task-execution",
+      "why_not_fixed": "Producing a genuine red proof for each of the remaining ~12 criteria means mutating the corresponding implementation logic (tally accumulation, blob-URL revocation timing, the unavailable-state transition, the Dashboard's onClick gating) one at a time and re-running the suite for each, which is real verification work I did not have budget to do exhaustively in this round; my one spot-check confirms the general pattern (tests assert real behavior, not tautologies) but does not stand in for the missing records for the other criteria.",
+      "file": "src/presentation/pages/ConversationPracticePage.test.tsx",
+      "category": "test-coverage",
+      "recommendation": "Backfill red proofs for tasks 3.2/3.3's criteria the same way task 3.1 already did (mutate, observe red, restore, record which assertion fired)."
+    }
+  ],
+  "lessons": [
+    {
+      "lesson": "When a task's covers list is narrower than the phase's covers list (e.g. task 3.1 covers only backend/tests/test_session.py, but the phase covers all of backend/tests), an executor correctly refuses to touch out-of-scope files even when its own task description demands it — the resulting gap (dead routes, a false 'retired' doc comment) is real and needs a p… [clipped — full text in the transcript]"
+    }
+  ],
+  "acValidations": [
+    {
+      "task_id": "3.1",
+      "criterion": "AC1",
+      "locator": "backend/tests/test_session.py::test_next_after_a_judged_turn_asks_a_different_question",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "3.1",
+      "criterion": "AC2",
+      "locator": "backend/tests/test_session.py::test_exhausting_the_tier_returns_exhausted_rather_than_repeating",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "3.1",
+      "criterion": "AC3",
+      "locator": "backend/tests/test_session.py::test_next_on_an_unknown_session_is_404",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "3.1",
+      "criterion": "AC4",
+      "locator": "backend/tests/test_session.py::test_a_full_lifecycle_never_writes_to_disk",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "3.1",
+      "criterion": "AC5",
+      "locator": "backend/tests/test_session.py::test_concurrent_next_calls_never_serve_the_same_question",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "3.1",
+      "criterion": "AC6",
+      "locator": "backend/tests/test_session.py::test_an_evicted_session_behaves_exactly_like_an_unknown_one",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "3.2",
+      "criterion": "AC1",
+      "locator": "src/domain/conversation/services/ConversationUnlockService.test.ts::vocab below MIN_VOCAB_COUNT locks regardless of grammar",
+      "verdict": "valid",
+      "evidence": "Spot-checked by mutation: forcing checkConversationUnlock's unlocked condition to always-true fails this test's expect(status.unlocked).toBe(false)."
+    },
+    {
+      "task_id": "3.2",
+      "criterion": "AC2",
+      "locator": "src/domain/conversation/services/ConversationUnlockService.test.ts::grammar below MIN_GRAMMAR_POINTS locks regardless of vocab",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "3.2",
+      "criterion": "AC3",
+      "locator": "src/domain/conversation/services/ConversationUnlockService.test.ts::both thresholds met (including exactly at the boundary) unlocks",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "3.2",
+      "criterion": "AC4",
+      "locator": "src/presentation/pages/Dashboard.test.tsx::shows a locked tile naming the words gap, with no onClick, below the vocab threshold",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "3.2",
+      "criterion": "AC5",
+      "locator": "src/presentation/pages/Dashboard.test.tsx::shows an unlocked, navigable tile once both thresholds are met",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "3.2",
+      "criterion": "AC6",
+      "locator": "src/presentation/pages/ConversationPracticePage.test.tsx::shows the locked explanation, never the live recording UI, for a learner below threshold",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "3.2",
+      "criterion": "AC7",
+      "locator": "e2e/conversation-gate.spec.ts::a below-threshold learner sees the locked explanation and the page never calls the backend; an above-threshold learner sees the unlocked Dashboard tile and can navigate through it",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "3.3",
+      "criterion": "AC1",
+      "locator": "src/presentation/pages/ConversationPracticePage.test.tsx::distinguishes pass/fail/unscored in the running tally across three turns (AC1)",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "3.3",
+      "criterion": "AC2",
+      "locator": "src/presentation/pages/ConversationPracticePage.test.tsx::ends the session at a summary naming all three tally components",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "3.3",
+      "criterion": "AC3",
+      "locator": "src/presentation/pages/ConversationPracticePage.test.tsx::shows the established unavailable state without discarding the tally already earned",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "3.3",
+      "criterion": "AC4",
+      "locator": "src/presentation/pages/ConversationPracticePage.test.tsx::revokes the previous question's blob URL when the page advances; revokes the active question's blob URL on unmount",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "3.3",
+      "criterion": "AC5",
+      "locator": "e2e/conversation-practice.spec.ts::completes three real turns end to end against the real backend and bank, with a summary naming the total",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "3.3",
+      "criterion": "AC6",
+      "locator": "none",
+      "verdict": "none",
+      "evidence": "Genuinely resists automation (subjective usability of a real voice conversation) and matches task 1.4's own precedent for the same kind of criterion; not yet performed (no microphone in this environment either), correctly recorded as an open manual item rather than skipped silently."
+    }
+  ],
+  "reviewedAt": "fcd4caa78e87be0095e7a0d0c74391c13ed085a7",
+  "answersAt": "42dabf5ed33737e3",
+  "enforcement": [
+    "reviewer edited 1 path(s) the plan does not declare and they were reverted: plans/ai-conversation-practice/resources.jsonl"
+  ],
+  "triage": [
+    {
+      "id": "F1",
+      "verdict": "human",
+      "reason": "Changes what the plan promises (trust-boundary mitigation per SA-1/QA-31) and trades off security posture. The options differ in scope (accept security gap vs. add unbudgeted work) and require stakeholder decision on acceptable risk."
+    },
+    {
+      "id": "F2",
+      "verdict": "really-auto-fix",
+      "reason": "Defect in test verification (incomplete red proofs). Clear single fix: backfill using the documented mutation-test method. No scope change, no security/contract implications, no external knowledge needed."
+    }
+  ]
+}
