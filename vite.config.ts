@@ -9,6 +9,28 @@ export default defineConfig({
 		exclude: ["e2e/**", "node_modules/**"],
 	},
 	base: "/thai-script/",
+	build: {
+		rollupOptions: {
+			output: {
+				// The content data (vocabulary above all — ~6.7 MB raw, and
+				// Vite already emits it as a fast `JSON.parse("...")` rather
+				// than an object literal) dwarfs the application code. Kept in
+				// the same chunk, every app-code deploy changes the one hashed
+				// bundle and forces each returning learner to re-download all
+				// of it. Split out, the data chunk keeps its hash across any
+				// deploy that does not touch the content, so the service worker
+				// (cache-first on `/assets/*`) keeps serving it from disk and
+				// only the small app chunk is re-fetched.
+				manualChunks: {
+					"content-data": [
+						"./src/domain/vocabulary/data/vocabulary.json",
+						"./src/domain/sentence/data/sentences.json",
+						"./src/domain/grammar/data/grammar.json",
+					],
+				},
+			},
+		},
+	},
 	resolve: {
 		alias: {
 			"@": path.resolve(__dirname, "./src"),

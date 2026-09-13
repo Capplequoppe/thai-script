@@ -6,7 +6,7 @@
     "english": "at/in/on",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": "/thai-script/vocabulary/images/1 ที่.png",
+    "image_file": "/thai-script/vocabulary/images/1 ที่.jpg",
     "samples": [
       {
         "thai": "เขาได้รับรางวัลที่ 1 ในการประกวดวาดภาพ",
@@ -49,7 +49,7 @@
     "english": "can",
     "thai_audio_file": "/thai-script/audio/word-daj.mp3",
     "english_audio_file": null,
-    "image_file": "/thai-script/vocabulary/images/2 ได้.png",
+    "image_file": "/thai-script/vocabulary/images/2 ได้.jpg",
     "samples": [
       {
         "thai": "นักท่องเที่ยวได้ข้อมูลนี้จากหนังสือนำเที่ยว",
@@ -91,7 +91,7 @@
     "english": "will",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": "/thai-script/vocabulary/images/3 จะ.png",
+    "image_file": "/thai-script/vocabulary/images/3 จะ.jpg",
     "samples": [
       {
         "thai": "การอนุรักษ์สิ่งแวดล้อมจะสัมฤทธิ์ผลได้ถ้าทุกคนร่วมมือกัน",
@@ -132,7 +132,7 @@
     "english": "this",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": "/thai-script/vocabulary/images/4 นี้.png",
+    "image_file": "/thai-script/vocabulary/images/4 นี้.jpg",
     "samples": [
       {
         "thai": "ศาลมีคำพิพากษาถึงที่สุดว่าการสมรสของบุคคลคู่นี้ เป็นโมฆะแล้ว",
@@ -174,7 +174,7 @@
     "english": "that; think",
     "thai_audio_file": "/thai-script/audio/word-wa.mp3",
     "english_audio_file": null,
-    "image_file": "/thai-script/vocabulary/images/5 ว่า.png",
+    "image_file": "/thai-script/vocabulary/images/5 ว่า.jpg",
     "samples": [
       {
         "thai": "”ภาษา” เป็นคำที่มาจากรากศัพท์ “ภาษ” แปลว่าพูด",
@@ -216,7 +216,7 @@
     "english": "is; be able",
     "thai_audio_file": "/thai-script/audio/word-pen.mp3",
     "english_audio_file": null,
-    "image_file": "/thai-script/vocabulary/images/6 เป็น.png",
+    "image_file": "/thai-script/vocabulary/images/6 เป็น.jpg",
     "samples": [
       {
         "thai": "แมวที่อาจารย์เลี้ยงไว้มีอยู่หลายตัวเป็นแมวจรจัด",
@@ -259,7 +259,7 @@
     "english": "have; there is",
     "thai_audio_file": "/thai-script/audio/word-mi.mp3",
     "english_audio_file": null,
-    "image_file": "/thai-script/vocabulary/images/7 มี.png",
+    "image_file": "/thai-script/vocabulary/images/7 มี.jpg",
     "description": "มี (mii) means “to have” or “there is/there are” in Thai. It expresses possession when followed by a noun. For example, ฉันมีเงิน means “I have money.” Thai does not use a separate verb for “there is,” so มี also expresses existence. For example, มีคนอยู่ข้างนอก means “There is a person outside.” In this sense, it indicates that something exists in a location or situation. The negative form is ไม่มี, which means “do not have” or “there is not.” For example, ฉันไม่มีเวลา means “I don’t have time.” มี does not change form for tense; time is shown through context or additional words. It can be used with both concrete objects and abstract ideas. For instance, มีความสุข means “to have happiness” or “to be happy.” In Thai, possession and existence are closely related concepts and both use มี. The word often appears near the beginning of a sentence when expressing existence. It is one of the most common and essential verbs in Thai. In summary, มี indicates that something exists or is possessed within a person’s or situation’s domain.",
     "samples": [
       {
@@ -301,7 +301,7 @@
     "english": "give",
     "thai_audio_file": "/thai-script/vocabulary/audio/0266_ให_th.mp3",
     "english_audio_file": "/thai-script/vocabulary/audio/0266_ให_en.mp3",
-    "image_file": "/thai-script/vocabulary/images/8 ให้.png",
+    "image_file": "/thai-script/vocabulary/images/8 ให้.jpg",
     "samples": [
       {
         "thai": "พ่อกำลังให้เหรียญกับลูกชายของเขา",
@@ -343,7 +343,7 @@
     "english": "must",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": "/thai-script/vocabulary/images/9 ต้อง.png",
+    "image_file": "/thai-script/vocabulary/images/9 ต้อง.jpg",
     "samples": [
       {
         "thai": "มนุษย์เราจำเป็นต้องใช้ชีวิตร่วมกับผู้อื่น",
@@ -386,7 +386,7 @@
     "english": "of",
     "thai_audio_file": "/thai-script/audio/word-kh.mp3",
     "english_audio_file": null,
-    "image_file": "/thai-script/vocabulary/images/10 ของ.png",
+    "image_file": "/thai-script/vocabulary/images/10 ของ.jpg",
     "samples": [
       {
         "thai": "ชมรมค่ายอาสาพัฒนาขอบริจาคของที่เหลือใช้จากประชาชนทั่วไป",
@@ -429,7 +429,7 @@
     "english": "with",
     "thai_audio_file": "/thai-script/audio/word-kap.mp3",
     "english_audio_file": null,
-    "image_file": "/thai-script/vocabulary/images/11 กับ.png",
+    "image_file": "/thai-script/vocabulary/images/11 กับ.jpg",
     "samples": [
       {
         "thai": "เขาวางเหยื่อล่อเพื่อให้หนูมาติดกับ",
@@ -471,7 +471,7 @@
     "english": "not",
     "thai_audio_file": "/thai-script/audio/word-maj.mp3",
     "english_audio_file": null,
-    "image_file": "/thai-script/vocabulary/images/12 ไม่.png",
+    "image_file": "/thai-script/vocabulary/images/12 ไม่.jpg",
     "samples": [
       {
         "thai": "นมข้นหวานก็เป็นนมที่มีความหวานมากเกินไปไม่เหมาะสำหรับเด็ก",
@@ -513,7 +513,7 @@
     "english": "and",
     "thai_audio_file": "/thai-script/audio/word-l.mp3",
     "english_audio_file": null,
-    "image_file": "/thai-script/vocabulary/images/13 และ.png",
+    "image_file": "/thai-script/vocabulary/images/13 และ.jpg",
     "samples": [
       {
         "thai": "เครื่องจักรทุกชนิดจะต้องมีมนุษย์เป็นผู้ควบคุมและสั่งการใช้งาน",
@@ -597,7 +597,7 @@
     "english": "together",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": "/thai-script/vocabulary/images/15 กัน.png",
+    "image_file": "/thai-script/vocabulary/images/15 กัน.jpg",
     "samples": [
       {
         "thai": "เธอและเขารักกันมานานแล้ว",
@@ -767,7 +767,7 @@
     "english": "the process of; work; job",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": "/thai-script/vocabulary/images/19 การ.png",
+    "image_file": "/thai-script/vocabulary/images/19 การ.jpg",
     "samples": [
       {
         "thai": "คนที่ประสบความสำเร็จในงานนั้นเป็นคนที่ขยันทำการทุกอย่างด้วยตนเอง",
@@ -1062,7 +1062,7 @@
     "english": "person",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": "/thai-script/vocabulary/images/26 คน.png",
+    "image_file": "/thai-script/vocabulary/images/26 คน.jpg",
     "samples": [
       {
         "thai": "ในสมัยก่อนคนยังอาศัยอยู่ในถ้ำ และใช้อาวุธง่ายๆ ในการล่าสัตว์",
@@ -1404,7 +1404,7 @@
     "english": "much",
     "thai_audio_file": "/thai-script/audio/word-mak.mp3",
     "english_audio_file": null,
-    "image_file": "/thai-script/vocabulary/images/34 มาก.png",
+    "image_file": "/thai-script/vocabulary/images/34 มาก.jpg",
     "samples": [
       {
         "thai": "สัตว์และมนุษย์ไม่มีอะไรแตกต่างกันมาก",
@@ -1615,7 +1615,7 @@
     "english": "because",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": "/thai-script/vocabulary/images/39 เพราะ.png",
+    "image_file": "/thai-script/vocabulary/images/39 เพราะ.jpg",
     "samples": [
       {
         "thai": "รัฐบาลตัดสินใจสลายการชุมนุมอย่างรวดเร็ว เพราะหากปล่อยให้ยืดเยื้อย่อมกระทบต่อการลงทุนของต่างชาติ",
@@ -1659,7 +1659,7 @@
     "english": "time",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": "/thai-script/vocabulary/images/40 เวลา.png",
+    "image_file": "/thai-script/vocabulary/images/40 เวลา.jpg",
     "samples": [
       {
         "thai": "การวิจารณ์ไม่ว่าจะใช้ในเวลาใดก็ตามต้องมีลักษณะสร้างสรรค์มิใช่ทำลาย",
@@ -1713,7 +1713,7 @@
     "english": "still",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": "/thai-script/vocabulary/images/41 ยัง.png",
+    "image_file": "/thai-script/vocabulary/images/41 ยัง.jpg",
     "samples": [
       {
         "thai": "สุนัขเป็นเพื่อนที่ซื่อสัตย์ใกล้ชิดกับคนแถมยังมีประโยชน์เฝ้าบ้านได้เวลาไม่มีใครอยู่",
@@ -2004,7 +2004,7 @@
     "english": "down",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": "/thai-script/vocabulary/images/47 ลง.png",
+    "image_file": "/thai-script/vocabulary/images/47 ลง.jpg",
     "samples": [
       {
         "thai": "ในเช้าวันรุ่งขึ้นก่อนที่เขาจะกลับบ้าน หมอกลงหนาทึบจนมองไม่เห็นแม่น้ำ",
@@ -2614,7 +2614,7 @@
     "english": "good",
     "thai_audio_file": "/thai-script/vocabulary/audio/0301_ด_th.mp3",
     "english_audio_file": "/thai-script/vocabulary/audio/0301_ด_en.mp3",
-    "image_file": "/thai-script/vocabulary/images/61 ดี.png",
+    "image_file": "/thai-script/vocabulary/images/61 ดี.jpg",
     "description": "ดี (dii) means “good” in Thai. It is an adjective used to describe positive quality, benefit, or desirability. It can describe people, objects, situations, or outcomes. For example, คนดี means “a good person.” อาหารดี means “good food.” It can also express approval or satisfaction. ดีมาก means “very good,” with มาก intensifying the degree. ดีใจ is a common expression meaning “to be glad” or “happy” (literally “good heart”). ดี can describe moral goodness, practical usefulness, or general quality. Thai adjectives like ดี do not change form based on tense or number. The meaning depends on context and the word it modifies. ดี is often placed after the noun it describes in Thai sentence structure. It can also be used alone as a response, meaning “okay” or “good.” The word conveys positive evaluation in a broad and flexible way. In essence, ดี expresses that something has favorable, beneficial, or desirable qualities.",
     "samples": [
       {
@@ -2699,7 +2699,7 @@
     "english": "therefore",
     "thai_audio_file": "/thai-script/audio/word-t-3.mp3",
     "english_audio_file": null,
-    "image_file": "/thai-script/vocabulary/images/63 จึง.png",
+    "image_file": "/thai-script/vocabulary/images/63 จึง.jpg",
     "samples": [
       {
         "thai": "เมื่อทำงานเสร็จ พนักงานจึงกลับบ้าน",
@@ -3594,7 +3594,7 @@
     "english": "day",
     "thai_audio_file": "/thai-script/vocabulary/audio/0208_วน_th.mp3",
     "english_audio_file": "/thai-script/vocabulary/audio/0208_วน_en.mp3",
-    "image_file": "/thai-script/vocabulary/images/83 วัน.png",
+    "image_file": "/thai-script/vocabulary/images/83 วัน.jpg",
     "samples": [
       {
         "thai": "ในหนึ่งวันมียี่สิบสี่ชั่วโมง",
@@ -3849,7 +3849,7 @@
     "english": "a person who;",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": "/thai-script/vocabulary/images/89 นัก.png",
+    "image_file": "/thai-script/vocabulary/images/89 นัก.jpg",
     "description": "นัก (nák) is primarily a noun-forming prefix in Thai. It is placed in front of a verb, noun, or field of activity to create a person associated with that activity. It often corresponds to English endings like “-er,” “-or,” or “-ist.” For example, เรียน (to study) becomes นักเรียน (student). เขียน (to write) becomes นักเขียน (writer). กีฬา (sport) becomes นักกีฬา (athlete). ดนตรี (music) becomes นักดนตรี (musician). In these cases, นัก forms a noun referring to someone engaged in or identified with that domain. It does not change tense or grammatical agreement. The resulting word functions as a regular noun in a sentence. นัก can be used for professions, hobbies, roles, or areas of expertise. It does not necessarily imply skill level, only association or engagement. In some contexts, นัก can also function as an adverbial intensifier, though this use is less common. Its primary and most important function is to create person-role nouns. In summary, นัก is a derivational prefix that forms nouns meaning “a person associated with a particular activity or field.”",
     "samples": [
       {
@@ -4299,7 +4299,7 @@
     "english": "to watch",
     "thai_audio_file": "/thai-script/vocabulary/audio/0293_ด_th.mp3",
     "english_audio_file": "/thai-script/vocabulary/audio/0293_ด_en.mp3",
-    "image_file": "/thai-script/vocabulary/images/98 ดู.png",
+    "image_file": "/thai-script/vocabulary/images/98 ดู.jpg",
     "samples": [
       {
         "thai": "ดูโทรทัศน์",
@@ -5251,7 +5251,7 @@
     "english": "think",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": "/thai-script/vocabulary/images/119 คิด.png",
+    "image_file": "/thai-script/vocabulary/images/119 คิด.jpg",
     "description": "คิด (khít) means “to think.” It refers to mental activity such as reasoning, considering, or forming opinions. It is commonly used to express personal thoughts or beliefs. For example, คิดว่า means “to think that” when introducing an opinion. คิด can also mean “to calculate,” especially in financial or mathematical contexts. For example, คิดเงิน means “to calculate money” or “to charge.” คิดเลข means “to do math” or “to calculate numbers.” The word can extend to emotional thinking, as in คิดถึง, which means “to miss someone” (literally “to think of”). In all uses, the core idea involves mental processing. It can describe quick thoughts or deep reflection depending on context. Thai does not change the form of คิด for tense; time is shown through context or additional words. It is frequently used in both spoken and written Thai. คิด can express intention, opinion, calculation, or memory. The meaning depends on what words follow it. In essence, คิด refers to any cognitive activity involving thinking, calculating, or mentally considering something.",
     "samples": [
       {
@@ -5393,7 +5393,7 @@
     "english": "count",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": "/thai-script/vocabulary/images/122 นับ.png",
+    "image_file": "/thai-script/vocabulary/images/122 นับ.jpg",
     "samples": [
       {
         "thai": "สุเทพไม่นับว่าสุชาติเป็นญาติเพราะเขาทำตัวไม่ดี",
@@ -7345,7 +7345,7 @@
     "english": "on",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": "/thai-script/vocabulary/images/164 บน.png",
+    "image_file": "/thai-script/vocabulary/images/164 บน.jpg",
     "samples": [
       {
         "thai": "นักเรียนมักมาบนพระพรหมเอราวัณไว้ว่าขอให้สอบเข้ามหาวิทยาลัยได้",
@@ -8937,7 +8937,7 @@
     "english": "say",
     "thai_audio_file": "/thai-script/vocabulary/audio/0259_พด_th.mp3",
     "english_audio_file": "/thai-script/vocabulary/audio/0259_พด_en.mp3",
-    "image_file": "/thai-script/vocabulary/images/45 พูด.png",
+    "image_file": "/thai-script/vocabulary/images/45 พูด.jpg",
     "samples": [
       {
         "thai": "ผู้คนกำลังพูดว่า \"สวัสดี\"",
@@ -9836,7 +9836,7 @@
     "english": "Mr.",
     "thai_audio_file": "/thai-script/vocabulary/audio/1256_นาย_th.mp3",
     "english_audio_file": "/thai-script/vocabulary/audio/1256_นาย_en.mp3",
-    "image_file": "/thai-script/vocabulary/images/216 นาย.png",
+    "image_file": "/thai-script/vocabulary/images/216 นาย.jpg",
     "samples": [
       {
         "thai": "เพื่อนๆของดิฉันเรียกคุณพ่อของดิฉันว่านายมาร์ตินเสมอ",
@@ -10847,7 +10847,7 @@
     "english": "put",
     "thai_audio_file": "/thai-script/vocabulary/audio/0271_วาง_th.mp3",
     "english_audio_file": "/thai-script/vocabulary/audio/0271_วาง_en.mp3",
-    "image_file": "/thai-script/vocabulary/images/237 วาง.png",
+    "image_file": "/thai-script/vocabulary/images/237 วาง.jpg",
     "samples": [
       {
         "thai": "กรุณาพยายามวางกล่องใบนี้ไว้บนชั้นบนสุด",
@@ -11013,7 +11013,7 @@
     "english": "long time",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": "/thai-script/vocabulary/images/241 นาน.png",
+    "image_file": "/thai-script/vocabulary/images/241 นาน.jpg",
     "samples": [
       {
         "thai": "ครอบครัวของเขาอยู่บนที่ดินผืนนี้มานานหลายชั่วอายุคน",
@@ -12034,7 +12034,7 @@
     "english": "eat",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": "/thai-script/vocabulary/images/40 กิน.png",
+    "image_file": "/thai-script/vocabulary/images/40 กิน.jpg",
     "samples": [
       {
         "thai": "เขาถูกเจ้ามือกินไป 3 ครั้งแล้ว",
@@ -301366,7 +301366,7 @@
     ],
     "thai_audio_file": "/thai-script/audio/word-khrap.mp3",
     "english_audio_file": null,
-    "image_file": "/thai-script/vocabulary/images/4 ครับ.png",
+    "image_file": "/thai-script/vocabulary/images/4 ครับ.jpg",
     "samples": [
       {
         "thai": "สวัสดีครับ",
@@ -301465,7 +301465,7 @@
     ],
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": "/thai-script/vocabulary/images/4 คะ.png",
+    "image_file": "/thai-script/vocabulary/images/4 คะ.jpg",
     "samples": [
       {
         "thai": "สบายดีไหมคะ",
@@ -301556,7 +301556,7 @@
     ],
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": "/thai-script/vocabulary/images/25 นะ.png",
+    "image_file": "/thai-script/vocabulary/images/25 นะ.jpg",
     "samples": [
       {
         "thai": "ไปนะ",
