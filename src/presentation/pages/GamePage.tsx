@@ -13,6 +13,7 @@ import type { RecallRating } from "../../domain/shared/types";
 import { SectionHeader } from "../components/atoms/SectionHeader";
 import { GameHistoryList } from "../components/molecules/GameHistoryList";
 import { GameRoundSummary } from "../components/organisms/GameRoundSummary";
+import { MinimalPairChallenge } from "../components/organisms/MinimalPairChallenge";
 import { SentenceCompositionChallenge } from "../components/organisms/SentenceCompositionChallenge";
 import { SentenceListeningChallenge } from "../components/organisms/SentenceListeningChallenge";
 import { SentenceReadingChallenge } from "../components/organisms/SentenceReadingChallenge";
@@ -27,19 +28,28 @@ import { useApp } from "../hooks/useApp";
 type GamePhase = "setup" | "playing" | "summary";
 
 /**
- * Which of the page's two flows the setup screen configures: the pool-
- * mixing practice round (everything below `checkedPools`), or a sentence-
- * composition round over currently-unlocked grammar points — a separate
- * mode, not a fourth pool, because its supply is a set-level grammar
- * computation rather than a `GameCardPool` partition (see CONTEXT.md).
+ * Which of the page's three flows the setup screen configures: the pool-
+ * mixing practice round (everything below `checkedPools`), a sentence-
+ * composition round over currently-unlocked grammar points, or a tone-pairs
+ * round over the sound-alike words the learner knows both sides of.
+ *
+ * The latter two are modes rather than extra pools for the same reason:
+ * their supply is a set-level computation — over grammar prerequisites, or
+ * over which learned words are indistinguishable except by tone — not a
+ * `GameCardPool` partition (see CONTEXT.md).
  */
-type GameMode = "practice" | "composition";
+type GameMode = "practice" | "composition" | "minimalPair";
 
-const ALL_MODES: readonly GameMode[] = ["practice", "composition"];
+const ALL_MODES: readonly GameMode[] = [
+	"practice",
+	"composition",
+	"minimalPair",
+];
 
 const MODE_LABELS: Record<GameMode, string> = {
 	practice: "Practice",
 	composition: "Sentence Composition",
+	minimalPair: "Tone Pairs",
 };
 
 /**
@@ -100,6 +110,18 @@ const NO_COMPOSITION_ELIGIBLE_MESSAGE =
 	"No unlocked grammar points to build from yet — graduate more vocabulary and learn earlier grammar lessons first.";
 
 /**
+ * Tone pairs is the one mode with two independent things to wait for, and
+ * the message says both because a learner who reads only the first will
+ * conclude the mode is broken. A group needs *two* of its sound-alikes
+ * learned before it is a question at all, and at least one of them has to
+ * have a recording — most of `vocabulary.json` has none yet (see
+ * `scripts/generate-vocab-audio.py`), so "learn more words" alone would be
+ * advice that does not always work.
+ */
+const NO_MINIMAL_PAIR_ELIGIBLE_MESSAGE =
+	"No sound-alike words to tell apart yet — this unlocks once you've learned two or more words that differ only by tone, and at least one of them has a recording.";
+
+/**
  * The one name this toggle goes by, everywhere. Never "Prioritize tone
  * identification" (see CONTEXT.md): this control *includes* items, it does
  * not reorder them — that is the separate weak-item toggle's job.
@@ -153,6 +175,16 @@ function countEligibleItems(
  */
 function countEligibleCompositionItems(game: PlayGameUseCase): number {
 	return game.startCompositionRound(Number.MAX_SAFE_INTEGER).length;
+}
+
+/**
+ * Tone pairs' `countEligibleItems`: the same ask-for-everything trick over
+ * `startMinimalPairRound`, read-only by construction like the other two.
+ * The count is the number of *questions*, not of groups — one group with
+ * three recorded members supplies three, each asked from a different word.
+ */
+function countEligibleMinimalPairItems(game: PlayGameUseCase): number {
+	return game.startMinimalPairRound(Number.MAX_SAFE_INTEGER).length;
 }
 
 /**
@@ -214,6 +246,8 @@ function renderChallenge(
 			return <ToneIdentificationChallenge item={item} onRate={onRate} />;
 		case "composition":
 			return <SentenceCompositionChallenge item={item} onRate={onRate} />;
+		case "minimalPair":
+			return <MinimalPairChallenge item={item} onRate={onRate} />;
 		default: {
 			const _never: never = item;
 			throw new Error(`unhandled game item: ${JSON.stringify(_never)}`);
@@ -266,18 +300,19 @@ export function GamePage() {
 	);
 
 	// Per-mode eligible cap: practice counts the checked pools (plus tone
-	// practice), composition counts unlocked grammar points — two named
-	// mechanisms, one call site, so neither flow invents its own count.
+	// practice), composition counts unlocked grammar points, tone pairs
+	// counts askable sound-alike questions — three named mechanisms, one
+	// call site, so no flow invents its own count.
 	const eligibleCount = useMemo(() => {
 		if (phase !== "setup") return 0;
-		return mode === "composition"
-			? countEligibleCompositionItems(game)
-			: countEligibleItems(
-					game,
-					pools,
-					prioritizeWeakItems,
-					includeTonePractice,
-				);
+		if (mode === "composition") return countEligibleCompositionItems(game);
+		if (mode === "minimalPair") return countEligibleMinimalPairItems(game);
+		return countEligibleItems(
+			game,
+			pools,
+			prioritizeWeakItems,
+			includeTonePractice,
+		);
 	}, [game, phase, mode, pools, prioritizeWeakItems, includeTonePractice]);
 	// Tone eligibility on its own, independent of `pools` (see
 	// ToneGameItemSource) and computed separately from `eligibleCount`: that
@@ -285,7 +320,7 @@ export function GamePage() {
 	// tone practice itself has nothing to draw from, which would otherwise
 	// mask a zero here — see the inline warning under the toggle below.
 	const toneEligibleCount = useMemo(() => {
-		if (phase !== "setup" || mode === "composition") return 0;
+		if (phase !== "setup" || mode !== "practice") return 0;
 		return countEligibleItems(game, [], false, true);
 	}, [game, phase, mode]);
 	const [countInput, setCountInput] = useState<string>(() =>
@@ -318,28 +353,35 @@ export function GamePage() {
 		parsedCount >= 1 &&
 		parsedCount <= eligibleCount;
 
+	// Each mode's own empty state. Practice has three of them (it has three
+	// different things a learner could have failed to select); the other two
+	// have one each, because they have nothing to select.
 	const emptyMessage =
-		mode === "composition"
-			? eligibleCount > 0
-				? null
-				: NO_COMPOSITION_ELIGIBLE_MESSAGE
-			: emptySelectionMessage(
+		mode === "practice"
+			? emptySelectionMessage(
 					pools.length > 0,
 					includeTonePractice,
 					eligibleCount,
-				);
+				)
+			: eligibleCount > 0
+				? null
+				: mode === "composition"
+					? NO_COMPOSITION_ELIGIBLE_MESSAGE
+					: NO_MINIMAL_PAIR_ELIGIBLE_MESSAGE;
 
 	const handleStart = useCallback(() => {
 		const roundItems =
 			mode === "composition"
 				? game.startCompositionRound(parsedCount)
-				: game.startRound({
-						pools,
-						itemCount: parsedCount,
-						prioritizeWeakItems,
-						inputMode,
-						includeTonePractice,
-					});
+				: mode === "minimalPair"
+					? game.startMinimalPairRound(parsedCount)
+					: game.startRound({
+							pools,
+							itemCount: parsedCount,
+							prioritizeWeakItems,
+							inputMode,
+							includeTonePractice,
+						});
 		if (roundItems.length === 0) return;
 		setItems(roundItems);
 		setRatings([]);
@@ -376,14 +418,16 @@ export function GamePage() {
 			}
 
 			const roundSummary = game.finishRound(nextRatings);
-			// The explicit mode branch this call site needs now that two
-			// history shapes exist: a composition round carries no `pools`,
-			// and `PlayedRound`'s required `kind` keeps either branch from
-			// silently taking the other's shape.
+			// The explicit mode branch this call site needs now that three
+			// history shapes exist: composition and tone-pairs rounds carry no
+			// `pools`, and `PlayedRound`'s required `kind` keeps any branch
+			// from silently taking another's shape.
 			game.saveHistory(
 				mode === "composition"
 					? { kind: "composition", itemCount: items.length }
-					: { kind: "practice", pools, itemCount: items.length },
+					: mode === "minimalPair"
+						? { kind: "minimalPair", itemCount: items.length }
+						: { kind: "practice", pools, itemCount: items.length },
 				roundSummary,
 			);
 			setSummary(roundSummary);
@@ -405,7 +449,7 @@ export function GamePage() {
 						className="text-sm font-semibold"
 						style={{ color: "var(--color-text)" }}
 					>
-						{mode === "composition" ? "Sentence Composition" : "Practice Round"}
+						{mode === "practice" ? "Practice Round" : MODE_LABELS[mode]}
 					</span>
 					<span
 						className="text-sm"
@@ -464,8 +508,9 @@ export function GamePage() {
 					style={{ color: "var(--color-text-muted)" }}
 				>
 					Self-graded drilling over your introduced symbols, words, and
-					sentences — or sentence composition from your unlocked grammar. It
-					never changes your review schedule.
+					sentences — or sentence composition from your unlocked grammar, or
+					telling your sound-alike words apart by tone. None of it ever changes
+					your review schedule.
 				</p>
 			</div>
 
@@ -504,8 +549,9 @@ export function GamePage() {
 				</div>
 			</fieldset>
 
-			{/* Composition mode's setup is item-count-only: no pools (its
-			    supply is the unlocked grammar set, not a pool), no tone
+			{/* Composition and tone-pairs setup is item-count-only: no pools
+			    (their supply is the unlocked grammar set / the learner's
+			    sound-alike groups, neither of which is a pool), no tone
 			    toggle, and none of the practice-only controls below. */}
 			{mode === "practice" && (
 				<>
@@ -646,7 +692,8 @@ export function GamePage() {
 					    (see the architectural decision), so with only Sentence
 					    Reading checked the toggle would control nothing and is
 					    hidden. Composition hides it for the same reason:
-					    tile-tapping has no "on paper" alternative. */}
+					    tile-tapping has no "on paper" alternative, and a tone-pairs
+					    question is answered by tapping an option. */}
 					{mode === "practice" && pools.some((pool) => pool !== "sentence") && (
 						<fieldset>
 							<legend
@@ -692,9 +739,10 @@ export function GamePage() {
 						</fieldset>
 					)}
 
-					{/* Composition has no per-item SRS weighting to prioritize —
-					    `startCompositionRound` takes only a count — so the
-					    toggle would control nothing there and is hidden. */}
+					{/* Neither composition nor tone pairs has per-item SRS
+					    weighting to prioritize — `startCompositionRound` and
+					    `startMinimalPairRound` take only a count — so the toggle
+					    would control nothing there and is hidden. */}
 					{mode === "practice" && (
 						<div className="flex items-center gap-2">
 							<input
