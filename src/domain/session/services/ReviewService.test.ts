@@ -147,6 +147,34 @@ describe("ReviewService", () => {
 			const emptyReview = new ReviewService(emptyCardRepo, emptyStateRepo);
 			expect(emptyReview.getNextReviewDate()).toBeNull();
 		});
+
+		it("skips dates at or before `after`", () => {
+			const state = storage.load();
+			const cardIds = Object.values(state.cards).map((c) => c.id);
+			const past = "2025-01-01T10:00:00.000Z";
+			const future = "2025-01-01T14:00:00.000Z";
+			for (const id of cardIds) {
+				state.cards[id as string].srs.nextReviewDate = past;
+			}
+			state.cards[cardIds[0] as string].srs.nextReviewDate = future;
+			storage.save(state);
+
+			const cutoff = new Date("2025-01-01T12:00:00.000Z");
+			expect(reviewService.getNextReviewDate("script", cutoff)).toEqual(
+				new Date(future),
+			);
+		});
+
+		it("returns null when every date is at or before `after`", () => {
+			const state = storage.load();
+			for (const card of Object.values(state.cards)) {
+				state.cards[card.id].srs.nextReviewDate = "2025-01-01T10:00:00.000Z";
+			}
+			storage.save(state);
+
+			const cutoff = new Date("2025-01-01T12:00:00.000Z");
+			expect(reviewService.getNextReviewDate("script", cutoff)).toBeNull();
+		});
 	});
 
 	describe("getReviewForecast", () => {

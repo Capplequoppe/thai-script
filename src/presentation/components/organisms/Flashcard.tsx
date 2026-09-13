@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import type { RecallRating } from "../../../domain/shared/types";
 import { SrsStage } from "../../../domain/srs/value-objects/SrsStage";
+import { useResetOnCardChange } from "../../hooks/useResetOnCardChange";
 import { classColor } from "../../utils/consonantClassColor";
 import { StageDot } from "../atoms/StageDot";
 import { ThaiCharDisplay } from "../atoms/ThaiCharDisplay";
@@ -66,10 +67,12 @@ export function Flashcard({ card, onRate }: Props) {
 		? SrsStage.fromScheduleData(card.srs.learningStep, card.srs.interval)
 		: null;
 
-	// biome-ignore lint/correctness/useExhaustiveDependencies: card.id resets state when the card changes
-	useEffect(() => {
+	// Reset during render, not in an effect: an effect resets after paint, and
+	// iOS Safari then shows a frame of the new card with the answer already
+	// revealed. See `useResetOnCardChange`.
+	useResetOnCardChange(card.id, () => {
 		setRevealed(false);
-	}, [card.id]);
+	});
 
 	useEffect(() => {
 		if (playsAudioUpfront && card.audioUrl) {

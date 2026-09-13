@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { Button } from "@/presentation/components/ui/button";
 import type { VocabularyCard } from "../../../domain/vocabulary/types";
+import { useResetOnCardChange } from "../../hooks/useResetOnCardChange";
 
 const TONES = ["mid", "low", "high", "falling", "rising"] as const;
 type Tone = (typeof TONES)[number];
@@ -18,11 +19,15 @@ export function ToneQuiz({ card, onAnswer }: ToneQuizProps) {
 	const [revealed, setRevealed] = useState(false);
 	const displayedAtRef = useRef(Date.now());
 
-	// Reset on new card
-	// biome-ignore lint/correctness/useExhaustiveDependencies: card.id resets state when card changes
-	useEffect(() => {
+	// Reset on new card during render, so the graded selections are never
+	// painted against the new card. See `useResetOnCardChange`.
+	useResetOnCardChange(card.id, () => {
 		setSelections(syllables.map(() => null));
 		setRevealed(false);
+	});
+
+	// biome-ignore lint/correctness/useExhaustiveDependencies: card.id restarts the response timer when the card changes
+	useEffect(() => {
 		displayedAtRef.current = Date.now();
 	}, [card.id]);
 

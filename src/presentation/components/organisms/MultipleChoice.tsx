@@ -5,6 +5,7 @@ import {
 	useRef,
 	useState,
 } from "react";
+import { useResetOnCardChange } from "../../hooks/useResetOnCardChange";
 import { classColor } from "../../utils/consonantClassColor";
 import { PlayAudioButton } from "../atoms/PlayAudioButton";
 import { ThaiCharDisplay } from "../atoms/ThaiCharDisplay";
@@ -110,10 +111,16 @@ export function MultipleChoice({
 			: null;
 	const hasLongChoice = card.choices.some((c) => c.length > 6);
 
-	// biome-ignore lint/correctness/useExhaustiveDependencies: card.id resets state when the card changes
-	useEffect(() => {
+	// Answered state is cleared during render, not in an effect: an effect runs
+	// after paint, and iOS Safari then shows a frame of the new card already
+	// marked up with the previous answer. See `useResetOnCardChange`.
+	useResetOnCardChange(card.id, () => {
 		setSelected(null);
 		setRevealed(false);
+	});
+
+	// biome-ignore lint/correctness/useExhaustiveDependencies: card.id restarts the response timer when the card changes
+	useEffect(() => {
 		displayedAtRef.current = Date.now();
 	}, [card.id]);
 
