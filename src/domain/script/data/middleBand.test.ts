@@ -14,6 +14,7 @@ import { checkOriginality } from "./originality";
 import { conditionalFormFor, districtForClass } from "./sceneGrammar";
 import {
 	consonants,
+	type Lesson,
 	lessons,
 	type ThaiConsonant,
 	ThaiSymbolClass,
