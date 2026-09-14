@@ -13,7 +13,7 @@ covers:
   - src/presentation/components/organisms/Flashcard.tsx
 status: stable
 task_id: "1.2"
-task_status: pending
+task_status: complete
 depends_on: ["1.1a"]
 size: medium
 verify:
@@ -35,6 +35,27 @@ weight_votes:
   - "unknowns-estimator -> 3"
   - "calibration-estimator -> 5"
 weight_voted: "sha256:e6eb5f96059bc2482a76dd4fa99a6cf00bde7a4645406fa9a2606a410ff82ba8"
+ac_tests:
+  - "AC1 -> src/presentation/components/organisms/LessonIntro.test.tsx::a video-arm lesson renders the video element, unchanged"
+  - "AC2 -> src/presentation/components/organisms/DeckSlide.test.tsx::renders the validation failure and no slide content"
+  - "AC3 -> src/presentation/components/organisms/DeckSlide.test.tsx::an empty deck and a failed fetch produce different output"
+  - "AC4 -> src/presentation/components/organisms/DeckSlide.test.tsx::shows markup characters literally rather than interpreting them"
+  - "AC5 -> src/presentation/components/organisms/DeckSlide.test.tsx::plays audio again when advancing to a slide sharing the same clip"
+  - "AC6 -> src/presentation/components/organisms/LessonIntro.test.tsx::stepping backward and forward after completion does not call it again"
+  - "AC7 -> src/presentation/components/organisms/DeckSlide.test.tsx::keeps the reveal slide's answer hidden until the learner acts"
+red_proof:
+  - "AC5 -> Changed DeckSlideContent's audio-playback effect dependency array from [slide.id] to [audioUrl] in DeckSlide.tsx, so two consecutive slides sharing one audioUrl would not retrigger… [see red-proofs/]"
+  - "AC6 -> Added a useEffect in LessonIntro.tsx that fires onComplete() whenever isLast becomes true (a plausible but wrong effect-based implementation), instead of only on the explicit final… [see red-proofs/]"
+  - "AC2 -> Review-round addition: forced extractAudioUrls' containment check (`audioUrl.startsWith(prefix) && !audioUrl.includes(\"..\")`) to always pass (`if (true)`), so a refused audioUrl out… [see red-proofs/]"
+red_proof_waived:
+  - "AC1 -> traced: Both LessonIntro.test.tsx cases for AC1 read the same dispatch branch proven correct by the AC6 mutation's revert/green cycle (the whole component re-rendering correctly under mutat… [see red-proofs/]"
+  - "AC3 -> traced: Directly hit a real red/green cycle while implementing isUnauthoredEmptyDeck during the original build: before that helper existed, the empty-deck fixture legitimately failed valida… [see red-proofs/]"
+  - "AC4 -> traced: The component renders slide.body via React text children with no dangerouslySetInnerHTML anywhere in the file (grep-verified, re-confirmed during the review pass); did not additiona… [see red-proofs/]"
+  - "AC7 -> traced: Reveal-state gating reuses the same useResetOnCardChange + useState('revealed') pattern already proven correct by Flashcard.test.tsx's own reveal tests; did not additionally mutate… [see red-proofs/]"
+lint:
+  before: 33
+  after: 34
+  outcome: violations
 generated: {by: claude-opus-5/agent, at: 2026-09-13}
 profile_version: 1
 ---
