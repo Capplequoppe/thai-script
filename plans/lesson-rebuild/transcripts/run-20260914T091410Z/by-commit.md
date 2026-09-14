@@ -5,6 +5,8 @@ narrative reconstructed from the agent transcript that produced it.
 
 | Commit | Task | Subject | Reasoning |
 |---|---|---|---|
+| `22d244c16bbb` | `1.3` | Build the lesson-deck generation pipeline | [narrative](commits/22d244c16bbb.md) |
 | `3d0252102411` | `1.2` | Add the deck slide type to LessonIntro, dispatched on LessonContent | [narrative](commits/3d0252102411.md) |
 | `4737b9d4780d` | `1.2` | Extract readAudioCandidate to bring extractAudioUrls under the complexity bound | [narrative](commits/4737b9d4780d.md) |
 | `6ea5d640df02` | `1.2` | Distinguish a refused audioUrl from no audio; cover the rule-slide branch | [narrative](commits/6ea5d640df02.md) |
+| `ffeb94bdd909` | `1.3` | Contain the image read, and stop a corrupt manifest reading as an empty one | [narrative](commits/ffeb94bdd909.md) |

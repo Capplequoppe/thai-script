@@ -22,3 +22,20 @@ A refusal (e.g. a slide's audioUrl failing the trust-boundary containment check)
 <!-- lesson id=L2 from=1.2 scope=plan -->
 
 plans/lesson-rebuild/README.md, CONTEXT.md and decisions.md are not present on disk in the worktree (only phase-1-tracer/ task files are), so plan-runner macro run observe-red cannot resolve a test-templates entry and fails outright — confirmed again this round; an orchestration gap worth fixing centrally.
+## L3 — task 1.3 · run-20260914T091410Z
+
+<!-- lesson id=L3 from=1.3 scope=dependents -->
+
+A lesson script is Markdown: `# Title`, `lesson: <id>`, then `## <kind> <slide-id>` sections with `key: value` fields, `- bullet` bodies and `narration: en|th <text>` lines — one clip per narration line. An `image:` path must resolve inside the script's own directory or the run is refused. `scripts/lesson_deck/fixtures/lesson-02.md` is a working example of all four slide kinds.
+
+## L4 — task 1.3 · run-20260914T091410Z
+
+<!-- lesson id=L4 from=1.3 scope=dependents -->
+
+Deck JSON carries `audio: string[]` and `image: string` on slides beside the schema's own fields; validateDeck ignores and strips unknown keys, so the renderer must read the asset refs off the raw JSON, not off validateDeck's returned deck.
+
+## L5 — task 1.3 · run-20260914T091410Z
+
+<!-- lesson id=L5 from=1.3 scope=plan -->
+
+`plan-runner macro run observe-red` cannot work on this plan: plans/lesson-rebuild/README.md is absent from disk, so the macro finds no test-templates block and refuses. Issue the template command directly — `npx vitest run <file> --reporter=verbose --hideSkippedTests -t "<test name>"` is a single test and is not refused by the suite guard.
