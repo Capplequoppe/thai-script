@@ -187,7 +187,10 @@ function generateConsonantCards(c: ThaiConsonant): PropertyCard[] {
 	};
 
 	// No `consonantClass` here: this card's question IS "what class is this
-	// consonant", so the glyph must render with no color hint.
+	// consonant", so the glyph must render with no color hint. The district
+	// cue (see consonantClassColor.ts) derives from the same field, so
+	// omitting it here suppresses that channel too — no second suppression
+	// point to keep in sync.
 	const classCard: PropertyCard = {
 		id: `${c.character}:class`,
 		symbolCharacter: c.character,
