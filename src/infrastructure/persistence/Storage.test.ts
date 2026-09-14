@@ -1,5 +1,8 @@
 import { afterEach, beforeEach, describe, expect, it } from "vitest";
-import type { LessonSequenceEntry } from "../../domain/script/data/lessonSequence";
+import {
+	type LessonSequenceEntry,
+	lessonSequence,
+} from "../../domain/script/data/lessonSequence";
 import type { LearnerState } from "../../domain/shared/types";
 import { INITIAL_LEARNER_STATE } from "../../domain/shared/types";
 import {
@@ -158,6 +161,39 @@ describe("migrateLessonIdentity", () => {
 		expect(state.cards["ม:initialSound"].lessonNumber).toBe(42);
 		expect(state.pendingCatchUps).toEqual([
 			{ lessonNumber: 4, cardIds: ["ม:initialSound"] },
+		]);
+	});
+
+	it("resolves retired legacy numbers 15-25 against the real default sequence via RETIRED_LESSONS", () => {
+		// A state written under the pre-phase-4 25-lesson course: legacy 15
+		// (retired, absorbed by lesson-12) and legacy 19 (retired, absorbed by
+		// lesson-14) are real values that existed before task 4.3 resequenced
+		// the course. No sequence override is passed here — this runs against
+		// the actual `lessonSequence` the app ships, not a synthetic fixture,
+		// so a regression to RETIRED_LESSONS or to resolve()'s fallback would
+		// fail this test.
+		const state = legacyState();
+		state.completedLessons = [15];
+		state.currentLesson = 19;
+		state.cards["ม:initialSound"].lessonNumber = 15;
+		state.pendingCatchUps = [{ lessonNumber: 19, cardIds: ["ม:initialSound"] }];
+
+		const lesson12Position = lessonSequence.find(
+			(entry) => entry.id === "lesson-12",
+		)?.position;
+		const lesson14Position = lessonSequence.find(
+			(entry) => entry.id === "lesson-14",
+		)?.position;
+		expect(lesson12Position).toBeDefined();
+		expect(lesson14Position).toBeDefined();
+
+		expect(() => migrateLessonIdentity(state)).not.toThrow();
+
+		expect(state.completedLessons).toEqual([lesson12Position]);
+		expect(state.currentLesson).toBe(lesson14Position);
+		expect(state.cards["ม:initialSound"].lessonNumber).toBe(lesson12Position);
+		expect(state.pendingCatchUps).toEqual([
+			{ lessonNumber: lesson14Position, cardIds: ["ม:initialSound"] },
 		]);
 	});
 
