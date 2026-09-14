@@ -267,6 +267,22 @@ function namedLowInThirdBucket(): Set<string> {
 
 // ============================================================================
 
+/**
+ * The seam, as far as this task can reach it.
+ *
+ * AC1 wants every band lesson resolving to the deck arm, and that is two
+ * lines this task's `covers` does not include: `DECK_LESSON_IDS` in
+ * `lessonContent.ts`, and a `lesson-sound-buckets` entry in
+ * `lessonSequence.ts`. Until both land, lessons 02-05 still resolve to their
+ * videos and `lesson-sound-buckets` is undeclared, so the deck-arm half of
+ * AC1 is asserted nowhere and is deliberately not faked here.
+ *
+ * What is asserted is everything the decks themselves can carry: each one is
+ * committed and schema-valid at exactly the path the deck arm would serve it
+ * from, the first lesson past the band is still on the video arm, and nothing
+ * is registered on the deck arm without a deck behind it — the invariant that
+ * stays true, and worth keeping, once the wiring does land.
+ */
 describe("the content seam", () => {
 	it("has a committed, schema-valid deck at the exact path the deck arm serves, for every band lesson", () => {
 		for (const { id } of BAND) {
