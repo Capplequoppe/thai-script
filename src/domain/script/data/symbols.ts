@@ -1145,7 +1145,7 @@ const consonants: ThaiConsonant[] = [
 		},
 	}),
 
-	// === Lesson 13: ศ, ษ, ส (High class, all make 's' sound) ===
+	// === Lessons 13 and 12: ศ, ษ (13), ส (12) — high class, all make 's' sound ===
 	ThaiConsonant.fromPlain({
 		character: "ศ",
 		name: "ศ ศาลา",
@@ -1210,7 +1210,7 @@ const consonants: ThaiConsonant[] = [
 		},
 	}),
 
-	// === Lesson 14: ผ, ฝ (High class) ===
+	// === Lesson 12 (continued): ผ, ฝ (High class) ===
 	ThaiConsonant.fromPlain({
 		character: "ผ",
 		name: "ผ ผึ้ง",
@@ -2021,7 +2021,7 @@ const vowels: ThaiVowel[] = [
 		},
 	}),
 
-	// === Formerly lesson 15 — now lessons 12/14/28 ===
+	// === Formerly lesson 15 — now lesson 14 ===
 	ThaiVowel.fromPlain({
 		character: "-ัว",
 		name: "sara uua",
@@ -2714,7 +2714,7 @@ export const words: ThaiWord[] = [
 		lesson: 14,
 	}),
 
-	// === Formerly lesson 15 — now lessons 12/14/28 ===
+	// === Formerly lesson 15 — now lessons 14/28 ===
 	ThaiWord.fromPlain({
 		name: "หมี",
 		romanization: "mii",
@@ -2943,7 +2943,7 @@ export const words: ThaiWord[] = [
 		lesson: 29,
 	}),
 
-	// === Formerly lesson 24 — now the tone-mark lesson ===
+	// === Formerly lesson 24 — now the tone-mark lesson (and เนย to 13) ===
 	ThaiWord.fromPlain({
 		name: "น้ำ",
 		romanization: "nam",
