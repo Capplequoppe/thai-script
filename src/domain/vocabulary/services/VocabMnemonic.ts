@@ -976,15 +976,18 @@ export function reviewStaging(
 // The corpus's own 277 mnemonics, measured against the originality gate
 // ----------------------------------------------------------------------------
 // AC5 puts the prose that already shipped through the same gate as the new
-// records, and three entries come back overlapping. All three collide on a
-// stock grammatical run rather than on a borrowed image — "at the end of the"
-// and its neighbours — which the 5-token window cannot tell apart from a
-// reused phrase, and the licensed set does contain those runs.
+// records. Three entries (ได้, ครับ, ค่ะ) came back overlapping on a stock
+// grammatical run — "at the end of the" and its neighbours — which the
+// 5-token window cannot tell apart from a reused phrase, and the licensed set
+// happens to contain those runs too. Rather than declare them as tolerated
+// exceptions to a gate whose whole point is not to be argued with, the three
+// `vocabulary.json` strings were rewritten to drop the flagged run; this list
+// is now empty and the test over it is exact in both directions, so a fourth
+// overlap fails and so does a rewrite that reintroduces one of these three.
 //
-// They are declared rather than excused: the fix is to rewrite those three
-// strings, and the strings live in `vocabulary.json`, outside this task's
-// covers. The test over this list is exact in both directions, so a fourth
-// overlap fails and so does a rewrite that this list was not told about.
+// See phase-5 review, 2026-09-14: rewrote the ได้/ครับ/ค่ะ mnemonics
+// (rank 2, 5, 6) in vocabulary.json to clear the gate instead of allowlisting
+// them.
 
 export interface CorpusMnemonicOverlap {
 	thai: string;
@@ -995,23 +998,4 @@ export interface CorpusMnemonicOverlap {
 }
 
 export const KNOWN_CORPUS_MNEMONIC_OVERLAPS: readonly CorpusMnemonicOverlap[] =
-	[
-		{
-			thai: "ได้",
-			rank: 2,
-			ngram: "at the end of the",
-			note: "stock English phrasing in a sentence about where the road stops; no image is borrowed",
-		},
-		{
-			thai: "ครับ",
-			rank: 5,
-			ngram: "particle used at the end",
-			note: "the standard description of a sentence-final particle; the fact is free, this wording is not",
-		},
-		{
-			thai: "ค่ะ",
-			rank: 6,
-			ngram: "at the end of a",
-			note: "same stock run as rank 2, one article different",
-		},
-	];
+	[];

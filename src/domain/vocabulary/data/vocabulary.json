@@ -85,7 +85,7 @@
     "toneRules": [
       "mid-maytho"
     ],
-    "mnemonic": "A man walks along the Road of Life, and whenever he opens a door, receives a gift, or eats a meal, a golden glow appears and says “ได้!”. As long as he is alive, he can do things, get things, and successfully make things happen — ได้. At the end of the road is a quiet sign that says “DIE,” and beyond it there is nothing left to ได้.",
+    "mnemonic": "A man walks along the Road of Life, and whenever he opens a door, receives a gift, or eats a meal, a golden glow appears and says “ได้!”. As long as he is alive, he can do things, get things, and successfully make things happen — ได้. At the far end of the road is a quiet sign that says “DIE,” and beyond it there is nothing left to ได้.",
     "ipa": "dâj",
     "word_class_provenance": "source",
     "word_class_predicted": "aux",
@@ -315634,7 +315634,7 @@
     "english": "polite particle (male)",
     "rank": 5,
     "frequency": 500000,
-    "mnemonic": "A polite man finishes his sentence, and a small golden crab pops onto the end of his words. The crab clicks its claws and says “ครับ!” making the sentence sound respectful and polite. Crab → ครับ → male polite particle used at the end of statements.",
+    "mnemonic": "A polite man finishes his sentence, and a small golden crab pops onto the end of his words. The crab clicks its claws and says “ครับ!” making the sentence sound respectful and polite. Crab → ครับ → male polite particle placed at the very end of statements.",
     "description": "Male politeness particle added to the end of statements and questions. Essential for polite speech.",
     "characters": [
       "ค",
@@ -315688,7 +315688,7 @@
     "english": "polite particle (female, statement)",
     "rank": 6,
     "frequency": 500000,
-    "mnemonic": "KHA (falling) — a woman's graceful curtsy at the end of a statement",
+    "mnemonic": "KHA (falling) — a woman's graceful curtsy at the close of a statement",
     "description": "Female politeness particle for statements. The falling tone distinguishes it from the question form คะ.",
     "characters": [
       "ค",
