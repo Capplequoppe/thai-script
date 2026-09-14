@@ -8,7 +8,7 @@ covers:
   - src/domain/vocabulary/types.ts
 status: stable
 task_id: "5.1"
-task_status: pending
+task_status: complete
 depends_on: []
 size: medium
 verify:
@@ -28,6 +28,22 @@ weight_votes:
   - "unknowns-estimator -> 3"
   - "calibration-estimator -> 5"
 weight_voted: "sha256:7ab30063ef4d87b5c4aaa10249a63df5fc09e3ccd591112eb788a936c200edf4"
+ac_tests:
+  - "AC1 -> src/domain/vocabulary/data/rooms.test.ts::maps every known word class to exactly one room, total in both directions"
+  - "AC2 -> src/domain/vocabulary/data/rooms.test.ts::shares no name between ROOMS and DISTRICTS"
+  - "AC3 -> src/domain/vocabulary/data/rooms.test.ts::reports a sub-district pushed past its declared capacity"
+  - "AC4 -> src/domain/vocabulary/data/rooms.test.ts::for %s: hidden before acting, obtainable on request, present after reveal"
+  - "AC5 -> src/domain/vocabulary/data/rooms.test.ts::produces three distinct state values"
+red_proof:
+  - "AC1 -> Changed ROOM_FOR_WORD_CLASS.adj from \"actions-and-states\" to \"things\" in rooms.ts."
+  - "AC2 -> Changed ROOMS[3] in types.ts from \"connectors\" to \"temple\" (a district name)."
+  - "AC3 -> Changed the overflow condition in reportNounSubdistrictOverflows from `count > capacity` to `count > capacity + 1000`."
+  - "AC4 -> Removed the hintRequested branch from stageOnRequestThenOnReveal so an on-demand hint request before reveal always returned hidden."
+  - "AC5 -> Changed assignRoom(\"\") to return {state:\"unassignable\", reason:\"empty word class\"} instead of {state:\"unclassified\"}."
+lint:
+  before: 9
+  after: 6
+  outcome: incomplete
 generated: {by: claude-opus-5/agent, at: 2026-09-13}
 profile_version: 1
 ---
