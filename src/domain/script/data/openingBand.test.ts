@@ -19,9 +19,13 @@ import {
 } from "./symbols";
 
 /**
- * Task 2.5's proof: the opening band's five in-house decks, and the lesson
- * that turns consonant class from 44 memorised facts into two audible buckets
- * plus a small residue.
+ * Task 2.5's proof: the opening band, and the lesson that turns consonant
+ * class from 44 memorised facts into two audible buckets plus a small residue.
+ *
+ * The band is six decks — the five this task authors (lessons 02-05 and
+ * `lesson-sound-buckets`) plus `lesson-01` from task 1.4, which every check
+ * here sweeps too, because "no symbol is used before it is taught" is a claim
+ * about the band as a sequence and cannot be made one lesson at a time.
  *
  * Everything here reads the *committed* decks under `public/lessons/`, not a
  * fixture — the artefacts the app serves are the artefacts under test. The
@@ -136,9 +140,18 @@ function thaiWordsIn(texts: readonly string[]): Set<string> {
  * out rather than the strings compared.
  */
 function declaredSymbols(legacyNumber: number | undefined): Set<string> {
+	// Three outcomes, not two. No `legacyNumber` means the lesson declares no
+	// row at all (`lesson-sound-buckets`) and legitimately introduces nothing.
+	// A `legacyNumber` whose row is missing is a broken band table, and it must
+	// not arrive here as the same empty set: that would quietly make AC2's
+	// "uses everything it declares" loop vacuous for that lesson.
 	if (legacyNumber === undefined) return new Set();
 	const row = lessons.find((lesson) => lesson.number === legacyNumber);
-	if (!row) return new Set();
+	if (!row) {
+		throw new Error(
+			`the band names lesson ${legacyNumber}, which the lessons table does not declare`,
+		);
+	}
 	return thaiCharsIn([...row.consonants, ...row.vowels]);
 }
 
@@ -182,7 +195,11 @@ const vocabularyByThai = new Set(vocabulary.map((entry) => entry.thai));
 
 const decks = new Map(BAND.map((lesson) => [lesson.id, readDeck(lesson.id)]));
 
-/** Consonants the band has taught by the end of each of its lessons. */
+/**
+ * Every symbol the band has taught by the end of each of its lessons —
+ * vowels as well as consonants, since AC2 governs both. `consonantsTaughtInBand`
+ * narrows it to the consonants where a check needs only those.
+ */
 const taughtAfter = new Map<string, Set<string>>();
 {
 	const running = new Set<string>();
@@ -255,8 +272,17 @@ function classFromStatedRule(
 function namedLowInThirdBucket(): Set<string> {
 	const deck = decks.get(BUCKETS_LESSON_ID);
 	const slide = deck?.slides.find((s) => s.id === THIRD_BUCKET_SLIDE);
+	// An absent slide is not a lesson that names nobody. Both would return an
+	// empty set and fail AC3, but only one of them is diagnosed correctly by
+	// "the lesson presents nothing that places ช" — the other is a renamed
+	// slide id, and it says so here instead of four letters down.
+	if (!slide) {
+		throw new Error(
+			`${BUCKETS_LESSON_ID} has no "${THIRD_BUCKET_SLIDE}" slide, so the rule it states cannot be read off the deck`,
+		);
+	}
 	const named = new Set<string>();
-	for (const text of slide?.body ?? []) {
+	for (const text of slide.body ?? []) {
 		for (const sentence of sentencesOf(text)) {
 			if (!/low[\s-]?class/i.test(sentence)) continue;
 			for (const ch of sentence.match(THAI) ?? []) named.add(ch);
@@ -410,7 +436,8 @@ describe("the derivable-buckets lesson", () => {
 		expect((bucketThree?.body ?? []).join(" ")).toMatch(/split/i);
 
 		// Not vacuous: the detector really does catch a class claim about an
-		// untaught letter. ผ is high class and arrives ten lessons later.
+		// untaught letter. ผ is high class and is taught at lesson 14, nine
+		// lessons past this one.
 		const planted = "ผ is a high class letter.";
 		const [sentence] = sentencesOf(planted);
 		expect(CLASS_CLAIM.test(sentence)).toBe(true);
@@ -426,6 +453,12 @@ describe("the band's example words", () => {
 		for (const lesson of BAND) {
 			const deck = decks.get(lesson.id);
 			if (!deck) continue;
+			// AC5's second arm. Nothing emits `teachingWords` today —
+			// `scripts/lesson_deck/pipeline.py`'s `_deck_json` writes lessonId,
+			// title and slides and nothing else — so every band word resolves
+			// through vocabulary.json and this set is always empty. Read: a
+			// lesson script cannot yet declare a teaching word, and adding one
+			// means teaching the generator to carry it through.
 			const teaching = new Set(
 				(deck.teachingWords ?? [])
 					.filter((word) => word.reason.trim().length > 0)
