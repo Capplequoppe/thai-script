@@ -12,10 +12,12 @@ covers:
   - public/lessons/lesson-14/
   - public/lessons/lesson-numerals/
   - src/domain/script/data/lessonSequence.ts
+  - src/domain/script/data/lessonContent.ts
+  - src/domain/script/data/symbols.ts
   - src/domain/script/data/sequenceClosure.test.ts
 status: stable
 task_id: "4.3"
-task_status: pending
+task_status: complete
 depends_on: ["4.1", "4.2"]
 size: x-large
 verify:
@@ -36,6 +38,24 @@ weight_votes:
   - "unknowns-estimator -> 8"
   - "calibration-estimator -> 13"
 weight_voted: "sha256:4f7e4425ef5853bcd5b5acc3f83775ba55c81790c4594d28b2907c83c63ef4b5"
+ac_tests:
+  - "AC1 -> src/domain/script/data/sequenceClosure.test.ts::resolves every declared lesson to a deck"
+  - "AC2 -> src/domain/script/data/sequenceClosure.test.ts::files every consonant in exactly one lessons-table row, and that row is in the sequence"
+  - "AC3 -> src/domain/script/data/sequenceClosure.test.ts::keeps the symbol set at 44 consonants, every one reachable through some lesson's cards"
+  - "AC4 -> src/domain/script/data/sequenceClosure.test.ts::resolves a learner to exactly one of three distinct states"
+  - "AC5 -> src/domain/script/data/sequenceClosure.test.ts::matches the recorded baseline across the taught rank window, reporting each disagreement"
+  - "AC6 -> src/domain/script/data/sequenceClosure.test.ts::sweeps every deck in the final sequence against what is taught by that point"
+red_proof:
+  - "AC1 -> Before implementation: ran the test against the pre-resequence tree (lessons 12-25 still on video). After implementation: removed \"lesson-14\" from DECK_LESSON_IDS in lessonContent.t… [see red-proofs/]"
+  - "AC2 -> Changed ฌ's `lesson: 14` to `lesson: 99` (an undeclared number) in symbols.ts, reverted after. Self-review verdict: a real assertion failure (row-membership/lesson-field coherence expect)."
+  - "AC3 -> Same mutation as AC2 (ฌ filed under undeclared lesson 99): no lesson's generated cards then cover ฌ. Self-review verdict: a real assertion failure with the criterion's own message."
+  - "AC4 -> Two mutations. (1) numeralsTrackState's skipped branch replaced with `return \"not-started\"` in lessonSequence.ts. (2) numerals entry flipped to required: true. Both reverted. Self-r… [see red-proofs/]"
+  - "AC5 -> Corrupted the mid-class mai-ek cell in toneMarkRules (resultingTone \"low\" → \"high\") in symbols.ts, reverted after. Self-review verdict: a real assertion failure (the toEqual on TONE… [see red-proofs/]"
+  - "AC6 -> Removed ห from row 12's consonants in symbols.ts without re-homing it, so no lesson teaches it; reverted after. Self-review verdict: a real assertion failure on the offences toEqual([])."
+lint:
+  before: 41
+  after: 41
+  outcome: unsupported
 generated: {by: claude-opus-5/agent, at: 2026-09-13}
 profile_version: 1
 ---
