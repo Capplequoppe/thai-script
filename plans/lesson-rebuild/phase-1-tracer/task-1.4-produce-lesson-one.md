@@ -9,7 +9,7 @@ covers:
   - src/domain/script/data/lesson01Deck.test.ts
 status: stable
 task_id: "1.4"
-task_status: pending
+task_status: complete
 depends_on: ["1.1b", "1.2", "1.3", "1.5"]
 size: medium
 verify:
@@ -30,6 +30,24 @@ weight_votes:
   - "unknowns-estimator -> 5"
   - "calibration-estimator -> 5"
 weight_voted: "sha256:4556298850ae31929a8eaf3edc5abe26b76c4150f69fe93a37c0d2084dd059f9"
+ac_tests:
+  - "AC1 -> src/domain/script/data/lesson01Deck.test.ts::produces identical scheduled cards and unlocked vocabulary whether lesson 1 is on the video arm or the deck arm"
+  - "AC2 -> src/domain/script/data/lesson01Deck.test.ts::teaches exactly the symbols lesson 1 declares — no more, no fewer"
+  - "AC3 -> src/domain/script/data/lesson01Deck.test.ts::every Thai example word resolves to a vocabulary.json entry (or is declared in teachingWords with a reason)"
+  - "AC4 -> src/domain/script/data/lesson01Deck.test.ts::produces identical scheduled cards and unlocked vocabulary whether lesson 1 is on the video arm or the deck arm"
+  - "AC5 -> src/domain/script/data/lesson01Deck.test.ts::clears every piece of narration and mnemonic prose in the deck"
+  - "AC6 -> src/domain/script/data/lesson01Deck.test.ts::every asset the deck references exists on disk, inside the lesson's own directory"
+red_proof:
+  - "AC2 -> Appended a stray Thai run (' ตัว', containing ต/ว/ั — none declared by lesson 1) to public/lessons/lesson-01/deck.json's first heading, then reran the single test."
+  - "AC3 -> Replaced a reveal slide's answer with the nonsense word 'มามามา' (confirmed absent from vocabulary.json), then reran the single test."
+  - "AC5 -> Appended the exact retired mug mnemonic ('Think of a coffee mug with a broken handle...') into a deck heading, then reran the single test."
+  - "AC6 -> Added a phantom audio path ('/lessons/lesson-01/audio/phantom.mp3', not on disk) to a slide in deck.json, then reran the single test."
+  - "AC1 -> In the scheduling test, changed `expect(deckArmState).toEqual(videoArmState)` to compare against a copy with `unlockedWords: [\"mutated-for-red-proof\"]`, then reran the single test."
+  - "AC4 -> Same mutation and observation as AC1 (one assertion proves both: it compares the video-arm and deck-arm scheduling/vocabulary results for equality)."
+lint:
+  before: 5
+  after: 5
+  outcome: unsupported
 generated: {by: claude-opus-5/agent, at: 2026-09-13}
 profile_version: 1
 ---
