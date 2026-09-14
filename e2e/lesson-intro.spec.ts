@@ -78,10 +78,12 @@ test.describe("Lesson 1 intro flow", () => {
 
 		await expect(page.getByText("Two letters, one shared shape")).toBeVisible();
 
-		// ConsonantCard for ม (maaw maa) — the deck's own last slide fires
+		// ConsonantCard for ม (maaw máa) — the deck's own last slide fires
 		// `onComplete`, handing off to the same symbol cards the video arm
-		// used, unchanged by this task.
-		const maawMaaHeading = page.getByRole("heading", { name: "maaw maa" });
+		// used, unchanged by this task. The heading carries a Paiboon tone
+		// diacritic (symbols.ts nameRomanized: "maaw máa") added by phase-2
+		// work, so this must match the accented form.
+		const maawMaaHeading = page.getByRole("heading", { name: "maaw máa" });
 		await clickThroughDeckUntil(page, maawMaaHeading);
 
 		await expect(maawMaaHeading).toBeVisible();
