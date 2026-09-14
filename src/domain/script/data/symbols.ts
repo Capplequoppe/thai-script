@@ -652,7 +652,7 @@ const consonants: ThaiConsonant[] = [
 		initialSound: "m",
 		finalSound: "m (live ending)",
 		audioUrl: "/thai-script/audio/consonant-mo-ma.mp3",
-		priority: 1,
+		priority: 6,
 		lesson: 1,
 		sceneMnemonic: {
 			district: "harbor",
@@ -673,7 +673,7 @@ const consonants: ThaiConsonant[] = [
 		initialSound: "n",
 		finalSound: "n (live ending)",
 		audioUrl: "/thai-script/audio/consonant-no-nu.mp3",
-		priority: 2,
+		priority: 1,
 		lesson: 1,
 		sceneMnemonic: {
 			district: "harbor",
@@ -696,7 +696,7 @@ const consonants: ThaiConsonant[] = [
 		initialSound: "ng (like end of 'sing')",
 		finalSound: "ng (live ending)",
 		audioUrl: "/thai-script/audio/consonant-ngo-ngu.mp3",
-		priority: 3,
+		priority: 5,
 		lesson: 2,
 		sceneMnemonic: {
 			district: "harbor",
@@ -717,7 +717,7 @@ const consonants: ThaiConsonant[] = [
 		initialSound: "y (like Y in 'yes')",
 		finalSound: "i (blends with vowel, like Y in 'boy')",
 		audioUrl: "/thai-script/audio/consonant-yo-yak.mp3",
-		priority: 4,
+		priority: 7,
 		lesson: 2,
 		sceneMnemonic: {
 			district: "harbor",
@@ -738,7 +738,7 @@ const consonants: ThaiConsonant[] = [
 		initialSound: "w (like W in 'water')",
 		finalSound: "o (blends with vowel, adds slight 'o' sound)",
 		audioUrl: "/thai-script/audio/consonant-wo-weng.mp3",
-		priority: 5,
+		priority: 8,
 		lesson: 2,
 		sceneMnemonic: {
 			district: "harbor",
@@ -761,7 +761,7 @@ const consonants: ThaiConsonant[] = [
 		initialSound: "g (hard G, unaspirated K)",
 		finalSound: "K-stop (close off air at back of throat)",
 		audioUrl: "/thai-script/audio/consonant-ko-kai.mp3",
-		priority: 6,
+		priority: 4,
 		lesson: 3,
 		sceneMnemonic: {
 			district: "market",
@@ -782,7 +782,7 @@ const consonants: ThaiConsonant[] = [
 		initialSound: "d (like D in 'diamond')",
 		finalSound: "T-stop (tongue touches near teeth, no air released)",
 		audioUrl: "/thai-script/audio/consonant-do-dek.mp3",
-		priority: 7,
+		priority: 10,
 		lesson: 3,
 		sceneMnemonic: {
 			district: "market",
@@ -803,7 +803,7 @@ const consonants: ThaiConsonant[] = [
 		initialSound: "b (like B in 'bucket')",
 		finalSound: "P-stop (close lips, no air released)",
 		audioUrl: "/thai-script/audio/consonant-bo-baimai.mp3",
-		priority: 8,
+		priority: 14,
 		lesson: 3,
 		sceneMnemonic: {
 			district: "market",
@@ -826,7 +826,7 @@ const consonants: ThaiConsonant[] = [
 		initialSound: "ch (like CH in 'China')",
 		finalSound: "T-stop",
 		audioUrl: "/thai-script/audio/consonant-cho-chang.mp3",
-		priority: 9,
+		priority: 21,
 		lesson: 4,
 		sceneMnemonic: {
 			district: "harbor",
@@ -847,7 +847,7 @@ const consonants: ThaiConsonant[] = [
 		initialSound: "s (like S in 'sun')",
 		finalSound: "T-stop",
 		audioUrl: "/thai-script/audio/consonant-so-so.mp3",
-		priority: 10,
+		priority: 31,
 		lesson: 4,
 		sceneMnemonic: {
 			district: "harbor",
@@ -870,7 +870,7 @@ const consonants: ThaiConsonant[] = [
 		initialSound: "ph (aspirated P, like P in 'panda')",
 		finalSound: "P-stop",
 		audioUrl: "/thai-script/audio/consonant-pho-phan.mp3",
-		priority: 11,
+		priority: 18,
 		lesson: 5,
 		sceneMnemonic: {
 			district: "harbor",
@@ -891,7 +891,7 @@ const consonants: ThaiConsonant[] = [
 		initialSound: "f (like F in 'family')",
 		finalSound: "P-stop",
 		audioUrl: "/thai-script/audio/consonant-fo-fan.mp3",
-		priority: 12,
+		priority: 27,
 		lesson: 5,
 		sceneMnemonic: {
 			district: "harbor",
@@ -914,7 +914,7 @@ const consonants: ThaiConsonant[] = [
 		initialSound: "kh (like K in 'kite' or C in 'cup')",
 		finalSound: "K-stop",
 		audioUrl: "/thai-script/audio/consonant-kho-khwai.mp3",
-		priority: 13,
+		priority: 16,
 		lesson: 6,
 		sceneMnemonic: {
 			district: "harbor",
@@ -937,7 +937,7 @@ const consonants: ThaiConsonant[] = [
 		initialSound: "th (aspirated T, like T in 'top' with puff of air)",
 		finalSound: "T-stop",
 		audioUrl: "/thai-script/audio/consonant-tho-thahan.mp3",
-		priority: 14,
+		priority: 15,
 		lesson: 7,
 		sceneMnemonic: {
 			district: "harbor",
@@ -958,7 +958,7 @@ const consonants: ThaiConsonant[] = [
 		initialSound: "h (like H in 'hoot')",
 		finalSound: "not used as final consonant",
 		audioUrl: "/thai-script/audio/consonant-ho-nokhu.mp3",
-		priority: 15,
+		priority: 35,
 		lesson: 7,
 		sceneMnemonic: {
 			district: "harbor",
@@ -981,7 +981,7 @@ const consonants: ThaiConsonant[] = [
 		initialSound: "r (trilled R, like double R in 'burrito')",
 		finalSound: "n (same as น, live ending)",
 		audioUrl: "/thai-script/audio/consonant-ro-ria.mp3",
-		priority: 16,
+		priority: 2,
 		lesson: 8,
 		sceneMnemonic: {
 			district: "harbor",
@@ -1002,7 +1002,7 @@ const consonants: ThaiConsonant[] = [
 		initialSound: "l (like L in 'little')",
 		finalSound: "n (same as ร final, live ending)",
 		audioUrl: "/thai-script/audio/consonant-lo-ling.mp3",
-		priority: 17,
+		priority: 9,
 		lesson: 8,
 		sceneMnemonic: {
 			district: "harbor",
@@ -1025,7 +1025,7 @@ const consonants: ThaiConsonant[] = [
 		initialSound: "j (like J in 'jump')",
 		finalSound: "T-stop",
 		audioUrl: "/thai-script/audio/consonant-jo-jan.mp3",
-		priority: 18,
+		priority: 19,
 		lesson: 9,
 		sceneMnemonic: {
 			district: "market",
@@ -1046,7 +1046,7 @@ const consonants: ThaiConsonant[] = [
 		initialSound: "dt (between D and T, unaspirated T)",
 		finalSound: "T-stop",
 		audioUrl: "/thai-script/audio/consonant-to-tau.mp3",
-		priority: 19,
+		priority: 12,
 		lesson: 9,
 		sceneMnemonic: {
 			district: "market",
@@ -1067,7 +1067,7 @@ const consonants: ThaiConsonant[] = [
 		initialSound: "bp (between B and P, unaspirated P)",
 		finalSound: "P-stop",
 		audioUrl: "/thai-script/audio/consonant-po-pla.mp3",
-		priority: 20,
+		priority: 17,
 		lesson: 9,
 		sceneMnemonic: {
 			district: "market",
@@ -1090,7 +1090,7 @@ const consonants: ThaiConsonant[] = [
 		initialSound: "silent (placeholder for vowel-initial words)",
 		finalSound: "acts as vowel สระ ออ (aaw)",
 		audioUrl: "/thai-script/audio/consonant-o-ang.mp3",
-		priority: 21,
+		priority: 3,
 		lesson: 11,
 		sceneMnemonic: {
 			district: "market",
@@ -1113,7 +1113,7 @@ const consonants: ThaiConsonant[] = [
 		initialSound: "kh (same sound as ค, but high class)",
 		finalSound: "K-stop",
 		audioUrl: "/thai-script/audio/consonant-kho-khay.mp3",
-		priority: 22,
+		priority: 20,
 		lesson: 12,
 		sceneMnemonic: {
 			district: "temple",
@@ -1134,7 +1134,7 @@ const consonants: ThaiConsonant[] = [
 		initialSound: "ch (same sound as ช, but high class)",
 		finalSound: "T-stop",
 		audioUrl: "/thai-script/audio/consonant-cho-ching.mp3",
-		priority: 23,
+		priority: 32,
 		lesson: 12,
 		sceneMnemonic: {
 			district: "temple",
@@ -1178,7 +1178,7 @@ const consonants: ThaiConsonant[] = [
 		initialSound: "s",
 		finalSound: "T-stop",
 		audioUrl: "/thai-script/audio/consonant-so-risi.mp3",
-		priority: 25,
+		priority: 28,
 		lesson: 13,
 		sceneMnemonic: {
 			district: "temple",
@@ -1199,7 +1199,7 @@ const consonants: ThaiConsonant[] = [
 		initialSound: "s",
 		finalSound: "T-stop",
 		audioUrl: "/thai-script/audio/consonant-so-sia.mp3",
-		priority: 26,
+		priority: 11,
 		lesson: 13,
 		sceneMnemonic: {
 			district: "temple",
@@ -1222,7 +1222,7 @@ const consonants: ThaiConsonant[] = [
 		initialSound: "ph (like P in 'pig')",
 		finalSound: "P-stop",
 		audioUrl: "/thai-script/audio/consonant-pho-phing.mp3",
-		priority: 27,
+		priority: 22,
 		lesson: 14,
 		sceneMnemonic: {
 			district: "temple",
@@ -1243,7 +1243,7 @@ const consonants: ThaiConsonant[] = [
 		initialSound: "f (like F in 'fan')",
 		finalSound: "P-stop",
 		audioUrl: "/thai-script/audio/consonant-fo-fa.mp3",
-		priority: 28,
+		priority: 33,
 		lesson: 14,
 		sceneMnemonic: {
 			district: "temple",
@@ -1266,7 +1266,7 @@ const consonants: ThaiConsonant[] = [
 		initialSound: "h (like H in 'Hello')",
 		finalSound: "not used as final consonant",
 		audioUrl: "/thai-script/audio/consonant-ho-hip.mp3",
-		priority: 29,
+		priority: 13,
 		lesson: 15,
 		sceneMnemonic: {
 			district: "temple",
@@ -1289,7 +1289,7 @@ const consonants: ThaiConsonant[] = [
 		initialSound: "ph (like P in 'pink')",
 		finalSound: "P-stop",
 		audioUrl: "/thai-script/audio/consonant-pho-samphau.mp3",
-		priority: 30,
+		priority: 26,
 		lesson: 16,
 		sceneMnemonic: {
 			district: "harbor",
@@ -1310,7 +1310,7 @@ const consonants: ThaiConsonant[] = [
 		initialSound: "th (aspirated T, like T in 'tennis')",
 		finalSound: "T-stop",
 		audioUrl: "/thai-script/audio/consonant-tho-thong.mp3",
-		priority: 31,
+		priority: 29,
 		lesson: 16,
 		sceneMnemonic: {
 			district: "harbor",
@@ -1331,7 +1331,7 @@ const consonants: ThaiConsonant[] = [
 		initialSound: "n (same as น)",
 		finalSound: "n (live ending)",
 		audioUrl: "/thai-script/audio/consonant-no-nen.mp3",
-		priority: 32,
+		priority: 25,
 		lesson: 16,
 		sceneMnemonic: {
 			district: "harbor",
@@ -1352,7 +1352,7 @@ const consonants: ThaiConsonant[] = [
 		initialSound: "y (same as ย)",
 		finalSound: "n",
 		audioUrl: "/thai-script/audio/consonant-yo-ying.mp3",
-		priority: 33,
+		priority: 30,
 		lesson: 16,
 		sceneMnemonic: {
 			district: "harbor",
@@ -1375,7 +1375,7 @@ const consonants: ThaiConsonant[] = [
 		initialSound: "th (like T in 'top')",
 		finalSound: "T-stop",
 		audioUrl: "/thai-script/audio/consonant-tho-thung.mp3",
-		priority: 34,
+		priority: 23,
 		lesson: 19,
 		sceneMnemonic: {
 			district: "temple",
@@ -1396,7 +1396,7 @@ const consonants: ThaiConsonant[] = [
 		initialSound: "th (same as ถ)",
 		finalSound: "T-stop",
 		audioUrl: "/thai-script/audio/consonant-tho-than.mp3",
-		priority: 35,
+		priority: 34,
 		lesson: 19,
 		sceneMnemonic: {
 			district: "temple",
@@ -1461,7 +1461,7 @@ const consonants: ThaiConsonant[] = [
 		initialSound: "th (usually same as ท, sometimes d)",
 		finalSound: "T-stop",
 		audioUrl: "/thai-script/audio/consonant-tho-montho.mp3",
-		priority: 38,
+		priority: 40,
 		lesson: 20,
 		sceneMnemonic: {
 			district: "harbor",
@@ -1482,7 +1482,7 @@ const consonants: ThaiConsonant[] = [
 		initialSound: "th (same as ฑ and ท)",
 		finalSound: "T-stop",
 		audioUrl: "/thai-script/audio/consonant-tho-phuthau.mp3",
-		priority: 39,
+		priority: 41,
 		lesson: 20,
 		sceneMnemonic: {
 			district: "harbor",
@@ -1505,7 +1505,7 @@ const consonants: ThaiConsonant[] = [
 		initialSound: "l (same as ล)",
 		finalSound: "n (live ending)",
 		audioUrl: "/thai-script/audio/consonant-lo-jula.mp3",
-		priority: 40,
+		priority: 38,
 		lesson: 21,
 		sceneMnemonic: {
 			district: "harbor",
@@ -1526,7 +1526,7 @@ const consonants: ThaiConsonant[] = [
 		initialSound: "kh (same as ค and ข)",
 		finalSound: "K-stop",
 		audioUrl: "/thai-script/audio/consonant-kho-rakhang.mp3",
-		priority: 41,
+		priority: 39,
 		lesson: 21,
 		sceneMnemonic: {
 			district: "harbor",
