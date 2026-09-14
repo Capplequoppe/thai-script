@@ -1,3 +1,4 @@
+import type { PropertyCard } from "../../../domain/shared/types";
 import { assignRoom } from "../../../domain/vocabulary/data/rooms";
 import {
 	composeVocabMnemonic,
@@ -10,6 +11,7 @@ import {
 	classColorForLevel,
 } from "../../utils/consonantClassColor";
 import { scaffoldLevel } from "../../utils/srsFade";
+import { bestScriptStage } from "../../utils/vocabStage";
 import { ToneContourIcon } from "../atoms/ToneContourIcon";
 import { MnemonicBlock } from "../molecules/MnemonicBlock";
 
@@ -65,16 +67,33 @@ function syllableTypeStyle(type: string): React.CSSProperties {
 export function WordCard({
 	word,
 	stageName,
+	scriptCards,
 }: {
 	word: VocabEntry;
 	/** This word's SRS stage name (e.g. "Burned"), if known — fades the color/tone scaffolding as mastery grows. Omit for a not-yet-reviewed word, which gets full scaffolding. */
 	stageName?: string | null;
+	/**
+	 * The learner's script cards, keyed by id — used to fade each syllable's
+	 * initial-consonant class colour by that CONSONANT's own mastery
+	 * (`bestScriptStage`), not the containing word's. Without this, a
+	 * well-known word would strip the class cue from a still-weak consonant
+	 * (and vice versa). Omit where no per-symbol tracking applies (e.g. the
+	 * vocab-intro walkthrough for a brand-new word) to fall back to the
+	 * word's own stage for every syllable.
+	 */
+	scriptCards?: Record<string, PropertyCard>;
 }) {
 	const hasDecomposition = word.syllables.some(
 		(s) => s.initialConsonant || s.vowel || s.finalConsonant,
 	);
 	const visibleSamples = word.samples.filter((s) => s.thai);
 	const level = scaffoldLevel(stageName);
+	// Falls back to the word's own level when no per-symbol cards are
+	// supplied, or when the consonant has no cards of its own yet.
+	const initialConsonantLevel = (character: string) =>
+		scriptCards
+			? scaffoldLevel(bestScriptStage(character, scriptCards))
+			: level;
 	// The staged, room-grammar mnemonic where this entry has one; the corpus's
 	// own prose otherwise. Matched on rank as well as spelling — two corpus
 	// entries can share a spelling and only one of them is the word staged.
@@ -219,8 +238,10 @@ export function WordCard({
 													className="thai text-sm font-semibold"
 													style={{
 														color:
-															classColorForLevel(syl.consonantClass, level) ??
-															"var(--color-text)",
+															classColorForLevel(
+																syl.consonantClass,
+																initialConsonantLevel(syl.initialConsonant),
+															) ?? "var(--color-text)",
 													}}
 												>
 													{syl.initialConsonant}

@@ -10,6 +10,8 @@ import {
 import type { Room } from "../../../domain/vocabulary/types";
 import { useResetOnCardChange } from "../../hooks/useResetOnCardChange";
 import { classColor } from "../../utils/consonantClassColor";
+import { scaffoldLevel } from "../../utils/srsFade";
+import { DistrictBadge } from "../atoms/DistrictBadge";
 import { StageDot } from "../atoms/StageDot";
 import { ThaiCharDisplay } from "../atoms/ThaiCharDisplay";
 import { RatingButtons } from "./RatingButtons";
@@ -108,6 +110,7 @@ export function Flashcard({ card, onRate }: Props) {
 	const stage = card.srs
 		? SrsStage.fromScheduleData(card.srs.learningStep, card.srs.interval)
 		: null;
+	const scaffolding = scaffoldLevel(stage?.name);
 
 	// Reset during render, not in an effect: an effect resets after paint, and
 	// iOS Safari then shows a frame of the new card with the answer already
@@ -195,6 +198,19 @@ export function Flashcard({ card, onRate }: Props) {
 							audioUrl={card.audioUrl}
 							hideAudio={hideAudioHint}
 							color={classColor(symbolClass)}
+						/>
+						{/* Colour is one class channel and fails for red-green CVD
+						    (see CONTEXT.md "Rejected alternatives") — the district
+						    glyph is the second, non-colour channel, and this is the
+						    only place a learner sees either during an actual SRS
+						    review. `symbolClass` is already `undefined` on the
+						    class-recall card itself (ScriptCardGenerator's
+						    deliberate suppression), so DistrictBadge renders
+						    nothing there, same as the colour above. */}
+						<DistrictBadge
+							classType={symbolClass}
+							level={scaffolding}
+							className="text-2xl mt-1 inline-block"
 						/>
 					</div>
 				) : promptWord ? (
