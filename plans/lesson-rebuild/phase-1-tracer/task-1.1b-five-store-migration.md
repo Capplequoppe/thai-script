@@ -31,7 +31,7 @@ covers:
   - e2e/lesson-intro.spec.ts
 status: stable
 task_id: "1.1b"
-task_status: pending
+task_status: complete
 depends_on: ["1.1a"]
 size: x-large
 verify:
@@ -57,6 +57,31 @@ weight_votes:
   - "unknowns-estimator -> 8"
   - "calibration-estimator -> 21"
 weight_voted: "sha256:563b1f95dc036e59c14a84142dd0e055d9a3a9aad034ab9390ab734470bb25b9"
+ac_tests:
+  - "AC1 -> src/infrastructure/persistence/Storage.test.ts::converts every persisted store together onto the declared sequence"
+  - "AC2 -> src/infrastructure/persistence/Storage.test.ts::runs the lesson conversion inside migrateState, not per consumer"
+  - "AC3 -> src/domain/vocabulary/services/VocabularyLessonService.test.ts::returns the same unlocked words before and after the lesson-identity migration"
+  - "AC4 -> src/infrastructure/persistence/MergeService.test.ts::unions a migrated and an unmigrated state across all five stores, losing nothing"
+  - "AC5 -> src/infrastructure/persistence/Storage.test.ts::never reads unreadable as empty: load() throws instead of returning a fresh state"
+  - "AC6 -> src/domain/script/services/ScriptLessonService.test.ts::leaves no lesson-count literal in any of the named files"
+  - "AC7 -> src/presentation/components/organisms/LessonPath.test.tsx::renders one node per declared lesson: 20 for a 20-lesson sequence"
+  - "AC8 -> e2e/lesson-intro.spec.ts::Lesson 1 intro flow"
+  - "AC9 -> src/domain/script/services/ScriptLessonService.test.ts::refuses a lesson with an incomplete predecessor, naming that predecessor"
+red_proof:
+  - "AC1 -> Disabled the pendingCatchUps arm of migrateLessonIdentity (`if (false as boolean && state.pendingCatchUps)`), so four sites convert and the fifth is skipped — the exact half-convers… [see red-proofs/]"
+  - "AC2 -> Removed the migrateLessonIdentity call from migrateState, so the boundary no longer performs the lesson conversion. Verified against red-proofs/1.1b.md: a real assertion failure on… [see red-proofs/]"
+  - "AC3 -> Made migrateLessonIdentity's resolve return position + 1 (an off-by-one join-key corruption). Verified against red-proofs/1.1b.md: a real assertion failure on the public getUnlocked… [see red-proofs/]"
+  - "AC4 -> Reverted mergeLearnerStates to `pendingCatchUps = current.pendingCatchUps` (the pre-task behavior), losing the incoming device's catch-ups. Verified against red-proofs/1.1b.md: a re… [see red-proofs/]"
+  - "AC5 -> Made LocalStorageAdapter.load() return structuredClone(INITIAL_LEARNER_STATE) when JSON.parse fails — unreadable silently reading as empty. Verified against red-proofs/1.1b.md: an a… [see red-proofs/]"
+  - "AC6 -> Reintroduced the literal in AchievementService: `completedLessons.length >= 25` in place of `>= lessonCount`. Verified against red-proofs/1.1b.md: a real assertion failure whose cus… [see red-proofs/]"
+  - "AC7 -> Made LessonPath enumerate `lessonSequence` directly, ignoring its injected `sequence` prop — a hardcoded walk over the real 25. Verified against red-proofs/1.1b.md: a real assertion… [see red-proofs/]"
+  - "AC9 -> Changed the prerequisite walk from lessonSequence.find to .findLast, so the refusal names the last incomplete predecessor instead of the first. Verified against red-proofs/1.1b.md:… [see red-proofs/]"
+red_proof_waived:
+  - "AC8 -> traced: AC8's claim is 'the Playwright suite passes'. No test-template claims e2e/** (the plan's one template covers src/** via vitest), so observe-red cannot run it, and producing a genuin… [see red-proofs/]"
+lint:
+  before: 71
+  after: 67
+  outcome: incomplete
 generated: {by: claude-opus-5/agent, at: 2026-09-13}
 profile_version: 1
 ---
