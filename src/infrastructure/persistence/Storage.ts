@@ -1,6 +1,7 @@
 import {
 	type LessonSequenceEntry,
 	lessonSequence,
+	RETIRED_LESSONS,
 } from "../../domain/script/data/lessonSequence";
 import type { LearnerState, SrsCard } from "../../domain/shared/types";
 import { INITIAL_LEARNER_STATE } from "../../domain/shared/types";
@@ -88,10 +89,28 @@ export function migrateLessonIdentity(
 	for (const entry of sequence) {
 		positionByLegacy.set(entry.legacyNumber, entry.position);
 	}
+	// Legacy numbers task 4.3 retired (15-25) no longer have a declared entry
+	// of their own; route them through the absorbing lesson's id to that
+	// lesson's current position. A state written under the pre-phase-4
+	// 25-lesson course still carries these values in all five stores, and a
+	// retired number resolving is what lets that state migrate rather than
+	// being refused outright (CONTEXT.md Rule 1).
+	const idToPosition = new Map<string, number>();
+	for (const entry of sequence) {
+		idToPosition.set(entry.id, entry.position);
+	}
+	const retiredPositionByLegacy = new Map<number, number>();
+	for (const retired of RETIRED_LESSONS) {
+		const position = idToPosition.get(retired.absorbedBy);
+		if (position !== undefined) {
+			retiredPositionByLegacy.set(retired.legacyNumber, position);
+		}
+	}
 	const failures: string[] = [];
 	const resolve = (value: number, site: string): number => {
 		if (value === NO_LESSON) return NO_LESSON;
-		const position = positionByLegacy.get(value);
+		const position =
+			positionByLegacy.get(value) ?? retiredPositionByLegacy.get(value);
 		if (position === undefined) {
 			failures.push(`${site}: no lesson is declared with number ${value}`);
 			return value;
