@@ -110,7 +110,6 @@ export function CatchUpPage() {
 				<LessonIntro
 					summary={pending.summary}
 					content={contentResolution.content}
-					suppressVideo
 					onComplete={handleIntroComplete}
 				/>
 			</div>

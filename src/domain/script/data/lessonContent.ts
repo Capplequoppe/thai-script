@@ -1,9 +1,10 @@
 /**
  * What a lesson *serves* — and the schema the in-house decks are written to.
  *
- * The content-source seam: `LessonContent` is a two-arm discriminated union so
- * a lesson can serve either a licensed `.webm` or an in-house deck, one lesson
- * at a time, with the compiler refusing any dispatch that forgets an arm.
+ * The content-source seam: `LessonContent` is a discriminated union, kept
+ * exhaustive with a `never` default, so the compiler refuses any dispatch
+ * that forgets an arm. Task 6.2 deleted the licensed-`.webm` arm and the 25
+ * files it served; a lesson serves only an in-house deck now.
  *
  * The deck schema's one non-structural demand is **retrieval**: a deck is
  * invalid unless the learner is asked to attempt something before the answer
@@ -16,29 +17,40 @@ import {
 	lessonEntryById,
 	parseLessonId,
 } from "./lessonSequence";
-import { type Lesson, lessons, specialRules, toneRules } from "./symbols";
+import { lessons, specialRules, toneRules } from "./symbols";
 
 // ============================================================================
 // The content union
 // ============================================================================
 
-export type LessonContent =
-	| { readonly kind: "video"; readonly url: string }
-	| { readonly kind: "deck"; readonly deckPath: string };
+/**
+ * The strangler is closed (task 6.2): the licensed video arm is gone, and a
+ * lesson's content is always a deck. The union and the `never` default in
+ * `describeLessonContent` stay — a single-arm union still narrows exhaustively,
+ * so the next content source is a compile error here rather than a silent
+ * fallthrough, exactly as it was when this had two arms.
+ */
+export type LessonContent = {
+	readonly kind: "deck";
+	readonly deckPath: string;
+};
 
 /**
  * Exhaustive dispatch over `LessonContent`. The `never` default is the point:
- * adding a third arm without handling it here is a compile error, which is how
- * every downstream dispatch is kept honest too.
+ * adding a second arm without handling it here is a compile error, which is
+ * how every downstream dispatch is kept honest too.
  */
 export function describeLessonContent(content: LessonContent): string {
 	switch (content.kind) {
-		case "video":
-			return `video ${content.url}`;
 		case "deck":
 			return `deck ${content.deckPath}`;
 		default: {
-			const _never: never = content;
+			// Narrows on `content.kind`, not `content` itself: with a single
+			// literal-object type (no `|`) rather than a union of variants,
+			// TypeScript only narrows the switched-on property to `never`
+			// here, not the whole object — so that's what a future arm's
+			// compile error has to hinge on.
+			const _never: never = content.kind;
 			return _never;
 		}
 	}
@@ -51,9 +63,9 @@ export function describeLessonContent(content: LessonContent): string {
 /**
  * Public root under which every generated lesson asset lives. Includes the
  * app's deploy base path (`vite.config.ts`'s `base: "/thai-script/"`) —
- * every other asset URL in this codebase (`symbols.ts`'s `videoUrl` and
- * `audioUrl` fields) is hardcoded the same way, and a root that omits it
- * 404s once the app is actually served under that base, dev included.
+ * every other asset URL in this codebase (`symbols.ts`'s `audioUrl` fields)
+ * is hardcoded the same way, and a root that omits it 404s once the app is
+ * actually served under that base, dev included.
  */
 export const LESSON_ASSET_ROOT = "/thai-script/lessons";
 
@@ -127,7 +139,7 @@ export type LessonContentResolution =
 	| { readonly status: "undeclared" };
 
 /**
- * The three statuses are distinct values on purpose: a lesson whose video is
+ * The three statuses are distinct values on purpose: a lesson whose deck is
  * missing must never be indistinguishable from a lesson that does not exist,
  * because the first is a broken build and the second is an ordinary 404.
  */
@@ -141,48 +153,30 @@ export const LESSON_CONTENT_STATUSES = [
  * Content for a lesson that is known to be declared, so the only two outcomes
  * left are "resolved" and "unresolvable". Split out from `resolveLessonContent`
  * because the undeclared case is decided by the lookup and this one is not —
- * a lesson whose video went missing must never read as a lesson that does not
+ * a declared lesson with no deck must never read as a lesson that does not
  * exist.
  */
 export function lessonContentFor(
 	entry: LessonSequenceEntry,
-	lesson: Lesson | undefined,
 ): LessonContentResolution {
-	if (DECK_LESSON_IDS.has(entry.id)) {
-		const path = deckPathForLesson(entry.id);
-		if (!path.ok) return { status: "unresolvable", reason: path.error };
-		return {
-			status: "resolved",
-			content: { kind: "deck", deckPath: path.path },
-		};
-	}
-	if (!lesson) {
+	if (!DECK_LESSON_IDS.has(entry.id)) {
 		return {
 			status: "unresolvable",
-			reason:
-				"lessonId: declared in the sequence but absent from the lessons table",
+			reason: "lessonId: declared in the sequence but has no deck",
 		};
 	}
-	if (!lesson.videoUrl) {
-		return {
-			status: "unresolvable",
-			reason: "lessonId: declares neither a deck nor a video url",
-		};
-	}
+	const path = deckPathForLesson(entry.id);
+	if (!path.ok) return { status: "unresolvable", reason: path.error };
 	return {
 		status: "resolved",
-		content: { kind: "video", url: lesson.videoUrl },
+		content: { kind: "deck", deckPath: path.path },
 	};
 }
 
 export function resolveLessonContent(value: unknown): LessonContentResolution {
 	const lookup = lessonEntryById(value);
 	if (!lookup.ok) return { status: "undeclared" };
-	const entry = lookup.entry;
-	return lessonContentFor(
-		entry,
-		lessons.find((lesson) => lesson.number === entry.legacyNumber),
-	);
+	return lessonContentFor(lookup.entry);
 }
 
 // ============================================================================

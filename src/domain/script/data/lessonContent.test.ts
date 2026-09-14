@@ -19,28 +19,17 @@ import { lessonSequence } from "./lessonSequence";
 import { specialRules } from "./symbols";
 
 const FIRST_ID = lessonSequence[0].id;
-// Task 4.3 closed the strangler: every declared lesson is on the deck arm,
-// so no sequence entry exercises the video-resolution path any more. The
-// path itself still exists in `lessonContentFor` (phase 6 owns deleting it),
-// so the tests about it run against a synthetic entry and row instead of a
-// declared lesson.
+// Task 6.2 removed the video arm: every declared lesson is on the deck arm,
+// and there is no other content source left to resolve to. `SECOND_ENTRY`
+// is a synthetic entry off the declared sequence and off `DECK_LESSON_IDS`,
+// so it exercises the "declared but no deck" unresolvable path without
+// needing a lessons-table row at all.
 const SECOND_ENTRY = {
 	id: "lesson-99",
 	position: 99,
 	legacyNumber: 99,
 	required: true,
 } as const;
-const SECOND_ROW = {
-	number: 99,
-	title: "A synthetic video lesson",
-	focus: "exercises the video arm",
-	consonants: [],
-	vowels: [],
-	toneMarks: [],
-	toneRulesIntroduced: [],
-	specialRulesIntroduced: [],
-	videoUrl: "/thai-script/videos/synthetic.webm",
-};
 
 function deck(slides: unknown[], lessonId: string = FIRST_ID) {
 	return { lessonId, title: "A lesson", slides };
@@ -102,13 +91,11 @@ describe("lesson id charset", () => {
 });
 
 describe("the LessonContent union", () => {
-	it("dispatches over both arms", () => {
-		const video: LessonContent = { kind: "video", url: "/v.webm" };
+	it("dispatches over its one remaining arm", () => {
 		const built: LessonContent = {
 			kind: "deck",
 			deckPath: "/lessons/x/deck.json",
 		};
-		expect(describeLessonContent(video)).toBe("video /v.webm");
 		expect(describeLessonContent(built)).toBe("deck /lessons/x/deck.json");
 	});
 });
@@ -123,13 +110,14 @@ describe("content resolution states", () => {
 		]);
 	});
 
-	it("still resolves the video arm for an entry off the deck set, though no declared lesson is", () => {
+	it("reports an entry off the deck set as unresolvable, never as undeclared — the pre-deletion check", () => {
 		expect(DECK_LESSON_IDS.has(SECOND_ENTRY.id)).toBe(false);
-		const result = lessonContentFor(SECOND_ENTRY, SECOND_ROW);
-		expect(result.status).toBe("resolved");
-		if (result.status !== "resolved") return;
-		expect(result.content.kind).toBe("video");
-		// The closure itself: every *declared* lesson is on the deck arm now.
+		const result = lessonContentFor(SECOND_ENTRY);
+		expect(result.status).toBe("unresolvable");
+		expect(result.status).not.toBe("undeclared");
+		if (result.status !== "unresolvable") return;
+		expect(result.reason.length).toBeGreaterThan(0);
+		// The closure itself: every *declared* lesson is on the deck arm.
 		for (const entry of lessonSequence) {
 			expect(DECK_LESSON_IDS.has(entry.id), entry.id).toBe(true);
 		}
@@ -140,22 +128,6 @@ describe("content resolution states", () => {
 		expect(result.status).toBe("resolved");
 		if (result.status !== "resolved") return;
 		expect(result.content.kind).toBe("deck");
-	});
-
-	it("reports a declared lesson absent from the lessons table as unresolvable, with a reason", () => {
-		const result = lessonContentFor(SECOND_ENTRY, undefined);
-		expect(result.status).toBe("unresolvable");
-		if (result.status !== "unresolvable") return;
-		expect(result.reason.length).toBeGreaterThan(0);
-	});
-
-	it("reports a declared lesson with no content source as unresolvable, never as undeclared", () => {
-		const result = lessonContentFor(SECOND_ENTRY, {
-			...SECOND_ROW,
-			videoUrl: undefined,
-		});
-		expect(result.status).toBe("unresolvable");
-		expect(result.status).not.toBe("undeclared");
 	});
 
 	it("reports an id no lesson declares as undeclared", () => {

@@ -2,7 +2,6 @@ import { useMemo, useState } from "react";
 import { useNavigate } from "react-router";
 import type {
 	ConsonantSummary,
-	LessonSummary,
 	NumeralSummary,
 	RareVowelSummary,
 	ToneMarkSummary,
@@ -32,16 +31,7 @@ type Tab =
 	| "toneMarks"
 	| "toneRules"
 	| "rareVowels"
-	| "numerals"
-	| "videos";
-
-function isEmbedUrl(url: string): boolean {
-	return (
-		url.includes("youtube.com") ||
-		url.includes("youtu.be") ||
-		url.includes("vimeo.com")
-	);
-}
+	| "numerals";
 
 function TileAudioButton({ audioUrl }: { audioUrl: string }) {
 	return (
@@ -64,54 +54,6 @@ function TileAudioButton({ audioUrl }: { audioUrl: string }) {
 		>
 			🔊
 		</span>
-	);
-}
-
-function VideoPlayer({
-	lesson,
-	onBack,
-}: {
-	lesson: LessonSummary;
-	onBack: () => void;
-}) {
-	const url = lesson.videoUrl!;
-	return (
-		<div className="space-y-4">
-			<button
-				type="button"
-				onClick={onBack}
-				className="text-sm hover:underline"
-				style={{ color: "var(--color-primary)" }}
-			>
-				&larr; Back to list
-			</button>
-			<h2 className="text-lg font-bold">
-				Lesson {lesson.lessonNumber}: {lesson.title}
-			</h2>
-			<div className="relative w-full aspect-video rounded-xl overflow-hidden bg-black">
-				{isEmbedUrl(url) ? (
-					<iframe
-						src={url}
-						title={lesson.title}
-						className="absolute inset-0 w-full h-full"
-						allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-						allowFullScreen
-					/>
-				) : (
-					// biome-ignore lint/a11y/useMediaCaption: Thai pronunciation videos are self-explanatory
-					<video
-						src={url}
-						title={lesson.title}
-						className="absolute inset-0 w-full h-full"
-						controls
-						preload="metadata"
-					/>
-				)}
-			</div>
-			<p className="text-sm" style={{ color: "var(--color-text-muted)" }}>
-				{lesson.focus}
-			</p>
-		</div>
 	);
 }
 
@@ -143,46 +85,36 @@ export function LearnedItemsPage() {
 	const navigate = useNavigate();
 
 	// Collect all learned items across completed lessons
-	const {
-		consonants,
-		vowels,
-		toneMarks,
-		toneRules,
-		rareVowels,
-		numerals,
-		videos,
-	} = useMemo(() => {
-		const c: ConsonantSummary[] = [];
-		const v: VowelSummary[] = [];
-		const t: ToneMarkSummary[] = [];
-		const tr: ToneRuleSummary[] = [];
-		const rv: RareVowelSummary[] = [];
-		const nm: NumeralSummary[] = [];
-		const vids: LessonSummary[] = [];
+	const { consonants, vowels, toneMarks, toneRules, rareVowels, numerals } =
+		useMemo(() => {
+			const c: ConsonantSummary[] = [];
+			const v: VowelSummary[] = [];
+			const t: ToneMarkSummary[] = [];
+			const tr: ToneRuleSummary[] = [];
+			const rv: RareVowelSummary[] = [];
+			const nm: NumeralSummary[] = [];
 
-		for (const lessonNum of [...state.completedLessons].sort((a, b) => a - b)) {
-			const summary = lesson.getScriptSummary(lessonNum);
-			c.push(...summary.consonants);
-			v.push(...summary.vowels);
-			t.push(...summary.toneMarks);
-			tr.push(...summary.toneRules);
-			rv.push(...summary.rareVowels);
-			nm.push(...summary.numerals);
-			if (summary.videoUrl) {
-				vids.push(summary);
+			for (const lessonNum of [...state.completedLessons].sort(
+				(a, b) => a - b,
+			)) {
+				const summary = lesson.getScriptSummary(lessonNum);
+				c.push(...summary.consonants);
+				v.push(...summary.vowels);
+				t.push(...summary.toneMarks);
+				tr.push(...summary.toneRules);
+				rv.push(...summary.rareVowels);
+				nm.push(...summary.numerals);
 			}
-		}
 
-		return {
-			consonants: c,
-			vowels: v,
-			toneMarks: t,
-			toneRules: tr,
-			rareVowels: rv,
-			numerals: nm,
-			videos: vids,
-		};
-	}, [state.completedLessons, lesson]);
+			return {
+				consonants: c,
+				vowels: v,
+				toneMarks: t,
+				toneRules: tr,
+				rareVowels: rv,
+				numerals: nm,
+			};
+		}, [state.completedLessons, lesson]);
 
 	const vocabWordCount = useMemo(() => {
 		const seen = new Set<string>();
@@ -260,7 +192,6 @@ export function LearnedItemsPage() {
 					},
 				]
 			: []),
-		{ key: "videos", label: "Videos", count: videos.length },
 	];
 
 	const total =
@@ -338,7 +269,7 @@ export function LearnedItemsPage() {
 			</div>
 
 			{/* Detail view */}
-			{selectedIdx !== null && tab !== "videos" && (
+			{selectedIdx !== null && (
 				<div
 					className="border rounded-xl p-4"
 					style={{ borderColor: "var(--color-border)" }}
@@ -559,47 +490,6 @@ export function LearnedItemsPage() {
 						</button>
 					))}
 				</div>
-			)}
-
-			{tab === "videos" && selectedIdx === null && (
-				<div className="space-y-3">
-					{videos.map((lesson, i) => (
-						<button
-							type="button"
-							key={lesson.lessonNumber}
-							onClick={() => setSelectedIdx(i)}
-							className="w-full flex items-center gap-4 p-4 rounded-xl transition-colors text-left"
-							style={{ background: "var(--color-surface-2)" }}
-						>
-							<div
-								className="flex-shrink-0 w-12 h-12 rounded-xl flex items-center justify-center font-bold text-lg"
-								style={{
-									background:
-										"color-mix(in srgb, var(--color-primary) 12%, var(--color-surface))",
-									color: "var(--color-primary)",
-								}}
-							>
-								{lesson.lessonNumber}
-							</div>
-							<div className="min-w-0">
-								<div className="font-semibold truncate">{lesson.title}</div>
-								<div
-									className="text-sm truncate"
-									style={{ color: "var(--color-text-muted)" }}
-								>
-									{lesson.focus}
-								</div>
-							</div>
-						</button>
-					))}
-				</div>
-			)}
-
-			{tab === "videos" && selectedIdx !== null && videos[selectedIdx] && (
-				<VideoPlayer
-					lesson={videos[selectedIdx]}
-					onBack={() => setSelectedIdx(null)}
-				/>
 			)}
 		</div>
 	);

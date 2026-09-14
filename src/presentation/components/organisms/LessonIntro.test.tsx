@@ -30,13 +30,13 @@ const SUMMARY: LessonSummary = {
 	toneRules: [],
 };
 
-const VIDEO_CONTENT: LessonContent = {
-	kind: "video",
-	url: "https://example.com/lesson-01.webm",
-};
-
 const DECK_PATH = "/thai-script/lessons/lesson-01/deck.json";
 const DECK_CONTENT: LessonContent = { kind: "deck", deckPath: DECK_PATH };
+const CATCH_UP_DECK_PATH = "/thai-script/lessons/lesson-02/deck.json";
+const CATCH_UP_DECK_CONTENT: LessonContent = {
+	kind: "deck",
+	deckPath: CATCH_UP_DECK_PATH,
+};
 
 const VALID_DECK = {
 	lessonId: "lesson-01",
@@ -64,20 +64,6 @@ const VALID_DECK = {
 };
 
 describe("LessonIntro — dispatching on LessonContent (AC1)", () => {
-	it("a video-arm lesson renders the video element, unchanged", () => {
-		render(
-			<LessonIntro
-				summary={SUMMARY}
-				content={VIDEO_CONTENT}
-				onComplete={vi.fn()}
-			/>,
-		);
-
-		const video = document.querySelector("video");
-		expect(video).toBeTruthy();
-		expect(video?.getAttribute("src")).toBe(VIDEO_CONTENT.url);
-	});
-
 	it("a deck-arm lesson renders its first slide's text, ahead of the symbol cards", async () => {
 		stubDeckJson(DECK_PATH, VALID_DECK);
 		render(
@@ -94,19 +80,55 @@ describe("LessonIntro — dispatching on LessonContent (AC1)", () => {
 	});
 });
 
+describe("LessonIntro — task 6.2 AC6: both lesson routes render decks", () => {
+	it("renders a deck the way LessonPage calls it, with no suppression prop", async () => {
+		stubDeckJson(DECK_PATH, VALID_DECK);
+		render(
+			<LessonIntro
+				summary={SUMMARY}
+				content={DECK_CONTENT}
+				onComplete={vi.fn()}
+			/>,
+		);
+
+		expect(await screen.findByText("Meet the first letter.")).toBeTruthy();
+	});
+
+	it("renders a deck the way CatchUpPage calls it — same props shape, second route", async () => {
+		stubDeckJson(CATCH_UP_DECK_PATH, {
+			...VALID_DECK,
+			lessonId: "lesson-02",
+		});
+		render(
+			<LessonIntro
+				summary={SUMMARY}
+				content={CATCH_UP_DECK_CONTENT}
+				onComplete={vi.fn()}
+			/>,
+		);
+
+		expect(await screen.findByText("Meet the first letter.")).toBeTruthy();
+	});
+});
+
 describe("LessonIntro — onComplete fires exactly once (AC6)", () => {
-	it("stepping backward and forward after completion does not call it again", () => {
+	it("stepping backward and forward after completion does not call it again", async () => {
+		stubDeckJson(DECK_PATH, VALID_DECK);
 		const onComplete = vi.fn();
 		render(
 			<LessonIntro
 				summary={SUMMARY}
-				content={VIDEO_CONTENT}
+				content={DECK_CONTENT}
 				onComplete={onComplete}
 			/>,
 		);
 
-		// video -> consonant 1 -> consonant 2 (the last slide)
+		// deck: exposition -> retrieval -> reveal (Continue hands off to the
+		// card slides) -> consonant 1 -> consonant 2 (the last slide)
+		await screen.findByText("Meet the first letter.");
 		fireEvent.click(screen.getByRole("button", { name: "Next" }));
+		fireEvent.click(screen.getByRole("button", { name: "Next" }));
+		fireEvent.click(screen.getByRole("button", { name: "Continue" }));
 		fireEvent.click(screen.getByRole("button", { name: "Next" }));
 		expect(onComplete).not.toHaveBeenCalled();
 

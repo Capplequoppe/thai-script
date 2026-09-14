@@ -435,7 +435,6 @@ describe("LearningService", () => {
 			// Consonants ฃ, ฅ, ฌ from the same lesson were never removed, so
 			// they aren't part of the catch-up.
 			expect(pending[0]?.summary.consonants).toHaveLength(0);
-			expect(pending[0]?.summary.videoUrl).toBeUndefined();
 		});
 
 		it("getPendingCatchUpCards returns only the pending items' live review cards", () => {

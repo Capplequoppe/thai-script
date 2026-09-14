@@ -285,11 +285,11 @@ describe("scheduling and vocabulary do not depend on which arm serves the lesson
 		};
 	}
 
-	it("produces identical scheduled cards and unlocked vocabulary whether lesson 1 is on the video arm or the deck arm", () => {
+	it("scheduling and unlocking never touch content resolution at all", () => {
 		expect(lesson1Entry).toBeDefined();
 		const id = lesson1Entry?.id ?? "";
 
-		// "deck": today's real, wired-in resolution.
+		// Today's real, wired-in resolution: the deck arm.
 		const deckResolution = resolveLessonContent(id);
 		expect(deckResolution.status).toBe("resolved");
 		if (deckResolution.status === "resolved") {
@@ -297,26 +297,29 @@ describe("scheduling and vocabulary do not depend on which arm serves the lesson
 		}
 		const deckArmState = completeLessonOneAndMeasure();
 
-		// "video": what this lesson served before task 1.4 wired the deck in.
+		// Task 6.2 deleted the video arm this test used to flip to as its
+		// second measurement. What the test actually proves — that
+		// `ScriptCardGenerator`/`VocabularyService` never consult
+		// `LessonContent` — is checked directly here instead: removing
+		// lesson-01 from `DECK_LESSON_IDS` (so content resolution now fails)
+		// changes nothing about scheduling or unlocking, because neither
+		// service reads content resolution in the first place.
 		// `DECK_LESSON_IDS` is a plain `Set` underneath its `ReadonlySet`
 		// type; flipped for one assertion and restored in `finally` so
 		// nothing leaks into another test file.
 		const mutableDeckIds = DECK_LESSON_IDS as Set<string>;
 		mutableDeckIds.delete(id);
-		let videoResolution: ReturnType<typeof resolveLessonContent>;
-		let videoArmState: ReturnType<typeof completeLessonOneAndMeasure>;
+		let unresolvedState: ReturnType<typeof completeLessonOneAndMeasure>;
+		let unresolvedResolution: ReturnType<typeof resolveLessonContent>;
 		try {
-			videoResolution = resolveLessonContent(id);
-			videoArmState = completeLessonOneAndMeasure();
+			unresolvedResolution = resolveLessonContent(id);
+			unresolvedState = completeLessonOneAndMeasure();
 		} finally {
 			mutableDeckIds.add(id);
 		}
 
-		expect(videoResolution.status).toBe("resolved");
-		if (videoResolution.status === "resolved") {
-			expect(videoResolution.content.kind).toBe("video");
-		}
-		expect(deckArmState).toEqual(videoArmState);
+		expect(unresolvedResolution.status).toBe("unresolvable");
+		expect(deckArmState).toEqual(unresolvedState);
 		expect(DECK_LESSON_IDS.has(id)).toBe(true);
 	});
 });
