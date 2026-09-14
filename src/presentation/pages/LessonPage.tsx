@@ -12,6 +12,7 @@ import {
 } from "@/presentation/components/ui/dialog";
 import { Progress } from "@/presentation/components/ui/progress";
 import { resolveLessonContent } from "../../domain/script/data/lessonContent";
+import { getLessonFormat } from "../../infrastructure/settings/LessonFormatSettings";
 import { lessonEntryByPosition } from "../../domain/script/data/lessonSequence";
 import type { PropertyCard } from "../../domain/shared/types";
 import { SectionHeader } from "../components/atoms/SectionHeader";
@@ -53,7 +54,7 @@ export function LessonPage() {
 	const contentResolution = useMemo(() => {
 		const entry = lessonEntryByPosition(num);
 		if (!entry) return { status: "undeclared" as const };
-		return resolveLessonContent(entry.id);
+		return resolveLessonContent(entry.id, getLessonFormat());
 	}, [num]);
 
 	useEffect(() => {

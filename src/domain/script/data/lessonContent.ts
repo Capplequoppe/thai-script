@@ -144,17 +144,41 @@ export const LESSON_CONTENT_STATUSES = [
  * a lesson whose video went missing must never read as a lesson that does not
  * exist.
  */
+/**
+ * Which presentation a learner has asked for. Passed in rather than read here:
+ * this module is domain, the preference is stored per browser, and domain
+ * imports nothing outward.
+ */
+export type LessonFormat = "video" | "deck";
+
 export function lessonContentFor(
 	entry: LessonSequenceEntry,
 	lesson: Lesson | undefined,
+	format: LessonFormat = "deck",
 ): LessonContentResolution {
-	if (DECK_LESSON_IDS.has(entry.id)) {
-		const path = deckPathForLesson(entry.id);
-		if (!path.ok) return { status: "unresolvable", reason: path.error };
+	const deck = DECK_LESSON_IDS.has(entry.id)
+		? deckPathForLesson(entry.id)
+		: undefined;
+	const video = lesson?.videoUrl;
+
+	// The preferred arm wins where it exists; the other is the fallback. Neither
+	// setting may strand a learner on a lesson that has only the other one —
+	// the legacy course has no deck for a retired lesson, and the three concept
+	// lessons phase 3 added have no video and never will.
+	if (format === "video" && video) {
+		return { status: "resolved", content: { kind: "video", url: video } };
+	}
+	if (deck?.ok) {
 		return {
 			status: "resolved",
-			content: { kind: "deck", deckPath: path.path },
+			content: { kind: "deck", deckPath: deck.path },
 		};
+	}
+	if (video) {
+		return { status: "resolved", content: { kind: "video", url: video } };
+	}
+	if (deck && !deck.ok) {
+		return { status: "unresolvable", reason: deck.error };
 	}
 	if (!lesson) {
 		return {
@@ -163,25 +187,23 @@ export function lessonContentFor(
 				"lessonId: declared in the sequence but absent from the lessons table",
 		};
 	}
-	if (!lesson.videoUrl) {
-		return {
-			status: "unresolvable",
-			reason: "lessonId: declares neither a deck nor a video url",
-		};
-	}
 	return {
-		status: "resolved",
-		content: { kind: "video", url: lesson.videoUrl },
+		status: "unresolvable",
+		reason: "lessonId: declares neither a deck nor a video url",
 	};
 }
 
-export function resolveLessonContent(value: unknown): LessonContentResolution {
+export function resolveLessonContent(
+	value: unknown,
+	format: LessonFormat = "deck",
+): LessonContentResolution {
 	const lookup = lessonEntryById(value);
 	if (!lookup.ok) return { status: "undeclared" };
 	const entry = lookup.entry;
 	return lessonContentFor(
 		entry,
 		lessons.find((lesson) => lesson.number === entry.legacyNumber),
+		format,
 	);
 }
 

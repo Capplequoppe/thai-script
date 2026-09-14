@@ -3,6 +3,7 @@ import { useNavigate, useParams } from "react-router";
 import { Button } from "@/presentation/components/ui/button";
 import { Progress } from "@/presentation/components/ui/progress";
 import { resolveLessonContent } from "../../domain/script/data/lessonContent";
+import { getLessonFormat } from "../../infrastructure/settings/LessonFormatSettings";
 import { lessonEntryByPosition } from "../../domain/script/data/lessonSequence";
 import { SessionStatGrid } from "../components/molecules/SessionStatGrid";
 import { LessonIntro } from "../components/organisms/LessonIntro";
@@ -43,7 +44,7 @@ export function CatchUpPage() {
 	const contentResolution = useMemo(() => {
 		const entry = lessonEntryByPosition(num);
 		if (!entry) return { status: "undeclared" as const };
-		return resolveLessonContent(entry.id);
+		return resolveLessonContent(entry.id, getLessonFormat());
 	}, [num]);
 
 	useEffect(() => {

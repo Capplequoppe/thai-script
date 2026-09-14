@@ -89,13 +89,12 @@ export function LessonIntro({
 	// hooks below are called unconditionally regardless of phase — the
 	// dispatch happens only in what's returned, never in which hooks run.
 	const [deckDone, setDeckDone] = useState(false);
-	// `content.kind` has one value now that task 6.2 removed the video arm —
-	// the deck phase is gated on `deckDone` alone. Kept as a plain boolean
-	// rather than re-adding a `content.kind === "deck"` check purely for
-	// resemblance to the exhaustive dispatch in `lessonContent.ts`; that
-	// dispatch protects a *type-level* union, and there is none here to
-	// protect.
-	const deckPhase = !deckDone;
+	// `LessonContent` carries both arms again, so the deck phase is gated on
+	// the discriminant as well as on `deckDone`. The check is what narrows
+	// `content` to the deck arm at the render site below; without it a video
+	// lesson would fall into the deck branch and read a `deckPath` it has not
+	// got.
+	const deckPhase = content.kind === "deck" && !deckDone;
 
 	const cardSlides: Slide[] = [
 		...summary.consonants.map((c) => ({
