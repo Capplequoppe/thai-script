@@ -184,8 +184,11 @@ describe("the committed deck", () => {
 				`${word} is neither in vocabulary.json nor teachingWords`,
 			).toBe(true);
 		}
-		// The escape hatch is exercised for real somewhere in this suite, or a
-		// silently-broken check would still read green with zero teachingWords.
+		// This deck's `teachingWords` is empty — every word resolves through
+		// vocabulary.json. Prove that branch is genuinely exercised (not
+		// vacuously true because `words` came back empty, or because
+		// `vocabularyByThai` itself failed to load): the three words this
+		// lesson builds are really in the loaded vocabulary.
 		expect(["มา", "นา", "นาน"].every((w) => vocabularyByThai.has(w))).toBe(
 			true,
 		);
@@ -199,9 +202,11 @@ describe("the committed deck", () => {
 		}
 		// Lesson 1 ships with no narration audio and no illustrations in this
 		// pass: generating real ElevenLabs narration needs a live
-		// ELEVENLABS_API_KEY, which this environment does not have (see status
-		// notes). The pipeline still ran for real — `manifest.json` records a
-		// completed run with zero assets, not an absent or partial one.
+		// ELEVENLABS_API_KEY, which was not available when this deck was
+		// generated. The pipeline still ran for real — `manifest.json` records
+		// a completed run with zero assets, not an absent or partial one — and
+		// content/lessons/lesson-01.md declares no `narration:` lines, so
+		// nothing was silently skipped.
 		expect(referenced.size).toBe(0);
 		expect(manifest.assets).toEqual([]);
 		for (const path of referenced) {

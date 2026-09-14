@@ -61,8 +61,9 @@ const ORIGINAL_PROSE =
  * material, which makes them the only labelled positives that exist. This
  * figure is not a threshold and nothing is required to clear it — the plan
  * asks that it be produced and written down. It is asserted exactly so that it
- * cannot drift silently: when phase 2 onward rewrites the mnemonics the number
- * must fall, and this test failing is the prompt to re-record it deliberately.
+ * cannot drift silently: whenever a content task rewrites a paraphrased
+ * mnemonic (task 1.4 did, for ม and น) the number must fall, and this test
+ * failing is the prompt to re-record it deliberately.
  *
  * The companion measurement, from the same corpus, is that an 8-token window
  * detects 17 of the 82. That is what settles NGRAM_WIDTH at 5: the wider
