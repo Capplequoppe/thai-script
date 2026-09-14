@@ -259,7 +259,7 @@
     "english": "have; there is",
     "thai_audio_file": "/thai-script/audio/word-mi.mp3",
     "english_audio_file": null,
-    "image_file": "/thai-script/vocabulary/images/7 มี.jpg",
+    "image_file": "/thai-script/vocabulary/images/11 มี.jpg",
     "description": "มี (mii) means “to have” or “there is/there are” in Thai. It expresses possession when followed by a noun. For example, ฉันมีเงิน means “I have money.” Thai does not use a separate verb for “there is,” so มี also expresses existence. For example, มีคนอยู่ข้างนอก means “There is a person outside.” In this sense, it indicates that something exists in a location or situation. The negative form is ไม่มี, which means “do not have” or “there is not.” For example, ฉันไม่มีเวลา means “I don’t have time.” มี does not change form for tense; time is shown through context or additional words. It can be used with both concrete objects and abstract ideas. For instance, มีความสุข means “to have happiness” or “to be happy.” In Thai, possession and existence are closely related concepts and both use มี. The word often appears near the beginning of a sentence when expressing existence. It is one of the most common and essential verbs in Thai. In summary, มี indicates that something exists or is possessed within a person’s or situation’s domain.",
     "samples": [
       {
@@ -386,7 +386,7 @@
     "english": "of",
     "thai_audio_file": "/thai-script/audio/word-kh.mp3",
     "english_audio_file": null,
-    "image_file": "/thai-script/vocabulary/images/10 ของ.jpg",
+    "image_file": "/thai-script/vocabulary/images/17 ของ.jpg",
     "samples": [
       {
         "thai": "ชมรมค่ายอาสาพัฒนาขอบริจาคของที่เหลือใช้จากประชาชนทั่วไป",
@@ -429,7 +429,7 @@
     "english": "with",
     "thai_audio_file": "/thai-script/audio/word-kap.mp3",
     "english_audio_file": null,
-    "image_file": "/thai-script/vocabulary/images/11 กับ.jpg",
+    "image_file": "/thai-script/vocabulary/images/19 กับ.jpg",
     "samples": [
       {
         "thai": "เขาวางเหยื่อล่อเพื่อให้หนูมาติดกับ",
@@ -471,7 +471,7 @@
     "english": "not",
     "thai_audio_file": "/thai-script/audio/word-maj.mp3",
     "english_audio_file": null,
-    "image_file": "/thai-script/vocabulary/images/12 ไม่.jpg",
+    "image_file": "/thai-script/vocabulary/images/20 ไม่.jpg",
     "samples": [
       {
         "thai": "นมข้นหวานก็เป็นนมที่มีความหวานมากเกินไปไม่เหมาะสำหรับเด็ก",
@@ -555,7 +555,7 @@
     "english": "in",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/23 ใน.jpg",
     "samples": [
       {
         "thai": "เขาต้องการจะสอบเข้าเรียนในมหาวิทยาลัยมหิดล",
@@ -639,7 +639,7 @@
     "english": "increase; up",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/30 ขึ้น.jpg",
     "samples": [
       {
         "thai": "ตอนนี้ชะตาของเขากำลังขึ้น ทำอะไรก็รวยไปหมด",
@@ -682,7 +682,7 @@
     "english": "with; also",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/31 ด้วย.jpg",
     "samples": [
       {
         "thai": "หัวหน้าไปกินข้าวด้วยกับลูกน้องทุกครั้ง",
@@ -725,7 +725,7 @@
     "english": "from",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/32 จาก.jpg",
     "samples": [
       {
         "thai": "ทางแถบชายฝั่งทะเลภาคตะวันออกจะเห็นจากขึ้นอยู่ทั่วไป",
@@ -767,7 +767,7 @@
     "english": "the process of; work; job",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": "/thai-script/vocabulary/images/19 การ.jpg",
+    "image_file": "/thai-script/vocabulary/images/33 การ.jpg",
     "samples": [
       {
         "thai": "คนที่ประสบความสำเร็จในงานนั้นเป็นคนที่ขยันทำการทุกอย่างด้วยตนเอง",
@@ -810,7 +810,7 @@
     "english": "go",
     "thai_audio_file": "/thai-script/vocabulary/audio/0257_ไป_th.mp3",
     "english_audio_file": "/thai-script/vocabulary/audio/0257_ไป_en.mp3",
-    "image_file": "/thai-script/vocabulary/images/0257_ไป.jpg",
+    "image_file": "/thai-script/vocabulary/images/34 ไป.jpg",
     "samples": [
       {
         "thai": "ถ้าคุณไปผมก็จะไป",
@@ -850,7 +850,7 @@
     "english": "to come",
     "thai_audio_file": "/thai-script/vocabulary/audio/0258_มา_th.mp3",
     "english_audio_file": "/thai-script/vocabulary/audio/0258_มา_en.mp3",
-    "image_file": "/thai-script/vocabulary/images/0258_มา.jpg",
+    "image_file": "/thai-script/vocabulary/images/37 มา.jpg",
     "samples": [
       {
         "thai": "เด็กผู้หญิงมายังกล้องวิดีโอ",
@@ -890,7 +890,7 @@
     "english": "reach; arrive at",
     "thai_audio_file": "/thai-script/audio/word-th.mp3",
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/40 ถึง.jpg",
     "samples": [
       {
         "thai": "ถึงพ่อจะใจดีแค่ไหน ท่านก็คงจะไม่อนุญาตให้เราไปเที่ยวกลางคืน",
@@ -966,7 +966,7 @@
     "toneRules": [
       "mid-mayek"
     ],
-    "mnemonic": "KWA — bigger THAN that? (▬ low, measuring)"
+    "mnemonic": null
   },
   {
     "thai": "ทั้ง",
@@ -975,7 +975,7 @@
     "english": "all; both",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/42 ทั้ง.jpg",
     "samples": [
       {
         "thai": "เด็กๆ ดีใจกันทั้งโรงเรียน",
@@ -1018,7 +1018,7 @@
     "english": "when",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/43 เมื่อ.jpg",
     "samples": [
       {
         "thai": "เมื่อระดับน้ำสูงท่วมรากพืชมันก็จะเริ่มเน่าเพราะรากแช่น้ำ",
@@ -1062,7 +1062,7 @@
     "english": "person",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": "/thai-script/vocabulary/images/26 คน.jpg",
+    "image_file": "/thai-script/vocabulary/images/47 คน.jpg",
     "samples": [
       {
         "thai": "ในสมัยก่อนคนยังอาศัยอยู่ในถ้ำ และใช้อาวุธง่ายๆ ในการล่าสัตว์",
@@ -1103,7 +1103,7 @@
     "english": "but",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/48 แต่.jpg",
     "samples": [
       {
         "thai": "คราวใดที่แม่สั่งให้ซื้อผลไม้ แม่ต้องกำชับว่าให้เลือกแต่ลูกโตๆ",
@@ -1145,7 +1145,7 @@
     "english": "located; present; exists",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/49 อยู่.jpg",
     "samples": [
       {
         "thai": "สายตาทุกคู่หันมาจับจ้องเขามีแววสงสัยเหมือนอย่างอยากรู้เรื่องที่เขากำลังพูดอยู่",
@@ -1188,7 +1188,7 @@
     "english": "then",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/50 ก็.jpg",
     "samples": [
       {
         "thai": "ญี่ปุ่นก็เป็นอีกชาติหนึ่งที่กำลังทุ่มเททางด้านคอมพิวเตอร์เป็นอย่างมาก",
@@ -1265,7 +1265,7 @@
     "toneRules": [
       "low-mayek"
     ],
-    "mnemonic": "ROONG — the STORY wraps up (↓ voice falls at story's end)"
+    "mnemonic": null
   },
   {
     "thai": "อย่าง",
@@ -1274,7 +1274,7 @@
     "english": "type; like",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/56 อย่าง.jpg",
     "samples": [
       {
         "thai": "โครงสร้างของสะพานรถไฟบางอย่างออกแบบไว้สำหรับการบรรทุกน้ำมันเครื่องเคมีที่เป็นของเหลวแ",
@@ -1318,7 +1318,7 @@
     "english": "matter; affair; subject",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/57 ความ.jpg",
     "description": "ความ (khwaam) is a prefix that turns adjectives and verbs into abstract nouns. It functions similarly to the English endings “-ness,” “-ity,” “-hood,” or sometimes “-tion.” When placed before an adjective, it creates the concept or quality of that adjective. For example, ดี (good) becomes ความดี (goodness). สุข (happy) becomes ความสุข (happiness). จริง (true) becomes ความจริง (truth). When placed before a verb, it turns the action into a conceptual thing. รู้ (to know) becomes ความรู้ (knowledge). เข้าใจ (to understand) becomes ความเข้าใจ (understanding). ความ does not change tense or time; it only changes grammatical category. It converts descriptive or action words into abstract ideas. The result is usually a non-countable noun referring to a state, condition, or quality. ความ is very common in formal and written Thai. It helps express complex concepts by nominalizing qualities and actions. In short, ความ is an abstraction marker that turns properties and actions into conceptual nouns.",
     "samples": [
       {
@@ -1362,7 +1362,7 @@
     "english": "that",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/58 นั้น.jpg",
     "samples": [
       {
         "thai": "การนำเสนอของเราวันนี้น่าจะทำได้ดีกว่านั้น",
@@ -1404,7 +1404,7 @@
     "english": "much",
     "thai_audio_file": "/thai-script/audio/word-mak.mp3",
     "english_audio_file": null,
-    "image_file": "/thai-script/vocabulary/images/34 มาก.jpg",
+    "image_file": "/thai-script/vocabulary/images/60 มาก.jpg",
     "samples": [
       {
         "thai": "สัตว์และมนุษย์ไม่มีอะไรแตกต่างกันมาก",
@@ -1446,7 +1446,7 @@
     "english": "already",
     "thai_audio_file": "/thai-script/audio/word-lw.mp3",
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/61 แล้ว.jpg",
     "samples": [
       {
         "thai": "กลุ่มผู้ชุมนุมได้ทำการปิดถนนบางนา-ตราดทั้งหมดแล้ว",
@@ -1489,7 +1489,7 @@
     "english": "cheap",
     "thai_audio_file": "/thai-script/vocabulary/audio/0317_ถก_th.mp3",
     "english_audio_file": "/thai-script/vocabulary/audio/0317_ถก_en.mp3",
-    "image_file": "/thai-script/vocabulary/images/0317_ถก.jpg",
+    "image_file": "/thai-script/vocabulary/images/66 ถูก.jpg",
     "samples": [
       {
         "thai": "นาฬิกาข้อมือราคาไม่ถูก",
@@ -1530,7 +1530,7 @@
     "english": "to put in place; trust; to preserve",
     "thai_audio_file": "/thai-script/audio/word-waj.mp3",
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/67 ไว้.jpg",
     "samples": [
       {
         "thai": "เจ้าหน้าที่ตำรวจได้ตั้งข้อหาผู้ต้องหาว่าฆ่าผู้อื่นตายโดยไตร่ตรองไว้ก่อน",
@@ -1572,7 +1572,7 @@
     "english": "or",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/68 หรือ.jpg",
     "samples": [
       {
         "thai": "ในช่วงเวลาตั้งแต่พุทธศตวรรษที่ 16 ลงมาเมืองละโว้ หรือลพบุรีเป็นนครใหญ่ ที่มีความรุ่งเรืองกว่าบรรดาเมืองอื่นๆ",
@@ -1615,7 +1615,7 @@
     "english": "because",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": "/thai-script/vocabulary/images/39 เพราะ.jpg",
+    "image_file": "/thai-script/vocabulary/images/69 เพราะ.jpg",
     "samples": [
       {
         "thai": "รัฐบาลตัดสินใจสลายการชุมนุมอย่างรวดเร็ว เพราะหากปล่อยให้ยืดเยื้อย่อมกระทบต่อการลงทุนของต่างชาติ",
@@ -1659,7 +1659,7 @@
     "english": "time",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": "/thai-script/vocabulary/images/40 เวลา.jpg",
+    "image_file": "/thai-script/vocabulary/images/70 เวลา.jpg",
     "samples": [
       {
         "thai": "การวิจารณ์ไม่ว่าจะใช้ในเวลาใดก็ตามต้องมีลักษณะสร้างสรรค์มิใช่ทำลาย",
@@ -1755,7 +1755,7 @@
     "english": "do",
     "thai_audio_file": "/thai-script/vocabulary/audio/0256_ทำ_th.mp3",
     "english_audio_file": "/thai-script/vocabulary/audio/0256_ทำ_en.mp3",
-    "image_file": "/thai-script/vocabulary/images/0256_ทำ.jpg",
+    "image_file": "/thai-script/vocabulary/images/76 ทำ.jpg",
     "samples": [
       {
         "thai": "ผู้หญิงทำงานบ้าน",
@@ -1795,7 +1795,7 @@
     "english": "make",
     "thai_audio_file": "/thai-script/vocabulary/audio/0262_ทำ_th.mp3",
     "english_audio_file": "/thai-script/vocabulary/audio/0262_ทำ_en.mp3",
-    "image_file": "/thai-script/vocabulary/images/0262_ทำ.jpg",
+    "image_file": "/thai-script/vocabulary/images/77 ทำ.jpg",
     "samples": [
       {
         "thai": "หัวหน้าพ่อครัวทำน้ำส้ม",
@@ -1835,7 +1835,7 @@
     "english": "see",
     "thai_audio_file": "/thai-script/vocabulary/audio/0263_เหน_th.mp3",
     "english_audio_file": "/thai-script/vocabulary/audio/0263_เหน_en.mp3",
-    "image_file": "/thai-script/vocabulary/images/0263_เหน.jpg",
+    "image_file": "/thai-script/vocabulary/images/78 เห็น.jpg",
     "samples": [
       {
         "thai": "เห็นพระอาทิตย์ตก",
@@ -1877,7 +1877,7 @@
     "english": "enter",
     "thai_audio_file": "/thai-script/vocabulary/audio/0295_เขา_th.mp3",
     "english_audio_file": "/thai-script/vocabulary/audio/0295_เขา_en.mp3",
-    "image_file": "/thai-script/vocabulary/images/0295_เขา.jpg",
+    "image_file": "/thai-script/vocabulary/images/79 เข้า.jpg",
     "samples": [
       {
         "thai": "เข้าอาคาร",
@@ -1919,7 +1919,7 @@
     "english": "floor",
     "thai_audio_file": "/thai-script/vocabulary/audio/1941_ชน_th.mp3",
     "english_audio_file": "/thai-script/vocabulary/audio/1941_ชน_en.mp3",
-    "image_file": "/thai-script/vocabulary/images/1941_ชน.jpg",
+    "image_file": "/thai-script/vocabulary/images/80 ชั้น.jpg",
     "samples": [
       {
         "thai": "ชั้นสอง",
@@ -1961,7 +1961,7 @@
     "english": "which",
     "thai_audio_file": "/thai-script/audio/word-s.mp3",
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/89 ซึ่ง.jpg",
     "samples": [
       {
         "thai": "เราต้องการหนังสือซึ่งใช้อ้างอิงได้",
@@ -2045,7 +2045,7 @@
     "english": "if",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/91 ถ้า.jpg",
     "samples": [
       {
         "thai": "ถ้าฉันเป็นมหาเศรษฐี ฉันจะไปเที่ยวรอบโลกทุกปี",
@@ -2087,7 +2087,7 @@
     "english": "body",
     "thai_audio_file": "/thai-script/audio/word-tua.mp3",
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/92 ตัว.jpg",
     "samples": [
       {
         "thai": "ตัวจะไปเที่ยวกับพวกเราไหม",
@@ -2129,7 +2129,7 @@
     "english": "use",
     "thai_audio_file": "/thai-script/vocabulary/audio/0255_ใช_th.mp3",
     "english_audio_file": "/thai-script/vocabulary/audio/0255_ใช_en.mp3",
-    "image_file": "/thai-script/vocabulary/images/0255_ใช.jpg",
+    "image_file": "/thai-script/vocabulary/images/94 ใช้.jpg",
     "samples": [
       {
         "thai": "นักเขียนโปรแกรมใช้คอมพิวเตอร์",
@@ -2170,7 +2170,7 @@
     "english": "follow; acccording",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/102 ตาม.jpg",
     "samples": [
       {
         "thai": "ตำรวจตามคนร้ายไปยังป่าทึบ",
@@ -2212,7 +2212,7 @@
     "english": "some; thin",
     "thai_audio_file": "/thai-script/audio/word-ba.mp3",
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/106 บาง.jpg",
     "samples": [
       {
         "thai": "แต่ก่อนต้องพายเรือจากบางหนึ่งไปบางหนึ่ง ใช้เวลาเป็นวันเลยทีเดียว",
@@ -2254,7 +2254,7 @@
     "english": "more",
     "thai_audio_file": "/thai-script/audio/word-ik.mp3",
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/107 อีก.jpg",
     "samples": [
       {
         "thai": "คุณควรถอยฉากออกไปตั้งหลัก คิดหาแนวทางใหม่ ก่อนจะกลับมาอีกครั้งพร้อมกับความสำเร็จ",
@@ -2296,7 +2296,7 @@
     "english": "make",
     "thai_audio_file": "/thai-script/audio/word-tham-haj.mp3",
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/108 ทำให้.jpg",
     "samples": [
       {
         "thai": "การตากฝนทำให้เป็นหวัดได้",
@@ -2392,7 +2392,7 @@
     "english": "model; style",
     "thai_audio_file": "/thai-script/audio/word-bp.mp3",
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/120 แบบ.jpg",
     "samples": [
       {
         "thai": "การคลอดแบบโบราณนั้นทำกันที่บ้าน ทำในห้องต่อหน้าสามี",
@@ -2433,7 +2433,7 @@
     "english": "exit",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/121 ออก.jpg",
     "samples": [
       {
         "thai": "รัฐบาลออกบัตรประชาชนให้ประชาชนทุกคน",
@@ -2474,7 +2474,7 @@
     "english": "most",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/122 ที่สุด.jpg",
     "samples": [
       {
         "thai": "รัฐมนตรีคลังเป็นผู้ทรงอิทธิพลมากที่สุดในคณะรัฐมนตรีชุดนี้",
@@ -2530,7 +2530,7 @@
     "english": "we; us",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/123 เรา.jpg",
     "samples": [
       {
         "thai": "เราคิดว่าอาจารย์ไม่น่าจะว่างนะ",
@@ -2572,7 +2572,7 @@
     "english": "by",
     "thai_audio_file": "/thai-script/audio/word-doj.mp3",
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/124 โดย.jpg",
     "samples": [
       {
         "thai": "เขาทำไป โดยรู้เท่าไม่ถึงการณ์",
@@ -2614,7 +2614,7 @@
     "english": "good",
     "thai_audio_file": "/thai-script/vocabulary/audio/0301_ด_th.mp3",
     "english_audio_file": "/thai-script/vocabulary/audio/0301_ด_en.mp3",
-    "image_file": "/thai-script/vocabulary/images/61 ดี.jpg",
+    "image_file": "/thai-script/vocabulary/images/139 ดี.jpg",
     "description": "ดี (dii) means “good” in Thai. It is an adjective used to describe positive quality, benefit, or desirability. It can describe people, objects, situations, or outcomes. For example, คนดี means “a good person.” อาหารดี means “good food.” It can also express approval or satisfaction. ดีมาก means “very good,” with มาก intensifying the degree. ดีใจ is a common expression meaning “to be glad” or “happy” (literally “good heart”). ดี can describe moral goodness, practical usefulness, or general quality. Thai adjectives like ดี do not change form based on tense or number. The meaning depends on context and the word it modifies. ดี is often placed after the noun it describes in Thai sentence structure. It can also be used alone as a response, meaning “okay” or “good.” The word conveys positive evaluation in a broad and flexible way. In essence, ดี expresses that something has favorable, beneficial, or desirable qualities.",
     "samples": [
       {
@@ -2655,7 +2655,7 @@
     "english": "for",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/140 เพื่อ.jpg",
     "samples": [
       {
         "thai": "ผู้ควบคุมจำเป็นต้องปิดเครือข่าย และสถานีงานทั้งหมด เพื่อทำให้ระบบกลับคืนสู่สภาพปกติ",
@@ -2699,7 +2699,7 @@
     "english": "therefore",
     "thai_audio_file": "/thai-script/audio/word-t-3.mp3",
     "english_audio_file": null,
-    "image_file": "/thai-script/vocabulary/images/63 จึง.jpg",
+    "image_file": "/thai-script/vocabulary/images/141 จึง.jpg",
     "samples": [
       {
         "thai": "เมื่อทำงานเสร็จ พนักงานจึงกลับบ้าน",
@@ -2741,7 +2741,7 @@
     "english": "to; connector; per",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/143 ต่อ.jpg",
     "samples": [
       {
         "thai": "พ่อกับลูกช่วยกันต่อกรงสุนัขใหม่ให้ใหญ่ขึ้น",
@@ -2783,7 +2783,7 @@
     "english": "time",
     "thai_audio_file": "/thai-script/audio/word-khra.mp3",
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/144 ครั้ง.jpg",
     "samples": [
       {
         "thai": "เรามาดูภาพยนต์ที่นี่เป็นครั้งที่ 5 แล้ว",
@@ -2827,7 +2827,7 @@
     "english": "he",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/156 เขา.jpg",
     "samples": [
       {
         "thai": "ที่บ้านสวนพ่อจะเลี้ยงนกเขาไว้ดูเล่นแก้เหงา",
@@ -2869,7 +2869,7 @@
     "english": "many",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/157 หลาย.jpg",
     "samples": [
       {
         "thai": "ในปีนี้จะมีการประชุมระหว่างประเทศที่กรุงเทพฯ หลายครั้ง",
@@ -2912,7 +2912,7 @@
     "english": "person",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/158 ผู้.jpg",
     "samples": [
       {
         "thai": "เขาจะไม่ปล่อยให้ผู้กระทำผิดลอยนวลไปได้แน่นอน",
@@ -2954,7 +2954,7 @@
     "english": "each",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/159 ทุก.jpg",
     "samples": [
       {
         "thai": "ประชาชนทุกคนควรไปเลือกตั้ง",
@@ -2996,7 +2996,7 @@
     "english": "little",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/160 น้อย.jpg",
     "samples": [
       {
         "thai": "เขาหยิบเนื้ออันน้อยส่งให้เด็กชายที่ยืนอยู่ข้างโต๊ะ",
@@ -3039,7 +3039,7 @@
     "english": "is",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/161 คือ.jpg",
     "samples": [
       {
         "thai": "ผู้จัดการฝ่ายการตลาดคือผู้ที่ได้รับคัดเลือกให้เป็นพนักงานดีเด่น",
@@ -3081,7 +3081,7 @@
     "english": "if",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/162 หาก.jpg",
     "samples": [
       {
         "thai": "แม้ประเทศจะมีถนนดีๆ หากคนใช้ไม่มีคุณภาพ บ้านเมืองจะพัฒนาได้ยาก",
@@ -3123,7 +3123,7 @@
     "english": "be born",
     "thai_audio_file": "/thai-script/vocabulary/audio/1813_เกด_th.mp3",
     "english_audio_file": "/thai-script/vocabulary/audio/1813_เกด_en.mp3",
-    "image_file": "/thai-script/vocabulary/images/1813_เกด.jpg",
+    "image_file": "/thai-script/vocabulary/images/163 เกิด.jpg",
     "samples": [
       {
         "thai": "ดิฉันเกิดในปี ค.ศ. 1980",
@@ -3165,7 +3165,7 @@
     "english": "year",
     "thai_audio_file": "/thai-script/vocabulary/audio/0211_ป_th.mp3",
     "english_audio_file": "/thai-script/vocabulary/audio/0211_ป_en.mp3",
-    "image_file": "/thai-script/vocabulary/images/0211_ป.jpg",
+    "image_file": "/thai-script/vocabulary/images/164 ปี.jpg",
     "samples": [
       {
         "thai": "หนึ่งปีปฏิทิน",
@@ -3205,7 +3205,7 @@
     "english": "job",
     "thai_audio_file": "/thai-script/vocabulary/audio/1816_งาน_th.mp3",
     "english_audio_file": "/thai-script/vocabulary/audio/1816_งาน_en.mp3",
-    "image_file": "/thai-script/vocabulary/images/1816_งาน.jpg",
+    "image_file": "/thai-script/vocabulary/images/165 งาน.jpg",
     "samples": [
       {
         "thai": "หางาน",
@@ -3246,7 +3246,7 @@
     "english": "new",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/166 ใหม่.jpg",
     "samples": [
       {
         "thai": "บ้านนี้เพิ่งทาสีใหม่ๆ",
@@ -3289,7 +3289,7 @@
     "english": "set",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/167 ตั้ง.jpg",
     "samples": [
       {
         "thai": "นักกีฬาที่ได้เหรียญทองจากซีเกมส์จะได้รับเงินรางวัลตั้งหนึ่งแสนบาท",
@@ -3332,7 +3332,7 @@
     "english": "section",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/168 ส่วน.jpg",
     "samples": [
       {
         "thai": "อาหารจานแค่นี้ ใส่น้ำตาลแค่เศษหนึ่งส่วนสี่ช้อนก็พอ",
@@ -3375,7 +3375,7 @@
     "english": "receive",
     "thai_audio_file": "/thai-script/vocabulary/audio/0251_รบ_th.mp3",
     "english_audio_file": "/thai-script/vocabulary/audio/0251_รบ_en.mp3",
-    "image_file": "/thai-script/vocabulary/images/0251_รบ.jpg",
+    "image_file": "/thai-script/vocabulary/images/169 รับ.jpg",
     "samples": [
       {
         "thai": "รับเงิน",
@@ -3416,7 +3416,7 @@
     "english": "pick up",
     "thai_audio_file": "/thai-script/vocabulary/audio/0629_รบ_th.mp3",
     "english_audio_file": "/thai-script/vocabulary/audio/0629_รบ_en.mp3",
-    "image_file": "/thai-script/vocabulary/images/0629_รบ.jpg",
+    "image_file": "/thai-script/vocabulary/images/170 รับ.jpg",
     "samples": [
       {
         "thai": "ยกหูโทรศัพท์",
@@ -3457,7 +3457,7 @@
     "english": "first",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/171 แรก.jpg",
     "samples": [
       {
         "thai": "นักท่องเที่ยวบางคนเพิ่งเคยมาเที่ยวภูเก็ตครั้งแรก จึงรู้สึกตื่นเต้นกับความสวยงามของทัศนียภาพ",
@@ -3499,7 +3499,7 @@
     "english": "monk",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/172 พระ.jpg",
     "samples": [
       {
         "thai": "เมื่อเราไปวัด เรามักจะพบว่าในโบสถ์จะมีพระพุทธรูปขนาดใหญ่เป็นพระประทาน 1 องค์",
@@ -3541,7 +3541,7 @@
     "english": "work",
     "thai_audio_file": "/thai-script/vocabulary/audio/0402_ทำงาน_th.mp3",
     "english_audio_file": "/thai-script/vocabulary/audio/0402_ทำงาน_en.mp3",
-    "image_file": "/thai-script/vocabulary/images/0402_ทำงาน.jpg",
+    "image_file": "/thai-script/vocabulary/images/22 ทำงาน.jpg",
     "samples": [
       {
         "thai": "ทำงานที่สำนักงาน",
@@ -3635,7 +3635,7 @@
     "english": "help",
     "thai_audio_file": "/thai-script/vocabulary/audio/0280_ชวย_th.mp3",
     "english_audio_file": "/thai-script/vocabulary/audio/0280_ชวย_en.mp3",
-    "image_file": "/thai-script/vocabulary/images/0280_ชวย.jpg",
+    "image_file": "/thai-script/vocabulary/images/59 ช่วย.jpg",
     "samples": [
       {
         "thai": "ช่วยเหลือกัน",
@@ -3677,7 +3677,7 @@
     "english": "only",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/174 เพียง.jpg",
     "samples": [
       {
         "thai": "ร่างกายต้องการสังกะสีจากอาหารเพียงวันละ 10-15 มิลลิกรัม",
@@ -3721,7 +3721,7 @@
     "english": "may",
     "thai_audio_file": "/thai-script/audio/word-at.mp3",
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/175 อาจ.jpg",
     "samples": [
       {
         "thai": "พิษในน้ำมันละหุ่งนั้นอาจแยกออกได้",
@@ -3763,7 +3763,7 @@
     "english": "size",
     "thai_audio_file": "/thai-script/audio/word-kha-nat.mp3",
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/176 ขนาด.jpg",
     "samples": [
       {
         "thai": "การออกแบบวงจรไฟฟ้าขนาดจิ๋ว ช่วยประหยัดต้นทุนได้มาก",
@@ -3806,7 +3806,7 @@
     "english": "another",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/177 อื่น.jpg",
     "samples": [
       {
         "thai": "ตำรวจให้ความเห็นว่าสาเหตุของคดีนี้น่าจะเป็นการชิงทรัพย์มากกว่าประเด็นอื่น",
@@ -3849,7 +3849,7 @@
     "english": "a person who;",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": "/thai-script/vocabulary/images/89 นัก.jpg",
+    "image_file": "/thai-script/vocabulary/images/178 นัก.jpg",
     "description": "นัก (nák) is primarily a noun-forming prefix in Thai. It is placed in front of a verb, noun, or field of activity to create a person associated with that activity. It often corresponds to English endings like “-er,” “-or,” or “-ist.” For example, เรียน (to study) becomes นักเรียน (student). เขียน (to write) becomes นักเขียน (writer). กีฬา (sport) becomes นักกีฬา (athlete). ดนตรี (music) becomes นักดนตรี (musician). In these cases, นัก forms a noun referring to someone engaged in or identified with that domain. It does not change tense or grammatical agreement. The resulting word functions as a regular noun in a sentence. นัก can be used for professions, hobbies, roles, or areas of expertise. It does not necessarily imply skill level, only association or engagement. In some contexts, นัก can also function as an adverbial intensifier, though this use is less common. Its primary and most important function is to create person-role nouns. In summary, นัก is a derivational prefix that forms nouns meaning “a person associated with a particular activity or field.”",
     "samples": [
       {
@@ -3892,7 +3892,7 @@
     "english": "start",
     "thai_audio_file": "/thai-script/vocabulary/audio/0276_เรม_th.mp3",
     "english_audio_file": "/thai-script/vocabulary/audio/0276_เรม_en.mp3",
-    "image_file": "/thai-script/vocabulary/images/0276_เรม.jpg",
+    "image_file": "/thai-script/vocabulary/images/179 เริ่ม.jpg",
     "samples": [
       {
         "thai": "เริ่มการแข่งขัน",
@@ -3935,7 +3935,7 @@
     "english": "child",
     "thai_audio_file": "/thai-script/vocabulary/audio/1265_เดก_th.mp3",
     "english_audio_file": "/thai-script/vocabulary/audio/1265_เดก_en.mp3",
-    "image_file": "/thai-script/vocabulary/images/1265_เดก.jpg",
+    "image_file": "/thai-script/vocabulary/images/181 เด็ก.jpg",
     "samples": [
       {
         "thai": "เด็กกำลังยกมือขึ้น",
@@ -3977,7 +3977,7 @@
     "english": "life",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/183 ชีวิต.jpg",
     "samples": [
       {
         "thai": "ชีวิตของคนกรุงเทพฯ ต้องดิ้นรนต่อสู้กับมลพิษที่เพิ่มปริมาณขึ้นทุกวัน",
@@ -4032,7 +4032,7 @@
     "english": "high",
     "thai_audio_file": "/thai-script/vocabulary/audio/0314_สง_th.mp3",
     "english_audio_file": "/thai-script/vocabulary/audio/0314_สง_en.mp3",
-    "image_file": "/thai-script/vocabulary/images/0314_สง.jpg",
+    "image_file": "/thai-script/vocabulary/images/184 สูง.jpg",
     "samples": [
       {
         "thai": "ราคาของเสื้อแจ๊คเก็ตตัวนี้สูงเกินไป",
@@ -4073,7 +4073,7 @@
     "english": "tall",
     "thai_audio_file": "/thai-script/vocabulary/audio/0972_สง_th.mp3",
     "english_audio_file": "/thai-script/vocabulary/audio/0972_สง_en.mp3",
-    "image_file": "/thai-script/vocabulary/images/0972_สง.jpg",
+    "image_file": "/thai-script/vocabulary/images/185 สูง.jpg",
     "samples": [
       {
         "thai": "เด็กผู้ชายที่ตัวสูง",
@@ -4114,7 +4114,7 @@
     "english": "before",
     "thai_audio_file": "/thai-script/vocabulary/audio/0640_กอน_th.mp3",
     "english_audio_file": "/thai-script/vocabulary/audio/0640_กอน_en.mp3",
-    "image_file": "/thai-script/vocabulary/images/0640_กอน.jpg",
+    "image_file": "/thai-script/vocabulary/images/186 ก่อน.jpg",
     "samples": [
       {
         "thai": "ก่อนทำงาน",
@@ -4156,7 +4156,7 @@
     "english": "transfer",
     "thai_audio_file": "/thai-script/vocabulary/audio/2032_เปลยน_th.mp3",
     "english_audio_file": "/thai-script/vocabulary/audio/2032_เปลยน_en.mp3",
-    "image_file": "/thai-script/vocabulary/images/2032_เปลยน.jpg",
+    "image_file": "/thai-script/vocabulary/images/187 เปลี่ยน.jpg",
     "samples": [
       {
         "thai": "เปลี่ยนรถไฟ",
@@ -4201,7 +4201,7 @@
     "english": "different",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/188 ต่าง.jpg",
     "samples": [
       {
         "thai": "เขาบรรทุกของลงต่างบนหลังวัว เตรียมออกเดินทาง",
@@ -4244,7 +4244,7 @@
     "english": "next",
     "thai_audio_file": "/thai-script/audio/word-t-paj.mp3",
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/189 ต่อไป.jpg",
     "samples": [
       {
         "thai": "หากบุคคลได้รับการตองสนองความรักแล้วสิ่งที่เขาต้องการต่อไปก็คือการได้รับการยกย่องมีชื่อเสียง",
@@ -4339,7 +4339,7 @@
     "english": "location; place; spot",
     "thai_audio_file": "/thai-script/audio/word-h.mp3",
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/191 แห่ง.jpg",
     "samples": [
       {
         "thai": "พื้นที่ป่าแห่งนี้มีวัตถุประสงค์มุ่งที่จะจัดทำให้เป็นที่อยู่อาศัยของสัตว์ป่าโดยตรง",
@@ -4382,7 +4382,7 @@
     "english": "big",
     "thai_audio_file": "/thai-script/vocabulary/audio/0565_ใหญ_th.mp3",
     "english_audio_file": "/thai-script/vocabulary/audio/0565_ใหญ_en.mp3",
-    "image_file": "/thai-script/vocabulary/images/0565_ใหญ.jpg",
+    "image_file": "/thai-script/vocabulary/images/193 ใหญ่.jpg",
     "samples": [
       {
         "thai": "บ้านหลังใหญ่",
@@ -4424,7 +4424,7 @@
     "english": "find",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/126 หา.jpg",
     "samples": [
       {
         "thai": "หนุ่มน้อยหาเศษสตางค์ในกระเป๋าแล้วหยิบยื่นให้ตาแป๊ะ",
@@ -4465,7 +4465,7 @@
     "english": "for",
     "thai_audio_file": "/thai-script/audio/word-sam-rap.mp3",
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/194 สำหรับ.jpg",
     "samples": [
       {
         "thai": "คณะครุศาสตร์มีห้องปฏิบัติการทางจิตวิทยาที่เหมาะมากสำหรับการสอนวิชาจิตวิทยา",
@@ -4521,7 +4521,7 @@
     "english": "hair",
     "thai_audio_file": "/thai-script/vocabulary/audio/1001_ผม_th.mp3",
     "english_audio_file": "/thai-script/vocabulary/audio/1001_ผม_en.mp3",
-    "image_file": "/thai-script/vocabulary/images/1001_ผม.jpg",
+    "image_file": "/thai-script/vocabulary/images/195 ผม.jpg",
     "samples": [
       {
         "thai": "ผมสั้น",
@@ -4561,7 +4561,7 @@
     "english": "middle; center",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/196 กลาง.jpg",
     "samples": [
       {
         "thai": "ฉันคิดว่าจะไปศึกษาต่อในช่วงกลางปีหน้า",
@@ -4604,7 +4604,7 @@
     "english": "it is alright to",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/52 ก็ได้.jpg",
     "samples": [
       {
         "thai": "ถ้าเธอจะตามฉันไปก็ได้",
@@ -4659,7 +4659,7 @@
     "english": "side",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/197 ด้าน.jpg",
     "samples": [
       {
         "thai": "สามเหลี่ยมด้านเท่ามีทุกด้านยาวเท่ากัน",
@@ -4702,7 +4702,7 @@
     "english": "you",
     "thai_audio_file": "/thai-script/audio/word-khun.mp3",
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/13 คุณ.jpg",
     "samples": [
       {
         "thai": "เขาลืมสิ้นถึงคุณของข้าวแดงแกงร้อนจากชายคาบ้านที่เขาเคยอาศัยอยู่",
@@ -4744,7 +4744,7 @@
     "english": "out",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/198 นอก.jpg",
     "samples": [
       {
         "thai": "พ่ออยู่นอกบ้านต้องตะโกนเรียกถึงจะได้ยิน",
@@ -4786,7 +4786,7 @@
     "english": "single; one",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/199 เดียว.jpg",
     "samples": [
       {
         "thai": "มีนักบินเพียงคนเดียวที่รอดชีวิต",
@@ -4830,7 +4830,7 @@
     "english": "city",
     "thai_audio_file": "/thai-script/vocabulary/audio/1313_เมอง_th.mp3",
     "english_audio_file": "/thai-script/vocabulary/audio/1313_เมอง_en.mp3",
-    "image_file": "/thai-script/vocabulary/images/1313_เมอง.jpg",
+    "image_file": "/thai-script/vocabulary/images/200 เมือง.jpg",
     "samples": [
       {
         "thai": "เมืองถูกปกคลุมไปด้วยหมอก",
@@ -4873,7 +4873,7 @@
     "english": "town",
     "thai_audio_file": "/thai-script/vocabulary/audio/1317_เมอง_th.mp3",
     "english_audio_file": "/thai-script/vocabulary/audio/1317_เมอง_en.mp3",
-    "image_file": "/thai-script/vocabulary/images/1317_เมอง.jpg",
+    "image_file": "/thai-script/vocabulary/images/201 เมือง.jpg",
     "samples": [
       {
         "thai": "ดิฉันต้องการไปเดินเล่นในตัวเมือง",
@@ -4916,7 +4916,7 @@
     "english": "thing",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/202 สิ่ง.jpg",
     "samples": [
       {
         "thai": "ในภาคใต้นี้เงินมีส่วนสำคัญเพราะข้าวปลาอาหารเป็นสิ่งที่ต้องซื้อหาทั้งสิ้นไม่สามารถปลูกได้พอกินเช่นภาคอื่นๆ",
@@ -4959,7 +4959,7 @@
     "english": "style, hairdo",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/204 ทรง.jpg",
     "samples": [
       {
         "thai": "เฮลิคอปเตอร์ทรงตัวอยู่ในอากาศได้โดยอาศัยแรงยกจากปีกทั้งสองข้าง",
@@ -5001,7 +5001,7 @@
     "english": "cut",
     "thai_audio_file": "/thai-script/vocabulary/audio/1091_ตด_th.mp3",
     "english_audio_file": "/thai-script/vocabulary/audio/1091_ตด_en.mp3",
-    "image_file": "/thai-script/vocabulary/images/1091_ตด.jpg",
+    "image_file": "/thai-script/vocabulary/images/207 ตัด.jpg",
     "samples": [
       {
         "thai": "เด็กผู้ชายกำลังตัดเล็บเท้าของเขาด้วยกรรไกรตัดเล็บ",
@@ -5042,7 +5042,7 @@
     "english": "lead",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/209 นำ.jpg",
     "samples": [
       {
         "thai": "เราต้องนำคำนี้ไปวางไว้หน้าประโยคเพื่อต้องการเน้นความ",
@@ -5083,7 +5083,7 @@
     "english": "wrong",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/210 ผิด.jpg",
     "samples": [
       {
         "thai": "หากผมทำผิดจริงผมก็จะยอมให้บริษัทตัดเงินเดือน",
@@ -5125,7 +5125,7 @@
     "english": "waste",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/211 เสีย.jpg",
     "samples": [
       {
         "thai": "กินเสีย จะได้รีบไป",
@@ -5168,7 +5168,7 @@
     "english": "take; want",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/110 เอา.jpg",
     "samples": [
       {
         "thai": "ถึงตอนนี้เราต้องยักย้ายถ่ายเทเพื่อเอาตัวรอดแล้ว",
@@ -5210,7 +5210,7 @@
     "english": "until",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/212 จน.jpg",
     "samples": [
       {
         "thai": "กายกับจิตมีความสัมพันธ์กันอย่างใกล้ชิดจนไม่อาจแยกออกเป็นอิสระจากกันได้",
@@ -5327,7 +5327,7 @@
     "toneRules": [
       "low-live"
     ],
-    "mnemonic": "LOO-ay — THEREFORE it went loo-ay (— neutral)"
+    "mnemonic": null
   },
   {
     "thai": "เท่านั้น",
@@ -5336,7 +5336,7 @@
     "english": "only",
     "thai_audio_file": "/thai-script/audio/word-thaw-nan.mp3",
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/214 เท่านั้น.jpg",
     "samples": [
       {
         "thai": "มีเพียงเขาเท่านั้นที่ใส่ชุดสุภาพมางานนี้",
@@ -5435,7 +5435,7 @@
     "english": "pass",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/216 ผ่าน.jpg",
     "samples": [
       {
         "thai": "กระเป๋าใบนี้ผ่านมือมาหลายคนแล้ว",
@@ -5478,7 +5478,7 @@
     "english": "when; during",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/218 ตอน.jpg",
     "samples": [
       {
         "thai": "หนังสือเล่มนี้แบ่งออกเป็น 2 ตอน ตอนแรกเป็นภาษาไทย ตอนที่สองเป็นภาษาอังกฤษ",
@@ -5520,7 +5520,7 @@
     "english": "since",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/219 ตั้งแต่.jpg",
     "samples": [
       {
         "thai": "ครอบครัวของเขาไปอยู่ต่างประเทศตั้งแต่เขาอายุ 7 ปี",
@@ -5576,7 +5576,7 @@
     "english": "call",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/220 เรียก.jpg",
     "samples": [
       {
         "thai": "ผมเรียกจนแสบคอ เธอก็ยังไม่หันมา",
@@ -5620,7 +5620,7 @@
     "english": "can",
     "thai_audio_file": "/thai-script/vocabulary/audio/0252_สามารถ_th.mp3",
     "english_audio_file": "/thai-script/vocabulary/audio/0252_สามารถ_en.mp3",
-    "image_file": "/thai-script/vocabulary/images/0252_สามารถ.jpg",
+    "image_file": "/thai-script/vocabulary/images/222 สามารถ.jpg",
     "samples": [
       {
         "thai": "สามารถกระโดดข้ามได้",
@@ -5674,7 +5674,7 @@
     "english": "name",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/38 ชื่อ.jpg",
     "samples": [
       {
         "thai": "ชื่อของหล่อนแปลว่าดอกไม้",
@@ -5717,7 +5717,7 @@
     "english": "only; alone; just",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/127 เอง.jpg",
     "samples": [
       {
         "thai": "พ่อแม่มักจะไม่ค่อยปล่อยให้ลูกๆ อยู่บ้านกันเองตามลำพัง",
@@ -5759,7 +5759,7 @@
     "english": "country",
     "thai_audio_file": "/thai-script/audio/word-pra-thet.mp3",
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/39 ประเทศ.jpg",
     "samples": [
       {
         "thai": "เธอยอมเดินทางกลับประเทศเพื่อสู้คดีต่างๆ",
@@ -5815,7 +5815,7 @@
     "english": "image",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/225 ภาพ.jpg",
     "samples": [
       {
         "thai": "ความคิดคือความสามารถของมนุษย์ที่จะวาดภาพถึงอะไรๆ ได้ โดยไม่ต้องมีวัตถุจริงๆ มาปรากฏ",
@@ -5857,7 +5857,7 @@
     "english": "in addition to",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/226 นอกจาก.jpg",
     "samples": [
       {
         "thai": "วินัยคงจะไม่สูงกว่านี้อีกแล้วนอกจากจะมีปาฏิหาริย์",
@@ -5912,7 +5912,7 @@
     "english": "read",
     "thai_audio_file": "/thai-script/vocabulary/audio/0290_อาน_th.mp3",
     "english_audio_file": "/thai-script/vocabulary/audio/0290_อาน_en.mp3",
-    "image_file": "/thai-script/vocabulary/images/0290_อาน.jpg",
+    "image_file": "/thai-script/vocabulary/images/227 อ่าน.jpg",
     "samples": [
       {
         "thai": "แม่กำลังอ่านหนังสือให้ลูกสาวของเธอฟัง",
@@ -5954,7 +5954,7 @@
     "english": "ever",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/229 เคย.jpg",
     "samples": [
       {
         "thai": "เขาเคยไปมาแล้วทุกแห่งหนในประเทศไทย",
@@ -5996,7 +5996,7 @@
     "english": "what",
     "thai_audio_file": "/thai-script/vocabulary/audio/0552_อะไร_th.mp3",
     "english_audio_file": "/thai-script/vocabulary/audio/0552_อะไร_en.mp3",
-    "image_file": "/thai-script/vocabulary/images/0552_อะไร.jpg",
+    "image_file": "/thai-script/vocabulary/images/53 อะไร.jpg",
     "samples": [
       {
         "thai": "เพื่ออะไร",
@@ -6049,7 +6049,7 @@
     "english": "return",
     "thai_audio_file": "/thai-script/vocabulary/audio/0407_กลบ_th.mp3",
     "english_audio_file": "/thai-script/vocabulary/audio/0407_กลบ_en.mp3",
-    "image_file": "/thai-script/vocabulary/images/0407_กลบ.jpg",
+    "image_file": "/thai-script/vocabulary/images/230 กลับ.jpg",
     "samples": [
       {
         "thai": "พ่อกลับบ้านในตอนเย็น",
@@ -6091,7 +6091,7 @@
     "english": "ask",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/232 ขอ.jpg",
     "samples": [
       {
         "thai": "เขาค่อยๆ เคลื่อนตัวลงสู่ผิวน้ำพร้อมกับมือซ้ายถือขอแน่น",
@@ -6132,7 +6132,7 @@
     "english": "world",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/233 โลก.jpg",
     "samples": [
       {
         "thai": "ชาวกรีกโบราณเชื่อว่าโลกที่เราอยู่ประกอบด้วยธาตุทั้ง 4 คือ ดิน น้ำ ลม ไฟ",
@@ -6174,7 +6174,7 @@
     "english": "original; before",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/234 เดิม.jpg",
     "samples": [
       {
         "thai": "แต่เดิมเราผลิตสินค้าได้น้อยมาก เพราะยังไม่มีเทคโนโลยีรองรับเพียงพอ",
@@ -6217,7 +6217,7 @@
     "english": "receive",
     "thai_audio_file": "/thai-script/audio/word-daj-rap.mp3",
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/235 ได้รับ.jpg",
     "samples": [
       {
         "thai": "เขาได้รับเงินรางวัลจำนวนมากมาย",
@@ -6273,7 +6273,7 @@
     "english": "how",
     "thai_audio_file": "/thai-script/vocabulary/audio/0549_อยางไร_th.mp3",
     "english_audio_file": "/thai-script/vocabulary/audio/0549_อยางไร_en.mp3",
-    "image_file": "/thai-script/vocabulary/images/0549_อยางไร.jpg",
+    "image_file": "/thai-script/vocabulary/images/82 อย่างไร.jpg",
     "samples": [
       {
         "thai": "สิ่งนี้ใช้อย่างไร",
@@ -6329,7 +6329,7 @@
     "english": "more",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/236 ยิ่ง.jpg",
     "samples": [
       {
         "thai": "การถ่ายทอดอารมณ์ให้กับภาพนั้นเป็นสิ่งสำคัญยิ่ง",
@@ -6372,7 +6372,7 @@
     "english": "party; side",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/237 ฝ่าย.jpg",
     "samples": [
       {
         "thai": "การทำให้เครื่องใหม่ครอบคลุมรุ่นเก่านั้น มีประโยชน์ด้วยกันทุกฝ่าย",
@@ -6415,7 +6415,7 @@
     "english": "house",
     "thai_audio_file": "/thai-script/vocabulary/audio/1167_บาน_th.mp3",
     "english_audio_file": "/thai-script/vocabulary/audio/1167_บาน_en.mp3",
-    "image_file": "/thai-script/vocabulary/images/1167_บาน.jpg",
+    "image_file": "/thai-script/vocabulary/images/83 บ้าน.jpg",
     "samples": [
       {
         "thai": "บ้านอยู่ที่ไหน",
@@ -6457,7 +6457,7 @@
     "english": "home",
     "thai_audio_file": "/thai-script/vocabulary/audio/1169_บาน_th.mp3",
     "english_audio_file": "/thai-script/vocabulary/audio/1169_บาน_en.mp3",
-    "image_file": "/thai-script/vocabulary/images/1169_บาน.jpg",
+    "image_file": "/thai-script/vocabulary/images/84 บ้าน.jpg",
     "samples": [
       {
         "thai": "บ้านใหม่",
@@ -6499,7 +6499,7 @@
     "english": "word",
     "thai_audio_file": "/thai-script/vocabulary/audio/1800_คำ_th.mp3",
     "english_audio_file": "/thai-script/vocabulary/audio/1800_คำ_en.mp3",
-    "image_file": "/thai-script/vocabulary/images/1800_คำ.jpg",
+    "image_file": "/thai-script/vocabulary/images/238 คำ.jpg",
     "samples": [
       {
         "thai": "พูดคำซ้ำ",
@@ -6539,7 +6539,7 @@
     "english": "meet",
     "thai_audio_file": "/thai-script/vocabulary/audio/0079_พบ_th.mp3",
     "english_audio_file": "/thai-script/vocabulary/audio/0079_พบ_en.mp3",
-    "image_file": "/thai-script/vocabulary/images/0079_พบ.jpg",
+    "image_file": "/thai-script/vocabulary/images/239 พบ.jpg",
     "samples": [
       {
         "thai": "พบกันที่ร้านกาแฟ",
@@ -6579,7 +6579,7 @@
     "english": "see",
     "thai_audio_file": "/thai-script/vocabulary/audio/0292_พบ_th.mp3",
     "english_audio_file": "/thai-script/vocabulary/audio/0292_พบ_en.mp3",
-    "image_file": "/thai-script/vocabulary/images/0292_พบ.jpg",
+    "image_file": "/thai-script/vocabulary/images/240 พบ.jpg",
     "samples": [
       {
         "thai": "ดิฉันจะไปพบหมอ",
@@ -6619,7 +6619,7 @@
     "english": "understand",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/241 เข้าใจ.jpg",
     "samples": [
       {
         "thai": "ถ้าเธอเข้าใจเธอก็สามารถทำข้อสอบได้ ไม่ว่าจะออกมาในรูปแบบไหน",
@@ -6675,7 +6675,7 @@
     "english": "piece (classifier)",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/242 อัน.jpg",
     "samples": [
       {
         "thai": "ปัญหานี้เป็นปัญหาที่สำคัญที่สุดอันหนึ่งในการออกแบบโปรแกรม",
@@ -6717,7 +6717,7 @@
     "english": "submit",
     "thai_audio_file": "/thai-script/vocabulary/audio/0029_สง_th.mp3",
     "english_audio_file": "/thai-script/vocabulary/audio/0029_สง_en.mp3",
-    "image_file": "/thai-script/vocabulary/images/0029_สง.jpg",
+    "image_file": "/thai-script/vocabulary/images/243 ส่ง.jpg",
     "samples": [
       {
         "thai": "ดิฉันจะส่งวิทยานิพนธ์ของดิฉันอาทิตย์หน้า",
@@ -6758,7 +6758,7 @@
     "english": "address",
     "thai_audio_file": "/thai-script/vocabulary/audio/1954_ทอย_th.mp3",
     "english_audio_file": "/thai-script/vocabulary/audio/1954_ทอย_en.mp3",
-    "image_file": "/thai-script/vocabulary/images/1954_ทอย.jpg",
+    "image_file": "/thai-script/vocabulary/images/46 ที่อยู่.jpg",
     "samples": [
       {
         "thai": "กรุณาเขียนที่อยู่ ชื่อ อายุ และหมายเลขโทรศัพท์ของคุณลงบนใบสมัคร",
@@ -6813,7 +6813,7 @@
     "english": "it",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/244 มัน.jpg",
     "samples": [
       {
         "thai": "บ้านฉันที่อิสานปลูกมันไว้เป็นแถวๆ เอาหัวมันมาปรุงอาหารได้",
@@ -6855,7 +6855,7 @@
     "english": "hold",
     "thai_audio_file": "/thai-script/vocabulary/audio/0273_ถอ_th.mp3",
     "english_audio_file": "/thai-script/vocabulary/audio/0273_ถอ_en.mp3",
-    "image_file": "/thai-script/vocabulary/images/0273_ถอ.jpg",
+    "image_file": "/thai-script/vocabulary/images/247 ถือ.jpg",
     "samples": [
       {
         "thai": "ผู้หญิงถือลูกโลก",
@@ -6896,7 +6896,7 @@
     "english": "even",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/249 แม้.jpg",
     "samples": [
       {
         "thai": "แม้เรื่องของป่าไม้ที่ดินจะไม่ใช่ปัญหาใหญ่แต่ก็มีการลุกลามในหลายพื้นที่",
@@ -6971,7 +6971,7 @@
     "toneRules": [
       "low-live"
     ],
-    "mnemonic": "KWAN — you SHOULD be a kwan-tum better (— neutral)"
+    "mnemonic": null
   },
   {
     "thai": "กำลัง",
@@ -6980,7 +6980,7 @@
     "english": "power",
     "thai_audio_file": "/thai-script/audio/word-kam-la.mp3",
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/252 กำลัง.jpg",
     "samples": [
       {
         "thai": "ลำต้นไม้ต้นหนึ่งมีกำลังสิบอ้อมแขน",
@@ -7035,7 +7035,7 @@
     "english": "problem",
     "thai_audio_file": "/thai-script/audio/word-pan-ha.mp3",
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/253 ปัญหา.jpg",
     "samples": [
       {
         "thai": "เมื่อดิสเกตต์มีปัญหาจะมีใครที่ช่วยแก้ปัญหาให้เราได้บ้าง",
@@ -7090,7 +7090,7 @@
     "english": "lift; raise",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/254 ยก.jpg",
     "samples": [
       {
         "thai": "เมื่อต้องการแสดงความคิดเห็นทุกคนต้องยกมือ",
@@ -7164,7 +7164,7 @@
     "toneRules": [
       "low-mayek"
     ],
-    "mnemonic": "NAH — you OUGHT TO, nah (↓ voice drops, gentle obligation)"
+    "mnemonic": null
   },
   {
     "thai": "ต้น",
@@ -7173,7 +7173,7 @@
     "english": "beginning",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/256 ต้น.jpg",
     "samples": [
       {
         "thai": "ต้นไม้ต้นใดที่มีต้นแข็งแรงก็สามารถจะนำมาต่อกิ่งได้",
@@ -7215,7 +7215,7 @@
     "english": "know",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/71 รู้.jpg",
     "samples": [
       {
         "thai": "เดี๋ยวนี้เรารู้แล้วว่าความเชื่อเช่นนั้นไร้สาระ",
@@ -7257,7 +7257,7 @@
     "english": "as; like",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/257 เหมือน.jpg",
     "samples": [
       {
         "thai": "อุตสาหกรรมของสหรัฐอเมริกากำลังถูกบีบจากต่างชาติ เหมือนลูกนกในกำมือ",
@@ -7302,7 +7302,7 @@
     "english": "as much as; times (size)",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/258 เท่า.jpg",
     "samples": [
       {
         "thai": "อำนาจของโลกคอมมิวนิสต์ก็เกือบจะเท่ากับอำนาจของโลกฝ่ายตะวันตก",
@@ -7386,7 +7386,7 @@
     "english": "try",
     "thai_audio_file": "/thai-script/vocabulary/audio/0275_พยายาม_th.mp3",
     "english_audio_file": "/thai-script/vocabulary/audio/0275_พยายาม_en.mp3",
-    "image_file": "/thai-script/vocabulary/images/0275_พยายาม.jpg",
+    "image_file": "/thai-script/vocabulary/images/260 พยายาม.jpg",
     "samples": [
       {
         "thai": "พยายามจำให้ได้ว่าคุณอยู่ที่ไหนเมื่อคืนวันอาทิตย์ที่แล้ว",
@@ -7438,7 +7438,7 @@
     "english": "real",
     "thai_audio_file": "/thai-script/audio/word-ti.mp3",
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/261 จริง.jpg",
     "samples": [
       {
         "thai": "ภาพยนตร์เรื่องนี้วิเศษจริง แต่มันทำให้ชาวบ้านเข้าใจผิดคิดว่าคอมพิวเตอร์ทำได้ทุกสิ่งทุกอย่าง",
@@ -7481,7 +7481,7 @@
     "english": "create",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/262 สร้าง.jpg",
     "samples": [
       {
         "thai": "ฮาร์ดดิสก์ดิสก์ประเภทนี้สร้างความปั่นป่วนให้แก่วงการคอมพิวเตอร์เป็นอย่างมาก",
@@ -7525,7 +7525,7 @@
     "english": "join",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/263 ร่วม.jpg",
     "samples": [
       {
         "thai": "กองทัพอากาศสหรัฐได้ทำโครงการร่วมกับบริษัทยักษ์ใหญ่ราว 20 แห่ง",
@@ -7568,7 +7568,7 @@
     "english": "tell",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/128 บอก.jpg",
     "samples": [
       {
         "thai": "คุณยายบอกอาการให้หมอฟังอย่างละเอียด",
@@ -7610,7 +7610,7 @@
     "english": "throughout; always",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/264 ตลอด.jpg",
     "samples": [
       {
         "thai": "คนที่นั่งทำงานอยู่ตลอดจะมีอาการของการปวดเมื่อยคอ หลัง และแขน",
@@ -7653,7 +7653,7 @@
     "english": "like",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/265 เช่น.jpg",
     "samples": [
       {
         "thai": "เขาทำตัวเช่นพระเอก",
@@ -7696,7 +7696,7 @@
     "english": "book",
     "thai_audio_file": "/thai-script/vocabulary/audio/0694_หนงสอ_th.mp3",
     "english_audio_file": "/thai-script/vocabulary/audio/0694_หนงสอ_en.mp3",
-    "image_file": "/thai-script/vocabulary/images/0694_หนงสอ.jpg",
+    "image_file": "/thai-script/vocabulary/images/266 หนังสือ.jpg",
     "samples": [
       {
         "thai": "หนังสือเรียนสีน้ำเงิน",
@@ -7751,7 +7751,7 @@
     "english": "each",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/267 ละ.jpg",
     "samples": [
       {
         "thai": "ธนาคารได้ออกบัตรเอทีเอ็มให้กับสามีภรรยาคู่นี้คนละใบ",
@@ -7792,7 +7792,7 @@
     "english": "you (polite)",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/268 ท่าน.jpg",
     "samples": [
       {
         "thai": "ก่อนที่ท่านจะเผชิญหน้ากับเหตุการณ์อันน่าสะพรึงกลัว ท่านจำเป็นต้องติดอาวุธให้ตัวเองเสียก่อน",
@@ -7835,7 +7835,7 @@
     "english": "regardless of; no matter what",
     "thai_audio_file": "/thai-script/audio/word-maj-wa.mp3",
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/270 ไม่ว่า.jpg",
     "samples": [
       {
         "thai": "ไม่ว่าหล่อนจะจ้างวานอย่างไร เขาก็ไม่ยอมกระดิกกระเดี้ย",
@@ -7889,7 +7889,7 @@
     "english": "store; put away",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/271 เก็บ.jpg",
     "samples": [
       {
         "thai": "เมื่อหยิบหนังสือมาจากชั้น ควรนำไปเก็บไว้ที่ชั้นตามเดิม เพื่อความเป็นระเบียบ",
@@ -7932,7 +7932,7 @@
     "english": "results",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/272 ผล.jpg",
     "samples": [
       {
         "thai": "สถานการณ์ช่วงนี้เอื้อผลต่อเราไม่น้อยเลย",
@@ -7973,7 +7973,7 @@
     "english": "some",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/273 บ้าง.jpg",
     "samples": [
       {
         "thai": "นกมักจะมีสีขนแตกต่างกันออกไปตามชนิด บ้างก็งดงามสวยบาดตา บ้างก็มีสีมัวๆ เพื่อให้กลมกลืนกับธรรมชาติ",
@@ -8016,7 +8016,7 @@
     "english": "who",
     "thai_audio_file": "/thai-script/vocabulary/audio/0553_ใคร_th.mp3",
     "english_audio_file": "/thai-script/vocabulary/audio/0553_ใคร_en.mp3",
-    "image_file": "/thai-script/vocabulary/images/0553_ใคร.jpg",
+    "image_file": "/thai-script/vocabulary/images/62 ใคร.jpg",
     "samples": [
       {
         "thai": "กับใคร",
@@ -8057,7 +8057,7 @@
     "english": "to; old",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/275 แก่.jpg",
     "samples": [
       {
         "thai": "ประธานาธิบดีถูกบังคับให้มอบอำนาจในการปกครองแก่คณะทหาร",
@@ -8099,7 +8099,7 @@
     "english": "become",
     "thai_audio_file": "/thai-script/vocabulary/audio/0279_กลายเปน_th.mp3",
     "english_audio_file": "/thai-script/vocabulary/audio/0279_กลายเปน_en.mp3",
-    "image_file": "/thai-script/vocabulary/images/0279_กลายเปน.jpg",
+    "image_file": "/thai-script/vocabulary/images/276 กลายเป็น.jpg",
     "samples": [
       {
         "thai": "กลายเป็นผีเสื้อ",
@@ -8155,7 +8155,7 @@
     "english": "after",
     "thai_audio_file": "/thai-script/vocabulary/audio/0638_หลง_th.mp3",
     "english_audio_file": "/thai-script/vocabulary/audio/0638_หลง_en.mp3",
-    "image_file": "/thai-script/vocabulary/images/0638_หลง.jpg",
+    "image_file": "/thai-script/vocabulary/images/277 หลัง.jpg",
     "samples": [
       {
         "thai": "หลังอาหารเย็น",
@@ -8197,7 +8197,7 @@
     "english": "back",
     "thai_audio_file": "/thai-script/vocabulary/audio/0953_หลง_th.mp3",
     "english_audio_file": "/thai-script/vocabulary/audio/0953_หลง_en.mp3",
-    "image_file": "/thai-script/vocabulary/images/0953_หลง.jpg",
+    "image_file": "/thai-script/vocabulary/images/278 หลัง.jpg",
     "samples": [
       {
         "thai": "ฉันเจ็บหลัง",
@@ -8239,7 +8239,7 @@
     "english": "arrange",
     "thai_audio_file": "/thai-script/vocabulary/audio/1667_จด_th.mp3",
     "english_audio_file": "/thai-script/vocabulary/audio/1667_จด_en.mp3",
-    "image_file": "/thai-script/vocabulary/images/1667_จด.jpg",
+    "image_file": "/thai-script/vocabulary/images/279 จัด.jpg",
     "samples": [
       {
         "thai": "จัดเตรียมเรื่องที่พัก",
@@ -8280,7 +8280,7 @@
     "english": "yes",
     "thai_audio_file": "/thai-script/vocabulary/audio/0363_ใช_th.mp3",
     "english_audio_file": "/thai-script/vocabulary/audio/0363_ใช_en.mp3",
-    "image_file": "/thai-script/vocabulary/images/0363_ใช.jpg",
+    "image_file": "/thai-script/vocabulary/images/35 ใช่.jpg",
     "samples": [],
     "rank": 35,
     "frequency": 32703,
@@ -8313,7 +8313,7 @@
     "english": "select",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/280 เลือก.jpg",
     "samples": [
       {
         "thai": "การเลือกตั้งแบบแบ่งเขตเรียงเบอร์ที่เปิดโอกาสให้ผู้เลือกตั้งสามารถเลือกผู้สมัครเป็นรายบุคคลจากพรรคต่างๆ กัน",
@@ -8357,7 +8357,7 @@
     "english": "her",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/281 เธอ.jpg",
     "samples": [
       {
         "thai": "ครูบอกให้เธอทำการบ้านมาส่ง ทำไมเธอจึงไม่ทำ",
@@ -8399,7 +8399,7 @@
     "english": "child",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/111 ลูก.jpg",
     "samples": [
       {
         "thai": "ฝรั่ง 1 ก.ก. จะมีประมาณ 3 ลูก",
@@ -8441,7 +8441,7 @@
     "english": "probably",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/283 คง.jpg",
     "samples": [
       {
         "thai": "ในฐานะของผู้บริโภคเขาคงอยากได้ของดีที่สุดในราคาที่ถูกที่สุดล่ะมั้ง",
@@ -8482,7 +8482,7 @@
     "english": "origin; source; cause",
     "thai_audio_file": "/thai-script/audio/word-thi-ma.mp3",
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/284 ที่มา.jpg",
     "samples": [
       {
         "thai": "ศาสนาธรรมเป็นแห่งที่มาสำคัญของสัจธรรม",
@@ -8537,7 +8537,7 @@
     "english": "itself",
     "thai_audio_file": "/thai-script/audio/word-tua-e.mp3",
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/285 ตัวเอง.jpg",
     "samples": [
       {
         "thai": "เขาไม่เชื่อหูว่าตัวเองถูกรางวัลที่ 1",
@@ -8634,7 +8634,7 @@
     "english": "want",
     "thai_audio_file": "/thai-script/vocabulary/audio/0270_ตองการ_th.mp3",
     "english_audio_file": "/thai-script/vocabulary/audio/0270_ตองการ_en.mp3",
-    "image_file": "/thai-script/vocabulary/images/0270_ตองการ.jpg",
+    "image_file": "/thai-script/vocabulary/images/287 ต้องการ.jpg",
     "samples": [
       {
         "thai": "พวกพนักงานออฟฟิศต้องการโดนัท",
@@ -8690,7 +8690,7 @@
     "english": "need",
     "thai_audio_file": "/thai-script/vocabulary/audio/0289_ตองการ_th.mp3",
     "english_audio_file": "/thai-script/vocabulary/audio/0289_ตองการ_en.mp3",
-    "image_file": "/thai-script/vocabulary/images/0289_ตองการ.jpg",
+    "image_file": "/thai-script/vocabulary/images/288 ต้องการ.jpg",
     "samples": [
       {
         "thai": "ดิฉันต้องการความช่วยเหลือ",
@@ -8746,7 +8746,7 @@
     "english": "show",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/289 แสดง.jpg",
     "samples": [
       {
         "thai": "ความหิวมีส่วนให้มนุษย์แสดงพฤติกรรมได้กว้างขวางมาก",
@@ -8789,7 +8789,7 @@
     "english": "total",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/290 ทั้งหมด.jpg",
     "samples": [
       {
         "thai": "งานทั้งหมดที่ทำจะต้องส่งภายในวันพรุ่งนี้",
@@ -8846,7 +8846,7 @@
     "english": "easy",
     "thai_audio_file": "/thai-script/vocabulary/audio/0308_งาย_th.mp3",
     "english_audio_file": "/thai-script/vocabulary/audio/0308_งาย_en.mp3",
-    "image_file": "/thai-script/vocabulary/images/0308_งาย.jpg",
+    "image_file": "/thai-script/vocabulary/images/291 ง่าย.jpg",
     "samples": [],
     "rank": 291,
     "frequency": 12843,
@@ -8928,7 +8928,7 @@
       "low-dead-short",
       "high-mayek"
     ],
-    "mnemonic": "RA-WANG — BETWEEN ra and wang (▲▬ in the gap)"
+    "mnemonic": null
   },
   {
     "thai": "พูด",
@@ -8937,7 +8937,7 @@
     "english": "say",
     "thai_audio_file": "/thai-script/vocabulary/audio/0259_พด_th.mp3",
     "english_audio_file": "/thai-script/vocabulary/audio/0259_พด_en.mp3",
-    "image_file": "/thai-script/vocabulary/images/45 พูด.jpg",
+    "image_file": "/thai-script/vocabulary/images/85 พูด.jpg",
     "samples": [
       {
         "thai": "ผู้คนกำลังพูดว่า \"สวัสดี\"",
@@ -8978,7 +8978,7 @@
     "english": "mind",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/293 ใจ.jpg",
     "samples": [
       {
         "thai": "ใจของเขาเต้นแรงหลังจากได้ยินข่าวร้ายจากทางบ้าน",
@@ -9072,7 +9072,7 @@
     "english": "any",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/294 ใด.jpg",
     "samples": [
       {
         "thai": "ห้ามแตะต้องสิ่งของใดในห้องนี้",
@@ -9113,7 +9113,7 @@
     "english": "group",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/295 กลุ่ม.jpg",
     "samples": [
       {
         "thai": "กลุ่มแต่ละกลุ่มจะมีพฤติกรรมร่วมในแบบฉบับเฉพาะของตนเอง",
@@ -9157,7 +9157,7 @@
     "english": "phase",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/296 ช่วง.jpg",
     "samples": [
       {
         "thai": "คุณจะเข้ามาบริษัทช่วงเช้าหรือบ่าย",
@@ -9200,7 +9200,7 @@
     "english": "enough",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/297 พอ.jpg",
     "samples": [
       {
         "thai": "เม็ดเงินคงคลังยังมีไม่พอที่จะใช้หนี้ระยะสั้น",
@@ -9241,7 +9241,7 @@
     "english": "want",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/95 อยาก.jpg",
     "samples": [
       {
         "thai": "เธออยากรู้ว่าเขามีใครซุกซ่อนอยู่ในหัวใจของเขาหรือไม่",
@@ -9284,7 +9284,7 @@
     "english": "silver",
     "thai_audio_file": "/thai-script/vocabulary/audio/0191_เงน_th.mp3",
     "english_audio_file": "/thai-script/vocabulary/audio/0191_เงน_en.mp3",
-    "image_file": "/thai-script/vocabulary/images/0191_เงน.jpg",
+    "image_file": "/thai-script/vocabulary/images/103 เงิน.jpg",
     "samples": [],
     "rank": 103,
     "frequency": 31017,
@@ -9318,7 +9318,7 @@
     "english": "silver",
     "thai_audio_file": "/thai-script/vocabulary/audio/0243_เงน_th.mp3",
     "english_audio_file": "/thai-script/vocabulary/audio/0243_เงน_en.mp3",
-    "image_file": "/thai-script/vocabulary/images/0243_เงน.jpg",
+    "image_file": "/thai-script/vocabulary/images/104 เงิน.jpg",
     "samples": [
       {
         "thai": "ปากกาสีเงินดูแพง",
@@ -9360,7 +9360,7 @@
     "english": "money",
     "thai_audio_file": "/thai-script/vocabulary/audio/0450_เงน_th.mp3",
     "english_audio_file": "/thai-script/vocabulary/audio/0450_เงน_en.mp3",
-    "image_file": "/thai-script/vocabulary/images/0450_เงน.jpg",
+    "image_file": "/thai-script/vocabulary/images/105 เงิน.jpg",
     "samples": [
       {
         "thai": "กระเป๋าสตางค์ที่มีเงินอยู่ข้างใน",
@@ -9402,7 +9402,7 @@
     "english": "including",
     "thai_audio_file": "/thai-script/audio/word-ruam-2.mp3",
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/298 รวม.jpg",
     "samples": [
       {
         "thai": "รวมกันเราอยู่ แยกกันเราตาย",
@@ -9444,7 +9444,7 @@
     "english": "face",
     "thai_audio_file": "/thai-script/vocabulary/audio/0997_หนา_th.mp3",
     "english_audio_file": "/thai-script/vocabulary/audio/0997_หนา_en.mp3",
-    "image_file": "/thai-script/vocabulary/images/0997_หนา.jpg",
+    "image_file": "/thai-script/vocabulary/images/299 หน้า.jpg",
     "samples": [
       {
         "thai": "เด็กผู้ชายกำลังล้างหน้าด้วยผ้าขนหนู",
@@ -9486,7 +9486,7 @@
     "english": "write",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/300 เขียน.jpg",
     "samples": [
       {
         "thai": "อย่าให้เขาเขียนเลย สงสารคนอ่าน",
@@ -9530,7 +9530,7 @@
     "english": "color",
     "thai_audio_file": "/thai-script/vocabulary/audio/0246_ส_th.mp3",
     "english_audio_file": "/thai-script/vocabulary/audio/0246_ส_en.mp3",
-    "image_file": "/thai-script/vocabulary/images/0246_ส.jpg",
+    "image_file": "/thai-script/vocabulary/images/301 สี.jpg",
     "samples": [
       {
         "thai": "สีโปรดของคุณคือสีอะไร",
@@ -9570,7 +9570,7 @@
     "english": "I (mostly female)",
     "thai_audio_file": "/thai-script/audio/word-than.mp3",
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/14 ฉัน.jpg",
     "samples": [
       {
         "thai": "เธอจะเข้าๆ ออกๆ ห้องนี้ห้องโน้นอีกนานไหม ฉันเวียนหัวจะตายอยู่แล้ว",
@@ -9612,7 +9612,7 @@
     "english": "man",
     "thai_audio_file": "/thai-script/audio/word-thaj.mp3",
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/302 ชาย.jpg",
     "samples": [
       {
         "thai": "ชุดที่ชายกระโปรงยาวลากพื้น ผู้สวมใส่ต้องระวังไม่ให้สะดุดหกล้ม",
@@ -9654,7 +9654,7 @@
     "english": "as; loud",
     "thai_audio_file": "/thai-script/audio/word-da.mp3",
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/303 ดัง.jpg",
     "samples": [
       {
         "thai": "นักร้องคนนี้มีชื่อเสียงดังไปทั่วประเทศไทย",
@@ -9696,7 +9696,7 @@
     "english": "chance",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/304 โอกาส.jpg",
     "samples": [
       {
         "thai": "ในสังคมไทยการรับราชการย่อมมีโอกาสได้ชื่อเสียงง่ายกว่าการเป็นชาวนา หรือกรรมก",
@@ -9751,7 +9751,7 @@
     "english": "always",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/305 เสมอ.jpg",
     "samples": [
       {
         "thai": "เขาสองคนเสมอกันในเรื่องความหล่อ แต่ฐานะต่างกันราวฟ้ากับดิน",
@@ -9794,7 +9794,7 @@
     "english": "mother",
     "thai_audio_file": "/thai-script/audio/word-m.mp3",
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/96 แม่.jpg",
     "samples": [
       {
         "thai": "ความรักที่แม่มีให้ลูกเป็นรักที่ยิ่งใหญ่กว่ารักใดในโลก",
@@ -9836,7 +9836,7 @@
     "english": "Mr.",
     "thai_audio_file": "/thai-script/vocabulary/audio/1256_นาย_th.mp3",
     "english_audio_file": "/thai-script/vocabulary/audio/1256_นาย_en.mp3",
-    "image_file": "/thai-script/vocabulary/images/216 นาย.jpg",
+    "image_file": "/thai-script/vocabulary/images/307 นาย.jpg",
     "samples": [
       {
         "thai": "เพื่อนๆของดิฉันเรียกคุณพ่อของดิฉันว่านายมาร์ตินเสมอ",
@@ -9877,7 +9877,7 @@
     "english": "nation",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/308 ชาติ.jpg",
     "samples": [
       {
         "thai": "ศาสนาพุทธสอนให้คนทำความดีเพื่อสั่งสมบุญบารมีทั้งในชาตินี้และชาติหน้า",
@@ -9920,7 +9920,7 @@
     "english": "learn",
     "thai_audio_file": "/thai-script/vocabulary/audio/0281_เรยน_th.mp3",
     "english_audio_file": "/thai-script/vocabulary/audio/0281_เรยน_en.mp3",
-    "image_file": "/thai-script/vocabulary/images/0281_เรยน.jpg",
+    "image_file": "/thai-script/vocabulary/images/309 เรียน.jpg",
     "samples": [
       {
         "thai": "เด็กผู้ชายเรียนแซ็กโซโฟน",
@@ -9963,7 +9963,7 @@
     "english": "study",
     "thai_audio_file": "/thai-script/vocabulary/audio/0401_เรยน_th.mp3",
     "english_audio_file": "/thai-script/vocabulary/audio/0401_เรยน_en.mp3",
-    "image_file": "/thai-script/vocabulary/images/0401_เรยน.jpg",
+    "image_file": "/thai-script/vocabulary/images/310 เรียน.jpg",
     "samples": [
       {
         "thai": "พวกนักเรียนมัธยมปลายกำลังอ่านหนังสือเรียนกันอยู่ที่ห้องสมุด",
@@ -10006,7 +10006,7 @@
     "english": "sound",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/311 เสียง.jpg",
     "samples": [
       {
         "thai": "เรื่องนี้ฉันขอไม่ออกเสียง",
@@ -10050,7 +10050,7 @@
     "english": "love",
     "thai_audio_file": "/thai-script/vocabulary/audio/0288_รก_th.mp3",
     "english_audio_file": "/thai-script/vocabulary/audio/0288_รก_en.mp3",
-    "image_file": "/thai-script/vocabulary/images/0288_รก.jpg",
+    "image_file": "/thai-script/vocabulary/images/113 รัก.jpg",
     "samples": [
       {
         "thai": "รักผู้หญิง",
@@ -10091,7 +10091,7 @@
     "english": "building; structure",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/313 โรง.jpg",
     "samples": [
       {
         "thai": "นักบอลวิ่งกันฝุ่นตลบตรงสนามหน้าเสาธงของโรงเรียน",
@@ -10133,7 +10133,7 @@
     "english": "know",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/314 ทราบ.jpg",
     "samples": [
       {
         "thai": "เมื่อรถหุ่นยนต์เคลื่อนที่ มันจะเตือนให้มนุษย์ทราบ ด้วยการส่งเสียงดัง บี๊บ บี๊บ",
@@ -10176,7 +10176,7 @@
     "english": "believe",
     "thai_audio_file": "/thai-script/vocabulary/audio/0073_เชอ_th.mp3",
     "english_audio_file": "/thai-script/vocabulary/audio/0073_เชอ_en.mp3",
-    "image_file": "/thai-script/vocabulary/images/0073_เชอ.jpg",
+    "image_file": "/thai-script/vocabulary/images/315 เชื่อ.jpg",
     "samples": [
       {
         "thai": "ดิฉันไม่สามารถเชื่อเรื่องนั้นได้",
@@ -10219,7 +10219,7 @@
     "english": "self",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/316 ตน.jpg",
     "samples": [
       {
         "thai": "มียักษ์สามตน",
@@ -10260,7 +10260,7 @@
     "english": "level; grade",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/319 ระดับ.jpg",
     "samples": [
       {
         "thai": "ความสามารถของนักเรียนไทยอยู่ในระดับที่ดีมาก",
@@ -10315,7 +10315,7 @@
     "english": "family",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/180 ครอบครัว.jpg",
     "samples": [
       {
         "thai": "ครอบครัวจะช่วยหล่อหลอมเยาวชนให้เติบใหญ่เป็นคนดีของสังคม",
@@ -10371,7 +10371,7 @@
     "english": "turn on",
     "thai_audio_file": "/thai-script/vocabulary/audio/0394_เปด_th.mp3",
     "english_audio_file": "/thai-script/vocabulary/audio/0394_เปด_en.mp3",
-    "image_file": "/thai-script/vocabulary/images/0394_เปด.jpg",
+    "image_file": "/thai-script/vocabulary/images/320 เปิด.jpg",
     "samples": [
       {
         "thai": "เปิดไฟ",
@@ -10413,7 +10413,7 @@
     "english": "open",
     "thai_audio_file": "/thai-script/vocabulary/audio/1716_เปด_th.mp3",
     "english_audio_file": "/thai-script/vocabulary/audio/1716_เปด_en.mp3",
-    "image_file": "/thai-script/vocabulary/images/1716_เปด.jpg",
+    "image_file": "/thai-script/vocabulary/images/321 เปิด.jpg",
     "samples": [
       {
         "thai": "เด็กผู้ชายเปิดประตู",
@@ -10455,7 +10455,7 @@
     "english": "like",
     "thai_audio_file": "/thai-script/vocabulary/audio/1283_ชอบ_th.mp3",
     "english_audio_file": "/thai-script/vocabulary/audio/1283_ชอบ_en.mp3",
-    "image_file": "/thai-script/vocabulary/images/1283_ชอบ.jpg",
+    "image_file": "/thai-script/vocabulary/images/86 ชอบ.jpg",
     "samples": [
       {
         "thai": "เด็กสาวชอบลูกสุนัขมาก",
@@ -10496,7 +10496,7 @@
     "english": "within",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/322 ภายใน.jpg",
     "samples": [
       {
         "thai": "เมื่อเดินเข้าไปภายในอาคารฉันถึงกับอึ้งเพราะความหรูหราของการประดับตกแต่ง",
@@ -10550,7 +10550,7 @@
     "english": "remainder",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/323 เหลือ.jpg",
     "samples": [
       {
         "thai": "ชาวบ้านนำปลาที่เหลือจากกินแล้วนำไปขายทำให้มีรายได้เพิ่มขึ้น",
@@ -10594,7 +10594,7 @@
     "english": "instead",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/324 แทน.jpg",
     "samples": [
       {
         "thai": "วิธีการที่จะจัดการกับปัญหาเราควรแก้ไขกับต้นตอของปัญหา แทนที่จะแก้ไขที่ปลายเหตุ",
@@ -10636,7 +10636,7 @@
     "english": "view",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/325 มอง.jpg",
     "samples": [
       {
         "thai": "ฉันมองร่างเด็กผอมเกร็งตัวดำอย่างสมเพช",
@@ -10711,7 +10711,7 @@
     "toneRules": [
       "low-dead-long"
     ],
-    "mnemonic": "PWAK — the GROUP of pwak flocks together (↓ collective)"
+    "mnemonic": null
   },
   {
     "thai": "ญาติ",
@@ -10720,7 +10720,7 @@
     "english": "relative",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/327 ญาติ.jpg",
     "samples": [
       {
         "thai": "คนที่ไปรับญาติกลับจากสงคราม มีความสุขที่ได้เห็นญาติกลับบ้าน",
@@ -10763,7 +10763,7 @@
     "english": "image",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/328 รูป.jpg",
     "samples": [
       {
         "thai": "เราจงอย่ายึดมั่นถือมั่นกับรูป รส กลิ่น เสียง",
@@ -10805,7 +10805,7 @@
     "english": "stick; attached to",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/329 ติด.jpg",
     "samples": [
       {
         "thai": "เพื่อนข้างบ้านขอติดรถไปลงหน้าปากซอยด้วย",
@@ -10847,7 +10847,7 @@
     "english": "put",
     "thai_audio_file": "/thai-script/vocabulary/audio/0271_วาง_th.mp3",
     "english_audio_file": "/thai-script/vocabulary/audio/0271_วาง_en.mp3",
-    "image_file": "/thai-script/vocabulary/images/237 วาง.jpg",
+    "image_file": "/thai-script/vocabulary/images/330 วาง.jpg",
     "samples": [
       {
         "thai": "กรุณาพยายามวางกล่องใบนี้ไว้บนชั้นบนสุด",
@@ -10888,7 +10888,7 @@
     "english": "difficult",
     "thai_audio_file": "/thai-script/vocabulary/audio/0307_ยาก_th.mp3",
     "english_audio_file": "/thai-script/vocabulary/audio/0307_ยาก_en.mp3",
-    "image_file": "/thai-script/vocabulary/images/0307_ยาก.jpg",
+    "image_file": "/thai-script/vocabulary/images/331 ยาก.jpg",
     "samples": [
       {
         "thai": "ภาษาอังกฤษยาก",
@@ -10929,7 +10929,7 @@
     "english": "listen",
     "thai_audio_file": "/thai-script/vocabulary/audio/1717_ฟง_th.mp3",
     "english_audio_file": "/thai-script/vocabulary/audio/1717_ฟง_en.mp3",
-    "image_file": "/thai-script/vocabulary/images/1717_ฟง.jpg",
+    "image_file": "/thai-script/vocabulary/images/114 ฟัง.jpg",
     "samples": [
       {
         "thai": "เด็กผู้ชายกำลังฟังเสียงของมหาสมุทร",
@@ -11013,7 +11013,7 @@
     "english": "long time",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": "/thai-script/vocabulary/images/241 นาน.jpg",
+    "image_file": "/thai-script/vocabulary/images/332 นาน.jpg",
     "samples": [
       {
         "thai": "ครอบครัวของเขาอยู่บนที่ดินผืนนี้มานานหลายชั่วอายุคน",
@@ -11054,7 +11054,7 @@
     "english": "system",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/333 ระบบ.jpg",
     "samples": [
       {
         "thai": "การทำงานของเครื่องแต่ละรุ่น แต่ละระบบ มีการพัฒนาและเปลี่ยนแปลงอย่างรวดเร็ว",
@@ -11107,7 +11107,7 @@
     "english": "woman",
     "thai_audio_file": "/thai-script/vocabulary/audio/1260_ผหญง_th.mp3",
     "english_audio_file": "/thai-script/vocabulary/audio/1260_ผหญง_en.mp3",
-    "image_file": "/thai-script/vocabulary/images/1260_ผหญง.jpg",
+    "image_file": "/thai-script/vocabulary/images/334 ผู้หญิง.jpg",
     "samples": [
       {
         "thai": "ผู้หญิงสวมเสื้อสเวตเตอร์สีดำ",
@@ -11163,7 +11163,7 @@
     "english": "develop",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/336 พัฒนา.jpg",
     "samples": [
       {
         "thai": "ที่อยู่อาศัยของมนุษย์พัฒนาขึ้นเรื่อยๆ จากกระท่อมใบไม้ใบหญ้าก็กลายเป็นบ้านเรือนที่สวยงาม",
@@ -11218,7 +11218,7 @@
     "english": "buy",
     "thai_audio_file": "/thai-script/vocabulary/audio/0577_ซอ_th.mp3",
     "english_audio_file": "/thai-script/vocabulary/audio/0577_ซอ_en.mp3",
-    "image_file": "/thai-script/vocabulary/images/0577_ซอ.jpg",
+    "image_file": "/thai-script/vocabulary/images/130 ซื้อ.jpg",
     "samples": [
       {
         "thai": "ซื้อด้วยบัตรเครดิต",
@@ -11312,7 +11312,7 @@
     "english": "society",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/337 สังคม.jpg",
     "samples": [
       {
         "thai": "ชาวบ้านจะมีโอกาสวิสาสะกันในทางสังคม ก็ในวันตรุษสารทนี่เอง",
@@ -11367,7 +11367,7 @@
     "english": "know (someone)",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/338 รู้จัก.jpg",
     "samples": [
       {
         "thai": "คุณยังไม่รู้จักเขาดีพอ",
@@ -11423,7 +11423,7 @@
     "english": "amount",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/340 จำนวน.jpg",
     "samples": [
       {
         "thai": "พวกเขามีงานค้างอยู่จำนวนหนึ่ง",
@@ -11477,7 +11477,7 @@
     "english": "play",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/341 เล่น.jpg",
     "samples": [
       {
         "thai": "บ่อน้ำตรงนี้ลึกนะ เด็กๆ อย่าลงไปเล่นตามลำพัง",
@@ -11520,7 +11520,7 @@
     "english": "important",
     "thai_audio_file": "/thai-script/vocabulary/audio/0057_สำคญ_th.mp3",
     "english_audio_file": "/thai-script/vocabulary/audio/0057_สำคญ_en.mp3",
-    "image_file": "/thai-script/vocabulary/images/0057_สำคญ.jpg",
+    "image_file": "/thai-script/vocabulary/images/342 สำคัญ.jpg",
     "samples": [
       {
         "thai": "อาหารเช้าเป็นมื้ออาหารที่สำคัญที่สุดของวัน",
@@ -11574,7 +11574,7 @@
     "english": "measure",
     "thai_audio_file": "/thai-script/vocabulary/audio/0277_วด_th.mp3",
     "english_audio_file": "/thai-script/vocabulary/audio/0277_วด_en.mp3",
-    "image_file": "/thai-script/vocabulary/images/0277_วด.jpg",
+    "image_file": "/thai-script/vocabulary/images/343 วัด.jpg",
     "samples": [
       {
         "thai": "วัดไซส์",
@@ -11615,7 +11615,7 @@
     "english": "temple",
     "thai_audio_file": "/thai-script/vocabulary/audio/1658_วด_th.mp3",
     "english_audio_file": "/thai-script/vocabulary/audio/1658_วด_en.mp3",
-    "image_file": "/thai-script/vocabulary/images/1658_วด.jpg",
+    "image_file": "/thai-script/vocabulary/images/344 วัด.jpg",
     "samples": [
       {
         "thai": "ดิฉันได้ท่องเที่ยวไปยังวัดต่างๆในเกียวโต",
@@ -11713,7 +11713,7 @@
     "english": "direct",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/142 ตรง.jpg",
     "samples": [
       {
         "thai": "สุนัขวิ่งตรงเข้าใส่คนแปลกหน้า",
@@ -11755,7 +11755,7 @@
     "english": "small",
     "thai_audio_file": "/thai-script/vocabulary/audio/0300_เลก_th.mp3",
     "english_audio_file": "/thai-script/vocabulary/audio/0300_เลก_en.mp3",
-    "image_file": "/thai-script/vocabulary/images/0300_เลก.jpg",
+    "image_file": "/thai-script/vocabulary/images/346 เล็ก.jpg",
     "samples": [],
     "rank": 346,
     "frequency": 18480,
@@ -11843,7 +11843,7 @@
     "english": "people",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/348 ชาว.jpg",
     "samples": [
       {
         "thai": "ชาวจีนโพ้นทะเลคือ ชาวจีนที่ไม่ได้อาศัยในผืนแผ่นดินใหญ่ของจีน",
@@ -11885,7 +11885,7 @@
     "english": "many",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/349 มากมาย.jpg",
     "samples": [
       {
         "thai": "ในยุคปัจจุบันมีเครื่องคอมพิวเตอร์ให้เลือกใช้อย่างมากมาย",
@@ -11939,7 +11939,7 @@
     "english": "maintain",
     "thai_audio_file": "/thai-script/vocabulary/audio/0060_รกษา_th.mp3",
     "english_audio_file": "/thai-script/vocabulary/audio/0060_รกษา_en.mp3",
-    "image_file": "/thai-script/vocabulary/images/0060_รกษา.jpg",
+    "image_file": "/thai-script/vocabulary/images/350 รักษา.jpg",
     "samples": [
       {
         "thai": "รักษาความเรียบร้อย",
@@ -11993,7 +11993,7 @@
     "english": "reduce",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/145 ลด.jpg",
     "samples": [
       {
         "thai": "เมื่อเราขึ้นไปสูงจากพื้นดินไปในท้องฟ้า 1 กิโลเมตร อุณหภูมิจะลดลงราวๆ 6.50 ซ.",
@@ -12034,7 +12034,7 @@
     "english": "eat",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": "/thai-script/vocabulary/images/40 กิน.jpg",
+    "image_file": "/thai-script/vocabulary/images/72 กิน.jpg",
     "samples": [
       {
         "thai": "เขาถูกเจ้ามือกินไป 3 ครั้งแล้ว",
@@ -12076,7 +12076,7 @@
     "english": "force; strength; power; harsh",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/351 แรง.jpg",
     "samples": [
       {
         "thai": "เขาหักพวงมาลัยเลี้ยวขวาเต็มแรงจนรถแทบเสียหลัก",
@@ -12160,7 +12160,7 @@
     "english": "villagers",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/353 ชาวบ้าน.jpg",
     "samples": [
       {
         "thai": "ชาวบ้านส่วนใหญ่ในหมู่บ้านนี้มีอาชีพทำการเกษตร",
@@ -12216,7 +12216,7 @@
     "english": "sell",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/354 ขาย.jpg",
     "samples": [
       {
         "thai": "เขาขายรถให้กับลูกค้าได้หลายคันในเดือนนี้",
@@ -12258,7 +12258,7 @@
     "english": "cost",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/355 ค่า.jpg",
     "samples": [
       {
         "thai": "บริษัทรับเหมารายนี้จ่ายค่าแรงไม่ครบและไม่ค่อยตรงเวลามันจะหักค่าอะไรต่อมิอะไรจิปาถะ",
@@ -12300,7 +12300,7 @@
     "english": "owner",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/356 เจ้าของ.jpg",
     "samples": [
       {
         "thai": "เขาเป็นเจ้าของกิจการสิ่งทอที่ใหญ่ที่สุดในประเทศไทย",
@@ -12357,7 +12357,7 @@
     "english": "angle; corner",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/357 มุม.jpg",
     "samples": [
       {
         "thai": "เงาที่สะท้อนได้ฉากและมุมที่พอเหมาะ จะช่วยสร้างบรรยากาศให้ได้ความรู้สึกที่ต้องการ",
@@ -12398,7 +12398,7 @@
     "english": "add",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/358 เพิ่ม.jpg",
     "samples": [
       {
         "thai": "การเพิ่มชื่อและรายการบุคคลเข้าในทะเบียนบ้านมีหลายกรณี",
@@ -12442,7 +12442,7 @@
     "english": "under",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/359 ใต้.jpg",
     "samples": [
       {
         "thai": "นักประดาน้ำลงไปใต้น้ำเพื่อสำรวจความเสียหายของเรือ",
@@ -12536,7 +12536,7 @@
     "english": "pair",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/361 คู่.jpg",
     "samples": [
       {
         "thai": "คู่ของรองเท้าสีดำนี้หายไป",
@@ -12578,7 +12578,7 @@
     "english": "cross over; across",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/362 ข้าม.jpg",
     "samples": [
       {
         "thai": "ฉันข้ามไปตรงที่เป็นประเด็นสำคัญเลยจะได้ไม่เสียเวลา",
@@ -12621,7 +12621,7 @@
     "english": "to",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/363 สู่.jpg",
     "samples": [
       {
         "thai": "พวกเขาสู่กันกินอาหารที่หามาได้จากในป่าในเขา",
@@ -12663,7 +12663,7 @@
     "english": "simultaneously; ready",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/364 พร้อม.jpg",
     "samples": [
       {
         "thai": "เมื่ออบให้ผิวด้านหน้าให้เรียบสนิทอีกครั้งหนึ่งแล้วก็เป็นอันว่าเราได้วัตถุดิบที่พร้อมเข้าสู่ขั้นตอนการปั๊มรูปร่างแผ่นดิสก์",
@@ -12707,7 +12707,7 @@
     "english": "feel",
     "thai_audio_file": "/thai-script/vocabulary/audio/0268_รสก_th.mp3",
     "english_audio_file": "/thai-script/vocabulary/audio/0268_รสก_en.mp3",
-    "image_file": "/thai-script/vocabulary/images/0268_รสก.jpg",
+    "image_file": "/thai-script/vocabulary/images/365 รู้สึก.jpg",
     "samples": [
       {
         "thai": "เด็กผู้ชายกำลังรู้สึกเศร้า",
@@ -12762,7 +12762,7 @@
     "english": "this",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/366 นี่.jpg",
     "samples": [
       {
         "thai": "กล้วยนี่เละแล้ว น่าจะทิ้งเสียที",
@@ -12846,7 +12846,7 @@
     "english": "after",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/369 หลังจาก.jpg",
     "samples": [
       {
         "thai": "คนส่วนใหญ่หลังจากนั่งหลังตรงไปได้สักระยะหนึ่ง ก็จะนั่งหลังโกงเหมือนเดิม",
@@ -12903,7 +12903,7 @@
     "english": "female",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/370 หญิง.jpg",
     "samples": [
       {
         "thai": "อุบัติเหตุเกิดขึ้นได้กับคนทุกคน ทั้งหญิงและชาย เด็กและผู้ใหญ่",
@@ -12946,7 +12946,7 @@
     "english": "each",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/371 แต่ละ.jpg",
     "samples": [
       {
         "thai": "คนแต่ละคนย่อมมีจุดมุ่งหมายแตกต่างกัน",
@@ -13001,7 +13001,7 @@
     "english": "final",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/373 สุดท้าย.jpg",
     "samples": [
       {
         "thai": "อาณาจักรน่านเจ้าเป็นอาณาจักรสุดท้ายที่ตั้งขึ้นในดินแดนจีนตอนปลายพุทธศตวรรษที่ 12",
@@ -13058,7 +13058,7 @@
     "english": "music; song",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/374 เพลง.jpg",
     "samples": [
       {
         "thai": "เพลงชาติที่เราใช้อยู่ในปัจจุบันนี้ ย่อส่วนลงมาจากเพลงชาติที่แต่งขึ้นในครั้งแรก",
@@ -13101,7 +13101,7 @@
     "english": "friend",
     "thai_audio_file": "/thai-script/vocabulary/audio/1269_เพอน_th.mp3",
     "english_audio_file": "/thai-script/vocabulary/audio/1269_เพอน_en.mp3",
-    "image_file": "/thai-script/vocabulary/images/1269_เพอน.jpg",
+    "image_file": "/thai-script/vocabulary/images/208 เพื่อน.jpg",
     "samples": [
       {
         "thai": "เด็กผู้ชายได้ยินเพื่อนของเขา",
@@ -13200,7 +13200,7 @@
     "english": "still",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/376 ยังคง.jpg",
     "samples": [
       {
         "thai": "แม่ยังคงห่วงเขาอยู่ ถึงแม้เขาจะแต่งงานมีลูกเมียแล้ว",
@@ -13253,7 +13253,7 @@
     "english": "cycle; round; circuit",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/377 รอบ.jpg",
     "samples": [
       {
         "thai": "ผมเดินวนอยู่หลายรอบแล้วยังไม่เจอใครเลย",
@@ -13350,7 +13350,7 @@
     "english": "where",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/63 ไหน.jpg",
     "samples": [
       {
         "thai": "ไม่มีหนังสือพิมพ์ฉบับไหนลงข่าวเรื่องนี้เลย",
@@ -13392,7 +13392,7 @@
     "english": "feeling",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/379 ความรู้สึก.jpg",
     "samples": [
       {
         "thai": "เขาอยากได้ความรู้สึกของการอยู่ร่วมกันอย่างฉันท์มิตรในบ้านของเขา",
@@ -13463,7 +13463,7 @@
     "english": "end",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/380 ปลาย.jpg",
     "samples": [
       {
         "thai": "อย่าใช้ปากกาขีดเขียนแผ่นดิสก์ แรงกดจากปลายปากกาที่เขียนลงบนแผ่นจะทำให้เนื้อดิสก์เป็นรอยได้",
@@ -13506,7 +13506,7 @@
     "english": "long",
     "thai_audio_file": "/thai-script/vocabulary/audio/0572_ยาว_th.mp3",
     "english_audio_file": "/thai-script/vocabulary/audio/0572_ยาว_en.mp3",
-    "image_file": "/thai-script/vocabulary/images/0572_ยาว.jpg",
+    "image_file": "/thai-script/vocabulary/images/381 ยาว.jpg",
     "samples": [
       {
         "thai": "ผู้หญิงมีผมสีแดงยาว",
@@ -13547,7 +13547,7 @@
     "english": "to dress; to write/compose",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/382 แต่ง.jpg",
     "samples": [
       {
         "thai": "ช่างแต่งชายกระโปรงให้เธอด้วยดิ้นสีเงิน",
@@ -13590,7 +13590,7 @@
     "english": "student",
     "thai_audio_file": "/thai-script/vocabulary/audio/1633_นกเรยน_th.mp3",
     "english_audio_file": "/thai-script/vocabulary/audio/1633_นกเรยน_en.mp3",
-    "image_file": "/thai-script/vocabulary/images/1633_นกเรยน.jpg",
+    "image_file": "/thai-script/vocabulary/images/93 นักเรียน.jpg",
     "samples": [
       {
         "thai": "เธอเป็นนักเรียนมหาวิทยาลัย",
@@ -13646,7 +13646,7 @@
     "english": "calm",
     "thai_audio_file": "/thai-script/vocabulary/audio/0333_สงบ_th.mp3",
     "english_audio_file": "/thai-script/vocabulary/audio/0333_สงบ_en.mp3",
-    "image_file": "/thai-script/vocabulary/images/0333_สงบ.jpg",
+    "image_file": "/thai-script/vocabulary/images/383 สงบ.jpg",
     "samples": [
       {
         "thai": "ผู้หญิงสงบเงียบ",
@@ -13687,7 +13687,7 @@
     "english": "interested",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/384 สนใจ.jpg",
     "samples": [
       {
         "thai": "ฉันมีความสนใจในเรื่องที่เกี่ยวข้องกับโบราณสถานต่างๆ",
@@ -13741,7 +13741,7 @@
     "english": "normal",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/385 ปกติ.jpg",
     "samples": [
       {
         "thai": "ปกติพ่อไปทำงานโดยรถส่วนตัว",
@@ -13794,7 +13794,7 @@
     "english": "walk",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/386 เดิน.jpg",
     "samples": [
       {
         "thai": "เมื่อเขาเดินผ่านหน้าร้านหนังสือก็จะแวะเข้าไปดูเป็นปกติทุกวัน",
@@ -13837,7 +13837,7 @@
     "english": "dot",
     "thai_audio_file": "/thai-script/vocabulary/audio/0538_จด_th.mp3",
     "english_audio_file": "/thai-script/vocabulary/audio/0538_จด_en.mp3",
-    "image_file": "/thai-script/vocabulary/images/0538_จด.jpg",
+    "image_file": "/thai-script/vocabulary/images/387 จุด.jpg",
     "samples": [
       {
         "thai": "กางเกงของเขามีจุดเล็ก ๆ อยู่มากมาย",
@@ -13878,7 +13878,7 @@
     "english": "teacher",
     "thai_audio_file": "/thai-script/vocabulary/audio/1634_คร_th.mp3",
     "english_audio_file": "/thai-script/vocabulary/audio/1634_คร_en.mp3",
-    "image_file": "/thai-script/vocabulary/images/1634_คร.jpg",
+    "image_file": "/thai-script/vocabulary/images/388 ครู.jpg",
     "samples": [
       {
         "thai": "ครูกำลังสอนเด็กๆในห้องเรียน",
@@ -13919,7 +13919,7 @@
     "english": "period",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/415 สมัย.jpg",
     "samples": [
       {
         "thai": "ในสมัยกรุงศรีอยุธยาได้มีการก่อสร้างเมืองนครศรีธรรมราชเพิ่มเติม โดยให้เป็นเมืองที่มีป้",
@@ -13962,7 +13962,7 @@
     "english": "age",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/101 อายุ.jpg",
     "samples": [
       {
         "thai": "เมื่ออายุได้สัก 5 ปีเด็กๆ ก็จะเริ่มรู้ความแตกต่างระหว่างเพศ",
@@ -14062,7 +14062,7 @@
     "english": "soil",
     "thai_audio_file": "/thai-script/vocabulary/audio/1403_ดน_th.mp3",
     "english_audio_file": "/thai-script/vocabulary/audio/1403_ดน_en.mp3",
-    "image_file": "/thai-script/vocabulary/images/1403_ดน.jpg",
+    "image_file": "/thai-script/vocabulary/images/417 ดิน.jpg",
     "samples": [
       {
         "thai": "ดินแตกระแหงเนื่องจากฝนแล้ง",
@@ -14103,7 +14103,7 @@
     "english": "dirt",
     "thai_audio_file": "/thai-script/vocabulary/audio/1404_ดน_th.mp3",
     "english_audio_file": "/thai-script/vocabulary/audio/1404_ดน_en.mp3",
-    "image_file": "/thai-script/vocabulary/images/1404_ดน.jpg",
+    "image_file": "/thai-script/vocabulary/images/418 ดิน.jpg",
     "samples": [
       {
         "thai": "หนอนในดิน",
@@ -14144,7 +14144,7 @@
     "english": "say",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/419 กล่าว.jpg",
     "samples": [
       {
         "thai": "อธิการกล่าวคำอวยพรแก่นักเรียนทุกคนเมื่อเช้านี้",
@@ -14188,7 +14188,7 @@
     "english": "specify; schedule",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/420 กำหนด.jpg",
     "samples": [
       {
         "thai": "ข้อบังคับของบริษัทกำหนดว่าทุกคนต้องมาทำงานก่อนเวลา 9.00 น.",
@@ -14243,7 +14243,7 @@
     "english": "teach",
     "thai_audio_file": "/thai-script/vocabulary/audio/1708_สอน_th.mp3",
     "english_audio_file": "/thai-script/vocabulary/audio/1708_สอน_en.mp3",
-    "image_file": "/thai-script/vocabulary/images/1708_สอน.jpg",
+    "image_file": "/thai-script/vocabulary/images/421 สอน.jpg",
     "samples": [
       {
         "thai": "ครูสอนชั้นเรียน",
@@ -14284,7 +14284,7 @@
     "english": "ask",
     "thai_audio_file": "/thai-script/vocabulary/audio/1710_ถาม_th.mp3",
     "english_audio_file": "/thai-script/vocabulary/audio/1710_ถาม_en.mp3",
-    "image_file": "/thai-script/vocabulary/images/1710_ถาม.jpg",
+    "image_file": "/thai-script/vocabulary/images/131 ถาม.jpg",
     "samples": [
       {
         "thai": "นักศึกษามหาวิทยาลัยถามคำถามอาจารย์",
@@ -14381,7 +14381,7 @@
     "english": "regular",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/424 ประจำ.jpg",
     "samples": [
       {
         "thai": "ทหารสื่อสารถูกส่งมาประจำที่สนามบินอุดรฯ",
@@ -14493,7 +14493,7 @@
     "english": "necessary",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/429 จำเป็น.jpg",
     "samples": [
       {
         "thai": "คนหนุ่มคนสาวจากภาคอีสานจำเป็นต้องมาหางานทำในกรุงเทพเพราะนาแล้ง",
@@ -14548,7 +14548,7 @@
     "english": "about",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/430 เกี่ยวกับ.jpg",
     "samples": [
       {
         "thai": "หนังสือหรือตำราเกี่ยวกับเรื่องคอมพิวเตอร์ที่เป็นภาษาไทยนั้นไม่รู้ว่าจะไปหาอ่านได้ที่ไหน",
@@ -14606,7 +14606,7 @@
     "english": "exceed; surpass; go beyond",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/431 เกิน.jpg",
     "samples": [
       {
         "thai": "หญิงมีครรภ์ที่นั่งทำงานหน้าจอเกินกว่า 20 ชั่วโมงต่อสัปดาห์ มีอัตราเสี่ยงต่อการแท้งลูกมาก",
@@ -14731,7 +14731,7 @@
     "english": "return",
     "thai_audio_file": "/thai-script/vocabulary/audio/1968_คน_th.mp3",
     "english_audio_file": "/thai-script/vocabulary/audio/1968_คน_en.mp3",
-    "image_file": "/thai-script/vocabulary/images/1968_คน.jpg",
+    "image_file": "/thai-script/vocabulary/images/434 คืน.jpg",
     "samples": [
       {
         "thai": "คืนที่เย็นกระดาษมา!",
@@ -14772,7 +14772,7 @@
     "english": "medicine",
     "thai_audio_file": "/thai-script/vocabulary/audio/1105_ยา_th.mp3",
     "english_audio_file": "/thai-script/vocabulary/audio/1105_ยา_en.mp3",
-    "image_file": "/thai-script/vocabulary/images/1105_ยา.jpg",
+    "image_file": "/thai-script/vocabulary/images/221 ยา.jpg",
     "samples": [
       {
         "thai": "หมอจ่ายยาสำหรับอาการปวดท้องของดิฉัน",
@@ -14812,7 +14812,7 @@
     "english": "condition",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/436 สภาพ.jpg",
     "samples": [
       {
         "thai": "สภาพโรงแรมในต่างจังหวัดไม่เอื้ออำนวยต่อการต่อสายโทรศัพท์เข้ากับพีซี",
@@ -14855,7 +14855,7 @@
     "english": "economy",
     "thai_audio_file": "/thai-script/vocabulary/audio/1848_เศรษฐกจ_th.mp3",
     "english_audio_file": "/thai-script/vocabulary/audio/1848_เศรษฐกจ_en.mp3",
-    "image_file": "/thai-script/vocabulary/images/1848_เศรษฐกจ.jpg",
+    "image_file": "/thai-script/vocabulary/images/437 เศรษฐกิจ.jpg",
     "samples": [
       {
         "thai": "ทุกวันนี้เศรษฐกิจของประเทศเกาหลีแย่",
@@ -14966,7 +14966,7 @@
     "english": "die",
     "thai_audio_file": "/thai-script/vocabulary/audio/1815_ตาย_th.mp3",
     "english_audio_file": "/thai-script/vocabulary/audio/1815_ตาย_en.mp3",
-    "image_file": "/thai-script/vocabulary/images/1815_ตาย.jpg",
+    "image_file": "/thai-script/vocabulary/images/440 ตาย.jpg",
     "samples": [
       {
         "thai": "เขาตายในอุบัติเหตุเมื่อปีที่แล้ว",
@@ -15123,7 +15123,7 @@
     "english": "handle; manage",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/443 จัดการ.jpg",
     "samples": [
       {
         "thai": "คุณรออยู่นี่ก่อน เดี๋ยวผมไปจัดการเรื่องเอกสารก่อนนะ",
@@ -15179,7 +15179,7 @@
     "english": "school",
     "thai_audio_file": "/thai-script/vocabulary/audio/1698_โรงเรยน_th.mp3",
     "english_audio_file": "/thai-script/vocabulary/audio/1698_โรงเรยน_en.mp3",
-    "image_file": "/thai-script/vocabulary/images/1698_โรงเรยน.jpg",
+    "image_file": "/thai-script/vocabulary/images/444 โรงเรียน.jpg",
     "samples": [
       {
         "thai": "เด็กๆกำลังไปโรงเรียน",
@@ -15234,7 +15234,7 @@
     "english": "tell; narrate",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/445 เล่า.jpg",
     "samples": [
       {
         "thai": "ท่านนายพลเคยเล่าว่าบ้านเดิมอยู่ในวัดสะตือ จึงมีความผูกพันกับวัดนี้เป็นพิเศษ",
@@ -15277,7 +15277,7 @@
     "english": "human",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/446 มนุษย์.jpg",
     "samples": [
       {
         "thai": "มนุษย์ในอนาคต เป็นมนุษย์ที่มีโอกาสเรียนทุกอย่างที่อยากจะเรียนได้โดยไม่มีวันสิ้นสุด",
@@ -15321,7 +15321,7 @@
     "english": "fall",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/447 ตก.jpg",
     "samples": [
       {
         "thai": "เด็กนักเรียนคอตกเมื่อได้ฟังผลสอบแล้ว",
@@ -15362,7 +15362,7 @@
     "english": "father",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/97 พ่อ.jpg",
     "samples": [
       {
         "thai": "ผลการวิจัยพอสรุปได้ว่าชายได้รับอิทธิพลจากพ่อมากกว่าหญิง",
@@ -15404,7 +15404,7 @@
     "english": "class; sort; type",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/448 ชนิด.jpg",
     "samples": [
       {
         "thai": "สินค้าราคาจะแพงหรือไม่แพงขึ้นอยู่กับชนิดของวัตถุดิบที่ใช้",
@@ -15513,7 +15513,7 @@
     "english": "case",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/452 กรณี.jpg",
     "samples": [
       {
         "thai": "คณะกรรมการมีความเห็นเป็น 3 กรณี แต่จะมีการประชุมเพื่อหาข้อยุติ",
@@ -15567,7 +15567,7 @@
     "english": "eye",
     "thai_audio_file": "/thai-script/vocabulary/audio/1015_ตา_th.mp3",
     "english_audio_file": "/thai-script/vocabulary/audio/1015_ตา_en.mp3",
-    "image_file": "/thai-script/vocabulary/images/1015_ตา.jpg",
+    "image_file": "/thai-script/vocabulary/images/453 ตา.jpg",
     "samples": [
       {
         "thai": "ฉันตาแดง",
@@ -15607,7 +15607,7 @@
     "english": "grandfather",
     "thai_audio_file": "/thai-script/vocabulary/audio/1247_ตา_th.mp3",
     "english_audio_file": "/thai-script/vocabulary/audio/1247_ตา_en.mp3",
-    "image_file": "/thai-script/vocabulary/images/1247_ตา.jpg",
+    "image_file": "/thai-script/vocabulary/images/454 ตา.jpg",
     "samples": [
       {
         "thai": "ตา",
@@ -15647,7 +15647,7 @@
     "english": "present",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/455 ปัจจุบัน.jpg",
     "samples": [
       {
         "thai": "ปัจจุบัน คอมพิวเตอร์ถือได้ว่ามีความสำคัญอย่างยิ่งสำหรับธุรกิจ",
@@ -15713,7 +15713,7 @@
     "english": "put",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/457 ใส่.jpg",
     "samples": [
       {
         "thai": "หากเปิดเครื่องคอมพิวเตอร์แล้วพบคำสั่งล็อกออน ผู้ใช้ต้องใส่รหัสผ่าน เพื่อที่จะเข้าไปใช้เครื่องได้",
@@ -15755,7 +15755,7 @@
     "english": "car",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/458 รถ.jpg",
     "samples": [
       {
         "thai": "ถนนสุขุมวิทในช่วงเลิกงานมีปริมาณรถมากที่สุดกว่าถนนสายอื่นๆ",
@@ -15796,7 +15796,7 @@
     "english": "lack; incomplete",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/460 ขาด.jpg",
     "samples": [
       {
         "thai": "เสื้อเขาขาดเป็นริ้วๆ เพราะโดนคนร้ายเอามีดฟัน",
@@ -15838,7 +15838,7 @@
     "english": "article; joint",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/461 ข้อ.jpg",
     "samples": [
       {
         "thai": "พระผูกสายสิญจน์ที่ข้อมือให้ผู้สืบชะตาทุกคน",
@@ -15880,7 +15880,7 @@
     "english": "state",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/462 รัฐ.jpg",
     "samples": [
       {
         "thai": "รัฐควรจัดหาทุนรอนมาส่งเสริมงานวิจัยทางด้านนี้มากๆ",
@@ -15922,7 +15922,7 @@
     "english": "main; principle",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/463 หลัก.jpg",
     "samples": [
       {
         "thai": "จิตวิเคราะห์หมายถึง วิธีการรักษาที่เน้นวิธีหลักคือการปล่อยให้คนไข้ได้พูดอย่างอิสระ",
@@ -15965,7 +15965,7 @@
     "english": "husband",
     "thai_audio_file": "/thai-script/vocabulary/audio/1248_สาม_th.mp3",
     "english_audio_file": "/thai-script/vocabulary/audio/1248_สาม_en.mp3",
-    "image_file": "/thai-script/vocabulary/images/1248_สาม.jpg",
+    "image_file": "/thai-script/vocabulary/images/231 สามี.jpg",
     "samples": [
       {
         "thai": "สามีสุดที่รักของฉันทำอาหารให้ฉัน",
@@ -16062,7 +16062,7 @@
     "english": "older sibling",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/115 พี่.jpg",
     "samples": [
       {
         "thai": "พี่ของเขาเลี้ยงดูเขาตั้งแต่ยังเด็ก พอโตขึ้นก็ยังต้องเลี้ยงเขาเหมือนเดิม",
@@ -16104,7 +16104,7 @@
     "english": "success",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/465 สำเร็จ.jpg",
     "samples": [
       {
         "thai": "งานครั้งนี้สำเร็จได้ก็เพราะความสามารถของฝ่ายประชาสัมพันธ์",
@@ -16160,7 +16160,7 @@
     "english": "True.",
     "thai_audio_file": "/thai-script/vocabulary/audio/0382_ความจรง_th.mp3",
     "english_audio_file": "/thai-script/vocabulary/audio/0382_ความจรง_en.mp3",
-    "image_file": "/thai-script/vocabulary/images/0382_ความจรง.jpg",
+    "image_file": "/thai-script/vocabulary/images/466 ความจริง.jpg",
     "samples": [],
     "rank": 466,
     "frequency": 7407,
@@ -16209,7 +16209,7 @@
     "english": "method",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/468 วิธี.jpg",
     "samples": [
       {
         "thai": "การหาเงินทำนุบำรุงโบราณสถานในช่วงดังกล่าวใช้วิธีลงโฆษณาตามหน้าหนังสือพิมพ์เป็นจำนวนมาก",
@@ -16321,7 +16321,7 @@
     "english": "outfit",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/470 ชุด.jpg",
     "samples": [
       {
         "thai": "ประธานาธิบดีของจีนมาเยือนไทยตามคำเชิญของรัฐบาลชุดนี้",
@@ -16415,7 +16415,7 @@
     "english": "duty",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/473 หน้าที่.jpg",
     "samples": [
       {
         "thai": "ควรจะได้รับการดูแลอบรมรวมทั้งส่งเสริมสนับสนุนให้เข้าใจถึงหน้าที่ของพลเมือง",
@@ -16472,7 +16472,7 @@
     "english": "room",
     "thai_audio_file": "/thai-script/vocabulary/audio/1162_หอง_th.mp3",
     "english_audio_file": "/thai-script/vocabulary/audio/1162_หอง_en.mp3",
-    "image_file": "/thai-script/vocabulary/images/1162_หอง.jpg",
+    "image_file": "/thai-script/vocabulary/images/146 ห้อง.jpg",
     "samples": [
       {
         "thai": "ห้องของหอพัก",
@@ -16514,7 +16514,7 @@
     "english": "district",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/474 อำเภอ.jpg",
     "samples": [
       {
         "thai": "ผมและเจ้าหน้าที่ของกระทรวงบางคนต้องเดินทางไปถึงทุกจังหวัด ทุกอำเภอ และทุกตำบลที่มีโครงการกสช.",
@@ -16611,7 +16611,7 @@
     "english": "commute",
     "thai_audio_file": "/thai-script/vocabulary/audio/0415_เดนทาง_th.mp3",
     "english_audio_file": "/thai-script/vocabulary/audio/0415_เดนทาง_en.mp3",
-    "image_file": "/thai-script/vocabulary/images/0415_เดนทาง.jpg",
+    "image_file": "/thai-script/vocabulary/images/476 เดินทาง.jpg",
     "samples": [
       {
         "thai": "ผู้คนเดินทางไปทำงานในตอนเช้า",
@@ -16667,7 +16667,7 @@
     "english": "travel",
     "thai_audio_file": "/thai-script/vocabulary/audio/1809_เดนทาง_th.mp3",
     "english_audio_file": "/thai-script/vocabulary/audio/1809_เดนทาง_en.mp3",
-    "image_file": "/thai-script/vocabulary/images/1809_เดนทาง.jpg",
+    "image_file": "/thai-script/vocabulary/images/477 เดินทาง.jpg",
     "samples": [
       {
         "thai": "เดินทางโดยรถทัวร์",
@@ -16723,7 +16723,7 @@
     "english": "all; entire; complete",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/478 ทั่ว.jpg",
     "samples": [
       {
         "thai": "โรงเรียนนี้มีดอกกุหลาบปลูกไว้ทั่วโรงเรียน",
@@ -16766,7 +16766,7 @@
     "english": "often; inclined towards",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/479 มัก.jpg",
     "samples": [
       {
         "thai": "ในวันที่มีอากาศร้อน เรามักกระหายน้ำมากเป็นพิเศษ",
@@ -16930,7 +16930,7 @@
     "english": "plain; normal",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/482 ธรรมดา.jpg",
     "samples": [
       {
         "thai": "ธรรมดาคนเราเกิดมาแล้วต้องตาย",
@@ -16985,7 +16985,7 @@
     "english": "manufacture",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/483 ผลิต.jpg",
     "samples": [
       {
         "thai": "เครื่องทำความร้อนจะผลิตความร้อนออกมาในปริมาณที่พอเหมาะ",
@@ -17069,7 +17069,7 @@
     "english": "large; grow up",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/485 โต.jpg",
     "samples": [
       {
         "thai": "ปลาช่อนตัวที่เห็นที่เสียมราฐนั้นมันโตกว่า ขา ของนักข่าวสาวช่อง 5",
@@ -17110,7 +17110,7 @@
     "english": "lead; carry",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/486 พา.jpg",
     "samples": [
       {
         "thai": "พระยากำแพงเพชรพากำลังคนประมาณพันหนึ่งตีหักวงล้อมพม่าออกไป",
@@ -17151,7 +17151,7 @@
     "english": "accept",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/487 ยอมรับ.jpg",
     "samples": [
       {
         "thai": "นักภาษาศาตร์คอมพิวเตอร์มักจะยอมรับการแก้ปัญหาแบบอนุโลม",
@@ -17263,7 +17263,7 @@
     "english": "decide",
     "thai_audio_file": "/thai-script/vocabulary/audio/0062_ตดสนใจ_th.mp3",
     "english_audio_file": "/thai-script/vocabulary/audio/0062_ตดสนใจ_en.mp3",
-    "image_file": "/thai-script/vocabulary/images/0062_ตดสนใจ.jpg",
+    "image_file": "/thai-script/vocabulary/images/490 ตัดสินใจ.jpg",
     "samples": [
       {
         "thai": "ผู้ชายตัดสินใจเลือกหลอดไฟ",
@@ -17331,7 +17331,7 @@
     "english": "price",
     "thai_audio_file": "/thai-script/vocabulary/audio/0595_ราคา_th.mp3",
     "english_audio_file": "/thai-script/vocabulary/audio/0595_ราคา_en.mp3",
-    "image_file": "/thai-script/vocabulary/images/0595_ราคา.jpg",
+    "image_file": "/thai-script/vocabulary/images/182 ราคา.jpg",
     "samples": [
       {
         "thai": "ราคาครึ่งยูโร",
@@ -17382,7 +17382,7 @@
     "english": "mood",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/491 อารมณ์.jpg",
     "samples": [
       {
         "thai": "ฉันไม่อยู่ในอารมณ์ที่จะทำงาน",
@@ -17437,7 +17437,7 @@
     "english": "adult",
     "thai_audio_file": "/thai-script/vocabulary/audio/1270_ผใหญ_th.mp3",
     "english_audio_file": "/thai-script/vocabulary/audio/1270_ผใหญ_en.mp3",
-    "image_file": "/thai-script/vocabulary/images/1270_ผใหญ.jpg",
+    "image_file": "/thai-script/vocabulary/images/492 ผู้ใหญ่.jpg",
     "samples": [],
     "rank": 492,
     "frequency": 5284,
@@ -17485,7 +17485,7 @@
     "english": "put forward",
     "thai_audio_file": "/thai-script/vocabulary/audio/0070_เสนอ_th.mp3",
     "english_audio_file": "/thai-script/vocabulary/audio/0070_เสนอ_en.mp3",
-    "image_file": "/thai-script/vocabulary/images/0070_เสนอ.jpg",
+    "image_file": "/thai-script/vocabulary/images/493 เสนอ.jpg",
     "samples": [
       {
         "thai": "เขาเสนอข้อคัดค้านของเขาที่มีต่อประเด็นนี้",
@@ -17527,7 +17527,7 @@
     "english": "crow",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/494 กา.jpg",
     "samples": [
       {
         "thai": "กาหลายตัวบินมาเกาะหลังคาบ้าน",
@@ -17568,7 +17568,7 @@
     "english": "rice",
     "thai_audio_file": "/thai-script/vocabulary/audio/0753_ขาว_th.mp3",
     "english_audio_file": "/thai-script/vocabulary/audio/0753_ขาว_en.mp3",
-    "image_file": "/thai-script/vocabulary/images/0753_ขาว.jpg",
+    "image_file": "/thai-script/vocabulary/images/98 ข้าว.jpg",
     "samples": [
       {
         "thai": "ข้าวสาร",
@@ -17610,7 +17610,7 @@
     "english": "practice; perform",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/497 ปฏิบัติ.jpg",
     "samples": [
       {
         "thai": "ลูกทุกคนต้องปฏิบัติต่อบิดามารดาเพื่อทดแทนบุญคุณ",
@@ -17722,7 +17722,7 @@
     "english": "information",
     "thai_audio_file": "/thai-script/vocabulary/audio/0032_ขอมล_th.mp3",
     "english_audio_file": "/thai-script/vocabulary/audio/0032_ขอมล_en.mp3",
-    "image_file": "/thai-script/vocabulary/images/0032_ขอมล.jpg",
+    "image_file": "/thai-script/vocabulary/images/499 ข้อมูล.jpg",
     "samples": [
       {
         "thai": "ข้อมูลสำคัญ",
@@ -17777,7 +17777,7 @@
     "english": "education",
     "thai_audio_file": "/thai-script/vocabulary/audio/1842_การศกษา_th.mp3",
     "english_audio_file": "/thai-script/vocabulary/audio/1842_การศกษา_en.mp3",
-    "image_file": "/thai-script/vocabulary/images/1842_การศกษา.jpg",
+    "image_file": "/thai-script/vocabulary/images/500 การศึกษา.jpg",
     "samples": [
       {
         "thai": "การศึกษาที่ดีเป็นสิ่งสำคัญสำหรับอนาคต",
@@ -17995,7 +17995,7 @@
     "english": "ride",
     "thai_audio_file": "/thai-script/vocabulary/audio/2030_นง_th.mp3",
     "english_audio_file": "/thai-script/vocabulary/audio/2030_นง_en.mp3",
-    "image_file": "/thai-script/vocabulary/images/2030_นง.jpg",
+    "image_file": "/thai-script/vocabulary/images/245 นั่ง.jpg",
     "samples": [
       {
         "thai": "นั่งบนรถบัส",
@@ -20818,7 +20818,7 @@
     "english": "air; weather",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/269 อากาศ.jpg",
     "samples": [
       {
         "thai": "กล้วยไม้พันธุ์นี้ชินกับอากาศของประเทศไทย",
@@ -21464,7 +21464,7 @@
     "english": "order",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/205 สั่ง.jpg",
     "samples": [
       {
         "thai": "การอ่านหรือเขียนข้อมูลจากเทป ไม่สามารถที่จะสั่งให้เทปเลือกอ่านเขียนส่วนใดส่วนหนึ่งบนเทปได้",
@@ -21507,7 +21507,7 @@
     "english": "near",
     "thai_audio_file": "/thai-script/vocabulary/audio/0312_ใกล_th.mp3",
     "english_audio_file": "/thai-script/vocabulary/audio/0312_ใกล_en.mp3",
-    "image_file": "/thai-script/vocabulary/images/0312_ใกล.jpg",
+    "image_file": "/thai-script/vocabulary/images/206 ใกล้.jpg",
     "samples": [
       {
         "thai": "ดิฉันอาศัยอยู่ใกล้มหาวิทยาลัย",
@@ -22866,7 +22866,7 @@
     "english": "store; shop",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/147 ร้าน.jpg",
     "samples": [
       {
         "thai": "ทั้งสองนั่งดื่มเหล้าและส่งเสียงหัวเราะร่วนอยู่ในร้านไปจนกระทั่งรุ่งสาง",
@@ -23681,7 +23681,7 @@
     "english": "baht",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/217 บาท.jpg",
     "samples": [
       {
         "thai": "ฉันแต่งบาทที่ 3 ไม่ได้นั่งคิดอยู่นานมากแล้ว",
@@ -23973,7 +23973,7 @@
     "english": "younger sibling",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/116 น้อง.jpg",
     "samples": [
       {
         "thai": "เขาเป็นห่วงน้องที่กำลังจะโตเป็นสาวขึ้นทุกวัน",
@@ -24185,7 +24185,7 @@
     "english": "lie down; sleep",
     "thai_audio_file": "/thai-script/audio/word-nn.mp3",
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/132 นอน.jpg",
     "samples": [
       {
         "thai": "คุณพ่อนอนอยู่ในห้องนี้",
@@ -24352,7 +24352,7 @@
     "english": "hot",
     "thai_audio_file": "/thai-script/vocabulary/audio/0324_รอน_th.mp3",
     "english_audio_file": "/thai-script/vocabulary/audio/0324_รอน_en.mp3",
-    "image_file": "/thai-script/vocabulary/images/0324_รอน.jpg",
+    "image_file": "/thai-script/vocabulary/images/148 ร้อน.jpg",
     "samples": [
       {
         "thai": "อันนี้ร้อนมาก เพราะฉะนั้นอย่าแตะมันนะ",
@@ -24394,7 +24394,7 @@
     "english": "hot",
     "thai_audio_file": "/thai-script/vocabulary/audio/1451_รอน_th.mp3",
     "english_audio_file": "/thai-script/vocabulary/audio/1451_รอน_en.mp3",
-    "image_file": "/thai-script/vocabulary/images/1451_รอน.jpg",
+    "image_file": "/thai-script/vocabulary/images/149 ร้อน.jpg",
     "samples": [
       {
         "thai": "ดวงอาทิตย์กำลังแผดเผาทะเลทรายที่ร้อน",
@@ -24590,7 +24590,7 @@
     "english": "fish",
     "thai_audio_file": "/thai-script/vocabulary/audio/0757_ปลา_th.mp3",
     "english_audio_file": "/thai-script/vocabulary/audio/0757_ปลา_en.mp3",
-    "image_file": "/thai-script/vocabulary/images/0757_ปลา.jpg",
+    "image_file": "/thai-script/vocabulary/images/223 ปลา.jpg",
     "samples": [
       {
         "thai": "อาหารจานหลักของค่ำคืนนี้คือปลาย่าง",
@@ -24631,7 +24631,7 @@
     "english": "fish",
     "thai_audio_file": "/thai-script/vocabulary/audio/1309_ปลา_th.mp3",
     "english_audio_file": "/thai-script/vocabulary/audio/1309_ปลา_en.mp3",
-    "image_file": "/thai-script/vocabulary/images/1309_ปลา.jpg",
+    "image_file": "/thai-script/vocabulary/images/224 ปลา.jpg",
     "samples": [
       {
         "thai": "ปลากำลังแหวกว่ายอยู่ในน้ำ",
@@ -25850,7 +25850,7 @@
     "english": "far",
     "thai_audio_file": "/thai-script/vocabulary/audio/0299_ไกล_th.mp3",
     "english_audio_file": "/thai-script/vocabulary/audio/0299_ไกล_en.mp3",
-    "image_file": "/thai-script/vocabulary/images/0299_ไกล.jpg",
+    "image_file": "/thai-script/vocabulary/images/228 ไกล.jpg",
     "samples": [
       {
         "thai": "สถานีอยู่ไกลจากที่นี่",
@@ -25977,7 +25977,7 @@
     "english": "question particle",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/25 ไหม.jpg",
     "samples": [
       {
         "thai": "งานช่างที่ผู้หญิงทางภาคเหนือทำส่วนใหญ่เป็นงานทอผ้าและเลี้ยงไหม",
@@ -26861,7 +26861,7 @@
     "english": "why",
     "thai_audio_file": "/thai-script/vocabulary/audio/0548_ทำไม_th.mp3",
     "english_audio_file": "/thai-script/vocabulary/audio/0548_ทำไม_en.mp3",
-    "image_file": "/thai-script/vocabulary/images/0548_ทำไม.jpg",
+    "image_file": "/thai-script/vocabulary/images/73 ทำไม.jpg",
     "samples": [
       {
         "thai": "ทำไมต้องเป็นดิฉัน",
@@ -26996,7 +26996,7 @@
     "english": "medical doctor",
     "thai_audio_file": "/thai-script/vocabulary/audio/1064_หมอ_th.mp3",
     "english_audio_file": "/thai-script/vocabulary/audio/1064_หมอ_en.mp3",
-    "image_file": "/thai-script/vocabulary/images/1064_หมอ.jpg",
+    "image_file": "/thai-script/vocabulary/images/317 หมอ.jpg",
     "samples": [
       {
         "thai": "หมอกำลังตรวจเท้า",
@@ -27037,7 +27037,7 @@
     "english": "doctor",
     "thai_audio_file": "/thai-script/vocabulary/audio/1065_หมอ_th.mp3",
     "english_audio_file": "/thai-script/vocabulary/audio/1065_หมอ_en.mp3",
-    "image_file": "/thai-script/vocabulary/images/1065_หมอ.jpg",
+    "image_file": "/thai-script/vocabulary/images/318 หมอ.jpg",
     "samples": [],
     "rank": 318,
     "frequency": 12699,
@@ -28745,7 +28745,7 @@
     "english": "career; occupation",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/192 อาชีพ.jpg",
     "samples": [
       {
         "thai": "คนไทยในอดีตมีอาชีพทำสวนเป็นอาชีพหลัก",
@@ -32414,7 +32414,7 @@
     "english": "cold",
     "thai_audio_file": "/thai-script/vocabulary/audio/0322_เยน_th.mp3",
     "english_audio_file": "/thai-script/vocabulary/audio/0322_เยน_en.mp3",
-    "image_file": "/thai-script/vocabulary/images/0322_เยน.jpg",
+    "image_file": "/thai-script/vocabulary/images/150 เย็น.jpg",
     "samples": [
       {
         "thai": "มือของคุณเย็นมาก",
@@ -32456,7 +32456,7 @@
     "english": "pay",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/151 จ่าย.jpg",
     "samples": [
       {
         "thai": "หัวหน้าจ่ายงานให้ลูกน้องทำเท่าๆ กัน",
@@ -32499,7 +32499,7 @@
     "english": "marry",
     "thai_audio_file": "/thai-script/vocabulary/audio/1819_แตงงาน_th.mp3",
     "english_audio_file": "/thai-script/vocabulary/audio/1819_แตงงาน_en.mp3",
-    "image_file": "/thai-script/vocabulary/images/1819_แตงงาน.jpg",
+    "image_file": "/thai-script/vocabulary/images/203 แต่งงาน.jpg",
     "samples": [
       {
         "thai": "ดิฉันต้องการแต่งงานกับคุณ",
@@ -34820,7 +34820,7 @@
     "english": "glass",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/274 แก้ว.jpg",
     "samples": [
       {
         "thai": "จานใบนี้ทำด้วยแก้วไม่ใช่พลาสติก",
@@ -36337,7 +36337,7 @@
     "english": "today",
     "thai_audio_file": "/thai-script/vocabulary/audio/0213_วนน_th.mp3",
     "english_audio_file": "/thai-script/vocabulary/audio/0213_วนน_en.mp3",
-    "image_file": "/thai-script/vocabulary/images/0213_วนน.jpg",
+    "image_file": "/thai-script/vocabulary/images/282 วันนี้.jpg",
     "samples": [
       {
         "thai": "วันนี้ตอน 6 นาฬิกา 15 นาที",
@@ -36391,7 +36391,7 @@
     "english": "how many",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/87 กี่.jpg",
     "samples": [
       {
         "thai": "ข้อมูลนี้เป็นตัวเลขที่จะกำหนดว่าบิตข้อมูลมีกี่บิต",
@@ -36958,7 +36958,7 @@
     "english": "comfortable",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/44 สบาย.jpg",
     "samples": [
       {
         "thai": "วิดีโอดิสก์สามารถเก็บสารานุกรมได้อย่างสบาย",
@@ -37369,7 +37369,7 @@
     "english": "surely not; of course not",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/133 หรอก.jpg",
     "samples": [
       {
         "thai": "พวกเขาไม่เข้าใจว่าสาขาปัญญาประดิษฐ์นี้คืออะไรหรอก",
@@ -39019,7 +39019,7 @@
     "english": "rent",
     "thai_audio_file": "/thai-script/vocabulary/audio/1940_เชา_th.mp3",
     "english_audio_file": "/thai-script/vocabulary/audio/1940_เชา_en.mp3",
-    "image_file": "/thai-script/vocabulary/images/1940_เชา.jpg",
+    "image_file": "/thai-script/vocabulary/images/439 เช่า.jpg",
     "samples": [
       {
         "thai": "เช่าบ้าน",
@@ -41174,7 +41174,7 @@
     "english": "rain",
     "thai_audio_file": "/thai-script/vocabulary/audio/0649_ฝน_th.mp3",
     "english_audio_file": "/thai-script/vocabulary/audio/0649_ฝน_en.mp3",
-    "image_file": "/thai-script/vocabulary/images/0649_ฝน.jpg",
+    "image_file": "/thai-script/vocabulary/images/459 ฝน.jpg",
     "samples": [
       {
         "thai": "ฝนกำลังตกลงบนถนน",
@@ -42041,7 +42041,7 @@
     "english": "expensive",
     "thai_audio_file": "/thai-script/vocabulary/audio/0318_แพง_th.mp3",
     "english_audio_file": "/thai-script/vocabulary/audio/0318_แพง_en.mp3",
-    "image_file": "/thai-script/vocabulary/images/0318_แพง.jpg",
+    "image_file": "/thai-script/vocabulary/images/306 แพง.jpg",
     "samples": [
       {
         "thai": "บ้านราคาแพง",
@@ -43192,7 +43192,7 @@
     "english": "morning",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/312 เช้า.jpg",
     "samples": [
       {
         "thai": "เช้าของทุกวันเด็กบ้านนี้จะตักบาตรก่อนไปโรงเรียน",
@@ -44761,7 +44761,7 @@
     "english": "station",
     "thai_audio_file": "/thai-script/vocabulary/audio/0042_สถาน_th.mp3",
     "english_audio_file": "/thai-script/vocabulary/audio/0042_สถาน_en.mp3",
-    "image_file": "/thai-script/vocabulary/images/0042_สถาน.jpg",
+    "image_file": "/thai-script/vocabulary/images/488 สถานี.jpg",
     "samples": [
       {
         "thai": "สถานีโทรทัศน์จะต้องรักษาความสมดุลระหว่างรายการบันเทิง และรายการข่าวเพื่อที่จะให้ผู้ชมดูรายการของสถานีต่อไป",
@@ -46058,7 +46058,7 @@
     "english": "zero",
     "thai_audio_file": "/thai-script/vocabulary/audio/0465_ศนย_th.mp3",
     "english_audio_file": "/thai-script/vocabulary/audio/0465_ศนย_en.mp3",
-    "image_file": "/thai-script/vocabulary/images/0465_ศนย.jpg",
+    "image_file": "/thai-script/vocabulary/images/251 ศูนย์.jpg",
     "samples": [
       {
         "thai": "หมายเลขศูนย์",
@@ -47202,7 +47202,7 @@
     "english": "a bit; somewhat",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/64 หน่อย.jpg",
     "samples": [
       {
         "thai": "คนขายของบอกให้คนซื้อรอหน่อยเพราะต้องวิ่งไปเอาสินค้าคลัง",
@@ -48126,7 +48126,7 @@
     "english": "minute",
     "thai_audio_file": "/thai-script/vocabulary/audio/0221_นาท_th.mp3",
     "english_audio_file": "/thai-script/vocabulary/audio/0221_นาท_en.mp3",
-    "image_file": "/thai-script/vocabulary/images/0221_นาท.jpg",
+    "image_file": "/thai-script/vocabulary/images/335 นาที.jpg",
     "samples": [
       {
         "thai": "สามนาที",
@@ -49204,7 +49204,7 @@
     "english": "left",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/339 ซ้าย.jpg",
     "samples": [
       {
         "thai": "ธนาคารตั้งอยู่ทางซ้ายของร้านขายเครื่องเสียง",
@@ -55486,7 +55486,7 @@
     "english": "vegetable",
     "thai_audio_file": "/thai-script/vocabulary/audio/0755_ผก_th.mp3",
     "english_audio_file": "/thai-script/vocabulary/audio/0755_ผก_en.mp3",
-    "image_file": "/thai-script/vocabulary/images/0755_ผก.jpg",
+    "image_file": "/thai-script/vocabulary/images/368 ผัก.jpg",
     "samples": [
       {
         "thai": "ผักใบเขียวที่มีรสขม",
@@ -56133,7 +56133,7 @@
     "english": "where",
     "thai_audio_file": "/thai-script/vocabulary/audio/0551_ทไหน_th.mp3",
     "english_audio_file": "/thai-script/vocabulary/audio/0551_ทไหน_en.mp3",
-    "image_file": "/thai-script/vocabulary/images/0551_ทไหน.jpg",
+    "image_file": "/thai-script/vocabulary/images/372 ที่ไหน.jpg",
     "samples": [],
     "rank": 372,
     "frequency": 4604,
@@ -57026,7 +57026,7 @@
     "english": "drink",
     "thai_audio_file": "/thai-script/audio/word-dm.mp3",
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/99 ดื่ม.jpg",
     "samples": [
       {
         "thai": "เขาชอบดื่มยิน รัมมี่และเล่นไพ่",
@@ -61620,7 +61620,7 @@
     "english": "right",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/422 ขวา.jpg",
     "samples": [
       {
         "thai": "การฟังเรื่องที่ครูสอนแบบทะลุหูซ้ายออกหูขวาไม่จัดว่าเป็นการเรียนรู้",
@@ -62455,7 +62455,7 @@
     "english": "chicken",
     "thai_audio_file": "/thai-script/vocabulary/audio/0760_ไก_th.mp3",
     "english_audio_file": "/thai-script/vocabulary/audio/0760_ไก_en.mp3",
-    "image_file": "/thai-script/vocabulary/images/0760_ไก.jpg",
+    "image_file": "/thai-script/vocabulary/images/427 ไก่.jpg",
     "samples": [
       {
         "thai": "ซุปไก่",
@@ -62496,7 +62496,7 @@
     "english": "chicken",
     "thai_audio_file": "/thai-script/vocabulary/audio/1335_ไก_th.mp3",
     "english_audio_file": "/thai-script/vocabulary/audio/1335_ไก_en.mp3",
-    "image_file": "/thai-script/vocabulary/images/1335_ไก.jpg",
+    "image_file": "/thai-script/vocabulary/images/428 ไก่.jpg",
     "samples": [
       {
         "thai": "ไก่ และลูกไก่กำลังจิกกินอาหาร",
@@ -65838,7 +65838,7 @@
     "english": "question particle",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/36 มั้ย.jpg",
     "samples": [
       {
         "thai": "ในความฝัน คุณว่าคุณถูกยิงที่หน้าผาก แสกหน้า ตายคาที่ใช่มั้ย",
@@ -69318,7 +69318,7 @@
     "english": "week",
     "thai_audio_file": "/thai-script/vocabulary/audio/0209_สปดาห_th.mp3",
     "english_audio_file": "/thai-script/vocabulary/audio/0209_สปดาห_en.mp3",
-    "image_file": "/thai-script/vocabulary/images/0209_สปดาห.jpg",
+    "image_file": "/thai-script/vocabulary/images/467 สัปดาห์.jpg",
     "samples": [
       {
         "thai": "ในหนึ่งสัปดาห์มีเจ็ดวัน",
@@ -70255,7 +70255,7 @@
     "english": "eat",
     "thai_audio_file": "/thai-script/vocabulary/audio/0416_ทาน_th.mp3",
     "english_audio_file": "/thai-script/vocabulary/audio/0416_ทาน_en.mp3",
-    "image_file": "/thai-script/vocabulary/images/0416_ทาน.jpg",
+    "image_file": "/thai-script/vocabulary/images/472 ทาน.jpg",
     "samples": [
       {
         "thai": "ทานที่โต๊ะ",
@@ -75669,7 +75669,7 @@
     "english": "particle (imperative)",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/134 แหละ.jpg",
     "samples": [
       {
         "thai": "ฉันกำลังสนใจผู้ชายคนนั้นแหละ",
@@ -77845,7 +77845,7 @@
     "english": "how much",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/74 เท่าไหร่.jpg",
     "samples": [
       {
         "thai": "ฉันต้องชดใช้ค่าเสียหายเป็นเงินเท่าไหร่",
@@ -78863,7 +78863,7 @@
     "english": "delicious",
     "thai_audio_file": "/thai-script/vocabulary/audio/0330_อรอย_th.mp3",
     "english_audio_file": "/thai-script/vocabulary/audio/0330_อรอย_en.mp3",
-    "image_file": "/thai-script/vocabulary/images/0330_อรอย.jpg",
+    "image_file": "/thai-script/vocabulary/images/153 อร่อย.jpg",
     "samples": [
       {
         "thai": "เนื้อวัวนี้อร่อยมาก",
@@ -78905,7 +78905,7 @@
     "english": "Delicious!",
     "thai_audio_file": "/thai-script/vocabulary/audio/0366_อรอย_th.mp3",
     "english_audio_file": "/thai-script/vocabulary/audio/0366_อรอย_en.mp3",
-    "image_file": "/thai-script/vocabulary/images/0366_อรอย.jpg",
+    "image_file": "/thai-script/vocabulary/images/154 อร่อย.jpg",
     "samples": [],
     "rank": 154,
     "frequency": 2687,
@@ -84103,7 +84103,7 @@
     "english": "thank",
     "thai_audio_file": "/thai-script/vocabulary/audio/0287_ขอบคณ_th.mp3",
     "english_audio_file": "/thai-script/vocabulary/audio/0287_ขอบคณ_en.mp3",
-    "image_file": "/thai-script/vocabulary/images/0287_ขอบคณ.jpg",
+    "image_file": "/thai-script/vocabulary/images/26 ขอบคุณ.jpg",
     "samples": [
       {
         "thai": "ขอบคุณใครบางคน",
@@ -84158,7 +84158,7 @@
     "english": "Thank you!",
     "thai_audio_file": "/thai-script/vocabulary/audio/0361_ขอบคณ_th.mp3",
     "english_audio_file": "/thai-script/vocabulary/audio/0361_ขอบคณ_en.mp3",
-    "image_file": "/thai-script/vocabulary/images/0361_ขอบคณ.jpg",
+    "image_file": "/thai-script/vocabulary/images/27 ขอบคุณ.jpg",
     "samples": [],
     "rank": 27,
     "frequency": 3264,
@@ -103744,7 +103744,7 @@
     "english": "water",
     "thai_audio_file": "/thai-script/vocabulary/audio/0800_นำ_th.mp3",
     "english_audio_file": "/thai-script/vocabulary/audio/0800_นำ_en.mp3",
-    "image_file": "/thai-script/vocabulary/images/0800_นำ.jpg",
+    "image_file": "/thai-script/vocabulary/images/100 น้ำ.jpg",
     "samples": [
       {
         "thai": "ขอน้ำหน่อยได้ไหมคะ",
@@ -111133,7 +111133,7 @@
     "english": "when",
     "thai_audio_file": "/thai-script/vocabulary/audio/0550_เมอไหร_th.mp3",
     "english_audio_file": "/thai-script/vocabulary/audio/0550_เมอไหร_en.mp3",
-    "image_file": "/thai-script/vocabulary/images/0550_เมอไหร.jpg",
+    "image_file": "/thai-script/vocabulary/images/88 เมื่อไหร่.jpg",
     "samples": [
       {
         "thai": "คุณจะไปอเมริกาเมื่อไหร่",
@@ -122608,7 +122608,7 @@
     "english": "hungry",
     "thai_audio_file": "/thai-script/vocabulary/audio/0739_หว_th.mp3",
     "english_audio_file": "/thai-script/vocabulary/audio/0739_หว_en.mp3",
-    "image_file": "/thai-script/vocabulary/images/0739_หว.jpg",
+    "image_file": "/thai-script/vocabulary/images/135 หิว.jpg",
     "samples": [
       {
         "thai": "ผู้หญิงหิว",
@@ -128554,7 +128554,7 @@
     "english": "I'm sorry.",
     "thai_audio_file": "/thai-script/vocabulary/audio/0371_ขอโทษ_th.mp3",
     "english_audio_file": "/thai-script/vocabulary/audio/0371_ขอโทษ_en.mp3",
-    "image_file": "/thai-script/vocabulary/images/0371_ขอโทษ.jpg",
+    "image_file": "/thai-script/vocabulary/images/28 ขอโทษ.jpg",
     "samples": [],
     "rank": 28,
     "frequency": 2364,
@@ -128600,7 +128600,7 @@
     "english": "Excuse me.",
     "thai_audio_file": "/thai-script/vocabulary/audio/0374_ขอโทษ_th.mp3",
     "english_audio_file": "/thai-script/vocabulary/audio/0374_ขอโทษ_en.mp3",
-    "image_file": "/thai-script/vocabulary/images/0374_ขอโทษ.jpg",
+    "image_file": "/thai-script/vocabulary/images/29 ขอโทษ.jpg",
     "samples": [],
     "rank": 29,
     "frequency": 2364,
@@ -146552,7 +146552,7 @@
     "english": "hello",
     "thai_audio_file": "/thai-script/audio/word-sa-wat-di.mp3",
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/9 สวัสดี.jpg",
     "samples": [
       {
         "thai": "หางเสือเป็นปัจจัยที่นำพาให้ยวดยานดำเนินไปถูกทางด้วยความสวัสดี",
@@ -162339,7 +162339,7 @@
     "english": "single; unmarried",
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/389 โสด.jpg",
     "samples": [
       {
         "thai": "คนบางคนชอบอยู่เป็นโสด เพราะรู้สึกมีอิสระเสรีภาพ ไม่ต้องรับผิดชอบอะไร",
@@ -219838,7 +219838,7 @@
     "english": "Nice to meet you.",
     "thai_audio_file": "/thai-script/vocabulary/audio/0358_ยนดทไดรจก_th.mp3",
     "english_audio_file": "/thai-script/vocabulary/audio/0358_ยนดทไดรจก_en.mp3",
-    "image_file": "/thai-script/vocabulary/images/0358_ยนดทไดรจก.jpg",
+    "image_file": "/thai-script/vocabulary/images/390 ยินดีที่ได้รู้จัก.jpg",
     "samples": [],
     "rank": 390,
     "frequency": null,
@@ -219937,7 +219937,7 @@
     "english": "How are you?",
     "thai_audio_file": "/thai-script/vocabulary/audio/0359_คณสบายดไหม_th.mp3",
     "english_audio_file": "/thai-script/vocabulary/audio/0359_คณสบายดไหม_en.mp3",
-    "image_file": "/thai-script/vocabulary/images/0359_คณสบายดไหม.jpg",
+    "image_file": "/thai-script/vocabulary/images/391 คุณสบายดีไหม.jpg",
     "samples": [],
     "rank": 391,
     "frequency": null,
@@ -220011,7 +220011,7 @@
     "english": "I'm good.",
     "thai_audio_file": "/thai-script/vocabulary/audio/0360_ฉนสบายด_th.mp3",
     "english_audio_file": "/thai-script/vocabulary/audio/0360_ฉนสบายด_en.mp3",
-    "image_file": "/thai-script/vocabulary/images/0360_ฉนสบายด.jpg",
+    "image_file": "/thai-script/vocabulary/images/392 ฉันสบายดี.jpg",
     "samples": [],
     "rank": 392,
     "frequency": null,
@@ -220543,7 +220543,7 @@
     "english": "It's okay.",
     "thai_audio_file": "/thai-script/vocabulary/audio/0375_ไมเปนไร_th.mp3",
     "english_audio_file": "/thai-script/vocabulary/audio/0375_ไมเปนไร_en.mp3",
-    "image_file": "/thai-script/vocabulary/images/0375_ไมเปนไร.jpg",
+    "image_file": "/thai-script/vocabulary/images/393 ไม่เป็นไร.jpg",
     "samples": [],
     "rank": 393,
     "frequency": null,
@@ -224694,7 +224694,7 @@
     "english": "one",
     "thai_audio_file": "/thai-script/vocabulary/audio/0466_หนง_th.mp3",
     "english_audio_file": "/thai-script/vocabulary/audio/0466_หนง_en.mp3",
-    "image_file": "/thai-script/vocabulary/images/0466_หนง.jpg",
+    "image_file": "/thai-script/vocabulary/images/394 หนึ่ง.jpg",
     "samples": [
       {
         "thai": "มียี่สิบสี่ชั่วโมงในหนึ่งวัน",
@@ -224737,7 +224737,7 @@
     "english": "two",
     "thai_audio_file": "/thai-script/vocabulary/audio/0467_สอง_th.mp3",
     "english_audio_file": "/thai-script/vocabulary/audio/0467_สอง_en.mp3",
-    "image_file": "/thai-script/vocabulary/images/0467_สอง.jpg",
+    "image_file": "/thai-script/vocabulary/images/395 สอง.jpg",
     "samples": [
       {
         "thai": "หมายเลขสองเป็นหมายเลขโปรดของดิฉัน",
@@ -224778,7 +224778,7 @@
     "english": "three",
     "thai_audio_file": "/thai-script/vocabulary/audio/0468_สาม_th.mp3",
     "english_audio_file": "/thai-script/vocabulary/audio/0468_สาม_en.mp3",
-    "image_file": "/thai-script/vocabulary/images/0468_สาม.jpg",
+    "image_file": "/thai-script/vocabulary/images/396 สาม.jpg",
     "samples": [
       {
         "thai": "สามองศา",
@@ -224819,7 +224819,7 @@
     "english": "four",
     "thai_audio_file": "/thai-script/vocabulary/audio/0469_ส_th.mp3",
     "english_audio_file": "/thai-script/vocabulary/audio/0469_ส_en.mp3",
-    "image_file": "/thai-script/vocabulary/images/0469_ส.jpg",
+    "image_file": "/thai-script/vocabulary/images/397 สี่.jpg",
     "samples": [
       {
         "thai": "สี่มุม",
@@ -224860,7 +224860,7 @@
     "english": "five",
     "thai_audio_file": "/thai-script/vocabulary/audio/0470_หา_th.mp3",
     "english_audio_file": "/thai-script/vocabulary/audio/0470_หา_en.mp3",
-    "image_file": "/thai-script/vocabulary/images/0470_หา.jpg",
+    "image_file": "/thai-script/vocabulary/images/398 ห้า.jpg",
     "samples": [
       {
         "thai": "ดิฉันทานโดนัทไปห้าอัน",
@@ -224901,7 +224901,7 @@
     "english": "six",
     "thai_audio_file": "/thai-script/vocabulary/audio/0471_หก_th.mp3",
     "english_audio_file": "/thai-script/vocabulary/audio/0471_หก_en.mp3",
-    "image_file": "/thai-script/vocabulary/images/0471_หก.jpg",
+    "image_file": "/thai-script/vocabulary/images/399 หก.jpg",
     "samples": [
       {
         "thai": "หกองศา",
@@ -224941,7 +224941,7 @@
     "english": "seven",
     "thai_audio_file": "/thai-script/vocabulary/audio/0472_เจด_th.mp3",
     "english_audio_file": "/thai-script/vocabulary/audio/0472_เจด_en.mp3",
-    "image_file": "/thai-script/vocabulary/images/0472_เจด.jpg",
+    "image_file": "/thai-script/vocabulary/images/400 เจ็ด.jpg",
     "samples": [
       {
         "thai": "เจ็ดสิ่ง",
@@ -224983,7 +224983,7 @@
     "english": "eight",
     "thai_audio_file": "/thai-script/vocabulary/audio/0473_แปด_th.mp3",
     "english_audio_file": "/thai-script/vocabulary/audio/0473_แปด_en.mp3",
-    "image_file": "/thai-script/vocabulary/images/0473_แปด.jpg",
+    "image_file": "/thai-script/vocabulary/images/401 แปด.jpg",
     "samples": [
       {
         "thai": "แปดองศา",
@@ -225024,7 +225024,7 @@
     "english": "nine",
     "thai_audio_file": "/thai-script/vocabulary/audio/0474_เกา_th.mp3",
     "english_audio_file": "/thai-script/vocabulary/audio/0474_เกา_en.mp3",
-    "image_file": "/thai-script/vocabulary/images/0474_เกา.jpg",
+    "image_file": "/thai-script/vocabulary/images/402 เก้า.jpg",
     "samples": [
       {
         "thai": "เก้าองศา",
@@ -225066,7 +225066,7 @@
     "english": "ten",
     "thai_audio_file": "/thai-script/vocabulary/audio/0475_สบ_th.mp3",
     "english_audio_file": "/thai-script/vocabulary/audio/0475_สบ_en.mp3",
-    "image_file": "/thai-script/vocabulary/images/0475_สบ.jpg",
+    "image_file": "/thai-script/vocabulary/images/403 สิบ.jpg",
     "samples": [
       {
         "thai": "ดิฉันสามารถนับหนึ่งถึงสิบเป็นภาษาจีนได้",
@@ -226173,7 +226173,7 @@
     "english": "twenty",
     "thai_audio_file": "/thai-script/vocabulary/audio/0495_ยสบ_th.mp3",
     "english_audio_file": "/thai-script/vocabulary/audio/0495_ยสบ_en.mp3",
-    "image_file": "/thai-script/vocabulary/images/0495_ยสบ.jpg",
+    "image_file": "/thai-script/vocabulary/images/404 ยี่สิบ.jpg",
     "samples": [
       {
         "thai": "ยี่สิบ",
@@ -269819,7 +269819,7 @@
     "english": "nationality",
     "thai_audio_file": "/thai-script/vocabulary/audio/1467_สญชาต_th.mp3",
     "english_audio_file": "/thai-script/vocabulary/audio/1467_สญชาต_en.mp3",
-    "image_file": "/thai-script/vocabulary/images/1467_สญชาต.jpg",
+    "image_file": "/thai-script/vocabulary/images/405 สัญชาติ.jpg",
     "samples": [
       {
         "thai": "คุณสัญชาติอะไร",
@@ -276300,7 +276300,7 @@
     "english": "welcome",
     "thai_audio_file": "/thai-script/vocabulary/audio/1580_ยนดตอนรบ_th.mp3",
     "english_audio_file": "/thai-script/vocabulary/audio/1580_ยนดตอนรบ_en.mp3",
-    "image_file": "/thai-script/vocabulary/images/1580_ยนดตอนรบ.jpg",
+    "image_file": "/thai-script/vocabulary/images/406 ยินดีต้อนรับ.jpg",
     "samples": [
       {
         "thai": "ยินดีต้อนรับสู่ประเทศญี่ปุ่นค่ะ",
@@ -276855,7 +276855,7 @@
     "english": "You're welcome.",
     "thai_audio_file": "/thai-script/vocabulary/audio/1588_ดวยความยนด_th.mp3",
     "english_audio_file": "/thai-script/vocabulary/audio/1588_ดวยความยนด_en.mp3",
-    "image_file": "/thai-script/vocabulary/images/1588_ดวยความยนด.jpg",
+    "image_file": "/thai-script/vocabulary/images/407 ด้วยความยินดี.jpg",
     "samples": [],
     "rank": 407,
     "frequency": null,
@@ -291065,7 +291065,7 @@
     "english": "France",
     "thai_audio_file": "/thai-script/vocabulary/audio/1884_ฝรงเศส_th.mp3",
     "english_audio_file": "/thai-script/vocabulary/audio/1884_ฝรงเศส_en.mp3",
-    "image_file": "/thai-script/vocabulary/images/1884_ฝรงเศส.jpg",
+    "image_file": "/thai-script/vocabulary/images/408 ฝรั่งเศส.jpg",
     "samples": [
       {
         "thai": "ปารีส, ประเทศฝรั่งเศส",
@@ -291122,7 +291122,7 @@
     "english": "England",
     "thai_audio_file": "/thai-script/vocabulary/audio/1885_องกฤษ_th.mp3",
     "english_audio_file": "/thai-script/vocabulary/audio/1885_องกฤษ_en.mp3",
-    "image_file": "/thai-script/vocabulary/images/1885_องกฤษ.jpg",
+    "image_file": "/thai-script/vocabulary/images/409 อังกฤษ.jpg",
     "samples": [
       {
         "thai": "ลอนดอน ประเทศอังกฤษ",
@@ -291638,7 +291638,7 @@
     "english": "Spain",
     "thai_audio_file": "/thai-script/vocabulary/audio/1893_สเปน_th.mp3",
     "english_audio_file": "/thai-script/vocabulary/audio/1893_สเปน_en.mp3",
-    "image_file": "/thai-script/vocabulary/images/1893_สเปน.jpg",
+    "image_file": "/thai-script/vocabulary/images/411 สเปน.jpg",
     "samples": [
       {
         "thai": "แผนที่ของประเทศสเปน",
@@ -301468,7 +301468,7 @@
     ],
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/6 ค่ะ.jpg",
     "samples": [
       {
         "thai": "สวัสดีค่ะ",
@@ -301517,7 +301517,7 @@
     ],
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": "/thai-script/vocabulary/images/4 คะ.jpg",
+    "image_file": "/thai-script/vocabulary/images/7 คะ.jpg",
     "samples": [
       {
         "thai": "สบายดีไหมคะ",
@@ -301559,7 +301559,7 @@
     ],
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/15 ผม.jpg",
     "samples": [
       {
         "thai": "ผมชอบกินข้าว",
@@ -301657,7 +301657,7 @@
     ],
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/117 สิ.jpg",
     "samples": [
       {
         "thai": "กินสิ",
@@ -301718,7 +301718,7 @@
     ],
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/54 ที่นี่.jpg",
     "samples": [
       {
         "thai": "อยู่ที่นี่",
@@ -301780,7 +301780,7 @@
     ],
     "thai_audio_file": "/thai-script/audio/word-thii-nan.mp3",
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/55 ที่นั่น.jpg",
     "samples": [
       {
         "thai": "อยู่ที่นั่น",
@@ -301837,7 +301837,7 @@
     ],
     "thai_audio_file": "/thai-script/audio/word-sa-baai-dii.mp3",
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/18 สบายดี.jpg",
     "samples": [
       {
         "thai": "สบายดีไหม",
@@ -301904,7 +301904,7 @@
     ],
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/65 หรือเปล่า.jpg",
     "samples": [
       {
         "thai": "ชอบหรือเปล่า",
@@ -301954,7 +301954,7 @@
     ],
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/118 ล่ะ.jpg",
     "samples": [
       {
         "thai": "แล้วคุณล่ะ",
@@ -302005,7 +302005,7 @@
     ],
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/119 เหรอ.jpg",
     "samples": [
       {
         "thai": "จริงเหรอ",
@@ -302049,7 +302049,7 @@
     ],
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/136 เถอะ.jpg",
     "samples": [
       {
         "thai": "ไปเถอะ",
@@ -302098,7 +302098,7 @@
     ],
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/137 ซิ.jpg",
     "samples": [
       {
         "thai": "บอกซิ",
@@ -302148,7 +302148,7 @@
     ],
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/138 จ้ะ.jpg",
     "samples": [
       {
         "thai": "ได้จ้ะ",
@@ -302199,7 +302199,7 @@
     ],
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/155 มั้ง.jpg",
     "samples": [
       {
         "thai": "ได้มั้ง",
@@ -302263,7 +302263,7 @@
     ],
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/412 ลาก่อน.jpg",
     "samples": [],
     "source": "survival-priority"
   },
@@ -302299,7 +302299,7 @@
     ],
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/413 ร้อย.jpg",
     "samples": [],
     "source": "survival-priority"
   },
@@ -302334,7 +302334,7 @@
     ],
     "thai_audio_file": null,
     "english_audio_file": null,
-    "image_file": null,
+    "image_file": "/thai-script/vocabulary/images/414 ไทย.jpg",
     "samples": [],
     "source": "survival-priority"
   }

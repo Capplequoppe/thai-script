@@ -42,7 +42,20 @@ LIGHT_BACKGROUND_LUMA = 170
 
 # Tried in order; the first face covering a character wins, so the house look
 # stays consistent and only genuinely missing glyphs fall through.
-PREFERRED_FAMILIES = ("Noto Sans", "Noto Sans Thai", "Noto Sans Symbols 2", "DejaVu Sans")
+#
+# Thai resolves to Noto Serif Thai to match what the app itself renders —
+# `src/index.css` sets `.thai` to "Noto Serif Thai", "Noto Sans Thai Looped".
+# Both are looped faces, with the heads and loops on ก ข ค that a learner is
+# reading everywhere else in the product. Noto Sans Thai, which this used
+# before, is the loopless cut: a different letterform for the same character,
+# which is the last thing to vary in a script-learning app.
+PREFERRED_FAMILIES = (
+    "Noto Sans",
+    "Noto Serif Thai",
+    "Noto Sans Thai Looped",
+    "Noto Sans Symbols 2",
+    "DejaVu Sans",
+)
 _FALLBACK_METRIC = "Noto Sans"
 
 
