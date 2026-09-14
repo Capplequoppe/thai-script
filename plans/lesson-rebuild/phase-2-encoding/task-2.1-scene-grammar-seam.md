@@ -34,6 +34,30 @@ weight_votes:
   - "unknowns-estimator -> 13"
   - "calibration-estimator -> 13"
 weight_voted: "sha256:2f2acd697dc9bb8d9f795cf2d5db5ee6a04aa3bf9f12eec4c3d7db4396d2e92d"
+ac_tests:
+  - "AC1 -> src/domain/script/data/soundType.test.ts::classifies all 44 consonants and derives the declared class for each"
+  - "AC2 -> src/domain/script/data/soundType.test.ts::isAspirated agrees with initialSound for all 44 — ฑ and ฒ included"
+  - "AC3 -> src/domain/script/data/soundType.test.ts::derives the sonorant and unaspirated buckets from sound alone"
+  - "AC4 -> src/domain/script/data/sceneGrammar.test.ts::declares both written forms for every vowel whose form changes"
+  - "AC5 -> src/domain/script/data/sceneGrammar.test.ts::covers every lookalike pair the shipped prose asserts"
+  - "AC6 -> src/domain/script/data/sceneGrammar.test.ts::points at the one file that declares the five contours"
+  - "AC7 -> src/domain/script/data/sceneGrammar.test.ts::fails a record binding only shape, naming the missing fields"
+  - "AC8 -> src/domain/script/data/soundType.test.ts::reports a letter the rule cannot place as unclassifiable, with the reason"
+  - "AC9 -> src/domain/script/data/sceneGrammar.test.ts::derives all 82 records, each carrying romanization and final-sound slots"
+red_proof:
+  - "AC1 -> Removed \"ng\" from SONORANT_PHONEMES in soundType.ts, so ง no longer classifies; the AC1 test's own per-consonant assertion failed (verified in red-proofs/2.1.md: a real AssertionErr… [see red-proofs/]"
+  - "AC2 -> Reverted the ฑ fix in symbols.ts back to isAspirated: false (the shipped defect); the agreement assertion failed on ฑ (verified in red-proofs/2.1.md: real AssertionError). Re-applie… [see red-proofs/]"
+  - "AC3 -> Two mutations, both observed red (both real AssertionErrors per red-proofs/2.1.md). (1) Gated the sonorant branch on a per-letter glyph table (`kind === \"sonorant\" && \"มนณงญยรลวฬ\".i… [see red-proofs/]"
+  - "AC4 -> Deleted the ' ื' entry from conditionalVowelForms (its rule back to prose-only); the prose-stated floor assertion failed naming the vowel (real AssertionError per red-proofs/2.1.md)… [see red-proofs/]"
+  - "AC5 -> Deleted the ล/ส confusable pair (the exact pair CONTEXT.md records being dropped by hand-curation); the test deriving the pair floor from symbols.ts prose at test time failed naming… [see red-proofs/]"
+  - "AC6 -> Planted a second declaration `export const TONE_CONTOUR_POINTS = { mid: \"2,7 22,7\" };` in sceneGrammar.ts; the repo-walk found two declaration sites (real AssertionError per red-pro… [see red-proofs/]"
+  - "AC7 -> Removed the soundCue requirement from validateSceneAnnotation; the shape-only record then failed to name soundCue among its missing fields (real AssertionError per red-proofs/2.1.md… [see red-proofs/]"
+  - "AC8 -> Made classifyConsonant return UNCLASSIFIED (cast past the return type) for unrecognised onsets — the exact disguise the AC forbids; the unclassifiable-state test failed on the state… [see red-proofs/]"
+  - "AC9 -> Dropped the five word annotations from sceneAnnotations; the 82-record coverage assertion failed at 77 (real AssertionError per red-proofs/2.1.md). Restored; test re-observed green."
+lint:
+  before: 18
+  after: 18
+  outcome: unsupported
 generated: {by: claude-opus-5/agent, at: 2026-09-13}
 profile_version: 1
 ---
