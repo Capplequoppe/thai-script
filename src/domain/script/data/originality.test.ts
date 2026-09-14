@@ -57,26 +57,37 @@ const ORIGINAL_PROSE =
  * The detection rate measured over the 82 shipped mnemonics, recorded so that
  * it is a number in the repository rather than a claim in a commit message.
  *
- * CONTEXT.md establishes those strings are close paraphrases of the licensed
- * material, which makes them the only labelled positives that exist. This
+ * CONTEXT.md establishes those strings were close paraphrases of the licensed
+ * material, which made them the only labelled positives that existed. This
  * figure is not a threshold and nothing is required to clear it — the plan
  * asks that it be produced and written down. It is asserted exactly so that it
  * cannot drift silently: whenever a content task rewrites a paraphrased
- * mnemonic (task 1.4 did, for ม and น) the number must fall, and this test
- * failing is the prompt to re-record it deliberately.
- *
- * The companion measurement, from the same corpus, is that an 8-token window
- * detects 17 of the 82. That is what settles NGRAM_WIDTH at 5: the wider
- * window the plan's first draft chose misses four fifths of the known
- * positives.
+ * mnemonic (task 1.4 did, for ม and น; task 2.4 then rewrote all 82 under
+ * scene grammar) the number must fall, and this test failing is the prompt to
+ * re-record it deliberately. It has now fallen to zero: none of the 82
+ * shipped mnemonics overlaps the licensed corpus at the shipped window width.
  */
-const MEASURED_DETECTION = { detected: 46, total: 82 } as const;
+const MEASURED_DETECTION = { detected: 0, total: 82 } as const;
 
-/** Every `mnemonic:` string literal shipped in `symbols.ts`. */
+/**
+ * Every `sceneMnemonic` shipped in `symbols.ts`, composed to the same prose
+ * string `composeMnemonic` renders at runtime (shape cue, then sound cue).
+ */
 function shippedMnemonics(): string[] {
 	const source = readFileSync(join(DATA_DIR, "symbols.ts"), "utf8");
-	return [...source.matchAll(/mnemonic:\s*("(?:[^"\\]|\\.)*")/g)].map(
-		(match) => JSON.parse(match[1]) as string,
+	const stringLiteral = '("(?:[^"\\\\]|\\\\.)*")';
+	return [...source.matchAll(/sceneMnemonic:\s*\{([\s\S]*?)\n\t\t\},/g)].map(
+		(match) => {
+			const block = match[1];
+			const shapeCue = block.match(new RegExp(`shapeCue:\\s*${stringLiteral}`));
+			const soundCue = block.match(new RegExp(`soundCue:\\s*${stringLiteral}`));
+			if (!shapeCue || !soundCue) {
+				throw new Error(
+					`sceneMnemonic block missing shapeCue/soundCue: ${block}`,
+				);
+			}
+			return `${JSON.parse(shapeCue[1])} ${JSON.parse(soundCue[1])}`;
+		},
 	);
 }
 
