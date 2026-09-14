@@ -18,9 +18,9 @@ const DISTRICT_GLYPH: Record<District, string> = {
 	harbor: "⚓",
 };
 
-// A recognised-but-invalid classType value (never "not-applicable" — that
-// case renders nothing at all) gets a glyph of its own, so "unresolved"
-// never looks like "no class was checked".
+// A non-empty classType that isn't one of the three real classes (never
+// "not-applicable" — that case renders nothing at all) gets a glyph of its
+// own, so "unresolved" never looks like "no class was checked".
 const UNRESOLVED_GLYPH = "❓";
 
 interface Props {
