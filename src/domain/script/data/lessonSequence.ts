@@ -60,6 +60,13 @@ const DECLARED: readonly Omit<LessonSequenceEntry, "position">[] = [
 	{ id: "lesson-23", legacyNumber: 23 },
 	{ id: "lesson-24", legacyNumber: 24 },
 	{ id: "lesson-25", legacyNumber: 25 },
+	// Phase 3 — the three concepts the source course taught as asides. Their
+	// slots are declared here before their content exists so that tasks 3.2 and
+	// 3.3 fill a slot rather than each inventing an ordering (see
+	// `PHASE_THREE_LESSON_IDS`).
+	{ id: "lesson-unwritten-vowels", legacyNumber: 26 },
+	{ id: "lesson-clusters", legacyNumber: 27 },
+	{ id: "lesson-leading-consonants", legacyNumber: 28 },
 ];
 
 export const lessonSequence: readonly LessonSequenceEntry[] = Object.freeze(
@@ -120,6 +127,68 @@ export function lessonEntryById(
 		return { ok: false, error: `${key}: no lesson is declared with this id` };
 	}
 	return { ok: true, entry };
+}
+
+/**
+ * The lessons phase 3 produces, by stable id — the six middle-band lessons
+ * that already had slots and the three concepts promoted from asides.
+ *
+ * Declared here rather than in either content task because tasks 3.2 and 3.3
+ * run concurrently on disjoint files: if each placed its own lessons, neither
+ * would see the other's ordering and the scheduler could not catch the
+ * collision.
+ *
+ * The three promoted lessons are **appended**, not inserted at the place a
+ * finished course would put them. A lesson's persisted identity is its
+ * `position` (CONTEXT.md rule 1 — five stores key on it), so inserting in the
+ * middle renumbers every later lesson and silently rewrites what the learner
+ * has completed. Appending keeps the legacy→position mapping the identity it
+ * is today; phase 4 owns the resequence and the persisted epoch that has to
+ * come with it.
+ */
+export const PHASE_THREE_LESSON_IDS: readonly string[] = Object.freeze([
+	"lesson-06",
+	"lesson-07",
+	"lesson-08",
+	"lesson-09",
+	"lesson-10",
+	"lesson-11",
+	"lesson-unwritten-vowels",
+	"lesson-clusters",
+	"lesson-leading-consonants",
+]);
+
+export interface SlotReconciliation {
+	/** Declared in the sequence, with no content authored for it yet. */
+	readonly unfilled: readonly string[];
+	/** Content exists, but no slot in the sequence declares it. */
+	readonly orphaned: readonly string[];
+	/** Declared and filled — one lesson, one slot. */
+	readonly filled: readonly string[];
+}
+
+/**
+ * Slots and content, reconciled in both directions.
+ *
+ * Both halves are reported rather than asserted away: during the phase a slot
+ * legitimately has no content yet, and a lesson that shipped content without a
+ * slot (`lesson-sound-buckets` is one today) is unreachable from any route —
+ * a defect that is invisible unless something counts it.
+ */
+export function reconcileLessonSlots(
+	contentLessonIds: readonly string[],
+): SlotReconciliation {
+	const declared = new Set(lessonSequence.map((entry) => entry.id));
+	const content = new Set(contentLessonIds);
+	return {
+		unfilled: lessonSequence
+			.map((entry) => entry.id)
+			.filter((id) => !content.has(id)),
+		orphaned: [...content].filter((id) => !declared.has(id)).sort(),
+		filled: lessonSequence
+			.map((entry) => entry.id)
+			.filter((id) => content.has(id)),
+	};
 }
 
 /** Lookup by the integer the persisted stores still use. */

@@ -6,9 +6,10 @@ covers:
   - src/domain/script/data/syllableRules.ts
   - src/domain/script/data/syllableRules.test.ts
   - src/domain/script/data/lessonSequence.ts
+  - src/domain/script/data/symbols.ts
 status: stable
 task_id: "3.1"
-task_status: pending
+task_status: complete
 depends_on: []
 size: large
 verify:

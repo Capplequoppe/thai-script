@@ -3400,6 +3400,45 @@ export const lessons: Lesson[] = [
 		],
 		videoUrl: "/thai-script/videos/TAME_L25_tpod101_video-h.webm",
 	},
+	// --- Phase 3: the three concepts the source course taught as asides. ---
+	// Declared here so every slot in `lessonSequence.ts` has the title, focus
+	// and symbol sets every lesson consumer joins against; `startLesson` throws
+	// outright on a sequence entry with no row here. They introduce no new
+	// symbol — each teaches how symbols already taught combine — and carry no
+	// `videoUrl`, so they read as declared-but-unfilled until task 3.2 puts them
+	// on the deck arm.
+	{
+		number: 26,
+		title: "Vowels That Are Not Written",
+		focus: "The four ways a Thai syllable carries a vowel it does not spell",
+		consonants: [],
+		vowels: [],
+		toneMarks: [],
+		toneRulesIntroduced: [],
+		specialRulesIntroduced: ["unwritten-vowels"],
+	},
+	{
+		number: 27,
+		title: "Consonant Clusters, True and False",
+		focus:
+			"The closed inventory of clusters, and the pairs that only look like one",
+		consonants: [],
+		vowels: [],
+		toneMarks: [],
+		toneRulesIntroduced: [],
+		specialRulesIntroduced: ["consonant-clusters"],
+	},
+	{
+		number: 28,
+		title: "Leading Consonants (อักษรนำ)",
+		focus:
+			"One rule: a mid or high consonant in front of a sonorant hands over its class",
+		consonants: [],
+		vowels: [],
+		toneMarks: [],
+		toneRulesIntroduced: [],
+		specialRulesIntroduced: ["hor-nam"],
+	},
 ];
 
 // ============================================================================
