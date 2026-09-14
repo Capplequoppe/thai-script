@@ -125,11 +125,13 @@ function thaiCharsIn(texts: readonly string[]): Set<string> {
  * Runs of two or more Thai characters that contain at least one consonant —
  * words, as opposed to bare symbols and vowel patterns.
  *
- * The consonant requirement is what lets a lesson print a vowel pattern. The
- * band teaches four of them whose placeholder hyphen falls inside the pattern
- * rather than between two halves (`เ-าะ`), so the tail `าะ` reads as a
- * two-character run — and a run made only of vowel signs and diacritics is
- * never a word, so requiring a consonant costs the check nothing.
+ * The consonant requirement is what lets a lesson print a vowel pattern. One
+ * of the band's patterns puts two Thai characters on one side of its
+ * placeholder hyphen — สระ เอาะ, written `เ-าะ`, whose tail `าะ` is the only
+ * vowel-only run of length two the six decks produce. A run made of nothing
+ * but vowel signs and diacritics is never a word, so requiring a consonant
+ * costs the check nothing and buys the lesson the ability to print the
+ * pattern it teaches.
  */
 function thaiWordsIn(texts: readonly string[]): Set<string> {
 	const words = new Set<string>();
@@ -146,23 +148,33 @@ function thaiWordsIn(texts: readonly string[]): Set<string> {
 // ============================================================================
 
 /**
- * Symbols a `lessons` row declares — the set the lesson must actually use.
- * The table stores combining vowels with a leading space (`" ี"`) and vowel
- * patterns with a hyphen placeholder (`"เ-ะ"`), so the Thai characters are
- * pulled out rather than the strings compared.
+ * The `lessons` row a sequence entry joins to.
  *
- * An absent row is thrown on rather than returned empty: both would be a set
- * of size zero, but only one of them is a broken band table, and returning
- * empty would make the "uses everything it declares" loop vacuous for that
- * lesson instead of failing it.
+ * An absent row throws rather than coming back empty, and both readers below
+ * go through here so neither can render the failure as a confident nothing:
+ * "this lesson declares no symbol" and "this lesson has no row" are both a set
+ * of size zero, and only the second is a broken table. Returning empty would
+ * make the "uses everything it declares" loop vacuous for that lesson instead
+ * of failing it.
  */
-function declaredSymbols(legacyNumber: number): Set<string> {
+function lessonRow(legacyNumber: number): Lesson {
 	const row = lessons.find((lesson) => lesson.number === legacyNumber);
 	if (!row) {
 		throw new Error(
 			`the band names lesson ${legacyNumber}, which the lessons table does not declare`,
 		);
 	}
+	return row;
+}
+
+/**
+ * Symbols a `lessons` row declares — the set the lesson must actually use.
+ * The table stores combining vowels with a leading space (`" ี"`) and vowel
+ * patterns with a hyphen placeholder (`"เ-ะ"`), so the Thai characters are
+ * pulled out rather than the strings compared.
+ */
+function declaredSymbols(legacyNumber: number): Set<string> {
+	const row = lessonRow(legacyNumber);
 	return thaiCharsIn([
 		...row.consonants,
 		...row.vowels,
@@ -179,16 +191,17 @@ function declaredSymbols(legacyNumber: number): Set<string> {
  *
  * A vowel's written form changes when a final consonant follows, and those
  * forms are data (`conditionalVowelForms`, extracted from mnemonic prose by
- * task 3.1's sibling in phase 2). Two of them put a character on the page that
- * no `lessons` row lists: สระ เอะ becomes a ็ roof, and สระ อือ has to be
- * propped by อ when the syllable ends bare. A lesson that teaches the vowel
- * teaches its conditional form with it, so the characters arrive with the row
- * rather than needing a declaration of their own — and because they are
- * derived, a change to the form data moves what the lesson may use.
+ * task 3.1's sibling in phase 2). Two of them matter to the band, and for
+ * different reasons. สระ เอะ becomes a ็ roof, and ็ is listed by no `lessons`
+ * row at all — the conditional form is the only place it is declared. สระ อือ
+ * has to be propped by อ when the syllable ends bare, and อ *is* listed, by
+ * row 11 — five lessons after row 6 teaches the vowel that needs it. A lesson
+ * that teaches the vowel teaches its conditional form with it, so both arrive
+ * with the row rather than needing a declaration of their own, and because
+ * they are derived a change to the form data moves what the lesson may use.
  */
 function conditionalSymbols(legacyNumber: number): Set<string> {
-	const row = lessons.find((lesson) => lesson.number === legacyNumber);
-	if (!row) return new Set();
+	const row = lessonRow(legacyNumber);
 	const forms: string[] = [];
 	for (const vowel of row.vowels) {
 		const form = conditionalFormFor(vowel);
@@ -203,6 +216,11 @@ function conditionalSymbols(legacyNumber: number): Set<string> {
  * A `<glyphs> — <reason>` declaration in a lesson script's comment block.
  * A declaration with no reason does not count, which is what stops either
  * channel becoming a blanket exemption.
+ *
+ * An absent key and `previews: none` both come back empty, which is why the
+ * band is separately required to state the line — see `declaresPreviewLine`.
+ * Without that, a script whose author never considered previews and one that
+ * considered them and found none are the same thing to this function.
  */
 function declarationsOf(id: string, key: "previews" | "teaches"): Set<string> {
 	const source = readScript(id);
@@ -219,7 +237,17 @@ function declarationsOf(id: string, key: "previews" | "teaches"): Set<string> {
 	return glyphs;
 }
 
-/** The `ranks: <lo>-<hi>` window a lesson script declares for its examples. */
+/** Whether a script states the `previews:` line at all, `none` included. */
+function declaresPreviewLine(id: string): boolean {
+	return /^previews:\s*\S/m.test(readScript(id));
+}
+
+/**
+ * The `ranks: <lo>-<hi>` window a lesson script declares for its examples.
+ *
+ * Absent is an error, not an open window: a lesson with no declared window
+ * would pass the rank check by having nothing to compare against.
+ */
 function declaredRankWindow(id: string): { lo: number; hi: number } {
 	const matched = readScript(id).match(/^ranks:\s*(\d+)\s*-\s*(\d+)\s*$/m);
 	if (!matched) {
@@ -412,6 +440,23 @@ describe("the middle band's symbol coverage", () => {
 					`${id} declares ${ch} through "teaches:" and through its lessons row; one channel is enough`,
 				).toBe(false);
 			}
+		}
+	});
+
+	/**
+	 * The escape hatch AC3 honours has to be a decision, not a silence.
+	 * `declarationsOf` returns an empty set for a script that says
+	 * `previews: none` and for one that never mentions previews at all, so the
+	 * band is required to state the line either way. Its own check rather than
+	 * a rider on AC3's: that assertion is about symbols, and the two failures
+	 * want different repairs.
+	 */
+	it("states the previews line on every band script, none included", () => {
+		for (const id of BAND) {
+			expect(
+				declaresPreviewLine(id),
+				`${id} states no previews: line, so nothing records whether its author considered one`,
+			).toBe(true);
 		}
 	});
 
