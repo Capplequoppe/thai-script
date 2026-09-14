@@ -294,20 +294,19 @@ function namedLowInThirdBucket(): Set<string> {
 // ============================================================================
 
 /**
- * The seam, as far as this task can reach it.
+ * The seam, closed for five of the band's six lessons.
  *
- * AC1 wants every band lesson resolving to the deck arm, and that is two
- * lines this task's `covers` does not include: `DECK_LESSON_IDS` in
- * `lessonContent.ts`, and a `lesson-sound-buckets` entry in
- * `lessonSequence.ts`. Until both land, lessons 02-05 still resolve to their
- * videos and `lesson-sound-buckets` is undeclared, so the deck-arm half of
- * AC1 is asserted nowhere and is deliberately not faked here.
- *
- * What is asserted is everything the decks themselves can carry: each one is
- * committed and schema-valid at exactly the path the deck arm would serve it
- * from, the first lesson past the band is still on the video arm, and nothing
- * is registered on the deck arm without a deck behind it — the invariant that
- * stays true, and worth keeping, once the wiring does land.
+ * `lesson-01` through `lesson-05` all have a `legacyNumber` already declared
+ * in `lessonSequence.ts`, so wiring them onto the deck arm is a `DECK_LESSON_IDS`
+ * addition with no effect on lesson position or the five-store identity join
+ * (CONTEXT.md Rule 1). `lesson-sound-buckets` does not: it introduces no
+ * symbol of its own, so it has no row in the legacy lessons table and no
+ * `legacyNumber` to join on, and deciding how a legacy-less lesson takes a
+ * position in the sequence is exactly the kind of migration decision that
+ * belongs with the task that owns `lessonSequence.ts`'s identity semantics —
+ * not a one-line addition made in passing here. Its deck is committed and
+ * schema-valid at the path the deck arm would serve it from, but it stays
+ * undeclared and unreachable from any route until that decision is made.
  */
 describe("the content seam", () => {
 	it("has a committed, schema-valid deck at the exact path the deck arm serves, for every band lesson", () => {
@@ -327,6 +326,24 @@ describe("the content seam", () => {
 			}
 			expect(result.deck.lessonId).toBe(id);
 		}
+	});
+
+	// AC1 — every band lesson that has a place in the declared sequence
+	// resolves to the deck arm. `lesson-sound-buckets` is the one exception,
+	// named above, and is asserted separately as still-undeclared rather than
+	// silently skipped here.
+	it("resolves every band lesson with a declared sequence position to the deck arm", () => {
+		for (const { id, legacyNumber } of BAND) {
+			if (legacyNumber === undefined) continue;
+			const resolution = resolveLessonContent(id);
+			expect(resolution.status, id).toBe("resolved");
+			if (resolution.status !== "resolved") continue;
+			expect(resolution.content.kind, id).toBe("deck");
+		}
+	});
+
+	it("leaves lesson-sound-buckets undeclared until its sequence position is decided", () => {
+		expect(resolveLessonContent(BUCKETS_LESSON_ID).status).toBe("undeclared");
 	});
 
 	it("serves the first lesson after the opening band from the video arm", () => {

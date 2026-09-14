@@ -83,9 +83,20 @@ export function deckPathForLesson(
  * Lessons whose content is an in-house deck. Empty at the end of task 1.1a:
  * every lesson still serves its video. Task 1.4 adds `lesson-01`, and each
  * later content task adds its own — that addition is the whole strangler.
+ *
+ * `lesson-sound-buckets` is deliberately absent: it has no `legacyNumber` in
+ * `lessonSequence.ts` yet, and giving it one is a lesson-identity decision
+ * (CONTEXT.md Rule 1 — the five-store hazard) that belongs with the task
+ * that owns that migration, not a one-line addition here. Its deck is
+ * committed and schema-valid (see `openingBand.test.ts`) but unreachable
+ * from any route until that sequencing decision is made.
  */
 export const DECK_LESSON_IDS: ReadonlySet<string> = new Set<string>([
 	"lesson-01",
+	"lesson-02",
+	"lesson-03",
+	"lesson-04",
+	"lesson-05",
 ]);
 
 export type LessonContentResolution =

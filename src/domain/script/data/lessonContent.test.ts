@@ -3,6 +3,7 @@ import { migrateState } from "../../../infrastructure/persistence/Storage";
 import { validateLearnerState } from "../../../infrastructure/persistence/Validation";
 import type { LearnerState } from "../../shared/types";
 import {
+	DECK_LESSON_IDS,
 	type DeckRuleSlide,
 	deckPathForLesson,
 	describeLessonContent,
@@ -18,10 +19,20 @@ import { lessonSequence } from "./lessonSequence";
 import { lessons, specialRules } from "./symbols";
 
 const FIRST_ID = lessonSequence[0].id;
-// Task 1.4 wired lesson-01 (lessonSequence[0]) onto the deck arm, so tests
-// about the *generic* video-resolution path use the next declared lesson,
-// which is still unmigrated.
-const SECOND_ENTRY = lessonSequence[1];
+// The opening band grows the deck arm lesson by lesson (task 1.4 wired
+// lesson-01; task 2.5 wired lessons 02-05). Tests about the *generic*
+// video-resolution path must not hardcode a position that band growth keeps
+// moving onto the deck arm, so this finds the first entry the deck arm has
+// not yet claimed.
+const VIDEO_ENTRY = lessonSequence.find(
+	(entry) => !DECK_LESSON_IDS.has(entry.id),
+);
+if (!VIDEO_ENTRY) {
+	throw new Error(
+		"every declared lesson is on the deck arm — these tests need a lesson still on video to exercise that path",
+	);
+}
+const SECOND_ENTRY = VIDEO_ENTRY;
 
 function deck(slides: unknown[], lessonId: string = FIRST_ID) {
 	return { lessonId, title: "A lesson", slides };

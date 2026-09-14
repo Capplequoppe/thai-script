@@ -110,10 +110,15 @@ describe("lesson 1's identity", () => {
 		expect(lesson1?.vowels).toEqual(["า"]);
 	});
 
-	it("lesson 2 still resolves to its video, unchanged by this task", () => {
-		const entry2 = lessonEntryByNumber(2);
-		expect(entry2).toBeDefined();
-		const resolution = resolveLessonContent(entry2?.id);
+	it("a lesson past the opening band still resolves to its video, unchanged by this task", () => {
+		// Task 2.5 has since moved lessons 2-5 onto the deck arm too, so this
+		// no longer names lesson 2 specifically — it names the first legacy
+		// lesson the band hasn't reached, so the assertion keeps meaning
+		// "video, unmigrated" rather than pinning a position band growth moves.
+		const entry6 = lessonEntryByNumber(6);
+		expect(entry6).toBeDefined();
+		expect(DECK_LESSON_IDS.has(entry6?.id ?? "")).toBe(false);
+		const resolution = resolveLessonContent(entry6?.id);
 		expect(resolution.status).toBe("resolved");
 		if (resolution.status !== "resolved") return;
 		expect(resolution.content.kind).toBe("video");
