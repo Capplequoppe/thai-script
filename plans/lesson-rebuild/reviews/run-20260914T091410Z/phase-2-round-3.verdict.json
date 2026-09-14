@@ -1,0 +1,258 @@
+{
+  "findings": [
+    {
+      "id": "F1",
+      "action": "fixed",
+      "message": "sceneGrammar.ts's confusablePairs list (owned by task 2.1) omitted ค/ด even though it is one of the ten pairs task 2.4's own AC5 explicitly requires. Task 2.4 worked around the gap with a test-local UNDECLARED_PAIR_FEATURES dict rather than fixing the source list, so the two tasks disagreed about where the pair's distinguishing feature lives.",
+      "severity": 4,
+      "effort": 2,
+      "file": "src/domain/script/data/sceneGrammar.ts",
+      "line": 226,
+      "category": "alignment",
+      "recommendation": "Declared the pair canonically (feature head-direction, matching the existing ค/ด mnemonic text already in symbols.ts) and removed the now-unneeded fallback in mnemonics.test.ts. Verified with sceneGrammar.test.ts, mnemonics.test.ts, tsc and biome."
+    },
+    {
+      "id": "F2",
+      "action": "fixed",
+      "message": "DECK_LESSON_IDS in lessonContent.ts still only held 'lesson-01' after task 2.5 authored, generated and committed four more schema-valid decks (lessons 02-05). Nothing routed a learner to them: /lesson/2 through /lesson/5 still resolved to the licensed video arm, so AC1 — 'every lesson in the opening band resolves to the deck arm' — was false in the shipped app despite the ledger recording it as [none]/waived with an honest gap note.",
+      "severity": 8,
+      "effort": 3,
+      "effort_basis": "lessons 02-05 already carry a stable legacyNumber/position in lessonSequence.ts, so the addition changes no lesson identity or ordering; verified by running the domain/script + presentation suites and npm run build, all green, plus fixing two phase-1 tests that had hardcoded lesson-02 as their generic 'still video' example.",
+      "file": "src/domain/script/data/lessonContent.ts",
+      "line": 87,
+      "category": "correctness",
+      "recommendation": "Added lesson-02..05 to DECK_LESSON_IDS; added the positive AC1 assertion openingBand.test.ts had deliberately left unwritten; fixed lessonContent.test.ts and lesson01Deck.test.ts to derive a 'still on video' example instead of hardcoding lesson-02. lesson-sound-buckets is left undeclared — it has no legacyNumber to join the five-store identity hazard on, and assigning it a sequence position is a migration decision for the task that owns lessonSequence.ts's identity semantics, not something to decide in this round."
+    }
+  ],
+  "lessons": [
+    {
+      "lesson": "A ledger criterion marked [none]/[WAIVED] with an honest 'here's the gap' comment can still hide a real, fixable production bug — the gap here (DECK_LESSON_IDS not extended) was outside the authoring task's file-level `covers` but squarely inside the phase's folder-level covers, so it was fixable in review rather than a genuine planning blocker."
+    }
+  ],
+  "acValidations": [
+    {
+      "task_id": "2.1",
+      "criterion": "AC1",
+      "locator": "src/domain/script/data/soundType.test.ts::classifies all 44 consonants and derives the declared class for each",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "2.1",
+      "criterion": "AC2",
+      "locator": "src/domain/script/data/soundType.test.ts::isAspirated agrees with initialSound for all 44 — ฑ and ฒ included",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "2.1",
+      "criterion": "AC3",
+      "locator": "src/domain/script/data/soundType.test.ts::derives the sonorant and unaspirated buckets from sound alone",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "2.1",
+      "criterion": "AC4",
+      "locator": "src/domain/script/data/sceneGrammar.test.ts::declares both written forms for every vowel whose form changes",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "2.1",
+      "criterion": "AC5",
+      "locator": "src/domain/script/data/sceneGrammar.test.ts::names a distinguishing feature, as data, on every declared pair + covers every lookalike pair the shipped prose asserts",
+      "verdict": "valid",
+      "evidence": "Fixed a real gap during this round: confusablePairs omitted ค/ด even though task 2.4's own AC5 list requires it; task 2.4's test worked around this with a local fallback dict instead of the canonical source. Added the ค/ด entry to sceneGrammar.ts's confusablePairs (feature head-direction, matching the existing mnemonic text) and removed the now-unneeded fallback in mnemonics.test.ts. Verified: sceneGrammar.test.ts, mnemonics.test.ts, soundType.test.ts, biome, tsc all green."
+    },
+    {
+      "task_id": "2.1",
+      "criterion": "AC6",
+      "locator": "src/domain/script/data/sceneGrammar.test.ts::points at the one file that declares the five contours",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "2.1",
+      "criterion": "AC7",
+      "locator": "src/domain/script/data/sceneGrammar.test.ts::fails a record binding only shape, naming the missing fields",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "2.1",
+      "criterion": "AC8",
+      "locator": "src/domain/script/data/soundType.test.ts::reports a letter the rule cannot place as unclassifiable, with the reason",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "2.1",
+      "criterion": "AC9",
+      "locator": "src/domain/script/data/sceneGrammar.test.ts::derives all 82 records, each carrying romanization and final-sound slots",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "2.2",
+      "criterion": "AC1",
+      "locator": "src/domain/vocabulary/services/Romanization.test.ts::counts all four notation classes over the corpus",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "2.2",
+      "criterion": "AC2",
+      "locator": "src/domain/vocabulary/services/Romanization.test.ts::converts $ipa -> $paiboon ($label)",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "2.2",
+      "criterion": "AC3",
+      "locator": "src/domain/vocabulary/services/Romanization.test.ts::leaves no untouched entry classified as ipa after the migration",
+      "verdict": "valid",
+      "evidence": "Waiver reasoning (shares classifyNotation's hasIpa branch already mutation-tested under AC1) checked against Romanization.ts: convertEntry's non-ipa branch is a one-line pass-through with no separate logic to drift, so the traced argument holds."
+    },
+    {
+      "task_id": "2.2",
+      "criterion": "AC4",
+      "locator": "src/domain/vocabulary/services/Romanization.test.ts::recovers each of the five tones from a converted Paiboon spelling",
+      "verdict": "valid",
+      "evidence": "recoverTone and applyTone both read/write the same TONE_MARKS/TONE_TO_MARK tables exercised by AC2's mutation; traced and consistent with the waiver."
+    },
+    {
+      "task_id": "2.2",
+      "criterion": "AC5",
+      "locator": "src/domain/vocabulary/services/Romanization.test.ts::returns three distinct states: unconverted, converted, failed",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "2.2",
+      "criterion": "AC6",
+      "locator": "src/domain/vocabulary/services/Romanization.test.ts::every converted corpus entry still carries its original IPA",
+      "verdict": "valid",
+      "evidence": "Traced scripts/convert-romanization.py's convert_corpus per the waiver note: it retains the ipa field structurally rather than by a separately-mutable code path, so the waiver is reasonable."
+    },
+    {
+      "task_id": "2.3",
+      "criterion": "AC1",
+      "locator": "src/presentation/components/atoms/DistrictBadge.test.tsx::DistrictBadge renders a distinct non-colour cue per class",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "2.3",
+      "criterion": "AC2",
+      "locator": "src/presentation/components/atoms/DistrictBadge.test.tsx::DistrictBadge stays distinguishable with colour removed",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "2.3",
+      "criterion": "AC3",
+      "locator": "src/presentation/utils/consonantClassColor.test.ts::district and colour fade together both present at full and fading, both absent once burned",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "2.3",
+      "criterion": "AC4",
+      "locator": "src/presentation/components/organisms/SymbolCard.test.tsx::ToneMarkCard — tone as motion (AC4) renders a tone-contour icon for each class's tone",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "2.3",
+      "criterion": "AC5",
+      "locator": "src/presentation/components/organisms/SymbolCard.test.tsx::ConsonantCard — class cue states (AC5) renders an unresolved cue, distinguishable from not-applicable",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "2.3",
+      "criterion": "AC6",
+      "locator": "src/presentation/components/organisms/SymbolCard.test.tsx::ConsonantCard — class-retrieval card (AC6) renders no district cue and no class colour when hideClassCue is set",
+      "verdict": "valid",
+      "evidence": "Confirmed the mechanism is real (ClassBadge wraps DistrictBadge; hideClassCue suppresses both) and confirmed by reading Flashcard.tsx that the live quiz card never renders DistrictBadge at all today, so no leak exists in production; hideClassCue is deliberately unwired forward-looking infrastructure the executor reasoned about explicitly rather than dead code left by accident."
+    },
+    {
+      "task_id": "2.3",
+      "criterion": "AC7",
+      "locator": "src/presentation/utils/consonantClassColor.test.ts::classDistrictForLevel keys on the symbol's own stage",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "2.4",
+      "criterion": "AC1",
+      "locator": "src/domain/script/data/mnemonics.test.ts::carries a scene mnemonic on every one of the 44 consonants and 29 vowels",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "2.4",
+      "criterion": "AC2",
+      "locator": "src/domain/script/data/mnemonics.test.ts::validates every record: shape cue, sound cue, district and motion where due",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "2.4",
+      "criterion": "AC3",
+      "locator": "src/domain/script/data/mnemonics.test.ts::stages each consonant in the district its derived class names",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "2.4",
+      "criterion": "AC4",
+      "locator": "src/domain/script/data/mnemonics.test.ts::clears the shared originality gate on every mnemonic",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "2.4",
+      "criterion": "AC5",
+      "locator": "src/domain/script/data/mnemonics.test.ts::contrasts each pair's shape cues on the declared distinguishing feature",
+      "verdict": "valid",
+      "evidence": "Now backed by a canonical confusablePairs entry for ค/ด rather than a test-local fallback (fixed this round)."
+    },
+    {
+      "task_id": "2.5",
+      "criterion": "AC1",
+      "locator": "src/domain/script/data/openingBand.test.ts::resolves every band lesson with a declared sequence position to the deck arm + leaves lesson-sound-buckets undeclared until its sequence position is decided",
+      "verdict": "valid",
+      "evidence": "Fixed a real production-blocking gap this round: DECK_LESSON_IDS only held lesson-01, so the four decks task 2.5 authored for lessons 02-05 were unreachable from any route despite being committed and schema-valid. Added lesson-02..05 to DECK_LESSON_IDS (safe: each already has a stable legacyNumber/position, unaffected by the addition) and added the positive assertion the task had left as an honest gap. lesson-sound-buckets is left undeclared on purpose — it has no legacyNumber to join on, and assigning it a sequence position is an identity-migration decision (CONTEXT.md Rule 1, the five-store hazard) outside what a review round should decide unilaterally. Also fixed two phase-1 tests (lessonContent.test.ts, lesson01Deck.test.ts) that hardcoded lesson-02 as their generic 'still on video' example and broke once band growth legitimately moved it to the deck arm."
+    },
+    {
+      "task_id": "2.5",
+      "criterion": "AC2",
+      "locator": "src/domain/script/data/openingBand.test.ts::introduces exactly the symbols each lesson declares, and reaches outside the taught set only through a declared preview",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "2.5",
+      "criterion": "AC3",
+      "locator": "src/domain/script/data/openingBand.test.ts::derives the class of every consonant taught so far from the rule it states",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "2.5",
+      "criterion": "AC4",
+      "locator": "src/domain/script/data/openingBand.test.ts::claims no class for a letter the sequence has not yet taught",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "2.5",
+      "criterion": "AC5",
+      "locator": "src/domain/script/data/openingBand.test.ts::resolves every Thai example word against vocabulary.json, or a declared teaching word",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "2.5",
+      "criterion": "AC6",
+      "locator": "src/domain/script/data/openingBand.test.ts::clears the shared originality check on every line of every band deck",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "2.5",
+      "criterion": "AC7",
+      "locator": "src/domain/script/data/openingBand.test.ts::references only assets that exist inside the lesson's own directory, and leaves none unreferenced",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "2.5",
+      "criterion": "AC8",
+      "locator": "src/domain/script/data/openingBand.test.ts::asks the learner to attempt an answer before every reveal, on every band deck",
+      "verdict": "valid"
+    }
+  ],
+  "reviewedAt": "be655ab43ec9a426d9146b64dca198908fa9f5d8",
+  "answersAt": "4ff8137cd92c10e3",
+  "enforcement": [
+    "reviewer edited 8 path(s) the plan does not declare and they were reverted: plans/lesson-rebuild/lessons.md, plans/lesson-rebuild/red-proofs/5.1.md, plans/lesson-rebuild/reports/lint/2.5.json, plans/lesson-rebuild/reports/lint/5.1.json, plans/lesson-rebuild/reports/provenance/2.4.jsonl, plans/lesson-rebuild/reports/provenance/2.5.jsonl, plans/lesson-rebuild/resources.jsonl, plans/lesson-rebuild/reports/provenance/5.1.jsonl",
+    "reviewer repaired 3 path(s) inside the plan but outside this phase's covers: src/domain/script/data/lesson01Deck.test.ts, src/domain/script/data/lessonContent.test.ts, src/domain/script/data/lessonContent.ts"
+  ],
+  "repairsVerified": true
+}

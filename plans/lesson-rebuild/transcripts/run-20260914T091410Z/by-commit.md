@@ -6,6 +6,7 @@ narrative reconstructed from the agent transcript that produced it.
 | Commit | Task | Subject | Reasoning |
 |---|---|---|---|
 | `0dc3e7f824d0` | `2.1` | Task 2.1 self-review: state why the one conditional form lacks an example | [narrative](commits/0dc3e7f824d0.md) |
+| `19c5355a2567` | `5.1` | Add vocabulary room taxonomy (task 5.1) | [narrative](commits/19c5355a2567.md) |
 | `1a174ba81e47` | `2.4` | Task 2.4: rewrite all 82 symbol mnemonics as scene-grammar records | [narrative](commits/1a174ba81e47.md) |
 | `1d670debb689` | `2.4` | Task 2.4 self-review: document the five exported symbol classes | [narrative](commits/1d670debb689.md) |
 | `22d244c16bbb` | `1.3` | Build the lesson-deck generation pipeline | [narrative](commits/22d244c16bbb.md) |
@@ -24,6 +25,7 @@ narrative reconstructed from the agent transcript that produced it.
 | `ac7a24ab5c3c` | `1.4` | Review pass on task 1.4: correct two stale/misleading comments | [narrative](commits/ac7a24ab5c3c.md) |
 | `bce3da1b810e` | `2.2` | Task 2.2: unify vocabulary romanization on Paiboon | [narrative](commits/bce3da1b810e.md) |
 | `c60c7664bd48` | `1.4` | Author, generate, and test Lesson 1's in-house deck | [narrative](commits/c60c7664bd48.md) |
+| `cfa4bfde60d6` | `5.1` | Task 5.1 review pass: document the three undocumented exports in rooms.ts | [narrative](commits/cfa4bfde60d6.md) |
 | `e0cb6ba184d4` | `2.5` | Task 2.5 review pass: repair four falsified comments and two silent-empty reads | [narrative](commits/e0cb6ba184d4.md) |
 | `fa09fb48ba70` | — | fix(test): exclude .plan-runner-worktrees from vitest run | [narrative](commits/fa09fb48ba70.md) |
 | `fdafc1e01480` | `2.1` | Task 2.1: symbol annotation shape, sound-type derivation, scene grammar seam | [narrative](commits/fdafc1e01480.md) |
