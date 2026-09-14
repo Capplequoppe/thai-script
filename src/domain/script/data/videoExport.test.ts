@@ -8,7 +8,7 @@ import {
 } from "node:fs";
 import { tmpdir } from "node:os";
 import { join, resolve } from "node:path";
-import { afterAll, beforeAll, describe, expect, it } from "vitest";
+import { afterAll, describe, expect, it } from "vitest";
 
 /**
  * Evidence for `export-deck-video.py`, read off its own JSON output and the
@@ -17,13 +17,19 @@ import { afterAll, beforeAll, describe, expect, it } from "vitest";
  * and this repository asserts over what a pipeline script emits rather than
  * adding a second test runner (CONTEXT.md, Conventions).
  *
- * Rendering itself needs `ffmpeg`/`ffprobe` on PATH. Every fixture here is
- * built with them in `beforeAll` rather than committed, because task 6.1's
- * `covers` names only the script and this file.
+ * Every case here needs `ffmpeg`/`ffprobe` on PATH: `buildFixtureLesson`
+ * synthesizes each fixture's image and audio with them (task 6.1's `covers`
+ * names only the script and this file, so nothing here is committed), and
+ * the exporter itself shells out to them to render. `ffmpegAvailable` is
+ * computed at module load, not inside `beforeAll` — `describe.skipIf` reads
+ * its condition while the file is still being collected, before any
+ * `beforeAll` has run, so a flag set there would always be seen at its
+ * initial value.
  */
 
 const REPO_ROOT = resolve(import.meta.dirname, "..", "..", "..", "..");
 const SCRIPT = join(REPO_ROOT, "scripts", "export-deck-video.py");
+const ffmpegAvailable = spawnSync("ffmpeg", ["-version"]).status === 0;
 
 const temporaries: string[] = [];
 function temporaryDir(): string {
@@ -34,12 +40,6 @@ function temporaryDir(): string {
 afterAll(() => {
 	for (const path of temporaries)
 		rmSync(path, { recursive: true, force: true });
-});
-
-let ffmpegAvailable = true;
-beforeAll(() => {
-	const probe = spawnSync("ffmpeg", ["-version"]);
-	ffmpegAvailable = probe.status === 0;
 });
 
 interface RunResult {
@@ -209,7 +209,7 @@ describe.skipIf(!ffmpegAvailable)("exporting a deck to video", () => {
 	});
 });
 
-describe("asset containment (AC4)", () => {
+describe.skipIf(!ffmpegAvailable)("asset containment (AC4)", () => {
 	it("refuses a deck whose slide asset path escapes the lesson directory", () => {
 		const root = temporaryDir();
 		const lessonDir = buildFixtureLesson(root, "lesson-fixture");
@@ -240,9 +240,22 @@ describe("asset containment (AC4)", () => {
 	});
 });
 
-describe("the three export states (AC5)", () => {
-	it("are three distinct values, never inferred from a timestamp", () => {
-		expect(new Set(["not-exported", "current", "stale"]).size).toBe(3);
+describe.skipIf(!ffmpegAvailable)("the three export states (AC5)", () => {
+	it("are three distinct values, declared on the export manifest itself", () => {
+		const root = temporaryDir();
+		buildFixtureLesson(root, "lesson-fixture");
+		run(["lesson-fixture", "--assets-root", root]);
+		const manifest = JSON.parse(
+			execFileSync("cat", [
+				join(root, "lesson-fixture", "video-manifest.json"),
+			]).toString(),
+		) as { schema: { states: string[] } };
+		expect(manifest.schema.states).toEqual([
+			"not-exported",
+			"current",
+			"stale",
+		]);
+		expect(new Set(manifest.schema.states).size).toBe(3);
 	});
 
 	it("reports a lesson with no export yet as not-exported", () => {
