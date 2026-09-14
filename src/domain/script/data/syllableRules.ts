@@ -26,6 +26,7 @@
  * absence is the honest reading of it rather than an omission.
  */
 
+import { classifyConsonant } from "./soundType";
 import {
 	completeToneChart,
 	getConsonant,
@@ -68,6 +69,13 @@ export function isBareConsonantWord(word: string): boolean {
 	return characters.length > 0 && characters.every(isThaiConsonant);
 }
 
+/** Every letter of the Thai consonant block, ก through ฮ, in code order. */
+const THAI_CONSONANT_BLOCK: readonly string[] = Object.freeze(
+	Array.from({ length: 0x0e2e - 0x0e01 + 1 }, (_, index) =>
+		String.fromCodePoint(0x0e01 + index),
+	).filter((character) => classOf(character) !== undefined),
+);
+
 /**
  * The sonorants (อักษรเสียงก้อง). They matter twice: a leading consonant may
  * only lead one of these, and they are the finals that make a syllable live.
@@ -75,19 +83,26 @@ export function isBareConsonantWord(word: string): boolean {
  * This is the set of low-class consonants with no high-class counterpart —
  * which is *why* the leading-consonant rule exists at all: it is the only way
  * to write a rising or a low tone on one of them.
+ *
+ * **Derived**, from `soundType.ts`'s sound-only classification rather than
+ * listed here, so this module and the class derivation phase 2 shipped cannot
+ * disagree about which letters they are.
  */
-export const SONORANTS: readonly string[] = Object.freeze([
-	"ง",
-	"ญ",
-	"ณ",
-	"น",
-	"ม",
-	"ย",
-	"ร",
-	"ล",
-	"ว",
-	"ฬ",
-]);
+export const SONORANTS: readonly string[] = Object.freeze(
+	THAI_CONSONANT_BLOCK.filter((character) => {
+		const consonant = getConsonant(character);
+		if (!consonant) return false;
+		const classification = classifyConsonant({
+			character,
+			initialSound: consonant.initialSound,
+			isAspirated: consonant.isAspirated,
+		});
+		return (
+			classification.state === "classified" &&
+			classification.soundType === "sonorant"
+		);
+	}),
+);
 
 const SONORANT_SET = new Set(SONORANTS);
 
@@ -277,7 +292,10 @@ const CLUSTER_BY_PAIR = new Map(
 	CLUSTER_INVENTORY.map((entry) => [entry.pair, entry]),
 );
 
-/** The only three letters that ever appear second in a true cluster. */
+/**
+ * The only three letters that ever appear second in any pair this inventory
+ * lists — true clusters and false ones alike, since every false pair ends in ร.
+ */
 export const CLUSTER_SECOND_LETTERS: readonly string[] = Object.freeze([
 	"ร",
 	"ล",
@@ -328,6 +346,39 @@ export interface LeadingBranch {
 }
 
 /**
+ * Which consonants can lead an unstressed-leader syllable — **derived** from
+ * each letter's declared class, not listed.
+ *
+ * A list compiled by hand drops the letters that do not feel like leaders:
+ * the first version of this field named seven mid-class consonants and no
+ * high-class one, which contradicted the branch's own statement, four of its
+ * own six example words, and `resolveLeadingConsonant` itself. ส leads
+ * สวัสดี at rank 9 and was missing.
+ *
+ * ห and อ are held out because each has its own branch, and
+ * `resolveLeadingConsonant` routes them there unconditionally — so declaring
+ * either here would name a leader this branch never actually takes. That is
+ * also why อ is absent despite อร่อย: these lessons teach the อ branch as
+ * closed at four words (AC4), and a pronounced-อ reading is not in scope.
+ */
+const BRANCHED_LEADERS: readonly string[] = Object.freeze(["ห", "อ"]);
+
+const UNSTRESSED_LEADERS: readonly string[] = Object.freeze(
+	THAI_CONSONANT_BLOCK.filter(
+		(character) =>
+			!BRANCHED_LEADERS.includes(character) && canLead(classOf(character)),
+	),
+);
+
+/** A class can be handed to a sonorant only if the sonorant lacks it. */
+function canLead(consonantClass: ThaiSymbolClass | undefined): boolean {
+	return (
+		consonantClass === ThaiSymbolClass.Mid ||
+		consonantClass === ThaiSymbolClass.High
+	);
+}
+
+/**
  * อ leads in exactly four words. There is no fifth; the branch is closed and
  * the lesson says so.
  */
@@ -368,7 +419,7 @@ export const LEADING_CONSONANT_RULE = Object.freeze({
 		}),
 		Object.freeze({
 			id: "unstressed-leader" as const,
-			leaders: Object.freeze(["ก", "จ", "ด", "ต", "บ", "ป", "อ"]),
+			leaders: UNSTRESSED_LEADERS,
 			leaderPronounced: true,
 			closure: "productive" as const,
 			words: Object.freeze(["สวัสดี", "ถนน", "ขนม", "ตลก", "สงบ", "ตลอด"]),
@@ -411,7 +462,7 @@ export function resolveLeadingConsonant(
 	if (leaderClass === undefined) {
 		return { leads: false, reason: `${leader} is not a Thai consonant` };
 	}
-	if (leaderClass === ThaiSymbolClass.Low) {
+	if (!canLead(leaderClass)) {
 		return {
 			leads: false,
 			reason: `${leader} is low class, and a low-class consonant has no class worth passing on`,

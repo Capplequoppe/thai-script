@@ -7,6 +7,7 @@ import {
 	PHASE_THREE_LESSON_IDS,
 	reconcileLessonSlots,
 } from "./lessonSequence";
+import { classifyConsonant } from "./soundType";
 import {
 	BARE_READING_CLASSES,
 	bareReadingClassOf,
@@ -14,6 +15,7 @@ import {
 	CLUSTER_SECOND_LETTERS,
 	type CorpusEntry,
 	clusterFor,
+	finalSoundOf,
 	IMPLICIT_VOWEL_RULES,
 	isBareConsonantWord,
 	KNOWN_SOUND_DOUBLING_WORDS,
@@ -23,15 +25,22 @@ import {
 	reconcileWithCorpus,
 	resolveLeadingConsonant,
 	resolveWord,
+	SONORANTS,
 	VOWEL_LETTERS,
 	WORD_RESOLUTION_STATES,
 	type WordResolution,
 } from "./syllableRules";
-import { specialRules, ThaiSymbolClass } from "./symbols";
+import { getConsonant, specialRules, ThaiSymbolClass } from "./symbols";
 
 type Entry = CorpusEntry & { readonly romanization?: string };
 
 const corpus = vocabularyData as unknown as Entry[];
+
+/** ก through ฮ, rebuilt here so the module need not export its own copy. */
+const THAI_CONSONANT_BLOCK: readonly string[] = Array.from(
+	{ length: 0x0e2e - 0x0e01 + 1 },
+	(_, index) => String.fromCodePoint(0x0e01 + index),
+).filter((character) => getConsonant(character) !== undefined);
 
 const topTwoThousand = corpus.filter(
 	(entry) => typeof entry.rank === "number" && (entry.rank as number) <= 2000,
@@ -368,6 +377,45 @@ describe("AC4 — the leading-consonant rule", () => {
 		expect(LEADING_CONSONANT_RULE.branches).toHaveLength(3);
 	});
 
+	it("declares the same leaders it behaves as, high-class ones included", () => {
+		// `leaders` used to be a hand-written list of the nine mid-class
+		// consonants, which named none of ส, ถ or ข — the leaders of four of the
+		// branch's own six example words, สวัสดี at rank 9 among them. Nothing
+		// read the field, so nothing caught it. This binds it to the resolver.
+		for (const branch of LEADING_CONSONANT_RULE.branches) {
+			for (const word of branch.words) {
+				const leader = [...word][0];
+				expect(branch.leaders, `${word} is led by ${leader}`).toContain(leader);
+			}
+			for (const leader of branch.leaders) {
+				const resolution = resolveLeadingConsonant(
+					leader,
+					"ย",
+					branch.words[0],
+				);
+				expect(resolution.leads, `${leader} should lead`).toBe(true);
+			}
+		}
+		const unstressed = LEADING_CONSONANT_RULE.branches.find(
+			(candidate) => candidate.id === "unstressed-leader",
+		);
+		expect(unstressed?.leaders).toContain("ส");
+		expect(unstressed?.leaders).toContain("ถ");
+		expect(unstressed?.leaders).toContain("ข");
+		// ห and อ are held out: each has its own branch, and the resolver routes
+		// them there unconditionally, so neither is ever an unstressed leader.
+		expect(unstressed?.leaders).not.toContain("ห");
+		expect(unstressed?.leaders).not.toContain("อ");
+		// And no low-class consonant is declared as a leader anywhere.
+		for (const branch of LEADING_CONSONANT_RULE.branches) {
+			for (const leader of branch.leaders) {
+				expect(getConsonant(leader)?.classType, leader).not.toBe(
+					ThaiSymbolClass.Low,
+				);
+			}
+		}
+	});
+
 	it("refuses to lead where there is no class to pass on", () => {
 		// น is low class: it has nothing a sonorant does not already have.
 		expect(resolveLeadingConsonant("น", "ค", "นคร").leads).toBe(false);
@@ -516,6 +564,54 @@ describe("CONTEXT.md rule 2 — the original stays reachable", () => {
 		expect(PROMOTED_SPECIAL_RULES["consonant-clusters"]).toBe(
 			"CLUSTER_INVENTORY",
 		);
+	});
+
+	it("takes its sonorants from soundType.ts's classification, not a list of its own", () => {
+		const derived = THAI_CONSONANT_BLOCK.filter((character) => {
+			const consonant = getConsonant(character);
+			if (!consonant) return false;
+			const classification = classifyConsonant({
+				character,
+				initialSound: consonant.initialSound,
+				isAspirated: consonant.isAspirated,
+			});
+			return (
+				classification.state === "classified" &&
+				classification.soundType === "sonorant"
+			);
+		});
+		expect(SONORANTS).toEqual(derived);
+		expect(SONORANTS).toHaveLength(10);
+		// The count soundType.test.ts asserts independently, from the other side.
+		expect(derived).toEqual(["ง", "ญ", "ณ", "น", "ม", "ย", "ร", "ล", "ว", "ฬ"]);
+	});
+
+	it("reconciles its final sounds with symbols.ts, and records where the two disagree", () => {
+		// Mirrors the module's own stop set; a final that is a stop makes the
+		// syllable dead, which is the only thing these rules read finalSoundOf for.
+		const stops = new Set(["k", "t", "p"]);
+		const disagreements: string[] = [];
+		for (const character of THAI_CONSONANT_BLOCK) {
+			const prose = getConsonant(character)?.finalSound ?? "";
+			const usableAsFinal = !/not used as final|acts as vowel/.test(prose);
+			const mine = finalSoundOf(character);
+			if (usableAsFinal !== (mine !== undefined)) {
+				disagreements.push(character);
+				continue;
+			}
+			if (mine !== undefined) {
+				expect(stops.has(mine), `${character} live/dead`).toBe(
+					/-stop/.test(prose),
+				);
+			}
+		}
+		// Recorded, not zero (the AC5 discipline, applied to the second source).
+		// symbols.ts gives ผ and ฝ stop finals and ฃ and ฅ K-stops; no Thai
+		// syllable is closed by any of the four, so these rules give them no
+		// final reading. symbols.ts answers a flashcard question ("what would
+		// this sound like as a final?") and is not wrong for its own purpose,
+		// which is why this is recorded here rather than repaired there.
+		expect(disagreements).toEqual(["ฃ", "ฅ", "ผ", "ฝ"]);
 	});
 });
 
