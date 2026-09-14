@@ -82,6 +82,12 @@ export interface SrsCard {
 export interface PropertyCard extends SrsCard {
 	symbolCharacter: string;
 	property: PropertyType | "toneRule";
+	/**
+	 * The teaching lesson's position in the declared sequence
+	 * (`lessonSequence.ts`), or 0 for a card belonging to no lesson.
+	 * Persisted per card; `migrateState` converts older blobs onto the
+	 * current sequence at load, so no consumer re-interprets it.
+	 */
 	lessonNumber: number;
 	/**
 	 * Class of the consonant shown via `symbolCharacter`, for glyph color-coding.
@@ -165,11 +171,18 @@ export interface ApprenticeLimits {
  * catch-up intro before those cards show up cold in review.
  */
 export interface PendingCatchUp {
+	/** Position in the declared sequence — see `PropertyCard.lessonNumber`. */
 	lessonNumber: number;
 	cardIds: string[];
 }
 
 export interface LearnerState {
+	/**
+	 * Positions in the declared sequence (`lessonSequence.ts`). Together with
+	 * `currentLesson`, each card's `lessonNumber` and each pending catch-up's
+	 * `lessonNumber`, these are the persisted lesson-identity stores of
+	 * CONTEXT.md Rule 1; `migrateState` converts all of them in one pass.
+	 */
 	completedLessons: number[];
 	currentLesson: number | null;
 	cards: Record<string, PropertyCard>;

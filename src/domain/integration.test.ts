@@ -132,6 +132,39 @@ describe("Learn-then-Review flow", () => {
 		}
 	});
 
+	it("keeps scheduled cards and the next lesson identical across an export to a second device", () => {
+		learning.startLesson(1);
+		learning.completeLesson(1);
+		const dueBefore = review
+			.getDueCards(FUTURE_NOW)
+			.map((c) => c.id)
+			.sort();
+		expect(dueBefore.length).toBeGreaterThan(0);
+
+		// The import path runs the exported blob through the one migration
+		// boundary before merging, so a device on an older representation
+		// converges on the same schedule and the same next lesson.
+		const exported = storage.exportData();
+		const second = new InMemoryStorage();
+		second.importData(exported);
+		const secondReview = new ReviewService(
+			new StorageCardRepository(second),
+			new StorageLearnerStateRepository(second),
+		);
+		const secondLearning = new LearningService(
+			new StorageCardRepository(second),
+			new StorageLearnerStateRepository(second),
+		);
+
+		expect(
+			secondReview
+				.getDueCards(FUTURE_NOW)
+				.map((c) => c.id)
+				.sort(),
+		).toEqual(dueBefore);
+		expect(secondLearning.getNextLesson()).toBe(2);
+	});
+
 	it("session history accumulates across multiple sessions", () => {
 		learning.startLesson(1);
 		learning.completeLesson(1);

@@ -5,6 +5,10 @@ import { reconcileGeneratedCards } from "../../shared/services/reconcileCards";
 import type { PropertyCard } from "../../shared/types";
 import { SrsSchedule } from "../../srs/value-objects/SrsSchedule";
 import {
+	type LessonSequenceEntry,
+	lessonSequence,
+} from "../data/lessonSequence";
+import {
 	getSymbolsByLesson,
 	lessons,
 	rareVowels,
@@ -18,7 +22,14 @@ import {
 import { ScriptPropertyCard } from "../entities/ScriptPropertyCard";
 import { generateCardsForLesson } from "./ScriptCardGenerator";
 
-const TOTAL_LESSONS = 25;
+/**
+ * Resolves a 1-based position to its declared sequence entry. Positions are
+ * assigned from declaration order, so the entry at index `position - 1` is
+ * exactly the one whose `position` matches.
+ */
+function entryAt(position: number): LessonSequenceEntry | undefined {
+	return lessonSequence[position - 1];
+}
 
 export interface LessonInfo {
 	lessonNumber: number;
@@ -129,15 +140,24 @@ export class LearningService {
 			throw new Error(`Lesson ${lessonNumber} is already completed`);
 		}
 
-		for (let i = 1; i < lessonNumber; i++) {
-			if (!completedLessons.includes(i)) {
-				throw new Error(
-					`Must complete lesson ${i} before starting lesson ${lessonNumber}`,
-				);
-			}
+		const entry = entryAt(lessonNumber);
+		if (!entry) throw new Error(`Lesson ${lessonNumber} not found`);
+
+		// Prerequisites come from the declared order: every lesson earlier in
+		// the sequence must be complete, and the refusal names the first that
+		// is not.
+		const missing = lessonSequence.find(
+			(predecessor) =>
+				predecessor.position < entry.position &&
+				!completedLessons.includes(predecessor.position),
+		);
+		if (missing) {
+			throw new Error(
+				`Must complete lesson ${missing.position} before starting lesson ${lessonNumber}`,
+			);
 		}
 
-		const lessonMeta = lessons.find((l) => l.number === lessonNumber);
+		const lessonMeta = lessons.find((l) => l.number === entry.legacyNumber);
 		if (!lessonMeta) throw new Error(`Lesson ${lessonNumber} not found`);
 
 		const cards = generateCardsForLesson(lessonNumber);
@@ -179,17 +199,24 @@ export class LearningService {
 
 	getNextLesson(): number | null {
 		const completedLessons = this.stateRepo.getCompletedLessons();
-		for (let i = 1; i <= TOTAL_LESSONS; i++) {
-			if (!completedLessons.includes(i)) return i;
-		}
-		return null;
+		const next = lessonSequence.find(
+			(entry) => !completedLessons.includes(entry.position),
+		);
+		return next ? next.position : null;
 	}
 
 	getLessonSummary(lessonNumber: number): LessonSummary {
-		const lessonMeta = lessons.find((l) => l.number === lessonNumber);
+		const entry = entryAt(lessonNumber);
+		if (!entry) throw new Error(`Lesson ${lessonNumber} not found`);
+
+		// `symbols.ts` still keys its `lesson` fields and lessons table on the
+		// pre-migration integers; every join routes through the declared
+		// sequence so a resequence changes only the declaration.
+		const legacyNumber = entry.legacyNumber;
+		const lessonMeta = lessons.find((l) => l.number === legacyNumber);
 		if (!lessonMeta) throw new Error(`Lesson ${lessonNumber} not found`);
 
-		const symbols = getSymbolsByLesson(lessonNumber);
+		const symbols = getSymbolsByLesson(legacyNumber);
 
 		return {
 			lessonNumber,
@@ -233,7 +260,7 @@ export class LearningService {
 					audioUrl: t.audioUrl,
 				})),
 			rareVowels: rareVowels
-				.filter((v) => v.lesson === lessonNumber)
+				.filter((v) => v.lesson === legacyNumber)
 				.map((v) => ({
 					character: v.character,
 					name: v.name,
@@ -242,7 +269,7 @@ export class LearningService {
 					notes: v.notes,
 				})),
 			numerals: thaiNumerals
-				.filter((n) => n.lesson === lessonNumber)
+				.filter((n) => n.lesson === legacyNumber)
 				.map((n) => ({
 					character: n.thai,
 					arabic: n.arabic,
@@ -251,13 +278,13 @@ export class LearningService {
 				})),
 			toneRules: [
 				...toneRules
-					.filter((r) => r.lesson === lessonNumber)
+					.filter((r) => r.lesson === legacyNumber)
 					.map((r) => ({
 						id: `tone-rule:${r.id}`,
 						description: r.description,
 					})),
 				...toneMarkRules
-					.filter((r) => r.lesson === lessonNumber)
+					.filter((r) => r.lesson === legacyNumber)
 					.map((r) => ({
 						id: `tone-mark-rule:${r.toneMarkName}-${r.consonantClass}`,
 						description: `${r.toneMarkName} on ${r.consonantClass} class = ${r.resultingTone} tone`,

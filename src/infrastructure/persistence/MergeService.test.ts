@@ -9,6 +9,7 @@ import {
 	INITIAL_LEARNER_STATE,
 } from "../../domain/shared/types";
 import { mergeLearnerStates } from "./MergeService";
+import { migrateState } from "./Storage";
 
 function makeCard(
 	id: string,
@@ -78,6 +79,77 @@ describe("mergeLearnerStates", () => {
 		};
 		const result = mergeLearnerStates(current, incoming);
 		expect(result.currentLesson).toBe(3);
+	});
+
+	it("keeps the incoming device's lesson-in-progress when this device has none", () => {
+		const incoming: LearnerState = {
+			...INITIAL_LEARNER_STATE,
+			currentLesson: 7,
+		};
+		const result = mergeLearnerStates(INITIAL_LEARNER_STATE, incoming);
+		expect(result.currentLesson).toBe(7);
+	});
+
+	it("unions pendingCatchUps from both devices, merging card ids per lesson", () => {
+		const current: LearnerState = {
+			...INITIAL_LEARNER_STATE,
+			pendingCatchUps: [
+				{ lessonNumber: 3, cardIds: ["a", "b"] },
+				{ lessonNumber: 5, cardIds: ["c"] },
+			],
+		};
+		const incoming: LearnerState = {
+			...INITIAL_LEARNER_STATE,
+			pendingCatchUps: [{ lessonNumber: 3, cardIds: ["b", "d"] }],
+		};
+		const result = mergeLearnerStates(current, incoming);
+		expect(result.pendingCatchUps).toEqual([
+			{ lessonNumber: 3, cardIds: ["a", "b", "d"] },
+			{ lessonNumber: 5, cardIds: ["c"] },
+		]);
+	});
+
+	// The task's AC4: two devices, one already on the migrated representation
+	// and one still holding a pre-migration export. The storage boundary
+	// converts the unmigrated input through migrateState — the same single
+	// conversion pass a load uses — and only then merges, so nothing from
+	// either side is lost across any of the five lesson-identity stores.
+	it("unions a migrated and an unmigrated state across all five stores, losing nothing", () => {
+		const current: LearnerState = {
+			...INITIAL_LEARNER_STATE,
+			completedLessons: [1, 4],
+			currentLesson: null,
+			cards: { "ก:recognition": makeCard("ก:recognition", 2, 1) },
+			pendingCatchUps: [{ lessonNumber: 4, cardIds: ["x"] }],
+		};
+
+		// Written by an older install: same shape, but its cards still carry
+		// the pre-migration SRS fields (no learningStep, no lapseCount).
+		const legacyCard = makeCard("ม:recognition", 5, 2);
+		delete (legacyCard.srs as { learningStep?: number | null }).learningStep;
+		delete (legacyCard.srs as { lapseCount?: number }).lapseCount;
+		const unmigrated: LearnerState = {
+			...INITIAL_LEARNER_STATE,
+			completedLessons: [2, 4],
+			currentLesson: 3,
+			cards: { "ม:recognition": legacyCard },
+			pendingCatchUps: [{ lessonNumber: 2, cardIds: ["y"] }],
+		};
+
+		const result = mergeLearnerStates(current, migrateState(unmigrated));
+
+		expect([...result.completedLessons].sort()).toEqual([1, 2, 4]);
+		expect(result.currentLesson).toBe(3);
+		expect(result.cards["ก:recognition"].srs.repetitions).toBe(2);
+		expect(result.cards["ม:recognition"].srs.repetitions).toBe(5);
+		expect(result.cards["ม:recognition"].lessonNumber).toBe(2);
+		// The unmigrated card came through the migration, not around it.
+		expect(result.cards["ม:recognition"].srs.learningStep).toBeNull();
+		expect(result.cards["ม:recognition"].srs.lapseCount).toBe(0);
+		expect(result.pendingCatchUps).toEqual([
+			{ lessonNumber: 4, cardIds: ["x"] },
+			{ lessonNumber: 2, cardIds: ["y"] },
+		]);
 	});
 
 	it("preserves current.apprenticeLimits, not incoming's", () => {

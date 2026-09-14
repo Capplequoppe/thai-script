@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router";
 import { Badge } from "@/presentation/components/ui/badge";
 import { Card } from "@/presentation/components/ui/card";
+import { lessonSequence } from "../../domain/script/data/lessonSequence";
 import { SectionHeader } from "../components/atoms/SectionHeader";
 import { ConfirmDialog } from "../components/molecules/ConfirmDialog";
 import {
@@ -34,10 +35,11 @@ export function ProgressPage() {
 		grammarStages.master +
 		grammarStages.enlightened +
 		grammarStages.burned;
+	// The first declared lesson not yet completed — read from the sequence,
+	// not `length + 1`, so a merge-produced gap resolves to the gap itself.
 	const nextLesson =
-		state.completedLessons.length < 25
-			? state.completedLessons.length + 1
-			: null;
+		lessonSequence.find((entry) => !completed.has(entry.position))?.position ??
+		null;
 
 	return (
 		<div className="space-y-8 py-4">
@@ -237,7 +239,6 @@ export function ProgressPage() {
 			<div>
 				<SectionHeader className="mb-4">Script Lesson Progress</SectionHeader>
 				<LessonPath
-					totalLessons={25}
 					completedLessons={completed}
 					nextAvailable={nextLesson}
 					onLessonClick={(n) => {
