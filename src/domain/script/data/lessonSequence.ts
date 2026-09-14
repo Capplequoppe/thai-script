@@ -70,10 +70,11 @@ const DECLARED: readonly Omit<LessonSequenceEntry, "position">[] = [
 	// Task 4.2 — the consolidated tone-mark lesson. Appended for the same
 	// reason as the phase 3 trio above: its position is its persisted identity
 	// (CONTEXT.md Rule 1), so it takes the next open slot rather than the
-	// position a finished course would put it at. It introduces no new
-	// consonant or vowel, only the four tone-mark symbols and the rule that
-	// resolves them, and every spelling-based tone rule (lessons 2-16) already
-	// precedes it.
+	// position a finished course would put it at. Every spelling-based tone
+	// rule (lessons 2-16) already precedes it. It introduces no symbol of its
+	// own yet — the four `ThaiToneMark` entries and `toneMarkRules` still carry
+	// their pre-migration `.lesson` values (17/18/21-24); moving them onto this
+	// slot is task 4.3's resequencing, not this one's.
 	{ id: "lesson-tone-marks", legacyNumber: 29 },
 ];
 

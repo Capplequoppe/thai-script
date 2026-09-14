@@ -270,11 +270,13 @@ interface MarkedWord {
 }
 
 /**
- * One single-syllable corpus word per resolved cell, read off the corpus's
- * own annotations (`syllables[0].toneMark`/`consonantClass`/`tone`) rather
- * than asserted here — `expectWordResolves` below checks the resolver's
- * answer against that same corpus field, not against a value repeated in
- * this file.
+ * One single-syllable corpus word per resolved cell. `toneMarkName` and
+ * `consonantClass` here are cross-checked against the corpus's own
+ * `syllables[0]` annotation below (so a wrong mark or class here is caught,
+ * not trusted) — but the expected *tone* is never repeated in this file at
+ * all: `expectWordResolves` reads it straight off `syllable.tone` and checks
+ * the lesson's resolver against that, so a lesson and a test that agree with
+ * each other and with nothing else cannot pass.
  */
 const AC3_SAMPLE: readonly MarkedWord[] = [
 	{ thai: "ไก่", toneMarkName: "mai ek", consonantClass: ThaiSymbolClass.Mid },
