@@ -15,7 +15,7 @@ covers:
   - src/domain/script/services/ScriptCardGenerator.ts
 status: stable
 task_id: "2.3"
-task_status: pending
+task_status: complete
 depends_on: ["2.1"]
 size: medium
 verify:
@@ -37,6 +37,26 @@ weight_votes:
   - "unknowns-estimator -> 3"
   - "calibration-estimator -> 5"
 weight_voted: "sha256:7e680f3687a12556d5abe3e9bea22a26a95826e42658a4f507d125f0a31f9a07"
+ac_tests:
+  - "AC1 -> src/presentation/components/atoms/DistrictBadge.test.tsx::DistrictBadge renders a distinct non-colour cue per class"
+  - "AC2 -> src/presentation/components/atoms/DistrictBadge.test.tsx::DistrictBadge stays distinguishable with colour removed"
+  - "AC3 -> src/presentation/utils/consonantClassColor.test.ts::district and colour fade together both present at full and fading, both absent once burned"
+  - "AC4 -> src/presentation/components/organisms/SymbolCard.test.tsx::ToneMarkCard — tone as motion (AC4) renders a tone-contour icon for each class's tone"
+  - "AC5 -> src/presentation/components/organisms/SymbolCard.test.tsx::ConsonantCard — class cue states (AC5) renders an unresolved cue, distinguishable from not-applicable, for a value that isn't a real class"
+  - "AC6 -> src/presentation/components/organisms/SymbolCard.test.tsx::ConsonantCard — class-retrieval card (AC6) renders no district cue and no class colour when hideClassCue is set"
+  - "AC7 -> src/presentation/utils/consonantClassColor.test.ts::classDistrictForLevel keys on the symbol's own stage returns independent results for two calls with different levels, as if for two consonants in one word"
+red_proof:
+  - "AC1 -> In consonantClassColor.ts, changed classDistrict() to always return \"temple\" regardless of the known class passed in."
+  - "AC4 -> In SymbolCard.tsx, replaced the mid-class-tone <ToneContourIcon tone={t.midClassTone} /> in ToneMarkCard with the literal `null`."
+  - "AC2 -> In DistrictBadge.tsx, added color: \"red\" to the badge span's style object."
+  - "AC3 -> In consonantClassColor.ts, removed the `if (level === \"none\") return undefined;` gate from classDistrictForLevel, so it always derived a district regardless of level."
+  - "AC5 -> In consonantClassColor.ts, changed classCueState() to return \"not-applicable\" instead of \"unresolved\" for a non-empty, non-real class value."
+  - "AC6 -> In SymbolCard.tsx, changed `{!hideClassCue && <ClassBadge classType={c.classType} />}` to unconditionally render `<ClassBadge classType={c.classType} />`."
+  - "AC7 -> Same as AC3's mutation (classDistrictForLevel's level-gating is the mechanism both criteria rest on): removing the \"none\" gate collapses per-call independence, since a call for a bu… [see red-proofs/]"
+lint:
+  before: 17
+  after: 17
+  outcome: incomplete
 generated: {by: claude-opus-5/agent, at: 2026-09-13}
 profile_version: 1
 ---
