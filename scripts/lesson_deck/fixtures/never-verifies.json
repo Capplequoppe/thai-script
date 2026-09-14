@@ -1,0 +1,7 @@
+{
+	"comment": "The Thai line never comes back right. Exhausts every seed, so the segment is recorded failed and no deck is written.",
+	"script": "lesson-02.md",
+	"mishears": {
+		"งง": ["ง่ง", "ง้ง", "ง๊ง", "ง๋ง"]
+	}
+}

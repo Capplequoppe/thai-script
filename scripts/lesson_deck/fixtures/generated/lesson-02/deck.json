@@ -1,0 +1,38 @@
+{
+	"lessonId": "lesson-02",
+	"title": "Fixture — three low-class letters",
+	"slides": [
+		{
+			"kind": "exposition",
+			"id": "district",
+			"heading": "One district, three letters",
+			"body": [
+				"All three letters belong to the low class.",
+				"Class is the fact every tone decision routes through."
+			],
+			"audio": [
+				"/lessons/lesson-02/audio/district-0-3dc442d21246.mp3",
+				"/lessons/lesson-02/audio/district-1-88975f37b262.mp3"
+			],
+			"image": "/lessons/lesson-02/images/district-046d4ae0baa4.svg"
+		},
+		{
+			"kind": "retrieval",
+			"id": "which-tone",
+			"prompt": "A low-class letter, a live syllable. Which tone comes out?",
+			"revealSlideId": "which-tone-answer",
+			"audio": ["/lessons/lesson-02/audio/which-tone-0-22345be98367.mp3"]
+		},
+		{
+			"kind": "reveal",
+			"id": "which-tone-answer",
+			"retrievalSlideId": "which-tone",
+			"answers": ["Mid tone — flat, in the middle of your range."]
+		},
+		{
+			"kind": "rule",
+			"id": "low-live-rule",
+			"ruleId": "low-live"
+		}
+	]
+}
