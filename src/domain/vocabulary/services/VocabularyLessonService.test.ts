@@ -1,5 +1,8 @@
 import { beforeEach, describe, expect, it } from "vitest";
-import { InMemoryStorage } from "../../../infrastructure/persistence/Storage";
+import {
+	InMemoryStorage,
+	migrateState,
+} from "../../../infrastructure/persistence/Storage";
 import { StorageCardRepository } from "../../../infrastructure/persistence/StorageCardRepository";
 import { StorageLearnerStateRepository } from "../../../infrastructure/persistence/StorageLearnerStateRepository";
 import { ApprenticeService } from "../../shared/services/ApprenticeService";
@@ -64,6 +67,39 @@ describe("VocabularyService", () => {
 		const unlocked = service.getUnlockedWords();
 		expect(unlocked).toHaveLength(1);
 		expect(unlocked[0]?.thai).toBe("มา");
+	});
+
+	// The join-key proof for the lesson-identity migration: the mastered
+	// characters and tone rules gate `getUnlockedWords()` through the private
+	// helpers, so identical public output either side of `migrateState`
+	// covers both joins. A part-way learner is the interesting case — an
+	// empty or complete one would pass under many wrong mappings.
+	it("returns the same unlocked words before and after the lesson-identity migration", () => {
+		const vocabulary = [
+			makeEntry(),
+			makeEntry({
+				thai: "กา",
+				characters: ["ก", "า"],
+				toneRules: ["mid-live"],
+				rank: 2,
+				english: "crow",
+			}),
+		];
+		const service = new VocabularyService(cardRepo, stateRepo, vocabulary);
+
+		const state = storage.load();
+		state.completedLessons = [1, 2];
+		state.currentLesson = 3;
+		storage.save(state);
+
+		const before = service.getUnlockedWords().map((w) => w.thai);
+		// Non-vacuous: one word is unlocked and one still locked.
+		expect(before).toEqual(["มา"]);
+
+		const migrated = migrateState(storage.load());
+		storage.save(migrated);
+
+		expect(service.getUnlockedWords().map((w) => w.thai)).toEqual(before);
 	});
 
 	it("does not unlock words when only characters are mastered but tone rules are missing", () => {

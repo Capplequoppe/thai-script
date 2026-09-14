@@ -1,3 +1,4 @@
+import { lessonCount } from "../../script/data/lessonSequence";
 import { SrsStage } from "../../srs/value-objects/SrsStage";
 import type { LearnerState, SessionSummary } from "../types";
 
@@ -25,7 +26,7 @@ export class AchievementService {
 		// Lesson milestones
 		check("first_lesson", completedLessons.length >= 1);
 		check("five_lessons", completedLessons.length >= 5);
-		check("all_lessons", completedLessons.length >= 25);
+		check("all_lessons", completedLessons.length >= lessonCount);
 
 		// Review milestones
 		const reviewSessions = sessionHistory.filter(

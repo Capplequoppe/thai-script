@@ -1,3 +1,5 @@
+import { readFileSync } from "node:fs";
+import { fileURLToPath } from "node:url";
 import { beforeEach, describe, expect, it } from "vitest";
 import { InMemoryStorage } from "../../../infrastructure/persistence/Storage";
 import { StorageCardRepository } from "../../../infrastructure/persistence/StorageCardRepository";
@@ -9,6 +11,7 @@ import {
 } from "../../shared/services/ApprenticeService";
 import type { SrsData } from "../../shared/types";
 import { RecallRating } from "../../srs/value-objects/RecallRating";
+import { lessonSequence } from "../data/lessonSequence";
 import { LearningService } from "./ScriptLessonService";
 
 describe("LearningService", () => {
@@ -53,6 +56,17 @@ describe("LearningService", () => {
 		it("requires sequential lessons (cannot skip)", () => {
 			expect(() => service.startLesson(3)).toThrow();
 		});
+
+		it("refuses a lesson with an incomplete predecessor, naming that predecessor", () => {
+			service.startLesson(1);
+			service.completeLesson(1);
+
+			// Prerequisites come from the declared order: with only lesson 1
+			// done, the first incomplete predecessor of lesson 4 is lesson 2.
+			expect(() => service.startLesson(4)).toThrow(
+				"Must complete lesson 2 before starting lesson 4",
+			);
+		});
 	});
 
 	describe("completeLesson", () => {
@@ -90,15 +104,18 @@ describe("LearningService", () => {
 			expect(service.getNextLesson()).toBe(2);
 		});
 
-		it("returns null after all 25 lessons completed", () => {
+		it("returns null after every declared lesson is completed", () => {
 			const _reviewService = new ReviewService(cardRepo, stateRepo);
-			for (let i = 1; i <= 25; i++) {
-				service.startLesson(i);
-				service.completeLesson(i);
+			for (const { position } of lessonSequence) {
+				service.startLesson(position);
+				service.completeLesson(position);
 				// Graduate all cards for this lesson so mastery gate passes
 				const state = storage.load();
 				for (const card of Object.values(state.cards)) {
-					if (card.lessonNumber === i && card.srs.learningStep !== null) {
+					if (
+						card.lessonNumber === position &&
+						card.srs.learningStep !== null
+					) {
 						card.srs.learningStep = null;
 						card.srs.interval = 4320;
 					}
@@ -106,6 +123,60 @@ describe("LearningService", () => {
 				storage.save(state);
 			}
 			expect(service.getNextLesson()).toBeNull();
+		});
+	});
+
+	describe("every lesson count derives from the declared sequence", () => {
+		// The five literal sites CONTEXT.md names — ScriptLessonService's
+		// TOTAL_LESSONS, AchievementService's all_lessons threshold, both
+		// ProgressPage sites, and AchievementBadge's user-facing copy — plus
+		// LessonPath's node walk. Updating any of them to the next count
+		// instead of deriving it reopens the defect at the next resequence,
+		// so this asserts over the source itself.
+		const DERIVED_SOURCE_FILES = [
+			"./ScriptLessonService.ts",
+			"../../shared/services/AchievementService.ts",
+			"../../../presentation/pages/ProgressPage.tsx",
+			"../../../presentation/components/organisms/AchievementBadge.tsx",
+			"../../../presentation/components/organisms/LessonPath.tsx",
+		];
+
+		function sourceOf(relativePath: string): string {
+			return readFileSync(
+				fileURLToPath(new URL(relativePath, import.meta.url)),
+				"utf-8",
+			);
+		}
+
+		it("leaves no lesson-count literal in any of the named files", () => {
+			for (const file of DERIVED_SOURCE_FILES) {
+				expect(
+					sourceOf(file),
+					`${file} contains a lesson-count literal`,
+				).not.toMatch(/\b25\b/);
+			}
+		});
+
+		it("has each named file read the declared sequence instead", () => {
+			for (const file of DERIVED_SOURCE_FILES) {
+				expect(
+					sourceOf(file),
+					`${file} does not derive from the declared sequence`,
+				).toMatch(/lessonSequence|lessonCount/);
+			}
+		});
+
+		it("keeps the badge's copy and its unlock condition in agreement at any count", () => {
+			// Both sides reference the same derived count, so the copy cannot
+			// promise a number the condition does not check.
+			expect(
+				sourceOf(
+					"../../../presentation/components/organisms/AchievementBadge.tsx",
+				),
+			).toContain("Complete all ${lessonCount} lessons");
+			expect(sourceOf("../../shared/services/AchievementService.ts")).toContain(
+				"completedLessons.length >= lessonCount",
+			);
 		});
 	});
 
