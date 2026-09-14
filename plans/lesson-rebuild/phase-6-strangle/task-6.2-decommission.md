@@ -16,7 +16,7 @@ covers:
   - src/domain/script/data/decommission.test.ts
 status: stable
 task_id: "6.2"
-task_status: pending
+task_status: complete
 depends_on: ["6.1"]
 size: medium
 verify:
@@ -38,6 +38,23 @@ weight_votes:
   - "unknowns-estimator -> 2"
   - "calibration-estimator -> 5"
 weight_voted: "sha256:b3e1814832c930ab7f98a409c78df0c6d024dfffcb01bd5142086079571b540b"
+ac_tests:
+  - "AC1 -> src/domain/script/data/decommission.test.ts::resolves every declared lesson to the deck arm"
+  - "AC2 -> none"
+  - "AC3 -> src/domain/script/data/decommission.test.ts::finds no occurrence of the token in any source file"
+  - "AC4 -> src/domain/script/data/decommission.test.ts::the directory is gone, or if present, holds nothing"
+  - "AC5 -> src/domain/script/data/decommission.test.ts::matches the recorded baseline for scheduled cards, next lesson, and unlocked words"
+  - "AC6 -> src/presentation/components/organisms/LessonIntro.test.tsx::renders a deck the way LessonPage calls it, with no suppression prop"
+red_proof:
+  - "AC1 -> Removed \"lesson-05\" from DECK_LESSON_IDS in lessonContent.ts."
+  - "AC3 -> Re-added `videoUrl?: string;` to LessonSummary in ScriptLessonService.ts."
+  - "AC4 -> Recreated public/videos/ with a renamed leftover file (RENAMED_leftover.webm) -- re-verified after switching the check from existsSync to a direct readdirSync/ENOENT distinction."
+  - "AC5 -> Changed SCHEDULE_BASELINE.dueCardsCount from 212 to 999 in decommission.test.ts."
+  - "AC6 -> Forced `deckPhase` to always be false in LessonIntro.tsx (`const deckPhase = false && content.kind === \"deck\" && !deckDone;`), skipping the deck render entirely."
+lint:
+  before: 25
+  after: 25
+  outcome: incomplete
 generated: {by: claude-opus-5/agent, at: 2026-09-13}
 profile_version: 1
 ---
