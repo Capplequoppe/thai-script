@@ -32,6 +32,28 @@ weight_votes:
   - "unknowns-estimator -> 8"
   - "calibration-estimator -> 8"
 weight_voted: "sha256:90ac879328fc3bd2c68506e34566afa5c8989010a9ae0f99eab45837a78e05e4"
+ac_tests:
+  - "AC1 -> src/domain/script/data/syllableRules.test.ts::reads ของ, ชอบ and ออก with อ as a vowel, not as an implicit โอะ"
+  - "AC2 -> src/domain/script/data/syllableRules.test.ts::divides ถนน, ขนม, ตลก and สงบ with an implicit อะ on the first syllable"
+  - "AC3 -> src/domain/script/data/syllableRules.test.ts::resolves a false cluster to its actual sound, not the sum of its parts"
+  - "AC4 -> src/domain/script/data/syllableRules.test.ts::declares the อ branch closed at exactly four words"
+  - "AC5 -> src/domain/script/data/syllableRules.test.ts::reports a disagreement count that matches the recorded baseline"
+  - "AC6 -> src/domain/script/data/syllableRules.test.ts::keeps อ a consonant at the start of a word and a vowel after that"
+  - "AC7 -> src/domain/script/data/syllableRules.test.ts::reports an unresolvable word with the rule that ran out, and never as unanalysed"
+  - "AC8 -> src/domain/script/data/syllableRules.test.ts::declares a slot for all nine, before their content exists"
+red_proof:
+  - "AC1 -> In syllableRules.ts candidatesAt, replaced `const vowelLetter = vowelLetterAt(characters, start + body);` with `const vowelLetter = undefined;` — removed the อ/ว-as-vowel reading, l… [see red-proofs/]"
+  - "AC2 -> In syllableRules.ts, replaced the unstressed-leader guard `if (atWordStart || leader !== \"อ\") {` with `if (false) {`, removing the implicit-อะ leader syllable entirely. ถนน then has… [see red-proofs/]"
+  - "AC3 -> In CLUSTER_INVENTORY, changed the ทร row from `[\"ทร\", \"false-sound\", \"s\", …]` to `[\"ทร\", \"true\", \"thr\", …]` — reclassified a false cluster as a true one, exactly the error AC3 exist… [see red-proofs/]"
+  - "AC4 -> Added a fifth word \"อยาย\" to O_LEADING_WORDS — broke the declared closure of the อ branch. A real AssertionError. (This is the mutation I put through `plan-runner macro run observe-… [see red-proofs/]"
+  - "AC5 -> In reconcileWithCorpus, replaced `if (droppedLetters(entry.thai, stored).length > 0) {` with `if (false) {` — the dropped-letter disagreement kind stops being detected, so 118 disag… [see red-proofs/]"
+  - "AC6 -> Same mutation as AC1 (vowelLetterAt disabled), observed against AC6's own test: with อ never readable as a vowel, ออก — the word where the same letter is consonant then vowel — stop… [see red-proofs/]"
+  - "AC7 -> In resolveWord's preference-order tiebreak, changed the returned `state: \"unresolvable\"` to `state: \"unanalysed\"` — the exact confusion AC7 forbids. หลอกลวง, which has two surviving… [see red-proofs/]"
+  - "AC8 -> Deleted `{ id: \"lesson-clusters\", legacyNumber: 27 },` from the DECLARED table in lessonSequence.ts — a phase-3 lesson with no declared slot, precisely what AC8 forbids. A real Asse… [see red-proofs/]"
+lint:
+  before: 19
+  after: 19
+  outcome: unsupported
 generated: {by: claude-opus-5/agent, at: 2026-09-13}
 profile_version: 1
 ---
