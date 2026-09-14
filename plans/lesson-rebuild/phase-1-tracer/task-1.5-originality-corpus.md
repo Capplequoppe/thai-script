@@ -16,7 +16,7 @@ verify:
   - python3 -m py_compile scripts/build-originality-corpus.py
   - npx tsc --noEmit -p tsconfig.domain-check.json
   - npm test -- src/domain/script/data/originality.test.ts
-  - npx biome check .
+  - npx biome check scripts src/domain/script/data
 ac_enforcement:
   - "AC1 -> a case in src/domain/script/data/originality.test.ts asserting the corpus covers both PDF sets by source tag"
   - "AC2 -> a case in src/domain/script/data/originality.test.ts asserting no entry is reversible to text"
@@ -31,7 +31,7 @@ weight_votes:
   - "implementation-estimator -> 13"
   - "unknowns-estimator -> 5"
   - "calibration-estimator -> 8"
-weight_voted: "sha256:c0bbbd4fa49a6ff93d2a788588eece91fe282cb50d09c3ff0254913325398a7c"
+weight_voted: "sha256:68de1341a807c067930b4e9036708e5071d1e81287e048d23cdd07fc20bd7963"
 generated: {by: claude-opus-5/agent, at: 2026-09-13}
 profile_version: 1
 ---

@@ -144,7 +144,9 @@ describe("ToneIdentificationChallenge", () => {
 
 	describe("recording practice", () => {
 		it("offers a record button once revealed, only when the item has audio", () => {
-			render(<ToneIdentificationChallenge item={makeItem()} onRate={vi.fn()} />);
+			render(
+				<ToneIdentificationChallenge item={makeItem()} onRate={vi.fn()} />,
+			);
 			reveal();
 
 			expect(screen.getByRole("button", { name: /Record/ })).toBeTruthy();
@@ -164,7 +166,9 @@ describe("ToneIdentificationChallenge", () => {
 
 		it("shows an analyzing state while the attempt is being scored", () => {
 			mockAttempt({ status: "analyzing" });
-			render(<ToneIdentificationChallenge item={makeItem()} onRate={vi.fn()} />);
+			render(
+				<ToneIdentificationChallenge item={makeItem()} onRate={vi.fn()} />,
+			);
 			reveal();
 
 			expect(screen.getByText("Analyzing…")).toBeTruthy();
@@ -180,7 +184,9 @@ describe("ToneIdentificationChallenge", () => {
 					label: "excellent",
 				},
 			});
-			render(<ToneIdentificationChallenge item={makeItem()} onRate={vi.fn()} />);
+			render(
+				<ToneIdentificationChallenge item={makeItem()} onRate={vi.fn()} />,
+			);
 			reveal();
 
 			expect(screen.getByText("Excellent match")).toBeTruthy();
@@ -191,7 +197,9 @@ describe("ToneIdentificationChallenge", () => {
 		// rating the word they already saw and heard must stay reachable.
 		it("keeps RatingButtons reachable when microphone access is denied", () => {
 			mockMic({ state: "denied" });
-			render(<ToneIdentificationChallenge item={makeItem()} onRate={vi.fn()} />);
+			render(
+				<ToneIdentificationChallenge item={makeItem()} onRate={vi.fn()} />,
+			);
 			reveal();
 
 			expect(

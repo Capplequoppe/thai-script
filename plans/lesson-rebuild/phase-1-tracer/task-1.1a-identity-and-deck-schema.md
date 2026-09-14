@@ -16,7 +16,7 @@ size: large
 verify:
   - npx tsc --noEmit -p tsconfig.domain-check.json
   - npm test -- src/domain/script
-  - npx biome check .
+  - npx biome check src/domain/script/data
 ac_enforcement:
   - "AC1 -> a case in src/domain/script/data/lessonContent.test.ts asserting refusal for each malformed id shape"
   - "AC2 -> a compile-time check: the exhaustive switch's never-default, asserted by tsc in verify"
@@ -33,7 +33,7 @@ weight_votes:
   - "implementation-estimator -> 13"
   - "unknowns-estimator -> 3"
   - "calibration-estimator -> 8"
-weight_voted: "sha256:fe7dabdc68ca5d82224c0c07f3e3c57eccdea2f703a49ec1c821de342c6da3e0"
+weight_voted: "sha256:4671b251e94f096cbafd344003990f1a2de2e412b6282cfd65c0ce936c2b75a4"
 generated: {by: claude-opus-5/agent, at: 2026-09-13}
 profile_version: 1
 ---

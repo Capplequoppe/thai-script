@@ -6,7 +6,15 @@
 		"useIgnoreFile": true
 	},
 	"files": {
-		"ignoreUnknown": false
+		"ignoreUnknown": false,
+		"includes": [
+			"**",
+			"!plans/**",
+			"!src/domain/script/data/originality-corpus.json",
+			"!src/domain/sentence/data/sentences.json",
+			"!src/domain/vocabulary/data/vocabulary.json",
+			"!scripts/assets/reference-clips.json"
+		]
 	},
 	"formatter": {
 		"enabled": true,
