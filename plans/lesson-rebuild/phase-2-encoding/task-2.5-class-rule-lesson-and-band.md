@@ -39,6 +39,29 @@ weight_votes:
   - "unknowns-estimator -> 5"
   - "calibration-estimator -> 8"
 weight_voted: "sha256:ee57feb70d12f11f3e6e5d1184f12d156e7a0e5f3c608649a3d4422582891447"
+ac_tests:
+  - "AC1 -> none"
+  - "AC2 -> src/domain/script/data/openingBand.test.ts::introduces exactly the symbols each lesson declares, and reaches outside the taught set only through a declared preview"
+  - "AC3 -> src/domain/script/data/openingBand.test.ts::derives the class of every consonant taught so far from the rule it states"
+  - "AC4 -> src/domain/script/data/openingBand.test.ts::claims no class for a letter the sequence has not yet taught"
+  - "AC5 -> src/domain/script/data/openingBand.test.ts::resolves every Thai example word against vocabulary.json, or a declared teaching word"
+  - "AC6 -> src/domain/script/data/openingBand.test.ts::clears the shared originality check on every line of every band deck"
+  - "AC7 -> src/domain/script/data/openingBand.test.ts::references only assets that exist inside the lesson's own directory, and leaves none unreferenced"
+  - "AC8 -> src/domain/script/data/openingBand.test.ts::asks the learner to attempt an answer before every reveal, on every band deck"
+red_proof:
+  - "AC2 -> Appended the slide body line 'ผ is a high class letter.' to the bucket-three slide in public/lessons/lesson-sound-buckets/deck.json — ผ is taught at lesson 14 and is declared in no… [see red-proofs/]"
+  - "AC3 -> Rewrote the bucket-three slide body in public/lessons/lesson-sound-buckets/deck.json from 'ช, ซ, พ and ฟ' to 'ช, ซ and พ' — the lesson stops presenting ฟ's class while ฟ is still ta… [see red-proofs/]"
+  - "AC4 -> Planted the sentence 'ผ is a high class letter.' into the buckets deck's bucket-three slide body — exactly the silent failure the criterion names. Ran the AC4 test alone. Verdict on… [see red-proofs/]"
+  - "AC5 -> Changed the example word มุม to มุมม in public/lessons/lesson-05/deck.json — a well-formed Thai run using only taught letters that matches no vocabulary.json entry and no teachingWo… [see red-proofs/]"
+  - "AC6 -> No mutation was needed — this one went red on its own against real authored prose, twice over. The first draft of lesson-02 contained 'like the w in \"water\"', colliding with a 5-gra… [see red-proofs/]"
+  - "AC7 -> Two mutations, one per direction. (a) Wrote an unreferenced file public/lessons/lesson-02/audio/orphan.mp3. (b) Removed it and appended an asset record to public/lessons/lesson-02/m… [see red-proofs/]"
+  - "AC8 -> Removed every slide of kind 'retrieval' from public/lessons/lesson-05/deck.json, leaving the reveals — a deck that shows answers with nothing attempted first. Ran the AC8 test alone… [see red-proofs/]"
+red_proof_waived:
+  - "AC1 -> traced: No test asserts AC1's deck-arm half, so there is nothing to redden. The arm a lesson resolves to is decided by DECK_LESSON_IDS in src/domain/script/data/lessonContent.ts and by the… [see red-proofs/]"
+lint:
+  before: 6
+  after: 6
+  outcome: unsupported
 generated: {by: claude-opus-5/agent, at: 2026-09-13}
 profile_version: 1
 ---
