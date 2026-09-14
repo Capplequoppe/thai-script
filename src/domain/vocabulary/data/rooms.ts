@@ -55,6 +55,7 @@ export type WordClass = (typeof KNOWN_WORD_CLASSES)[number];
 
 const KNOWN_WORD_CLASS_SET: ReadonlySet<string> = new Set(KNOWN_WORD_CLASSES);
 
+/** Whether `value` is one of the corpus's 12 declared word-class values. */
 export function isKnownWordClass(value: string): value is WordClass {
 	return KNOWN_WORD_CLASS_SET.has(value);
 }
@@ -81,6 +82,7 @@ const ROOM_FOR_WORD_CLASS: Readonly<Record<WordClass, Room>> = {
 	clf: "counting-and-classifiers",
 };
 
+/** The room a known word class stages its mnemonics in. */
 export function roomForWordClass(wordClass: WordClass): Room {
 	return ROOM_FOR_WORD_CLASS[wordClass];
 }
@@ -201,6 +203,7 @@ const ROOM_EXPOSURE_RULES: Readonly<
 	spellingFromAudio: stageOnRequestThenOnReveal,
 };
 
+/** Whether the room is visible for `property` given the review state, per the rule declared above. */
 export function roomExposureFor(
 	property: VocabProperty,
 	state: RoomReviewState,
