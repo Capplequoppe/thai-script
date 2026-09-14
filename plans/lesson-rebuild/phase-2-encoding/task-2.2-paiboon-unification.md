@@ -9,7 +9,7 @@ covers:
   - scripts/convert-romanization.py
 status: stable
 task_id: "2.2"
-task_status: pending
+task_status: complete
 depends_on: ["2.1"]
 size: medium
 verify:
@@ -31,6 +31,25 @@ weight_votes:
   - "unknowns-estimator -> 8"
   - "calibration-estimator -> 5"
 weight_voted: "sha256:3d0b2e9636887a0676d123941d7985bc4810110c75f065ef95459843524317b7"
+ac_tests:
+  - "AC1 -> src/domain/vocabulary/services/Romanization.test.ts::counts all four notation classes over the corpus"
+  - "AC2 -> src/domain/vocabulary/services/Romanization.test.ts::converts $ipa -> $paiboon ($label)"
+  - "AC3 -> src/domain/vocabulary/services/Romanization.test.ts::leaves no untouched entry classified as ipa after the migration, except entries reported as conversion failures"
+  - "AC4 -> src/domain/vocabulary/services/Romanization.test.ts::recovers each of the five tones from a converted Paiboon spelling"
+  - "AC5 -> src/domain/vocabulary/services/Romanization.test.ts::returns three distinct states: unconverted, converted, failed"
+  - "AC6 -> src/domain/vocabulary/services/Romanization.test.ts::every converted corpus entry still carries its original IPA"
+red_proof:
+  - "AC2 -> In Romanization.ts, changed ONSET_MAP.p from \"bp\" to \"XX\""
+  - "AC1 -> In classifyNotation, changed `if (hasIpa) return \"ipa\";` to `return \"paiboon\";`"
+  - "AC5 -> In convertEntry, changed `return { state: \"unconverted\", paiboon: null };` to `return { state: \"converted\", paiboon: null };`"
+red_proof_waived:
+  - "AC3 -> traced: Not separately mutation-tested; its assertion path (classifyNotation returning \"ipa\") is the exact code path broken and restored by the AC1 mutation above (hasIpa branch), so that s… [see red-proofs/]"
+  - "AC4 -> traced: Not separately mutation-tested; recoverTone reads the same TONE_MARKS table that applyTone writes (exercised indirectly by the AC2 mutation's tone-bearing fixtures), and I traced re… [see red-proofs/]"
+  - "AC6 -> traced: Not separately mutation-tested; verified by tracing scripts/convert-romanization.py's convert_corpus, which only ever sets entry['ipa'] = romanization immediately before overwriting… [see red-proofs/]"
+lint:
+  before: 13
+  after: 13
+  outcome: unsupported
 generated: {by: claude-opus-5/agent, at: 2026-09-13}
 profile_version: 1
 ---
