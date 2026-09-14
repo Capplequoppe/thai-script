@@ -34,6 +34,16 @@ type LoadState =
  * `audioUrl` was refused both end up with no replay button, and only the
  * warning tells the two apart.
  */
+/** One raw slide's `id`/`audioUrl`, if both are present as strings. */
+function readAudioCandidate(
+	item: unknown,
+): { id: string; audioUrl: string } | undefined {
+	if (typeof item !== "object" || item === null) return undefined;
+	const { id, audioUrl } = item as Record<string, unknown>;
+	if (typeof id !== "string" || typeof audioUrl !== "string") return undefined;
+	return { id, audioUrl };
+}
+
 function extractAudioUrls(
 	raw: unknown,
 	lessonId: string,
@@ -45,17 +55,17 @@ function extractAudioUrls(
 
 	const prefix = `${LESSON_ASSET_ROOT}/${lessonId}/`;
 	for (const item of slidesRaw) {
-		if (typeof item !== "object" || item === null) continue;
-		const { id, audioUrl } = item as Record<string, unknown>;
-		if (typeof audioUrl !== "string" || typeof id !== "string") continue;
+		const candidate = readAudioCandidate(item);
+		if (!candidate) continue;
+		const { id, audioUrl } = candidate;
 
 		if (audioUrl.startsWith(prefix) && !audioUrl.includes("..")) {
 			map.set(id, audioUrl);
-		} else {
-			console.warn(
-				`DeckSlide: refusing audioUrl outside "${prefix}" for slide "${id}": ${audioUrl}`,
-			);
+			continue;
 		}
+		console.warn(
+			`DeckSlide: refusing audioUrl outside "${prefix}" for slide "${id}": ${audioUrl}`,
+		);
 	}
 	return map;
 }
