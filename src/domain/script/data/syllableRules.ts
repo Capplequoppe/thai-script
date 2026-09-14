@@ -59,7 +59,7 @@ export const PROMOTED_SPECIAL_RULES: Readonly<Record<string, string>> =
 	});
 
 /** True for the 44 letters of the consonant block, ก through ฮ. */
-export function isThaiConsonant(character: string): boolean {
+function isThaiConsonant(character: string): boolean {
 	return character >= "ก" && character <= "ฮ";
 }
 
@@ -107,7 +107,7 @@ export const SONORANTS: readonly string[] = Object.freeze(
 const SONORANT_SET = new Set(SONORANTS);
 
 /** True for the ten low-class sonorants a leading consonant can lead. */
-export function isSonorant(character: string): boolean {
+function isSonorant(character: string): boolean {
 	return SONORANT_SET.has(character);
 }
 
@@ -574,8 +574,12 @@ const TONE_BY_CLASS = new Map(
 
 export type SyllableType = "live" | "dead";
 
-/** The no-tone-mark tone table. Bare-consonant words carry no tone mark. */
-export function toneWithoutMark(
+/**
+ * The no-tone-mark tone table, read off `completeToneChart`. Bare-consonant
+ * words carry no tone mark. Internal: a consumer wanting the tone rules should
+ * reach for `completeToneChart` in `symbols.ts`, which is the original.
+ */
+function toneWithoutMark(
 	consonantClass: ThaiSymbolClass,
 	syllableType: SyllableType,
 	vowelLength: "short" | "long",
