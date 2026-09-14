@@ -95,6 +95,7 @@ export interface LessonSummary {
 	lessonNumber: number;
 	title: string;
 	focus: string;
+	videoUrl?: string;
 	consonants: ConsonantSummary[];
 	vowels: VowelSummary[];
 	toneMarks: ToneMarkSummary[];
@@ -221,6 +222,7 @@ export class LearningService {
 			lessonNumber,
 			title: lessonMeta.title,
 			focus: lessonMeta.focus,
+			videoUrl: lessonMeta.videoUrl,
 			consonants: symbols
 				.filter((s): s is ThaiConsonant => s instanceof ThaiConsonant)
 				.map((c) => ({
@@ -384,6 +386,7 @@ export class LearningService {
 					lessonNumber,
 					summary: {
 						...full,
+						videoUrl: undefined,
 						consonants: full.consonants.filter((c) => newKeys.has(c.character)),
 						vowels: full.vowels.filter((v) => newKeys.has(v.character)),
 						toneMarks: full.toneMarks.filter((t) => newKeys.has(t.character)),

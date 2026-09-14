@@ -15,14 +15,18 @@ import {
 interface Props {
 	summary: LessonSummary;
 	/**
-	 * What this lesson serves. Already resolved by the caller
-	 * (`LessonPage`/`CatchUpPage`): a lesson that can't be resolved at all is
-	 * that caller's error state, not this component's. Task 6.2 removed the
-	 * licensed-video arm, so this now has one shape — but `lessonContent.ts`
-	 * keeps its `kind` discriminant and exhaustive dispatch, so a future
-	 * content source doesn't fall through silently.
+	 * What this lesson serves — a licensed video or an in-house deck. Already
+	 * resolved by the caller (`LessonPage`/`CatchUpPage`): a lesson that can't
+	 * be resolved at all is that caller's error state, not this component's.
 	 */
 	content: LessonContent;
+	/**
+	 * Skips the video slide even when `content` is the video arm — what
+	 * `CatchUpPage` needs, since a catch-up lesson was already watched the
+	 * first time around. Never affects the deck arm, which a catch-up
+	 * learner sees for the first time either way.
+	 */
+	suppressVideo?: boolean;
 	onComplete: () => void;
 }
 
@@ -31,12 +35,59 @@ interface Slide {
 	render: () => ReactNode;
 }
 
-export function LessonIntro({ summary, content, onComplete }: Props) {
+function isEmbedUrl(url: string): boolean {
+	return (
+		url.includes("youtube.com") ||
+		url.includes("youtu.be") ||
+		url.includes("vimeo.com")
+	);
+}
+
+function VideoSlide({ url, title }: { url: string; title: string }) {
+	return (
+		<div className="space-y-4">
+			<h2 className="text-lg font-bold text-center">{title}</h2>
+			<div className="relative w-full aspect-video max-h-[40vh] rounded-xl overflow-hidden bg-black">
+				{isEmbedUrl(url) ? (
+					<iframe
+						src={url}
+						title={title}
+						className="absolute inset-0 w-full h-full"
+						allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+						allowFullScreen
+					/>
+				) : (
+					// biome-ignore lint/a11y/useMediaCaption: Thai pronunciation videos are self-explanatory
+					<video
+						src={url}
+						title={title}
+						className="absolute inset-0 w-full h-full"
+						controls
+						preload="metadata"
+					/>
+				)}
+			</div>
+			<p
+				className="text-sm text-center"
+				style={{ color: "var(--color-text-muted)" }}
+			>
+				Watch the introduction, then continue to learn the symbols.
+			</p>
+		</div>
+	);
+}
+
+export function LessonIntro({
+	summary,
+	content,
+	suppressVideo,
+	onComplete,
+}: Props) {
 	// A deck lesson stages two phases: the deck itself (which owns its own
-	// stepping, see `DeckSlide`), then the symbol cards below, stepped by
-	// this component's own `idx` state. All hooks below are called
-	// unconditionally regardless of phase — the dispatch happens only in
-	// what's returned, never in which hooks run.
+	// stepping, see `DeckSlide`), then the symbol cards below, using this
+	// component's own stepping exactly as the video arm already does. All
+	// hooks below are called unconditionally regardless of phase — the
+	// dispatch happens only in what's returned, never in which hooks run.
 	const [deckDone, setDeckDone] = useState(false);
 	// `content.kind` has one value now that task 6.2 removed the video arm —
 	// the deck phase is gated on `deckDone` alone. Kept as a plain boolean
@@ -46,7 +97,7 @@ export function LessonIntro({ summary, content, onComplete }: Props) {
 	// protect.
 	const deckPhase = !deckDone;
 
-	const slides: Slide[] = [
+	const cardSlides: Slide[] = [
 		...summary.consonants.map((c) => ({
 			type: "consonant",
 			render: () => <ConsonantCard c={c} />,
@@ -72,6 +123,22 @@ export function LessonIntro({ summary, content, onComplete }: Props) {
 			render: () => <ToneRuleCard description={r.description} />,
 		})),
 	];
+
+	const slides: Slide[] =
+		content.kind === "video" && !suppressVideo
+			? [
+					{
+						type: "video",
+						render: () => (
+							<VideoSlide
+								url={content.url}
+								title={`Lesson ${summary.lessonNumber}: ${summary.title}`}
+							/>
+						),
+					},
+					...cardSlides,
+				]
+			: cardSlides;
 
 	const [idx, setIdx] = useState(0);
 	const current = deckPhase ? undefined : slides[idx];

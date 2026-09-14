@@ -3113,6 +3113,7 @@ export interface Lesson {
 	toneMarks: string[];
 	toneRulesIntroduced: string[];
 	specialRulesIntroduced: string[];
+	videoUrl?: string;
 }
 
 export const lessons: Lesson[] = [
@@ -3125,6 +3126,7 @@ export const lessons: Lesson[] = [
 		toneMarks: [],
 		toneRulesIntroduced: [],
 		specialRulesIntroduced: [],
+		videoUrl: "/thai-script/videos/TAME_L1_tpod101_video-h.webm",
 	},
 	{
 		number: 2,
@@ -3135,6 +3137,7 @@ export const lessons: Lesson[] = [
 		toneMarks: [],
 		toneRulesIntroduced: ["low-live"],
 		specialRulesIntroduced: ["live-endings"],
+		videoUrl: "/thai-script/videos/TAME_L2_tpod101_video-h.webm",
 	},
 	{
 		number: 3,
@@ -3145,6 +3148,7 @@ export const lessons: Lesson[] = [
 		toneMarks: [],
 		toneRulesIntroduced: ["mid-live"],
 		specialRulesIntroduced: ["dead-endings"],
+		videoUrl: "/thai-script/videos/TAME_L3_tpod101_video-h.webm",
 	},
 	{
 		number: 4,
@@ -3155,6 +3159,7 @@ export const lessons: Lesson[] = [
 		toneMarks: [],
 		toneRulesIntroduced: ["low-dead-short"],
 		specialRulesIntroduced: ["mai-han-akat"],
+		videoUrl: "/thai-script/videos/TAME_L4_tpod101_video-h.webm",
 	},
 	{
 		number: 5,
@@ -3165,6 +3170,7 @@ export const lessons: Lesson[] = [
 		toneMarks: [],
 		toneRulesIntroduced: ["low-dead-long"],
 		specialRulesIntroduced: [],
+		videoUrl: "/thai-script/videos/TAME_L5_tpod101_video-h.webm",
 	},
 	{
 		number: 6,
@@ -3175,6 +3181,7 @@ export const lessons: Lesson[] = [
 		toneMarks: [],
 		toneRulesIntroduced: [],
 		specialRulesIntroduced: ["sara-uee-placeholder"],
+		videoUrl: "/thai-script/videos/TAME_L6_tpod101_video-h.webm",
 	},
 	{
 		number: 7,
@@ -3185,6 +3192,7 @@ export const lessons: Lesson[] = [
 		toneMarks: [],
 		toneRulesIntroduced: [],
 		specialRulesIntroduced: [],
+		videoUrl: "/thai-script/videos/TAME_L7_tpod101_video-h.webm",
 	},
 	{
 		number: 8,
@@ -3195,6 +3203,7 @@ export const lessons: Lesson[] = [
 		toneMarks: [],
 		toneRulesIntroduced: [],
 		specialRulesIntroduced: [],
+		videoUrl: "/thai-script/videos/TAME_L8_tpod101_video-h.webm",
 	},
 	{
 		number: 9,
@@ -3205,6 +3214,7 @@ export const lessons: Lesson[] = [
 		toneMarks: [],
 		toneRulesIntroduced: [],
 		specialRulesIntroduced: [],
+		videoUrl: "/thai-script/videos/TAME_L9_tpod101_video-h.webm",
 	},
 	{
 		number: 10,
@@ -3219,6 +3229,7 @@ export const lessons: Lesson[] = [
 			"ao-ai-tone-exception",
 			"mai-yamok",
 		],
+		videoUrl: "/thai-script/videos/TAME_L10_tpod101_video-h.webm",
 	},
 	{
 		number: 11,
@@ -3229,6 +3240,7 @@ export const lessons: Lesson[] = [
 		toneMarks: [],
 		toneRulesIntroduced: ["mid-dead-short", "mid-dead-long"],
 		specialRulesIntroduced: ["o-ang-dual-role"],
+		videoUrl: "/thai-script/videos/TAME_L11_tpod101_video-h.webm",
 	},
 	// --- Task 4.3: the final band. The fourteen video lessons that stood here
 	// (legacy numbers 12-25) are retired — see RETIRED_LESSONS in
@@ -3271,7 +3283,9 @@ export const lessons: Lesson[] = [
 	// Declared here so every slot in `lessonSequence.ts` has the title, focus
 	// and symbol sets every lesson consumer joins against; `startLesson` throws
 	// outright on a sequence entry with no row here. They introduce no new
-	// symbol — each teaches how symbols already taught combine.
+	// symbol — each teaches how symbols already taught combine — and carry no
+	// `videoUrl`, so they read as declared-but-unfilled until task 3.2 puts them
+	// on the deck arm.
 	{
 		number: 26,
 		title: "Vowels That Are Not Written",
