@@ -1,0 +1,97 @@
+{
+	"lessonId": "lesson-tone-marks",
+	"title": "The eight-cell tone-mark table, at once",
+	"slides": [
+		{
+			"kind": "exposition",
+			"id": "one-table",
+			"heading": "One table, twelve cells, three districts",
+			"body": [
+				"Every consonant already carries a class — market, harbor or temple — and that class alone decides a syllable's tone with no mark written at all.",
+				"A tone mark changes that outcome, and there are only four shapes: mai ek (่), mai tho (้), mai tri (๊) and mai chattawa (๋).",
+				"Lay all three classes against all four marks and you get twelve cells. Eight occur in standard spelling. The other four do not, and that absence is a fact worth learning, not a gap to skip past."
+			]
+		},
+		{
+			"kind": "exposition",
+			"id": "mid-class-marks",
+			"heading": "The market takes all four, in order",
+			"body": [
+				"mai ek (่) gives low tone. ไก่ (gài) is chicken.",
+				"mai tho (้) gives falling tone. เก้า (gâo) is nine.",
+				"mai tri (๊) gives high tone, and the market is the only district that ever takes this mark. โต๊ะ (dtó) is a table.",
+				"mai chattawa (๋) gives rising tone, market only again. เดี๋ยว (dǐao) is \"in a moment.\"",
+				"Four marks, and each lands on a different tone of its own — the market is the whole set, spoken for."
+			]
+		},
+		{
+			"kind": "exposition",
+			"id": "high-class-marks",
+			"heading": "The temple takes two",
+			"body": [
+				"mai ek (่) gives low tone here too. ข่าว (khàao) is news.",
+				"mai tho (้) gives falling tone. ให้ (hâi) is to give.",
+				"mai tri and mai chattawa never sit over a temple letter in standard spelling. The shapes are writable — they turn up in loanwords and informal spelling — but no standard word pairs either one with a temple letter."
+			]
+		},
+		{
+			"kind": "exposition",
+			"id": "low-class-marks",
+			"heading": "The harbor takes two, and swaps them",
+			"body": [
+				"mai ek (่) gives falling tone here — the opposite of what it gave the temple. ล่าง (lâang) is below.",
+				"mai tho (้) gives high tone here — again the opposite of the temple's falling. ม้า (máa) is horse.",
+				"The harbor is the odd one out in the whole table: the same two marks that gave the temple low-then-falling give the harbor falling-then-high.",
+				"Mai tri and mai chattawa never sit over a harbor letter either, for the same reason as the temple: not used in standard spelling."
+			]
+		},
+		{
+			"kind": "retrieval",
+			"id": "which-tone-a",
+			"prompt": "ตั๋ว (dtǔua, ticket) carries mai chattawa over ต. What tone does it give, and why does the answer not need the temple or harbor rows at all?",
+			"revealSlideId": "which-tone-a-answer"
+		},
+		{
+			"kind": "reveal",
+			"id": "which-tone-a-answer",
+			"retrievalSlideId": "which-tone-a",
+			"answers": [
+				"Rising. ต is market class, and the market is the only district mai chattawa ever appears in — so there is only one row to check, and the other two districts never come up."
+			]
+		},
+		{
+			"kind": "retrieval",
+			"id": "which-tone-b",
+			"prompt": "ล่าง (lâang, below) carries mai ek over ล, a harbor letter. The market's mai ek gives low tone. Does ล่าง come out low too?",
+			"revealSlideId": "which-tone-b-answer"
+		},
+		{
+			"kind": "reveal",
+			"id": "which-tone-b-answer",
+			"retrievalSlideId": "which-tone-b",
+			"answers": [
+				"No. The harbor is the exception: its mai ek gives falling, not low. ล่าง is falling tone — the opposite of what the same mark gives the temple."
+			]
+		},
+		{
+			"kind": "rule",
+			"id": "tone-mark-placement",
+			"ruleId": "tone-mark-placement"
+		},
+		{
+			"kind": "rule",
+			"id": "mai-tri-chattawa-scope",
+			"ruleId": "mai-tri-chattawa-middle-only"
+		},
+		{
+			"kind": "exposition",
+			"id": "the-shape-of-the-table",
+			"heading": "What makes eight cells memorable",
+			"body": [
+				"The market takes all four marks, each one a different tone: mai ek for low, mai tho for falling, mai tri for high, mai chattawa for rising.",
+				"The temple and the harbor only ever take mai ek and mai tho — the other two marks belong to the market alone.",
+				"And the harbor is the one that flips: the same two marks that give the temple low-then-falling give the harbor falling-then-high."
+			]
+		}
+	]
+}

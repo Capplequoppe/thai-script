@@ -3439,6 +3439,27 @@ export const lessons: Lesson[] = [
 		toneRulesIntroduced: [],
 		specialRulesIntroduced: ["hor-nam"],
 	},
+	// Task 4.2 — the consolidated tone-mark lesson. Replaces the six-lesson
+	// spread of `toneMarkRules` (mid class in lessons 17-18, high in 21-22, low
+	// in 23-24) with the eight-cell table taught as one pattern. It introduces
+	// no new consonant or vowel — every spelling-based tone rule above (lessons
+	// 2-16) already precedes it in the sequence — and carries no `videoUrl`
+	// because it is a deck lesson from the start (`DECK_LESSON_IDS` in
+	// `lessonContent.ts`).
+	{
+		number: 29,
+		title: "The Eight-Cell Tone-Mark Table",
+		focus:
+			"All four tone marks against all three consonant classes, as one pattern",
+		consonants: [],
+		vowels: [],
+		toneMarks: [],
+		toneRulesIntroduced: [],
+		specialRulesIntroduced: [
+			"tone-mark-placement",
+			"mai-tri-chattawa-middle-only",
+		],
+	},
 ];
 
 // ============================================================================

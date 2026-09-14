@@ -115,6 +115,9 @@ export const DECK_LESSON_IDS: ReadonlySet<string> = new Set<string>([
 	"lesson-unwritten-vowels",
 	"lesson-clusters",
 	"lesson-leading-consonants",
+	// Task 4.2 — the consolidated tone-mark lesson. Already holds a slot in
+	// `lessonSequence.ts` with its own legacy number and `lessons` row.
+	"lesson-tone-marks",
 ]);
 
 export type LessonContentResolution =

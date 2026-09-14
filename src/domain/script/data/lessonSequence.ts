@@ -67,6 +67,14 @@ const DECLARED: readonly Omit<LessonSequenceEntry, "position">[] = [
 	{ id: "lesson-unwritten-vowels", legacyNumber: 26 },
 	{ id: "lesson-clusters", legacyNumber: 27 },
 	{ id: "lesson-leading-consonants", legacyNumber: 28 },
+	// Task 4.2 — the consolidated tone-mark lesson. Appended for the same
+	// reason as the phase 3 trio above: its position is its persisted identity
+	// (CONTEXT.md Rule 1), so it takes the next open slot rather than the
+	// position a finished course would put it at. It introduces no new
+	// consonant or vowel, only the four tone-mark symbols and the rule that
+	// resolves them, and every spelling-based tone rule (lessons 2-16) already
+	// precedes it.
+	{ id: "lesson-tone-marks", legacyNumber: 29 },
 ];
 
 export const lessonSequence: readonly LessonSequenceEntry[] = Object.freeze(
