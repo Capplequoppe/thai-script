@@ -227,6 +227,13 @@ export const confusablePairs: readonly ConfusablePair[] = [
 		detail: "ศ plants an extra flag stroke on top of the ค shape",
 	},
 	{
+		a: "ค",
+		b: "ด",
+		feature: "head-direction",
+		detail:
+			"ด turns its head clockwise inside the bowl; ค turns it counter-clockwise",
+	},
+	{
 		a: "ฆ",
 		b: "ม",
 		feature: "added-stroke",

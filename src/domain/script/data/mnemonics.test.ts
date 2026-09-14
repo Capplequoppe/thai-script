@@ -211,9 +211,7 @@ describe("originality", () => {
 
 // ---------------------------------------------------------------------------
 // AC5 — confusable pairs contrast on the distinguishing feature. Features come
-// from task 2.1's confusablePairs declarations; ค/ด is treated as confusable
-// by the course but has no declared pair in scene grammar (a gap reported by
-// task 2.4), so its feature is supplied here and the contrast still checked.
+// from task 2.1's confusablePairs declarations.
 // ---------------------------------------------------------------------------
 
 const AC5_PAIRS: readonly [string, string][] = [
@@ -230,12 +228,6 @@ const AC5_PAIRS: readonly [string, string][] = [
 	["ถ", "ภ"],
 	["ฎ", "ฏ"],
 ];
-
-const UNDECLARED_PAIR_FEATURES: Readonly<
-	Record<string, DistinguishingFeature>
-> = {
-	คด: "head-direction",
-};
 
 /**
  * What it takes for a shape cue to name a feature. Every pattern for the
@@ -262,7 +254,7 @@ describe("confusable pairs", () => {
 			const declared = confusablePairs.find(
 				(candidate) => [candidate.a, candidate.b].sort().join("") === pairKey,
 			);
-			const feature = declared?.feature ?? UNDECLARED_PAIR_FEATURES[pairKey];
+			const feature = declared?.feature;
 			expect(feature, `${a}/${b} has no distinguishing feature`).toBeDefined();
 			if (!feature) continue;
 
