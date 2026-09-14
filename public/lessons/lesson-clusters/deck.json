@@ -1,0 +1,101 @@
+{
+	"lessonId": "lesson-clusters",
+	"title": "Consonant clusters, true and false",
+	"slides": [
+		{
+			"kind": "exposition",
+			"id": "only-three-followers",
+			"heading": "Only three letters ever come second",
+			"body": [
+				"English lets a syllable open with almost anything: str, spl, thw. Thai does not.",
+				"A Thai syllable can open with two consonants only when the second one is ร, ล or ว. No other letter has ever been second in a cluster.",
+				"And not every first letter is allowed either. The whole inventory is twenty pairs, and you are about to read all of them."
+			]
+		},
+		{
+			"kind": "exposition",
+			"id": "true-clusters",
+			"heading": "Fifteen pairs where you say both letters",
+			"body": [
+				"With ร: กร, ขร, คร, ตร, ปร, พร. ตรง (dtrong) is straight, ครอง (khraawng) is to rule, ประตู (bprà-dtuu) is a door, พระ (phrá) is a monk, กรอบ (gràawp) is crisp.",
+				"With ล: กล, ขล, คล, ปล, ผล, พล. กลาง (glaang) is middle, กลับ (glàp) is to return, คลอง (khlaawng) is a canal, ปลา (bplaa) is a fish, ปลอม (bplaawm) is fake.",
+				"With ว: กว, ขว, คว. ความ (khwaam) makes a noun of whatever follows it, ขวา (khwǎa) is right, กว้าง (gwâang) is wide.",
+				"Speak both, left to right, with no vowel wedged between them. A pair always takes its class from the first letter."
+			]
+		},
+		{
+			"kind": "exposition",
+			"id": "false-sound-clusters",
+			"heading": "Two pairs that are not what they look like",
+			"body": [
+				"ทร is read as s. ทราบ (sâap) is to know, ทรง (song) is a form, ทราย (saai) is sand. It is never thr.",
+				"ซร is read as s too, and you will meet it about once.",
+				"The sound changes but the class does not: ท is low class and ทราบ takes its tone from ท."
+			]
+		},
+		{
+			"kind": "exposition",
+			"id": "silent-second-clusters",
+			"heading": "Three pairs where the ร is silent",
+			"body": [
+				"จร, ศร and สร drop the ร entirely. Say the first letter and go straight on to the vowel.",
+				"จริง (jing) is true, and สร้าง (sâang) is to build. Neither has an r in it anywhere."
+			]
+		},
+		{
+			"kind": "exposition",
+			"id": "lexical-pairs",
+			"heading": "ผล and พล are decided by the word, not by the spelling",
+			"body": [
+				"ผลิต (phà-lìt) is to manufacture and ผลไม้ (phǒn-lá-máai) is fruit. Neither is a cluster: ผ is a separate light syllable in the first and ผล is a bare pair in the second.",
+				"พลัง (phá-lang) is power and is not a cluster either, while พลอย (phlaawi) is a gemstone and is.",
+				"These two pairs are the only place in the inventory where the page will not tell you. Learn the word."
+			]
+		},
+		{
+			"kind": "retrieval",
+			"id": "is-it-a-cluster",
+			"prompt": "ถนน opens with ถ followed by น. Is that a cluster, and how do you know without knowing the word?",
+			"revealSlideId": "is-it-a-cluster-answer"
+		},
+		{
+			"kind": "reveal",
+			"id": "is-it-a-cluster-answer",
+			"retrievalSlideId": "is-it-a-cluster",
+			"answers": [
+				"No. น is not ร, ล or ว, so ถน cannot be a cluster and no list needs consulting.",
+				"The two letters belong to different syllables, and ถ takes a short a of its own."
+			]
+		},
+		{
+			"kind": "rule",
+			"id": "consonant-clusters",
+			"ruleId": "consonant-clusters"
+		},
+		{
+			"kind": "exposition",
+			"id": "the-closure",
+			"heading": "Twenty pairs, and nothing else",
+			"body": [
+				"Fifteen true, two read as s, three that drop the ร. That is the entire inventory, and it does not grow.",
+				"Any other two consonants standing together are two syllables, not one opening. There is no judgement call and no borderline case to weigh.",
+				"This is why the inventory is worth the twenty lines it takes: it is the only way to know that ขน in ขนาด is not a cluster, and that ขว in ขวา is."
+			]
+		},
+		{
+			"kind": "retrieval",
+			"id": "which-tone-decides",
+			"prompt": "ทราบ opens with a pair read as s, and ท is low class while ส is high class. Which of the two decides the tone?",
+			"revealSlideId": "which-tone-decides-answer"
+		},
+		{
+			"kind": "reveal",
+			"id": "which-tone-decides-answer",
+			"retrievalSlideId": "which-tone-decides",
+			"answers": [
+				"ท does. The sound changed; the class did not.",
+				"ท is low class and the syllable is long and dead, which is falling tone: sâap."
+			]
+		}
+	]
+}

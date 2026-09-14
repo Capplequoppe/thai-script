@@ -97,6 +97,13 @@ export const DECK_LESSON_IDS: ReadonlySet<string> = new Set<string>([
 	"lesson-03",
 	"lesson-04",
 	"lesson-05",
+	// Phase 3's three promoted lessons. Each already holds a slot in
+	// `lessonSequence.ts` with a `legacyNumber` and a `lessons` row, so wiring
+	// them onto the deck arm moves no lesson's position and touches none of the
+	// five persisted stores (CONTEXT.md Rule 1).
+	"lesson-unwritten-vowels",
+	"lesson-clusters",
+	"lesson-leading-consonants",
 ]);
 
 export type LessonContentResolution =

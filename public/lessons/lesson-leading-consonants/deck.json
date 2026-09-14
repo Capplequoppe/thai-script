@@ -1,0 +1,102 @@
+{
+	"lessonId": "lesson-leading-consonants",
+	"title": "Leading consonants: อักษรนำ",
+	"slides": [
+		{
+			"kind": "exposition",
+			"id": "why-it-exists",
+			"heading": "Ten letters that cannot be written with a rising tone",
+			"body": [
+				"ง ญ ณ น ม ย ร ล ว ฬ are the sonorants: the ten letters you can hold and hum.",
+				"Every one of them is low class, and none has a high or mid class twin the way ค has ข.",
+				"A low class letter on its own can reach mid, falling and high tone, and that is all. Rising tone and low tone are simply not spellable on it.",
+				"Thai solves this by putting another letter in front. That front letter is not there to be heard. It is there to be a class."
+			]
+		},
+		{
+			"kind": "exposition",
+			"id": "one-rule",
+			"heading": "The rule, once",
+			"body": [
+				"A mid or high class consonant written directly in front of a sonorant leads it, and hands its class to the syllable the sonorant opens.",
+				"Nothing else changes. The vowel, the final and the live or dead reading are whatever the written syllable says they are; only the class comes from outside.",
+				"Everything below is this one sentence meeting three different first letters. It is not three rules."
+			]
+		},
+		{
+			"kind": "exposition",
+			"id": "branch-silent-h",
+			"heading": "First letter ห, and you do not hear it",
+			"body": [
+				"หมด (mòt) is finished, หลง (lǒng) is to be lost, หนัง (nǎng) is a film, หญิง (yǐng) is a woman, หมอ (mǎaw) is a doctor, หรอก (ràawk) softens a denial.",
+				"There is no h in any of them. ห in this position is written and never spoken.",
+				"Any of the ten may follow it, and new words still take it, so treat this as open."
+			]
+		},
+		{
+			"kind": "exposition",
+			"id": "branch-silent-o",
+			"heading": "First letter อ, four words, no more",
+			"body": [
+				"อย่า (yàa) is don't. อยู่ (yùu) is to stay. อย่าง (yàang) is a kind or sort. อยาก (yàak) is to want. That is the complete list.",
+				"อ in front of ย is silent here, exactly as ห is.",
+				"There is no fifth word and no fifth is coming. Read ยาก and ยาว as the low class ย they are, because nothing precedes them."
+			]
+		},
+		{
+			"kind": "exposition",
+			"id": "branch-spoken-leader",
+			"heading": "Any other mid or high first letter, and you do hear it",
+			"body": [
+				"สวัสดี (sà-wàt-dii) at rank nine is this branch, and so are ขนาด (khà-nàat), ตลอด (dtà-làawt), สงบ (sà-ngòp), สมัย (sà-mǎi), ผลิต (phà-lìt) and ถนน (thà-nǒn).",
+				"Here the first letter keeps its own sound. It takes the short a of a consonant that will not fit, and becomes a light syllable ahead of the main one.",
+				"ตลก (dtà-lòk), ขนม (khà-nǒm), สบาย (sà-baai), ตลาด (dtà-làat) and ฉลาด (chà-làat) are the same shape. This branch is wide open and you will meet it daily."
+			]
+		},
+		{
+			"kind": "retrieval",
+			"id": "two-first-letters",
+			"prompt": "หมด begins with ห and ตลก begins with ต. In one of them the first letter is spoken and in the other it is not. What is the same about the two words?",
+			"revealSlideId": "two-first-letters-answer"
+		},
+		{
+			"kind": "reveal",
+			"id": "two-first-letters-answer",
+			"retrievalSlideId": "two-first-letters",
+			"answers": [
+				"In both, the letter in front is the one the tone is worked out from, and the letter after it is not.",
+				"Spoken or not spoken: that is all that separates one branch from the next."
+			]
+		},
+		{
+			"kind": "rule",
+			"id": "hor-nam",
+			"ruleId": "hor-nam"
+		},
+		{
+			"kind": "exposition",
+			"id": "not-every-pair",
+			"heading": "When the first letter is simply the initial",
+			"body": [
+				"สนใจ (sǒn-jai) has ส in front of น and is one syllable, not two: สน is a bare pair with a short o, and ส is its own initial.",
+				"Count syllables the shorter way first. Only when a letter cannot be read into the syllable beside it does it become a leader.",
+				"And a low class first letter never leads at all. It has no class the sonorant does not already have, so นคร is ná-khaawn with two ordinary syllables."
+			]
+		},
+		{
+			"kind": "retrieval",
+			"id": "which-tone",
+			"prompt": "หมด and มด are both real words, both read with a short o and a d that stops the air. Why do they not have the same tone?",
+			"revealSlideId": "which-tone-answer"
+		},
+		{
+			"kind": "reveal",
+			"id": "which-tone-answer",
+			"retrievalSlideId": "which-tone",
+			"answers": [
+				"มด (mót) is high tone, because ม is low class and the syllable is short and dead.",
+				"หมด (mòt) is low tone, because the ห in front makes the reading a high class one."
+			]
+		}
+	]
+}

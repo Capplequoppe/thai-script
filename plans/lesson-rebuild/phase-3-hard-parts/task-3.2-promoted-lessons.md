@@ -10,9 +10,10 @@ covers:
   - public/lessons/lesson-clusters/
   - public/lessons/lesson-leading-consonants/
   - src/domain/script/data/promotedLessons.test.ts
+  - src/domain/script/data/lessonContent.ts
 status: stable
 task_id: "3.2"
-task_status: pending
+task_status: complete
 depends_on: ["3.1"]
 size: large
 verify:
