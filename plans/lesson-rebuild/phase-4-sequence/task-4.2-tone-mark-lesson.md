@@ -6,9 +6,12 @@ covers:
   - content/lessons/lesson-tone-marks.md
   - public/lessons/lesson-tone-marks/
   - src/domain/script/data/toneMarkLesson.test.ts
+  - src/domain/script/data/symbols.ts
+  - src/domain/script/data/lessonSequence.ts
+  - src/domain/script/data/lessonContent.ts
 status: stable
 task_id: "4.2"
-task_status: pending
+task_status: complete
 depends_on: ["4.1"]
 size: medium
 verify:
@@ -29,6 +32,24 @@ weight_votes:
   - "unknowns-estimator -> 3"
   - "calibration-estimator -> 5"
 weight_voted: "sha256:72c0616dcfdb003d388bd33e2efe1af2b15b6921cd9ecf7d38234f4141b5828c"
+ac_tests:
+  - "AC1 -> src/domain/script/data/toneMarkLesson.test.ts::AC1 — the lesson resolves to the deck arm at its declared position > is declared, decked, and comes after every spelling-based tone rule"
+  - "AC2 -> src/domain/script/data/toneMarkLesson.test.ts::AC2 — all twelve class-by-mark combinations appear > states every resolved cell that toneMarkTable.ts declares resolved"
+  - "AC3 -> src/domain/script/data/toneMarkLesson.test.ts::AC3 — the lesson's stated table resolves real corpus words > reproduces the tone of one word per resolved cell"
+  - "AC4 -> src/domain/script/data/toneMarkLesson.test.ts::AC4 — every Thai example word is a real, rank-windowed corpus word > resolves every word the deck shows against vocabulary.json"
+  - "AC5 -> src/domain/script/data/toneMarkLesson.test.ts::AC5 — the lesson reuses no phrasing from the source transcripts > clears the shared originality check on every line of the deck"
+  - "AC6 -> src/domain/script/data/toneMarkLesson.test.ts::AC6 — every asset the deck references exists > references only files inside the lesson's own directory, and leaves none unreferenced"
+red_proof:
+  - "AC1 -> Removed \"lesson-tone-marks\" from DECK_LESSON_IDS in lessonContent.ts."
+  - "AC2 -> Deleted the mai-tri line from the mid-class-marks slide body in the committed deck.json."
+  - "AC3 -> Edited deck.json's low-class-marks slide so the mai-ek line claims \"gives low tone\" instead of \"gives falling tone\"."
+  - "AC4 -> Appended an extra example line naming กระเป๋าถือ (a real vocabulary.json entry whose rank is null) to the one-table slide's body."
+  - "AC5 -> Review-pass correction: the previously filed proof was the passing canary test, not an observed failure. Re-did it for real — planted \"Think of a coffee mug with a broken handle...\"… [see red-proofs/]"
+  - "AC6 -> Set slides[0].image in deck.json to \"/thai-script/lessons/lesson-tone-marks/missing.png\", a path with no file on disk."
+lint:
+  before: 11
+  after: 11
+  outcome: unsupported
 generated: {by: claude-opus-5/agent, at: 2026-09-13}
 profile_version: 1
 ---
