@@ -6,8 +6,12 @@ narrative reconstructed from the agent transcript that produced it.
 | Commit | Task | Subject | Reasoning |
 |---|---|---|---|
 | `0dc3e7f824d0` | `2.1` | Task 2.1 self-review: state why the one conditional form lacks an example | [narrative](commits/0dc3e7f824d0.md) |
+| `1a174ba81e47` | `2.4` | Task 2.4: rewrite all 82 symbol mnemonics as scene-grammar records | [narrative](commits/1a174ba81e47.md) |
+| `1d670debb689` | `2.4` | Task 2.4 self-review: document the five exported symbol classes | [narrative](commits/1d670debb689.md) |
 | `22d244c16bbb` | `1.3` | Build the lesson-deck generation pipeline | [narrative](commits/22d244c16bbb.md) |
 | `25c69a034626` | `2.2` | Task 2.2 self-review: stop quoting the plan's rough estimate as this script's own measurement | [narrative](commits/25c69a034626.md) |
+| `2fa61dc179dc` | `2.5` | Task 2.5: the derivable-buckets lesson and the opening band | [narrative](commits/2fa61dc179dc.md) |
+| `35a9b8a94a63` | — | fix(originality-test): extract sceneMnemonic prose, re-record detection rate | [narrative](commits/35a9b8a94a63.md) |
 | `3d0252102411` | `1.2` | Add the deck slide type to LessonIntro, dispatched on LessonContent | [narrative](commits/3d0252102411.md) |
 | `4737b9d4780d` | `1.2` | Extract readAudioCandidate to bring extractAudioUrls under the complexity bound | [narrative](commits/4737b9d4780d.md) |
 | `4744506ab0c2` | `2.3` | Task 2.3 self-review: fix self-contradictory comment in DistrictBadge | [narrative](commits/4744506ab0c2.md) |
@@ -15,9 +19,12 @@ narrative reconstructed from the agent transcript that produced it.
 | `506a0b1a8592` | `2.1` | Task 2.1: mark complete | [narrative](commits/506a0b1a8592.md) |
 | `653b96e3f93d` | `2.3` | Task 2.3: render class as district and tone as vertical motion | [narrative](commits/653b96e3f93d.md) |
 | `6ea5d640df02` | `1.2` | Distinguish a refused audioUrl from no audio; cover the rule-slide branch | [narrative](commits/6ea5d640df02.md) |
+| `8771d897c5ab` | `2.5` | Task 2.5 self-review: record where AC1's wiring stops at this task's covers | [narrative](commits/8771d897c5ab.md) |
 | `a5293c036343` | `1.1b` | Self-review pass: repair four comments the change left inaccurate or bare | [narrative](commits/a5293c036343.md) |
 | `ac7a24ab5c3c` | `1.4` | Review pass on task 1.4: correct two stale/misleading comments | [narrative](commits/ac7a24ab5c3c.md) |
 | `bce3da1b810e` | `2.2` | Task 2.2: unify vocabulary romanization on Paiboon | [narrative](commits/bce3da1b810e.md) |
 | `c60c7664bd48` | `1.4` | Author, generate, and test Lesson 1's in-house deck | [narrative](commits/c60c7664bd48.md) |
+| `e0cb6ba184d4` | `2.5` | Task 2.5 review pass: repair four falsified comments and two silent-empty reads | [narrative](commits/e0cb6ba184d4.md) |
+| `fa09fb48ba70` | — | fix(test): exclude .plan-runner-worktrees from vitest run | [narrative](commits/fa09fb48ba70.md) |
 | `fdafc1e01480` | `2.1` | Task 2.1: symbol annotation shape, sound-type derivation, scene grammar seam | [narrative](commits/fdafc1e01480.md) |
 | `ffeb94bdd909` | `1.3` | Contain the image read, and stop a corrupt manifest reading as an empty one | [narrative](commits/ffeb94bdd909.md) |

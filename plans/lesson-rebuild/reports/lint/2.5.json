@@ -1,0 +1,150 @@
+{
+  "version": 1,
+  "task": "2.5",
+  "pass": "after",
+  "result": {
+    "outcome": "unsupported",
+    "reason": "content/lessons/lesson-02.md: no grammar covers '.md' files (and 15 more) — 6 violations were measured before this and are not shown"
+  },
+  "findings": [
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "classFromStatedRule",
+        "path": "src/domain/script/data/openingBand.test.ts",
+        "bytes": {
+          "startIndex": 8290,
+          "endIndex": 9296
+        },
+        "lines": {
+          "startRow": 231,
+          "endRow": 268
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "(anonymous)",
+        "path": "src/domain/script/data/openingBand.test.ts",
+        "bytes": {
+          "startIndex": 11212,
+          "endIndex": 12623
+        },
+        "lines": {
+          "startRow": 311,
+          "endRow": 349
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "(anonymous)",
+        "path": "src/domain/script/data/openingBand.test.ts",
+        "bytes": {
+          "startIndex": 12666,
+          "endIndex": 13546
+        },
+        "lines": {
+          "startRow": 351,
+          "endRow": 378
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "(anonymous)",
+        "path": "src/domain/script/data/openingBand.test.ts",
+        "bytes": {
+          "startIndex": 12801,
+          "endIndex": 13542
+        },
+        "lines": {
+          "startRow": 352,
+          "endRow": 377
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 3.03,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "(anonymous)",
+        "path": "src/domain/script/data/openingBand.test.ts",
+        "bytes": {
+          "startIndex": 20727,
+          "endIndex": 21835
+        },
+        "lines": {
+          "startRow": 568,
+          "endRow": 600
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 3.23,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "(anonymous)",
+        "path": "src/domain/script/data/openingBand.test.ts",
+        "bytes": {
+          "startIndex": 20820,
+          "endIndex": 21831
+        },
+        "lines": {
+          "startRow": 569,
+          "endRow": 599
+        }
+      },
+      "check": "density-below-floor"
+    }
+  ],
+  "adapters": [
+    {
+      "tool": "biome",
+      "selection": {
+        "evidence": "configured",
+        "by": "biome.json"
+      },
+      "program": null,
+      "result": {
+        "outcome": "unsupported",
+        "reason": "biome did not resolve: 'biome' on PATH (31 entries). Its findings are missing from this report — that is a gap and not a pass."
+      },
+      "files": 1,
+      "findings": 0,
+      "refusedPaths": 0,
+      "outsideAnalysis": 0,
+      "refusedShape": 0
+    }
+  ]
+}

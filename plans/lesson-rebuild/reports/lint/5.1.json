@@ -1,0 +1,139 @@
+{
+  "version": 1,
+  "task": "5.1",
+  "pass": "after",
+  "result": {
+    "outcome": "incomplete",
+    "reason": "biome: biome did not resolve: 'biome' on PATH (31 entries). Its findings are missing from this report — that is a gap and not a pass."
+  },
+  "findings": [
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "(anonymous)",
+        "path": "src/domain/vocabulary/data/rooms.test.ts",
+        "bytes": {
+          "startIndex": 1079,
+          "endIndex": 2610
+        },
+        "lines": {
+          "startRow": 39,
+          "endRow": 82
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "(anonymous)",
+        "path": "src/domain/vocabulary/data/rooms.test.ts",
+        "bytes": {
+          "startIndex": 3172,
+          "endIndex": 4025
+        },
+        "lines": {
+          "startRow": 98,
+          "endRow": 127
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "(anonymous)",
+        "path": "src/domain/vocabulary/data/rooms.test.ts",
+        "bytes": {
+          "startIndex": 4177,
+          "endIndex": 5290
+        },
+        "lines": {
+          "startRow": 131,
+          "endRow": 172
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "(anonymous)",
+        "path": "src/domain/vocabulary/data/rooms.test.ts",
+        "bytes": {
+          "startIndex": 4299,
+          "endIndex": 4879
+        },
+        "lines": {
+          "startRow": 134,
+          "endRow": 158
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "(anonymous)",
+        "path": "src/domain/vocabulary/data/rooms.test.ts",
+        "bytes": {
+          "startIndex": 5444,
+          "endIndex": 6315
+        },
+        "lines": {
+          "startRow": 176,
+          "endRow": 203
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 2.45,
+      "threshold": 5,
+      "tier": "file",
+      "path": "src/domain/vocabulary/data/rooms.test.ts",
+      "check": "density-below-floor"
+    }
+  ],
+  "adapters": [
+    {
+      "tool": "biome",
+      "selection": {
+        "evidence": "configured",
+        "by": "biome.json"
+      },
+      "program": null,
+      "result": {
+        "outcome": "unsupported",
+        "reason": "biome did not resolve: 'biome' on PATH (31 entries). Its findings are missing from this report — that is a gap and not a pass."
+      },
+      "files": 3,
+      "findings": 0,
+      "refusedPaths": 0,
+      "outsideAnalysis": 0,
+      "refusedShape": 0
+    }
+  ]
+}
