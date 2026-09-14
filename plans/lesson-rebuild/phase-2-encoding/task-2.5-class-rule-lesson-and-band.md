@@ -16,7 +16,7 @@ covers:
   - src/domain/script/data/openingBand.test.ts
 status: stable
 task_id: "2.5"
-task_status: pending
+task_status: complete
 depends_on: ["2.2", "2.3", "2.4"]
 size: large
 verify:
