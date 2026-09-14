@@ -727,14 +727,13 @@ describe("AC8 — every phase-3 lesson has a declared sequence slot", () => {
 		expect(report.filled.length + report.unfilled.length).toBe(
 			lessonSequence.length,
 		);
-		// Every slot phase 3 declared is still waiting for its content: tasks 3.2
-		// and 3.3 fill them.
-		for (const id of [
-			"lesson-unwritten-vowels",
-			"lesson-clusters",
-			"lesson-leading-consonants",
-		]) {
-			expect(report.unfilled, `${id} should be an unfilled slot`).toContain(id);
+		// Every slot phase 3 declared now has content: task 3.2 authored the
+		// three promoted lessons and task 3.3 the six middle-band ones. This
+		// assertion read `unfilled` while the slots were empty — the direction
+		// it checks is that the reconciliation joins slots to content, and
+		// asserting the filled side is the same claim about a finished phase.
+		for (const id of PHASE_THREE_LESSON_IDS) {
+			expect(report.filled, `${id} should be a filled slot`).toContain(id);
 		}
 		// And the one lesson with content and no slot is reported rather than
 		// silently unreachable: lesson-sound-buckets shipped a deck in phase 2

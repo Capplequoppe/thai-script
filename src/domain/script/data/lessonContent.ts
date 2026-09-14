@@ -97,6 +97,17 @@ export const DECK_LESSON_IDS: ReadonlySet<string> = new Set<string>([
 	"lesson-03",
 	"lesson-04",
 	"lesson-05",
+	// Phase 3's middle band. Each of these six already held a slot in
+	// `lessonSequence.ts` with its legacy number and a `lessons` row, so the
+	// symbols each teaches, and the lesson each symbol is filed under, are
+	// unchanged — only the content source moves from the licensed video to the
+	// in-house deck.
+	"lesson-06",
+	"lesson-07",
+	"lesson-08",
+	"lesson-09",
+	"lesson-10",
+	"lesson-11",
 	// Phase 3's three promoted lessons. Each already holds a slot in
 	// `lessonSequence.ts` with a `legacyNumber` and a `lessons` row, so wiring
 	// them onto the deck arm moves no lesson's position and touches none of the

@@ -14,7 +14,7 @@ import {
 	resolveLessonContent,
 	validateDeck,
 } from "./lessonContent";
-import { lessonEntryByNumber } from "./lessonSequence";
+import { lessonEntryByNumber, lessonSequence } from "./lessonSequence";
 import { checkOriginality } from "./originality";
 import { lessons } from "./symbols";
 
@@ -111,14 +111,16 @@ describe("lesson 1's identity", () => {
 	});
 
 	it("a lesson past the opening band still resolves to its video, unchanged by this task", () => {
-		// Task 2.5 has since moved lessons 2-5 onto the deck arm too, so this
-		// no longer names lesson 2 specifically — it names the first legacy
-		// lesson the band hasn't reached, so the assertion keeps meaning
-		// "video, unmigrated" rather than pinning a position band growth moves.
-		const entry6 = lessonEntryByNumber(6);
-		expect(entry6).toBeDefined();
-		expect(DECK_LESSON_IDS.has(entry6?.id ?? "")).toBe(false);
-		const resolution = resolveLessonContent(entry6?.id);
+		// Task 2.5 moved lessons 2-5 onto the deck arm and task 3.3 moved
+		// 6-11, so the lesson this names is now *derived* rather than written
+		// down: the first slot in the declared sequence that has no deck. That
+		// is what the assertion was always about — the seam still has a video
+		// side — and deriving it stops each new band from editing this test.
+		const stillOnVideo = lessonSequence.find(
+			(entry) => !DECK_LESSON_IDS.has(entry.id),
+		);
+		expect(stillOnVideo).toBeDefined();
+		const resolution = resolveLessonContent(stillOnVideo?.id);
 		expect(resolution.status).toBe("resolved");
 		if (resolution.status !== "resolved") return;
 		expect(resolution.content.kind).toBe("video");

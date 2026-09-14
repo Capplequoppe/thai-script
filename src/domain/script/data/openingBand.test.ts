@@ -41,8 +41,16 @@ const SCRIPTS = join(REPO_ROOT, "content", "lessons");
 /** The slide whose body states which third-bucket letters are known so far. */
 const THIRD_BUCKET_SLIDE = "bucket-three";
 const BUCKETS_LESSON_ID = "lesson-sound-buckets";
-/** The first lesson after the band — still on the licensed video arm. */
-const FIRST_LESSON_AFTER_BAND = "lesson-06";
+/**
+ * The first lesson still on the licensed video arm — the live end of the
+ * strangler seam, which this test watches to prove the seam has two sides.
+ *
+ * It was `lesson-06` while the opening band was the only in-house band. Task
+ * 3.3 moved lessons 06-11 onto the deck arm, so the video side now begins at
+ * `lesson-12`; it moves again each time a later band is produced, and the
+ * claim being made here is unchanged.
+ */
+const FIRST_LESSON_STILL_ON_VIDEO = "lesson-12";
 
 interface BandLesson {
 	readonly id: string;
@@ -346,9 +354,9 @@ describe("the content seam", () => {
 		expect(resolveLessonContent(BUCKETS_LESSON_ID).status).toBe("undeclared");
 	});
 
-	it("serves the first lesson after the opening band from the video arm", () => {
-		expect(DECK_LESSON_IDS.has(FIRST_LESSON_AFTER_BAND)).toBe(false);
-		const resolution = resolveLessonContent(FIRST_LESSON_AFTER_BAND);
+	it("still serves the first lesson without a deck from the video arm", () => {
+		expect(DECK_LESSON_IDS.has(FIRST_LESSON_STILL_ON_VIDEO)).toBe(false);
+		const resolution = resolveLessonContent(FIRST_LESSON_STILL_ON_VIDEO);
 		expect(resolution.status).toBe("resolved");
 		if (resolution.status !== "resolved") return;
 		expect(resolution.content.kind).toBe("video");
