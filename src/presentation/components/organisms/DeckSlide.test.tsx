@@ -9,7 +9,7 @@ import {
 import { DeckSlide } from "./DeckSlide";
 
 const LESSON_ID = "lesson-01";
-const DECK_PATH = `/lessons/${LESSON_ID}/deck.json`;
+const DECK_PATH = `/thai-script/lessons/${LESSON_ID}/deck.json`;
 
 const RETRIEVAL = {
 	kind: "retrieval",
@@ -52,7 +52,7 @@ describe("DeckSlide — the three states never collapse (AC3)", () => {
 		const empty = (await screen.findByText(/no slides yet/i)).textContent;
 		expect(screen.queryByRole("alert")).toBeNull();
 
-		const failedPath = `/lessons/${LESSON_ID}/other-deck.json`;
+		const failedPath = `/thai-script/lessons/${LESSON_ID}/other-deck.json`;
 		stubDeckFetchError(failedPath);
 		rerender(<DeckSlide deckPath={failedPath} onComplete={() => {}} />);
 		const failure = (await screen.findByRole("alert")).textContent;
@@ -85,7 +85,7 @@ describe("DeckSlide — text-only rendering (AC4)", () => {
 
 describe("DeckSlide — audio resets on advance, keyed on identity (AC5)", () => {
 	it("plays audio again when advancing to a slide sharing the same clip", async () => {
-		const audioUrl = `/lessons/${LESSON_ID}/shared.mp3`;
+		const audioUrl = `/thai-script/lessons/${LESSON_ID}/shared.mp3`;
 		stubDeckJson(
 			DECK_PATH,
 			deck([
@@ -151,7 +151,7 @@ describe("DeckSlide — rule slide", () => {
 	// slide renders from the lesson's own rules block, never its own prose,
 	// so this proves that wiring end to end rather than just parsing.
 	const RULE_LESSON_ID = "lesson-02";
-	const RULE_DECK_PATH = `/lessons/${RULE_LESSON_ID}/deck.json`;
+	const RULE_DECK_PATH = `/thai-script/lessons/${RULE_LESSON_ID}/deck.json`;
 
 	it("renders the rule's title and text from the lesson's rules block", async () => {
 		stubDeckJson(RULE_DECK_PATH, {
@@ -180,7 +180,7 @@ describe("DeckSlide — a refused audioUrl is distinguishable from no audio (tru
 					id: "s1",
 					heading: "One",
 					body: ["first"],
-					audioUrl: "/lessons/someone-elses-lesson/track.mp3",
+					audioUrl: "/thai-script/lessons/someone-elses-lesson/track.mp3",
 				},
 				RETRIEVAL,
 				REVEAL,

@@ -35,7 +35,7 @@ const VIDEO_CONTENT: LessonContent = {
 	url: "https://example.com/lesson-01.webm",
 };
 
-const DECK_PATH = "/lessons/lesson-01/deck.json";
+const DECK_PATH = "/thai-script/lessons/lesson-01/deck.json";
 const DECK_CONTENT: LessonContent = { kind: "deck", deckPath: DECK_PATH };
 
 const VALID_DECK = {

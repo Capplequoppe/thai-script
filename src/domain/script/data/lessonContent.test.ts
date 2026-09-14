@@ -18,6 +18,10 @@ import { lessonSequence } from "./lessonSequence";
 import { lessons, specialRules } from "./symbols";
 
 const FIRST_ID = lessonSequence[0].id;
+// Task 1.4 wired lesson-01 (lessonSequence[0]) onto the deck arm, so tests
+// about the *generic* video-resolution path use the next declared lesson,
+// which is still unmigrated.
+const SECOND_ENTRY = lessonSequence[1];
 
 function deck(slides: unknown[], lessonId: string = FIRST_ID) {
 	return { lessonId, title: "A lesson", slides };
@@ -73,7 +77,7 @@ describe("lesson id charset", () => {
 		const result = deckPathForLesson(FIRST_ID);
 		expect(result).toEqual({
 			ok: true,
-			path: `/lessons/${FIRST_ID}/deck.json`,
+			path: `/thai-script/lessons/${FIRST_ID}/deck.json`,
 		});
 	});
 });
@@ -100,15 +104,22 @@ describe("content resolution states", () => {
 		]);
 	});
 
-	it("resolves a declared lesson to an arm", () => {
-		const result = resolveLessonContent(FIRST_ID);
+	it("resolves a declared lesson still on the video arm to that arm", () => {
+		const result = resolveLessonContent(SECOND_ENTRY.id);
 		expect(result.status).toBe("resolved");
 		if (result.status !== "resolved") return;
 		expect(result.content.kind).toBe("video");
 	});
 
+	it("resolves lesson-01 to the deck arm, now that task 1.4 has wired it in", () => {
+		const result = resolveLessonContent(FIRST_ID);
+		expect(result.status).toBe("resolved");
+		if (result.status !== "resolved") return;
+		expect(result.content.kind).toBe("deck");
+	});
+
 	it("reports a declared lesson absent from the lessons table as unresolvable, with a reason", () => {
-		const result = lessonContentFor(lessonSequence[0], undefined);
+		const result = lessonContentFor(SECOND_ENTRY, undefined);
 		expect(result.status).toBe("unresolvable");
 		if (result.status !== "unresolvable") return;
 		expect(result.reason.length).toBeGreaterThan(0);
@@ -116,11 +127,11 @@ describe("content resolution states", () => {
 
 	it("reports a declared lesson with no content source as unresolvable, never as undeclared", () => {
 		const lesson = lessons.find(
-			(candidate) => candidate.number === lessonSequence[0].legacyNumber,
+			(candidate) => candidate.number === SECOND_ENTRY.legacyNumber,
 		);
 		expect(lesson).toBeDefined();
 		if (!lesson) return;
-		const result = lessonContentFor(lessonSequence[0], {
+		const result = lessonContentFor(SECOND_ENTRY, {
 			...lesson,
 			videoUrl: undefined,
 		});

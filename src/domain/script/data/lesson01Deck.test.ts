@@ -23,22 +23,12 @@ import { lessons } from "./symbols";
  * checked for originality, and checked against the identity join and the
  * scheduling it must not disturb.
  *
- * **Known gap, reported rather than routed around:** AC1 asks for a case
- * asserting `resolveLessonContent` actually dispatches lesson 1 to the deck
- * arm. That requires `DECK_LESSON_IDS` in `lessonContent.ts` to contain
- * `"lesson-01"` — but `lessonContent.ts` is task 1.1a's file, not this task's
- * (`covers`: content/lessons/lesson-01.md, public/lessons/lesson-01/,
- * src/domain/script/data/symbols.ts, src/domain/script/data/lesson01Deck.test.ts).
- * Making that edit here was tried and reverted: it turns two of
- * `lessonContent.test.ts`'s own cases red — "reports a declared lesson
- * absent from the lessons table as unresolvable" and "...with no content
- * source as unresolvable" both use `lessonSequence[0]` (lesson 1) as their
- * stand-in for "some declared lesson" and assume it is *not* a deck lesson.
- * Flipping the switch here would silently break a test this task does not
- * own. So: the deck below is complete, valid, and sitting at the exact path
- * `resolveLessonContent` would serve it from — the wiring in `DECK_LESSON_IDS`
- * is the one line left for whichever task's `covers` includes
- * `lessonContent.ts` next.
+ * `DECK_LESSON_IDS` in `lessonContent.ts` now contains `"lesson-01"`, wiring
+ * `resolveLessonContent` to dispatch it to the deck arm — the last line task
+ * 1.4 left for whichever task's `covers` included `lessonContent.ts`. The two
+ * `lessonContent.test.ts` cases that used `lessonSequence[0]` as a stand-in
+ * for "some declared lesson still on the video arm" were repointed at
+ * `lessonSequence[1]` accordingly.
  */
 
 const REPO_ROOT = join(import.meta.dirname, "..", "..", "..", "..");
@@ -129,12 +119,25 @@ describe("lesson 1's identity", () => {
 		expect(resolution.content.kind).toBe("video");
 	});
 
-	it("the deck sits at the exact path resolveLessonContent would serve it from once wired in", () => {
+	it("the deck sits at the exact path resolveLessonContent serves it from", () => {
 		const path = deckPathForLesson("lesson-01");
-		expect(path).toEqual({ ok: true, path: "/lessons/lesson-01/deck.json" });
+		expect(path).toEqual({
+			ok: true,
+			path: "/thai-script/lessons/lesson-01/deck.json",
+		});
 		expect(existsSync(DECK_PATH)).toBe(true);
-		// DECK_LESSON_IDS still excludes lesson-01 — see the module comment above.
-		expect(DECK_LESSON_IDS.has("lesson-01")).toBe(false);
+	});
+
+	it("resolves to the deck arm: opening /lesson/1 renders in-house slides, not a video", () => {
+		expect(DECK_LESSON_IDS.has("lesson-01")).toBe(true);
+		const resolution = resolveLessonContent("lesson-01");
+		expect(resolution.status).toBe("resolved");
+		if (resolution.status !== "resolved") return;
+		expect(resolution.content.kind).toBe("deck");
+		expect(resolution.content).toEqual({
+			kind: "deck",
+			deckPath: "/thai-script/lessons/lesson-01/deck.json",
+		});
 	});
 });
 
@@ -210,7 +213,7 @@ describe("the committed deck", () => {
 		expect(referenced.size).toBe(0);
 		expect(manifest.assets).toEqual([]);
 		for (const path of referenced) {
-			expect(path.startsWith("/lessons/lesson-01/")).toBe(true);
+			expect(path.startsWith("/thai-script/lessons/lesson-01/")).toBe(true);
 			expect(existsSync(join(REPO_ROOT, "public", path))).toBe(true);
 		}
 	});
@@ -285,35 +288,35 @@ describe("scheduling and vocabulary do not depend on which arm serves the lesson
 		expect(lesson1Entry).toBeDefined();
 		const id = lesson1Entry?.id ?? "";
 
-		// "video": today's real, wired-in resolution.
-		const beforeResolution = resolveLessonContent(id);
-		expect(beforeResolution.status).toBe("resolved");
-		if (beforeResolution.status === "resolved") {
-			expect(beforeResolution.content.kind).toBe("video");
-		}
-		const videoArmState = completeLessonOneAndMeasure();
-
-		// "deck": the arm this task's own generated content will serve once
-		// `DECK_LESSON_IDS` is wired in. `DECK_LESSON_IDS` is a plain `Set`
-		// underneath its `ReadonlySet` type; flipped for one assertion and
-		// restored in `finally` so nothing leaks into another test file.
-		const mutableDeckIds = DECK_LESSON_IDS as Set<string>;
-		mutableDeckIds.add(id);
-		let deckResolution: ReturnType<typeof resolveLessonContent>;
-		let deckArmState: ReturnType<typeof completeLessonOneAndMeasure>;
-		try {
-			deckResolution = resolveLessonContent(id);
-			deckArmState = completeLessonOneAndMeasure();
-		} finally {
-			mutableDeckIds.delete(id);
-		}
-
+		// "deck": today's real, wired-in resolution.
+		const deckResolution = resolveLessonContent(id);
 		expect(deckResolution.status).toBe("resolved");
 		if (deckResolution.status === "resolved") {
 			expect(deckResolution.content.kind).toBe("deck");
 		}
+		const deckArmState = completeLessonOneAndMeasure();
+
+		// "video": what this lesson served before task 1.4 wired the deck in.
+		// `DECK_LESSON_IDS` is a plain `Set` underneath its `ReadonlySet`
+		// type; flipped for one assertion and restored in `finally` so
+		// nothing leaks into another test file.
+		const mutableDeckIds = DECK_LESSON_IDS as Set<string>;
+		mutableDeckIds.delete(id);
+		let videoResolution: ReturnType<typeof resolveLessonContent>;
+		let videoArmState: ReturnType<typeof completeLessonOneAndMeasure>;
+		try {
+			videoResolution = resolveLessonContent(id);
+			videoArmState = completeLessonOneAndMeasure();
+		} finally {
+			mutableDeckIds.add(id);
+		}
+
+		expect(videoResolution.status).toBe("resolved");
+		if (videoResolution.status === "resolved") {
+			expect(videoResolution.content.kind).toBe("video");
+		}
 		expect(deckArmState).toEqual(videoArmState);
-		expect(DECK_LESSON_IDS.has(id)).toBe(false);
+		expect(DECK_LESSON_IDS.has(id)).toBe(true);
 	});
 });
 

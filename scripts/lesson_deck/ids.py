@@ -22,8 +22,13 @@ from pathlib import Path
 # charset is closed rather than merely conventional.
 LESSON_ID_PATTERN = re.compile(r"^[a-z0-9-]{1,64}$")
 
-# Public URL root the browser fetches lesson assets from.
-LESSON_ASSET_URL_ROOT = "/lessons"
+# Public URL root the browser fetches lesson assets from. Includes the app's
+# deploy base path (`vite.config.ts`'s `base: "/thai-script/"`) — every other
+# asset URL in this codebase (`symbols.ts`'s `videoUrl`/`audioUrl` fields) is
+# hardcoded the same way, and a root that omits it 404s once the app is
+# actually served under that base, dev included. Mirrors `LESSON_ASSET_ROOT`
+# in `src/domain/script/data/lessonContent.ts`.
+LESSON_ASSET_URL_ROOT = "/thai-script/lessons"
 
 
 class RefusedPath(ValueError):

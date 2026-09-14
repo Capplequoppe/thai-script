@@ -200,10 +200,10 @@ describe("asset paths", () => {
 		];
 		expect(paths.length).toBeGreaterThan(0);
 		for (const path of paths) {
-			expect(path.startsWith("/lessons/lesson-02/")).toBe(true);
+			expect(path.startsWith("/thai-script/lessons/lesson-02/")).toBe(true);
 			const onDisk = resolve(
 				FIXTURE_LESSON,
-				path.slice("/lessons/lesson-02/".length),
+				path.slice("/thai-script/lessons/lesson-02/".length),
 			);
 			expect(relative(FIXTURE_LESSON, onDisk).startsWith(`..${sep}`)).toBe(
 				false,
@@ -231,7 +231,7 @@ describe("asset paths", () => {
 		expect(results[0]).toEqual({
 			ok: true,
 			path: join(root, "lesson-02", "audio", "clip.mp3"),
-			url: "/lessons/lesson-02/audio/clip.mp3",
+			url: "/thai-script/lessons/lesson-02/audio/clip.mp3",
 		});
 		for (const refused of results.slice(1)) {
 			expect(refused.ok).toBe(false);

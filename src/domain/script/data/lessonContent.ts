@@ -48,8 +48,14 @@ export function describeLessonContent(content: LessonContent): string {
 // Asset paths
 // ============================================================================
 
-/** Public root under which every generated lesson asset lives. */
-export const LESSON_ASSET_ROOT = "/lessons";
+/**
+ * Public root under which every generated lesson asset lives. Includes the
+ * app's deploy base path (`vite.config.ts`'s `base: "/thai-script/"`) —
+ * every other asset URL in this codebase (`symbols.ts`'s `videoUrl` and
+ * `audioUrl` fields) is hardcoded the same way, and a root that omits it
+ * 404s once the app is actually served under that base, dev included.
+ */
+export const LESSON_ASSET_ROOT = "/thai-script/lessons";
 
 export type DeckPathResult =
 	| { readonly ok: true; readonly path: string }
@@ -78,7 +84,9 @@ export function deckPathForLesson(
  * every lesson still serves its video. Task 1.4 adds `lesson-01`, and each
  * later content task adds its own — that addition is the whole strangler.
  */
-export const DECK_LESSON_IDS: ReadonlySet<string> = new Set<string>();
+export const DECK_LESSON_IDS: ReadonlySet<string> = new Set<string>([
+	"lesson-01",
+]);
 
 export type LessonContentResolution =
 	/** Declared, and its content source is known. */
