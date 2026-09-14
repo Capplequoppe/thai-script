@@ -1,7 +1,7 @@
 {
   "version": 1,
   "task": "1.3",
-  "pass": "before",
+  "pass": "after",
   "result": {
     "outcome": "unsupported",
     "reason": ".env.example: no grammar covers '.example' files (and 13 more) — 31 violations were measured before this and are not shown"
@@ -17,12 +17,12 @@
         "name": "main",
         "path": "scripts/generate-lesson-deck.py",
         "bytes": {
-          "startIndex": 2688,
-          "endIndex": 3940
+          "startIndex": 2777,
+          "endIndex": 4058
         },
         "lines": {
-          "startRow": 74,
-          "endRow": 116
+          "startRow": 75,
+          "endRow": 117
         }
       },
       "check": "density-below-floor"
@@ -30,7 +30,7 @@
     {
       "rule": "comment-policy",
       "severity": "convention",
-      "measured": 2.48,
+      "measured": 2.46,
       "threshold": 5,
       "tier": "file",
       "path": "scripts/generate-lesson-deck.py",
@@ -95,12 +95,12 @@
         "name": "previous_assets",
         "path": "scripts/lesson_deck/manifest.py",
         "bytes": {
-          "startIndex": 3741,
-          "endIndex": 4456
+          "startIndex": 4058,
+          "endIndex": 4773
         },
         "lines": {
-          "startRow": 119,
-          "endRow": 139
+          "startRow": 128,
+          "endRow": 148
         }
       },
       "check": "density-below-floor"
@@ -115,12 +115,12 @@
         "name": "run",
         "path": "scripts/lesson_deck/pipeline.py",
         "bytes": {
-          "startIndex": 5418,
-          "endIndex": 6436
+          "startIndex": 5449,
+          "endIndex": 6467
         },
         "lines": {
-          "startRow": 169,
-          "endRow": 198
+          "startRow": 170,
+          "endRow": 199
         }
       },
       "check": "density-below-floor"
@@ -135,12 +135,12 @@
         "name": "_produce_audio",
         "path": "scripts/lesson_deck/pipeline.py",
         "bytes": {
-          "startIndex": 6514,
-          "endIndex": 7638
+          "startIndex": 6545,
+          "endIndex": 7669
         },
         "lines": {
-          "startRow": 202,
-          "endRow": 247
+          "startRow": 203,
+          "endRow": 248
         }
       },
       "check": "density-below-floor"
@@ -155,12 +155,12 @@
         "name": "_reject",
         "path": "scripts/lesson_deck/pipeline.py",
         "bytes": {
-          "startIndex": 7937,
-          "endIndex": 8930
+          "startIndex": 7968,
+          "endIndex": 8961
         },
         "lines": {
-          "startRow": 257,
-          "endRow": 289
+          "startRow": 258,
+          "endRow": 290
         }
       },
       "check": "density-below-floor"
@@ -175,12 +175,12 @@
         "name": "_declare_images",
         "path": "scripts/lesson_deck/pipeline.py",
         "bytes": {
-          "startIndex": 9268,
-          "endIndex": 10082
+          "startIndex": 9299,
+          "endIndex": 10113
         },
         "lines": {
-          "startRow": 305,
-          "endRow": 325
+          "startRow": 306,
+          "endRow": 326
         }
       },
       "check": "density-below-floor"
@@ -188,7 +188,27 @@
     {
       "rule": "comment-policy",
       "severity": "convention",
-      "measured": 3.77,
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "_read_prior_manifest",
+        "path": "scripts/lesson_deck/pipeline.py",
+        "bytes": {
+          "startIndex": 14516,
+          "endIndex": 15695
+        },
+        "lines": {
+          "startRow": 446,
+          "endRow": 472
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 3.51,
       "threshold": 5,
       "tier": "file",
       "path": "scripts/lesson_deck/pipeline.py",
@@ -197,7 +217,7 @@
     {
       "rule": "length",
       "severity": "warning",
-      "measured": 451,
+      "measured": 484,
       "threshold": 400,
       "tier": "file",
       "path": "scripts/lesson_deck/pipeline.py"
@@ -390,12 +410,12 @@
         "name": "main",
         "path": "scripts/lesson_deck/testing/run_scripted.py",
         "bytes": {
-          "startIndex": 1376,
-          "endIndex": 2309
+          "startIndex": 1442,
+          "endIndex": 2404
         },
         "lines": {
-          "startRow": 35,
-          "endRow": 64
+          "startRow": 36,
+          "endRow": 65
         }
       },
       "check": "density-below-floor"
@@ -403,7 +423,7 @@
     {
       "rule": "comment-policy",
       "severity": "convention",
-      "measured": 1.45,
+      "measured": 1.43,
       "threshold": 5,
       "tier": "file",
       "path": "scripts/lesson_deck/testing/run_scripted.py",
@@ -483,26 +503,6 @@
         "lines": {
           "startRow": 138,
           "endRow": 185
-        }
-      },
-      "check": "density-below-floor"
-    },
-    {
-      "rule": "comment-policy",
-      "severity": "convention",
-      "measured": 3.33,
-      "threshold": 5,
-      "tier": "function",
-      "symbol": {
-        "name": "(anonymous)",
-        "path": "src/domain/script/data/generatedDeck.test.ts",
-        "bytes": {
-          "startIndex": 5491,
-          "endIndex": 7470
-        },
-        "lines": {
-          "startRow": 187,
-          "endRow": 246
         }
       },
       "check": "density-below-floor"
