@@ -1,0 +1,299 @@
+{
+  "version": 1,
+  "task": "2.4",
+  "pass": "after",
+  "result": {
+    "outcome": "incomplete",
+    "reason": "biome: biome did not resolve: 'biome' on PATH (31 entries). Its findings are missing from this report — that is a gap and not a pass."
+  },
+  "findings": [
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 3.23,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "(anonymous)",
+        "path": "src/domain/script/data/mnemonics.test.ts",
+        "bytes": {
+          "startIndex": 8395,
+          "endIndex": 9494
+        },
+        "lines": {
+          "startRow": 256,
+          "endRow": 286
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "(anonymous)",
+        "path": "src/domain/script/data/mnemonics.test.ts",
+        "bytes": {
+          "startIndex": 8490,
+          "endIndex": 9490
+        },
+        "lines": {
+          "startRow": 258,
+          "endRow": 285
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "length",
+      "severity": "warning",
+      "measured": 3724,
+      "threshold": 2000,
+      "tier": "module",
+      "module": "src/domain/script/data",
+      "members": [
+        "src/domain/script/data/mnemonics.test.ts",
+        "src/domain/script/data/symbols.ts"
+      ]
+    },
+    {
+      "rule": "argument-count",
+      "severity": "warning",
+      "measured": 7,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "kind": "method",
+        "name": "constructor",
+        "path": "src/domain/script/data/symbols.ts",
+        "bytes": {
+          "startIndex": 1725,
+          "endIndex": 2004
+        },
+        "lines": {
+          "startRow": 46,
+          "endRow": 56
+        }
+      }
+    },
+    {
+      "rule": "argument-count",
+      "severity": "warning",
+      "measured": 14,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "kind": "method",
+        "name": "constructor",
+        "path": "src/domain/script/data/symbols.ts",
+        "bytes": {
+          "startIndex": 2587,
+          "endIndex": 3124
+        },
+        "lines": {
+          "startRow": 88,
+          "endRow": 105
+        }
+      }
+    },
+    {
+      "rule": "argument-count",
+      "severity": "warning",
+      "measured": 10,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "kind": "method",
+        "name": "constructor",
+        "path": "src/domain/script/data/symbols.ts",
+        "bytes": {
+          "startIndex": 4211,
+          "endIndex": 4582
+        },
+        "lines": {
+          "startRow": 167,
+          "endRow": 180
+        }
+      }
+    },
+    {
+      "rule": "argument-count",
+      "severity": "warning",
+      "measured": 10,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "kind": "method",
+        "name": "constructor",
+        "path": "src/domain/script/data/symbols.ts",
+        "bytes": {
+          "startIndex": 5305,
+          "endIndex": 5700
+        },
+        "lines": {
+          "startRow": 221,
+          "endRow": 234
+        }
+      }
+    },
+    {
+      "rule": "argument-count",
+      "severity": "warning",
+      "measured": 8,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "kind": "method",
+        "name": "constructor",
+        "path": "src/domain/script/data/symbols.ts",
+        "bytes": {
+          "startIndex": 6469,
+          "endIndex": 6785
+        },
+        "lines": {
+          "startRow": 275,
+          "endRow": 284
+        }
+      }
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "fromPlain",
+        "path": "src/domain/script/data/symbols.ts",
+        "bytes": {
+          "startIndex": 2006,
+          "endIndex": 2435
+        },
+        "lines": {
+          "startRow": 57,
+          "endRow": 83
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "fromPlain",
+        "path": "src/domain/script/data/symbols.ts",
+        "bytes": {
+          "startIndex": 3126,
+          "endIndex": 3956
+        },
+        "lines": {
+          "startRow": 106,
+          "endRow": 153
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "fromPlain",
+        "path": "src/domain/script/data/symbols.ts",
+        "bytes": {
+          "startIndex": 4584,
+          "endIndex": 5148
+        },
+        "lines": {
+          "startRow": 181,
+          "endRow": 216
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "fromPlain",
+        "path": "src/domain/script/data/symbols.ts",
+        "bytes": {
+          "startIndex": 5702,
+          "endIndex": 6332
+        },
+        "lines": {
+          "startRow": 235,
+          "endRow": 270
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "fromPlain",
+        "path": "src/domain/script/data/symbols.ts",
+        "bytes": {
+          "startIndex": 6787,
+          "endIndex": 7251
+        },
+        "lines": {
+          "startRow": 285,
+          "endRow": 314
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 3.93,
+      "threshold": 5,
+      "tier": "file",
+      "path": "src/domain/script/data/symbols.ts",
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "length",
+      "severity": "warning",
+      "measured": 3437,
+      "threshold": 400,
+      "tier": "file",
+      "path": "src/domain/script/data/symbols.ts"
+    }
+  ],
+  "adapters": [
+    {
+      "tool": "biome",
+      "selection": {
+        "evidence": "configured",
+        "by": "biome.json"
+      },
+      "program": null,
+      "result": {
+        "outcome": "unsupported",
+        "reason": "biome did not resolve: 'biome' on PATH (31 entries). Its findings are missing from this report — that is a gap and not a pass."
+      },
+      "files": 2,
+      "findings": 0,
+      "refusedPaths": 0,
+      "outsideAnalysis": 0,
+      "refusedShape": 0
+    }
+  ]
+}

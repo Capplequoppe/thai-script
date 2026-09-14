@@ -10,8 +10,10 @@ narrative reconstructed from the agent transcript that produced it.
 | `25c69a034626` | `2.2` | Task 2.2 self-review: stop quoting the plan's rough estimate as this script's own measurement | [narrative](commits/25c69a034626.md) |
 | `3d0252102411` | `1.2` | Add the deck slide type to LessonIntro, dispatched on LessonContent | [narrative](commits/3d0252102411.md) |
 | `4737b9d4780d` | `1.2` | Extract readAudioCandidate to bring extractAudioUrls under the complexity bound | [narrative](commits/4737b9d4780d.md) |
+| `4744506ab0c2` | `2.3` | Task 2.3 self-review: fix self-contradictory comment in DistrictBadge | [narrative](commits/4744506ab0c2.md) |
 | `4de862035bde` | `1.1b` | Convert the five lesson-identity stores at migrateState, derive every count | [narrative](commits/4de862035bde.md) |
 | `506a0b1a8592` | `2.1` | Task 2.1: mark complete | [narrative](commits/506a0b1a8592.md) |
+| `653b96e3f93d` | `2.3` | Task 2.3: render class as district and tone as vertical motion | [narrative](commits/653b96e3f93d.md) |
 | `6ea5d640df02` | `1.2` | Distinguish a refused audioUrl from no audio; cover the rule-slide branch | [narrative](commits/6ea5d640df02.md) |
 | `a5293c036343` | `1.1b` | Self-review pass: repair four comments the change left inaccurate or bare | [narrative](commits/a5293c036343.md) |
 | `ac7a24ab5c3c` | `1.4` | Review pass on task 1.4: correct two stale/misleading comments | [narrative](commits/ac7a24ab5c3c.md) |
