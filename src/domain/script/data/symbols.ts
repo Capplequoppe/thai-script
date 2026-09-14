@@ -424,7 +424,7 @@ export const toneRules: ToneRule[] = [
 ];
 
 // ============================================================================
-// Tone Mark Rules (Lessons 17-18, 21-24)
+// Tone Mark Rules (taught together by the consolidated tone-mark lesson)
 // ============================================================================
 
 export interface ToneMarkRule {
@@ -435,56 +435,56 @@ export interface ToneMarkRule {
 }
 
 export const toneMarkRules: ToneMarkRule[] = [
-	// Middle class (Lessons 17-18)
+	// Middle class
 	{
 		toneMarkName: "mai ek",
 		consonantClass: ThaiSymbolClass.Mid,
 		resultingTone: "low",
-		lesson: 17,
+		lesson: 29,
 	},
 	{
 		toneMarkName: "mai tho",
 		consonantClass: ThaiSymbolClass.Mid,
 		resultingTone: "falling",
-		lesson: 17,
+		lesson: 29,
 	},
 	{
 		toneMarkName: "mai tri",
 		consonantClass: ThaiSymbolClass.Mid,
 		resultingTone: "high",
-		lesson: 18,
+		lesson: 29,
 	},
 	{
 		toneMarkName: "mai chattawa",
 		consonantClass: ThaiSymbolClass.Mid,
 		resultingTone: "rising",
-		lesson: 18,
+		lesson: 29,
 	},
-	// High class (Lessons 21-22)
+	// High class
 	{
 		toneMarkName: "mai ek",
 		consonantClass: ThaiSymbolClass.High,
 		resultingTone: "low",
-		lesson: 21,
+		lesson: 29,
 	},
 	{
 		toneMarkName: "mai tho",
 		consonantClass: ThaiSymbolClass.High,
 		resultingTone: "falling",
-		lesson: 22,
+		lesson: 29,
 	},
-	// Low class (Lessons 23-24)
+	// Low class
 	{
 		toneMarkName: "mai ek",
 		consonantClass: ThaiSymbolClass.Low,
 		resultingTone: "falling",
-		lesson: 23,
+		lesson: 29,
 	},
 	{
 		toneMarkName: "mai tho",
 		consonantClass: ThaiSymbolClass.Low,
 		resultingTone: "high",
-		lesson: 24,
+		lesson: 29,
 	},
 ];
 
@@ -568,70 +568,70 @@ export const specialRules: SpecialRule[] = [
 		title: "ห as Class-Changing Prefix (ห นำ)",
 		description:
 			"ห can be placed as a silent letter before a low class consonant to make it follow high class tone rules. This allows low class consonants to produce rising tone and low tone, which they cannot make on their own. Example: หมี (mii, rising tone) = bear.",
-		lesson: 15,
+		lesson: 28,
 	},
 	{
 		id: "sara-am-properties",
 		title: "สระ อำ (sara am) Properties",
 		description:
 			"สระ อำ combines สระ อะ (a) + ม (m). It always forms a live syllable because of its built-in final ม sound. Any letters following it begin the next syllable.",
-		lesson: 16,
+		lesson: 13,
 	},
 	{
 		id: "ror-han",
 		title: "ร หัน (Ror Han) Double ร",
 		description:
 			"When two ร letters appear side-by-side after an initial consonant with no final consonant, pronounce it as อัน (an). This special pattern is called ร หัน. Example: ธรรม (tham).",
-		lesson: 16,
+		lesson: 26,
 	},
 	{
 		id: "tone-mark-placement",
 		title: "Tone Mark Placement Rules",
 		description:
 			"Tone marks go above the initial consonant. If a vowel is above the consonant, the tone mark goes above the vowel. For consonant clusters, the tone mark goes over the second consonant, but the class of the first consonant determines the tone. Tone marks override all spelling-based tone rules.",
-		lesson: 17,
+		lesson: 29,
 	},
 	{
 		id: "mai-tri-chattawa-middle-only",
 		title: "Mai Tri and Mai Chattawa: Middle Class Only",
 		description:
 			"ไม้ตรี (mai tri) and ไม้จัตวา (mai chattawa) are only used with middle class consonants. They are never used with high or low class consonants.",
-		lesson: 18,
+		lesson: 29,
 	},
 	{
 		id: "unwritten-vowels",
 		title: "Unwritten Vowels",
 		description:
 			"When two consonants appear with nothing between them, there is an unwritten สระ โอะ (short o) between them. Example: กฎ (got) = rule. With three consonants, สระ อะ appears after the first, สระ โอะ between the second and third.",
-		lesson: 19,
+		lesson: 26,
 	},
 	{
 		id: "obsolete-consonants",
 		title: "Obsolete Consonants ฃ and ฅ",
 		description:
 			"ฃ (kho khuat) and ฅ (kho khon) are still counted in the 44-consonant alphabet but are not used in any modern Thai words.",
-		lesson: 22,
+		lesson: 14,
 	},
 	{
 		id: "tho-ro-s-sound",
 		title: "ทร Makes S Sound",
 		description:
 			"The consonant pair ท + ร acts like ซ, making an S sound. Example: ทราย (saai) = sand.",
-		lesson: 25,
+		lesson: 27,
 	},
 	{
 		id: "silent-ro-clusters",
 		title: "Silent ร in Clusters with จ, ซ, ศ, ส",
 		description:
 			"When ร forms consonant clusters with จ, ซ, ศ, or ส, the ร is silent. Example: จริง (jing) = real.",
-		lesson: 25,
+		lesson: 27,
 	},
 	{
 		id: "silent-o-before-yo",
 		title: "Silent อ Before ย (4 Words)",
 		description:
 			"Placing silent อ before ย makes it act like a mid class consonant. Only 4 words use this: อย่า (yaa, don't), อยู่ (yuu, to stay), อย่าง (yaang, a type), อยาก (yaak, to want). Mnemonic: อย่าอยู่อย่างอยาก = Don't exist in a state of desire.",
-		lesson: 25,
+		lesson: 28,
 	},
 ];
 
@@ -1200,7 +1200,7 @@ const consonants: ThaiConsonant[] = [
 		finalSound: "T-stop",
 		audioUrl: "/thai-script/audio/consonant-so-sia.mp3",
 		priority: 11,
-		lesson: 13,
+		lesson: 12,
 		sceneMnemonic: {
 			district: "temple",
 			shapeCue:
@@ -1223,7 +1223,7 @@ const consonants: ThaiConsonant[] = [
 		finalSound: "P-stop",
 		audioUrl: "/thai-script/audio/consonant-pho-phing.mp3",
 		priority: 22,
-		lesson: 14,
+		lesson: 12,
 		sceneMnemonic: {
 			district: "temple",
 			shapeCue:
@@ -1244,7 +1244,7 @@ const consonants: ThaiConsonant[] = [
 		finalSound: "P-stop",
 		audioUrl: "/thai-script/audio/consonant-fo-fa.mp3",
 		priority: 33,
-		lesson: 14,
+		lesson: 12,
 		sceneMnemonic: {
 			district: "temple",
 			shapeCue:
@@ -1254,7 +1254,7 @@ const consonants: ThaiConsonant[] = [
 		},
 	}),
 
-	// === Lesson 15: ห (High class, class-changer) ===
+	// === Lesson 12 (continued): ห (High class) ===
 	ThaiConsonant.fromPlain({
 		character: "ห",
 		name: "ห หีบ",
@@ -1267,7 +1267,7 @@ const consonants: ThaiConsonant[] = [
 		finalSound: "not used as final consonant",
 		audioUrl: "/thai-script/audio/consonant-ho-hip.mp3",
 		priority: 13,
-		lesson: 15,
+		lesson: 12,
 		sceneMnemonic: {
 			district: "temple",
 			shapeCue:
@@ -1277,7 +1277,7 @@ const consonants: ThaiConsonant[] = [
 		},
 	}),
 
-	// === Lesson 16: ภ, ธ, ณ, ญ (Low class) ===
+	// === Lesson 13 (continued): ภ, ธ, ณ, ญ (Low class) ===
 	ThaiConsonant.fromPlain({
 		character: "ภ",
 		name: "ภ สำเภา",
@@ -1290,7 +1290,7 @@ const consonants: ThaiConsonant[] = [
 		finalSound: "P-stop",
 		audioUrl: "/thai-script/audio/consonant-pho-samphau.mp3",
 		priority: 26,
-		lesson: 16,
+		lesson: 13,
 		sceneMnemonic: {
 			district: "harbor",
 			shapeCue:
@@ -1311,7 +1311,7 @@ const consonants: ThaiConsonant[] = [
 		finalSound: "T-stop",
 		audioUrl: "/thai-script/audio/consonant-tho-thong.mp3",
 		priority: 29,
-		lesson: 16,
+		lesson: 13,
 		sceneMnemonic: {
 			district: "harbor",
 			shapeCue:
@@ -1332,7 +1332,7 @@ const consonants: ThaiConsonant[] = [
 		finalSound: "n (live ending)",
 		audioUrl: "/thai-script/audio/consonant-no-nen.mp3",
 		priority: 25,
-		lesson: 16,
+		lesson: 13,
 		sceneMnemonic: {
 			district: "harbor",
 			shapeCue:
@@ -1353,7 +1353,7 @@ const consonants: ThaiConsonant[] = [
 		finalSound: "n",
 		audioUrl: "/thai-script/audio/consonant-yo-ying.mp3",
 		priority: 30,
-		lesson: 16,
+		lesson: 13,
 		sceneMnemonic: {
 			district: "harbor",
 			shapeCue:
@@ -1363,7 +1363,7 @@ const consonants: ThaiConsonant[] = [
 		},
 	}),
 
-	// === Lesson 19: ถ, ฐ, ฎ, ฏ ===
+	// === Lessons 12 and 14: ถ, ฐ, ฎ, ฏ ===
 	ThaiConsonant.fromPlain({
 		character: "ถ",
 		name: "ถ ถุง",
@@ -1376,7 +1376,7 @@ const consonants: ThaiConsonant[] = [
 		finalSound: "T-stop",
 		audioUrl: "/thai-script/audio/consonant-tho-thung.mp3",
 		priority: 23,
-		lesson: 19,
+		lesson: 12,
 		sceneMnemonic: {
 			district: "temple",
 			shapeCue:
@@ -1397,7 +1397,7 @@ const consonants: ThaiConsonant[] = [
 		finalSound: "T-stop",
 		audioUrl: "/thai-script/audio/consonant-tho-than.mp3",
 		priority: 34,
-		lesson: 19,
+		lesson: 14,
 		sceneMnemonic: {
 			district: "temple",
 			shapeCue:
@@ -1418,7 +1418,7 @@ const consonants: ThaiConsonant[] = [
 		finalSound: "T-stop",
 		audioUrl: "/thai-script/audio/consonant-do-chada.mp3",
 		priority: 36,
-		lesson: 19,
+		lesson: 14,
 		sceneMnemonic: {
 			district: "market",
 			shapeCue:
@@ -1439,7 +1439,7 @@ const consonants: ThaiConsonant[] = [
 		finalSound: "T-stop",
 		audioUrl: "/thai-script/audio/consonant-to-patak.mp3",
 		priority: 37,
-		lesson: 19,
+		lesson: 14,
 		sceneMnemonic: {
 			district: "market",
 			shapeCue:
@@ -1449,7 +1449,7 @@ const consonants: ThaiConsonant[] = [
 		},
 	}),
 
-	// === Lesson 20: ฑ, ฒ ===
+	// === Lesson 14 (continued): ฑ, ฒ ===
 	ThaiConsonant.fromPlain({
 		character: "ฑ",
 		name: "ฑ มณโฑ",
@@ -1462,7 +1462,7 @@ const consonants: ThaiConsonant[] = [
 		finalSound: "T-stop",
 		audioUrl: "/thai-script/audio/consonant-tho-montho.mp3",
 		priority: 40,
-		lesson: 20,
+		lesson: 14,
 		sceneMnemonic: {
 			district: "harbor",
 			shapeCue:
@@ -1483,7 +1483,7 @@ const consonants: ThaiConsonant[] = [
 		finalSound: "T-stop",
 		audioUrl: "/thai-script/audio/consonant-tho-phuthau.mp3",
 		priority: 41,
-		lesson: 20,
+		lesson: 14,
 		sceneMnemonic: {
 			district: "harbor",
 			shapeCue:
@@ -1493,7 +1493,7 @@ const consonants: ThaiConsonant[] = [
 		},
 	}),
 
-	// === Lesson 21: ฬ, ฆ ===
+	// === Lesson 14 (continued): ฬ, ฆ ===
 	ThaiConsonant.fromPlain({
 		character: "ฬ",
 		name: "ฬ จุฬา",
@@ -1506,7 +1506,7 @@ const consonants: ThaiConsonant[] = [
 		finalSound: "n (live ending)",
 		audioUrl: "/thai-script/audio/consonant-lo-jula.mp3",
 		priority: 38,
-		lesson: 21,
+		lesson: 14,
 		sceneMnemonic: {
 			district: "harbor",
 			shapeCue:
@@ -1527,7 +1527,7 @@ const consonants: ThaiConsonant[] = [
 		finalSound: "K-stop",
 		audioUrl: "/thai-script/audio/consonant-kho-rakhang.mp3",
 		priority: 39,
-		lesson: 21,
+		lesson: 14,
 		sceneMnemonic: {
 			district: "harbor",
 			shapeCue:
@@ -1537,7 +1537,7 @@ const consonants: ThaiConsonant[] = [
 		},
 	}),
 
-	// === Lesson 22: ฃ, ฅ (Obsolete) and ฌ ===
+	// === Lesson 14 (continued): ฃ, ฅ (Obsolete) and ฌ ===
 	ThaiConsonant.fromPlain({
 		character: "ฃ",
 		name: "ฃ ขวด",
@@ -1549,7 +1549,7 @@ const consonants: ThaiConsonant[] = [
 		initialSound: "kh (same as ข)",
 		finalSound: "K-stop",
 		priority: 42,
-		lesson: 22,
+		lesson: 14,
 		sceneMnemonic: {
 			district: "temple",
 			shapeCue:
@@ -1569,7 +1569,7 @@ const consonants: ThaiConsonant[] = [
 		initialSound: "kh (same as ค)",
 		finalSound: "K-stop",
 		priority: 43,
-		lesson: 22,
+		lesson: 14,
 		sceneMnemonic: {
 			district: "harbor",
 			shapeCue:
@@ -1589,7 +1589,7 @@ const consonants: ThaiConsonant[] = [
 		initialSound: "ch (same as ช)",
 		finalSound: "T-stop",
 		priority: 44,
-		lesson: 22,
+		lesson: 14,
 		sceneMnemonic: {
 			district: "harbor",
 			shapeCue:
@@ -2021,7 +2021,7 @@ const vowels: ThaiVowel[] = [
 		},
 	}),
 
-	// === Lesson 15 ===
+	// === Formerly lesson 15 — now lessons 12/14/28 ===
 	ThaiVowel.fromPlain({
 		character: "-ัว",
 		name: "sara uua",
@@ -2030,7 +2030,7 @@ const vowels: ThaiVowel[] = [
 		position: "above",
 		audioUrl: "/thai-script/audio/sara-ua-long.mp3",
 		priority: 27,
-		lesson: 15,
+		lesson: 14,
 		sceneMnemonic: {
 			shapeCue:
 				"The lone curl above with ว standing after; when a final consonant joins, the curl vanishes and ว sits sandwiched between.",
@@ -2045,14 +2045,14 @@ const vowels: ThaiVowel[] = [
 		position: "around",
 		audioUrl: "/thai-script/audio/sara-ua-short.mp3",
 		priority: 28,
-		lesson: 15,
+		lesson: 14,
 		sceneMnemonic: {
 			shapeCue: "The curl, then ว, then the stacked hooks to close it off.",
 			soundCue: "The oo-ah swing pulled up short.",
 		},
 	}),
 
-	// === Lesson 16 ===
+	// === Formerly lesson 16 — now lesson 13 ===
 	ThaiVowel.fromPlain({
 		character: "ำ",
 		name: "sara am",
@@ -2061,7 +2061,7 @@ const vowels: ThaiVowel[] = [
 		position: "above",
 		audioUrl: "/thai-script/audio/sara-am.mp3",
 		priority: 29,
-		lesson: 16,
+		lesson: 13,
 		sceneMnemonic: {
 			shapeCue:
 				"A small ring floating above with the า post right after — ring first, post second.",
@@ -2072,7 +2072,7 @@ const vowels: ThaiVowel[] = [
 ];
 
 // ============================================================================
-// Tone Marks (Lessons 17-18)
+// Tone Marks (the consolidated tone-mark lesson)
 // ============================================================================
 
 const toneMarks: ThaiToneMark[] = [
@@ -2084,7 +2084,7 @@ const toneMarks: ThaiToneMark[] = [
 		lowClassTone: "falling",
 		audioUrl: "/thai-script/audio/tone-mayek.mp3",
 		priority: 1,
-		lesson: 17,
+		lesson: 29,
 		sceneMnemonic: {
 			shapeCue: "A single short stick above the letter — one stroke, mark one.",
 			soundCue:
@@ -2100,7 +2100,7 @@ const toneMarks: ThaiToneMark[] = [
 		lowClassTone: "high",
 		audioUrl: "/thai-script/audio/tone-maytho.mp3",
 		priority: 2,
-		lesson: 17,
+		lesson: 29,
 		sceneMnemonic: {
 			shapeCue: "A hooked flag above the letter — two bends, mark two.",
 			soundCue:
@@ -2116,7 +2116,7 @@ const toneMarks: ThaiToneMark[] = [
 		lowClassTone: null,
 		audioUrl: "/thai-script/audio/tone-maytri.mp3",
 		priority: 3,
-		lesson: 18,
+		lesson: 29,
 		sceneMnemonic: {
 			shapeCue:
 				"A small kinked peak floating above — mark three, worn by market letters only.",
@@ -2133,7 +2133,7 @@ const toneMarks: ThaiToneMark[] = [
 		lowClassTone: null,
 		audioUrl: "/thai-script/audio/tone-mayjattawa.mp3",
 		priority: 4,
-		lesson: 18,
+		lesson: 29,
 		sceneMnemonic: {
 			shapeCue:
 				"A little cross floating above — four points, mark four, again market letters only.",
@@ -2145,7 +2145,7 @@ const toneMarks: ThaiToneMark[] = [
 ];
 
 // ============================================================================
-// Special Vowels (Lesson 22)
+// Special Vowels (the rare tail, lesson 14)
 // ============================================================================
 
 export interface RareVowel {
@@ -2163,7 +2163,7 @@ export const rareVowels: RareVowel[] = [
 		name: "rue",
 		pronunciation: "ร + สระ อึ (sometimes ร + สระ อิ)",
 		length: "short",
-		lesson: 22,
+		lesson: 14,
 		notes:
 			"Used in some common words like ฤดู (rue-duu, season) and อังกฤษ (ang-grit, English). Written like ถ with an extra long line.",
 	},
@@ -2172,7 +2172,7 @@ export const rareVowels: RareVowel[] = [
 		name: "ruue",
 		pronunciation: "ร + สระ อื",
 		length: "long",
-		lesson: 22,
+		lesson: 14,
 		notes: "Rare. Like ฤ with what looks like สระ อา on its right side.",
 	},
 	{
@@ -2180,7 +2180,7 @@ export const rareVowels: RareVowel[] = [
 		name: "lue",
 		pronunciation: "ล + สระ อึ or สระ อื",
 		length: "short",
-		lesson: 22,
+		lesson: 14,
 		notes:
 			"Extremely rare in modern Thai. Part of the official 32 vowels due to Sanskrit origins.",
 	},
@@ -2189,13 +2189,13 @@ export const rareVowels: RareVowel[] = [
 		name: "luue",
 		pronunciation: "ล + สระ อื",
 		length: "long",
-		lesson: 22,
+		lesson: 14,
 		notes: "Extremely rare. Like ฤๅ but head sticks out on the left side.",
 	},
 ];
 
 // ============================================================================
-// Thai Numerals (Lessons 23-25)
+// Thai Numerals (the optional numerals lesson)
 // ============================================================================
 
 export interface ThaiNumeral {
@@ -2207,16 +2207,16 @@ export interface ThaiNumeral {
 }
 
 export const thaiNumerals: ThaiNumeral[] = [
-	{ thai: "๐", arabic: 0, word: "ศูนย์", romanization: "suun", lesson: 25 },
-	{ thai: "๑", arabic: 1, word: "หนึ่ง", romanization: "nueng", lesson: 23 },
-	{ thai: "๒", arabic: 2, word: "สอง", romanization: "saawng", lesson: 23 },
-	{ thai: "๓", arabic: 3, word: "สาม", romanization: "saam", lesson: 23 },
-	{ thai: "๔", arabic: 4, word: "สี่", romanization: "sii", lesson: 24 },
-	{ thai: "๕", arabic: 5, word: "ห้า", romanization: "haa", lesson: 24 },
-	{ thai: "๖", arabic: 6, word: "หก", romanization: "hok", lesson: 24 },
-	{ thai: "๗", arabic: 7, word: "เจ็ด", romanization: "jet", lesson: 25 },
-	{ thai: "๘", arabic: 8, word: "แปด", romanization: "bpaaet", lesson: 25 },
-	{ thai: "๙", arabic: 9, word: "เก้า", romanization: "gao", lesson: 25 },
+	{ thai: "๐", arabic: 0, word: "ศูนย์", romanization: "suun", lesson: 30 },
+	{ thai: "๑", arabic: 1, word: "หนึ่ง", romanization: "nueng", lesson: 30 },
+	{ thai: "๒", arabic: 2, word: "สอง", romanization: "saawng", lesson: 30 },
+	{ thai: "๓", arabic: 3, word: "สาม", romanization: "saam", lesson: 30 },
+	{ thai: "๔", arabic: 4, word: "สี่", romanization: "sii", lesson: 30 },
+	{ thai: "๕", arabic: 5, word: "ห้า", romanization: "haa", lesson: 30 },
+	{ thai: "๖", arabic: 6, word: "หก", romanization: "hok", lesson: 30 },
+	{ thai: "๗", arabic: 7, word: "เจ็ด", romanization: "jet", lesson: 30 },
+	{ thai: "๘", arabic: 8, word: "แปด", romanization: "bpaaet", lesson: 30 },
+	{ thai: "๙", arabic: 9, word: "เก้า", romanization: "gao", lesson: 30 },
 ];
 
 // ============================================================================
@@ -2714,7 +2714,7 @@ export const words: ThaiWord[] = [
 		lesson: 14,
 	}),
 
-	// === Lesson 15 ===
+	// === Formerly lesson 15 — now lessons 12/14/28 ===
 	ThaiWord.fromPlain({
 		name: "หมี",
 		romanization: "mii",
@@ -2722,7 +2722,7 @@ export const words: ThaiWord[] = [
 		tone: "rising",
 		toneRule:
 			"ห changes low class ม to follow high class rules. High class + live ending = rising tone",
-		lesson: 15,
+		lesson: 28,
 		sceneMnemonic: {
 			shapeCue:
 				"A silent ห stands in front of ม — a temple usher escorting a harbor letter.",
@@ -2737,7 +2737,7 @@ export const words: ThaiWord[] = [
 		meaning: "head",
 		tone: "rising",
 		toneRule: "High class ห + live ending = rising tone",
-		lesson: 15,
+		lesson: 14,
 	}),
 	ThaiWord.fromPlain({
 		name: "สวน",
@@ -2745,10 +2745,10 @@ export const words: ThaiWord[] = [
 		meaning: "garden",
 		tone: "rising",
 		toneRule: "High class ส + live ending (น final) = rising tone",
-		lesson: 15,
+		lesson: 14,
 	}),
 
-	// === Lesson 16 ===
+	// === Formerly lesson 16 — now lessons 13/26 ===
 	ThaiWord.fromPlain({
 		name: "ดำ",
 		romanization: "dam",
@@ -2756,7 +2756,7 @@ export const words: ThaiWord[] = [
 		tone: "mid",
 		toneRule:
 			"Mid class ด + สระ อำ (live ending because of built-in ม) = mid tone",
-		lesson: 16,
+		lesson: 13,
 	}),
 	ThaiWord.fromPlain({
 		name: "ภูเขา",
@@ -2764,7 +2764,7 @@ export const words: ThaiWord[] = [
 		meaning: "mountain",
 		tone: "mid",
 		toneRule: "Two syllables: ภู (mid tone) + เขา (rising tone, high class ข)",
-		lesson: 16,
+		lesson: 13,
 	}),
 	ThaiWord.fromPlain({
 		name: "ธรรม",
@@ -2772,7 +2772,7 @@ export const words: ThaiWord[] = [
 		meaning: "dharma, teaching of Buddha",
 		tone: "mid",
 		toneRule: "Uses ร หัน (double ร = short a sound)",
-		lesson: 16,
+		lesson: 26,
 	}),
 	ThaiWord.fromPlain({
 		name: "สัญญา",
@@ -2781,17 +2781,17 @@ export const words: ThaiWord[] = [
 		tone: "rising",
 		toneRule:
 			"First syllable: สัญ (rising, high class ส). Second syllable: ญา (mid, low class ญ)",
-		lesson: 16,
+		lesson: 13,
 	}),
 
-	// === Lesson 17 ===
+	// === Formerly lesson 17 — now the tone-mark lesson ===
 	ThaiWord.fromPlain({
 		name: "ไก่",
 		romanization: "gai",
 		meaning: "chicken",
 		tone: "low",
 		toneRule: "Mid class ก + ไม้เอก = low tone",
-		lesson: 17,
+		lesson: 29,
 	}),
 	ThaiWord.fromPlain({
 		name: "เบื่อ",
@@ -2799,7 +2799,7 @@ export const words: ThaiWord[] = [
 		meaning: "to be bored",
 		tone: "low",
 		toneRule: "Mid class บ + ไม้เอก = low tone",
-		lesson: 17,
+		lesson: 29,
 	}),
 	ThaiWord.fromPlain({
 		name: "แก้ว",
@@ -2808,10 +2808,10 @@ export const words: ThaiWord[] = [
 		tone: "falling",
 		toneRule:
 			"Mid class ก + ไม้โท = falling tone. Without tone mark แกว = 'hint/clue' (mid tone)",
-		lesson: 17,
+		lesson: 29,
 	}),
 
-	// === Lesson 18 ===
+	// === Formerly lesson 18 — now the tone-mark lesson ===
 	ThaiWord.fromPlain({
 		name: "โต๊ะ",
 		romanization: "dto",
@@ -2819,7 +2819,7 @@ export const words: ThaiWord[] = [
 		tone: "high",
 		toneRule:
 			"Mid class ต + ไม้ตรี = high tone. Without tone mark would be low tone (mid class + dead ending)",
-		lesson: 18,
+		lesson: 29,
 	}),
 	ThaiWord.fromPlain({
 		name: "เจ๋ง",
@@ -2827,10 +2827,10 @@ export const words: ThaiWord[] = [
 		meaning: "cool",
 		tone: "rising",
 		toneRule: "Mid class จ + ไม้จัตวา = rising tone",
-		lesson: 18,
+		lesson: 29,
 	}),
 
-	// === Lesson 19 ===
+	// === Formerly lesson 19 — now lessons 12/14/26 ===
 	ThaiWord.fromPlain({
 		name: "กฎ",
 		romanization: "got",
@@ -2838,7 +2838,7 @@ export const words: ThaiWord[] = [
 		tone: "low",
 		toneRule:
 			"Mid class ก + dead ending (ฎ T-stop) + unwritten สระ โอะ = low tone",
-		lesson: 19,
+		lesson: 26,
 	}),
 	ThaiWord.fromPlain({
 		name: "แถว",
@@ -2846,7 +2846,7 @@ export const words: ThaiWord[] = [
 		meaning: "row, area",
 		tone: "rising",
 		toneRule: "High class ถ + live ending (ว final) = rising tone",
-		lesson: 19,
+		lesson: 12,
 	}),
 	ThaiWord.fromPlain({
 		name: "รัฐ",
@@ -2854,10 +2854,10 @@ export const words: ThaiWord[] = [
 		meaning: "state, government",
 		tone: "high",
 		toneRule: "Low class ร + dead ending (short vowel + T-stop ฐ) = high tone",
-		lesson: 19,
+		lesson: 14,
 	}),
 
-	// === Lesson 20 ===
+	// === Formerly lesson 20 — now lesson 14 ===
 	ThaiWord.fromPlain({
 		name: "ครุฑ",
 		romanization: "khrut",
@@ -2865,7 +2865,7 @@ export const words: ThaiWord[] = [
 		tone: "high",
 		toneRule:
 			"Low class ค + consonant cluster คร + dead ending (short vowel + T-stop ฑ) = high tone",
-		lesson: 20,
+		lesson: 14,
 	}),
 	ThaiWord.fromPlain({
 		name: "พัฒนา",
@@ -2873,17 +2873,17 @@ export const words: ThaiWord[] = [
 		meaning: "to develop",
 		tone: "high",
 		toneRule: "3 syllables: พัฒ (high) + ฒ-น (high, unwritten vowel) + นา (mid)",
-		lesson: 20,
+		lesson: 14,
 	}),
 
-	// === Lesson 21 ===
+	// === Formerly lesson 21 — now lesson 14 ===
 	ThaiWord.fromPlain({
 		name: "นาฬิกา",
 		romanization: "naa-li-gaa",
 		meaning: "clock",
 		tone: "mid",
 		toneRule: "Three syllables: นา (mid) + ฬิ (high) + กา (mid)",
-		lesson: 21,
+		lesson: 14,
 	}),
 	ThaiWord.fromPlain({
 		name: "เมฆ",
@@ -2892,10 +2892,10 @@ export const words: ThaiWord[] = [
 		tone: "falling",
 		toneRule:
 			"Low class ม + dead ending (long vowel เอ + K-stop ฆ) = falling tone",
-		lesson: 21,
+		lesson: 14,
 	}),
 
-	// === Lesson 22 ===
+	// === Formerly lesson 22 — now lessons 14/29 ===
 	ThaiWord.fromPlain({
 		name: "ข้าว",
 		romanization: "khaao",
@@ -2903,7 +2903,7 @@ export const words: ThaiWord[] = [
 		tone: "falling",
 		toneRule:
 			"High class ข + ไม้โท = falling tone. Without tone mark: ขาว (rising) = 'white'",
-		lesson: 22,
+		lesson: 29,
 	}),
 	ThaiWord.fromPlain({
 		name: "ให้",
@@ -2912,7 +2912,7 @@ export const words: ThaiWord[] = [
 		tone: "falling",
 		toneRule:
 			"High class ห + ไม้โท = falling tone. One of the most common Thai words",
-		lesson: 22,
+		lesson: 29,
 	}),
 	ThaiWord.fromPlain({
 		name: "ฤดู",
@@ -2921,10 +2921,10 @@ export const words: ThaiWord[] = [
 		tone: "high",
 		toneRule:
 			"ฤ = low class ร + short vowel (dead ending) = high tone. ดู = mid class + live ending = mid tone",
-		lesson: 22,
+		lesson: 14,
 	}),
 
-	// === Lesson 23 ===
+	// === Formerly lesson 23 — now the tone-mark lesson ===
 	ThaiWord.fromPlain({
 		name: "คู่",
 		romanization: "khuu",
@@ -2932,7 +2932,7 @@ export const words: ThaiWord[] = [
 		tone: "falling",
 		toneRule:
 			"Low class ค + ไม้เอก = FALLING tone (low class mai ek = falling, not low!)",
-		lesson: 23,
+		lesson: 29,
 	}),
 	ThaiWord.fromPlain({
 		name: "ที่นี่",
@@ -2940,10 +2940,10 @@ export const words: ThaiWord[] = [
 		meaning: "here",
 		tone: "falling",
 		toneRule: "Both syllables: low class + ไม้เอก = falling tone",
-		lesson: 23,
+		lesson: 29,
 	}),
 
-	// === Lesson 24 ===
+	// === Formerly lesson 24 — now the tone-mark lesson ===
 	ThaiWord.fromPlain({
 		name: "น้ำ",
 		romanization: "nam",
@@ -2951,7 +2951,7 @@ export const words: ThaiWord[] = [
 		tone: "high",
 		toneRule:
 			"Low class น + ไม้โท = HIGH tone (low class mai tho = high, not falling!)",
-		lesson: 24,
+		lesson: 29,
 	}),
 	ThaiWord.fromPlain({
 		name: "ร้าน",
@@ -2959,7 +2959,7 @@ export const words: ThaiWord[] = [
 		meaning: "shop",
 		tone: "high",
 		toneRule: "Low class ร + ไม้โท = high tone",
-		lesson: 24,
+		lesson: 29,
 	}),
 	ThaiWord.fromPlain({
 		name: "เนย",
@@ -2968,10 +2968,10 @@ export const words: ThaiWord[] = [
 		tone: "mid",
 		toneRule:
 			"Low class น + live ending. Special: เ_ย pattern -- the vowel is สระ เออ, not สระ เอ. When final consonant is ย, the สระ อิ is NOT written",
-		lesson: 24,
+		lesson: 13,
 	}),
 
-	// === Lesson 25 ===
+	// === Formerly lesson 25 — now lessons 27/28 ===
 	ThaiWord.fromPlain({
 		name: "ทราย",
 		romanization: "saai",
@@ -2979,7 +2979,7 @@ export const words: ThaiWord[] = [
 		tone: "mid",
 		toneRule:
 			"Irregular: ทร makes an 'S' sound (like ซ). Low class + live ending = mid tone",
-		lesson: 25,
+		lesson: 27,
 	}),
 	ThaiWord.fromPlain({
 		name: "จริง",
@@ -2988,7 +2988,7 @@ export const words: ThaiWord[] = [
 		tone: "mid",
 		toneRule:
 			"Irregular: ร is silent in cluster with จ. Mid class จ + live ending (ง final) = mid tone",
-		lesson: 25,
+		lesson: 27,
 	}),
 	ThaiWord.fromPlain({
 		name: "อย่า",
@@ -2997,7 +2997,7 @@ export const words: ThaiWord[] = [
 		tone: "low",
 		toneRule:
 			"Silent อ before ย makes ย act like mid class. Mid class + ไม้เอก = low tone",
-		lesson: 25,
+		lesson: 28,
 		sceneMnemonic: {
 			shapeCue:
 				"A silent อ stands before ย with the one-stroke ่ above — just four Thai words carry this silent-อ spelling, and this is the commonest.",
@@ -3013,7 +3013,7 @@ export const words: ThaiWord[] = [
 		tone: "low",
 		toneRule:
 			"Silent อ before ย makes ย act like mid class. Mid class + ไม้เอก = low tone",
-		lesson: 25,
+		lesson: 28,
 	}),
 	ThaiWord.fromPlain({
 		name: "อย่าง",
@@ -3022,7 +3022,7 @@ export const words: ThaiWord[] = [
 		tone: "low",
 		toneRule:
 			"Silent อ before ย makes ย act like mid class. Mid class + ไม้เอก = low tone",
-		lesson: 25,
+		lesson: 28,
 	}),
 	ThaiWord.fromPlain({
 		name: "อยาก",
@@ -3031,7 +3031,7 @@ export const words: ThaiWord[] = [
 		tone: "low",
 		toneRule:
 			"Silent อ before ย makes ย act like mid class. Mid class + dead ending = low tone",
-		lesson: 25,
+		lesson: 28,
 	}),
 ];
 
@@ -3242,163 +3242,42 @@ export const lessons: Lesson[] = [
 		specialRulesIntroduced: ["o-ang-dual-role"],
 		videoUrl: "/thai-script/videos/TAME_L11_tpod101_video-h.webm",
 	},
+	// --- Task 4.3: the final band. The fourteen video lessons that stood here
+	// (legacy numbers 12-25) are retired — see RETIRED_LESSONS in
+	// `lessonSequence.ts` — and their letters land in these three lessons:
+	// the seven paired high-class letters beside the low cousins the learner
+	// already knows, the six Sanskrit-alphabet letters behind the commonest
+	// loanwords, and the rare tail at the lowest scheduling priority.
 	{
 		number: 12,
-		title: "Khaaw khai, Chaaw ching, Short ia, and Long ia",
-		focus: "First high class consonants and ia vowels",
-		consonants: ["ข", "ฉ"],
+		title: "The Temple Cousins",
+		focus: "Seven high class letters that echo sounds already learned",
+		consonants: ["ข", "ฉ", "ถ", "ผ", "ฝ", "ส", "ห"],
 		vowels: ["เ-ีย", "เ-ียะ"],
 		toneMarks: [],
 		toneRulesIntroduced: ["high-live"],
 		specialRulesIntroduced: [],
-		videoUrl: "/thai-script/videos/TAME_L12_tpod101_video-h.webm",
 	},
 	{
 		number: 13,
-		title: "Saaw saalaa, Saaw ruuesii, Saaw suuea, Short oe, and Long oe",
-		focus: "Three high class S-consonants, oe vowels, and gaaran",
-		consonants: ["ศ", "ษ", "ส"],
-		vowels: ["เ-อ", "เ-อะ"],
+		title: "The Sanskrit Set",
+		focus: "Six loanword letters, sara am, the oe vowels, and gaaran",
+		consonants: ["ศ", "ษ", "ภ", "ธ", "ณ", "ญ"],
+		vowels: ["เ-อ", "เ-อะ", "ำ"],
 		toneMarks: [],
 		toneRulesIntroduced: ["high-dead-short", "high-dead-long"],
-		specialRulesIntroduced: ["gaaran"],
-		videoUrl: "/thai-script/videos/TAME_L13_tpod101_video-h.webm",
+		specialRulesIntroduced: ["gaaran", "sara-am-properties"],
 	},
 	{
 		number: 14,
-		title: "Phaaw phueng, Faaw faa, Short uea, and Long uea",
-		focus: "Two high class consonants and uea vowels",
-		consonants: ["ผ", "ฝ"],
-		vowels: ["เ-ือ", "เ-ือะ"],
-		toneMarks: [],
-		toneRulesIntroduced: [],
-		specialRulesIntroduced: [],
-		videoUrl: "/thai-script/videos/TAME_L14_tpod101_video-h.webm",
-	},
-	{
-		number: 15,
-		title: "The class-changing Haaw hiip, Short ua, and Long ua",
-		focus: "High class ห as class-changer and ua vowels",
-		consonants: ["ห"],
-		vowels: ["-ัว", "-ัวะ"],
-		toneMarks: [],
-		toneRulesIntroduced: [],
-		specialRulesIntroduced: ["hor-nam"],
-		videoUrl: "/thai-script/videos/TAME_L15_tpod101_video-h.webm",
-	},
-	{
-		number: 16,
-		title: "Phaaw samphao, Thaaw thong, Naaw neen, Yaaw ying, and sara am",
-		focus: "Four low class consonants and sara am",
-		consonants: ["ภ", "ธ", "ณ", "ญ"],
-		vowels: ["ำ"],
-		toneMarks: [],
-		toneRulesIntroduced: [],
-		specialRulesIntroduced: ["sara-am-properties", "ror-han"],
-		videoUrl: "/thai-script/videos/TAME_L16_tpod101_video-h.webm",
-	},
-	{
-		number: 17,
-		title: "Tone Rules Part 1 - mai ek and mai tho",
-		focus: "First two tone marks with mid class consonants",
-		consonants: [],
-		vowels: [],
-		toneMarks: ["่", "้"],
-		toneRulesIntroduced: [],
-		specialRulesIntroduced: ["tone-mark-placement"],
-		videoUrl: "/thai-script/videos/TAME_L17_tpod101_video-h.webm",
-	},
-	{
-		number: 18,
-		title: "Tone Rules Part 2 - mai tri and mai chattawa",
-		focus: "Last two tone marks (mid class only)",
-		consonants: [],
-		vowels: [],
-		toneMarks: ["๊", "๋"],
-		toneRulesIntroduced: [],
-		specialRulesIntroduced: ["mai-tri-chattawa-middle-only"],
-		videoUrl: "/thai-script/videos/TAME_L18_tpod101_video-h.webm",
-	},
-	{
-		number: 19,
-		title: "Thaaw thung, Thaaw thaan, Daaw chada, Dtaaw bpatak",
-		focus: "Two high class and two mid class rare consonants",
-		consonants: ["ถ", "ฐ", "ฎ", "ฏ"],
-		vowels: [],
-		toneMarks: [],
-		toneRulesIntroduced: [],
-		specialRulesIntroduced: ["unwritten-vowels"],
-		videoUrl: "/thai-script/videos/TAME_L19_tpod101_video-h.webm",
-	},
-	{
-		number: 20,
-		title: "Thaaw monthoo and Thaaw phuuthao",
-		focus: "Two low class rare consonants",
-		consonants: ["ฑ", "ฒ"],
-		vowels: [],
-		toneMarks: [],
-		toneRulesIntroduced: [],
-		specialRulesIntroduced: [],
-		videoUrl: "/thai-script/videos/TAME_L20_tpod101_video-h.webm",
-	},
-	{
-		number: 21,
-		title: "Laaw julaa and Khaaw rakhang",
-		focus: "Last two low class consonants + high class tone marks",
-		consonants: ["ฬ", "ฆ"],
-		vowels: [],
-		toneMarks: [],
-		toneRulesIntroduced: [],
-		specialRulesIntroduced: [],
-		videoUrl: "/thai-script/videos/TAME_L21_tpod101_video-h.webm",
-	},
-	{
-		number: 22,
-		title: "Obsolete consonants, rare vowels, and ฌ",
-		focus: "ฃ, ฅ (obsolete), ฤ, ฤๅ, ฦ, ฦๅ, ฌ",
-		consonants: ["ฃ", "ฅ", "ฌ"],
-		vowels: [],
+		title: "The Rare Tail",
+		focus:
+			"The ten rarest letters, the rare vowel signs, and the ua/uea vowels",
+		consonants: ["ฐ", "ฎ", "ฏ", "ฑ", "ฒ", "ฬ", "ฆ", "ฃ", "ฅ", "ฌ"],
+		vowels: ["เ-ือ", "เ-ือะ", "-ัว", "-ัวะ"],
 		toneMarks: [],
 		toneRulesIntroduced: [],
 		specialRulesIntroduced: ["obsolete-consonants"],
-		videoUrl: "/thai-script/videos/TAME_L22_tpod101_video-h.webm",
-	},
-	{
-		number: 23,
-		title: "Thai Numerals 1-3 and Low Class Mai Ek",
-		focus: "Numbers and low class tone mark rules",
-		consonants: [],
-		vowels: [],
-		toneMarks: [],
-		toneRulesIntroduced: [],
-		specialRulesIntroduced: [],
-		videoUrl: "/thai-script/videos/TAME_L23_tpod101_video-h.webm",
-	},
-	{
-		number: 24,
-		title: "Thai Numerals 4-6, เ_ย pattern, and Low Class Mai Tho",
-		focus: "Numbers, irregular vowel pattern, and tone rules",
-		consonants: [],
-		vowels: [],
-		toneMarks: [],
-		toneRulesIntroduced: [],
-		specialRulesIntroduced: [],
-		videoUrl: "/thai-script/videos/TAME_L24_tpod101_video-h.webm",
-	},
-	{
-		number: 25,
-		title: "Thai Numerals 7-0 and Irregular Spellings",
-		focus: "Final numbers and spelling exceptions",
-		consonants: [],
-		vowels: [],
-		toneMarks: [],
-		toneRulesIntroduced: [],
-		specialRulesIntroduced: [
-			"tho-ro-s-sound",
-			"silent-ro-clusters",
-			"silent-o-before-yo",
-		],
-		videoUrl: "/thai-script/videos/TAME_L25_tpod101_video-h.webm",
 	},
 	// --- Phase 3: the three concepts the source course taught as asides. ---
 	// Declared here so every slot in `lessonSequence.ts` has the title, focus
@@ -3415,7 +3294,26 @@ export const lessons: Lesson[] = [
 		vowels: [],
 		toneMarks: [],
 		toneRulesIntroduced: [],
-		specialRulesIntroduced: ["unwritten-vowels"],
+		specialRulesIntroduced: ["unwritten-vowels", "ror-han"],
+	},
+	// Task 4.2 — the consolidated tone-mark lesson. Replaces the six-lesson
+	// spread of `toneMarkRules` with the eight-cell table taught as one
+	// pattern; task 4.3's resequence filed the four mark symbols and all
+	// eight rules here. Every spelling-based tone rule (lessons 2-13)
+	// precedes it in the sequence.
+	{
+		number: 29,
+		title: "The Eight-Cell Tone-Mark Table",
+		focus:
+			"All four tone marks against all three consonant classes, as one pattern",
+		consonants: [],
+		vowels: [],
+		toneMarks: ["่", "้", "๊", "๋"],
+		toneRulesIntroduced: [],
+		specialRulesIntroduced: [
+			"tone-mark-placement",
+			"mai-tri-chattawa-middle-only",
+		],
 	},
 	{
 		number: 27,
@@ -3426,7 +3324,11 @@ export const lessons: Lesson[] = [
 		vowels: [],
 		toneMarks: [],
 		toneRulesIntroduced: [],
-		specialRulesIntroduced: ["consonant-clusters"],
+		specialRulesIntroduced: [
+			"consonant-clusters",
+			"tho-ro-s-sound",
+			"silent-ro-clusters",
+		],
 	},
 	{
 		number: 28,
@@ -3437,28 +3339,22 @@ export const lessons: Lesson[] = [
 		vowels: [],
 		toneMarks: [],
 		toneRulesIntroduced: [],
-		specialRulesIntroduced: ["hor-nam"],
+		specialRulesIntroduced: ["hor-nam", "silent-o-before-yo"],
 	},
-	// Task 4.2 — the consolidated tone-mark lesson. Replaces the six-lesson
-	// spread of `toneMarkRules` (mid class in lessons 17-18, high in 21-22, low
-	// in 23-24) with the eight-cell table taught as one pattern. It introduces
-	// no new consonant or vowel — every spelling-based tone rule above (lessons
-	// 2-16) already precedes it in the sequence — and carries no `videoUrl`
-	// because it is a deck lesson from the start (`DECK_LESSON_IDS` in
-	// `lessonContent.ts`).
+	// Task 4.3 — Thai numerals as one optional lesson, replacing the front
+	// halves of the three retired video lessons that taught them (legacy
+	// 23-25). The ten `thaiNumerals` entries are filed under this number; the
+	// sequence marks the lesson `required: false`, so completing the course
+	// does not depend on it (AC4).
 	{
-		number: 29,
-		title: "The Eight-Cell Tone-Mark Table",
-		focus:
-			"All four tone marks against all three consonant classes, as one pattern",
+		number: 30,
+		title: "Thai Numerals, ๐ Through ๙",
+		focus: "The ten digit glyphs and the number words behind them — optional",
 		consonants: [],
 		vowels: [],
 		toneMarks: [],
 		toneRulesIntroduced: [],
-		specialRulesIntroduced: [
-			"tone-mark-placement",
-			"mai-tri-chattawa-middle-only",
-		],
+		specialRulesIntroduced: [],
 	},
 ];
 

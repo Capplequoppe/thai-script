@@ -80,12 +80,12 @@ export function deckPathForLesson(
 // ============================================================================
 
 /**
- * Lessons whose content is an in-house deck. Empty at the end of task 1.1a:
- * every lesson still serves its video. Task 1.4 adds `lesson-01`, and each
- * later content task adds its own — that addition is the whole strangler.
+ * Lessons whose content is an in-house deck. The strangler grew this set one
+ * band at a time from task 1.4's `lesson-01`; task 4.3 closed it — every
+ * declared lesson is here, and no lesson resolves to the video arm any more.
  *
  * `lesson-sound-buckets` is deliberately absent: it has no `legacyNumber` in
- * `lessonSequence.ts` yet, and giving it one is a lesson-identity decision
+ * `lessonSequence.ts`, and giving it one is a lesson-identity decision
  * (CONTEXT.md Rule 1 — the five-store hazard) that belongs with the task
  * that owns that migration, not a one-line addition here. Its deck is
  * committed and schema-valid (see `openingBand.test.ts`) but unreachable
@@ -97,26 +97,24 @@ export const DECK_LESSON_IDS: ReadonlySet<string> = new Set<string>([
 	"lesson-03",
 	"lesson-04",
 	"lesson-05",
-	// Phase 3's middle band. Each of these six already held a slot in
-	// `lessonSequence.ts` with its legacy number and a `lessons` row, so the
-	// symbols each teaches, and the lesson each symbol is filed under, are
-	// unchanged — only the content source moves from the licensed video to the
-	// in-house deck.
+	// Phase 3's middle band.
 	"lesson-06",
 	"lesson-07",
 	"lesson-08",
 	"lesson-09",
 	"lesson-10",
 	"lesson-11",
-	// Phase 3's three promoted lessons. Each already holds a slot in
-	// `lessonSequence.ts` with a `legacyNumber` and a `lessons` row, so wiring
-	// them onto the deck arm moves no lesson's position and touches none of the
-	// five persisted stores (CONTEXT.md Rule 1).
+	// Task 4.3's final band — the three lessons that replaced the last
+	// fourteen video slots — and the optional numerals track.
+	"lesson-12",
+	"lesson-13",
+	"lesson-14",
+	"lesson-numerals",
+	// Phase 3's three promoted lessons.
 	"lesson-unwritten-vowels",
 	"lesson-clusters",
 	"lesson-leading-consonants",
-	// Task 4.2 — the consolidated tone-mark lesson. Already holds a slot in
-	// `lessonSequence.ts` with its own legacy number and `lessons` row.
+	// Task 4.2 — the consolidated tone-mark lesson.
 	"lesson-tone-marks",
 ]);
 

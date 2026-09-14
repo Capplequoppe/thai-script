@@ -2,17 +2,19 @@
  * The declared lesson sequence: the one place lesson identity and lesson
  * ordering are written down.
  *
- * Today a lesson is identified by an integer that is simultaneously its
- * position, its persisted join key (five stores key on it) and its filename.
- * That conflation is what makes resequencing hazardous. This module splits it
- * apart *additively*: a stable `id` per lesson, ordering carried by array
- * order, and `legacyNumber` still holding the integer every persisted store
- * uses today. Nothing persisted changes here — task 1.1b converts the stores.
+ * A lesson is identified by a stable `id`, ordered by array position, and
+ * joined to the `symbols.ts` tables through `legacyNumber` — the integer the
+ * five persisted stores keyed on before task 1.1b's migration, and the value
+ * `sym.lesson` still carries. Persisted stores hold *positions*; every join
+ * against the legacy space routes through this table.
  *
- * Ordering is read from `lessonSequence` and from nowhere else. In particular
- * the lesson *count* is derived from it (`lessonCount`), never written as a
- * literal: the five `25`s scattered through the app are what a resequence
- * breaks, and they are converted to read this.
+ * Task 4.3 closed the sequence: the fourteen video lessons that remained
+ * (legacy 12-25) are replaced by three in-house lessons (12-14) and the
+ * retired numbers below, the three promoted lessons and the consolidated
+ * tone-mark lesson take their teaching positions, and Thai numerals become an
+ * optional track at the end. Ordering is read from `lessonSequence` and from
+ * nowhere else; the lesson *counts* are derived from it, never written as
+ * literals.
  */
 
 /**
@@ -27,55 +29,54 @@ export interface LessonSequenceEntry {
 	/** 1-based place in the course. Derived from declaration order. */
 	readonly position: number;
 	/**
-	 * The integer the five persisted stores key on today (CONTEXT.md Rule 1).
-	 * Still authoritative until task 1.1b migrates them onto `id`.
+	 * The integer `symbols.ts` files this lesson's rows and symbols under
+	 * (CONTEXT.md Rule 1). Unique forever: a retired number is never reused,
+	 * because persisted cards written under the old numbering still carry it.
 	 */
 	readonly legacyNumber: number;
+	/**
+	 * Whether completing this lesson is part of completing the course.
+	 * `false` marks an optional track — taught, reachable, but a learner who
+	 * declines it has not left the course incomplete (task 4.3 AC4).
+	 */
+	readonly required: boolean;
 }
 
-/** Declaration order is the course order. Positions are assigned from it. */
+/**
+ * Declaration order is the course order. Positions are assigned from it.
+ *
+ * The ordering constraints this declaration satisfies, in one place so a
+ * resequence can check itself against them:
+ * - lessons 12-14 teach every consonant and written vowel not taught by the
+ *   opening and middle bands, so everything after them may use any symbol;
+ * - `lesson-tone-marks` comes after every spelling-based tone rule
+ *   (`toneRules`, lessons 2-13) and before `lesson-clusters` and
+ *   `lesson-leading-consonants`, whose decks print marked words;
+ * - `lesson-unwritten-vowels` comes after lesson-14, whose letters (ฎ, ฏ)
+ *   appear in its examples;
+ * - `lesson-numerals` is last: `startLesson` requires every earlier position
+ *   complete, so an optional track anywhere else would block the course.
+ */
 const DECLARED: readonly Omit<LessonSequenceEntry, "position">[] = [
-	{ id: "lesson-01", legacyNumber: 1 },
-	{ id: "lesson-02", legacyNumber: 2 },
-	{ id: "lesson-03", legacyNumber: 3 },
-	{ id: "lesson-04", legacyNumber: 4 },
-	{ id: "lesson-05", legacyNumber: 5 },
-	{ id: "lesson-06", legacyNumber: 6 },
-	{ id: "lesson-07", legacyNumber: 7 },
-	{ id: "lesson-08", legacyNumber: 8 },
-	{ id: "lesson-09", legacyNumber: 9 },
-	{ id: "lesson-10", legacyNumber: 10 },
-	{ id: "lesson-11", legacyNumber: 11 },
-	{ id: "lesson-12", legacyNumber: 12 },
-	{ id: "lesson-13", legacyNumber: 13 },
-	{ id: "lesson-14", legacyNumber: 14 },
-	{ id: "lesson-15", legacyNumber: 15 },
-	{ id: "lesson-16", legacyNumber: 16 },
-	{ id: "lesson-17", legacyNumber: 17 },
-	{ id: "lesson-18", legacyNumber: 18 },
-	{ id: "lesson-19", legacyNumber: 19 },
-	{ id: "lesson-20", legacyNumber: 20 },
-	{ id: "lesson-21", legacyNumber: 21 },
-	{ id: "lesson-22", legacyNumber: 22 },
-	{ id: "lesson-23", legacyNumber: 23 },
-	{ id: "lesson-24", legacyNumber: 24 },
-	{ id: "lesson-25", legacyNumber: 25 },
-	// Phase 3 — the three concepts the source course taught as asides. Their
-	// slots are declared here before their content exists so that tasks 3.2 and
-	// 3.3 fill a slot rather than each inventing an ordering (see
-	// `PHASE_THREE_LESSON_IDS`).
-	{ id: "lesson-unwritten-vowels", legacyNumber: 26 },
-	{ id: "lesson-clusters", legacyNumber: 27 },
-	{ id: "lesson-leading-consonants", legacyNumber: 28 },
-	// Task 4.2 — the consolidated tone-mark lesson. Appended for the same
-	// reason as the phase 3 trio above: its position is its persisted identity
-	// (CONTEXT.md Rule 1), so it takes the next open slot rather than the
-	// position a finished course would put it at. Every spelling-based tone
-	// rule (lessons 2-16) already precedes it. It introduces no symbol of its
-	// own yet — the four `ThaiToneMark` entries and `toneMarkRules` still carry
-	// their pre-migration `.lesson` values (17/18/21-24); moving them onto this
-	// slot is task 4.3's resequencing, not this one's.
-	{ id: "lesson-tone-marks", legacyNumber: 29 },
+	{ id: "lesson-01", legacyNumber: 1, required: true },
+	{ id: "lesson-02", legacyNumber: 2, required: true },
+	{ id: "lesson-03", legacyNumber: 3, required: true },
+	{ id: "lesson-04", legacyNumber: 4, required: true },
+	{ id: "lesson-05", legacyNumber: 5, required: true },
+	{ id: "lesson-06", legacyNumber: 6, required: true },
+	{ id: "lesson-07", legacyNumber: 7, required: true },
+	{ id: "lesson-08", legacyNumber: 8, required: true },
+	{ id: "lesson-09", legacyNumber: 9, required: true },
+	{ id: "lesson-10", legacyNumber: 10, required: true },
+	{ id: "lesson-11", legacyNumber: 11, required: true },
+	{ id: "lesson-12", legacyNumber: 12, required: true },
+	{ id: "lesson-13", legacyNumber: 13, required: true },
+	{ id: "lesson-14", legacyNumber: 14, required: true },
+	{ id: "lesson-unwritten-vowels", legacyNumber: 26, required: true },
+	{ id: "lesson-tone-marks", legacyNumber: 29, required: true },
+	{ id: "lesson-clusters", legacyNumber: 27, required: true },
+	{ id: "lesson-leading-consonants", legacyNumber: 28, required: true },
+	{ id: "lesson-numerals", legacyNumber: 30, required: false },
 ];
 
 export const lessonSequence: readonly LessonSequenceEntry[] = Object.freeze(
@@ -85,11 +86,77 @@ export const lessonSequence: readonly LessonSequenceEntry[] = Object.freeze(
 );
 
 /**
- * The number of lessons in the course, derived. Consumers that currently hold
- * a literal (`ScriptLessonService.TOTAL_LESSONS`, `AchievementService`,
- * `ProgressPage`, `AchievementBadge`, `LessonPath`) read this instead.
+ * The legacy numbers this resequence retired, each mapped to the lesson that
+ * absorbed the bulk of its material. Persisted stores written under the old
+ * numbering still carry these values, and `migrateLessonIdentity`
+ * (`Storage.ts`) currently *refuses* a state that references an undeclared
+ * number — the epoch-marked migration its own NOTE calls for must consume
+ * this map before the resequence reaches a learner's browser. Declared here
+ * so that migration reads the mapping off the resequence that caused it.
  */
-export const lessonCount = lessonSequence.length;
+export const RETIRED_LESSONS: readonly {
+	readonly legacyNumber: number;
+	readonly absorbedBy: string;
+}[] = Object.freeze([
+	{ legacyNumber: 15, absorbedBy: "lesson-12" }, // ห; -ัว/-ัวะ moved to lesson-14
+	{ legacyNumber: 16, absorbedBy: "lesson-13" }, // ภ ธ ณ ญ, ำ
+	{ legacyNumber: 17, absorbedBy: "lesson-tone-marks" }, // ่ ้
+	{ legacyNumber: 18, absorbedBy: "lesson-tone-marks" }, // ๊ ๋
+	{ legacyNumber: 19, absorbedBy: "lesson-14" }, // ถ moved to lesson-12; ฐ ฎ ฏ
+	{ legacyNumber: 20, absorbedBy: "lesson-14" }, // ฑ ฒ
+	{ legacyNumber: 21, absorbedBy: "lesson-14" }, // ฬ ฆ
+	{ legacyNumber: 22, absorbedBy: "lesson-14" }, // ฃ ฅ ฌ, ฤ ฤๅ ฦ ฦๅ
+	{ legacyNumber: 23, absorbedBy: "lesson-numerals" }, // ๑ ๒ ๓
+	{ legacyNumber: 24, absorbedBy: "lesson-numerals" }, // ๔ ๕ ๖
+	{ legacyNumber: 25, absorbedBy: "lesson-numerals" }, // ๗ ๘ ๙ ๐
+]);
+
+/**
+ * The number of lessons a learner must complete for the course to be
+ * complete — the required lessons, not the declared entries. The completion
+ * consumers (`AchievementService`'s `completedLessons.length >= lessonCount`
+ * and the badge copy built from the same value) read this, which is what
+ * keeps an optional track from silently holding the course open (AC4).
+ * Navigation walks `lessonSequence` itself and shows every entry.
+ */
+export const lessonCount = lessonSequence.filter(
+	(entry) => entry.required,
+).length;
+
+// ============================================================================
+// The numerals track (AC4)
+// ============================================================================
+
+/**
+ * The three states the optional numerals track can be in for a learner, as
+ * three distinct values. "skipped" is a first-class state, not an absence:
+ * the learner finished every required lesson and the course closed without
+ * the track, which is a different fact from not having reached it yet.
+ */
+export type NumeralsTrackState = "not-started" | "completed" | "skipped";
+
+/**
+ * Resolves the numerals track's state from the learner's completed positions.
+ *
+ * - "completed": the numerals lesson itself was completed.
+ * - "skipped": every required lesson is complete and the numerals lesson is
+ *   not — the learner reached the end of the course and moved past the track.
+ *   Starting the track later flips this to "completed"; nothing is lost.
+ * - "not-started": the course is still in progress and the track has not
+ *   been reached.
+ */
+export function numeralsTrackState(
+	completedLessons: readonly number[],
+): NumeralsTrackState {
+	const completed = new Set(completedLessons);
+	const numerals = lessonSequence.find((entry) => !entry.required);
+	if (!numerals) return "not-started";
+	if (completed.has(numerals.position)) return "completed";
+	const requiredDone = lessonSequence.every(
+		(entry) => !entry.required || completed.has(entry.position),
+	);
+	return requiredDone ? "skipped" : "not-started";
+}
 
 export type LessonIdRefusal = { readonly ok: false; readonly error: string };
 
@@ -139,21 +206,13 @@ export function lessonEntryById(
 }
 
 /**
- * The lessons phase 3 produces, by stable id — the six middle-band lessons
- * that already had slots and the three concepts promoted from asides.
+ * The lessons phase 3 produced, by stable id — the six middle-band lessons
+ * and the three concepts promoted from asides.
  *
  * Declared here rather than in either content task because tasks 3.2 and 3.3
- * run concurrently on disjoint files: if each placed its own lessons, neither
+ * ran concurrently on disjoint files: if each placed its own lessons, neither
  * would see the other's ordering and the scheduler could not catch the
  * collision.
- *
- * The three promoted lessons are **appended**, not inserted at the place a
- * finished course would put them. A lesson's persisted identity is its
- * `position` (CONTEXT.md rule 1 — five stores key on it), so inserting in the
- * middle renumbers every later lesson and silently rewrites what the learner
- * has completed. Appending keeps the legacy→position mapping the identity it
- * is today; phase 4 owns the resequence and the persisted epoch that has to
- * come with it.
  */
 export const PHASE_THREE_LESSON_IDS: readonly string[] = Object.freeze([
 	"lesson-06",
@@ -179,7 +238,7 @@ export interface SlotReconciliation {
 /**
  * Slots and content, reconciled in both directions.
  *
- * Both halves are reported rather than asserted away: during the phase a slot
+ * Both halves are reported rather than asserted away: during a phase a slot
  * legitimately has no content yet, and a lesson that shipped content without a
  * slot (`lesson-sound-buckets` is one today) is unreachable from any route —
  * a defect that is invisible unless something counts it.
@@ -200,9 +259,24 @@ export function reconcileLessonSlots(
 	};
 }
 
-/** Lookup by the integer the persisted stores still use. */
+/** Lookup by the integer the `symbols.ts` tables still use. */
 export function lessonEntryByNumber(
 	legacyNumber: number,
 ): LessonSequenceEntry | undefined {
 	return lessonSequence.find((entry) => entry.legacyNumber === legacyNumber);
+}
+
+/**
+ * Lookup by 1-based position — the space persisted state and routes live in.
+ *
+ * Distinct from {@link lessonEntryByNumber} on purpose: position and legacy
+ * number were the same integer until task 4.3's resequence, so a caller
+ * holding a position could reach for the legacy lookup and be silently
+ * right. They now diverge from position 15 on, and the two lookups exist so
+ * the call site names which space its integer is in.
+ */
+export function lessonEntryByPosition(
+	position: number,
+): LessonSequenceEntry | undefined {
+	return lessonSequence[position - 1];
 }

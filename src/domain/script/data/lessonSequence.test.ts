@@ -56,8 +56,11 @@ describe("the declared lesson sequence", () => {
 });
 
 describe("the derived lesson count", () => {
-	it("equals the number of declared entries", () => {
-		expect(lessonCount).toBe(lessonSequence.length);
+	it("equals the number of required entries — the optional numerals track sits outside it", () => {
+		expect(lessonCount).toBe(
+			lessonSequence.filter((entry) => entry.required).length,
+		);
+		expect(lessonCount).toBe(lessonSequence.length - 1);
 	});
 
 	it("is declared with no integer literal for the count", () => {
@@ -67,7 +70,9 @@ describe("the derived lesson count", () => {
 		);
 		const literalCount = /\b\w*(?:count|total)\w*\s*[:=]\s*\d+/i;
 		expect(source).not.toMatch(literalCount);
-		expect(source).toMatch(/lessonCount\s*=\s*lessonSequence\.length/);
+		expect(source).toMatch(
+			/lessonCount = lessonSequence\.filter\(\s*\(entry\) => entry\.required,\s*\)\.length/,
+		);
 	});
 });
 

@@ -110,20 +110,14 @@ describe("lesson 1's identity", () => {
 		expect(lesson1?.vowels).toEqual(["า"]);
 	});
 
-	it("a lesson past the opening band still resolves to its video, unchanged by this task", () => {
-		// Task 2.5 moved lessons 2-5 onto the deck arm and task 3.3 moved
-		// 6-11, so the lesson this names is now *derived* rather than written
-		// down: the first slot in the declared sequence that has no deck. That
-		// is what the assertion was always about — the seam still has a video
-		// side — and deriving it stops each new band from editing this test.
+	it("no lesson past the opening band resolves to a video any more — task 4.3 closed the seam", () => {
+		// This assertion used to derive "the first slot with no deck" and
+		// check it still served video. Task 4.3 removed the video side of the
+		// seam entirely, so the derivation now proves the absence instead.
 		const stillOnVideo = lessonSequence.find(
 			(entry) => !DECK_LESSON_IDS.has(entry.id),
 		);
-		expect(stillOnVideo).toBeDefined();
-		const resolution = resolveLessonContent(stillOnVideo?.id);
-		expect(resolution.status).toBe("resolved");
-		if (resolution.status !== "resolved") return;
-		expect(resolution.content.kind).toBe("video");
+		expect(stillOnVideo).toBeUndefined();
 	});
 
 	it("the deck sits at the exact path resolveLessonContent serves it from", () => {

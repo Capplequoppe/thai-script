@@ -187,8 +187,8 @@ describe("LearningService", () => {
 			expect(summary.consonants.length).toBeGreaterThan(0);
 		});
 
-		it("includes rare vowels for lesson 22", () => {
-			const summary = service.getLessonSummary(22);
+		it("includes rare vowels for the rare-tail lesson", () => {
+			const summary = service.getLessonSummary(14);
 			expect(summary.rareVowels.map((v) => v.character)).toEqual([
 				"ฤ",
 				"ฤๅ",
@@ -197,9 +197,20 @@ describe("LearningService", () => {
 			]);
 		});
 
-		it("includes numerals for lesson 23", () => {
-			const summary = service.getLessonSummary(23);
-			expect(summary.numerals.map((n) => n.character)).toEqual(["๑", "๒", "๓"]);
+		it("includes all ten numerals for the numerals lesson", () => {
+			const summary = service.getLessonSummary(19);
+			expect(summary.numerals.map((n) => n.character)).toEqual([
+				"๐",
+				"๑",
+				"๒",
+				"๓",
+				"๔",
+				"๕",
+				"๖",
+				"๗",
+				"๘",
+				"๙",
+			]);
 		});
 
 		it("includes tone rule ids matching their generated card ids", () => {
@@ -210,7 +221,7 @@ describe("LearningService", () => {
 		});
 
 		it("includes tone mark rule ids matching their generated card ids", () => {
-			const summary = service.getLessonSummary(17);
+			const summary = service.getLessonSummary(16);
 			const ids = summary.toneRules.map((r) => r.id);
 			expect(ids).toContain("tone-mark-rule:mai ek-mid");
 			expect(ids).toContain("tone-mark-rule:mai tho-mid");
@@ -397,13 +408,13 @@ describe("LearningService", () => {
 		}
 
 		it("has nothing pending before any reconcile runs", () => {
-			completeLessonsUpTo(22);
+			completeLessonsUpTo(14);
 			expect(service.getPendingCatchUps()).toHaveLength(0);
 		});
 
 		it("flags a pending catch-up scoped to just the backfilled items", () => {
-			completeLessonsUpTo(22);
-			// Simulate lesson 22 having been completed before rare vowels were
+			completeLessonsUpTo(14);
+			// Simulate the rare-tail lesson having been completed before rare vowels were
 			// wired into card generation.
 			deleteCardsStartingWith("ฤ:");
 			deleteCardsStartingWith("ฤๅ:");
@@ -414,7 +425,7 @@ describe("LearningService", () => {
 
 			const pending = service.getPendingCatchUps();
 			expect(pending).toHaveLength(1);
-			expect(pending[0]?.lessonNumber).toBe(22);
+			expect(pending[0]?.lessonNumber).toBe(14);
 			expect(pending[0]?.summary.rareVowels.map((v) => v.character)).toEqual([
 				"ฤ",
 				"ฤๅ",
@@ -428,27 +439,27 @@ describe("LearningService", () => {
 		});
 
 		it("getPendingCatchUpCards returns only the pending items' live review cards", () => {
-			completeLessonsUpTo(22);
+			completeLessonsUpTo(14);
 			deleteCardsStartingWith("ฤ:");
 			service.reconcileCards();
 
-			const cards = service.getPendingCatchUpCards(22);
+			const cards = service.getPendingCatchUpCards(14);
 			expect(cards.length).toBeGreaterThan(0);
 			expect(cards.every((c) => c.id.startsWith("ฤ:"))).toBe(true);
 		});
 
 		it("returns no cards for a lesson with nothing pending", () => {
-			completeLessonsUpTo(22);
-			expect(service.getPendingCatchUpCards(22)).toHaveLength(0);
+			completeLessonsUpTo(14);
+			expect(service.getPendingCatchUpCards(14)).toHaveLength(0);
 		});
 
 		it("dismissPendingCatchUp clears the pending entry", () => {
-			completeLessonsUpTo(22);
+			completeLessonsUpTo(14);
 			deleteCardsStartingWith("ฤ:");
 			service.reconcileCards();
 			expect(service.getPendingCatchUps()).toHaveLength(1);
 
-			service.dismissPendingCatchUp(22);
+			service.dismissPendingCatchUp(14);
 
 			expect(service.getPendingCatchUps()).toHaveLength(0);
 		});

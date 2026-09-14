@@ -12,7 +12,7 @@ import {
 } from "@/presentation/components/ui/dialog";
 import { Progress } from "@/presentation/components/ui/progress";
 import { resolveLessonContent } from "../../domain/script/data/lessonContent";
-import { lessonEntryByNumber } from "../../domain/script/data/lessonSequence";
+import { lessonEntryByPosition } from "../../domain/script/data/lessonSequence";
 import type { PropertyCard } from "../../domain/shared/types";
 import { SectionHeader } from "../components/atoms/SectionHeader";
 import { SessionStatGrid } from "../components/molecules/SessionStatGrid";
@@ -51,7 +51,7 @@ export function LessonPage() {
 	// sequence and still fail to resolve content (an "unresolvable" lesson
 	// must never read the same as one that doesn't exist at all).
 	const contentResolution = useMemo(() => {
-		const entry = lessonEntryByNumber(num);
+		const entry = lessonEntryByPosition(num);
 		if (!entry) return { status: "undeclared" as const };
 		return resolveLessonContent(entry.id);
 	}, [num]);

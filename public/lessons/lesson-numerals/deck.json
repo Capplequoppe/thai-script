@@ -1,0 +1,81 @@
+{
+	"lessonId": "lesson-numerals",
+	"title": "Thai numerals, ๐ through ๙",
+	"slides": [
+		{
+			"kind": "exposition",
+			"id": "why-optional",
+			"heading": "Ten glyphs, entirely optional",
+			"body": [
+				"Thailand writes numbers with Arabic digits almost everywhere. The Thai digits survive on official documents, temple signs, some price boards — and anywhere a date wants to look formal.",
+				"Skipping this lesson skips nothing else: no later material depends on it, and the course is complete without it. It waits here if a menu ever charges you the Thai-digit price."
+			]
+		},
+		{
+			"kind": "exposition",
+			"id": "zero-to-four",
+			"heading": "Zero through four: ๐ ๑ ๒ ๓ ๔",
+			"body": [
+				"๐ is zero, a plain ring — ศูนย์ (sǔun), a word you already can read: temple ศ up front and a silenced ย at the end.",
+				"๑ is one, หนึ่ง (nùeng). ๒ is two, สอง (sǎawng). ๓ is three, สาม (sǎam) — the two and three share a base; three carries an extra hump.",
+				"๔ is four, สี่ (sìi), and its glyph forks like a flag."
+			]
+		},
+		{
+			"kind": "exposition",
+			"id": "five-to-nine",
+			"heading": "Five through nine, ๕ to ๙",
+			"body": [
+				"๕ is five, ห้า (hâa) — the glyph coils back on itself. ๖ is six, หก (hòk).",
+				"๗ is seven, เจ็ด (jèt), and ๘ is eight, แปด (bpàaet) — a matched pair of hooks facing opposite ways.",
+				"๙ is nine, เก้า (gâo), with a tail that climbs. Larger units are ordinary words: สิบ (sìp) ten, ร้อย (ráawi) hundred, พัน (phan) thousand, ล้าน (láan) million."
+			]
+		},
+		{
+			"kind": "exposition",
+			"id": "reading-a-number",
+			"heading": "Reading a number you meet on a sign",
+			"body": [
+				"Thai digits combine exactly as Arabic ones do — position by position, nothing reordered.",
+				"๒๕ is 25. ๑๐๐ is 100. A ticket stamped ๗๕ is asking for 75, and the only new skill is glyph recognition.",
+				"The word เลข (lêek) — number — is what signs use to label them."
+			]
+		},
+		{
+			"kind": "retrieval",
+			"id": "read-price",
+			"prompt": "A market stall lists a price as ๓๕. What number is that, and which two digit glyphs did you just read?",
+			"revealSlideId": "read-price-answer"
+		},
+		{
+			"kind": "reveal",
+			"id": "read-price-answer",
+			"retrievalSlideId": "read-price",
+			"answers": [
+				"35. ๓ is three — the humped glyph — and ๕ is five, the one that coils back on itself. Position works exactly as in Arabic digits."
+			]
+		},
+		{
+			"kind": "retrieval",
+			"id": "spot-digit",
+			"prompt": "๙ and ๗ both rise to a point. A date stamp reads ๙. Which number is it, and what tells the two glyphs apart?",
+			"revealSlideId": "spot-digit-answer"
+		},
+		{
+			"kind": "reveal",
+			"id": "spot-digit-answer",
+			"retrievalSlideId": "spot-digit",
+			"answers": [
+				"Nine. ๙ finishes with a tail that climbs above the line, while ๗ keeps a straight neck with a small hook."
+			]
+		},
+		{
+			"kind": "exposition",
+			"id": "close",
+			"heading": "Done — or happily skipped",
+			"body": [
+				"Ten glyphs, their number words, and positional reading. Whether you learned them or skipped them, the course stands complete behind you."
+			]
+		}
+	]
+}

@@ -3,7 +3,7 @@ import { useNavigate, useParams } from "react-router";
 import { Button } from "@/presentation/components/ui/button";
 import { Progress } from "@/presentation/components/ui/progress";
 import { resolveLessonContent } from "../../domain/script/data/lessonContent";
-import { lessonEntryByNumber } from "../../domain/script/data/lessonSequence";
+import { lessonEntryByPosition } from "../../domain/script/data/lessonSequence";
 import { SessionStatGrid } from "../components/molecules/SessionStatGrid";
 import { LessonIntro } from "../components/organisms/LessonIntro";
 import { MultipleChoice } from "../components/organisms/MultipleChoice";
@@ -41,7 +41,7 @@ export function CatchUpPage() {
 	// Same resolution as `LessonPage` — a catch-up lesson renders the same
 	// deck as its ordinary counterpart (see task 1.2 AC1).
 	const contentResolution = useMemo(() => {
-		const entry = lessonEntryByNumber(num);
+		const entry = lessonEntryByPosition(num);
 		if (!entry) return { status: "undeclared" as const };
 		return resolveLessonContent(entry.id);
 	}, [num]);

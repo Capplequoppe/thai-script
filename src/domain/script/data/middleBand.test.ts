@@ -45,7 +45,7 @@ const SCRIPTS = join(REPO_ROOT, "content", "lessons");
 /** The slide whose bullets carry the pair inventory. */
 const PAIR_SLIDE = "cousin-pairs";
 const PAIR_LESSON_ID = "lesson-07";
-/** The first lesson after the middle band. Still on the licensed video arm. */
+/** The first lesson after the middle band — task 4.3 put it on the deck arm. */
 const FIRST_LESSON_AFTER_BAND = "lesson-12";
 
 /** Declaration order is the order the learner meets them. */
@@ -403,12 +403,12 @@ describe("the middle band's content seam", () => {
 		}
 	});
 
-	it("leaves the first lesson after the band on the video arm", () => {
-		expect(DECK_LESSON_IDS.has(FIRST_LESSON_AFTER_BAND)).toBe(false);
+	it("hands over to a decked lesson after the band — task 4.3 closed the video side of the seam", () => {
+		expect(DECK_LESSON_IDS.has(FIRST_LESSON_AFTER_BAND)).toBe(true);
 		const resolution = resolveLessonContent(FIRST_LESSON_AFTER_BAND);
 		expect(resolution.status).toBe("resolved");
 		if (resolution.status !== "resolved") return;
-		expect(resolution.content.kind).toBe("video");
+		expect(resolution.content.kind).toBe("deck");
 	});
 });
 

@@ -11,6 +11,7 @@ import {
 } from "./lessonContent";
 import {
 	lessonEntryById,
+	lessonSequence,
 	PHASE_THREE_LESSON_IDS,
 	reconcileLessonSlots,
 } from "./lessonSequence";
@@ -988,7 +989,13 @@ describe("AC1 — the three promoted lessons are served as decks", () => {
 			expect(entry.ok, `${id} is not declared in lessonSequence`).toBe(true);
 			if (!entry.ok) continue;
 			expect(entry.entry.legacyNumber, id).toBe(legacyNumber);
-			expect(entry.entry.position, id).toBe(legacyNumber);
+			// Task 4.3's resequence moved the promoted lessons off their
+			// appended slots (position == legacyNumber) into their teaching
+			// positions; identity is the id and the legacy number, and the
+			// relative ordering is asserted below.
+			expect(entry.entry.position, id).toBeLessThanOrEqual(
+				lessonSequence.length,
+			);
 
 			const content = resolveLessonContent(id);
 			expect(content).toEqual({

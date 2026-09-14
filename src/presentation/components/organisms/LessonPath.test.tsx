@@ -2,7 +2,7 @@
 import { render } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
 import type { LessonSequenceEntry } from "../../../domain/script/data/lessonSequence";
-import { lessonCount } from "../../../domain/script/data/lessonSequence";
+import { lessonSequence } from "../../../domain/script/data/lessonSequence";
 import { LessonPath } from "./LessonPath";
 
 function sequenceOf(length: number): LessonSequenceEntry[] {
@@ -10,6 +10,7 @@ function sequenceOf(length: number): LessonSequenceEntry[] {
 		id: `lesson-${String(i + 1).padStart(2, "0")}`,
 		position: i + 1,
 		legacyNumber: i + 1,
+		required: true,
 	}));
 }
 
@@ -53,7 +54,9 @@ describe("LessonPath", () => {
 			/>,
 		);
 		const nodes = renderedNodes(container);
-		expect(nodes).toHaveLength(lessonCount);
+		// Navigation shows every declared lesson, the optional numerals
+		// track included — the sequence length, not the required-lesson count.
+		expect(nodes).toHaveLength(lessonSequence.length);
 		expect(nodes[0]?.getAttribute("aria-label")).toBe("Lesson 1 — completed");
 		expect(nodes[1]?.getAttribute("aria-label")).toBe("Lesson 2 — start");
 		expect(nodes[2]?.getAttribute("aria-label")).toBe("Lesson 3 — locked");

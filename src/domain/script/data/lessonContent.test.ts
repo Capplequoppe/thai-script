@@ -16,23 +16,31 @@ import {
 	validateDeck,
 } from "./lessonContent";
 import { lessonSequence } from "./lessonSequence";
-import { lessons, specialRules } from "./symbols";
+import { specialRules } from "./symbols";
 
 const FIRST_ID = lessonSequence[0].id;
-// The opening band grows the deck arm lesson by lesson (task 1.4 wired
-// lesson-01; task 2.5 wired lessons 02-05). Tests about the *generic*
-// video-resolution path must not hardcode a position that band growth keeps
-// moving onto the deck arm, so this finds the first entry the deck arm has
-// not yet claimed.
-const VIDEO_ENTRY = lessonSequence.find(
-	(entry) => !DECK_LESSON_IDS.has(entry.id),
-);
-if (!VIDEO_ENTRY) {
-	throw new Error(
-		"every declared lesson is on the deck arm — these tests need a lesson still on video to exercise that path",
-	);
-}
-const SECOND_ENTRY = VIDEO_ENTRY;
+// Task 4.3 closed the strangler: every declared lesson is on the deck arm,
+// so no sequence entry exercises the video-resolution path any more. The
+// path itself still exists in `lessonContentFor` (phase 6 owns deleting it),
+// so the tests about it run against a synthetic entry and row instead of a
+// declared lesson.
+const SECOND_ENTRY = {
+	id: "lesson-99",
+	position: 99,
+	legacyNumber: 99,
+	required: true,
+} as const;
+const SECOND_ROW = {
+	number: 99,
+	title: "A synthetic video lesson",
+	focus: "exercises the video arm",
+	consonants: [],
+	vowels: [],
+	toneMarks: [],
+	toneRulesIntroduced: [],
+	specialRulesIntroduced: [],
+	videoUrl: "/thai-script/videos/synthetic.webm",
+};
 
 function deck(slides: unknown[], lessonId: string = FIRST_ID) {
 	return { lessonId, title: "A lesson", slides };
@@ -115,11 +123,16 @@ describe("content resolution states", () => {
 		]);
 	});
 
-	it("resolves a declared lesson still on the video arm to that arm", () => {
-		const result = resolveLessonContent(SECOND_ENTRY.id);
+	it("still resolves the video arm for an entry off the deck set, though no declared lesson is", () => {
+		expect(DECK_LESSON_IDS.has(SECOND_ENTRY.id)).toBe(false);
+		const result = lessonContentFor(SECOND_ENTRY, SECOND_ROW);
 		expect(result.status).toBe("resolved");
 		if (result.status !== "resolved") return;
 		expect(result.content.kind).toBe("video");
+		// The closure itself: every *declared* lesson is on the deck arm now.
+		for (const entry of lessonSequence) {
+			expect(DECK_LESSON_IDS.has(entry.id), entry.id).toBe(true);
+		}
 	});
 
 	it("resolves lesson-01 to the deck arm, now that task 1.4 has wired it in", () => {
@@ -137,13 +150,8 @@ describe("content resolution states", () => {
 	});
 
 	it("reports a declared lesson with no content source as unresolvable, never as undeclared", () => {
-		const lesson = lessons.find(
-			(candidate) => candidate.number === SECOND_ENTRY.legacyNumber,
-		);
-		expect(lesson).toBeDefined();
-		if (!lesson) return;
 		const result = lessonContentFor(SECOND_ENTRY, {
-			...lesson,
+			...SECOND_ROW,
 			videoUrl: undefined,
 		});
 		expect(result.status).toBe("unresolvable");

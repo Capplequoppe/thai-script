@@ -9,6 +9,7 @@ import {
 	resolveLessonContent,
 	validateDeck,
 } from "./lessonContent";
+import { lessonSequence } from "./lessonSequence";
 import { checkOriginality } from "./originality";
 import { classifyConsonant } from "./soundType";
 import {
@@ -50,7 +51,6 @@ const BUCKETS_LESSON_ID = "lesson-sound-buckets";
  * `lesson-12`; it moves again each time a later band is produced, and the
  * claim being made here is unchanged.
  */
-const FIRST_LESSON_STILL_ON_VIDEO = "lesson-12";
 
 interface BandLesson {
 	readonly id: string;
@@ -354,12 +354,10 @@ describe("the content seam", () => {
 		expect(resolveLessonContent(BUCKETS_LESSON_ID).status).toBe("undeclared");
 	});
 
-	it("still serves the first lesson without a deck from the video arm", () => {
-		expect(DECK_LESSON_IDS.has(FIRST_LESSON_STILL_ON_VIDEO)).toBe(false);
-		const resolution = resolveLessonContent(FIRST_LESSON_STILL_ON_VIDEO);
-		expect(resolution.status).toBe("resolved");
-		if (resolution.status !== "resolved") return;
-		expect(resolution.content.kind).toBe("video");
+	it("serves every declared lesson from the deck arm — task 4.3 closed the video side of the seam", () => {
+		for (const entry of lessonSequence) {
+			expect(DECK_LESSON_IDS.has(entry.id), entry.id).toBe(true);
+		}
 	});
 
 	it("never registers a lesson on the deck arm without a deck to serve", () => {
