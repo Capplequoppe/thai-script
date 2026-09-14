@@ -69,7 +69,7 @@ const ORIGINAL_PROSE =
  * window the plan's first draft chose misses four fifths of the known
  * positives.
  */
-const MEASURED_DETECTION = { detected: 48, total: 82 } as const;
+const MEASURED_DETECTION = { detected: 46, total: 82 } as const;
 
 /** Every `mnemonic:` string literal shipped in `symbols.ts`. */
 function shippedMnemonics(): string[] {

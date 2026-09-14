@@ -1,0 +1,109 @@
+{
+	"lessonId": "lesson-01",
+	"title": "Maaw maa, Naaw nuu, and Long a",
+	"slides": [
+		{
+			"kind": "exposition",
+			"id": "welcome",
+			"heading": "Two letters, one shared shape",
+			"body": [
+				"ม and น both carry the same low, husky \"m\" and \"n\" sounds you already make in English — no aspiration, no surprise.",
+				"Each glyph is one loop hung off a tall stem. The whole difference between them is which shoulder the loop sits on.",
+				"ม keeps its loop on the left shoulder. น swings it over to the right."
+			]
+		},
+		{
+			"kind": "exposition",
+			"id": "class",
+			"heading": "Same class, same tone habits",
+			"body": [
+				"ม and น both belong to the low consonant class, so they will follow the same tone rules once those rules arrive in lesson two.",
+				"For now the class is just a label to notice: low, low — every low-class letter after them behaves the same way."
+			]
+		},
+		{
+			"kind": "retrieval",
+			"id": "spot-the-loop",
+			"prompt": "ม and น are mirror images of each other. Which shoulder does ม's loop sit on, and which shoulder does น's?",
+			"revealSlideId": "spot-the-loop-answer"
+		},
+		{
+			"kind": "reveal",
+			"id": "spot-the-loop-answer",
+			"retrievalSlideId": "spot-the-loop",
+			"answers": ["ม: left shoulder. น: right shoulder."]
+		},
+		{
+			"kind": "exposition",
+			"id": "vowel",
+			"heading": "The long vowel า",
+			"body": [
+				"The vowel sign า trails a consonant and stretches its sound into a long, open \"aa\" — hold it until it runs out of breath.",
+				"It never stands alone; it always rides behind the consonant that starts the syllable."
+			]
+		},
+		{
+			"kind": "exposition",
+			"id": "word-naa",
+			"heading": "นา — rice farm",
+			"body": [
+				"Put น in front of the long vowel: น plus า makes นา.",
+				"นา (naa) means a rice farm or a field — one of the first nouns a farmer's child ever hears."
+			]
+		},
+		{
+			"kind": "retrieval",
+			"id": "build-naa",
+			"prompt": "น plus the long vowel — what word does that spell, and what does it mean?",
+			"revealSlideId": "build-naa-answer"
+		},
+		{
+			"kind": "reveal",
+			"id": "build-naa-answer",
+			"retrievalSlideId": "build-naa",
+			"answers": ["นา — naa — a rice farm or a field."]
+		},
+		{
+			"kind": "exposition",
+			"id": "word-maa",
+			"heading": "มา — to come",
+			"body": [
+				"Swap the consonant: ม plus the same long vowel makes มา.",
+				"มา (maa) means \"to come\" — a verb you will reach for constantly from here on."
+			]
+		},
+		{
+			"kind": "retrieval",
+			"id": "build-maa",
+			"prompt": "Swap นา's first consonant for ม. What word do you get, and what does it mean?",
+			"revealSlideId": "build-maa-answer"
+		},
+		{
+			"kind": "reveal",
+			"id": "build-maa-answer",
+			"retrievalSlideId": "build-maa",
+			"answers": ["มา — maa — to come."]
+		},
+		{
+			"kind": "exposition",
+			"id": "word-naan",
+			"heading": "นาน — a long time",
+			"body": [
+				"Close the syllable with a second น: น plus the vowel plus น makes นาน.",
+				"นาน (naan) means \"a long time\" — the same vowel, now bookended by two low-class letters."
+			]
+		},
+		{
+			"kind": "retrieval",
+			"id": "build-naan",
+			"prompt": "Bookend the long vowel with น on both sides. What word does that spell, and what does it mean?",
+			"revealSlideId": "build-naan-answer"
+		},
+		{
+			"kind": "reveal",
+			"id": "build-naan-answer",
+			"retrievalSlideId": "build-naan",
+			"answers": ["นาน — naan — a long time."]
+		}
+	]
+}

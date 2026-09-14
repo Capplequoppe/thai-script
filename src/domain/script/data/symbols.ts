@@ -599,7 +599,7 @@ const consonants: ThaiConsonant[] = [
 		priority: 1,
 		lesson: 1,
 		mnemonic:
-			"Think of a coffee mug with a broken handle. The head on top and loop on the bottom are where the handle used to be attached. ม has the head and loop on the SAME side (left). Both ม and 'mug' start with 'm'. Head is written clockwise.",
+			"ม hangs one soft loop from its left shoulder, low and closed — the low class hums a level, unaspirated m the way you already close your lips on it.",
 	}),
 	ThaiConsonant.fromPlain({
 		character: "น",
@@ -615,7 +615,7 @@ const consonants: ThaiConsonant[] = [
 		priority: 2,
 		lesson: 1,
 		mnemonic:
-			"Looks very similar to ม but the loop is on the RIGHT side instead of the left. Think: the mouse (หนู) ran to the Right. ม and น don't change their sound at the beginning or end of syllables, making them the easiest consonants to learn first.",
+			"น hangs the same loop from its right shoulder instead, the mirror of ม — same low class, same easy unaspirated n, only the shoulder has swapped.",
 	}),
 
 	// === Lesson 2: ง, ย, ว ===
