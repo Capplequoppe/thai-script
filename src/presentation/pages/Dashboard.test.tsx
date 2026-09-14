@@ -20,24 +20,6 @@ const UNLOCKED_GRAMMAR: string[] = (grammarData as { id: string }[])
 	.slice(0, MIN_GRAMMAR_POINTS)
 	.map((entry) => entry.id);
 
-// Settings left the mobile tab bar to get it down to five, so Home is the
-// only mobile route to it — if this gear goes, Settings becomes unreachable
-// on a phone entirely.
-describe("Dashboard — Settings access", () => {
-	it("offers a Settings control that navigates to /settings", () => {
-		renderWithApp(
-			<Routes>
-				<Route path="/" element={<Dashboard />} />
-				<Route path="/settings" element={<div>Settings Page</div>} />
-			</Routes>,
-		);
-
-		fireEvent.click(screen.getByRole("button", { name: "Settings" }));
-
-		expect(screen.getByText("Settings Page")).toBeTruthy();
-	});
-});
-
 describe("Dashboard — Ready to Learn", () => {
 	// A brand-new account: nothing unlocked anywhere yet.
 	it("shows no Ready to Learn section when nothing is ready", () => {

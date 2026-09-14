@@ -17,7 +17,7 @@ describe("BottomTabBar", () => {
 	// label (e.g. LotusIcon's `<title>Home</title>` next to the "Home" tab
 	// text) — a plain text query would match both, so tabs are queried by
 	// link role/name instead, which correctly ignores the hidden icon title.
-	it("shows four evergreen tabs before vocabulary unlocks", () => {
+	it("shows five evergreen tabs before vocabulary unlocks", () => {
 		render(
 			<MemoryRouter>
 				<BottomTabBar vocabUnlocked={false} dueCount={0} mobileOnly />
@@ -28,6 +28,7 @@ describe("BottomTabBar", () => {
 		expect(screen.getByRole("link", { name: "Learn" })).toBeTruthy();
 		expect(screen.getByRole("link", { name: "Items" })).toBeTruthy();
 		expect(screen.getByRole("link", { name: "Progress" })).toBeTruthy();
+		expect(screen.getByRole("link", { name: "Settings" })).toBeTruthy();
 		expect(screen.queryByRole("link", { name: "Dictionary" })).toBeNull();
 	});
 
@@ -41,34 +42,48 @@ describe("BottomTabBar", () => {
 		expect(screen.getByRole("link", { name: "Dictionary" })).toBeTruthy();
 	});
 
-	// The point of the restructure. The bar is a fixed-height row with
-	// `overflow-x-auto`, so tabs past the fifth scroll off-screen on a phone
-	// with no affordance at all. Grammar, Sentences and Game became lanes in
-	// the Learn hub and Settings moved to the Home/desktop headers to buy that
-	// budget back — this is the regression that must not creep back in.
-	it("never exceeds five tabs, even fully unlocked", () => {
+	// Tabs now share the row's width (`flex-1`) instead of sizing to their
+	// own content inside an `overflow-x-auto` scroller, so an extra tab makes
+	// every tab narrower rather than silently pushing the last one off-screen.
+	// The ceiling is still worth pinning: six tabs is what the 390px viewport
+	// was measured against, and past that the labels stop being readable.
+	it("never exceeds six tabs, even fully unlocked", () => {
 		render(
 			<MemoryRouter>
 				<BottomTabBar vocabUnlocked={true} dueCount={12} mobileOnly />
 			</MemoryRouter>,
 		);
 
-		expect(screen.getAllByRole("link")).toHaveLength(5);
+		expect(screen.getAllByRole("link")).toHaveLength(6);
 	});
 
-	// These are all still reachable — Grammar/Sentences/Game through the Learn
-	// hub, Settings through the headers — just not from here. `LearnPage.test`
-	// is what guards their reachability.
-	it("does not carry the destinations that moved off the bar", () => {
+	// Grammar, Sentences and Game are lanes in the Learn hub, not tabs;
+	// `LearnPage.test` is what guards their reachability.
+	it("does not carry the destinations that live in the Learn hub", () => {
 		render(
 			<MemoryRouter>
 				<BottomTabBar vocabUnlocked={true} dueCount={0} mobileOnly />
 			</MemoryRouter>,
 		);
 
-		for (const gone of ["Grammar", "Sentences", "Game", "Settings", "Vocab"]) {
+		for (const gone of ["Grammar", "Sentences", "Game", "Vocab"]) {
 			expect(screen.queryByRole("link", { name: gone })).toBeNull();
 		}
+	});
+
+	// Settings is a tab again rather than a gear on Home: on the primary
+	// screen that gear sat in the most valuable space in the app for its
+	// least-used destination.
+	it("reaches Settings from the bar", () => {
+		render(
+			<MemoryRouter>
+				<BottomTabBar vocabUnlocked={true} dueCount={0} mobileOnly />
+			</MemoryRouter>,
+		);
+
+		expect(
+			screen.getByRole("link", { name: "Settings" }).getAttribute("href"),
+		).toBe("/settings");
 	});
 
 	it("badges the Home tab with the due count", () => {
