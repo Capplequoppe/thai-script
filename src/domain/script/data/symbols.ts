@@ -38,6 +38,11 @@ export class LearnableItem {
 	) {}
 }
 
+/**
+ * Base of the learnable script symbols. When constructed with a
+ * `sceneMnemonic` and no explicit prose, the rendered `mnemonic` string is
+ * derived from the record via {@link composeMnemonic}.
+ */
 export class ThaiSymbol extends LearnableItem {
 	constructor(
 		public readonly character: string,
@@ -79,6 +84,7 @@ export class ThaiSymbol extends LearnableItem {
 	}
 }
 
+/** A consonant: class, aspiration and sound facts, staged by its mnemonic in a class district. */
 export class ThaiConsonant extends ThaiSymbol {
 	constructor(
 		character: string,
@@ -157,6 +163,7 @@ export type VowelPosition =
 	| "left-above"
 	| "left-above-right";
 
+/** A vowel form: length, sound and written position around its host consonant. */
 export class ThaiVowel extends ThaiSymbol {
 	constructor(
 		character: string,
@@ -210,6 +217,7 @@ export class ThaiVowel extends ThaiSymbol {
 	}
 }
 
+/** A tone mark and its class-dependent tone table; its mnemonic names the mid-class citation motion. */
 export class ThaiToneMark extends ThaiSymbol {
 	constructor(
 		character: string,
@@ -263,6 +271,7 @@ export class ThaiToneMark extends ThaiSymbol {
 	}
 }
 
+/** A lesson practice word; five carry scene mnemonics for spelling rules that live on no single symbol. */
 export class ThaiWord {
 	constructor(
 		public readonly name: string,
