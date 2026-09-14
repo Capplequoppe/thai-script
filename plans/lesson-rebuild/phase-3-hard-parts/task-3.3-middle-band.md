@@ -16,10 +16,11 @@ covers:
   - public/lessons/lesson-10/
   - public/lessons/lesson-11/
   - src/domain/script/data/middleBand.test.ts
+  - src/domain/script/data/lessonContent.ts
 status: stable
 task_id: "3.3"
-task_status: pending
-depends_on: ["3.1"]
+task_status: complete
+depends_on: ["3.1", "3.2"]
 size: large
 verify:
   - npm test -- src/domain/script
