@@ -3,10 +3,15 @@
 
     python3 scripts/convert-romanization.py
 
-The corpus is not uniformly IPA — measured: roughly 3,447 entries are IPA,
-819 already Paiboon, 795 mixed, and 393 neither. This script classifies every
-entry first and converts *only* the entries it classifies as IPA. Entries
-already in Paiboon, mixed, or unclassifiable are never touched.
+The corpus is not uniformly IPA. The plan's own rough pass over it (see
+`plans/lesson-rebuild/phase-2-encoding/task-2.2-paiboon-unification.md`)
+measured roughly 3,447 IPA / 819 already-Paiboon / 795 mixed / 393 neither;
+`classify_notation` below is a different, stricter classifier and measures
+this corpus at 3,223 / 2,220 / 1 / 10 for the same four classes — most of
+what the rough pass called "mixed" or "neither" turns out to parse cleanly as
+one of the other two once looked at symbol by symbol. This script classifies
+every entry first and converts *only* the entries it classifies as IPA.
+Entries already in Paiboon, mixed, or unclassifiable are never touched.
 
 IPA stays canonical. On a successful conversion the original IPA value moves
 to a new `ipa` field and `romanization` becomes the Paiboon spelling — the
