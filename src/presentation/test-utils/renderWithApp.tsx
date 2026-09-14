@@ -23,6 +23,9 @@
  *   `navigator.mediaDevices.getUserMedia` whose outcome `setMicPermission`
  *   chooses (jsdom has neither) — between them enough for a test to drive
  *   `useMicRecorder`'s real state machine, refusal included.
+ * - a stubbed `fetch` (jsdom has none), returning JSON bodies registered
+ *   with `stubDeckJson`/`stubDeckFetchError` and 404-ing anything else, for
+ *   `DeckSlide`'s deck-JSON load.
  *
  * Test files still need their own `// @vitest-environment jsdom` docblock —
  * the pragma only works in the test file itself.
@@ -207,6 +210,24 @@ export class StubMediaRecorder {
 	}
 }
 
+// --- fetch stub (jsdom has none; `DeckSlide` loads deck JSON with it) ---
+
+type FetchOutcome =
+	| { readonly kind: "json"; readonly body: unknown; readonly status: number }
+	| { readonly kind: "error" };
+
+let fetchOutcomes = new Map<string, FetchOutcome>();
+
+/** The next `fetch(url)` in this test resolves with `body` as JSON. */
+export function stubDeckJson(url: string, body: unknown, status = 200): void {
+	fetchOutcomes.set(url, { kind: "json", body, status });
+}
+
+/** The next `fetch(url)` in this test rejects, as a network failure would. */
+export function stubDeckFetchError(url: string): void {
+	fetchOutcomes.set(url, { kind: "error" });
+}
+
 // --- Canvas 2D stub (jsdom has no 2D context without the canvas package) ---
 
 export const canvas2d = {
@@ -226,6 +247,25 @@ beforeEach(() => {
 	globalThis.localStorage = fakeLocalStorage;
 	globalThis.Audio = StubAudio as unknown as typeof Audio;
 	StubAudio.createdUrls = [];
+	fetchOutcomes = new Map();
+	globalThis.fetch = (async (input: RequestInfo | URL) => {
+		const url = typeof input === "string" ? input : input.toString();
+		const outcome = fetchOutcomes.get(url);
+		if (!outcome || outcome.kind === "error") {
+			return {
+				ok: false,
+				status: 404,
+				json: async () => {
+					throw new Error(`no fetch stub registered for ${url}`);
+				},
+			} as unknown as Response;
+		}
+		return {
+			ok: outcome.status >= 200 && outcome.status < 300,
+			status: outcome.status,
+			json: async () => outcome.body,
+		} as unknown as Response;
+	}) as typeof fetch;
 	objectUrlCount = 0;
 	revokedUrls = [];
 	URL.createObjectURL = () => {
