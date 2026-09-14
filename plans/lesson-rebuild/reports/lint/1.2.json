@@ -1,0 +1,664 @@
+{
+  "version": 1,
+  "task": "1.2",
+  "pass": "after",
+  "result": {
+    "outcome": "violations"
+  },
+  "findings": [
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "(anonymous)",
+        "path": "src/presentation/components/organisms/DeckSlide.test.tsx",
+        "bytes": {
+          "startIndex": 1982,
+          "endIndex": 2442
+        },
+        "lines": {
+          "startRow": 63,
+          "endRow": 83
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "(anonymous)",
+        "path": "src/presentation/components/organisms/DeckSlide.test.tsx",
+        "bytes": {
+          "startIndex": 2519,
+          "endIndex": 3338
+        },
+        "lines": {
+          "startRow": 85,
+          "endRow": 119
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "(anonymous)",
+        "path": "src/presentation/components/organisms/DeckSlide.test.tsx",
+        "bytes": {
+          "startIndex": 2600,
+          "endIndex": 3334
+        },
+        "lines": {
+          "startRow": 86,
+          "endRow": 118
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "(anonymous)",
+        "path": "src/presentation/components/organisms/DeckSlide.test.tsx",
+        "bytes": {
+          "startIndex": 3396,
+          "endIndex": 4400
+        },
+        "lines": {
+          "startRow": 121,
+          "endRow": 146
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "(anonymous)",
+        "path": "src/presentation/components/organisms/DeckSlide.test.tsx",
+        "bytes": {
+          "startIndex": 5290,
+          "endIndex": 5994
+        },
+        "lines": {
+          "startRow": 171,
+          "endRow": 196
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "(anonymous)",
+        "path": "src/presentation/components/organisms/DeckSlide.test.tsx",
+        "bytes": {
+          "startIndex": 5392,
+          "endIndex": 5990
+        },
+        "lines": {
+          "startRow": 172,
+          "endRow": 195
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 2.03,
+      "threshold": 5,
+      "tier": "file",
+      "path": "src/presentation/components/organisms/DeckSlide.test.tsx",
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "length",
+      "severity": "warning",
+      "tier": "function",
+      "measured": 131,
+      "threshold": 50,
+      "symbol": {
+        "kind": "function",
+        "name": "DeckSlideContent",
+        "path": "src/presentation/components/organisms/DeckSlide.tsx",
+        "bytes": {
+          "startIndex": 3617,
+          "endIndex": 7457
+        },
+        "lines": {
+          "startRow": 109,
+          "endRow": 239
+        }
+      }
+    },
+    {
+      "rule": "length",
+      "severity": "warning",
+      "tier": "function",
+      "measured": 127,
+      "threshold": 50,
+      "symbol": {
+        "kind": "function",
+        "name": "DeckSlide",
+        "path": "src/presentation/components/organisms/DeckSlide.tsx",
+        "bytes": {
+          "startIndex": 7989,
+          "endIndex": 11135
+        },
+        "lines": {
+          "startRow": 251,
+          "endRow": 377
+        }
+      }
+    },
+    {
+      "rule": "length",
+      "severity": "warning",
+      "tier": "function",
+      "measured": 58,
+      "threshold": 50,
+      "symbol": {
+        "kind": "function",
+        "name": "(anonymous)",
+        "path": "src/presentation/components/organisms/DeckSlide.tsx",
+        "bytes": {
+          "startIndex": 8162,
+          "endIndex": 9737
+        },
+        "lines": {
+          "startRow": 255,
+          "endRow": 312
+        }
+      }
+    },
+    {
+      "rule": "naming",
+      "severity": "convention",
+      "measured": 1,
+      "threshold": 0,
+      "tier": "function",
+      "symbol": {
+        "kind": "function",
+        "name": "ReplayButton",
+        "path": "src/presentation/components/organisms/DeckSlide.tsx",
+        "bytes": {
+          "startIndex": 3129,
+          "endIndex": 3541
+        },
+        "lines": {
+          "startRow": 89,
+          "endRow": 106
+        }
+      }
+    },
+    {
+      "rule": "naming",
+      "severity": "convention",
+      "measured": 1,
+      "threshold": 0,
+      "tier": "function",
+      "symbol": {
+        "kind": "function",
+        "name": "DeckSlideContent",
+        "path": "src/presentation/components/organisms/DeckSlide.tsx",
+        "bytes": {
+          "startIndex": 3617,
+          "endIndex": 7457
+        },
+        "lines": {
+          "startRow": 109,
+          "endRow": 239
+        }
+      }
+    },
+    {
+      "rule": "naming",
+      "severity": "convention",
+      "measured": 1,
+      "threshold": 0,
+      "tier": "function",
+      "symbol": {
+        "kind": "function",
+        "name": "DeckSlide",
+        "path": "src/presentation/components/organisms/DeckSlide.tsx",
+        "bytes": {
+          "startIndex": 7989,
+          "endIndex": 11135
+        },
+        "lines": {
+          "startRow": 251,
+          "endRow": 377
+        }
+      }
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "extractAudioUrls",
+        "path": "src/presentation/components/organisms/DeckSlide.tsx",
+        "bytes": {
+          "startIndex": 1685,
+          "endIndex": 2413
+        },
+        "lines": {
+          "startRow": 46,
+          "endRow": 70
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 4.72,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "DeckSlide",
+        "path": "src/presentation/components/organisms/DeckSlide.tsx",
+        "bytes": {
+          "startIndex": 7989,
+          "endIndex": 11135
+        },
+        "lines": {
+          "startRow": 251,
+          "endRow": 377
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "(anonymous)",
+        "path": "src/presentation/components/organisms/LessonIntro.test.tsx",
+        "bytes": {
+          "startIndex": 1565,
+          "endIndex": 2354
+        },
+        "lines": {
+          "startRow": 65,
+          "endRow": 94
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 4,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "(anonymous)",
+        "path": "src/presentation/components/organisms/LessonIntro.test.tsx",
+        "bytes": {
+          "startIndex": 2420,
+          "endIndex": 3197
+        },
+        "lines": {
+          "startRow": 96,
+          "endRow": 120
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 4.35,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "(anonymous)",
+        "path": "src/presentation/components/organisms/LessonIntro.test.tsx",
+        "bytes": {
+          "startIndex": 2505,
+          "endIndex": 3193
+        },
+        "lines": {
+          "startRow": 97,
+          "endRow": 119
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 1.65,
+      "threshold": 5,
+      "tier": "file",
+      "path": "src/presentation/components/organisms/LessonIntro.test.tsx",
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "length",
+      "severity": "warning",
+      "tier": "function",
+      "measured": 148,
+      "threshold": 50,
+      "symbol": {
+        "kind": "function",
+        "name": "LessonIntro",
+        "path": "src/presentation/components/organisms/LessonIntro.tsx",
+        "bytes": {
+          "startIndex": 2296,
+          "endIndex": 5914
+        },
+        "lines": {
+          "startRow": 79,
+          "endRow": 226
+        }
+      }
+    },
+    {
+      "rule": "naming",
+      "severity": "convention",
+      "measured": 1,
+      "threshold": 0,
+      "tier": "function",
+      "symbol": {
+        "kind": "function",
+        "name": "LessonIntro",
+        "path": "src/presentation/components/organisms/LessonIntro.tsx",
+        "bytes": {
+          "startIndex": 2296,
+          "endIndex": 5914
+        },
+        "lines": {
+          "startRow": 79,
+          "endRow": 226
+        }
+      }
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 1,
+      "tier": "function",
+      "symbol": {
+        "name": "LessonIntro",
+        "path": "src/presentation/components/organisms/LessonIntro.tsx",
+        "bytes": {
+          "startIndex": 2289,
+          "endIndex": 5914
+        },
+        "lines": {
+          "startRow": 79,
+          "endRow": 226
+        }
+      },
+      "check": "undocumented-export"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 3.38,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "LessonIntro",
+        "path": "src/presentation/components/organisms/LessonIntro.tsx",
+        "bytes": {
+          "startIndex": 2296,
+          "endIndex": 5914
+        },
+        "lines": {
+          "startRow": 79,
+          "endRow": 226
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "length",
+      "severity": "warning",
+      "tier": "function",
+      "measured": 178,
+      "threshold": 50,
+      "symbol": {
+        "kind": "function",
+        "name": "CatchUpPage",
+        "path": "src/presentation/pages/CatchUpPage.tsx",
+        "bytes": {
+          "startIndex": 1131,
+          "endIndex": 5410
+        },
+        "lines": {
+          "startRow": 21,
+          "endRow": 198
+        }
+      }
+    },
+    {
+      "rule": "naming",
+      "severity": "convention",
+      "measured": 1,
+      "threshold": 0,
+      "tier": "function",
+      "symbol": {
+        "kind": "function",
+        "name": "CatchUpPage",
+        "path": "src/presentation/pages/CatchUpPage.tsx",
+        "bytes": {
+          "startIndex": 1131,
+          "endIndex": 5410
+        },
+        "lines": {
+          "startRow": 21,
+          "endRow": 198
+        }
+      }
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 1.69,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "CatchUpPage",
+        "path": "src/presentation/pages/CatchUpPage.tsx",
+        "bytes": {
+          "startIndex": 1131,
+          "endIndex": 5410
+        },
+        "lines": {
+          "startRow": 21,
+          "endRow": 198
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "length",
+      "severity": "warning",
+      "tier": "function",
+      "measured": 259,
+      "threshold": 50,
+      "symbol": {
+        "kind": "function",
+        "name": "LessonPage",
+        "path": "src/presentation/pages/LessonPage.tsx",
+        "bytes": {
+          "startIndex": 1180,
+          "endIndex": 7709
+        },
+        "lines": {
+          "startRow": 26,
+          "endRow": 284
+        }
+      }
+    },
+    {
+      "rule": "naming",
+      "severity": "convention",
+      "measured": 1,
+      "threshold": 0,
+      "tier": "function",
+      "symbol": {
+        "kind": "function",
+        "name": "LessonPage",
+        "path": "src/presentation/pages/LessonPage.tsx",
+        "bytes": {
+          "startIndex": 1180,
+          "endIndex": 7709
+        },
+        "lines": {
+          "startRow": 26,
+          "endRow": 284
+        }
+      }
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 1,
+      "tier": "function",
+      "symbol": {
+        "name": "LessonPage",
+        "path": "src/presentation/pages/LessonPage.tsx",
+        "bytes": {
+          "startIndex": 1173,
+          "endIndex": 7709
+        },
+        "lines": {
+          "startRow": 26,
+          "endRow": 284
+        }
+      },
+      "check": "undocumented-export"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 1.93,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "LessonPage",
+        "path": "src/presentation/pages/LessonPage.tsx",
+        "bytes": {
+          "startIndex": 1180,
+          "endIndex": 7709
+        },
+        "lines": {
+          "startRow": 26,
+          "endRow": 284
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 1.75,
+      "threshold": 5,
+      "tier": "file",
+      "path": "src/presentation/pages/LessonPage.tsx",
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "length",
+      "severity": "warning",
+      "tier": "function",
+      "measured": 66,
+      "threshold": 50,
+      "symbol": {
+        "kind": "function",
+        "name": "(anonymous)",
+        "path": "src/presentation/test-utils/renderWithApp.tsx",
+        "bytes": {
+          "startIndex": 9735,
+          "endIndex": 11740
+        },
+        "lines": {
+          "startRow": 244,
+          "endRow": 309
+        }
+      }
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "(anonymous)",
+        "path": "src/presentation/test-utils/renderWithApp.tsx",
+        "bytes": {
+          "startIndex": 9735,
+          "endIndex": 11740
+        },
+        "lines": {
+          "startRow": 244,
+          "endRow": 309
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "length",
+      "severity": "warning",
+      "measured": 930,
+      "threshold": 400,
+      "tier": "file",
+      "path": "src/presentation/test-utils/renderWithApp.tsx"
+    }
+  ],
+  "adapters": [
+    {
+      "tool": "no linter this feature ships",
+      "selection": {
+        "evidence": "none",
+        "considered": []
+      },
+      "program": null,
+      "result": {
+        "outcome": "unsupported",
+        "reason": "no native linter covered these files: looked for a configuration file for no linter this feature ships at the repository root, and for no linter this feature ships on PATH in a repository of that ecosystem. Their findings are missing from this report — that is a gap and not a pass."
+      },
+      "files": 7,
+      "findings": 0,
+      "refusedPaths": 0,
+      "outsideAnalysis": 0,
+      "refusedShape": 0
+    }
+  ]
+}
