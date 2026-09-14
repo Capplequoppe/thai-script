@@ -34,6 +34,24 @@ weight_votes:
   - "unknowns-estimator -> 5"
   - "calibration-estimator -> 8"
 weight_voted: "sha256:333e9fc41e16e692c6365bbe3fb1f223c6c317935c3177d249f1d4c692fc7b02"
+ac_tests:
+  - "AC1 -> src/domain/script/data/promotedLessons.test.ts::resolves each to the deck arm at its declared sequence position"
+  - "AC2 -> src/domain/script/data/promotedLessons.test.ts::states the class transfer once, and not again inside any branch"
+  - "AC3 -> src/domain/script/data/promotedLessons.test.ts::lists twenty pairs and says that is all of them"
+  - "AC4 -> src/domain/script/data/promotedLessons.test.ts::resolves every sampled corpus word's pronunciation and tone"
+  - "AC5 -> src/domain/script/data/promotedLessons.test.ts::clears the shared originality check on every line of every deck"
+  - "AC6 -> src/domain/script/data/promotedLessons.test.ts::references only files inside the lesson's own directory, and leaves none unreferenced"
+red_proof:
+  - "AC1 -> Commented out `\"lesson-clusters\"` in `DECK_LESSON_IDS` in `lessonContent.ts`, so the lesson stays on the video arm. Reverted from a backup afterwards. The failure is the assertion o… [see red-proofs/]"
+  - "AC2 -> Added `, and it hands its class to the sonorant after it` to a bullet on the `branch-silent-h` slide of `content/lessons/lesson-leading-consonants.md` and regenerated the deck — i.e… [see red-proofs/]"
+  - "AC3 -> Deleted the pair `คว` from the `true-clusters` slide of `content/lessons/lesson-clusters.md` (`- With ว: กว, ขว, คว.` -> `- With ว: กว, ขว.`) and regenerated the deck, so the lesson… [see red-proofs/]"
+  - "AC4 -> Thinned the `o-as-vowel` slide of `content/lessons/lesson-unwritten-vowels.md`: replaced the bullet stating `อ is a consonant only at the front of a word...` with one that keeps onl… [see red-proofs/]"
+  - "AC5 -> Replaced the opening bullet of the `only-three-followers` slide in `content/lessons/lesson-clusters.md` with a phrase known to be in the licensed corpus (the canary paraphrase task… [see red-proofs/]"
+  - "AC6 -> Wrote a stray `public/lessons/lesson-clusters/stray.mp3` that no slide references, then deleted it. Re-observed after the self-review repairs, since this test's filter moved; identi… [see red-proofs/]"
+lint:
+  before: 22
+  after: 19
+  outcome: unsupported
 generated: {by: claude-opus-5/agent, at: 2026-09-13}
 profile_version: 1
 ---
