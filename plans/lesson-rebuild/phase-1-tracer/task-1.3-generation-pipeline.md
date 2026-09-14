@@ -10,7 +10,7 @@ covers:
   - .env.example
 status: stable
 task_id: "1.3"
-task_status: pending
+task_status: complete
 depends_on: ["1.1a"]
 size: large
 verify:
@@ -32,6 +32,26 @@ weight_votes:
   - "unknowns-estimator -> 5"
   - "calibration-estimator -> 8"
 weight_voted: "sha256:becb2b4c9ee8466eb66f47f7b1a890c749531f3ef4e2d4b6186152ed273e0e14"
+ac_tests:
+  - "AC1 -> src/domain/script/data/generatedDeck.test.ts::validates against the deck schema"
+  - "AC2 -> src/domain/script/data/generatedDeck.test.ts::issues no API call when nothing in the script changed"
+  - "AC3 -> src/domain/script/data/generatedDeck.test.ts::is required, and its absence stops the run naming it"
+  - "AC4 -> src/domain/script/data/generatedDeck.test.ts::refuses a path that escapes the lesson directory, and a refused lesson id"
+  - "AC5 -> src/domain/script/data/generatedDeck.test.ts::never reaches a committed artifact, even when the vendor echoes it back"
+  - "AC6 -> src/domain/script/data/generatedDeck.test.ts::retries a mismatched take and records the outcome that finally passed"
+  - "AC7 -> src/domain/script/data/generatedDeck.test.ts::record a failed segment as failed, never as one that is simply absent"
+red_proof:
+  - "AC1 -> In scripts/lesson_deck/pipeline.py `_slide_json`, made the retrieval branch also emit `body[\"answers\"] = list(slide.bullets)` — the generator putting the answer beside the prompt —… [see red-proofs/]"
+  - "AC2 -> In scripts/lesson_deck/pipeline.py `DeckGenerator._reuse`, inserted `return False` as the first statement so no cache hit is ever taken. Classification: REAL ASSERTION FAILURE — the… [see red-proofs/]"
+  - "AC3 -> In scripts/lesson_deck/vendor.py `load_api_key`, defaulted the missing variable to `\"unset-but-carry-on\"`. Classification: REAL ASSERTION FAILURE — the deciding line is `AssertionEr… [see red-proofs/]"
+  - "AC4 -> In scripts/lesson_deck/ids.py, made `_is_within` return `True` unconditionally so `LessonPaths.resolve` accepts any path once the id parses. Classification: REAL ASSERTION FAILURE —… [see red-proofs/]"
+  - "AC5 -> In scripts/lesson_deck/vendor.py `Redactor.redact`, replaced the body with `return text`. The scripted vendor's 401 body embeds the credential the way an API echoing a rejected requ… [see red-proofs/]"
+  - "AC6 -> In scripts/lesson_deck/pipeline.py `transcript_matches`, inserted `return True` as the first statement, so a clip that says the wrong thing is accepted on its first take. Classifica… [see red-proofs/]"
+  - "AC7 -> In scripts/lesson_deck/pipeline.py `_reject`, changed `record.state = \"failed\"` to `record.state = \"absent\"` — the exact conflation the third state exists to prevent. Classification… [see red-proofs/]"
+lint:
+  before: 31
+  after: 31
+  outcome: unsupported
 generated: {by: claude-opus-5/agent, at: 2026-09-13}
 profile_version: 1
 ---
