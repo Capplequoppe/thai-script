@@ -73,6 +73,24 @@ function GraduationIcon() {
 	);
 }
 
+function GearIcon() {
+	return (
+		<svg
+			viewBox="0 0 24 24"
+			fill="currentColor"
+			className="w-6 h-6"
+			aria-hidden="true"
+		>
+			<title>Settings</title>
+			<path d="M12 15a3 3 0 100-6 3 3 0 000 6z" opacity="0.9" />
+			<path
+				d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-2 2 2 2 0 01-2-2v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 01-2-2 2 2 0 012-2h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 012-2 2 2 0 012 2v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 012 2 2 2 0 01-2 2h-.09a1.65 1.65 0 00-1.51 1z"
+				opacity="0.5"
+			/>
+		</svg>
+	);
+}
+
 function SearchIcon() {
 	return (
 		<svg
@@ -139,6 +157,7 @@ export function BottomTabBar({
 				]
 			: []),
 		{ to: "/progress", end: false, label: "Progress", icon: <PagodaIcon /> },
+		{ to: "/settings", end: false, label: "Settings", icon: <GearIcon /> },
 	];
 
 	return (
@@ -151,14 +170,14 @@ export function BottomTabBar({
 					borderTop: "1px solid var(--color-border)",
 				}}
 			>
-				<div className="flex items-center gap-1 h-16 px-2 overflow-x-auto">
+				<div className="flex items-center h-16 px-1">
 					{tabs.map(({ to, end, label, icon, badge }) => (
 						<NavLink
 							key={to}
 							to={to}
 							end={end}
 							className={({ isActive }) =>
-								`flex flex-shrink-0 flex-col items-center gap-0.5 text-[10px] font-medium relative px-3 py-1 transition-colors ${
+								`flex flex-1 min-w-0 flex-col items-center gap-0.5 text-[10px] font-medium relative px-1 py-1 transition-colors ${
 									isActive ? ACTIVE : INACTIVE
 								}`
 							}
@@ -174,7 +193,7 @@ export function BottomTabBar({
 									</span>
 								)}
 							</span>
-							{label}
+							<span className="w-full text-center truncate">{label}</span>
 						</NavLink>
 					))}
 				</div>
