@@ -20,6 +20,7 @@ function vocabEntry(overrides: Partial<VocabEntry> = {}): VocabEntry {
 		syllables: [],
 		toneRules: [],
 		toneStatus: "verified",
+		specialRules: [],
 		thai_audio_file: "/audio/word-maj.mp3",
 		english_audio_file: null,
 		image_file: null,

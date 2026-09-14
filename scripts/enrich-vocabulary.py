@@ -411,7 +411,7 @@ def segment_word(word: str) -> list[str]:
     return segments
 
 
-def apply_leading_consonant_rule(syllables: list[dict]) -> None:
+def apply_leading_consonant_rule(syllables: list[dict]) -> bool:
     """อักษรนำ: a bare high/mid consonant governs the next syllable's class.
 
     ขนาด is kʰà-nàːt, not kʰà-nâːt — the ข makes น read as high class, so the
@@ -426,6 +426,7 @@ def apply_leading_consonant_rule(syllables: list[dict]) -> None:
     and a word it gets wrong is recorded as an exception, not shipped as a
     question.
     """
+    governed = False
     for index in range(1, len(syllables)):
         previous, current = syllables[index - 1], syllables[index]
         if len(previous["text"]) != 1 or not previous["consonantClass"]:
@@ -437,6 +438,46 @@ def apply_leading_consonant_rule(syllables: list[dict]) -> None:
             continue
         current["consonantClass"] = previous["consonantClass"]
         current["tone"] = _tone_from_rule(previous["consonantClass"], parsed)
+        governed = True
+    return governed
+
+
+# Reading rules from `symbols.ts`'s `specialRules` that this analyser relies
+# on. A word listing one of these cannot be read correctly without it, so the
+# app must not ask for its tone until the lesson that introduces it is done —
+# see `VocabEntry.specialRules`.
+SILENT_RO_ONSETS = {"จร", "ซร", "ศร", "สร"}
+
+
+def special_rules_for(texts: list[str], governed: bool) -> list[str]:
+    """Which taught reading rules a word's syllables depend on."""
+    needed: set[str] = set()
+    if governed:
+        needed.add("akson-nam")
+
+    for text in texts:
+        if KARAN in text:
+            needed.add("gaaran")
+        if "รร" in text:
+            needed.add("ror-han")
+
+        source = strip_karan(text)
+        if not any(ch in VOWEL_CHARS for ch in source):
+            needed.add("unwritten-vowels")
+
+        positions = [
+            i for i, ch in enumerate(source) if ch in THAI_CONSONANT_RANGE
+        ]
+        if len(positions) > 1 and positions[1] == positions[0] + 1:
+            pair = source[positions[0]] + source[positions[1]]
+            if pair[0] == "ห" and pair[1] in LEADING_H_SECOND:
+                needed.add("hor-nam")
+            elif pair == "ทร":
+                needed.add("tho-ro-s-sound")
+            elif pair in SILENT_RO_ONSETS:
+                needed.add("silent-ro-clusters")
+
+    return sorted(needed)
 
 
 def romanized_tones(romanization: str) -> tuple[str, ...] | None:
@@ -537,7 +578,8 @@ def enrich_entry(entry: dict, *, retokenize: bool) -> str:
         texts = [s["text"] for s in entry.get("syllables") or []]
 
     entry["syllables"] = [analyze_syllable(text) for text in texts]
-    apply_leading_consonant_rule(entry["syllables"])
+    governed = apply_leading_consonant_rule(entry["syllables"])
+    entry["specialRules"] = special_rules_for(texts, governed)
 
     # What the taught rules alone predict, before the romanization is allowed
     # a word. This is the half that decides `toneStatus`: a learner can only

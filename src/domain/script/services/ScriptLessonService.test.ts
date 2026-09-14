@@ -110,6 +110,29 @@ describe("LearningService", () => {
 	});
 
 	describe("getLessonSummary", () => {
+		// `symbols.ts` has carried these rules, and each lesson's
+		// `specialRulesIntroduced`, from the start — but nothing read either,
+		// so ห นำ was never taught while หมี was still quizzed on its tone.
+		it("surfaces the reading rules a lesson introduces", () => {
+			expect(service.getLessonSummary(15).specialRules).toEqual([
+				expect.objectContaining({ id: "hor-nam" }),
+			]);
+			expect(
+				service.getLessonSummary(19).specialRules.map((r) => r.id),
+			).toEqual(["unwritten-vowels", "akson-nam"]);
+		});
+
+		it("carries a title and description for each, not just an id", () => {
+			const [rule] = service.getLessonSummary(15).specialRules;
+
+			expect(rule?.title).toContain("ห นำ");
+			expect(rule?.description.length).toBeGreaterThan(40);
+		});
+
+		it("is empty for a lesson that introduces none", () => {
+			expect(service.getLessonSummary(1).specialRules).toEqual([]);
+		});
+
 		it("returns lesson with symbol info for a given lesson number", () => {
 			const summary = service.getLessonSummary(1);
 			expect(summary.lessonNumber).toBe(1);

@@ -81,6 +81,7 @@ function vocabEntry(thai: string, audioUrl?: string): VocabEntry {
 		syllables: [],
 		toneRules: [],
 		toneStatus: "verified",
+		specialRules: [],
 		thai_audio_file: audioUrl ?? null,
 		english_audio_file: null,
 		image_file: null,

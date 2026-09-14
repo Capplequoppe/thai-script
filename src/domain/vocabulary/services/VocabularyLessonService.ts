@@ -2,6 +2,7 @@ import type { CardRepository } from "../../ports/CardRepository";
 import type { LearnerStateRepository } from "../../ports/LearnerStateRepository";
 import {
 	consonants,
+	lessons,
 	toneMarkRules,
 	toneMarks,
 	toneRules,
@@ -63,6 +64,21 @@ export class VocabularyService {
 		}
 
 		return chars;
+	}
+
+	/**
+	 * Reading rules the learner has been taught, from the lessons they have
+	 * completed. `lessons[].specialRulesIntroduced` has always declared
+	 * these; until now nothing read it, so ห นำ and การันต์ were never
+	 * taught and never required.
+	 */
+	private getMasteredSpecialRules(): Set<string> {
+		const completed = this.stateRepo.getCompletedLessons();
+		return new Set(
+			lessons
+				.filter((lesson) => completed.includes(lesson.number))
+				.flatMap((lesson) => lesson.specialRulesIntroduced),
+		);
 	}
 
 	/** Get set of all tone rule IDs mastered from completed script lessons. */
@@ -182,8 +198,14 @@ export class VocabularyService {
 		if (!lesson) throw new Error("No vocabulary words available to learn");
 
 		const introducedChars = this.getMasteredCharacters();
+		const masteredSpecialRules = this.getMasteredSpecialRules();
 		return lesson.words.flatMap((entry) =>
-			generateVocabCards(entry, this.vocabulary, introducedChars),
+			generateVocabCards(
+				entry,
+				this.vocabulary,
+				introducedChars,
+				masteredSpecialRules,
+			),
 		);
 	}
 
@@ -278,7 +300,12 @@ export class VocabularyService {
 		if (!entry || !this.isPullable(entry)) return null;
 
 		const introducedChars = this.getMasteredCharacters();
-		return generateVocabCards(entry, this.vocabulary, introducedChars);
+		return generateVocabCards(
+			entry,
+			this.vocabulary,
+			introducedChars,
+			this.getMasteredSpecialRules(),
+		);
 	}
 
 	/** Every vocabulary entry, regardless of mastery, rank, or learned state. */
@@ -299,7 +326,12 @@ export class VocabularyService {
 		);
 		const introducedChars = this.getMasteredCharacters();
 		const generated = this.getLearnedEntries().flatMap((entry) =>
-			generateVocabCards(entry, this.vocabulary, introducedChars),
+			generateVocabCards(
+				entry,
+				this.vocabulary,
+				introducedChars,
+				this.getMasteredSpecialRules(),
+			),
 		);
 
 		const toSave = reconcileGeneratedCards(persisted, generated);

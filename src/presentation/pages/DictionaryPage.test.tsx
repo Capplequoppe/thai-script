@@ -43,6 +43,7 @@ function fixtureEntry(
 		samples: [],
 		source: "test",
 		toneStatus: "verified",
+		specialRules: [],
 		...fields,
 	};
 }

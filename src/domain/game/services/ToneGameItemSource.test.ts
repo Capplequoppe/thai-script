@@ -33,6 +33,7 @@ function vocabEntry(overrides: Partial<VocabEntry> = {}): VocabEntry {
 		syllables: [syllable("แมว", "rising")],
 		toneRules: [],
 		toneStatus: "verified",
+		specialRules: [],
 		thai_audio_file: "/audio/maeo.mp3",
 		english_audio_file: null,
 		image_file: null,

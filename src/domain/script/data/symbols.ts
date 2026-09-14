@@ -508,6 +508,13 @@ export const specialRules: SpecialRule[] = [
 		lesson: 13,
 	},
 	{
+		id: "akson-nam",
+		title: "อักษรนำ (Leading Consonant Across Syllables)",
+		description:
+			"When a word starts with a lone consonant that has no vowel of its own, that consonant becomes its own short syllable with an unwritten 'a' — and if the next syllable starts with one of the single-class low consonants (ง ญ ณ น ม ย ร ล ว ฬ), the leading consonant also lends it its class. ขนาด is kha-NAAT: ข is high class, so the น is read as high class too, giving low tone rather than falling. Same idea as ห นำ, but across two syllables instead of inside one. It is a strong tendency rather than an absolute: สมาชิก is sa-MAA-chik, where the ม keeps its own low class.",
+		lesson: 19,
+	},
+	{
 		id: "hor-nam",
 		title: "ห as Class-Changing Prefix (ห นำ)",
 		description:
@@ -2917,7 +2924,7 @@ export const lessons: Lesson[] = [
 		vowels: [],
 		toneMarks: [],
 		toneRulesIntroduced: [],
-		specialRulesIntroduced: ["unwritten-vowels"],
+		specialRulesIntroduced: ["unwritten-vowels", "akson-nam"],
 		videoUrl: "/thai-script/videos/TAME_L19_tpod101_video-h.webm",
 	},
 	{

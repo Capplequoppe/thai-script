@@ -14,6 +14,7 @@ const testWord: VocabEntry = {
 	syllables: [],
 	toneRules: [],
 	toneStatus: "verified",
+	specialRules: [],
 	thai_audio_file: null,
 	english_audio_file: null,
 	image_file: null,
@@ -204,6 +205,70 @@ describe("generateVocabCards", () => {
 		const card = cards.find((c) => c.property === "spelling");
 		const occurrences = card?.choices.filter((ch) => ch === "ย").length;
 		expect(occurrences).toBe(1);
+	});
+
+	// The second gate: หมี cannot be read without ห นำ, so asking for its
+	// tone before lesson 15 asks for an answer the learner has no way to
+	// reach. 43% of otherwise-verified words depend on a rule like this.
+	it("withholds the tone card until the rules the word needs are taught", () => {
+		const word: VocabEntry = {
+			...testWordWithTones,
+			thai: "หมี",
+			specialRules: ["hor-nam"],
+		};
+
+		const withoutTheLesson = generateVocabCards(
+			word,
+			allWords,
+			undefined,
+			new Set<string>(),
+		);
+		expect(
+			withoutTheLesson.find((c) => c.property === "toneIdentification"),
+		).toBeUndefined();
+
+		const withTheLesson = generateVocabCards(
+			word,
+			allWords,
+			undefined,
+			new Set(["hor-nam"]),
+		);
+		expect(
+			withTheLesson.find((c) => c.property === "toneIdentification"),
+		).toBeDefined();
+	});
+
+	it("needs every rule the word depends on, not just one", () => {
+		const word: VocabEntry = {
+			...testWordWithTones,
+			thai: "ขนาด",
+			specialRules: ["akson-nam", "unwritten-vowels"],
+		};
+
+		const partial = generateVocabCards(
+			word,
+			allWords,
+			undefined,
+			new Set(["unwritten-vowels"]),
+		);
+
+		expect(
+			partial.find((c) => c.property === "toneIdentification"),
+		).toBeUndefined();
+	});
+
+	it("gates nothing when no mastered set is supplied", () => {
+		const word: VocabEntry = {
+			...testWordWithTones,
+			thai: "หมี",
+			specialRules: ["hor-nam"],
+		};
+
+		const cards = generateVocabCards(word, allWords);
+
+		expect(
+			cards.find((c) => c.property === "toneIdentification"),
+		).toBeDefined();
 	});
 
 	it("does not produce spellingFromAudio card without audio", () => {

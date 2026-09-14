@@ -23,6 +23,7 @@ function makeEntry(overrides: Partial<VocabEntry> = {}): VocabEntry {
 		syllables: [],
 		toneRules: ["low-live"],
 		toneStatus: "verified",
+		specialRules: [],
 		thai_audio_file: null,
 		english_audio_file: null,
 		image_file: null,
@@ -629,6 +630,7 @@ describe("VocabularyService", () => {
 				english: "crow",
 				toneRules: ["mid-live"],
 				toneStatus: "verified",
+				specialRules: [],
 			}),
 			// Rank 10: mastered
 			makeEntry({

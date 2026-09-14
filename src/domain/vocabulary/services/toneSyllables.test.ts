@@ -31,6 +31,7 @@ function vocabEntry(
 		syllables,
 		toneRules: [],
 		toneStatus,
+		specialRules: [],
 		thai_audio_file: null,
 		english_audio_file: null,
 		image_file: null,

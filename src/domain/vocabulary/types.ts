@@ -58,6 +58,18 @@ export interface VocabEntry {
 	syllables: SyllableInfo[];
 	toneRules: string[];
 	toneStatus: ToneStatus;
+	/**
+	 * Ids from `symbols.ts`'s `specialRules` that this word cannot be read
+	 * without — ห นำ for หมี, การันต์ for จันทร์, the unwritten vowel for คน.
+	 *
+	 * Separate from `toneRules` because they gate a different thing.
+	 * `toneRules` decides whether the word may be *learned* at all; these
+	 * decide whether its **tone** may be asked for, which is a narrower
+	 * question with a much larger blast radius — 43% of otherwise-verified
+	 * words depend on at least one of these, and locking the words
+	 * themselves would gut the vocabulary.
+	 */
+	specialRules: string[];
 	thai_audio_file: string | null;
 	english_audio_file: string | null;
 	image_file: string | null;
