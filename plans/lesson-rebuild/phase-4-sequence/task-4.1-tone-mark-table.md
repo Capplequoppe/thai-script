@@ -10,7 +10,7 @@ covers:
   - src/domain/script/data/symbols.ts
 status: stable
 task_id: "4.1"
-task_status: pending
+task_status: complete
 depends_on: ["3.1"]
 size: medium
 verify:
@@ -32,6 +32,26 @@ weight_votes:
   - "unknowns-estimator -> 5"
   - "calibration-estimator -> 5"
 weight_voted: "sha256:4e5da561dc01bd3a8f559df691a0f99ffbb5450bfd69b503ac38dd88ff01b3e5"
+ac_tests:
+  - "AC1 -> src/domain/script/data/toneMarkTable.test.ts::enumerates all twelve combinations with none missing"
+  - "AC2 -> src/domain/script/data/toneMarkTable.test.ts::declares exactly the four stated combinations unreachable"
+  - "AC3 -> src/domain/script/data/toneMarkTable.test.ts::resolves to the mark's tone even when the spelling rule disagrees"
+  - "AC4 -> src/domain/script/data/symbolPriority.test.ts::reads ThaiConsonant.priority directly rather than a parallel map"
+  - "AC5 -> src/domain/script/data/symbolPriority.test.ts::matches the declared symbols.ts priority for every consonant"
+  - "AC6 -> src/domain/script/data/symbolPriority.test.ts::assigns every rank 1..44 exactly once — demotion reorders, never removes"
+  - "AC7 -> src/domain/script/data/toneMarkTable.test.ts::gives three distinct values for the three query states"
+red_proof:
+  - "AC1 -> toneMarkTable.ts findRule(): appended `&& false` to the predicate so no rule ever matches."
+  - "AC7 -> Same findRule() mutation as AC1 — with every mark unresolved, mid class collapses to \"undeclared\" instead of \"resolved\"."
+  - "AC2 -> toneMarkTable.ts isDeclaredUnreachable(): replaced the body with `return false;` so no combination is ever declared unreachable."
+  - "AC3 -> toneMarkTable.ts resolveSyllableTone(): deleted the tone-mark-wins branch so the function always falls through to the spelling rule regardless of a supplied mark."
+  - "AC4 -> symbolPriority.ts getSchedulingPriority(): replaced the lookup with `return 1;` (a hardcoded constant, i.e. a second, disconnected 'priority' source)."
+  - "AC5 -> symbolPriority.ts deriveConsonantPriority(): flipped the frequency comparator from `(frequency.get(b) - frequency.get(a))` to `(frequency.get(a) - frequency.get(b))`, ranking rarest… [see red-proofs/]"
+  - "AC6 -> symbolPriority.ts deriveConsonantPriority(): changed `[...CONSONANT_CHARACTERS].sort(...)` to `[...CONSONANT_CHARACTERS].slice(0, -1).sort(...)`, dropping one consonant from the ranking."
+lint:
+  before: 10
+  after: 10
+  outcome: incomplete
 generated: {by: claude-opus-5/agent, at: 2026-09-13}
 profile_version: 1
 ---
