@@ -38,7 +38,13 @@ export function LessonIntro({ summary, content, onComplete }: Props) {
 	// unconditionally regardless of phase — the dispatch happens only in
 	// what's returned, never in which hooks run.
 	const [deckDone, setDeckDone] = useState(false);
-	const deckPhase = content.kind === "deck" && !deckDone;
+	// `content.kind` has one value now that task 6.2 removed the video arm —
+	// the deck phase is gated on `deckDone` alone. Kept as a plain boolean
+	// rather than re-adding a `content.kind === "deck"` check purely for
+	// resemblance to the exhaustive dispatch in `lessonContent.ts`; that
+	// dispatch protects a *type-level* union, and there is none here to
+	// protect.
+	const deckPhase = !deckDone;
 
 	const slides: Slide[] = [
 		...summary.consonants.map((c) => ({
