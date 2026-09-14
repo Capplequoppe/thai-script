@@ -138,6 +138,9 @@ export const conditionalVowelForms: readonly ConditionalVowelForm[] = [
 		vowel: "เ-อะ",
 		openForm: "เ-อะ",
 		withFinalForm: "เ-ิ-",
+		// The only entry with no example: common Thai has no closed short
+		// เ-อะ syllable to cite, so the with-final form stands on the shipped
+		// prose alone (the เ-อะ mnemonic states it; task 3.1 teaches it).
 	},
 	{
 		vowel: "-ัว",
