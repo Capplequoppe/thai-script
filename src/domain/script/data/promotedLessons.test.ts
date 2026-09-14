@@ -466,10 +466,19 @@ function leadingRuleFromLesson() {
 			`${LEADING}/one-rule: no line states that the leader hands its class on, so the lesson has no rule`,
 		);
 	}
+	// Not `?? []`: an absent list would make every call to `applyLeadingRule`
+	// answer "that is not a sonorant", which reads as a confident no rather
+	// than as the lesson having stopped saying which letters the rule ranges
+	// over. The statement above refuses the same way and this has to match it.
 	const sonorantLine = bodyOf(LEADING, "why-it-exists").find((line) =>
 		/\bare the sonorants\b/i.test(line),
 	);
-	const sonorants = [...(sonorantLine?.match(THAI_LETTER) ?? [])];
+	if (!sonorantLine) {
+		throw new Error(
+			`${LEADING}/why-it-exists: no line names the sonorants, so the rule ranges over nothing`,
+		);
+	}
+	const sonorants = [...(sonorantLine.match(THAI_LETTER) ?? [])];
 
 	const branches = (Object.keys(BRANCH_SLIDES) as LeadingBranchId[]).map(
 		(id): LessonBranch => {
@@ -587,18 +596,27 @@ type Reading = readonly Syllable[];
 
 const MAX_READINGS = 256;
 
-/** Every way the rules allow a syllable to start at `index`. */
+/**
+ * Every way the rules allow a syllable to start at `index`.
+ *
+ * `leader` is a silent leading consonant the caller has already put through
+ * the rule. It is passed in rather than peeled off outside because a preposed
+ * vowel is written before it — ไหล is ไ, then the silent ห, then ล — so the
+ * leader is not always the first character of its own syllable and a caller
+ * that assumed it was read ไหล as *hlai*.
+ */
 function syllablesAt(
 	rules: LessonRules,
 	characters: readonly string[],
 	index: number,
+	leader?: string,
 ): { syllable: Syllable; length: number }[] {
 	const out: { syllable: Syllable; length: number }[] = [];
 	const here = characters[index];
 	if (here === undefined) return out;
 
 	const preposed = PREPOSED_VOWELS[here];
-	const onsetStart = preposed ? index + 1 : index;
+	const onsetStart = index + (preposed ? 1 : 0) + (leader ? 1 : 0);
 	const first = characters[onsetStart];
 	if (first === undefined || !isConsonant(first)) return out;
 	if (
@@ -624,7 +642,7 @@ function syllablesAt(
 
 	for (const { onset, initial, width } of onsets) {
 		const j = onsetStart + width;
-		const rest = characters.length - (index + (preposed ? 1 : 0));
+		const rest = characters.length - onsetStart;
 		const emit = (
 			vowel: string,
 			length: "short" | "long",
@@ -642,7 +660,7 @@ function syllablesAt(
 					final,
 					light: flags.light ?? false,
 					implicitO: flags.implicitO ?? false,
-					leader: null,
+					leader: leader ?? null,
 				},
 				length: j - index + consumed,
 			});
@@ -732,14 +750,17 @@ function readingsOf(rules: LessonRules, word: string): Reading[] {
 			readings.push(stack.slice());
 			return;
 		}
-		const leader = characters[index];
-		const led = characters[index + 1];
+		// A silent leader is written after the preposed vowel, if there is one,
+		// and before the consonant it leads.
+		const leaderAt = index + (PREPOSED_VOWELS[characters[index] ?? ""] ? 1 : 0);
+		const leader = characters[leaderAt];
+		const led = characters[leaderAt + 1];
 		if (leader !== undefined && led !== undefined) {
 			const leading = applyLeadingRule(rules.leading, leader, led, word);
 			if (leading.leads && !leading.leaderSpoken) {
-				for (const option of syllablesAt(rules, characters, index + 1)) {
-					stack.push({ ...option.syllable, leader });
-					walk(index + 1 + option.length);
+				for (const option of syllablesAt(rules, characters, index, leader)) {
+					stack.push(option.syllable);
+					walk(index + option.length);
 					stack.pop();
 				}
 			}
@@ -755,8 +776,10 @@ function readingsOf(rules: LessonRules, word: string): Reading[] {
 }
 
 /**
- * Which of two readings the lesson prefers. Stated on `which-reading-wins` and
- * asserted against this order by `theLessonStatesWhichReadingWins`.
+ * Which of two readings the lesson prefers, in the order `which-reading-wins`
+ * states it — fewest syllables, then fewest light syllables, then the bare ร
+ * ending over the unwritten o. "states which reading wins when two of them
+ * fit" holds the slide to that order.
  */
 function scoreOf(reading: Reading): [number, number, number] {
 	return [
@@ -891,6 +914,11 @@ const AC4_SAMPLE: readonly string[] = [
 	"ทรง",
 	"จริง",
 	// leading consonants, silent and spoken
+	"ไกล",
+	"ไหล",
+	"สมุด",
+	"สนุก",
+	"ประชุม",
 	"หมด",
 	"หลง",
 	"หนัง",
@@ -1304,9 +1332,10 @@ describe("AC6 — every asset these decks reference exists", () => {
 	});
 
 	it("shows only Thai words the vocabulary already holds", () => {
-		// Runs of two Thai consonants are spelling fragments the lessons quote —
-		// the cluster pairs, นน, รร — not words, and are not looked up. Anything
-		// longer is a word the learner is being shown, and has to be one the app
+		// A single character is a letter being named and a run of exactly two
+		// consonants is a spelling fragment the lessons quote — a cluster pair,
+		// นน, รร. Neither is a word, and neither is looked up. Everything else
+		// is a word the learner is being shown, and has to be one the app
 		// already teaches.
 		const ownName = "อักษรนำ";
 		let checked = 0;
@@ -1314,9 +1343,10 @@ describe("AC6 — every asset these decks reference exists", () => {
 			for (const text of textsOf(deckFor(id))) {
 				for (const run of text.match(THAI_RUN) ?? []) {
 					const characters = [...run];
-					if (characters.length < 3) continue;
-					if (characters.every(isConsonant) && characters.length === 2)
+					if (characters.length === 1) continue;
+					if (characters.length === 2 && characters.every(isConsonant)) {
 						continue;
+					}
 					if (run === ownName) continue;
 					checked += 1;
 					expect(
