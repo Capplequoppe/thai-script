@@ -222,23 +222,6 @@
 		]
 	},
 	{
-		"key": "kOO",
-		"members": [
-			{
-				"thai": "ก็",
-				"tones": ["falling"]
-			},
-			{
-				"thai": "ก่อ",
-				"tones": ["low"]
-			},
-			{
-				"thai": "กอ",
-				"tones": ["mid"]
-			}
-		]
-	},
-	{
 		"key": "rUUang",
 		"members": [
 			{
@@ -1836,6 +1819,19 @@
 		]
 	},
 	{
+		"key": "kha naq",
+		"members": [
+			{
+				"thai": "คณะ",
+				"tones": ["high", "high"]
+			},
+			{
+				"thai": "ขณะ",
+				"tones": ["low", "low"]
+			}
+		]
+	},
+	{
 		"key": "luuang",
 		"members": [
 			{
@@ -1883,6 +1879,19 @@
 			},
 			{
 				"thai": "ชิน",
+				"tones": ["mid"]
+			}
+		]
+	},
+	{
+		"key": "kOO",
+		"members": [
+			{
+				"thai": "ก่อ",
+				"tones": ["low"]
+			},
+			{
+				"thai": "กอ",
 				"tones": ["mid"]
 			}
 		]
@@ -1991,19 +2000,6 @@
 			},
 			{
 				"thai": "ซัด",
-				"tones": ["high"]
-			}
-		]
-	},
-	{
-		"key": "phet",
-		"members": [
-			{
-				"thai": "เผ็ด",
-				"tones": ["low"]
-			},
-			{
-				"thai": "เพชร",
 				"tones": ["high"]
 			}
 		]
@@ -2508,6 +2504,19 @@
 		]
 	},
 	{
+		"key": "sa naam",
+		"members": [
+			{
+				"thai": "สนาม",
+				"tones": ["low", "rising"]
+			},
+			{
+				"thai": "สระน้ำ",
+				"tones": ["low", "high"]
+			}
+		]
+	},
+	{
 		"key": "faak",
 		"members": [
 			{
@@ -2879,19 +2888,6 @@
 			{
 				"thai": "ออม",
 				"tones": ["mid"]
-			}
-		]
-	},
-	{
-		"key": "lao",
-		"members": [
-			{
-				"thai": "เหล้า",
-				"tones": ["falling"]
-			},
-			{
-				"thai": "เลาจ์",
-				"tones": ["high"]
 			}
 		]
 	},

@@ -5,6 +5,7 @@ import {
 	ConsonantCard,
 	NumeralCard,
 	RareVowelCard,
+	SpecialRuleCard,
 	ToneMarkCard,
 	ToneRuleCard,
 	VowelCard,
@@ -101,6 +102,15 @@ export function LessonIntro({ summary, onComplete }: Props) {
 		...summary.toneRules.map((r) => ({
 			type: "tone rule",
 			render: () => <ToneRuleCard description={r.description} />,
+		})),
+		// Last, deliberately: a special rule qualifies how the tone rules
+		// above are applied (ห นำ changes which class you apply them with),
+		// so it reads as a caveat only once they have been stated.
+		...summary.specialRules.map((r) => ({
+			type: "special rule",
+			render: () => (
+				<SpecialRuleCard title={r.title} description={r.description} />
+			),
 		})),
 	];
 

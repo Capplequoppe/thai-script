@@ -26,6 +26,25 @@ export interface SyllableInfo {
 	tone: string | null;
 }
 
+/**
+ * How far a word's per-syllable tones can be trusted, decided offline by
+ * `scripts/enrich-vocabulary.py` from two independent descriptions of the
+ * word — the tone rules applied to the Thai spelling, and the tone accents
+ * in the romanization.
+ *
+ * - `verified` — both agree on the syllable split *and* the taught rules
+ *   reproduce the tone. The learner can derive the answer from what they
+ *   were taught, so it is safe to ask.
+ * - `exception` — the split is corroborated and the tone is known, but no
+ *   taught rule predicts it: ก็, loanwords like เมตร, lexical อักษรนำ like
+ *   สำเร็จ (governed) against สำนัก (not). Correct to *show*; asking for it
+ *   without saying so teaches that a correctly-applied rule was wrong.
+ * - `unsegmented` — the two disagree on how many syllables the word has
+ *   (สวัสดี is stored as สวัส + ดี, but is sà-wàt-dii), so no per-syllable
+ *   tone can be trusted at all.
+ */
+export type ToneStatus = "verified" | "exception" | "unsegmented";
+
 export interface VocabEntry {
 	thai: string;
 	romanization: string;
@@ -38,6 +57,19 @@ export interface VocabEntry {
 	characters: string[];
 	syllables: SyllableInfo[];
 	toneRules: string[];
+	toneStatus: ToneStatus;
+	/**
+	 * Ids from `symbols.ts`'s `specialRules` that this word cannot be read
+	 * without — ห นำ for หมี, การันต์ for จันทร์, the unwritten vowel for คน.
+	 *
+	 * Separate from `toneRules` because they gate a different thing.
+	 * `toneRules` decides whether the word may be *learned* at all; these
+	 * decide whether its **tone** may be asked for, which is a narrower
+	 * question with a much larger blast radius — 43% of otherwise-verified
+	 * words depend on at least one of these, and locking the words
+	 * themselves would gut the vocabulary.
+	 */
+	specialRules: string[];
 	thai_audio_file: string | null;
 	english_audio_file: string | null;
 	image_file: string | null;

@@ -1,2 +1,3 @@
 pythainlp>=5.0
 python-crfsuite>=0.9
+pytest>=8.0

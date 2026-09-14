@@ -5,37 +5,52 @@ Applies Thai tone-rule logic matching the rule IDs in
 `src/domain/script/data/symbols.ts`, and cross-checks the result against the
 tone accents in each entry's own `romanization`.
 
-## Two modes
+## Two modes, and which interpreter to use
 
-By default the script **re-analyzes the syllable splits already stored** in
-`vocabulary.json` and rewrites only what it derives from them (`tone`,
-`syllableType`, `initialConsonant`, `finalConsonant`, `vowel`, `toneRules`).
-Re-segmenting is a separate, bigger change — `--retokenize` asks for it, and
-needs `python-crfsuite` for PyThaiNLP's syllable tokenizer.
+`--retokenize` re-splits every word into syllables and is what you want after
+changing the splitter; without it the script re-analyzes the syllable splits
+already stored and rewrites only what it derives from them. Either way it
+needs `python-crfsuite` for PyThaiNLP's tokenizer:
 
-## Why the tone is cross-checked rather than simply derived
+    scripts/.venv/bin/python scripts/enrich-vocabulary.py --retokenize
 
-Two independent things say what a syllable's tone is: the rules applied to
-the spelling, and the accent the transcriber wrote in `romanization`. They
-disagree on roughly 3% of syllables, and *which one is right depends on
-whether the syllable carries a tone mark*:
+(`scripts/generate-tone-minimal-pairs.py` is the other way round — its
+`thaig2p` corroboration needs torch, which only `backend/.venv` carries.)
 
-  * **With a tone mark** (่ ้ ๊ ๋) the rule is exceptionless — mark plus
-    consonant class fixes the tone with no room for a loanword to deviate.
-    Measured against the romanizations, the rules agree 99.6% of the time,
-    and every disagreement examined was the *romanization* being wrong
-    (ข้าว transcribed `khàao`, low, where the spelling gives falling) or a
-    romanization with no accents at all. So the rules win here.
+## Syllable splitting
 
-  * **Without a tone mark** the tone follows from live/dead and vowel
-    length, and that is exactly where borrowings and lexicalized forms
-    stop obeying the rules: เมตร, เทคนิค, กอล์ฟ, บล็อก, คอมพิวเตอร์,
-    สำเร็จ, ประวัติ, จันทร์. The romanization has these right and the rules
-    cannot. So the romanization wins here, on 1.8% of all syllables.
+PyThaiNLP's tokenizers return สบาย, ขนาด and ตลาด whole, because
+orthographically they *are* one block. Phonetically each is two syllables
+with two tones — sà-baai, kʰà-nàːt, tà-làat — and a learner asked "what tone
+is สบาย" has to be asked about the right one. `split_prefix_syllable` takes
+the split the tokenizer will not, and only where the opening consonant can be
+nothing else: not half of an onset cluster, not ห นำ or อ นำ, not ร หัน, not
+`อ`/`ว` acting as vowels.
 
-`toneRules` stays rule-derived in both cases: it answers "which tone rules
-must the learner know to read this word", which is still the rule's
-question even where the word's actual tone is irregular.
+## `toneStatus` — what may be asked
+
+Every entry gets one of three verdicts, from comparing two independent
+descriptions of the word: the taught tone rules applied to the Thai spelling,
+and the tone accents in the romanization.
+
+  * ``verified`` (87.8%) — both agree on the split and the rules reproduce the
+    tone. Safe to quiz: the answer follows from what the learner was taught.
+  * ``exception`` (3.7%) — the tone is known but no taught rule predicts it:
+    ก็, loanwords like เมตร, and lexical อักษรนำ (สำเร็จ is governed, สำนัก
+    is not).
+  * ``unsegmented`` (8.5%) — the two disagree on how many syllables the word
+    has, so no per-syllable tone can be trusted.
+
+`toneSyllablesOf` in the app gates every tone question on `verified`, which
+is the point of the field: applying a rule you were taught, correctly, and
+being marked wrong is the failure this prevents.
+
+## อักษรนำ
+
+A bare high/mid consonant governs the class of a following single-class
+sonorant: ขนาด is kʰà-nàːt, not kʰà-nâːt. Worth +66 words of agreement, and
+it is *not* fully regular — ขนาด is governed, สมาชิก (sà-maa-chík) is not —
+which is exactly why its output is corroborated rather than trusted.
 
 ## The bug this replaced
 
@@ -91,10 +106,31 @@ THAI_CONSONANT_RANGE = set(
 # `์` (thanthakhat / karan) silences the consonant it sits on.
 KARAN = "\u0E4C"
 
-# True onset clusters. `ร`/`ล` follow the stops freely; `ว` only follows
-# ก ข ค, and only when a written vowel comes after it — `ควาย` is /kʰwaːj/
-# with a คว onset, but `ควบ` is /kʰûap/ where the ว *is* the vowel.
-CLUSTER_RL_FIRST = set("กขคฅฆจตทปผพบฟสศ")
+# True onset clusters, listed as pairs rather than a cross product. The
+# cross product this replaced treated ตล as a cluster, which made ตลาด one
+# syllable when it is tà-làat — the ต is its own syllable carrying an
+# unwritten vowel.
+#
+# The จร/ซร/ศร/สร entries are a different thing wearing the same shape: the
+# ร is *silent* there (จริง is /tɕiŋ/), which the app teaches as its own
+# special rule. They belong here because the pair is still one onset, not
+# because anything is pronounced as a cluster.
+ONSET_CLUSTERS = {
+    "กร", "กล",
+    "ขร", "ขล",
+    "คร", "คล",
+    "ตร",
+    "ปร", "ปล",
+    "ผล",
+    "พร", "พล",
+    "บร", "บล", "ดร", "ฟร", "ฟล",   # loanword onsets
+    "ทร",                            # ทร is /s/ — one onset, one sound
+    "จร", "ซร", "ศร", "สร",          # silent ร
+}
+
+# `ว` clusters (กว ขว คว) are deliberately NOT in the set above: they hold
+# only before a written vowel. `ควาย` is /kʰwaːj/ with a คว onset, but `ควบ`
+# is /kʰûap/ where the ว *is* the vowel, so they get their own branch below.
 CLUSTER_W_FIRST = set("กขค")
 
 # ห นำ: a silent leading ห makes the following sonorant high class.
@@ -215,7 +251,7 @@ def parse_syllable(syllable_text: str) -> dict[str, Any] | None:
         if (
             (lead == "ห" and second in LEADING_H_SECOND)
             or (lead == "อ" and second == "ย")
-            or (second in "รล" and lead in CLUSTER_RL_FIRST)
+            or (lead + second) in ONSET_CLUSTERS
             or (
                 second == "ว"
                 and lead in CLUSTER_W_FIRST
@@ -249,6 +285,11 @@ def parse_syllable(syllable_text: str) -> dict[str, Any] | None:
     has_long = any(ch in LONG_VOWELS for ch in window) or bool(vowel_like)
 
     return {
+        # A syllable that is nothing but one consonant carries the unwritten
+        # short /a/ of an open syllable — ส in ส+บาย is sà. That is DEAD and
+        # SHORT, not the "live" that "no written vowel" otherwise defaults to,
+        # and getting it wrong mis-toned every prefix syllable in the corpus.
+        "barePrefix": len([c for c in source if c not in TONE_MARKS]) == 1,
         "initial": source[first],
         "final": source[final_index] if final_index is not None else None,
         "vowel": "".join(ch for ch in window if ch in VOWEL_CHARS) or None,
@@ -260,6 +301,8 @@ def parse_syllable(syllable_text: str) -> dict[str, Any] | None:
 
 def _determine_syllable_type(parsed: dict[str, Any]) -> str:
     """'live' or 'dead' — a final sonorant or long vowel is live."""
+    if parsed["barePrefix"]:
+        return "dead"
     final = parsed["final"]
     if final in SONORANT_CONSONANTS:
         return "live"
@@ -280,7 +323,7 @@ def _tone_rule_id(consonant_class: str, parsed: dict[str, Any]) -> str:
         # A dead syllable with no written vowel carries the implicit short
         # vowel (/o/ closed, /a/ open) — never a long one. ลด, พบ, ยก, รถ
         # are all low-class dead *short*, and so high tone, not falling.
-        short = parsed["hasShort"] or not parsed["hasLong"]
+        short = parsed["barePrefix"] or parsed["hasShort"] or not parsed["hasLong"]
         return f"{consonant_class}-dead-{'short' if short else 'long'}"
 
     return f"{consonant_class}-live"
@@ -294,6 +337,147 @@ def _tone_from_rule(consonant_class: str, parsed: dict[str, Any]) -> str:
             (consonant_class, TONE_MARKS[parsed["toneMark"]]), "mid"
         )
     return TONE_BY_RULE[rule_id]
+
+
+# Vowels written before their consonant. In แสดง the แ belongs to the second
+# syllable (sà-dɛːŋ), so it travels with the remainder rather than blocking
+# the split.
+LEADING_VOWELS = set("เแโใไ")
+
+# The single-class low consonants a leading high/mid consonant can govern.
+SINGLE_CLASS_SONORANTS = set("งญณนมยรลวฬ")
+
+
+def split_prefix_syllable(token: str) -> list[str]:
+    """Split a leading bare consonant off a token: สบาย -> ['ส', 'บาย'].
+
+    PyThaiNLP's syllable tokenizers do not do this — every engine returns
+    สบาย, ขนาด and ตลาด whole — because orthographically they *are* one
+    block. Phonetically they are two syllables with two tones (sà-baai), and
+    a learner asked "what tone is สบาย" has to be asked about the right one,
+    so the split has to happen somewhere.
+
+    A split is only taken when the opening consonant cannot be anything else:
+    not half of an onset cluster, not ห นำ or อ นำ, not the ร of ร หัน, and
+    not `อ`/`ว` (vowels in that position). The remainder must be able to
+    stand as a syllable on its own once karan has silenced what it silences —
+    องค์ is /ʔoŋ/, อ plus a silent ค, not อ + งค์.
+    """
+    if len(token) < 3:
+        return [token]
+
+    lead, body = "", token
+    if (
+        token[0] in LEADING_VOWELS
+        and len(token) > 3
+        and token[1] in THAI_CONSONANT_RANGE
+        and token[2] in THAI_CONSONANT_RANGE
+    ):
+        lead, body = token[0], token[1:]
+
+    if len(body) < 2:
+        return [token]
+    first, second = body[0], body[1]
+    if first not in THAI_CONSONANT_RANGE or second not in THAI_CONSONANT_RANGE:
+        return [token]
+    if second in "อวฤฦ":
+        return [token]
+    if body[1:3] == "รร":
+        return [token]
+    if (
+        (first == "ห" and second in LEADING_H_SECOND)
+        or (first == "อ" and second == "ย")
+        or (first + second) in ONSET_CLUSTERS
+        or (second == "ว" and first in CLUSTER_W_FIRST)
+    ):
+        return [token]
+
+    remainder = lead + body[1:]
+    live = strip_karan(body[1:])
+    if not any(ch in VOWEL_CHARS for ch in live) and (
+        sum(ch in THAI_CONSONANT_RANGE for ch in live) < 2
+    ):
+        return [token]
+    return [first, remainder]
+
+
+def segment_word(word: str) -> list[str]:
+    """Syllable texts for a word: PyThaiNLP, then the prefix split it misses."""
+    from pythainlp.tokenize import syllable_tokenize
+
+    segments: list[str] = []
+    for token in syllable_tokenize(word):
+        segments.extend(split_prefix_syllable(token))
+    return segments
+
+
+def apply_leading_consonant_rule(syllables: list[dict]) -> bool:
+    """อักษรนำ: a bare high/mid consonant governs the next syllable's class.
+
+    ขนาด is kʰà-nàːt, not kʰà-nâːt — the ข makes น read as high class, so the
+    dead-long rule gives low rather than falling. It applies to a marked
+    syllable too, changing which mark row is used: อร่อย is à-ràwy because
+    the อ makes ร mid class under mai ek.
+
+    Only the single-class low sonorants can be governed; only a *bare*
+    prefix governs. The rule is not fully regular even then — ขนาด is
+    governed but สมาชิก (sà-maa-chík) is not — which is why the tone it
+    produces is corroborated against the romanization rather than trusted,
+    and a word it gets wrong is recorded as an exception, not shipped as a
+    question.
+    """
+    governed = False
+    for index in range(1, len(syllables)):
+        previous, current = syllables[index - 1], syllables[index]
+        if len(previous["text"]) != 1 or not previous["consonantClass"]:
+            continue
+        if previous["consonantClass"] not in ("high", "mid"):
+            continue
+        parsed = parse_syllable(current["text"])
+        if parsed is None or parsed["initial"] not in SINGLE_CLASS_SONORANTS:
+            continue
+        current["consonantClass"] = previous["consonantClass"]
+        current["tone"] = _tone_from_rule(previous["consonantClass"], parsed)
+        governed = True
+    return governed
+
+
+# Reading rules from `symbols.ts`'s `specialRules` that this analyser relies
+# on. A word listing one of these cannot be read correctly without it, so the
+# app must not ask for its tone until the lesson that introduces it is done —
+# see `VocabEntry.specialRules`.
+SILENT_RO_ONSETS = {"จร", "ซร", "ศร", "สร"}
+
+
+def special_rules_for(texts: list[str], governed: bool) -> list[str]:
+    """Which taught reading rules a word's syllables depend on."""
+    needed: set[str] = set()
+    if governed:
+        needed.add("akson-nam")
+
+    for text in texts:
+        if KARAN in text:
+            needed.add("gaaran")
+        if "รร" in text:
+            needed.add("ror-han")
+
+        source = strip_karan(text)
+        if not any(ch in VOWEL_CHARS for ch in source):
+            needed.add("unwritten-vowels")
+
+        positions = [
+            i for i, ch in enumerate(source) if ch in THAI_CONSONANT_RANGE
+        ]
+        if len(positions) > 1 and positions[1] == positions[0] + 1:
+            pair = source[positions[0]] + source[positions[1]]
+            if pair[0] == "ห" and pair[1] in LEADING_H_SECOND:
+                needed.add("hor-nam")
+            elif pair == "ทร":
+                needed.add("tho-ro-s-sound")
+            elif pair in SILENT_RO_ONSETS:
+                needed.add("silent-ro-clusters")
+
+    return sorted(needed)
 
 
 def romanized_tones(romanization: str) -> tuple[str, ...] | None:
@@ -380,23 +564,32 @@ def apply_romanized_tones(entry: dict) -> int:
     return overridden
 
 
-def enrich_entry(entry: dict, *, retokenize: bool) -> int:
-    """Add characters, syllables, toneRules and mnemonic. Returns overrides."""
+def enrich_entry(entry: dict, *, retokenize: bool) -> str:
+    """Add characters, syllables, toneRules and toneStatus. Returns the status."""
     thai_word = entry.get("thai", "")
 
     entry["characters"] = get_thai_characters(thai_word)
 
     if retokenize:
-        from pythainlp.tokenize import syllable_tokenize
-
-        texts = syllable_tokenize(thai_word)
+        texts = segment_word(thai_word)
     else:
         # The stored split is kept as-is; only what is derived from each
-        # syllable's text is recomputed. Re-segmenting is a separate change.
+        # syllable's text is recomputed.
         texts = [s["text"] for s in entry.get("syllables") or []]
 
     entry["syllables"] = [analyze_syllable(text) for text in texts]
-    overridden = apply_romanized_tones(entry)
+    governed = apply_leading_consonant_rule(entry["syllables"])
+    entry["specialRules"] = special_rules_for(texts, governed)
+
+    # What the taught rules alone predict, before the romanization is allowed
+    # a word. This is the half that decides `toneStatus`: a learner can only
+    # be *expected* to answer what the rules they were taught produce.
+    predicted = tuple(s["tone"] for s in entry["syllables"])
+
+    apply_romanized_tones(entry)
+    actual = tuple(s["tone"] for s in entry["syllables"])
+
+    entry["toneStatus"] = tone_status(entry, predicted, actual)
 
     # Tone rules stay rule-derived even where the tone above did not: they
     # answer "which rules must you know to read this", not "what does this
@@ -418,7 +611,33 @@ def enrich_entry(entry: dict, *, retokenize: bool) -> int:
     if "mnemonic" not in entry:
         entry["mnemonic"] = None
 
-    return overridden
+    return entry["toneStatus"]
+
+
+def tone_status(
+    entry: dict, predicted: tuple, actual: tuple
+) -> str:
+    """How much this word's tones can be trusted, and therefore asked about.
+
+    Three states, and the distinction between them is the whole point:
+
+      * ``verified`` — the syllable split is corroborated by the romanization
+        and the taught rules reproduce the tone. Safe to quiz: the answer is
+        derivable from what the learner was taught.
+      * ``exception`` — the split is corroborated and the tone is known, but
+        no taught rule predicts it (ก็, loanwords like เมตร, lexical อักษรนำ
+        like สำเร็จ). Safe to *show*, but asking for it without saying so
+        teaches the learner that a rule they applied correctly is wrong.
+      * ``unsegmented`` — the two sources disagree on how many syllables the
+        word has, so nothing about its per-syllable tones can be trusted.
+        Never quiz it.
+    """
+    romanized = romanized_tones(entry.get("romanization", ""))
+    if not romanized or len(romanized) != len(actual) or not actual:
+        return "unsegmented"
+    if any(tone is None for tone in actual):
+        return "unsegmented"
+    return "verified" if predicted == actual else "exception"
 
 
 # ---------------------------------------------------------------------------
@@ -449,9 +668,10 @@ def main(argv: list[str] | None = None) -> int:
         [s.get("tone") for s in (e.get("syllables") or [])] for e in vocabulary
     ]
 
-    overrides = 0
+    statuses: dict[str, int] = {}
     for entry in vocabulary:
-        overrides += enrich_entry(entry, retokenize=args.retokenize)
+        status = enrich_entry(entry, retokenize=args.retokenize)
+        statuses[status] = statuses.get(status, 0) + 1
 
     changed_syllables = sum(
         1
@@ -461,8 +681,10 @@ def main(argv: list[str] | None = None) -> int:
     )
     total = sum(len(e["syllables"]) for e in vocabulary)
     print(f"{len(vocabulary)} entries, {total} syllables")
-    print(f"  tones changed:            {changed_syllables}")
-    print(f"  of which romanization-led: {overrides}")
+    print(f"  tones changed: {changed_syllables}")
+    for name in ("verified", "exception", "unsegmented"):
+        count = statuses.get(name, 0)
+        print(f"  {name:12}: {count:5}  {count * 100 / len(vocabulary):5.1f}%")
 
     if args.dry_run:
         print("dry run — nothing written")

@@ -24,6 +24,8 @@ function makeEntry(overrides: Partial<VocabEntry> = {}): VocabEntry {
 		characters: ["ม", "า"],
 		syllables: [],
 		toneRules: ["low-live"],
+		toneStatus: "verified",
+		specialRules: [],
 		thai_audio_file: null,
 		english_audio_file: null,
 		image_file: null,
@@ -38,7 +40,11 @@ function createUseCase(vocabulary: VocabEntry[]) {
 	const cardRepo = new StorageCardRepository(storage);
 	const stateRepo = new StorageLearnerStateRepository(storage);
 	const apprenticeService = new ApprenticeService(cardRepo, 100, stateRepo);
-	const scriptService = new LearningService(cardRepo, stateRepo, apprenticeService);
+	const scriptService = new LearningService(
+		cardRepo,
+		stateRepo,
+		apprenticeService,
+	);
 	const vocabService = new VocabularyService(
 		cardRepo,
 		stateRepo,

@@ -1,18 +1,22 @@
-"""Tone of each syllable, read from the romanization's diacritics.
+"""Tone of each syllable, for validating authored mnemonics.
 
-NOT from `vocabulary.json`'s `syllables[].tone`. That field disagrees with the
-romanization for 2600 of 5454 entries — only 52% agreement — and every case
-checked by hand has the romanization right:
+`vocabulary.json`'s `syllables[].tone` used to be unusable here — it applied
+the long-vowel branch of the dead-syllable rule unconditionally, so ทุก, รับ
+and และ all came out wrong, and it agreed with the romanization on barely
+half the corpus. `scripts/enrich-vocabulary.py` has since been fixed and the
+data regenerated: agreement is now **99.7%**, and the stored field is itself
+the reconciled answer of the tone rules and these same romanization accents.
 
-    ทุก  tʰúk   syllables say "falling", romanization says high
-    รับ  ráp    syllables say "falling", romanization says high
-    และ  lɛ́ʔ    syllables say "mid",     romanization says high
-    ก็   kɔ̂ː    syllables say "mid",     romanization says falling
+Two reasons this module still reads the romanization rather than simply
+trusting that field:
 
-A low-class initial in a dead syllable gives **high** tone on a short vowel and
-**falling** on a long one; the analyser behind that field appears to apply the
-long-vowel branch unconditionally. It also fails to split compounds — สบาย is
-one syllable there ("rising") rather than sà-baai (low, mid).
+  * **Segmentation.** The stored breakdown still under-splits 711 compounds
+    — สบาย is one syllable there ("rising") rather than sà-baai (low, mid).
+    Until that is fixed, the romanization is the only source that knows how
+    many syllables a word has.
+  * **Per-syllable choice.** A mnemonic may legitimately note the tone of
+    any syllable, so `resolved_tones` returns the set a word carries rather
+    than one answer.
 
 The romanization uses combining diacritics, which are unambiguous.
 """
@@ -52,47 +56,6 @@ def syllable_tones(romanization: str) -> list[str]:
     return tones
 
 
-# --- Deriving the tone from the spelling, rather than trusting either field ---
-#
-# Neither stored field is reliable on its own. `syllables[].tone` applies the
-# long-vowel branch of the dead-syllable rule unconditionally (วัด, รถ, ชุด all
-# come out "falling" when they are high). The romanization is right far more
-# often, but not always: ข้าว is stored `khàao` when ข is a high-class initial
-# under mai tho, which is falling. So compute it.
-
-SHORT_VOWELS = {
-    "ะ", "ั", "ิ", "ึ", "ุ", "เะ", "แะ", "โะ", "เาะ", "เอะ", "ัวะ", "เียะ",
-    "เือะ", "ำ", "ใ", "ไ", "เา",
-}
-
-
-def _is_short(vowel: str | None) -> bool:
-    return vowel is not None and vowel in SHORT_VOWELS
-
-
-def tone_from_spelling(syllable: dict) -> str | None:
-    """Standard Thai tone rules, or None when the data is too thin to decide."""
-    cls = syllable.get("consonantClass")
-    mark = syllable.get("toneMark")
-    kind = syllable.get("syllableType")
-    if cls not in {"high", "mid", "low"} or kind not in {"live", "dead"}:
-        return None
-
-    if mark == "mayek":
-        return "falling" if cls == "low" else "low"
-    if mark == "maytho":
-        return "high" if cls == "low" else "falling"
-    if mark in {"maytri", "maychattawa"}:
-        return "high" if mark == "maytri" else "rising"
-
-    if kind == "live":
-        return "rising" if cls == "high" else "mid"
-    # Dead syllable, unmarked: the branch the stored field gets wrong.
-    if cls in {"high", "mid"}:
-        return "low"
-    return "high" if _is_short(syllable.get("vowel")) else "falling"
-
-
 def tone_from_mark(syllable: dict) -> str | None:
     """Tone implied by an explicit tone mark, or None if the syllable has none.
 
@@ -113,7 +76,7 @@ def tone_from_mark(syllable: dict) -> str | None:
         return "high" if cls == "low" else "falling"
     if mark == "maytri":
         return "high"
-    if mark == "maychattawa":
+    if mark == "mayjattawa":
         return "rising"
     return None
 
