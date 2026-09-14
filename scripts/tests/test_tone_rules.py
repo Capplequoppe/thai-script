@@ -28,6 +28,7 @@ from __future__ import annotations
 
 import importlib.util
 import json
+import re
 import sys
 from pathlib import Path
 
@@ -38,6 +39,7 @@ SCRIPT = REPO_ROOT / "scripts" / "enrich-vocabulary.py"
 VOCABULARY = (
     REPO_ROOT / "src" / "domain" / "vocabulary" / "data" / "vocabulary.json"
 )
+SYMBOLS_TS = REPO_ROOT / "src" / "domain" / "script" / "data" / "symbols.ts"
 
 
 def _load_script():
@@ -305,3 +307,90 @@ def test_shipped_vocabulary_agrees_with_its_own_romanizations(
         agreed += list(romanized) == stored
     assert compared > 4000
     assert agreed / compared > 0.99, f"{agreed}/{compared}"
+
+
+# --- the app's tables and this script's must not drift ------------------------
+
+"""`symbols.ts` is the authority.
+
+Its `toneRules[].resultingTone` and `toneMarkRules[].resultingTone` are what
+the lessons teach and what the tone-rule cards quiz, so they define what is
+true for this app. `enrich-vocabulary.py` restates them in Python because it
+runs offline and cannot import TypeScript — which is a duplication, and this
+is the guard on it: edit one table without the other and these fail.
+
+Parsing `symbols.ts` with a regex is deliberate. The alternative — generating
+one language's table from the other at build time — buys the same guarantee
+and costs a build step that has to run before anyone can trust the data.
+"""
+
+
+def _read_symbols_ts() -> str:
+    return SYMBOLS_TS.read_text(encoding="utf-8")
+
+
+# `symbols.ts` names the marks the way a learner says them; `vocabulary.json`
+# and the rule ids use the compact spelling. `VocabularyLessonService`'s own
+# `markNameMap` carries the same translation for the same reason.
+MARK_NAMES = {
+    "mai ek": "mayek",
+    "mai tho": "maytho",
+    "mai tri": "maytri",
+    "mai chattawa": "mayjattawa",
+}
+
+
+def parse_ts_tone_rules(source: str) -> dict[str, str]:
+    """`{rule id: resulting tone}` from `symbols.ts`'s `toneRules`."""
+    return dict(
+        re.findall(
+            r'id:\s*"([a-z-]+)",\s*consonantClass:[^,]+,\s*'
+            r'syllableType:\s*"[a-z-]+",\s*resultingTone:\s*"(\w+)"',
+            source,
+        )
+    )
+
+
+def parse_ts_tone_mark_rules(source: str) -> dict[str, str]:
+    """`{"<class>-<mark id>": resulting tone}` from `toneMarkRules`."""
+    found = re.findall(
+        r'toneMarkName:\s*"([^"]+)",\s*consonantClass:\s*'
+        r'ThaiSymbolClass\.(\w+),\s*resultingTone:\s*"(\w+)"',
+        source,
+    )
+    return {
+        f"{cls.lower()}-{MARK_NAMES[name]}": tone for name, cls, tone in found
+    }
+
+
+def test_the_regexes_still_match_symbols_ts() -> None:
+    """Guards the guard: a refactor of `symbols.ts` that breaks these patterns
+    would otherwise make both tests below pass vacuously on empty tables."""
+    source = _read_symbols_ts()
+    assert len(parse_ts_tone_rules(source)) == 9
+    assert len(parse_ts_tone_mark_rules(source)) == 8
+
+
+def test_tone_rule_table_matches_the_app() -> None:
+    expected = parse_ts_tone_rules(_read_symbols_ts())
+    assert enrich.TONE_BY_RULE == expected
+
+
+def test_tone_mark_table_matches_the_app() -> None:
+    expected = parse_ts_tone_mark_rules(_read_symbols_ts())
+    actual = {f"{cls}-{mark}": tone for (cls, mark), tone in enrich.TONE_BY_MARK.items()}
+    assert actual == expected
+
+
+def test_every_rule_id_the_enricher_emits_is_taught_by_the_app() -> None:
+    """A rule id with no `symbols.ts` entry can never be mastered, so a word
+    carrying it would be permanently locked (`isWordMastered` looks each id up
+    in the learner's mastered set)."""
+    source = _read_symbols_ts()
+    taught = set(parse_ts_tone_rules(source)) | set(parse_ts_tone_mark_rules(source))
+    emitted = {
+        rule
+        for entry in json.loads(VOCABULARY.read_text(encoding="utf-8"))
+        for rule in entry["toneRules"]
+    }
+    assert emitted <= taught, emitted - taught
