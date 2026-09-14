@@ -1,6 +1,6 @@
 // @vitest-environment jsdom
 import { fireEvent, render, screen } from "@testing-library/react";
-import { describe, expect, it } from "vitest";
+import { describe, expect, it, vi } from "vitest";
 import {
 	createdAudioUrls,
 	stubDeckFetchError,
@@ -143,5 +143,55 @@ describe("DeckSlide — retrieval before reveal (AC7)", () => {
 		fireEvent.click(screen.getByRole("button", { name: "Show Answer" }));
 
 		expect(screen.getByText(/m, like 'mother'/)).toBeTruthy();
+	});
+});
+
+describe("DeckSlide — rule slide", () => {
+	// Lesson 2 is the first to introduce a tone rule ("low-live") — a rule
+	// slide renders from the lesson's own rules block, never its own prose,
+	// so this proves that wiring end to end rather than just parsing.
+	const RULE_LESSON_ID = "lesson-02";
+	const RULE_DECK_PATH = `/lessons/${RULE_LESSON_ID}/deck.json`;
+
+	it("renders the rule's title and text from the lesson's rules block", async () => {
+		stubDeckJson(RULE_DECK_PATH, {
+			lessonId: RULE_LESSON_ID,
+			title: "A lesson",
+			slides: [
+				{ kind: "rule", id: "r1", ruleId: "low-live" },
+				RETRIEVAL,
+				REVEAL,
+			],
+		});
+		render(<DeckSlide deckPath={RULE_DECK_PATH} onComplete={() => {}} />);
+
+		expect(await screen.findByText(/A mid tone is pronounced/)).toBeTruthy();
+	});
+});
+
+describe("DeckSlide — a refused audioUrl is distinguishable from no audio (trust boundary)", () => {
+	it("warns and renders no replay button for an audioUrl outside its own lesson's asset root", async () => {
+		const warn = vi.spyOn(console, "warn").mockImplementation(() => {});
+		stubDeckJson(
+			DECK_PATH,
+			deck([
+				{
+					kind: "exposition",
+					id: "s1",
+					heading: "One",
+					body: ["first"],
+					audioUrl: "/lessons/someone-elses-lesson/track.mp3",
+				},
+				RETRIEVAL,
+				REVEAL,
+			]),
+		);
+		render(<DeckSlide deckPath={DECK_PATH} onComplete={() => {}} />);
+
+		await screen.findByText("first");
+		expect(screen.queryByRole("button", { name: "Replay audio" })).toBeNull();
+		expect(warn).toHaveBeenCalledWith(expect.stringContaining(LESSON_ID));
+
+		warn.mockRestore();
 	});
 });

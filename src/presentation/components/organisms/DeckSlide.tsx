@@ -29,7 +29,10 @@ type LoadState =
  * Every asset path a deck names for playback must resolve inside its own
  * `public/lessons/<lessonId>/` — the trust boundary the deck-JSON sink is
  * named against. A URL outside that root, or one containing `..`, is
- * dropped rather than played.
+ * refused rather than played — and that refusal is a `console.warn`, not a
+ * silent drop: a slide with no `audioUrl` at all and a slide whose
+ * `audioUrl` was refused both end up with no replay button, and only the
+ * warning tells the two apart.
  */
 function extractAudioUrls(
 	raw: unknown,
@@ -43,15 +46,15 @@ function extractAudioUrls(
 	const prefix = `${LESSON_ASSET_ROOT}/${lessonId}/`;
 	for (const item of slidesRaw) {
 		if (typeof item !== "object" || item === null) continue;
-		const id = (item as Record<string, unknown>).id;
-		const audioUrl = (item as Record<string, unknown>).audioUrl;
-		if (
-			typeof id === "string" &&
-			typeof audioUrl === "string" &&
-			audioUrl.startsWith(prefix) &&
-			!audioUrl.includes("..")
-		) {
+		const { id, audioUrl } = item as Record<string, unknown>;
+		if (typeof audioUrl !== "string" || typeof id !== "string") continue;
+
+		if (audioUrl.startsWith(prefix) && !audioUrl.includes("..")) {
 			map.set(id, audioUrl);
+		} else {
+			console.warn(
+				`DeckSlide: refusing audioUrl outside "${prefix}" for slide "${id}": ${audioUrl}`,
+			);
 		}
 	}
 	return map;
