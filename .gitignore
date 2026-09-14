@@ -61,3 +61,5 @@ __pycache__/
 
 # Local backup of original lesson videos before re-encoding (not tracked)
 video-originals/
+# plan-runner: exclude generated worktrees from tools that don't read .git/info/exclude
+/.plan-runner-worktrees/
