@@ -7,7 +7,7 @@ covers:
   - src/domain/script/data/videoExport.test.ts
 status: stable
 task_id: "6.1"
-task_status: pending
+task_status: complete
 depends_on: []
 size: medium
 verify:
@@ -27,6 +27,23 @@ weight_votes:
   - "unknowns-estimator -> 3"
   - "calibration-estimator -> 5"
 weight_voted: "sha256:559b11157336e723e0eb3230cb70bde347b4872cc8f85926a2d5cc6e9eac48e6"
+ac_tests:
+  - "AC1 -> src/domain/script/data/videoExport.test.ts::names one output covering every slide in order (AC1)"
+  - "AC2 -> src/domain/script/data/videoExport.test.ts::detects a deck edited after export as stale, never as absent (AC2)"
+  - "AC3 -> none"
+  - "AC4 -> src/domain/script/data/videoExport.test.ts::refuses a deck whose slide asset path escapes the lesson directory"
+  - "AC5 -> src/domain/script/data/videoExport.test.ts::are three distinct values, declared on the export manifest itself"
+red_proof:
+  - "AC1 -> In build_export_manifest's call site, passed segments[:-1] instead of segments, dropping the last slide's segment from the written manifest."
+  - "AC2 -> export_state() stopped comparing export_manifest.get(\"deckHash\") to deck_hash and unconditionally returned \"current\" whenever a prior export manifest existed."
+  - "AC4 -> resolve_slide_assets() stopped calling paths.resolve() for image paths and instead built the path directly via paths.root / image_rel, bypassing the containment check."
+  - "AC5 -> Re-verified after strengthening the AC5 test to read the real export manifest: EXPORT_STATES trimmed from (\"not-exported\",\"current\",\"stale\") to (\"not-exported\",\"current\"), dropping… [see red-proofs/]"
+red_proof_waived:
+  - "AC3 -> traced: Task's own ac_enforcement maps AC3 to none: it requires ffmpeg and rendered output, checked by the phase reviewer playing an exported file, not by an automated test."
+lint:
+  before: 14
+  after: 14
+  outcome: incomplete
 generated: {by: claude-opus-5/agent, at: 2026-09-13}
 profile_version: 1
 ---
