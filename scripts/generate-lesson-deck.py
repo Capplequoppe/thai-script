@@ -21,8 +21,8 @@ written, so a failure is recorded; `deck.json` is written only when every
 segment came back verified. A partial run exits non-zero and never leaves a
 deck behind whose audio is quietly missing.
 
-Exit codes: 0 success, 2 no credential, 3 the script or a path was refused,
-4 at least one segment could not be produced.
+Exit codes: 0 success, 2 no credential, 3 the script, a path or the existing
+manifest was refused, 4 at least one segment could not be produced.
 """
 
 from __future__ import annotations
@@ -35,6 +35,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 from lesson_deck.ids import RefusedPath  # noqa: E402
 from lesson_deck.jsonio import write as write_json  # noqa: E402
+from lesson_deck.manifest import ManifestUnreadable  # noqa: E402
 from lesson_deck.pipeline import generate  # noqa: E402
 from lesson_deck.script_parser import ScriptError, parse_script  # noqa: E402
 from lesson_deck.vendor import (  # noqa: E402
@@ -93,7 +94,7 @@ def main(argv: list[str] | None = None) -> int:
 			VoiceSpec(voice_id=args.voice_id, model_id=args.model_id),
 			redactor,
 		)
-	except (ScriptError, RefusedPath) as error:
+	except (ScriptError, RefusedPath, ManifestUnreadable, OSError) as error:
 		print(f"error: {redactor.redact(str(error))}", file=sys.stderr)
 		return EXIT_REFUSED
 

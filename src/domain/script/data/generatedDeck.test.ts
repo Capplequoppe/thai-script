@@ -244,6 +244,32 @@ describe("asset paths", () => {
 			expect(refused.error).not.toContain("Lesson-02");
 		}
 	});
+
+	it("refuses a script whose image reaches outside the script's directory", () => {
+		// The read side of the same boundary. A lesson script is hand- and
+		// agent-authored and its image bytes are committed under
+		// `public/lessons/` and served, so an unconstrained `image:` publishes
+		// whatever the generator can read.
+		const home = temporaryRoot();
+		const secret = join(temporaryRoot(), "credentials");
+		writeFileSync(secret, "API_KEY=not-supposed-to-be-published");
+		const script = join(home, "escaping.md");
+		writeFileSync(
+			script,
+			readFileSync(join(FIXTURES, "lesson-02.md"), "utf-8").replace(
+				"image: images/district.svg",
+				`image: ${relative(home, secret)}`,
+			),
+		);
+
+		const out = temporaryRoot();
+		const result = runScripted("clean.json", out, script);
+		expect(result.status).not.toBe(0);
+		expect(JSON.parse(result.stdout).refused).toContain(
+			"outside the directory holding the lesson script",
+		);
+		expect(existsSync(join(out, "lesson-02"))).toBe(false);
+	});
 });
 
 describe("caching", () => {
@@ -455,6 +481,14 @@ describe("the three segment states", () => {
 		expect([...states.values()]).not.toContain("absent");
 		for (const state of states.values()) {
 			expect(manifest.schema.segmentStates).toContain(state);
+		}
+		// The manifest declares two vocabularies; both are checked against the
+		// assets that use them, or the unchecked one drifts.
+		for (const asset of manifest.assets) {
+			if (!asset.verification) continue;
+			expect(manifest.schema.verificationOutcomes).toContain(
+				asset.verification.outcome,
+			);
 		}
 	});
 });

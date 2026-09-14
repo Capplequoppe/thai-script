@@ -39,6 +39,15 @@ VERIFICATION_OUTCOMES: tuple[VerificationOutcome, ...] = (
 MANIFEST_VERSION = 1
 
 
+class ManifestUnreadable(RuntimeError):
+	"""A manifest that is present and cannot be read.
+
+	A distinct outcome from there being no manifest yet, and deliberately so:
+	collapsing the two makes a corrupt file read as an empty cache, and an
+	empty cache is a confident instruction to re-voice the entire lesson.
+	"""
+
+
 @dataclass
 class Verification:
 	outcome: VerificationOutcome

@@ -27,6 +27,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
 
 from lesson_deck.ids import RefusedPath  # noqa: E402
 from lesson_deck.jsonio import dumps  # noqa: E402
+from lesson_deck.manifest import ManifestUnreadable  # noqa: E402
 from lesson_deck.pipeline import generate  # noqa: E402
 from lesson_deck.script_parser import ScriptError, parse_script  # noqa: E402
 from lesson_deck.testing.scripted_vendor import from_scenario  # noqa: E402
@@ -57,7 +58,7 @@ def main(argv: list[str] | None = None) -> int:
 			VoiceSpec(),
 			redactor,
 		)
-	except (ScriptError, RefusedPath) as error:
+	except (ScriptError, RefusedPath, ManifestUnreadable, OSError) as error:
 		print(dumps({"refused": redactor.redact(str(error))}), end="")
 		return 3
 

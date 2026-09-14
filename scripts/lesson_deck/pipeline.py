@@ -40,6 +40,7 @@ from .jsonio import write as write_json
 from .manifest import (
 	AssetRecord,
 	Manifest,
+	ManifestUnreadable,
 	Verification,
 	previous_assets,
 	verification_from_json,
@@ -153,7 +154,7 @@ class DeckGenerator:
 		self.redactor = redactor
 		self.report = RunReport(lesson_id=paths.lesson_id)
 		self.manifest = Manifest(lesson_id=paths.lesson_id, voice=spec.to_json())
-		self._cache = previous_assets(_read_json(self.manifest_path))
+		self._cache = previous_assets(_read_prior_manifest(self.manifest_path))
 
 	# -- paths -------------------------------------------------------------
 
@@ -326,11 +327,23 @@ class DeckGenerator:
 		return declared
 
 	def _read_image(self, slide: Slide, source: str) -> bytes:
-		path = (self.script.source.parent / source).resolve()
-		if not path.is_file():
+		"""An illustration named by the script, read from beside the script.
+
+		Contained, because the bytes end up committed under `public/lessons/`
+		and served: the script is hand- and agent-authored, so an unconstrained
+		`image:` publishes any file the generator can read. The output name is
+		derived rather than taken from the script, so this is the read side of
+		the boundary and `_write_asset` is the write side; both are checked.
+		"""
+		root = self.script.source.parent.resolve()
+		path = (root / source).resolve()
+		if root not in path.parents:
 			raise RefusedPath(
-				f"slide {slide.id!r}: image {source!r} is not a file next to the script"
+				f"slide {slide.id!r}: its image resolves outside the directory "
+				"holding the lesson script"
 			)
+		if not path.is_file():
+			raise RefusedPath(f"slide {slide.id!r}: its image is not a file")
 		return path.read_bytes()
 
 	def _produce_image(
@@ -431,13 +444,33 @@ class DeckGenerator:
 		return body
 
 
-def _read_json(path: Path) -> object:
+def _read_prior_manifest(path: Path) -> object:
+	"""Three outcomes, not two: no manifest yet, a manifest, or a manifest that
+	is there and cannot be read.
+
+	The third must not read as the first. Both would otherwise mean "nothing is
+	cached", and nothing cached re-synthesises every clip in the lesson — which
+	is not a free retry, because re-voicing is not idempotent: every clip comes
+	back different, and every line is billed again. A corrupt manifest is a
+	question for whoever is running this, so it is asked out loud.
+	"""
 	if not path.is_file():
 		return None
 	try:
-		return json.loads(path.read_text(encoding="utf-8"))
-	except json.JSONDecodeError:
-		return None
+		parsed = json.loads(path.read_text(encoding="utf-8"))
+	except (json.JSONDecodeError, OSError) as error:
+		raise ManifestUnreadable(
+			f"{path.name} exists but could not be read "
+			f"({error.__class__.__name__}). Refusing rather than treating it as "
+			"an empty cache, which would re-voice and re-bill every line in the "
+			"lesson. Delete it to regenerate from scratch."
+		) from None
+	if not isinstance(parsed, dict):
+		raise ManifestUnreadable(
+			f"{path.name} is valid JSON but not a manifest object. See above: "
+			"an unreadable manifest is refused, not silently ignored."
+		)
+	return parsed
 
 
 def generate(
