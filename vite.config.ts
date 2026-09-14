@@ -6,7 +6,7 @@ import { defineConfig } from "vitest/config";
 
 export default defineConfig({
 	test: {
-		exclude: ["e2e/**", "node_modules/**"],
+		exclude: ["e2e/**", "node_modules/**", ".plan-runner-worktrees/**"],
 	},
 	base: "/thai-script/",
 	build: {
