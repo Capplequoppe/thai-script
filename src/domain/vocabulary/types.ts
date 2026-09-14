@@ -54,3 +54,30 @@ export interface VocabEntry {
 export interface VocabLessonSummary {
 	words: VocabEntry[];
 }
+
+// ============================================================================
+// Rooms — the part-of-speech partition vocabulary mnemonics stage in
+// (data/rooms.ts owns the taxonomy tables and the exposure/assignment logic;
+// the shapes live here so other vocabulary modules can refer to a `Room`
+// without importing the taxonomy data itself.)
+// ============================================================================
+
+export const ROOMS = [
+	"people-and-pronouns",
+	"things",
+	"actions-and-states",
+	"connectors",
+	"particles",
+	"counting-and-classifiers",
+] as const;
+
+export type Room = (typeof ROOMS)[number];
+
+/**
+ * A word's relationship to the room partition is exactly one of three
+ * states — never "unassignable" read as "unclassified" or vice versa.
+ */
+export type RoomAssignment =
+	| { state: "assigned"; room: Room }
+	| { state: "unassignable"; reason: string }
+	| { state: "unclassified" };
