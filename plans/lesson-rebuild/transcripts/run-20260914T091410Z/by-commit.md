@@ -5,8 +5,17 @@ narrative reconstructed from the agent transcript that produced it.
 
 | Commit | Task | Subject | Reasoning |
 |---|---|---|---|
+| `0dc3e7f824d0` | `2.1` | Task 2.1 self-review: state why the one conditional form lacks an example | [narrative](commits/0dc3e7f824d0.md) |
 | `22d244c16bbb` | `1.3` | Build the lesson-deck generation pipeline | [narrative](commits/22d244c16bbb.md) |
+| `25c69a034626` | `2.2` | Task 2.2 self-review: stop quoting the plan's rough estimate as this script's own measurement | [narrative](commits/25c69a034626.md) |
 | `3d0252102411` | `1.2` | Add the deck slide type to LessonIntro, dispatched on LessonContent | [narrative](commits/3d0252102411.md) |
 | `4737b9d4780d` | `1.2` | Extract readAudioCandidate to bring extractAudioUrls under the complexity bound | [narrative](commits/4737b9d4780d.md) |
+| `4de862035bde` | `1.1b` | Convert the five lesson-identity stores at migrateState, derive every count | [narrative](commits/4de862035bde.md) |
+| `506a0b1a8592` | `2.1` | Task 2.1: mark complete | [narrative](commits/506a0b1a8592.md) |
 | `6ea5d640df02` | `1.2` | Distinguish a refused audioUrl from no audio; cover the rule-slide branch | [narrative](commits/6ea5d640df02.md) |
+| `a5293c036343` | `1.1b` | Self-review pass: repair four comments the change left inaccurate or bare | [narrative](commits/a5293c036343.md) |
+| `ac7a24ab5c3c` | `1.4` | Review pass on task 1.4: correct two stale/misleading comments | [narrative](commits/ac7a24ab5c3c.md) |
+| `bce3da1b810e` | `2.2` | Task 2.2: unify vocabulary romanization on Paiboon | [narrative](commits/bce3da1b810e.md) |
+| `c60c7664bd48` | `1.4` | Author, generate, and test Lesson 1's in-house deck | [narrative](commits/c60c7664bd48.md) |
+| `fdafc1e01480` | `2.1` | Task 2.1: symbol annotation shape, sound-type derivation, scene grammar seam | [narrative](commits/fdafc1e01480.md) |
 | `ffeb94bdd909` | `1.3` | Contain the image read, and stop a corrupt manifest reading as an empty one | [narrative](commits/ffeb94bdd909.md) |

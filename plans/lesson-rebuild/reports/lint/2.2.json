@@ -1,0 +1,297 @@
+{
+  "version": 1,
+  "task": "2.2",
+  "pass": "after",
+  "result": {
+    "outcome": "unsupported",
+    "reason": "src/domain/vocabulary/data/vocabulary.json: no grammar covers '.json' files — 13 violations were measured before this and are not shown"
+  },
+  "findings": [
+    {
+      "rule": "length",
+      "severity": "warning",
+      "tier": "function",
+      "measured": 56,
+      "threshold": 50,
+      "symbol": {
+        "kind": "function",
+        "name": "_convert_syllable",
+        "path": "scripts/convert-romanization.py",
+        "bytes": {
+          "startIndex": 7182,
+          "endIndex": 9053
+        },
+        "lines": {
+          "startRow": 259,
+          "endRow": 314
+        }
+      }
+    },
+    {
+      "rule": "cyclomatic-complexity",
+      "severity": "warning",
+      "measured": 14,
+      "threshold": 10,
+      "tier": "function",
+      "symbol": {
+        "kind": "function",
+        "name": "classify_notation",
+        "path": "scripts/convert-romanization.py",
+        "bytes": {
+          "startIndex": 4131,
+          "endIndex": 5090
+        },
+        "lines": {
+          "startRow": 144,
+          "endRow": 172
+        }
+      }
+    },
+    {
+      "rule": "cyclomatic-complexity",
+      "severity": "warning",
+      "measured": 23,
+      "threshold": 10,
+      "tier": "function",
+      "symbol": {
+        "kind": "function",
+        "name": "_convert_syllable",
+        "path": "scripts/convert-romanization.py",
+        "bytes": {
+          "startIndex": 7182,
+          "endIndex": 9053
+        },
+        "lines": {
+          "startRow": 259,
+          "endRow": 314
+        }
+      }
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 2.33,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "convert_corpus",
+        "path": "scripts/convert-romanization.py",
+        "bytes": {
+          "startIndex": 9499,
+          "endIndex": 10525
+        },
+        "lines": {
+          "startRow": 337,
+          "endRow": 379
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "main",
+        "path": "scripts/convert-romanization.py",
+        "bytes": {
+          "startIndex": 10528,
+          "endIndex": 11540
+        },
+        "lines": {
+          "startRow": 382,
+          "endRow": 410
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "length",
+      "severity": "warning",
+      "measured": 415,
+      "threshold": 400,
+      "tier": "file",
+      "path": "scripts/convert-romanization.py"
+    },
+    {
+      "rule": "length",
+      "severity": "warning",
+      "tier": "function",
+      "measured": 172,
+      "threshold": 150,
+      "symbol": {
+        "kind": "function",
+        "name": "(anonymous)",
+        "path": "src/domain/vocabulary/services/Romanization.test.ts",
+        "bytes": {
+          "startIndex": 2015,
+          "endIndex": 7980
+        },
+        "lines": {
+          "startRow": 46,
+          "endRow": 217
+        }
+      }
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "(anonymous)",
+        "path": "src/domain/vocabulary/services/Romanization.test.ts",
+        "bytes": {
+          "startIndex": 2061,
+          "endIndex": 2923
+        },
+        "lines": {
+          "startRow": 48,
+          "endRow": 68
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 4.76,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "(anonymous)",
+        "path": "src/domain/vocabulary/services/Romanization.test.ts",
+        "bytes": {
+          "startIndex": 6771,
+          "endIndex": 7497
+        },
+        "lines": {
+          "startRow": 180,
+          "endRow": 200
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "length",
+      "severity": "warning",
+      "tier": "function",
+      "measured": 72,
+      "threshold": 50,
+      "symbol": {
+        "kind": "function",
+        "name": "convertSyllable",
+        "path": "src/domain/vocabulary/services/Romanization.ts",
+        "bytes": {
+          "startIndex": 3184,
+          "endIndex": 5022
+        },
+        "lines": {
+          "startRow": 163,
+          "endRow": 234
+        }
+      }
+    },
+    {
+      "rule": "cyclomatic-complexity",
+      "severity": "warning",
+      "measured": 25,
+      "threshold": 10,
+      "tier": "function",
+      "symbol": {
+        "kind": "function",
+        "name": "convertSyllable",
+        "path": "src/domain/vocabulary/services/Romanization.ts",
+        "bytes": {
+          "startIndex": 3184,
+          "endIndex": 5022
+        },
+        "lines": {
+          "startRow": 163,
+          "endRow": 234
+        }
+      }
+    },
+    {
+      "rule": "cyclomatic-complexity",
+      "severity": "warning",
+      "measured": 12,
+      "threshold": 10,
+      "tier": "function",
+      "symbol": {
+        "kind": "function",
+        "name": "classifyNotation",
+        "path": "src/domain/vocabulary/services/Romanization.ts",
+        "bytes": {
+          "startIndex": 6766,
+          "endIndex": 7514
+        },
+        "lines": {
+          "startRow": 304,
+          "endRow": 327
+        }
+      }
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "convertSyllable",
+        "path": "src/domain/vocabulary/services/Romanization.ts",
+        "bytes": {
+          "startIndex": 3184,
+          "endIndex": 5022
+        },
+        "lines": {
+          "startRow": 163,
+          "endRow": 234
+        }
+      },
+      "check": "density-below-floor"
+    }
+  ],
+  "adapters": [
+    {
+      "tool": "biome",
+      "selection": {
+        "evidence": "configured",
+        "by": "biome.json"
+      },
+      "program": null,
+      "result": {
+        "outcome": "unsupported",
+        "reason": "biome did not resolve: 'biome' on PATH (31 entries). Its findings are missing from this report — that is a gap and not a pass."
+      },
+      "files": 2,
+      "findings": 0,
+      "refusedPaths": 0,
+      "outsideAnalysis": 0,
+      "refusedShape": 0
+    },
+    {
+      "tool": "ruff",
+      "selection": {
+        "evidence": "none",
+        "considered": [
+          "ruff"
+        ]
+      },
+      "program": null,
+      "result": {
+        "outcome": "unsupported",
+        "reason": "no native linter covered these files: looked for a configuration file for ruff at the repository root, and for ruff on PATH in a repository of that ecosystem. Their findings are missing from this report — that is a gap and not a pass."
+      },
+      "files": 1,
+      "findings": 0,
+      "refusedPaths": 0,
+      "outsideAnalysis": 0,
+      "refusedShape": 0
+    }
+  ]
+}
