@@ -122,6 +122,7 @@ export function validateLearnerStateDetailed(data: unknown): ValidationResult {
 	return { ok: true };
 }
 
+/** Boolean convenience over {@link validateLearnerStateDetailed} for callers that only branch. */
 export function validateLearnerState(data: unknown): boolean {
 	return validateLearnerStateDetailed(data).ok;
 }

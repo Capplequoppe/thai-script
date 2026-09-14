@@ -524,6 +524,7 @@ function generateToneMarkRuleCard(rule: ToneMarkRule): PropertyCard {
 // Public API — `lesson` is a 1-based position in the declared sequence
 // ---------------------------------------------------------------------------
 
+/** Tone-rule and tone-mark-rule cards for the lesson at `lesson` (a 1-based position in the declared sequence). */
 export function generateToneRuleCards(lesson: number): PropertyCard[] {
 	const legacy = legacyNumberAt(lesson);
 	// An undeclared position teaches nothing — and must not fall through to
@@ -540,6 +541,7 @@ export function generateToneRuleCards(lesson: number): PropertyCard[] {
 	return [...ruleCards, ...markRuleCards];
 }
 
+/** Every review card the lesson at `lesson` (a 1-based position in the declared sequence) teaches; empty for an undeclared position. */
 export function generateCardsForLesson(lesson: number): PropertyCard[] {
 	const legacy = legacyNumberAt(lesson);
 	if (legacy === undefined) return [];

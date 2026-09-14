@@ -144,6 +144,12 @@ export function migrateLessonIdentity(
 	}
 }
 
+/**
+ * The one migrate-once-at-load pass over a persisted state: lesson identity
+ * first ({@link migrateLessonIdentity}, atomic across every store), then the
+ * per-card SRS shape. Mutates and returns `state`. `sequence` exists so tests
+ * can exercise a non-identity resequence; production callers omit it.
+ */
 export function migrateState(
 	state: LearnerState,
 	now: string = new Date().toISOString(),
@@ -240,7 +246,10 @@ export class InMemoryStorage implements IStorage {
 			throw new Error(`Invalid progress file format: ${validated.reason}`);
 		}
 		// One migration boundary: an import from an older device is converted
-		// here, exactly as a load is, before the two states are merged.
+		// through migrateState before the two states are merged. (This
+		// adapter's own load() deliberately does not migrate — it hands back
+		// states this process saved — so the import path is where a foreign
+		// blob gets converted.)
 		const incoming = migrateState(parsed as LearnerState);
 		this.state = mergeLearnerStates(this.state, incoming);
 		this.written = true;
