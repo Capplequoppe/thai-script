@@ -263,7 +263,7 @@ describe("originality", () => {
 	});
 });
 
-describe("scheduling and vocabulary do not depend on which arm serves the lesson", () => {
+describe("scheduling and vocabulary never consult content resolution at all", () => {
 	function completeLessonOneAndMeasure() {
 		const storage = new InMemoryStorage();
 		const cardRepo = new StorageCardRepository(storage);

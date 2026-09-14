@@ -17,9 +17,9 @@ interface Props {
 	/**
 	 * What this lesson serves. Already resolved by the caller
 	 * (`LessonPage`/`CatchUpPage`): a lesson that can't be resolved at all is
-	 * that caller's error state, not this component's. `LessonContent` is a
-	 * single-arm union now that task 6.2 removed the licensed-video arm, but
-	 * it stays a discriminated union — see `lessonContent.ts` — so a future
+	 * that caller's error state, not this component's. Task 6.2 removed the
+	 * licensed-video arm, so this now has one shape — but `lessonContent.ts`
+	 * keeps its `kind` discriminant and exhaustive dispatch, so a future
 	 * content source doesn't fall through silently.
 	 */
 	content: LessonContent;
@@ -33,14 +33,14 @@ interface Slide {
 
 export function LessonIntro({ summary, content, onComplete }: Props) {
 	// A deck lesson stages two phases: the deck itself (which owns its own
-	// stepping, see `DeckSlide`), then the symbol cards below, using this
-	// component's own stepping exactly as the video arm already does. All
-	// hooks below are called unconditionally regardless of phase — the
-	// dispatch happens only in what's returned, never in which hooks run.
+	// stepping, see `DeckSlide`), then the symbol cards below, stepped by
+	// this component's own `idx` state. All hooks below are called
+	// unconditionally regardless of phase — the dispatch happens only in
+	// what's returned, never in which hooks run.
 	const [deckDone, setDeckDone] = useState(false);
 	const deckPhase = content.kind === "deck" && !deckDone;
 
-	const cardSlides: Slide[] = [
+	const slides: Slide[] = [
 		...summary.consonants.map((c) => ({
 			type: "consonant",
 			render: () => <ConsonantCard c={c} />,
@@ -66,8 +66,6 @@ export function LessonIntro({ summary, content, onComplete }: Props) {
 			render: () => <ToneRuleCard description={r.description} />,
 		})),
 	];
-
-	const slides: Slide[] = cardSlides;
 
 	const [idx, setIdx] = useState(0);
 	const current = deckPhase ? undefined : slides[idx];

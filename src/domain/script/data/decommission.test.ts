@@ -1,4 +1,4 @@
-import { existsSync, readdirSync, readFileSync, statSync } from "node:fs";
+import { readdirSync, readFileSync, statSync } from "node:fs";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
 import { InMemoryStorage } from "../../../infrastructure/persistence/Storage";
@@ -19,10 +19,10 @@ import { lessonSequence } from "./lessonSequence";
 /**
  * Task 6.2's own proof, in criterion order: confirm every lesson resolves to
  * a deck (AC1) *before* trusting anything else here, then the removal's
- * other four claims. AC2 (the union has one arm and the exhaustive `never`
- * default still compiles) is a compile-time property `tsc` checks on this
- * whole tree — nothing here can honestly assert it at runtime, so it is not
- * re-asserted as a test.
+ * other four claims. AC2 (`LessonContent` has one shape and the exhaustive
+ * `never` default in `describeLessonContent` still compiles) is a
+ * compile-time property `tsc` checks on this whole tree — nothing here can
+ * honestly assert it at runtime, so it is not re-asserted as a test.
  */
 
 const REPO_ROOT = join(import.meta.dirname, "..", "..", "..", "..");
@@ -121,8 +121,19 @@ describe("AC3 — no videoUrl reference remains anywhere", () => {
 
 describe("AC4 — public/videos contains no licensed file", () => {
 	it("the directory is gone, or if present, holds nothing", () => {
-		if (!existsSync(PUBLIC_VIDEOS)) return;
-		expect(readdirSync(PUBLIC_VIDEOS)).toEqual([]);
+		// `readdirSync` directly, rather than an `existsSync` guard: `existsSync`
+		// swallows every error (including a permission failure) into `false`,
+		// which would read a directory this process merely couldn't stat the
+		// same as one that was actually removed. Only ENOENT — "genuinely
+		// gone" — is treated as a pass; any other failure surfaces as one.
+		let entries: string[];
+		try {
+			entries = readdirSync(PUBLIC_VIDEOS);
+		} catch (err) {
+			if ((err as NodeJS.ErrnoException).code === "ENOENT") return;
+			throw err;
+		}
+		expect(entries).toEqual([]);
 	});
 });
 
@@ -131,13 +142,15 @@ describe("AC4 — public/videos contains no licensed file", () => {
 // ============================================================================
 
 /**
- * Recorded from the same fixture — a learner mid-course through lesson 11,
- * every card graduated — run against this codebase both before and after
- * task 6.2's edits landed. Removing the video arm touches only
+ * Recorded from this exact fixture — a learner mid-course through lesson 11,
+ * every card graduated — measured against the tree immediately before this
+ * task's edits landed, using the same `LearningService`/`VocabularyService`
+ * calls below. Removing the video arm touches only
  * `LessonContent`/`LessonSummary`/lesson-serving UI; card generation
  * (`ScriptCardGenerator`) and vocabulary unlocking (`VocabularyService`)
- * import neither, so the baseline is unaffected by the removal, as this
- * assertion is here to keep proving on every future change to this area.
+ * import neither, so the baseline held unchanged across the removal, and
+ * this assertion is here to keep proving that on every later change to this
+ * area too.
  */
 const SCHEDULE_BASELINE = {
 	dueCardsCount: 212,

@@ -1,10 +1,11 @@
 /**
  * What a lesson *serves* — and the schema the in-house decks are written to.
  *
- * The content-source seam: `LessonContent` is a discriminated union, kept
- * exhaustive with a `never` default, so the compiler refuses any dispatch
- * that forgets an arm. Task 6.2 deleted the licensed-`.webm` arm and the 25
- * files it served; a lesson serves only an in-house deck now.
+ * The content-source seam: `LessonContent` names its one arm with a `kind`
+ * discriminant, dispatched exhaustively with a `never` default, so the
+ * compiler refuses a dispatch that forgets a case. Task 6.2 deleted the
+ * licensed-`.webm` arm and the 25 files it served; a lesson serves only an
+ * in-house deck now.
  *
  * The deck schema's one non-structural demand is **retrieval**: a deck is
  * invalid unless the learner is asked to attempt something before the answer
@@ -25,10 +26,11 @@ import { lessons, specialRules, toneRules } from "./symbols";
 
 /**
  * The strangler is closed (task 6.2): the licensed video arm is gone, and a
- * lesson's content is always a deck. The union and the `never` default in
- * `describeLessonContent` stay — a single-arm union still narrows exhaustively,
- * so the next content source is a compile error here rather than a silent
- * fallthrough, exactly as it was when this had two arms.
+ * lesson's content is always a deck. This is a plain object type now, not a
+ * `|` of variants — but the `kind` discriminant and the `never` default in
+ * `describeLessonContent` stay, because they're what makes the next content
+ * source a compile error here rather than a silent fallthrough, exactly as
+ * they did when this had two arms.
  */
 export type LessonContent = {
 	readonly kind: "deck";
