@@ -36,18 +36,13 @@ and บ้าง (long /aː/) with บัง (short /a/) — none of which are p
 The normalized romanization is the primary key, and a word joins a group
 only if **two independent corroborations** agree:
 
-  1. **Syllable structure.** The romanization must split into the same
-     number of syllables as `VocabEntry.syllables`; a mismatch means the
-     two are describing different segmentations and neither can be trusted
-     to line up with the other.
-
-     The *tones* themselves are taken from `VocabEntry.syllables[].tone`
-     and not re-derived here. That field is already the agreed value of two
-     independent derivations — `scripts/enrich-vocabulary.py` reconciles the
-     tone rules against these same romanization accents — so re-checking it
-     would only re-flag the handful of words where that reconciliation
-     correctly overruled the romanization (ข้าว is transcribed `khàao`,
-     low, where high class + mai tho gives falling).
+  1. **`toneStatus`.** `scripts/enrich-vocabulary.py` already checks the
+     taught tone rules against these same romanization accents and records
+     the verdict per word. Only `verified` words are used here — the mode
+     asks a learner to name tones, so a word whose tone no taught rule
+     predicts (`exception`) or whose syllable split is uncorroborated
+     (`unsegmented`) has no business in it. The tones themselves come from
+     that field rather than being re-derived, for the same reason.
 
   2. **Segments.** `thaig2p` must place the word in the same segmental
      class as the group's best-ranked member, and its syllable count must
@@ -59,9 +54,13 @@ The corroborations cost recall, and that is the trade being made
 deliberately: in a mode whose entire premise is "these two sound the
 same", a pair that does not is worse than a pair that is missing.
 
-Run (pythainlp lives in the conversation backend's venv):
+Run with the **backend** venv — `thaig2p` needs torch, which `scripts/.venv`
+deliberately does not carry:
 
     backend/.venv/bin/python scripts/generate-tone-minimal-pairs.py
+
+(`scripts/enrich-vocabulary.py` is the other way round: it needs
+`python-crfsuite` for the syllable tokenizer, which lives in `scripts/.venv`.)
 
 The output is committed. Regenerate it whenever `vocabulary.json` gains,
 loses or re-ranks words — and after `scripts/generate-vocab-audio.py`, to
@@ -186,7 +185,13 @@ def build_groups(
     entries: list[dict[str, Any]], transcribe: Any
 ) -> tuple[list[dict[str, Any]], dict[str, int]]:
     """Every corroborated tone minimal-pair group, best-ranked first."""
-    counts = {"no_romanization": 0, "syllable_mismatch": 0, "g2p_unusable": 0, "g2p_vetoed": 0}
+    counts = {
+        "no_romanization": 0,
+        "not_verified": 0,
+        "syllable_mismatch": 0,
+        "g2p_unusable": 0,
+        "g2p_vetoed": 0,
+    }
 
     # Best-ranked entry per spelling. `vocabulary.json` carries duplicates
     # (บ้าน "house" and บ้าน "home"), and two entries for one spelling are
@@ -203,21 +208,20 @@ def build_groups(
             counts["no_romanization"] += 1
             continue
 
-        # Corroboration 1 — the two descriptions of the word must at least
-        # agree on how many syllables it has, or the key and the tones below
-        # are describing different things. The tones come from the entry,
-        # which already reconciles rules against romanization; see the
-        # module docstring.
+        # Corroboration 1 — `toneStatus`, which `enrich-vocabulary.py` sets by
+        # checking the taught tone rules against the romanization accents.
+        # Only `verified` is used: an `exception` word has a known tone that
+        # no rule predicts, and an `unsegmented` one has an uncorroborated
+        # syllable split, and this mode asks the learner to name tones.
         tones = tuple(s["tone"] for s in entry["syllables"])
-        if len(tones) != len(romanized_tones) or any(t is None for t in tones):
+        if entry.get("toneStatus") != "verified" or any(t is None for t in tones):
+            counts["not_verified"] += 1
+            continue
+        if len(tones) != len(romanized_tones):
             counts["syllable_mismatch"] += 1
             continue
 
-        try:
-            transcription = transcribe(thai, engine="thaig2p")
-        except Exception:  # noqa: BLE001 — an unreadable word is excluded, never fatal
-            counts["g2p_unusable"] += 1
-            continue
+        transcription = transcribe(thai, engine="thaig2p")
 
         g2p_key, g2p_syllables = g2p_analysis(transcription)
         # A syllable count that disagrees with the romanization's is
@@ -295,6 +299,23 @@ def main(argv: list[str] | None = None) -> int:
         print(
             "pythainlp is not importable. It ships in the conversation backend's venv:\n"
             "  backend/.venv/bin/python scripts/generate-tone-minimal-pairs.py",
+            file=sys.stderr,
+        )
+        return 2
+
+    # Probe once, loudly. `thaig2p` needs torch, which `scripts/.venv` does
+    # not have — and a per-word `except Exception` here used to swallow that
+    # into the "unusable" tally, so a missing dependency came out as "every
+    # word in the corpus is unreadable" and wrote an empty file. A corroboration
+    # that can silently switch itself off is not a corroboration.
+    try:
+        transliterate("ไทย", engine="thaig2p")
+    except Exception as exc:  # noqa: BLE001 — operator-facing, must not continue
+        print(
+            f"thaig2p is unavailable ({type(exc).__name__}: {exc}).\n"
+            "It needs torch, which lives in the conversation backend's venv:\n"
+            "  backend/.venv/bin/python scripts/generate-tone-minimal-pairs.py\n"
+            "Refusing to write a file without the segmental corroboration.",
             file=sys.stderr,
         )
         return 2

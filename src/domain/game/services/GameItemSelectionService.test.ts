@@ -80,6 +80,7 @@ function vocabEntry(thai: string, audioUrl?: string): VocabEntry {
 		characters: [...thai],
 		syllables: [],
 		toneRules: [],
+		toneStatus: "verified",
 		thai_audio_file: audioUrl ?? null,
 		english_audio_file: null,
 		image_file: null,

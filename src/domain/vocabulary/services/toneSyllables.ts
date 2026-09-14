@@ -7,14 +7,27 @@ export interface ToneSyllable {
 }
 
 /**
- * A word's syllables filtered to the ones with a determinable tone,
- * mirroring the exact filter `VocabCardGenerator.ts` uses to decide
- * whether to generate a `toneIdentification` card at all. Exported so both
- * that generator and the game's `ToneGameItemSource` (which must never
- * read a card's own possibly-`undefined` `syllables` field) share one
- * definition instead of two copies that could drift apart.
+ * A word's syllables filtered to the ones this app is willing to ask about.
+ *
+ * This is the one gate on every tone question in the app: it decides both
+ * whether `VocabCardGenerator` emits a `toneIdentification` card and what
+ * the game's `ToneGameItemSource` can draw. Returning `[]` removes the word
+ * from tone practice entirely, while leaving it in reading, meaning and
+ * audio exercises untouched.
+ *
+ * Only `verified` words pass. A word whose tones the taught rules do not
+ * reproduce would be asking the learner for an answer they have been given
+ * no way to derive — which is the specific failure this gate exists to
+ * prevent: applying the rule you were taught, correctly, and being marked
+ * wrong. See `ToneStatus` for what the three states mean and
+ * `scripts/enrich-vocabulary.py` for how they are decided.
+ *
+ * The `tone !== null` filter below is kept on top of that: a syllable whose
+ * tone could not be determined at all never becomes a question, verified
+ * word or not.
  */
 export function toneSyllablesOf(entry: VocabEntry): ToneSyllable[] {
+	if (entry.toneStatus !== "verified") return [];
 	return entry.syllables
 		.filter(
 			(s): s is SyllableInfo & { tone: string } =>

@@ -186,6 +186,99 @@ def test_tone_rule_ids(syllable: str, rule_id: str) -> None:
     assert rule_of(syllable) == rule_id
 
 
+# --- the prefix split, อักษรนำ, and the verdict -------------------------------
+
+
+@pytest.mark.parametrize(
+    ("word", "syllables"),
+    [
+        # The whole point: no PyThaiNLP engine splits these, and each is two
+        # spoken syllables carrying two different tones.
+        ("สบาย", ["ส", "บาย"]),
+        ("ขนาด", ["ข", "นาด"]),
+        ("ตลาด", ["ต", "ลาด"]),
+        ("อร่อย", ["อ", "ร่อย"]),
+        ("ทหาร", ["ท", "หาร"]),
+        # A vowel written before its consonant belongs to the second syllable.
+        ("แสดง", ["ส", "แดง"]),
+    ],
+)
+def test_prefix_syllables_are_split(word: str, syllables: list[str]) -> None:
+    assert enrich.split_prefix_syllable(word) == syllables
+
+
+@pytest.mark.parametrize(
+    "word",
+    [
+        "ปลา",     # onset cluster
+        "กลัว",    # onset cluster
+        "ตรง",     # ตร is a cluster even though ตล is not
+        "จริง",    # silent ร — one onset
+        "หมี",     # ห นำ
+        "อยาก",    # อ นำ
+        "วรรค",    # ร หัน
+        "ของ",     # medial อ is the vowel, not a second onset
+        "ตัว",     # trailing ว is the final
+        "องค์",    # karan leaves only one live consonant after the initial
+    ],
+)
+def test_words_that_must_not_be_split(word: str) -> None:
+    assert enrich.split_prefix_syllable(word) == [word]
+
+
+@pytest.mark.parametrize(
+    ("word", "tones"),
+    [
+        # A bare consonant prefix carries an unwritten short /a/, which is
+        # DEAD-short — not the "live" that "no written vowel" defaults to.
+        ("สบาย", ["low", "mid"]),
+        ("ตลาด", ["low", "low"]),      # อักษรนำ: ต governs ล
+        ("ขนาด", ["low", "low"]),      # ข governs น
+        ("ทหาร", ["high", "rising"]),  # low-class prefix is dead-short = high
+        ("อร่อย", ["low", "low"]),     # อ governs ร *under* mai ek
+    ],
+)
+def test_prefix_and_leading_consonant_tones(word: str, tones: list[str]) -> None:
+    entry = {"thai": word, "romanization": "", "syllables": []}
+    enrich.enrich_entry(entry, retokenize=True)
+    assert [s["tone"] for s in entry["syllables"]] == tones
+
+
+def test_tone_status_verified() -> None:
+    entry = {"thai": "สบาย", "romanization": "sà baai", "syllables": []}
+    assert enrich.enrich_entry(entry, retokenize=True) == "verified"
+
+
+def test_tone_status_exception_for_a_word_no_rule_predicts() -> None:
+    # ก็ is /kɔ̂ː/. Mid class, no mark, and nothing about the spelling gives
+    # falling — it is simply irregular.
+    entry = {"thai": "ก็", "romanization": "kɔ̂ː", "syllables": []}
+    assert enrich.enrich_entry(entry, retokenize=True) == "exception"
+
+
+def test_tone_status_unsegmented_when_the_two_sources_disagree() -> None:
+    # สวัสดี is sà-wàt-dii; the tokenizer gives สวัส + ดี, and the prefix
+    # split cannot rescue it, so the counts never line up.
+    entry = {"thai": "สวัสดี", "romanization": "sà wàt diː", "syllables": []}
+    assert enrich.enrich_entry(entry, retokenize=True) == "unsegmented"
+
+
+def test_the_shipped_file_carries_a_status_for_every_entry() -> None:
+    entries = json.loads(VOCABULARY.read_text(encoding="utf-8"))
+    statuses = {e.get("toneStatus") for e in entries}
+    assert statuses <= {"verified", "exception", "unsegmented"}
+    assert None not in statuses
+
+
+def test_the_shipped_verified_share_has_not_regressed() -> None:
+    """The quizzable pool. It was 82.9% before the splitter and 87.8% after;
+    a change that drops it below this bound has narrowed what the app can
+    teach and should say so out loud."""
+    entries = json.loads(VOCABULARY.read_text(encoding="utf-8"))
+    verified = sum(1 for e in entries if e["toneStatus"] == "verified")
+    assert verified / len(entries) > 0.85, f"{verified}/{len(entries)}"
+
+
 # --- the romanization cross-check ------------------------------------------
 
 

@@ -42,6 +42,7 @@ function fixtureEntry(
 		image_file: null,
 		samples: [],
 		source: "test",
+		toneStatus: "verified",
 		...fields,
 	};
 }

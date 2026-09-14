@@ -13,6 +13,7 @@ const testWord: VocabEntry = {
 	characters: ["ท", "ี", "่"],
 	syllables: [],
 	toneRules: [],
+	toneStatus: "verified",
 	thai_audio_file: null,
 	english_audio_file: null,
 	image_file: null,

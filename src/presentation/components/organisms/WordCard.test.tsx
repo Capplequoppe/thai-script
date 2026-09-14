@@ -31,6 +31,7 @@ const WORD: VocabEntry = {
 	image_file: null,
 	samples: [],
 	source: "test",
+	toneStatus: "verified",
 };
 
 describe("WordCard — SRS-stage scaffold fade", () => {
