@@ -40,6 +40,24 @@ weight_votes:
   - "unknowns-estimator -> 5"
   - "calibration-estimator -> 8"
 weight_voted: "sha256:2fc6972f1791d7bd9659902ad5bbe7dc912f77ecc823811f35a56c37a635d1fe"
+ac_tests:
+  - "AC1 -> src/domain/script/data/middleBand.test.ts::resolves every middle-band lesson to the deck arm"
+  - "AC2 -> src/domain/script/data/middleBand.test.ts::introduces exactly the symbols each lesson declares"
+  - "AC3 -> src/domain/script/data/middleBand.test.ts::never uses a symbol the sequence teaches later"
+  - "AC4 -> src/domain/script/data/middleBand.test.ts::resolves every Thai example word inside the lesson's declared rank window"
+  - "AC5 -> src/domain/script/data/middleBand.test.ts::clears the shared originality check on every line of every band deck"
+  - "AC6 -> src/domain/script/data/middleBand.test.ts::references only assets that exist inside the lesson's own directory, and leaves none unreferenced"
+red_proof:
+  - "AC1 -> Commented out \"lesson-09\" in DECK_LESSON_IDS (lessonContent.ts). Re-read from plans/lesson-rebuild/red-proofs/3.3.md: the deciding line is `AssertionError: lesson-09: expected 'vide… [see red-proofs/]"
+  - "AC2 -> Removed every use of ๆ from content/lessons/lesson-10.md (two bullets and the slide heading) and regenerated, leaving `teaches: ๆ` declared but unused. Deciding line, re-read from t… [see red-proofs/]"
+  - "AC3 -> Added \"Its temple twin ส is not far away.\" to a lesson-06 bullet and regenerated; ส is declared by lesson 13, seven positions later, and is not previewed by lesson-06. Deciding line… [see red-proofs/]"
+  - "AC4 -> Narrowed lesson-06's declared window from `ranks: 1-2000` to `ranks: 1-100`; five example words then fall outside it and are named with their real ranks, proving the window is read… [see red-proofs/]"
+  - "AC5 -> Planted the corpus canary \"Think of a coffee mug with a broken handle\" into a lesson-08 bullet and regenerated. Deciding line, re-read from the artefact: `AssertionError: lesson-08:… [see red-proofs/]"
+  - "AC6 -> Wrote public/lessons/lesson-06/audio/stray.mp3, a file in the lesson's asset directory that no slide and no manifest record names. Deciding line, re-read from the artefact: `Asserti… [see red-proofs/]"
+lint:
+  before: 7
+  after: 7
+  outcome: unsupported
 generated: {by: claude-opus-5/agent, at: 2026-09-13}
 profile_version: 1
 ---
