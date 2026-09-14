@@ -7,7 +7,7 @@ covers:
   - src/domain/script/data/mnemonics.test.ts
 status: stable
 task_id: "2.4"
-task_status: pending
+task_status: complete
 depends_on: ["2.1", "2.2"]
 size: x-large
 verify:
@@ -27,6 +27,22 @@ weight_votes:
   - "unknowns-estimator -> 5"
   - "calibration-estimator -> 13"
 weight_voted: "sha256:c130aaff1f58627a3ab549eee23d28bfa696d1fd8f4e6e4987549ee18a6a221e"
+ac_tests:
+  - "AC1 -> src/domain/script/data/mnemonics.test.ts::carries a scene mnemonic on every one of the 44 consonants and 29 vowels"
+  - "AC2 -> src/domain/script/data/mnemonics.test.ts::validates every record: shape cue, sound cue, district and motion where due"
+  - "AC3 -> src/domain/script/data/mnemonics.test.ts::stages each consonant in the district its derived class names"
+  - "AC4 -> src/domain/script/data/mnemonics.test.ts::clears the shared originality gate on every mnemonic"
+  - "AC5 -> src/domain/script/data/mnemonics.test.ts::contrasts each pair's shape cues on the declared distinguishing feature"
+red_proof:
+  - "AC1 -> Deleted the sceneMnemonic record from the vowel ำ in symbols.ts, then ran the AC1 test alone; it failed on the per-symbol definedness assertion, naming the symbol — a real assertion… [see red-proofs/]"
+  - "AC2 -> Set ำ's soundCue to the empty string; the schema-validation test failed with the validator's verdict naming the missing field — a real assertion failure on the verdict object. Rever… [see red-proofs/]"
+  - "AC3 -> Changed ม's declared district from \"harbor\" to \"market\" (a low-class letter staged in the mid district); the district test failed comparing declared against derived — a real asserti… [see red-proofs/]"
+  - "AC4 -> Appended the licensed canary phrase 'Lesson Notes: Thai Alphabet Made Easy' to ม's soundCue; the originality test failed reporting the colliding 5-gram and its source set — a real a… [see red-proofs/]"
+  - "AC5 -> Removed the stroke-height clause from ป's shape cue ('the right wall rises higher than the rim' → 'with a fish jumping clear'); the pair test failed because the cue no longer names… [see red-proofs/]"
+lint:
+  before: 20
+  after: 15
+  outcome: incomplete
 generated: {by: claude-opus-5/agent, at: 2026-09-13}
 profile_version: 1
 ---
