@@ -38,23 +38,27 @@ import {
 // The alphabet these rules range over
 // ============================================================================
 
-/** Thai consonant block, ก (U+0E01) through ฮ (U+0E2E). */
 /**
  * The `specialRules` entries in `symbols.ts` that these lessons promote, and
  * the declaration here that promotes each (CONTEXT.md rule 2 — build on the
  * original, never beside it).
  *
  * Stated once, as a record, rather than as a field repeated down the cluster
- * inventory: all twenty pairs promote the same entry, so a per-pair field
- * would be twenty copies of one fact. The ids are checked against
+ * inventory: the twenty pairs promote three entries between them
+ * (`consonant-clusters`, `tho-ro-s-sound`, `silent-ro-clusters`) and which one
+ * a pair promotes is its `kind`, so a per-pair field would restate `kind`. The ids are checked against
  * `specialRules` by test, because a typo in one is otherwise silent — nothing
  * in the type system relates these strings to anything.
  */
 export const PROMOTED_SPECIAL_RULES: Readonly<Record<string, string>> =
 	Object.freeze({
 		"unwritten-vowels": "IMPLICIT_VOWEL_RULES",
+		"ror-han": "IMPLICIT_VOWEL_RULES",
 		"consonant-clusters": "CLUSTER_INVENTORY",
+		"tho-ro-s-sound": "CLUSTER_INVENTORY",
+		"silent-ro-clusters": "CLUSTER_INVENTORY",
 		"hor-nam": "LEADING_CONSONANT_RULE",
+		"silent-o-before-yo": "LEADING_CONSONANT_RULE",
 		"o-ang-dual-role": "VOWEL_LETTERS",
 	});
 
@@ -557,6 +561,7 @@ export const IMPLICIT_VOWEL_RULES: readonly ImplicitVowelRule[] = Object.freeze(
 			statement:
 				"Double ร (ร หัน) is a vowel, short a. With a consonant after it, that consonant is the final: ธรรม is tham. With nothing after it, the final is n: วรรณ is wan.",
 			examples: Object.freeze(["ธรรม", "กรรม", "พรรค", "วรรณ"]),
+			extendsSpecialRule: "ror-han",
 		}),
 	],
 );

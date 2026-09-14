@@ -566,6 +566,34 @@ describe("CONTEXT.md rule 2 — the original stays reachable", () => {
 		);
 	});
 
+	it("names every shipped specialRules entry these three lessons supersede", () => {
+		// The coverage direction the first pass missed: every link resolved, but
+		// nothing checked that an entry which already ships was linked at all.
+		// tho-ro-s-sound, silent-ro-clusters and ror-han each state, in
+		// symbols.ts, a fact one of these rules now owns.
+		for (const id of [
+			"unwritten-vowels",
+			"ror-han",
+			"consonant-clusters",
+			"tho-ro-s-sound",
+			"silent-ro-clusters",
+			"hor-nam",
+			"silent-o-before-yo",
+			"o-ang-dual-role",
+		]) {
+			expect(
+				PROMOTED_SPECIAL_RULES[id],
+				`${id} ships in symbols.ts and nothing here claims it`,
+			).toBeDefined();
+		}
+		// The three cluster entries are the three ClusterKinds, one each.
+		expect(
+			Object.entries(PROMOTED_SPECIAL_RULES).filter(
+				([, declaration]) => declaration === "CLUSTER_INVENTORY",
+			),
+		).toHaveLength(3);
+	});
+
 	it("takes its sonorants from soundType.ts's classification, not a list of its own", () => {
 		const derived = THAI_CONSONANT_BLOCK.filter((character) => {
 			const consonant = getConsonant(character);
