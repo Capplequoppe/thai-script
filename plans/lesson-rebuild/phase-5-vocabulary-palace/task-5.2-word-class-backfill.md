@@ -10,7 +10,7 @@ covers:
   - src/domain/vocabulary/types.ts
 status: stable
 task_id: "5.2"
-task_status: pending
+task_status: complete
 depends_on: ["5.1"]
 size: large
 verify:
