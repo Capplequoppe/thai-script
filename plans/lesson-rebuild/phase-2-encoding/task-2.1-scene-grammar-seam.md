@@ -10,7 +10,7 @@ covers:
   - src/domain/script/data/symbols.ts
 status: stable
 task_id: "2.1"
-task_status: pending
+task_status: complete
 depends_on: []
 size: x-large
 verify:
