@@ -57,6 +57,7 @@ export const PROMOTED_SPECIAL_RULES: Readonly<Record<string, string>> =
 		"o-ang-dual-role": "VOWEL_LETTERS",
 	});
 
+/** True for the 44 letters of the consonant block, ก through ฮ. */
 export function isThaiConsonant(character: string): boolean {
 	return character >= "ก" && character <= "ฮ";
 }
@@ -90,6 +91,7 @@ export const SONORANTS: readonly string[] = Object.freeze([
 
 const SONORANT_SET = new Set(SONORANTS);
 
+/** True for the ten low-class sonorants a leading consonant can lead. */
 export function isSonorant(character: string): boolean {
 	return SONORANT_SET.has(character);
 }
@@ -640,6 +642,60 @@ function buildSyllable(params: {
 	};
 }
 
+interface InitialReading {
+	readonly initial: string;
+	readonly cluster?: ClusterKind;
+	readonly consonantClass: ThaiSymbolClass;
+}
+
+/**
+ * The initial of a syllable starting at `start`, read as either one letter or
+ * a cluster — `undefined` where that length cannot begin a syllable here.
+ *
+ * Split out from the vowel rules below because the two questions are
+ * independent: whichever initial this returns, every vowel rule applies to it.
+ */
+function initialAt(
+	characters: readonly string[],
+	start: number,
+	initialLength: 1 | 2,
+	options: {
+		readonly atWordStart: boolean;
+		readonly effectiveClass?: ThaiSymbolClass;
+	},
+): InitialReading | undefined {
+	if (characters.length - start < initialLength) return undefined;
+	let initial: string;
+	let cluster: ClusterKind | undefined;
+	let classSource: string;
+	if (initialLength === 2) {
+		const pair = `${characters[start]}${characters[start + 1]}`;
+		const found = clusterFor(pair);
+		if (!found) return undefined;
+		// ว between two consonants is the vowel, not a cluster's second half.
+		// (ขวา is the cluster reading, and it writes its vowel — so it never
+		// reaches here: `resolveWord` only ever passes bare words in.)
+		if (characters[start + 1] === "ว") return undefined;
+		initial = pair;
+		cluster = found.kind;
+		classSource = pair[0];
+	} else {
+		initial = characters[start];
+		// อ and ว are consonants only at the start of the word (AC6); anywhere
+		// after that they are the vowel, and `vowelLetterAt` reads them.
+		if (!options.atWordStart && VOWEL_LETTER_BY_CHARACTER.has(initial))
+			return undefined;
+		classSource = initial;
+	}
+	const ownClass = classOf(classSource);
+	if (ownClass === undefined) return undefined;
+	return {
+		initial,
+		...(cluster ? { cluster } : {}),
+		consonantClass: options.effectiveClass ?? ownClass,
+	};
+}
+
 /**
  * Every syllable the rules allow to start at `start`, with no preference
  * applied. Preference is a separate, declared step (`PREFERENCE_ORDER`) so
@@ -661,36 +717,9 @@ function candidatesAt(
 	const leaderPrefix = options.leader ? 1 : 0;
 
 	for (const initialLength of [1, 2] as const) {
-		if (remaining < initialLength) continue;
-		let initial: string;
-		let cluster: ClusterKind | undefined;
-		let classSource: string;
-		if (initialLength === 2) {
-			const pair = `${at(0)}${at(1)}`;
-			const found = clusterFor(pair);
-			if (!found) continue;
-			// ว between two consonants is the vowel, not a cluster's second half.
-			// (ขวา is the cluster reading, and it writes its vowel — so it never
-			// reaches here: `resolveWord` only ever passes bare words in.)
-			if (at(1) === "ว") continue;
-			initial = pair;
-			cluster = found.kind;
-			classSource = pair[0];
-		} else {
-			initial = at(0) as string;
-			// อ is a consonant only at the start of the word (AC6).
-			if (!options.atWordStart && initial === "อ") continue;
-			if (
-				VOWEL_LETTER_BY_CHARACTER.has(initial) &&
-				initial === "ว" &&
-				!options.atWordStart
-			)
-				continue;
-			classSource = initial;
-		}
-		const ownClass = classOf(classSource);
-		if (ownClass === undefined) continue;
-		const consonantClass = options.effectiveClass ?? ownClass;
+		const read = initialAt(characters, start, initialLength, options);
+		if (!read) continue;
+		const { initial, cluster, consonantClass } = read;
 		const body = initialLength;
 		const textOf = (length: number): string =>
 			(options.leader ?? "") + characters.slice(start, start + length).join("");
