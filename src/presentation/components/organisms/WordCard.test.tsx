@@ -1,6 +1,7 @@
 // @vitest-environment jsdom
 import { render, within } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
+import { VOCAB_MNEMONICS } from "../../../domain/vocabulary/services/VocabMnemonic";
 import type { VocabEntry } from "../../../domain/vocabulary/types";
 import { WordCard } from "./WordCard";
 
@@ -74,5 +75,59 @@ describe("WordCard — SRS-stage scaffold fade", () => {
 		const initial = within(container).getByText("ล");
 		expect(initial.style.color).toBe("var(--color-class-low)");
 		expect(container.querySelector("svg")?.style.opacity).toBe("1");
+	});
+});
+
+// ---------------------------------------------------------------------------
+// Task 5.3 — a staged mnemonic supersedes the corpus prose, and the room
+// appears on this browse surface as confirmation. WordCard has no reveal
+// state; the never-before-the-learner-acts rule is asserted in
+// `Flashcard.test.tsx`, which is where reveal lives.
+// ---------------------------------------------------------------------------
+
+const STAGED = VOCAB_MNEMONICS[0];
+
+const STAGED_WORD: VocabEntry = {
+	...WORD,
+	thai: STAGED.thai,
+	rank: STAGED.rank,
+	word_class: "prep",
+	mnemonic: "the corpus prose this entry shipped with",
+	syllables: [],
+};
+
+describe("WordCard — staged room mnemonics", () => {
+	it("renders the staged mnemonic in place of the corpus prose", () => {
+		const { container } = render(<WordCard word={STAGED_WORD} />);
+
+		expect(container.textContent).toContain(STAGED.soundCue);
+		expect(container.textContent).not.toContain(
+			"the corpus prose this entry shipped with",
+		);
+	});
+
+	it("keeps the corpus prose for a word with no staged mnemonic", () => {
+		const { container } = render(
+			<WordCard word={{ ...STAGED_WORD, thai: "ไม่มีคำนี้ในคลัง", rank: null }} />,
+		);
+
+		expect(container.textContent).toContain(
+			"the corpus prose this entry shipped with",
+		);
+	});
+
+	it("shows the room its class assigns, beside the class itself", () => {
+		const { container } = render(<WordCard word={STAGED_WORD} />);
+
+		expect(container.textContent).toContain("Room: connectors");
+		expect(container.textContent).toContain("prep");
+	});
+
+	it("shows no room for a word whose class is not yet known", () => {
+		const { container } = render(
+			<WordCard word={{ ...STAGED_WORD, word_class: "" }} />,
+		);
+
+		expect(container.textContent).not.toContain("Room:");
 	});
 });

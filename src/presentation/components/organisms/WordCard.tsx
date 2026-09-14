@@ -1,3 +1,9 @@
+import { assignRoom } from "../../../domain/vocabulary/data/rooms";
+import {
+	composeVocabMnemonic,
+	mnemonicStateFor,
+	roomLabel,
+} from "../../../domain/vocabulary/services/VocabMnemonic";
 import type { VocabEntry } from "../../../domain/vocabulary/types";
 import {
 	classBadgeStyle,
@@ -69,6 +75,18 @@ export function WordCard({
 	);
 	const visibleSamples = word.samples.filter((s) => s.thai);
 	const level = scaffoldLevel(stageName);
+	// The staged, room-grammar mnemonic where this entry has one; the corpus's
+	// own prose otherwise. Matched on rank as well as spelling — two corpus
+	// entries can share a spelling and only one of them is the word staged.
+	const staged = mnemonicStateFor(word);
+	const mnemonicText =
+		staged.state === "has-mnemonic"
+			? composeVocabMnemonic(staged.mnemonic)
+			: word.mnemonic;
+	// This is a browse surface: the meaning, the romanization and the class are
+	// all already on screen, so the room confirms rather than cues. The rule
+	// that keeps it off a *review* prompt lives in `Flashcard`.
+	const roomAssignment = assignRoom(word.word_class);
 
 	return (
 		<div className="space-y-4">
@@ -105,6 +123,17 @@ export function WordCard({
 						{word.word_class}
 					</span>
 				)}
+				{roomAssignment.state === "assigned" && (
+					<span
+						className="inline-block mt-1 ml-1 px-2 py-0.5 rounded text-xs font-semibold"
+						style={{
+							background: "var(--color-surface-2)",
+							color: "var(--color-text-muted)",
+						}}
+					>
+						Room: {roomLabel(roomAssignment.room)}
+					</span>
+				)}
 				{word.description && (
 					<p
 						className="text-sm mt-3 text-center"
@@ -116,9 +145,7 @@ export function WordCard({
 			</div>
 
 			{/* 2. Mnemonic */}
-			{word.mnemonic && (
-				<MnemonicBlock text={word.mnemonic} label="Memory tip" />
-			)}
+			{mnemonicText && <MnemonicBlock text={mnemonicText} label="Memory tip" />}
 
 			{/* 3. Syllable Breakdown (enriched) */}
 			{word.syllables.length > 0 && (

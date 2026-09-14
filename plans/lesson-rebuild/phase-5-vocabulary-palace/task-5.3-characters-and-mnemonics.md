@@ -13,7 +13,7 @@ covers:
   - src/presentation/components/organisms/Flashcard.test.tsx
 status: stable
 task_id: "5.3"
-task_status: pending
+task_status: complete
 depends_on: ["5.1", "5.2"]
 size: large
 verify:
