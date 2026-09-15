@@ -42,8 +42,11 @@ from lesson_deck.vendor import (  # noqa: E402
 	DEFAULT_MODEL_ID,
 	DEFAULT_VOICE_ID,
 	ElevenLabsVendor,
+	LocalTranscriber,
 	MissingCredential,
+	QwenEnglishVoice,
 	Redactor,
+	SplitVendor,
 	VoiceSpec,
 	load_api_key,
 )
@@ -90,7 +93,11 @@ def main(argv: list[str] | None = None) -> int:
 		report = generate(
 			script,
 			args.assets_root,
-			ElevenLabsVendor(api_key, redactor),
+			SplitVendor(
+				thai=ElevenLabsVendor(api_key, redactor),
+				english=QwenEnglishVoice(),
+				transcriber=LocalTranscriber(),
+			),
 			VoiceSpec(voice_id=args.voice_id, model_id=args.model_id),
 			redactor,
 		)

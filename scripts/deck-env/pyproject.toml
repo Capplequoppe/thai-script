@@ -1,0 +1,27 @@
+[project]
+name = "lesson-deck-env"
+version = "0.1.0"
+description = "Dependencies for the lesson-deck content pipeline. Not an application."
+requires-python = ">=3.11,<3.13"
+dependencies = [
+    # English narration — Qwen3-TTS, Apache 2.0, run locally. It pins
+    # transformers 4.57.x, which is why this pipeline cannot share the
+    # conversation backend's environment: that one needs transformers 5.x for
+    # the Qwen2.5 judge. Two tools, two pins, two environments — rather than
+    # one environment that serves neither correctly.
+    "qwen-tts",
+    # Verification — the same faster-whisper large-v3 the backend uses to
+    # transcribe the learner's replies. It depends on ctranslate2 and
+    # tokenizers, not on transformers, so it sits either side of that split
+    # without complaint.
+    "faster-whisper>=1.1",
+    # ctranslate2 dlopens libcublas.so.12 / libcudnn*.so.9 while the PyPI torch
+    # build bundles CUDA 13 — these wheels supply the missing libraries, which
+    # `vendor._preload_cu12_libraries` loads RTLD_GLOBAL before the first
+    # encode. Same fix, same reason, as backend/app/models.py.
+    "nvidia-cublas-cu12>=12.6",
+    "nvidia-cudnn-cu12>=9.5",
+    # ElevenLabs HTTP, and WAV framing on the way to ffmpeg.
+    "requests",
+    "soundfile",
+]

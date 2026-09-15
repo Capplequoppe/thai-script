@@ -63,3 +63,7 @@ __pycache__/
 video-originals/
 # plan-runner: exclude generated worktrees from tools that don't read .git/info/exclude
 /.plan-runner-worktrees/
+
+# The lesson-deck pipeline's own environment (qwen-tts pins transformers 4.x,
+# which the backend cannot share). The lock file is committed; the venv is not.
+scripts/deck-env/.venv/

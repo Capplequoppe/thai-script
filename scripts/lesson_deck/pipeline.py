@@ -112,7 +112,7 @@ def segment_input_hash(segment: Segment, spec: VoiceSpec) -> str:
 			"kind": "audio",
 			"text": segment.text,
 			"language": segment.language,
-			"voice": spec.to_json(),
+			"voice": spec.for_language(segment.language),
 		}
 	)
 
@@ -223,7 +223,17 @@ class DeckGenerator:
 					Verification(outcome="not-required", attempts=attempt),
 				)
 				return
-			spoken = self._transcribe(audio)
+			# Transcription is a second network call and it fails for its own
+			# reasons — a key without the speech-to-text permission, a
+			# transcriber outage. That is a rejected attempt like any other, not
+			# a crash: the manifest has to record every segment the run reached,
+			# and a traceback here would leave it holding the previous run's
+			# state while clips for this one sit on disk.
+			try:
+				spoken = self._transcribe(audio)
+			except VendorError as error:
+				self._reject(record, attempt, segment, heard, str(error))
+				continue
 			if transcript_matches(segment.text, spoken):
 				self._accept(
 					record,

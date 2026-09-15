@@ -30,9 +30,32 @@ API_KEY_VARIABLE = "ELEVENLABS_API_KEY"
 #: key-shaped, so a scan for key-shaped strings does not trip on the redaction.
 REDACTION = "[redacted]"
 
-DEFAULT_VOICE_ID = "JBFqnCBsd6RMkjVDRZzb"
-DEFAULT_MODEL_ID = "eleven_multilingual_v2"
-DEFAULT_TRANSCRIBE_MODEL_ID = "scribe_v1"
+#: Anna — Thailand Female. A Thai native voice for the Thai clips; the
+#: English narration is not this voice and is not this vendor.
+DEFAULT_VOICE_ID = "brM9iIbwDREZaWL8luun"
+#: The only two TTS models that list Thai are `eleven_v3` and
+#: `eleven_v3_conversational`; `eleven_multilingual_v2` rejects
+#: `language_code: th` outright with an `unsupported_language` 400.
+DEFAULT_MODEL_ID = "eleven_v3"
+#: Verification runs on this machine — see `LocalTranscriber`. It is the
+#: same faster-whisper large-v3 that `generate-sentence-audio.py` uses and
+#: that transcribes the learner's own replies, so a clip is checked by the
+#: very model that will later have to understand the learner saying it.
+WHISPER_MODEL_ID = "large-v3"
+
+#: Qwen3-TTS, Apache 2.0, run on this machine. English narration is 97% of
+#: the course by character count and none of it is the language being
+#: taught, so it has no business on a metered Thai voice.
+DEFAULT_ENGLISH_MODEL_ID = "Qwen/Qwen3-TTS-12Hz-1.7B-CustomVoice"
+#: One of the CustomVoice presets. A single English voice for the whole
+#: course: the seam that matters is Thai-against-English, and a second
+#: English voice would add a seam for nothing.
+DEFAULT_ENGLISH_SPEAKER = "Ryan"
+
+#: What the shipped clips are encoded as, matching
+#: `generate-sentence-audio.py` so every mp3 the app plays is one format.
+MP3_SAMPLE_RATE = "44100"
+MP3_BITRATE = "64k"
 DEFAULT_VOICE_SETTINGS: dict[str, Any] = {
 	"stability": 0.5,
 	"similarity_boost": 0.75,
@@ -92,13 +115,42 @@ class VoiceSpec:
 	settings: dict[str, Any] = field(
 		default_factory=lambda: dict(DEFAULT_VOICE_SETTINGS)
 	)
+	english_model_id: str = DEFAULT_ENGLISH_MODEL_ID
+	english_speaker: str = DEFAULT_ENGLISH_SPEAKER
 
 	def to_json(self) -> dict[str, Any]:
+		"""The whole spec, for the manifest — a reader wants to see both
+		voices without having to know which one a given clip came from."""
 		return {
 			"voiceId": self.voice_id,
 			"modelId": self.model_id,
 			"settings": dict(self.settings),
+			"english": {
+				"modelId": self.english_model_id,
+				"speaker": self.english_speaker,
+			},
 		}
+
+	def for_language(self, language: str) -> dict[str, Any]:
+		"""Only the half of the spec that voices `language`, for the cache key.
+
+		Two engines now share one spec, and hashing the whole of it would mean
+		that re-picking the Thai voice silently re-renders every English clip in
+		the course — thousands of seconds of unchanged narration, thrown away
+		and made again. A clip's key describes the engine that made it and
+		nothing else.
+
+		The Thai projection is deliberately the exact shape the key had when
+		ElevenLabs was the only engine, so clips already generated and verified
+		stay cached across this change.
+		"""
+		if language == "th":
+			return {
+				"voiceId": self.voice_id,
+				"modelId": self.model_id,
+				"settings": dict(self.settings),
+			}
+		return {"modelId": self.english_model_id, "speaker": self.english_speaker}
 
 
 class Vendor(Protocol):
@@ -124,6 +176,12 @@ class ElevenLabsVendor:
 		self._redactor = redactor
 
 	def synthesize(self, text: str, language: str, spec: VoiceSpec, seed: int) -> bytes:
+		if language != "th":
+			raise VendorError(
+				f"refusing to synthesize {language!r} through ElevenLabs: this "
+				"vendor is the Thai voice only, and billing English prose here "
+				"is the spend the split exists to avoid"
+			)
 		payload = {
 			"text": text,
 			"model_id": spec.model_id,
@@ -137,15 +195,6 @@ class ElevenLabsVendor:
 			headers={"accept": "audio/mpeg"},
 		)
 		return response.content
-
-	def transcribe(self, audio: bytes) -> str:
-		response = self._post(
-			f"{API_ROOT}/speech-to-text",
-			data={"model_id": DEFAULT_TRANSCRIBE_MODEL_ID, "language_code": "tha"},
-			files={"file": ("clip.mp3", audio, "audio/mpeg")},
-		)
-		body = response.json()
-		return str(body.get("text", ""))
 
 	def _post(self, url: str, **kwargs: Any) -> Any:
 		"""Every outbound call, and the one place vendor text is redacted.
@@ -168,3 +217,200 @@ class ElevenLabsVendor:
 				)
 			)
 		return response
+
+
+def _preload_cu12_libraries() -> None:
+	"""Preload libcublas/libcudnn from the nvidia cu12 wheels.
+
+	The same fix `backend/app/models.py` carries, and for the same reason: the
+	PyPI torch build bundles CUDA 13 (`libcublas.so.13`) while ctranslate2 —
+	faster-whisper's engine — dlopens the `.so.12` names and dies at the first
+	encode. Loading the cu12 wheels' libraries RTLD_GLOBAL first makes that
+	dlopen resolve to the already-loaded copies, with no LD_LIBRARY_PATH.
+
+	Duplicated rather than imported: this package is a standalone content
+	pipeline and must not take a dependency on the conversation backend's
+	application code to voice a lesson.
+	"""
+	import ctypes  # noqa: PLC0415
+	from pathlib import Path  # noqa: PLC0415
+
+	try:
+		import nvidia.cublas.lib  # noqa: PLC0415
+		import nvidia.cudnn.lib  # noqa: PLC0415
+	except ImportError:
+		return
+
+	for package in (nvidia.cublas.lib, nvidia.cudnn.lib):
+		for shared_object in sorted(Path(package.__path__[0]).glob("*.so*")):
+			try:
+				ctypes.CDLL(str(shared_object), mode=ctypes.RTLD_GLOBAL)
+			except OSError:
+				continue
+
+
+class LocalTranscriber:
+	"""The transcribe-back check, run on this machine.
+
+	Verification is a check on our own output, not a service anyone needs to
+	sell us: the clip is already on disk and the model that reads it back is
+	already a dependency of this repository. Paying a vendor per clip to hear
+	what we just made is spend with nothing on the other side of it, and it
+	also required the API key to carry a speech-to-text permission it has no
+	other reason to hold.
+
+	`large-v3` is deliberate rather than convenient. It is the same model
+	`generate-sentence-audio.py` verifies its 8,930 clips with, and the same one
+	that transcribes the learner's spoken replies — so a clip that passes here
+	has been understood by the exact model that will later have to understand
+	the learner saying the same word back.
+
+	The model is loaded once and on first use: a run whose Thai segments are all
+	cached never loads it at all.
+	"""
+
+	def __init__(self, model_id: str = WHISPER_MODEL_ID) -> None:
+		self._model_id = model_id
+		self._model: Any | None = None
+
+	def _loaded(self) -> Any:
+		if self._model is None:
+			try:
+				from faster_whisper import WhisperModel  # noqa: PLC0415
+			except ImportError as error:
+				raise VendorError(
+					"faster-whisper is not importable. The deck pipeline "
+					"verifies every Thai clip locally; run it inside the "
+					"backend environment, e.g. `uv run --project backend "
+					"python scripts/generate-lesson-deck.py ...`"
+				) from error
+			_preload_cu12_libraries()
+			self._model = WhisperModel(
+				self._model_id, device="cuda", compute_type="float16"
+			)
+		return self._model
+
+	def transcribe(self, audio: bytes) -> str:
+		import io  # noqa: PLC0415
+
+		from faster_whisper.audio import decode_audio  # noqa: PLC0415
+
+		decoded = decode_audio(io.BytesIO(audio))
+		segments, _info = self._loaded().transcribe(
+			decoded, language="th", vad_filter=True
+		)
+		return "".join(segment.text for segment in segments).strip()
+
+
+def encode_mp3(wav_bytes: bytes) -> bytes:
+	"""WAV in, the shipped clips' mp3 format out, in memory.
+
+	In memory because verification has to run on the *encoded* artifact — the
+	bytes the app will actually play — and a take that fails is thrown away
+	rather than written. Same encoder settings as
+	`generate-sentence-audio.py`, so one lesson does not play back at a
+	different bitrate from the vocabulary clips beside it.
+	"""
+	import subprocess  # noqa: PLC0415
+
+	completed = subprocess.run(
+		[
+			"ffmpeg", "-hide_banner", "-loglevel", "error",
+			"-f", "wav", "-i", "pipe:0",
+			"-ac", "1", "-ar", MP3_SAMPLE_RATE, "-b:a", MP3_BITRATE,
+			"-codec:a", "libmp3lame", "-f", "mp3", "pipe:1",
+		],
+		input=wav_bytes,
+		capture_output=True,
+		check=False,
+	)
+	if completed.returncode != 0:
+		raise VendorError(
+			"ffmpeg failed to encode the clip: "
+			f"{completed.stderr.decode('utf-8', 'replace')[:300]}"
+		)
+	return completed.stdout
+
+
+class QwenEnglishVoice:
+	"""The English narration, synthesised on this machine.
+
+	Qwen3-TTS is Apache 2.0 and runs locally, which is the whole point: English
+	is 97% of the course by character count and none of it is the language
+	being taught. Paying a per-character vendor to read it aloud buys nothing
+	the learner can hear.
+
+	English takes no transcribe-back check. The check exists because a wrong
+	Thai tone teaches a mispronunciation the learner will then practise; an
+	English clip that renders slightly oddly is a clip that sounds slightly
+	odd. `seed` is accepted and ignored — the retry loop passes one, and the
+	honest thing is to say so here rather than to imply a re-roll happened.
+
+	Loaded once, on first use: a run whose English is all cached never loads it.
+	"""
+
+	def __init__(self) -> None:
+		self._model: Any | None = None
+		self._loaded_id: str | None = None
+
+	def _model_for(self, model_id: str) -> Any:
+		if self._model is None or self._loaded_id != model_id:
+			try:
+				from qwen_tts import Qwen3TTSModel  # noqa: PLC0415
+			except ImportError as error:
+				raise VendorError(
+					"qwen-tts is not importable. The English narration is "
+					"synthesised locally; run the pipeline inside the backend "
+					"environment, e.g. `uv run --project backend python "
+					"scripts/generate-lesson-deck.py ...`"
+				) from error
+			self._model = Qwen3TTSModel.from_pretrained(model_id, device_map="cuda:0")
+			self._loaded_id = model_id
+		return self._model
+
+	def synthesize(self, text: str, language: str, spec: VoiceSpec, seed: int) -> bytes:
+		if language != "en":
+			raise VendorError(
+				f"refusing to synthesize {language!r} through Qwen: this engine "
+				"voices the English narration, and Thai is taught by a native "
+				"voice that is checked before it is accepted"
+			)
+		import io  # noqa: PLC0415
+
+		import soundfile as sf  # noqa: PLC0415
+
+		model = self._model_for(spec.english_model_id)
+		# `generate_custom_voice` returns a *batch* — a list of float32 mono
+		# arrays — even for one line of text. Handing the list itself to
+		# soundfile is a "Format not recognised", which reads like a codec
+		# problem and is not one.
+		wavs, sample_rate = model.generate_custom_voice(
+			text=text, language="English", speaker=spec.english_speaker
+		)
+		waveform = wavs[0] if isinstance(wavs, (list, tuple)) else wavs
+		buffer = io.BytesIO()
+		sf.write(buffer, waveform, int(sample_rate), format="WAV")
+		return encode_mp3(buffer.getvalue())
+
+
+@dataclass
+class SplitVendor:
+	"""One narration track, three engines, none doing another's job.
+
+	Thai is voiced by a metered native voice and checked before it is accepted.
+	English is voiced on this machine and needs no check. The check itself also
+	runs on this machine. Satisfies `Vendor` whole, so the pipeline and its
+	scripted stand-in are unchanged by the split — all that moved is which side
+	of the network each piece of work happens on.
+	"""
+
+	thai: Vendor
+	english: Vendor
+	transcriber: LocalTranscriber
+
+	def synthesize(self, text: str, language: str, spec: VoiceSpec, seed: int) -> bytes:
+		engine = self.thai if language == "th" else self.english
+		return engine.synthesize(text, language, spec, seed)
+
+	def transcribe(self, audio: bytes) -> str:
+		return self.transcriber.transcribe(audio)
