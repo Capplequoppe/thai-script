@@ -23,9 +23,17 @@ no picture is a slide with no picture; a slide with the wrong picture teaches
 the wrong thing.
 
 The backend is PixArt-Sigma rather than SDXL. Its T5 encoder takes 300 tokens
-against CLIP's 77, and these scenes turn on relationships a short prompt loses
-— which side of a frame a rope hangs from is the entire difference between two
-letters in lesson one.
+against CLIP's 77, and these scenes turn on relationships a short prompt loses.
+
+**The scene carries the meaning; the caption carries the shape and the sound.**
+A picture of a horse teaches only that the word means horse, which is the one
+third of the job the learner would have got anyway. The letterform and the
+sound are the parts that actually have to be stored, and they are exactly the
+parts a diffusion model cannot be trusted with — it will not draw a specific
+glyph, and it cannot spell. So a slide that teaches a symbol declares `glyph`,
+`anchor` and `gloss`, and those are drawn afterwards with a real font, in the
+same face the app renders Thai in. A slide that only sets a mood declares none
+of them and keeps a clean frame.
 """
 
 from __future__ import annotations
@@ -39,6 +47,7 @@ REPO_ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 sys.path.insert(0, str(REPO_ROOT / "scripts" / "mnemonics"))
 
+from compose import compose  # noqa: E402
 from lesson_deck.script_parser import parse_script  # noqa: E402
 from style import (  # noqa: E402
     GENERATION_SIZE,
@@ -66,6 +75,29 @@ MIN_CLIP_SCORE = 0.22
 EXIT_OK = 0
 EXIT_REFUSED = 3
 EXIT_INCOMPLETE = 4
+
+
+@dataclass
+class Caption:
+    """What gets drawn onto a render with a real font, after generation.
+
+    A picture of a horse teaches that the word means horse, and nothing else.
+    The two things a learner actually has to store — what the letter *looks*
+    like and what it *sounds* like — are exactly the two a diffusion model
+    cannot be trusted to put in the frame: it will not draw a specific
+    letterform, and it cannot spell a sound-alike. Both are drawn here
+    instead, where they come out right every time and in the same face the app
+    itself renders Thai in.
+
+    So the illustration ends up carrying all three at once: the scene gives
+    the meaning, the plaque gives sound, shape and gloss on one line, and the
+    headline names the noise the thing in the picture is making.
+    """
+
+    glyph: str
+    anchor: str
+    gloss: str
+    cue: str | None = None
 
 
 @dataclass
@@ -126,6 +158,7 @@ def render_one(
     out_path: Path,
     min_score: float,
     report_only: bool,
+    caption: Caption | None,
 ) -> Result:
     import torch
 
@@ -167,10 +200,22 @@ def render_one(
 
     from PIL import Image
 
+    shipped = best_image.resize(SHIPPED_SIZE, Image.LANCZOS)
+    if caption is not None:
+        # Drawn after the render and after the downscale, so the glyph is
+        # rasterised once at its final size rather than resampled — a letter a
+        # learner is being asked to recognise must not be the softest thing in
+        # the frame.
+        shipped = compose(
+            shipped,
+            anchor=caption.anchor,
+            thai=caption.glyph,
+            english=caption.gloss,
+            headline=caption.cue,
+        )
+
     out_path.parent.mkdir(parents=True, exist_ok=True)
-    best_image.resize(SHIPPED_SIZE, Image.LANCZOS).save(
-        out_path, "JPEG", quality=88, optimize=True
-    )
+    shipped.save(out_path, "JPEG", quality=88, optimize=True)
     return Result(slide_id, "written", score=best_score, seed=best_seed, path=out_path)
 
 
@@ -201,7 +246,7 @@ def main(argv: list[str] | None = None) -> int:
     script = parse_script(args.script)
     wanted = set(args.slides.split(",")) if args.slides else None
 
-    todo: list[tuple[str, str, Path]] = []
+    todo: list[tuple[str, str, Path, Caption | None]] = []
     for slide in script.slides:
         scene = slide.fields.get("scene")
         if not scene:
@@ -220,7 +265,23 @@ def main(argv: list[str] | None = None) -> int:
         if out_path.exists() and not args.force and not args.report:
             print(f"  {slide.id:<22} exists, skipping")
             continue
-        todo.append((slide.id, scene, out_path))
+
+        # A slide that teaches a symbol declares what to draw on the picture.
+        # A slide that only sets a mood (the harbour, a flat horizon) declares
+        # nothing and gets a clean frame — a plaque naming a letter under a
+        # picture that is not about a letter is noise.
+        glyph = slide.fields.get("glyph")
+        caption = (
+            Caption(
+                glyph=glyph,
+                anchor=slide.fields.get("anchor", ""),
+                gloss=slide.fields.get("gloss", ""),
+                cue=slide.fields.get("cue"),
+            )
+            if glyph
+            else None
+        )
+        todo.append((slide.id, scene, out_path, caption))
 
     if not todo:
         print("nothing to render")
@@ -233,9 +294,16 @@ def main(argv: list[str] | None = None) -> int:
 
     results = [
         render_one(
-            pipe, scorer, slide_id, scene, out_path, args.min_score, args.report
+            pipe,
+            scorer,
+            slide_id,
+            scene,
+            out_path,
+            args.min_score,
+            args.report,
+            caption,
         )
-        for slide_id, scene, out_path in todo
+        for slide_id, scene, out_path, caption in todo
     ]
 
     print()

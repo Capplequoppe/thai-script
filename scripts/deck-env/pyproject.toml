@@ -38,4 +38,8 @@ dependencies = [
     # committed illustrations were not what this environment produces.
     "beautifulsoup4>=4.12",
     "ftfy>=6.1",
+    # compose.py reads each font's cmap to pick a face per character:
+    # Pillow does no font fallback of its own, and one font per caption
+    # renders everything it lacks as silent tofu boxes.
+    "fonttools>=4.50",
 ]
