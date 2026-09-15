@@ -295,7 +295,7 @@ describe("the committed deck", () => {
 		expect(offenders).toEqual([]);
 	});
 
-	it("every narration line in the script became exactly one clip", () => {
+	it("every run of same-language narration became exactly one clip", () => {
 		// The script is the source of truth for what is spoken. A line that
 		// silently failed to become a clip is the failure mode that would be
 		// hardest to notice by playing the lesson — the narration would simply
@@ -307,13 +307,40 @@ describe("the committed deck", () => {
 		const spoken = script
 			.split("\n")
 			.filter((line) => /^narration: (en|th) /.test(line));
-		// Clips only. Illustrations are manifest assets too, and counting them
-		// here would make this assertion drift every time a slide gains or
-		// loses a picture — which has nothing to do with whether a spoken line
-		// became a clip.
-		const clips = manifest.assets.filter((a) => a.kind === "audio");
-		expect(spoken.length).toBe(clips.length);
+		// Consecutive English lines are merged into one call before synthesis,
+		// so a paragraph is one continuous utterance instead of several with
+		// the prosody reset between them. Thai never merges: each Thai clip is
+		// verified on its own and shared by content hash, and the pause before
+		// a Thai word is the one that belongs there.
+		//
+		// So the count to check is runs, not lines — and counting runs here
+		// rather than trusting the parser means a merge rule that quietly
+		// started swallowing Thai would fail this.
+		// Counted over the whole file, with slide boundaries breaking the run:
+		// merging happens *within* a slide, so English at the end of one slide
+		// and English at the start of the next are two clips, not one. Getting
+		// this wrong is what the assertion below caught the first time.
+		const runs: string[] = [];
+		let previous: string | undefined;
+		for (const line of script.split("\n")) {
+			if (line.startsWith("## ")) {
+				previous = undefined;
+				continue;
+			}
+			if (!/^narration: (en|th) /.test(line)) continue;
+			const language = line.startsWith("narration: th ") ? "th" : "en";
+			if (language === "en" && previous === "en") continue;
+			runs.push(language);
+			previous = language;
+		}
 
+		// Clips only. Illustrations are manifest assets too, and counting them
+		// here would drift every time a slide gains or loses a picture.
+		const clips = manifest.assets.filter((a) => a.kind === "audio");
+		expect(runs.length).toBe(clips.length);
+		expect(runs.length).toBeLessThan(spoken.length);
+
+		// Every Thai line is still its own clip, one for one.
 		const thaiLines = spoken.filter((line) =>
 			line.startsWith("narration: th "),
 		).length;

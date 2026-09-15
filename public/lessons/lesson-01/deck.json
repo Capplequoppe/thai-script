@@ -12,12 +12,12 @@
 				"Its full name is the sound, then a word that begins with it — and that word means *horse*. Listen to the name; you will learn to write it later."
 			],
 			"audio": [
-				"/thai-script/lessons/lesson-01/audio/e249865addd80466.mp3",
-				"/thai-script/lessons/lesson-01/audio/64ed6d0f4050518a.mp3",
-				"/thai-script/lessons/lesson-01/audio/b360209bed2ba19d.mp3",
-				"/thai-script/lessons/lesson-01/audio/9015a757b4024f3a.mp3"
+				"/thai-script/lessons/lesson-01/audio/9fb26528195995e3.mp3",
+				"/thai-script/lessons/lesson-01/audio/7050261ed3dff8b2.mp3",
+				"/thai-script/lessons/lesson-01/audio/aa60dddb54fa1e5f.mp3"
 			],
-			"image": "/thai-script/lessons/lesson-01/images/welcome-d4f540254a4f.jpg"
+			"audioLanguages": ["en", "th", "en"],
+			"image": "/thai-script/lessons/lesson-01/images/welcome-c4f4e2944efb.jpg"
 		},
 		{
 			"kind": "exposition",
@@ -29,12 +29,12 @@
 				"ม is the **horse** letter.  น is the **mouse** letter."
 			],
 			"audio": [
-				"/thai-script/lessons/lesson-01/audio/d66f7a7b9e2444db.mp3",
-				"/thai-script/lessons/lesson-01/audio/b360209bed2ba19d.mp3",
-				"/thai-script/lessons/lesson-01/audio/9eb44062ee531096.mp3",
-				"/thai-script/lessons/lesson-01/audio/161b823ef4fff245.mp3",
-				"/thai-script/lessons/lesson-01/audio/1b120b0ec755360b.mp3"
-			]
+				"/thai-script/lessons/lesson-01/audio/590343d59f58ec31.mp3",
+				"/thai-script/lessons/lesson-01/audio/7050261ed3dff8b2.mp3",
+				"/thai-script/lessons/lesson-01/audio/d49608aa5265cda5.mp3",
+				"/thai-script/lessons/lesson-01/audio/1f7a2b2b1a496ccd.mp3"
+			],
+			"audioLanguages": ["en", "th", "th", "en"]
 		},
 		{
 			"kind": "exposition",
@@ -46,11 +46,12 @@
 				"Neither letter takes a puff of air. No breath after it."
 			],
 			"audio": [
-				"/thai-script/lessons/lesson-01/audio/d29d34b7271a47c2.mp3",
-				"/thai-script/lessons/lesson-01/audio/9eb44062ee531096.mp3",
-				"/thai-script/lessons/lesson-01/audio/30b13bc101e3e8e3.mp3"
+				"/thai-script/lessons/lesson-01/audio/5f55f84bba59ab32.mp3",
+				"/thai-script/lessons/lesson-01/audio/d49608aa5265cda5.mp3",
+				"/thai-script/lessons/lesson-01/audio/d4330326a371a4d4.mp3"
 			],
-			"image": "/thai-script/lessons/lesson-01/images/second-letter-6bffa2ca2e0f.jpg"
+			"audioLanguages": ["en", "th", "en"],
+			"image": "/thai-script/lessons/lesson-01/images/second-letter-d5b8935037ce.jpg"
 		},
 		{
 			"kind": "exposition",
@@ -61,18 +62,17 @@
 				"**ม** — the second loop drops **straight down the left**. Two loops, one side.",
 				"**น** — the second loop is thrown **across to the bottom right**. A diagonal."
 			],
-			"audio": [
-				"/thai-script/lessons/lesson-01/audio/ce370c187d3f3551.mp3",
-				"/thai-script/lessons/lesson-01/audio/3c272d757712d8e0.mp3"
-			],
-			"image": "/thai-script/lessons/lesson-01/images/shapes-ea56b414ace0.jpg"
+			"audio": ["/thai-script/lessons/lesson-01/audio/3c1571477da871c8.mp3"],
+			"audioLanguages": ["en"],
+			"image": "/thai-script/lessons/lesson-01/images/shapes-b378f1eeda68.jpg"
 		},
 		{
 			"kind": "retrieval",
 			"id": "spot-the-loop",
 			"prompt": "Both letters carry a loop high on the left. Where does each one put its *second* loop — and which of the two is the horse?",
 			"revealSlideId": "spot-the-loop-answer",
-			"audio": ["/thai-script/lessons/lesson-01/audio/38029c7567edf796.mp3"]
+			"audio": ["/thai-script/lessons/lesson-01/audio/03505edd9f6b9d42.mp3"],
+			"audioLanguages": ["en"]
 		},
 		{
 			"kind": "reveal",
@@ -82,7 +82,8 @@
 				"**ม** — both loops down the **left** — the *horse* letter.",
 				"**น** — high left, then low **right** — the *mouse* letter."
 			],
-			"audio": ["/thai-script/lessons/lesson-01/audio/03845eaf7cd11260.mp3"]
+			"audio": ["/thai-script/lessons/lesson-01/audio/1b42e39cd6f37931.mp3"],
+			"audioLanguages": ["en"]
 		},
 		{
 			"kind": "exposition",
@@ -93,11 +94,9 @@
 				"Class decides tone. That is the engine of Thai spelling, and it starts in lesson 2.",
 				"In this course, low class is the **harbour** — keep both letters there."
 			],
-			"audio": [
-				"/thai-script/lessons/lesson-01/audio/27bfc713f19f6076.mp3",
-				"/thai-script/lessons/lesson-01/audio/7ca30450564ff49b.mp3"
-			],
-			"image": "/thai-script/lessons/lesson-01/images/harbour-a85171a87007.jpg"
+			"audio": ["/thai-script/lessons/lesson-01/audio/2b693ea9e63e4af0.mp3"],
+			"audioLanguages": ["en"],
+			"image": "/thai-script/lessons/lesson-01/images/harbour-5db8f679d4e8.jpg"
 		},
 		{
 			"kind": "exposition",
@@ -109,12 +108,12 @@
 				"Vowel length changes meaning in Thai. Long and short are different vowels."
 			],
 			"audio": [
-				"/thai-script/lessons/lesson-01/audio/00de7602bc067174.mp3",
-				"/thai-script/lessons/lesson-01/audio/e4f76c4fc0f33876.mp3",
-				"/thai-script/lessons/lesson-01/audio/b209d27bdbea874c.mp3",
-				"/thai-script/lessons/lesson-01/audio/a8c4a2673033b86c.mp3"
+				"/thai-script/lessons/lesson-01/audio/174075c6cf5d91eb.mp3",
+				"/thai-script/lessons/lesson-01/audio/9ec08b9614632bc4.mp3",
+				"/thai-script/lessons/lesson-01/audio/2dbaae4ced902d48.mp3"
 			],
-			"image": "/thai-script/lessons/lesson-01/images/vowel-d0b9cb5e5b61.jpg"
+			"audioLanguages": ["en", "th", "en"],
+			"image": "/thai-script/lessons/lesson-01/images/vowel-e9813476c332.jpg"
 		},
 		{
 			"kind": "exposition",
@@ -125,12 +124,9 @@
 				"Today's syllables are all **mid tone** — flat and level.",
 				"Resist letting your pitch rise or fall. Copy the flat line exactly."
 			],
-			"audio": [
-				"/thai-script/lessons/lesson-01/audio/8b8d3178a9b5ce43.mp3",
-				"/thai-script/lessons/lesson-01/audio/59f5c3852917c340.mp3",
-				"/thai-script/lessons/lesson-01/audio/d831f6cfa59d8bcb.mp3"
-			],
-			"image": "/thai-script/lessons/lesson-01/images/tone-flag-b52486430e0d.jpg"
+			"audio": ["/thai-script/lessons/lesson-01/audio/b0e570a1f1c6891b.mp3"],
+			"audioLanguages": ["en"],
+			"image": "/thai-script/lessons/lesson-01/images/tone-flag-83e443e678a2.jpg"
 		},
 		{
 			"kind": "exposition",
@@ -142,18 +138,20 @@
 				"Consonant first, vowel second. This is how every Thai syllable is assembled."
 			],
 			"audio": [
-				"/thai-script/lessons/lesson-01/audio/9c7782bc797992c9.mp3",
-				"/thai-script/lessons/lesson-01/audio/73ab5a8cd209bab5.mp3",
-				"/thai-script/lessons/lesson-01/audio/79c1c0ff48129670.mp3"
+				"/thai-script/lessons/lesson-01/audio/5ac0033a14d12f87.mp3",
+				"/thai-script/lessons/lesson-01/audio/c1aaf08a098d69c1.mp3",
+				"/thai-script/lessons/lesson-01/audio/74ef2c5437b4a6fe.mp3"
 			],
-			"image": "/thai-script/lessons/lesson-01/images/word-naa-e7b28b1e41ac.jpg"
+			"audioLanguages": ["en", "th", "en"],
+			"image": "/thai-script/lessons/lesson-01/images/word-naa-72d43e8a2347.jpg"
 		},
 		{
 			"kind": "retrieval",
 			"id": "build-naa",
 			"prompt": "Build it yourself: the letter whose loop is on the right, followed by the long vowel. Say the syllable aloud — flat and level — and say what it means.",
 			"revealSlideId": "build-naa-answer",
-			"audio": ["/thai-script/lessons/lesson-01/audio/689c33f111ac0c20.mp3"]
+			"audio": ["/thai-script/lessons/lesson-01/audio/8664cb43a4347310.mp3"],
+			"audioLanguages": ["en"]
 		},
 		{
 			"kind": "reveal",
@@ -164,9 +162,10 @@
 				"Flat, mid tone. No rise, no fall."
 			],
 			"audio": [
-				"/thai-script/lessons/lesson-01/audio/73ab5a8cd209bab5.mp3",
-				"/thai-script/lessons/lesson-01/audio/9ab8ae10f9cf727f.mp3"
-			]
+				"/thai-script/lessons/lesson-01/audio/c1aaf08a098d69c1.mp3",
+				"/thai-script/lessons/lesson-01/audio/3ded464f161c962e.mp3"
+			],
+			"audioLanguages": ["th", "en"]
 		},
 		{
 			"kind": "exposition",
@@ -178,19 +177,20 @@
 				"Same vowel, different consonant, different word."
 			],
 			"audio": [
-				"/thai-script/lessons/lesson-01/audio/2be2a6dbd0bc2fff.mp3",
-				"/thai-script/lessons/lesson-01/audio/80d0975db8895496.mp3",
-				"/thai-script/lessons/lesson-01/audio/3df73c415ffdfc38.mp3",
-				"/thai-script/lessons/lesson-01/audio/b41d4feae4bd5bf3.mp3"
+				"/thai-script/lessons/lesson-01/audio/66c3d2ae76164470.mp3",
+				"/thai-script/lessons/lesson-01/audio/f62d9bc067f1fe2e.mp3",
+				"/thai-script/lessons/lesson-01/audio/67e3dcc257c92de4.mp3"
 			],
-			"image": "/thai-script/lessons/lesson-01/images/word-maa-d42cba999c7b.jpg"
+			"audioLanguages": ["en", "th", "en"],
+			"image": "/thai-script/lessons/lesson-01/images/word-maa-dc794bde7a8c.jpg"
 		},
 		{
 			"kind": "retrieval",
 			"id": "build-maa",
 			"prompt": "Take the word for a rice field and swap its first letter for the one whose loop hangs on the left. Say the new syllable aloud, and say what it means.",
 			"revealSlideId": "build-maa-answer",
-			"audio": ["/thai-script/lessons/lesson-01/audio/cb8eaf4bf24a34b3.mp3"]
+			"audio": ["/thai-script/lessons/lesson-01/audio/409545f3c1c7896f.mp3"],
+			"audioLanguages": ["en"]
 		},
 		{
 			"kind": "reveal",
@@ -198,9 +198,10 @@
 			"retrievalSlideId": "build-maa",
 			"answers": ["**มา** — *to come*."],
 			"audio": [
-				"/thai-script/lessons/lesson-01/audio/80d0975db8895496.mp3",
-				"/thai-script/lessons/lesson-01/audio/f34bcfcb5dc41fca.mp3"
-			]
+				"/thai-script/lessons/lesson-01/audio/f62d9bc067f1fe2e.mp3",
+				"/thai-script/lessons/lesson-01/audio/7bbc1cd585da15d4.mp3"
+			],
+			"audioLanguages": ["th", "en"]
 		},
 		{
 			"kind": "exposition",
@@ -212,19 +213,20 @@
 				"The same consonant can both **open** and **close** a syllable. Position decides its job."
 			],
 			"audio": [
-				"/thai-script/lessons/lesson-01/audio/73283c9f2f07a376.mp3",
-				"/thai-script/lessons/lesson-01/audio/129187afb5b43c3e.mp3",
-				"/thai-script/lessons/lesson-01/audio/a6c774e80a3d9e89.mp3",
-				"/thai-script/lessons/lesson-01/audio/0a433ac78b9f56e2.mp3"
+				"/thai-script/lessons/lesson-01/audio/e0ee42bb625c1066.mp3",
+				"/thai-script/lessons/lesson-01/audio/fbdb59e125a15f2e.mp3",
+				"/thai-script/lessons/lesson-01/audio/e7e81a4bf544f1f8.mp3"
 			],
-			"image": "/thai-script/lessons/lesson-01/images/word-naan-cd77b0212c38.jpg"
+			"audioLanguages": ["en", "th", "en"],
+			"image": "/thai-script/lessons/lesson-01/images/word-naan-c2fb40390515.jpg"
 		},
 		{
 			"kind": "retrieval",
 			"id": "build-naan",
 			"prompt": "Put the mouse letter on both ends of the long vowel. Say the syllable aloud, close the ending cleanly, and say what it means.",
 			"revealSlideId": "build-naan-answer",
-			"audio": ["/thai-script/lessons/lesson-01/audio/d2e7e71468aedc86.mp3"]
+			"audio": ["/thai-script/lessons/lesson-01/audio/4cf7ff7a5013a9fd.mp3"],
+			"audioLanguages": ["en"]
 		},
 		{
 			"kind": "reveal",
@@ -235,9 +237,10 @@
 				"Two consonants, one vowel, three words: นา, มา, นาน."
 			],
 			"audio": [
-				"/thai-script/lessons/lesson-01/audio/129187afb5b43c3e.mp3",
-				"/thai-script/lessons/lesson-01/audio/6e5a14e496c003c2.mp3"
-			]
+				"/thai-script/lessons/lesson-01/audio/fbdb59e125a15f2e.mp3",
+				"/thai-script/lessons/lesson-01/audio/bf615470918d2729.mp3"
+			],
+			"audioLanguages": ["th", "en"]
 		}
 	]
 }

@@ -142,8 +142,53 @@ def parse_script(path: Path) -> LessonScript:
 	if not slides:
 		raise ScriptError(f"{path}: no slides")
 
+	for slide in slides:
+		slide.segments = _merge_runs(slide)
+
 	_check_slides(slides, path)
 	return LessonScript(lesson_id=lesson_id, title=title, slides=slides, source=path)
+
+
+def _merge_runs(slide: Slide) -> list[Segment]:
+	"""Consecutive English lines on one slide become one clip.
+
+	A synthesiser has no memory between calls. Every clip starts at the
+	speaker's baseline pitch and ends on a sentence-final fall, so a paragraph
+	cut into four calls is four separate utterances played back to back — and
+	it is audible. The narrator sounds like they finish a thought and start
+	again, four times, in the middle of one idea. No gap tuning fixes that,
+	and neither does a better voice: generating in pieces is the cause, not
+	the engine.
+
+	So a run of English becomes a single call and the prosody is continuous
+	across it. Thai never merges, for three reasons that all point the same
+	way: each Thai clip is transcribed back and accepted on its own, identical
+	Thai text is shared between slides and lessons by content hash, and a pause
+	before a Thai word is the one pause that belongs there — it is a teacher
+	stopping before saying the thing.
+
+	Keys are re-derived from the merged order, so a slide's clips stay
+	`<slide>-0`, `<slide>-1`, ... with no gaps.
+	"""
+	merged: list[Segment] = []
+	for segment in slide.segments:
+		previous = merged[-1] if merged else None
+		if (
+			previous is not None
+			and previous.language == "en"
+			and segment.language == "en"
+		):
+			merged[-1] = Segment(
+				key=previous.key,
+				language="en",
+				text=f"{previous.text} {segment.text}",
+			)
+			continue
+		merged.append(segment)
+	return [
+		Segment(key=f"{slide.id}-{index}", language=s.language, text=s.text)
+		for index, s in enumerate(merged)
+	]
 
 
 def _parse_narration(slide: Slide, value: str, path: Path, number: int) -> Segment:

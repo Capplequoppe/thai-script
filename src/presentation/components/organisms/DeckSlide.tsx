@@ -24,6 +24,7 @@ type LoadState =
 			readonly deck: LessonDeck;
 			readonly audioUrls: ReadonlyMap<string, readonly string[]>;
 			readonly imageUrls: ReadonlyMap<string, string>;
+			readonly audioLanguages: ReadonlyMap<string, readonly string[]>;
 	  };
 
 /**
@@ -88,6 +89,37 @@ function extractAudioUrls(
 }
 
 /**
+ * Which language each of a slide's clips is in, parallel to its `audio` array.
+ *
+ * Read separately from the URLs and dropped entirely unless the two line up:
+ * a mismatched length means the deck and this map disagree about which clip is
+ * which, and a gap chosen from a mislabelled clip is worse than every gap being
+ * the same. A deck built before this field existed simply has none, and falls
+ * back to a uniform gap.
+ */
+function extractAudioLanguages(
+	raw: unknown,
+): ReadonlyMap<string, readonly string[]> {
+	const map = new Map<string, readonly string[]>();
+	if (typeof raw !== "object" || raw === null) return map;
+	const slidesRaw = (raw as Record<string, unknown>).slides;
+	if (!Array.isArray(slidesRaw)) return map;
+
+	for (const item of slidesRaw) {
+		if (typeof item !== "object" || item === null) continue;
+		const { id, audio, audioLanguages } = item as Record<string, unknown>;
+		if (typeof id !== "string") continue;
+		if (!Array.isArray(audio) || !Array.isArray(audioLanguages)) continue;
+		if (audio.length !== audioLanguages.length) continue;
+		const languages = audioLanguages.filter(
+			(value): value is string => typeof value === "string",
+		);
+		if (languages.length === audioLanguages.length) map.set(id, languages);
+	}
+	return map;
+}
+
+/**
  * A slide's illustration, under the same containment rule as its clips.
  *
  * Shares `extractAudioUrls`' boundary and its reasoning: a deck's JSON names
@@ -122,17 +154,39 @@ function extractImageUrls(
 }
 
 /**
- * Silence between one clip and the next.
+ * Silence between one clip and the next, which is not one number.
  *
- * The narration track alternates languages — English explanation, then the Thai
- * it is talking about — and those are separate clips from separate engines in
- * different voices. Butted together they sound like a cut; given a beat, they
- * sound like a teacher pausing before saying the word. The pause lives here
- * rather than being encoded into the mp3s so it stays one tunable number, and
- * so the same Thai clip can be reused anywhere without carrying a fixed
- * silence around with it.
+ * A slide's narration is several clips in sequence, and two different things
+ * happen at those joins. Where the language changes — an English explanation,
+ * then the Thai word it is about — a beat is right: it is a teacher pausing
+ * before saying the thing, and it separates two voices that should sound
+ * separate.
+ *
+ * Where it does not change, the join falls in the middle of one person's
+ * continuous prose, and any pause at all is heard as the end of a thought.
+ * A single 350ms gap was being applied to both, which made every sentence
+ * boundary announce itself.
+ *
+ * The pause lives here rather than baked into the mp3s, so the same clip can
+ * be reused in a different context without carrying a fixed silence with it.
  */
-const CLIP_GAP_MS = 350;
+const SAME_LANGUAGE_GAP_MS = 90;
+const LANGUAGE_CHANGE_GAP_MS = 420;
+
+/**
+ * Which clips are Thai, by index, so the player can tell a language change
+ * from a sentence break. Absent for a deck built before this was recorded —
+ * every gap is then the same, which is what it used to be.
+ */
+function gapBefore(index: number, languages?: readonly string[]): number {
+	if (!languages) return SAME_LANGUAGE_GAP_MS;
+	const previous = languages[index - 1];
+	const current = languages[index];
+	if (previous === undefined || current === undefined) {
+		return SAME_LANGUAGE_GAP_MS;
+	}
+	return previous === current ? SAME_LANGUAGE_GAP_MS : LANGUAGE_CHANGE_GAP_MS;
+}
 
 /**
  * Plays `urls` in order, with a gap between them. Returns the cancel function.
@@ -146,7 +200,10 @@ const CLIP_GAP_MS = 350;
  * same sequence will satisfy either — the replay button is a user gesture and
  * will work.
  */
-function playSequence(urls: readonly string[]): () => void {
+function playSequence(
+	urls: readonly string[],
+	languages?: readonly string[],
+): () => void {
 	let cancelled = false;
 	let playing: HTMLAudioElement | undefined;
 	let timer: ReturnType<typeof setTimeout> | undefined;
@@ -159,7 +216,8 @@ function playSequence(urls: readonly string[]): () => void {
 		playing = audio;
 		audio.addEventListener("ended", () => {
 			if (cancelled) return;
-			timer = setTimeout(() => playFrom(index + 1), CLIP_GAP_MS);
+			const wait = gapBefore(index + 1, languages);
+			timer = setTimeout(() => playFrom(index + 1), wait);
 		});
 		audio.play().catch(() => {});
 	};
@@ -190,14 +248,20 @@ function isUnauthoredEmptyDeck(
 	return errors.length === 1 && errors[0]?.code === "missing-retrieval";
 }
 
-function ReplayButton({ urls }: { urls: readonly string[] }) {
+function ReplayButton({
+	urls,
+	languages,
+}: {
+	urls: readonly string[];
+	languages?: readonly string[];
+}) {
 	// Replays the slide's whole narration, not just its first clip: the
 	// learner who presses it did not hear part of an explanation.
 	return (
 		<button
 			type="button"
 			onClick={() => {
-				playSequence(urls);
+				playSequence(urls, languages);
 			}}
 			className="inline-flex items-center justify-center w-12 h-12 rounded-full text-2xl transition-colors"
 			style={{
@@ -239,11 +303,13 @@ function DeckSlideContent({
 	deck,
 	slide,
 	audioUrls,
+	audioLanguages,
 	imageUrl,
 }: {
 	deck: LessonDeck;
 	slide: DeckSlideData;
 	audioUrls?: readonly string[];
+	audioLanguages?: readonly string[];
 	imageUrl?: string;
 }) {
 	// Reveal state for a "reveal" slide, mirroring `Flashcard.tsx`'s own
@@ -262,7 +328,7 @@ function DeckSlideContent({
 		// The returned canceller is the cleanup: stepping off the slide stops
 		// whatever clip is mid-sentence rather than letting it talk over the
 		// next slide's narration.
-		return playSequence(audioUrls);
+		return playSequence(audioUrls, audioLanguages);
 	}, [slide.id]);
 
 	// A "reveal" slide's audio is the answer's pronunciation, so it plays on
@@ -272,7 +338,7 @@ function DeckSlideContent({
 	// biome-ignore lint/correctness/useExhaustiveDependencies: fires once per reveal, not on every audioUrls/slide identity change
 	useEffect(() => {
 		if (!revealed || !audioUrls?.length) return;
-		return playSequence(audioUrls);
+		return playSequence(audioUrls, audioLanguages);
 	}, [revealed]);
 
 	switch (slide.kind) {
@@ -291,7 +357,7 @@ function DeckSlideContent({
 					</div>
 					{audioUrls && audioUrls.length > 0 && (
 						<div className="flex justify-center">
-							<ReplayButton urls={audioUrls} />
+							<ReplayButton urls={audioUrls} languages={audioLanguages} />
 						</div>
 					)}
 				</div>
@@ -304,7 +370,7 @@ function DeckSlideContent({
 					<p className="text-center text-lg">{slide.prompt}</p>
 					{audioUrls && audioUrls.length > 0 && (
 						<div className="flex justify-center">
-							<ReplayButton urls={audioUrls} />
+							<ReplayButton urls={audioUrls} languages={audioLanguages} />
 						</div>
 					)}
 				</div>
@@ -341,7 +407,7 @@ function DeckSlideContent({
 							))}
 							{audioUrls && audioUrls.length > 0 && (
 								<div className="flex justify-center">
-									<ReplayButton urls={audioUrls} />
+									<ReplayButton urls={audioUrls} languages={audioLanguages} />
 								</div>
 							)}
 						</div>
@@ -417,6 +483,7 @@ export function DeckSlide({ deckPath, onComplete }: Props) {
 							},
 							audioUrls: new Map(),
 							imageUrls: new Map(),
+							audioLanguages: new Map(),
 						});
 						return;
 					}
@@ -431,6 +498,7 @@ export function DeckSlide({ deckPath, onComplete }: Props) {
 					deck: result.deck,
 					audioUrls: extractAudioUrls(raw, result.deck.lessonId),
 					imageUrls: extractImageUrls(raw, result.deck.lessonId),
+					audioLanguages: extractAudioLanguages(raw),
 				});
 			})
 			.catch((err) => {
@@ -493,6 +561,7 @@ export function DeckSlide({ deckPath, onComplete }: Props) {
 				slide={slide}
 				audioUrls={state.audioUrls.get(slide.id)}
 				imageUrl={state.imageUrls.get(slide.id)}
+				audioLanguages={state.audioLanguages.get(slide.id)}
 			/>
 			<div className="flex gap-3">
 				{idx > 0 && (

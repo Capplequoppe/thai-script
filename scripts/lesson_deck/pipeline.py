@@ -50,7 +50,13 @@ from .vendor import Redactor, Vendor, VendorError, VoiceSpec
 
 #: Bumped when a change to this file would make previously cached clips wrong.
 #: Part of every cache key, so bumping it invalidates every asset at once.
-PIPELINE_VERSION = 1
+# 3: consecutive English narration lines on a slide are merged into one call
+# before synthesis (`script_parser._merge_runs`), so a paragraph is one
+# continuous utterance rather than several with the prosody reset between them.
+# (2 was a silence trim, reverted: measured before and after, it removed
+# nothing.) The input hash covers text, language and voice, so a merged run
+# rehashes on its own — but the bump also clears the version-2 clips.
+PIPELINE_VERSION = 3
 
 #: Seeds tried in order for a Thai clip that comes back saying the wrong thing.
 #: Seed is the cheap axis and the only one that is a lever here: the sibling
@@ -200,6 +206,7 @@ class DeckGenerator:
 		for slide in self.script.slides:
 			for segment in slide.segments:
 				self._produce_audio(segment)
+		self._adopt_late_twins()
 		for record, relative, data in images.values():
 			self._produce_image(record, relative, data)
 
@@ -210,6 +217,46 @@ class DeckGenerator:
 			self.report.deck_written = True
 			self._prune_orphans()
 		return self.report
+
+	def _adopt_late_twins(self) -> None:
+		"""A segment that failed adopts a clip another segment later produced
+		for the very same text.
+
+		`_produce_audio` consults `_produced` before synthesising, so a repeated
+		text reuses the first accepted clip — but only if that first one was
+		accepted. When it fails, the next segment with the same text starts
+		over from seed one, and it can succeed where the first did not: the
+		vendor's seed is not reliably deterministic, so the same request twice
+		is genuinely two rolls.
+
+		Observed, not theorised. `มอ ม้า` failed all eight seeds on one slide
+		and was accepted on the first attempt on the next, and the run then
+		refused to write a deck over a segment whose audio was sitting on disk,
+		verified, under a content-addressed name.
+
+		Content-addressing is the whole argument for this: a clip *is* its text,
+		language and voice. If one verified clip exists for that input, every
+		segment with that input is entitled to it, whatever order the failures
+		happened in.
+		"""
+		for record in self.manifest.assets:
+			if record.kind != "audio" or record.state != "failed":
+				continue
+			twin = self._produced.get(record.input_hash)
+			if twin is None:
+				continue
+			record.state = twin.state
+			record.content_hash = twin.content_hash
+			record.file = twin.file
+			record.path = twin.path
+			record.verification = twin.verification
+			record.failure = None
+			self.report.failed -= 1
+			self.report.reused += 1
+			self.report.errors = [
+				line for line in self.report.errors
+				if not line.startswith(f"{record.key}: ")
+			]
 
 	# -- audio -------------------------------------------------------------
 
@@ -476,13 +523,20 @@ class DeckGenerator:
 		else:
 			body["ruleId"] = slide.fields["rule"]
 
-		audio = [
-			asset.path
+		played = [
+			(segment, asset)
 			for segment in slide.segments
 			if (asset := self.manifest.by_key(segment.key)) and asset.path
 		]
-		if audio:
-			body["audio"] = audio
+		if played:
+			body["audio"] = [asset.path for _, asset in played]
+			# Which clip is which language, so the player can tell a language
+			# change from a sentence break. A pause belongs at the first and
+			# not at the second: crossing from the English voice to the Thai
+			# one is a teacher pausing before saying the word, while a pause
+			# between two English clips lands in the middle of one person's
+			# continuous prose and is heard as the end of a thought.
+			body["audioLanguages"] = [segment.language for segment, _ in played]
 		image = self.manifest.by_key(f"{slide.id}-image")
 		if image and image.path:
 			body["image"] = image.path
