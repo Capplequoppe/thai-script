@@ -28,8 +28,15 @@ it. Teaching that pattern in lesson one hands the learner the key to all
 forty-four rather than to two.
 
 Scene grammar is inherited from symbols.ts, not reinvented: the harbour is the
-low class, and these two letters are one mooring rope on the left bollard and
-the same rope on the right.
+low class.
+
+BOTH LETTERS HAVE TWO LOOPS, AND THEY ARE NOT MIRRORS. symbols.ts used to say
+that each had one loop and that น was ม mirrored, and this lesson repeated it.
+Render the glyphs and the claim collapses: ม stacks both loops on the left,
+น puts one high-left and one low-right. Mirroring ม would move both loops to
+the right, which is no letter at all. The shared upper-left loop is the head
+(หัว) that nearly every Thai consonant starts with, so it can never be the
+thing that tells two of them apart. The lower loop is the only discriminator.
 
 ILLUSTRATIONS CARRY MEANING, NEVER LETTERFORM. A scene must not be asked to
 draw the shape of a glyph. Three attempts at "a post whose top curls over like
@@ -41,6 +48,19 @@ geometry, so it cannot catch this and will wave it through.
 The glyph itself, set large in the app's own font, draws the shape perfectly
 and exactly. The picture's job is the sound and the meaning — for า, someone
 calling out across a valley, because the sound is long, open and held.
+
+Confirmed twice more, with a prop rather than a shape. A horseshoe nailed to
+the post through two holes down its left limb is a genuinely good anchor for
+ม — a horse's own object, carrying the letter's two stacked left loops. It
+will not render. Asked with the horse leading, no horseshoe appeared at all;
+asked with the horseshoe leading and named in close view, the model produced a
+vague ring and pushed the horse out of frame, dropping the CLIP score to its
+lowest of the set. A prop whose *meaning* depends on small internal geometry is
+letterform in a costume, and fails the same way letterform does.
+
+Getting a prop to trace a letter needs structural conditioning — ControlNet or
+img2img, neither of which PixArt supports. Until then, scenes stay atmospheric
+and the glyph carries its own shape.
 -->
 
 # The harbour's two hums
@@ -92,23 +112,23 @@ narration: en Its example word means mouse. Both of today's letters are hums, an
 ## exposition shapes
 image: images/lesson-01/shapes.jpg
 scene: A dockworker in a heavy jacket swings a thick mooring rope over an iron bollard at the edge of a stone quay, arms raised wide with the rope arcing above him. Fishing boats crowd the water behind. Warm golden evening light throws long shadows across the wet stone.
-heading: One rope, two bollards
-narration: en Only now, the shapes — and they are the same shape twice. Picture the harbour. A single mooring rope is slung over a bollard on the left; that is the first letter. Move the same rope to the bollard on the right, and you have the second.
-narration: en Nothing else about them differs. One loop, one tall stem, and the only question is which shoulder the loop hangs from. If you can remember which side the rope is on, you can never confuse these two again.
-- ม and น are the same shape mirrored.
-- **ม** — the loop hangs from the **left** shoulder.
-- **น** — the same loop, moved to the **right**.
+heading: Two loops, and where the second one lands
+narration: en Only now, the shapes — and they are far more alike than they are different. Both letters begin with the same small loop, high on the left. Nearly every Thai consonant does. That is simply where the pen starts, so it tells you nothing at all about which letter you are looking at.
+narration: en The second loop is the whole question. The horse letter drops its second loop straight down beneath the first, so both sit on the left, one above the other. The mouse letter throws its second loop across to the far corner instead, low and to the right.
+- Both letters start with the same loop, high on the **left**. That part never tells them apart.
+- **ม** — the second loop drops **straight down the left**. Two loops, one side.
+- **น** — the second loop is thrown **across to the bottom right**. A diagonal.
 
 ## retrieval spot-the-loop
 reveal: spot-the-loop-answer
-prompt: Without scrolling back: which of the two letters hangs its loop on the left shoulder, and what does that letter's example word mean?
+prompt: Both letters carry a loop high on the left. Where does each one put its *second* loop — and which of the two is the horse?
 narration: en Answer out loud before you turn this over. Saying it wrong and then being corrected will fix it in your memory far harder than reading the right answer would.
 
 ## reveal spot-the-loop-answer
 retrieval: spot-the-loop
-narration: en The loop on the left is the horse. The loop on the right is the mouse.
-- **ม** — loop on the **left** — the *horse* letter.
-- **น** — loop on the **right** — the *mouse* letter.
+narration: en The horse stacks both of its loops down the left. The mouse sends its second one across to the bottom right.
+- **ม** — both loops down the **left** — the *horse* letter.
+- **น** — high left, then low **right** — the *mouse* letter.
 
 ## exposition harbour
 image: images/lesson-01/harbour.jpg

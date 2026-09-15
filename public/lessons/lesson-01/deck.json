@@ -55,22 +55,22 @@
 		{
 			"kind": "exposition",
 			"id": "shapes",
-			"heading": "One rope, two bollards",
+			"heading": "Two loops, and where the second one lands",
 			"body": [
-				"ม and น are the same shape mirrored.",
-				"**ม** — the loop hangs from the **left** shoulder.",
-				"**น** — the same loop, moved to the **right**."
+				"Both letters start with the same loop, high on the **left**. That part never tells them apart.",
+				"**ม** — the second loop drops **straight down the left**. Two loops, one side.",
+				"**น** — the second loop is thrown **across to the bottom right**. A diagonal."
 			],
 			"audio": [
-				"/thai-script/lessons/lesson-01/audio/4d8277d8a68a78a9.mp3",
-				"/thai-script/lessons/lesson-01/audio/5e76da1dbe6501d5.mp3"
+				"/thai-script/lessons/lesson-01/audio/ce370c187d3f3551.mp3",
+				"/thai-script/lessons/lesson-01/audio/3c272d757712d8e0.mp3"
 			],
 			"image": "/thai-script/lessons/lesson-01/images/shapes-ea56b414ace0.jpg"
 		},
 		{
 			"kind": "retrieval",
 			"id": "spot-the-loop",
-			"prompt": "Without scrolling back: which of the two letters hangs its loop on the left shoulder, and what does that letter's example word mean?",
+			"prompt": "Both letters carry a loop high on the left. Where does each one put its *second* loop — and which of the two is the horse?",
 			"revealSlideId": "spot-the-loop-answer",
 			"audio": ["/thai-script/lessons/lesson-01/audio/38029c7567edf796.mp3"]
 		},
@@ -79,10 +79,10 @@
 			"id": "spot-the-loop-answer",
 			"retrievalSlideId": "spot-the-loop",
 			"answers": [
-				"**ม** — loop on the **left** — the *horse* letter.",
-				"**น** — loop on the **right** — the *mouse* letter."
+				"**ม** — both loops down the **left** — the *horse* letter.",
+				"**น** — high left, then low **right** — the *mouse* letter."
 			],
-			"audio": ["/thai-script/lessons/lesson-01/audio/ea7276439f8d916c.mp3"]
+			"audio": ["/thai-script/lessons/lesson-01/audio/03845eaf7cd11260.mp3"]
 		},
 		{
 			"kind": "exposition",

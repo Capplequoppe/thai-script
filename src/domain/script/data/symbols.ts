@@ -657,7 +657,7 @@ const consonants: ThaiConsonant[] = [
 		sceneMnemonic: {
 			district: "harbor",
 			shapeCue:
-				"One soft loop hangs from the frame's left shoulder — a mooring rope slung over the left bollard at the harbor.",
+				"Two loops run down the left side, one directly beneath the other, and the right side falls as a plain stroke — a horseshoe nailed to the harbor post through two holes down its left limb.",
 			soundCue:
 				"Close your lips and hum m, unaspirated and level: the idling drone of the harbor itself.",
 		},
@@ -678,7 +678,7 @@ const consonants: ThaiConsonant[] = [
 		sceneMnemonic: {
 			district: "harbor",
 			shapeCue:
-				"The mirror of ม — the same soft loop hung from the right shoulder instead, the rope moved to the right bollard.",
+				"The same loop high on the left, but the second one is thrown across to the bottom right — the same horseshoe hung crooked from a single nail, one hole high on the left and the other swung low to the right.",
 			soundCue:
 				"Hum n at the tooth-ridge, easy and unaspirated — a mouse nibbling nnn along the mooring line.",
 		},
