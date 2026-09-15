@@ -783,6 +783,114 @@
 				"heard": []
 			},
 			"failure": null
+		},
+		{
+			"key": "welcome-image",
+			"kind": "image",
+			"state": "generated",
+			"language": null,
+			"inputHash": "0380f16915e77adb15ca7f6bcf2d00056527fd19cc3c07c06b4fc4b05df2a11c",
+			"contentHash": "a32d4b6c01d0e7e78ad7dfd1980ab1cd03f1141375698ff99b021b743d17b49c",
+			"path": "/thai-script/lessons/lesson-01/images/welcome-0380f16915e7.jpg",
+			"file": "images/welcome-0380f16915e7.jpg",
+			"verification": null,
+			"failure": null
+		},
+		{
+			"key": "second-letter-image",
+			"kind": "image",
+			"state": "generated",
+			"language": null,
+			"inputHash": "fd4f51690812e14527e09783b1fab6eb7d2b85a49a00407b9be5cdc8f1861c26",
+			"contentHash": "9e4b8a479c1a4e5050a82918f6b0d341e07c01b0b9a741a27c5fc2b33089906c",
+			"path": "/thai-script/lessons/lesson-01/images/second-letter-fd4f51690812.jpg",
+			"file": "images/second-letter-fd4f51690812.jpg",
+			"verification": null,
+			"failure": null
+		},
+		{
+			"key": "shapes-image",
+			"kind": "image",
+			"state": "generated",
+			"language": null,
+			"inputHash": "ea56b414ace01a6ad860efcfbc51a19da38ef2e9a779bc597a2cb6501c62565c",
+			"contentHash": "679edf94e622254f48ac212c44b036411a33ce779d7ba6b87f1a815c87028e15",
+			"path": "/thai-script/lessons/lesson-01/images/shapes-ea56b414ace0.jpg",
+			"file": "images/shapes-ea56b414ace0.jpg",
+			"verification": null,
+			"failure": null
+		},
+		{
+			"key": "harbour-image",
+			"kind": "image",
+			"state": "generated",
+			"language": null,
+			"inputHash": "a85171a870072b46ebfc5d90119d55c3a602e17478770f35dca0570e3565ce0f",
+			"contentHash": "0e3fe7d94d49c982480141f3eefe62c3cd3f9bd2073bcd532da80033f62d99c5",
+			"path": "/thai-script/lessons/lesson-01/images/harbour-a85171a87007.jpg",
+			"file": "images/harbour-a85171a87007.jpg",
+			"verification": null,
+			"failure": null
+		},
+		{
+			"key": "vowel-image",
+			"kind": "image",
+			"state": "generated",
+			"language": null,
+			"inputHash": "1a687e9c85f322d53193a152e2fcfbd53e103b72f7eeef82521d5b1d5163011e",
+			"contentHash": "db909aa9a17578d28d6f5bc50c635ad99c0789691196ecaba6a5254ed20c9298",
+			"path": "/thai-script/lessons/lesson-01/images/vowel-1a687e9c85f3.jpg",
+			"file": "images/vowel-1a687e9c85f3.jpg",
+			"verification": null,
+			"failure": null
+		},
+		{
+			"key": "tone-flag-image",
+			"kind": "image",
+			"state": "generated",
+			"language": null,
+			"inputHash": "b52486430e0d6fbb954921771b10ea342c8d815344f33a591deea99ff774d158",
+			"contentHash": "152f895ae23b923112b844de45c36620d3f76a7e1cf20d6318b8374d0b93efa6",
+			"path": "/thai-script/lessons/lesson-01/images/tone-flag-b52486430e0d.jpg",
+			"file": "images/tone-flag-b52486430e0d.jpg",
+			"verification": null,
+			"failure": null
+		},
+		{
+			"key": "word-naa-image",
+			"kind": "image",
+			"state": "generated",
+			"language": null,
+			"inputHash": "0a59246410f9b731a827118b361db353e28389a2fa658d01980cdc0d60286cdf",
+			"contentHash": "fe1438c8840f1a1f6e82bf5896826f6c6abc5ffd1742b6eb26a171a193669383",
+			"path": "/thai-script/lessons/lesson-01/images/word-naa-0a59246410f9.jpg",
+			"file": "images/word-naa-0a59246410f9.jpg",
+			"verification": null,
+			"failure": null
+		},
+		{
+			"key": "word-maa-image",
+			"kind": "image",
+			"state": "generated",
+			"language": null,
+			"inputHash": "ab5bb19876284a54f807d1d5301f33d5212855564aa62ddde3608f7fec83ebc7",
+			"contentHash": "4f5f84d38bee97d262928835850606753d4a9f049e26ed49b4b39cd562774556",
+			"path": "/thai-script/lessons/lesson-01/images/word-maa-ab5bb1987628.jpg",
+			"file": "images/word-maa-ab5bb1987628.jpg",
+			"verification": null,
+			"failure": null
+		},
+		{
+			"key": "word-naan-image",
+			"kind": "image",
+			"state": "generated",
+			"language": null,
+			"inputHash": "37847f04c27f6a7e5e6cd1c5a494120e938d6648e4a2eb5052600b7465976555",
+			"contentHash": "139036b4599e6fd4caa3a63cc1e8b5724e70324ea679dc639ce8c0b1c6e2d10b",
+			"path": "/thai-script/lessons/lesson-01/images/word-naan-37847f04c27f.jpg",
+			"file": "images/word-naan-37847f04c27f.jpg",
+			"verification": null,
+			"failure": null
 		}
 	]
 }

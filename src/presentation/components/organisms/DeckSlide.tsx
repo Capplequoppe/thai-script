@@ -23,6 +23,7 @@ type LoadState =
 			readonly status: "ready";
 			readonly deck: LessonDeck;
 			readonly audioUrls: ReadonlyMap<string, readonly string[]>;
+			readonly imageUrls: ReadonlyMap<string, string>;
 	  };
 
 /**
@@ -82,6 +83,40 @@ function extractAudioUrls(
 			return false;
 		});
 		if (allowed.length > 0) map.set(id, allowed);
+	}
+	return map;
+}
+
+/**
+ * A slide's illustration, under the same containment rule as its clips.
+ *
+ * Shares `extractAudioUrls`' boundary and its reasoning: a deck's JSON names
+ * the assets, the deck's JSON is generated, and a path that resolves outside
+ * `public/lessons/<lessonId>/` is refused rather than fetched. Refusal warns
+ * rather than dropping silently, because a slide with no illustration and a
+ * slide whose illustration was refused look identical on screen.
+ */
+function extractImageUrls(
+	raw: unknown,
+	lessonId: string,
+): ReadonlyMap<string, string> {
+	const map = new Map<string, string>();
+	if (typeof raw !== "object" || raw === null) return map;
+	const slidesRaw = (raw as Record<string, unknown>).slides;
+	if (!Array.isArray(slidesRaw)) return map;
+
+	const prefix = `${LESSON_ASSET_ROOT}/${lessonId}/`;
+	for (const item of slidesRaw) {
+		if (typeof item !== "object" || item === null) continue;
+		const { id, image } = item as Record<string, unknown>;
+		if (typeof id !== "string" || typeof image !== "string") continue;
+		if (image.startsWith(prefix) && !image.includes("..")) {
+			map.set(id, image);
+			continue;
+		}
+		console.warn(
+			`DeckSlide: refusing image outside "${prefix}" for slide "${id}": ${image}`,
+		);
 	}
 	return map;
 }
@@ -177,14 +212,39 @@ function ReplayButton({ urls }: { urls: readonly string[] }) {
 }
 
 /** Renders the one currently-visible slide of an already-loaded deck. */
+/**
+ * A slide's illustration.
+ *
+ * The picture carries the scene's meaning and mood; it never carries the
+ * letterform. A diffusion model will not draw a specific glyph shape
+ * reliably, and the glyph itself — set in the app's own font in the slide
+ * text — draws it exactly. So the heading is the accessible description: it
+ * states what the slide teaches, which is the thing a learner who cannot see
+ * the image actually needs.
+ */
+function SlideIllustration({ url, alt }: { url: string; alt: string }) {
+	return (
+		<img
+			src={url}
+			alt={alt}
+			loading="lazy"
+			decoding="async"
+			className="w-full rounded-xl"
+			style={{ aspectRatio: "3 / 2", objectFit: "cover" }}
+		/>
+	);
+}
+
 function DeckSlideContent({
 	deck,
 	slide,
 	audioUrls,
+	imageUrl,
 }: {
 	deck: LessonDeck;
 	slide: DeckSlideData;
 	audioUrls?: readonly string[];
+	imageUrl?: string;
 }) {
 	// Reveal state for a "reveal" slide, mirroring `Flashcard.tsx`'s own
 	// click-to-reveal pattern — the established mechanism in this repo, not a
@@ -220,6 +280,7 @@ function DeckSlideContent({
 			return (
 				<div className="space-y-4">
 					<h2 className="text-lg font-bold text-center">{slide.heading}</h2>
+					{imageUrl && <SlideIllustration url={imageUrl} alt={slide.heading} />}
 					<div className="space-y-2">
 						{slide.body.map((paragraph, i) => (
 							// biome-ignore lint/suspicious/noArrayIndexKey: body is a static ordered list of paragraphs with no other identity
@@ -355,6 +416,7 @@ export function DeckSlide({ deckPath, onComplete }: Props) {
 								slides: [],
 							},
 							audioUrls: new Map(),
+							imageUrls: new Map(),
 						});
 						return;
 					}
@@ -368,6 +430,7 @@ export function DeckSlide({ deckPath, onComplete }: Props) {
 					status: "ready",
 					deck: result.deck,
 					audioUrls: extractAudioUrls(raw, result.deck.lessonId),
+					imageUrls: extractImageUrls(raw, result.deck.lessonId),
 				});
 			})
 			.catch((err) => {
@@ -429,6 +492,7 @@ export function DeckSlide({ deckPath, onComplete }: Props) {
 				deck={state.deck}
 				slide={slide}
 				audioUrls={state.audioUrls.get(slide.id)}
+				imageUrl={state.imageUrls.get(slide.id)}
 			/>
 			<div className="flex gap-3">
 				{idx > 0 && (

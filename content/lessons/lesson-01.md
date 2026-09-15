@@ -30,6 +30,17 @@ forty-four rather than to two.
 Scene grammar is inherited from symbols.ts, not reinvented: the harbour is the
 low class, and these two letters are one mooring rope on the left bollard and
 the same rope on the right.
+
+ILLUSTRATIONS CARRY MEANING, NEVER LETTERFORM. A scene must not be asked to
+draw the shape of a glyph. Three attempts at "a post whose top curls over like
+a shepherd's crook" — the mnemonic for า — came back as a post with a rounded
+knob every time, and CLIP scored all three around 0.30 because the nouns it
+checks (post, meadow, light) were all present. It scores subjects, not
+geometry, so it cannot catch this and will wave it through.
+
+The glyph itself, set large in the app's own font, draws the shape perfectly
+and exactly. The picture's job is the sound and the meaning — for า, someone
+calling out across a valley, because the sound is long, open and held.
 -->
 
 # The harbour's two hums
@@ -37,6 +48,8 @@ the same rope on the right.
 lesson: lesson-01
 
 ## exposition welcome
+image: images/lesson-01/welcome.jpg
+scene: A grey carthorse stands alone on a stone harbour quay at dawn, head lowered toward the water, breath clouding in the cold air. Moored fishing boats rock behind it. Warm golden light rakes across the wet stone and the sea beyond is calm and pale.
 heading: Start with a sound you already own
 narration: en Before you look at anything, make a sound. Close your lips, and let a hum out through your nose. Hold it. That is today's first letter — you have owned that sound your whole life, and Thai does nothing surprising with it.
 narration: en Now listen to how a Thai teacher would say its name.
@@ -58,6 +71,8 @@ narration: en It pays twice. The example word in each name is a real word, so le
 - ม is the **horse** letter.  น is the **mouse** letter.
 
 ## exposition second-letter
+image: images/lesson-01/second-letter.jpg
+scene: A small brown mouse sits upright on a thick coiled mooring rope, whiskers forward and nose lifted. The rope loops around a worn iron bollard on the stone quay behind it. Warm low sunlight catches the mouse's fur and the harbour water glitters softly out of focus.
 heading: The second hum
 narration: en The second letter is the other hum you already make. This time your lips stay open and your tongue touches the ridge just behind your top teeth. Try it now, and hold it.
 narration: th นอ หนู
@@ -67,6 +82,8 @@ narration: en Its example word means mouse. Both of today's letters are hums, an
 - Neither letter takes a puff of air. No breath after it.
 
 ## exposition shapes
+image: images/lesson-01/shapes.jpg
+scene: A dockworker in a heavy jacket swings a thick mooring rope over an iron bollard at the edge of a stone quay, arms raised wide with the rope arcing above him. Fishing boats crowd the water behind. Warm golden evening light throws long shadows across the wet stone.
 heading: One rope, two bollards
 narration: en Only now, the shapes — and they are the same shape twice. Picture the harbour. A single mooring rope is slung over a bollard on the left; that is the first letter. Move the same rope to the bollard on the right, and you have the second.
 narration: en Nothing else about them differs. One loop, one tall stem, and the only question is which shoulder the loop hangs from. If you can remember which side the rope is on, you can never confuse these two again.
@@ -86,6 +103,8 @@ narration: en The loop on the left is the horse. The loop on the right is the mo
 - **น** — loop on the **right** — the *mouse* letter.
 
 ## exposition harbour
+image: images/lesson-01/harbour.jpg
+scene: A lone fisherman stands at the end of a long stone pier looking out over a wide calm harbour at sunrise, hands in his pockets. Dozens of small wooden boats lie at anchor with their masts still. Warm golden light floods low across flat water and mist hangs at the far shore.
 heading: Both letters live in the harbour
 narration: en Every Thai consonant belongs to one of three classes, and the class is what decides the tone of any syllable it starts. That is the machinery of the whole writing system, and it arrives properly in the next lesson.
 narration: en For today, one thing only: both of these letters belong to the same class, and in this course that class is the harbour. Put them there in your mind now — the rope, the water, the low idling drone of the place. When the tone rules arrive, you will not be learning where these two live. You will already know.
@@ -94,6 +113,8 @@ narration: en For today, one thing only: both of these letters belong to the sam
 - In this course, low class is the **harbour** — keep both letters there.
 
 ## exposition vowel
+image: images/lesson-01/vowel.jpg
+scene: A young woman stands alone on a high grassy ridge with her head tipped back and her hands cupped around her mouth, calling out across a wide open valley. Her whole body leans into the shout. Warm golden late afternoon light, hazy blue hills receding into the distance.
 heading: The crook that follows its letter
 narration: en Now a vowel, and in Thai a vowel is a thing with a position. Picture a post planted just after the consonant, its top curling over like a shepherd's crook. That is today's vowel. Listen to its name.
 narration: th สระอา
@@ -104,6 +125,8 @@ narration: en And it never stands alone. It always rides behind a consonant, bec
 - Vowel length changes meaning in Thai. Long and short are different vowels.
 
 ## exposition tone-flag
+image: images/lesson-01/tone-flag.jpg
+scene: A woman stands alone on an empty beach at dawn with her arms held straight out level at her sides, facing a perfectly flat sea. The horizon runs unbroken behind her and the water lies like glass. Cool blue shadow on the sand, warm gold light along the horizon.
 heading: Listen to how flat it is
 narration: en One warning before you build anything. Every Thai syllable carries a tone, and tone is part of the word — not expression, not mood. Change it and you have said something else.
 narration: en Everything you are about to hear sits on a flat, level tone in the middle of your voice. Copy that flatness exactly. The strongest instinct you will have to fight is the English one: letting your pitch rise because a word feels like a question, or fall because it feels like the end of a sentence. Do not let it move.
@@ -113,6 +136,8 @@ narration: en Why these syllables come out flat is the whole subject of the next
 - Resist letting your pitch rise or fall. Copy the flat line exactly.
 
 ## exposition word-naa
+image: images/lesson-01/word-naa.jpg
+scene: A farmer in a wide straw hat wades knee deep through a flooded rice paddy, bending to press a seedling into the water with ripples spreading around him. Terraced green fields stretch away behind. Warm golden morning light, mist rising off the water, distant palms.
 heading: Your first word
 narration: en Put the mouse letter in front of the long vowel. Consonant first, vowel after — that is the order a Thai syllable is built in, and it is the order you will use for every word from here on.
 narration: th นานา
@@ -134,6 +159,8 @@ narration: en A rice field. If your pitch moved while you said it, say it once m
 - Flat, mid tone. No rise, no fall.
 
 ## exposition word-maa
+image: images/lesson-01/word-maa.jpg
+scene: A young woman walks toward the viewer along a wooden dock with a travel bag over one shoulder, smiling, one arm raised overhead in greeting. Boats and harbour buildings blur softly behind her. Warm golden light from behind catches the edge of her hair.
 heading: Swap the front, keep the back
 narration: en Now change only the first piece. Take the same long vowel, and put the horse letter in front of it instead of the mouse.
 narration: th มา
@@ -155,6 +182,8 @@ narration: en To come.
 - **มา** — *to come*.
 
 ## exposition word-naan
+image: images/lesson-01/word-naan.jpg
+scene: An old fisherman sits alone on an upturned crate mending a net spread across his knees, hands working, face deeply lined. Behind him the same harbour lies still under a long low sun. Warm amber light and very long shadows stretch across the worn stone.
 heading: Close the syllable
 narration: en One more, and this time nothing new is added — you will use a letter you already have, in a place you have not used it yet. Take your first word, the rice field, and put the mouse letter on the end of it as well as the front.
 narration: th นาน

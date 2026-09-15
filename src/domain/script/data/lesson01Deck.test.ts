@@ -56,8 +56,16 @@ type RawSlide = {
 type RawDeck = { lessonId: string; title: string; slides: RawSlide[] };
 
 const rawDeck = JSON.parse(readFileSync(DECK_PATH, "utf-8")) as RawDeck;
+type RawAsset = {
+	key: string;
+	kind: "audio" | "image";
+	language?: "en" | "th";
+	state: "absent" | "generated" | "failed";
+	path: string | null;
+	verification: { outcome: string; attempts: number } | null;
+};
 const manifest = JSON.parse(readFileSync(MANIFEST_PATH, "utf-8")) as {
-	assets: { path: string | null }[];
+	assets: RawAsset[];
 };
 
 const lesson1Entry = lessonEntryByNumber(1);
@@ -299,7 +307,12 @@ describe("the committed deck", () => {
 		const spoken = script
 			.split("\n")
 			.filter((line) => /^narration: (en|th) /.test(line));
-		expect(spoken.length).toBe(manifest.assets.length);
+		// Clips only. Illustrations are manifest assets too, and counting them
+		// here would make this assertion drift every time a slide gains or
+		// loses a picture — which has nothing to do with whether a spoken line
+		// became a clip.
+		const clips = manifest.assets.filter((a) => a.kind === "audio");
+		expect(spoken.length).toBe(clips.length);
 
 		const thaiLines = spoken.filter((line) =>
 			line.startsWith("narration: th "),

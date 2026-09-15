@@ -16,7 +16,8 @@
 				"/thai-script/lessons/lesson-01/audio/64ed6d0f4050518a.mp3",
 				"/thai-script/lessons/lesson-01/audio/b360209bed2ba19d.mp3",
 				"/thai-script/lessons/lesson-01/audio/9015a757b4024f3a.mp3"
-			]
+			],
+			"image": "/thai-script/lessons/lesson-01/images/welcome-0380f16915e7.jpg"
 		},
 		{
 			"kind": "exposition",
@@ -48,7 +49,8 @@
 				"/thai-script/lessons/lesson-01/audio/d29d34b7271a47c2.mp3",
 				"/thai-script/lessons/lesson-01/audio/9eb44062ee531096.mp3",
 				"/thai-script/lessons/lesson-01/audio/30b13bc101e3e8e3.mp3"
-			]
+			],
+			"image": "/thai-script/lessons/lesson-01/images/second-letter-fd4f51690812.jpg"
 		},
 		{
 			"kind": "exposition",
@@ -62,7 +64,8 @@
 			"audio": [
 				"/thai-script/lessons/lesson-01/audio/4d8277d8a68a78a9.mp3",
 				"/thai-script/lessons/lesson-01/audio/5e76da1dbe6501d5.mp3"
-			]
+			],
+			"image": "/thai-script/lessons/lesson-01/images/shapes-ea56b414ace0.jpg"
 		},
 		{
 			"kind": "retrieval",
@@ -93,7 +96,8 @@
 			"audio": [
 				"/thai-script/lessons/lesson-01/audio/27bfc713f19f6076.mp3",
 				"/thai-script/lessons/lesson-01/audio/7ca30450564ff49b.mp3"
-			]
+			],
+			"image": "/thai-script/lessons/lesson-01/images/harbour-a85171a87007.jpg"
 		},
 		{
 			"kind": "exposition",
@@ -109,7 +113,8 @@
 				"/thai-script/lessons/lesson-01/audio/e4f76c4fc0f33876.mp3",
 				"/thai-script/lessons/lesson-01/audio/b209d27bdbea874c.mp3",
 				"/thai-script/lessons/lesson-01/audio/a8c4a2673033b86c.mp3"
-			]
+			],
+			"image": "/thai-script/lessons/lesson-01/images/vowel-1a687e9c85f3.jpg"
 		},
 		{
 			"kind": "exposition",
@@ -124,7 +129,8 @@
 				"/thai-script/lessons/lesson-01/audio/8b8d3178a9b5ce43.mp3",
 				"/thai-script/lessons/lesson-01/audio/59f5c3852917c340.mp3",
 				"/thai-script/lessons/lesson-01/audio/d831f6cfa59d8bcb.mp3"
-			]
+			],
+			"image": "/thai-script/lessons/lesson-01/images/tone-flag-b52486430e0d.jpg"
 		},
 		{
 			"kind": "exposition",
@@ -139,7 +145,8 @@
 				"/thai-script/lessons/lesson-01/audio/9c7782bc797992c9.mp3",
 				"/thai-script/lessons/lesson-01/audio/73ab5a8cd209bab5.mp3",
 				"/thai-script/lessons/lesson-01/audio/79c1c0ff48129670.mp3"
-			]
+			],
+			"image": "/thai-script/lessons/lesson-01/images/word-naa-0a59246410f9.jpg"
 		},
 		{
 			"kind": "retrieval",
@@ -175,7 +182,8 @@
 				"/thai-script/lessons/lesson-01/audio/80d0975db8895496.mp3",
 				"/thai-script/lessons/lesson-01/audio/3df73c415ffdfc38.mp3",
 				"/thai-script/lessons/lesson-01/audio/b41d4feae4bd5bf3.mp3"
-			]
+			],
+			"image": "/thai-script/lessons/lesson-01/images/word-maa-ab5bb1987628.jpg"
 		},
 		{
 			"kind": "retrieval",
@@ -208,7 +216,8 @@
 				"/thai-script/lessons/lesson-01/audio/129187afb5b43c3e.mp3",
 				"/thai-script/lessons/lesson-01/audio/a6c774e80a3d9e89.mp3",
 				"/thai-script/lessons/lesson-01/audio/0a433ac78b9f56e2.mp3"
-			]
+			],
+			"image": "/thai-script/lessons/lesson-01/images/word-naan-37847f04c27f.jpg"
 		},
 		{
 			"kind": "retrieval",

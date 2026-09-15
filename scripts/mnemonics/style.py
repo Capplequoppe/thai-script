@@ -1,0 +1,107 @@
+"""The parts of every illustration prompt that never vary.
+
+Kept here rather than repeated in `mnemonics.json` so that authoring a word
+costs one scene description and nothing else, and so that restyling the whole
+set is a one-line edit rather than a rewrite of every entry.
+
+The style was derived from the existing hand-made illustrations under
+`public/vocabulary/images/` (see `9 ต้อง.jpg`, `4 นี้.jpg`): anime/manga line
+art on a visible paper tooth, warm golden key light, cool shadows, drifting
+bokeh motes, 3:2 landscape.
+"""
+
+from __future__ import annotations
+
+# 3:2 landscape, matching the existing illustrations' 1024x683. SDXL is
+# trained at ~1 megapixel and degrades badly away from it, so generate at the
+# nearest standard bucket and downscale to the shipped size.
+GENERATION_SIZE = (1216, 832)
+SHIPPED_SIZE = (1024, 683)
+
+# Deliberately short. Both text encoders truncate at 77 tokens and the scene
+# needs most of that budget: an earlier 58-token version left no room, and
+# moving it to `prompt_2` instead — SDXL's dominant encoder — swamped the
+# scene completely and produced three generic anime portraits with no cat, no
+# keyring and no SWAT team in them. Style is a seasoning here, not the dish.
+STYLE_SUFFIX = "anime illustration, watercolour, warm golden light, paper grain"
+
+# Diffusion models cannot spell, and cannot render Thai script at all. Every
+# caption is composited afterwards with a real font (see `compose.py`), so the
+# generator is told in the strongest terms to leave the frame clean — a word
+# baked into the image is unfixable, where a blank margin is free.
+NEGATIVE_PROMPT = (
+    "text, letters, words, writing, caption, subtitle, signage, watermark, "
+    "signature, logo, speech bubble, letterforms, gibberish text, "
+    "numbers, digits, numerals, clock face numbers, price tag, "
+    "lowres, blurry, jpeg artifacts, deformed hands, extra fingers, "
+    "extra limbs, mutated, disfigured, bad anatomy, ugly, "
+    "photorealistic, 3d render, photograph"
+)
+
+GUIDANCE_SCALE = 6.5
+INFERENCE_STEPS = 32
+
+# Both CLIP text encoders hard-truncate at 77 tokens, silently. Concatenating
+# scene and style gave 112-140 tokens, so the style was cut off entirely and
+# the first spike came back near-monochrome and semi-photographic — none of
+# "soft watercolour wash", "warm golden key light" or "rich saturated palette"
+# ever reached the model.
+#
+# SDXL has two text encoders and `prompt_2` feeds the second, so the scene and
+# the style each get a budget of their own instead of competing for one.
+# Both encoders get the same text: SDXL expects them aligned, and splitting
+# scene from style across them makes whichever encoder holds the style win.
+MAX_PROMPT_TOKENS = 77
+
+
+def build_prompt(scene: str) -> str:
+    """Scene first, style appended — the scene must survive any truncation."""
+    return f"{scene.strip().rstrip('.')}. {STYLE_SUFFIX}"
+
+
+# --- FLUX ---------------------------------------------------------------
+#
+# FLUX.1-schnell rather than -dev: dev is a gated repository needing an HF
+# token, schnell is Apache-2.0 and ungated. Schnell is guidance-distilled, so
+# it takes 4 steps and ignores a negative prompt entirely — the "no text"
+# instruction that SDXL gets negatively has to be carried by the scene not
+# mentioning text in the first place, which the authoring rule already
+# enforces.
+#
+# Its T5 encoder takes 512 tokens against CLIP's 77, so the style can be
+# spelled out properly here instead of being cut to 13 tokens to leave room.
+FLUX_MODEL_ID = "black-forest-labs/FLUX.1-schnell"
+# Both FLUX repositories are gated (`gated=auto`): reaching them needs the
+# licence accepted on huggingface.co and a token in the environment. With no
+# token present the download fails with a 401 before a single byte arrives.
+FLUX_REQUIRES_TOKEN = True
+
+# PixArt-Sigma is the ungated alternative with the property that actually
+# matters here — a T5 text encoder instead of CLIP, which is what buys prompt
+# adherence. 0.6B transformer, so it fits a 4090 with room to spare, and its
+# 300-token budget is still four times CLIP's 77.
+PIXART_MODEL_ID = "PixArt-alpha/PixArt-Sigma-XL-2-1024-MS"
+PIXART_STEPS = 25
+PIXART_GUIDANCE = 4.5
+PIXART_MAX_SEQUENCE_LENGTH = 300
+FLUX_STEPS = 4
+FLUX_GUIDANCE = 0.0
+FLUX_MAX_SEQUENCE_LENGTH = 512
+
+FLUX_STYLE_SUFFIX = (
+    "Anime illustration with clean confident ink linework and a soft "
+    "watercolour wash. Warm golden key light against cool blue shadows, "
+    "drifting dust motes, visible paper grain, rich saturated colour. "
+    "Expressive faces, cinematic composition, detailed background. "
+    "No text, letters, numbers or signage anywhere in the image."
+)
+
+
+def build_flux_prompt(scene: str) -> str:
+    """Scene first, then the house style — room for both under a T5 budget.
+
+    Shared by the FLUX and PixArt backends: both encode with T5, so both have
+    the headroom to state the style in sentences rather than the 13-token
+    shorthand CLIP forced.
+    """
+    return f"{scene.strip().rstrip('.')}. {FLUX_STYLE_SUFFIX}"

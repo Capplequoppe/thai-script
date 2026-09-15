@@ -24,4 +24,18 @@ dependencies = [
     # ElevenLabs HTTP, and WAV framing on the way to ffmpeg.
     "requests",
     "soundfile",
+    # Slide illustrations — PixArt-Sigma through diffusers, scored against the
+    # scene with CLIP before it is accepted. Shares the house style in
+    # scripts/mnemonics/style.py with the 433 vocabulary illustrations, so the
+    # deck does not look like a different product from the review cards.
+    "diffusers>=0.31",
+    "accelerate>=1.0",
+    "safetensors>=0.4",
+    "pillow>=10",
+    "sentencepiece>=0.2",
+    # PixArt's `clean_caption=True` prompt preprocessing needs it and
+    # silently falls back to False without it — which would mean the
+    # committed illustrations were not what this environment produces.
+    "beautifulsoup4>=4.12",
+    "ftfy>=6.1",
 ]
