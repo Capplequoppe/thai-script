@@ -67,3 +67,6 @@ video-originals/
 # The lesson-deck pipeline's own environment (qwen-tts pins transformers 4.x,
 # which the backend cannot share). The lock file is committed; the venv is not.
 scripts/deck-env/.venv/
+
+# Voice-audition samples, generated on demand and never shipped.
+public/_samples/

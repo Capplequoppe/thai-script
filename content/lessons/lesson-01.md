@@ -1,114 +1,177 @@
 <!--
-Bare open syllables are voiced twice, without a space: `นานา`, not `นา`.
+TWO RULES GOVERN THIS FILE.
 
-Measured, not stylistic. `eleven_v3` — the only ElevenLabs model that speaks
-Thai at all — cannot render a bare open monosyllable reliably. `นา` came back
-as `น่า` on six seeds out of six, at stability 0.5 and 1.0, on both Thai voices
-the account can reach. `นานา` is correct five times in six. A *closed* syllable
-is fine on the first attempt (`นาน` never failed), and so is anything longer.
+1. An `en` narration line contains no Thai — no glyphs, and no romanisation
+   either. "maaw maa" read by an English voice is an English mouth making a
+   Thai sound badly, and in a tonal language that is worse than useless: the
+   learner's ear encodes the wrong target and then practises against it. The
+   English voice describes, names roles, and points. Every Thai sound the
+   learner hears comes from a `th` clip in the Thai voice.
 
-A space re-isolates the syllables and brings the failure back: `นา นา` scored
-1 in 4. Write the repetition as one token.
+   The consequence, on purpose: English can never say "this letter is called
+   X". It says "listen to its name", and the Thai clip says the name.
 
-The learner hears the syllable drilled twice, which is what a teacher does
-anyway. The glyph on screen stays the single word.
+2. Bare open syllables are voiced twice, as one token: `นานา`, not `นา`.
+   Measured, not stylistic. `eleven_v3` — the only ElevenLabs model that speaks
+   Thai at all — rendered `นา` as น่า on six seeds out of six, at stability 0.5
+   and 1.0, on both Thai voices the account can reach. `นานา` is correct five
+   times in six, and a closed syllable such as `นาน` never failed. A space
+   re-isolates the syllables and brings the failure back (`นา นา` scored 1 in
+   4), so the repetition is written as one token. The learner hears the
+   syllable drilled twice, which is what a teacher does anyway.
+
+TEACHING ORDER. Sound before symbol, always. A Thai teacher does not open a
+first lesson with a glyph; they make you produce the sound, then hang the shape
+on a sound you already own. The letter *names* do the heavy lifting, because a
+Thai name is itself a mnemonic — consonant sound, then a word beginning with
+it. Teaching that pattern in lesson one hands the learner the key to all
+forty-four rather than to two.
+
+Scene grammar is inherited from symbols.ts, not reinvented: the harbour is the
+low class, and these two letters are one mooring rope on the left bollard and
+the same rope on the right.
 -->
 
-# Maaw maa, Naaw nuu, and Long a
+# The harbour's two hums
 
 lesson: lesson-01
 
 ## exposition welcome
-heading: Two letters, one shared shape
-narration: en Two letters to begin with, and they come as a matched pair. Listen to the first one.
+heading: Start with a sound you already own
+narration: en Before you look at anything, make a sound. Close your lips, and let a hum out through your nose. Hold it. That is today's first letter — you have owned that sound your whole life, and Thai does nothing surprising with it.
+narration: en Now listen to how a Thai teacher would say its name.
 narration: th มอ ม้า
-narration: en That is maaw maa. Now the second.
-narration: th นอ หนู
-narration: en Naaw nuu. Both are soft, humming sounds you already make in English — no puff of air after either one.
-narration: en Look at the shapes. Each letter is a single loop hanging off a tall stem, and the only difference between them is which shoulder the loop sits on. Maaw maa keeps its loop on the left. Naaw nuu swings it over to the right.
-- ม and น both carry the same low, husky "m" and "n" sounds you already make in English — no aspiration, no surprise.
-- Each glyph is one loop hung off a tall stem. The whole difference between them is which shoulder the loop sits on.
-- ม keeps its loop on the left shoulder. น swings it over to the right.
+narration: en Two parts. The first part is the sound itself. The second is an ordinary Thai word that begins with that sound — and the word means horse. The name is not a label to memorise. It is a sound with a picture already attached.
+- Close your lips and hum through your nose. You already own this sound.
+- ม is that hum.
+- Its full name is the sound, then a word that begins with it — and that word means *horse*. Listen to the name; you will learn to write it later.
 
-## exposition class
-heading: Same class, same tone habits
-narration: en Both letters belong to the low class. Low class is a label to notice now and use later — every tone rule you meet from lesson two onward routes through it.
-narration: en For today the pattern is all you need: low, low. Every low-class letter after these two behaves the same way.
-- ม and น both belong to the low consonant class, so they will follow the same tone rules once those rules arrive in lesson two.
-- For now the class is just a label to notice: low, low — every low-class letter after them behaves the same way.
+## exposition name-pattern
+heading: The trick that covers all forty-four
+narration: en This is the single most useful thing in the lesson, so listen to both names one after the other and try to hear what they share.
+narration: th มอ ม้า
+narration: th นอ หนู
+narration: en Every consonant in Thai is named this way, and every first part ends on the same vowel. Forty-four letters, one naming pattern. That means you are never learning a name from scratch — you only have to catch the consonant at the very front and let the rest fall into place.
+narration: en It pays twice. The example word in each name is a real word, so learning the alphabet quietly teaches you vocabulary at the same time.
+- Every Thai consonant is named the same way: **its sound + a word that starts with it**.
+- Every first part ends on the same vowel — so you only ever listen for the consonant at the front.
+- ม is the **horse** letter.  น is the **mouse** letter.
+
+## exposition second-letter
+heading: The second hum
+narration: en The second letter is the other hum you already make. This time your lips stay open and your tongue touches the ridge just behind your top teeth. Try it now, and hold it.
+narration: th นอ หนู
+narration: en Its example word means mouse. Both of today's letters are hums, and neither one has any puff of air after it. If you hear yourself adding a small breath, you have imported an English habit — take it out.
+- น is the hum made with your tongue at the ridge behind your top teeth.
+- Its name follows the same pattern, and its word means *mouse*.
+- Neither letter takes a puff of air. No breath after it.
+
+## exposition shapes
+heading: One rope, two bollards
+narration: en Only now, the shapes — and they are the same shape twice. Picture the harbour. A single mooring rope is slung over a bollard on the left; that is the first letter. Move the same rope to the bollard on the right, and you have the second.
+narration: en Nothing else about them differs. One loop, one tall stem, and the only question is which shoulder the loop hangs from. If you can remember which side the rope is on, you can never confuse these two again.
+- ม and น are the same shape mirrored.
+- **ม** — the loop hangs from the **left** shoulder.
+- **น** — the same loop, moved to the **right**.
 
 ## retrieval spot-the-loop
 reveal: spot-the-loop-answer
-prompt: ม and น are mirror images of each other. Which shoulder does ม's loop sit on, and which shoulder does น's?
-narration: en These two are mirror images. Say out loud which shoulder each loop sits on, then turn the slide over.
+prompt: Without scrolling back: which of the two letters hangs its loop on the left shoulder, and what does that letter's example word mean?
+narration: en Answer out loud before you turn this over. Saying it wrong and then being corrected will fix it in your memory far harder than reading the right answer would.
 
 ## reveal spot-the-loop-answer
 retrieval: spot-the-loop
-narration: en Maaw maa keeps its loop on the left shoulder. Naaw nuu swings it to the right.
-- ม: left shoulder. น: right shoulder.
+narration: en The loop on the left is the horse. The loop on the right is the mouse.
+- **ม** — loop on the **left** — the *horse* letter.
+- **น** — loop on the **right** — the *mouse* letter.
+
+## exposition harbour
+heading: Both letters live in the harbour
+narration: en Every Thai consonant belongs to one of three classes, and the class is what decides the tone of any syllable it starts. That is the machinery of the whole writing system, and it arrives properly in the next lesson.
+narration: en For today, one thing only: both of these letters belong to the same class, and in this course that class is the harbour. Put them there in your mind now — the rope, the water, the low idling drone of the place. When the tone rules arrive, you will not be learning where these two live. You will already know.
+- Both ม and น are **low class**.
+- Class decides tone. That is the engine of Thai spelling, and it starts in lesson 2.
+- In this course, low class is the **harbour** — keep both letters there.
 
 ## exposition vowel
-heading: The long vowel า
-narration: en Now a vowel. Its name is sara aa.
+heading: The crook that follows its letter
+narration: en Now a vowel, and in Thai a vowel is a thing with a position. Picture a post planted just after the consonant, its top curling over like a shepherd's crook. That is today's vowel. Listen to its name.
 narration: th สระอา
-narration: en It trails behind a consonant and stretches the sound into a long, open "aa" — hold it until you run out of breath.
-narration: en It never stands on its own. It always rides behind the consonant that starts the syllable.
-- The vowel sign า trails a consonant and stretches its sound into a long, open "aa" — hold it until it runs out of breath.
-- It never stands alone; it always rides behind the consonant that starts the syllable.
+narration: en The sound is a long, open ah — the one a doctor asks for, drawn right out to the end of your breath. Long is not decoration here. Length changes meaning in Thai, so a short version of this sound is a different vowel and often a different word.
+narration: en And it never stands alone. It always rides behind a consonant, because it is the consonant that starts the syllable and the vowel that finishes it.
+- า is a **long** vowel: an open *ah*, held.
+- It follows its consonant on the page, and never stands alone.
+- Vowel length changes meaning in Thai. Long and short are different vowels.
+
+## exposition tone-flag
+heading: Listen to how flat it is
+narration: en One warning before you build anything. Every Thai syllable carries a tone, and tone is part of the word — not expression, not mood. Change it and you have said something else.
+narration: en Everything you are about to hear sits on a flat, level tone in the middle of your voice. Copy that flatness exactly. The strongest instinct you will have to fight is the English one: letting your pitch rise because a word feels like a question, or fall because it feels like the end of a sentence. Do not let it move.
+narration: en Why these syllables come out flat is the whole subject of the next lesson. For now, just match what you hear.
+- Every Thai syllable has a tone. Tone is part of the word's identity.
+- Today's syllables are all **mid tone** — flat and level.
+- Resist letting your pitch rise or fall. Copy the flat line exactly.
 
 ## exposition word-naa
-heading: นา — rice farm
-narration: en Put naaw nuu in front of that long vowel, and you have your first word.
+heading: Your first word
+narration: en Put the mouse letter in front of the long vowel. Consonant first, vowel after — that is the order a Thai syllable is built in, and it is the order you will use for every word from here on.
 narration: th นานา
-narration: en Naa — a rice farm, or a field. One of the first nouns a farmer's child ever hears.
-- Put น in front of the long vowel: น plus า makes นา.
-- นา (naa) means a rice farm or a field — one of the first nouns a farmer's child ever hears.
+narration: en That word means a rice field. It is about as ordinary a word as Thai has, and you built it out of two pieces you learned four minutes ago.
+- น + า = **นา**
+- นา — a rice field, a paddy.
+- Consonant first, vowel second. This is how every Thai syllable is assembled.
 
 ## retrieval build-naa
 reveal: build-naa-answer
-prompt: น plus the long vowel — what word does that spell, and what does it mean?
-narration: en Naaw nuu, then the long vowel. Say the word that spells, and say what it means.
+prompt: Build it yourself: the letter whose loop is on the right, followed by the long vowel. Say the syllable aloud — flat and level — and say what it means.
+narration: en Say it out loud, on a flat tone, before you turn this over.
 
 ## reveal build-naa-answer
 retrieval: build-naa
 narration: th นานา
-narration: en Naa — a rice farm, or a field.
-- นา — naa — a rice farm or a field.
+narration: en A rice field. If your pitch moved while you said it, say it once more and hold it level.
+- **นา** — a rice field.
+- Flat, mid tone. No rise, no fall.
 
 ## exposition word-maa
-heading: มา — to come
-narration: en Now swap the consonant. Maaw maa in front of the very same long vowel.
+heading: Swap the front, keep the back
+narration: en Now change only the first piece. Take the same long vowel, and put the horse letter in front of it instead of the mouse.
 narration: th มา
-narration: en Maa — to come. A verb you will reach for constantly from here on.
-- Swap the consonant: ม plus the same long vowel makes มา.
-- มา (maa) means "to come" — a verb you will reach for constantly from here on.
+narration: en That one is a verb: to come. It turns up everywhere — in greetings, in directions, in asking where somebody is from.
+narration: en Notice what just happened. You did not learn a new word. You swapped one letter in a word you already had, and Thai handed you a second one. That is the whole payoff of learning the script instead of memorising phrases.
+- ม + า = **มา**
+- มา — *to come*. You will meet this verb constantly.
+- Same vowel, different consonant, different word.
 
 ## retrieval build-maa
 reveal: build-maa-answer
-prompt: Swap นา's first consonant for ม. What word do you get, and what does it mean?
-narration: en Take naa and swap its first consonant for maaw maa. Say the word, and say what it means.
+prompt: Take the word for a rice field and swap its first letter for the one whose loop hangs on the left. Say the new syllable aloud, and say what it means.
+narration: en Out loud first, flat and level. Then turn it over.
 
 ## reveal build-maa-answer
 retrieval: build-maa
 narration: th มา
-narration: en Maa — to come.
-- มา — maa — to come.
+narration: en To come.
+- **มา** — *to come*.
 
 ## exposition word-naan
-heading: นาน — a long time
-narration: en One more. Close the syllable with a second naaw nuu on the end.
+heading: Close the syllable
+narration: en One more, and this time nothing new is added — you will use a letter you already have, in a place you have not used it yet. Take your first word, the rice field, and put the mouse letter on the end of it as well as the front.
 narration: th นาน
-narration: en Naan — a long time. The same long vowel, now bookended by two low-class letters.
-- Close the syllable with a second น: น plus the vowel plus น makes นาน.
-- นาน (naan) means "a long time" — the same vowel, now bookended by two low-class letters.
+narration: en That means a long time. The same letter did two different jobs in one syllable: it started the sound, and it stopped it. Thai consonants do that routinely, and which job a letter is doing depends only on where it sits.
+narration: en Listen to the ending. The sound closes cleanly and stays where it is. It does not trail off, and it does not pick up an extra vowel on the way out.
+- น + า + น = **นาน**
+- นาน — *a long time*.
+- The same consonant can both **open** and **close** a syllable. Position decides its job.
 
 ## retrieval build-naan
 reveal: build-naan-answer
-prompt: Bookend the long vowel with น on both sides. What word does that spell, and what does it mean?
-narration: en Put naaw nuu on both sides of the long vowel. Say the word, and say what it means.
+prompt: Put the mouse letter on both ends of the long vowel. Say the syllable aloud, close the ending cleanly, and say what it means.
+narration: en Say it, close it cleanly, then turn it over.
 
 ## reveal build-naan-answer
 retrieval: build-naan
 narration: th นาน
-narration: en Naan — a long time.
-- นาน — naan — a long time.
+narration: en A long time. Two letters and one vowel, and you have three words — that is what the alphabet buys you.
+- **นาน** — *a long time*.
+- Two consonants, one vowel, three words: นา, มา, นาน.

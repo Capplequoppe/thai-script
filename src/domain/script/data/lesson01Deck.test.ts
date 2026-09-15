@@ -7,6 +7,7 @@ import { StorageLearnerStateRepository } from "../../../infrastructure/persisten
 import vocabularyData from "../../vocabulary/data/vocabulary.json";
 import { VocabularyService } from "../../vocabulary/services/VocabularyLessonService";
 import type { VocabEntry } from "../../vocabulary/types";
+import { consonants } from "../data/symbols";
 import { LearningService } from "../services/ScriptLessonService";
 import {
 	DECK_LESSON_IDS,
@@ -240,6 +241,50 @@ describe("the committed deck", () => {
 		for (const asset of thai) {
 			expect(asset.verification?.outcome).toBe("verified");
 		}
+	});
+
+	it("no English narration line carries Thai, as a glyph or romanised", () => {
+		// The English voice is not a Thai speaker. A Thai sound shaped by an
+		// English mouth teaches the learner the wrong target, and in a tonal
+		// language they then practise against it — so every Thai sound has to
+		// come from a `th` clip.
+		//
+		// The generator's parser already refuses Thai *glyphs* on an English
+		// line, which is the half a regex can catch. Romanisation is the half
+		// it cannot: "maaw maa" is Thai wearing a Latin costume and reads as
+		// ordinary English text. This checks it against the romanised names the
+		// app itself declares, so the two can never drift apart.
+		const script = readFileSync(
+			join(REPO_ROOT, "content", "lessons", "lesson-01.md"),
+			"utf8",
+		);
+		const english = script
+			.split("\n")
+			.filter((line) => line.startsWith("narration: en "))
+			.map((line) => line.slice("narration: en ".length).toLowerCase());
+		expect(english.length).toBeGreaterThan(0);
+
+		const romanised = consonants
+			.map((c) => c.nameRomanized)
+			.filter(
+				(name): name is string => typeof name === "string" && name.length > 0,
+			)
+			.flatMap((name) => name.toLowerCase().split(/\s+/))
+			// Strip tone diacritics so "máa" and "maa" are the same token.
+			.map((token) => token.normalize("NFD").replace(/[\u0300-\u036f]/g, ""))
+			.filter((token) => token.length >= 3);
+
+		const offenders: string[] = [];
+		for (const line of english) {
+			const words = line
+				.normalize("NFD")
+				.replace(/[\u0300-\u036f]/g, "")
+				.split(/[^a-z]+/);
+			for (const token of romanised) {
+				if (words.includes(token)) offenders.push(`${token} :: ${line}`);
+			}
+		}
+		expect(offenders).toEqual([]);
 	});
 
 	it("every narration line in the script became exactly one clip", () => {

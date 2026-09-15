@@ -34,6 +34,7 @@ _HEADING = re.compile(r"^##\s+(?P<kind>[a-z]+)\s+(?P<id>[A-Za-z0-9_-]+)\s*$")
 _FIELD = re.compile(r"^(?P<key>[a-z]+):\s*(?P<value>.*)$")
 _BULLET = re.compile(r"^-\s+(?P<text>.+)$")
 _NARRATION = re.compile(r"^(?P<lang>en|th)\s+(?P<text>.+)$")
+_THAI = re.compile(r"[\u0e00-\u0e7f]")
 
 
 class ScriptError(ValueError):
@@ -154,10 +155,19 @@ def _parse_narration(slide: Slide, value: str, path: Path, number: int) -> Segme
 			"checked by transcribing them back"
 		)
 	language: Language = matched.group("lang")  # type: ignore[assignment]
+	text = matched.group("text").strip()
+	if language == "en" and _THAI.search(text):
+		raise ScriptError(
+			f"{path}:{number}: an English narration line contains Thai. The "
+			"English voice is not a Thai speaker, and hearing a Thai sound "
+			"shaped by an English mouth teaches the learner the wrong target "
+			"— in a tonal language, one they will then practise against. "
+			"Describe the letter in English and let a `th` line say it."
+		)
 	return Segment(
 		key=f"{slide.id}-{len(slide.segments)}",
 		language=language,
-		text=matched.group("text").strip(),
+		text=text,
 	)
 
 

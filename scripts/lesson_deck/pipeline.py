@@ -56,7 +56,16 @@ PIPELINE_VERSION = 1
 #: Seed is the cheap axis and the only one that is a lever here: the sibling
 #: sentence pipeline measured speed, and slowing delivery down made its defect
 #: worse rather than better.
-RETRY_SEEDS: tuple[int, ...] = (42, 1, 7)
+# Eight, not three. Short Thai has high variance against the transcriber: a
+# letter name such as `มอ ม้า` comes back as `หมอ ม้า` — `มอ` is not a word on
+# its own, so the transcriber substitutes the one that is — and that scores
+# 0.909 against a 0.9 threshold. The clip is right and the check is only just
+# convinced, so the run needs enough attempts to find one it accepts.
+#
+# Cheap now in a way it was not before: clips are content-addressed, so a text
+# is attempted until it verifies *once* and every later use of it reuses that
+# file rather than rolling again.
+RETRY_SEEDS: tuple[int, ...] = (42, 1, 7, 13, 99, 2024, 5, 77)
 
 #: Below this, two Thai strings are different utterances rather than one
 #: utterance transcribed with a wobble.
@@ -155,6 +164,9 @@ class DeckGenerator:
 		self.report = RunReport(lesson_id=paths.lesson_id)
 		self.manifest = Manifest(lesson_id=paths.lesson_id, voice=spec.to_json())
 		self._cache = previous_assets(_read_prior_manifest(self.manifest_path))
+		#: Clips already produced *this run*, by input hash. Two segments with
+		#: the same text are the same clip; see `_produce_audio`.
+		self._produced: dict[str, AssetRecord] = {}
 
 	# -- paths -------------------------------------------------------------
 
@@ -204,8 +216,28 @@ class DeckGenerator:
 	def _produce_audio(self, segment: Segment) -> None:
 		record = self.manifest.by_key(segment.key)
 		assert record is not None
-		relative = f"audio/{segment.key}-{record.input_hash[:12]}.mp3"
+		# Content-addressed, not keyed on the slide the line happens to sit on.
+		# A clip *is* its text, language and voice — that is exactly what the
+		# input hash covers — so the same words asked for twice are one file.
+		relative = f"audio/{record.input_hash[:16]}.mp3"
 		if self._reuse(record, relative):
+			return
+
+		# The same text, synthesised twice, is not merely wasteful: it is two
+		# independent rolls of the dice, and short Thai does not always come
+		# back right. A word that has already been generated *and verified* in
+		# this run must not get a second chance to fail — the learner would
+		# then hear the same word pronounced two different ways depending on
+		# which slide they were on, which is worse than either take alone.
+		already = self._produced.get(record.input_hash)
+		if already is not None:
+			record.state = already.state
+			record.content_hash = already.content_hash
+			record.file = already.file
+			record.path = already.path
+			record.verification = already.verification
+			record.failure = already.failure
+			self.report.reused += 1
 			return
 
 		heard: list[str] = []
@@ -308,6 +340,9 @@ class DeckGenerator:
 		verification: Verification,
 	) -> None:
 		self._write_asset(record, relative, payload)
+		# Every later segment with this same input reuses these bytes rather
+		# than asking for them again.
+		self._produced[record.input_hash] = record
 		record.verification = verification
 		record.failure = None
 		self.report.generated += 1

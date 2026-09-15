@@ -20,8 +20,10 @@ Three rules hold here and nowhere else:
 
 from __future__ import annotations
 
+import hashlib
 import os
 from dataclasses import dataclass, field
+from pathlib import Path
 from typing import Any, Protocol
 
 API_KEY_VARIABLE = "ELEVENLABS_API_KEY"
@@ -44,13 +46,20 @@ DEFAULT_MODEL_ID = "eleven_v3"
 WHISPER_MODEL_ID = "large-v3"
 
 #: Qwen3-TTS, Apache 2.0, run on this machine. English narration is 97% of
-#: the course by character count and none of it is the language being
-#: taught, so it has no business on a metered Thai voice.
-DEFAULT_ENGLISH_MODEL_ID = "Qwen/Qwen3-TTS-12Hz-1.7B-CustomVoice"
-#: One of the CustomVoice presets. A single English voice for the whole
-#: course: the seam that matters is Thai-against-English, and a second
-#: English voice would add a seam for nothing.
-DEFAULT_ENGLISH_SPEAKER = "Ryan"
+#: the course by character count and none of it is the language being taught,
+#: so it has no business on a metered Thai voice.
+#:
+#: The *Base* checkpoint rather than CustomVoice, because the English is not a
+#: preset speaker — it is cloned from the Thai voice, so the whole course is
+#: narrated by one person. See reference/README.md.
+DEFAULT_ENGLISH_MODEL_ID = "Qwen/Qwen3-TTS-12Hz-1.7B-Base"
+
+#: The clip the English voice is cloned from, and exactly what it says. The
+#: text is not optional: cloning without it degrades noticeably, and a text
+#: that disagrees with the audio is worse than none.
+REFERENCE_DIR = Path(__file__).resolve().parent / "reference"
+DEFAULT_ENGLISH_REFERENCE_AUDIO = REFERENCE_DIR / "english-voice.mp3"
+DEFAULT_ENGLISH_REFERENCE_TEXT = REFERENCE_DIR / "english-voice.txt"
 
 #: What the shipped clips are encoded as, matching
 #: `generate-sentence-audio.py` so every mp3 the app plays is one format.
@@ -116,7 +125,8 @@ class VoiceSpec:
 		default_factory=lambda: dict(DEFAULT_VOICE_SETTINGS)
 	)
 	english_model_id: str = DEFAULT_ENGLISH_MODEL_ID
-	english_speaker: str = DEFAULT_ENGLISH_SPEAKER
+	english_reference_audio: Path = DEFAULT_ENGLISH_REFERENCE_AUDIO
+	english_reference_text: Path = DEFAULT_ENGLISH_REFERENCE_TEXT
 
 	def to_json(self) -> dict[str, Any]:
 		"""The whole spec, for the manifest — a reader wants to see both
@@ -127,7 +137,7 @@ class VoiceSpec:
 			"settings": dict(self.settings),
 			"english": {
 				"modelId": self.english_model_id,
-				"speaker": self.english_speaker,
+				"reference": self.english_reference_digest(),
 			},
 		}
 
@@ -150,7 +160,27 @@ class VoiceSpec:
 				"modelId": self.model_id,
 				"settings": dict(self.settings),
 			}
-		return {"modelId": self.english_model_id, "speaker": self.english_speaker}
+		return {
+			"modelId": self.english_model_id,
+			"reference": self.english_reference_digest(),
+		}
+
+	def english_reference_digest(self) -> str:
+		"""Identifies the cloned voice by its inputs, not by a name.
+
+		A preset speaker has a stable id; a clone does not — it *is* the clip
+		and the transcript it was built from. Hashing both means replacing the
+		reference regenerates every English clip in the course, which is
+		correct, and that swapping the Thai voice leaves them alone, which is
+		the point of keying the two languages separately.
+		"""
+		audio = self.english_reference_audio.read_bytes()
+		text = self.english_reference_text.read_text(encoding="utf-8").strip()
+		digest = hashlib.sha256()
+		digest.update(audio)
+		digest.update(b"\x00")
+		digest.update(text.encode("utf-8"))
+		return digest.hexdigest()[:16]
 
 
 class Vendor(Protocol):
@@ -333,12 +363,19 @@ def encode_mp3(wav_bytes: bytes) -> bytes:
 
 
 class QwenEnglishVoice:
-	"""The English narration, synthesised on this machine.
+	"""The English narration: the Thai voice, cloned, synthesised locally.
 
-	Qwen3-TTS is Apache 2.0 and runs locally, which is the whole point: English
-	is 97% of the course by character count and none of it is the language
-	being taught. Paying a per-character vendor to read it aloud buys nothing
-	the learner can hear.
+	Qwen3-TTS is Apache 2.0 and runs on this machine, which is the whole point.
+	English is 97% of the course by character count and none of it is the
+	language being taught; paying a per-character vendor to read it aloud buys
+	nothing the learner can hear.
+
+	It is a *clone* rather than a preset because the alternative is two voices.
+	A lesson that changes speaker every time it says a Thai word sounds broken,
+	and the seam falls in the worst possible place — right where the learner is
+	supposed to be listening hardest. Cloning the Thai voice puts one person in
+	front of the learner for the whole course, and because she is a Thai native
+	reading English, it is a Thai teacher's English rather than a newsreader's.
 
 	English takes no transcribe-back check. The check exists because a wrong
 	Thai tone teaches a mispronunciation the learner will then practise; an
@@ -346,12 +383,15 @@ class QwenEnglishVoice:
 	odd. `seed` is accepted and ignored — the retry loop passes one, and the
 	honest thing is to say so here rather than to imply a re-roll happened.
 
-	Loaded once, on first use: a run whose English is all cached never loads it.
+	The model and the clone prompt are each built once, on first use: a run
+	whose English is entirely cached loads neither.
 	"""
 
 	def __init__(self) -> None:
 		self._model: Any | None = None
 		self._loaded_id: str | None = None
+		self._prompt: Any | None = None
+		self._prompt_key: str | None = None
 
 	def _model_for(self, model_id: str) -> Any:
 		if self._model is None or self._loaded_id != model_id:
@@ -360,13 +400,41 @@ class QwenEnglishVoice:
 			except ImportError as error:
 				raise VendorError(
 					"qwen-tts is not importable. The English narration is "
-					"synthesised locally; run the pipeline inside the backend "
-					"environment, e.g. `uv run --project backend python "
-					"scripts/generate-lesson-deck.py ...`"
+					"synthesised locally; run the pipeline inside the deck "
+					"environment, e.g. `uv run --project scripts/deck-env "
+					"python scripts/generate-lesson-deck.py ...`"
 				) from error
 			self._model = Qwen3TTSModel.from_pretrained(model_id, device_map="cuda:0")
 			self._loaded_id = model_id
+			# A prompt is bound to the model that built it.
+			self._prompt = None
+			self._prompt_key = None
 		return self._model
+
+	def _prompt_for(self, model: Any, spec: VoiceSpec) -> Any:
+		"""The speaker embedding, computed once and reused for every clip.
+
+		Rebuilding it per clip would be both slow and a source of drift — the
+		one thing a single narrator must not do is vary between sentences.
+		"""
+		key = spec.english_reference_digest()
+		if self._prompt is None or self._prompt_key != key:
+			audio = spec.english_reference_audio
+			text_path = spec.english_reference_text
+			if not audio.exists() or not text_path.exists():
+				raise VendorError(
+					"the English reference voice is missing "
+					f"({audio.name} / {text_path.name}). The English narration "
+					"is cloned from it; regenerate it with "
+					"scripts/make-english-reference.py, which is one metered "
+					"call of about 430 characters."
+				)
+			self._prompt = model.create_voice_clone_prompt(
+				ref_audio=str(audio),
+				ref_text=text_path.read_text(encoding="utf-8").strip(),
+			)
+			self._prompt_key = key
+		return self._prompt
 
 	def synthesize(self, text: str, language: str, spec: VoiceSpec, seed: int) -> bytes:
 		if language != "en":
@@ -380,12 +448,14 @@ class QwenEnglishVoice:
 		import soundfile as sf  # noqa: PLC0415
 
 		model = self._model_for(spec.english_model_id)
-		# `generate_custom_voice` returns a *batch* — a list of float32 mono
+		# `generate_voice_clone` returns a *batch* — a list of float32 mono
 		# arrays — even for one line of text. Handing the list itself to
 		# soundfile is a "Format not recognised", which reads like a codec
 		# problem and is not one.
-		wavs, sample_rate = model.generate_custom_voice(
-			text=text, language="English", speaker=spec.english_speaker
+		wavs, sample_rate = model.generate_voice_clone(
+			text=text,
+			language="English",
+			voice_clone_prompt=self._prompt_for(model, spec),
 		)
 		waveform = wavs[0] if isinstance(wavs, (list, tuple)) else wavs
 		buffer = io.BytesIO()

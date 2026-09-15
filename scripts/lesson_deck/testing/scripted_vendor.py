@@ -46,8 +46,14 @@ class ScriptedVendor:
 
 	`mishears` maps a Thai line to the sequence of wrong transcripts to return
 	before the correct one — so a scenario can say "this line fails twice then
-	passes" or, by listing more entries than there are seeds, "this line never
 	passes".
+
+	`always_mishears` names the lines that never come back right, however many
+	times they are asked. It is a separate flag rather than "list more entries
+	than there are seeds" because that spelling encodes the retry budget into
+	the fixture: widening the budget silently turned the never-verifies
+	scenario into a passing one, and the test that depended on it started
+	asserting the opposite of what it was written to assert.
 
 	`errors_for` maps a line to how many times synthesis should fail for it.
 	The failure text deliberately embeds the credential, the way an API that
@@ -57,6 +63,7 @@ class ScriptedVendor:
 
 	api_key: str = ""
 	mishears: dict[str, list[str]] = field(default_factory=dict)
+	always_mishears: frozenset[str] = frozenset()
 	errors_for: dict[str, int] = field(default_factory=dict)
 	synth_calls: list[dict[str, Any]] = field(default_factory=list)
 	_heard: dict[bytes, str] = field(default_factory=dict)
@@ -82,12 +89,17 @@ class ScriptedVendor:
 		wrong = self.mishears.get(text, [])
 		index = self._mishear_counts.get(text, 0)
 		self._mishear_counts[text] = index + 1
+		if text in self.always_mishears and wrong:
+			# Cycles rather than running out, so the scenario means what it says
+			# at any retry budget.
+			return wrong[index % len(wrong)]
 		return wrong[index] if index < len(wrong) else text
 
 
 def from_scenario(scenario: dict[str, Any], api_key: str) -> ScriptedVendor:
 	return ScriptedVendor(
 		api_key=api_key,
+		always_mishears=frozenset(scenario.get("alwaysMishears", ())),
 		mishears={
 			key: list(value) for key, value in scenario.get("mishears", {}).items()
 		},
