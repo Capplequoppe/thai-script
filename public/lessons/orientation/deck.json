@@ -5,6 +5,26 @@
 		{
 			"kind": "exposition",
 			"id": "welcome",
+			"heading": "Why this will work when other apps haven't",
+			"body": [
+				"Built on **accelerated learning** techniques, not on repetition.",
+				"Some are thousands of years old. Some are from the last century. Almost none are what school taught you.",
+				"Used properly, they'll carry you through Thai far faster than most people manage.",
+				"A few minutes here, and you'll reach lesson 1 already knowing *how* to learn it."
+			],
+			"audio": [
+				"/thai-script/lessons/orientation/audio/24c5e270eb3a5825.mp3",
+				"/thai-script/lessons/orientation/audio/ed52b9570ae1ef97.mp3",
+				"/thai-script/lessons/orientation/audio/e2affedc0846bdfb.mp3",
+				"/thai-script/lessons/orientation/audio/d9c4ce22f4ad9dff.mp3",
+				"/thai-script/lessons/orientation/audio/b3e013f3bc5d3fbc.mp3",
+				"/thai-script/lessons/orientation/audio/46432b28d33ff3e6.mp3"
+			],
+			"image": "/thai-script/lessons/orientation/images/welcome-17bdd907914a.jpg"
+		},
+		{
+			"kind": "exposition",
+			"id": "the-route",
 			"heading": "Where this is going, and how you get there",
 			"body": [
 				"The goal is **speaking** Thai, not only reading it.",
@@ -18,9 +38,9 @@
 				"/thai-script/lessons/orientation/audio/66928edd4e140c5b.mp3",
 				"/thai-script/lessons/orientation/audio/88cdcf3335eb314f.mp3",
 				"/thai-script/lessons/orientation/audio/72b12b4a806fde3c.mp3",
-				"/thai-script/lessons/orientation/audio/6d0d6409800a98ad.mp3"
+				"/thai-script/lessons/orientation/audio/e668140393482b62.mp3"
 			],
-			"image": "/thai-script/lessons/orientation/images/welcome-2abeb59dfdf2.jpg"
+			"image": "/thai-script/lessons/orientation/images/the-route-2abeb59dfdf2.jpg"
 		},
 		{
 			"kind": "exposition",
@@ -111,15 +131,67 @@
 			"heading": "Every letter has an address",
 			"body": [
 				"Thai consonants have three **classes**, and class decides tone.",
-				"Each class has its own **place** — you'll meet the first one in lesson 1.",
-				"Recall becomes \"which part of town?\" instead of searching forty-four letters."
+				"Each class has its own **place** in one imaginary town.",
+				"Recall becomes \"which part of town?\" instead of searching forty-four letters.",
+				"Words get **rooms** later — people, things, actions, connectors, particles, counting words.",
+				"A room is a *hint and a confirmation*, never a free clue before you answer."
 			],
 			"audio": [
 				"/thai-script/lessons/orientation/audio/b169f057a0ee2a50.mp3",
 				"/thai-script/lessons/orientation/audio/6d26374b48ce268f.mp3",
-				"/thai-script/lessons/orientation/audio/9c3dce361f1e6b36.mp3"
+				"/thai-script/lessons/orientation/audio/73993250e90fe4c2.mp3",
+				"/thai-script/lessons/orientation/audio/076103bdfb5297d3.mp3"
 			],
 			"image": "/thai-script/lessons/orientation/images/districts-5f716d4d4fc2.jpg"
+		},
+		{
+			"kind": "exposition",
+			"id": "tour-harbour",
+			"heading": "The harbour — where most letters live",
+			"body": [
+				"The **harbour** is the low class — **24 letters**, more than half the alphabet.",
+				"Down at the water. Ropes, boats, wet stone, a low hum.",
+				"Your first two letters move in here in lesson 1."
+			],
+			"audio": [
+				"/thai-script/lessons/orientation/audio/ac3d9b4faeadad8c.mp3",
+				"/thai-script/lessons/orientation/audio/2fd183372a7037ff.mp3",
+				"/thai-script/lessons/orientation/audio/ed4a3f799c80f8b3.mp3"
+			],
+			"image": "/thai-script/lessons/orientation/images/tour-harbour-531a0cfacbfe.jpg"
+		},
+		{
+			"kind": "exposition",
+			"id": "tour-temple",
+			"heading": "The temple — up the hill",
+			"body": [
+				"The **temple** is the high class — only **11 letters**.",
+				"Up the hill. Gold, bells, quiet, a long climb from the water.",
+				"The height keeps the *name* straight. It does **not** mean these letters sound high."
+			],
+			"audio": [
+				"/thai-script/lessons/orientation/audio/a3af47cd5f8fef54.mp3",
+				"/thai-script/lessons/orientation/audio/1970c1afa9b8aa41.mp3",
+				"/thai-script/lessons/orientation/audio/9e7c2b8f1977a5f0.mp3"
+			],
+			"image": "/thai-script/lessons/orientation/images/tour-temple-ea7942a30646.jpg"
+		},
+		{
+			"kind": "exposition",
+			"id": "tour-market",
+			"heading": "The market — and the trick this buys you",
+			"body": [
+				"The **market** is the mid class — just **9 letters**.",
+				"Flat ground between the two. Awnings, crates, hanging scales.",
+				"**Learn the short lists only**: 9 at the market, 11 at the temple.",
+				"Anything on neither list is at the harbour. That's 24 letters you never memorise."
+			],
+			"audio": [
+				"/thai-script/lessons/orientation/audio/e899c677b8c2ea85.mp3",
+				"/thai-script/lessons/orientation/audio/1a7417c0e2ba39c1.mp3",
+				"/thai-script/lessons/orientation/audio/a30cf736b6a37eee.mp3"
+			],
+			"image": "/thai-script/lessons/orientation/images/tour-market-85a18b9ef93d.jpg"
 		},
 		{
 			"kind": "exposition",

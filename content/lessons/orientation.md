@@ -35,14 +35,29 @@ Thai voice — every clip is local.
 lesson: orientation
 
 ## exposition welcome
-heading: Where this is going, and how you get there
+heading: Why this will work when other apps haven't
 image: images/orientation/welcome.jpg
+scene: An old scholar walks slowly along a vast stone colonnade with one hand trailing across the pillars as he passes them, his eyes closed, reciting from memory. Shafts of warm golden light fall between the columns onto the worn floor. Cool blue shadow lies in the depths behind him.
+narration: en Welcome. Before you learn a single Thai letter, I want to tell you why this is going to work for you, when whatever you tried before didn't.
+narration: en This app is built on a handful of techniques for getting things into your head and keeping them there. Some of them are properly ancient. Roman orators used to deliver speeches that ran for hours, entirely from memory, by building a house in their imagination and leaving one idea in each room — and then just walking through it. Others are much more recent. We've only had hard numbers on how quickly people forget for about a hundred and forty years.
+narration: en What they've got in common is that almost none of them reached you at school. You were told to read it again. Maybe underline a bit of it. That is close to the worst possible use of the hours you put in, and nobody ever told you.
+narration: en Use these instead and you'll get through Thai a great deal faster than most people who attempt it — and plenty of people attempt it. This is the difference between the ones who end up speaking and the ones who quietly stop somewhere around week five.
+narration: en So give me a few minutes before lesson one. I'll walk you through the techniques and show you what the journey actually looks like, so that when you meet your first Thai letter you already know how to learn it.
+narration: en First, where all of this is heading.
+- Built on **accelerated learning** techniques, not on repetition.
+- Some are thousands of years old. Some are from the last century. Almost none are what school taught you.
+- Used properly, they'll carry you through Thai far faster than most people manage.
+- A few minutes here, and you'll reach lesson 1 already knowing *how* to learn it.
+
+## exposition the-route
+heading: Where this is going, and how you get there
+image: images/orientation/the-route.jpg
 scene: A young traveller stands at the foot of a long stone stairway winding up a green hillside, one hand shading her eyes as she looks up at the path ahead. Mist lies in the valley behind her. Warm golden morning light, distant temple roofs high above.
 narration: en You're not here to read Thai. You're here to speak it — to stand in front of someone, say what you mean, and have them understand you. Reading is just how we get there.
 narration: en So let me show you the whole staircase before you start climbing it. First the script. Then words. Then the grammar that holds words together. Then full sentences, which you'll hear and then say back — and when you say them, the app is listening. It compares the shape of your pitch to a native speaker's and tells you how close you landed. Get to two hundred words and five grammar points, and conversation practice opens up. Then you're talking to something that talks back.
 narration: en Now, the bit everyone asks about. If this is about speaking, why do the first few weeks look like an alphabet?
 narration: en Because of tone. Thai spelling tells you the tone of every syllable, and tone isn't decoration in Thai — it's part of the word. Get the tone wrong and you've said a different word. So the letters aren't a detour. They're the thing that makes the speaking possible.
-narration: en Give me five minutes first. This app doesn't work the way most language apps work, and nearly everything that decides whether you make it to the top comes down to a few habits. None of them are hard. All of them are easy to skip.
+narration: en And nearly everything that decides whether you make it to the top of those stairs comes down to a few habits. None of them are hard. All of them are easy to skip, which is exactly why I'm spending the next few minutes on them.
 - The goal is **speaking** Thai, not only reading it.
 - The route: script → words → grammar → whole sentences, heard *and* spoken aloud.
 - Your pronunciation is scored — the app matches your pitch against a native speaker's.
@@ -112,10 +127,47 @@ image: images/orientation/districts.jpg
 scene: A woman stands on a high balcony looking down over a town divided into distinct quarters, each roofed in a different colour and separated by narrow canals. She rests both hands on the stone railing. Warm golden late light, long shadows between the rooftops, hazy hills beyond.
 narration: en Putting things in places is the oldest memory trick there is, and it's still the best one. We use it here for the single most important fact about any Thai letter.
 narration: en Thai consonants come in three classes. The class decides the tone. That makes it the engine of the entire writing system — you can't say a word out loud correctly without knowing it, and there are forty-four letters to keep straight.
-narration: en So each class gets its own part of town. When you need a letter's class, you won't be scanning a list of forty-four. You'll be asking which neighbourhood it lives in, and the answer arrives with the picture attached. Later on the same trick gets used for word types, so verbs live in one place and nouns in another.
+narration: en So each class gets its own part of town. When you need a letter's class, you won't be scanning a list of forty-four. You'll be asking which neighbourhood it lives in, and the answer arrives with the picture attached.
+narration: en Words get places as well, further along, though they work differently. Every word's mnemonic is staged in one of six rooms — people, things, actions, connectors, particles, and counting words. That's what keeps the cast and the props consistent, so the little stories build on each other instead of fighting. But the room stays hidden while you're answering. It's there if you ask for a hint, and it shows up alongside the answer. Telling you a word was a verb before you'd answered would be handing you half of it.
 - Thai consonants have three **classes**, and class decides tone.
-- Each class has its own **place** — you'll meet the first one in lesson 1.
+- Each class has its own **place** in one imaginary town.
 - Recall becomes "which part of town?" instead of searching forty-four letters.
+- Words get **rooms** later — people, things, actions, connectors, particles, counting words.
+- A room is a *hint and a confirmation*, never a free clue before you answer.
+
+## exposition tour-harbour
+heading: The harbour — where most letters live
+image: images/orientation/tour-harbour.jpg
+scene: A wide working harbour at dawn seen from the quayside, fishing boats crowded along the water, thick mooring ropes coiled on wet stone and nets hung to dry on wooden posts. No people. Warm golden light low across flat water, cool blue shadow under the hulls.
+narration: en Let's walk round the town now, before anybody lives here. It's easier to move in later if you already know the streets.
+narration: en Down at the water is the harbour. Ropes, boats, wet stone, and a low engine hum you can feel through your feet. Twenty-four of the forty-four consonants live down here — more than half the alphabet. It's the busiest, most ordinary part of town, and the one you'll be walking through constantly.
+narration: en Stand here a moment and look at it properly. Your first two letters move in during lesson one.
+- The **harbour** is the low class — **24 letters**, more than half the alphabet.
+- Down at the water. Ropes, boats, wet stone, a low hum.
+- Your first two letters move in here in lesson 1.
+
+## exposition tour-temple
+heading: The temple — up the hill
+image: images/orientation/tour-temple.jpg
+scene: A golden temple standing at the top of a long flight of stone steps on a hillside, seen from the bottom looking up, with bells hanging along the balustrade and gilded spires catching the light. No people. Warm golden afternoon light on the gold, cool blue-green shade in the trees below.
+narration: en Now climb. Up the steps on the hill above the town is the temple — gold, quiet, bells along the rail, and a long way up from the water.
+narration: en Only eleven letters live here. That's worth noticing. It's a small, exclusive neighbourhood, and a short list is much easier to hold than a long one.
+narration: en One honest warning while you're up here. This is the high class, and the temple being high up is just a hook to keep that name attached. It doesn't mean these letters make high tones. Class is a label; what it actually does to the tone, you'll learn properly in lesson two.
+- The **temple** is the high class — only **11 letters**.
+- Up the hill. Gold, bells, quiet, a long climb from the water.
+- The height keeps the *name* straight. It does **not** mean these letters sound high.
+
+## exposition tour-market
+heading: The market — and the trick this buys you
+image: images/orientation/tour-market.jpg
+scene: A covered street market on level ground between the harbour and the hill, stalls of fruit and cloth under striped awnings, crates stacked along the walkway, scales hanging from a beam. No people. Warm afternoon light filtering through the awnings, dust hanging in the air, cool shadow at the back of the stalls.
+narration: en Between the two, on flat ground, is the market. Awnings, crates, fruit, hanging scales. Nine letters live here — the smallest neighbourhood of the three.
+narration: en Now, here's what this arrangement buys you, and it's the single biggest shortcut in the whole course. Nine at the market. Eleven at the temple. That's twenty letters worth actually learning the address of.
+narration: en Everything else is at the harbour. So you never have to memorise twenty-four harbour letters at all. You learn the short lists, and anything that isn't on one of them has already told you where it lives. Anything not nailed to the hill or the market stalls has rolled down to the water, the way everything does.
+- The **market** is the mid class — just **9 letters**.
+- Flat ground between the two. Awnings, crates, hanging scales.
+- **Learn the short lists only**: 9 at the market, 11 at the temple.
+- Anything on neither list is at the harbour. That's 24 letters you never memorise.
 
 ## exposition aloud
 heading: Say it out loud. Every single time.

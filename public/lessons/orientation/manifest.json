@@ -24,10 +24,10 @@
 			"kind": "audio",
 			"state": "generated",
 			"language": "en",
-			"inputHash": "96091a5ffab6ea327fb7d763b2787965e04056237cb5e72bb199355961d9517f",
-			"contentHash": "82c37b0bbdb1c36f0714f7797502fb4109bacb7ffdee5883be28047f21d79cca",
-			"path": "/thai-script/lessons/orientation/audio/96091a5ffab6ea32.mp3",
-			"file": "audio/96091a5ffab6ea32.mp3",
+			"inputHash": "24c5e270eb3a582591a5746c789503f4db5b6a7b78a33a1d0d8f2089881c08ae",
+			"contentHash": "d8d997fb63b28380dd7bbe4186084f1423ab43630838554bf13b81877c2db73b",
+			"path": "/thai-script/lessons/orientation/audio/24c5e270eb3a5825.mp3",
+			"file": "audio/24c5e270eb3a5825.mp3",
 			"verification": {
 				"outcome": "not-required",
 				"attempts": 1,
@@ -41,10 +41,10 @@
 			"kind": "audio",
 			"state": "generated",
 			"language": "en",
-			"inputHash": "66928edd4e140c5bb215767c7e56be3cadd7ed489e1132557f6bc1fcf289523e",
-			"contentHash": "dfec67a9037601ce52108c93167270ce5f4d2a1eae888e074f5fac83d3aa9478",
-			"path": "/thai-script/lessons/orientation/audio/66928edd4e140c5b.mp3",
-			"file": "audio/66928edd4e140c5b.mp3",
+			"inputHash": "ed52b9570ae1ef97ea0d6a093c70ccdaaab9a821e5ed7b9d6165f48f1022d88b",
+			"contentHash": "5bbaeb905c1a1d7070810288295adccc3b75ecfd7820971b7853477628ba8748",
+			"path": "/thai-script/lessons/orientation/audio/ed52b9570ae1ef97.mp3",
+			"file": "audio/ed52b9570ae1ef97.mp3",
 			"verification": {
 				"outcome": "not-required",
 				"attempts": 1,
@@ -58,10 +58,10 @@
 			"kind": "audio",
 			"state": "generated",
 			"language": "en",
-			"inputHash": "88cdcf3335eb314f92ed769b791b98b6aff4386986e6ede0d7a4d9cfc2e795cd",
-			"contentHash": "32980c323f3320691947f01597da9d1cbbd3c97b1ca78c932de974236c4f1946",
-			"path": "/thai-script/lessons/orientation/audio/88cdcf3335eb314f.mp3",
-			"file": "audio/88cdcf3335eb314f.mp3",
+			"inputHash": "e2affedc0846bdfb2c2bbaf6588dc390606991ec8f03f938fdd14a4cfa9965ad",
+			"contentHash": "cee019d298c8e7a010982d54a18b7022e9a33052f97656dff8ca0204245bb28f",
+			"path": "/thai-script/lessons/orientation/audio/e2affedc0846bdfb.mp3",
+			"file": "audio/e2affedc0846bdfb.mp3",
 			"verification": {
 				"outcome": "not-required",
 				"attempts": 1,
@@ -75,10 +75,10 @@
 			"kind": "audio",
 			"state": "generated",
 			"language": "en",
-			"inputHash": "72b12b4a806fde3c3c635e1319b4d02e69c50e49efcaccee010a481b7c020c98",
-			"contentHash": "40d9cd8e5cc5c379849584201a1c07e17390de24b1e3611dd04f763f02d72496",
-			"path": "/thai-script/lessons/orientation/audio/72b12b4a806fde3c.mp3",
-			"file": "audio/72b12b4a806fde3c.mp3",
+			"inputHash": "d9c4ce22f4ad9dffcf75fe2a9abe4cff9d6329840c91e55b2dc382cb9c774caf",
+			"contentHash": "0d825bfe7dffce2307f06ac04de879026670e966ed66fc3af08b98d71841f55e",
+			"path": "/thai-script/lessons/orientation/audio/d9c4ce22f4ad9dff.mp3",
+			"file": "audio/d9c4ce22f4ad9dff.mp3",
 			"verification": {
 				"outcome": "not-required",
 				"attempts": 1,
@@ -92,10 +92,112 @@
 			"kind": "audio",
 			"state": "generated",
 			"language": "en",
-			"inputHash": "6d0d6409800a98ad5aa104addff1c46f2db50ff246dc4617d883210dcf987162",
-			"contentHash": "0b977183d779390a713465cb037692630568e3d94526954b7625bf7f17c2816f",
-			"path": "/thai-script/lessons/orientation/audio/6d0d6409800a98ad.mp3",
-			"file": "audio/6d0d6409800a98ad.mp3",
+			"inputHash": "b3e013f3bc5d3fbc1c938667674c5ddf8f67ba6173b83a08159def67eec7976c",
+			"contentHash": "33fba5f61cf562abe47359969d6a4f2eb07f53e5eca5092a922f0ed69d2b931d",
+			"path": "/thai-script/lessons/orientation/audio/b3e013f3bc5d3fbc.mp3",
+			"file": "audio/b3e013f3bc5d3fbc.mp3",
+			"verification": {
+				"outcome": "not-required",
+				"attempts": 1,
+				"expected": null,
+				"heard": []
+			},
+			"failure": null
+		},
+		{
+			"key": "welcome-5",
+			"kind": "audio",
+			"state": "generated",
+			"language": "en",
+			"inputHash": "46432b28d33ff3e6d03d276146c2651adcd1e2f949fd3812111ca1b1ab6a68e1",
+			"contentHash": "67d1a5bb4dfa89387a93299b57234e87ab9eddabe52611c6ba89a6b4272976a8",
+			"path": "/thai-script/lessons/orientation/audio/46432b28d33ff3e6.mp3",
+			"file": "audio/46432b28d33ff3e6.mp3",
+			"verification": {
+				"outcome": "not-required",
+				"attempts": 1,
+				"expected": null,
+				"heard": []
+			},
+			"failure": null
+		},
+		{
+			"key": "the-route-0",
+			"kind": "audio",
+			"state": "generated",
+			"language": "en",
+			"inputHash": "96091a5ffab6ea327fb7d763b2787965e04056237cb5e72bb199355961d9517f",
+			"contentHash": "afd286adad641776667bbd60022ffd229f17f6823672f836192199e6e80aaa21",
+			"path": "/thai-script/lessons/orientation/audio/96091a5ffab6ea32.mp3",
+			"file": "audio/96091a5ffab6ea32.mp3",
+			"verification": {
+				"outcome": "not-required",
+				"attempts": 1,
+				"expected": null,
+				"heard": []
+			},
+			"failure": null
+		},
+		{
+			"key": "the-route-1",
+			"kind": "audio",
+			"state": "generated",
+			"language": "en",
+			"inputHash": "66928edd4e140c5bb215767c7e56be3cadd7ed489e1132557f6bc1fcf289523e",
+			"contentHash": "ad4aeb9404f7a9a2e0a79f1ddc3115d436252293a49de98ed26c02b1edf90e57",
+			"path": "/thai-script/lessons/orientation/audio/66928edd4e140c5b.mp3",
+			"file": "audio/66928edd4e140c5b.mp3",
+			"verification": {
+				"outcome": "not-required",
+				"attempts": 1,
+				"expected": null,
+				"heard": []
+			},
+			"failure": null
+		},
+		{
+			"key": "the-route-2",
+			"kind": "audio",
+			"state": "generated",
+			"language": "en",
+			"inputHash": "88cdcf3335eb314f92ed769b791b98b6aff4386986e6ede0d7a4d9cfc2e795cd",
+			"contentHash": "ff173cb0e2145fb83cc8b8a0346b103a36d0ca96b437aec43b092b538e9c90ba",
+			"path": "/thai-script/lessons/orientation/audio/88cdcf3335eb314f.mp3",
+			"file": "audio/88cdcf3335eb314f.mp3",
+			"verification": {
+				"outcome": "not-required",
+				"attempts": 1,
+				"expected": null,
+				"heard": []
+			},
+			"failure": null
+		},
+		{
+			"key": "the-route-3",
+			"kind": "audio",
+			"state": "generated",
+			"language": "en",
+			"inputHash": "72b12b4a806fde3c3c635e1319b4d02e69c50e49efcaccee010a481b7c020c98",
+			"contentHash": "1705b84037680dcf804ffc341de0c7d608bca2717aa9f968061e00ea38253dbc",
+			"path": "/thai-script/lessons/orientation/audio/72b12b4a806fde3c.mp3",
+			"file": "audio/72b12b4a806fde3c.mp3",
+			"verification": {
+				"outcome": "not-required",
+				"attempts": 1,
+				"expected": null,
+				"heard": []
+			},
+			"failure": null
+		},
+		{
+			"key": "the-route-4",
+			"kind": "audio",
+			"state": "generated",
+			"language": "en",
+			"inputHash": "e668140393482b620e6e94299cad67344ec1a0b4877dc8d24aa60e09eb2bcb3c",
+			"contentHash": "0273cc9e706ce093b01bcfbe1d3d6ebcf8723ffff48ee6f1bd8570bbed9f573f",
+			"path": "/thai-script/lessons/orientation/audio/e668140393482b62.mp3",
+			"file": "audio/e668140393482b62.mp3",
 			"verification": {
 				"outcome": "not-required",
 				"attempts": 1,
@@ -398,10 +500,180 @@
 			"kind": "audio",
 			"state": "generated",
 			"language": "en",
-			"inputHash": "9c3dce361f1e6b36b0fb0c81ae6ba920ed7ee3b108b3163c7396df007e092349",
-			"contentHash": "cd7a41fd28571330af9b869fd2a84700ecf928ccf409a744a9090d838190ce7d",
-			"path": "/thai-script/lessons/orientation/audio/9c3dce361f1e6b36.mp3",
-			"file": "audio/9c3dce361f1e6b36.mp3",
+			"inputHash": "73993250e90fe4c240ec83eedf07eabfe1081211a0a36cf88e654e38da82d741",
+			"contentHash": "ee1675cd8d8f8ff94325aa6ef43a5f11cafa280f0b99c734748375cdc84de442",
+			"path": "/thai-script/lessons/orientation/audio/73993250e90fe4c2.mp3",
+			"file": "audio/73993250e90fe4c2.mp3",
+			"verification": {
+				"outcome": "not-required",
+				"attempts": 1,
+				"expected": null,
+				"heard": []
+			},
+			"failure": null
+		},
+		{
+			"key": "districts-3",
+			"kind": "audio",
+			"state": "generated",
+			"language": "en",
+			"inputHash": "076103bdfb5297d32a11c0d62bd265810a4086719015b29629e204f5d1fe2f24",
+			"contentHash": "2bd6af4b219c8c505238b46a82fe93bfe3d53bd06ee52b74b2cc85d1bc6031a3",
+			"path": "/thai-script/lessons/orientation/audio/076103bdfb5297d3.mp3",
+			"file": "audio/076103bdfb5297d3.mp3",
+			"verification": {
+				"outcome": "not-required",
+				"attempts": 1,
+				"expected": null,
+				"heard": []
+			},
+			"failure": null
+		},
+		{
+			"key": "tour-harbour-0",
+			"kind": "audio",
+			"state": "generated",
+			"language": "en",
+			"inputHash": "ac3d9b4faeadad8ca7be3c4956a371d1d836143fe8905fa9a29bf4521df91c2f",
+			"contentHash": "2965ee9715535c259feae17dd173e1ed5ae149ead5fbd0469579b79e86f56f5b",
+			"path": "/thai-script/lessons/orientation/audio/ac3d9b4faeadad8c.mp3",
+			"file": "audio/ac3d9b4faeadad8c.mp3",
+			"verification": {
+				"outcome": "not-required",
+				"attempts": 1,
+				"expected": null,
+				"heard": []
+			},
+			"failure": null
+		},
+		{
+			"key": "tour-harbour-1",
+			"kind": "audio",
+			"state": "generated",
+			"language": "en",
+			"inputHash": "2fd183372a7037ff4c58a1cffbbb33af9cbd1142b109449131c5626083df5824",
+			"contentHash": "d78e4674ea736ae0874f858ee040d6e4ab749d69aea5a16945c3109e38a36916",
+			"path": "/thai-script/lessons/orientation/audio/2fd183372a7037ff.mp3",
+			"file": "audio/2fd183372a7037ff.mp3",
+			"verification": {
+				"outcome": "not-required",
+				"attempts": 1,
+				"expected": null,
+				"heard": []
+			},
+			"failure": null
+		},
+		{
+			"key": "tour-harbour-2",
+			"kind": "audio",
+			"state": "generated",
+			"language": "en",
+			"inputHash": "ed4a3f799c80f8b366ba7a158a7e52087f132c2d6d2a642986bb48c59f77cde5",
+			"contentHash": "8d0594021d34f90be8f6f1daef15086a23ff11621201444a843021dc1ed9d40f",
+			"path": "/thai-script/lessons/orientation/audio/ed4a3f799c80f8b3.mp3",
+			"file": "audio/ed4a3f799c80f8b3.mp3",
+			"verification": {
+				"outcome": "not-required",
+				"attempts": 1,
+				"expected": null,
+				"heard": []
+			},
+			"failure": null
+		},
+		{
+			"key": "tour-temple-0",
+			"kind": "audio",
+			"state": "generated",
+			"language": "en",
+			"inputHash": "a3af47cd5f8fef5468bbf4cd5042e84d70fe3c7bd8d429328c90e775fc839ade",
+			"contentHash": "b670d3912fe9e8186f3133f60a31f89980b28063983d636c007b032d60f64870",
+			"path": "/thai-script/lessons/orientation/audio/a3af47cd5f8fef54.mp3",
+			"file": "audio/a3af47cd5f8fef54.mp3",
+			"verification": {
+				"outcome": "not-required",
+				"attempts": 1,
+				"expected": null,
+				"heard": []
+			},
+			"failure": null
+		},
+		{
+			"key": "tour-temple-1",
+			"kind": "audio",
+			"state": "generated",
+			"language": "en",
+			"inputHash": "1970c1afa9b8aa41bb42d346f142473a560b1a9dedc5af4d9b927061ce873907",
+			"contentHash": "23bfc248d587f3cc7df7bc763ce52ad896695d7bed4a4cb90d9a81ec5c794928",
+			"path": "/thai-script/lessons/orientation/audio/1970c1afa9b8aa41.mp3",
+			"file": "audio/1970c1afa9b8aa41.mp3",
+			"verification": {
+				"outcome": "not-required",
+				"attempts": 1,
+				"expected": null,
+				"heard": []
+			},
+			"failure": null
+		},
+		{
+			"key": "tour-temple-2",
+			"kind": "audio",
+			"state": "generated",
+			"language": "en",
+			"inputHash": "9e7c2b8f1977a5f09d191fd9af363c1c98ce103187ee509a60bfdfd47b9644a8",
+			"contentHash": "30ee5bbfc4275c4cc00ec8bddfb19f84feeeb2f9a428fa6f739419e4a5db1c15",
+			"path": "/thai-script/lessons/orientation/audio/9e7c2b8f1977a5f0.mp3",
+			"file": "audio/9e7c2b8f1977a5f0.mp3",
+			"verification": {
+				"outcome": "not-required",
+				"attempts": 1,
+				"expected": null,
+				"heard": []
+			},
+			"failure": null
+		},
+		{
+			"key": "tour-market-0",
+			"kind": "audio",
+			"state": "generated",
+			"language": "en",
+			"inputHash": "e899c677b8c2ea8577ac7db460d0d4ee9b67f52c60d4318ec0061aaa61bff8ce",
+			"contentHash": "f4a3f82cb02c2cf713a36eeb8177ea0546dd8943ad723707199b74e8b412b840",
+			"path": "/thai-script/lessons/orientation/audio/e899c677b8c2ea85.mp3",
+			"file": "audio/e899c677b8c2ea85.mp3",
+			"verification": {
+				"outcome": "not-required",
+				"attempts": 1,
+				"expected": null,
+				"heard": []
+			},
+			"failure": null
+		},
+		{
+			"key": "tour-market-1",
+			"kind": "audio",
+			"state": "generated",
+			"language": "en",
+			"inputHash": "1a7417c0e2ba39c1a01341456f6b27405bee860176bc7c79b33b006a36eb66f9",
+			"contentHash": "d938d7ea727ac4c70bb7647a2e84c48bcc0992733dcdd2ed49e4e61310df1cbf",
+			"path": "/thai-script/lessons/orientation/audio/1a7417c0e2ba39c1.mp3",
+			"file": "audio/1a7417c0e2ba39c1.mp3",
+			"verification": {
+				"outcome": "not-required",
+				"attempts": 1,
+				"expected": null,
+				"heard": []
+			},
+			"failure": null
+		},
+		{
+			"key": "tour-market-2",
+			"kind": "audio",
+			"state": "generated",
+			"language": "en",
+			"inputHash": "a30cf736b6a37eeea00f3b1af46a8e4c3fec5abe63a0e2985a8d6a05acc4a781",
+			"contentHash": "099cb46e06361b6d704deac012edca3c4fb6e36c30e4150c55d3af83ab1056bb",
+			"path": "/thai-script/lessons/orientation/audio/a30cf736b6a37eee.mp3",
+			"file": "audio/a30cf736b6a37eee.mp3",
 			"verification": {
 				"outcome": "not-required",
 				"attempts": 1,
@@ -704,10 +976,22 @@
 			"kind": "image",
 			"state": "generated",
 			"language": null,
+			"inputHash": "17bdd907914aa20fb546b17e9e4714a9714486fdb1a05c09c5905f17ce2770c0",
+			"contentHash": "4c774cca5af58f63132c1589c995bfc4e57f7c24634d37562410b4042a3ab90f",
+			"path": "/thai-script/lessons/orientation/images/welcome-17bdd907914a.jpg",
+			"file": "images/welcome-17bdd907914a.jpg",
+			"verification": null,
+			"failure": null
+		},
+		{
+			"key": "the-route-image",
+			"kind": "image",
+			"state": "generated",
+			"language": null,
 			"inputHash": "2abeb59dfdf2636f3a4e93b4253cb1b477672b0a65b1bcd05fa371fc47ae7d55",
 			"contentHash": "3c902b05ad63a57c2909cc442d688069b290a2c55a944da7fbc11b8887e54fee",
-			"path": "/thai-script/lessons/orientation/images/welcome-2abeb59dfdf2.jpg",
-			"file": "images/welcome-2abeb59dfdf2.jpg",
+			"path": "/thai-script/lessons/orientation/images/the-route-2abeb59dfdf2.jpg",
+			"file": "images/the-route-2abeb59dfdf2.jpg",
 			"verification": null,
 			"failure": null
 		},
@@ -768,6 +1052,42 @@
 			"contentHash": "79718e3a716141e45aff19c8fc36c6c1bcb2358fd9ccce447a309bdedc179943",
 			"path": "/thai-script/lessons/orientation/images/districts-5f716d4d4fc2.jpg",
 			"file": "images/districts-5f716d4d4fc2.jpg",
+			"verification": null,
+			"failure": null
+		},
+		{
+			"key": "tour-harbour-image",
+			"kind": "image",
+			"state": "generated",
+			"language": null,
+			"inputHash": "531a0cfacbfe2dbe1c3bf8835a9b708ea4b1678be2b96c7dabb864ebf4136d6c",
+			"contentHash": "73ec8029b89b0f7c410fa88f235254b1a10a7adcf6d95048fbca2d67b8598cad",
+			"path": "/thai-script/lessons/orientation/images/tour-harbour-531a0cfacbfe.jpg",
+			"file": "images/tour-harbour-531a0cfacbfe.jpg",
+			"verification": null,
+			"failure": null
+		},
+		{
+			"key": "tour-temple-image",
+			"kind": "image",
+			"state": "generated",
+			"language": null,
+			"inputHash": "ea7942a306466ebfef0ba4f5e602a0a20c286cf8524e016d1506742290a9eb85",
+			"contentHash": "8b6b091fcc44f627cca34c079ba16b1645976d8392e4afc42c7dcbd7c7121659",
+			"path": "/thai-script/lessons/orientation/images/tour-temple-ea7942a30646.jpg",
+			"file": "images/tour-temple-ea7942a30646.jpg",
+			"verification": null,
+			"failure": null
+		},
+		{
+			"key": "tour-market-image",
+			"kind": "image",
+			"state": "generated",
+			"language": null,
+			"inputHash": "85a18b9ef93dcc457ede5cc95288927b2f801a6a430ec695e711e4e34e5613aa",
+			"contentHash": "1f3d7ce18bbd2050b5dfb47cd58714a5dccdab889b857487629e70db6188063d",
+			"path": "/thai-script/lessons/orientation/images/tour-market-85a18b9ef93d.jpg",
+			"file": "images/tour-market-85a18b9ef93d.jpg",
 			"verification": null,
 			"failure": null
 		},
