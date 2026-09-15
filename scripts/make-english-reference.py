@@ -6,7 +6,7 @@ Usage:
     export ELEVENLABS_API_KEY=...          # see .env.example
     uv run --project scripts/deck-env python scripts/make-english-reference.py
 
-One metered call, about 430 characters, run once for the life of the course.
+One metered call, about 110 characters, run once for the life of the course.
 Everything downstream of it — every English clip in every lesson — is cloned
 locally and costs nothing.
 
@@ -35,7 +35,6 @@ from lesson_deck.vendor import (  # noqa: E402
     DEFAULT_ENGLISH_REFERENCE_TEXT,
     DEFAULT_MODEL_ID,
     DEFAULT_VOICE_ID,
-    DEFAULT_VOICE_SETTINGS,
     REQUEST_TIMEOUT_SECONDS,
     MissingCredential,
     Redactor,
@@ -47,18 +46,33 @@ EXIT_OK = 0
 EXIT_NO_CREDENTIAL = 2
 EXIT_REFUSED = 3
 
-#: Phonetically broad, and in the register the course wants — a clone copies
-#: delivery as much as timbre, so a reference read briskly makes every lesson
-#: brisk. Kept in step with reference/english-voice.txt, which is what the
-#: cloner is told the audio says.
+#: Short and slow, both deliberately, and both measured.
+#:
+#: Short because reference length changes the result badly: a forty-second
+#: reference cloned to 182 words a minute where an eleven-second one cloned to
+#: 159, from the same voice. The README asks for a short clip and it means it.
+#:
+#: Slow because the clone keeps some of a reference's pace even though it does
+#: not keep all of it. Read at 114 wpm this clones to 159; the earlier
+#: reference at 129 cloned to 182. The text is written to be said slowly —
+#: short sentences, each its own thought — because the words do half the work
+#: of slowing a reader down.
+#:
+#: Kept in step with reference/english-voice.txt, which is what the cloner is
+#: told the audio says.
 REFERENCE_TEXT = (
-    "Let us begin slowly. Take a breath, and listen before you try to read "
-    "anything. Thai is not a difficult language, but it is an unfamiliar one, "
-    "and the first few sounds will feel strange in your mouth. That is normal. "
-    "Say each word out loud, even when you are sure you have it wrong, because "
-    "a mistake you have spoken is much easier to correct than a guess you kept "
-    "quiet. We will go one small step at a time, and I will wait for you."
+    "Let us begin slowly. Take a breath. "
+    "Listen first, before you try to read anything at all. "
+    "There is no hurry here."
 )
+
+#: stability at 1.0 for an even, unhurried read rather than an expressive one,
+#: and speed at 0.7, which is the floor the API accepts.
+REFERENCE_VOICE_SETTINGS = {
+    "stability": 1.0,
+    "similarity_boost": 0.75,
+    "speed": 0.7,
+}
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -103,7 +117,7 @@ def main(argv: list[str] | None = None) -> int:
                 # the point is to capture *this speaker* reading English, so
                 # the local cloner can go on doing it for free.
                 "language_code": "en",
-                "voice_settings": dict(DEFAULT_VOICE_SETTINGS),
+                "voice_settings": dict(REFERENCE_VOICE_SETTINGS),
             },
             headers={"accept": "audio/mpeg"},
             timeout=REQUEST_TIMEOUT_SECONDS,

@@ -70,3 +70,6 @@ scripts/deck-env/.venv/
 
 # Voice-audition samples, generated on demand and never shipped.
 public/_samples/
+
+# Fish-Speech S2 Pro spike environment (torch 2.8 pin, conflicts with deck-env).
+scripts/fish-env/

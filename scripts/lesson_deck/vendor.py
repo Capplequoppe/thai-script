@@ -22,6 +22,7 @@ from __future__ import annotations
 
 import hashlib
 import os
+import re
 from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any, Protocol
@@ -63,6 +64,24 @@ DEFAULT_ENGLISH_REFERENCE_TEXT = REFERENCE_DIR / "english-voice.txt"
 
 #: What the shipped clips are encoded as, matching
 #: `generate-sentence-audio.py` so every mp3 the app plays is one format.
+#: The English narration is slowed after synthesis, because the model offers
+#: no way to ask for it beforehand: the clone path takes sampling arguments and
+#: nothing else, and a literal "[pause one second]" is spoken aloud as those
+#: words.
+#:
+#: Measured rather than guessed. The narration came out at 182 words a minute —
+#: brisk-presenter pace — while the reference clip it was cloned from sits at
+#: 129, unhurried. So the clone copies timbre and not tempo, and fixing the
+#: reference would not have fixed this. Authored line breaks bring it to 154,
+#: and 0.85 lands on about 130: the reference's own rate, which is the one a
+#: beginner can follow and repeat after.
+#:
+#: `atempo` resamples without shifting pitch, so the voice is the same voice,
+#: just no longer in a hurry. English only — Thai clips are single words whose
+#: tone contour is the thing being taught, and they are accepted by a
+#: transcribe-back check against audio that must stay as generated.
+ENGLISH_TEMPO = 0.82
+
 MP3_SAMPLE_RATE = "44100"
 MP3_BITRATE = "64k"
 DEFAULT_VOICE_SETTINGS: dict[str, Any] = {
@@ -163,6 +182,7 @@ class VoiceSpec:
 		return {
 			"modelId": self.english_model_id,
 			"reference": self.english_reference_digest(),
+			"tempo": ENGLISH_TEMPO,
 		}
 
 	def english_reference_digest(self) -> str:
@@ -183,8 +203,30 @@ class VoiceSpec:
 		return digest.hexdigest()[:16]
 
 
+#: Delivery markup an author may write inline: `[pause]`, `[whispers]`,
+#: `[thoughtful]`. Square brackets, short, no nesting.
+MARKUP = re.compile(r"\[[^\[\]]{1,48}\]")
+
+
+def strip_markup(text: str) -> str:
+	"""The text with tags removed and the spacing repaired.
+
+	Two callers, for two different reasons. An engine that does not understand
+	tags must never be handed them — Qwen3-TTS reads `[pause one second]` out
+	loud as those words, which transcribing the clip back confirmed. And the
+	transcribe-back check compares against what was *said*, so its expected
+	text is always the stripped form whatever the engine supports.
+	"""
+	return re.sub(r"\s{2,}", " ", MARKUP.sub("", text)).strip()
+
+
 class Vendor(Protocol):
 	"""The entire network surface the pipeline depends on."""
+
+	#: Whether this engine reads `[tags]` as direction or as words. Measured
+	#: per engine by synthesising a tagged line and transcribing it back, never
+	#: taken from a documentation page — the two disagreed for Qwen.
+	supports_markup: bool
 
 	def synthesize(self, text: str, language: str, spec: VoiceSpec, seed: int) -> bytes:
 		"""Audio bytes for one narration line."""
@@ -196,6 +238,11 @@ class Vendor(Protocol):
 class ElevenLabsVendor:
 	"""The real client. `requests` is imported lazily so that a run with no
 	credential fails naming the credential, rather than naming a dependency."""
+
+	#: Measured: `[whispers] Listen carefully. [pause] Now say it aloud.` came
+	#: back transcribing as "Listen carefully. Now say it aloud." — the tags
+	#: shaped the delivery and were not spoken.
+	supports_markup = True
 
 	def __init__(self, api_key: str, redactor: Redactor) -> None:
 		import requests  # noqa: PLC0415 — see the class docstring
@@ -332,7 +379,7 @@ class LocalTranscriber:
 		return "".join(segment.text for segment in segments).strip()
 
 
-def encode_mp3(wav_bytes: bytes) -> bytes:
+def encode_mp3(wav_bytes: bytes, tempo: float | None = None) -> bytes:
 	"""WAV in, the shipped clips' mp3 format out, in memory.
 
 	In memory because verification has to run on the *encoded* artifact — the
@@ -343,10 +390,12 @@ def encode_mp3(wav_bytes: bytes) -> bytes:
 	"""
 	import subprocess  # noqa: PLC0415
 
+	filters = [] if tempo is None else ["-af", f"atempo={tempo}"]
 	completed = subprocess.run(
 		[
 			"ffmpeg", "-hide_banner", "-loglevel", "error",
 			"-f", "wav", "-i", "pipe:0",
+			*filters,
 			"-ac", "1", "-ar", MP3_SAMPLE_RATE, "-b:a", MP3_BITRATE,
 			"-codec:a", "libmp3lame", "-f", "mp3", "pipe:1",
 		],
@@ -386,6 +435,12 @@ class QwenEnglishVoice:
 	The model and the clone prompt are each built once, on first use: a run
 	whose English is entirely cached loads neither.
 	"""
+
+	#: Measured, and the reason `strip_markup` exists: the same tagged line
+	#: came back transcribing as "Pause, welcome. Pause one second before you
+	#: learn a single Thai letter." The model has no markup vocabulary and
+	#: reads the brackets as words.
+	supports_markup = False
 
 	def __init__(self) -> None:
 		self._model: Any | None = None
@@ -460,7 +515,7 @@ class QwenEnglishVoice:
 		waveform = wavs[0] if isinstance(wavs, (list, tuple)) else wavs
 		buffer = io.BytesIO()
 		sf.write(buffer, waveform, int(sample_rate), format="WAV")
-		return encode_mp3(buffer.getvalue())
+		return encode_mp3(buffer.getvalue(), tempo=ENGLISH_TEMPO)
 
 
 @dataclass
@@ -478,9 +533,19 @@ class SplitVendor:
 	english: Vendor
 	transcriber: LocalTranscriber
 
+	@property
+	def supports_markup(self) -> bool:
+		"""Only if *both* halves do. A single answer for a split vendor would
+		be a lie about one of them, and the lie that matters is the optimistic
+		one: it ends with an engine speaking the word "pause"."""
+		return bool(self.thai.supports_markup and self.english.supports_markup)
+
 	def synthesize(self, text: str, language: str, spec: VoiceSpec, seed: int) -> bytes:
 		engine = self.thai if language == "th" else self.english
-		return engine.synthesize(text, language, spec, seed)
+		# Asked per engine rather than through `self`, so the Thai half keeps
+		# its tags even while the English half cannot have them.
+		payload = text if engine.supports_markup else strip_markup(text)
+		return engine.synthesize(payload, language, spec, seed)
 
 	def transcribe(self, audio: bytes) -> str:
 		return self.transcriber.transcribe(audio)

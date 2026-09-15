@@ -5,6 +5,16 @@ structure it has to carry is small: an ordered list of slides, each of one of
 the four kinds the deck schema declares, plus the narration lines that become
 audio.
 
+Delivery markup is written inline in square brackets — `[pause]`,
+`[thoughtful]`, `[whispers]`. It is direction, never words: an engine that
+understands it shapes the delivery, and an engine that does not has the tags
+removed before it ever sees them (`vendor.strip_markup`). Which engines
+understand it is measured in `reference/ENGINES.md`; Qwen3-TTS does not, and
+reads `[pause one second]` aloud as those words.
+
+The transcribe-back check always compares against the stripped text, because a
+transcriber returns what was said and never the direction.
+
 Narration is English prose with Thai embedded, and **the language is marked per
 line**:
 
@@ -149,45 +159,100 @@ def parse_script(path: Path) -> LessonScript:
 	return LessonScript(lesson_id=lesson_id, title=title, slides=slides, source=path)
 
 
+#: How much English one call may carry, in words.
+#:
+#: Merging exists to stop a paragraph being four separate utterances with the
+#: prosody reset between them. Merging without a limit replaces that with a
+#: worse fault: the model accelerates through a long utterance, and it does not
+#: recover. Measured over the orientation deck, fourteen of sixteen clips ended
+#: faster than they began, by 30 words a minute on average — an 80-second clip
+#: opened at 153 and closed at 207. The two clips that held their pace were the
+#: two short ones, both about fifteen seconds.
+#:
+#: So the cap is set near that stable length: 55 words is roughly twenty
+#: seconds at this voice's pace. Long enough to absorb the sentence-level
+#: seams, short enough that the model does not run away. Crossing it starts a
+#: new clip, and the seam lands at a sentence boundary the author wrote, which
+#: is the least bad place for one.
+MAX_MERGED_WORDS = 55
+
+
+def _sentences(text: str) -> list[str]:
+	"""Split on sentence ends, keeping the terminator with its sentence.
+
+	Deliberately simple. It only has to find places a clip may be cut, and a
+	cut at a paragraph break or after a full stop is always defensible — the
+	worst a missed boundary does is leave one clip slightly longer.
+	"""
+	parts = [
+		part.strip()
+		for chunk in text.split("\n\n")
+		for part in re.split(r"(?<=[.!?])\s+", chunk)
+	]
+	return [part for part in parts if part]
+
+
 def _merge_runs(slide: Slide) -> list[Segment]:
-	"""Consecutive English lines on one slide become one clip.
+	"""Pack a slide's English into clips of at most `MAX_MERGED_WORDS`.
 
-	A synthesiser has no memory between calls. Every clip starts at the
-	speaker's baseline pitch and ends on a sentence-final fall, so a paragraph
-	cut into four calls is four separate utterances played back to back — and
-	it is audible. The narrator sounds like they finish a thought and start
-	again, four times, in the middle of one idea. No gap tuning fixes that,
-	and neither does a better voice: generating in pieces is the cause, not
-	the engine.
+	Two faults pull in opposite directions and this sits between them.
 
-	So a run of English becomes a single call and the prosody is continuous
-	across it. Thai never merges, for three reasons that all point the same
-	way: each Thai clip is transcribed back and accepted on its own, identical
-	Thai text is shared between slides and lessons by content hash, and a pause
-	before a Thai word is the one pause that belongs there — it is a teacher
-	stopping before saying the thing.
+	A synthesiser has no memory between calls, so a paragraph cut into four
+	calls is four utterances played back to back: each opens at the speaker's
+	baseline pitch and closes on a sentence-final fall, and the narrator
+	audibly finishes a thought and starts again in the middle of one idea.
+	That argues for joining everything.
 
-	Keys are re-derived from the merged order, so a slide's clips stay
+	But the model also accelerates through a long utterance and never
+	recovers. Measured over the orientation deck when runs were uncapped,
+	fourteen of sixteen clips ended faster than they began — by 30 words a
+	minute on average, and an 80-second clip opened at 153 and closed at 207.
+	The only two that held their pace were the two short ones. That argues for
+	cutting everything.
+
+	So: pack sentences greedily up to the cap, and cut where the author already
+	ended a sentence. Long enough to absorb most seams, short enough that the
+	pace does not run away, and the seams that remain fall where a speaker
+	would pause anyway.
+
+	Thai never merges and is never split. Each Thai clip is transcribed back
+	and accepted on its own, identical Thai text is shared across slides and
+	lessons by content hash, and the pause before a Thai word is the one pause
+	that belongs there.
+
+	Keys are re-derived from the packed order, so a slide's clips stay
 	`<slide>-0`, `<slide>-1`, ... with no gaps.
 	"""
-	merged: list[Segment] = []
+	packed: list[Segment] = []
+	buffer: list[str] = []
+	buffered_words = 0
+
+	def flush() -> None:
+		nonlocal buffer, buffered_words
+		if buffer:
+			# Joined with a blank line, not a space: each piece was its own
+			# thought, and a paragraph break is the only pause control the
+			# model offers. A literal "[pause]" is read out loud as the word.
+			packed.append(Segment(key="", language="en", text="\n\n".join(buffer)))
+			buffer = []
+			buffered_words = 0
+
 	for segment in slide.segments:
-		previous = merged[-1] if merged else None
-		if (
-			previous is not None
-			and previous.language == "en"
-			and segment.language == "en"
-		):
-			merged[-1] = Segment(
-				key=previous.key,
-				language="en",
-				text=f"{previous.text} {segment.text}",
-			)
+		if segment.language != "en":
+			flush()
+			packed.append(segment)
 			continue
-		merged.append(segment)
+		for sentence in _sentences(segment.text):
+			words = len(sentence.split())
+			if buffer and buffered_words + words > MAX_MERGED_WORDS:
+				flush()
+			buffer.append(sentence)
+			buffered_words += words
+	flush()
+
 	return [
 		Segment(key=f"{slide.id}-{index}", language=s.language, text=s.text)
-		for index, s in enumerate(merged)
+		for index, s in enumerate(packed)
 	]
 
 
@@ -214,6 +279,8 @@ def _parse_narration(slide: Slide, value: str, path: Path, number: int) -> Segme
 		language=language,
 		text=text,
 	)
+
+
 
 
 def _check_slides(slides: list[Slide], path: Path) -> None:

@@ -61,6 +61,9 @@ class ScriptedVendor:
 	stderr do not carry it back out.
 	"""
 
+	#: The stand-in passes tags through, so a scenario can assert what a
+	#: markup-capable engine would have been sent.
+	supports_markup: bool = True
 	api_key: str = ""
 	mishears: dict[str, list[str]] = field(default_factory=dict)
 	always_mishears: frozenset[str] = frozenset()

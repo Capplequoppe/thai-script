@@ -46,7 +46,7 @@ from .manifest import (
 	verification_from_json,
 )
 from .script_parser import LessonScript, Segment, Slide
-from .vendor import Redactor, Vendor, VendorError, VoiceSpec
+from .vendor import Redactor, Vendor, VendorError, VoiceSpec, strip_markup
 
 #: Bumped when a change to this file would make previously cached clips wrong.
 #: Part of every cache key, so bumping it invalidates every asset at once.
@@ -56,7 +56,20 @@ from .vendor import Redactor, Vendor, VendorError, VoiceSpec
 # (2 was a silence trim, reverted: measured before and after, it removed
 # nothing.) The input hash covers text, language and voice, so a merged run
 # rehashes on its own — but the bump also clears the version-2 clips.
-PIPELINE_VERSION = 3
+# 4: English narration is slowed to `vendor.ENGLISH_TEMPO` after synthesis, and
+# a merged run now keeps its authored line breaks instead of being flattened to
+# one line. Both change the bytes without changing text, language or voice — the
+# three things the input hash covers — so without this bump nothing would
+# regenerate.
+# 5: the English reference is now short and slow (see
+# `make-english-reference.py`), and `vendor.ENGLISH_TEMPO` joined the English
+# cache key so a tempo change regenerates rather than silently doing nothing.
+# The reference digest covers the clip itself, so this bump is really only
+# clearing version 4's clips.
+# 6: English is packed into clips of at most `MAX_MERGED_WORDS` instead of
+# being merged without limit. Version 5's clips ran to 80 and 90 seconds and
+# accelerated through them; see the constant for the measurements.
+PIPELINE_VERSION = 6
 
 #: Seeds tried in order for a Thai clip that comes back saying the wrong thing.
 #: Seed is the cheap axis and the only one that is a lever here: the sibling
@@ -313,7 +326,10 @@ class DeckGenerator:
 			except VendorError as error:
 				self._reject(record, attempt, segment, heard, str(error))
 				continue
-			if transcript_matches(segment.text, spoken):
+			# Against the stripped text: the tags were direction, not words,
+			# so a transcriber will never return them and comparing with them
+			# in place would fail every tagged Thai clip.
+			if transcript_matches(strip_markup(segment.text), spoken):
 				self._accept(
 					record,
 					relative,
@@ -321,7 +337,7 @@ class DeckGenerator:
 					Verification(
 						outcome="verified",
 						attempts=attempt,
-						expected=segment.text,
+						expected=strip_markup(segment.text),
 						heard=[*heard, spoken],
 					),
 				)
