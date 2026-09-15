@@ -10,6 +10,14 @@
 				"ม and น both carry the same low, husky \"m\" and \"n\" sounds you already make in English — no aspiration, no surprise.",
 				"Each glyph is one loop hung off a tall stem. The whole difference between them is which shoulder the loop sits on.",
 				"ม keeps its loop on the left shoulder. น swings it over to the right."
+			],
+			"audio": [
+				"/thai-script/lessons/lesson-01/audio/welcome-0-12cecb170be4.mp3",
+				"/thai-script/lessons/lesson-01/audio/welcome-1-b360209bed2b.mp3",
+				"/thai-script/lessons/lesson-01/audio/welcome-2-a0b40fea462a.mp3",
+				"/thai-script/lessons/lesson-01/audio/welcome-3-9eb44062ee53.mp3",
+				"/thai-script/lessons/lesson-01/audio/welcome-4-74fc181e5122.mp3",
+				"/thai-script/lessons/lesson-01/audio/welcome-5-ecbbab834645.mp3"
 			]
 		},
 		{
@@ -19,19 +27,29 @@
 			"body": [
 				"ม and น both belong to the low consonant class, so they will follow the same tone rules once those rules arrive in lesson two.",
 				"For now the class is just a label to notice: low, low — every low-class letter after them behaves the same way."
+			],
+			"audio": [
+				"/thai-script/lessons/lesson-01/audio/class-0-749b5df030dc.mp3",
+				"/thai-script/lessons/lesson-01/audio/class-1-1bec388b773e.mp3"
 			]
 		},
 		{
 			"kind": "retrieval",
 			"id": "spot-the-loop",
 			"prompt": "ม and น are mirror images of each other. Which shoulder does ม's loop sit on, and which shoulder does น's?",
-			"revealSlideId": "spot-the-loop-answer"
+			"revealSlideId": "spot-the-loop-answer",
+			"audio": [
+				"/thai-script/lessons/lesson-01/audio/spot-the-loop-0-0b35d65e49d8.mp3"
+			]
 		},
 		{
 			"kind": "reveal",
 			"id": "spot-the-loop-answer",
 			"retrievalSlideId": "spot-the-loop",
-			"answers": ["ม: left shoulder. น: right shoulder."]
+			"answers": ["ม: left shoulder. น: right shoulder."],
+			"audio": [
+				"/thai-script/lessons/lesson-01/audio/spot-the-loop-answer-0-39fa160346b6.mp3"
+			]
 		},
 		{
 			"kind": "exposition",
@@ -40,6 +58,12 @@
 			"body": [
 				"The vowel sign า trails a consonant and stretches its sound into a long, open \"aa\" — hold it until it runs out of breath.",
 				"It never stands alone; it always rides behind the consonant that starts the syllable."
+			],
+			"audio": [
+				"/thai-script/lessons/lesson-01/audio/vowel-0-78833540f8a0.mp3",
+				"/thai-script/lessons/lesson-01/audio/vowel-1-e4f76c4fc0f3.mp3",
+				"/thai-script/lessons/lesson-01/audio/vowel-2-d4b90b0b1e39.mp3",
+				"/thai-script/lessons/lesson-01/audio/vowel-3-9a199a3ef1d4.mp3"
 			]
 		},
 		{
@@ -49,19 +73,31 @@
 			"body": [
 				"Put น in front of the long vowel: น plus า makes นา.",
 				"นา (naa) means a rice farm or a field — one of the first nouns a farmer's child ever hears."
+			],
+			"audio": [
+				"/thai-script/lessons/lesson-01/audio/word-naa-0-cd37a5ebd7e6.mp3",
+				"/thai-script/lessons/lesson-01/audio/word-naa-1-73ab5a8cd209.mp3",
+				"/thai-script/lessons/lesson-01/audio/word-naa-2-e3d134f97129.mp3"
 			]
 		},
 		{
 			"kind": "retrieval",
 			"id": "build-naa",
 			"prompt": "น plus the long vowel — what word does that spell, and what does it mean?",
-			"revealSlideId": "build-naa-answer"
+			"revealSlideId": "build-naa-answer",
+			"audio": [
+				"/thai-script/lessons/lesson-01/audio/build-naa-0-7a8790fc51ff.mp3"
+			]
 		},
 		{
 			"kind": "reveal",
 			"id": "build-naa-answer",
 			"retrievalSlideId": "build-naa",
-			"answers": ["นา — naa — a rice farm or a field."]
+			"answers": ["นา — naa — a rice farm or a field."],
+			"audio": [
+				"/thai-script/lessons/lesson-01/audio/build-naa-answer-0-73ab5a8cd209.mp3",
+				"/thai-script/lessons/lesson-01/audio/build-naa-answer-1-035d75b5d343.mp3"
+			]
 		},
 		{
 			"kind": "exposition",
@@ -70,19 +106,31 @@
 			"body": [
 				"Swap the consonant: ม plus the same long vowel makes มา.",
 				"มา (maa) means \"to come\" — a verb you will reach for constantly from here on."
+			],
+			"audio": [
+				"/thai-script/lessons/lesson-01/audio/word-maa-0-4cc9e1820276.mp3",
+				"/thai-script/lessons/lesson-01/audio/word-maa-1-80d0975db889.mp3",
+				"/thai-script/lessons/lesson-01/audio/word-maa-2-2c538e207ea1.mp3"
 			]
 		},
 		{
 			"kind": "retrieval",
 			"id": "build-maa",
 			"prompt": "Swap นา's first consonant for ม. What word do you get, and what does it mean?",
-			"revealSlideId": "build-maa-answer"
+			"revealSlideId": "build-maa-answer",
+			"audio": [
+				"/thai-script/lessons/lesson-01/audio/build-maa-0-650a26e62da3.mp3"
+			]
 		},
 		{
 			"kind": "reveal",
 			"id": "build-maa-answer",
 			"retrievalSlideId": "build-maa",
-			"answers": ["มา — maa — to come."]
+			"answers": ["มา — maa — to come."],
+			"audio": [
+				"/thai-script/lessons/lesson-01/audio/build-maa-answer-0-80d0975db889.mp3",
+				"/thai-script/lessons/lesson-01/audio/build-maa-answer-1-7577f138c69e.mp3"
+			]
 		},
 		{
 			"kind": "exposition",
@@ -91,19 +139,31 @@
 			"body": [
 				"Close the syllable with a second น: น plus the vowel plus น makes นาน.",
 				"นาน (naan) means \"a long time\" — the same vowel, now bookended by two low-class letters."
+			],
+			"audio": [
+				"/thai-script/lessons/lesson-01/audio/word-naan-0-bd1d8597ea49.mp3",
+				"/thai-script/lessons/lesson-01/audio/word-naan-1-129187afb5b4.mp3",
+				"/thai-script/lessons/lesson-01/audio/word-naan-2-10d375ecaf78.mp3"
 			]
 		},
 		{
 			"kind": "retrieval",
 			"id": "build-naan",
 			"prompt": "Bookend the long vowel with น on both sides. What word does that spell, and what does it mean?",
-			"revealSlideId": "build-naan-answer"
+			"revealSlideId": "build-naan-answer",
+			"audio": [
+				"/thai-script/lessons/lesson-01/audio/build-naan-0-16ba38bb7f29.mp3"
+			]
 		},
 		{
 			"kind": "reveal",
 			"id": "build-naan-answer",
 			"retrievalSlideId": "build-naan",
-			"answers": ["นาน — naan — a long time."]
+			"answers": ["นาน — naan — a long time."],
+			"audio": [
+				"/thai-script/lessons/lesson-01/audio/build-naan-answer-0-129187afb5b4.mp3",
+				"/thai-script/lessons/lesson-01/audio/build-naan-answer-1-963268566754.mp3"
+			]
 		}
 	]
 }

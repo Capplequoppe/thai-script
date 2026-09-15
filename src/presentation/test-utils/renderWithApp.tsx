@@ -137,10 +137,14 @@ export function getFakeLocalStorage(): FakeLocalStorage {
 
 export class StubAudio {
 	static createdUrls: string[] = [];
+	/** Every clip constructed this test, in order, so a test can drive one on. */
+	static instances: StubAudio[] = [];
 	currentTime = 0;
+	private readonly listeners = new Map<string, Set<() => void>>();
 
 	constructor(readonly src?: string) {
 		StubAudio.createdUrls.push(src ?? "");
+		StubAudio.instances.push(this);
 	}
 
 	play(): Promise<void> {
@@ -148,6 +152,25 @@ export class StubAudio {
 	}
 
 	pause(): void {}
+
+	// `DeckSlide` plays a slide's narration as a *sequence*, stepping to the
+	// next clip on "ended" — so the double has to carry listeners, not just
+	// `play`. Without them the component throws rather than the test failing on
+	// what it meant to assert.
+	addEventListener(type: string, handler: () => void): void {
+		const forType = this.listeners.get(type) ?? new Set<() => void>();
+		forType.add(handler);
+		this.listeners.set(type, forType);
+	}
+
+	removeEventListener(type: string, handler: () => void): void {
+		this.listeners.get(type)?.delete(handler);
+	}
+
+	/** Fire an event on this clip — `dispatch("ended")` advances a sequence. */
+	dispatch(type: string): void {
+		for (const handler of [...(this.listeners.get(type) ?? [])]) handler();
+	}
 }
 
 /** URLs passed to `new Audio(url)` since the current test began. */
@@ -247,6 +270,7 @@ beforeEach(() => {
 	globalThis.localStorage = fakeLocalStorage;
 	globalThis.Audio = StubAudio as unknown as typeof Audio;
 	StubAudio.createdUrls = [];
+	StubAudio.instances = [];
 	fetchOutcomes = new Map();
 	globalThis.fetch = (async (input: RequestInfo | URL) => {
 		const url = typeof input === "string" ? input : input.toString();

@@ -204,19 +204,64 @@ describe("the committed deck", () => {
 			for (const path of slide.audio ?? []) referenced.add(path);
 			if (slide.image) referenced.add(slide.image);
 		}
-		// Lesson 1 ships with no narration audio and no illustrations in this
-		// pass: generating real ElevenLabs narration needs a live
-		// ELEVENLABS_API_KEY, which was not available when this deck was
-		// generated. The pipeline still ran for real — `manifest.json` records
-		// a completed run with zero assets, not an absent or partial one — and
-		// content/lessons/lesson-01.md declares no `narration:` lines, so
-		// nothing was silently skipped.
-		expect(referenced.size).toBe(0);
-		expect(manifest.assets).toEqual([]);
+		// Assert the loop below is not vacuous before trusting it. Lesson 1 is
+		// narrated end to end, so a deck that referenced nothing would pass
+		// every check in this test while shipping silence.
+		expect(referenced.size).toBeGreaterThan(0);
 		for (const path of referenced) {
 			expect(path.startsWith("/thai-script/lessons/lesson-01/")).toBe(true);
-			expect(existsSync(join(REPO_ROOT, "public", path))).toBe(true);
+			// Deck paths are browser URLs and carry Vite's `base` ("/thai-script/");
+			// on disk that prefix is `public/` itself, not a directory beneath it.
+			expect(
+				existsSync(
+					join(REPO_ROOT, "public", path.replace("/thai-script/", "")),
+				),
+			).toBe(true);
 		}
+	});
+
+	it("every manifest asset reached `generated`, and every Thai clip was verified", () => {
+		// The manifest is the record of what the run actually did, and the deck
+		// is only written when every segment reached `generated` — so a deck
+		// that exists alongside a `failed` segment would mean the pipeline's
+		// central promise had broken.
+		expect(manifest.assets.length).toBeGreaterThan(0);
+		for (const asset of manifest.assets) {
+			expect(asset.state).toBe("generated");
+		}
+
+		// Thai is the language being taught: a wrong tone here is a
+		// mispronunciation the learner will go on to practise. Every Thai clip
+		// is transcribed back before it is accepted, and `not-required` is what
+		// an English clip gets — so a Thai clip carrying it would mean the
+		// check had been skipped rather than passed.
+		const thai = manifest.assets.filter((a) => a.language === "th");
+		expect(thai.length).toBeGreaterThan(0);
+		for (const asset of thai) {
+			expect(asset.verification?.outcome).toBe("verified");
+		}
+	});
+
+	it("every narration line in the script became exactly one clip", () => {
+		// The script is the source of truth for what is spoken. A line that
+		// silently failed to become a clip is the failure mode that would be
+		// hardest to notice by playing the lesson — the narration would simply
+		// skip a sentence.
+		const script = readFileSync(
+			join(REPO_ROOT, "content", "lessons", "lesson-01.md"),
+			"utf8",
+		);
+		const spoken = script
+			.split("\n")
+			.filter((line) => /^narration: (en|th) /.test(line));
+		expect(spoken.length).toBe(manifest.assets.length);
+
+		const thaiLines = spoken.filter((line) =>
+			line.startsWith("narration: th "),
+		).length;
+		expect(manifest.assets.filter((a) => a.language === "th").length).toBe(
+			thaiLines,
+		);
 	});
 });
 

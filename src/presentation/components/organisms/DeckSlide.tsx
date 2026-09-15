@@ -22,7 +22,7 @@ type LoadState =
 	| {
 			readonly status: "ready";
 			readonly deck: LessonDeck;
-			readonly audioUrls: ReadonlyMap<string, string>;
+			readonly audioUrls: ReadonlyMap<string, readonly string[]>;
 	  };
 
 /**
@@ -30,25 +30,37 @@ type LoadState =
  * `public/lessons/<lessonId>/` — the trust boundary the deck-JSON sink is
  * named against. A URL outside that root, or one containing `..`, is
  * refused rather than played — and that refusal is a `console.warn`, not a
- * silent drop: a slide with no `audioUrl` at all and a slide whose
- * `audioUrl` was refused both end up with no replay button, and only the
- * warning tells the two apart.
+ * silent drop: a slide with no audio at all and a slide whose every clip was
+ * refused both end up with no replay button, and only the warning tells the
+ * two apart.
  */
-/** One raw slide's `id`/`audioUrl`, if both are present as strings. */
+/**
+ * One raw slide's `id` and its clip list.
+ *
+ * A slide's narration is a *sequence* — the generator emits one clip per
+ * narration line, because each line is one language and the Thai ones are
+ * checked before they are accepted. `audio` is that list. A lone `audioUrl`
+ * string is still read, so a deck written before the split keeps playing.
+ */
 function readAudioCandidate(
 	item: unknown,
-): { id: string; audioUrl: string } | undefined {
+): { id: string; audioUrls: string[] } | undefined {
 	if (typeof item !== "object" || item === null) return undefined;
-	const { id, audioUrl } = item as Record<string, unknown>;
-	if (typeof id !== "string" || typeof audioUrl !== "string") return undefined;
-	return { id, audioUrl };
+	const { id, audio, audioUrl } = item as Record<string, unknown>;
+	if (typeof id !== "string") return undefined;
+	if (Array.isArray(audio)) {
+		const urls = audio.filter((url): url is string => typeof url === "string");
+		return urls.length > 0 ? { id, audioUrls: urls } : undefined;
+	}
+	if (typeof audioUrl === "string") return { id, audioUrls: [audioUrl] };
+	return undefined;
 }
 
 function extractAudioUrls(
 	raw: unknown,
 	lessonId: string,
-): ReadonlyMap<string, string> {
-	const map = new Map<string, string>();
+): ReadonlyMap<string, readonly string[]> {
+	const map = new Map<string, readonly string[]>();
 	if (typeof raw !== "object" || raw === null) return map;
 	const slidesRaw = (raw as Record<string, unknown>).slides;
 	if (!Array.isArray(slidesRaw)) return map;
@@ -57,17 +69,73 @@ function extractAudioUrls(
 	for (const item of slidesRaw) {
 		const candidate = readAudioCandidate(item);
 		if (!candidate) continue;
-		const { id, audioUrl } = candidate;
+		const { id, audioUrls } = candidate;
 
-		if (audioUrl.startsWith(prefix) && !audioUrl.includes("..")) {
-			map.set(id, audioUrl);
-			continue;
-		}
-		console.warn(
-			`DeckSlide: refusing audioUrl outside "${prefix}" for slide "${id}": ${audioUrl}`,
-		);
+		// Each clip is checked on its own: one refused URL must not take the
+		// rest of the slide's narration down with it, and each refusal is
+		// warned about individually so the console says which clip was dropped.
+		const allowed = audioUrls.filter((url) => {
+			if (url.startsWith(prefix) && !url.includes("..")) return true;
+			console.warn(
+				`DeckSlide: refusing audio outside "${prefix}" for slide "${id}": ${url}`,
+			);
+			return false;
+		});
+		if (allowed.length > 0) map.set(id, allowed);
 	}
 	return map;
+}
+
+/**
+ * Silence between one clip and the next.
+ *
+ * The narration track alternates languages — English explanation, then the Thai
+ * it is talking about — and those are separate clips from separate engines in
+ * different voices. Butted together they sound like a cut; given a beat, they
+ * sound like a teacher pausing before saying the word. The pause lives here
+ * rather than being encoded into the mp3s so it stays one tunable number, and
+ * so the same Thai clip can be reused anywhere without carrying a fixed
+ * silence around with it.
+ */
+const CLIP_GAP_MS = 350;
+
+/**
+ * Plays `urls` in order, with a gap between them. Returns the cancel function.
+ *
+ * Cancellation is the whole reason this is not a loop of `await`: the learner
+ * can step to the next slide mid-sentence, and the clip that was playing has to
+ * stop with it rather than talking over what comes next.
+ *
+ * A refused `play()` stops the sequence instead of racing through the rest.
+ * The usual cause is the browser's autoplay policy, which no later clip in the
+ * same sequence will satisfy either — the replay button is a user gesture and
+ * will work.
+ */
+function playSequence(urls: readonly string[]): () => void {
+	let cancelled = false;
+	let playing: HTMLAudioElement | undefined;
+	let timer: ReturnType<typeof setTimeout> | undefined;
+
+	const playFrom = (index: number): void => {
+		if (cancelled || index >= urls.length) return;
+		const url = urls[index];
+		if (!url) return;
+		const audio = new Audio(url);
+		playing = audio;
+		audio.addEventListener("ended", () => {
+			if (cancelled) return;
+			timer = setTimeout(() => playFrom(index + 1), CLIP_GAP_MS);
+		});
+		audio.play().catch(() => {});
+	};
+
+	playFrom(0);
+
+	return () => {
+		cancelled = true;
+		if (timer !== undefined) clearTimeout(timer);
+		playing?.pause();
+	};
 }
 
 /**
@@ -87,12 +155,14 @@ function isUnauthoredEmptyDeck(
 	return errors.length === 1 && errors[0]?.code === "missing-retrieval";
 }
 
-function ReplayButton({ url }: { url: string }) {
+function ReplayButton({ urls }: { urls: readonly string[] }) {
+	// Replays the slide's whole narration, not just its first clip: the
+	// learner who presses it did not hear part of an explanation.
 	return (
 		<button
 			type="button"
 			onClick={() => {
-				new Audio(url).play().catch(() => {});
+				playSequence(urls);
 			}}
 			className="inline-flex items-center justify-center w-12 h-12 rounded-full text-2xl transition-colors"
 			style={{
@@ -110,11 +180,11 @@ function ReplayButton({ url }: { url: string }) {
 function DeckSlideContent({
 	deck,
 	slide,
-	audioUrl,
+	audioUrls,
 }: {
 	deck: LessonDeck;
 	slide: DeckSlideData;
-	audioUrl?: string;
+	audioUrls?: readonly string[];
 }) {
 	// Reveal state for a "reveal" slide, mirroring `Flashcard.tsx`'s own
 	// click-to-reveal pattern — the established mechanism in this repo, not a
@@ -126,22 +196,23 @@ function DeckSlideContent({
 		setRevealed(false);
 	});
 
-	// biome-ignore lint/correctness/useExhaustiveDependencies: keys on the slide's own identity, not on audioUrl — two consecutive slides sharing a clip must still reset (see AC5)
+	// biome-ignore lint/correctness/useExhaustiveDependencies: keys on the slide's own identity, not on audioUrls — two consecutive slides sharing a clip must still reset (see AC5)
 	useEffect(() => {
-		if (audioUrl && slide.kind !== "reveal") {
-			new Audio(audioUrl).play().catch(() => {});
-		}
+		if (!audioUrls?.length || slide.kind === "reveal") return;
+		// The returned canceller is the cleanup: stepping off the slide stops
+		// whatever clip is mid-sentence rather than letting it talk over the
+		// next slide's narration.
+		return playSequence(audioUrls);
 	}, [slide.id]);
 
 	// A "reveal" slide's audio is the answer's pronunciation, so it plays on
 	// reveal rather than on arrival — hearing it first would answer the
 	// retrieval step it follows. Mirrors `Flashcard.tsx`'s own reveal-time
 	// audio effect.
-	// biome-ignore lint/correctness/useExhaustiveDependencies: fires once per reveal, not on every audioUrl/slide identity change
+	// biome-ignore lint/correctness/useExhaustiveDependencies: fires once per reveal, not on every audioUrls/slide identity change
 	useEffect(() => {
-		if (revealed && audioUrl) {
-			new Audio(audioUrl).play().catch(() => {});
-		}
+		if (!revealed || !audioUrls?.length) return;
+		return playSequence(audioUrls);
 	}, [revealed]);
 
 	switch (slide.kind) {
@@ -157,9 +228,9 @@ function DeckSlideContent({
 							</p>
 						))}
 					</div>
-					{audioUrl && (
+					{audioUrls && audioUrls.length > 0 && (
 						<div className="flex justify-center">
-							<ReplayButton url={audioUrl} />
+							<ReplayButton urls={audioUrls} />
 						</div>
 					)}
 				</div>
@@ -170,9 +241,9 @@ function DeckSlideContent({
 			return (
 				<div className="space-y-4">
 					<p className="text-center text-lg">{slide.prompt}</p>
-					{audioUrl && (
+					{audioUrls && audioUrls.length > 0 && (
 						<div className="flex justify-center">
-							<ReplayButton url={audioUrl} />
+							<ReplayButton urls={audioUrls} />
 						</div>
 					)}
 				</div>
@@ -207,9 +278,9 @@ function DeckSlideContent({
 									{answer}
 								</p>
 							))}
-							{audioUrl && (
+							{audioUrls && audioUrls.length > 0 && (
 								<div className="flex justify-center">
-									<ReplayButton url={audioUrl} />
+									<ReplayButton urls={audioUrls} />
 								</div>
 							)}
 						</div>
@@ -357,7 +428,7 @@ export function DeckSlide({ deckPath, onComplete }: Props) {
 			<DeckSlideContent
 				deck={state.deck}
 				slide={slide}
-				audioUrl={state.audioUrls.get(slide.id)}
+				audioUrls={state.audioUrls.get(slide.id)}
 			/>
 			<div className="flex gap-3">
 				{idx > 0 && (

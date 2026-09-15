@@ -1,3 +1,19 @@
+<!--
+Bare open syllables are voiced twice, without a space: `นานา`, not `นา`.
+
+Measured, not stylistic. `eleven_v3` — the only ElevenLabs model that speaks
+Thai at all — cannot render a bare open monosyllable reliably. `นา` came back
+as `น่า` on six seeds out of six, at stability 0.5 and 1.0, on both Thai voices
+the account can reach. `นานา` is correct five times in six. A *closed* syllable
+is fine on the first attempt (`นาน` never failed), and so is anything longer.
+
+A space re-isolates the syllables and brings the failure back: `นา นา` scored
+1 in 4. Write the repetition as one token.
+
+The learner hears the syllable drilled twice, which is what a teacher does
+anyway. The glyph on screen stays the single word.
+-->
+
 # Maaw maa, Naaw nuu, and Long a
 
 lesson: lesson-01
@@ -43,7 +59,7 @@ narration: en It never stands on its own. It always rides behind the consonant t
 ## exposition word-naa
 heading: นา — rice farm
 narration: en Put naaw nuu in front of that long vowel, and you have your first word.
-narration: th นา
+narration: th นานา
 narration: en Naa — a rice farm, or a field. One of the first nouns a farmer's child ever hears.
 - Put น in front of the long vowel: น plus า makes นา.
 - นา (naa) means a rice farm or a field — one of the first nouns a farmer's child ever hears.
@@ -55,7 +71,7 @@ narration: en Naaw nuu, then the long vowel. Say the word that spells, and say w
 
 ## reveal build-naa-answer
 retrieval: build-naa
-narration: th นา
+narration: th นานา
 narration: en Naa — a rice farm, or a field.
 - นา — naa — a rice farm or a field.
 
