@@ -1,0 +1,205 @@
+{
+	"lessonId": "orientation",
+	"title": "Before you start",
+	"slides": [
+		{
+			"kind": "exposition",
+			"id": "welcome",
+			"heading": "Five minutes that will save you months",
+			"body": [
+				"This is not a course you get through by putting in hours.",
+				"It is one you get through by putting in the *right* minutes, at the *right* times.",
+				"Five minutes here first."
+			],
+			"audio": [
+				"/thai-script/lessons/orientation/audio/b94e6838530cec9e.mp3",
+				"/thai-script/lessons/orientation/audio/bc3e78fe2cb73bda.mp3"
+			],
+			"image": "/thai-script/lessons/orientation/images/welcome-2abeb59dfdf2.jpg"
+		},
+		{
+			"kind": "exposition",
+			"id": "forgetting",
+			"heading": "You don't forget slowly — you forget in a rush",
+			"body": [
+				"Most of what you learn fades within days.",
+				"Re-reading does not stop it — recognising something is not the same as knowing it.",
+				"What stops it is **recall**: dragging it back out of your head, at the right moment."
+			],
+			"audio": [
+				"/thai-script/lessons/orientation/audio/80154f8ceddf6a47.mp3",
+				"/thai-script/lessons/orientation/audio/25a5ce4c0140ca13.mp3",
+				"/thai-script/lessons/orientation/audio/b6852a6e81aa32bb.mp3"
+			],
+			"image": "/thai-script/lessons/orientation/images/forgetting-ef219a7502b2.jpg"
+		},
+		{
+			"kind": "exposition",
+			"id": "the-appointment",
+			"heading": "The notification is an appointment",
+			"body": [
+				"The app calculates, per item, when *you* are about to forget it.",
+				"Reviewing in that window is worth more than many sessions at any other time.",
+				"Skipping is not a delay. It is losing work you already did.",
+				"**Ten minutes when prompted beats an hour at the weekend.**"
+			],
+			"audio": [
+				"/thai-script/lessons/orientation/audio/96e33603c1308ba9.mp3",
+				"/thai-script/lessons/orientation/audio/2f785881ce5cdb8b.mp3",
+				"/thai-script/lessons/orientation/audio/16b7d3f9cffa0be3.mp3"
+			],
+			"image": "/thai-script/lessons/orientation/images/the-appointment-1385f75dca20.jpg"
+		},
+		{
+			"kind": "retrieval",
+			"id": "when-review",
+			"prompt": "So: when is the single best moment to review something you have learned? Say your answer out loud before you turn this over.",
+			"revealSlideId": "when-review-answer",
+			"audio": ["/thai-script/lessons/orientation/audio/77e8e2e69a21e817.mp3"]
+		},
+		{
+			"kind": "reveal",
+			"id": "when-review-answer",
+			"retrievalSlideId": "when-review",
+			"answers": [
+				"**Just as you begin to forget it** — when recall takes effort but still works.",
+				"Too early and you learn nothing. Too late and you are starting over."
+			],
+			"audio": ["/thai-script/lessons/orientation/audio/b7124594c19adecc.mp3"]
+		},
+		{
+			"kind": "exposition",
+			"id": "struggle",
+			"heading": "Notice what just happened",
+			"body": [
+				"Every lesson asks before it shows.",
+				"Guessing wrong, then being corrected, beats reading the right answer.",
+				"**Feeling unsure is the method working, not failing.**",
+				"Never skip ahead to the answer."
+			],
+			"audio": [
+				"/thai-script/lessons/orientation/audio/f8cd2d3ec17d6d74.mp3",
+				"/thai-script/lessons/orientation/audio/19016a26833c4bf5.mp3",
+				"/thai-script/lessons/orientation/audio/6c387144980eba67.mp3"
+			],
+			"image": "/thai-script/lessons/orientation/images/struggle-3dbd6c02a076.jpg"
+		},
+		{
+			"kind": "exposition",
+			"id": "mnemonics",
+			"heading": "Your memory is bad at shapes and brilliant at stories",
+			"body": [
+				"You will never be asked to memorise a bare shape.",
+				"Every letter arrives attached to a concrete picture, and the odder the better.",
+				"The picture is **scaffolding**. It falls away by itself once the letter is automatic."
+			],
+			"audio": [
+				"/thai-script/lessons/orientation/audio/0b728c6b24e8ed50.mp3",
+				"/thai-script/lessons/orientation/audio/f1d6b71acffc3f30.mp3",
+				"/thai-script/lessons/orientation/audio/107239521c834864.mp3"
+			],
+			"image": "/thai-script/lessons/orientation/images/mnemonics-e1805c2637cf.jpg"
+		},
+		{
+			"kind": "exposition",
+			"id": "districts",
+			"heading": "Every letter has an address",
+			"body": [
+				"Thai consonants have three **classes**, and class decides tone.",
+				"Each class has its own **place** — you will meet the first one in lesson 1.",
+				"Recall becomes \"which part of town?\" instead of searching a list of forty-four."
+			],
+			"audio": [
+				"/thai-script/lessons/orientation/audio/75a215c6405c9227.mp3",
+				"/thai-script/lessons/orientation/audio/fbfb5b6bde8c09f6.mp3",
+				"/thai-script/lessons/orientation/audio/393182305bb4e089.mp3"
+			],
+			"image": "/thai-script/lessons/orientation/images/districts-5f716d4d4fc2.jpg"
+		},
+		{
+			"kind": "exposition",
+			"id": "aloud",
+			"heading": "Say it out loud. Every time.",
+			"body": [
+				"Say every word, every letter name and every answer **out loud**.",
+				"Recognising and producing are different skills. Only one of them gets you understood.",
+				"You cannot hear your own tone errors silently."
+			],
+			"audio": [
+				"/thai-script/lessons/orientation/audio/a8c363f6cd406582.mp3",
+				"/thai-script/lessons/orientation/audio/a3f73719a0c632aa.mp3",
+				"/thai-script/lessons/orientation/audio/449c323f893b344a.mp3"
+			],
+			"image": "/thai-script/lessons/orientation/images/aloud-c11c323784cd.jpg"
+		},
+		{
+			"kind": "exposition",
+			"id": "pen",
+			"heading": "Write it by hand, on paper",
+			"body": [
+				"Pen. Paper. Actually writing, not tracing on glass.",
+				"The hand learns shapes the eye cannot.",
+				"Thai letters have a **stroke order**, and most start at the loop.",
+				"**Ten minutes writing beats an hour looking.**"
+			],
+			"audio": [
+				"/thai-script/lessons/orientation/audio/5103a4e2c6043273.mp3",
+				"/thai-script/lessons/orientation/audio/5216f1ce0cc1c86f.mp3",
+				"/thai-script/lessons/orientation/audio/6a2353be6f2682c3.mp3"
+			],
+			"image": "/thai-script/lessons/orientation/images/pen-4ff303f61dbf.jpg"
+		},
+		{
+			"kind": "exposition",
+			"id": "ears",
+			"heading": "Your eyes and your ears learn separately",
+			"body": [
+				"Reading well and hearing well are **separate skills**.",
+				"Every clip is a native speaker. Tone exercises train the ear on purpose.",
+				"It feels impossible at first because your own language trained you to ignore these differences.",
+				"Do them anyway — especially then."
+			],
+			"audio": [
+				"/thai-script/lessons/orientation/audio/629fdf33689caae1.mp3",
+				"/thai-script/lessons/orientation/audio/964e298c97957fed.mp3",
+				"/thai-script/lessons/orientation/audio/29c15da481eccef5.mp3"
+			],
+			"image": "/thai-script/lessons/orientation/images/ears-dd6ab6ac9e08.jpg"
+		},
+		{
+			"kind": "retrieval",
+			"id": "three-habits",
+			"prompt": "Three habits matter more than everything else in this course put together. Name all three out loud before you turn this over.",
+			"revealSlideId": "three-habits-answer",
+			"audio": ["/thai-script/lessons/orientation/audio/cbac08425ebbc6b7.mp3"]
+		},
+		{
+			"kind": "reveal",
+			"id": "three-habits-answer",
+			"retrievalSlideId": "three-habits",
+			"answers": [
+				"**Review when notified** — in the window, not later.",
+				"**Write by hand**, with a pen, on paper.",
+				"**Say it out loud**, every time."
+			],
+			"audio": ["/thai-script/lessons/orientation/audio/cedda61adbc13f90.mp3"]
+		},
+		{
+			"kind": "exposition",
+			"id": "expect",
+			"heading": "What this will actually feel like",
+			"body": [
+				"The alphabet is the hardest part and it comes **first**. That is on purpose.",
+				"Weeks one to three feel slow. That is the shape of the climb, not a warning sign.",
+				"After that it compounds, because everything new attaches to something you own.",
+				"**Don't judge this in week one. Judge it in week six.**"
+			],
+			"audio": [
+				"/thai-script/lessons/orientation/audio/334f9be40daa94b4.mp3",
+				"/thai-script/lessons/orientation/audio/da2db825f5037366.mp3",
+				"/thai-script/lessons/orientation/audio/2d4e2361b3fb076a.mp3"
+			],
+			"image": "/thai-script/lessons/orientation/images/expect-365772f55269.jpg"
+		}
+	]
+}

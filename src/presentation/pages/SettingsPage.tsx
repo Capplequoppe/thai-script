@@ -13,6 +13,7 @@ import {
 	getLessonFormat,
 	setLessonFormat,
 } from "../../infrastructure/settings/LessonFormatSettings";
+import { clearOrientationSeen } from "../../infrastructure/settings/OrientationSettings";
 import { ConfirmDialog } from "../components/molecules/ConfirmDialog";
 import { useApp } from "../hooks/useApp";
 
@@ -439,6 +440,11 @@ export function SettingsPage() {
 				isDestructive
 				onConfirm={() => {
 					data.reset();
+					// Its own key, so the state repository's reset does not reach it.
+					// Somebody starting the journey again should meet the
+					// orientation again rather than be silently skipped past the
+					// part that explains how any of this works.
+					clearOrientationSeen();
 					refresh();
 					navigate("/");
 				}}

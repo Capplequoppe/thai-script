@@ -9,6 +9,7 @@ import { GamePage } from "./pages/GamePage";
 import { GrammarPage } from "./pages/GrammarPage";
 import { LearnedItemsPage } from "./pages/LearnedItemsPage";
 import { LearnPage } from "./pages/LearnPage";
+import { OrientationPage } from "./pages/OrientationPage";
 import { LessonPage } from "./pages/LessonPage";
 import { ProgressPage } from "./pages/ProgressPage";
 import { ReviewPage } from "./pages/ReviewPage";
@@ -29,6 +30,7 @@ export function App() {
 						<Route path="/review" element={<ReviewPage />} />
 						<Route path="/game" element={<GamePage />} />
 						<Route path="/learn" element={<LearnPage />} />
+						<Route path="/orientation" element={<OrientationPage />} />
 						<Route path="/items" element={<LearnedItemsPage />} />
 						<Route path="/progress" element={<ProgressPage />} />
 						<Route path="/progress/:stage" element={<StageItemsPage />} />

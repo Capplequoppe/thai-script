@@ -735,10 +735,23 @@ describe("AC8 — every phase-3 lesson has a declared sequence slot", () => {
 		for (const id of PHASE_THREE_LESSON_IDS) {
 			expect(report.filled, `${id} should be a filled slot`).toContain(id);
 		}
-		// And the one lesson with content and no slot is reported rather than
-		// silently unreachable: lesson-sound-buckets shipped a deck in phase 2
-		// with no row in the legacy lessons table to take a position from.
-		expect(report.orphaned).toEqual(["lesson-sound-buckets"]);
+		// Content with no slot is reported rather than silently unreachable.
+		// Two decks are in that state and only one of them is a defect:
+		//
+		// - lesson-sound-buckets shipped a deck in phase 2 with no row in the
+		//   legacy lessons table to take a position from. Still a gap.
+		// - orientation is deliberately slotless. It teaches no symbol,
+		//   schedules no card, and has its own route and its own "seen" flag;
+		//   giving it a position would shift every persisted position by one
+		//   and re-point the progress of anyone mid-course, and `startLesson`
+		//   would then make it a gate in front of a returning learner.
+		//
+		// Listed explicitly rather than filtered out, so that a third orphan
+		// still fails this test instead of being absorbed by a loosened rule.
+		expect(report.orphaned.toSorted()).toEqual([
+			"lesson-sound-buckets",
+			"orientation",
+		]);
 		for (const id of report.filled) {
 			expect(authored).toContain(id);
 		}
