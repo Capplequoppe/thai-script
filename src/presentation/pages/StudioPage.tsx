@@ -64,6 +64,7 @@ type Slide = {
 	imageUrl: string | null;
 	scene: string | null;
 	prompt: string | null;
+	styledPrompt: string | null;
 	seed: string | null;
 	narration: NarrationLine[];
 	bullets: string[];
@@ -73,6 +74,21 @@ type Deck = {
 	id: string;
 	slides: Slide[];
 	clips: Record<string, Clip[]>;
+};
+
+/** The build the server is running, as the page polls it. */
+type JobState = {
+	running: boolean;
+	deck?: string;
+	scope?: string;
+	done?: number;
+	total?: number;
+	current?: string | null;
+	generated?: number;
+	reused?: number;
+	startedAt?: number;
+	report?: BuildReport | null;
+	error?: string | null;
 };
 
 type BuildReport = {
@@ -117,6 +133,7 @@ export default function StudioPage() {
 	const [error, setError] = useState<string | null>(null);
 	/** Bumped after a rebuild so `<audio>` refetches rather than replaying cache. */
 	const [audioVersion, setAudioVersion] = useState(0);
+	const [job, setJob] = useState<JobState | null>(null);
 
 	const [draft, setDraft] = useState<Editable<NarrationLine>[] | null>(null);
 	const [bullets, setBullets] = useState<Editable<{ text: string }>[] | null>(
@@ -159,7 +176,11 @@ export default function StudioPage() {
 		setDraft(slide ? withUid(slide.narration) : null);
 		setBullets(slide ? withUid(slide.bullets.map((text) => ({ text }))) : null);
 		setHeading(slide?.heading ?? null);
-		setPrompt(slide?.prompt ?? slide?.scene ?? "");
+		// The recorded prompt if this picture was rendered before, otherwise the
+		// scene *with the house style applied* — never the bare scene, which
+		// renders as a different-looking image and brings back the text
+		// artefacts the style suffix exists to forbid.
+		setPrompt(slide?.prompt ?? slide?.styledPrompt ?? slide?.scene ?? "");
 		setSeed(slide?.seed ?? "42");
 	}, [slide]);
 
@@ -244,11 +265,23 @@ export default function StudioPage() {
 	 * Every scope is one call with a different force list — the pipeline skips
 	 * whatever is unchanged, so "this clip", "this slide" and "the deck" differ
 	 * only in what they insist on remaking.
+	 *
+	 * The request returns as soon as the build has *started*. Progress arrives
+	 * by polling `/job`, because a build is minutes long and a request that
+	 * simply blocks is indistinguishable from a hang — which is exactly how
+	 * this felt before: fans spinning, nothing on screen, no way to tell
+	 * whether it was working or stuck.
 	 */
-	const rebuild = (label: string, force?: string[]) =>
-		run(label, async () => {
-			if (dirty && draft) {
-				await call(`/deck/${deckId}/slide/${slide?.id}`, {
+	const rebuild = async (
+		label: string,
+		force: string[] | undefined,
+		scope: string,
+	) => {
+		setError(null);
+		setStatus(null);
+		try {
+			if (dirty && draft && slide) {
+				await call(`/deck/${deckId}/slide/${slide.id}`, {
 					method: "PUT",
 					body: JSON.stringify({
 						narration: plainNarration(draft),
@@ -256,19 +289,57 @@ export default function StudioPage() {
 						heading,
 					}),
 				});
+				await loadDeck(deckId);
 			}
-			const report = await call<BuildReport>(`/deck/${deckId}/build`, {
+			await call(`/deck/${deckId}/build`, {
 				method: "POST",
-				body: JSON.stringify({ force: force ?? null }),
+				body: JSON.stringify({ force: force ?? null, scope }),
 			});
-			await loadDeck(deckId);
-			setAudioVersion((version) => version + 1);
-			setStatus(
-				report.errors.length > 0
-					? `${report.errors.length} failed: ${report.errors[0]}`
-					: `${report.generated} generated, ${report.reused} reused, ${report.synthCalls} call(s).`,
-			);
-		});
+			setBusy(label);
+		} catch (cause) {
+			setError(String(cause));
+			setBusy(null);
+		}
+	};
+
+	// While a build runs, ask the server where it is. Stops as soon as it is
+	// finished, so an idle studio makes no requests at all.
+	useEffect(() => {
+		if (!busy) return;
+		let live = true;
+		const timer = setInterval(async () => {
+			try {
+				const state = await call<JobState>("/job");
+				if (!live) return;
+				setJob(state);
+				if (!state.running) {
+					clearInterval(timer);
+					setBusy(null);
+					setJob(null);
+					await loadDeck(deckId);
+					setAudioVersion((version) => version + 1);
+					if (state.error) {
+						setError(state.error);
+					} else if (state.report) {
+						const { generated, reused, errors } = state.report;
+						setStatus(
+							errors.length > 0
+								? `${errors.length} failed: ${errors[0]}`
+								: `${generated} generated, ${reused} reused.`,
+						);
+					}
+				}
+			} catch (cause) {
+				clearInterval(timer);
+				setBusy(null);
+				setError(String(cause));
+			}
+		}, 400);
+		return () => {
+			live = false;
+			clearInterval(timer);
+		};
+	}, [busy, deckId, loadDeck]);
 
 	const renderImage = () =>
 		run("Rendering", async () => {
@@ -342,13 +413,40 @@ export default function StudioPage() {
 				<button
 					type="button"
 					className="rounded bg-slate-800 px-3 py-1 text-white disabled:opacity-40"
-					onClick={() => rebuild("Rebuilding deck")}
+					onClick={() => rebuild("Rebuilding deck", undefined, "deck")}
 					disabled={busy !== null}
 				>
 					Rebuild deck
 				</button>
 				<span className="flex-1" />
-				{busy && <span className="text-amber-700">{busy}…</span>}
+				{busy && (
+					<span className="flex items-center gap-2 text-amber-700">
+						<span className="h-3 w-3 animate-spin rounded-full border-2 border-amber-700 border-t-transparent" />
+						{busy}
+						{job?.total ? (
+							<>
+								<span className="tabular-nums">
+									{job.done ?? 0}/{job.total}
+								</span>
+								<span className="h-1.5 w-28 overflow-hidden rounded-full bg-amber-200">
+									<span
+										className="block h-full rounded-full bg-amber-600 transition-[width]"
+										style={{
+											width: `${((job.done ?? 0) / job.total) * 100}%`,
+										}}
+									/>
+								</span>
+								{job.current && (
+									<code className="text-[11px] text-amber-800">
+										{job.current}
+									</code>
+								)}
+							</>
+						) : (
+							<span className="text-xs">starting the engine…</span>
+						)}
+					</span>
+				)}
 				{status && <span className="text-emerald-700">{status}</span>}
 				{error && (
 					<span className="max-w-[40ch] truncate text-red-700">{error}</span>
@@ -415,6 +513,7 @@ export default function StudioPage() {
 									rebuild(
 										"Rebuilding slide",
 										clips.map((clip) => clip.key),
+										"slide",
 									)
 								}
 								disabled={busy !== null}
@@ -548,7 +647,11 @@ export default function StudioPage() {
 															type="button"
 															className="shrink-0 rounded border px-2 py-1 text-xs disabled:opacity-40"
 															onClick={() =>
-																rebuild(`Regenerating ${clip.key}`, [clip.key])
+																rebuild(
+																	`Regenerating ${clip.key}`,
+																	[clip.key],
+																	"clip",
+																)
 															}
 															disabled={busy !== null}
 														>
@@ -593,7 +696,9 @@ export default function StudioPage() {
 								<label className="block" htmlFor="studio-prompt">
 									<span className="text-slate-600 text-xs">
 										Prompt{" "}
-										{slide.prompt ? "(as last rendered)" : "(from scene)"}
+										{slide.prompt
+											? "(as last rendered)"
+											: "(scene + house style)"}
 									</span>
 									<AutoTextarea
 										id="studio-prompt"

@@ -26,6 +26,7 @@ import os
 import re
 import sys
 import threading
+import time
 import traceback
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
@@ -118,21 +119,97 @@ class Engines:
 ENGINES = Engines()
 
 
+class Job:
+	"""The build currently running, if any, as something a page can poll.
+
+	A deck build takes minutes and a single clip a few seconds, and a request
+	that simply blocks for either is indistinguishable from a hang: the fans
+	spin up, the page waits, and nothing says which clip is being made or how
+	many are left. So a build runs on its own thread and the page asks.
+
+	Polling rather than a stream. This is a `http.server`, where an open
+	streaming response ties up a worker thread and has to be kept alive by
+	hand; a poll every few hundred milliseconds is coarser and cannot break in
+	a way that leaves the page waiting forever on a socket nobody is writing
+	to.
+	"""
+
+	def __init__(self) -> None:
+		self._lock = threading.Lock()
+		self._state: dict[str, Any] = {"running": False}
+
+	def snapshot(self) -> dict[str, Any]:
+		with self._lock:
+			return dict(self._state)
+
+	def start(self, deck: str, scope: str, total_hint: int) -> None:
+		with self._lock:
+			self._state = {
+				"running": True,
+				"deck": deck,
+				"scope": scope,
+				"done": 0,
+				"total": total_hint,
+				"current": None,
+				"generated": 0,
+				"reused": 0,
+				"errors": [],
+				"startedAt": time.time(),
+			}
+
+	def advance(self, progress: dict[str, Any]) -> None:
+		"""Take the run's own counters rather than counting alongside it.
+
+		Counting here would mean re-deriving a distinction the run already
+		makes, and getting it wrong: a reused asset is recorded as "generated",
+		so a watcher tallying states reports every clip as freshly made.
+		"""
+		with self._lock:
+			self._state.update({
+				"done": progress["done"],
+				"total": progress["total"],
+				"current": progress["key"],
+				"generated": progress["generated"],
+				"reused": progress["reused"],
+			})
+
+	def finish(self, report: dict[str, Any] | None, error: str | None) -> None:
+		with self._lock:
+			self._state.update({
+				"running": False,
+				"current": None,
+				"finishedAt": time.time(),
+				"report": report,
+				"error": error,
+			})
+
+
+JOB = Job()
+
+
 def deck_ids() -> list[str]:
 	return sorted(path.stem for path in CONTENT_DIR.glob("*.md"))
 
 
 def slide_payload(block: SlideBlock, deck: str) -> dict[str, Any]:
 	"""One slide, as the studio needs to show and edit it."""
+	from lesson_deck.images import styled_prompt  # noqa: PLC0415
+
 	image = block.field_value("image")
+	scene = block.field_value("scene")
 	return {
 		"id": block.id,
 		"kind": block.kind,
 		"heading": block.field_value("heading"),
 		"image": image,
 		"imageUrl": f"/__studio/media/{deck}/{image}" if image else None,
-		"scene": block.field_value("scene"),
+		"scene": scene,
 		"prompt": block.field_value("prompt"),
+		# What the batch generator would send for this scene, style suffix
+		# included. The studio prefills with this so the box holds the prompt
+		# that actually produces the deck's house look, rather than a bare
+		# scene that renders as something else entirely.
+		"styledPrompt": styled_prompt(scene) if scene else None,
 		"seed": block.field_value("seed"),
 		"reveal": block.field_value("reveal"),
 		"retrieval": block.field_value("retrieval"),
@@ -270,6 +347,7 @@ def build_deck(deck: str, force: list[str] | None = None) -> dict[str, Any]:
 			VoiceSpec(voice_id=DEFAULT_VOICE_ID, model_id=DEFAULT_MODEL_ID),
 			Redactor((api_key,)),
 			force_keys=force,
+			on_progress=JOB.advance,
 		)
 	return {
 		"generated": report.generated,
@@ -279,6 +357,27 @@ def build_deck(deck: str, force: list[str] | None = None) -> dict[str, Any]:
 		"deckWritten": report.deck_written,
 		"errors": report.errors,
 	}
+
+
+def start_build(deck: str, force: list[str] | None, scope: str) -> dict[str, Any]:
+	"""Kick a build off and return at once, so the page can watch it."""
+	if JOB.snapshot().get("running"):
+		raise ValueError("a build is already running")
+
+	total = sum(
+		len(slide.segments) for slide in parse_script(CONTENT_DIR / f"{deck}.md").slides
+	)
+	JOB.start(deck, scope, total)
+
+	def work() -> None:
+		try:
+			JOB.finish(build_deck(deck, force), None)
+		except Exception as error:  # noqa: BLE001 — reported, never raised into a thread
+			traceback.print_exc()
+			JOB.finish(None, str(error))
+
+	threading.Thread(target=work, daemon=True).start()
+	return {"started": True, "total": total, "scope": scope}
 
 
 def render_image(deck: str, slide_id: str, prompt: str, seed: int) -> dict[str, Any]:
@@ -418,6 +517,8 @@ class Handler(BaseHTTPRequestHandler):
 		try:
 			if path == "/__studio/api/decks":
 				return self._send(200, {"decks": deck_ids()})
+			if path == "/__studio/api/job":
+				return self._send(200, JOB.snapshot())
 			matched = re.match(r"^/__studio/api/deck/([A-Za-z0-9-]+)$", path)
 			if matched:
 				return self._send(200, deck_payload(matched.group(1)))
@@ -455,7 +556,9 @@ class Handler(BaseHTTPRequestHandler):
 			matched = re.match(r"^/__studio/api/deck/([A-Za-z0-9-]+)/build$", path)
 			if matched:
 				body = self._body()
-				return self._send(200, build_deck(matched.group(1), body.get("force")))
+				return self._send(200, start_build(
+					matched.group(1), body.get("force"), body.get("scope", "deck"),
+				))
 
 			matched = re.match(
 				r"^/__studio/api/deck/([A-Za-z0-9-]+)/slide/([A-Za-z0-9-]+)/image$", path

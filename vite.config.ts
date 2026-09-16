@@ -78,6 +78,17 @@ export default defineConfig({
 				"**/playwright-report/**",
 				"**/.e2e-conversation-backend.pid",
 				"**/scripts/*-env/**",
+				// The deck studio writes here constantly — a rebuild lands sixty
+				// mp3s, a deck.json and a manifest, and saving one slide rewrites
+				// its Markdown. Each write broadcasts a full reload, so the page
+				// flashes and loses its place in the middle of the very operation
+				// it started. Nothing here is in the client module graph: the app
+				// fetches these over HTTP at runtime and the studio re-fetches
+				// through its own API, so a reload buys nothing and costs the
+				// author their scroll position, their selection and their
+				// unsaved edits.
+				"**/public/lessons/**",
+				"**/content/lessons/**",
 			],
 		},
 	},

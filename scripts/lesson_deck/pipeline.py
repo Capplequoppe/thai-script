@@ -33,7 +33,7 @@ import json
 import re
 from dataclasses import dataclass, field
 from pathlib import Path
-from collections.abc import Iterable
+from collections.abc import Callable, Iterable
 from typing import Any
 
 from .ids import LessonPaths, RefusedPath
@@ -100,6 +100,17 @@ RETRY_SEEDS: tuple[int, ...] = (42, 1, 7, 13, 99, 2024, 5, 77)
 TRANSCRIPT_MATCH_RATIO = 0.9
 
 _NON_THAI = re.compile(r"[^฀-๿]+")
+
+
+#: Called with a snapshot after each asset: `key`, `done`, `total`, and the
+#: run's `generated` / `reused` / `failed` counts so far.
+#:
+#: A dict rather than positional arguments because the interesting fields were
+#: not obvious in advance — the first version passed the asset's *state*, which
+#: cannot answer the question a watcher actually asks. A reused asset is
+#: recorded as "generated", correctly, since that is what it is from the deck's
+#: point of view; only the run's own counters know it came from cache.
+ProgressCallback = Callable[[dict[str, Any]], None]
 
 
 @dataclass
@@ -184,6 +195,7 @@ class DeckGenerator:
 		spec: VoiceSpec,
 		redactor: Redactor,
 		force_keys: Iterable[str] | None = None,
+		on_progress: ProgressCallback | None = None,
 	) -> None:
 		self.script = script
 		self.paths = paths
@@ -195,6 +207,10 @@ class DeckGenerator:
 		self._cache = previous_assets(_read_prior_manifest(self.manifest_path))
 		#: Keys to rebuild whatever the cache says. Empty for an ordinary run.
 		self.force_keys: frozenset[str] = frozenset(force_keys or ())
+		#: Told about each asset as it is finished. Optional, and deliberately
+		#: not a logger: a build is minutes long and a caller that wants to show
+		#: progress needs the events, not a stream of text to parse back.
+		self._on_progress = on_progress
 		#: Clips already produced *this run*, by input hash. Two segments with
 		#: the same text are the same clip; see `_produce_audio`.
 		self._produced: dict[str, AssetRecord] = {}
@@ -210,6 +226,26 @@ class DeckGenerator:
 		return self.paths.resolve("deck.json")
 
 	# -- the run -----------------------------------------------------------
+
+	def _report(self, key: str, done: int, total: int) -> None:
+		"""Tell a watching caller that `key` is finished, whatever happened.
+
+		Never allowed to break the build: a caller whose UI has gone away, or
+		whose queue is full, must not take a half-finished deck down with it.
+		"""
+		if self._on_progress is None:
+			return
+		try:
+			self._on_progress({
+				"key": key,
+				"done": done,
+				"total": total,
+				"generated": self.report.generated,
+				"reused": self.report.reused,
+				"failed": self.report.failed,
+			})
+		except Exception:  # noqa: BLE001 — progress is never worth a failed run
+			pass
 
 	def run(self) -> RunReport:
 		"""Seed every declared asset as `absent`, move each one out of it
@@ -228,12 +264,18 @@ class DeckGenerator:
 			)
 		self.manifest.assets.extend(record for record, _, _ in images.values())
 
+		total = len(self.script.segments) + len(images)
+		done = 0
 		for slide in self.script.slides:
 			for segment in slide.segments:
 				self._produce_audio(segment)
+				done += 1
+				self._report(segment.key, done, total)
 		self._adopt_late_twins()
 		for record, relative, data in images.values():
 			self._produce_image(record, relative, data)
+			done += 1
+			self._report(record.key, done, total)
 
 		write_json(self.manifest_path, self.manifest.to_json())
 
@@ -613,6 +655,7 @@ def generate(
 	spec: VoiceSpec,
 	redactor: Redactor,
 	force_keys: Iterable[str] | None = None,
+	on_progress: ProgressCallback | None = None,
 ) -> RunReport:
 	"""Build a deck. `force_keys` rebuilds those assets whatever the cache says.
 
@@ -621,4 +664,6 @@ def generate(
 	studio, where a person has listened to a take and wants another.
 	"""
 	paths = LessonPaths.under(assets_root, script.lesson_id)
-	return DeckGenerator(script, paths, vendor, spec, redactor, force_keys).run()
+	return DeckGenerator(
+		script, paths, vendor, spec, redactor, force_keys, on_progress
+	).run()
