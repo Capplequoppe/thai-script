@@ -466,6 +466,20 @@ export const specialRules: SpecialRule[] = [
 		lesson: 4,
 	},
 	{
+		id: "mai-taikhu",
+		title: "Mai Taikhu (ไม้ไต่คู้) ็",
+		description:
+			"When short sara e (สระ เอะ) has a following consonant, the สระ อะ is replaced by ไม้ไต่คู้ (็) written above the initial consonant -- the same swap ไม้หันอากาศ (ั) makes for สระ อะ. Example: เย็น (yen) = 'cool', เป็น (bpen) = 'to be'. It shortens the vowel; it does not change the tone rules. One common word breaks the pattern: ก็ (gaw) carries ็ with no final consonant at all and is simply learned as a word.",
+		lesson: 7,
+	},
+	{
+		id: "mai-taikhu-ae",
+		title: "ไม้ไต่คู้ with สระ แอะ",
+		description:
+			"ไม้ไต่คู้ (็) shortens สระ แอะ exactly as it shortens สระ เอะ: when a final consonant follows, the สระ อะ is replaced by ็ above the initial consonant. Example: แข็ง (khaeng) = 'hard'. The แ stays in front, so only the อะ moves.",
+		lesson: 8,
+	},
+	{
 		id: "consonant-clusters",
 		title: "Consonant Clusters",
 		description:
@@ -1481,6 +1495,19 @@ const vowels: ThaiVowel[] = [
 			"Written with สระ เอ before + สระ อะ after the consonant. When a final consonant follows, the อะ is replaced by ไม้ไต่คู้ (looks like Thai number 8) above the consonant.",
 	}),
 
+	ThaiVowel.fromPlain({
+		character: "็",
+		name: "mai taikhu",
+		length: "short",
+		sound: "e (short e, used when sara e has a following consonant)",
+		position: "above",
+		audioUrl: "/thai-script/audio/sara-e-short.mp3",
+		priority: 12,
+		lesson: 7,
+		mnemonic:
+			"A tiny Thai number 8 (๘) above the initial consonant. This is the form of short สระ เอะ when a final consonant follows -- the อะ cannot be written after the consonant, so it moves on top. Example: เย็น (yen) = 'cool'. Same idea as ไม้หันอากาศ (ั) for สระ อะ.",
+	}),
+
 	// === Lesson 8 ===
 	ThaiVowel.fromPlain({
 		character: "แ",
@@ -1489,7 +1516,7 @@ const vowels: ThaiVowel[] = [
 		sound: "ae (like A in 'cat', long)",
 		position: "left",
 		audioUrl: "/thai-script/audio/sara-ae-long.mp3",
-		priority: 12,
+		priority: 13,
 		lesson: 8,
 		mnemonic:
 			"Written with DOUBLE สระ เอ (แ) before the consonant. Like two tall lines before the consonant.",
@@ -1501,7 +1528,7 @@ const vowels: ThaiVowel[] = [
 		sound: "ae (like A in 'cat', short)",
 		position: "around",
 		audioUrl: "/thai-script/audio/sara-ae-short.mp3",
-		priority: 13,
+		priority: 14,
 		lesson: 8,
 		mnemonic:
 			"Written with double สระ เอ (แ) before the consonant, plus สระ อะ after.",
@@ -1515,7 +1542,7 @@ const vowels: ThaiVowel[] = [
 		sound: "oo (like O in 'go', long)",
 		position: "left",
 		audioUrl: "/thai-script/audio/sara-o-long.mp3",
-		priority: 14,
+		priority: 15,
 		lesson: 9,
 		mnemonic:
 			"Written to the left of the consonant. A tall character with a circle at the top.",
@@ -1527,7 +1554,7 @@ const vowels: ThaiVowel[] = [
 		sound: "o (like O in 'go', short)",
 		position: "around",
 		audioUrl: "/thai-script/audio/sara-o-short.mp3",
-		priority: 15,
+		priority: 16,
 		lesson: 9,
 		mnemonic: "โ to the left of consonant + อะ after.",
 	}),
@@ -1540,7 +1567,7 @@ const vowels: ThaiVowel[] = [
 		sound: "ao (like OW in 'how')",
 		position: "around",
 		audioUrl: "/thai-script/audio/sara-au.mp3",
-		priority: 16,
+		priority: 17,
 		lesson: 10,
 		mnemonic:
 			"สระ เอ before the consonant, สระ อา after. Although short, it counts as a LONG vowel for tone rules. Important exception to remember!",
@@ -1552,7 +1579,7 @@ const vowels: ThaiVowel[] = [
 		sound: "ai (like I in 'Hi')",
 		position: "left",
 		audioUrl: "/thai-script/audio/sara-ay-may-malay.mp3",
-		priority: 17,
+		priority: 18,
 		lesson: 10,
 		mnemonic:
 			"Written to the left of the consonant. Clockwise head at bottom, tall vertical line, zig-zag at top. This is the MORE COMMON version of 'ai'. Counts as a live syllable for tone rules despite being short.",
@@ -1564,7 +1591,7 @@ const vowels: ThaiVowel[] = [
 		sound: "ai (same sound as ไ)",
 		position: "left",
 		audioUrl: "/thai-script/audio/sara-ay-may-muan.mp3",
-		priority: 18,
+		priority: 19,
 		lesson: 10,
 		mnemonic:
 			"Same as ไ but with a curl at top instead of zig-zag. Used in only about 20 words. Same sound, just different spelling for specific words.",
@@ -1578,7 +1605,7 @@ const vowels: ThaiVowel[] = [
 		sound: "aaw (like AW in 'saw')",
 		position: "right",
 		audioUrl: "/thai-script/audio/sara-aw-long.mp3",
-		priority: 19,
+		priority: 20,
 		lesson: 11,
 		mnemonic:
 			"When อ follows another consonant without a separate vowel, it acts as the long vowel สระ ออ (aaw). Example: ตอบ (dtaawp) = to answer.",
@@ -1590,7 +1617,7 @@ const vowels: ThaiVowel[] = [
 		sound: "aw (short version of สระ ออ)",
 		position: "around",
 		audioUrl: "/thai-script/audio/sara-aw-short.mp3",
-		priority: 20,
+		priority: 21,
 		lesson: 11,
 		mnemonic:
 			"สระ เอ in front + สระ อา and สระ อะ after. Looks totally different from the long version. Example: เกาะ (gaw) = island.",
@@ -1604,7 +1631,7 @@ const vowels: ThaiVowel[] = [
 		sound: "iia (like IA in 'Mamma Mia')",
 		position: "left-above-right",
 		audioUrl: "/thai-script/audio/sara-ia-long.mp3",
-		priority: 21,
+		priority: 22,
 		lesson: 12,
 		mnemonic:
 			"Three parts: สระ เอ to the left, สระ อี above, ย after the consonant. The long version is used much more often than the short version.",
@@ -1616,7 +1643,7 @@ const vowels: ThaiVowel[] = [
 		sound: "ia (short version of sara iia)",
 		position: "around",
 		audioUrl: "/thai-script/audio/sara-ia-short.mp3",
-		priority: 22,
+		priority: 23,
 		lesson: 12,
 		mnemonic: "Same as long version plus สระ อะ at the end.",
 	}),
@@ -1629,7 +1656,7 @@ const vowels: ThaiVowel[] = [
 		sound: "ooe (like ER in 'her' with relaxed throat)",
 		position: "around",
 		audioUrl: "/thai-script/audio/sara-uh-long.mp3",
-		priority: 23,
+		priority: 24,
 		lesson: 13,
 		mnemonic:
 			"When no final consonant: สระ เอ before + อ after. When WITH a final consonant: สระ เอ before + สระ อิ above (the อ is dropped). Exception: when final consonant is ย, the สระ อิ is NOT written.",
@@ -1641,7 +1668,7 @@ const vowels: ThaiVowel[] = [
 		sound: "oe (short version of sara ooe)",
 		position: "around",
 		audioUrl: "/thai-script/audio/sara-uh-short.mp3",
-		priority: 24,
+		priority: 25,
 		lesson: 13,
 		mnemonic:
 			"When no final consonant: สระ เอ before + อ after + สระ อะ. When with final consonant: สระ เอ before + สระ อิ above.",
@@ -1655,7 +1682,7 @@ const vowels: ThaiVowel[] = [
 		sound: "uuea (combination of สระ อื + สระ อะ)",
 		position: "left-above-right",
 		audioUrl: "/thai-script/audio/sara-eua-long.mp3",
-		priority: 25,
+		priority: 26,
 		lesson: 14,
 		mnemonic: "สระ เอ before + สระ อื above + อ after the consonant.",
 	}),
@@ -1666,7 +1693,7 @@ const vowels: ThaiVowel[] = [
 		sound: "uea (short combination of สระ อื + สระ อะ)",
 		position: "around",
 		audioUrl: "/thai-script/audio/sara-eua-short.mp3",
-		priority: 26,
+		priority: 27,
 		lesson: 14,
 		mnemonic: "Same as long version but with สระ อะ added at the end.",
 	}),
@@ -1679,7 +1706,7 @@ const vowels: ThaiVowel[] = [
 		sound: "uua (combination of อู + อะ)",
 		position: "above",
 		audioUrl: "/thai-script/audio/sara-ua-long.mp3",
-		priority: 27,
+		priority: 28,
 		lesson: 15,
 		mnemonic:
 			"No final consonant: ไม้หันอากาศ above + ว to the right. With final consonant: ว is sandwiched between initial and final consonants (ไม้หันอากาศ is dropped).",
@@ -1691,7 +1718,7 @@ const vowels: ThaiVowel[] = [
 		sound: "ua (short combination of อู + อะ)",
 		position: "around",
 		audioUrl: "/thai-script/audio/sara-ua-short.mp3",
-		priority: 28,
+		priority: 29,
 		lesson: 15,
 		mnemonic: "Same as long version plus สระ อะ to the right of ว.",
 	}),
@@ -1704,7 +1731,7 @@ const vowels: ThaiVowel[] = [
 		sound: "am (built-in: สระ อะ + ม)",
 		position: "above",
 		audioUrl: "/thai-script/audio/sara-am.mp3",
-		priority: 29,
+		priority: 30,
 		lesson: 16,
 		mnemonic:
 			"A tiny circle above the consonant plus สระ อา to the right. Special: always forms a LIVE syllable because of its built-in ม sound. Any letters following begin the next syllable.",
@@ -2103,6 +2130,33 @@ export const words: ThaiWord[] = [
 		tone: "falling",
 		toneRule:
 			"Low class ท + dead ending (long vowel เอ + P-stop พ) = falling tone",
+		lesson: 7,
+	}),
+	ThaiWord.fromPlain({
+		name: "เย็น",
+		romanization: "yen",
+		meaning: "cool, cold",
+		tone: "mid",
+		toneRule:
+			"Low class ย + live ending (short vowel เอะ written ็ + น final) = mid tone",
+		lesson: 7,
+	}),
+	ThaiWord.fromPlain({
+		name: "เม็ด",
+		romanization: "met",
+		meaning: "grain, pill",
+		tone: "high",
+		toneRule:
+			"Low class ม + dead ending (short vowel เอะ written ็ + T-stop ด) = high tone",
+		lesson: 7,
+	}),
+	ThaiWord.fromPlain({
+		name: "เค็ม",
+		romanization: "khem",
+		meaning: "salty",
+		tone: "mid",
+		toneRule:
+			"Low class ค + live ending (short vowel เอะ written ็ + ม final) = mid tone",
 		lesson: 7,
 	}),
 
@@ -2783,12 +2837,12 @@ export const lessons: Lesson[] = [
 	{
 		number: 7,
 		title: "Thaaw thahaan, Haaw nok-huuk, Short e, and Long e",
-		focus: "Two low class consonants and front vowels",
+		focus: "Two low class consonants, front vowels, and ไม้ไต่คู้",
 		consonants: ["ท", "ฮ"],
-		vowels: ["เ", "เ-ะ"],
+		vowels: ["เ", "เ-ะ", "็"],
 		toneMarks: [],
 		toneRulesIntroduced: [],
-		specialRulesIntroduced: [],
+		specialRulesIntroduced: ["mai-taikhu"],
 		videoUrl: "/thai-script/videos/TAME_L7_tpod101_video-h.webm",
 	},
 	{
@@ -2799,7 +2853,7 @@ export const lessons: Lesson[] = [
 		vowels: ["แ", "แ-ะ"],
 		toneMarks: [],
 		toneRulesIntroduced: [],
-		specialRulesIntroduced: [],
+		specialRulesIntroduced: ["mai-taikhu-ae"],
 		videoUrl: "/thai-script/videos/TAME_L8_tpod101_video-h.webm",
 	},
 	{
