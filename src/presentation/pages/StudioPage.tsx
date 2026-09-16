@@ -11,12 +11,27 @@
  * pipeline. Because that pipeline is content-addressed, changing one sentence
  * regenerates one clip and leaves the rest untouched — which is what makes a
  * save cheap enough to iterate on.
+ *
+ * **Clips are not narration lines**, and the layout says so. Packing merges
+ * consecutive English and re-splits it at fifty-five words, so a slide of five
+ * authored lines becomes six clips and one line can feed three of them. A
+ * regenerate button therefore sits on a *clip*, which is the smallest thing
+ * that can actually be remade, and each clip names the lines it came from.
  */
 import { useCallback, useEffect, useMemo, useState } from "react";
 
 const API = "/__studio/api";
 
 type NarrationLine = { language: string; text: string };
+
+type Clip = {
+	key: string;
+	language: string;
+	text: string;
+	sources: number[];
+	words: number;
+	url: string | null;
+};
 
 type Slide = {
 	id: string;
@@ -31,11 +46,23 @@ type Slide = {
 	bullets: string[];
 };
 
-type Deck = { id: string; slides: Slide[]; audio: Record<string, string[]> };
+type Deck = {
+	id: string;
+	slides: Slide[];
+	clips: Record<string, Clip[]>;
+};
 
-/** Roughly how long this clip will take to say, at the engine's measured pace. */
-function spokenSeconds(text: string): number {
-	return (text.trim().split(/\s+/).filter(Boolean).length / 160) * 60;
+type BuildReport = {
+	generated: number;
+	reused: number;
+	failed: number;
+	synthCalls: number;
+	errors: string[];
+};
+
+/** Roughly how long this will take to say, at the engine's measured pace. */
+function spokenSeconds(words: number): number {
+	return (words / 160) * 60;
 }
 
 async function call<T>(path: string, init?: RequestInit): Promise<T> {
@@ -56,9 +83,9 @@ export default function StudioPage() {
 	const [busy, setBusy] = useState<string | null>(null);
 	const [status, setStatus] = useState<string | null>(null);
 	const [error, setError] = useState<string | null>(null);
+	/** Bumped after a rebuild so `<audio>` refetches rather than replaying cache. */
+	const [audioVersion, setAudioVersion] = useState(0);
 
-	// Local edits, kept separate from the loaded deck so an unsaved change is
-	// visibly unsaved rather than silently merged into what the server holds.
 	const [draft, setDraft] = useState<NarrationLine[] | null>(null);
 	const [bullets, setBullets] = useState<string[] | null>(null);
 	const [heading, setHeading] = useState<string | null>(null);
@@ -66,18 +93,13 @@ export default function StudioPage() {
 	const [seed, setSeed] = useState("42");
 
 	const loadDeck = useCallback(async (id: string) => {
-		setError(null);
-		try {
-			const data = await call<Deck>(`/deck/${id}`);
-			setDeck(data);
-			setSelected((current) =>
-				current && data.slides.some((s) => s.id === current)
-					? current
-					: (data.slides[0]?.id ?? null),
-			);
-		} catch (cause) {
-			setError(String(cause));
-		}
+		const data = await call<Deck>(`/deck/${id}`);
+		setDeck(data);
+		setSelected((current) =>
+			current && data.slides.some((s) => s.id === current)
+				? current
+				: (data.slides[0]?.id ?? null),
+		);
 	}, []);
 
 	useEffect(() => {
@@ -87,16 +109,18 @@ export default function StudioPage() {
 	}, []);
 
 	useEffect(() => {
-		void loadDeck(deckId);
+		loadDeck(deckId).catch((cause) => setError(String(cause)));
 	}, [deckId, loadDeck]);
 
 	const slide = useMemo(
 		() => deck?.slides.find((s) => s.id === selected) ?? null,
 		[deck, selected],
 	);
+	const clips = useMemo(
+		() => (slide ? (deck?.clips[slide.id] ?? []) : []),
+		[deck, slide],
+	);
 
-	// Reset the draft whenever the selection changes, so edits cannot leak
-	// from one slide onto another.
 	useEffect(() => {
 		setDraft(slide ? slide.narration.map((line) => ({ ...line })) : null);
 		setBullets(slide ? [...slide.bullets] : null);
@@ -135,18 +159,32 @@ export default function StudioPage() {
 				body: JSON.stringify({ narration: draft, bullets, heading }),
 			});
 			await loadDeck(deckId);
-			setStatus("Saved to the script. Rebuild to hear it.");
+			setStatus("Saved. Regenerate to hear it.");
 		});
 
-	const rebuild = () =>
-		run("Rebuilding", async () => {
-			const report = await call<{ generated: number; reused: number }>(
-				`/deck/${deckId}/build`,
-				{ method: "POST" },
-			);
+	/**
+	 * Every scope is one call with a different force list — the pipeline skips
+	 * whatever is unchanged, so "this clip", "this slide" and "the deck" differ
+	 * only in what they insist on remaking.
+	 */
+	const rebuild = (label: string, force?: string[]) =>
+		run(label, async () => {
+			if (dirty) {
+				await call(`/deck/${deckId}/slide/${slide?.id}`, {
+					method: "PUT",
+					body: JSON.stringify({ narration: draft, bullets, heading }),
+				});
+			}
+			const report = await call<BuildReport>(`/deck/${deckId}/build`, {
+				method: "POST",
+				body: JSON.stringify({ force: force ?? null }),
+			});
 			await loadDeck(deckId);
+			setAudioVersion((version) => version + 1);
 			setStatus(
-				`${report.generated} clip(s) generated, ${report.reused} reused.`,
+				report.errors.length > 0
+					? `${report.errors.length} failed: ${report.errors[0]}`
+					: `${report.generated} generated, ${report.reused} reused, ${report.synthCalls} call(s).`,
 			);
 		});
 
@@ -158,7 +196,8 @@ export default function StudioPage() {
 				body: JSON.stringify({ prompt, seed: Number(seed) }),
 			});
 			await loadDeck(deckId);
-			setStatus("Picture rendered. Its prompt and seed are on the slide now.");
+			setAudioVersion((version) => version + 1);
+			setStatus("Rendered. Prompt and seed saved to the slide.");
 		});
 
 	const addSlide = () =>
@@ -175,19 +214,16 @@ export default function StudioPage() {
 
 	const removeSlide = () =>
 		run("Removing", async () => {
-			if (!slide) return;
-			if (!window.confirm(`Remove slide "${slide.id}" from the script?`)) return;
+			if (!slide || !window.confirm(`Remove slide "${slide.id}"?`)) return;
 			await call(`/deck/${deckId}/slide/${slide.id}`, { method: "DELETE" });
 			setSelected(null);
 			await loadDeck(deckId);
 		});
 
-	const clips = slide ? (deck?.audio[slide.id] ?? []) : [];
-
 	return (
-		<div className="mx-auto max-w-[1400px] p-4 text-sm">
-			<header className="mb-4 flex flex-wrap items-center gap-3">
-				<h1 className="font-semibold text-lg">Deck studio</h1>
+		<div className="fixed inset-0 flex flex-col overflow-hidden bg-white text-sm">
+			<header className="flex shrink-0 flex-wrap items-center gap-3 border-b bg-slate-50 px-4 py-2">
+				<h1 className="font-semibold">Deck studio</h1>
 				<select
 					className="rounded border px-2 py-1"
 					value={deckId}
@@ -202,48 +238,56 @@ export default function StudioPage() {
 				<button
 					type="button"
 					className="rounded bg-slate-800 px-3 py-1 text-white disabled:opacity-40"
-					onClick={rebuild}
+					onClick={() => rebuild("Rebuilding deck")}
 					disabled={busy !== null}
 				>
-					Rebuild audio
+					Rebuild deck
 				</button>
+				<span className="flex-1" />
 				{busy && <span className="text-amber-700">{busy}…</span>}
 				{status && <span className="text-emerald-700">{status}</span>}
-				{error && <span className="text-red-700">{error}</span>}
+				{error && <span className="max-w-[40ch] truncate text-red-700">{error}</span>}
 			</header>
 
-			<div className="grid grid-cols-[220px_1fr] gap-4">
-				<nav className="max-h-[80vh] overflow-y-auto rounded border">
-					{deck?.slides.map((entry) => (
-						<button
-							type="button"
-							key={entry.id}
-							onClick={() => setSelected(entry.id)}
-							className={`block w-full border-b px-3 py-2 text-left ${
-								entry.id === selected ? "bg-slate-100 font-medium" : ""
-							}`}
-						>
-							<div className="truncate">{entry.id}</div>
-							<div className="text-slate-500 text-xs">
-								{entry.kind} · {entry.narration.length} line(s)
-							</div>
-						</button>
-					))}
+			<div className="flex min-h-0 flex-1">
+				{/* Sticky because a deck runs to eighteen slides and losing your
+				    place while comparing two of them is the whole friction. */}
+				<nav className="w-56 shrink-0 overflow-y-auto border-r bg-slate-50">
+					{deck?.slides.map((entry) => {
+						const count = deck.clips[entry.id]?.length ?? 0;
+						const missing = (deck.clips[entry.id] ?? []).some((c) => !c.url);
+						return (
+							<button
+								type="button"
+								key={entry.id}
+								onClick={() => setSelected(entry.id)}
+								className={`block w-full border-b px-3 py-2 text-left hover:bg-white ${
+									entry.id === selected ? "bg-white font-medium shadow-inner" : ""
+								}`}
+							>
+								<div className="truncate">{entry.id}</div>
+								<div className="text-slate-500 text-xs">
+									{entry.kind} · {count} clip{count === 1 ? "" : "s"}
+									{missing && <span className="text-amber-600"> · stale</span>}
+								</div>
+							</button>
+						);
+					})}
 					<button
 						type="button"
-						className="w-full px-3 py-2 text-left text-slate-600"
+						className="w-full px-3 py-2 text-left text-slate-600 hover:bg-white"
 						onClick={addSlide}
 						disabled={busy !== null}
 					>
-						+ add slide after selected
+						+ slide
 					</button>
 				</nav>
 
 				{slide && draft && (
-					<main className="space-y-4">
-						<div className="flex items-center gap-3">
+					<main className="min-w-0 flex-1 overflow-y-auto p-4">
+						<div className="mb-3 flex items-center gap-2">
 							<input
-								className="flex-1 rounded border px-2 py-1"
+								className="min-w-0 flex-1 rounded border px-2 py-1"
 								value={heading ?? ""}
 								placeholder="heading"
 								onChange={(event) => setHeading(event.target.value)}
@@ -258,6 +302,19 @@ export default function StudioPage() {
 							</button>
 							<button
 								type="button"
+								className="rounded bg-slate-800 px-3 py-1 text-white disabled:opacity-40"
+								onClick={() =>
+									rebuild(
+										"Rebuilding slide",
+										clips.map((clip) => clip.key),
+									)
+								}
+								disabled={busy !== null}
+							>
+								Regenerate slide
+							</button>
+							<button
+								type="button"
 								className="rounded border border-red-300 px-3 py-1 text-red-700"
 								onClick={removeSlide}
 								disabled={busy !== null}
@@ -266,107 +323,157 @@ export default function StudioPage() {
 							</button>
 						</div>
 
-						<section>
-							<h2 className="mb-1 font-medium">Narration</h2>
-							{draft.map((line, index) => {
-								const seconds = spokenSeconds(line.text);
-								return (
-									<div key={index} className="mb-2 flex gap-2">
-										<select
-											className="h-8 rounded border px-1"
-											value={line.language}
-											onChange={(event) => {
-												const next = [...draft];
-												next[index] = {
-													...line,
-													language: event.target.value,
-												};
-												setDraft(next);
-											}}
-										>
-											<option value="en">en</option>
-											<option value="th">th</option>
-										</select>
-										<textarea
-											className="min-h-[4.5rem] flex-1 rounded border p-2 font-mono text-xs"
-											value={line.text}
-											onChange={(event) => {
-												const next = [...draft];
-												next[index] = { ...line, text: event.target.value };
-												setDraft(next);
-											}}
-										/>
-										<div className="w-24 shrink-0 text-right text-xs">
-											{/* Past roughly twelve seconds this engine starts to
-											    drift, and past ~190 words it fabricates. */}
-											<div
-												className={
-													seconds > 12 ? "text-amber-700" : "text-slate-500"
-												}
-											>
-												~{seconds.toFixed(0)}s
-											</div>
-											<button
-												type="button"
-												className="mt-1 text-slate-500 hover:text-red-700"
-												onClick={() =>
-													setDraft(draft.filter((_, i) => i !== index))
-												}
-											>
-												remove
-											</button>
-										</div>
-									</div>
-								);
-							})}
-							<button
-								type="button"
-								className="rounded border px-2 py-1"
-								onClick={() => setDraft([...draft, { language: "en", text: "" }])}
-							>
-								+ line
-							</button>
-						</section>
-
-						{clips.length > 0 && (
+						<div className="grid grid-cols-[minmax(0,3fr)_minmax(0,2fr)] gap-4">
 							<section>
-								<h2 className="mb-1 font-medium">
-									Audio ({clips.length} clip{clips.length === 1 ? "" : "s"})
+								<h2 className="mb-2 font-medium">
+									Narration
+									<span className="ml-2 font-normal text-slate-500 text-xs">
+										{draft.length} line{draft.length === 1 ? "" : "s"} →{" "}
+										{clips.length} clip{clips.length === 1 ? "" : "s"}
+									</span>
 								</h2>
-								<div className="flex flex-wrap gap-2">
-									{clips.map((src) => (
-										<audio key={src} controls preload="none" src={src}>
-											<track kind="captions" />
-										</audio>
-									))}
-								</div>
-							</section>
-						)}
 
-						<section className="grid grid-cols-2 gap-4">
-							<div>
-								<h2 className="mb-1 font-medium">Picture</h2>
-								{slide.imageUrl ? (
-									// Cache-busted on every reload: a regenerated picture keeps
-									// its filename, so the browser would otherwise show the old
-									// one and the button would look broken.
-									<img
-										src={`${slide.imageUrl}?v=${Date.now()}`}
-										alt={slide.heading ?? slide.id}
-										className="w-full rounded border"
-									/>
-								) : (
-									<p className="text-slate-500">no image on this slide</p>
-								)}
-							</div>
-							<div className="space-y-2">
+								{draft.map((line, index) => {
+									// Every clip this line feeds. Usually one; a long line
+									// split at the cap feeds several, and the button on each
+									// remakes that clip alone.
+									const feeds = clips.filter((clip) =>
+										clip.sources.includes(index),
+									);
+									return (
+										<div
+											key={index}
+											className="mb-3 rounded border bg-white p-2"
+										>
+											<div className="flex gap-2">
+												<select
+													className="h-8 rounded border px-1"
+													value={line.language}
+													onChange={(event) => {
+														const next = [...draft];
+														next[index] = {
+															...line,
+															language: event.target.value,
+														};
+														setDraft(next);
+													}}
+												>
+													<option value="en">en</option>
+													<option value="th">th</option>
+												</select>
+												<textarea
+													className="min-h-[5rem] flex-1 rounded border p-2 font-mono text-xs"
+													value={line.text}
+													onChange={(event) => {
+														const next = [...draft];
+														next[index] = {
+															...line,
+															text: event.target.value,
+														};
+														setDraft(next);
+													}}
+												/>
+												<button
+													type="button"
+													className="self-start px-1 text-slate-400 hover:text-red-700"
+													title="remove this line"
+													onClick={() =>
+														setDraft(draft.filter((_, i) => i !== index))
+													}
+												>
+													×
+												</button>
+											</div>
+
+											{feeds.map((clip) => {
+												const seconds = spokenSeconds(clip.words);
+												const shared = clip.sources.length > 1;
+												return (
+													<div
+														key={clip.key}
+														className="mt-2 flex items-center gap-2 border-t pt-2"
+													>
+														{clip.url ? (
+															<audio
+																controls
+																preload="none"
+																className="h-8 min-w-0 flex-1"
+																src={`${clip.url}?v=${audioVersion}`}
+															>
+																<track kind="captions" />
+															</audio>
+														) : (
+															<span className="flex-1 text-amber-700 text-xs">
+																not built yet
+															</span>
+														)}
+														<span
+															className={`shrink-0 text-xs ${
+																seconds > 12
+																	? "text-amber-700"
+																	: "text-slate-500"
+															}`}
+															title={
+																shared
+																	? `merged from lines ${clip.sources
+																			.map((s) => s + 1)
+																			.join(" and ")}`
+																	: undefined
+															}
+														>
+															{clip.key.split("-").pop()} · ~{seconds.toFixed(0)}s
+															{shared && " · merged"}
+														</span>
+														<button
+															type="button"
+															className="shrink-0 rounded border px-2 py-1 text-xs disabled:opacity-40"
+															onClick={() =>
+																rebuild(`Regenerating ${clip.key}`, [clip.key])
+															}
+															disabled={busy !== null}
+														>
+															Regenerate
+														</button>
+													</div>
+												);
+											})}
+										</div>
+									);
+								})}
+								<button
+									type="button"
+									className="rounded border px-2 py-1"
+									onClick={() =>
+										setDraft([...draft, { language: "en", text: "" }])
+									}
+								>
+									+ line
+								</button>
+							</section>
+
+							<section className="space-y-3">
+								<div>
+									<h2 className="mb-1 font-medium">Picture</h2>
+									{slide.imageUrl ? (
+										// Cache-busted: a regenerated picture keeps its
+										// filename, so the browser would otherwise show the
+										// old one and the button would look broken.
+										<img
+											src={`${slide.imageUrl}?v=${audioVersion}`}
+											alt={slide.heading ?? slide.id}
+											className="w-full rounded border"
+										/>
+									) : (
+										<p className="text-slate-500">no image on this slide</p>
+									)}
+								</div>
 								<label className="block" htmlFor="studio-prompt">
 									<span className="text-slate-600 text-xs">
 										Prompt {slide.prompt ? "(as last rendered)" : "(from scene)"}
 									</span>
 									<textarea
 										id="studio-prompt"
-										className="min-h-[9rem] w-full rounded border p-2 font-mono text-xs"
+										className="min-h-[8rem] w-full rounded border p-2 font-mono text-xs"
 										value={prompt}
 										onChange={(event) => setPrompt(event.target.value)}
 									/>
@@ -400,34 +507,34 @@ export default function StudioPage() {
 									</button>
 								</div>
 								<p className="text-slate-500 text-xs">
-									Rendering stands the narration engine down and loads the
-									image model; the next rebuild pays its startup again.
+									Rendering stands the narration engine down; the next audio
+									rebuild pays its startup again.
 								</p>
-							</div>
-						</section>
 
-						<section>
-							<h2 className="mb-1 font-medium">Bullets</h2>
-							{(bullets ?? []).map((text, index) => (
-								<input
-									key={index}
-									className="mb-1 w-full rounded border px-2 py-1"
-									value={text}
-									onChange={(event) => {
-										const next = [...(bullets ?? [])];
-										next[index] = event.target.value;
-										setBullets(next);
-									}}
-								/>
-							))}
-							<button
-								type="button"
-								className="rounded border px-2 py-1"
-								onClick={() => setBullets([...(bullets ?? []), ""])}
-							>
-								+ bullet
-							</button>
-						</section>
+								<div>
+									<h2 className="mb-1 font-medium">Bullets</h2>
+									{(bullets ?? []).map((text, index) => (
+										<input
+											key={index}
+											className="mb-1 w-full rounded border px-2 py-1"
+											value={text}
+											onChange={(event) => {
+												const next = [...(bullets ?? [])];
+												next[index] = event.target.value;
+												setBullets(next);
+											}}
+										/>
+									))}
+									<button
+										type="button"
+										className="rounded border px-2 py-1"
+										onClick={() => setBullets([...(bullets ?? []), ""])}
+									>
+										+ bullet
+									</button>
+								</div>
+							</section>
+						</div>
 					</main>
 				)}
 			</div>

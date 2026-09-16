@@ -30,7 +30,7 @@ lessons are the product.
 from __future__ import annotations
 
 import re
-from dataclasses import dataclass, field
+from dataclasses import dataclass, field, replace
 from pathlib import Path
 from typing import Literal
 
@@ -58,6 +58,14 @@ class Segment:
 	key: str
 	language: Language
 	text: str
+	#: Which authored `narration:` lines of the slide this clip came from, by
+	#: their index within the slide. Packing merges consecutive English and
+	#: re-splits it at sentence boundaries, so the relationship is neither
+	#: one-to-one nor even order-preserving in count: two short lines become
+	#: one clip, one long line becomes two. Anything that wants to show a
+	#: learner's clip next to the sentence that produced it — the studio — has
+	#: to be told, because it cannot be recovered from the text afterwards.
+	sources: tuple[int, ...] = ()
 
 
 @dataclass
@@ -226,21 +234,26 @@ def _merge_runs(slide: Slide) -> list[Segment]:
 	packed: list[Segment] = []
 	buffer: list[str] = []
 	buffered_words = 0
+	buffered_sources: list[int] = []
 
 	def flush() -> None:
-		nonlocal buffer, buffered_words
+		nonlocal buffer, buffered_words, buffered_sources
 		if buffer:
 			# Joined with a blank line, not a space: each piece was its own
 			# thought, and a paragraph break is the only pause control the
 			# model offers. A literal "[pause]" is read out loud as the word.
-			packed.append(Segment(key="", language="en", text="\n\n".join(buffer)))
+			packed.append(Segment(
+				key="", language="en", text="\n\n".join(buffer),
+				sources=tuple(dict.fromkeys(buffered_sources)),
+			))
 			buffer = []
 			buffered_words = 0
+			buffered_sources = []
 
-	for segment in slide.segments:
+	for source, segment in enumerate(slide.segments):
 		if segment.language != "en":
 			flush()
-			packed.append(segment)
+			packed.append(replace(segment, sources=(source,)))
 			continue
 		for sentence in _sentences(segment.text):
 			words = len(sentence.split())
@@ -248,10 +261,14 @@ def _merge_runs(slide: Slide) -> list[Segment]:
 				flush()
 			buffer.append(sentence)
 			buffered_words += words
+			buffered_sources.append(source)
 	flush()
 
 	return [
-		Segment(key=f"{slide.id}-{index}", language=s.language, text=s.text)
+		Segment(
+			key=f"{slide.id}-{index}", language=s.language, text=s.text,
+			sources=s.sources,
+		)
 		for index, s in enumerate(packed)
 	]
 

@@ -47,12 +47,27 @@ DEFAULT_PORT = 5174
 GPU_LOCK = threading.Lock()
 
 
+def env_file() -> Path | None:
+	"""Where `.env` actually is, which is not always beside this checkout.
+
+	A git worktree has its own root, and the credential lives in the main
+	checkout — so looking only next to `REPO_ROOT` finds nothing and the studio
+	reports a missing key while the file is plainly there. Walks up instead,
+	which covers both layouts without either having to know about the other.
+	"""
+	for directory in [REPO_ROOT, *REPO_ROOT.parents]:
+		candidate = directory / ".env"
+		if candidate.is_file():
+			return candidate
+	return None
+
+
 def load_env() -> None:
 	"""The ElevenLabs key, for Thai clips. English needs no credential."""
-	env_file = REPO_ROOT / ".env"
-	if not env_file.exists():
+	found = env_file()
+	if found is None:
 		return
-	for line in env_file.read_text(encoding="utf-8").splitlines():
+	for line in found.read_text(encoding="utf-8").splitlines():
 		matched = re.match(r"^([A-Z_][A-Z0-9_]*)=(.*)$", line.strip())
 		if matched and matched.group(2).strip():
 			os.environ.setdefault(
@@ -130,6 +145,42 @@ def slide_payload(block: SlideBlock, deck: str) -> dict[str, Any]:
 	}
 
 
+def clips_for(deck: str) -> dict[str, list[dict[str, Any]]]:
+	"""Per slide, the clips the pipeline will actually make.
+
+	Not the same thing as the narration lines. Packing merges consecutive
+	English and re-splits it at fifty-five words, so a slide of five authored
+	lines becomes six clips and one line can feed three of them. The studio has
+	to show the real unit — you cannot regenerate half a clip — so each clip
+	carries the indices of the lines it came from and the UI groups by that.
+	"""
+	built = ASSETS_ROOT / deck / "deck.json"
+	urls: dict[str, list[str]] = {}
+	if built.exists():
+		data = json.loads(built.read_text(encoding="utf-8"))
+		for slide in data.get("slides", []):
+			audio = slide.get("audio")
+			if isinstance(audio, str):
+				audio = [audio]
+			urls[slide.get("id", "")] = audio or []
+
+	out: dict[str, list[dict[str, Any]]] = {}
+	for slide in parse_script(CONTENT_DIR / f"{deck}.md").slides:
+		found = urls.get(slide.id, [])
+		out[slide.id] = [
+			{
+				"key": segment.key,
+				"language": segment.language,
+				"text": segment.text,
+				"sources": list(segment.sources),
+				"words": len(segment.text.split()),
+				"url": found[index] if index < len(found) else None,
+			}
+			for index, segment in enumerate(slide.segments)
+		]
+	return out
+
+
 def deck_payload(deck: str) -> dict[str, Any]:
 	path = CONTENT_DIR / f"{deck}.md"
 	document = ScriptDocument.load(path)
@@ -147,6 +198,7 @@ def deck_payload(deck: str) -> dict[str, Any]:
 		"id": deck,
 		"slides": [slide_payload(block, deck) for block in document.slides],
 		"audio": audio,
+		"clips": clips_for(deck),
 	}
 
 
@@ -186,8 +238,15 @@ def apply_slide_edit(deck: str, slide_id: str, body: dict[str, Any]) -> dict[str
 	return slide_payload(block, deck)
 
 
-def build_deck(deck: str) -> dict[str, Any]:
-	"""Rebuild through the ordinary pipeline, reusing the resident engine."""
+def build_deck(deck: str, force: list[str] | None = None) -> dict[str, Any]:
+	"""Rebuild through the ordinary pipeline, reusing the resident engine.
+
+	`force` names clip keys to remake whatever the cache says. Every scope the
+	studio offers — one clip, one slide, the whole deck — is this same call
+	with a different list, because the pipeline is content-addressed and
+	already skips everything untouched. A separate "regenerate one clip" path
+	would be a second implementation of the thing that works.
+	"""
 	from lesson_deck.pipeline import generate
 	from lesson_deck.vendor import (
 		DEFAULT_MODEL_ID,
@@ -206,12 +265,15 @@ def build_deck(deck: str) -> dict[str, Any]:
 			ENGINES.vendor(),
 			VoiceSpec(voice_id=DEFAULT_VOICE_ID, model_id=DEFAULT_MODEL_ID),
 			Redactor((api_key,)),
+			force_keys=force,
 		)
 	return {
 		"generated": report.generated,
 		"reused": report.reused,
-		"failed": getattr(report, "failed", 0),
-		"calls": getattr(report, "calls", None),
+		"failed": report.failed,
+		"synthCalls": report.synth_calls,
+		"deckWritten": report.deck_written,
+		"errors": report.errors,
 	}
 
 
@@ -335,7 +397,8 @@ class Handler(BaseHTTPRequestHandler):
 		try:
 			matched = re.match(r"^/__studio/api/deck/([A-Za-z0-9-]+)/build$", path)
 			if matched:
-				return self._send(200, build_deck(matched.group(1)))
+				body = self._body()
+				return self._send(200, build_deck(matched.group(1), body.get("force")))
 
 			matched = re.match(
 				r"^/__studio/api/deck/([A-Za-z0-9-]+)/slide/([A-Za-z0-9-]+)/image$", path

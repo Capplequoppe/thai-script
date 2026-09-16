@@ -33,6 +33,7 @@ import json
 import re
 from dataclasses import dataclass, field
 from pathlib import Path
+from collections.abc import Iterable
 from typing import Any
 
 from .ids import LessonPaths, RefusedPath
@@ -182,6 +183,7 @@ class DeckGenerator:
 		vendor: Vendor,
 		spec: VoiceSpec,
 		redactor: Redactor,
+		force_keys: Iterable[str] | None = None,
 	) -> None:
 		self.script = script
 		self.paths = paths
@@ -191,6 +193,8 @@ class DeckGenerator:
 		self.report = RunReport(lesson_id=paths.lesson_id)
 		self.manifest = Manifest(lesson_id=paths.lesson_id, voice=spec.to_json())
 		self._cache = previous_assets(_read_prior_manifest(self.manifest_path))
+		#: Keys to rebuild whatever the cache says. Empty for an ordinary run.
+		self.force_keys: frozenset[str] = frozenset(force_keys or ())
 		#: Clips already produced *this run*, by input hash. Two segments with
 		#: the same text are the same clip; see `_produce_audio`.
 		self._produced: dict[str, AssetRecord] = {}
@@ -476,6 +480,12 @@ class DeckGenerator:
 		"""A cache hit needs the recorded inputs *and* the bytes on disk to
 		agree: a manifest entry for a file since truncated or hand-edited is
 		not a hit, it is a corruption to redo."""
+		if record.key in self.force_keys:
+			# Asked for explicitly, so the cache is not consulted. Editing text
+			# already invalidates a clip by changing its hash; this is for the
+			# other case — the text is right and the take is not, and the only
+			# lever left is another roll of the seed.
+			return False
 		cached = self._cache.get(record.key)
 		if cached is None or cached["inputHash"] != record.input_hash:
 			return False
@@ -602,6 +612,13 @@ def generate(
 	vendor: Vendor,
 	spec: VoiceSpec,
 	redactor: Redactor,
+	force_keys: Iterable[str] | None = None,
 ) -> RunReport:
+	"""Build a deck. `force_keys` rebuilds those assets whatever the cache says.
+
+	Forcing is for re-rolling a clip whose text has not changed — an edit
+	changes the input hash and regenerates on its own. It exists for the
+	studio, where a person has listened to a take and wants another.
+	"""
 	paths = LessonPaths.under(assets_root, script.lesson_id)
-	return DeckGenerator(script, paths, vendor, spec, redactor).run()
+	return DeckGenerator(script, paths, vendor, spec, redactor, force_keys).run()
