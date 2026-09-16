@@ -18,11 +18,12 @@
  * regenerate button therefore sits on a *clip*, which is the smallest thing
  * that can actually be remade, and each clip names the lines it came from.
  */
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import {
 	AnnotationPalette,
 	UnknownTagWarning,
 } from "../components/studio/AnnotationPalette";
+import { insertAt } from "../components/studio/annotations";
 import { AutoTextarea, ClipPlayer } from "../components/studio/StudioControls";
 
 const API = "/__studio/api";
@@ -186,29 +187,38 @@ export default function StudioPage() {
 	}
 
 	/**
-	 * Put a tag into narration line `index`, at the caret where possible.
+	 * Where the caret was in each narration box, by line index.
 	 *
-	 * Reads the caret from the DOM rather than tracking it in state: the
-	 * palette is a separate element, so clicking it blurs nothing React knows
-	 * about, and the selection is still on the textarea when this runs. A
-	 * palette that could only append would be useless for pauses, which are
-	 * always about a particular spot in a sentence.
+	 * A ref rather than state: it changes on every keystroke and arrow key, and
+	 * nothing renders from it, so putting it in state would re-render the whole
+	 * editor for no visible reason.
+	 */
+	const caret = useRef<Record<number, { start: number; end: number }>>({});
+
+	/**
+	 * Put a tag into narration line `index`, at the caret.
+	 *
+	 * Reads the *recorded* caret rather than asking the DOM where focus is.
+	 * The first version did the latter and always appended, because clicking
+	 * the palette moves focus to the palette — by the time the handler runs,
+	 * `document.activeElement` is a button and never the textarea it was
+	 * opened from.
+	 *
+	 * A textarea does keep `selectionStart` across a blur, so reading the
+	 * element directly would also work; recording it is preferred because it
+	 * survives the box being unmounted and remounted, which happens whenever
+	 * the clip list around it changes.
 	 */
 	const insertTag = (index: number, tag: string) => {
 		if (!draft) return;
 		const line = draft[index];
-		const node = document.activeElement;
+		const at = caret.current[index];
 		const next = [...draft];
-		if (
-			node instanceof HTMLTextAreaElement &&
-			node.dataset.lineIndex === String(index)
-		) {
-			const before = line.text.slice(0, node.selectionStart);
-			const after = line.text.slice(node.selectionEnd);
-			next[index] = {
-				...line,
-				text: `${before} ${tag} ${after}`.replace(/\s{2,}/g, " ").trim(),
-			};
+		if (at) {
+			const { text, caret: moved } = insertAt(line.text, tag, at.start, at.end);
+			next[index] = { ...line, text };
+			// So a second tag lands after the first rather than inside it.
+			caret.current[index] = { start: moved, end: moved };
 		} else {
 			next[index] = { ...line, text: `${line.text} ${tag}`.trim() };
 		}
@@ -470,6 +480,15 @@ export default function StudioPage() {
 												<AutoTextarea
 													data-line-index={index}
 													className="flex-1 rounded border p-2 font-mono text-xs leading-relaxed focus:border-slate-400 focus:outline-none"
+													// Fires for clicks, arrow keys and drags alike, so
+													// one handler covers every way a caret moves.
+													onSelect={(event) => {
+														const node = event.currentTarget;
+														caret.current[index] = {
+															start: node.selectionStart,
+															end: node.selectionEnd,
+														};
+													}}
 													value={line.text}
 													onChange={(text) => {
 														const next = [...draft];

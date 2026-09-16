@@ -97,3 +97,28 @@ export function unknownTags(text: string): string[] {
 	const found = text.match(/\[[^[\]]{1,48}\]/g) ?? [];
 	return [...new Set(found.filter((tag) => !KNOWN.has(tag.toLowerCase())))];
 }
+
+/**
+ * `text` with `tag` inserted at `[start, end)`, and where the caret lands.
+ *
+ * Pulled out of the component because it was worth testing and could not be:
+ * the first version read `document.activeElement` to find the caret, which is
+ * the palette button by the time a click handler runs, so every tag went to
+ * the end of the box. A pure function takes the caret as an argument and
+ * cannot make that mistake.
+ *
+ * Spacing is normalised around the insertion rather than assumed, since a tag
+ * may land mid-word, against existing spaces, or at either end.
+ */
+export function insertAt(
+	text: string,
+	tag: string,
+	start: number,
+	end: number,
+): { text: string; caret: number } {
+	const before = text.slice(0, start);
+	const after = text.slice(end);
+	const head = `${before} ${tag} `.replace(/\s{2,}/g, " ").trimStart();
+	const whole = `${head}${after}`.replace(/\s{2,}/g, " ");
+	return { text: whole.trimEnd(), caret: head.length };
+}

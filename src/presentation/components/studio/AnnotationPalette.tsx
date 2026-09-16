@@ -27,6 +27,9 @@ export function AnnotationPalette({
 			<button
 				type="button"
 				className="rounded border px-2 py-1 text-slate-600 text-xs hover:bg-slate-50"
+				// Focus stays in the narration box, so the caret remains visible
+				// and the author can see where the tag will land.
+				onMouseDown={(event) => event.preventDefault()}
 				onClick={() => setOpen((value) => !value)}
 			>
 				Tags {open ? "▾" : "▸"}
@@ -50,6 +53,7 @@ export function AnnotationPalette({
 										key={item.tag}
 										title={item.hint}
 										className="rounded border bg-slate-50 px-1.5 py-0.5 font-mono text-[11px] hover:border-slate-400 hover:bg-white"
+										onMouseDown={(event) => event.preventDefault()}
 										onClick={() => onInsert(item.tag)}
 									>
 										{item.tag}
