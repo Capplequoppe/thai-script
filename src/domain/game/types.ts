@@ -70,12 +70,32 @@ export type ToneChallengeDirection = "identification";
  */
 export type CompositionChallengeDirection = "build";
 
+/**
+ * The four exercises of the tone-pairs mode, named prompt-last so the two
+ * axes read as a grid: `toneFromAudio`/`audioFromTone` are the two
+ * directions of the sound↔tone axis, `meaningFromAudio`/`audioFromMeaning`
+ * the two of the sound↔meaning axis.
+ *
+ * Unlike every other kind's directions, these are not an even draw over
+ * the whole set: the two `audioFrom*` exercises answer with a *clip*, so
+ * every option they offer must itself have audio, while the two
+ * `*FromAudio` exercises only ever play the target's own clip. A word
+ * whose sound-alikes have no recordings yet can therefore be asked in two
+ * of the four directions, not none — see `selectMinimalPairRound`.
+ */
+export type MinimalPairChallengeDirection =
+	| "toneFromAudio"
+	| "meaningFromAudio"
+	| "audioFromMeaning"
+	| "audioFromTone";
+
 export type GameChallengeDirection =
 	| SymbolChallengeDirection
 	| WordChallengeDirection
 	| SentenceChallengeDirection
 	| ToneChallengeDirection
-	| CompositionChallengeDirection;
+	| CompositionChallengeDirection
+	| MinimalPairChallengeDirection;
 
 /**
  * Content for one symbol, sourced from `script/data/symbols.ts` — never
@@ -180,6 +200,68 @@ export interface CompositionItemContent {
 	readonly correctOrder: readonly string[];
 }
 
+/**
+ * One choice in a tone-pairs question — the target word itself or one of
+ * its sound-alikes. Every option is a real vocabulary word from the same
+ * minimal-pair group, so `tones` is the group's own `thaig2p` analysis
+ * (from `tone-minimal-pairs.json`, never `VocabEntry.syllables[].tone`,
+ * which mis-analyses ห-นำ and clusters and so can disagree with the
+ * grouping that put these words together) and `englishMeaning` is the
+ * `VocabEntry`'s.
+ *
+ * `selectMinimalPairRound` guarantees the options of one item are
+ * pairwise distinct in all three of `thaiWord`, `tones` and
+ * `englishMeaning`. That is what lets every direction grade the same way
+ * — `option.thaiWord === item.thaiWord` — instead of each needing its own
+ * rule: a question whose options shared a tone pattern would have two
+ * right answers in `toneFromAudio` while still having one in
+ * `meaningFromAudio`.
+ */
+export interface MinimalPairOption {
+	readonly thaiWord: string;
+	readonly englishMeaning: string;
+	readonly tones: readonly string[];
+	readonly audioUrl?: string;
+}
+
+/** A `MinimalPairOption` that can be offered as a clip to pick between. */
+export interface AudibleMinimalPairOption extends MinimalPairOption {
+	readonly audioUrl: string;
+}
+
+/**
+ * Content for one tone-pairs question, sourced from a
+ * `tone-minimal-pairs.json` group intersected with the words the learner
+ * has cards for — never from a card, for the same reason every other
+ * content type here says so.
+ *
+ * `thaiWord` is both the item's identity (the key a round dedupes on) and
+ * the correct answer; `options` holds it alongside its distractors, already
+ * shuffled, so no consumer has to know which position is right.
+ *
+ * `audioUrl` is **required**, unlike every other content type's: a word
+ * with no recording cannot be the subject of a listening exercise in any
+ * of the four directions, so it is excluded at selection rather than
+ * reaching an organism that would have nothing to play.
+ *
+ * Deliberately **not** part of `GameItemContent`, for exactly the reason
+ * `CompositionItemContent` is not: that type is `GameItemSource.
+ * eligibleContent()`'s return type, and tone pairs are never produced by a
+ * `GameItemSource` — their supply is a set-level computation over
+ * sound-alike groups, not a `GameCardPool` partition. Folding it in would
+ * force dead `"minimalPair"` branches into `assignDirection`/`weightOfFor`.
+ */
+export interface MinimalPairItemContent {
+	readonly kind: "minimalPair";
+	/** The group's segmental key, e.g. `"kʰ aː w"` — its stable identity. */
+	readonly groupKey: string;
+	readonly thaiWord: string;
+	readonly englishMeaning: string;
+	readonly tones: readonly string[];
+	readonly audioUrl: string;
+	readonly options: readonly MinimalPairOption[];
+}
+
 export type SymbolGameItem = SymbolItemContent & {
 	readonly challengeDirection: SymbolChallengeDirection;
 };
@@ -201,6 +283,23 @@ export type CompositionGameItem = CompositionItemContent & {
 };
 
 /**
+ * A union over the direction rather than one intersection, so the
+ * "every option needs its own clip" rule of the two `audioFrom*`
+ * exercises is the compiler's to enforce at the organism that renders
+ * those play buttons — not a comment `selectMinimalPairRound` is trusted
+ * to have honoured. Narrowing on `challengeDirection` is all a consumer
+ * needs to know an option's `audioUrl` is there.
+ */
+export type MinimalPairGameItem =
+	| (MinimalPairItemContent & {
+			readonly challengeDirection: "toneFromAudio" | "meaningFromAudio";
+	  })
+	| (MinimalPairItemContent & {
+			readonly challengeDirection: "audioFromMeaning" | "audioFromTone";
+			readonly options: readonly AudibleMinimalPairOption[];
+	  });
+
+/**
  * Every item that reaches play through the shared draw pipeline
  * (`sampleWithoutReplacement` + `assignDirection`) — one variant per
  * `GameItemContent` member, each intersecting in the direction that
@@ -216,14 +315,18 @@ export type SourcedGameItem =
 
 /**
  * One item as it is played. A discriminated union on `kind`; the
- * `"symbol"`, `"word"`, `"sentence"`, `"tone"` and `"composition"` members
- * are independent variants, so every consumer that already narrows on
- * `kind` is unaffected by an addition. `CompositionGameItem` never flows
- * through the shared draw pipeline (`selectCompositionRound` builds it
- * directly) — it is added only here, not to `SourcedGameItem` or
+ * `"symbol"`, `"word"`, `"sentence"`, `"tone"`, `"composition"` and
+ * `"minimalPair"` members are independent variants, so every consumer that already narrows on
+ * `kind` is unaffected by an addition. `CompositionGameItem` and
+ * `MinimalPairGameItem` never flow through the shared draw pipeline
+ * (`selectCompositionRound` / `selectMinimalPairRound` build them
+ * directly) — they are added only here, not to `SourcedGameItem` or
  * `GameItemContent`.
  */
-export type GameItem = SourcedGameItem | CompositionGameItem;
+export type GameItem =
+	| SourcedGameItem
+	| CompositionGameItem
+	| MinimalPairGameItem;
 
 /** Supplies the eligible content for exactly one pool. */
 export interface GameItemSource {
@@ -249,7 +352,8 @@ export interface GameRoundConfig {
 export interface GameRatingRecord {
 	/**
 	 * The item's identity, prefixed with `kind` (`"symbol:..."` /
-	 * `"word:..."` / `"sentence:..."` / `"tone:..."`) so a symbol character
+	 * `"word:..."` / `"sentence:..."` / `"tone:..."` /
+	 * `"minimalPair:..."`) so a symbol character
 	 * can never collide with a vocab word of the same Thai text in a
 	 * mixed-pool round — see `itemKeyOf` in `PlayGameUseCase.ts`.
 	 */
@@ -295,8 +399,18 @@ export interface CompositionHistoryEntry extends GameHistoryEntryBase {
 }
 
 /**
- * A discriminated union on `kind`, and `kind` is **required** on both
- * variants. Entries persisted before this field existed are normalized to
+ * One finished tone-pairs round. Carries no `pools` for the same reason a
+ * composition round does not: its supply is the set of sound-alike groups
+ * the learner has learned both sides of, which is not a `GameCardPool`
+ * partition.
+ */
+export interface MinimalPairHistoryEntry extends GameHistoryEntryBase {
+	readonly kind: "minimalPair";
+}
+
+/**
+ * A discriminated union on `kind`, and `kind` is **required** on every
+ * variant. Entries persisted before this field existed are normalized to
  * `"practice"` once, on read, by `StorageGameHistoryRepository.list()` — so
  * no consumer anywhere ever sees an entry without a `kind`, and none needs
  * its own copy of that back-compat rule. An *optional* discriminant would
@@ -304,7 +418,10 @@ export interface CompositionHistoryEntry extends GameHistoryEntryBase {
  * every legacy entry, which is exactly the shape a consumer gets wrong by
  * writing the natural code.
  */
-export type GameHistoryEntry = PracticeHistoryEntry | CompositionHistoryEntry;
+export type GameHistoryEntry =
+	| PracticeHistoryEntry
+	| CompositionHistoryEntry
+	| MinimalPairHistoryEntry;
 
 /**
  * What a caller hands `PlayGameUseCase.saveHistory`: the round-shaped half
@@ -316,4 +433,5 @@ export type GameHistoryEntry = PracticeHistoryEntry | CompositionHistoryEntry;
  */
 export type PlayedRound =
 	| Omit<PracticeHistoryEntry, "id" | "playedAt" | "summary">
-	| Omit<CompositionHistoryEntry, "id" | "playedAt" | "summary">;
+	| Omit<CompositionHistoryEntry, "id" | "playedAt" | "summary">
+	| Omit<MinimalPairHistoryEntry, "id" | "playedAt" | "summary">;

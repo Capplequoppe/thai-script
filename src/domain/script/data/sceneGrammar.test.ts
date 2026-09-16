@@ -216,10 +216,11 @@ describe("annotation validation", () => {
 });
 
 describe("the annotation records", () => {
-	// AC9 — the shape covers all 82 mnemonic-carrying records, not only the
+	// AC9 — the shape covers all 83 mnemonic-carrying records, not only the
 	// 73 task 2.4 rewrites, each with its romanization and final-sound slots.
-	it("derives all 82 records, each carrying romanization and final-sound slots", () => {
-		expect(sceneAnnotations).toHaveLength(82);
+	it("derives all 83 records, each carrying romanization and final-sound slots", () => {
+		// 83 since ไม้ไต่คู้ joined the vowel inventory.
+		expect(sceneAnnotations).toHaveLength(83);
 
 		const byKind = new Map<string, number>();
 		for (const annotation of sceneAnnotations) {
@@ -227,13 +228,14 @@ describe("the annotation records", () => {
 		}
 		expect(Object.fromEntries(byKind)).toEqual({
 			consonant: 44,
-			vowel: 29,
+			// 30 since ไม้ไต่คู้ joined lesson 7.
+			vowel: 30,
 			"tone-mark": 4,
 			word: 5,
 		});
 
 		const keys = new Set(sceneAnnotations.map((annotation) => annotation.key));
-		expect(keys.size).toBe(82);
+		expect(keys.size).toBe(83);
 
 		for (const annotation of sceneAnnotations) {
 			expect(annotation.romanizedName, annotation.key).not.toBe("");

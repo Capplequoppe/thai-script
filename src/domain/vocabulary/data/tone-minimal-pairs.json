@@ -1,0 +1,3733 @@
+[
+	{
+		"key": "thii",
+		"members": [
+			{
+				"thai": "ที่",
+				"tones": ["falling"]
+			},
+			{
+				"thai": "ที",
+				"tones": ["mid"]
+			}
+		]
+	},
+	{
+		"key": "nii",
+		"members": [
+			{
+				"thai": "นี้",
+				"tones": ["high"]
+			},
+			{
+				"thai": "นี่",
+				"tones": ["falling"]
+			},
+			{
+				"thai": "หนี",
+				"tones": ["rising"]
+			},
+			{
+				"thai": "หนี้",
+				"tones": ["falling"]
+			}
+		]
+	},
+	{
+		"key": "kha",
+		"members": [
+			{
+				"thai": "ค่ะ",
+				"tones": ["falling"]
+			},
+			{
+				"thai": "คะ",
+				"tones": ["high"]
+			}
+		]
+	},
+	{
+		"key": "mii",
+		"members": [
+			{
+				"thai": "มี",
+				"tones": ["mid"]
+			},
+			{
+				"thai": "มี่",
+				"tones": ["falling"]
+			},
+			{
+				"thai": "หมี",
+				"tones": ["rising"]
+			}
+		]
+	},
+	{
+		"key": "chan",
+		"members": [
+			{
+				"thai": "ฉัน",
+				"tones": ["rising"]
+			},
+			{
+				"thai": "ชั้น",
+				"tones": ["high"]
+			},
+			{
+				"thai": "ชัน",
+				"tones": ["mid"]
+			}
+		]
+	},
+	{
+		"key": "may",
+		"members": [
+			{
+				"thai": "ไม่",
+				"tones": ["falling"]
+			},
+			{
+				"thai": "ไหม",
+				"tones": ["rising"]
+			},
+			{
+				"thai": "มั้ย",
+				"tones": ["high"]
+			},
+			{
+				"thai": "ใหม่",
+				"tones": ["low"]
+			},
+			{
+				"thai": "ไหม้",
+				"tones": ["falling"]
+			}
+		]
+	},
+	{
+		"key": "nay",
+		"members": [
+			{
+				"thai": "ใน",
+				"tones": ["mid"]
+			},
+			{
+				"thai": "ไหน",
+				"tones": ["rising"]
+			}
+		]
+	},
+	{
+		"key": "kan",
+		"members": [
+			{
+				"thai": "กัน",
+				"tones": ["mid"]
+			},
+			{
+				"thai": "กั้น",
+				"tones": ["falling"]
+			}
+		]
+	},
+	{
+		"key": "kaan",
+		"members": [
+			{
+				"thai": "การ",
+				"tones": ["mid"]
+			},
+			{
+				"thai": "ก้าน",
+				"tones": ["falling"]
+			},
+			{
+				"thai": "การณ์",
+				"tones": ["mid"]
+			}
+		]
+	},
+	{
+		"key": "chai",
+		"members": [
+			{
+				"thai": "ใช่",
+				"tones": ["falling"]
+			},
+			{
+				"thai": "ใช้",
+				"tones": ["high"]
+			}
+		]
+	},
+	{
+		"key": "maa",
+		"members": [
+			{
+				"thai": "มา",
+				"tones": ["mid"]
+			},
+			{
+				"thai": "ม้า",
+				"tones": ["high"]
+			},
+			{
+				"thai": "หมา",
+				"tones": ["rising"]
+			}
+		]
+	},
+	{
+		"key": "thUng",
+		"members": [
+			{
+				"thai": "ถึง",
+				"tones": ["rising"]
+			},
+			{
+				"thai": "ทึ่ง",
+				"tones": ["falling"]
+			}
+		]
+	},
+	{
+		"key": "thang",
+		"members": [
+			{
+				"thai": "ทั้ง",
+				"tones": ["high"]
+			},
+			{
+				"thai": "ถัง",
+				"tones": ["rising"]
+			}
+		]
+	},
+	{
+		"key": "khon",
+		"members": [
+			{
+				"thai": "คน",
+				"tones": ["mid"]
+			},
+			{
+				"thai": "ขน",
+				"tones": ["rising"]
+			},
+			{
+				"thai": "ค้น",
+				"tones": ["high"]
+			}
+		]
+	},
+	{
+		"key": "rUUang",
+		"members": [
+			{
+				"thai": "เรื่อง",
+				"tones": ["falling"]
+			},
+			{
+				"thai": "เรือง",
+				"tones": ["mid"]
+			},
+			{
+				"thai": "เรื่่อง",
+				"tones": ["falling"]
+			}
+		]
+	},
+	{
+		"key": "thii nii",
+		"members": [
+			{
+				"thai": "ที่นี่",
+				"tones": ["falling", "falling"]
+			},
+			{
+				"thai": "ทีนี้",
+				"tones": ["mid", "high"]
+			}
+		]
+	},
+	{
+		"key": "yaang",
+		"members": [
+			{
+				"thai": "อย่าง",
+				"tones": ["low"]
+			},
+			{
+				"thai": "ยาง",
+				"tones": ["mid"]
+			},
+			{
+				"thai": "ย่าง",
+				"tones": ["falling"]
+			}
+		]
+	},
+	{
+		"key": "nan",
+		"members": [
+			{
+				"thai": "นั้น",
+				"tones": ["high"]
+			},
+			{
+				"thai": "นั่น",
+				"tones": ["falling"]
+			}
+		]
+	},
+	{
+		"key": "maak",
+		"members": [
+			{
+				"thai": "มาก",
+				"tones": ["falling"]
+			},
+			{
+				"thai": "หมาก",
+				"tones": ["low"]
+			}
+		]
+	},
+	{
+		"key": "way",
+		"members": [
+			{
+				"thai": "ไว้",
+				"tones": ["high"]
+			},
+			{
+				"thai": "วัย",
+				"tones": ["mid"]
+			},
+			{
+				"thai": "ไหว",
+				"tones": ["rising"]
+			},
+			{
+				"thai": "ไว",
+				"tones": ["mid"]
+			}
+		]
+	},
+	{
+		"key": "rUU",
+		"members": [
+			{
+				"thai": "หรือ",
+				"tones": ["rising"]
+			},
+			{
+				"thai": "รื้อ",
+				"tones": ["high"]
+			}
+		]
+	},
+	{
+		"key": "ruu",
+		"members": [
+			{
+				"thai": "รู้",
+				"tones": ["high"]
+			},
+			{
+				"thai": "รู",
+				"tones": ["mid"]
+			},
+			{
+				"thai": "หรู",
+				"tones": ["rising"]
+			}
+		]
+	},
+	{
+		"key": "thaw ray",
+		"members": [
+			{
+				"thai": "เท่าไหร่",
+				"tones": ["falling", "low"]
+			},
+			{
+				"thai": "เท่าไร",
+				"tones": ["falling", "mid"]
+			}
+		]
+	},
+	{
+		"key": "tham",
+		"members": [
+			{
+				"thai": "ทำ",
+				"tones": ["mid"]
+			},
+			{
+				"thai": "ถ้ำ",
+				"tones": ["falling"]
+			}
+		]
+	},
+	{
+		"key": "baan",
+		"members": [
+			{
+				"thai": "บ้าน",
+				"tones": ["falling"]
+			},
+			{
+				"thai": "บาน",
+				"tones": ["mid"]
+			}
+		]
+	},
+	{
+		"key": "sUng",
+		"members": [
+			{
+				"thai": "ซึ่ง",
+				"tones": ["falling"]
+			},
+			{
+				"thai": "ซึ้ง",
+				"tones": ["high"]
+			}
+		]
+	},
+	{
+		"key": "long",
+		"members": [
+			{
+				"thai": "ลง",
+				"tones": ["mid"]
+			},
+			{
+				"thai": "หลง",
+				"tones": ["rising"]
+			}
+		]
+	},
+	{
+		"key": "thaa",
+		"members": [
+			{
+				"thai": "ถ้า",
+				"tones": ["falling"]
+			},
+			{
+				"thai": "ท่า",
+				"tones": ["falling"]
+			},
+			{
+				"thai": "ทา",
+				"tones": ["mid"]
+			}
+		]
+	},
+	{
+		"key": "tuua",
+		"members": [
+			{
+				"thai": "ตัว",
+				"tones": ["mid"]
+			},
+			{
+				"thai": "ตั๋ว",
+				"tones": ["rising"]
+			}
+		]
+	},
+	{
+		"key": "yaak",
+		"members": [
+			{
+				"thai": "อยาก",
+				"tones": ["low"]
+			},
+			{
+				"thai": "ยาก",
+				"tones": ["falling"]
+			}
+		]
+	},
+	{
+		"key": "mEE",
+		"members": [
+			{
+				"thai": "แม่",
+				"tones": ["falling"]
+			},
+			{
+				"thai": "แม้",
+				"tones": ["high"]
+			}
+		]
+	},
+	{
+		"key": "phOO",
+		"members": [
+			{
+				"thai": "พ่อ",
+				"tones": ["falling"]
+			},
+			{
+				"thai": "พอ",
+				"tones": ["mid"]
+			}
+		]
+	},
+	{
+		"key": "naam",
+		"members": [
+			{
+				"thai": "น้ำ",
+				"tones": ["high"]
+			},
+			{
+				"thai": "นาม",
+				"tones": ["mid"]
+			}
+		]
+	},
+	{
+		"key": "fang",
+		"members": [
+			{
+				"thai": "ฟัง",
+				"tones": ["mid"]
+			},
+			{
+				"thai": "ฝั่ง",
+				"tones": ["low"]
+			},
+			{
+				"thai": "ฝัง",
+				"tones": ["rising"]
+			}
+		]
+	},
+	{
+		"key": "phii",
+		"members": [
+			{
+				"thai": "พี่",
+				"tones": ["falling"]
+			},
+			{
+				"thai": "ผี",
+				"tones": ["rising"]
+			}
+		]
+	},
+	{
+		"key": "nOOng",
+		"members": [
+			{
+				"thai": "น้อง",
+				"tones": ["high"]
+			},
+			{
+				"thai": "หนอง",
+				"tones": ["rising"]
+			}
+		]
+	},
+	{
+		"key": "si",
+		"members": [
+			{
+				"thai": "สิ",
+				"tones": ["low"]
+			},
+			{
+				"thai": "ซิ",
+				"tones": ["high"]
+			}
+		]
+	},
+	{
+		"key": "haa",
+		"members": [
+			{
+				"thai": "หา",
+				"tones": ["rising"]
+			},
+			{
+				"thai": "ห้า",
+				"tones": ["falling"]
+			},
+			{
+				"thai": "ฮา",
+				"tones": ["mid"]
+			}
+		]
+	},
+	{
+		"key": "sUU",
+		"members": [
+			{
+				"thai": "ซื้อ",
+				"tones": ["high"]
+			},
+			{
+				"thai": "สื่อ",
+				"tones": ["low"]
+			},
+			{
+				"thai": "ซื่อ",
+				"tones": ["falling"]
+			}
+		]
+	},
+	{
+		"key": "nOOn",
+		"members": [
+			{
+				"thai": "นอน",
+				"tones": ["mid"]
+			},
+			{
+				"thai": "หนอน",
+				"tones": ["rising"]
+			}
+		]
+	},
+	{
+		"key": "phUUa",
+		"members": [
+			{
+				"thai": "เพื่อ",
+				"tones": ["falling"]
+			},
+			{
+				"thai": "เผื่อ",
+				"tones": ["low"]
+			}
+		]
+	},
+	{
+		"key": "tOO",
+		"members": [
+			{
+				"thai": "ต่อ",
+				"tones": ["low"]
+			},
+			{
+				"thai": "ตอ",
+				"tones": ["mid"]
+			}
+		]
+	},
+	{
+		"key": "rOOn",
+		"members": [
+			{
+				"thai": "ร้อน",
+				"tones": ["high"]
+			},
+			{
+				"thai": "รอน",
+				"tones": ["mid"]
+			}
+		]
+	},
+	{
+		"key": "mang",
+		"members": [
+			{
+				"thai": "มั้ง",
+				"tones": ["high"]
+			},
+			{
+				"thai": "มัง",
+				"tones": ["mid"]
+			},
+			{
+				"thai": "มั่ง",
+				"tones": ["falling"]
+			}
+		]
+	},
+	{
+		"key": "khaw",
+		"members": [
+			{
+				"thai": "เขา",
+				"tones": ["rising"]
+			},
+			{
+				"thai": "เข่า",
+				"tones": ["low"]
+			}
+		]
+	},
+	{
+		"key": "laay",
+		"members": [
+			{
+				"thai": "หลาย",
+				"tones": ["rising"]
+			},
+			{
+				"thai": "ลาย",
+				"tones": ["mid"]
+			}
+		]
+	},
+	{
+		"key": "phuu",
+		"members": [
+			{
+				"thai": "ผู้",
+				"tones": ["falling"]
+			},
+			{
+				"thai": "ภู",
+				"tones": ["mid"]
+			}
+		]
+	},
+	{
+		"key": "suuan",
+		"members": [
+			{
+				"thai": "ส่วน",
+				"tones": ["low"]
+			},
+			{
+				"thai": "สวน",
+				"tones": ["rising"]
+			}
+		]
+	},
+	{
+		"key": "wan",
+		"members": [
+			{
+				"thai": "วัน",
+				"tones": ["mid"]
+			},
+			{
+				"thai": "วรรณ",
+				"tones": ["mid"]
+			},
+			{
+				"thai": "หวั่น",
+				"tones": ["low"]
+			}
+		]
+	},
+	{
+		"key": "nak",
+		"members": [
+			{
+				"thai": "นัก",
+				"tones": ["high"]
+			},
+			{
+				"thai": "หนัก",
+				"tones": ["low"]
+			}
+		]
+	},
+	{
+		"key": "kOOn",
+		"members": [
+			{
+				"thai": "ก่อน",
+				"tones": ["low"]
+			},
+			{
+				"thai": "ก้อน",
+				"tones": ["falling"]
+			}
+		]
+	},
+	{
+		"key": "daan",
+		"members": [
+			{
+				"thai": "ด้าน",
+				"tones": ["falling"]
+			},
+			{
+				"thai": "ด่าน",
+				"tones": ["low"]
+			}
+		]
+	},
+	{
+		"key": "diiaw",
+		"members": [
+			{
+				"thai": "เดียว",
+				"tones": ["mid"]
+			},
+			{
+				"thai": "เดี๋ยว",
+				"tones": ["rising"]
+			},
+			{
+				"thai": "เดี่ยว",
+				"tones": ["low"]
+			}
+		]
+	},
+	{
+		"key": "sing",
+		"members": [
+			{
+				"thai": "สิ่ง",
+				"tones": ["low"]
+			},
+			{
+				"thai": "สิงห์",
+				"tones": ["rising"]
+			},
+			{
+				"thai": "สิง",
+				"tones": ["rising"]
+			}
+		]
+	},
+	{
+		"key": "song",
+		"members": [
+			{
+				"thai": "ทรง",
+				"tones": ["mid"]
+			},
+			{
+				"thai": "ส่ง",
+				"tones": ["low"]
+			},
+			{
+				"thai": "สงฆ์",
+				"tones": ["rising"]
+			}
+		]
+	},
+	{
+		"key": "klai",
+		"members": [
+			{
+				"thai": "ใกล้",
+				"tones": ["falling"]
+			},
+			{
+				"thai": "ไกล",
+				"tones": ["mid"]
+			}
+		]
+	},
+	{
+		"key": "phit",
+		"members": [
+			{
+				"thai": "ผิด",
+				"tones": ["low"]
+			},
+			{
+				"thai": "พิษ",
+				"tones": ["high"]
+			}
+		]
+	},
+	{
+		"key": "siia",
+		"members": [
+			{
+				"thai": "เสีย",
+				"tones": ["rising"]
+			},
+			{
+				"thai": "เสี่ย",
+				"tones": ["low"]
+			}
+		]
+	},
+	{
+		"key": "phaan",
+		"members": [
+			{
+				"thai": "ผ่าน",
+				"tones": ["low"]
+			},
+			{
+				"thai": "พาน",
+				"tones": ["mid"]
+			}
+		]
+	},
+	{
+		"key": "yaa",
+		"members": [
+			{
+				"thai": "ยา",
+				"tones": ["mid"]
+			},
+			{
+				"thai": "อย่า",
+				"tones": ["low"]
+			},
+			{
+				"thai": "หญ้า",
+				"tones": ["falling"]
+			},
+			{
+				"thai": "ย่า",
+				"tones": ["falling"]
+			},
+			{
+				"thai": "หย่า",
+				"tones": ["low"]
+			}
+		]
+	},
+	{
+		"key": "khOO",
+		"members": [
+			{
+				"thai": "ขอ",
+				"tones": ["rising"]
+			},
+			{
+				"thai": "ข้อ",
+				"tones": ["falling"]
+			},
+			{
+				"thai": "คอ",
+				"tones": ["mid"]
+			}
+		]
+	},
+	{
+		"key": "ying",
+		"members": [
+			{
+				"thai": "ยิ่ง",
+				"tones": ["falling"]
+			},
+			{
+				"thai": "หญิง",
+				"tones": ["rising"]
+			},
+			{
+				"thai": "ยิง",
+				"tones": ["mid"]
+			}
+		]
+	},
+	{
+		"key": "faay",
+		"members": [
+			{
+				"thai": "ฝ่าย",
+				"tones": ["low"]
+			},
+			{
+				"thai": "ฝ้าย",
+				"tones": ["falling"]
+			}
+		]
+	},
+	{
+		"key": "kham",
+		"members": [
+			{
+				"thai": "คำ",
+				"tones": ["mid"]
+			},
+			{
+				"thai": "ค่ำ",
+				"tones": ["falling"]
+			},
+			{
+				"thai": "ขำ",
+				"tones": ["rising"]
+			}
+		]
+	},
+	{
+		"key": "man",
+		"members": [
+			{
+				"thai": "มัน",
+				"tones": ["mid"]
+			},
+			{
+				"thai": "มั่น",
+				"tones": ["falling"]
+			},
+			{
+				"thai": "หมั้น",
+				"tones": ["falling"]
+			},
+			{
+				"thai": "หมั่น",
+				"tones": ["low"]
+			}
+		]
+	},
+	{
+		"key": "nang",
+		"members": [
+			{
+				"thai": "นั่ง",
+				"tones": ["falling"]
+			},
+			{
+				"thai": "หนัง",
+				"tones": ["rising"]
+			},
+			{
+				"thai": "นัง",
+				"tones": ["mid"]
+			}
+		]
+	},
+	{
+		"key": "nUUa",
+		"members": [
+			{
+				"thai": "เนื้อ",
+				"tones": ["high"]
+			},
+			{
+				"thai": "เหนือ",
+				"tones": ["rising"]
+			}
+		]
+	},
+	{
+		"key": "naa",
+		"members": [
+			{
+				"thai": "น่า",
+				"tones": ["falling"]
+			},
+			{
+				"thai": "หน้า",
+				"tones": ["falling"]
+			},
+			{
+				"thai": "นา",
+				"tones": ["mid"]
+			},
+			{
+				"thai": "หนา",
+				"tones": ["rising"]
+			}
+		]
+	},
+	{
+		"key": "ton",
+		"members": [
+			{
+				"thai": "ต้น",
+				"tones": ["falling"]
+			},
+			{
+				"thai": "ตน",
+				"tones": ["mid"]
+			}
+		]
+	},
+	{
+		"key": "bon",
+		"members": [
+			{
+				"thai": "บน",
+				"tones": ["mid"]
+			},
+			{
+				"thai": "บ่น",
+				"tones": ["low"]
+			}
+		]
+	},
+	{
+		"key": "ruuam",
+		"members": [
+			{
+				"thai": "ร่วม",
+				"tones": ["falling"]
+			},
+			{
+				"thai": "รวม",
+				"tones": ["mid"]
+			}
+		]
+	},
+	{
+		"key": "phon",
+		"members": [
+			{
+				"thai": "ผล",
+				"tones": ["rising"]
+			},
+			{
+				"thai": "พ้น",
+				"tones": ["high"]
+			},
+			{
+				"thai": "พล",
+				"tones": ["mid"]
+			},
+			{
+				"thai": "พ่น",
+				"tones": ["falling"]
+			}
+		]
+	},
+	{
+		"key": "kEE",
+		"members": [
+			{
+				"thai": "แก่",
+				"tones": ["low"]
+			},
+			{
+				"thai": "แก้",
+				"tones": ["falling"]
+			},
+			{
+				"thai": "แก",
+				"tones": ["mid"]
+			}
+		]
+	},
+	{
+		"key": "raq waang",
+		"members": [
+			{
+				"thai": "ระหว่าง",
+				"tones": ["high", "low"]
+			},
+			{
+				"thai": "ระวาง",
+				"tones": ["high", "mid"]
+			}
+		]
+	},
+	{
+		"key": "sii",
+		"members": [
+			{
+				"thai": "สี",
+				"tones": ["rising"]
+			},
+			{
+				"thai": "สี่",
+				"tones": ["low"]
+			},
+			{
+				"thai": "ซี่",
+				"tones": ["falling"]
+			}
+		]
+	},
+	{
+		"key": "chaay",
+		"members": [
+			{
+				"thai": "ชาย",
+				"tones": ["mid"]
+			},
+			{
+				"thai": "ฉาย",
+				"tones": ["rising"]
+			}
+		]
+	},
+	{
+		"key": "dang",
+		"members": [
+			{
+				"thai": "ดัง",
+				"tones": ["mid"]
+			},
+			{
+				"thai": "ดั่ง",
+				"tones": ["low"]
+			}
+		]
+	},
+	{
+		"key": "phEEng",
+		"members": [
+			{
+				"thai": "แพง",
+				"tones": ["mid"]
+			},
+			{
+				"thai": "แผง",
+				"tones": ["rising"]
+			}
+		]
+	},
+	{
+		"key": "riian",
+		"members": [
+			{
+				"thai": "เรียน",
+				"tones": ["mid"]
+			},
+			{
+				"thai": "เหรียญ",
+				"tones": ["rising"]
+			}
+		]
+	},
+	{
+		"key": "siiang",
+		"members": [
+			{
+				"thai": "เสียง",
+				"tones": ["rising"]
+			},
+			{
+				"thai": "เสี่ยง",
+				"tones": ["low"]
+			}
+		]
+	},
+	{
+		"key": "chUUa",
+		"members": [
+			{
+				"thai": "เชื่อ",
+				"tones": ["falling"]
+			},
+			{
+				"thai": "เชื้อ",
+				"tones": ["high"]
+			}
+		]
+	},
+	{
+		"key": "mOO",
+		"members": [
+			{
+				"thai": "หมอ",
+				"tones": ["rising"]
+			},
+			{
+				"thai": "หม้อ",
+				"tones": ["falling"]
+			}
+		]
+	},
+	{
+		"key": "waang",
+		"members": [
+			{
+				"thai": "วาง",
+				"tones": ["mid"]
+			},
+			{
+				"thai": "ว่าง",
+				"tones": ["falling"]
+			}
+		]
+	},
+	{
+		"key": "naan",
+		"members": [
+			{
+				"thai": "นาน",
+				"tones": ["mid"]
+			},
+			{
+				"thai": "น่าน",
+				"tones": ["falling"]
+			}
+		]
+	},
+	{
+		"key": "naa thii",
+		"members": [
+			{
+				"thai": "นาที",
+				"tones": ["mid", "mid"]
+			},
+			{
+				"thai": "หน้าที่",
+				"tones": ["falling", "falling"]
+			}
+		]
+	},
+	{
+		"key": "saay",
+		"members": [
+			{
+				"thai": "ซ้าย",
+				"tones": ["high"]
+			},
+			{
+				"thai": "ทราย",
+				"tones": ["mid"]
+			},
+			{
+				"thai": "ส่าย",
+				"tones": ["low"]
+			}
+		]
+	},
+	{
+		"key": "wat",
+		"members": [
+			{
+				"thai": "วัด",
+				"tones": ["high"]
+			},
+			{
+				"thai": "หวัด",
+				"tones": ["low"]
+			}
+		]
+	},
+	{
+		"key": "lek",
+		"members": [
+			{
+				"thai": "เล็ก",
+				"tones": ["high"]
+			},
+			{
+				"thai": "เหล็ก",
+				"tones": ["low"]
+			}
+		]
+	},
+	{
+		"key": "khaay",
+		"members": [
+			{
+				"thai": "ขาย",
+				"tones": ["rising"]
+			},
+			{
+				"thai": "ค่าย",
+				"tones": ["falling"]
+			},
+			{
+				"thai": "ข่าย",
+				"tones": ["low"]
+			}
+		]
+	},
+	{
+		"key": "khaa",
+		"members": [
+			{
+				"thai": "ค่า",
+				"tones": ["falling"]
+			},
+			{
+				"thai": "ฆ่า",
+				"tones": ["falling"]
+			},
+			{
+				"thai": "ค้า",
+				"tones": ["high"]
+			},
+			{
+				"thai": "ขา",
+				"tones": ["rising"]
+			},
+			{
+				"thai": "คา",
+				"tones": ["mid"]
+			},
+			{
+				"thai": "ข้า",
+				"tones": ["falling"]
+			}
+		]
+	},
+	{
+		"key": "khuu",
+		"members": [
+			{
+				"thai": "คู่",
+				"tones": ["falling"]
+			},
+			{
+				"thai": "ขู่",
+				"tones": ["low"]
+			},
+			{
+				"thai": "คู",
+				"tones": ["mid"]
+			}
+		]
+	},
+	{
+		"key": "suu",
+		"members": [
+			{
+				"thai": "สู่",
+				"tones": ["low"]
+			},
+			{
+				"thai": "สู้",
+				"tones": ["falling"]
+			}
+		]
+	},
+	{
+		"key": "mot",
+		"members": [
+			{
+				"thai": "หมด",
+				"tones": ["low"]
+			},
+			{
+				"thai": "มด",
+				"tones": ["high"]
+			}
+		]
+	},
+	{
+		"key": "phak",
+		"members": [
+			{
+				"thai": "ผัก",
+				"tones": ["low"]
+			},
+			{
+				"thai": "พัก",
+				"tones": ["high"]
+			},
+			{
+				"thai": "พรรค",
+				"tones": ["high"]
+			}
+		]
+	},
+	{
+		"key": "khruu",
+		"members": [
+			{
+				"thai": "ครู",
+				"tones": ["mid"]
+			},
+			{
+				"thai": "ครู่",
+				"tones": ["falling"]
+			}
+		]
+	},
+	{
+		"key": "nUng",
+		"members": [
+			{
+				"thai": "หนึ่ง",
+				"tones": ["low"]
+			},
+			{
+				"thai": "นึ่ง",
+				"tones": ["falling"]
+			}
+		]
+	},
+	{
+		"key": "sOOng",
+		"members": [
+			{
+				"thai": "สอง",
+				"tones": ["rising"]
+			},
+			{
+				"thai": "ซอง",
+				"tones": ["mid"]
+			}
+		]
+	},
+	{
+		"key": "rOOy",
+		"members": [
+			{
+				"thai": "ร้อย",
+				"tones": ["high"]
+			},
+			{
+				"thai": "รอย",
+				"tones": ["mid"]
+			}
+		]
+	},
+	{
+		"key": "din",
+		"members": [
+			{
+				"thai": "ดิน",
+				"tones": ["mid"]
+			},
+			{
+				"thai": "ดิ้น",
+				"tones": ["falling"]
+			}
+		]
+	},
+	{
+		"key": "sOOn",
+		"members": [
+			{
+				"thai": "สอน",
+				"tones": ["rising"]
+			},
+			{
+				"thai": "ซ้อน",
+				"tones": ["high"]
+			},
+			{
+				"thai": "ซ่อน",
+				"tones": ["falling"]
+			},
+			{
+				"thai": "ศร",
+				"tones": ["rising"]
+			}
+		]
+	},
+	{
+		"key": "waan",
+		"members": [
+			{
+				"thai": "หวาน",
+				"tones": ["rising"]
+			},
+			{
+				"thai": "วาน",
+				"tones": ["mid"]
+			}
+		]
+	},
+	{
+		"key": "khUUn",
+		"members": [
+			{
+				"thai": "คืน",
+				"tones": ["mid"]
+			},
+			{
+				"thai": "ขืน",
+				"tones": ["rising"]
+			}
+		]
+	},
+	{
+		"key": "lom",
+		"members": [
+			{
+				"thai": "ลม",
+				"tones": ["mid"]
+			},
+			{
+				"thai": "ล้ม",
+				"tones": ["high"]
+			}
+		]
+	},
+	{
+		"key": "law",
+		"members": [
+			{
+				"thai": "เล่า",
+				"tones": ["falling"]
+			},
+			{
+				"thai": "เหล่า",
+				"tones": ["low"]
+			}
+		]
+	},
+	{
+		"key": "khai",
+		"members": [
+			{
+				"thai": "ไข่",
+				"tones": ["low"]
+			},
+			{
+				"thai": "ไข้",
+				"tones": ["falling"]
+			}
+		]
+	},
+	{
+		"key": "say",
+		"members": [
+			{
+				"thai": "ใส่",
+				"tones": ["low"]
+			},
+			{
+				"thai": "ใส",
+				"tones": ["rising"]
+			},
+			{
+				"thai": "ไส้",
+				"tones": ["falling"]
+			},
+			{
+				"thai": "ไซต์",
+				"tones": ["mid"]
+			}
+		]
+	},
+	{
+		"key": "khaat",
+		"members": [
+			{
+				"thai": "ขาด",
+				"tones": ["low"]
+			},
+			{
+				"thai": "คาด",
+				"tones": ["falling"]
+			}
+		]
+	},
+	{
+		"key": "lak",
+		"members": [
+			{
+				"thai": "หลัก",
+				"tones": ["low"]
+			},
+			{
+				"thai": "ลัก",
+				"tones": ["high"]
+			}
+		]
+	},
+	{
+		"key": "wiq thii",
+		"members": [
+			{
+				"thai": "วิธี",
+				"tones": ["high", "mid"]
+			},
+			{
+				"thai": "วิถี",
+				"tones": ["high", "rising"]
+			}
+		]
+	},
+	{
+		"key": "chut",
+		"members": [
+			{
+				"thai": "ชุด",
+				"tones": ["high"]
+			},
+			{
+				"thai": "ฉุด",
+				"tones": ["low"]
+			}
+		]
+	},
+	{
+		"key": "thaan",
+		"members": [
+			{
+				"thai": "ทาน",
+				"tones": ["mid"]
+			},
+			{
+				"thai": "ฐาน",
+				"tones": ["rising"]
+			}
+		]
+	},
+	{
+		"key": "thuua",
+		"members": [
+			{
+				"thai": "ทั่ว",
+				"tones": ["falling"]
+			},
+			{
+				"thai": "ทัวร์",
+				"tones": ["mid"]
+			},
+			{
+				"thai": "ถั่ว",
+				"tones": ["low"]
+			}
+		]
+	},
+	{
+		"key": "mak",
+		"members": [
+			{
+				"thai": "มัก",
+				"tones": ["high"]
+			},
+			{
+				"thai": "หมัก",
+				"tones": ["low"]
+			}
+		]
+	},
+	{
+		"key": "too",
+		"members": [
+			{
+				"thai": "โต",
+				"tones": ["mid"]
+			},
+			{
+				"thai": "โต้",
+				"tones": ["falling"]
+			}
+		]
+	},
+	{
+		"key": "phaa",
+		"members": [
+			{
+				"thai": "พา",
+				"tones": ["mid"]
+			},
+			{
+				"thai": "ผ้า",
+				"tones": ["falling"]
+			},
+			{
+				"thai": "ผา",
+				"tones": ["rising"]
+			},
+			{
+				"thai": "ผ่า",
+				"tones": ["low"]
+			}
+		]
+	},
+	{
+		"key": "tam",
+		"members": [
+			{
+				"thai": "ต่ำ",
+				"tones": ["low"]
+			},
+			{
+				"thai": "ตำ",
+				"tones": ["mid"]
+			}
+		]
+	},
+	{
+		"key": "thaay",
+		"members": [
+			{
+				"thai": "ท้าย",
+				"tones": ["high"]
+			},
+			{
+				"thai": "ถ่าย",
+				"tones": ["low"]
+			},
+			{
+				"thai": "ทาย",
+				"tones": ["mid"]
+			}
+		]
+	},
+	{
+		"key": "thOOng",
+		"members": [
+			{
+				"thai": "ทอง",
+				"tones": ["mid"]
+			},
+			{
+				"thai": "ท้อง",
+				"tones": ["high"]
+			}
+		]
+	},
+	{
+		"key": "san",
+		"members": [
+			{
+				"thai": "สั้น",
+				"tones": ["falling"]
+			},
+			{
+				"thai": "สั่น",
+				"tones": ["low"]
+			}
+		]
+	},
+	{
+		"key": "maay",
+		"members": [
+			{
+				"thai": "ไม้",
+				"tones": ["high"]
+			},
+			{
+				"thai": "หมาย",
+				"tones": ["rising"]
+			}
+		]
+	},
+	{
+		"key": "mUU",
+		"members": [
+			{
+				"thai": "มือ",
+				"tones": ["mid"]
+			},
+			{
+				"thai": "มื้อ",
+				"tones": ["high"]
+			}
+		]
+	},
+	{
+		"key": "paa",
+		"members": [
+			{
+				"thai": "ป่า",
+				"tones": ["low"]
+			},
+			{
+				"thai": "ป้า",
+				"tones": ["falling"]
+			}
+		]
+	},
+	{
+		"key": "kaw",
+		"members": [
+			{
+				"thai": "เก่า",
+				"tones": ["low"]
+			},
+			{
+				"thai": "เกา",
+				"tones": ["mid"]
+			}
+		]
+	},
+	{
+		"key": "kha naq",
+		"members": [
+			{
+				"thai": "คณะ",
+				"tones": ["high", "high"]
+			},
+			{
+				"thai": "ขณะ",
+				"tones": ["low", "low"]
+			}
+		]
+	},
+	{
+		"key": "luuang",
+		"members": [
+			{
+				"thai": "หลวง",
+				"tones": ["rising"]
+			},
+			{
+				"thai": "ลวง",
+				"tones": ["mid"]
+			}
+		]
+	},
+	{
+		"key": "yOOm",
+		"members": [
+			{
+				"thai": "ยอม",
+				"tones": ["mid"]
+			},
+			{
+				"thai": "ย้อม",
+				"tones": ["high"]
+			}
+		]
+	},
+	{
+		"key": "tem thii",
+		"members": [
+			{
+				"thai": "เต็มที่",
+				"tones": ["mid", "falling"]
+			},
+			{
+				"thai": "เต็มที",
+				"tones": ["mid", "mid"]
+			}
+		]
+	},
+	{
+		"key": "chin",
+		"members": [
+			{
+				"thai": "ชิ้น",
+				"tones": ["high"]
+			},
+			{
+				"thai": "ชิน",
+				"tones": ["mid"]
+			}
+		]
+	},
+	{
+		"key": "kOO",
+		"members": [
+			{
+				"thai": "ก่อ",
+				"tones": ["low"]
+			},
+			{
+				"thai": "กอ",
+				"tones": ["mid"]
+			}
+		]
+	},
+	{
+		"key": "raay",
+		"members": [
+			{
+				"thai": "ราย",
+				"tones": ["mid"]
+			},
+			{
+				"thai": "ร้าย",
+				"tones": ["high"]
+			}
+		]
+	},
+	{
+		"key": "ray",
+		"members": [
+			{
+				"thai": "ไร้",
+				"tones": ["high"]
+			},
+			{
+				"thai": "ไร่",
+				"tones": ["falling"]
+			}
+		]
+	},
+	{
+		"key": "yaai",
+		"members": [
+			{
+				"thai": "ย้าย",
+				"tones": ["high"]
+			},
+			{
+				"thai": "ยาย",
+				"tones": ["mid"]
+			}
+		]
+	},
+	{
+		"key": "liiang",
+		"members": [
+			{
+				"thai": "เลี้ยง",
+				"tones": ["high"]
+			},
+			{
+				"thai": "เลี่ยง",
+				"tones": ["falling"]
+			}
+		]
+	},
+	{
+		"key": "sak",
+		"members": [
+			{
+				"thai": "สัก",
+				"tones": ["low"]
+			},
+			{
+				"thai": "ศักดิ์",
+				"tones": ["low"]
+			},
+			{
+				"thai": "ซัก",
+				"tones": ["high"]
+			}
+		]
+	},
+	{
+		"key": "qaa",
+		"members": [
+			{
+				"thai": "อา",
+				"tones": ["mid"]
+			},
+			{
+				"thai": "อ้า",
+				"tones": ["falling"]
+			}
+		]
+	},
+	{
+		"key": "kwaang",
+		"members": [
+			{
+				"thai": "กว้าง",
+				"tones": ["falling"]
+			},
+			{
+				"thai": "กวาง",
+				"tones": ["mid"]
+			}
+		]
+	},
+	{
+		"key": "sat",
+		"members": [
+			{
+				"thai": "สัตว์",
+				"tones": ["low"]
+			},
+			{
+				"thai": "ซัด",
+				"tones": ["high"]
+			}
+		]
+	},
+	{
+		"key": "sin",
+		"members": [
+			{
+				"thai": "สิ้น",
+				"tones": ["falling"]
+			},
+			{
+				"thai": "ศิลป์",
+				"tones": ["rising"]
+			}
+		]
+	},
+	{
+		"key": "muu",
+		"members": [
+			{
+				"thai": "หมู่",
+				"tones": ["low"]
+			},
+			{
+				"thai": "หมู",
+				"tones": ["rising"]
+			}
+		]
+	},
+	{
+		"key": "laa",
+		"members": [
+			{
+				"thai": "ลา",
+				"tones": ["mid"]
+			},
+			{
+				"thai": "ล่า",
+				"tones": ["falling"]
+			}
+		]
+	},
+	{
+		"key": "raang",
+		"members": [
+			{
+				"thai": "ร่าง",
+				"tones": ["falling"]
+			},
+			{
+				"thai": "ราง",
+				"tones": ["mid"]
+			},
+			{
+				"thai": "ร้าง",
+				"tones": ["high"]
+			}
+		]
+	},
+	{
+		"key": "sut",
+		"members": [
+			{
+				"thai": "สุด",
+				"tones": ["low"]
+			},
+			{
+				"thai": "ทรุด",
+				"tones": ["high"]
+			}
+		]
+	},
+	{
+		"key": "som",
+		"members": [
+			{
+				"thai": "สม",
+				"tones": ["rising"]
+			},
+			{
+				"thai": "ส้ม",
+				"tones": ["falling"]
+			}
+		]
+	},
+	{
+		"key": "lay",
+		"members": [
+			{
+				"thai": "ไหล",
+				"tones": ["rising"]
+			},
+			{
+				"thai": "ไล่",
+				"tones": ["falling"]
+			}
+		]
+	},
+	{
+		"key": "chat",
+		"members": [
+			{
+				"thai": "ชัด",
+				"tones": ["high"]
+			},
+			{
+				"thai": "ฉัตร",
+				"tones": ["low"]
+			}
+		]
+	},
+	{
+		"key": "lUUan",
+		"members": [
+			{
+				"thai": "เลื่อน",
+				"tones": ["falling"]
+			},
+			{
+				"thai": "เลือน",
+				"tones": ["mid"]
+			}
+		]
+	},
+	{
+		"key": "laang",
+		"members": [
+			{
+				"thai": "ล้าง",
+				"tones": ["high"]
+			},
+			{
+				"thai": "ล่าง",
+				"tones": ["falling"]
+			}
+		]
+	},
+	{
+		"key": "faa",
+		"members": [
+			{
+				"thai": "ฟ้า",
+				"tones": ["high"]
+			},
+			{
+				"thai": "ฝา",
+				"tones": ["rising"]
+			},
+			{
+				"thai": "ฝ่า",
+				"tones": ["low"]
+			}
+		]
+	},
+	{
+		"key": "khan",
+		"members": [
+			{
+				"thai": "ขั้น",
+				"tones": ["falling"]
+			},
+			{
+				"thai": "คัน",
+				"tones": ["mid"]
+			},
+			{
+				"thai": "ครรภ์",
+				"tones": ["mid"]
+			},
+			{
+				"thai": "ขัน",
+				"tones": ["rising"]
+			}
+		]
+	},
+	{
+		"key": "sen",
+		"members": [
+			{
+				"thai": "เส้น",
+				"tones": ["falling"]
+			},
+			{
+				"thai": "เซ็น",
+				"tones": ["mid"]
+			}
+		]
+	},
+	{
+		"key": "wang",
+		"members": [
+			{
+				"thai": "หวัง",
+				"tones": ["rising"]
+			},
+			{
+				"thai": "วัง",
+				"tones": ["mid"]
+			}
+		]
+	},
+	{
+		"key": "haang",
+		"members": [
+			{
+				"thai": "ห่าง",
+				"tones": ["low"]
+			},
+			{
+				"thai": "หาง",
+				"tones": ["rising"]
+			},
+			{
+				"thai": "ห้าง",
+				"tones": ["falling"]
+			}
+		]
+	},
+	{
+		"key": "yUUn",
+		"members": [
+			{
+				"thai": "ยืน",
+				"tones": ["mid"]
+			},
+			{
+				"thai": "ยื่น",
+				"tones": ["falling"]
+			}
+		]
+	},
+	{
+		"key": "yOOt",
+		"members": [
+			{
+				"thai": "ยอด",
+				"tones": ["falling"]
+			},
+			{
+				"thai": "หยอด",
+				"tones": ["low"]
+			}
+		]
+	},
+	{
+		"key": "laan",
+		"members": [
+			{
+				"thai": "ล้าน",
+				"tones": ["high"]
+			},
+			{
+				"thai": "หลาน",
+				"tones": ["rising"]
+			},
+			{
+				"thai": "ลาน",
+				"tones": ["mid"]
+			}
+		]
+	},
+	{
+		"key": "phUUn",
+		"members": [
+			{
+				"thai": "พื้น",
+				"tones": ["high"]
+			},
+			{
+				"thai": "ผืน",
+				"tones": ["rising"]
+			},
+			{
+				"thai": "ผื่น",
+				"tones": ["low"]
+			}
+		]
+	},
+	{
+		"key": "chaa",
+		"members": [
+			{
+				"thai": "ช้า",
+				"tones": ["high"]
+			},
+			{
+				"thai": "ชา",
+				"tones": ["mid"]
+			}
+		]
+	},
+	{
+		"key": "rOOng",
+		"members": [
+			{
+				"thai": "ร้อง",
+				"tones": ["high"]
+			},
+			{
+				"thai": "รอง",
+				"tones": ["mid"]
+			}
+		]
+	},
+	{
+		"key": "han",
+		"members": [
+			{
+				"thai": "หัน",
+				"tones": ["rising"]
+			},
+			{
+				"thai": "หั่น",
+				"tones": ["low"]
+			}
+		]
+	},
+	{
+		"key": "khat",
+		"members": [
+			{
+				"thai": "ขัด",
+				"tones": ["low"]
+			},
+			{
+				"thai": "คัด",
+				"tones": ["high"]
+			}
+		]
+	},
+	{
+		"key": "num",
+		"members": [
+			{
+				"thai": "หนุ่ม",
+				"tones": ["low"]
+			},
+			{
+				"thai": "นุ่ม",
+				"tones": ["falling"]
+			}
+		]
+	},
+	{
+		"key": "saan",
+		"members": [
+			{
+				"thai": "ศาล",
+				"tones": ["rising"]
+			},
+			{
+				"thai": "สาน",
+				"tones": ["rising"]
+			},
+			{
+				"thai": "ซาน",
+				"tones": ["mid"]
+			}
+		]
+	},
+	{
+		"key": "phan",
+		"members": [
+			{
+				"thai": "พัน",
+				"tones": ["mid"]
+			},
+			{
+				"thai": "พันธุ์",
+				"tones": ["mid"]
+			},
+			{
+				"thai": "ผัน",
+				"tones": ["rising"]
+			}
+		]
+	},
+	{
+		"key": "khraaw",
+		"members": [
+			{
+				"thai": "คราว",
+				"tones": ["mid"]
+			},
+			{
+				"thai": "คร่าว",
+				"tones": ["falling"]
+			}
+		]
+	},
+	{
+		"key": "thEEp",
+		"members": [
+			{
+				"thai": "แทบ",
+				"tones": ["falling"]
+			},
+			{
+				"thai": "แถบ",
+				"tones": ["low"]
+			}
+		]
+	},
+	{
+		"key": "fan",
+		"members": [
+			{
+				"thai": "ฝัน",
+				"tones": ["rising"]
+			},
+			{
+				"thai": "ฟัน",
+				"tones": ["mid"]
+			}
+		]
+	},
+	{
+		"key": "phay",
+		"members": [
+			{
+				"thai": "ภัย",
+				"tones": ["mid"]
+			},
+			{
+				"thai": "ไผ่",
+				"tones": ["low"]
+			}
+		]
+	},
+	{
+		"key": "sUUa",
+		"members": [
+			{
+				"thai": "เสื้อ",
+				"tones": ["falling"]
+			},
+			{
+				"thai": "เสือ",
+				"tones": ["rising"]
+			},
+			{
+				"thai": "เสื่อ",
+				"tones": ["low"]
+			}
+		]
+	},
+	{
+		"key": "duuang",
+		"members": [
+			{
+				"thai": "ดวง",
+				"tones": ["mid"]
+			},
+			{
+				"thai": "ด้วง",
+				"tones": ["falling"]
+			}
+		]
+	},
+	{
+		"key": "qaang",
+		"members": [
+			{
+				"thai": "อ้าง",
+				"tones": ["falling"]
+			},
+			{
+				"thai": "อ่าง",
+				"tones": ["low"]
+			}
+		]
+	},
+	{
+		"key": "phEEn",
+		"members": [
+			{
+				"thai": "แผน",
+				"tones": ["rising"]
+			},
+			{
+				"thai": "แพน",
+				"tones": ["mid"]
+			}
+		]
+	},
+	{
+		"key": "khem",
+		"members": [
+			{
+				"thai": "เข็ม",
+				"tones": ["rising"]
+			},
+			{
+				"thai": "เข้ม",
+				"tones": ["falling"]
+			},
+			{
+				"thai": "เค็ม",
+				"tones": ["mid"]
+			}
+		]
+	},
+	{
+		"key": "sa naam",
+		"members": [
+			{
+				"thai": "สนาม",
+				"tones": ["low", "rising"]
+			},
+			{
+				"thai": "สระน้ำ",
+				"tones": ["low", "high"]
+			}
+		]
+	},
+	{
+		"key": "faak",
+		"members": [
+			{
+				"thai": "ฝาก",
+				"tones": ["low"]
+			},
+			{
+				"thai": "ฟาก",
+				"tones": ["falling"]
+			}
+		]
+	},
+	{
+		"key": "lam",
+		"members": [
+			{
+				"thai": "ลำ",
+				"tones": ["mid"]
+			},
+			{
+				"thai": "ล้ำ",
+				"tones": ["high"]
+			}
+		]
+	},
+	{
+		"key": "khum",
+		"members": [
+			{
+				"thai": "คุม",
+				"tones": ["mid"]
+			},
+			{
+				"thai": "คุ้ม",
+				"tones": ["high"]
+			}
+		]
+	},
+	{
+		"key": "thee",
+		"members": [
+			{
+				"thai": "เท",
+				"tones": ["mid"]
+			},
+			{
+				"thai": "เท่",
+				"tones": ["falling"]
+			}
+		]
+	},
+	{
+		"key": "caang",
+		"members": [
+			{
+				"thai": "จ้าง",
+				"tones": ["falling"]
+			},
+			{
+				"thai": "จาง",
+				"tones": ["mid"]
+			}
+		]
+	},
+	{
+		"key": "ngEE",
+		"members": [
+			{
+				"thai": "แง่",
+				"tones": ["falling"]
+			},
+			{
+				"thai": "แหง",
+				"tones": ["rising"]
+			}
+		]
+	},
+	{
+		"key": "khap",
+		"members": [
+			{
+				"thai": "ขับ",
+				"tones": ["low"]
+			},
+			{
+				"thai": "คับ",
+				"tones": ["high"]
+			}
+		]
+	},
+	{
+		"key": "lap",
+		"members": [
+			{
+				"thai": "ลับ",
+				"tones": ["high"]
+			},
+			{
+				"thai": "หลับ",
+				"tones": ["low"]
+			}
+		]
+	},
+	{
+		"key": "klOOng",
+		"members": [
+			{
+				"thai": "กล้อง",
+				"tones": ["falling"]
+			},
+			{
+				"thai": "กล่อง",
+				"tones": ["low"]
+			}
+		]
+	},
+	{
+		"key": "yot",
+		"members": [
+			{
+				"thai": "ยศ",
+				"tones": ["high"]
+			},
+			{
+				"thai": "หยด",
+				"tones": ["low"]
+			}
+		]
+	},
+	{
+		"key": "khoong",
+		"members": [
+			{
+				"thai": "โค้ง",
+				"tones": ["high"]
+			},
+			{
+				"thai": "โขง",
+				"tones": ["rising"]
+			}
+		]
+	},
+	{
+		"key": "huuang",
+		"members": [
+			{
+				"thai": "ห่วง",
+				"tones": ["low"]
+			},
+			{
+				"thai": "ห้วง",
+				"tones": ["falling"]
+			},
+			{
+				"thai": "หวง",
+				"tones": ["rising"]
+			}
+		]
+	},
+	{
+		"key": "kuu",
+		"members": [
+			{
+				"thai": "กู",
+				"tones": ["mid"]
+			},
+			{
+				"thai": "กู้",
+				"tones": ["falling"]
+			}
+		]
+	},
+	{
+		"key": "lop",
+		"members": [
+			{
+				"thai": "ลบ",
+				"tones": ["high"]
+			},
+			{
+				"thai": "หลบ",
+				"tones": ["low"]
+			}
+		]
+	},
+	{
+		"key": "puu",
+		"members": [
+			{
+				"thai": "ปู",
+				"tones": ["mid"]
+			},
+			{
+				"thai": "ปู่",
+				"tones": ["low"]
+			}
+		]
+	},
+	{
+		"key": "thOOt",
+		"members": [
+			{
+				"thai": "ทอด",
+				"tones": ["falling"]
+			},
+			{
+				"thai": "ถอด",
+				"tones": ["low"]
+			}
+		]
+	},
+	{
+		"key": "thung",
+		"members": [
+			{
+				"thai": "ถุง",
+				"tones": ["rising"]
+			},
+			{
+				"thai": "ทุ่ง",
+				"tones": ["falling"]
+			}
+		]
+	},
+	{
+		"key": "khuuap",
+		"members": [
+			{
+				"thai": "ขวบ",
+				"tones": ["low"]
+			},
+			{
+				"thai": "ควบ",
+				"tones": ["falling"]
+			}
+		]
+	},
+	{
+		"key": "khEng",
+		"members": [
+			{
+				"thai": "แข็ง",
+				"tones": ["rising"]
+			},
+			{
+				"thai": "แข่ง",
+				"tones": ["low"]
+			}
+		]
+	},
+	{
+		"key": "khEEn",
+		"members": [
+			{
+				"thai": "แขน",
+				"tones": ["rising"]
+			},
+			{
+				"thai": "แค้น",
+				"tones": ["high"]
+			}
+		]
+	},
+	{
+		"key": "phEE",
+		"members": [
+			{
+				"thai": "แพ้",
+				"tones": ["high"]
+			},
+			{
+				"thai": "แผ่",
+				"tones": ["low"]
+			}
+		]
+	},
+	{
+		"key": "phUng",
+		"members": [
+			{
+				"thai": "พึ่ง",
+				"tones": ["falling"]
+			},
+			{
+				"thai": "พึง",
+				"tones": ["mid"]
+			},
+			{
+				"thai": "ผึ้ง",
+				"tones": ["falling"]
+			}
+		]
+	},
+	{
+		"key": "baa",
+		"members": [
+			{
+				"thai": "บ้า",
+				"tones": ["falling"]
+			},
+			{
+				"thai": "บาร์",
+				"tones": ["mid"]
+			},
+			{
+				"thai": "บ่า",
+				"tones": ["low"]
+			}
+		]
+	},
+	{
+		"key": "sap",
+		"members": [
+			{
+				"thai": "ทรัพย์",
+				"tones": ["high"]
+			},
+			{
+				"thai": "สรรพ",
+				"tones": ["low"]
+			},
+			{
+				"thai": "ซับ",
+				"tones": ["high"]
+			},
+			{
+				"thai": "ศัพท์",
+				"tones": ["low"]
+			},
+			{
+				"thai": "สับ",
+				"tones": ["low"]
+			}
+		]
+	},
+	{
+		"key": "phaw",
+		"members": [
+			{
+				"thai": "เผา",
+				"tones": ["rising"]
+			},
+			{
+				"thai": "เผ่า",
+				"tones": ["low"]
+			}
+		]
+	},
+	{
+		"key": "hun",
+		"members": [
+			{
+				"thai": "หุ่น",
+				"tones": ["low"]
+			},
+			{
+				"thai": "หุ้น",
+				"tones": ["falling"]
+			}
+		]
+	},
+	{
+		"key": "qOOm",
+		"members": [
+			{
+				"thai": "อ้อม",
+				"tones": ["falling"]
+			},
+			{
+				"thai": "ออม",
+				"tones": ["mid"]
+			}
+		]
+	},
+	{
+		"key": "fOOng",
+		"members": [
+			{
+				"thai": "ฟ้อง",
+				"tones": ["high"]
+			},
+			{
+				"thai": "ฟอง",
+				"tones": ["mid"]
+			}
+		]
+	},
+	{
+		"key": "thOO",
+		"members": [
+			{
+				"thai": "ท่อ",
+				"tones": ["falling"]
+			},
+			{
+				"thai": "ทอ",
+				"tones": ["mid"]
+			}
+		]
+	},
+	{
+		"key": "hOO",
+		"members": [
+			{
+				"thai": "ห่อ",
+				"tones": ["low"]
+			},
+			{
+				"thai": "หอ",
+				"tones": ["rising"]
+			}
+		]
+	},
+	{
+		"key": "khom",
+		"members": [
+			{
+				"thai": "คม",
+				"tones": ["mid"]
+			},
+			{
+				"thai": "ข่ม",
+				"tones": ["low"]
+			},
+			{
+				"thai": "ขม",
+				"tones": ["rising"]
+			}
+		]
+	},
+	{
+		"key": "qXXy",
+		"members": [
+			{
+				"thai": "เอ่ย",
+				"tones": ["low"]
+			},
+			{
+				"thai": "เอย",
+				"tones": ["mid"]
+			}
+		]
+	},
+	{
+		"key": "pOOn",
+		"members": [
+			{
+				"thai": "ป้อน",
+				"tones": ["falling"]
+			},
+			{
+				"thai": "ปอนด์",
+				"tones": ["mid"]
+			}
+		]
+	},
+	{
+		"key": "rung",
+		"members": [
+			{
+				"thai": "รุ่ง",
+				"tones": ["falling"]
+			},
+			{
+				"thai": "รุ้ง",
+				"tones": ["high"]
+			}
+		]
+	},
+	{
+		"key": "suuan ruuam",
+		"members": [
+			{
+				"thai": "ส่วนร่วม",
+				"tones": ["low", "falling"]
+			},
+			{
+				"thai": "ส่วนรวม",
+				"tones": ["low", "mid"]
+			}
+		]
+	},
+	{
+		"key": "pan",
+		"members": [
+			{
+				"thai": "ปั้น",
+				"tones": ["falling"]
+			},
+			{
+				"thai": "ปัน",
+				"tones": ["mid"]
+			},
+			{
+				"thai": "ปั่น",
+				"tones": ["low"]
+			}
+		]
+	},
+	{
+		"key": "khun",
+		"members": [
+			{
+				"thai": "ขุน",
+				"tones": ["rising"]
+			},
+			{
+				"thai": "คุ้น",
+				"tones": ["high"]
+			},
+			{
+				"thai": "ขุ่น",
+				"tones": ["low"]
+			}
+		]
+	},
+	{
+		"key": "khaaw saan",
+		"members": [
+			{
+				"thai": "ข่าวสาร",
+				"tones": ["low", "rising"]
+			},
+			{
+				"thai": "ข้าวสาร",
+				"tones": ["falling", "rising"]
+			}
+		]
+	},
+	{
+		"key": "phrEE",
+		"members": [
+			{
+				"thai": "แพร่",
+				"tones": ["falling"]
+			},
+			{
+				"thai": "แพร",
+				"tones": ["mid"]
+			}
+		]
+	},
+	{
+		"key": "lOOk",
+		"members": [
+			{
+				"thai": "หลอก",
+				"tones": ["low"]
+			},
+			{
+				"thai": "ลอก",
+				"tones": ["falling"]
+			}
+		]
+	},
+	{
+		"key": "phung",
+		"members": [
+			{
+				"thai": "พุ่ง",
+				"tones": ["falling"]
+			},
+			{
+				"thai": "พุง",
+				"tones": ["mid"]
+			}
+		]
+	},
+	{
+		"key": "khii",
+		"members": [
+			{
+				"thai": "ขี้",
+				"tones": ["falling"]
+			},
+			{
+				"thai": "ขี่",
+				"tones": ["low"]
+			}
+		]
+	},
+	{
+		"key": "rang",
+		"members": [
+			{
+				"thai": "รัง",
+				"tones": ["mid"]
+			},
+			{
+				"thai": "รั้ง",
+				"tones": ["high"]
+			}
+		]
+	},
+	{
+		"key": "thaat",
+		"members": [
+			{
+				"thai": "ทาส",
+				"tones": ["falling"]
+			},
+			{
+				"thai": "ถาด",
+				"tones": ["low"]
+			}
+		]
+	},
+	{
+		"key": "lOO",
+		"members": [
+			{
+				"thai": "ล้อ",
+				"tones": ["high"]
+			},
+			{
+				"thai": "หล่อ",
+				"tones": ["low"]
+			},
+			{
+				"thai": "ล่อ",
+				"tones": ["falling"]
+			}
+		]
+	},
+	{
+		"key": "phat",
+		"members": [
+			{
+				"thai": "พัด",
+				"tones": ["high"]
+			},
+			{
+				"thai": "ผัด",
+				"tones": ["low"]
+			}
+		]
+	},
+	{
+		"key": "yEEng",
+		"members": [
+			{
+				"thai": "แย่ง",
+				"tones": ["falling"]
+			},
+			{
+				"thai": "แย้ง",
+				"tones": ["high"]
+			}
+		]
+	},
+	{
+		"key": "maw",
+		"members": [
+			{
+				"thai": "เมา",
+				"tones": ["mid"]
+			},
+			{
+				"thai": "เหมา",
+				"tones": ["rising"]
+			}
+		]
+	},
+	{
+		"key": "khwaang",
+		"members": [
+			{
+				"thai": "ขวาง",
+				"tones": ["rising"]
+			},
+			{
+				"thai": "ขว้าง",
+				"tones": ["falling"]
+			}
+		]
+	},
+	{
+		"key": "khOOn",
+		"members": [
+			{
+				"thai": "คอน",
+				"tones": ["mid"]
+			},
+			{
+				"thai": "ขอน",
+				"tones": ["rising"]
+			},
+			{
+				"thai": "ค้อน",
+				"tones": ["high"]
+			}
+		]
+	},
+	{
+		"key": "thiiang",
+		"members": [
+			{
+				"thai": "เที่ยง",
+				"tones": ["falling"]
+			},
+			{
+				"thai": "เถียง",
+				"tones": ["rising"]
+			}
+		]
+	},
+	{
+		"key": "yaan",
+		"members": [
+			{
+				"thai": "ย่าน",
+				"tones": ["falling"]
+			},
+			{
+				"thai": "ยาน",
+				"tones": ["mid"]
+			}
+		]
+	},
+	{
+		"key": "qaay",
+		"members": [
+			{
+				"thai": "อาย",
+				"tones": ["mid"]
+			},
+			{
+				"thai": "อ้าย",
+				"tones": ["falling"]
+			}
+		]
+	},
+	{
+		"key": "khwan",
+		"members": [
+			{
+				"thai": "ขวัญ",
+				"tones": ["rising"]
+			},
+			{
+				"thai": "ควัน",
+				"tones": ["mid"]
+			}
+		]
+	},
+	{
+		"key": "khaan",
+		"members": [
+			{
+				"thai": "ขาน",
+				"tones": ["rising"]
+			},
+			{
+				"thai": "คาน",
+				"tones": ["mid"]
+			}
+		]
+	},
+	{
+		"key": "khwEEn",
+		"members": [
+			{
+				"thai": "แขวน",
+				"tones": ["rising"]
+			},
+			{
+				"thai": "แคว้น",
+				"tones": ["high"]
+			}
+		]
+	},
+	{
+		"key": "yOO",
+		"members": [
+			{
+				"thai": "ย่อ",
+				"tones": ["falling"]
+			},
+			{
+				"thai": "ยอ",
+				"tones": ["mid"]
+			}
+		]
+	},
+	{
+		"key": "laak",
+		"members": [
+			{
+				"thai": "ลาก",
+				"tones": ["falling"]
+			},
+			{
+				"thai": "หลาก",
+				"tones": ["low"]
+			}
+		]
+	},
+	{
+		"key": "lum",
+		"members": [
+			{
+				"thai": "หลุม",
+				"tones": ["rising"]
+			},
+			{
+				"thai": "ลุ่ม",
+				"tones": ["falling"]
+			}
+		]
+	},
+	{
+		"key": "paw",
+		"members": [
+			{
+				"thai": "เป้า",
+				"tones": ["falling"]
+			},
+			{
+				"thai": "เป่า",
+				"tones": ["low"]
+			}
+		]
+	},
+	{
+		"key": "muuan",
+		"members": [
+			{
+				"thai": "มวล",
+				"tones": ["mid"]
+			},
+			{
+				"thai": "ม้วน",
+				"tones": ["high"]
+			}
+		]
+	},
+	{
+		"key": "ruua",
+		"members": [
+			{
+				"thai": "รั่ว",
+				"tones": ["falling"]
+			},
+			{
+				"thai": "รั้ว",
+				"tones": ["high"]
+			}
+		]
+	},
+	{
+		"key": "yung",
+		"members": [
+			{
+				"thai": "ยุ่ง",
+				"tones": ["falling"]
+			},
+			{
+				"thai": "ยุง",
+				"tones": ["mid"]
+			}
+		]
+	},
+	{
+		"key": "thoo",
+		"members": [
+			{
+				"thai": "โทร",
+				"tones": ["mid"]
+			},
+			{
+				"thai": "โธ่",
+				"tones": ["falling"]
+			}
+		]
+	},
+	{
+		"key": "chUUn",
+		"members": [
+			{
+				"thai": "ชื่น",
+				"tones": ["falling"]
+			},
+			{
+				"thai": "ชื้น",
+				"tones": ["high"]
+			}
+		]
+	},
+	{
+		"key": "rom",
+		"members": [
+			{
+				"thai": "ร่ม",
+				"tones": ["falling"]
+			},
+			{
+				"thai": "รม",
+				"tones": ["mid"]
+			}
+		]
+	},
+	{
+		"key": "nuuat",
+		"members": [
+			{
+				"thai": "นวด",
+				"tones": ["falling"]
+			},
+			{
+				"thai": "หนวด",
+				"tones": ["low"]
+			}
+		]
+	},
+	{
+		"key": "khiiang",
+		"members": [
+			{
+				"thai": "เคียง",
+				"tones": ["mid"]
+			},
+			{
+				"thai": "เขียง",
+				"tones": ["rising"]
+			}
+		]
+	},
+	{
+		"key": "fUUn",
+		"members": [
+			{
+				"thai": "ฟื้น",
+				"tones": ["high"]
+			},
+			{
+				"thai": "ฝืน",
+				"tones": ["rising"]
+			}
+		]
+	},
+	{
+		"key": "kEE tuua",
+		"members": [
+			{
+				"thai": "แก่ตัว",
+				"tones": ["low", "mid"]
+			},
+			{
+				"thai": "แก้ตัว",
+				"tones": ["falling", "mid"]
+			}
+		]
+	},
+	{
+		"key": "noon",
+		"members": [
+			{
+				"thai": "โน้น",
+				"tones": ["high"]
+			},
+			{
+				"thai": "โน่น",
+				"tones": ["falling"]
+			}
+		]
+	},
+	{
+		"key": "lUU",
+		"members": [
+			{
+				"thai": "ลือ",
+				"tones": ["mid"]
+			},
+			{
+				"thai": "ลื้อ",
+				"tones": ["high"]
+			}
+		]
+	},
+	{
+		"key": "lon",
+		"members": [
+			{
+				"thai": "ล้น",
+				"tones": ["high"]
+			},
+			{
+				"thai": "หล่น",
+				"tones": ["low"]
+			}
+		]
+	},
+	{
+		"key": "mat",
+		"members": [
+			{
+				"thai": "มัด",
+				"tones": ["high"]
+			},
+			{
+				"thai": "หมัด",
+				"tones": ["low"]
+			}
+		]
+	},
+	{
+		"key": "thuuan",
+		"members": [
+			{
+				"thai": "ถ้วน",
+				"tones": ["falling"]
+			},
+			{
+				"thai": "ทวน",
+				"tones": ["mid"]
+			}
+		]
+	},
+	{
+		"key": "thak",
+		"members": [
+			{
+				"thai": "ทัก",
+				"tones": ["high"]
+			},
+			{
+				"thai": "ถัก",
+				"tones": ["low"]
+			}
+		]
+	},
+	{
+		"key": "huay",
+		"members": [
+			{
+				"thai": "หวย",
+				"tones": ["rising"]
+			},
+			{
+				"thai": "ห้วย",
+				"tones": ["falling"]
+			}
+		]
+	},
+	{
+		"key": "kEEm",
+		"members": [
+			{
+				"thai": "แกม",
+				"tones": ["mid"]
+			},
+			{
+				"thai": "แก้ม",
+				"tones": ["falling"]
+			}
+		]
+	},
+	{
+		"key": "taw",
+		"members": [
+			{
+				"thai": "เตา",
+				"tones": ["mid"]
+			},
+			{
+				"thai": "เต๋า",
+				"tones": ["rising"]
+			}
+		]
+	},
+	{
+		"key": "phong",
+		"members": [
+			{
+				"thai": "พงศ์",
+				"tones": ["mid"]
+			},
+			{
+				"thai": "ผง",
+				"tones": ["rising"]
+			}
+		]
+	},
+	{
+		"key": "biia",
+		"members": [
+			{
+				"thai": "เบียร์",
+				"tones": ["mid"]
+			},
+			{
+				"thai": "เบี้ย",
+				"tones": ["falling"]
+			}
+		]
+	},
+	{
+		"key": "waay",
+		"members": [
+			{
+				"thai": "วาย",
+				"tones": ["mid"]
+			},
+			{
+				"thai": "ว่าย",
+				"tones": ["falling"]
+			}
+		]
+	},
+	{
+		"key": "khoon",
+		"members": [
+			{
+				"thai": "โค่น",
+				"tones": ["falling"]
+			},
+			{
+				"thai": "โคน",
+				"tones": ["mid"]
+			}
+		]
+	},
+	{
+		"key": "nak naa",
+		"members": [
+			{
+				"thai": "หนักหนา",
+				"tones": ["low", "rising"]
+			},
+			{
+				"thai": "นักหนา",
+				"tones": ["high", "rising"]
+			}
+		]
+	},
+	{
+		"key": "kok",
+		"members": [
+			{
+				"thai": "กก",
+				"tones": ["low"]
+			},
+			{
+				"thai": "ก๊ก",
+				"tones": ["high"]
+			}
+		]
+	},
+	{
+		"key": "lOOt",
+		"members": [
+			{
+				"thai": "หลอด",
+				"tones": ["low"]
+			},
+			{
+				"thai": "ลอด",
+				"tones": ["falling"]
+			}
+		]
+	},
+	{
+		"key": "phut",
+		"members": [
+			{
+				"thai": "ผุด",
+				"tones": ["low"]
+			},
+			{
+				"thai": "พุธ",
+				"tones": ["high"]
+			}
+		]
+	},
+	{
+		"key": "tiia",
+		"members": [
+			{
+				"thai": "เตี้ย",
+				"tones": ["falling"]
+			},
+			{
+				"thai": "เตี่ย",
+				"tones": ["low"]
+			}
+		]
+	},
+	{
+		"key": "bOOn",
+		"members": [
+			{
+				"thai": "บอล",
+				"tones": ["mid"]
+			},
+			{
+				"thai": "บ่อน",
+				"tones": ["low"]
+			}
+		]
+	},
+	{
+		"key": "kriit",
+		"members": [
+			{
+				"thai": "กรี๊ด",
+				"tones": ["high"]
+			},
+			{
+				"thai": "กรีด",
+				"tones": ["low"]
+			}
+		]
+	}
+]

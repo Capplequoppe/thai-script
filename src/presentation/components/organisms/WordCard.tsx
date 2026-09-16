@@ -113,10 +113,17 @@ export function WordCard({
 			<div className="text-center">
 				{word.image_file && (
 					<div className="flex justify-center mb-4">
+						{/* max-h-80, not -64: the 64 was sized for the 192px stock
+						    thumbnails this field used to hold. A mnemonic
+						    illustration is 1024x683 and carries a composited
+						    caption reading `anchor -> thai -> english`, which at
+						    a 256px cap renders around 13px and is the first
+						    thing to become unreadable. object-contain keeps the
+						    older square thumbnails from being stretched. */}
 						<img
 							src={word.image_file}
 							alt={word.english}
-							className="rounded-xl object-contain max-h-64 w-full"
+							className="rounded-xl object-contain max-h-80 w-full"
 							style={{ background: "var(--color-surface-2)" }}
 						/>
 					</div>

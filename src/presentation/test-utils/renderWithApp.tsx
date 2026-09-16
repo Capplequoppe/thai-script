@@ -47,6 +47,7 @@ import type {
 } from "../../domain/conversation/types";
 import type { GameHistoryRepository } from "../../domain/game/ports/GameHistoryRepository";
 import { GameItemSelectionService } from "../../domain/game/services/GameItemSelectionService";
+import { MinimalPairGameItemSource } from "../../domain/game/services/MinimalPairGameItemSource";
 import { SentenceGameItemSource } from "../../domain/game/services/SentenceGameItemSource";
 import { SymbolGameItemSource } from "../../domain/game/services/SymbolGameItemSource";
 import { normalizeRequestedCount } from "../../domain/game/services/sampling";
@@ -78,11 +79,15 @@ import {
 } from "../../domain/shared/services/ApprenticeService";
 import { LeechService } from "../../domain/shared/services/LeechService";
 import type { ReviewableCard } from "../../domain/srs/entities/ReviewableCard";
+import toneMinimalPairData from "../../domain/vocabulary/data/tone-minimal-pairs.json";
 import vocabularyData from "../../domain/vocabulary/data/vocabulary.json";
 import { VocabCard } from "../../domain/vocabulary/entities/VocabCard";
 import { toneSyllablesOf } from "../../domain/vocabulary/services/toneSyllables";
 import { VocabularyService } from "../../domain/vocabulary/services/VocabularyLessonService";
-import type { VocabEntry } from "../../domain/vocabulary/types";
+import type {
+	ToneMinimalPairGroup,
+	VocabEntry,
+} from "../../domain/vocabulary/types";
 import { NotificationScheduler } from "../../infrastructure/notifications/NotificationScheduler";
 import {
 	InMemoryJsonStore,
@@ -664,6 +669,9 @@ export function makeGame(options: MakeGameOptions = {}): PlayGameUseCase {
 		// No composition rounds from this factory: it wires one symbol source
 		// and no grammar, so an empty unlocked set is the honest answer.
 		() => [],
+		// Nor any tone pairs, for the same reason: no vocab cards are seeded
+		// here, so no sound-alike group has a learned member.
+		new MinimalPairGameItemSource(cardRepo, [], []),
 	);
 }
 
@@ -672,8 +680,9 @@ class FixedRoundGame extends PlayGameUseCase {
 		private readonly fixedItems: readonly GameItem[],
 		selection: GameItemSelectionService,
 		historyRepository: GameHistoryRepository,
+		minimalPairSource: MinimalPairGameItemSource,
 	) {
-		super(selection, historyRepository, () => []);
+		super(selection, historyRepository, () => [], minimalPairSource);
 	}
 
 	override startRound(config: GameRoundConfig): GameItem[] {
@@ -681,10 +690,15 @@ class FixedRoundGame extends PlayGameUseCase {
 	}
 
 	/**
-	 * Composition rounds are fixed the same way practice rounds are, so a
-	 * page test can drive either mode from one list of pre-built items.
+	 * Composition and tone-pairs rounds are fixed the same way practice
+	 * rounds are, so a page test can drive any mode from one list of
+	 * pre-built items.
 	 */
 	override startCompositionRound(count: number): GameItem[] {
+		return this.fixedRound(count);
+	}
+
+	override startMinimalPairRound(count: number): GameItem[] {
 		return this.fixedRound(count);
 	}
 
@@ -712,6 +726,7 @@ export function makeFixedRoundGame(
 		items,
 		new GameItemSelectionService([new SymbolGameItemSource(cardRepo)]),
 		new StorageGameHistoryRepository(historyStore),
+		new MinimalPairGameItemSource(cardRepo, [], []),
 	);
 	return { game, historyStore };
 }
@@ -889,6 +904,15 @@ export function makeAppValue(options: MakeAppValueOptions = {}): AppHarness {
 		// harness that stubs this diverges from production on the one
 		// question composition mode asks (see task 1.3's own note above).
 		() => grammarService.getUnlockedGrammarPoints(),
+		// The real vocabulary and the real generated pair groups, for the
+		// same reason: tone-pairs eligibility is a fact about the shipped
+		// data, and a harness that fed it fixtures would answer a different
+		// question than the app does.
+		new MinimalPairGameItemSource(
+			cardRepo,
+			vocabularyData as VocabEntry[],
+			toneMinimalPairData as ToneMinimalPairGroup[],
+		),
 	);
 
 	const value: AppContextValue = {

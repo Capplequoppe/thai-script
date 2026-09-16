@@ -12,6 +12,7 @@ import {
 	getSymbolsByLesson,
 	lessons,
 	rareVowels,
+	specialRules,
 	ThaiConsonant,
 	ThaiToneMark,
 	ThaiVowel,
@@ -91,6 +92,12 @@ export interface ToneRuleSummary {
 	description: string;
 }
 
+export interface SpecialRuleSummary {
+	id: string;
+	title: string;
+	description: string;
+}
+
 export interface LessonSummary {
 	lessonNumber: number;
 	title: string;
@@ -102,6 +109,15 @@ export interface LessonSummary {
 	rareVowels: RareVowelSummary[];
 	numerals: NumeralSummary[];
 	toneRules: ToneRuleSummary[];
+	/**
+	 * The reading rules this lesson introduces — ห นำ, การันต์, unwritten
+	 * vowels. `symbols.ts` has carried them, and each lesson's
+	 * `specialRulesIntroduced`, since the beginning; nothing ever read them,
+	 * so 43% of the words the app asks a tone for depend on a rule the
+	 * learner was never shown. Surfacing them here is what makes
+	 * `VocabEntry.specialRules` a fair gate rather than a locked door.
+	 */
+	specialRules: SpecialRuleSummary[];
 }
 
 function toEntity(dto: PropertyCard): ScriptPropertyCard {
@@ -276,6 +292,15 @@ export class LearningService {
 					word: n.word,
 					romanization: n.romanization,
 				})),
+			// `lessonMeta`, not another lookup by `lessonNumber`: that argument is
+			// a *position* in the declared sequence, and this course resequenced,
+			// so position and legacy number part company from position 15 on.
+			specialRules: (lessonMeta.specialRulesIntroduced ?? []).flatMap((id) => {
+				const rule = specialRules.find((r) => r.id === id);
+				return rule
+					? [{ id: rule.id, title: rule.title, description: rule.description }]
+					: [];
+			}),
 			toneRules: [
 				...toneRules
 					.filter((r) => r.lesson === legacyNumber)

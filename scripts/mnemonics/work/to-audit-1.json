@@ -1,0 +1,2694 @@
+[
+ {
+  "rank": 1,
+  "thai": "ที่",
+  "romanization": "tʰîː",
+  "english": "at/in/on",
+  "word_class": "prep",
+  "tones": [
+   "falling"
+  ],
+  "characters": [
+   "ท",
+   "ี",
+   "่"
+  ],
+  "mnemonic": "There is no better place to be drinking TEE (↓ voice drops, pinpointed) than AT/ON the perfect SPOT/Location than Buckingham palace! ",
+  "has_crafted_image": true
+ },
+ {
+  "rank": 3,
+  "thai": "จะ",
+  "romanization": "tɕàʔ",
+  "english": "will",
+  "word_class": "aux",
+  "tones": [
+   "low"
+  ],
+  "characters": [
+   "จ",
+   "ะ"
+  ],
+  "mnemonic": "A man asks his German friend if he will go to Thailand, snorkel, eat Pad Thai, and go to the beach. Each time the German smiles and answers confidently, “Jaaa!”. That “Ja” pushes every action into the future — that is จะ.",
+  "has_crafted_image": true
+ },
+ {
+  "rank": 5,
+  "thai": "ครับ",
+  "romanization": "kʰráp",
+  "english": "polite particle (male)",
+  "word_class": "part",
+  "tones": [
+   "high"
+  ],
+  "characters": [
+   "ค",
+   "ร",
+   "ั",
+   "บ"
+  ],
+  "mnemonic": "A polite man finishes his sentence, and a small golden crab pops onto the end of his words. The crab clicks its claws and says “ครับ!” making the sentence sound respectful and polite. Crab → ครับ → male polite particle used at the end of statements.",
+  "has_crafted_image": true
+ },
+ {
+  "rank": 7,
+  "thai": "คะ",
+  "romanization": "kʰá",
+  "english": "polite particle (female, question)",
+  "word_class": "part",
+  "tones": [
+   "high"
+  ],
+  "characters": [
+   "ค",
+   "ะ"
+  ],
+  "mnemonic": "A kind woman gently asks, “Are you okay, kha?” A soft pink “คะ?” floats at the end of her sentence, making it polite and gentle. Kha → คะ → polite question particle (female).",
+  "has_crafted_image": true
+ },
+ {
+  "rank": 9,
+  "thai": "สวัสดี",
+  "romanization": "sà wàt diː",
+  "english": "hello",
+  "word_class": "",
+  "tones": [
+   "low",
+   "mid"
+  ],
+  "characters": [
+   "ส",
+   "ว",
+   "ั",
+   "ด",
+   "ี"
+  ],
+  "mnemonic": "A SWAT team smashes through the door, rifles up — then the lead officer lowers his weapon, presses his palms together and says softly, \"sa-WAT-dee.\" The whole squad copies him. Even a raid starts with hello. (— levels out flat and calm on dee)",
+  "has_crafted_image": false
+ },
+ {
+  "rank": 11,
+  "thai": "มี",
+  "romanization": "miː",
+  "english": "have; there is",
+  "word_class": "v",
+  "tones": [
+   "mid"
+  ],
+  "characters": [
+   "ม",
+   "ี"
+  ],
+  "mnemonic": "An arrogant man proudly shouts, “Mii have car! Mii have money! There is nothing Mii don’t have!” He is surrounded by everything he owns, glowing with abundance. “Mii” → มี → to have / there is. (— neutral)",
+  "has_crafted_image": true
+ },
+ {
+  "rank": 13,
+  "thai": "คุณ",
+  "romanization": "kʰun",
+  "english": "you",
+  "word_class": "pron",
+  "tones": [
+   "mid"
+  ],
+  "characters": [
+   "ค",
+   "ุ",
+   "ณ"
+  ],
+  "mnemonic": "KUN — YOU're the kung-fu kun! (— neutral)",
+  "has_crafted_image": false
+ },
+ {
+  "rank": 15,
+  "thai": "ผม",
+  "romanization": "phǒm",
+  "english": "I (male)",
+  "word_class": "pron",
+  "tones": [
+   "rising"
+  ],
+  "characters": [
+   "ผ",
+   "ม"
+  ],
+  "mnemonic": "PHOM — I PALM my chest when I say 'I' (male)",
+  "has_crafted_image": false
+ },
+ {
+  "rank": 17,
+  "thai": "ของ",
+  "romanization": "kʰɔ̌ːŋ",
+  "english": "of",
+  "word_class": "prep",
+  "tones": [
+   "rising"
+  ],
+  "characters": [
+   "ข",
+   "อ",
+   "ง"
+  ],
+  "mnemonic": "A giant book labeled “The Book of Kong” lies open on a table. Kong jumps out of the pages and proudly says, “This is the book of me!” Kong → ของ → of (possession marker).",
+  "has_crafted_image": true
+ },
+ {
+  "rank": 19,
+  "thai": "กับ",
+  "romanization": "kàp",
+  "english": "with",
+  "word_class": "prep",
+  "tones": [
+   "low"
+  ],
+  "characters": [
+   "ก",
+   "ั",
+   "บ"
+  ],
+  "mnemonic": "A friend smiles and says, “I want to share this CUP with you.” They lift the cup and add, “It’s a cup of coffee with milk.” Cup → กับ → with (together / paired with). (▬ low, casual pairing)",
+  "has_crafted_image": true
+ },
+ {
+  "rank": 21,
+  "thai": "และ",
+  "romanization": "lɛ́ʔ",
+  "english": "and",
+  "word_class": "conj",
+  "tones": [
+   "mid"
+  ],
+  "characters": [
+   "แ",
+   "ล",
+   "ะ"
+  ],
+  "mnemonic": "Two giant signs stand far apart: one says “LOS” and the other says “ANGELES.” A glowing golden “AND” appears between them and pulls them together into “Los AND Angeles (LA).” LA → และ → and, the word that connects two equal parts. (▲ sharp, adding on)",
+  "has_crafted_image": true
+ },
+ {
+  "rank": 23,
+  "thai": "ใน",
+  "romanization": "naj",
+  "english": "in",
+  "word_class": "prep",
+  "tones": [
+   "mid"
+  ],
+  "characters": [
+   "ใ",
+   "น"
+  ],
+  "mnemonic": "NYE — IN the night (— neutral, contained)",
+  "has_crafted_image": false
+ },
+ {
+  "rank": 25,
+  "thai": "ไหม",
+  "romanization": "mǎj",
+  "english": "question particle",
+  "word_class": "part",
+  "tones": [
+   "rising"
+  ],
+  "characters": [
+   "ไ",
+   "ห",
+   "ม"
+  ],
+  "mnemonic": "A market vendor holds up a mango; the customer points at his own chest — \"MY?\" — voice climbing at the end the way an English question does. That climb is the question: ไหม turns any sentence into one. (↑ rising, the voice lifts like an eyebrow)",
+  "has_crafted_image": false
+ },
+ {
+  "rank": 31,
+  "thai": "ด้วย",
+  "romanization": "dûaj",
+  "english": "with; also",
+  "word_class": "prep",
+  "tones": [
+   "falling"
+  ],
+  "characters": [
+   "ด",
+   "้",
+   "ว",
+   "ย"
+  ],
+  "mnemonic": "DOOEY is WITH Donald — ALSO there (↓ inclusive drop)",
+  "has_crafted_image": false
+ },
+ {
+  "rank": 33,
+  "thai": "การ",
+  "romanization": "kaːn",
+  "english": "the process of; work; job",
+  "word_class": "part",
+  "tones": [
+   "mid"
+  ],
+  "characters": [
+   "ก",
+   "า",
+   "ร"
+  ],
+  "mnemonic": "A simple verb is standing casually, like “study” or “speak.” Someone places a formal graduation gown on it, and it instantly transforms into “the act of studying” or “the act of speaking.” Gown → การ → turns a verb into an abstract action noun.",
+  "has_crafted_image": true
+ },
+ {
+  "rank": 35,
+  "thai": "ใช่",
+  "romanization": "châi",
+  "english": "yes",
+  "word_class": "part",
+  "tones": [
+   "falling"
+  ],
+  "characters": [
+   "ใ",
+   "ช",
+   "่"
+  ],
+  "mnemonic": "CHAI — YES! chai it is! (↓ voice drops, affirming)",
+  "has_crafted_image": false
+ },
+ {
+  "rank": 37,
+  "thai": "มา",
+  "romanization": "maa",
+  "english": "to come",
+  "word_class": "v",
+  "tones": [
+   "mid"
+  ],
+  "characters": [
+   "ม",
+   "า"
+  ],
+  "mnemonic": "MA! COME here! (— natural call)",
+  "has_crafted_image": false
+ },
+ {
+  "rank": 39,
+  "thai": "ประเทศ",
+  "romanization": "pràʔ tʰêːt",
+  "english": "country",
+  "word_class": "n",
+  "tones": [
+   "mid",
+   "falling"
+  ],
+  "characters": [
+   "ป",
+   "ร",
+   "ะ",
+   "เ",
+   "ท",
+   "ศ"
+  ],
+  "mnemonic": "PRA-TATE — the COUNTRY of pra-tate (▬↓ vast land)",
+  "has_crafted_image": false
+ },
+ {
+  "rank": 41,
+  "thai": "กว่า",
+  "romanization": "kwàː",
+  "english": "than",
+  "word_class": "conj",
+  "tones": [
+   "low"
+  ],
+  "characters": [
+   "ก",
+   "ว",
+   "่",
+   "า"
+  ],
+  "mnemonic": "KWA — bigger THAN that? (▬ low, measuring)",
+  "has_crafted_image": false
+ },
+ {
+  "rank": 43,
+  "thai": "เมื่อ",
+  "romanization": "mɯ̂ːa",
+  "english": "when",
+  "word_class": "conj",
+  "tones": [
+   "falling"
+  ],
+  "characters": [
+   "เ",
+   "ม",
+   "ื",
+   "่",
+   "อ"
+  ],
+  "mnemonic": "MOO-ah — WHEN the cow moos (↓ voice falls at that moment)",
+  "has_crafted_image": false
+ },
+ {
+  "rank": 45,
+  "thai": "นะ",
+  "romanization": "ná",
+  "english": "softening particle",
+  "word_class": "part",
+  "tones": [
+   "high"
+  ],
+  "characters": [
+   "น",
+   "ะ"
+  ],
+  "mnemonic": "A boy says “Help me,” and the words look sharp and serious in the air. He quickly adds a glowing pink “นะ~” at the end, and the letters soften and become warm. นะ turns direct words into friendly invitations.",
+  "has_crafted_image": true
+ },
+ {
+  "rank": 47,
+  "thai": "คน",
+  "romanization": "kʰon",
+  "english": "person",
+  "word_class": "n",
+  "tones": [
+   "mid"
+  ],
+  "characters": [
+   "ค",
+   "น"
+  ],
+  "mnemonic": "A group of people proudly wear traffic cones as hats and hold ice cream cones, each cone representing one person. They laugh and say, “One cone equals one person!” Cone → คน (— neutral) → human being.",
+  "has_crafted_image": true
+ },
+ {
+  "rank": 49,
+  "thai": "อยู่",
+  "romanization": "jùː",
+  "english": "located; present; exists",
+  "word_class": "v",
+  "tones": [
+   "low"
+  ],
+  "characters": [
+   "อ",
+   "ย",
+   "ู",
+   "่"
+  ],
+  "mnemonic": "YOU — WHERE ARE YOU? LOCATED there (▬ low, settled)",
+  "has_crafted_image": false
+ },
+ {
+  "rank": 51,
+  "thai": "เรื่อง",
+  "romanization": "rɯ̂ːaŋ",
+  "english": "subject; story",
+  "word_class": "n",
+  "tones": [
+   "falling"
+  ],
+  "characters": [
+   "เ",
+   "ร",
+   "ื",
+   "่",
+   "อ",
+   "ง"
+  ],
+  "mnemonic": "ROONG — the STORY wraps up (↓ voice falls at story's end)",
+  "has_crafted_image": false
+ },
+ {
+  "rank": 53,
+  "thai": "อะไร",
+  "romanization": "à-rai",
+  "english": "what",
+  "word_class": "pron",
+  "tones": [
+   "low",
+   "mid"
+  ],
+  "characters": [
+   "อ",
+   "ะ",
+   "ไ",
+   "ร"
+  ],
+  "mnemonic": "A-RAI — WHAT a-rai is this? (▬→ rising question)",
+  "has_crafted_image": false
+ },
+ {
+  "rank": 55,
+  "thai": "ที่นั่น",
+  "romanization": "thîi-nân",
+  "english": "there",
+  "word_class": "adv",
+  "tones": [
+   "falling",
+   "falling"
+  ],
+  "characters": [
+   "ท",
+   "ี",
+   "่",
+   "น",
+   "ั",
+   "่",
+   "น"
+  ],
+  "mnemonic": "TEE-NAN — THAT place over THERE, far away",
+  "has_crafted_image": false
+ },
+ {
+  "rank": 57,
+  "thai": "ความ",
+  "romanization": "kʰwaːm",
+  "english": "matter; affair; subject",
+  "word_class": "part",
+  "tones": [
+   "mid"
+  ],
+  "characters": [
+   "ค",
+   "ว",
+   "า",
+   "ม"
+  ],
+  "mnemonic": "KWARM — the MATTER is this (— neutral, factual)",
+  "has_crafted_image": false
+ },
+ {
+  "rank": 59,
+  "thai": "ช่วย",
+  "romanization": "chûuai",
+  "english": "help",
+  "word_class": "v",
+  "tones": [
+   "falling"
+  ],
+  "characters": [
+   "ช",
+   "่",
+   "ว",
+   "ย"
+  ],
+  "mnemonic": "CHOO-ay — HELP! the choo-choo train! (↓ urgent drop)",
+  "has_crafted_image": false
+ },
+ {
+  "rank": 61,
+  "thai": "แล้ว",
+  "romanization": "lɛ́ːw",
+  "english": "already",
+  "word_class": "adv",
+  "tones": [
+   "high"
+  ],
+  "characters": [
+   "แ",
+   "ล",
+   "้",
+   "ว"
+  ],
+  "mnemonic": "LAY-ow — ALREADY done! (▲ high, excited finish)",
+  "has_crafted_image": false
+ },
+ {
+  "rank": 63,
+  "thai": "ไหน",
+  "romanization": "nǎj",
+  "english": "where",
+  "word_class": "adv",
+  "tones": [
+   "rising"
+  ],
+  "characters": [
+   "ไ",
+   "ห",
+   "น"
+  ],
+  "mnemonic": "ไหน and ไหม are twins with the same rising climb — only the first sound differs. ไหม (M) asks \"is it so?\"; ไหน (N) asks \"where?\". Picture two identical signposts at a fork: the M arm points at a question mark, the N arm points at a map. Same rise in the voice, different letter, different question. (↑ rising, the voice climbs as the eyes search)",
+  "has_crafted_image": false
+ },
+ {
+  "rank": 65,
+  "thai": "หรือเปล่า",
+  "romanization": "rʉ̌ʉ-plàaw",
+  "english": "or not? (question)",
+  "word_class": "part",
+  "tones": [
+   "rising",
+   "low"
+  ],
+  "characters": [
+   "ห",
+   "ร",
+   "ื",
+   "อ",
+   "เ",
+   "ป",
+   "ล",
+   "่",
+   "า"
+  ],
+  "mnemonic": "REU-PLAO — OR NOT? A casual way to ask yes-or-no",
+  "has_crafted_image": false
+ },
+ {
+  "rank": 67,
+  "thai": "ไว้",
+  "romanization": "wáj",
+  "english": "to put in place; trust; to preserve",
+  "word_class": "v",
+  "tones": [
+   "high"
+  ],
+  "characters": [
+   "ไ",
+   "ว",
+   "้"
+  ],
+  "mnemonic": "WHY-ai — PUT IT away, preserve it! (▲ high, urgent)",
+  "has_crafted_image": false
+ },
+ {
+  "rank": 69,
+  "thai": "เพราะ",
+  "romanization": "pʰrɔ́ʔ",
+  "english": "because",
+  "word_class": "conj",
+  "tones": [
+   "mid"
+  ],
+  "characters": [
+   "เ",
+   "พ",
+   "ร",
+   "า",
+   "ะ"
+  ],
+  "mnemonic": "Someone asks, “Why are you so good at this?” The person smiles confidently and says, “Because I’m a PRO!” PRO → เพราะ → because (introduces the reason). (▲ sharp, high justification)",
+  "has_crafted_image": true
+ },
+ {
+  "rank": 71,
+  "thai": "รู้",
+  "romanization": "rúː",
+  "english": "know",
+  "word_class": "v",
+  "tones": [
+   "high"
+  ],
+  "characters": [
+   "ร",
+   "ู",
+   "้"
+  ],
+  "mnemonic": "ROO — KNOW it, roo! (▲ sharp, knowing)",
+  "has_crafted_image": false
+ },
+ {
+  "rank": 75,
+  "thai": "ยัง",
+  "romanization": "jaŋ",
+  "english": "still",
+  "word_class": "adv",
+  "tones": [
+   "mid"
+  ],
+  "characters": [
+   "ย",
+   "ั",
+   "ง"
+  ],
+  "mnemonic": "An old gray-haired man in flashy party clothes insists, “I’m still young! The night is still young!” A confused young person looks at him, clearly seeing he’s not young anymore. Young → ยัง (— neutral, ongoing) → still / not yet finished.",
+  "has_crafted_image": true
+ },
+ {
+  "rank": 77,
+  "thai": "ทำ",
+  "romanization": "tham",
+  "english": "make",
+  "word_class": "v",
+  "tones": [
+   "mid"
+  ],
+  "characters": [
+   "ท",
+   "ำ"
+  ],
+  "mnemonic": "THUMB up — DO it, MAKE it happen (— neutral)",
+  "has_crafted_image": false
+ },
+ {
+  "rank": 79,
+  "thai": "เข้า",
+  "romanization": "khâo",
+  "english": "enter",
+  "word_class": "v",
+  "tones": [
+   "falling"
+  ],
+  "characters": [
+   "เ",
+   "ข",
+   "้",
+   "า"
+  ],
+  "mnemonic": "KAO — cow ENTERs the barn (↓ voice drops going in)",
+  "has_crafted_image": false
+ },
+ {
+  "rank": 81,
+  "thai": "เลย",
+  "romanization": "lɤːj",
+  "english": "therefore; …at all",
+  "word_class": "adv",
+  "tones": [
+   "mid"
+  ],
+  "characters": [
+   "เ",
+   "ล",
+   "ย"
+  ],
+  "mnemonic": "LOO-ay — THEREFORE it went loo-ay (— neutral)",
+  "has_crafted_image": false
+ },
+ {
+  "rank": 83,
+  "thai": "บ้าน",
+  "romanization": "bâan",
+  "english": "house",
+  "word_class": "n",
+  "tones": [
+   "falling"
+  ],
+  "characters": [
+   "บ",
+   "้",
+   "า",
+   "น"
+  ],
+  "mnemonic": "BAN — HOME behind the ban-ner (↓ voice drops, hearth)",
+  "has_crafted_image": false
+ },
+ {
+  "rank": 85,
+  "thai": "พูด",
+  "romanization": "phûut",
+  "english": "say",
+  "word_class": "v",
+  "tones": [
+   "falling"
+  ],
+  "characters": [
+   "พ",
+   "ู",
+   "ด"
+  ],
+  "mnemonic": "A girl takes glowing feelings from her heart and puts them into floating word bubbles. As she puts the feelings into words, she begins to speak clearly. Put → พูด → to speak. (↓ voice drops, speaking out)",
+  "has_crafted_image": true
+ },
+ {
+  "rank": 87,
+  "thai": "กี่",
+  "romanization": "kìː",
+  "english": "how many",
+  "word_class": "",
+  "tones": [
+   "low"
+  ],
+  "characters": [
+   "ก",
+   "ี",
+   "่"
+  ],
+  "mnemonic": "An old janitor lifts a keyring so heavy it needs both hands — hundreds of keys fanning out like a metal peacock. Someone asks the only sensible question: \"Kìi?\" How many keys? (▁ low and flat, a short blunt question)",
+  "has_crafted_image": false
+ },
+ {
+  "rank": 90,
+  "thai": "ลง",
+  "romanization": "loŋ",
+  "english": "down",
+  "word_class": "v",
+  "tones": [
+   "mid"
+  ],
+  "characters": [
+   "ล",
+   "ง"
+  ],
+  "mnemonic": "A boy slides down a very long slide from the top of a hill. As he rushes downward he shouts, “This is a LONG way down!” Long → ลง → down / put down / get off. (— neutral drop)",
+  "has_crafted_image": true
+ },
+ {
+  "rank": 92,
+  "thai": "ตัว",
+  "romanization": "tuːa",
+  "english": "body",
+  "word_class": "n",
+  "tones": [
+   "mid"
+  ],
+  "characters": [
+   "ต",
+   "ั",
+   "ว"
+  ],
+  "mnemonic": "TOO-a — your BODY has two halves (— neutral)",
+  "has_crafted_image": false
+ },
+ {
+  "rank": 95,
+  "thai": "อยาก",
+  "romanization": "jàːk",
+  "english": "want",
+  "word_class": "v",
+  "tones": [
+   "low"
+  ],
+  "characters": [
+   "อ",
+   "ย",
+   "า",
+   "ก"
+  ],
+  "mnemonic": "YARK — WANT a yak? yark! (▬ low, yearning)",
+  "has_crafted_image": false
+ },
+ {
+  "rank": 97,
+  "thai": "พ่อ",
+  "romanization": "pʰɔ̂ː",
+  "english": "father",
+  "word_class": "n",
+  "tones": [
+   "falling"
+  ],
+  "characters": [
+   "พ",
+   "่",
+   "อ"
+  ],
+  "mnemonic": "A small boy grabs an enormous weathered hand — a bear's paw of a hand — and says \"Phôo.\" The hand belongs to his father, and it swallows his whole fist. (↓ falling, warm and settled)",
+  "has_crafted_image": false
+ },
+ {
+  "rank": 101,
+  "thai": "อายุ",
+  "romanization": "ʔaː júʔ",
+  "english": "age",
+  "word_class": "n",
+  "tones": [
+   "mid",
+   "falling"
+  ],
+  "characters": [
+   "อ",
+   "า",
+   "ย",
+   "ุ"
+  ],
+  "mnemonic": "A fortune teller peers over her cards, jabs a finger at you and says \"Ah — YOU!\" She has guessed your age to the year. aa-yú is the number of years you have. (↓ the second syllable snaps down on YOU)",
+  "has_crafted_image": false
+ },
+ {
+  "rank": 103,
+  "thai": "เงิน",
+  "romanization": "ngoen",
+  "english": "silver",
+  "word_class": "n",
+  "tones": [
+   "mid"
+  ],
+  "characters": [
+   "เ",
+   "ง",
+   "ิ",
+   "น"
+  ],
+  "mnemonic": "NGERN — EARN MONEY, ngern! (— neutral)",
+  "has_crafted_image": false
+ },
+ {
+  "rank": 105,
+  "thai": "เงิน",
+  "romanization": "ngoen",
+  "english": "money",
+  "word_class": "n",
+  "tones": [
+   "mid"
+  ],
+  "characters": [
+   "เ",
+   "ง",
+   "ิ",
+   "น"
+  ],
+  "mnemonic": "NGERN — EARN MONEY, ngern! (— neutral)",
+  "has_crafted_image": false
+ },
+ {
+  "rank": 107,
+  "thai": "อีก",
+  "romanization": "ʔìːk",
+  "english": "more",
+  "word_class": "adv",
+  "tones": [
+   "low"
+  ],
+  "characters": [
+   "อ",
+   "ี",
+   "ก"
+  ],
+  "mnemonic": "EEK — I want MORE eeks! (▬ low, quietly adding)",
+  "has_crafted_image": false
+ },
+ {
+  "rank": 109,
+  "thai": "ทาง",
+  "romanization": "thaang",
+  "english": "directions",
+  "word_class": "n",
+  "tones": [
+   "mid"
+  ],
+  "characters": [
+   "ท",
+   "า",
+   "ง"
+  ],
+  "mnemonic": "THONG — flip-flops point every DIRECTION (— neutral)",
+  "has_crafted_image": false
+ },
+ {
+  "rank": 111,
+  "thai": "ลูก",
+  "romanization": "lûːk",
+  "english": "child",
+  "word_class": "n",
+  "tones": [
+   "falling"
+  ],
+  "characters": [
+   "ล",
+   "ู",
+   "ก"
+  ],
+  "mnemonic": "LUKE — my CHILD Luke (↓ voice drops, endearing)",
+  "has_crafted_image": false
+ },
+ {
+  "rank": 113,
+  "thai": "รัก",
+  "romanization": "rák",
+  "english": "love",
+  "word_class": "v",
+  "tones": [
+   "falling"
+  ],
+  "characters": [
+   "ร",
+   "ั",
+   "ก"
+  ],
+  "mnemonic": "ROCK — LOVE is a rock song (▲ sharp, passionate)",
+  "has_crafted_image": false
+ },
+ {
+  "rank": 115,
+  "thai": "พี่",
+  "romanization": "pʰîː",
+  "english": "older sibling",
+  "word_class": "n",
+  "tones": [
+   "falling"
+  ],
+  "characters": [
+   "พ",
+   "ี",
+   "่"
+  ],
+  "mnemonic": "Two brothers stand back to back to settle who is taller. The taller one is P — top of the list — \"Phîi\" — and his hand comes down flat on his brother's head to prove it. (↓ falling, the hand settles the matter)",
+  "has_crafted_image": false
+ },
+ {
+  "rank": 117,
+  "thai": "สิ",
+  "romanization": "sì",
+  "english": "urging particle",
+  "word_class": "part",
+  "tones": [
+   "low"
+  ],
+  "characters": [
+   "ส",
+   "ิ"
+  ],
+  "mnemonic": "SI — SEE! Just do it! An encouraging push",
+  "has_crafted_image": false
+ },
+ {
+  "rank": 119,
+  "thai": "เหรอ",
+  "romanization": "rə̌ə",
+  "english": "really?; is that so?",
+  "word_class": "part",
+  "tones": [
+   "rising"
+  ],
+  "characters": [
+   "เ",
+   "ห",
+   "ร",
+   "อ"
+  ],
+  "mnemonic": "RER — REALLY?! eyebrows up in surprise",
+  "has_crafted_image": false
+ },
+ {
+  "rank": 121,
+  "thai": "ออก",
+  "romanization": "ʔɔ̀ːk",
+  "english": "exit",
+  "word_class": "v",
+  "tones": [
+   "low"
+  ],
+  "characters": [
+   "อ",
+   "ก"
+  ],
+  "mnemonic": "OAK — EXIT through the oak door (▬ low, departing)",
+  "has_crafted_image": false
+ },
+ {
+  "rank": 123,
+  "thai": "เรา",
+  "romanization": "raw",
+  "english": "we; us",
+  "word_class": "pron",
+  "tones": [
+   "mid"
+  ],
+  "characters": [
+   "เ",
+   "ร",
+   "า"
+  ],
+  "mnemonic": "RAW — WE eat raw food together (— neutral)",
+  "has_crafted_image": false
+ },
+ {
+  "rank": 125,
+  "thai": "ดู",
+  "romanization": "duu",
+  "english": "to watch",
+  "word_class": "v",
+  "tones": [
+   "mid"
+  ],
+  "characters": [
+   "ด",
+   "ู"
+  ],
+  "mnemonic": "A friend suddenly grabs your shoulder and shouts, “Duuuuude, look!” He points excitedly at something happening in front of you, forcing your attention toward it. “Duuuuude” → ดู → to look, watch, or observe. (— neutral)",
+  "has_crafted_image": true
+ },
+ {
+  "rank": 127,
+  "thai": "เอง",
+  "romanization": "ʔeːŋ",
+  "english": "only; alone; just",
+  "word_class": "part",
+  "tones": [
+   "mid"
+  ],
+  "characters": [
+   "เ",
+   "อ",
+   "ง"
+  ],
+  "mnemonic": "ENG — ALONE like an engine running solo (— neutral)",
+  "has_crafted_image": false
+ },
+ {
+  "rank": 129,
+  "thai": "เดือน",
+  "romanization": "duuean",
+  "english": "month",
+  "word_class": "n",
+  "tones": [
+   "mid"
+  ],
+  "characters": [
+   "เ",
+   "ด",
+   "ื",
+   "อ",
+   "น"
+  ],
+  "mnemonic": "DUAN — each MONTH, duan (— neutral)",
+  "has_crafted_image": false
+ },
+ {
+  "rank": 132,
+  "thai": "นอน",
+  "romanization": "nɔːn",
+  "english": "lie down; sleep",
+  "word_class": "v",
+  "tones": [
+   "mid"
+  ],
+  "characters": [
+   "น",
+   "อ"
+  ],
+  "mnemonic": "It is noon and nothing is happening. He lies flat and the afternoon goes on and on — \"nooon\" — never rising, never falling. (— completely level; the voice lies down too)",
+  "has_crafted_image": false
+ },
+ {
+  "rank": 134,
+  "thai": "แหละ",
+  "romanization": "lɛ̀ʔ",
+  "english": "particle (imperative)",
+  "word_class": "",
+  "tones": [
+   "rising"
+  ],
+  "characters": [
+   "แ",
+   "ห",
+   "ล",
+   "ะ"
+  ],
+  "mnemonic": "A chef scans a row of identical mangoes, then slaps one down on the board — \"nîi lɛ̀!\" — that one. The word is over before it starts, cut off short like the slap itself. (▁ low and clipped, stopped dead at the end)",
+  "has_crafted_image": false
+ },
+ {
+  "rank": 137,
+  "thai": "ซิ",
+  "romanization": "sí",
+  "english": "go on; do it (urging, informal)",
+  "word_class": "part",
+  "tones": [
+   "high"
+  ],
+  "characters": [
+   "ซ",
+   "ิ"
+  ],
+  "mnemonic": "SI — SEE? just go ahead! (casual twin of สิ)",
+  "has_crafted_image": false
+ },
+ {
+  "rank": 139,
+  "thai": "ดี",
+  "romanization": "dii",
+  "english": "good",
+  "word_class": "adj",
+  "tones": [
+   "mid"
+  ],
+  "characters": [
+   "ด",
+   "ี"
+  ],
+  "mnemonic": "A quality inspector walks around with a giant glowing “D” stamp. Whenever something is good, he stamps it with a big shining D. D → ดี → good. (— neutral)",
+  "has_crafted_image": true
+ },
+ {
+  "rank": 141,
+  "thai": "จึง",
+  "romanization": "tɕɯŋ",
+  "english": "therefore",
+  "word_class": "conj",
+  "tones": [
+   "mid"
+  ],
+  "characters": [
+   "จ",
+   "ึ",
+   "ง"
+  ],
+  "mnemonic": "A player carefully pulls a block from a giant Jenga tower. It was the wrong piece, THEREFORE the tower collapses and everyone shouts, “THEREFORE it fell!” Jenga → จึง → therefore / so. (— neutral)",
+  "has_crafted_image": true
+ },
+ {
+  "rank": 143,
+  "thai": "ต่อ",
+  "romanization": "tɔ̀ː",
+  "english": "to; connector; per",
+  "word_class": "prep",
+  "tones": [
+   "low"
+  ],
+  "characters": [
+   "ต",
+   "่",
+   "อ"
+  ],
+  "mnemonic": "TAW — CONNECT two ends with a taw-knot (▬ low)",
+  "has_crafted_image": false
+ },
+ {
+  "rank": 145,
+  "thai": "ลด",
+  "romanization": "lót",
+  "english": "reduce",
+  "word_class": "v",
+  "tones": [
+   "falling"
+  ],
+  "characters": [
+   "ล",
+   "ด"
+  ],
+  "mnemonic": "A shopkeeper slaps a new price tag over the old one — a LOT has come off. lót is the cut itself: prices, speed, weight, volume, anything that comes down. (↓ falls sharply, like the price)",
+  "has_crafted_image": false
+ },
+ {
+  "rank": 151,
+  "thai": "จ่าย",
+  "romanization": "tɕàːj",
+  "english": "pay",
+  "word_class": "",
+  "tones": [
+   "low"
+  ],
+  "characters": [
+   "จ",
+   "่",
+   "า",
+   "ย"
+  ],
+  "mnemonic": "You jàai for your chai. The two words sit almost on top of each other — the drink and the paying for it — so every cup you buy is a free rehearsal. (▁ low, the flat sound of coins going down on the counter)",
+  "has_crafted_image": false
+ },
+ {
+  "rank": 156,
+  "thai": "เขา",
+  "romanization": "kʰǎw",
+  "english": "he",
+  "word_class": "pron",
+  "tones": [
+   "rising"
+  ],
+  "characters": [
+   "เ",
+   "ข",
+   "า"
+  ],
+  "mnemonic": "KAO — HE went kao? (↑ voice rises, pointing at him)",
+  "has_crafted_image": false
+ },
+ {
+  "rank": 158,
+  "thai": "ผู้",
+  "romanization": "pʰûː",
+  "english": "person",
+  "word_class": "n",
+  "tones": [
+   "falling"
+  ],
+  "characters": [
+   "ผ",
+   "ู",
+   "้"
+  ],
+  "mnemonic": "POO — a PERSON of importance — poo! (↓ dignified drop)",
+  "has_crafted_image": false
+ },
+ {
+  "rank": 160,
+  "thai": "น้อย",
+  "romanization": "nɔ́ːj",
+  "english": "little",
+  "word_class": "adj",
+  "tones": [
+   "high"
+  ],
+  "characters": [
+   "น",
+   "้",
+   "อ",
+   "ย"
+  ],
+  "mnemonic": "NOY — just a LITTLE noy-se (▲ sharp, minimal amount)",
+  "has_crafted_image": false
+ },
+ {
+  "rank": 162,
+  "thai": "หาก",
+  "romanization": "hàːk",
+  "english": "if",
+  "word_class": "conj",
+  "tones": [
+   "low"
+  ],
+  "characters": [
+   "ห",
+   "า",
+   "ก"
+  ],
+  "mnemonic": "HARK — IF you hark and listen (▬ low, conditional silence)",
+  "has_crafted_image": false
+ },
+ {
+  "rank": 164,
+  "thai": "ปี",
+  "romanization": "bpii",
+  "english": "year",
+  "word_class": "n",
+  "tones": [
+   "mid"
+  ],
+  "characters": [
+   "ป",
+   "ี"
+  ],
+  "mnemonic": "PEE — a YEAR-ly pee-riod (— neutral)",
+  "has_crafted_image": false
+ },
+ {
+  "rank": 166,
+  "thai": "ใหม่",
+  "romanization": "màj",
+  "english": "new",
+  "word_class": "adj",
+  "tones": [
+   "low"
+  ],
+  "characters": [
+   "ใ",
+   "ห",
+   "ม",
+   "่"
+  ],
+  "mnemonic": "MY — this NEW one is mine (▬ low, freshly acquired)",
+  "has_crafted_image": false
+ },
+ {
+  "rank": 168,
+  "thai": "ส่วน",
+  "romanization": "sùːan",
+  "english": "section",
+  "word_class": "n",
+  "tones": [
+   "low"
+  ],
+  "characters": [
+   "ส",
+   "่",
+   "ว",
+   "น"
+  ],
+  "mnemonic": "SUAN — a SECTION of the garden (▬ low, divided part)",
+  "has_crafted_image": false
+ },
+ {
+  "rank": 170,
+  "thai": "รับ",
+  "romanization": "ráp",
+  "english": "pick up",
+  "word_class": "v",
+  "tones": [
+   "falling"
+  ],
+  "characters": [
+   "ร",
+   "ั",
+   "บ"
+  ],
+  "mnemonic": "RAP — RECEIVE the rap message (▲ sharp, catching)",
+  "has_crafted_image": false
+ },
+ {
+  "rank": 172,
+  "thai": "พระ",
+  "romanization": "pʰráʔ",
+  "english": "monk",
+  "word_class": "n",
+  "tones": [
+   "mid"
+  ],
+  "characters": [
+   "พ",
+   "ร",
+   "ะ"
+  ],
+  "mnemonic": "PRAH — MONK in prayer — prah! (▲ sharp, sacred)",
+  "has_crafted_image": false
+ },
+ {
+  "rank": 174,
+  "thai": "เพียง",
+  "romanization": "pʰiːaŋ",
+  "english": "only",
+  "word_class": "adv",
+  "tones": [
+   "mid"
+  ],
+  "characters": [
+   "เ",
+   "พ",
+   "ี",
+   "ย",
+   "ง"
+  ],
+  "mnemonic": "PIANG — ONLY a ping of sound remains (— neutral, sparse)",
+  "has_crafted_image": false
+ },
+ {
+  "rank": 176,
+  "thai": "ขนาด",
+  "romanization": "kʰà nàːt",
+  "english": "size",
+  "word_class": "n",
+  "tones": [
+   "low"
+  ],
+  "characters": [
+   "ข",
+   "น",
+   "า",
+   "ด"
+  ],
+  "mnemonic": "KHA-NAT — the SIZE of a karate chop! (▬ low, measured)",
+  "has_crafted_image": false
+ },
+ {
+  "rank": 178,
+  "thai": "นัก",
+  "romanization": "nák",
+  "english": "a person who;",
+  "word_class": "mod",
+  "tones": [
+   "falling"
+  ],
+  "characters": [
+   "น",
+   "ั",
+   "ก"
+  ],
+  "mnemonic": "A person with a glowing “KNACK” badge stands next to different activities and instantly becomes the specialist in that field. Knack for sports → athlete, knack for music → musician. Knack → นัก → person associated with a skill or domain. (▲ high, intense)",
+  "has_crafted_image": true
+ },
+ {
+  "rank": 180,
+  "thai": "ครอบครัว",
+  "romanization": "kʰrɔ̂ːp kʰruːa",
+  "english": "family",
+  "word_class": "n",
+  "tones": [
+   "falling",
+   "mid"
+  ],
+  "characters": [
+   "ค",
+   "ร",
+   "อ",
+   "บ",
+   "ั",
+   "ว"
+  ],
+  "mnemonic": "KROB-KRUA — FAMILY wrapped together, krob-krua (↓— enveloping)",
+  "has_crafted_image": false
+ },
+ {
+  "rank": 183,
+  "thai": "ชีวิต",
+  "romanization": "tɕʰiː wít",
+  "english": "life",
+  "word_class": "n",
+  "tones": [
+   "mid",
+   "falling"
+  ],
+  "characters": [
+   "ช",
+   "ี",
+   "ว",
+   "ิ",
+   "ต"
+  ],
+  "mnemonic": "CHEE-WIT — LIFE is a cheeky wit! (▲ lively, vibrant)",
+  "has_crafted_image": false
+ },
+ {
+  "rank": 185,
+  "thai": "สูง",
+  "romanization": "sǔung",
+  "english": "tall",
+  "word_class": "adj",
+  "tones": [
+   "rising"
+  ],
+  "characters": [
+   "ส",
+   "ู",
+   "ง"
+  ],
+  "mnemonic": "SOONG — TALL as a soaring song (↑ voice rises like height)",
+  "has_crafted_image": false
+ },
+ {
+  "rank": 187,
+  "thai": "เปลี่ยน",
+  "romanization": "bplìian",
+  "english": "transfer",
+  "word_class": "v",
+  "tones": [
+   "low"
+  ],
+  "characters": [
+   "เ",
+   "ป",
+   "ล",
+   "ี",
+   "่",
+   "ย",
+   "น"
+  ],
+  "mnemonic": "PLAN — TRANSFER to a new plan (▬ low, shifting)",
+  "has_crafted_image": false
+ },
+ {
+  "rank": 189,
+  "thai": "ต่อไป",
+  "romanization": "tɔ̀ː paj",
+  "english": "next",
+  "word_class": "adv",
+  "tones": [
+   "low",
+   "mid"
+  ],
+  "characters": [
+   "ต",
+   "่",
+   "อ",
+   "ไ",
+   "ป"
+  ],
+  "mnemonic": "TAW-PAI — NEXT, keep pai-ing forward (▬→— connecting on)",
+  "has_crafted_image": false
+ },
+ {
+  "rank": 191,
+  "thai": "แห่ง",
+  "romanization": "hɛ̀ŋ",
+  "english": "location; place; spot",
+  "word_class": "clf",
+  "tones": [
+   "low"
+  ],
+  "characters": [
+   "แ",
+   "ห",
+   "่",
+   "ง"
+  ],
+  "mnemonic": "HENGE — the LOCATION of Stonehenge (▬ low, fixed place)",
+  "has_crafted_image": false
+ },
+ {
+  "rank": 193,
+  "thai": "ใหญ่",
+  "romanization": "yài",
+  "english": "big",
+  "word_class": "adj",
+  "tones": [
+   "low"
+  ],
+  "characters": [
+   "ใ",
+   "ห",
+   "ญ",
+   "่"
+  ],
+  "mnemonic": "YAI — BIG yai-yai sized! (▬ low, substantial)",
+  "has_crafted_image": false
+ },
+ {
+  "rank": 195,
+  "thai": "ผม",
+  "romanization": "phǒm",
+  "english": "hair",
+  "word_class": "n",
+  "tones": [
+   "rising"
+  ],
+  "characters": [
+   "ผ",
+   "ม"
+  ],
+  "mnemonic": "FOAM — HAIR needs foam to style (↑ rising, light touch)",
+  "has_crafted_image": false
+ },
+ {
+  "rank": 197,
+  "thai": "ด้าน",
+  "romanization": "dâːn",
+  "english": "side",
+  "word_class": "n",
+  "tones": [
+   "falling"
+  ],
+  "characters": [
+   "ด",
+   "้",
+   "า",
+   "น"
+  ],
+  "mnemonic": "DAN — on Dan's SIDE (↓ voice drops, positioned)",
+  "has_crafted_image": false
+ },
+ {
+  "rank": 199,
+  "thai": "เดียว",
+  "romanization": "diːaw",
+  "english": "single; one",
+  "word_class": "adj",
+  "tones": [
+   "mid"
+  ],
+  "characters": [
+   "เ",
+   "ด",
+   "ี",
+   "ย",
+   "ว"
+  ],
+  "mnemonic": "DEOW — just ONE single dew drop (— neutral)",
+  "has_crafted_image": false
+ },
+ {
+  "rank": 201,
+  "thai": "เมือง",
+  "romanization": "muueang",
+  "english": "town",
+  "word_class": "n",
+  "tones": [
+   "mid"
+  ],
+  "characters": [
+   "เ",
+   "ม",
+   "ื",
+   "อ",
+   "ง"
+  ],
+  "mnemonic": "MUEANG — the CITY of Mueang (— neutral)",
+  "has_crafted_image": false
+ },
+ {
+  "rank": 204,
+  "thai": "ทรง",
+  "romanization": "soŋ",
+  "english": "style, hairdo",
+  "word_class": "n",
+  "tones": [
+   "mid"
+  ],
+  "characters": [
+   "ท",
+   "ร",
+   "ง"
+  ],
+  "mnemonic": "SONG — every STYLE has its own SONG (— neutral)",
+  "has_crafted_image": false
+ },
+ {
+  "rank": 207,
+  "thai": "ตัด",
+  "romanization": "dtàt",
+  "english": "cut",
+  "word_class": "v",
+  "tones": [
+   "low"
+  ],
+  "characters": [
+   "ต",
+   "ั",
+   "ด"
+  ],
+  "mnemonic": "TAT — CUT a tattoo line (▬ low, precise cut)",
+  "has_crafted_image": false
+ },
+ {
+  "rank": 210,
+  "thai": "ผิด",
+  "romanization": "pʰìt",
+  "english": "wrong",
+  "word_class": "adj",
+  "tones": [
+   "low"
+  ],
+  "characters": [
+   "ผ",
+   "ิ",
+   "ด"
+  ],
+  "mnemonic": "PIT — falling in a PIT is WRONG (▬ low, error)",
+  "has_crafted_image": false
+ },
+ {
+  "rank": 212,
+  "thai": "จน",
+  "romanization": "tɕon",
+  "english": "until",
+  "word_class": "conj",
+  "tones": [
+   "mid"
+  ],
+  "characters": [
+   "จ",
+   "น"
+  ],
+  "mnemonic": "JON — UNTIL Jon arrives (— neutral)",
+  "has_crafted_image": false
+ },
+ {
+  "rank": 214,
+  "thai": "เท่านั้น",
+  "romanization": "tʰâw nán",
+  "english": "only",
+  "word_class": "adv",
+  "tones": [
+   "falling",
+   "high"
+  ],
+  "characters": [
+   "เ",
+   "ท",
+   "่",
+   "า",
+   "น",
+   "ั",
+   "้"
+  ],
+  "mnemonic": "TAO-NAN — ONLY the tao of nan (↓▲ definitive endpoint)",
+  "has_crafted_image": false
+ },
+ {
+  "rank": 216,
+  "thai": "ผ่าน",
+  "romanization": "pʰàːn",
+  "english": "pass",
+  "word_class": "v",
+  "tones": [
+   "low"
+  ],
+  "characters": [
+   "ผ",
+   "่",
+   "า",
+   "น"
+  ],
+  "mnemonic": "PAN — PASS the pan down the line (▬ low, moving through)",
+  "has_crafted_image": false
+ },
+ {
+  "rank": 218,
+  "thai": "ตอน",
+  "romanization": "tɔːn",
+  "english": "when; during",
+  "word_class": "conj",
+  "tones": [
+   "mid"
+  ],
+  "characters": [
+   "ต",
+   "อ",
+   "น"
+  ],
+  "mnemonic": "TONE — DURING the ringtone (— neutral, temporal slice)",
+  "has_crafted_image": false
+ },
+ {
+  "rank": 220,
+  "thai": "เรียก",
+  "romanization": "rîːak",
+  "english": "call",
+  "word_class": "v",
+  "tones": [
+   "falling"
+  ],
+  "characters": [
+   "เ",
+   "ร",
+   "ี",
+   "ย",
+   "ก"
+  ],
+  "mnemonic": "REEK — CALL out when it reeks! (↓ voice falls, summoning)",
+  "has_crafted_image": false
+ },
+ {
+  "rank": 225,
+  "thai": "ภาพ",
+  "romanization": "pʰâːp",
+  "english": "image",
+  "word_class": "n",
+  "tones": [
+   "falling"
+  ],
+  "characters": [
+   "ภ",
+   "า",
+   "พ"
+  ],
+  "mnemonic": "PAP — an IMAGE captured on pap-er (↓ falling, snapshot)",
+  "has_crafted_image": false
+ },
+ {
+  "rank": 227,
+  "thai": "อ่าน",
+  "romanization": "àan",
+  "english": "read",
+  "word_class": "v",
+  "tones": [
+   "low"
+  ],
+  "characters": [
+   "อ",
+   "่",
+   "า",
+   "น"
+  ],
+  "mnemonic": "AHN — READ quietly — aahn (▬ low, silent reading)",
+  "has_crafted_image": false
+ },
+ {
+  "rank": 230,
+  "thai": "กลับ",
+  "romanization": "glàp",
+  "english": "return",
+  "word_class": "v",
+  "tones": [
+   "low"
+  ],
+  "characters": [
+   "ก",
+   "ล",
+   "ั",
+   "บ"
+  ],
+  "mnemonic": "CLAP — RETURN with a clap (▬ low, coming back)",
+  "has_crafted_image": false
+ },
+ {
+  "rank": 233,
+  "thai": "โลก",
+  "romanization": "lôːk",
+  "english": "world",
+  "word_class": "n",
+  "tones": [
+   "falling"
+  ],
+  "characters": [
+   "โ",
+   "ล",
+   "ก"
+  ],
+  "mnemonic": "LOKE — the whole WORLD is one loke (↓ voice drops, vast)",
+  "has_crafted_image": false
+ },
+ {
+  "rank": 235,
+  "thai": "ได้รับ",
+  "romanization": "dâj ráp",
+  "english": "receive",
+  "word_class": "v",
+  "tones": [
+   "falling",
+   "falling"
+  ],
+  "characters": [
+   "ไ",
+   "ด",
+   "้",
+   "ร",
+   "ั",
+   "บ"
+  ],
+  "mnemonic": "DAI-RAP — CAN RECEIVE — dai rap! (↓▲ getting something)",
+  "has_crafted_image": false
+ },
+ {
+  "rank": 237,
+  "thai": "ฝ่าย",
+  "romanization": "fàːj",
+  "english": "party; side",
+  "word_class": "n",
+  "tones": [
+   "low"
+  ],
+  "characters": [
+   "ฝ",
+   "่",
+   "า",
+   "ย"
+  ],
+  "mnemonic": "FIE — each PARTY takes its SIDE — fie! (▬ low, faction)",
+  "has_crafted_image": false
+ },
+ {
+  "rank": 239,
+  "thai": "พบ",
+  "romanization": "phóp",
+  "english": "meet",
+  "word_class": "v",
+  "tones": [
+   "falling"
+  ],
+  "characters": [
+   "พ",
+   "บ"
+  ],
+  "mnemonic": "POP — MEET and pop! (▲ sharp, sudden encounter)",
+  "has_crafted_image": false
+ },
+ {
+  "rank": 241,
+  "thai": "เข้าใจ",
+  "romanization": "kʰâw tɕaj",
+  "english": "understand",
+  "word_class": "v",
+  "tones": [
+   "falling",
+   "mid"
+  ],
+  "characters": [
+   "เ",
+   "ข",
+   "้",
+   "า",
+   "ใ",
+   "จ"
+  ],
+  "mnemonic": "KAO-JAI — ENTER the heart — that's to UNDERSTAND (↓→ insight)",
+  "has_crafted_image": false
+ },
+ {
+  "rank": 243,
+  "thai": "ส่ง",
+  "romanization": "sòng",
+  "english": "submit",
+  "word_class": "v",
+  "tones": [
+   "low"
+  ],
+  "characters": [
+   "ส",
+   "่",
+   "ง"
+  ],
+  "mnemonic": "SONG — SUBMIT a song to the contest (▬ low, sending off)",
+  "has_crafted_image": false
+ },
+ {
+  "rank": 247,
+  "thai": "ถือ",
+  "romanization": "thǔue",
+  "english": "hold",
+  "word_class": "v",
+  "tones": [
+   "rising"
+  ],
+  "characters": [
+   "ถ",
+   "ื",
+   "อ"
+  ],
+  "mnemonic": "TOO-ay — HOLD it, too! (↑ voice rises, gripping)",
+  "has_crafted_image": false
+ },
+ {
+  "rank": 250,
+  "thai": "ควร",
+  "romanization": "kʰuːan",
+  "english": "should",
+  "word_class": "aux",
+  "tones": [
+   "mid"
+  ],
+  "characters": [
+   "ค",
+   "ว",
+   "ร"
+  ],
+  "mnemonic": "KWAN — you SHOULD be a kwan-tum better (— neutral)",
+  "has_crafted_image": false
+ },
+ {
+  "rank": 253,
+  "thai": "ปัญหา",
+  "romanization": "pan hǎː",
+  "english": "problem",
+  "word_class": "n",
+  "tones": [
+   "mid",
+   "rising"
+  ],
+  "characters": [
+   "ป",
+   "ั",
+   "ญ",
+   "ห",
+   "า"
+  ],
+  "mnemonic": "PAN-HA — PROBLEM in the pan-handle (—↑ rising issue)",
+  "has_crafted_image": false
+ },
+ {
+  "rank": 255,
+  "thai": "น่า",
+  "romanization": "nâː",
+  "english": "ought to",
+  "word_class": "aux",
+  "tones": [
+   "falling"
+  ],
+  "characters": [
+   "น",
+   "่",
+   "า"
+  ],
+  "mnemonic": "NAH — you OUGHT TO, nah (↓ voice drops, gentle obligation)",
+  "has_crafted_image": false
+ },
+ {
+  "rank": 257,
+  "thai": "เหมือน",
+  "romanization": "mɯ̌ːan",
+  "english": "as; like",
+  "word_class": "conj",
+  "tones": [
+   "rising"
+  ],
+  "characters": [
+   "เ",
+   "ห",
+   "ม",
+   "ื",
+   "อ",
+   "น"
+  ],
+  "mnemonic": "MUAN — LIKE a mirrored muan (↑ rising comparison)",
+  "has_crafted_image": false
+ },
+ {
+  "rank": 259,
+  "thai": "บน",
+  "romanization": "bon",
+  "english": "on",
+  "word_class": "prep",
+  "tones": [
+   "mid"
+  ],
+  "characters": [
+   "บ",
+   "น"
+  ],
+  "mnemonic": "A gigantic cinnamon bun is sitting on top of a skyscraper. People point upward and shout, “Look! The bun is ON the building!” Bun → บน → on / on top of. (— neutral)",
+  "has_crafted_image": true
+ },
+ {
+  "rank": 261,
+  "thai": "จริง",
+  "romanization": "tɕiŋ",
+  "english": "real",
+  "word_class": "adj",
+  "tones": [
+   "mid"
+  ],
+  "characters": [
+   "จ",
+   "ร",
+   "ิ",
+   "ง"
+  ],
+  "mnemonic": "JING — is it REAL? like jingling? (— neutral)",
+  "has_crafted_image": false
+ },
+ {
+  "rank": 263,
+  "thai": "ร่วม",
+  "romanization": "rûːam",
+  "english": "join",
+  "word_class": "v",
+  "tones": [
+   "falling"
+  ],
+  "characters": [
+   "ร",
+   "่",
+   "ว",
+   "ม"
+  ],
+  "mnemonic": "ROOM — JOIN the room together (↓ voice drops, entering together)",
+  "has_crafted_image": false
+ },
+ {
+  "rank": 265,
+  "thai": "เช่น",
+  "romanization": "tɕʰên",
+  "english": "like",
+  "word_class": "prep",
+  "tones": [
+   "falling"
+  ],
+  "characters": [
+   "เ",
+   "ช",
+   "่",
+   "น"
+  ],
+  "mnemonic": "CHEN — LIKE Chen, for example (↓ voice drops, illustrating)",
+  "has_crafted_image": false
+ },
+ {
+  "rank": 267,
+  "thai": "ละ",
+  "romanization": "láʔ",
+  "english": "each",
+  "word_class": "part",
+  "tones": [
+   "falling"
+  ],
+  "characters": [
+   "ล",
+   "ะ"
+  ],
+  "mnemonic": "LAH — EACH lah! (▲ sharp, per unit)",
+  "has_crafted_image": false
+ },
+ {
+  "rank": 269,
+  "thai": "อากาศ",
+  "romanization": "ʔaː kàːt",
+  "english": "air; weather",
+  "word_class": "n",
+  "tones": [
+   "mid",
+   "low"
+  ],
+  "characters": [
+   "อ",
+   "า",
+   "ก",
+   "ศ"
+  ],
+  "mnemonic": "A cat on a windowsill lifts its nose, reads the air and knows the rain is coming an hour before you do. aa-kàat is both the air and what it is doing — weather. (▁ the second syllable settles low, like the cat)",
+  "has_crafted_image": false
+ },
+ {
+  "rank": 271,
+  "thai": "เก็บ",
+  "romanization": "kèp",
+  "english": "store; put away",
+  "word_class": "v",
+  "tones": [
+   "low"
+  ],
+  "characters": [
+   "เ",
+   "ก",
+   "็",
+   "บ"
+  ],
+  "mnemonic": "KEP — STORE it in the kep-board (▬ low, tucking away)",
+  "has_crafted_image": false
+ },
+ {
+  "rank": 273,
+  "thai": "บ้าง",
+  "romanization": "bâːŋ",
+  "english": "some",
+  "word_class": "part",
+  "tones": [
+   "falling"
+  ],
+  "characters": [
+   "บ",
+   "้",
+   "า",
+   "ง"
+  ],
+  "mnemonic": "BANG — SOME go out with a bang (↓ partial, not all)",
+  "has_crafted_image": false
+ },
+ {
+  "rank": 275,
+  "thai": "แก่",
+  "romanization": "kɛ̀ː",
+  "english": "to; old",
+  "word_class": "prep",
+  "tones": [
+   "low"
+  ],
+  "characters": [
+   "แ",
+   "ก",
+   "่"
+  ],
+  "mnemonic": "KAY — OLD Kay (▬ low, aging quietly)",
+  "has_crafted_image": false
+ },
+ {
+  "rank": 277,
+  "thai": "หลัง",
+  "romanization": "lǎng",
+  "english": "after",
+  "word_class": "prep",
+  "tones": [
+   "rising"
+  ],
+  "characters": [
+   "ห",
+   "ล",
+   "ั",
+   "ง"
+  ],
+  "mnemonic": "LONG — AFTER the long wait, look at your BACK (↑ rising, behind)",
+  "has_crafted_image": false
+ },
+ {
+  "rank": 279,
+  "thai": "จัด",
+  "romanization": "jàt",
+  "english": "arrange",
+  "word_class": "v",
+  "tones": [
+   "low"
+  ],
+  "characters": [
+   "จ",
+   "ั",
+   "ด"
+  ],
+  "mnemonic": "JAT — ARRANGE the jat (▬ low, organizing)",
+  "has_crafted_image": false
+ },
+ {
+  "rank": 281,
+  "thai": "เธอ",
+  "romanization": "tʰɤː",
+  "english": "her",
+  "word_class": "pron",
+  "tones": [
+   "mid"
+  ],
+  "characters": [
+   "เ",
+   "ธ",
+   "อ"
+  ],
+  "mnemonic": "TUR — HER turn (— neutral)",
+  "has_crafted_image": false
+ },
+ {
+  "rank": 284,
+  "thai": "ที่มา",
+  "romanization": "tʰîː maː",
+  "english": "origin; source; cause",
+  "word_class": "n",
+  "tones": [
+   "falling",
+   "mid"
+  ],
+  "characters": [
+   "ท",
+   "ี",
+   "่",
+   "ม",
+   "า"
+  ],
+  "mnemonic": "TEE-MA — COME back to the SOURCE, tee-ma (↓— tracing origin)",
+  "has_crafted_image": false
+ },
+ {
+  "rank": 286,
+  "thai": "ทหาร",
+  "romanization": "thá-hǎan",
+  "english": "soldier",
+  "word_class": "n",
+  "tones": [
+   "mid"
+  ],
+  "characters": [
+   "ท",
+   "ห",
+   "า",
+   "ร"
+  ],
+  "mnemonic": "TA-HARN — SOLDIER in the ta-harn (▲↑ sharp and alert)",
+  "has_crafted_image": false
+ },
+ {
+  "rank": 288,
+  "thai": "ต้องการ",
+  "romanization": "dtâwng-gaan",
+  "english": "need",
+  "word_class": "v",
+  "tones": [
+   "falling",
+   "mid"
+  ],
+  "characters": [
+   "ต",
+   "้",
+   "อ",
+   "ง",
+   "ก",
+   "า",
+   "ร"
+  ],
+  "mnemonic": "TONG-KARN — MUST WANT — tong-karn (↓— pressing need)",
+  "has_crafted_image": false
+ },
+ {
+  "rank": 290,
+  "thai": "ทั้งหมด",
+  "romanization": "tʰáŋ mòt",
+  "english": "total",
+  "word_class": "adj",
+  "tones": [
+   "high",
+   "low"
+  ],
+  "characters": [
+   "ท",
+   "ั",
+   "้",
+   "ง",
+   "ห",
+   "ม",
+   "ด"
+  ],
+  "mnemonic": "TANG-MOT — the TOTAL tang-mot (▲▬ all, complete sum)",
+  "has_crafted_image": false
+ },
+ {
+  "rank": 292,
+  "thai": "ระหว่าง",
+  "romanization": "ráʔ wàːŋ",
+  "english": "between",
+  "word_class": "prep",
+  "tones": [
+   "falling",
+   "low"
+  ],
+  "characters": [
+   "ร",
+   "ะ",
+   "ห",
+   "ว",
+   "่",
+   "า",
+   "ง"
+  ],
+  "mnemonic": "RA-WANG — BETWEEN ra and wang (▲▬ in the gap)",
+  "has_crafted_image": false
+ },
+ {
+  "rank": 294,
+  "thai": "ใด",
+  "romanization": "daj",
+  "english": "any",
+  "word_class": "det",
+  "tones": [
+   "mid"
+  ],
+  "characters": [
+   "ใ",
+   "ด"
+  ],
+  "mnemonic": "DIE — ANY die will do — whichever (— neutral)",
+  "has_crafted_image": false
+ },
+ {
+  "rank": 296,
+  "thai": "ช่วง",
+  "romanization": "tɕʰûːaŋ",
+  "english": "phase",
+  "word_class": "n",
+  "tones": [
+   "falling"
+  ],
+  "characters": [
+   "ช",
+   "่",
+   "ว",
+   "ง"
+  ],
+  "mnemonic": "CHOONG — each PHASE is a choong (↓ voice drops, period)",
+  "has_crafted_image": false
+ },
+ {
+  "rank": 298,
+  "thai": "รวม",
+  "romanization": "ruːam",
+  "english": "including",
+  "word_class": "v",
+  "tones": [
+   "mid"
+  ],
+  "characters": [
+   "ร",
+   "ว",
+   "ม"
+  ],
+  "mnemonic": "ROOM — INCLUDING everyone in the room (— neutral)",
+  "has_crafted_image": false
+ },
+ {
+  "rank": 300,
+  "thai": "เขียน",
+  "romanization": "kʰǐːan",
+  "english": "write",
+  "word_class": "v",
+  "tones": [
+   "rising"
+  ],
+  "characters": [
+   "เ",
+   "ข",
+   "ี",
+   "ย",
+   "น"
+  ],
+  "mnemonic": "KEEN — WRITE when you're keen! (↑ rising, eager)",
+  "has_crafted_image": false
+ },
+ {
+  "rank": 302,
+  "thai": "ชาย",
+  "romanization": "tɕʰaːj",
+  "english": "man",
+  "word_class": "n",
+  "tones": [
+   "mid"
+  ],
+  "characters": [
+   "ช",
+   "า",
+   "ย"
+  ],
+  "mnemonic": "CHAI — a MAN of chai (— neutral)",
+  "has_crafted_image": false
+ },
+ {
+  "rank": 304,
+  "thai": "โอกาส",
+  "romanization": "ʔoː kàːt",
+  "english": "chance",
+  "word_class": "n",
+  "tones": [
+   "mid",
+   "low"
+  ],
+  "characters": [
+   "โ",
+   "อ",
+   "ก",
+   "า",
+   "ส"
+  ],
+  "mnemonic": "OH-KAHT — what a CHANCE! oh-kaht! (—▬ seized opportunity)",
+  "has_crafted_image": false
+ },
+ {
+  "rank": 307,
+  "thai": "นาย",
+  "romanization": "naai",
+  "english": "Mr.",
+  "word_class": "n",
+  "tones": [
+   "mid"
+  ],
+  "characters": [
+   "น",
+   "า",
+   "ย"
+  ],
+  "mnemonic": "A strict German officer with a badge that says “MR. NAAI” is standing in front of his soldiers. When someone addresses him casually, he angrily shouts, “NAAI! NAAI! I am MR. NAAI!” นาย (— neutral) is the male authority — the formal “Mr.” you must address properly.",
+  "has_crafted_image": true
+ },
+ {
+  "rank": 309,
+  "thai": "เรียน",
+  "romanization": "riian",
+  "english": "learn",
+  "word_class": "v",
+  "tones": [
+   "mid"
+  ],
+  "characters": [
+   "เ",
+   "ร",
+   "ี",
+   "ย",
+   "น"
+  ],
+  "mnemonic": "LEAN — LEAN in to LEARN (— neutral)",
+  "has_crafted_image": false
+ },
+ {
+  "rank": 311,
+  "thai": "เสียง",
+  "romanization": "sǐːaŋ",
+  "english": "sound",
+  "word_class": "n",
+  "tones": [
+   "rising"
+  ],
+  "characters": [
+   "เ",
+   "ส",
+   "ี",
+   "ย",
+   "ง"
+  ],
+  "mnemonic": "SIANG — that SOUND! siang! (↑ voice rises, hearing)",
+  "has_crafted_image": false
+ },
+ {
+  "rank": 314,
+  "thai": "ทราบ",
+  "romanization": "sâːp",
+  "english": "know",
+  "word_class": "v",
+  "tones": [
+   "falling"
+  ],
+  "characters": [
+   "ท",
+   "ร",
+   "า",
+   "บ"
+  ],
+  "mnemonic": "SAP — KNOW the sap of it (↓ voice drops, knowing)",
+  "has_crafted_image": false
+ },
+ {
+  "rank": 316,
+  "thai": "ตน",
+  "romanization": "ton",
+  "english": "self",
+  "word_class": "pron",
+  "tones": [
+   "mid"
+  ],
+  "characters": [
+   "ต",
+   "น"
+  ],
+  "mnemonic": "TON — your SELF weighs a ton (— neutral)",
+  "has_crafted_image": false
+ },
+ {
+  "rank": 320,
+  "thai": "เปิด",
+  "romanization": "bpòoet",
+  "english": "turn on",
+  "word_class": "v",
+  "tones": [
+   "low"
+  ],
+  "characters": [
+   "เ",
+   "ป",
+   "ิ",
+   "ด"
+  ],
+  "mnemonic": "POET — OPEN the book of poetry (▬ low, unfolding)",
+  "has_crafted_image": false
+ },
+ {
+  "rank": 322,
+  "thai": "ภายใน",
+  "romanization": "pʰaːj naj",
+  "english": "within",
+  "word_class": "prep",
+  "tones": [
+   "mid",
+   "mid"
+  ],
+  "characters": [
+   "ภ",
+   "า",
+   "ย",
+   "ใ",
+   "น"
+  ],
+  "mnemonic": "PIE-NAI — WITHIN the pie, nai (— neutral, inside)",
+  "has_crafted_image": false
+ },
+ {
+  "rank": 324,
+  "thai": "แทน",
+  "romanization": "tʰɛːn",
+  "english": "instead",
+  "word_class": "v",
+  "tones": [
+   "mid"
+  ],
+  "characters": [
+   "แ",
+   "ท",
+   "น"
+  ],
+  "mnemonic": "TAN — TAN INSTEAD of burn (— neutral)",
+  "has_crafted_image": false
+ },
+ {
+  "rank": 326,
+  "thai": "พวก",
+  "romanization": "pʰûːak",
+  "english": "group; party",
+  "word_class": "n",
+  "tones": [
+   "falling"
+  ],
+  "characters": [
+   "พ",
+   "ว",
+   "ก"
+  ],
+  "mnemonic": "PWAK — the GROUP of pwak flocks together (↓ collective)",
+  "has_crafted_image": false
+ },
+ {
+  "rank": 328,
+  "thai": "รูป",
+  "romanization": "rûːp",
+  "english": "image",
+  "word_class": "n",
+  "tones": [
+   "falling"
+  ],
+  "characters": [
+   "ร",
+   "ู",
+   "ป"
+  ],
+  "mnemonic": "ROOP — an IMAGE in the roop (↓ voice drops, snapshot)",
+  "has_crafted_image": false
+ },
+ {
+  "rank": 330,
+  "thai": "วาง",
+  "romanization": "waang",
+  "english": "put",
+  "word_class": "v",
+  "tones": [
+   "mid"
+  ],
+  "characters": [
+   "ว",
+   "า",
+   "ง"
+  ],
+  "mnemonic": "A woman walks into a shop and carefully puts down a beautiful Vera Wang bag on a table. The moment the bag touches the surface, it sparkles and a glowing word appears: “วาง!” (— neutral). Vera Wang → วาง → to deliberately put/place something down. ",
+  "has_crafted_image": true
+ },
+ {
+  "rank": 332,
+  "thai": "นาน",
+  "romanization": "naːn",
+  "english": "long time",
+  "word_class": "adj",
+  "tones": [
+   "mid"
+  ],
+  "characters": [
+   "น",
+   "า"
+  ],
+  "mnemonic": "NAAN — a LONG naan bread (— neutral)",
+  "has_crafted_image": true
+ },
+ {
+  "rank": 334,
+  "thai": "ผู้หญิง",
+  "romanization": "phûu-yǐng",
+  "english": "woman",
+  "word_class": "n",
+  "tones": [
+   "falling",
+   "rising"
+  ],
+  "characters": [
+   "ผ",
+   "ู",
+   "้",
+   "ห",
+   "ญ",
+   "ิ",
+   "ง"
+  ],
+  "mnemonic": "POO-YING — WOMAN poo-ying (↓↑ dignified)",
+  "has_crafted_image": false
+ },
+ {
+  "rank": 337,
+  "thai": "สังคม",
+  "romanization": "sǎŋ kʰom",
+  "english": "society",
+  "word_class": "n",
+  "tones": [
+   "rising",
+   "mid"
+  ],
+  "characters": [
+   "ส",
+   "ั",
+   "ง",
+   "ค",
+   "ม"
+  ],
+  "mnemonic": "SANG-KOM — SOCIETY sings together, sang-kom (↑— communal)",
+  "has_crafted_image": false
+ },
+ {
+  "rank": 340,
+  "thai": "จำนวน",
+  "romanization": "tɕam nuːan",
+  "english": "amount",
+  "word_class": "n",
+  "tones": [
+   "mid",
+   "mid"
+  ],
+  "characters": [
+   "จ",
+   "ำ",
+   "น",
+   "ว"
+  ],
+  "mnemonic": "JAM-NUAN — the AMOUNT of jam-nuan (— neutral)",
+  "has_crafted_image": false
+ }
+]

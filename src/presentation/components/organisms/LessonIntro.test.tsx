@@ -28,6 +28,9 @@ const SUMMARY: LessonSummary = {
 	rareVowels: [],
 	numerals: [],
 	toneRules: [],
+	// Added on main: the special rules a lesson introduces, which gate whether
+	// a word's tone may be asked for. This fixture teaches none.
+	specialRules: [],
 };
 
 const VIDEO_CONTENT: LessonContent = {

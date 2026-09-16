@@ -233,6 +233,42 @@ export function NumeralCard({ n }: { n: NumeralSummary }) {
 	);
 }
 
+/**
+ * A rule that changes how the script is *read* rather than mapping a class
+ * to a tone — ห นำ, การันต์, unwritten vowels. These were written into
+ * `symbols.ts` and assigned to lessons from the start but never rendered,
+ * so a learner met หมี and ขนาด without ever being shown the rule that
+ * decides their tone.
+ */
+export function SpecialRuleCard({
+	title,
+	description,
+}: {
+	title: string;
+	description: string;
+}) {
+	return (
+		<div className="space-y-3">
+			<div className="text-center py-4">
+				<span className="text-6xl">🔑</span>
+				<h2 className="text-2xl font-semibold mt-4">{title}</h2>
+			</div>
+
+			<div
+				className="rounded-xl p-4"
+				style={{
+					background:
+						"color-mix(in srgb, var(--color-accent) 12%, var(--color-surface))",
+				}}
+			>
+				<p className="text-sm" style={{ color: "var(--color-text)" }}>
+					{description}
+				</p>
+			</div>
+		</div>
+	);
+}
+
 export function ToneRuleCard({ description }: { description: string }) {
 	return (
 		<div className="space-y-3">

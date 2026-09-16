@@ -67,7 +67,8 @@ const ORIGINAL_PROSE =
  * re-record it deliberately. It has now fallen to zero: none of the 82
  * shipped mnemonics overlaps the licensed corpus at the shipped window width.
  */
-const MEASURED_DETECTION = { detected: 0, total: 82 } as const;
+// 83 since ไม้ไต่คู้ joined the vowel inventory and was given a scene.
+const MEASURED_DETECTION = { detected: 0, total: 83 } as const;
 
 /**
  * Every `sceneMnemonic` shipped in `symbols.ts`, composed to the same prose

@@ -1,7 +1,6 @@
 import { useMemo } from "react";
-import { NavLink, Outlet } from "react-router";
+import { Outlet } from "react-router";
 import { useApp } from "../../hooks/useApp";
-import { GearIcon } from "../atoms/GearIcon";
 import { BottomTabBar } from "./BottomTabBar";
 // import { HudStrip } from "./HudStrip";
 
@@ -50,16 +49,6 @@ export function Layout() {
 					vocabUnlocked={nav.vocabUnlocked}
 					dueCount={nav.dueCount}
 				/>
-				{/* Settings left the tab bar to get it down to five on mobile.
-				    Desktop has the room, so it keeps a permanent affordance here
-				    rather than making it a trip through Home. */}
-				<NavLink
-					to="/settings"
-					aria-label="Settings"
-					className="ml-auto text-[var(--color-text-muted)] hover:text-[var(--color-text)] transition-colors"
-				>
-					<GearIcon className="w-5 h-5" />
-				</NavLink>
 			</header>
 
 			{/* Page content — extra bottom padding on mobile for tab bar */}

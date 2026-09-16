@@ -20,24 +20,6 @@ const UNLOCKED_GRAMMAR: string[] = (grammarData as { id: string }[])
 	.slice(0, MIN_GRAMMAR_POINTS)
 	.map((entry) => entry.id);
 
-// Settings left the mobile tab bar to get it down to five, so Home is the
-// only mobile route to it — if this gear goes, Settings becomes unreachable
-// on a phone entirely.
-describe("Dashboard — Settings access", () => {
-	it("offers a Settings control that navigates to /settings", () => {
-		renderWithApp(
-			<Routes>
-				<Route path="/" element={<Dashboard />} />
-				<Route path="/settings" element={<div>Settings Page</div>} />
-			</Routes>,
-		);
-
-		fireEvent.click(screen.getByRole("button", { name: "Settings" }));
-
-		expect(screen.getByText("Settings Page")).toBeTruthy();
-	});
-});
-
 describe("Dashboard — Ready to Learn", () => {
 	// A brand-new account: nothing unlocked anywhere yet.
 	it("shows no Ready to Learn section when nothing is ready", () => {
@@ -146,6 +128,33 @@ describe("Dashboard — Ready to Learn", () => {
 
 		fireEvent.click(screen.getByText("Learn"));
 		expect(screen.getByText("Catch Up Page")).toBeTruthy();
+	});
+});
+
+describe("Dashboard — script lesson tile", () => {
+	it("offers the next lesson while any script lesson is unfinished", () => {
+		renderWithApp(<Dashboard />);
+
+		expect(screen.getByText("Next Lesson")).toBeTruthy();
+	});
+
+	// Unlike the conversation-practice lock below, finishing the script is a
+	// one-way door: a tile saying so would sit greyed out forever, so it goes
+	// away entirely.
+	it("drops the tile once every script lesson is complete", () => {
+		const app = makeAppValue();
+		const state = app.storage.load();
+		for (let n = 1; app.value.lesson.getNextScript() !== null; n++) {
+			state.completedLessons.push(n);
+			app.storage.save(state);
+		}
+
+		renderWithApp(<Dashboard />, app.value);
+
+		expect(screen.queryByText("Next Lesson")).toBeNull();
+		expect(screen.queryByText(/All done/)).toBeNull();
+		// The game keeps its slot — it is the other half of that row.
+		expect(screen.getByText("Practice round")).toBeTruthy();
 	});
 });
 

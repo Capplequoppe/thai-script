@@ -34,6 +34,24 @@ export interface SyllableInfo {
  * `services/WordClassBackfill.ts`; only the shape is here.
  */
 export type WordClassProvenance = "source" | "backfill";
+/**
+ * How far a word's per-syllable tones can be trusted, decided offline by
+ * `scripts/enrich-vocabulary.py` from two independent descriptions of the
+ * word — the tone rules applied to the Thai spelling, and the tone accents
+ * in the romanization.
+ *
+ * - `verified` — both agree on the syllable split *and* the taught rules
+ *   reproduce the tone. The learner can derive the answer from what they
+ *   were taught, so it is safe to ask.
+ * - `exception` — the split is corroborated and the tone is known, but no
+ *   taught rule predicts it: ก็, loanwords like เมตร, lexical อักษรนำ like
+ *   สำเร็จ (governed) against สำนัก (not). Correct to *show*; asking for it
+ *   without saying so teaches that a correctly-applied rule was wrong.
+ * - `unsegmented` — the two disagree on how many syllables the word has
+ *   (สวัสดี is stored as สวัส + ดี, but is sà-wàt-dii), so no per-syllable
+ *   tone can be trusted at all.
+ */
+export type ToneStatus = "verified" | "exception" | "unsegmented";
 
 export interface VocabEntry {
 	thai: string;
@@ -67,6 +85,19 @@ export interface VocabEntry {
 	toneRules: string[];
 	/** The original IPA, moved aside when `romanization` became Paiboon (task 2.2). */
 	ipa?: string;
+	toneStatus: ToneStatus;
+	/**
+	 * Ids from `symbols.ts`'s `specialRules` that this word cannot be read
+	 * without — ห นำ for หมี, การันต์ for จันทร์, the unwritten vowel for คน.
+	 *
+	 * Separate from `toneRules` because they gate a different thing.
+	 * `toneRules` decides whether the word may be *learned* at all; these
+	 * decide whether its **tone** may be asked for, which is a narrower
+	 * question with a much larger blast radius — 43% of otherwise-verified
+	 * words depend on at least one of these, and locking the words
+	 * themselves would gut the vocabulary.
+	 */
+	specialRules: string[];
 	thai_audio_file: string | null;
 	english_audio_file: string | null;
 	image_file: string | null;
@@ -110,3 +141,31 @@ export type RoomAssignment =
 	| { state: "assigned"; room: Room }
 	| { state: "unassignable"; reason: string }
 	| { state: "unclassified" };
+/**
+ * One word inside a tone minimal-pair group, as
+ * `data/tone-minimal-pairs.json` stores it.
+ *
+ * `tones` is `scripts/generate-tone-minimal-pairs.py`'s `thaig2p`
+ * analysis, deliberately not `VocabEntry.syllables[].tone`: the stored
+ * syllable decomposition is a *grapheme* split that mis-reads ห-นำ (หน้า
+ * as ห + final น), consonant clusters (กลัว losing its /l/) and
+ * multi-syllable words (ตลาด as one syllable), so its tones can disagree
+ * with the analysis that decided two words are sound-alikes at all. The
+ * game shows the tones it grouped on.
+ */
+export interface ToneMinimalPairMember {
+	thai: string;
+	tones: string[];
+}
+
+/**
+ * A set of vocabulary words that are indistinguishable by sound except for
+ * their tones — `ไม่`/`ไหม`/`ใหม่`, `สี`/`สี่`. Every group holds at least
+ * two words and at least two distinct tone patterns; `key` is the shared
+ * segmental transcription with the tones stripped off, and doubles as the
+ * group's stable identity.
+ */
+export interface ToneMinimalPairGroup {
+	key: string;
+	members: ToneMinimalPairMember[];
+}

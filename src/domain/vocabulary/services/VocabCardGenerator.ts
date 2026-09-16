@@ -194,6 +194,7 @@ export function generateVocabCards(
 	word: VocabEntry,
 	allWords: VocabEntry[],
 	introducedChars?: ReadonlySet<string>,
+	masteredSpecialRules?: ReadonlySet<string>,
 ): VocabularyCard[] {
 	const thaiPool = allWords.map((w) => w.thai);
 	const englishPool = allWords.map((w) => w.english);
@@ -240,10 +241,30 @@ export function generateVocabCards(
 		});
 	}
 
-	// Tone identification (only if at least one syllable has a tone)
+	// Tone identification. Two gates, and they answer different questions.
+	//
+	// `toneSyllablesOf` answers "are this word's tones known at all" — it
+	// returns nothing unless the tone rules and the romanization agreed (see
+	// `ToneStatus`).
+	//
+	// `masteredSpecialRules` answers "has the learner been shown the rules
+	// this word needs" — หมี cannot be read without ห นำ, จันทร์ without
+	// การันต์, คน without the unwritten vowel. Asking before those lessons
+	// is asking for an answer the learner has been given no way to reach,
+	// which is the whole failure this exists to prevent. Omitting the
+	// argument gates nothing, so callers that predate this keep working; the
+	// card is backfilled by `reconcileCards` once the lesson is done.
 	const toneSyllables = toneSyllablesOf(word);
+	const taughtEverythingNeeded =
+		masteredSpecialRules === undefined ||
+		// `?? []` rather than a bare access: the field is required on
+		// `VocabEntry`, but `src/**/*.test.ts` is excluded from tsconfig, so a
+		// fixture can omit it and only fail at runtime. Treating a missing
+		// value as "no dependencies" keeps card generation working; the type
+		// is what holds real data to the contract.
+		(word.specialRules ?? []).every((rule) => masteredSpecialRules.has(rule));
 
-	if (toneSyllables.length > 0) {
+	if (toneSyllables.length > 0 && taughtEverythingNeeded) {
 		cards.push({
 			id: `vocab:${word.thai}:toneIdentification`,
 			promptWord: word.thai,

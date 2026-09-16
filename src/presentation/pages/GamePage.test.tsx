@@ -4,6 +4,7 @@ import { Link, MemoryRouter, Route, Routes } from "react-router";
 import { describe, expect, it, vi } from "vitest";
 import { PlayGameUseCase } from "../../application/use-cases/PlayGameUseCase";
 import { GameItemSelectionService } from "../../domain/game/services/GameItemSelectionService";
+import { MinimalPairGameItemSource } from "../../domain/game/services/MinimalPairGameItemSource";
 import { SentenceGameItemSource } from "../../domain/game/services/SentenceGameItemSource";
 import { SymbolGameItemSource } from "../../domain/game/services/SymbolGameItemSource";
 import { WordGameItemSource } from "../../domain/game/services/WordGameItemSource";
@@ -15,6 +16,7 @@ import type {
 	CompositionItemContent,
 	GameHistoryEntry,
 	GameItem,
+	MinimalPairItemContent,
 	SentenceChallengeDirection,
 	SentenceItemContent,
 	ToneItemContent,
@@ -206,6 +208,44 @@ function makeCompositionItem(
 }
 
 /**
+ * A `MinimalPairGameItem`, for fixed-round tests. Defaults to the
+ * `toneFromAudio` direction over a two-option ไม่/ใหม่ contrast; pass
+ * `challengeDirection` and `options` to reach the other three.
+ */
+function makeMinimalPairItem(
+	overrides: Partial<MinimalPairItemContent> & {
+		challengeDirection?: "toneFromAudio" | "meaningFromAudio";
+	} = {},
+): GameItem {
+	return {
+		kind: "minimalPair",
+		groupKey: "m a j",
+		thaiWord: "ไม่",
+		englishMeaning: "not",
+		tones: ["falling"],
+		audioUrl: "/a/maj.mp3",
+		options: [
+			{
+				thaiWord: "ไม่",
+				englishMeaning: "not",
+				tones: ["falling"],
+				audioUrl: "/a/maj.mp3",
+			},
+			{ thaiWord: "ใหม่", englishMeaning: "new", tones: ["low"] },
+		],
+		challengeDirection: "toneFromAudio",
+		...overrides,
+	};
+}
+
+/**
+ * ใช่ (falling, "yes") and ใช้ (high, "use") — a real group from the
+ * shipped `tone-minimal-pairs.json`, both with a real recording. Seeding
+ * both makes exactly one tone-pairs group eligible.
+ */
+const RECORDED_SOUND_ALIKE_PAIR = ["ใช่", "ใช้"] as const;
+
+/**
  * A raw *graduated* `VocabCard` DTO — `srs.learningStep: null` is what
  * `GrammarService` counts toward grammar prerequisites.
  */
@@ -278,6 +318,8 @@ function makeMixGame(
 		),
 		// No grammar wired: composition mode is out of this factory's scope.
 		() => [],
+		// Nor pair groups: tone pairs is out of it too.
+		new MinimalPairGameItemSource(cardRepo, [], []),
 	);
 	return { game };
 }
@@ -947,6 +989,7 @@ describe("GamePage", () => {
 				new InMemoryJsonStore<GameHistoryEntry[]>(),
 			),
 			() => [],
+			new MinimalPairGameItemSource(cardRepo, [], []),
 		);
 		// task 1.1/2.1's own unweighted algorithm, called directly with no
 		// `cardRepository` at all (so it *cannot* weight) — the expected
@@ -994,6 +1037,7 @@ describe("GamePage", () => {
 				new InMemoryJsonStore<GameHistoryEntry[]>(),
 			),
 			() => [],
+			new MinimalPairGameItemSource(cardRepo, [], []),
 		);
 		renderWithApp(<GamePage />, { game });
 
@@ -2023,5 +2067,167 @@ describe("GamePage", () => {
 			(screen.getByRole("button", { name: "ข้าว" }) as HTMLButtonElement)
 				.disabled,
 		).toBe(false);
+	});
+
+	// ——— Tone Pairs mode ———
+
+	// An item-count-only setup, like composition's — and a cap that comes
+	// from the sound-alike groups, proven by it *changing* between modes.
+	it("Tone Pairs mode shows an item-count-only setup whose cap comes from the sound-alike groups", () => {
+		renderWithApp(
+			<GamePage />,
+			{},
+			{
+				symbols: ["ม", "น", "ง"],
+				graduatedVocab: [...RECORDED_SOUND_ALIKE_PAIR],
+			},
+		);
+		const countInput = () =>
+			screen.getByLabelText("Items per round") as HTMLInputElement;
+
+		expect(countInput().max).toBe("3");
+
+		fireEvent.click(screen.getByLabelText("Tone Pairs"));
+
+		// None of the practice-only controls, exactly as composition hides
+		// them: the count is the whole setup step.
+		expect(screen.queryByLabelText("Symbols")).toBeNull();
+		expect(screen.queryByLabelText("Words")).toBeNull();
+		expect(screen.queryByLabelText("Sentence Reading")).toBeNull();
+		expect(screen.queryByLabelText("Tone Identification")).toBeNull();
+		expect(screen.queryByLabelText("Draw on canvas")).toBeNull();
+		expect(screen.queryByLabelText("Prioritize weak items")).toBeNull();
+
+		// Both members are recorded, so the group is askable from either —
+		// two questions, not one.
+		expect(countInput().max).toBe("2");
+
+		fireEvent.click(screen.getByLabelText("Practice"));
+		expect(countInput().max).toBe("3");
+	});
+
+	it("dispatches a tone-pairs item to the MinimalPairChallenge organism", () => {
+		const { game } = makeFixedRoundGame([makeMinimalPairItem()]);
+		renderWithApp(<GamePage />, { game });
+
+		fireEvent.click(screen.getByLabelText("Tone Pairs"));
+		startRound();
+
+		expect(screen.getByText("Which tones do you hear?")).toBeTruthy();
+		expect(screen.getByText("Falling")).toBeTruthy();
+		// No other organism's prompt leaked in.
+		expect(screen.queryByText("Say this symbol aloud")).toBeNull();
+		expect(screen.queryByText(TONE_PROMPT)).toBeNull();
+		expect(screen.queryByText("Build this sentence in Thai")).toBeNull();
+		// The round header names the mode, not "Practice Round".
+		expect(screen.getByText("Tone Pairs")).toBeTruthy();
+	});
+
+	it("blocks Tone Pairs with its own explanation when no sound-alikes are learned", () => {
+		renderWithApp(<GamePage />, {}, { symbols: ["ม"] });
+
+		fireEvent.click(screen.getByLabelText("Tone Pairs"));
+
+		expect(
+			screen.getByText(/No sound-alike words to tell apart yet/),
+		).toBeTruthy();
+		expect(
+			screen.queryByText(/No unlocked grammar points to build from yet/),
+		).toBeNull();
+		expect(
+			screen.queryByText(/Select at least one pool to practice/),
+		).toBeNull();
+		expect(screen.queryByRole("button", { name: "Start Round" })).toBeNull();
+		expect(screen.queryByLabelText("Items per round")).toBeNull();
+	});
+
+	// One learned member of a group is not a contrast — the mode must stay
+	// blocked rather than offering a question with no wrong answer.
+	it("stays blocked when only one word of a sound-alike group is learned", () => {
+		renderWithApp(<GamePage />, {}, { graduatedVocab: ["ใช่"] });
+
+		fireEvent.click(screen.getByLabelText("Tone Pairs"));
+
+		expect(
+			screen.getByText(/No sound-alike words to tell apart yet/),
+		).toBeTruthy();
+	});
+
+	it("auto-grades a tone-pairs answer into the round summary with no self-rating step", () => {
+		const { game } = makeFixedRoundGame([makeMinimalPairItem()]);
+		renderWithApp(<GamePage />, { game });
+
+		fireEvent.click(screen.getByLabelText("Tone Pairs"));
+		startRound();
+
+		fireEvent.click(screen.getByRole("button", { name: /Falling/ }));
+		// The self-rating buttons every other organism ends with are absent.
+		expect(screen.queryByRole("button", { name: "Good" })).toBeNull();
+		fireEvent.click(screen.getByRole("button", { name: "Continue" }));
+
+		// A correct answer counts as correct in the round's accuracy.
+		expect(screen.getByText("100%")).toBeTruthy();
+	});
+
+	it("a tone-pairs round completed through the page writes a minimalPair entry with no pool label", () => {
+		const { game, historyStore } = makeFixedRoundGame([makeMinimalPairItem()]);
+		renderWithApp(<GamePage />, { game });
+
+		fireEvent.click(screen.getByLabelText("Tone Pairs"));
+		startRound();
+		fireEvent.click(screen.getByRole("button", { name: /Falling/ }));
+		fireEvent.click(screen.getByRole("button", { name: "Continue" }));
+
+		const loaded = historyStore.load();
+		if (loaded.status !== "ok") throw new Error("expected a stored history");
+		const [entry] = loaded.value;
+		if (!entry) throw new Error("expected one entry");
+		expect(entry.kind).toBe("minimalPair");
+		expect("pools" in entry).toBe(false);
+
+		fireEvent.click(screen.getByRole("button", { name: "Play Again" }));
+		expect(screen.getByText("Tone Pairs · 1 items")).toBeTruthy();
+	});
+
+	// The feature's #1 invariant, for the one auto-graded mode: grading an
+	// answer in code must still leave the SRS blob byte-identical.
+	it("leaves the whole thai-srs-state blob byte-identical after a full tone-pairs round through the real AppProvider", () => {
+		const seeded = JSON.stringify({
+			completedLessons: [1],
+			currentLesson: 2,
+			cards: {},
+			// Required by the validator since sessions began being recorded; a
+			// state without it is rejected as unreadable rather than defaulted.
+			sessionHistory: [],
+			vocabCards: Object.fromEntries(
+				RECORDED_SOUND_ALIKE_PAIR.map((thai) => [
+					`vocab:${thai}:thaiToEnglish`,
+					graduatedVocabCardDTO(thai),
+				]),
+			),
+		});
+		getFakeLocalStorage().setItem("thai-srs-state", seeded);
+
+		render(
+			<AppProvider>
+				<MemoryRouter initialEntries={["/game"]}>
+					<Routes>
+						<Route path="/game" element={<GamePage />} />
+					</Routes>
+				</MemoryRouter>
+			</AppProvider>,
+		);
+
+		fireEvent.click(screen.getByLabelText("Tone Pairs"));
+		setCount("1");
+		startRound();
+
+		// Answer whichever way the draw fell — the option list always holds
+		// the target, and either branch grades and advances.
+		const options = screen.getAllByRole("button", { name: /^[๑๒๓๔]/ });
+		fireEvent.click(options[0] as HTMLElement);
+		fireEvent.click(screen.getByRole("button", { name: "Continue" }));
+
+		expect(getFakeLocalStorage().getItem("thai-srs-state")).toBe(seeded);
 	});
 });

@@ -15,7 +15,10 @@ function syllable(text: string, tone: string | null): SyllableInfo {
 	};
 }
 
-function vocabEntry(syllables: SyllableInfo[]): VocabEntry {
+function vocabEntry(
+	syllables: SyllableInfo[],
+	toneStatus: VocabEntry["toneStatus"] = "verified",
+): VocabEntry {
 	return {
 		thai: "แมว",
 		romanization: "maeo",
@@ -27,6 +30,8 @@ function vocabEntry(syllables: SyllableInfo[]): VocabEntry {
 		characters: ["แ", "ม", "ว"],
 		syllables,
 		toneRules: [],
+		toneStatus,
+		specialRules: [],
 		thai_audio_file: null,
 		english_audio_file: null,
 		image_file: null,
@@ -62,5 +67,29 @@ describe("toneSyllablesOf", () => {
 			{ text: "gaeng", tone: "low" },
 			{ text: "jued", tone: "falling" },
 		]);
+	});
+
+	// The gate. A word whose tones the taught rules do not reproduce must
+	// never become a question: the learner would apply the rule correctly and
+	// be marked wrong, which is the exact failure this exists to prevent.
+	it("asks nothing about a word whose tones no taught rule predicts", () => {
+		const entry = vocabEntry([syllable("ก็", "falling")], "exception");
+
+		expect(toneSyllablesOf(entry)).toEqual([]);
+	});
+
+	it("asks nothing about a word whose syllable split is not corroborated", () => {
+		const entry = vocabEntry(
+			[syllable("สวัส", "low"), syllable("ดี", "mid")],
+			"unsegmented",
+		);
+
+		expect(toneSyllablesOf(entry)).toEqual([]);
+	});
+
+	it("still asks about a verified word", () => {
+		const entry = vocabEntry([syllable("แมว", "rising")], "verified");
+
+		expect(toneSyllablesOf(entry)).toEqual([{ text: "แมว", tone: "rising" }]);
 	});
 });

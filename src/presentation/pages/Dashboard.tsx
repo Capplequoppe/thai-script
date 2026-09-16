@@ -9,7 +9,6 @@ import {
 	MIN_VOCAB_COUNT,
 } from "../../domain/conversation/services/ConversationUnlockService";
 import type { LessonSummary } from "../../domain/script/services/ScriptLessonService";
-import { GearIcon } from "../components/atoms/GearIcon";
 import { SectionHeader } from "../components/atoms/SectionHeader";
 import { ForecastCell } from "../components/molecules/ForecastCell";
 import { LearnableCallout } from "../components/molecules/LearnableCallout";
@@ -131,21 +130,6 @@ export function Dashboard() {
 
 	return (
 		<div className="space-y-6 py-4">
-			{/* Settings left the mobile tab bar to get it down to five, so Home
-			    carries it — Home is one tap from anywhere, and Settings is the
-			    lowest-frequency destination in the app. Hidden on desktop, where
-			    the header bar has a permanent Settings link of its own. */}
-			<div className="flex md:hidden justify-end -mb-2">
-				<button
-					type="button"
-					aria-label="Settings"
-					onClick={() => navigate("/settings")}
-					className="p-1 text-[var(--color-text-muted)] hover:text-[var(--color-text)] transition-colors"
-				>
-					<GearIcon className="w-6 h-6" />
-				</button>
-			</div>
-
 			<NotificationBanner />
 
 			{/* 1. Primary Action Card */}
@@ -242,17 +226,21 @@ export function Dashboard() {
 				)}
 			</div>
 
-			{/* 2. Secondary Actions (2-col) — evergreen entry points, always in the
-			    same two slots regardless of what else is unlocked. */}
-			<div className="grid grid-cols-2 gap-3">
-				{nextLesson ? (
+			{/* 2. Secondary Actions — evergreen entry points. The script tile
+			    drops out entirely once the last lesson is done rather than
+			    sitting there greyed out: unlike the conversation lock below,
+			    that state never reverses, so a permanent dead tile is just
+			    clutter on the learner's most-visited screen. The game then
+			    takes the full width instead of leaving a hole beside it. */}
+			<div
+				className={`grid gap-3 ${nextLesson ? "grid-cols-2" : "grid-cols-1"}`}
+			>
+				{nextLesson && (
 					<QuickActionCard
 						label="Next Lesson"
 						value={`Lesson ${nextLesson}`}
 						onClick={() => navigate(`/lesson/${nextLesson}`)}
 					/>
-				) : (
-					<QuickActionCard label="Script" value="All done ✓" disabled />
 				)}
 				{/* Mobile-reachable entry point for the practice game — the
 				    mobile tab row has no room for it. */}

@@ -522,6 +522,20 @@ export const specialRules: SpecialRule[] = [
 		lesson: 4,
 	},
 	{
+		id: "mai-taikhu",
+		title: "Mai Taikhu (ไม้ไต่คู้) ็",
+		description:
+			"When short sara e (สระ เอะ) has a following consonant, the สระ อะ is replaced by ไม้ไต่คู้ (็) written above the initial consonant -- the same swap ไม้หันอากาศ (ั) makes for สระ อะ. Example: เย็น (yen) = 'cool', เป็น (bpen) = 'to be'. It shortens the vowel; it does not change the tone rules. One common word breaks the pattern: ก็ (gaw) carries ็ with no final consonant at all and is simply learned as a word.",
+		lesson: 7,
+	},
+	{
+		id: "mai-taikhu-ae",
+		title: "ไม้ไต่คู้ with สระ แอะ",
+		description:
+			"ไม้ไต่คู้ (็) shortens สระ แอะ exactly as it shortens สระ เอะ: when a final consonant follows, the สระ อะ is replaced by ็ above the initial consonant. Example: แข็ง (khaeng) = 'hard'. The แ stays in front, so only the อะ moves.",
+		lesson: 8,
+	},
+	{
 		id: "consonant-clusters",
 		title: "Consonant Clusters",
 		description:
@@ -562,6 +576,13 @@ export const specialRules: SpecialRule[] = [
 		description:
 			"A symbol written above a consonant to indicate it is silent. Used to preserve original spellings of loanwords. Example: สัตว์ (sat) = animal, where ว์ is silent.",
 		lesson: 13,
+	},
+	{
+		id: "akson-nam",
+		title: "อักษรนำ (Leading Consonant Across Syllables)",
+		description:
+			"When a word starts with a lone consonant that has no vowel of its own, that consonant becomes its own short syllable with an unwritten 'a' — and if the next syllable starts with one of the single-class low consonants (ง ญ ณ น ม ย ร ล ว ฬ), the leading consonant also lends it its class. ขนาด is kha-NAAT: ข is high class, so the น is read as high class too, giving low tone rather than falling. Same idea as ห นำ, but across two syllables instead of inside one. It is a strong tendency rather than an absolute: สมาชิก is sa-MAA-chik, where the ม keeps its own low class.",
+		lesson: 19,
 	},
 	{
 		id: "hor-nam",
@@ -1782,6 +1803,23 @@ const vowels: ThaiVowel[] = [
 		},
 	}),
 
+	ThaiVowel.fromPlain({
+		character: "็",
+		name: "mai taikhu",
+		length: "short",
+		sound: "e (short e, used when sara e has a following consonant)",
+		position: "above",
+		audioUrl: "/thai-script/audio/sara-e-short.mp3",
+		priority: 12,
+		lesson: 7,
+		sceneMnemonic: {
+			shapeCue:
+				"A small roof set on the consonant, drawn like a tiny ๘. It turns up only when a final consonant crowds the vowel out of its place behind — the same swap ไม้หันอากาศ makes for สระ อะ.",
+			soundCue:
+				"It has no sound of its own. It cuts the vowel underneath it short, and ก็ is the one word that wears it with nothing following.",
+		},
+	}),
+
 	// === Lesson 8 ===
 	ThaiVowel.fromPlain({
 		character: "แ",
@@ -1790,7 +1828,7 @@ const vowels: ThaiVowel[] = [
 		sound: "ae (like A in 'cat', long)",
 		position: "left",
 		audioUrl: "/thai-script/audio/sara-ae-long.mp3",
-		priority: 12,
+		priority: 13,
 		lesson: 8,
 		sceneMnemonic: {
 			shapeCue: "Twin masts raised side by side before the consonant.",
@@ -1804,7 +1842,7 @@ const vowels: ThaiVowel[] = [
 		sound: "ae (like A in 'cat', short)",
 		position: "around",
 		audioUrl: "/thai-script/audio/sara-ae-short.mp3",
-		priority: 13,
+		priority: 14,
 		lesson: 8,
 		sceneMnemonic: {
 			shapeCue:
@@ -1821,7 +1859,7 @@ const vowels: ThaiVowel[] = [
 		sound: "oo (like O in 'go', long)",
 		position: "left",
 		audioUrl: "/thai-script/audio/sara-o-long.mp3",
-		priority: 14,
+		priority: 15,
 		lesson: 9,
 		sceneMnemonic: {
 			shapeCue:
@@ -1836,7 +1874,7 @@ const vowels: ThaiVowel[] = [
 		sound: "o (like O in 'go', short)",
 		position: "around",
 		audioUrl: "/thai-script/audio/sara-o-short.mp3",
-		priority: 15,
+		priority: 16,
 		lesson: 9,
 		sceneMnemonic: {
 			shapeCue:
@@ -1853,7 +1891,7 @@ const vowels: ThaiVowel[] = [
 		sound: "ao (like OW in 'how')",
 		position: "around",
 		audioUrl: "/thai-script/audio/sara-au.mp3",
-		priority: 16,
+		priority: 17,
 		lesson: 10,
 		sceneMnemonic: {
 			shapeCue:
@@ -1869,7 +1907,7 @@ const vowels: ThaiVowel[] = [
 		sound: "ai (like I in 'Hi')",
 		position: "left",
 		audioUrl: "/thai-script/audio/sara-ay-may-malay.mp3",
-		priority: 17,
+		priority: 18,
 		lesson: 10,
 		sceneMnemonic: {
 			shapeCue:
@@ -1885,7 +1923,7 @@ const vowels: ThaiVowel[] = [
 		sound: "ai (same sound as ไ)",
 		position: "left",
 		audioUrl: "/thai-script/audio/sara-ay-may-muan.mp3",
-		priority: 18,
+		priority: 19,
 		lesson: 10,
 		sceneMnemonic: {
 			shapeCue:
@@ -1902,7 +1940,7 @@ const vowels: ThaiVowel[] = [
 		sound: "aaw (like AW in 'saw')",
 		position: "right",
 		audioUrl: "/thai-script/audio/sara-aw-long.mp3",
-		priority: 19,
+		priority: 20,
 		lesson: 11,
 		sceneMnemonic: {
 			shapeCue:
@@ -1917,7 +1955,7 @@ const vowels: ThaiVowel[] = [
 		sound: "aw (short version of สระ ออ)",
 		position: "around",
 		audioUrl: "/thai-script/audio/sara-aw-short.mp3",
-		priority: 20,
+		priority: 21,
 		lesson: 11,
 		sceneMnemonic: {
 			shapeCue:
@@ -1934,7 +1972,7 @@ const vowels: ThaiVowel[] = [
 		sound: "iia (like IA in 'Mamma Mia')",
 		position: "left-above-right",
 		audioUrl: "/thai-script/audio/sara-ia-long.mp3",
-		priority: 21,
+		priority: 22,
 		lesson: 12,
 		sceneMnemonic: {
 			shapeCue:
@@ -1949,7 +1987,7 @@ const vowels: ThaiVowel[] = [
 		sound: "ia (short version of sara iia)",
 		position: "around",
 		audioUrl: "/thai-script/audio/sara-ia-short.mp3",
-		priority: 22,
+		priority: 23,
 		lesson: 12,
 		sceneMnemonic: {
 			shapeCue:
@@ -1966,7 +2004,7 @@ const vowels: ThaiVowel[] = [
 		sound: "ooe (like ER in 'her' with relaxed throat)",
 		position: "around",
 		audioUrl: "/thai-script/audio/sara-uh-long.mp3",
-		priority: 23,
+		priority: 24,
 		lesson: 13,
 		sceneMnemonic: {
 			shapeCue:
@@ -1981,7 +2019,7 @@ const vowels: ThaiVowel[] = [
 		sound: "oe (short version of sara ooe)",
 		position: "around",
 		audioUrl: "/thai-script/audio/sara-uh-short.mp3",
-		priority: 24,
+		priority: 25,
 		lesson: 13,
 		sceneMnemonic: {
 			shapeCue:
@@ -1998,7 +2036,7 @@ const vowels: ThaiVowel[] = [
 		sound: "uuea (combination of สระ อื + สระ อะ)",
 		position: "left-above-right",
 		audioUrl: "/thai-script/audio/sara-eua-long.mp3",
-		priority: 25,
+		priority: 26,
 		lesson: 14,
 		sceneMnemonic: {
 			shapeCue:
@@ -2013,7 +2051,7 @@ const vowels: ThaiVowel[] = [
 		sound: "uea (short combination of สระ อื + สระ อะ)",
 		position: "around",
 		audioUrl: "/thai-script/audio/sara-eua-short.mp3",
-		priority: 26,
+		priority: 27,
 		lesson: 14,
 		sceneMnemonic: {
 			shapeCue: "The three-story spelling with the stacked hooks appended.",
@@ -2490,6 +2528,33 @@ export const words: ThaiWord[] = [
 		tone: "falling",
 		toneRule:
 			"Low class ท + dead ending (long vowel เอ + P-stop พ) = falling tone",
+		lesson: 7,
+	}),
+	ThaiWord.fromPlain({
+		name: "เย็น",
+		romanization: "yen",
+		meaning: "cool, cold",
+		tone: "mid",
+		toneRule:
+			"Low class ย + live ending (short vowel เอะ written ็ + น final) = mid tone",
+		lesson: 7,
+	}),
+	ThaiWord.fromPlain({
+		name: "เม็ด",
+		romanization: "met",
+		meaning: "grain, pill",
+		tone: "high",
+		toneRule:
+			"Low class ม + dead ending (short vowel เอะ written ็ + T-stop ด) = high tone",
+		lesson: 7,
+	}),
+	ThaiWord.fromPlain({
+		name: "เค็ม",
+		romanization: "khem",
+		meaning: "salty",
+		tone: "mid",
+		toneRule:
+			"Low class ค + live ending (short vowel เอะ written ็ + ม final) = mid tone",
 		lesson: 7,
 	}),
 
@@ -3186,12 +3251,12 @@ export const lessons: Lesson[] = [
 	{
 		number: 7,
 		title: "Thaaw thahaan, Haaw nok-huuk, Short e, and Long e",
-		focus: "Two low class consonants and front vowels",
+		focus: "Two low class consonants, front vowels, and ไม้ไต่คู้",
 		consonants: ["ท", "ฮ"],
-		vowels: ["เ", "เ-ะ"],
+		vowels: ["เ", "เ-ะ", "็"],
 		toneMarks: [],
 		toneRulesIntroduced: [],
-		specialRulesIntroduced: [],
+		specialRulesIntroduced: ["mai-taikhu"],
 		videoUrl: "/thai-script/videos/TAME_L7_tpod101_video-h.webm",
 	},
 	{
@@ -3202,7 +3267,7 @@ export const lessons: Lesson[] = [
 		vowels: ["แ", "แ-ะ"],
 		toneMarks: [],
 		toneRulesIntroduced: [],
-		specialRulesIntroduced: [],
+		specialRulesIntroduced: ["mai-taikhu-ae"],
 		videoUrl: "/thai-script/videos/TAME_L8_tpod101_video-h.webm",
 	},
 	{

@@ -1,0 +1,489 @@
+"""Thai tone derivation in `scripts/enrich-vocabulary.py`, and the tones it
+put into the shipped `vocabulary.json`.
+
+Every case in `test_regressions` is one the previous implementation got
+wrong. They are grouped by the defect that caused them, because the fixes
+are independent and a future edit is far more likely to break one group
+than all of them:
+
+  * `_determine_tone` never looked at vowel length — it had an abandoned
+    "we need actual vowel info to distinguish" branch and always fell
+    through to `dead-long`;
+  * the short-vowel set was missing mai han akat (ั) and mai taikhu (็);
+  * a dead syllable with no written vowel was treated as long;
+  * karan (์) was ignored, so a silenced consonant still counted as the
+    final;
+  * the last consonant was taken as the final even when it belonged to the
+    onset — an initial cluster (ประ) or a ห นำ (แหละ);
+  * `อ`/`ว` acting as vowels were read as finals, and vowel marks written
+    after the final (ชาติ) were read as the syllable's vowel.
+
+The shipped-data test asserts on `vocabulary.json` itself rather than on a
+fixture, matching `generate-conversation-bank`'s `test_shipped_bank.py`:
+the file is the deliverable, and the app reads these tones straight out of
+it.
+"""
+
+from __future__ import annotations
+
+import importlib.util
+import json
+import re
+import sys
+from pathlib import Path
+
+import pytest
+
+REPO_ROOT = Path(__file__).resolve().parent.parent.parent
+SCRIPT = REPO_ROOT / "scripts" / "enrich-vocabulary.py"
+VOCABULARY = (
+    REPO_ROOT / "src" / "domain" / "vocabulary" / "data" / "vocabulary.json"
+)
+SYMBOLS_TS = REPO_ROOT / "src" / "domain" / "script" / "data" / "symbols.ts"
+
+
+def _load_script():
+    spec = importlib.util.spec_from_file_location("enrich_vocabulary", SCRIPT)
+    assert spec and spec.loader
+    module = importlib.util.module_from_spec(spec)
+    sys.modules[spec.name] = module
+    spec.loader.exec_module(module)
+    return module
+
+
+enrich = _load_script()
+
+
+def tone_of(syllable: str) -> str | None:
+    """The rule-derived tone, before any romanization cross-check."""
+    return enrich.analyze_syllable(syllable)["tone"]
+
+
+def rule_of(syllable: str) -> str:
+    parsed = enrich.parse_syllable(syllable)
+    assert parsed is not None
+    return enrich._tone_rule_id(
+        enrich._classify_consonant(parsed["initial"]), parsed
+    )
+
+
+# --- the rules, by the defect that used to break them ---------------------
+
+
+@pytest.mark.parametrize(
+    ("syllable", "tone"),
+    [
+        # mai han akat marks a short vowel: low class + dead + short = high
+        ("รับ", "high"),
+        ("วัด", "high"),
+        ("นัก", "high"),
+        # mai taikhu likewise
+        ("เล็ก", "high"),
+        # sara a
+        ("และ", "high"),
+        # no written vowel at all — the implicit vowel is short
+        ("ลด", "high"),
+        ("พบ", "high"),
+        ("รถ", "high"),
+        ("ยก", "high"),
+        # genuinely long, and still falling
+        ("ลูก", "falling"),
+        ("มาก", "falling"),
+    ],
+)
+def test_dead_syllable_vowel_length(syllable: str, tone: str) -> None:
+    assert tone_of(syllable) == tone
+
+
+@pytest.mark.parametrize(
+    ("syllable", "tone"),
+    [
+        ("สัตว์", "low"),      # ว silenced -> dead, not a sonorant final
+        ("ศิลป์", "rising"),   # ป silenced -> ล is the final, live
+        ("สิงห์", "rising"),   # ห silenced -> ง is the final, live
+        ("พิมพ์", "mid"),      # พ silenced -> ม is the final, live
+        ("องค์", "mid"),
+        ("สงฆ์", "rising"),
+    ],
+)
+def test_karan_silences_its_consonant(syllable: str, tone: str) -> None:
+    assert tone_of(syllable) == tone
+
+
+@pytest.mark.parametrize(
+    ("syllable", "tone"),
+    [
+        ("ประ", "low"),      # ปร is an onset cluster, so there is no final
+        ("เพราะ", "high"),   # พร likewise
+        ("ตรง", "mid"),      # ตร cluster, ง is the final -> live
+        ("แหละ", "low"),     # ห นำ: high class, dead, short
+        ("หน้า", "falling"),
+        ("หนา", "rising"),
+        ("อยาก", "low"),     # อ นำ: mid class
+        ("กลัว", "mid"),     # onset cluster plus a real final
+        ("ควาย", "mid"),     # คว is a cluster before a written vowel
+        ("ควบ", "falling"),  # ...but here ว is the vowel /ua/
+    ],
+)
+def test_onset_clusters_and_leading_consonants(syllable: str, tone: str) -> None:
+    assert tone_of(syllable) == tone
+
+
+@pytest.mark.parametrize(
+    ("syllable", "tone"),
+    [
+        ("ชอบ", "falling"),  # medial อ is the long vowel, not a final
+        ("ของ", "rising"),
+        ("ตัว", "mid"),      # trailing ว IS the final, and live
+        ("หัว", "rising"),
+        ("เร็ว", "mid"),
+        ("ชาติ", "falling"),  # the trailing ิ is silent, so the vowel is long
+        ("บุตร", "low"),     # final ตร cluster is /t/, the ร is silent
+        ("สูตร", "low"),
+        ("เลิก", "falling"),  # เ-ิ- is the long vowel /ɤː/
+        ("เกิด", "low"),
+    ],
+)
+def test_vowel_like_consonants_and_silent_finals(syllable: str, tone: str) -> None:
+    assert tone_of(syllable) == tone
+
+
+@pytest.mark.parametrize(
+    ("syllable", "tone"),
+    [
+        ("ข้าว", "falling"),
+        ("ข่าว", "low"),
+        ("ไม่", "falling"),
+        ("ไหม้", "falling"),
+        ("นี้", "high"),
+        ("ค่ะ", "falling"),
+    ],
+)
+def test_tone_marks_are_exceptionless(syllable: str, tone: str) -> None:
+    assert tone_of(syllable) == tone
+
+
+def test_tone_and_tone_rule_cannot_disagree() -> None:
+    """The tone is derived from the rule id, so every unmarked syllable's
+    tone is exactly what its rule says. The old code computed the two in
+    separate functions and they diverged."""
+    for syllable in ["รับ", "ลด", "ประ", "แหละ", "ลูก", "คน", "ตัว", "ชอบ"]:
+        assert tone_of(syllable) == enrich.TONE_BY_RULE[rule_of(syllable)]
+
+
+@pytest.mark.parametrize(
+    ("syllable", "rule_id"),
+    [
+        ("รับ", "low-dead-short"),
+        ("ลูก", "low-dead-long"),
+        ("ประ", "mid-dead-short"),
+        ("คน", "low-live"),
+        ("หนา", "high-live"),
+        ("ข้าว", "high-maytho"),
+    ],
+)
+def test_tone_rule_ids(syllable: str, rule_id: str) -> None:
+    assert rule_of(syllable) == rule_id
+
+
+# --- the prefix split, อักษรนำ, and the verdict -------------------------------
+
+
+@pytest.mark.parametrize(
+    ("word", "syllables"),
+    [
+        # The whole point: no PyThaiNLP engine splits these, and each is two
+        # spoken syllables carrying two different tones.
+        ("สบาย", ["ส", "บาย"]),
+        ("ขนาด", ["ข", "นาด"]),
+        ("ตลาด", ["ต", "ลาด"]),
+        ("อร่อย", ["อ", "ร่อย"]),
+        ("ทหาร", ["ท", "หาร"]),
+        # A vowel written before its consonant belongs to the second syllable.
+        ("แสดง", ["ส", "แดง"]),
+    ],
+)
+def test_prefix_syllables_are_split(word: str, syllables: list[str]) -> None:
+    assert enrich.split_prefix_syllable(word) == syllables
+
+
+@pytest.mark.parametrize(
+    "word",
+    [
+        "ปลา",     # onset cluster
+        "กลัว",    # onset cluster
+        "ตรง",     # ตร is a cluster even though ตล is not
+        "จริง",    # silent ร — one onset
+        "หมี",     # ห นำ
+        "อยาก",    # อ นำ
+        "วรรค",    # ร หัน
+        "ของ",     # medial อ is the vowel, not a second onset
+        "ตัว",     # trailing ว is the final
+        "องค์",    # karan leaves only one live consonant after the initial
+    ],
+)
+def test_words_that_must_not_be_split(word: str) -> None:
+    assert enrich.split_prefix_syllable(word) == [word]
+
+
+@pytest.mark.parametrize(
+    ("word", "tones"),
+    [
+        # A bare consonant prefix carries an unwritten short /a/, which is
+        # DEAD-short — not the "live" that "no written vowel" defaults to.
+        ("สบาย", ["low", "mid"]),
+        ("ตลาด", ["low", "low"]),      # อักษรนำ: ต governs ล
+        ("ขนาด", ["low", "low"]),      # ข governs น
+        ("ทหาร", ["high", "rising"]),  # low-class prefix is dead-short = high
+        ("อร่อย", ["low", "low"]),     # อ governs ร *under* mai ek
+    ],
+)
+def test_prefix_and_leading_consonant_tones(word: str, tones: list[str]) -> None:
+    entry = {"thai": word, "romanization": "", "syllables": []}
+    enrich.enrich_entry(entry, retokenize=True)
+    assert [s["tone"] for s in entry["syllables"]] == tones
+
+
+def test_tone_status_verified() -> None:
+    entry = {"thai": "สบาย", "romanization": "sà baai", "syllables": []}
+    assert enrich.enrich_entry(entry, retokenize=True) == "verified"
+
+
+def test_tone_status_exception_for_a_word_no_rule_predicts() -> None:
+    # ก็ is /kɔ̂ː/. Mid class, no mark, and nothing about the spelling gives
+    # falling — it is simply irregular.
+    entry = {"thai": "ก็", "romanization": "kɔ̂ː", "syllables": []}
+    assert enrich.enrich_entry(entry, retokenize=True) == "exception"
+
+
+def test_tone_status_unsegmented_when_the_two_sources_disagree() -> None:
+    # สวัสดี is sà-wàt-dii; the tokenizer gives สวัส + ดี, and the prefix
+    # split cannot rescue it, so the counts never line up.
+    entry = {"thai": "สวัสดี", "romanization": "sà wàt diː", "syllables": []}
+    assert enrich.enrich_entry(entry, retokenize=True) == "unsegmented"
+
+
+def test_the_shipped_file_carries_a_status_for_every_entry() -> None:
+    entries = json.loads(VOCABULARY.read_text(encoding="utf-8"))
+    statuses = {e.get("toneStatus") for e in entries}
+    assert statuses <= {"verified", "exception", "unsegmented"}
+    assert None not in statuses
+
+
+def test_the_shipped_verified_share_has_not_regressed() -> None:
+    """The quizzable pool. It was 82.9% before the splitter and 87.8% after;
+    a change that drops it below this bound has narrowed what the app can
+    teach and should say so out loud."""
+    entries = json.loads(VOCABULARY.read_text(encoding="utf-8"))
+    verified = sum(1 for e in entries if e["toneStatus"] == "verified")
+    assert verified / len(entries) > 0.85, f"{verified}/{len(entries)}"
+
+
+# --- the romanization cross-check ------------------------------------------
+
+
+def test_romanization_overrides_only_unmarked_syllables() -> None:
+    # เมตร is a loanword: the rules say falling, the transcriber says high,
+    # and the transcriber is right because no tone mark constrains it.
+    entry = {
+        "thai": "เมตร",
+        "romanization": "méet",
+        "syllables": [{"text": "เมตร"}],
+    }
+    enrich.enrich_entry(entry, retokenize=False)
+    assert entry["syllables"][0]["tone"] == "high"
+    # ...but the rule it is read by is still the rule it is read by.
+    assert entry["toneRules"] == ["low-dead-long"]
+
+
+def test_romanization_never_overrides_a_marked_syllable() -> None:
+    # ข้าว is transcribed `khàao` (low) in the shipped data, which is wrong:
+    # high class + mai tho is falling, with no exceptions.
+    entry = {
+        "thai": "ข้าว",
+        "romanization": "khàao",
+        "syllables": [{"text": "ข้าว"}],
+    }
+    enrich.enrich_entry(entry, retokenize=False)
+    assert entry["syllables"][0]["tone"] == "falling"
+
+
+def test_untrustworthy_romanizations_are_refused() -> None:
+    # A name-style transcription carries no accents; reading it would make
+    # every syllable mid.
+    assert enrich.romanized_tones("Rhong Hai") is None
+    assert enrich.romanized_tones("") is None
+    assert enrich.romanized_tones("khàao") == ("low",)
+    assert enrich.romanized_tones("sǎa-mâat") == ("rising", "falling")
+
+
+def test_a_syllable_count_mismatch_blocks_the_override() -> None:
+    entry = {
+        "thai": "เมตร",
+        "romanization": "kì-loo-méet",   # three romanized syllables, one stored
+        "syllables": [{"text": "เมตร"}],
+    }
+    enrich.enrich_entry(entry, retokenize=False)
+    assert entry["syllables"][0]["tone"] == "falling"  # the rule's answer
+
+
+# --- the shipped file -------------------------------------------------------
+
+
+@pytest.fixture(scope="module")
+def vocabulary() -> list[dict]:
+    return json.loads(VOCABULARY.read_text(encoding="utf-8"))
+
+
+@pytest.fixture(scope="module")
+def by_thai(vocabulary: list[dict]) -> dict[str, dict]:
+    best: dict[str, dict] = {}
+    for entry in sorted(vocabulary, key=lambda e: e.get("rank") or 10**9):
+        best.setdefault(entry["thai"], entry)
+    return best
+
+
+@pytest.mark.parametrize(
+    ("word", "tones"),
+    [
+        ("รับ", ["high"]),
+        ("ทุก", ["high"]),
+        ("และ", ["high"]),
+        ("วัด", ["high"]),
+        ("หน้า", ["falling"]),
+        ("หนา", ["rising"]),
+        ("ข้าว", ["falling"]),
+        ("ขาว", ["rising"]),
+        ("ข่าว", ["low"]),
+        ("ไม่", ["falling"]),
+        ("ไหม", ["rising"]),
+        ("ใหม่", ["low"]),
+        ("ตัว", ["mid"]),
+        ("ก็", ["falling"]),
+        ("สำเร็จ", ["rising", "low"]),
+        ("จันทร์", ["mid"]),
+    ],
+)
+def test_shipped_vocabulary_has_the_right_tones(
+    by_thai: dict[str, dict], word: str, tones: list[str]
+) -> None:
+    assert [s["tone"] for s in by_thai[word]["syllables"]] == tones
+
+
+def test_shipped_vocabulary_emits_only_known_tone_rule_ids(
+    vocabulary: list[dict],
+) -> None:
+    """Every id must exist in `symbols.ts`, or the word can never unlock —
+    `isWordMastered` looks each one up in the learner's mastered set."""
+    known = set(enrich.TONE_BY_RULE) | {
+        f"{cls}-{mark}" for cls, mark in enrich.TONE_BY_MARK
+    }
+    seen = {rule for entry in vocabulary for rule in entry["toneRules"]}
+    assert seen <= known, seen - known
+
+
+def test_shipped_vocabulary_agrees_with_its_own_romanizations(
+    by_thai: dict[str, dict],
+) -> None:
+    """The two derivations agree on all but a small tail of words whose
+    romanization is itself wrong or whose stored syllable split is. This
+    guards the *rate*: it was 77.4% before the fix and is 99.76% after, and
+    a regression that reintroduced any of the defects above would drop it
+    well below the bound here."""
+    compared = agreed = 0
+    for entry in by_thai.values():
+        romanized = enrich.romanized_tones(entry.get("romanization", ""))
+        stored = [s["tone"] for s in entry["syllables"]]
+        if not romanized or len(romanized) != len(stored):
+            continue
+        compared += 1
+        agreed += list(romanized) == stored
+    assert compared > 4000
+    assert agreed / compared > 0.99, f"{agreed}/{compared}"
+
+
+# --- the app's tables and this script's must not drift ------------------------
+
+"""`symbols.ts` is the authority.
+
+Its `toneRules[].resultingTone` and `toneMarkRules[].resultingTone` are what
+the lessons teach and what the tone-rule cards quiz, so they define what is
+true for this app. `enrich-vocabulary.py` restates them in Python because it
+runs offline and cannot import TypeScript — which is a duplication, and this
+is the guard on it: edit one table without the other and these fail.
+
+Parsing `symbols.ts` with a regex is deliberate. The alternative — generating
+one language's table from the other at build time — buys the same guarantee
+and costs a build step that has to run before anyone can trust the data.
+"""
+
+
+def _read_symbols_ts() -> str:
+    return SYMBOLS_TS.read_text(encoding="utf-8")
+
+
+# `symbols.ts` names the marks the way a learner says them; `vocabulary.json`
+# and the rule ids use the compact spelling. `VocabularyLessonService`'s own
+# `markNameMap` carries the same translation for the same reason.
+MARK_NAMES = {
+    "mai ek": "mayek",
+    "mai tho": "maytho",
+    "mai tri": "maytri",
+    "mai chattawa": "mayjattawa",
+}
+
+
+def parse_ts_tone_rules(source: str) -> dict[str, str]:
+    """`{rule id: resulting tone}` from `symbols.ts`'s `toneRules`."""
+    return dict(
+        re.findall(
+            r'id:\s*"([a-z-]+)",\s*consonantClass:[^,]+,\s*'
+            r'syllableType:\s*"[a-z-]+",\s*resultingTone:\s*"(\w+)"',
+            source,
+        )
+    )
+
+
+def parse_ts_tone_mark_rules(source: str) -> dict[str, str]:
+    """`{"<class>-<mark id>": resulting tone}` from `toneMarkRules`."""
+    found = re.findall(
+        r'toneMarkName:\s*"([^"]+)",\s*consonantClass:\s*'
+        r'ThaiSymbolClass\.(\w+),\s*resultingTone:\s*"(\w+)"',
+        source,
+    )
+    return {
+        f"{cls.lower()}-{MARK_NAMES[name]}": tone for name, cls, tone in found
+    }
+
+
+def test_the_regexes_still_match_symbols_ts() -> None:
+    """Guards the guard: a refactor of `symbols.ts` that breaks these patterns
+    would otherwise make both tests below pass vacuously on empty tables."""
+    source = _read_symbols_ts()
+    assert len(parse_ts_tone_rules(source)) == 9
+    assert len(parse_ts_tone_mark_rules(source)) == 8
+
+
+def test_tone_rule_table_matches_the_app() -> None:
+    expected = parse_ts_tone_rules(_read_symbols_ts())
+    assert enrich.TONE_BY_RULE == expected
+
+
+def test_tone_mark_table_matches_the_app() -> None:
+    expected = parse_ts_tone_mark_rules(_read_symbols_ts())
+    actual = {f"{cls}-{mark}": tone for (cls, mark), tone in enrich.TONE_BY_MARK.items()}
+    assert actual == expected
+
+
+def test_every_rule_id_the_enricher_emits_is_taught_by_the_app() -> None:
+    """A rule id with no `symbols.ts` entry can never be mastered, so a word
+    carrying it would be permanently locked (`isWordMastered` looks each id up
+    in the learner's mastered set)."""
+    source = _read_symbols_ts()
+    taught = set(parse_ts_tone_rules(source)) | set(parse_ts_tone_mark_rules(source))
+    emitted = {
+        rule
+        for entry in json.loads(VOCABULARY.read_text(encoding="utf-8"))
+        for rule in entry["toneRules"]
+    }
+    assert emitted <= taught, emitted - taught

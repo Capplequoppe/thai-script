@@ -66,15 +66,18 @@ const recordsUnderTest: readonly RecordUnderTest[] = [
 
 describe("coverage", () => {
 	// AC1 — exact counts, so a shrinking source cannot pass by covering fewer.
-	it("carries a scene mnemonic on every one of the 44 consonants and 29 vowels", () => {
+	// 30 vowels since ไม้ไต่คู้ ( ็ ) joined lesson 7: it is written like a
+	// vowel sign and shortens the one beneath it, though it sounds nothing
+	// itself.
+	it("carries a scene mnemonic on every one of the 44 consonants and 30 vowels", () => {
 		expect(consonants).toHaveLength(44);
-		expect(vowels).toHaveLength(29);
+		expect(vowels).toHaveLength(30);
 		for (const symbol of [...consonants, ...vowels]) {
 			expect(symbol.sceneMnemonic, symbol.character).toBeDefined();
 		}
 	});
 
-	// The remainder of the 82 mnemonic-carrying records the task replaces.
+	// The remainder of the 83 mnemonic-carrying records the task replaces.
 	it("covers the four tone marks and the five mnemonic-bearing words too", () => {
 		expect(toneMarks).toHaveLength(4);
 		for (const mark of toneMarks) {
@@ -88,7 +91,8 @@ describe("coverage", () => {
 			"หมี",
 			"อย่า",
 		]);
-		expect(recordsUnderTest).toHaveLength(82);
+		// 83 since ไม้ไต่คู้ joined the vowel inventory.
+		expect(recordsUnderTest).toHaveLength(83);
 	});
 });
 

@@ -181,6 +181,34 @@ describe("LearningService", () => {
 	});
 
 	describe("getLessonSummary", () => {
+		// `symbols.ts` has carried these rules, and each lesson's
+		// `specialRulesIntroduced`, from the start — but nothing read either,
+		// so ห นำ was never taught while หมี was still quizzed on its tone.
+		it("surfaces the reading rules a lesson introduces", () => {
+			// `getLessonSummary` takes a *position* in `lessonSequence`, not a
+			// `symbols.ts` lesson number — and this branch resequenced the
+			// course. ห นำ is position 18 (`lesson-leading-consonants`, legacy
+			// 28), where it now arrives with the rest of อักษรนำ.
+			expect(service.getLessonSummary(18).specialRules).toEqual([
+				expect.objectContaining({ id: "hor-nam" }),
+				expect.objectContaining({ id: "silent-o-before-yo" }),
+			]);
+			expect(
+				service.getLessonSummary(15).specialRules.map((r) => r.id),
+			).toEqual(["unwritten-vowels", "ror-han"]);
+		});
+
+		it("carries a title and description for each, not just an id", () => {
+			const [rule] = service.getLessonSummary(18).specialRules;
+
+			expect(rule?.title).toContain("ห นำ");
+			expect(rule?.description.length).toBeGreaterThan(40);
+		});
+
+		it("is empty for a lesson that introduces none", () => {
+			expect(service.getLessonSummary(1).specialRules).toEqual([]);
+		});
+
 		it("returns lesson with symbol info for a given lesson number", () => {
 			const summary = service.getLessonSummary(1);
 			expect(summary.lessonNumber).toBe(1);

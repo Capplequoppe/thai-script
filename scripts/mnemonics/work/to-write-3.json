@@ -1,0 +1,1125 @@
+[
+ {
+  "rank": 28,
+  "thai": "ขอโทษ",
+  "romanization": "khǎaw-thôot",
+  "english": "I'm sorry.",
+  "word_class": "",
+  "tones": [
+   "rising",
+   "falling"
+  ],
+  "characters": [
+   "ข",
+   "อ",
+   "โ",
+   "ท",
+   "ษ"
+  ]
+ },
+ {
+  "rank": 73,
+  "thai": "ทำไม",
+  "romanization": "tham-mai",
+  "english": "why",
+  "word_class": "adv",
+  "tones": [
+   "mid",
+   "mid"
+  ],
+  "characters": [
+   "ท",
+   "ำ",
+   "ไ",
+   "ม"
+  ]
+ },
+ {
+  "rank": 98,
+  "thai": "ข้าว",
+  "romanization": "khàao",
+  "english": "rice",
+  "word_class": "n",
+  "tones": [
+   "falling"
+  ],
+  "characters": [
+   "ข",
+   "้",
+   "า",
+   "ว"
+  ]
+ },
+ {
+  "rank": 135,
+  "thai": "หิว",
+  "romanization": "hǐu",
+  "english": "hungry",
+  "word_class": "v",
+  "tones": [
+   "rising"
+  ],
+  "characters": [
+   "ห",
+   "ิ",
+   "ว"
+  ]
+ },
+ {
+  "rank": 149,
+  "thai": "ร้อน",
+  "romanization": "ráawn",
+  "english": "hot",
+  "word_class": "adj",
+  "tones": [
+   "high"
+  ],
+  "characters": [
+   "ร",
+   "้",
+   "อ",
+   "น"
+  ]
+ },
+ {
+  "rank": 153,
+  "thai": "อร่อย",
+  "romanization": "à-ràwy",
+  "english": "delicious",
+  "word_class": "adj",
+  "tones": [
+   "low"
+  ],
+  "characters": [
+   "อ",
+   "ร",
+   "่",
+   "ย"
+  ]
+ },
+ {
+  "rank": 203,
+  "thai": "แต่งงาน",
+  "romanization": "dtàaeng-ngaan",
+  "english": "marry",
+  "word_class": "v",
+  "tones": [
+   "low",
+   "mid"
+  ],
+  "characters": [
+   "แ",
+   "ต",
+   "่",
+   "ง",
+   "า",
+   "น"
+  ]
+ },
+ {
+  "rank": 221,
+  "thai": "ยา",
+  "romanization": "yaa",
+  "english": "medicine",
+  "word_class": "n",
+  "tones": [
+   "mid"
+  ],
+  "characters": [
+   "ย",
+   "า"
+  ]
+ },
+ {
+  "rank": 228,
+  "thai": "ไกล",
+  "romanization": "glai",
+  "english": "far",
+  "word_class": "adj",
+  "tones": [
+   "mid"
+  ],
+  "characters": [
+   "ไ",
+   "ก",
+   "ล"
+  ]
+ },
+ {
+  "rank": 246,
+  "thai": "ชั่วโมง",
+  "romanization": "chûua-moong",
+  "english": "hour",
+  "word_class": "n",
+  "tones": [
+   "falling",
+   "mid"
+  ],
+  "characters": [
+   "ช",
+   "ั",
+   "่",
+   "ว",
+   "โ",
+   "ม",
+   "ง"
+  ]
+ },
+ {
+  "rank": 282,
+  "thai": "วันนี้",
+  "romanization": "wan-níi",
+  "english": "today",
+  "word_class": "n",
+  "tones": [
+   "mid",
+   "high"
+  ],
+  "characters": [
+   "ว",
+   "ั",
+   "น",
+   "ี",
+   "้"
+  ]
+ },
+ {
+  "rank": 317,
+  "thai": "หมอ",
+  "romanization": "mǎaw",
+  "english": "medical doctor",
+  "word_class": "n",
+  "tones": [
+   "rising"
+  ],
+  "characters": [
+   "ห",
+   "ม",
+   "อ"
+  ]
+ },
+ {
+  "rank": 339,
+  "thai": "ซ้าย",
+  "romanization": "sáːj",
+  "english": "left",
+  "word_class": "",
+  "tones": [
+   "high"
+  ],
+  "characters": [
+   "ซ",
+   "้",
+   "า",
+   "ย"
+  ]
+ },
+ {
+  "rank": 344,
+  "thai": "วัด",
+  "romanization": "wát",
+  "english": "temple",
+  "word_class": "n",
+  "tones": [
+   "falling"
+  ],
+  "characters": [
+   "ว",
+   "ั",
+   "ด"
+  ]
+ },
+ {
+  "rank": 347,
+  "thai": "แน่นอน",
+  "romanization": "nɛ̂ː nɔːn",
+  "english": "of course",
+  "word_class": "adv",
+  "tones": [
+   "falling",
+   "mid"
+  ],
+  "characters": [
+   "แ",
+   "น",
+   "่",
+   "อ"
+  ]
+ },
+ {
+  "rank": 350,
+  "thai": "รักษา",
+  "romanization": "rák-sǎa",
+  "english": "maintain",
+  "word_class": "v",
+  "tones": [
+   "falling",
+   "rising"
+  ],
+  "characters": [
+   "ร",
+   "ั",
+   "ก",
+   "ษ",
+   "า"
+  ]
+ },
+ {
+  "rank": 353,
+  "thai": "ชาวบ้าน",
+  "romanization": "tɕʰaːw bâːn",
+  "english": "villagers",
+  "word_class": "n",
+  "tones": [
+   "mid",
+   "falling"
+  ],
+  "characters": [
+   "ช",
+   "า",
+   "ว",
+   "บ",
+   "้",
+   "น"
+  ]
+ },
+ {
+  "rank": 356,
+  "thai": "เจ้าของ",
+  "romanization": "tɕâw kʰɔ̌ːŋ",
+  "english": "owner",
+  "word_class": "n",
+  "tones": [
+   "falling",
+   "rising"
+  ],
+  "characters": [
+   "เ",
+   "จ",
+   "้",
+   "า",
+   "ข",
+   "อ",
+   "ง"
+  ]
+ },
+ {
+  "rank": 359,
+  "thai": "ใต้",
+  "romanization": "tâj",
+  "english": "under",
+  "word_class": "prep",
+  "tones": [
+   "falling"
+  ],
+  "characters": [
+   "ใ",
+   "ต",
+   "้"
+  ]
+ },
+ {
+  "rank": 362,
+  "thai": "ข้าม",
+  "romanization": "kʰâːm",
+  "english": "cross over; across",
+  "word_class": "v",
+  "tones": [
+   "falling"
+  ],
+  "characters": [
+   "ข",
+   "้",
+   "า",
+   "ม"
+  ]
+ },
+ {
+  "rank": 365,
+  "thai": "รู้สึก",
+  "romanization": "rúu-sùek",
+  "english": "feel",
+  "word_class": "v",
+  "tones": [
+   "high",
+   "low"
+  ],
+  "characters": [
+   "ร",
+   "ู",
+   "้",
+   "ส",
+   "ึ",
+   "ก"
+  ]
+ },
+ {
+  "rank": 368,
+  "thai": "ผัก",
+  "romanization": "phàk",
+  "english": "vegetable",
+  "word_class": "n",
+  "tones": [
+   "low"
+  ],
+  "characters": [
+   "ผ",
+   "ั",
+   "ก"
+  ]
+ },
+ {
+  "rank": 371,
+  "thai": "แต่ละ",
+  "romanization": "tɛ̀ː láʔ",
+  "english": "each",
+  "word_class": "det",
+  "tones": [
+   "low",
+   "falling"
+  ],
+  "characters": [
+   "แ",
+   "ต",
+   "่",
+   "ล",
+   "ะ"
+  ]
+ },
+ {
+  "rank": 374,
+  "thai": "เพลง",
+  "romanization": "pʰleːŋ",
+  "english": "music; song",
+  "word_class": "n",
+  "tones": [
+   "mid"
+  ],
+  "characters": [
+   "เ",
+   "พ",
+   "ล",
+   "ง"
+  ]
+ },
+ {
+  "rank": 377,
+  "thai": "รอบ",
+  "romanization": "rɔ̂ːp",
+  "english": "cycle; round; circuit",
+  "word_class": "n",
+  "tones": [
+   "falling"
+  ],
+  "characters": [
+   "ร",
+   "อ",
+   "บ"
+  ]
+ },
+ {
+  "rank": 380,
+  "thai": "ปลาย",
+  "romanization": "plaːj",
+  "english": "end",
+  "word_class": "n",
+  "tones": [
+   "mid"
+  ],
+  "characters": [
+   "ป",
+   "ล",
+   "า",
+   "ย"
+  ]
+ },
+ {
+  "rank": 383,
+  "thai": "สงบ",
+  "romanization": "sà-ngòp",
+  "english": "calm",
+  "word_class": "adj",
+  "tones": [
+   "low"
+  ],
+  "characters": [
+   "ส",
+   "ง",
+   "บ"
+  ]
+ },
+ {
+  "rank": 386,
+  "thai": "เดิน",
+  "romanization": "dɤːn",
+  "english": "walk",
+  "word_class": "v",
+  "tones": [
+   "mid"
+  ],
+  "characters": [
+   "เ",
+   "ด",
+   "ิ",
+   "น"
+  ]
+ },
+ {
+  "rank": 389,
+  "thai": "โสด",
+  "romanization": "sòːt",
+  "english": "single; unmarried",
+  "word_class": "",
+  "tones": [
+   "low"
+  ],
+  "characters": [
+   "โ",
+   "ส",
+   "ด"
+  ]
+ },
+ {
+  "rank": 392,
+  "thai": "ฉันสบายดี",
+  "romanization": "chǎn sà-baai dii",
+  "english": "I'm good.",
+  "word_class": "",
+  "tones": [
+   "rising",
+   "rising",
+   "mid"
+  ],
+  "characters": [
+   "ฉ",
+   "ั",
+   "น",
+   "ส",
+   "บ",
+   "า",
+   "ย",
+   "ด",
+   "ี"
+  ]
+ },
+ {
+  "rank": 395,
+  "thai": "สอง",
+  "romanization": "sǎawng",
+  "english": "two",
+  "word_class": "n",
+  "tones": [
+   "rising"
+  ],
+  "characters": [
+   "ส",
+   "อ",
+   "ง"
+  ]
+ },
+ {
+  "rank": 398,
+  "thai": "ห้า",
+  "romanization": "hâa",
+  "english": "five",
+  "word_class": "n",
+  "tones": [
+   "falling"
+  ],
+  "characters": [
+   "ห",
+   "้",
+   "า"
+  ]
+ },
+ {
+  "rank": 401,
+  "thai": "แปด",
+  "romanization": "bpàaet",
+  "english": "eight",
+  "word_class": "n",
+  "tones": [
+   "low"
+  ],
+  "characters": [
+   "แ",
+   "ป",
+   "ด"
+  ]
+ },
+ {
+  "rank": 404,
+  "thai": "ยี่สิบ",
+  "romanization": "yîi-sìp",
+  "english": "twenty",
+  "word_class": "n",
+  "tones": [
+   "falling",
+   "low"
+  ],
+  "characters": [
+   "ย",
+   "ี",
+   "่",
+   "ส",
+   "ิ",
+   "บ"
+  ]
+ },
+ {
+  "rank": 407,
+  "thai": "ด้วยความยินดี",
+  "romanization": "dûuai khwaam-yin-dii",
+  "english": "You're welcome.",
+  "word_class": "",
+  "tones": [
+   "falling",
+   "mid",
+   "mid",
+   "mid"
+  ],
+  "characters": [
+   "ด",
+   "้",
+   "ว",
+   "ย",
+   "ค",
+   "า",
+   "ม",
+   "ิ",
+   "น",
+   "ี"
+  ]
+ },
+ {
+  "rank": 410,
+  "thai": "ญี่ปุ่น",
+  "romanization": "yîi-bpùn",
+  "english": "Japan",
+  "word_class": "",
+  "tones": [
+   "falling",
+   "low"
+  ],
+  "characters": [
+   "ญ",
+   "ี",
+   "่",
+   "ป",
+   "ุ",
+   "น"
+  ]
+ },
+ {
+  "rank": 413,
+  "thai": "ร้อย",
+  "romanization": "rɔ́ːj",
+  "english": "hundred",
+  "word_class": "n",
+  "tones": [
+   "high"
+  ],
+  "characters": [
+   "ร",
+   "้",
+   "อ",
+   "ย"
+  ]
+ },
+ {
+  "rank": 416,
+  "thai": "เครื่อง",
+  "romanization": "kʰrɯ̂ːaŋ",
+  "english": "machine",
+  "word_class": "n",
+  "tones": [
+   "falling"
+  ],
+  "characters": [
+   "เ",
+   "ค",
+   "ร",
+   "ื",
+   "่",
+   "อ",
+   "ง"
+  ]
+ },
+ {
+  "rank": 419,
+  "thai": "กล่าว",
+  "romanization": "klàːw",
+  "english": "say",
+  "word_class": "v",
+  "tones": [
+   "low"
+  ],
+  "characters": [
+   "ก",
+   "ล",
+   "่",
+   "า",
+   "ว"
+  ]
+ },
+ {
+  "rank": 422,
+  "thai": "ขวา",
+  "romanization": "kʰwǎː",
+  "english": "right",
+  "word_class": "",
+  "tones": [
+   "rising"
+  ],
+  "characters": [
+   "ข",
+   "ว",
+   "า"
+  ]
+ },
+ {
+  "rank": 425,
+  "thai": "หวาน",
+  "romanization": "wǎan",
+  "english": "sweet",
+  "word_class": "adj",
+  "tones": [
+   "rising"
+  ],
+  "characters": [
+   "ห",
+   "ว",
+   "า",
+   "น"
+  ]
+ },
+ {
+  "rank": 428,
+  "thai": "ไก่",
+  "romanization": "gài",
+  "english": "chicken",
+  "word_class": "n",
+  "tones": [
+   "low"
+  ],
+  "characters": [
+   "ไ",
+   "ก",
+   "่"
+  ]
+ },
+ {
+  "rank": 431,
+  "thai": "เกิน",
+  "romanization": "kɤːn",
+  "english": "exceed; surpass; go beyond",
+  "word_class": "v",
+  "tones": [
+   "mid"
+  ],
+  "characters": [
+   "เ",
+   "ก",
+   "ิ",
+   "น"
+  ]
+ },
+ {
+  "rank": 434,
+  "thai": "คืน",
+  "romanization": "khuuen",
+  "english": "return",
+  "word_class": "v",
+  "tones": [
+   "mid"
+  ],
+  "characters": [
+   "ค",
+   "ื",
+   "น"
+  ]
+ },
+ {
+  "rank": 437,
+  "thai": "เศรษฐกิจ",
+  "romanization": "sèet-thà-gìt",
+  "english": "economy",
+  "word_class": "n",
+  "tones": [
+   "low",
+   "low"
+  ],
+  "characters": [
+   "เ",
+   "ศ",
+   "ร",
+   "ษ",
+   "ฐ",
+   "ก",
+   "ิ",
+   "จ"
+  ]
+ },
+ {
+  "rank": 440,
+  "thai": "ตาย",
+  "romanization": "dtaai",
+  "english": "die",
+  "word_class": "v",
+  "tones": [
+   "mid"
+  ],
+  "characters": [
+   "ต",
+   "า",
+   "ย"
+  ]
+ },
+ {
+  "rank": 443,
+  "thai": "จัดการ",
+  "romanization": "tɕàt kaːn",
+  "english": "handle; manage",
+  "word_class": "v",
+  "tones": [
+   "low",
+   "mid"
+  ],
+  "characters": [
+   "จ",
+   "ั",
+   "ด",
+   "ก",
+   "า",
+   "ร"
+  ]
+ },
+ {
+  "rank": 446,
+  "thai": "มนุษย์",
+  "romanization": "má nút",
+  "english": "human",
+  "word_class": "n",
+  "tones": [
+   "mid"
+  ],
+  "characters": [
+   "ม",
+   "น",
+   "ุ",
+   "ษ",
+   "ย"
+  ]
+ },
+ {
+  "rank": 449,
+  "thai": "ตำรวจ",
+  "romanization": "dtam-rùuat",
+  "english": "police officer",
+  "word_class": "n",
+  "tones": [
+   "mid",
+   "falling"
+  ],
+  "characters": [
+   "ต",
+   "ำ",
+   "ร",
+   "ว",
+   "จ"
+  ]
+ },
+ {
+  "rank": 452,
+  "thai": "กรณี",
+  "romanization": "kà rá niː",
+  "english": "case",
+  "word_class": "n",
+  "tones": [
+   "mid",
+   "mid"
+  ],
+  "characters": [
+   "ก",
+   "ร",
+   "ณ",
+   "ี"
+  ]
+ },
+ {
+  "rank": 455,
+  "thai": "ปัจจุบัน",
+  "romanization": "pàt tɕùʔ ban",
+  "english": "present",
+  "word_class": "n",
+  "tones": [
+   "low",
+   "low",
+   "mid"
+  ],
+  "characters": [
+   "ป",
+   "ั",
+   "จ",
+   "ุ",
+   "บ",
+   "น"
+  ]
+ },
+ {
+  "rank": 458,
+  "thai": "รถ",
+  "romanization": "rót",
+  "english": "car",
+  "word_class": "n",
+  "tones": [
+   "falling"
+  ],
+  "characters": [
+   "ร",
+   "ถ"
+  ]
+ },
+ {
+  "rank": 461,
+  "thai": "ข้อ",
+  "romanization": "kʰɔ̂ː",
+  "english": "article; joint",
+  "word_class": "n",
+  "tones": [
+   "falling"
+  ],
+  "characters": [
+   "ข",
+   "้",
+   "อ"
+  ]
+ },
+ {
+  "rank": 464,
+  "thai": "เหนือ",
+  "romanization": "nɯ̌ːa",
+  "english": "above; North",
+  "word_class": "prep",
+  "tones": [
+   "rising"
+  ],
+  "characters": [
+   "เ",
+   "ห",
+   "น",
+   "ื",
+   "อ"
+  ]
+ },
+ {
+  "rank": 467,
+  "thai": "สัปดาห์",
+  "romanization": "sàp-daa",
+  "english": "week",
+  "word_class": "n",
+  "tones": [
+   "low",
+   "mid"
+  ],
+  "characters": [
+   "ส",
+   "ั",
+   "ป",
+   "ด",
+   "า",
+   "ห"
+  ]
+ },
+ {
+  "rank": 470,
+  "thai": "ชุด",
+  "romanization": "tɕʰút",
+  "english": "outfit",
+  "word_class": "n",
+  "tones": [
+   "falling"
+  ],
+  "characters": [
+   "ช",
+   "ุ",
+   "ด"
+  ]
+ },
+ {
+  "rank": 473,
+  "thai": "หน้าที่",
+  "romanization": "nâː tʰîː",
+  "english": "duty",
+  "word_class": "n",
+  "tones": [
+   "falling",
+   "falling"
+  ],
+  "characters": [
+   "ห",
+   "น",
+   "้",
+   "า",
+   "ท",
+   "ี",
+   "่"
+  ]
+ },
+ {
+  "rank": 476,
+  "thai": "เดินทาง",
+  "romanization": "dooen-thaang",
+  "english": "commute",
+  "word_class": "v",
+  "tones": [
+   "mid",
+   "mid"
+  ],
+  "characters": [
+   "เ",
+   "ด",
+   "ิ",
+   "น",
+   "ท",
+   "า",
+   "ง"
+  ]
+ },
+ {
+  "rank": 479,
+  "thai": "มัก",
+  "romanization": "mák",
+  "english": "often; inclined towards",
+  "word_class": "adv",
+  "tones": [
+   "falling"
+  ],
+  "characters": [
+   "ม",
+   "ั",
+   "ก"
+  ]
+ },
+ {
+  "rank": 482,
+  "thai": "ธรรมดา",
+  "romanization": "tʰam má daː",
+  "english": "plain; normal",
+  "word_class": "adj",
+  "tones": [
+   "mid",
+   "mid"
+  ],
+  "characters": [
+   "ธ",
+   "ร",
+   "ม",
+   "ด",
+   "า"
+  ]
+ },
+ {
+  "rank": 485,
+  "thai": "โต",
+  "romanization": "toː",
+  "english": "large; grow up",
+  "word_class": "adj",
+  "tones": [
+   "mid"
+  ],
+  "characters": [
+   "โ",
+   "ต"
+  ]
+ },
+ {
+  "rank": 488,
+  "thai": "สถานี",
+  "romanization": "sà-thǎa-nii",
+  "english": "station",
+  "word_class": "n",
+  "tones": [
+   "low",
+   "mid"
+  ],
+  "characters": [
+   "ส",
+   "ถ",
+   "า",
+   "น",
+   "ี"
+  ]
+ },
+ {
+  "rank": 491,
+  "thai": "อารมณ์",
+  "romanization": "ʔaː rom",
+  "english": "mood",
+  "word_class": "n",
+  "tones": [
+   "mid",
+   "mid"
+  ],
+  "characters": [
+   "อ",
+   "า",
+   "ร",
+   "ม",
+   "ณ"
+  ]
+ },
+ {
+  "rank": 494,
+  "thai": "กา",
+  "romanization": "kaː",
+  "english": "crow",
+  "word_class": "n",
+  "tones": [
+   "mid"
+  ],
+  "characters": [
+   "ก",
+   "า"
+  ]
+ },
+ {
+  "rank": 497,
+  "thai": "ปฏิบัติ",
+  "romanization": "pà tìʔ bàt",
+  "english": "practice; perform",
+  "word_class": "v",
+  "tones": [
+   "low",
+   "low"
+  ],
+  "characters": [
+   "ป",
+   "ฏ",
+   "ิ",
+   "บ",
+   "ั",
+   "ต"
+  ]
+ },
+ {
+  "rank": 500,
+  "thai": "การศึกษา",
+  "romanization": "gaan sùek-sǎa",
+  "english": "education",
+  "word_class": "n",
+  "tones": [
+   "mid",
+   "low",
+   "rising"
+  ],
+  "characters": [
+   "ก",
+   "า",
+   "ร",
+   "ศ",
+   "ึ",
+   "ษ"
+  ]
+ }
+]
