@@ -169,20 +169,21 @@ def parse_script(path: Path) -> LessonScript:
 
 #: How much English one call may carry, in words.
 #:
-#: Merging exists to stop a paragraph being four separate utterances with the
-#: prosody reset between them. Merging without a limit replaces that with a
-#: worse fault: the model accelerates through a long utterance, and it does not
-#: recover. Measured over the orientation deck, fourteen of sixteen clips ended
-#: faster than they began, by 30 words a minute on average — an 80-second clip
-#: opened at 153 and closed at 207. The two clips that held their pace were the
-#: two short ones, both about fifteen seconds.
+#: A cap exists because the model accelerates through a long utterance and does
+#: not recover. Measured on the orientation deck when runs were uncapped,
+#: fourteen of sixteen clips ended faster than they began — by 30 words a
+#: minute on average, and an 80-second clip opened at 153 and closed at 207.
 #:
-#: So the cap is set near that stable length: 55 words is roughly twenty
-#: seconds at this voice's pace. Long enough to absorb the sentence-level
-#: seams, short enough that the model does not run away. Crossing it starts a
-#: new clip, and the seam lands at a sentence boundary the author wrote, which
-#: is the least bad place for one.
-MAX_MERGED_WORDS = 55
+#: 55 was the first value and came from Qwen, which is no longer the engine.
+#: Measured on S2 Pro, a length ladder found no drift worth the name up to 190
+#: words — twelve clips, accuracy 1.00 on every one, and the largest drift at
+#: 68 words rather than at the top. What does break is further out: at 266
+#: words, three of five seeds fabricated whole sentences that appear nowhere in
+#: the script.
+#:
+#: So 75 sits well inside the measured-safe range with a wide margin to the
+#: cliff, and it is enough to carry most authored paragraphs whole.
+MAX_MERGED_WORDS = 75
 
 
 def _sentences(text: str) -> list[str]:
@@ -262,6 +263,20 @@ def _merge_runs(slide: Slide) -> list[Segment]:
 			buffer.append(sentence)
 			buffered_words += words
 			buffered_sources.append(source)
+		# One authored line never shares a clip with the next. Packing used to
+		# run straight through the boundary, which produced a mapping nobody
+		# could hold in their head: five lines became six clips, one line fed
+		# three of them, and two lines shared a fourth. It also made a
+		# per-clip regenerate button ambiguous — press it on a shared clip and
+		# you remake a neighbour's words too.
+		#
+		# Flushing here does cost the merge across the boundary, which is a
+		# real if small loss: a short line now stands alone rather than being
+		# carried by its neighbour, and short clips run a little fast. But the
+		# author already marked that spot as the end of a thought, so it is the
+		# best available place for a seam, and a mapping you can reason about
+		# is worth more than a few words a minute.
+		flush()
 	flush()
 
 	return [

@@ -13,11 +13,11 @@
 				"Used properly, these techniques get you through Thai far faster than most people manage."
 			],
 			"audio": [
-				"/thai-script/lessons/orientation/audio/38db8c53f4a4ec91.mp3",
-				"/thai-script/lessons/orientation/audio/eedfb9a62721ca7b.mp3",
+				"/thai-script/lessons/orientation/audio/c1b6df989e45cdc0.mp3",
+				"/thai-script/lessons/orientation/audio/f682e6d601785535.mp3",
 				"/thai-script/lessons/orientation/audio/8c41f4ca06b87100.mp3",
-				"/thai-script/lessons/orientation/audio/5a3eacb2015d3702.mp3",
-				"/thai-script/lessons/orientation/audio/dc9eaacb74d96ac2.mp3",
+				"/thai-script/lessons/orientation/audio/1f5d7c49aa08e1d0.mp3",
+				"/thai-script/lessons/orientation/audio/ddc5612989c8b257.mp3",
 				"/thai-script/lessons/orientation/audio/fc1b1539e24100c1.mp3"
 			],
 			"audioLanguages": ["en", "en", "en", "en", "en", "en"],
@@ -36,11 +36,11 @@
 			],
 			"audio": [
 				"/thai-script/lessons/orientation/audio/7607ad072c69e1b3.mp3",
-				"/thai-script/lessons/orientation/audio/9771dda9effe4087.mp3",
-				"/thai-script/lessons/orientation/audio/333595559c846e42.mp3",
-				"/thai-script/lessons/orientation/audio/4b98896c4e74da54.mp3",
-				"/thai-script/lessons/orientation/audio/ed9e55e3a7903a90.mp3",
-				"/thai-script/lessons/orientation/audio/77b113c3c3910227.mp3"
+				"/thai-script/lessons/orientation/audio/da0c00706dcecb8e.mp3",
+				"/thai-script/lessons/orientation/audio/2b5b567104fdb69a.mp3",
+				"/thai-script/lessons/orientation/audio/cfac7169c6c328b6.mp3",
+				"/thai-script/lessons/orientation/audio/e717d79e2f0f1d47.mp3",
+				"/thai-script/lessons/orientation/audio/acf894f32a9a4c0e.mp3"
 			],
 			"audioLanguages": ["en", "en", "en", "en", "en", "en"],
 			"image": "/thai-script/lessons/orientation/images/the-route-ecdbe1133c82.jpg"
@@ -57,8 +57,8 @@
 			"audio": [
 				"/thai-script/lessons/orientation/audio/460fd805c0630a1f.mp3",
 				"/thai-script/lessons/orientation/audio/38385126b5eb8a24.mp3",
-				"/thai-script/lessons/orientation/audio/68077bf88e748cc8.mp3",
-				"/thai-script/lessons/orientation/audio/0868bb79ce27027e.mp3"
+				"/thai-script/lessons/orientation/audio/309bf8746b853049.mp3",
+				"/thai-script/lessons/orientation/audio/8c2dd6570789c377.mp3"
 			],
 			"audioLanguages": ["en", "en", "en", "en"],
 			"image": "/thai-script/lessons/orientation/images/forgetting-288b6b597595.jpg"
@@ -128,12 +128,11 @@
 				"The picture is **scaffolding**. It falls away by itself."
 			],
 			"audio": [
-				"/thai-script/lessons/orientation/audio/32fb8e8a33b43e0f.mp3",
-				"/thai-script/lessons/orientation/audio/870e6ceb3274d61a.mp3",
-				"/thai-script/lessons/orientation/audio/0b137a175dcd6ea1.mp3",
-				"/thai-script/lessons/orientation/audio/46644995c2b4f9e1.mp3"
+				"/thai-script/lessons/orientation/audio/e7c8aff5d4704839.mp3",
+				"/thai-script/lessons/orientation/audio/68631c39047ce23f.mp3",
+				"/thai-script/lessons/orientation/audio/2be5852d56978ba1.mp3"
 			],
-			"audioLanguages": ["en", "en", "en", "en"],
+			"audioLanguages": ["en", "en", "en"],
 			"image": "/thai-script/lessons/orientation/images/mnemonics-335fe07a39f6.jpg"
 		},
 		{
@@ -148,11 +147,11 @@
 				"A room is a *hint and a confirmation*, never a free clue before you answer."
 			],
 			"audio": [
-				"/thai-script/lessons/orientation/audio/10b86ca1c37684ef.mp3",
-				"/thai-script/lessons/orientation/audio/42bfcfe2725e8bd3.mp3",
-				"/thai-script/lessons/orientation/audio/d6880c67686d0dbe.mp3",
-				"/thai-script/lessons/orientation/audio/d706a789d2e15322.mp3",
-				"/thai-script/lessons/orientation/audio/27e8117c3465a30f.mp3"
+				"/thai-script/lessons/orientation/audio/d880aeb74231279c.mp3",
+				"/thai-script/lessons/orientation/audio/83d90a8c3e852ead.mp3",
+				"/thai-script/lessons/orientation/audio/79a67bb97f0a7900.mp3",
+				"/thai-script/lessons/orientation/audio/a755c2b63b3fe41b.mp3",
+				"/thai-script/lessons/orientation/audio/eb6df91650fcdb80.mp3"
 			],
 			"audioLanguages": ["en", "en", "en", "en", "en"],
 			"image": "/thai-script/lessons/orientation/images/districts-0ba99b7bef79.jpg"
@@ -167,10 +166,11 @@
 				"Your first two letters move in here in lesson 1."
 			],
 			"audio": [
-				"/thai-script/lessons/orientation/audio/9b45a1fb943ce262.mp3",
-				"/thai-script/lessons/orientation/audio/350cf735960673ca.mp3"
+				"/thai-script/lessons/orientation/audio/03e254e94ae9a30f.mp3",
+				"/thai-script/lessons/orientation/audio/2b7c77c91cfa1e8a.mp3",
+				"/thai-script/lessons/orientation/audio/7d7065af5f2e2786.mp3"
 			],
-			"audioLanguages": ["en", "en"],
+			"audioLanguages": ["en", "en", "en"],
 			"image": "/thai-script/lessons/orientation/images/tour-harbour-97838937994f.jpg"
 		},
 		{
@@ -183,12 +183,11 @@
 				"The height keeps the *name* straight. It does **not** mean these letters sound high."
 			],
 			"audio": [
-				"/thai-script/lessons/orientation/audio/42abea6c86aa2cb7.mp3",
-				"/thai-script/lessons/orientation/audio/f1ce813c6b22cbcb.mp3",
-				"/thai-script/lessons/orientation/audio/43821915da4e649b.mp3",
-				"/thai-script/lessons/orientation/audio/c3b68c4c012c6265.mp3"
+				"/thai-script/lessons/orientation/audio/94ee3d42efc2e896.mp3",
+				"/thai-script/lessons/orientation/audio/5b308adf4458ad25.mp3",
+				"/thai-script/lessons/orientation/audio/e9e7a27b7d8d534a.mp3"
 			],
-			"audioLanguages": ["en", "en", "en", "en"],
+			"audioLanguages": ["en", "en", "en"],
 			"image": "/thai-script/lessons/orientation/images/tour-temple-bdfb365b12c9.jpg"
 		},
 		{
@@ -202,11 +201,12 @@
 				"Anything on neither list is at the harbour. That's 24 letters you never memorise."
 			],
 			"audio": [
-				"/thai-script/lessons/orientation/audio/d93085bd0048270b.mp3",
-				"/thai-script/lessons/orientation/audio/8eec6e731af03a46.mp3",
-				"/thai-script/lessons/orientation/audio/5c35fa8f198906e0.mp3"
+				"/thai-script/lessons/orientation/audio/10655295ee3bd47d.mp3",
+				"/thai-script/lessons/orientation/audio/8352714d3c8c7c33.mp3",
+				"/thai-script/lessons/orientation/audio/480a05c21f236b21.mp3",
+				"/thai-script/lessons/orientation/audio/e6a2a68920c64819.mp3"
 			],
-			"audioLanguages": ["en", "en", "en"],
+			"audioLanguages": ["en", "en", "en", "en"],
 			"image": "/thai-script/lessons/orientation/images/tour-market-17ce89383a4f.jpg"
 		},
 		{
@@ -219,11 +219,12 @@
 				"You can't hear your own tone errors silently."
 			],
 			"audio": [
-				"/thai-script/lessons/orientation/audio/2527e906605ff621.mp3",
-				"/thai-script/lessons/orientation/audio/2786f31217dd4e6c.mp3",
-				"/thai-script/lessons/orientation/audio/a241b24da3561b43.mp3"
+				"/thai-script/lessons/orientation/audio/8673904ad6a4b6cb.mp3",
+				"/thai-script/lessons/orientation/audio/c93c328c40ab27aa.mp3",
+				"/thai-script/lessons/orientation/audio/8881582f1828e5a8.mp3",
+				"/thai-script/lessons/orientation/audio/9bf45c8b74d52282.mp3"
 			],
-			"audioLanguages": ["en", "en", "en"],
+			"audioLanguages": ["en", "en", "en", "en"],
 			"image": "/thai-script/lessons/orientation/images/aloud-bfd889db4027.jpg"
 		},
 		{
@@ -237,8 +238,8 @@
 				"**Ten minutes writing beats an hour looking.**"
 			],
 			"audio": [
-				"/thai-script/lessons/orientation/audio/7635d115d4520d8a.mp3",
-				"/thai-script/lessons/orientation/audio/f1d93237b6745c56.mp3",
+				"/thai-script/lessons/orientation/audio/ae711083c8813d9f.mp3",
+				"/thai-script/lessons/orientation/audio/d678d68c04b824d0.mp3",
 				"/thai-script/lessons/orientation/audio/61375d31641e0191.mp3",
 				"/thai-script/lessons/orientation/audio/2f3681de225b55cf.mp3"
 			],
@@ -256,13 +257,12 @@
 				"Do them anyway — especially then."
 			],
 			"audio": [
-				"/thai-script/lessons/orientation/audio/62977bca421bbab0.mp3",
-				"/thai-script/lessons/orientation/audio/98b9306b6fcd5747.mp3",
-				"/thai-script/lessons/orientation/audio/decd84adce02e334.mp3",
-				"/thai-script/lessons/orientation/audio/6c26387b7a8a1cc2.mp3",
-				"/thai-script/lessons/orientation/audio/a89d2796ce7bea96.mp3"
+				"/thai-script/lessons/orientation/audio/d486248fed7a3c89.mp3",
+				"/thai-script/lessons/orientation/audio/01641a532e89df05.mp3",
+				"/thai-script/lessons/orientation/audio/77432caeeae1cbbd.mp3",
+				"/thai-script/lessons/orientation/audio/30d987af4416a4c7.mp3"
 			],
-			"audioLanguages": ["en", "en", "en", "en", "en"],
+			"audioLanguages": ["en", "en", "en", "en"],
 			"image": "/thai-script/lessons/orientation/images/ears-ade6b8128fd8.jpg"
 		},
 		{
@@ -296,9 +296,9 @@
 				"**Don't judge this in week one. Judge it in week six.**"
 			],
 			"audio": [
-				"/thai-script/lessons/orientation/audio/1ab77ace4b3c8d67.mp3",
-				"/thai-script/lessons/orientation/audio/c5c05edd65a94ba8.mp3",
-				"/thai-script/lessons/orientation/audio/557a02167370bf23.mp3",
+				"/thai-script/lessons/orientation/audio/bd52ff78a4c1819d.mp3",
+				"/thai-script/lessons/orientation/audio/487633646642018a.mp3",
+				"/thai-script/lessons/orientation/audio/93bffcc137a4337d.mp3",
 				"/thai-script/lessons/orientation/audio/916dfe1cf6f24919.mp3"
 			],
 			"audioLanguages": ["en", "en", "en", "en"],
