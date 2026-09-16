@@ -230,21 +230,26 @@ describe("AC2 — a polysyllable whose first vowel is not written", () => {
 		}
 	});
 
-	it("reads the corpus's collapsed analysis of a leading-consonant word as this reading with the leader folded in", () => {
-		// The corpus stores ถนน as one syllable, ถ…น, carrying ถ's class and the
-		// *second* syllable's tone — it has folded the leader in rather than
-		// analysing it. That is the same reading, minus the division.
+	it("divides a leading-consonant word the same way the corpus now does", () => {
+		// The corpus used to store ถนน as one syllable, ถ…น, carrying ถ's class
+		// and the second syllable's tone — the leader folded in rather than
+		// analysed, so only a weaker claim could be made here. Re-deriving with
+		// `enrich-vocabulary.py --retokenize` applied the prefix split, and the
+		// two descriptions now agree outright.
 		for (const word of ["ถนน", "ขนม", "ตลก", "สงบ"]) {
 			const entry = corpus.find((candidate) => candidate.thai === word);
-			const stored = entry?.syllables?.[0];
+			const stored = entry?.syllables;
 			if (!stored) throw new Error(`${word} is not in the corpus`);
 			const reading = resolved(word);
-			expect(stored.initialConsonant, word).toBe(
-				reading.syllables[0].initialConsonant,
-			);
-			const last = reading.syllables[reading.syllables.length - 1];
-			expect(stored.finalConsonant ?? null, word).toBe(last.finalConsonant);
-			expect(stored.tone, word).toBe(last.tone);
+			expect(stored.length, word).toBe(reading.syllables.length);
+			expect(
+				stored.map((syllable) => syllable.initialConsonant),
+				word,
+			).toEqual(reading.syllables.map((syllable) => syllable.initialConsonant));
+			expect(
+				stored.map((syllable) => syllable.finalConsonant ?? null),
+				word,
+			).toEqual(reading.syllables.map((syllable) => syllable.finalConsonant));
 		}
 	});
 });
@@ -432,17 +437,23 @@ describe("AC4 — the leading-consonant rule", () => {
 /**
  * Recorded, not asserted to be zero. See the task's architectural decision:
  * these rules have real exceptions and the corpus's stored analysis has real
- * defects — it drops a letter outright in 118 of the 307 words these rules
- * reach — so a zero here would only be reachable by bending one of the two.
+ * defects, so a zero here would only be reachable by bending one of the two.
  * The number moving is the signal.
+ *
+ * It last moved the right way: re-deriving the corpus with
+ * `enrich-vocabulary.py --retokenize` took agreements from 95 to 104 and
+ * disagreements from 212 to 203. Two changes account for it — the prefix
+ * split, which divides ถนน and ขนม as these rules already did, and treating a
+ * bare consonant pair as consonant-plus-final rather than as an onset cluster,
+ * which gave ผล and ละคร back the final the rules say they have.
  */
 const CORPUS_BASELINE = {
 	considered: 5454,
 	resolved: 307,
 	unresolvable: 1,
 	unanalysed: 5146,
-	agreements: 95,
-	disagreements: 212,
+	agreements: 104,
+	disagreements: 203,
 	uncompared: 0,
 };
 

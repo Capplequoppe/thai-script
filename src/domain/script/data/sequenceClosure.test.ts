@@ -520,7 +520,12 @@ function syllableTypeOf(
 	);
 	if (finalChars.length > 0) {
 		if (finalChars.some((ch) => LIVE_FINALS.has(ch))) return "live";
-		return short ? "dead-short" : "dead-long";
+		if (short) return "dead-short";
+		// No vowel written at all: the implicit vowel of a closed syllable is
+		// short /o/ — ลด, พบ, ยก, รถ are dead-short and so high, not falling.
+		// Reading "no short sign" as "long" is the defect `enrich-vocabulary.py`
+		// records fixing on its own side.
+		return vowel ? "dead-long" : "dead-short";
 	}
 	if (LIVE_OPEN_SHORT.some((sign) => vowel.includes(sign))) return "live";
 	if (vowel.includes("เ") && vowel.includes("า") && short === false) {
@@ -585,21 +590,32 @@ function sweepTaughtWindow(hi: number): ToneSweep {
 
 /**
  * Recorded, not asserted to be zero (AC5). Measured over ranks 1-2700:
- * agreement on 4,038 of 4,369 compared syllables (92%). The residue is real
- * and mostly one corpus defect: 299 of the 330 disagreements are low-class
- * dead-short syllables (ทุก, รับ, นัก, คิด, รัก, วัด …) whose stored tone is
- * "falling" where the taught rule — and standard Thai — says high; the rest
- * are the genuinely irregular ก็ and และ, ambiguous stored vowels (ชาติ), and
- * a small tail. A zero would only be reachable by bending the rules or the
- * corpus until one of them lied; the number moving is the signal that a
- * resequence broke tone resolution.
+ * agreement on 4,215 of 4,555 compared syllables (92.5%).
+ *
+ * The previous baseline recorded 4,038 of 4,369 and blamed the residue on one
+ * corpus defect — 299 low-class dead-short syllables (ทุก, รับ, นัก) stored as
+ * "falling" where the rule says high. Re-deriving the corpus with
+ * `enrich-vocabulary.py --retokenize` fixed that half and, by doing so, showed
+ * that `syllableTypeOf` here had the *same* defect: both sides said falling, so
+ * the sweep had been counting agreement on a shared mistake. The syllable count
+ * rose too, because re-deriving applied the prefix split (ถนน is two syllables
+ * now, not one).
+ *
+ * What is left is mostly อักษรนำ, which the corpus resolves and this sweep does
+ * not: ขนาด, ตลอด, ทหาร, แสดง, เสมอ, พยายาม all disagree because
+ * `governingClassOf` reads the letter's own class where the corpus has handed
+ * the syllable its leader's. The genuinely irregular ก็ is still here, and a
+ * tail this comment does not claim to have characterised.
+ *
+ * A zero would only be reachable by bending the rules or the corpus until one
+ * of them lied; the number moving is the signal.
  */
 const TONE_SWEEP_BASELINE = {
 	words: 2700,
-	syllables: 4369,
-	agreements: 4038,
+	syllables: 4555,
+	agreements: 4215,
 	unresolved: 1,
-	disagreements: 330,
+	disagreements: 339,
 };
 
 describe("AC5 — the complete sequence's rules resolve the taught corpus", () => {
@@ -653,7 +669,7 @@ describe("AC5 — the complete sequence's rules resolve the taught corpus", () =
 				unresolved: sweep.unresolved,
 				disagreements: sweep.disagreements.length,
 			},
-			`disagreements:\n${sweep.disagreements.slice(0, 40).join("\n")}`,
+			`disagreements: ${sweep.disagreements.length}\nwords ${sweep.words} syllables ${sweep.syllables} agreements ${sweep.agreements} unresolved ${sweep.unresolved}\n${sweep.disagreements.slice(0, 40).join("\n")}`,
 		).toEqual(TONE_SWEEP_BASELINE);
 	});
 });
