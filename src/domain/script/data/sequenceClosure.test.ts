@@ -2,6 +2,7 @@ import { existsSync, readdirSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
 import vocabularyData from "../../vocabulary/data/vocabulary.json";
+import { syllableShapeOf } from "../../vocabulary/services/toneExplanation";
 import { generateCardsForLesson } from "../services/ScriptCardGenerator";
 import {
 	DECK_LESSON_IDS,
@@ -507,33 +508,6 @@ function governingClassOf(text: string): ThaiSymbolClass | undefined {
  * live on a long vowel and dead on a short one, except the short vowels the
  * ao-ai exception and sara am's built-in final keep live.
  */
-function syllableTypeOf(
-	annotation: CorpusSyllableAnnotation,
-): "live" | "dead-short" | "dead-long" | undefined {
-	const vowel = annotation.vowel ?? "";
-	const short = SHORT_SIGNS.some((sign) => vowel.includes(sign));
-	const final = annotation.finalConsonant ?? "";
-	// A stored final of อ is the vowel's prop (มือ, คือ, เสือ), not a stop —
-	// อ's dual role, taught by lesson 11.
-	const finalChars = [...final].filter(
-		(ch) => ch !== "อ" && getConsonant(ch) !== undefined,
-	);
-	if (finalChars.length > 0) {
-		if (finalChars.some((ch) => LIVE_FINALS.has(ch))) return "live";
-		if (short) return "dead-short";
-		// No vowel written at all: the implicit vowel of a closed syllable is
-		// short /o/ — ลด, พบ, ยก, รถ are dead-short and so high, not falling.
-		// Reading "no short sign" as "long" is the defect `enrich-vocabulary.py`
-		// records fixing on its own side.
-		return vowel ? "dead-long" : "dead-short";
-	}
-	if (LIVE_OPEN_SHORT.some((sign) => vowel.includes(sign))) return "live";
-	if (vowel.includes("เ") && vowel.includes("า") && short === false) {
-		// เ-า counts live for tone purposes (the taught exception).
-		return "live";
-	}
-	return short ? "dead-short" : "live";
-}
 
 interface ToneSweep {
 	words: number;
@@ -560,7 +534,7 @@ function sweepTaughtWindow(hi: number): ToneSweep {
 			if (!stored || !text) continue;
 			sweep.syllables += 1;
 			const governingClass = governingClassOf(text);
-			const syllableType = syllableTypeOf(annotation);
+			const syllableType = syllableShapeOf(annotation);
 			const markField = annotation.toneMark;
 			const toneMark = markField ? TONE_MARK_FIELD[markField] : undefined;
 			if (governingClass === undefined || syllableType === undefined) {

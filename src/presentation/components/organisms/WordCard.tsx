@@ -1,5 +1,6 @@
 import type { PropertyCard } from "../../../domain/shared/types";
 import { assignRoom } from "../../../domain/vocabulary/data/rooms";
+import { toneExplanationFor } from "../../../domain/vocabulary/services/toneExplanation";
 import {
 	composeVocabMnemonic,
 	mnemonicStateFor,
@@ -299,6 +300,39 @@ export function WordCard({
 										)}
 									</div>
 								)}
+								{(() => {
+									// Derived rather than read off the entry:
+									// `VocabEntry.toneRules` lists a word's rules
+									// deduplicated across all its syllables, so it cannot
+									// say which syllable each one belongs to.
+									const why = toneExplanationFor(syl);
+									if (!why) return null;
+									return (
+										<p
+											className="mt-1.5 text-xs leading-relaxed"
+											style={{
+												color: why.disagreesWithStored
+													? "var(--color-warning, #a16207)"
+													: "var(--color-text-muted)",
+											}}
+										>
+											{why.disagreesWithStored ? (
+												<>
+													<span className="font-semibold">Exception. </span>
+													The rules give {why.tone} here ({why.description}
+													), but this word is said with {syl.tone}.
+												</>
+											) : (
+												<>
+													{why.description}{" "}
+													<span className="opacity-60">
+														(lesson {why.lesson})
+													</span>
+												</>
+											)}
+										</p>
+									);
+								})()}
 							</div>
 						))}
 					</div>
