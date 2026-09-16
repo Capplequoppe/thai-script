@@ -131,6 +131,33 @@ describe("Dashboard — Ready to Learn", () => {
 	});
 });
 
+describe("Dashboard — script lesson tile", () => {
+	it("offers the next lesson while any script lesson is unfinished", () => {
+		renderWithApp(<Dashboard />);
+
+		expect(screen.getByText("Next Lesson")).toBeTruthy();
+	});
+
+	// Unlike the conversation-practice lock below, finishing the script is a
+	// one-way door: a tile saying so would sit greyed out forever, so it goes
+	// away entirely.
+	it("drops the tile once every script lesson is complete", () => {
+		const app = makeAppValue();
+		const state = app.storage.load();
+		for (let n = 1; app.value.lesson.getNextScript() !== null; n++) {
+			state.completedLessons.push(n);
+			app.storage.save(state);
+		}
+
+		renderWithApp(<Dashboard />, app.value);
+
+		expect(screen.queryByText("Next Lesson")).toBeNull();
+		expect(screen.queryByText(/All done/)).toBeNull();
+		// The game keeps its slot — it is the other half of that row.
+		expect(screen.getByText("Practice round")).toBeTruthy();
+	});
+});
+
 describe("Dashboard — Conversation Practice gate", () => {
 	it("shows a locked tile naming the words gap, with no onClick, below the vocab threshold", () => {
 		renderWithApp(

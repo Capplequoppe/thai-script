@@ -226,17 +226,21 @@ export function Dashboard() {
 				)}
 			</div>
 
-			{/* 2. Secondary Actions (2-col) — evergreen entry points, always in the
-			    same two slots regardless of what else is unlocked. */}
-			<div className="grid grid-cols-2 gap-3">
-				{nextLesson ? (
+			{/* 2. Secondary Actions — evergreen entry points. The script tile
+			    drops out entirely once the last lesson is done rather than
+			    sitting there greyed out: unlike the conversation lock below,
+			    that state never reverses, so a permanent dead tile is just
+			    clutter on the learner's most-visited screen. The game then
+			    takes the full width instead of leaving a hole beside it. */}
+			<div
+				className={`grid gap-3 ${nextLesson ? "grid-cols-2" : "grid-cols-1"}`}
+			>
+				{nextLesson && (
 					<QuickActionCard
 						label="Next Lesson"
 						value={`Lesson ${nextLesson}`}
 						onClick={() => navigate(`/lesson/${nextLesson}`)}
 					/>
-				) : (
-					<QuickActionCard label="Script" value="All done ✓" disabled />
 				)}
 				{/* Mobile-reachable entry point for the practice game — the
 				    mobile tab row has no room for it. */}
