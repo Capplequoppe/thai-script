@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { Button } from "@/presentation/components/ui/button";
 import {
 	type DeckSlide as DeckSlideData,
@@ -8,6 +8,10 @@ import {
 	validateDeck,
 } from "../../../domain/script/data/lessonContent";
 import { useResetOnCardChange } from "../../hooks/useResetOnCardChange";
+import {
+	NarrationTransport,
+	usePlaybackRate,
+} from "../molecules/NarrationTransport";
 
 interface Props {
 	/** Path of the deck's JSON, served from `public/lessons/<id>/deck.json`. */
@@ -203,21 +207,45 @@ function gapBefore(index: number, languages?: readonly string[]): number {
 function playSequence(
 	urls: readonly string[],
 	languages?: readonly string[],
+	options?: {
+		readonly rate?: number;
+		/** Called when the last clip ends, but never on cancellation. */
+		readonly onFinished?: () => void;
+	},
 ): () => void {
 	let cancelled = false;
 	let playing: HTMLAudioElement | undefined;
 	let timer: ReturnType<typeof setTimeout> | undefined;
 
 	const playFrom = (index: number): void => {
-		if (cancelled || index >= urls.length) return;
+		if (cancelled) return;
+		if (index >= urls.length) {
+			// Reaching the end is not the same as being stopped, and the
+			// transport has to tell them apart: one leaves a Play button, the
+			// other a Stop button that would never clear.
+			options?.onFinished?.();
+			return;
+		}
 		const url = urls[index];
 		if (!url) return;
 		const audio = new Audio(url);
+		// `preservesPitch` keeps a slowed clip from dropping an octave, which
+		// matters more here than in most players: Thai tone is pitch, and a
+		// learner listening at 0.75 to catch a tone must hear the tone the
+		// speaker made.
+		audio.preservesPitch = true;
+		audio.playbackRate = options?.rate ?? 1;
 		playing = audio;
 		audio.addEventListener("ended", () => {
 			if (cancelled) return;
 			const wait = gapBefore(index + 1, languages);
-			timer = setTimeout(() => playFrom(index + 1), wait);
+			// Gaps shrink with the speech they separate. At 2x an unchanged
+			// 420ms gap is half the length of the words around it and the
+			// narration sounds like it keeps stalling.
+			timer = setTimeout(
+				() => playFrom(index + 1),
+				wait / (options?.rate ?? 1),
+			);
 		});
 		audio.play().catch(() => {});
 	};
@@ -248,6 +276,48 @@ function isUnauthoredEmptyDeck(
 	return errors.length === 1 && errors[0]?.code === "missing-retrieval";
 }
 
+/**
+ * Owns the slide's narration: what is playing, and how to stop it.
+ *
+ * A ref holds the canceller because every caller needs the *current* one and
+ * none of them should re-render when it changes — stepping to the next slide,
+ * pressing stop and starting again all have to cancel whatever is running now,
+ * and a stale canceller silently leaves a clip talking over the next slide.
+ */
+function useNarration(
+	urls: readonly string[] | undefined,
+	languages: readonly string[] | undefined,
+	rate: number,
+) {
+	const [playing, setPlaying] = useState(false);
+	const cancel = useRef<(() => void) | null>(null);
+
+	const stop = useCallback(() => {
+		cancel.current?.();
+		cancel.current = null;
+		setPlaying(false);
+	}, []);
+
+	const start = useCallback(() => {
+		if (!urls?.length) return;
+		cancel.current?.();
+		setPlaying(true);
+		cancel.current = playSequence(urls, languages, {
+			rate,
+			onFinished: () => {
+				cancel.current = null;
+				setPlaying(false);
+			},
+		});
+	}, [urls, languages, rate]);
+
+	// Stepping off the slide, or unmounting, stops the narration. Without this
+	// a clip carries on over whatever comes next.
+	useEffect(() => stop, [stop]);
+
+	return { playing, start, stop };
+}
+
 function ReplayButton({
 	urls,
 	languages,
@@ -255,23 +325,24 @@ function ReplayButton({
 	urls: readonly string[];
 	languages?: readonly string[];
 }) {
-	// Replays the slide's whole narration, not just its first clip: the
-	// learner who presses it did not hear part of an explanation.
+	const [rate, setRate] = usePlaybackRate();
+	const { playing, start, stop } = useNarration(urls, languages, rate);
+
 	return (
-		<button
-			type="button"
-			onClick={() => {
-				playSequence(urls, languages);
+		<NarrationTransport
+			playing={playing}
+			onPlay={start}
+			onStop={stop}
+			onRestart={start}
+			rate={rate}
+			onRate={(next) => {
+				// Applied from the top rather than mid-clip: `playbackRate` on a
+				// playing element would change this clip and leave the rest of
+				// the sequence at the old speed, which sounds like a fault.
+				setRate(next);
+				if (playing) stop();
 			}}
-			className="inline-flex items-center justify-center w-12 h-12 rounded-full text-2xl transition-colors"
-			style={{
-				background: "var(--color-surface-2)",
-				color: "var(--color-primary)",
-			}}
-			aria-label="Replay audio"
-		>
-			🔊
-		</button>
+		/>
 	);
 }
 
@@ -318,6 +389,9 @@ function DeckSlideContent({
 	// own identity so two consecutive slides that happen to share one audio
 	// clip still reset — see AC5.
 	const [revealed, setRevealed] = useState(false);
+	// Read here as well as in the transport so the slide's own auto-play starts
+	// at the learner's speed rather than at 1.0.
+	const [rate] = usePlaybackRate();
 	useResetOnCardChange(slide.id, () => {
 		setRevealed(false);
 	});
@@ -328,7 +402,7 @@ function DeckSlideContent({
 		// The returned canceller is the cleanup: stepping off the slide stops
 		// whatever clip is mid-sentence rather than letting it talk over the
 		// next slide's narration.
-		return playSequence(audioUrls, audioLanguages);
+		return playSequence(audioUrls, audioLanguages, { rate });
 	}, [slide.id]);
 
 	// A "reveal" slide's audio is the answer's pronunciation, so it plays on
@@ -338,7 +412,7 @@ function DeckSlideContent({
 	// biome-ignore lint/correctness/useExhaustiveDependencies: fires once per reveal, not on every audioUrls/slide identity change
 	useEffect(() => {
 		if (!revealed || !audioUrls?.length) return;
-		return playSequence(audioUrls, audioLanguages);
+		return playSequence(audioUrls, audioLanguages, { rate });
 	}, [revealed]);
 
 	switch (slide.kind) {
