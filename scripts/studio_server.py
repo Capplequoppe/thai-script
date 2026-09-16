@@ -204,13 +204,15 @@ def slide_payload(block: SlideBlock, deck: str) -> dict[str, Any]:
 		"image": image,
 		"imageUrl": f"/__studio/media/{deck}/{image}" if image else None,
 		"scene": scene,
-		"prompt": block.field_value("prompt"),
+		# `image-prompt`, not `prompt`: the latter is a retrieval slide's
+		# question, and writing an image prompt there destroys it.
+		"prompt": block.field_value("image-prompt"),
 		# What the batch generator would send for this scene, style suffix
 		# included. The studio prefills with this so the box holds the prompt
 		# that actually produces the deck's house look, rather than a bare
 		# scene that renders as something else entirely.
 		"styledPrompt": styled_prompt(scene) if scene else None,
-		"seed": block.field_value("seed"),
+		"seed": block.field_value("image-seed"),
 		"reveal": block.field_value("reveal"),
 		"retrieval": block.field_value("retrieval"),
 		"promptText": block.field_value("prompt-text"),
@@ -298,7 +300,7 @@ def apply_slide_edit(deck: str, slide_id: str, body: dict[str, Any]) -> dict[str
 		])
 	if "bullets" in body:
 		block.set_bullets([text for text in body["bullets"] if text.strip()])
-	for name in ("heading", "image", "scene", "prompt", "seed"):
+	for name in ("heading", "image", "scene", "image-prompt", "image-seed"):
 		if name in body:
 			value = body[name]
 			block.set_field(name, str(value).strip() if value else None)
@@ -427,8 +429,8 @@ def render_image(deck: str, slide_id: str, prompt: str, seed: int) -> dict[str, 
 
 	# Recorded on the slide so the studio can prefill them next time, and so
 	# the picture stops being an artefact whose origin nobody remembers.
-	block.set_field("prompt", prompt)
-	block.set_field("seed", str(seed))
+	block.set_field("image-prompt", prompt)
+	block.set_field("image-seed", str(seed))
 	document.save()
 	return {"image": declared, "prompt": prompt, "seed": seed}
 
@@ -480,8 +482,8 @@ def install_image(deck: str, slide_id: str, data: bytes, suffix: str) -> dict[st
 	)
 
 	block.set_field("image", declared)
-	block.set_field("prompt", None)
-	block.set_field("seed", None)
+	block.set_field("image-prompt", None)
+	block.set_field("image-seed", None)
 	document.save()
 	return {"image": declared, "replaced": True}
 

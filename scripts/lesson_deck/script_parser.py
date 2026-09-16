@@ -41,7 +41,9 @@ Language = Literal["en", "th"]
 LANGUAGES: tuple[Language, ...] = ("en", "th")
 
 _HEADING = re.compile(r"^##\s+(?P<kind>[a-z]+)\s+(?P<id>[A-Za-z0-9_-]+)\s*$")
-_FIELD = re.compile(r"^(?P<key>[a-z]+):\s*(?P<value>.*)$")
+#: Hyphens allowed so a field can be namespaced — `image-prompt` belongs to
+#: the picture, and `prompt` on its own was already the retrieval question.
+_FIELD = re.compile(r"^(?P<key>[a-z][a-z-]*):\s*(?P<value>.*)$")
 _BULLET = re.compile(r"^-\s+(?P<text>.+)$")
 _NARRATION = re.compile(r"^(?P<lang>en|th)\s+(?P<text>.+)$")
 _THAI = re.compile(r"[\u0e00-\u0e7f]")
