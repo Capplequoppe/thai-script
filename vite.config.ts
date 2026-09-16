@@ -51,12 +51,22 @@ export default defineConfig({
 			// project. None of these paths can ever affect what the app
 			// serves, so they are excluded from the watch outright rather than
 			// only from the client module graph.
+			// `scripts/*-env/` are Python virtual environments and a vendored
+			// fish-speech checkout — build inputs for the lesson-deck audio
+			// pipeline, and not a small number of files: each venv carries a
+			// full torch and CUDA stack, tens of thousands of files apiece.
+			// Watching them does not merely waste effort, it exhausts the
+			// kernel's inotify limit and the dev server dies on startup with
+			// `ENOSPC: System limit for number of file watchers reached`.
+			// Being gitignored does not help — chokidar watches the
+			// filesystem, not the index.
 			ignored: [
 				"**/plans/**",
 				"**/backend/**",
 				"**/test-results/**",
 				"**/playwright-report/**",
 				"**/.e2e-conversation-backend.pid",
+				"**/scripts/*-env/**",
 			],
 		},
 	},

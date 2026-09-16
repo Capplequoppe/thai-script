@@ -69,7 +69,15 @@ from .vendor import Redactor, Vendor, VendorError, VoiceSpec, strip_markup
 # 6: English is packed into clips of at most `MAX_MERGED_WORDS` instead of
 # being merged without limit. Version 5's clips ran to 80 and 90 seconds and
 # accelerated through them; see the constant for the measurements.
-PIPELINE_VERSION = 6
+# 7: the English engine is Fish Audio S2 Pro instead of Qwen3-TTS, the English
+# narrator is her own speaker instead of a clone of the Thai voice, and the
+# `atempo` stretch is gone. The first two are in the English cache key already,
+# so this bump is mostly belt and braces — but the third is not: dropping the
+# stretch changes the bytes without changing text, language or voice, which is
+# exactly the case the version exists to catch. English markup also reaches the
+# engine now rather than being stripped, which changes delivery without
+# changing the stored text.
+PIPELINE_VERSION = 7
 
 #: Seeds tried in order for a Thai clip that comes back saying the wrong thing.
 #: Seed is the cheap axis and the only one that is a lever here: the sibling
