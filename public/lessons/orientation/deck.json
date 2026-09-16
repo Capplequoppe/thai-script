@@ -7,14 +7,21 @@
 			"id": "welcome",
 			"heading": "Why this will work when other apps haven't",
 			"body": [
-				"Built on **accelerated learning** techniques, not on repetition.",
-				"Some are thousands of years old. Some are from the last century. Almost none are what school taught you.",
-				"Used properly, they'll carry you through Thai far faster than most people manage.",
-				"A few minutes here, and you'll reach lesson 1 already knowing *how* to learn it."
+				"This course uses **proven rapid-learning techniques** — some ancient, some recent.",
+				"School taught you to re-read and underline. That is close to the worst use of the hours.",
+				"Re-reading teaches your brain the material lives in the book, so it does not keep it.",
+				"Used properly, these techniques get you through Thai far faster than most people manage."
 			],
-			"audio": ["/thai-script/lessons/orientation/audio/51c66f01f4c690b2.mp3"],
-			"audioLanguages": ["en"],
-			"image": "/thai-script/lessons/orientation/images/welcome-aa04f736a9a9.jpg"
+			"audio": [
+				"/thai-script/lessons/orientation/audio/38db8c53f4a4ec91.mp3",
+				"/thai-script/lessons/orientation/audio/eedfb9a62721ca7b.mp3",
+				"/thai-script/lessons/orientation/audio/8c41f4ca06b87100.mp3",
+				"/thai-script/lessons/orientation/audio/5a3eacb2015d3702.mp3",
+				"/thai-script/lessons/orientation/audio/dc9eaacb74d96ac2.mp3",
+				"/thai-script/lessons/orientation/audio/fc1b1539e24100c1.mp3"
+			],
+			"audioLanguages": ["en", "en", "en", "en", "en", "en"],
+			"image": "/thai-script/lessons/orientation/images/welcome-15690691b1c8.jpg"
 		},
 		{
 			"kind": "exposition",
@@ -27,9 +34,16 @@
 				"**Conversation practice unlocks at 200 words and 5 grammar points.**",
 				"The script comes first because Thai spelling carries the tone, and the tone *is* the word."
 			],
-			"audio": ["/thai-script/lessons/orientation/audio/9cd8cd01245d16cd.mp3"],
-			"audioLanguages": ["en"],
-			"image": "/thai-script/lessons/orientation/images/the-route-83ea28b820a3.jpg"
+			"audio": [
+				"/thai-script/lessons/orientation/audio/7607ad072c69e1b3.mp3",
+				"/thai-script/lessons/orientation/audio/9771dda9effe4087.mp3",
+				"/thai-script/lessons/orientation/audio/333595559c846e42.mp3",
+				"/thai-script/lessons/orientation/audio/4b98896c4e74da54.mp3",
+				"/thai-script/lessons/orientation/audio/ed9e55e3a7903a90.mp3",
+				"/thai-script/lessons/orientation/audio/77b113c3c3910227.mp3"
+			],
+			"audioLanguages": ["en", "en", "en", "en", "en", "en"],
+			"image": "/thai-script/lessons/orientation/images/the-route-ecdbe1133c82.jpg"
 		},
 		{
 			"kind": "exposition",
@@ -40,9 +54,14 @@
 				"Re-reading doesn't stop it. Recognising something isn't the same as knowing it.",
 				"What stops it is **recall** — pulling it out of your head, at the right moment."
 			],
-			"audio": ["/thai-script/lessons/orientation/audio/2a162594082b1508.mp3"],
-			"audioLanguages": ["en"],
-			"image": "/thai-script/lessons/orientation/images/forgetting-a6f3c8eb2cf5.jpg"
+			"audio": [
+				"/thai-script/lessons/orientation/audio/460fd805c0630a1f.mp3",
+				"/thai-script/lessons/orientation/audio/38385126b5eb8a24.mp3",
+				"/thai-script/lessons/orientation/audio/68077bf88e748cc8.mp3",
+				"/thai-script/lessons/orientation/audio/0868bb79ce27027e.mp3"
+			],
+			"audioLanguages": ["en", "en", "en", "en"],
+			"image": "/thai-script/lessons/orientation/images/forgetting-288b6b597595.jpg"
 		},
 		{
 			"kind": "exposition",
@@ -53,16 +72,21 @@
 				"Ten minutes in that window beats an hour at the weekend.",
 				"Skipping isn't a delay. You lose work you already did, and the cards come back harder."
 			],
-			"audio": ["/thai-script/lessons/orientation/audio/0b4f280f3a2de0eb.mp3"],
-			"audioLanguages": ["en"],
-			"image": "/thai-script/lessons/orientation/images/the-appointment-eb890b1dc6b6.jpg"
+			"audio": [
+				"/thai-script/lessons/orientation/audio/2bc6105941c7bd43.mp3",
+				"/thai-script/lessons/orientation/audio/abc229bec63bc947.mp3",
+				"/thai-script/lessons/orientation/audio/72edda975b48067f.mp3",
+				"/thai-script/lessons/orientation/audio/83ad5babf4216e32.mp3"
+			],
+			"audioLanguages": ["en", "en", "en", "en"],
+			"image": "/thai-script/lessons/orientation/images/the-appointment-400012bbc52f.jpg"
 		},
 		{
 			"kind": "retrieval",
 			"id": "when-review",
 			"prompt": "So — when is the single best moment to review something you've learned? Say your answer out loud before you turn this over.",
 			"revealSlideId": "when-review-answer",
-			"audio": ["/thai-script/lessons/orientation/audio/234c98b7d990db77.mp3"],
+			"audio": ["/thai-script/lessons/orientation/audio/70447f15afb5e7fe.mp3"],
 			"audioLanguages": ["en"]
 		},
 		{
@@ -73,7 +97,7 @@
 				"**Just as you begin to forget it** — when recall takes effort but still works.",
 				"Too early and you learn nothing. Too late and you're starting over."
 			],
-			"audio": ["/thai-script/lessons/orientation/audio/d8112c698c067c82.mp3"],
+			"audio": ["/thai-script/lessons/orientation/audio/c98a079d60aa19b4.mp3"],
 			"audioLanguages": ["en"]
 		},
 		{
@@ -86,9 +110,13 @@
 				"**That unsure feeling is the method working, not failing.**",
 				"Don't skip ahead to the answer."
 			],
-			"audio": ["/thai-script/lessons/orientation/audio/e5245168e0dd66ac.mp3"],
-			"audioLanguages": ["en"],
-			"image": "/thai-script/lessons/orientation/images/struggle-828c61ac7a2a.jpg"
+			"audio": [
+				"/thai-script/lessons/orientation/audio/6b02f7dd535ccec5.mp3",
+				"/thai-script/lessons/orientation/audio/b55aae9537606685.mp3",
+				"/thai-script/lessons/orientation/audio/ad985b459e0d11a0.mp3"
+			],
+			"audioLanguages": ["en", "en", "en"],
+			"image": "/thai-script/lessons/orientation/images/struggle-28302748dc41.jpg"
 		},
 		{
 			"kind": "exposition",
@@ -99,9 +127,14 @@
 				"Every letter arrives attached to a picture, and the odder the better.",
 				"The picture is **scaffolding**. It falls away by itself."
 			],
-			"audio": ["/thai-script/lessons/orientation/audio/f963a538440e375c.mp3"],
-			"audioLanguages": ["en"],
-			"image": "/thai-script/lessons/orientation/images/mnemonics-75e61f268d9d.jpg"
+			"audio": [
+				"/thai-script/lessons/orientation/audio/32fb8e8a33b43e0f.mp3",
+				"/thai-script/lessons/orientation/audio/870e6ceb3274d61a.mp3",
+				"/thai-script/lessons/orientation/audio/0b137a175dcd6ea1.mp3",
+				"/thai-script/lessons/orientation/audio/46644995c2b4f9e1.mp3"
+			],
+			"audioLanguages": ["en", "en", "en", "en"],
+			"image": "/thai-script/lessons/orientation/images/mnemonics-335fe07a39f6.jpg"
 		},
 		{
 			"kind": "exposition",
@@ -114,9 +147,15 @@
 				"Words get **rooms** later — people, things, actions, connectors, particles, counting words.",
 				"A room is a *hint and a confirmation*, never a free clue before you answer."
 			],
-			"audio": ["/thai-script/lessons/orientation/audio/732ebedb607c4ccc.mp3"],
-			"audioLanguages": ["en"],
-			"image": "/thai-script/lessons/orientation/images/districts-3dea62a9595e.jpg"
+			"audio": [
+				"/thai-script/lessons/orientation/audio/10b86ca1c37684ef.mp3",
+				"/thai-script/lessons/orientation/audio/42bfcfe2725e8bd3.mp3",
+				"/thai-script/lessons/orientation/audio/d6880c67686d0dbe.mp3",
+				"/thai-script/lessons/orientation/audio/d706a789d2e15322.mp3",
+				"/thai-script/lessons/orientation/audio/27e8117c3465a30f.mp3"
+			],
+			"audioLanguages": ["en", "en", "en", "en", "en"],
+			"image": "/thai-script/lessons/orientation/images/districts-0ba99b7bef79.jpg"
 		},
 		{
 			"kind": "exposition",
@@ -127,9 +166,12 @@
 				"Down at the water. Ropes, boats, wet stone, a low hum.",
 				"Your first two letters move in here in lesson 1."
 			],
-			"audio": ["/thai-script/lessons/orientation/audio/2979b305bcca93d6.mp3"],
-			"audioLanguages": ["en"],
-			"image": "/thai-script/lessons/orientation/images/tour-harbour-713aa4101002.jpg"
+			"audio": [
+				"/thai-script/lessons/orientation/audio/9b45a1fb943ce262.mp3",
+				"/thai-script/lessons/orientation/audio/350cf735960673ca.mp3"
+			],
+			"audioLanguages": ["en", "en"],
+			"image": "/thai-script/lessons/orientation/images/tour-harbour-97838937994f.jpg"
 		},
 		{
 			"kind": "exposition",
@@ -140,9 +182,14 @@
 				"Up the hill. Gold, bells, quiet, a long climb from the water.",
 				"The height keeps the *name* straight. It does **not** mean these letters sound high."
 			],
-			"audio": ["/thai-script/lessons/orientation/audio/e54def863c74fd5c.mp3"],
-			"audioLanguages": ["en"],
-			"image": "/thai-script/lessons/orientation/images/tour-temple-feb899080872.jpg"
+			"audio": [
+				"/thai-script/lessons/orientation/audio/42abea6c86aa2cb7.mp3",
+				"/thai-script/lessons/orientation/audio/f1ce813c6b22cbcb.mp3",
+				"/thai-script/lessons/orientation/audio/43821915da4e649b.mp3",
+				"/thai-script/lessons/orientation/audio/c3b68c4c012c6265.mp3"
+			],
+			"audioLanguages": ["en", "en", "en", "en"],
+			"image": "/thai-script/lessons/orientation/images/tour-temple-bdfb365b12c9.jpg"
 		},
 		{
 			"kind": "exposition",
@@ -154,9 +201,13 @@
 				"**Learn the short lists only**: 9 at the market, 11 at the temple.",
 				"Anything on neither list is at the harbour. That's 24 letters you never memorise."
 			],
-			"audio": ["/thai-script/lessons/orientation/audio/b2ed9b7cc95283e9.mp3"],
-			"audioLanguages": ["en"],
-			"image": "/thai-script/lessons/orientation/images/tour-market-5afb64ae0910.jpg"
+			"audio": [
+				"/thai-script/lessons/orientation/audio/d93085bd0048270b.mp3",
+				"/thai-script/lessons/orientation/audio/8eec6e731af03a46.mp3",
+				"/thai-script/lessons/orientation/audio/5c35fa8f198906e0.mp3"
+			],
+			"audioLanguages": ["en", "en", "en"],
+			"image": "/thai-script/lessons/orientation/images/tour-market-17ce89383a4f.jpg"
 		},
 		{
 			"kind": "exposition",
@@ -167,9 +218,13 @@
 				"Recognising and producing are different skills. Only one gets you understood.",
 				"You can't hear your own tone errors silently."
 			],
-			"audio": ["/thai-script/lessons/orientation/audio/555405f5ded23ca8.mp3"],
-			"audioLanguages": ["en"],
-			"image": "/thai-script/lessons/orientation/images/aloud-c3fb3a7762a4.jpg"
+			"audio": [
+				"/thai-script/lessons/orientation/audio/2527e906605ff621.mp3",
+				"/thai-script/lessons/orientation/audio/2786f31217dd4e6c.mp3",
+				"/thai-script/lessons/orientation/audio/a241b24da3561b43.mp3"
+			],
+			"audioLanguages": ["en", "en", "en"],
+			"image": "/thai-script/lessons/orientation/images/aloud-bfd889db4027.jpg"
 		},
 		{
 			"kind": "exposition",
@@ -181,9 +236,14 @@
 				"Thai letters have a **stroke order**, and most start at the loop.",
 				"**Ten minutes writing beats an hour looking.**"
 			],
-			"audio": ["/thai-script/lessons/orientation/audio/99c849d202a0d024.mp3"],
-			"audioLanguages": ["en"],
-			"image": "/thai-script/lessons/orientation/images/pen-33c889e03053.jpg"
+			"audio": [
+				"/thai-script/lessons/orientation/audio/7635d115d4520d8a.mp3",
+				"/thai-script/lessons/orientation/audio/f1d93237b6745c56.mp3",
+				"/thai-script/lessons/orientation/audio/61375d31641e0191.mp3",
+				"/thai-script/lessons/orientation/audio/2f3681de225b55cf.mp3"
+			],
+			"audioLanguages": ["en", "en", "en", "en"],
+			"image": "/thai-script/lessons/orientation/images/pen-3fe9472691c7.jpg"
 		},
 		{
 			"kind": "exposition",
@@ -195,16 +255,22 @@
 				"It feels impossible at first because your first language taught you to ignore these differences.",
 				"Do them anyway — especially then."
 			],
-			"audio": ["/thai-script/lessons/orientation/audio/36d59d6b240e09b7.mp3"],
-			"audioLanguages": ["en"],
-			"image": "/thai-script/lessons/orientation/images/ears-ab673649e066.jpg"
+			"audio": [
+				"/thai-script/lessons/orientation/audio/62977bca421bbab0.mp3",
+				"/thai-script/lessons/orientation/audio/98b9306b6fcd5747.mp3",
+				"/thai-script/lessons/orientation/audio/decd84adce02e334.mp3",
+				"/thai-script/lessons/orientation/audio/6c26387b7a8a1cc2.mp3",
+				"/thai-script/lessons/orientation/audio/a89d2796ce7bea96.mp3"
+			],
+			"audioLanguages": ["en", "en", "en", "en", "en"],
+			"image": "/thai-script/lessons/orientation/images/ears-ade6b8128fd8.jpg"
 		},
 		{
 			"kind": "retrieval",
 			"id": "three-habits",
 			"prompt": "Three habits matter more than everything else in this course put together. Name all three out loud before you turn this over.",
 			"revealSlideId": "three-habits-answer",
-			"audio": ["/thai-script/lessons/orientation/audio/891c3348cb5e1b33.mp3"],
+			"audio": ["/thai-script/lessons/orientation/audio/635aa88de6119731.mp3"],
 			"audioLanguages": ["en"]
 		},
 		{
@@ -216,7 +282,7 @@
 				"**Write by hand**, with a pen, on paper.",
 				"**Say it out loud**, every time."
 			],
-			"audio": ["/thai-script/lessons/orientation/audio/01d906a37f519a66.mp3"],
+			"audio": ["/thai-script/lessons/orientation/audio/355bf143b266c2fd.mp3"],
 			"audioLanguages": ["en"]
 		},
 		{
@@ -229,9 +295,14 @@
 				"After that it compounds — new things hook onto what you already own.",
 				"**Don't judge this in week one. Judge it in week six.**"
 			],
-			"audio": ["/thai-script/lessons/orientation/audio/285fc52ec962cd73.mp3"],
-			"audioLanguages": ["en"],
-			"image": "/thai-script/lessons/orientation/images/expect-58ed5f5b024e.jpg"
+			"audio": [
+				"/thai-script/lessons/orientation/audio/1ab77ace4b3c8d67.mp3",
+				"/thai-script/lessons/orientation/audio/c5c05edd65a94ba8.mp3",
+				"/thai-script/lessons/orientation/audio/557a02167370bf23.mp3",
+				"/thai-script/lessons/orientation/audio/916dfe1cf6f24919.mp3"
+			],
+			"audioLanguages": ["en", "en", "en", "en"],
+			"image": "/thai-script/lessons/orientation/images/expect-dc497d7b54f7.jpg"
 		}
 	]
 }
