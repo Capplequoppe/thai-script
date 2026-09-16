@@ -238,6 +238,28 @@ export default function StudioPage() {
 			setStatus("Rendered. Prompt and seed saved to the slide.");
 		});
 
+	/**
+	 * Replace the picture with a supplied file.
+	 *
+	 * Sent as raw bytes rather than multipart: the studio server is a plain
+	 * `http.server` and parsing multipart there would be more code than this
+	 * whole feature deserves.
+	 */
+	const uploadImage = (file: File) =>
+		run("Uploading", async () => {
+			if (!slide) return;
+			const response = await fetch(
+				`${API}/deck/${deckId}/slide/${slide.id}/upload`,
+				{ method: "POST", headers: { "Content-Type": file.type }, body: file },
+			);
+			const body = await response.json();
+			if (!response.ok)
+				throw new Error(body.error ?? `HTTP ${response.status}`);
+			await loadDeck(deckId);
+			setAudioVersion((version) => version + 1);
+			setStatus("Picture replaced. Its prompt and seed were cleared.");
+		});
+
 	const addSlide = () =>
 		run("Adding", async () => {
 			const id = window.prompt("New slide id (letters, digits, hyphens):");
@@ -556,16 +578,30 @@ export default function StudioPage() {
 								<div>
 									<h2 className="mb-1 font-medium">Bullets</h2>
 									{(bullets ?? []).map((item, index) => (
-										<input
-											key={item.uid}
-											className="mb-1 w-full rounded border px-2 py-1"
-											value={item.text}
-											onChange={(event) => {
-												const next = [...(bullets ?? [])];
-												next[index] = { ...item, text: event.target.value };
-												setBullets(next);
-											}}
-										/>
+										<div key={item.uid} className="mb-1 flex gap-1">
+											<input
+												className="min-w-0 flex-1 rounded border px-2 py-1"
+												value={item.text}
+												onChange={(event) => {
+													const next = [...(bullets ?? [])];
+													next[index] = { ...item, text: event.target.value };
+													setBullets(next);
+												}}
+											/>
+											<button
+												type="button"
+												aria-label={`Remove bullet ${index + 1}`}
+												title="remove this bullet"
+												className="shrink-0 px-2 text-slate-400 hover:text-red-700"
+												onClick={() =>
+													setBullets(
+														(bullets ?? []).filter((_, i) => i !== index),
+													)
+												}
+											>
+												×
+											</button>
+										</div>
 									))}
 									<button
 										type="button"

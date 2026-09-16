@@ -330,6 +330,59 @@ def render_image(deck: str, slide_id: str, prompt: str, seed: int) -> dict[str, 
 	return {"image": declared, "prompt": prompt, "seed": seed}
 
 
+def install_image(deck: str, slide_id: str, data: bytes, suffix: str) -> dict[str, Any]:
+	"""Put a supplied picture on a slide, in place of a generated one.
+
+	Normalised to the same dimensions the generator produces, by cover-fitting
+	and centre-cropping rather than squashing: every other picture in the deck
+	is that shape, and one slide at a different aspect ratio reads as a mistake
+	rather than as a choice.
+
+	**Clears `prompt:` and `seed:`.** They describe how a picture was made, and
+	once it was not made that way they are worse than absent — the studio
+	prefills them, so a stale pair invites someone to press Render and quietly
+	destroy the image they just chose.
+	"""
+	import io
+
+	from PIL import Image
+
+	from mnemonics.style import SHIPPED_SIZE
+
+	document = ScriptDocument.load(CONTENT_DIR / f"{deck}.md")
+	block = document.by_id(slide_id)
+	if block is None:
+		raise KeyError(f"no slide {slide_id!r} in {deck}")
+
+	declared = block.field_value("image") or f"images/{deck}/{slide_id}{suffix}"
+	out_path = (CONTENT_DIR / declared).resolve()
+	if CONTENT_DIR.resolve() not in out_path.parents:
+		raise ValueError(f"slide {slide_id!r}: its image resolves outside content/")
+
+	try:
+		source = Image.open(io.BytesIO(data))
+		source.load()
+	except Exception as error:  # noqa: BLE001 — any decode failure is the same answer
+		raise ValueError(f"that file is not an image this can read: {error}") from error
+
+	target_w, target_h = SHIPPED_SIZE
+	scale = max(target_w / source.width, target_h / source.height)
+	resized = source.convert("RGB").resize(
+		(round(source.width * scale), round(source.height * scale)), Image.LANCZOS
+	)
+	left = (resized.width - target_w) // 2
+	top = (resized.height - target_h) // 2
+	resized.crop((left, top, left + target_w, top + target_h)).save(
+		out_path, "JPEG", quality=88, optimize=True
+	)
+
+	block.set_field("image", declared)
+	block.set_field("prompt", None)
+	block.set_field("seed", None)
+	document.save()
+	return {"image": declared, "replaced": True}
+
+
 class Handler(BaseHTTPRequestHandler):
 	protocol_version = "HTTP/1.1"
 
@@ -408,6 +461,20 @@ class Handler(BaseHTTPRequestHandler):
 				return self._send(200, render_image(
 					matched.group(1), matched.group(2),
 					body.get("prompt", ""), int(body.get("seed", 42)),
+				))
+
+			matched = re.match(
+				r"^/__studio/api/deck/([A-Za-z0-9-]+)/slide/([A-Za-z0-9-]+)/upload$",
+				path,
+			)
+			if matched:
+				length = int(self.headers.get("Content-Length") or 0)
+				if not length:
+					return self._send(400, {"error": "no file in the request"})
+				kind = (self.headers.get("Content-Type") or "").lower()
+				suffix = ".png" if "png" in kind else ".jpg"
+				return self._send(200, install_image(
+					matched.group(1), matched.group(2), self.rfile.read(length), suffix,
 				))
 
 			matched = re.match(r"^/__studio/api/deck/([A-Za-z0-9-]+)/slide$", path)
