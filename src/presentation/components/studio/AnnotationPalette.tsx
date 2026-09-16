@@ -54,7 +54,13 @@ export function AnnotationPalette({
 										title={item.hint}
 										className="rounded border bg-slate-50 px-1.5 py-0.5 font-mono text-[11px] hover:border-slate-400 hover:bg-white"
 										onMouseDown={(event) => event.preventDefault()}
-										onClick={() => onInsert(item.tag)}
+										onClick={() => {
+											onInsert(item.tag);
+											// Closed on pick: the palette covers the line it
+											// writes into, so leaving it open hides the result
+											// of the thing just done.
+											setOpen(false);
+										}}
 									>
 										{item.tag}
 									</button>
