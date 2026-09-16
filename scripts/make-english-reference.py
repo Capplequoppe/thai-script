@@ -33,8 +33,8 @@ from lesson_deck.vendor import (  # noqa: E402
     API_ROOT,
     DEFAULT_ENGLISH_REFERENCE_AUDIO,
     DEFAULT_ENGLISH_REFERENCE_TEXT,
+    DEFAULT_ENGLISH_REFERENCE_VOICE_ID,
     DEFAULT_MODEL_ID,
-    DEFAULT_VOICE_ID,
     REQUEST_TIMEOUT_SECONDS,
     MissingCredential,
     Redactor,
@@ -109,7 +109,7 @@ def main(argv: list[str] | None = None) -> int:
     session.headers.update({"xi-api-key": api_key})
     try:
         response = session.post(
-            f"{API_ROOT}/text-to-speech/{DEFAULT_VOICE_ID}",
+            f"{API_ROOT}/text-to-speech/{DEFAULT_ENGLISH_REFERENCE_VOICE_ID}",
             json={
                 "text": REFERENCE_TEXT,
                 "model_id": DEFAULT_MODEL_ID,

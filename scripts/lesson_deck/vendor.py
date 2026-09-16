@@ -46,14 +46,48 @@ DEFAULT_MODEL_ID = "eleven_v3"
 #: very model that will later have to understand the learner saying it.
 WHISPER_MODEL_ID = "large-v3"
 
-#: Qwen3-TTS, Apache 2.0, run on this machine. English narration is 97% of
-#: the course by character count and none of it is the language being taught,
-#: so it has no business on a metered Thai voice.
+#: Fish Audio S2 Pro, run on this machine. English narration is 97% of the
+#: course by character count and none of it is the language being taught, so it
+#: has no business on a metered Thai voice.
 #:
-#: The *Base* checkpoint rather than CustomVoice, because the English is not a
-#: preset speaker — it is cloned from the Thai voice, so the whole course is
-#: narrated by one person. See reference/README.md.
-DEFAULT_ENGLISH_MODEL_ID = "Qwen/Qwen3-TTS-12Hz-1.7B-Base"
+#: Not a HuggingFace id that anything imports — the engine is reached by
+#: subprocess, because it pins a torch the deck environment does not have. This
+#: string exists to be *hashed*: it is half the English cache key, so naming
+#: the engine here is what makes replacing the engine regenerate the clips it
+#: made. Changing this value without changing the engine would throw away
+#: correct audio; changing the engine without changing this would serve stale
+#: audio as current, which is worse.
+#:
+#: Licensing, which is not a footnote: the weights are Research and
+#: Non-Commercial. Fish Audio's licence grants ownership of the *outputs*
+#: (§IV(iii)), so the clips themselves are unencumbered — that was the
+#: deciding difference against Breeze TTS 2, whose licence restricts outputs
+#: too. See reference/ENGINES.md.
+DEFAULT_ENGLISH_MODEL_ID = "fishaudio/s2-pro"
+
+#: Zara — a Vietnamese-accented English narrator, and the voice the English
+#: reference is cut from. Deliberately *not* `DEFAULT_VOICE_ID`.
+#:
+#: The reference used to be Anna, on the reasoning that one speaker should
+#: narrate the whole course. That constraint was dropped — see
+#: reference/ENGINES.md — and once it was, Anna had nothing to recommend her
+#: for English: her ElevenLabs accent label is `singaporean`, which in English
+#: reads as British and sits oddly on a Thai course.
+#:
+#: No Lao or Khmer voices exist in the shared library, and the one Burmese
+#: candidate was too noisy to clone from (27 dB quiet-to-speech, against
+#: Zara's 43). Vietnamese is the closest clean accent actually on offer: a
+#: different language family from Thai, but a tonal one, and it reads as
+#: Southeast Asian rather than European.
+DEFAULT_ENGLISH_REFERENCE_VOICE_ID = "QocxxnxEa0x8mrL2d4VT"
+
+#: Trung Caha, held for later. Conversation and listening exercises need two
+#: speakers who are plainly different people, and a second voice picked at the
+#: same time as the first — by the same ear, on the same day, against the same
+#: reference text — will sit better beside it than one chosen months later.
+#: Measured at 71 dB quiet-to-speech, the cleanest of the whole shortlist.
+#: Nothing reads this yet.
+DIALOGUE_ENGLISH_REFERENCE_VOICE_ID = "ueSxRO0nLF1bj93J2hVt"
 
 #: The clip the English voice is cloned from, and exactly what it says. The
 #: text is not optional: cloning without it degrades noticeably, and a text
@@ -64,24 +98,19 @@ DEFAULT_ENGLISH_REFERENCE_TEXT = REFERENCE_DIR / "english-voice.txt"
 
 #: What the shipped clips are encoded as, matching
 #: `generate-sentence-audio.py` so every mp3 the app plays is one format.
-#: The English narration is slowed after synthesis, because the model offers
-#: no way to ask for it beforehand: the clone path takes sampling arguments and
-#: nothing else, and a literal "[pause one second]" is spoken aloud as those
-#: words.
 #:
-#: Measured rather than guessed. The narration came out at 182 words a minute —
-#: brisk-presenter pace — while the reference clip it was cloned from sits at
-#: 129, unhurried. So the clone copies timbre and not tempo, and fixing the
-#: reference would not have fixed this. Authored line breaks bring it to 154,
-#: and 0.85 lands on about 130: the reference's own rate, which is the one a
-#: beginner can follow and repeat after.
+#: There is no tempo stretch any more. `ENGLISH_TEMPO = 0.82` used to live
+#: here, because Qwen3-TTS could not be asked to slow down: its clone path took
+#: sampling arguments and nothing else, and a literal "[pause one second]" was
+#: spoken aloud as those words. Stretching afterwards was the only lever left.
 #:
-#: `atempo` resamples without shifting pitch, so the voice is the same voice,
-#: just no longer in a hurry. English only — Thai clips are single words whose
-#: tone contour is the thing being taught, and they are accepted by a
-#: transcribe-back check against audio that must stay as generated.
-ENGLISH_TEMPO = 0.82
-
+#: It was also the wrong one. Driven hard enough to sound calm, the result was
+#: flat rather than deliberate — and the complaint that started all of this
+#: turned out not to be about speed at all. The clips judged best were 158 and
+#: 160 words a minute, faster than the stretched ones; what they had was a
+#: pause between sentences. S2 Pro honours `[pause]`, so delivery is shaped by
+#: the markup and by how the narration is written, and the audio ships as the
+#: model made it.
 MP3_SAMPLE_RATE = "44100"
 MP3_BITRATE = "64k"
 DEFAULT_VOICE_SETTINGS: dict[str, Any] = {
@@ -182,7 +211,6 @@ class VoiceSpec:
 		return {
 			"modelId": self.english_model_id,
 			"reference": self.english_reference_digest(),
-			"tempo": ENGLISH_TEMPO,
 		}
 
 	def english_reference_digest(self) -> str:
@@ -411,111 +439,312 @@ def encode_mp3(wav_bytes: bytes, tempo: float | None = None) -> bytes:
 	return completed.stdout
 
 
-class QwenEnglishVoice:
-	"""The English narration: the Thai voice, cloned, synthesised locally.
+#: Where fish-speech and its environment live. Its own venv because the two
+#: engines pin incompatible torches — fish-speech wants 2.8, the deck
+#: environment runs 2.14 — so this is reached by subprocess rather than by
+#: import. `scripts/fish-env/` is gitignored whole; both are build inputs.
+FISH_ROOT = Path(__file__).resolve().parent.parent / "fish-env" / "fish-speech"
+#: `.absolute()`, never `.resolve()`: the venv's python is a symlink to uv's
+#: managed interpreter, and resolving it jumps outside the venv to a base
+#: Python with none of these packages installed.
+FISH_PYTHON = (
+	Path(__file__).resolve().parent.parent / "fish-env" / ".venv" / "bin" / "python"
+)
+#: The S2 Pro checkpoint, in the shared HuggingFace cache rather than a copy.
+S2_MODEL_DIR = Path(
+	"/run/media/capplequoppe/data/hf-cache/hub/models--fishaudio--s2-pro/"
+	"snapshots/1de9996b6be38b745688de084d87a5633f714e4e"
+)
+#: The resident worker that keeps the model loaded. See its docstring for why
+#: this is not the CLI.
+S2_WORKER = Path(__file__).resolve().parent / "s2_worker.py"
+#: Generation is not fast: about a minute for a fifty-word clip on this card.
+S2_TIMEOUT_SECONDS = 600
 
-	Qwen3-TTS is Apache 2.0 and runs on this machine, which is the whole point.
-	English is 97% of the course by character count and none of it is the
-	language being taught; paying a per-character vendor to read it aloud buys
-	nothing the learner can hear.
 
-	It is a *clone* rather than a preset because the alternative is two voices.
-	A lesson that changes speaker every time it says a Thai word sounds broken,
-	and the seam falls in the worst possible place — right where the learner is
-	supposed to be listening hardest. Cloning the Thai voice puts one person in
-	front of the learner for the whole course, and because she is a Thai native
-	reading English, it is a Thai teacher's English rather than a newsreader's.
+class S2ProEnglishVoice:
+	"""The English narration: Fish Audio S2 Pro, cloned, run on this machine.
 
-	English takes no transcribe-back check. The check exists because a wrong
-	Thai tone teaches a mispronunciation the learner will then practise; an
-	English clip that renders slightly oddly is a clip that sounds slightly
-	odd. `seed` is accepted and ignored — the retry loop passes one, and the
-	honest thing is to say so here rather than to imply a re-roll happened.
+	Chosen over Qwen3-TTS by listening, after both cleared the accuracy bar —
+	see `reference/ENGINES.md` for the measurements. The short version is that
+	Qwen reads `[pause]` aloud as the word "pause", and S2 Pro treats it as
+	direction. That single difference is what fixed narration which ran
+	sentences together without drawing breath.
 
-	The model and the clone prompt are each built once, on first use: a run
-	whose English is entirely cached loads neither.
+	Reached by **subprocess**, not import, and that is not an accident: this
+	engine pins torch 2.8 while the deck environment runs 2.14, so the two
+	cannot share an interpreter.
+
+	It talks to **one resident worker** rather than launching the CLI per clip,
+	and the difference is not small. Measured on a real deck:
+
+	    per-clip subprocess   31s fixed + 4.6s per second of audio   104 min
+	    resident worker        1s fixed + 4.4s                        70 min
+	    resident + compile     1s fixed + 0.57s                       11 min
+
+	The first version launched a process per clip, so it read eleven gigabytes
+	of weights 61 times and spent a third of the build doing it. Keeping the
+	model resident removes that, and — because `torch.compile` is then paid
+	once instead of per clip — makes compilation affordable, which is where the
+	real win is: generation goes from 4.4x slower than real time to roughly
+	half of it. Compiled output was transcribed back and is faithful; speed
+	alone would not have been a result.
+
+	The reference is encoded to VQ tokens once and cached on disk, keyed by the
+	reference digest, so swapping the narrator invalidates it exactly when it
+	should.
+
+	English takes no transcribe-back check, on the reasoning that a wrong Thai
+	tone teaches a mispronunciation while odd English merely sounds odd. That
+	reasoning has a measured limit: past roughly two hundred words in one clip
+	this model fabricates whole sentences, silently and fluently. The parser's
+	`MAX_MERGED_WORDS` keeps clips far below that, and if it is ever raised,
+	the check has to come with it.
+
+	`seed` is honoured — unlike the Qwen path, which accepted one and ignored
+	it — so the pipeline's retry loop does real work here.
 	"""
 
-	#: Measured, and the reason `strip_markup` exists: the same tagged line
-	#: came back transcribing as "Pause, welcome. Pause one second before you
-	#: learn a single Thai letter." The model has no markup vocabulary and
-	#: reads the brackets as words.
-	supports_markup = False
+	#: Measured: `[whispers] Listen carefully. [pause] Now say it aloud.` came
+	#: back transcribing as "Listen carefully. Now say it aloud." The tags
+	#: shaped delivery and were not spoken.
+	supports_markup = True
 
-	def __init__(self) -> None:
-		self._model: Any | None = None
-		self._loaded_id: str | None = None
-		self._prompt: Any | None = None
-		self._prompt_key: str | None = None
+	def __init__(self, compile_model: bool = True) -> None:
+		self._tokens: Path | None = None
+		self._tokens_key: str | None = None
+		self._process: Any | None = None
+		self._log: Any | None = None
+		self._compile = compile_model
 
-	def _model_for(self, model_id: str) -> Any:
-		if self._model is None or self._loaded_id != model_id:
+	def _log_path(self) -> Path:
+		return FISH_ROOT.parent / "worker.log"
+
+	def _worker(self) -> Any:
+		"""The resident engine, started on first use and kept for the run.
+
+		Started lazily rather than in `__init__`, so a build whose English is
+		entirely cached never pays the startup at all — which is the common
+		case when only one slide's wording changed.
+		"""
+		if self._process is not None and self._process.poll() is None:
+			return self._process
+
+		import subprocess  # noqa: PLC0415
+		import json  # noqa: PLC0415
+
+		if not FISH_PYTHON.exists():
+			raise VendorError(
+				f"the English engine's interpreter is missing ({FISH_PYTHON}). "
+				"S2 Pro runs in its own environment because it pins a "
+				"different torch; see scripts/lesson_deck/reference/ENGINES.md"
+			)
+		args = [
+			str(FISH_PYTHON.absolute()), str(S2_WORKER.absolute()),
+			"--checkpoint-path", str(S2_MODEL_DIR),
+		]
+		if self._compile:
+			args.append("--compile")
+
+		# The worker's stderr is a file rather than a pipe: nothing reads it
+		# during a run, and an unread pipe fills its buffer and deadlocks the
+		# engine mid-build. A file also survives the process, which is what
+		# makes a failure diagnosable afterwards.
+		self._log = self._log_path().open("w", encoding="utf-8")
+		self._process = subprocess.Popen(
+			args, cwd=FISH_ROOT, stdin=subprocess.PIPE, stdout=subprocess.PIPE,
+			stderr=self._log, text=True, bufsize=1,
+		)
+		ready = self._process.stdout.readline()
+		if not ready:
+			self._stop_worker()
+			raise VendorError(
+				"the English engine failed to start; its log is at "
+				f"{self._log_path()}"
+			)
+		try:
+			started = json.loads(ready).get("ready")
+		except json.JSONDecodeError:
+			started = False
+		if not started:
+			self._stop_worker()
+			raise VendorError(
+				f"the English engine said {ready.strip()[:120]!r} instead of "
+				f"announcing itself ready; its log is at {self._log_path()}"
+			)
+		return self._process
+
+	def _stop_worker(self) -> None:
+		if self._process is not None:
 			try:
-				from qwen_tts import Qwen3TTSModel  # noqa: PLC0415
-			except ImportError as error:
+				self._process.kill()
+			except OSError:
+				pass
+			self._process = None
+		if self._log is not None:
+			self._log.close()
+			self._log = None
+
+	def close(self) -> None:
+		"""Release the engine and its several gigabytes of GPU memory.
+
+		Worth calling explicitly when a build is followed by other GPU work in
+		the same process — image generation, or the transcriber — because the
+		card does not hold both comfortably.
+		"""
+		if self._process is not None and self._process.poll() is None:
+			try:
+				self._process.stdin.close()
+				self._process.wait(timeout=30)
+			except (OSError, ValueError):
+				pass
+		self._stop_worker()
+
+	def _run(self, args: list[str], what: str) -> None:
+		import subprocess  # noqa: PLC0415
+
+		if not FISH_PYTHON.exists():
+			raise VendorError(
+				f"the English engine's interpreter is missing ({FISH_PYTHON}). "
+				"S2 Pro runs in its own environment because it pins a "
+				"different torch; see scripts/lesson_deck/reference/ENGINES.md"
+			)
+		completed = subprocess.run(
+			[str(FISH_PYTHON.absolute()), *args],
+			cwd=FISH_ROOT,
+			capture_output=True,
+			text=True,
+			check=False,
+			timeout=S2_TIMEOUT_SECONDS,
+		)
+		if completed.returncode != 0:
+			output = (completed.stderr or completed.stdout).strip()
+			# Out-of-memory deserves its own message. The raw one is a wall of
+			# allocator statistics whose *last* 400 characters are a link to
+			# the PyTorch memory docs, so tailing it — the obvious thing —
+			# reports the least useful part and even cuts "out of memory" in
+			# half. The cause is almost always another job holding the card,
+			# and the fix is to wait rather than to change anything.
+			if "out of memory" in output.lower():
 				raise VendorError(
-					"qwen-tts is not importable. The English narration is "
-					"synthesised locally; run the pipeline inside the deck "
-					"environment, e.g. `uv run --project scripts/deck-env "
-					"python scripts/generate-lesson-deck.py ...`"
-				) from error
-			self._model = Qwen3TTSModel.from_pretrained(model_id, device_map="cuda:0")
-			self._loaded_id = model_id
-			# A prompt is bound to the model that built it.
-			self._prompt = None
-			self._prompt_key = None
-		return self._model
+					f"{what} ran out of GPU memory. S2 Pro wants most of this "
+					"card to itself; check whether another job is holding it "
+					"(nvidia-smi) and re-run. Nothing was written, and clips "
+					"already generated stay cached."
+				)
+			raise VendorError(f"{what} failed: {output[-400:]}")
 
-	def _prompt_for(self, model: Any, spec: VoiceSpec) -> Any:
-		"""The speaker embedding, computed once and reused for every clip.
+	def _tokens_for(self, spec: VoiceSpec) -> Path:
+		"""The reference as VQ tokens, computed once and cached on disk.
 
-		Rebuilding it per clip would be both slow and a source of drift — the
-		one thing a single narrator must not do is vary between sentences.
+		Keyed by the reference digest rather than by a filename, so a narrator
+		swap produces a different path instead of silently reusing the previous
+		speaker's tokens — which would be invisible and would sound wrong.
 		"""
 		key = spec.english_reference_digest()
-		if self._prompt is None or self._prompt_key != key:
-			audio = spec.english_reference_audio
-			text_path = spec.english_reference_text
-			if not audio.exists() or not text_path.exists():
-				raise VendorError(
-					"the English reference voice is missing "
-					f"({audio.name} / {text_path.name}). The English narration "
-					"is cloned from it; regenerate it with "
-					"scripts/make-english-reference.py, which is one metered "
-					"call of about 430 characters."
-				)
-			self._prompt = model.create_voice_clone_prompt(
-				ref_audio=str(audio),
-				ref_text=text_path.read_text(encoding="utf-8").strip(),
+		if self._tokens is not None and self._tokens_key == key:
+			return self._tokens
+
+		audio = spec.english_reference_audio
+		text_path = spec.english_reference_text
+		if not audio.exists() or not text_path.exists():
+			raise VendorError(
+				"the English reference voice is missing "
+				f"({audio.name} / {text_path.name}). The English narration is "
+				"cloned from it; regenerate it with "
+				"scripts/make-english-reference.py, which is one metered call "
+				"of about 113 characters."
 			)
-			self._prompt_key = key
-		return self._prompt
+
+		cache = FISH_ROOT.parent / "reference-tokens" / key
+		tokens = cache / "ref_vq.npy"
+		if not tokens.exists():
+			import subprocess  # noqa: PLC0415
+
+			cache.mkdir(parents=True, exist_ok=True)
+			wav = cache / "ref.wav"
+			completed = subprocess.run(
+				["ffmpeg", "-hide_banner", "-loglevel", "error", "-y",
+				 "-i", str(audio.absolute()), "-ac", "1", "-ar", "44100",
+				 str(wav)],
+				capture_output=True, check=False,
+			)
+			if completed.returncode != 0:
+				raise VendorError(
+					"could not decode the English reference: "
+					f"{completed.stderr.decode('utf-8', 'replace')[:200]}"
+				)
+			self._run(
+				["fish_speech/models/dac/inference.py", "-i", str(wav),
+				 "--checkpoint-path", str(S2_MODEL_DIR / "codec.pth"),
+				 "-o", str(cache / "ref_vq.wav")],
+				"encoding the English reference to VQ tokens",
+			)
+			if not tokens.exists():
+				raise VendorError(
+					"the reference encoder produced no tokens; expected "
+					f"{tokens}"
+				)
+		self._tokens = tokens
+		self._tokens_key = key
+		return tokens
 
 	def synthesize(self, text: str, language: str, spec: VoiceSpec, seed: int) -> bytes:
 		if language != "en":
 			raise VendorError(
-				f"refusing to synthesize {language!r} through Qwen: this engine "
-				"voices the English narration, and Thai is taught by a native "
-				"voice that is checked before it is accepted"
+				f"refusing to synthesize {language!r} through S2 Pro: this "
+				"engine voices the English narration, and Thai is taught by a "
+				"native voice that is checked before it is accepted"
 			)
-		import io  # noqa: PLC0415
+		import json  # noqa: PLC0415
+		import shutil  # noqa: PLC0415
+		import tempfile  # noqa: PLC0415
 
-		import soundfile as sf  # noqa: PLC0415
+		tokens = self._tokens_for(spec)
+		reference = spec.english_reference_text.read_text(encoding="utf-8").strip()
+		worker = self._worker()
 
-		model = self._model_for(spec.english_model_id)
-		# `generate_voice_clone` returns a *batch* — a list of float32 mono
-		# arrays — even for one line of text. Handing the list itself to
-		# soundfile is a "Format not recognised", which reads like a codec
-		# problem and is not one.
-		wavs, sample_rate = model.generate_voice_clone(
-			text=text,
-			language="English",
-			voice_clone_prompt=self._prompt_for(model, spec),
-		)
-		waveform = wavs[0] if isinstance(wavs, (list, tuple)) else wavs
-		buffer = io.BytesIO()
-		sf.write(buffer, waveform, int(sample_rate), format="WAV")
-		return encode_mp3(buffer.getvalue(), tempo=ENGLISH_TEMPO)
+		work = Path(tempfile.mkdtemp(prefix="s2-clip-"))
+		try:
+			out = work / "voice.wav"
+			request = json.dumps({
+				"text": text,
+				"prompt_text": reference,
+				"prompt_tokens": str(tokens),
+				"seed": seed,
+				"output": str(out),
+			})
+			try:
+				worker.stdin.write(request + "\n")
+				worker.stdin.flush()
+				line = worker.stdout.readline()
+			except (BrokenPipeError, ValueError) as error:
+				self._stop_worker()
+				raise VendorError(
+					f"the English engine stopped responding: {error}. Its log "
+					f"is at {self._log_path()}"
+				) from error
+			if not line:
+				self._stop_worker()
+				raise VendorError(
+					"the English engine exited without replying; its log is at "
+					f"{self._log_path()}"
+				)
+			reply = json.loads(line)
+			if not reply.get("ok"):
+				# The worker survives a bad clip on purpose, so this is a
+				# normal failure the retry loop can act on rather than a dead
+				# engine.
+				raise VendorError(f"English synthesis failed: {reply.get('error')}")
+			if not out.exists():
+				raise VendorError("English synthesis reported success but wrote nothing")
+			# No `tempo`: this engine is driven by markup and by how the
+			# narration is written, not by stretching it afterwards. The
+			# `atempo` pass that used to live here was half of what made the
+			# old narration sound flat.
+			return encode_mp3(out.read_bytes())
+		finally:
+			shutil.rmtree(work, ignore_errors=True)
 
 
 @dataclass

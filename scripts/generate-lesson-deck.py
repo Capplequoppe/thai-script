@@ -44,7 +44,7 @@ from lesson_deck.vendor import (  # noqa: E402
 	ElevenLabsVendor,
 	LocalTranscriber,
 	MissingCredential,
-	QwenEnglishVoice,
+	S2ProEnglishVoice,
 	Redactor,
 	SplitVendor,
 	VoiceSpec,
@@ -95,7 +95,7 @@ def main(argv: list[str] | None = None) -> int:
 			args.assets_root,
 			SplitVendor(
 				thai=ElevenLabsVendor(api_key, redactor),
-				english=QwenEnglishVoice(),
+				english=S2ProEnglishVoice(),
 				transcriber=LocalTranscriber(),
 			),
 			VoiceSpec(voice_id=args.voice_id, model_id=args.model_id),
