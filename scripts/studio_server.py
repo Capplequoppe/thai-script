@@ -36,6 +36,7 @@ sys.path.insert(0, str(REPO_ROOT / "scripts"))
 
 from lesson_deck.document import ScriptDocument, SlideBlock  # noqa: E402
 from lesson_deck.script_parser import ScriptError, parse_script  # noqa: E402
+from lesson_deck.vendor import strip_markup  # noqa: E402
 
 CONTENT_DIR = REPO_ROOT / "content" / "lessons"
 ASSETS_ROOT = REPO_ROOT / "public" / "lessons"
@@ -173,7 +174,10 @@ def clips_for(deck: str) -> dict[str, list[dict[str, Any]]]:
 				"language": segment.language,
 				"text": segment.text,
 				"sources": list(segment.sources),
-				"words": len(segment.text.split()),
+				# Counted on the spoken text. A tag is direction, not words, so
+				# counting `[pause]` would inflate the studio's duration
+				# estimate and make a clip look closer to the cap than it is.
+				"words": len(strip_markup(segment.text).split()),
 				"url": found[index] if index < len(found) else None,
 			}
 			for index, segment in enumerate(slide.segments)
