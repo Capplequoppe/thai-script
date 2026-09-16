@@ -256,6 +256,38 @@ This is why `Vendor.supports_markup` exists and why `strip_markup` is applied
 before handing text to an engine that lacks it. An optimistic default there
 ends with a narrator saying the word "pause" to a learner.
 
+### The tags are a published list, and an invented one does nothing
+
+**Read the engine's README before inventing a tag.** S2 Pro publishes its
+vocabulary, and the test above used `[whispers]` — which is not in it. The real
+tag is `[whisper]`, singular.
+
+That matters more than a typo normally would, because **an unrecognised tag is
+silently dropped, not spoken**. So a made-up tag is indistinguishable from a
+working one by ear: the clip renders, the words are right, and the only symptom
+is that nothing changed. The conclusion recorded above — "the tags shaped the
+delivery and were not spoken" — was half measured and half assumed. Not spoken
+was measured. *Shaped the delivery* was not.
+
+Measured properly afterwards, with two seeds per tag against a bare baseline on
+the same text, and a noise floor taken from the baseline's own seed-to-seed
+spread (8 wpm, 8 Hz, 0.04s):
+
+| tag | on the list | effect |
+|---|---|---|
+| `[excited]` | yes | pitch +9 Hz |
+| `[pause]` | yes | within noise here |
+| `[serious]` | no | pitch +10 Hz |
+| `[slowly]` `[warm]` `[calm]` `[gently]` `[encouraging]` `[thoughtful]` | **no** | **nothing** |
+| `[whispers]` | **no — it is `[whisper]`** | **nothing** |
+
+Eight of the ten invented tags moved pace, pitch and pause length by less than
+the engine varies between seeds anyway. The list is in fish-speech's README and
+mirrored in `src/presentation/components/studio/annotations.ts`, which is what
+the studio's palette offers. Free-form descriptions are also supported — the
+README claims 15,000+ tags and gives `[whisper in small voice]` — but a listed
+tag is the one with a known effect.
+
 ### Where markup is appropriate — and where it is not
 
 **Not on Thai.** Tested on `มอ ม้า`, the hardest clip in lesson 1, with the

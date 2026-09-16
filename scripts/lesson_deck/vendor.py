@@ -505,9 +505,16 @@ class S2ProEnglishVoice:
 	it — so the pipeline's retry loop does real work here.
 	"""
 
-	#: Measured: `[whispers] Listen carefully. [pause] Now say it aloud.` came
-	#: back transcribing as "Listen carefully. Now say it aloud." The tags
-	#: shaped delivery and were not spoken.
+	#: The engine publishes a tag vocabulary — `[pause]`, `[whisper]`,
+	#: `[excited]` and some thirty more — and reads them as direction rather
+	#: than as words. Confirmed by transcribing a tagged line back: the tags did
+	#: not appear in what was said.
+	#:
+	#: Note what that does *not* establish, because it was briefly taken to:
+	#: an unrecognised tag is dropped just as silently. `[whispers]` is not a
+	#: tag and does nothing, while `[whisper]` is. Not-spoken and
+	#: interpreted look identical from outside, so the list is the authority —
+	#: see reference/ENGINES.md and the studio's palette.
 	supports_markup = True
 
 	def __init__(self, compile_model: bool = True) -> None:

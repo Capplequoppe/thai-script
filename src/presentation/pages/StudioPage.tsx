@@ -19,6 +19,10 @@
  * that can actually be remade, and each clip names the lines it came from.
  */
 import { useCallback, useEffect, useMemo, useState } from "react";
+import {
+	AnnotationPalette,
+	UnknownTagWarning,
+} from "../components/studio/AnnotationPalette";
 import { AutoTextarea, ClipPlayer } from "../components/studio/StudioControls";
 
 const API = "/__studio/api";
@@ -180,6 +184,36 @@ export default function StudioPage() {
 			setBusy(null);
 		}
 	}
+
+	/**
+	 * Put a tag into narration line `index`, at the caret where possible.
+	 *
+	 * Reads the caret from the DOM rather than tracking it in state: the
+	 * palette is a separate element, so clicking it blurs nothing React knows
+	 * about, and the selection is still on the textarea when this runs. A
+	 * palette that could only append would be useless for pauses, which are
+	 * always about a particular spot in a sentence.
+	 */
+	const insertTag = (index: number, tag: string) => {
+		if (!draft) return;
+		const line = draft[index];
+		const node = document.activeElement;
+		const next = [...draft];
+		if (
+			node instanceof HTMLTextAreaElement &&
+			node.dataset.lineIndex === String(index)
+		) {
+			const before = line.text.slice(0, node.selectionStart);
+			const after = line.text.slice(node.selectionEnd);
+			next[index] = {
+				...line,
+				text: `${before} ${tag} ${after}`.replace(/\s{2,}/g, " ").trim(),
+			};
+		} else {
+			next[index] = { ...line, text: `${line.text} ${tag}`.trim() };
+		}
+		setDraft(next);
+	};
 
 	const save = () =>
 		run("Saving", async () => {
@@ -409,6 +443,14 @@ export default function StudioPage() {
 											key={line.uid}
 											className="mb-3 rounded border bg-white p-2"
 										>
+											<div className="mb-1 flex items-center justify-between gap-2">
+												<span className="text-slate-400 text-xs">
+													line {index + 1}
+												</span>
+												<AnnotationPalette
+													onInsert={(tag) => insertTag(index, tag)}
+												/>
+											</div>
 											<div className="flex gap-2">
 												<select
 													className="h-8 rounded border px-1"
@@ -426,6 +468,7 @@ export default function StudioPage() {
 													<option value="th">th</option>
 												</select>
 												<AutoTextarea
+													data-line-index={index}
 													className="flex-1 rounded border p-2 font-mono text-xs leading-relaxed focus:border-slate-400 focus:outline-none"
 													value={line.text}
 													onChange={(text) => {
@@ -445,6 +488,7 @@ export default function StudioPage() {
 													×
 												</button>
 											</div>
+											<UnknownTagWarning text={line.text} />
 
 											{feeds.map((clip) => {
 												const seconds = spokenSeconds(clip.words);
