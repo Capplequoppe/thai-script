@@ -37,6 +37,17 @@ export default defineConfig({
 		},
 	},
 	server: {
+		// The deck studio's backend (`scripts/studio_server.py`), proxied so the
+		// page can call it same-origin. Dev only, and deliberately not started
+		// by Vite: it holds several gigabytes of GPU models resident, which
+		// nobody running the app to *use* it should be made to pay for. Start it
+		// alongside when authoring — `npm run studio`.
+		proxy: {
+			"/__studio": {
+				target: "http://127.0.0.1:5174",
+				changeOrigin: false,
+			},
+		},
 		watch: {
 			// The dev server's default watcher covers the whole repo root (only
 			// node_modules/.git are excluded by chokidar's own defaults), which

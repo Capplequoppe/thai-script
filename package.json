@@ -9,7 +9,8 @@
 		"test": "vitest run",
 		"test:watch": "vitest",
 		"test:e2e": "playwright test",
-		"test:e2e:ui": "playwright test --ui"
+		"test:e2e:ui": "playwright test --ui",
+		"studio": "uv run --project scripts/deck-env python scripts/studio_server.py"
 	},
 	"dependencies": {
 		"@radix-ui/react-dialog": "^1.1.15",

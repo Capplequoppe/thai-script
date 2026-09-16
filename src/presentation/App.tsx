@@ -1,3 +1,4 @@
+import { lazy, Suspense } from "react";
 import { HashRouter, Navigate, Route, Routes } from "react-router";
 import { Layout } from "./components/layout/Layout";
 import { AppProvider } from "./context/AppContext";
@@ -18,6 +19,18 @@ import { SettingsPage } from "./pages/SettingsPage";
 import { StageItemsPage } from "./pages/StageItemsPage";
 import { VocabularyPage } from "./pages/VocabularyPage";
 
+/**
+ * The deck studio, in development builds only.
+ *
+ * `lazy` rather than a plain import, and guarded by `import.meta.env.DEV`, so
+ * the page and everything it pulls in are tree-shaken out of a production
+ * bundle entirely. It writes to the repository through a local server that has
+ * no authentication; shipping it would be shipping an open editor.
+ */
+const StudioPage = import.meta.env.DEV
+	? lazy(() => import("./pages/StudioPage"))
+	: null;
+
 export function App() {
 	return (
 		<AppProvider>
@@ -31,6 +44,16 @@ export function App() {
 						<Route path="/game" element={<GamePage />} />
 						<Route path="/learn" element={<LearnPage />} />
 						<Route path="/orientation" element={<OrientationPage />} />
+						{StudioPage && (
+							<Route
+								path="/studio"
+								element={
+									<Suspense fallback={<p className="p-4">loading studio…</p>}>
+										<StudioPage />
+									</Suspense>
+								}
+							/>
+						)}
 						<Route path="/items" element={<LearnedItemsPage />} />
 						<Route path="/progress" element={<ProgressPage />} />
 						<Route path="/progress/:stage" element={<StageItemsPage />} />
