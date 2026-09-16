@@ -137,13 +137,20 @@ class Job:
 	def __init__(self) -> None:
 		self._lock = threading.Lock()
 		self._state: dict[str, Any] = {"running": False}
+		self._watching: set[str] | None = None
 
 	def snapshot(self) -> dict[str, Any]:
 		with self._lock:
 			return dict(self._state)
 
-	def start(self, deck: str, scope: str, total_hint: int) -> None:
+	def start(
+		self, deck: str, scope: str, total_hint: int, watching: set[str] | None
+	) -> None:
 		with self._lock:
+			#: The keys this build was asked to remake. When set, progress counts
+			#: only these — the rest of the deck is walked but every asset is a
+			#: cache hit, and counting those makes a one-clip job report `0/61`.
+			self._watching = watching
 			self._state = {
 				"running": True,
 				"deck": deck,
@@ -165,13 +172,19 @@ class Job:
 		so a watcher tallying states reports every clip as freshly made.
 		"""
 		with self._lock:
-			self._state.update({
-				"done": progress["done"],
-				"total": progress["total"],
-				"current": progress["key"],
-				"generated": progress["generated"],
-				"reused": progress["reused"],
-			})
+			if self._watching is not None:
+				if progress["key"] not in self._watching:
+					# A cache hit on something nobody asked about. Reporting it
+					# would move a bar that is measuring different work.
+					return
+				self._state["done"] = int(self._state.get("done", 0)) + 1
+				self._state["current"] = progress["key"]
+			else:
+				self._state["done"] = progress["done"]
+				self._state["total"] = progress["total"]
+				self._state["current"] = progress["key"]
+			self._state["generated"] = progress["generated"]
+			self._state["reused"] = progress["reused"]
 
 	def finish(self, report: dict[str, Any] | None, error: str | None) -> None:
 		with self._lock:
@@ -366,10 +379,16 @@ def start_build(deck: str, force: list[str] | None, scope: str) -> dict[str, Any
 	if JOB.snapshot().get("running"):
 		raise ValueError("a build is already running")
 
-	total = sum(
-		len(slide.segments) for slide in parse_script(CONTENT_DIR / f"{deck}.md").slides
+	watching = set(force) if force else None
+	total = (
+		len(watching)
+		if watching is not None
+		else sum(
+			len(slide.segments)
+			for slide in parse_script(CONTENT_DIR / f"{deck}.md").slides
+		)
 	)
-	JOB.start(deck, scope, total)
+	JOB.start(deck, scope, total, watching)
 
 	def work() -> None:
 		try:

@@ -555,10 +555,27 @@ export default function StudioPage() {
 											<div className="mb-1 flex items-center justify-between gap-2">
 												<span className="text-slate-400 text-xs">
 													line {index + 1}
+													{feeds.length > 1 && ` · ${feeds.length} clips`}
 												</span>
-												<AnnotationPalette
-													onInsert={(tag) => insertTag(index, tag)}
-												/>
+												<div className="flex items-center gap-2">
+													<AnnotationPalette
+														onInsert={(tag) => insertTag(index, tag)}
+													/>
+													<button
+														type="button"
+														className="rounded border px-2 py-1 text-xs disabled:opacity-40"
+														onClick={() =>
+															rebuild(
+																`Regenerating line ${index + 1}`,
+																feeds.map((clip) => clip.key),
+																"line",
+															)
+														}
+														disabled={busy !== null || feeds.length === 0}
+													>
+														Regenerate
+													</button>
+												</div>
 											</div>
 											<div className="flex gap-2">
 												<select
@@ -643,20 +660,6 @@ export default function StudioPage() {
 															{clip.key.split("-").pop()} · ~
 															{seconds.toFixed(0)}s{shared && " · merged"}
 														</span>
-														<button
-															type="button"
-															className="shrink-0 rounded border px-2 py-1 text-xs disabled:opacity-40"
-															onClick={() =>
-																rebuild(
-																	`Regenerating ${clip.key}`,
-																	[clip.key],
-																	"clip",
-																)
-															}
-															disabled={busy !== null}
-														>
-															Regenerate
-														</button>
 													</div>
 												);
 											})}
