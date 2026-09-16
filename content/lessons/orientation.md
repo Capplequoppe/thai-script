@@ -63,8 +63,6 @@ narration: en What makes this course unique is that it applies proven techniques
 narration: en Sadly, many of these techniques have probably never reached you at school. Instead, you were probably taught to read new material over and over, perhaps while underlining the important parts. Ironically, that is close to the worst possible use of the hours you put in, because by repeating the same material over and over with almost no controlled delays in between, you were effectively teaching your brain NOT to remember anything because the brain recognized that the material is stored somewhere else, which is true. It was stored in the book. You were wasting time, and nobody ever told you!
 narration: en Because we use these proven techniques as much as possible in this course, you will learn Thai significantly faster than most people who attempt it.
 narration: en I'll walk you through the techniques and show you what the journey actually looks like, so that when you meet your first Thai letter you already know how to learn it.
-image-prompt: An old scholar walks slowly along a vast stone colonnade with one hand trailing across the pillars as he passes them, his eyes closed, reciting from memory. Shafts of warm golden light fall between the columns onto the worn floor. Cool blue shadow lies in the depths behind him.
-image-seed: 42
 - This course uses **proven rapid-learning techniques** — some ancient, some recent.
 - School taught you to re-read and underline. That is close to the worst use of the hours.
 - Re-reading teaches your brain the material lives in the book, so it does not keep it.
