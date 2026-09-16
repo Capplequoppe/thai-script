@@ -11,6 +11,7 @@ import type {
 } from "../../domain/script/services/ScriptLessonService";
 import { SrsStage } from "../../domain/srs/value-objects/SrsStage";
 import { ClassBadge } from "../components/atoms/ClassBadge";
+import { CardPager } from "../components/molecules/CardPager";
 import {
 	type ItemCard,
 	StageOverrideSheet,
@@ -209,6 +210,25 @@ export function LearnedItemsPage() {
 		return toneRules[selectedIdx] ?? null;
 	}, [tab, selectedIdx, toneRules]);
 
+	// The list the open detail card pages through: the active tab's own array,
+	// in the order the grid shows it. Paging deliberately stops at the ends of
+	// a tab rather than rolling into the next one — the tabs are the grouping,
+	// and a learner reviewing numerals wants to stay in numerals.
+	const tabItems: readonly unknown[] =
+		tab === "consonants"
+			? consonants
+			: tab === "vowels"
+				? vowels
+				: tab === "toneMarks"
+					? toneMarks
+					: tab === "toneRules"
+						? toneRules
+						: tab === "rareVowels"
+							? rareVowels
+							: tab === "numerals"
+								? numerals
+								: videos;
+
 	const overrideCards: ItemCard[] = useMemo(() => {
 		if (selectedToneRule) {
 			return Object.values(state.cards)
@@ -354,24 +374,33 @@ export function LearnedItemsPage() {
 					>
 						← Back to list
 					</button>
-					{tab === "consonants" && consonants[selectedIdx] && (
-						<ConsonantCard c={consonants[selectedIdx]} />
-					)}
-					{tab === "vowels" && vowels[selectedIdx] && (
-						<VowelCard v={vowels[selectedIdx]} />
-					)}
-					{tab === "toneMarks" && toneMarks[selectedIdx] && (
-						<ToneMarkCard t={toneMarks[selectedIdx]} />
-					)}
-					{tab === "rareVowels" && rareVowels[selectedIdx] && (
-						<RareVowelCard v={rareVowels[selectedIdx]} />
-					)}
-					{tab === "numerals" && numerals[selectedIdx] && (
-						<NumeralCard n={numerals[selectedIdx]} />
-					)}
-					{tab === "toneRules" && toneRules[selectedIdx] && (
-						<ToneRuleCard description={toneRules[selectedIdx].description} />
-					)}
+					<CardPager
+						index={selectedIdx}
+						total={tabItems.length}
+						onNavigate={(i) => {
+							setSelectedIdx(i);
+							setOverrideOpen(false);
+						}}
+					>
+						{tab === "consonants" && consonants[selectedIdx] && (
+							<ConsonantCard c={consonants[selectedIdx]} />
+						)}
+						{tab === "vowels" && vowels[selectedIdx] && (
+							<VowelCard v={vowels[selectedIdx]} />
+						)}
+						{tab === "toneMarks" && toneMarks[selectedIdx] && (
+							<ToneMarkCard t={toneMarks[selectedIdx]} />
+						)}
+						{tab === "rareVowels" && rareVowels[selectedIdx] && (
+							<RareVowelCard v={rareVowels[selectedIdx]} />
+						)}
+						{tab === "numerals" && numerals[selectedIdx] && (
+							<NumeralCard n={numerals[selectedIdx]} />
+						)}
+						{tab === "toneRules" && toneRules[selectedIdx] && (
+							<ToneRuleCard description={toneRules[selectedIdx].description} />
+						)}
+					</CardPager>
 					{(selectedSymbol || selectedToneRule) && (
 						<>
 							<button

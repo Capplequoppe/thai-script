@@ -17,6 +17,7 @@ import { WordCard } from "../components/organisms/WordCard";
 import { useApp } from "../hooks/useApp";
 import { useReviewSession } from "../hooks/useReviewSession";
 import { useSessionFlow } from "../hooks/useSessionFlow";
+import { useSwipeNavigation } from "../hooks/useSwipeNavigation";
 
 type Phase = "overview" | "intro" | "quiz" | "complete" | "review";
 
@@ -45,7 +46,7 @@ function VocabIntro({
 			if (e.key === "Enter" || e.key === " ") {
 				e.preventDefault();
 				advance();
-			} else if (e.key === "ArrowLeft" || e.key === "Backspace") {
+			} else if (e.key === "Backspace") {
 				e.preventDefault();
 				goBack();
 			}
@@ -54,10 +55,14 @@ function VocabIntro({
 		return () => window.removeEventListener("keydown", handler);
 	}, [advance, goBack]);
 
+	// Arrow keys moved here from the handler above, which would otherwise
+	// double-step: two listeners answering one ArrowLeft is two `goBack`s.
+	const swipe = useSwipeNavigation({ onPrev: goBack, onNext: advance });
+
 	if (!current) return null;
 
 	return (
-		<div className="space-y-6">
+		<div className="space-y-6" {...swipe}>
 			<div
 				className="flex justify-between items-center text-sm"
 				style={{ color: "var(--color-text-muted)" }}

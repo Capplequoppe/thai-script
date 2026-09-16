@@ -446,4 +446,62 @@ describe("DictionaryPage", () => {
 		expect(screen.getByText("Appears in 1 sentence")).toBeTruthy();
 		expect(screen.getByText("Unlocks immediately")).toBeTruthy();
 	});
+
+	function pagerPosition() {
+		return screen.getByText(/^\d+ \/ \d+$/).textContent;
+	}
+
+	// The detail view pages along the list the word was opened from, so a
+	// learner reviewing a run of words never has to go back to the grid.
+	it("pages to the next word in the list's own order", () => {
+		renderPage();
+		selectScope("Unlocked");
+
+		// "cat" is rank 1, so it opens first of the five unlocked words.
+		fireEvent.click(screen.getByText("cat"));
+		expect(pagerPosition()).toBe("1 / 5");
+
+		fireEvent.click(screen.getByRole("button", { name: "Next item" }));
+
+		// Rank 2 — "eat".
+		expect(pagerPosition()).toBe("2 / 5");
+		expect(screen.getByText("กิน")).toBeTruthy();
+
+		fireEvent.click(screen.getByRole("button", { name: "Previous item" }));
+
+		expect(pagerPosition()).toBe("1 / 5");
+		expect(screen.getByText("แมว")).toBeTruthy();
+	});
+
+	// The word-class tab is what makes this useful for reviewing one class
+	// (pronouns, numerals) at a time.
+	it("pages only within the active word-class tab", () => {
+		renderPage();
+		selectScope("Unlocked");
+		fireEvent.click(screen.getByRole("button", { name: "Verbs (2)" }));
+
+		fireEvent.click(screen.getByText("eat"));
+		expect(pagerPosition()).toBe("1 / 2");
+
+		fireEvent.click(screen.getByRole("button", { name: "Next item" }));
+
+		// "walk", not "beautiful" — the adjective ranked between them is not
+		// in this tab's list.
+		expect(pagerPosition()).toBe("2 / 2");
+		expect(screen.getByText("เดิน")).toBeTruthy();
+		expect(
+			screen
+				.getByRole("button", { name: "Next item" })
+				.hasAttribute("disabled"),
+		).toBe(true);
+	});
+
+	it("shows no pager when the list holds a single word", () => {
+		renderPage();
+
+		// The learned scope has exactly one word in it.
+		fireEvent.click(screen.getByText("eat"));
+
+		expect(screen.queryByRole("button", { name: "Next item" })).toBeNull();
+	});
 });

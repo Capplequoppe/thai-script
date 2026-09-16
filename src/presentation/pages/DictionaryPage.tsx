@@ -1,6 +1,7 @@
 import { useMemo, useState } from "react";
 import { SrsStage } from "../../domain/srs/value-objects/SrsStage";
 import { StageDot } from "../components/atoms/StageDot";
+import { CardPager } from "../components/molecules/CardPager";
 import { PullInVocabButton } from "../components/molecules/PullInVocabButton";
 import { StageBadge } from "../components/molecules/StageBadge";
 import { WordClassTabs } from "../components/molecules/WordClassTabs";
@@ -173,6 +174,26 @@ export function DictionaryPage() {
 	const selectedEntry = selectedThai
 		? (allWords.find((e) => e.thai === selectedThai) ?? null)
 		: null;
+
+	// Where the open word sits in the list behind it, so the detail view can
+	// page along the same order the grid shows — scope, search, word-class tab
+	// and sort already baked in. Paging spans the whole sorted list rather than
+	// the `GRID_CAP` slice: the cap exists to keep the grid cheap to render,
+	// not to mean anything about which words belong together.
+	//
+	// Resolved from `selectedThai` on every render rather than stored, so a
+	// list that recomputes underneath the open card (pulling a word in changes
+	// which words are learned) keeps the pager pointed at the same word. If the
+	// word has dropped out of the list entirely there is no position to page
+	// from, and the pager is collapsed to a list of one, which renders no
+	// controls.
+	const selectedIndex = useMemo(
+		() =>
+			selectedThai
+				? sortedEntries.findIndex((e) => e.thai === selectedThai)
+				: -1,
+		[sortedEntries, selectedThai],
+	);
 
 	// biome-ignore lint/correctness/useExhaustiveDependencies: vocab is a stable service; completedLessons/vocabCards changing drives re-computation
 	const selectedIsPullable = useMemo(
@@ -479,21 +500,32 @@ export function DictionaryPage() {
 			    so there is nothing to override — it gets the pull-in flow. */}
 			{selectedThai && selectedEntry && (
 				<div className="space-y-4">
-					{learnedThai.has(selectedEntry.thai) && (
-						<div className="flex justify-center">
-							<StageBadge
-								stage={bestVocabStage(selectedEntry.thai, state.vocabCards)}
+					<CardPager
+						index={selectedIndex >= 0 ? selectedIndex : 0}
+						total={selectedIndex >= 0 ? sortedEntries.length : 1}
+						onNavigate={(i) => {
+							setSelectedThai(sortedEntries[i].thai);
+							setOverrideOpen(false);
+						}}
+					>
+						<div className="space-y-4">
+							{learnedThai.has(selectedEntry.thai) && (
+								<div className="flex justify-center">
+									<StageBadge
+										stage={bestVocabStage(selectedEntry.thai, state.vocabCards)}
+									/>
+								</div>
+							)}
+							<WordCard
+								word={selectedEntry}
+								stageName={
+									learnedThai.has(selectedEntry.thai)
+										? bestVocabStage(selectedEntry.thai, state.vocabCards)
+										: null
+								}
 							/>
 						</div>
-					)}
-					<WordCard
-						word={selectedEntry}
-						stageName={
-							learnedThai.has(selectedEntry.thai)
-								? bestVocabStage(selectedEntry.thai, state.vocabCards)
-								: null
-						}
-					/>
+					</CardPager>
 					{learnedThai.has(selectedEntry.thai) && (
 						<>
 							<div className="flex justify-center">
