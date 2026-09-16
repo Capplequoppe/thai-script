@@ -19,10 +19,28 @@
  * that can actually be remade, and each clip names the lines it came from.
  */
 import { useCallback, useEffect, useMemo, useState } from "react";
+import { AutoTextarea, ClipPlayer } from "../components/studio/StudioControls";
 
 const API = "/__studio/api";
 
 type NarrationLine = { language: string; text: string };
+
+/**
+ * An editable row, with an identity React can hold on to.
+ *
+ * Index keys are wrong here and not only by lint's reckoning: remove the second
+ * of five narration lines and every row below shifts up one index, so React
+ * reuses each box for different text. `AutoTextarea` measures itself and keeps
+ * a ref, so the reused boxes keep the previous row's height — the list ends up
+ * visibly mismatched with its own content. A counter assigned on load costs
+ * nothing and removes the whole class of problem.
+ */
+type Editable<T> = T & { uid: number };
+
+let nextUid = 0;
+function withUid<T>(items: T[]): Editable<T>[] {
+	return items.map((item) => ({ ...item, uid: nextUid++ }));
+}
 
 type Clip = {
 	key: string;
@@ -65,6 +83,15 @@ function spokenSeconds(words: number): number {
 	return (words / 160) * 60;
 }
 
+/** The wire shape: identities are a client-side concern and never persisted. */
+function plainNarration(lines: Editable<NarrationLine>[]): NarrationLine[] {
+	return lines.map(({ language, text }) => ({ language, text }));
+}
+
+function plainBullets(items: Editable<{ text: string }>[]): string[] {
+	return items.map((item) => item.text);
+}
+
 async function call<T>(path: string, init?: RequestInit): Promise<T> {
 	const response = await fetch(`${API}${path}`, {
 		...init,
@@ -86,8 +113,10 @@ export default function StudioPage() {
 	/** Bumped after a rebuild so `<audio>` refetches rather than replaying cache. */
 	const [audioVersion, setAudioVersion] = useState(0);
 
-	const [draft, setDraft] = useState<NarrationLine[] | null>(null);
-	const [bullets, setBullets] = useState<string[] | null>(null);
+	const [draft, setDraft] = useState<Editable<NarrationLine>[] | null>(null);
+	const [bullets, setBullets] = useState<Editable<{ text: string }>[] | null>(
+		null,
+	);
 	const [heading, setHeading] = useState<string | null>(null);
 	const [prompt, setPrompt] = useState("");
 	const [seed, setSeed] = useState("42");
@@ -122,8 +151,8 @@ export default function StudioPage() {
 	);
 
 	useEffect(() => {
-		setDraft(slide ? slide.narration.map((line) => ({ ...line })) : null);
-		setBullets(slide ? [...slide.bullets] : null);
+		setDraft(slide ? withUid(slide.narration) : null);
+		setBullets(slide ? withUid(slide.bullets.map((text) => ({ text }))) : null);
 		setHeading(slide?.heading ?? null);
 		setPrompt(slide?.prompt ?? slide?.scene ?? "");
 		setSeed(slide?.seed ?? "42");
@@ -132,8 +161,9 @@ export default function StudioPage() {
 	const dirty = useMemo(() => {
 		if (!slide || !draft || !bullets) return false;
 		return (
-			JSON.stringify(draft) !== JSON.stringify(slide.narration) ||
-			JSON.stringify(bullets) !== JSON.stringify(slide.bullets) ||
+			JSON.stringify(plainNarration(draft)) !==
+				JSON.stringify(slide.narration) ||
+			JSON.stringify(plainBullets(bullets)) !== JSON.stringify(slide.bullets) ||
 			(heading ?? "") !== (slide.heading ?? "")
 		);
 	}, [slide, draft, bullets, heading]);
@@ -156,7 +186,11 @@ export default function StudioPage() {
 			if (!slide || !draft) return;
 			await call(`/deck/${deckId}/slide/${slide.id}`, {
 				method: "PUT",
-				body: JSON.stringify({ narration: draft, bullets, heading }),
+				body: JSON.stringify({
+					narration: plainNarration(draft),
+					bullets: plainBullets(bullets ?? []),
+					heading,
+				}),
 			});
 			await loadDeck(deckId);
 			setStatus("Saved. Regenerate to hear it.");
@@ -169,10 +203,14 @@ export default function StudioPage() {
 	 */
 	const rebuild = (label: string, force?: string[]) =>
 		run(label, async () => {
-			if (dirty) {
+			if (dirty && draft) {
 				await call(`/deck/${deckId}/slide/${slide?.id}`, {
 					method: "PUT",
-					body: JSON.stringify({ narration: draft, bullets, heading }),
+					body: JSON.stringify({
+						narration: plainNarration(draft),
+						bullets: plainBullets(bullets ?? []),
+						heading,
+					}),
 				});
 			}
 			const report = await call<BuildReport>(`/deck/${deckId}/build`, {
@@ -246,7 +284,9 @@ export default function StudioPage() {
 				<span className="flex-1" />
 				{busy && <span className="text-amber-700">{busy}…</span>}
 				{status && <span className="text-emerald-700">{status}</span>}
-				{error && <span className="max-w-[40ch] truncate text-red-700">{error}</span>}
+				{error && (
+					<span className="max-w-[40ch] truncate text-red-700">{error}</span>
+				)}
 			</header>
 
 			<div className="flex min-h-0 flex-1">
@@ -262,7 +302,9 @@ export default function StudioPage() {
 								key={entry.id}
 								onClick={() => setSelected(entry.id)}
 								className={`block w-full border-b px-3 py-2 text-left hover:bg-white ${
-									entry.id === selected ? "bg-white font-medium shadow-inner" : ""
+									entry.id === selected
+										? "bg-white font-medium shadow-inner"
+										: ""
 								}`}
 							>
 								<div className="truncate">{entry.id}</div>
@@ -342,7 +384,7 @@ export default function StudioPage() {
 									);
 									return (
 										<div
-											key={index}
+											key={line.uid}
 											className="mb-3 rounded border bg-white p-2"
 										>
 											<div className="flex gap-2">
@@ -361,15 +403,12 @@ export default function StudioPage() {
 													<option value="en">en</option>
 													<option value="th">th</option>
 												</select>
-												<textarea
-													className="min-h-[5rem] flex-1 rounded border p-2 font-mono text-xs"
+												<AutoTextarea
+													className="flex-1 rounded border p-2 font-mono text-xs leading-relaxed focus:border-slate-400 focus:outline-none"
 													value={line.text}
-													onChange={(event) => {
+													onChange={(text) => {
 														const next = [...draft];
-														next[index] = {
-															...line,
-															text: event.target.value,
-														};
+														next[index] = { ...line, text };
 														setDraft(next);
 													}}
 												/>
@@ -394,16 +433,12 @@ export default function StudioPage() {
 														className="mt-2 flex items-center gap-2 border-t pt-2"
 													>
 														{clip.url ? (
-															<audio
-																controls
-																preload="none"
-																className="h-8 min-w-0 flex-1"
+															<ClipPlayer
+																key={`${clip.url}-${audioVersion}`}
 																src={`${clip.url}?v=${audioVersion}`}
-															>
-																<track kind="captions" />
-															</audio>
+															/>
 														) : (
-															<span className="flex-1 text-amber-700 text-xs">
+															<span className="flex-1 rounded-full border border-amber-300 bg-amber-50 px-3 py-1 text-amber-700 text-xs">
 																not built yet
 															</span>
 														)}
@@ -421,8 +456,8 @@ export default function StudioPage() {
 																	: undefined
 															}
 														>
-															{clip.key.split("-").pop()} · ~{seconds.toFixed(0)}s
-															{shared && " · merged"}
+															{clip.key.split("-").pop()} · ~
+															{seconds.toFixed(0)}s{shared && " · merged"}
 														</span>
 														<button
 															type="button"
@@ -444,7 +479,10 @@ export default function StudioPage() {
 									type="button"
 									className="rounded border px-2 py-1"
 									onClick={() =>
-										setDraft([...draft, { language: "en", text: "" }])
+										setDraft([
+											...draft,
+											{ language: "en", text: "", uid: nextUid++ },
+										])
 									}
 								>
 									+ line
@@ -469,17 +507,21 @@ export default function StudioPage() {
 								</div>
 								<label className="block" htmlFor="studio-prompt">
 									<span className="text-slate-600 text-xs">
-										Prompt {slide.prompt ? "(as last rendered)" : "(from scene)"}
+										Prompt{" "}
+										{slide.prompt ? "(as last rendered)" : "(from scene)"}
 									</span>
-									<textarea
+									<AutoTextarea
 										id="studio-prompt"
-										className="min-h-[8rem] w-full rounded border p-2 font-mono text-xs"
+										className="w-full rounded border p-2 font-mono text-xs leading-relaxed focus:border-slate-400 focus:outline-none"
 										value={prompt}
-										onChange={(event) => setPrompt(event.target.value)}
+										onChange={setPrompt}
 									/>
 								</label>
 								<div className="flex items-center gap-2">
-									<label htmlFor="studio-seed" className="text-slate-600 text-xs">
+									<label
+										htmlFor="studio-seed"
+										className="text-slate-600 text-xs"
+									>
 										seed
 									</label>
 									<input
@@ -513,14 +555,14 @@ export default function StudioPage() {
 
 								<div>
 									<h2 className="mb-1 font-medium">Bullets</h2>
-									{(bullets ?? []).map((text, index) => (
+									{(bullets ?? []).map((item, index) => (
 										<input
-											key={index}
+											key={item.uid}
 											className="mb-1 w-full rounded border px-2 py-1"
-											value={text}
+											value={item.text}
 											onChange={(event) => {
 												const next = [...(bullets ?? [])];
-												next[index] = event.target.value;
+												next[index] = { ...item, text: event.target.value };
 												setBullets(next);
 											}}
 										/>
@@ -528,7 +570,12 @@ export default function StudioPage() {
 									<button
 										type="button"
 										className="rounded border px-2 py-1"
-										onClick={() => setBullets([...(bullets ?? []), ""])}
+										onClick={() =>
+											setBullets([
+												...(bullets ?? []),
+												{ text: "", uid: nextUid++ },
+											])
+										}
 									>
 										+ bullet
 									</button>
