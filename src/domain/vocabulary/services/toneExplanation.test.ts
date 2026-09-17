@@ -128,6 +128,12 @@ describe("against the corpus", () => {
 			}
 		}
 		expect(compared).toBeGreaterThan(5000);
-		expect(agreed / compared).toBeGreaterThan(0.9);
+		// 98.5% as measured. The remainder is one identifiable corpus gap, not
+		// noise: อ standing as the vowel (นอก, ขอ, พอ) is recorded with
+		// `vowel: null` and the อ dropped, so the syllable reads as closed with
+		// nothing written and comes out short. Raising this floor is what turns
+		// the number into a guard — at 0.9 it had four points of slack, which is
+		// room for a regression the size of the one this file exists to catch.
+		expect(agreed / compared).toBeGreaterThan(0.98);
 	});
 });

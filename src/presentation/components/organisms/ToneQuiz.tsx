@@ -1,5 +1,7 @@
 import { useCallback, useMemo, useState } from "react";
 import { Button } from "@/presentation/components/ui/button";
+import { toneExplanationsForCard } from "../../../domain/vocabulary/services/toneCardExplanations";
+import type { ToneExplanation } from "../../../domain/vocabulary/services/toneExplanation";
 import type { VocabularyCard } from "../../../domain/vocabulary/types";
 import { useResetOnCardChange } from "../../hooks/useResetOnCardChange";
 
@@ -9,6 +11,49 @@ type Tone = (typeof TONES)[number];
 interface ToneQuizProps {
 	card: VocabularyCard;
 	onAnswer: (correct: boolean) => void;
+}
+
+/**
+ * The rule behind one syllable's tone, shown once the answer is revealed.
+ *
+ * This fills a window that was already being held open and left blank: a
+ * wrong answer pauses for five seconds before advancing (see `handleCheck`),
+ * on the theory that a learner should sit with the mistake. Until now there
+ * was nothing to sit with but the right answer, which is the one thing that
+ * cannot teach the derivation — knowing ที่ is falling does not tell you that
+ * a low-class initial under mai ek *has* to be.
+ *
+ * Renders nothing where the tables do not reach the syllable, rather than an
+ * empty box: silence is honest, an empty explanation is not.
+ */
+function RuleHint({ explanation }: { explanation?: ToneExplanation }) {
+	if (!explanation) return null;
+
+	const exception = explanation.disagreesWithStored;
+	return (
+		<p
+			className="text-xs leading-relaxed pt-1"
+			style={{
+				color: exception
+					? "var(--color-warning, #a16207)"
+					: "var(--color-text-muted)",
+			}}
+		>
+			{exception ? (
+				<>
+					<span className="font-semibold">Exception. </span>
+					The rules give {explanation.tone} here ({explanation.description}),
+					but this word is said otherwise — so this one is worth memorising
+					rather than deriving.
+				</>
+			) : (
+				<>
+					{explanation.description}{" "}
+					<span className="opacity-60">(lesson {explanation.lesson})</span>
+				</>
+			)}
+		</p>
+	);
 }
 
 export function ToneQuiz({ card, onAnswer }: ToneQuizProps) {
@@ -29,6 +74,12 @@ export function ToneQuiz({ card, onAnswer }: ToneQuizProps) {
 	const correctTones = useMemo(
 		() => card.correctAnswer.split("|"),
 		[card.correctAnswer],
+	);
+	// Index-aligned with `correctTones` by construction — both descend from
+	// `toneSyllableInfosOf`. See `toneExplanationsForCard`.
+	const explanations = useMemo(
+		() => toneExplanationsForCard(card.id),
+		[card.id],
 	);
 
 	const handleSelect = useCallback(
@@ -141,6 +192,7 @@ export function ToneQuiz({ card, onAnswer }: ToneQuizProps) {
 									);
 								})}
 							</div>
+							{revealed && <RuleHint explanation={explanations[i]} />}
 						</div>
 					);
 				})}

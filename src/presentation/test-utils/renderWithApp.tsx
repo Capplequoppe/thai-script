@@ -452,6 +452,14 @@ export function makeSelfValidationSentenceCard(
  * persisted before that field existed has `syllables === undefined`, which
  * is why `ToneGameItemSource` sources its content from the entry instead
  * (see CONTEXT.md).
+ *
+ * `choices` is empty and `correctAnswer` is the pipe-joined tones for the
+ * same reason, and that pairing is not incidental: a tone card's answer is
+ * one tone *per syllable*, so there is no whole-card choice list to offer
+ * and `VocabCardGenerator` writes none. This fixture used to invent a
+ * two-item `choices` array and a `correctAnswer` of `"answer"`, which no
+ * generator produces — so a test rendering one through `ToneQuiz` would
+ * have graded against a single pseudo-tone that matches no syllable.
  */
 export function makeToneVocabCard(thai: string): VocabCard {
 	const entry = (vocabularyData as VocabEntry[]).find(
@@ -460,15 +468,16 @@ export function makeToneVocabCard(thai: string): VocabCard {
 	if (!entry) {
 		throw new Error(`no vocabulary entry for "${thai}"`);
 	}
+	const syllables = toneSyllablesOf(entry);
 	return VocabCard.fromDTO({
 		id: `vocab:${thai}:toneIdentification`,
-		question: `What is the tone pattern of ${thai}?`,
-		correctAnswer: "answer",
-		choices: ["answer", "other"],
+		question: "What is the tone of each syllable?",
+		correctAnswer: syllables.map((s) => s.tone).join("|"),
+		choices: [],
 		srs: { ...DEFAULT_SRS },
 		promptWord: thai,
 		property: "toneIdentification",
-		syllables: toneSyllablesOf(entry),
+		syllables,
 	});
 }
 

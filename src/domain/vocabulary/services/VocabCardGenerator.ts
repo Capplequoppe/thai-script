@@ -2,6 +2,7 @@ import { consonants, vowels } from "../../script/data/symbols";
 import { normalizeFinalSound } from "../../script/services/ScriptCardGenerator";
 import { SrsSchedule } from "../../srs/value-objects/SrsSchedule";
 import type { VocabEntry, VocabularyCard } from "../types";
+import { toneRuleComponentsOf } from "./toneRuleComponents";
 import { toneSyllablesOf } from "./toneSyllables";
 
 function pickChoices(correct: string, pool: string[], count = 4): string[] {
@@ -276,6 +277,47 @@ export function generateVocabCards(
 			syllables: toneSyllables,
 			srs: SrsSchedule.initial().toDTO(),
 		});
+
+		// Deriving the tone, as opposed to recalling it. A third gate on top
+		// of the two above: `toneRuleComponentsOf` returns null unless the
+		// taught rules actually reproduce every syllable's tone, so a learner
+		// is never asked to assemble a formula whose correct answer the app
+		// would then mark wrong. See that function for why the gate has to be
+		// stricter than `toneSyllablesOf`'s.
+		const ruleComponents = toneRuleComponentsOf(word);
+		if (ruleComponents) {
+			cards.push({
+				id: `vocab:${word.thai}:toneRule`,
+				promptWord: word.thai,
+				property: "toneRule",
+				question: "Which rule gives each syllable its tone?",
+				correctAnswer: ruleComponents
+					.map((c) => `${c.consonantClass}+${c.axisValue}`)
+					.join("|"),
+				choices: [],
+				mnemonic,
+				syllables: toneSyllables,
+				srs: SrsSchedule.initial().toDTO(),
+			});
+		}
+
+		// Saying the tone, scored against the reference recording. Gated on
+		// that recording existing: roughly a third of the corpus has one, and
+		// without it there is nothing to compare a learner's attempt to.
+		if (word.thai_audio_file) {
+			cards.push({
+				id: `vocab:${word.thai}:tonePronunciation`,
+				promptWord: word.thai,
+				property: "tonePronunciation",
+				question: "Say this word, then check your tones",
+				correctAnswer: toneSyllables.map((s) => s.tone).join("|"),
+				choices: [],
+				mnemonic,
+				syllables: toneSyllables,
+				audioUrl: word.thai_audio_file,
+				srs: SrsSchedule.initial().toDTO(),
+			});
+		}
 	}
 
 	// Spelling (always)

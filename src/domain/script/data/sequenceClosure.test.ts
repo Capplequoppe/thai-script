@@ -564,21 +564,33 @@ function sweepTaughtWindow(hi: number): ToneSweep {
 
 /**
  * Recorded, not asserted to be zero (AC5). Measured over ranks 1-2700:
- * agreement on 4,215 of 4,555 compared syllables (92.5%).
+ * agreement on 4,377 of 4,555 compared syllables (96.1%).
  *
- * The previous baseline recorded 4,038 of 4,369 and blamed the residue on one
- * corpus defect — 299 low-class dead-short syllables (ทุก, รับ, นัก) stored as
- * "falling" where the rule says high. Re-deriving the corpus with
- * `enrich-vocabulary.py --retokenize` fixed that half and, by doing so, showed
- * that `syllableTypeOf` here had the *same* defect: both sides said falling, so
- * the sweep had been counting agreement on a shared mistake. The syllable count
- * rose too, because re-deriving applied the prefix split (ถนน is two syllables
- * now, not one).
+ * Two earlier baselines are worth keeping in view, because each moved for the
+ * same underlying reason. The first recorded 4,038 of 4,369 and blamed the
+ * residue on one corpus defect — 299 low-class dead-short syllables (ทุก, รับ,
+ * นัก) stored as "falling" where the rule says high. Re-deriving the corpus
+ * with `enrich-vocabulary.py --retokenize` fixed that half and, by doing so,
+ * showed that `syllableTypeOf` here had the *same* defect: both sides said
+ * falling, so the sweep had been counting agreement on a shared mistake. That
+ * produced the second baseline, 4,215 of 4,555.
  *
- * What is left is mostly อักษรนำ, which the corpus resolves and this sweep does
- * not: ขนาด, ตลอด, ทหาร, แสดง, เสมอ, พยายาม all disagree because
- * `governingClassOf` reads the letter's own class where the corpus has handed
- * the syllable its leader's. The genuinely irregular ก็ is still here, and a
+ * This third move — 4,215 to 4,377, 162 syllables — is the last shape of that
+ * same defect. A syllable with no vowel written *and nothing closing it* is a
+ * bare consonant standing alone: the ข of ขนาด, the ต of ตลอด, the ถ of ถนน.
+ * It carries the implicit short /a/, so it is open and short, which is
+ * dead-short. `syllableShapeOf` was reading "no vowel written" as "long" in
+ * exactly the branch the earlier two fixes did not reach, which made those
+ * syllables live and so rising instead of low. The fix landed in
+ * `toneExplanation.ts`, which this sweep now shares.
+ *
+ * What is left is still mostly อักษรนำ, which the corpus resolves and this
+ * sweep does not — but now it is the *second* syllable of those words: ขนาด's
+ * นาด, ตลอด's ลอด, เสมอ's เมอ disagree because `governingClassOf` reads the
+ * letter's own class where the corpus has handed the syllable its leader's.
+ * Their leading syllables have stopped disagreeing. Next to that sits a
+ * distinct corpus gap — อ standing as the vowel (นอก, ขอ, พอ, ชอบ) is stored
+ * with `vowel: null` and the อ dropped — the genuinely irregular ก็, and a
  * tail this comment does not claim to have characterised.
  *
  * A zero would only be reachable by bending the rules or the corpus until one
@@ -587,9 +599,9 @@ function sweepTaughtWindow(hi: number): ToneSweep {
 const TONE_SWEEP_BASELINE = {
 	words: 2700,
 	syllables: 4555,
-	agreements: 4215,
+	agreements: 4377,
 	unresolved: 1,
-	disagreements: 339,
+	disagreements: 177,
 };
 
 describe("AC5 — the complete sequence's rules resolve the taught corpus", () => {

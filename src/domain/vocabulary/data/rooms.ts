@@ -161,7 +161,7 @@ export function reportNounSubdistrictOverflows(
 // ----------------------------------------------------------------------------
 // AC4: the rule is declared per `VocabProperty`, not derived from a
 // two-way "production vs recognition" model — that model does not cover
-// `audioRecognition` and `spellingFromAudio`. All six properties currently
+// `audioRecognition` and `spellingFromAudio`. Every property currently
 // carry the same rule (hidden until asked for or revealed); the table keeps
 // them declared individually so a future property is forced to make its own
 // choice rather than silently inheriting one.
@@ -199,6 +199,8 @@ const ROOM_EXPOSURE_RULES: Readonly<
 	englishToThai: stageOnRequestThenOnReveal,
 	audioRecognition: stageOnRequestThenOnReveal,
 	toneIdentification: stageOnRequestThenOnReveal,
+	toneRule: stageOnRequestThenOnReveal,
+	tonePronunciation: stageOnRequestThenOnReveal,
 	spelling: stageOnRequestThenOnReveal,
 	spellingFromAudio: stageOnRequestThenOnReveal,
 };

@@ -4,7 +4,8 @@ import {
 	toneMarkRules,
 	toneRules,
 } from "../../script/data/symbols";
-import type { SyllableInfo } from "../types";
+import type { SyllableInfo, VocabEntry } from "../types";
+import { toneSyllableInfosOf } from "./toneSyllables";
 
 /**
  * Why a syllable takes the tone it does, in the learner's own terms.
@@ -76,6 +77,13 @@ export function syllableShapeOf(
 	if (LIVE_OPEN_SHORT.some((sign) => vowel.includes(sign))) return "live";
 	// เ-า is live for tone purposes, the taught exception.
 	if (vowel.includes("เ") && vowel.includes("า") && !short) return "live";
+	// Nothing written at all, and nothing closing it: a bare consonant
+	// standing as its own syllable — the ข of ขนาด, the ต of ตลอด. It carries
+	// the implicit short /a/, so it is open *and* short, which is dead-short.
+	// This is the same defect as the closed case two branches up, in the one
+	// shape that branch does not reach: "no vowel written" was being read as
+	// "long vowel" here too, which made ข live and so rising instead of low.
+	if (!vowel) return "dead-short";
 	return short ? "dead-short" : "live";
 }
 
@@ -99,7 +107,8 @@ export interface ToneExplanation {
 	readonly disagreesWithStored: boolean;
 }
 
-const MARK_LABEL: Record<string, string> = {
+/** The corpus's `toneMark` ids to the names `toneMarkRules` and the lessons use. */
+export const MARK_LABEL: Record<string, string> = {
 	mayek: "mai ek",
 	maytho: "mai tho",
 	maytri: "mai tri",
@@ -158,4 +167,27 @@ export function toneExplanationFor(
 			syllable.tone && syllable.tone !== rule.resultingTone,
 		),
 	};
+}
+
+/**
+ * One explanation per syllable a tone card grades, in that card's order.
+ *
+ * Built on `toneSyllableInfosOf` rather than `entry.syllables` so the result
+ * lines up index-for-index with `toneSyllablesOf` — the list the card was
+ * built from — even for a word where some syllable's tone was never
+ * determined. See that function for why the alignment has to be structural
+ * rather than assumed.
+ *
+ * An entry is `undefined` where the tables do not reach the syllable at all;
+ * a syllable the rules reach but disagree with is returned with
+ * `disagreesWithStored` set, because "no taught rule predicts this one" is
+ * the honest thing to show a learner who just derived it correctly and was
+ * marked wrong.
+ */
+export function toneExplanationsOf(
+	entry: VocabEntry,
+): (ToneExplanation | undefined)[] {
+	return toneSyllableInfosOf(entry).map((syllable) =>
+		toneExplanationFor(syllable),
+	);
 }
