@@ -342,24 +342,52 @@ function TonePlaceDetail({ tone }: { tone: string }) {
 	);
 }
 
-function SceneCard({ scene }: { scene: ToneScene }) {
-	return (
-		<article
-			className="rounded-xl p-3 space-y-2"
-			style={{ background: "var(--color-surface-2)" }}
-		>
-			{/* No artwork yet: the scenes are written first so the scheme can be
-			    walked and corrected before any of it is rendered. */}
+/**
+ * The scene's picture, or the scene's own words where there is no picture yet.
+ *
+ * `onError` rather than a manifest lookup: the images are generated offline by
+ * `scripts/generate-palace-images.py` and a scene can legitimately be ahead of
+ * its illustration — newly written, or being re-rolled. Shipping a broken
+ * image icon in that window would be worse than the prose it replaces, and
+ * asking the app to carry a list of which files exist would be one more thing
+ * to keep in step with the directory.
+ */
+function SceneIllustration({ scene }: { scene: ToneScene }) {
+	const [failed, setFailed] = useState(false);
+
+	if (failed) {
+		return (
 			<div
-				className="rounded-lg flex items-center justify-center text-xs"
+				className="rounded-lg flex items-center justify-center text-xs px-3 text-center"
 				style={{
-					height: 96,
+					minHeight: 96,
 					border: "1px dashed var(--color-border)",
 					color: "var(--color-text-muted)",
 				}}
 			>
 				illustration pending
 			</div>
+		);
+	}
+
+	return (
+		<img
+			src={`${import.meta.env.BASE_URL}palace/scenes/${scene.id}.jpg`}
+			alt={scene.scene}
+			loading="lazy"
+			className="rounded-lg w-full"
+			onError={() => setFailed(true)}
+		/>
+	);
+}
+
+function SceneCard({ scene }: { scene: ToneScene }) {
+	return (
+		<article
+			className="rounded-xl p-3 space-y-2"
+			style={{ background: "var(--color-surface-2)" }}
+		>
+			<SceneIllustration scene={scene} />
 			<p className="text-sm leading-relaxed">{scene.scene}</p>
 			<p className="text-xs" style={{ color: "var(--color-text-muted)" }}>
 				{scene.teaches}

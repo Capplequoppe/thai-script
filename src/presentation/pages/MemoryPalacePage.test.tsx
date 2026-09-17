@@ -37,7 +37,7 @@ describe("MemoryPalacePage", () => {
 		// The well holds the four dead-syllable rules for mid and high class
 		// and both mai ek rules for those classes — two scenes, one outcome.
 		expect(screen.getByText(/fall down the same well/i)).toBeTruthy();
-		expect(screen.getByText(/run through by a single spear/i)).toBeTruthy();
+		expect(screen.getByText(/one-pointed spear stands driven/i)).toBeTruthy();
 		expect(screen.getByText(/that is what makes it one place/i)).toBeTruthy();
 	});
 

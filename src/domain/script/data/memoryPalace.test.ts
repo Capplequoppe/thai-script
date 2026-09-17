@@ -161,8 +161,8 @@ describe("scenes against the rules", () => {
 				else propForMark.set(mark, scene.prop);
 			}
 		}
-		expect(propForMark.get("mai-ek")).toBe("one spear");
-		expect(propForMark.get("mai-tho")).toBe("two hooks");
+		expect(propForMark.get("mai-ek")).toBe("a plain one-pointed spear");
+		expect(propForMark.get("mai-tho")).toBe("a two-pronged spear");
 	});
 
 	it("spends vowel length in exactly one pair of scenes", () => {
@@ -193,6 +193,61 @@ describe("tone places carry their reason", () => {
 	it("says why each place, so the map can show it", () => {
 		for (const place of TONE_PLACES) {
 			expect(place.reason.length).toBeGreaterThan(20);
+		}
+	});
+});
+
+describe("scene prompts", () => {
+	/** The cast, spelled as the prompts spell them so a face stays one face. */
+	const CAST_TAGS: Record<string, string> = {
+		low: "fisherman",
+		mid: "market vendor",
+		high: "monk",
+	};
+
+	it("writes a prompt for every scene, distinct from its prose", () => {
+		for (const scene of TONE_SCENES) {
+			expect(scene.prompt.length).toBeGreaterThan(40);
+			// Equal strings would mean the prose was copied across, which is the
+			// exact defect the second field exists to fix.
+			expect(scene.prompt).not.toBe(scene.scene);
+		}
+	});
+
+	it("names every character the scene casts, in the prompt the model sees", () => {
+		// A prompt that forgets one of its two characters renders one of them,
+		// and a scene that merges two rules stops teaching that they agree.
+		for (const scene of TONE_SCENES) {
+			for (const classType of scene.cast) {
+				expect(scene.prompt.toLowerCase()).toContain(CAST_TAGS[classType]);
+			}
+		}
+	});
+
+	it("keeps narration out of the prompts", () => {
+		// The words that made the first batch fail: they refer to something
+		// before or after the instant drawn, which a still image cannot hold.
+		for (const scene of TONE_SCENES) {
+			expect(scene.prompt).not.toMatch(
+				/\bthe same\b|\binstead\b|\balready\b|\bdo not come back\b/i,
+			);
+		}
+	});
+
+	it("names the counted prop in the prompt of every marked scene", () => {
+		// Each prop is one object whose silhouette carries its number, which
+		// is what the mark is named after: ek, tho, tri and chattawa are the
+		// Sanskrit one, two, three, four. N copies of an object was the first
+		// scheme and the model could not count them.
+		const COUNT_WORD: Record<string, RegExp> = {
+			"a plain one-pointed spear": /\bone-pointed\b/i,
+			"a two-pronged spear": /\btwo-pronged\b/i,
+			"a three-pronged trident": /\bthree-pronged trident\b/i,
+			"a four-tined pitchfork": /\bfour[- ]tined\b/i,
+		};
+		for (const scene of TONE_SCENES) {
+			if (!scene.prop) continue;
+			expect(scene.prompt).toMatch(COUNT_WORD[scene.prop]);
 		}
 	});
 });

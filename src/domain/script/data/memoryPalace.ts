@@ -1,4 +1,5 @@
 import { ROOMS } from "../../vocabulary/types";
+import sceneData from "./palace-scenes.json";
 import { DISTRICTS, type District, districtForClass } from "./sceneGrammar";
 import {
 	ThaiSymbolClass,
@@ -166,6 +167,14 @@ export function characterForClass(classType: ThaiSymbolClass): string {
 // the invariant worth having: a rule quietly added to `symbols.ts` with no
 // scene would otherwise be a hole nobody notices, which is how a memory
 // system starts lying about being complete.
+//
+// The prose lives in `palace-scenes.json` rather than here because two things
+// have to read it: this module, and the image pipeline that illustrates it.
+// There is no TS runner in this repo for Python to borrow, and a second copy
+// of the prose in a script would drift from the first the day either is
+// edited. Every other content file here is already shaped this way —
+// vocabulary, grammar, sentences, tone-minimal-pairs — so the types and the
+// invariants stay in TypeScript and the content does not.
 
 /** What happens to the cast, which is how a syllable's shape is written. */
 export type SceneFate =
@@ -190,145 +199,24 @@ export interface ToneScene {
 	readonly prop?: string;
 	/** The scene in a sentence — the thing to actually picture. */
 	readonly scene: string;
+	/**
+	 * The same moment, written for a diffusion model instead of a person.
+	 *
+	 * Two registers because one cannot serve both. `scene` narrates — "and do
+	 * not come back up", "already over" — which reads correctly under a picture
+	 * and instructs nothing; the first batch rendered every setting and not one
+	 * action. This says who is in frame, where they are, and what their bodies
+	 * are doing at the instant drawn, with the cast described identically
+	 * wherever they appear so the fisherman in one scene is recognisably the
+	 * fisherman in the next.
+	 */
+	readonly prompt: string;
 	/** What the picture is *for*, said plainly, for the caption under it. */
 	readonly teaches: string;
 }
 
-export const TONE_SCENES: readonly ToneScene[] = [
-	// --- Unmarked syllables -------------------------------------------------
-	{
-		id: "paddy-alive",
-		covers: ["low-live", "mid-live"],
-		tone: "mid",
-		cast: [ThaiSymbolClass.Low, ThaiSymbolClass.Mid],
-		fate: "alive",
-		scene:
-			"A fisherman and a market vendor stand talking in a flat rice paddy, both alive and unhurried, the horizon dead level behind them.",
-		teaches:
-			"A live syllable is a mid tone for low and mid class alike — the two agree here, which is why they share the scene.",
-	},
-	{
-		id: "hill-monk-climbs",
-		covers: ["high-live"],
-		tone: "rising",
-		cast: [ThaiSymbolClass.High],
-		fate: "alive",
-		scene:
-			"A monk walks down into a dip and then climbs a long hill path, alive and steady, robes bright against the slope.",
-		teaches:
-			"High class is the one exception on a live syllable: it rises where the others stay level.",
-	},
-	{
-		id: "rooftop-fisherman-struck",
-		covers: ["low-dead-short"],
-		tone: "high",
-		cast: [ThaiSymbolClass.Low],
-		fate: "dies-fast",
-		scene:
-			"A fisherman on a rooftop is killed instantly by a single lightning strike — one flash, already over.",
-		teaches:
-			"Low class, dead syllable, short vowel: high tone. Length only ever matters here.",
-	},
-	{
-		id: "waterfall-fisherman-drowns",
-		covers: ["low-dead-long"],
-		tone: "falling",
-		cast: [ThaiSymbolClass.Low],
-		fate: "dies-slowly",
-		scene:
-			"The same fisherman goes over a waterfall and drowns slowly in the pool below, the fall drawn out and unhurried.",
-		teaches:
-			"Low class, dead syllable, long vowel: falling. The slow death is the long vowel.",
-	},
-	{
-		id: "well-vendor-and-monk-fall",
-		covers: [
-			"mid-dead-short",
-			"mid-dead-long",
-			"high-dead-short",
-			"high-dead-long",
-		],
-		tone: "low",
-		cast: [ThaiSymbolClass.Mid, ThaiSymbolClass.High],
-		fate: "dies-fast",
-		scene:
-			"A market vendor and a monk both fall down the same well and do not come back up.",
-		teaches:
-			"Dead syllable, mid or high class: low tone, and the vowel's length changes nothing. Four rules, one well.",
-	},
-
-	// --- Marked syllables ---------------------------------------------------
-	{
-		id: "well-speared-once",
-		covers: ["mid-mai-ek", "high-mai-ek"],
-		tone: "low",
-		cast: [ThaiSymbolClass.Mid, ThaiSymbolClass.High],
-		fate: "marked",
-		prop: "one spear",
-		scene:
-			"A market vendor and a monk stand at the well, each run through by a single spear, and sink into it together.",
-		teaches:
-			"Mai ek over mid or high class: low tone. The spear decides it — whether the syllable was live or dead no longer matters.",
-	},
-	{
-		id: "waterfall-hooked-twice",
-		covers: ["mid-mai-tho", "high-mai-tho"],
-		tone: "falling",
-		cast: [ThaiSymbolClass.Mid, ThaiSymbolClass.High],
-		fate: "marked",
-		prop: "two hooks",
-		scene:
-			"Two hooks drag the market vendor and the monk over the lip of the waterfall.",
-		teaches: "Mai tho over mid or high class: falling.",
-	},
-	{
-		id: "waterfall-fisherman-speared",
-		covers: ["low-mai-ek"],
-		tone: "falling",
-		cast: [ThaiSymbolClass.Low],
-		fate: "marked",
-		prop: "one spear",
-		scene:
-			"A single spear pitches the fisherman over the waterfall instead — the same one spear, a different end.",
-		teaches:
-			"Mai ek over low class: falling, not low. Low class takes the marks differently from the other two.",
-	},
-	{
-		id: "rooftop-fisherman-hooked",
-		covers: ["low-mai-tho"],
-		tone: "high",
-		cast: [ThaiSymbolClass.Low],
-		fate: "marked",
-		prop: "two hooks",
-		scene:
-			"Two hooks haul the fisherman up onto the rooftop and leave him there.",
-		teaches:
-			"Mai tho over low class: high. Again low class goes its own way — hauled up where the others were dragged down.",
-	},
-	{
-		id: "rooftop-vendor-three-flags",
-		covers: ["mid-mai-tri"],
-		tone: "high",
-		cast: [ThaiSymbolClass.Mid],
-		fate: "marked",
-		prop: "three flags",
-		scene:
-			"The market vendor plants three flags on the rooftop, alone up there.",
-		teaches:
-			"Mai tri only ever sits on mid class, and gives high. Nobody else is on this roof.",
-	},
-	{
-		id: "hill-vendor-four-poles",
-		covers: ["mid-mai-chattawa"],
-		tone: "rising",
-		cast: [ThaiSymbolClass.Mid],
-		fate: "marked",
-		prop: "four crossed poles",
-		scene:
-			"The market vendor carries four crossed poles up the hill path, climbing alone.",
-		teaches: "Mai chattawa only ever sits on mid class, and gives rising.",
-	},
-];
+export const TONE_SCENES: readonly ToneScene[] =
+	sceneData as unknown as readonly ToneScene[];
 
 /** The id a `toneMarkRules` entry is referred to by, matching `toneExplanationFor`. */
 export function markRuleId(

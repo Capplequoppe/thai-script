@@ -1,0 +1,172 @@
+[
+	{
+		"id": "paddy-alive",
+		"covers": [
+			"low-live",
+			"mid-live"
+		],
+		"tone": "mid",
+		"cast": [
+			"low",
+			"mid"
+		],
+		"fate": "alive",
+		"scene": "A fisherman and a market vendor stand talking in a flat rice paddy, both alive and unhurried, the horizon dead level behind them.",
+		"teaches": "A live syllable is a mid tone for low and mid class alike — the two agree here, which is why they share the scene.",
+		"prompt": "A fisherman in a conical straw hat and rolled-up trousers and a market vendor in a flat straw hat and a work apron standing and talking in a flooded green rice paddy, both upright, unhurt and relaxed, the horizon a dead flat line behind them under a wide open sky."
+	},
+	{
+		"id": "hill-monk-climbs",
+		"covers": [
+			"high-live"
+		],
+		"tone": "rising",
+		"cast": [
+			"high"
+		],
+		"fate": "alive",
+		"scene": "A monk walks down into a dip and then climbs a long hill path, alive and steady, robes bright against the slope.",
+		"teaches": "High class is the one exception on a live syllable: it rises where the others stay level.",
+		"prompt": "A monk in an orange robe with a shaved head walking up a long steep hill path, seen from below, the path dipping in the foreground and then rising sharply to a high ridge against the sky."
+	},
+	{
+		"id": "rooftop-fisherman-struck",
+		"covers": [
+			"low-dead-short"
+		],
+		"tone": "high",
+		"cast": [
+			"low"
+		],
+		"fate": "dies-fast",
+		"scene": "A fisherman on a rooftop is killed instantly by a single lightning strike — one flash, already over.",
+		"teaches": "Low class, dead syllable, short vowel: high tone. Length only ever matters here.",
+		"prompt": "A fisherman in a conical straw hat and rolled-up trousers standing on the flat roof of a building, at the instant a jagged white lightning bolt hits him. His body arches backwards, arms flung wide, a blinding flash at the point of impact."
+	},
+	{
+		"id": "waterfall-fisherman-drowns",
+		"covers": [
+			"low-dead-long"
+		],
+		"tone": "falling",
+		"cast": [
+			"low"
+		],
+		"fate": "dies-slowly",
+		"scene": "The same fisherman goes over a waterfall and drowns slowly in the pool below, the fall drawn out and unhurried.",
+		"teaches": "Low class, dead syllable, long vowel: falling. The slow death is the long vowel.",
+		"prompt": "A fisherman in a conical straw hat and rolled-up trousers sinking slowly beneath the surface of a deep green pool at the foot of a tall waterfall, arms drifting upward above him, a long trail of bubbles rising to the light."
+	},
+	{
+		"id": "well-vendor-and-monk-fall",
+		"covers": [
+			"mid-dead-short",
+			"mid-dead-long",
+			"high-dead-short",
+			"high-dead-long"
+		],
+		"tone": "low",
+		"cast": [
+			"mid",
+			"high"
+		],
+		"fate": "dies-fast",
+		"scene": "A market vendor and a monk both fall down the same well and do not come back up.",
+		"teaches": "Dead syllable, mid or high class: low tone, and the vowel's length changes nothing. Four rules, one well.",
+		"prompt": "A market vendor in a flat straw hat and a work apron and a monk in an orange robe with a shaved head falling head-first down a round stone well shaft, arms and legs flailing above them, seen from inside the well looking up at the bright circular opening."
+	},
+	{
+		"id": "well-speared-once",
+		"covers": [
+			"mid-mai-ek",
+			"high-mai-ek"
+		],
+		"tone": "low",
+		"cast": [
+			"mid",
+			"high"
+		],
+		"fate": "marked",
+		"scene": "A one-pointed spear stands driven into the well's rim, and the market vendor and the monk are already gone down the shaft.",
+		"teaches": "Mai ek over mid or high class: low tone. The one-pointed spear is the mark, and it decides the tone whatever the syllable was doing.",
+		"prop": "a plain one-pointed spear",
+		"prompt": "A plain one-pointed spear standing upright, driven into the stone rim of a round well. A market vendor in a flat straw hat and a work apron and a monk in an orange robe with a shaved head tumbling down the dark shaft beside it, arms above their heads, seen from the well mouth looking down."
+	},
+	{
+		"id": "waterfall-hooked-twice",
+		"covers": [
+			"mid-mai-tho",
+			"high-mai-tho"
+		],
+		"tone": "falling",
+		"cast": [
+			"mid",
+			"high"
+		],
+		"fate": "marked",
+		"scene": "A two-pronged spear pitches the market vendor and the monk over the lip of the waterfall together.",
+		"teaches": "Mai tho over mid or high class: falling. Two prongs, two.",
+		"prop": "a two-pronged spear",
+		"prompt": "A market vendor in a flat straw hat and a work apron and a monk in an orange robe with a shaved head falling head-first over the lip of a tall waterfall, upside down in the white water. A large two-pronged spear is planted at the clifftop above them, both prongs clearly visible against the sky."
+	},
+	{
+		"id": "waterfall-fisherman-speared",
+		"covers": [
+			"low-mai-ek"
+		],
+		"tone": "falling",
+		"cast": [
+			"low"
+		],
+		"fate": "marked",
+		"scene": "The same one-pointed spear sends the fisherman over the waterfall instead of into the well.",
+		"teaches": "Mai ek over low class: falling, not low. The same spear, a different end — low class takes the marks its own way.",
+		"prop": "a plain one-pointed spear",
+		"prompt": "A fisherman in a conical straw hat and rolled-up trousers falling head-first over the lip of a tall waterfall. A plain one-pointed spear is planted at the clifftop above him, its single point sharp against the sky."
+	},
+	{
+		"id": "rooftop-fisherman-hooked",
+		"covers": [
+			"low-mai-tho"
+		],
+		"tone": "high",
+		"cast": [
+			"low"
+		],
+		"fate": "marked",
+		"scene": "A two-pronged spear lifts the fisherman up onto the rooftop and leaves him there.",
+		"teaches": "Mai tho over low class: high. Hauled up where the other two were dragged down.",
+		"prop": "a two-pronged spear",
+		"prompt": "A fisherman in a conical straw hat and rolled-up trousers lying sprawled on a flat rooftop against the sky, a large two-pronged spear planted upright on the roof beside him, both prongs clearly visible."
+	},
+	{
+		"id": "rooftop-vendor-three-flags",
+		"covers": [
+			"mid-mai-tri"
+		],
+		"tone": "high",
+		"cast": [
+			"mid"
+		],
+		"fate": "marked",
+		"scene": "The market vendor stands alone on the rooftop holding a trident, its three points against the sky.",
+		"teaches": "Mai tri only ever sits on mid class, and gives high. Three prongs, and tri is three.",
+		"prop": "a three-pronged trident",
+		"prompt": "A market vendor in a flat straw hat and a work apron standing alone on a flat rooftop, holding a large three-pronged trident upright in both hands, its three points sharp and clear against an open sky. Nobody else on the roof."
+	},
+	{
+		"id": "hill-vendor-four-poles",
+		"covers": [
+			"mid-mai-chattawa"
+		],
+		"tone": "rising",
+		"cast": [
+			"mid"
+		],
+		"fate": "marked",
+		"scene": "The market vendor carries a four-tined pitchfork up the hill path, climbing alone.",
+		"teaches": "Mai chattawa only ever sits on mid class, and gives rising. Four tines, and chattawa is four.",
+		"prop": "a four-tined pitchfork",
+		"prompt": "A market vendor in a flat straw hat and a work apron climbing alone up a steep hill path, holding up a single four-tined wooden pitchfork, exactly four straight tines spread wide and clear against the open sky."
+	}
+]
