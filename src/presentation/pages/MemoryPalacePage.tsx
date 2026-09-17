@@ -1,5 +1,9 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import {
+	consonantImageFor,
+	consonantSceneFor,
+} from "../../domain/script/data/consonantScenes";
+import {
 	CLASS_CAST,
 	characterForClass,
 	districtPlaceFor,
@@ -654,16 +658,15 @@ function DistrictDetail({ classType }: { classType: ThaiSymbolClass }) {
 				</p>
 			</div>
 
-			<div className="flex flex-wrap gap-1.5">
+			{/* Two columns on a phone rather than one, so the district reads as a
+			    populated place at a glance instead of a very long list. */}
+			<div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
 				{letters.map((consonant) => (
-					<span
+					<ConsonantTile
 						key={consonant.character}
-						className="thai rounded-lg px-2 py-1 text-lg"
-						style={{ background: "var(--color-surface-2)" }}
-						title={consonant.name}
-					>
-						{consonant.character}
-					</span>
+						character={consonant.character}
+						name={consonant.name}
+					/>
 				))}
 			</div>
 
@@ -671,6 +674,52 @@ function DistrictDetail({ classType }: { classType: ThaiSymbolClass }) {
 				{rules.length} of the seventeen tone rules start here.
 			</p>
 		</section>
+	);
+}
+
+/**
+ * One letter as it lives in its district: its picture, its glyph, its word.
+ *
+ * The word is shown rather than left to a tooltip, because it is the thing the
+ * letter is learned as — ม is not "the two-loop one", it is the horse — and a
+ * tooltip is invisible on a phone, which is where most of this is read.
+ */
+function ConsonantTile({
+	character,
+	name,
+}: {
+	character: string;
+	name: string;
+}) {
+	const scene = consonantSceneFor(character);
+	const [failed, setFailed] = useState(false);
+	const src = consonantImageFor(character);
+
+	return (
+		<figure
+			className="rounded-xl overflow-hidden"
+			style={{ background: "var(--color-surface-2)" }}
+		>
+			{src && !failed && (
+				<img
+					src={`${import.meta.env.BASE_URL}${src}`}
+					alt={scene ? `${name} — ${scene.meaning}` : name}
+					loading="lazy"
+					className="w-full block"
+					style={{ aspectRatio: "3 / 2", objectFit: "cover" }}
+					onError={() => setFailed(true)}
+				/>
+			)}
+			<figcaption className="px-2 py-1.5 flex items-baseline gap-2">
+				<span className="thai text-xl leading-none">{character}</span>
+				<span
+					className="text-[11px] leading-tight"
+					style={{ color: "var(--color-text-muted)" }}
+				>
+					{scene?.meaning ?? name}
+				</span>
+			</figcaption>
+		</figure>
 	);
 }
 

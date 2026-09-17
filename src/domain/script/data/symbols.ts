@@ -678,7 +678,7 @@ const consonants: ThaiConsonant[] = [
 		sceneMnemonic: {
 			district: "harbor",
 			shapeCue:
-				"Two loops run down the left side, one directly beneath the other, and the right side falls as a plain stroke — a horseshoe nailed to the harbor post through two holes down its left limb.",
+				"Two loops run down the left side, one directly beneath the other, and the right side falls as a plain stroke — a great grey horse reared up on the quay, both forelegs pawing the air one above the other, its straight tail hanging plumb behind.",
 			soundCue:
 				"Close your lips and hum m, unaspirated and level: the idling drone of the harbor itself.",
 		},
@@ -699,7 +699,7 @@ const consonants: ThaiConsonant[] = [
 		sceneMnemonic: {
 			district: "harbor",
 			shapeCue:
-				"The same loop high on the left, but the second one is thrown across to the bottom right — the same horseshoe hung crooked from a single nail, one hole high on the left and the other swung low to the right.",
+				"The same loop high on the left, but the second is thrown across to the bottom right — a fat harbour mouse swinging from a mooring rope by one paw, its tail flung out low and wide to the other side. Where ม's horse rears with both legs stacked, the mouse hangs high and kicks low.",
 			soundCue:
 				"Hum n at the tooth-ridge, easy and unaspirated — a mouse nibbling nnn along the mooring line.",
 		},
@@ -808,7 +808,7 @@ const consonants: ThaiConsonant[] = [
 		sceneMnemonic: {
 			district: "market",
 			shapeCue:
-				"A round bowl with a smooth rim, its head curled clockwise inside, the bottom drawn down to a point — a child's spinning top resting on the market floor.",
+				"A round bowl with a smooth rim, its head curled clockwise inside, the bottom drawn down to a point — a small child curled up asleep inside a market bowl, one arm tucked in, toes pointing out of the bottom.",
 			soundCue:
 				"A plain flat d with no breath riding it; at a syllable's tail the tongue seals it into a t-stop.",
 		},
@@ -829,7 +829,7 @@ const consonants: ThaiConsonant[] = [
 		sceneMnemonic: {
 			district: "market",
 			shapeCue:
-				"An open basket with both walls stopping level at the rim — set out at the market, waiting for its leaves.",
+				"An open basket with both walls stopping level at the rim — and one enormous glossy leaf growing straight up out of it, bigger than the stall it stands in, shading the whole market row.",
 			soundCue:
 				"A plain flat b, nothing breathy about it; at a syllable's tail the lips seal on a p-stop and hold.",
 		},
@@ -1378,7 +1378,7 @@ const consonants: ThaiConsonant[] = [
 		sceneMnemonic: {
 			district: "harbor",
 			shapeCue:
-				"A frame flowing up to the right with a detached curl floating free underneath — an earring dropped beneath the hem.",
+				"A frame flowing up to the right with a detached curl floating free underneath — a tall woman striding the harbour wall, her long hair streaming out behind her, one loose ringlet drifting down below the hem of her skirt.",
 			soundCue:
 				"A second gliding y, humming low; doubled inside a word it closes one syllable and opens the next.",
 		},
@@ -1487,7 +1487,7 @@ const consonants: ThaiConsonant[] = [
 		sceneMnemonic: {
 			district: "harbor",
 			shapeCue:
-				"Like ท, but a bump swells just after the head, before the upright — a knot in the soldier's bridge-rail.",
+				"Like ท, but a bump swells just after the head, before the upright — Queen Montho herself on the quay in her tall gilded crown, shoulders squared where the soldier's back climbs straight.",
 			soundCue:
 				"The breathy th of ท again — a palace name paying a rare call at the harbor.",
 		},

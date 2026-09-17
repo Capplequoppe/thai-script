@@ -1,0 +1,354 @@
+[
+	{
+		"id": "mo-ma",
+		"char": "ม",
+		"name": "ม ม้า",
+		"meaning": "horse",
+		"district": "harbor",
+		"prompt": "An enormous grey horse reared up on its hind legs, both forelegs pawing the air one directly above the other, long straight tail hanging plumb behind it, on a fishing harbour quay, moored wooden longtail boats and drying nets behind."
+	},
+	{
+		"id": "no-nu",
+		"char": "น",
+		"name": "น หนู",
+		"meaning": "mouse/rat",
+		"district": "harbor",
+		"prompt": "A fat brown mouse swinging by one paw from a thick mooring rope, its long tail flung out low and wide to the other side, tiny feet kicking, on a fishing harbour quay, moored wooden longtail boats and drying nets behind."
+	},
+	{
+		"id": "ngo-ngu",
+		"char": "ง",
+		"name": "ง งู",
+		"meaning": "snake",
+		"district": "harbor",
+		"prompt": "A green snake lifting its round head clear out of the water, its body swerving away in a long curve along the stone edge, on a fishing harbour quay, moored wooden longtail boats and drying nets behind."
+	},
+	{
+		"id": "yo-yak",
+		"char": "ย",
+		"name": "ย ยักษ์",
+		"meaning": "giant",
+		"district": "harbor",
+		"prompt": "A huge grinning giant wading chest-deep past a pier, chin and belly jutting out in two round bulges, dwarfing the boats, on a fishing harbour quay, moored wooden longtail boats and drying nets behind."
+	},
+	{
+		"id": "wo-weng",
+		"char": "ว",
+		"name": "ว แหวน",
+		"meaning": "ring",
+		"district": "harbor",
+		"prompt": "A single white life-ring hanging on one iron nail beside worn stone harbour steps, perfectly round, rope coiled beneath, on a fishing harbour quay, moored wooden longtail boats and drying nets behind."
+	},
+	{
+		"id": "ko-kai",
+		"char": "ก",
+		"name": "ก ไก่",
+		"meaning": "chicken",
+		"district": "market",
+		"prompt": "A speckled chicken pecking at spilled grain between market stalls, head down, beak arching to the left, in a Thai open-air market of wooden stalls under striped awnings, baskets of produce around."
+	},
+	{
+		"id": "do-dek",
+		"char": "ด",
+		"name": "ด เด็ก",
+		"meaning": "child",
+		"district": "market",
+		"prompt": "A small child curled up fast asleep inside an enormous market bowl, one arm tucked under its head, bare toes poking out of the bottom, in a Thai open-air market of wooden stalls under striped awnings, baskets of produce around."
+	},
+	{
+		"id": "bo-baimai",
+		"char": "บ",
+		"name": "บ ใบไม้",
+		"meaning": "leaf",
+		"district": "market",
+		"prompt": "One enormous glossy green leaf growing straight up out of an open market basket, taller than the stall itself, shading the whole row, in a Thai open-air market of wooden stalls under striped awnings, baskets of produce around."
+	},
+	{
+		"id": "cho-chang",
+		"char": "ช",
+		"name": "ช ช้าง",
+		"meaning": "elephant",
+		"district": "harbor",
+		"prompt": "A grey elephant standing in the shallows hosing water over its own back with its raised trunk, tail flicked high, on a fishing harbour quay, moored wooden longtail boats and drying nets behind."
+	},
+	{
+		"id": "so-so",
+		"char": "ซ",
+		"name": "ซ โซ่",
+		"meaning": "chain",
+		"district": "harbor",
+		"prompt": "One heavy rusted iron chain link snagged tight on a bollard, the rest of the chain trailing into the water, on a fishing harbour quay, moored wooden longtail boats and drying nets behind."
+	},
+	{
+		"id": "pho-phan",
+		"char": "พ",
+		"name": "พ พาน",
+		"meaning": "offering tray",
+		"district": "harbor",
+		"prompt": "A golden three-pronged offering tray set flat on a wooden crate, its three tips level, wrapped in flowers, on a fishing harbour quay, moored wooden longtail boats and drying nets behind."
+	},
+	{
+		"id": "fo-fan",
+		"char": "ฟ",
+		"name": "ฟ ฟัน",
+		"meaning": "tooth",
+		"district": "harbor",
+		"prompt": "A single enormous white tooth standing upright among a row of smaller ones, towering over the rest, on a fishing harbour quay, moored wooden longtail boats and drying nets behind."
+	},
+	{
+		"id": "kho-khwai",
+		"char": "ค",
+		"name": "ค ควาย",
+		"meaning": "water buffalo",
+		"district": "harbor",
+		"prompt": "A black water buffalo wallowing shoulder-deep in thick harbour mud, head curled back over its shoulder, horns low, on a fishing harbour quay, moored wooden longtail boats and drying nets behind."
+	},
+	{
+		"id": "tho-thahan",
+		"char": "ท",
+		"name": "ท ทหาร",
+		"meaning": "soldier",
+		"district": "harbor",
+		"prompt": "A soldier in uniform pacing across a wooden harbour bridge, back straight, one arm swinging, on a fishing harbour quay, moored wooden longtail boats and drying nets behind."
+	},
+	{
+		"id": "ho-nokhu",
+		"char": "ฮ",
+		"name": "ฮ นกฮูก",
+		"meaning": "owl",
+		"district": "harbor",
+		"prompt": "A round-eyed owl with tall zigzag ear-tufts perched on a mooring post at night, one enormous eye blinking, on a fishing harbour quay, moored wooden longtail boats and drying nets behind."
+	},
+	{
+		"id": "ro-ria",
+		"char": "ร",
+		"name": "ร เรือ",
+		"meaning": "boat",
+		"district": "harbor",
+		"prompt": "A wooden boat prow rising out of the water with a long pennant flying from its mast and hooking over at the tip, on a fishing harbour quay, moored wooden longtail boats and drying nets behind."
+	},
+	{
+		"id": "lo-ling",
+		"char": "ล",
+		"name": "ล ลิง",
+		"meaning": "monkey",
+		"district": "harbor",
+		"prompt": "A monkey crouched on top of a harbour post with its long tail arching up and over its own back, on a fishing harbour quay, moored wooden longtail boats and drying nets behind."
+	},
+	{
+		"id": "jo-jan",
+		"char": "จ",
+		"name": "จ จาน",
+		"meaning": "plate/dish",
+		"district": "market",
+		"prompt": "A flat ceramic plate spinning on one fingertip above a noodle stall, tilted, hooking over at the top of its spin, in a Thai open-air market of wooden stalls under striped awnings, baskets of produce around."
+	},
+	{
+		"id": "to-tau",
+		"char": "ต",
+		"name": "ต เต่า",
+		"meaning": "turtle",
+		"district": "market",
+		"prompt": "A turtle pulling its head right inside a notched shell, a clear dent in the rim where the head went in, in a Thai open-air market of wooden stalls under striped awnings, baskets of produce around."
+	},
+	{
+		"id": "po-pla",
+		"char": "ป",
+		"name": "ป ปลา",
+		"meaning": "fish",
+		"district": "market",
+		"prompt": "A silver fish leaping clear out of a market basket, its body rising higher than the basket's rim, in a Thai open-air market of wooden stalls under striped awnings, baskets of produce around."
+	},
+	{
+		"id": "o-ang",
+		"char": "อ",
+		"name": "อ อ่าง",
+		"meaning": "basin",
+		"district": "market",
+		"prompt": "A single empty round basin standing alone in the middle of an empty market row, plain and open, in a Thai open-air market of wooden stalls under striped awnings, baskets of produce around."
+	},
+	{
+		"id": "kho-khay",
+		"char": "ข",
+		"name": "ข ไข่",
+		"meaning": "egg",
+		"district": "temple",
+		"prompt": "A single white egg resting in a monk's brass alms bowl, nothing else in the bowl, in the courtyard of a Thai temple with tiered golden roofs and white walls."
+	},
+	{
+		"id": "cho-ching",
+		"char": "ฉ",
+		"name": "ฉ ฉิ่ง",
+		"meaning": "cymbals",
+		"district": "temple",
+		"prompt": "A pair of small brass finger-cymbals held up at the moment they chime, a flick of ribbon on top, in the courtyard of a Thai temple with tiered golden roofs and white walls."
+	},
+	{
+		"id": "so-sala",
+		"char": "ศ",
+		"name": "ศ ศาลา",
+		"meaning": "pavilion",
+		"district": "temple",
+		"prompt": "An open wooden pavilion with a pointed roof, a single pennant planted upright on the roof ridge, in the courtyard of a Thai temple with tiered golden roofs and white walls."
+	},
+	{
+		"id": "so-risi",
+		"char": "ษ",
+		"name": "ษ ฤๅษี",
+		"meaning": "hermit",
+		"district": "temple",
+		"prompt": "A bearded hermit in a tiger-skin robe carrying a basket, his long wooden staff laid across it, in the courtyard of a Thai temple with tiered golden roofs and white walls."
+	},
+	{
+		"id": "so-sia",
+		"char": "ส",
+		"name": "ส เสือ",
+		"meaning": "tiger",
+		"district": "temple",
+		"prompt": "A tiger pacing behind a temple gate, one iron bar crossing its arched tail, in the courtyard of a Thai temple with tiered golden roofs and white walls."
+	},
+	{
+		"id": "pho-phing",
+		"char": "ผ",
+		"name": "ผ ผึ้ง",
+		"meaning": "bee",
+		"district": "temple",
+		"prompt": "A fat bee crawling head-first deep into an open pink lotus flower, only its striped back showing, in the courtyard of a Thai temple with tiered golden roofs and white walls."
+	},
+	{
+		"id": "fo-fa",
+		"char": "ฝ",
+		"name": "ฝ ฝา",
+		"meaning": "lid/cover",
+		"district": "temple",
+		"prompt": "A lidded ceramic jar on a temple shelf, tall knob on its lid turned inward, the lid slightly ajar, in the courtyard of a Thai temple with tiered golden roofs and white walls."
+	},
+	{
+		"id": "ho-hip",
+		"char": "ห",
+		"name": "ห หีบ",
+		"meaning": "chest/trunk",
+		"district": "temple",
+		"prompt": "A big carved wooden chest with a domed lid set against a white temple wall, one corner kinked where the wood warped, in the courtyard of a Thai temple with tiered golden roofs and white walls."
+	},
+	{
+		"id": "pho-samphau",
+		"char": "ภ",
+		"name": "ภ สำเภา",
+		"meaning": "Chinese junk ship",
+		"district": "harbor",
+		"prompt": "A Chinese junk ship with battened sails, its heavy iron anchor swung right out over the port side on a chain, on a fishing harbour quay, moored wooden longtail boats and drying nets behind."
+	},
+	{
+		"id": "tho-thong",
+		"char": "ธ",
+		"name": "ธ ธง",
+		"meaning": "flag",
+		"district": "harbor",
+		"prompt": "A cloth flag knotted shut around its line above a quay, unable to unfurl, a crossbar through the knot, on a fishing harbour quay, moored wooden longtail boats and drying nets behind."
+	},
+	{
+		"id": "no-nen",
+		"char": "ณ",
+		"name": "ณ เณร",
+		"meaning": "novice monk",
+		"district": "harbor",
+		"prompt": "A young novice monk in orange robes walking ahead down a wooden pier, a small mouse trotting behind him, on a fishing harbour quay, moored wooden longtail boats and drying nets behind."
+	},
+	{
+		"id": "yo-ying",
+		"char": "ญ",
+		"name": "ญ หญิง",
+		"meaning": "woman/female",
+		"district": "harbor",
+		"prompt": "A tall woman striding along a harbour wall, her long black hair streaming out behind her, one loose ringlet drifting below the hem of her skirt, on a fishing harbour quay, moored wooden longtail boats and drying nets behind."
+	},
+	{
+		"id": "tho-thung",
+		"char": "ถ",
+		"name": "ถ ถุง",
+		"meaning": "bag/sack",
+		"district": "temple",
+		"prompt": "A cloth alms bag bulging with fruit, carried open in both hands toward the temple steps, in the courtyard of a Thai temple with tiered golden roofs and white walls."
+	},
+	{
+		"id": "tho-than",
+		"char": "ฐ",
+		"name": "ฐ ฐาน",
+		"meaning": "base/platform",
+		"district": "temple",
+		"prompt": "A carved stone pedestal standing empty in a temple hall, an ornate curve floating above its footed base, in the courtyard of a Thai temple with tiered golden roofs and white walls."
+	},
+	{
+		"id": "do-chada",
+		"char": "ฎ",
+		"name": "ฎ ชฎา",
+		"meaning": "pointed crown/headdress",
+		"district": "market",
+		"prompt": "An ornate pointed golden Thai crown resting on a velvet cushion at a silversmith's stall, a loop of chain hanging below it, in a Thai open-air market of wooden stalls under striped awnings, baskets of produce around."
+	},
+	{
+		"id": "to-patak",
+		"char": "ฏ",
+		"name": "ฏ ปฏัก",
+		"meaning": "spear/goad",
+		"district": "market",
+		"prompt": "A long wooden cattle goad with an iron spear tip, a thick knuckle worked into the shaft near its base, in a Thai open-air market of wooden stalls under striped awnings, baskets of produce around."
+	},
+	{
+		"id": "tho-montho",
+		"char": "ฑ",
+		"name": "ฑ มณโฑ",
+		"meaning": "Montho (literary character)",
+		"district": "harbor",
+		"prompt": "Queen Montho in a tall gilded Thai crown and court dress standing on a quay, shoulders squared, chin raised, on a fishing harbour quay, moored wooden longtail boats and drying nets behind."
+	},
+	{
+		"id": "tho-phuthau",
+		"char": "ฒ",
+		"name": "ฒ ผู้เฒ่า",
+		"meaning": "elder/old man",
+		"district": "harbor",
+		"prompt": "A stooped elderly man leaning on two walking canes on a stone quay, back bent, face deeply lined, on a fishing harbour quay, moored wooden longtail boats and drying nets behind."
+	},
+	{
+		"id": "lo-jula",
+		"char": "ฬ",
+		"name": "ฬ จุฬา",
+		"meaning": "star-shaped kite",
+		"district": "harbor",
+		"prompt": "A star-shaped kite high above the masts, its long tail snapping and coiling into an extra curl at the end, on a fishing harbour quay, moored wooden longtail boats and drying nets behind."
+	},
+	{
+		"id": "kho-rakhang",
+		"char": "ฆ",
+		"name": "ฆ ระฆัง",
+		"meaning": "bell",
+		"district": "harbor",
+		"prompt": "A big bronze ship's bell slung on a rope beside a mooring post, swinging mid-strike, on a fishing harbour quay, moored wooden longtail boats and drying nets behind."
+	},
+	{
+		"id": "khaaw-khuat",
+		"char": "ฃ",
+		"name": "ฃ ขวด",
+		"meaning": "bottle",
+		"district": "temple",
+		"prompt": "A glass bottle with a chipped rim standing on a dusty temple storeroom shelf, in the courtyard of a Thai temple with tiered golden roofs and white walls."
+	},
+	{
+		"id": "khaaw-khon",
+		"char": "ฅ",
+		"name": "ฅ คน",
+		"meaning": "person",
+		"district": "harbor",
+		"prompt": "A weathered old person in a dented flat cap sitting on a crate watching the water, hands on his knees, on a fishing harbour quay, moored wooden longtail boats and drying nets behind."
+	},
+	{
+		"id": "chaaw-chooe",
+		"char": "ฌ",
+		"name": "ฌ เฌอ",
+		"meaning": "tree",
+		"district": "harbor",
+		"prompt": "A young sapling tree tied to its supporting stake beside a harbour wall, one branch flicking up above the rest, on a fishing harbour quay, moored wooden longtail boats and drying nets behind."
+	}
+]

@@ -1,3 +1,8 @@
+import { useState } from "react";
+import {
+	consonantImageFor,
+	consonantSceneFor,
+} from "../../../domain/script/data/consonantScenes";
 import type {
 	ConsonantSummary,
 	NumeralSummary,
@@ -5,12 +10,58 @@ import type {
 	ToneMarkSummary,
 	VowelSummary,
 } from "../../../domain/script/services/ScriptLessonService";
+
 import { classColor } from "../../utils/consonantClassColor";
 import { ClassBadge } from "../atoms/ClassBadge";
 import { ThaiCharDisplay } from "../atoms/ThaiCharDisplay";
 import { ToneContourIcon } from "../atoms/ToneContourIcon";
 import { MnemonicBlock } from "../molecules/MnemonicBlock";
 import { SymbolInfoRow } from "../molecules/SymbolInfoRow";
+
+/**
+ * The consonant's own word, illustrated where its class lives.
+ *
+ * Rendered only if the file is there: the pictures are generated offline by
+ * `scripts/generate-consonant-images.py`, and a letter can legitimately be
+ * ahead of its illustration. A broken image icon in that window would be worse
+ * than nothing, and the card reads perfectly well without it.
+ */
+function ConsonantSceneImage({
+	character,
+	name,
+}: {
+	character: string;
+	name: string;
+}) {
+	const scene = consonantSceneFor(character);
+	const src = consonantImageFor(character);
+	const [failed, setFailed] = useState(false);
+
+	if (!src || failed) return null;
+
+	return (
+		<figure className="rounded-xl overflow-hidden">
+			<img
+				src={`${import.meta.env.BASE_URL}${src}`}
+				alt={scene ? `${name} — ${scene.meaning}` : name}
+				loading="lazy"
+				className="w-full block"
+				onError={() => setFailed(true)}
+			/>
+			{scene && (
+				<figcaption
+					className="text-xs px-3 py-2"
+					style={{
+						background: "var(--color-surface-2)",
+						color: "var(--color-text-muted)",
+					}}
+				>
+					The {scene.meaning} in the {scene.district}.
+				</figcaption>
+			)}
+		</figure>
+	);
+}
 
 export function ConsonantCard({
 	c,
@@ -50,6 +101,16 @@ export function ConsonantCard({
 					"{c.nameMeaning}"
 				</p>
 			</div>
+
+			{/* The letter's word, in the district its class lives in. Placed
+			    under the glyph rather than beside the mnemonic prose because it
+			    is the same thing the prose describes, and a learner should meet
+			    the horse before reading about the two loops. Suppressed on a
+			    class-retrieval card for the reason `hideClassCue` exists: the
+			    harbour behind the horse is an answer. */}
+			{!hideClassCue && !compact && (
+				<ConsonantSceneImage character={c.character} name={c.name} />
+			)}
 
 			<div
 				className="rounded-xl p-4 space-y-0.5"

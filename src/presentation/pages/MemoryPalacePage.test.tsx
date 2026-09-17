@@ -69,9 +69,13 @@ describe("MemoryPalacePage", () => {
 		fireEvent.click(districts().getByRole("button", { name: /low class/i }));
 
 		expect(screen.getByText(/this district sends its fisherman/i)).toBeTruthy();
-		// ม is low class, so the harbor holds it. ก is mid and must not be here.
-		expect(screen.getByTitle("ม ม้า")).toBeTruthy();
-		expect(screen.queryByTitle("ก ไก่")).toBeNull();
+
+		// Each letter is shown as its own word, which is what it is learned
+		// as. ม is low class and its horse belongs to the harbour; ก is mid,
+		// so its chicken must be somewhere else entirely.
+		expect(screen.getByText("ม")).toBeTruthy();
+		expect(screen.getByText("horse")).toBeTruthy();
+		expect(screen.queryByText("chicken")).toBeNull();
 	});
 
 	it("swaps the panel rather than stacking places", () => {
