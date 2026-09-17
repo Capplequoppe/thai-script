@@ -10,8 +10,9 @@ import { GamePage } from "./pages/GamePage";
 import { GrammarPage } from "./pages/GrammarPage";
 import { LearnedItemsPage } from "./pages/LearnedItemsPage";
 import { LearnPage } from "./pages/LearnPage";
-import { OrientationPage } from "./pages/OrientationPage";
 import { LessonPage } from "./pages/LessonPage";
+import { MemoryPalacePage } from "./pages/MemoryPalacePage";
+import { OrientationPage } from "./pages/OrientationPage";
 import { ProgressPage } from "./pages/ProgressPage";
 import { ReviewPage } from "./pages/ReviewPage";
 import { SentencePage } from "./pages/SentencePage";
@@ -74,6 +75,7 @@ export function App() {
 							element={<Navigate to="/dictionary" replace />}
 						/>
 						<Route path="/dictionary" element={<DictionaryPage />} />
+						<Route path="/palace" element={<MemoryPalacePage />} />
 						<Route path="*" element={<Navigate to="/" replace />} />
 					</Route>
 				</Routes>

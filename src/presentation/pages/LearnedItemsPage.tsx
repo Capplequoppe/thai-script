@@ -308,6 +308,17 @@ export function LearnedItemsPage() {
 		<div className="space-y-6 py-4">
 			<div className="flex items-center gap-3">
 				<h1 className="text-2xl font-bold flex-1">Learned Items</h1>
+				{/* The map of where all of this is staged — districts, rooms and
+				    the tone places. Reached from here because this is the page
+				    for looking at what you already hold. */}
+				<button
+					type="button"
+					onClick={() => navigate("/palace")}
+					className="text-sm hover:underline"
+					style={{ color: "var(--color-primary)" }}
+				>
+					Palace map &rarr;
+				</button>
 				{/* Words live on the Dictionary page, under its "Learned" scope. */}
 				<button
 					type="button"
