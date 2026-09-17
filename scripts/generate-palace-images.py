@@ -32,7 +32,9 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 from lesson_deck.images import render_one, styled_prompt  # noqa: E402
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
-SCENES = REPO_ROOT / "src" / "domain" / "script" / "data" / "palace-scenes.json"
+DATA = REPO_ROOT / "src" / "domain" / "script" / "data"
+SCENES = DATA / "palace-scenes.json"
+PLACES = DATA / "palace-places.json"
 DEFAULT_OUT = REPO_ROOT / "public" / "palace" / "scenes"
 MANIFEST = DEFAULT_OUT / "manifest.json"
 
@@ -43,7 +45,20 @@ DEFAULT_SEED = 42
 
 
 def load_scenes() -> list[dict]:
-    return json.loads(SCENES.read_text(encoding="utf-8"))
+    """Scenes and places together — both are one prompt and one image.
+
+    A scene shows something happening somewhere; a place shows the somewhere
+    with nothing in it. They differ in what the prompt says and in nothing
+    this script does, so they share the ladder, the manifest and the seeds
+    rather than getting a second near-identical generator.
+    """
+    scenes = json.loads(SCENES.read_text(encoding="utf-8"))
+    places = json.loads(PLACES.read_text(encoding="utf-8"))
+    for place in places:
+        # `scene` is what the manifest records as the prose behind an
+        # image; a place's equivalent is its caption.
+        place.setdefault("scene", place.get("caption", ""))
+    return scenes + places
 
 
 def read_manifest() -> dict[str, dict]:

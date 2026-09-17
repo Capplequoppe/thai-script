@@ -1,0 +1,82 @@
+[
+	{
+		"id": "map-world",
+		"kind": "map",
+		"name": "The palace",
+		"caption": "Everywhere at once. The tone country lies beyond the three districts, and its places sit at the height their tone is spoken.",
+		"prompt": "A wide illustrated map of a whole valley seen from a high vantage point, painted in ink and watercolour. A golden Thai temple with tiered roofs stands on a high ridge at one side, a covered market of striped awnings fills the flat valley floor, and a fishing harbour with wooden longtail boats sits at the water's edge. Beyond them a flooded rice paddy, a round stone well, a flat-roofed building, a tall waterfall and a winding hill path are all visible in one landscape."
+	},
+	{
+		"id": "map-districts",
+		"kind": "map",
+		"name": "The three districts",
+		"caption": "Where the consonants live. A letter's class is a place: the temple's hush, the market's flat haggling, the harbour's humming horns.",
+		"prompt": "An illustrated map of three neighbouring districts in ink and watercolour, seen from above at an angle. A golden Thai temple with tiered roofs on high ground, a crowded covered market of wooden stalls under striped awnings in the middle, and a fishing harbour with moored longtail boats and drying nets at the water's edge. One continuous landscape, paths running between the three."
+	},
+
+	{
+		"id": "district-temple",
+		"kind": "district",
+		"for": "high",
+		"name": "temple",
+		"caption": "High class — the breathy aspirates and fricatives, and a temple's hush.",
+		"prompt": "A Thai temple with tiered golden roofs, white walls and a slender gilded spire, standing quiet and empty in early morning mist. No people."
+	},
+	{
+		"id": "district-market",
+		"kind": "district",
+		"for": "mid",
+		"name": "market",
+		"caption": "Mid class — the plain unaspirated stops, flat as market haggling.",
+		"prompt": "A Thai open-air market of wooden stalls under striped canvas awnings, baskets of fruit and vegetables stacked on the counters, empty of shoppers in flat midday light."
+	},
+	{
+		"id": "district-harbor",
+		"kind": "district",
+		"for": "low",
+		"name": "harbor",
+		"caption": "Low class — the humming sonorants, and the harbour's horns.",
+		"prompt": "A small fishing harbour with wooden longtail boats moored along a stone quay, nets hung out to dry on poles, still water and a low horizon. No people."
+	},
+
+	{
+		"id": "place-rice-paddy",
+		"kind": "tone",
+		"for": "mid",
+		"name": "rice paddy",
+		"caption": "Mid tone. Flat to the horizon, and level is the whole of it.",
+		"prompt": "A flooded green rice paddy stretching away to a dead flat horizon under a wide open sky, the water mirroring the clouds, young rice in even rows. No people."
+	},
+	{
+		"id": "place-well",
+		"kind": "tone",
+		"for": "low",
+		"name": "well",
+		"caption": "Low tone. You look down into it, and it holds whatever fell.",
+		"prompt": "A round stone well with a low mossy rim standing alone in a bare dusty courtyard, the shaft dropping away into darkness below the opening. No people."
+	},
+	{
+		"id": "place-rooftop",
+		"kind": "tone",
+		"for": "high",
+		"name": "rooftop",
+		"caption": "High tone. Up, and flat once you are there — high is held, not climbed.",
+		"prompt": "A flat clay-tiled rooftop seen from roof level, running away to a low parapet with open sky beyond and the tops of distant buildings below. No people."
+	},
+	{
+		"id": "place-waterfall",
+		"kind": "tone",
+		"for": "falling",
+		"name": "waterfall",
+		"caption": "Falling tone. Starts at the top and drops, and nothing that goes over comes back.",
+		"prompt": "A tall waterfall pouring from a high cliff lip straight down into a deep green pool, spray rising from the base, wet dark rock on either side. No people."
+	},
+	{
+		"id": "place-hill-path",
+		"kind": "tone",
+		"for": "rising",
+		"name": "hill path",
+		"caption": "Rising tone. Dips as you set off, then climbs — the shape of the tone itself.",
+		"prompt": "A steep dirt path seen from below, dipping through a hollow in the foreground and then climbing sharply up a grassy hillside to a high ridge against an open sky. No people."
+	}
+]

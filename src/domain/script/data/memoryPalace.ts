@@ -1,4 +1,5 @@
 import { ROOMS } from "../../vocabulary/types";
+import placeData from "./palace-places.json";
 import sceneData from "./palace-scenes.json";
 import { DISTRICTS, type District, districtForClass } from "./sceneGrammar";
 import {
@@ -226,6 +227,63 @@ export function markRuleId(
 	return `${consonantClass}-${toneMarkName.replace(/\s+/g, "-")}`;
 }
 
+// ----------------------------------------------------------------------------
+// Places — the establishing shot of each location, and the maps
+// ----------------------------------------------------------------------------
+// A scene shows something happening somewhere. These show the somewhere with
+// nothing happening in it, which is the other half of how a palace is held:
+// you have to be able to stand in a place before you can put anything there,
+// and eleven action shots never give you the empty room.
+//
+// The two maps are the same idea one level up. A learner navigating between
+// districts and tone places has, until now, had only a list of names and a
+// diagram — and a memory palace held as a list is a list.
+
+export type PlaceKind = "map" | "district" | "tone";
+
+export interface PalacePlace {
+	readonly id: string;
+	readonly kind: PlaceKind;
+	/**
+	 * What this place stands for — a `ThaiSymbolClass` on a district, a
+	 * `ToneValue` on a tone place, absent on a map. It is what makes
+	 * `EVERY_LOCATION_HAS_AN_OVERVIEW` checkable rather than a promise.
+	 */
+	readonly for?: string;
+	readonly name: string;
+	/** One line under the picture, saying what the place means. */
+	readonly caption: string;
+	/** Written for the renderer, like a scene's — see `ToneScene.prompt`. */
+	readonly prompt: string;
+}
+
+export const PALACE_PLACES: readonly PalacePlace[] =
+	placeData as unknown as readonly PalacePlace[];
+
+const PLACE_BY_KIND_AND_FOR = new Map(
+	PALACE_PLACES.filter((place) => place.for).map((place) => [
+		`${place.kind}:${place.for}`,
+		place,
+	]),
+);
+
+/** The establishing shot for a class's district, if one has been drawn. */
+export function districtPlaceFor(
+	classType: ThaiSymbolClass,
+): PalacePlace | undefined {
+	return PLACE_BY_KIND_AND_FOR.get(`district:${classType}`);
+}
+
+/** The establishing shot for a tone's place, if one has been drawn. */
+export function tonePlaceOverviewFor(tone: string): PalacePlace | undefined {
+	return PLACE_BY_KIND_AND_FOR.get(`tone:${tone}`);
+}
+
+/** A map by id — `map-world` for everywhere, `map-districts` for the consonants. */
+export function mapNamed(id: string): PalacePlace | undefined {
+	return PALACE_PLACES.find((place) => place.kind === "map" && place.id === id);
+}
+
 /** Every rule id the palace is expected to cover, spelling rules then marks. */
 export const ALL_RULE_IDS: readonly string[] = [
 	...toneRules.map((rule) => rule.id),
@@ -265,3 +323,37 @@ export const EVERY_RULE_HAS_ONE_SCENE =
 	new Set(COVERED_RULE_IDS).size === COVERED_RULE_IDS.length &&
 	COVERED_RULE_IDS.length === ALL_RULE_IDS.length &&
 	ALL_RULE_IDS.every((id) => COVERED_RULE_IDS.includes(id));
+
+/**
+ * Every district and every tone place has an establishing shot, and both maps
+ * exist.
+ *
+ * The same shape of promise as `EVERY_RULE_HAS_ONE_SCENE`, for the same
+ * reason: a location a learner can click into and find nothing is worse than
+ * one that was never on the map, because the first time they meet the hole is
+ * the moment they were trying to use it.
+ */
+export const EVERY_LOCATION_HAS_AN_OVERVIEW =
+	CLASS_CAST.every(
+		(entry) => districtPlaceFor(entry.classType) !== undefined,
+	) &&
+	TONE_PLACES.every(
+		(place) => tonePlaceOverviewFor(place.tone) !== undefined,
+	) &&
+	mapNamed("map-world") !== undefined &&
+	mapNamed("map-districts") !== undefined;
+
+/**
+ * An overview names the same place the structure does.
+ *
+ * Catches the quiet version of a rename: `TONE_PLACES` calls it a well and the
+ * overview calls it a cistern, so the map's label and its picture's caption
+ * disagree and the learner holds two names for one place.
+ */
+export const OVERVIEW_NAMES_MATCH_THE_STRUCTURE =
+	TONE_PLACES.every(
+		(place) => tonePlaceOverviewFor(place.tone)?.name === place.name,
+	) &&
+	CLASS_CAST.every(
+		(entry) => districtPlaceFor(entry.classType)?.name === entry.district,
+	);

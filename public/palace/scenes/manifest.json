@@ -1,4 +1,22 @@
 {
+	"district-harbor": {
+		"file": "district-harbor.jpg",
+		"prompt": "A small fishing harbour with wooden longtail boats moored along a stone quay, nets hung out to dry on poles, still water and a low horizon. No people. Anime illustration with clean confident ink linework and a soft watercolour wash. Warm golden key light against cool blue shadows, drifting dust motes, visible paper grain, rich saturated colour. Expressive faces, cinematic composition, detailed background. No text, letters, numbers or signage anywhere in the image.",
+		"scene": "Low class — the humming sonorants, and the harbour's horns.",
+		"seed": 42
+	},
+	"district-market": {
+		"file": "district-market.jpg",
+		"prompt": "A Thai open-air market of wooden stalls under striped canvas awnings, baskets of fruit and vegetables stacked on the counters, empty of shoppers in flat midday light. Anime illustration with clean confident ink linework and a soft watercolour wash. Warm golden key light against cool blue shadows, drifting dust motes, visible paper grain, rich saturated colour. Expressive faces, cinematic composition, detailed background. No text, letters, numbers or signage anywhere in the image.",
+		"scene": "Mid class — the plain unaspirated stops, flat as market haggling.",
+		"seed": 42
+	},
+	"district-temple": {
+		"file": "district-temple.jpg",
+		"prompt": "A Thai temple with tiered golden roofs, white walls and a slender gilded spire, standing quiet and empty in early morning mist. No people. Anime illustration with clean confident ink linework and a soft watercolour wash. Warm golden key light against cool blue shadows, drifting dust motes, visible paper grain, rich saturated colour. Expressive faces, cinematic composition, detailed background. No text, letters, numbers or signage anywhere in the image.",
+		"scene": "High class — the breathy aspirates and fricatives, and a temple's hush.",
+		"seed": 42
+	},
 	"hill-monk-climbs": {
 		"file": "hill-monk-climbs.jpg",
 		"prompt": "A monk in an orange robe with a shaved head walking up a long steep hill path, seen from below, the path dipping in the foreground and then rising sharply to a high ridge against the sky. Anime illustration with clean confident ink linework and a soft watercolour wash. Warm golden key light against cool blue shadows, drifting dust motes, visible paper grain, rich saturated colour. Expressive faces, cinematic composition, detailed background. No text, letters, numbers or signage anywhere in the image.",
@@ -11,10 +29,52 @@
 		"scene": "The market vendor carries a four-tined pitchfork up the hill path, climbing alone.",
 		"seed": 42
 	},
+	"map-districts": {
+		"file": "map-districts.jpg",
+		"prompt": "An illustrated map of three neighbouring districts in ink and watercolour, seen from above at an angle. A golden Thai temple with tiered roofs on high ground, a crowded covered market of wooden stalls under striped awnings in the middle, and a fishing harbour with moored longtail boats and drying nets at the water's edge. One continuous landscape, paths running between the three. Anime illustration with clean confident ink linework and a soft watercolour wash. Warm golden key light against cool blue shadows, drifting dust motes, visible paper grain, rich saturated colour. Expressive faces, cinematic composition, detailed background. No text, letters, numbers or signage anywhere in the image.",
+		"scene": "Where the consonants live. A letter's class is a place: the temple's hush, the market's flat haggling, the harbour's humming horns.",
+		"seed": 42
+	},
+	"map-world": {
+		"file": "map-world.jpg",
+		"prompt": "A wide illustrated map of a whole valley seen from a high vantage point, painted in ink and watercolour. A golden Thai temple with tiered roofs stands on a high ridge at one side, a covered market of striped awnings fills the flat valley floor, and a fishing harbour with wooden longtail boats sits at the water's edge. Beyond them a flooded rice paddy, a round stone well, a flat-roofed building, a tall waterfall and a winding hill path are all visible in one landscape. Anime illustration with clean confident ink linework and a soft watercolour wash. Warm golden key light against cool blue shadows, drifting dust motes, visible paper grain, rich saturated colour. Expressive faces, cinematic composition, detailed background. No text, letters, numbers or signage anywhere in the image.",
+		"scene": "Everywhere at once. The tone country lies beyond the three districts, and its places sit at the height their tone is spoken.",
+		"seed": 42
+	},
 	"paddy-alive": {
 		"file": "paddy-alive.jpg",
 		"prompt": "A fisherman in a conical straw hat and rolled-up trousers and a market vendor in a flat straw hat and a work apron standing and talking in a flooded green rice paddy, both upright, unhurt and relaxed, the horizon a dead flat line behind them under a wide open sky. Anime illustration with clean confident ink linework and a soft watercolour wash. Warm golden key light against cool blue shadows, drifting dust motes, visible paper grain, rich saturated colour. Expressive faces, cinematic composition, detailed background. No text, letters, numbers or signage anywhere in the image.",
 		"scene": "A fisherman and a market vendor stand talking in a flat rice paddy, both alive and unhurried, the horizon dead level behind them.",
+		"seed": 42
+	},
+	"place-hill-path": {
+		"file": "place-hill-path.jpg",
+		"prompt": "A steep dirt path seen from below, dipping through a hollow in the foreground and then climbing sharply up a grassy hillside to a high ridge against an open sky. No people. Anime illustration with clean confident ink linework and a soft watercolour wash. Warm golden key light against cool blue shadows, drifting dust motes, visible paper grain, rich saturated colour. Expressive faces, cinematic composition, detailed background. No text, letters, numbers or signage anywhere in the image.",
+		"scene": "Rising tone. Dips as you set off, then climbs — the shape of the tone itself.",
+		"seed": 42
+	},
+	"place-rice-paddy": {
+		"file": "place-rice-paddy.jpg",
+		"prompt": "A flooded green rice paddy stretching away to a dead flat horizon under a wide open sky, the water mirroring the clouds, young rice in even rows. No people. Anime illustration with clean confident ink linework and a soft watercolour wash. Warm golden key light against cool blue shadows, drifting dust motes, visible paper grain, rich saturated colour. Expressive faces, cinematic composition, detailed background. No text, letters, numbers or signage anywhere in the image.",
+		"scene": "Mid tone. Flat to the horizon, and level is the whole of it.",
+		"seed": 42
+	},
+	"place-rooftop": {
+		"file": "place-rooftop.jpg",
+		"prompt": "A flat clay-tiled rooftop seen from roof level, running away to a low parapet with open sky beyond and the tops of distant buildings below. No people. Anime illustration with clean confident ink linework and a soft watercolour wash. Warm golden key light against cool blue shadows, drifting dust motes, visible paper grain, rich saturated colour. Expressive faces, cinematic composition, detailed background. No text, letters, numbers or signage anywhere in the image.",
+		"scene": "High tone. Up, and flat once you are there — high is held, not climbed.",
+		"seed": 42
+	},
+	"place-waterfall": {
+		"file": "place-waterfall.jpg",
+		"prompt": "A tall waterfall pouring from a high cliff lip straight down into a deep green pool, spray rising from the base, wet dark rock on either side. No people. Anime illustration with clean confident ink linework and a soft watercolour wash. Warm golden key light against cool blue shadows, drifting dust motes, visible paper grain, rich saturated colour. Expressive faces, cinematic composition, detailed background. No text, letters, numbers or signage anywhere in the image.",
+		"scene": "Falling tone. Starts at the top and drops, and nothing that goes over comes back.",
+		"seed": 42
+	},
+	"place-well": {
+		"file": "place-well.jpg",
+		"prompt": "A round stone well with a low mossy rim standing alone in a bare dusty courtyard, the shaft dropping away into darkness below the opening. No people. Anime illustration with clean confident ink linework and a soft watercolour wash. Warm golden key light against cool blue shadows, drifting dust motes, visible paper grain, rich saturated colour. Expressive faces, cinematic composition, detailed background. No text, letters, numbers or signage anywhere in the image.",
+		"scene": "Low tone. You look down into it, and it holds whatever fell.",
 		"seed": 42
 	},
 	"rooftop-fisherman-hooked": {

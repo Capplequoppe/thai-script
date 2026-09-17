@@ -2,11 +2,14 @@ import { useMemo, useState } from "react";
 import {
 	CLASS_CAST,
 	characterForClass,
+	districtPlaceFor,
+	mapNamed,
 	placeForTone,
 	TONE_PLACES,
 	TONE_SCENES,
 	type TonePlace,
 	type ToneScene,
+	tonePlaceOverviewFor,
 } from "../../domain/script/data/memoryPalace";
 import { districtForClass } from "../../domain/script/data/sceneGrammar";
 import {
@@ -63,6 +66,7 @@ export function MemoryPalacePage() {
 				</p>
 			</header>
 
+			<WorldMap />
 			<ToneMap selected={selected} onSelect={setSelected} />
 			<DistrictRow selected={selected} onSelect={setSelected} />
 			<RoomRow selected={selected} onSelect={setSelected} />
@@ -77,6 +81,32 @@ export function MemoryPalacePage() {
 // ----------------------------------------------------------------------------
 
 const MAP_HEIGHT = 260;
+
+/**
+ * The whole valley in one picture, above the clickable diagrams.
+ *
+ * It answers a question the diagrams cannot: what does it look like when it is
+ * all one world. The interactive map below is the same places again, arranged
+ * so the pitch is legible — a thing a painting is bad at and a diagram is good
+ * at. Neither replaces the other.
+ */
+function WorldMap() {
+	const map = mapNamed("map-world");
+	if (!map) return null;
+
+	return (
+		<section className="space-y-2">
+			<PalaceImage
+				id={map.id}
+				alt={map.prompt}
+				className="rounded-2xl w-full"
+			/>
+			<p className="text-xs" style={{ color: "var(--color-text-muted)" }}>
+				{map.caption}
+			</p>
+		</section>
+	);
+}
 
 function ToneMap({
 	selected,
@@ -201,9 +231,23 @@ function DistrictRow({
 	selected: Selection;
 	onSelect: (selection: Selection) => void;
 }) {
+	const districtsMap = mapNamed("map-districts");
+
 	return (
 		<section className="space-y-3">
 			<SectionHeader>Where consonants live</SectionHeader>
+			{districtsMap && (
+				<>
+					<PalaceImage
+						id={districtsMap.id}
+						alt={districtsMap.prompt}
+						className="rounded-2xl w-full"
+					/>
+					<p className="text-xs" style={{ color: "var(--color-text-muted)" }}>
+						{districtsMap.caption}
+					</p>
+				</>
+			)}
 			<div className="grid grid-cols-3 gap-3">
 				{CLASS_CAST.map((entry) => {
 					const active =
@@ -308,6 +352,7 @@ function TonePlaceDetail({ tone }: { tone: string }) {
 		() => TONE_SCENES.filter((scene) => scene.tone === tone),
 		[tone],
 	);
+	const overview = tonePlaceOverviewFor(tone);
 
 	return (
 		<section
@@ -317,6 +362,17 @@ function TonePlaceDetail({ tone }: { tone: string }) {
 				border: "1px solid var(--color-border)",
 			}}
 		>
+			{/* The place empty, before anything happens in it. Arriving
+			    somewhere and being handed straight to an event skips the step
+			    where you learn the room. */}
+			{overview && (
+				<PalaceImage
+					id={overview.id}
+					alt={overview.prompt}
+					className="rounded-xl w-full"
+				/>
+			)}
+
 			<div>
 				<h2 className="text-lg font-semibold capitalize">{place.name}</h2>
 				<p className="text-sm" style={{ color: "var(--color-text-muted)" }}>
@@ -339,6 +395,37 @@ function TonePlaceDetail({ tone }: { tone: string }) {
 				</p>
 			)}
 		</section>
+	);
+}
+
+/**
+ * A palace image by id, or nothing at all where it has not been rendered.
+ *
+ * Silence rather than a placeholder: a map or an establishing shot is scenery,
+ * and a dashed "pending" box where scenery should be draws the eye to the
+ * absence. A scene is different — its box says the scene exists and its
+ * picture does not, which is worth saying.
+ */
+function PalaceImage({
+	id,
+	alt,
+	className,
+}: {
+	id: string;
+	alt: string;
+	className?: string;
+}) {
+	const [failed, setFailed] = useState(false);
+	if (failed) return null;
+
+	return (
+		<img
+			src={`${import.meta.env.BASE_URL}palace/scenes/${id}.jpg`}
+			alt={alt}
+			loading="lazy"
+			className={className ?? "rounded-xl w-full"}
+			onError={() => setFailed(true)}
+		/>
 	);
 }
 
@@ -404,6 +491,7 @@ function SceneCard({ scene }: { scene: ToneScene }) {
 
 function DistrictDetail({ classType }: { classType: ThaiSymbolClass }) {
 	const district = districtForClass(classType);
+	const overview = districtPlaceFor(classType);
 	const letters = useMemo(
 		() => consonants.filter((consonant) => consonant.classType === classType),
 		[classType],
@@ -424,6 +512,14 @@ function DistrictDetail({ classType }: { classType: ThaiSymbolClass }) {
 				border: "1px solid var(--color-border)",
 			}}
 		>
+			{overview && (
+				<PalaceImage
+					id={overview.id}
+					alt={overview.prompt}
+					className="rounded-xl w-full"
+				/>
+			)}
+
 			<div>
 				<h2 className="text-lg font-semibold capitalize">{district}</h2>
 				<p className="text-sm" style={{ color: "var(--color-text-muted)" }}>

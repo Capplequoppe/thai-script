@@ -9,9 +9,12 @@ import {
 	ALL_RULE_IDS,
 	CLASS_CAST,
 	characterForClass,
+	EVERY_LOCATION_HAS_AN_OVERVIEW,
 	EVERY_RULE_HAS_ONE_SCENE,
 	EVERY_TONE_HAS_A_PLACE,
 	markRuleId,
+	OVERVIEW_NAMES_MATCH_THE_STRUCTURE,
+	PALACE_PLACES,
 	PLACE_VOCABULARIES_ARE_DISJOINT,
 	placeForTone,
 	TONE_PLACE_NAMES,
@@ -249,5 +252,51 @@ describe("scene prompts", () => {
 			if (!scene.prop) continue;
 			expect(scene.prompt).toMatch(COUNT_WORD[scene.prop]);
 		}
+	});
+});
+
+describe("places and maps", () => {
+	it("draws an establishing shot for every location, and both maps", () => {
+		expect(EVERY_LOCATION_HAS_AN_OVERVIEW).toBe(true);
+	});
+
+	it("calls a place the same thing in its picture as on the map", () => {
+		expect(OVERVIEW_NAMES_MATCH_THE_STRUCTURE).toBe(true);
+	});
+
+	it("gives every place a prompt and a caption", () => {
+		for (const place of PALACE_PLACES) {
+			expect(place.prompt.length).toBeGreaterThan(40);
+			expect(place.caption.length).toBeGreaterThan(20);
+		}
+	});
+
+	it("keeps people out of the establishing shots", () => {
+		// A place is the empty room. Putting the cast in one would make it a
+		// twelfth scene competing with the eleven that carry the rules.
+		for (const place of PALACE_PLACES) {
+			if (place.kind === "map") continue;
+			expect(place.prompt).toMatch(/no people|empty of shoppers/i);
+		}
+	});
+
+	it("points each district and tone place at what it stands for", () => {
+		const districts = PALACE_PLACES.filter((p) => p.kind === "district");
+		const tones = PALACE_PLACES.filter((p) => p.kind === "tone");
+		expect(districts).toHaveLength(3);
+		expect(tones).toHaveLength(TONE_PLACES.length);
+		for (const place of [...districts, ...tones]) {
+			expect(place.for).toBeTruthy();
+		}
+	});
+
+	it("keeps every place id unique, including against the scenes", () => {
+		// They share one directory and one manifest, so a collision would have
+		// one image silently overwrite another.
+		const ids = [
+			...PALACE_PLACES.map((place) => place.id),
+			...TONE_SCENES.map((scene) => scene.id),
+		];
+		expect(new Set(ids).size).toBe(ids.length);
 	});
 });
