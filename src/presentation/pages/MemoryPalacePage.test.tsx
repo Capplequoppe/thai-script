@@ -187,3 +187,55 @@ describe("on a narrow screen", () => {
 		}
 	});
 });
+
+describe("opening a letter from its district", () => {
+	function openHarbour() {
+		renderPalace();
+		fireEvent.click(districts().getByRole("button", { name: /low class/i }));
+	}
+
+	it("opens a dialog with the letter's card", () => {
+		openHarbour();
+		fireEvent.click(screen.getByRole("button", { name: /ม.*horse/i }));
+
+		const dialog = within(screen.getByRole("dialog"));
+		// The name appears twice by design — once as the dialog's heading and
+		// once inside the card, which is the same card Items shows.
+		expect(dialog.getByRole("heading", { name: /ม ม้า/ })).toBeTruthy();
+		// Likewise the meaning: the dialog's description line and the card's
+		// own italic gloss. Both are wanted; the count is the assertion.
+		expect(dialog.getAllByText(/"horse"/)).toHaveLength(2);
+		// And the picture of it, which is the whole point of the district.
+		expect(dialog.getByAltText(/ม ม้า — horse/)).toBeTruthy();
+	});
+
+	it("carries the mnemonic prose, which is the reason to open it at all", () => {
+		openHarbour();
+		fireEvent.click(screen.getByRole("button", { name: /ม.*horse/i }));
+
+		// The rewritten cue: the horse, not the horseshoe it used to be.
+		expect(
+			within(screen.getByRole("dialog")).getByText(/reared up on the quay/i),
+		).toBeTruthy();
+	});
+
+	it("names the lesson that introduces the letter, by its position", () => {
+		openHarbour();
+		fireEvent.click(screen.getByRole("button", { name: /ม.*horse/i }));
+
+		// ม is filed under legacy lesson 1, which is also position 1 — the two
+		// integer spaces only diverge from position 15, so this checks the
+		// wiring rather than the divergence. `lessonFor` is where the
+		// conversion lives.
+		expect(
+			within(screen.getByRole("dialog")).getByRole("button", {
+				name: /taught in lesson 1/i,
+			}),
+		).toBeTruthy();
+	});
+
+	it("shows nothing until a letter is asked for", () => {
+		openHarbour();
+		expect(screen.queryByRole("dialog")).toBeNull();
+	});
+});

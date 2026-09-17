@@ -25,6 +25,10 @@ import {
 } from "../../domain/script/data/symbols";
 import { ROOMS } from "../../domain/vocabulary/types";
 import { SectionHeader } from "../components/atoms/SectionHeader";
+import {
+	ConsonantDetailDialog,
+	consonantSummaryFor,
+} from "../components/organisms/ConsonantDetailDialog";
 
 /**
  * The world, drawn — which until now it never was.
@@ -51,6 +55,7 @@ type Selection =
 
 export function MemoryPalacePage() {
 	const [selected, setSelected] = useState<Selection>(null);
+	const [openLetter, setOpenLetter] = useState<string | null>(null);
 	const detailRef = useRef<HTMLDivElement | null>(null);
 
 	// Picking a region on the painted map opens a panel that can be a screen
@@ -98,8 +103,13 @@ export function MemoryPalacePage() {
 			{/* The scroll target, wrapping rather than inside the panel so it
 			    exists before a selection does. */}
 			<div ref={detailRef} className="scroll-mt-4">
-				<DetailPanel selected={selected} />
+				<DetailPanel selected={selected} onOpenLetter={setOpenLetter} />
 			</div>
+
+			<ConsonantDetailDialog
+				summary={openLetter ? consonantSummaryFor(openLetter) : null}
+				onClose={() => setOpenLetter(null)}
+			/>
 		</div>
 	);
 }
@@ -458,7 +468,13 @@ function RoomRow({
 // Entering a location
 // ----------------------------------------------------------------------------
 
-function DetailPanel({ selected }: { selected: Selection }) {
+function DetailPanel({
+	selected,
+	onOpenLetter,
+}: {
+	selected: Selection;
+	onOpenLetter: (character: string) => void;
+}) {
 	if (!selected) {
 		return (
 			<p
@@ -472,7 +488,12 @@ function DetailPanel({ selected }: { selected: Selection }) {
 
 	if (selected.kind === "tone") return <TonePlaceDetail tone={selected.tone} />;
 	if (selected.kind === "district")
-		return <DistrictDetail classType={selected.classType} />;
+		return (
+			<DistrictDetail
+				classType={selected.classType}
+				onOpenLetter={onOpenLetter}
+			/>
+		);
 	return <RoomDetail room={selected.room} />;
 }
 
@@ -619,7 +640,13 @@ function SceneCard({ scene }: { scene: ToneScene }) {
 	);
 }
 
-function DistrictDetail({ classType }: { classType: ThaiSymbolClass }) {
+function DistrictDetail({
+	classType,
+	onOpenLetter,
+}: {
+	classType: ThaiSymbolClass;
+	onOpenLetter: (character: string) => void;
+}) {
 	const district = districtForClass(classType);
 	const overview = districtPlaceFor(classType);
 	const letters = useMemo(
@@ -666,6 +693,7 @@ function DistrictDetail({ classType }: { classType: ThaiSymbolClass }) {
 						key={consonant.character}
 						character={consonant.character}
 						name={consonant.name}
+						onOpen={() => onOpenLetter(consonant.character)}
 					/>
 				))}
 			</div>
@@ -687,17 +715,21 @@ function DistrictDetail({ classType }: { classType: ThaiSymbolClass }) {
 function ConsonantTile({
 	character,
 	name,
+	onOpen,
 }: {
 	character: string;
 	name: string;
+	onOpen: () => void;
 }) {
 	const scene = consonantSceneFor(character);
 	const [failed, setFailed] = useState(false);
 	const src = consonantImageFor(character);
 
 	return (
-		<figure
-			className="rounded-xl overflow-hidden"
+		<button
+			type="button"
+			onClick={onOpen}
+			className="rounded-xl overflow-hidden text-left w-full transition-transform active:scale-[0.98]"
 			style={{ background: "var(--color-surface-2)" }}
 		>
 			{src && !failed && (
@@ -710,7 +742,7 @@ function ConsonantTile({
 					onError={() => setFailed(true)}
 				/>
 			)}
-			<figcaption className="px-2 py-1.5 flex items-baseline gap-2">
+			<span className="px-2 py-1.5 flex items-baseline gap-2">
 				<span className="thai text-xl leading-none">{character}</span>
 				<span
 					className="text-[11px] leading-tight"
@@ -718,8 +750,8 @@ function ConsonantTile({
 				>
 					{scene?.meaning ?? name}
 				</span>
-			</figcaption>
-		</figure>
+			</span>
+		</button>
 	);
 }
 
