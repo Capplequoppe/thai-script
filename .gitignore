@@ -68,6 +68,9 @@ video-originals/
 # which the backend cannot share). The lock file is committed; the venv is not.
 scripts/deck-env/.venv/
 
+# The pipeline tests' environment. Same rule: lock committed, venv not.
+scripts/tests/.venv/
+
 # Voice-audition samples, generated on demand and never shipped.
 public/_samples/
 

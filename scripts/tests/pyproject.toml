@@ -1,0 +1,23 @@
+[project]
+name = "script-tests-env"
+version = "0.1.0"
+description = "Dependencies for the offline pipeline's own tests. Not an application."
+requires-python = ">=3.11"
+# `enrich-vocabulary.py` itself imports nothing outside the standard library,
+# so everything here exists to run it end to end rather than to import it.
+dependencies = [
+    # `segment_word` tokenises with PyThaiNLP. Without it the rule tests still
+    # pass and only the whole-word ones fail — which is the shape of failure
+    # that makes a missing dependency look like a broken test.
+    "pythainlp>=5.0",
+    # PyThaiNLP's syllable tokeniser reaches han_solo, which raises ImportError
+    # on this rather than degrading. Listed explicitly because it is a real
+    # requirement of the code path these tests take, not an optional extra.
+    "python-crfsuite>=0.9",
+]
+
+[dependency-groups]
+dev = ["pytest>=8"]
+
+[tool.pytest.ini_options]
+testpaths = ["."]
