@@ -409,3 +409,32 @@ export const HOTSPOTS_LAND_ON_REAL_PLACES = PALACE_PLACES.filter(
 		return target !== undefined && inside;
 	}),
 );
+
+/**
+ * The world map has a way into every place there is.
+ *
+ * The high tone had no region on it for two commits, and what recorded that
+ * was a comment in the script that placed the others — "there is no rooftop in
+ * the world map, so the high tone has no hotspot there". That was true and it
+ * was not enough: a learner reading the map cannot tell whether a place is
+ * missing because it is elsewhere or because somebody forgot, and neither
+ * could the next person to edit the file.
+ *
+ * So it is a value now. A place added to `TONE_PLACES`, or a district added to
+ * `CLASS_CAST`, fails here until the map can be clicked to reach it — which
+ * puts the failure on whoever added it rather than on whoever notices the gap
+ * months later.
+ */
+export const WORLD_MAP_REACHES_EVERY_PLACE = (() => {
+	const map = PALACE_PLACES.find((place) => place.id === "map-world");
+	const spots = map?.hotspots ?? [];
+	const hasTone = (tone: string) =>
+		spots.some((spot) => spot.kind === "tone" && spot.for === tone);
+	const hasDistrict = (classType: ThaiSymbolClass) =>
+		spots.some((spot) => spot.kind === "district" && spot.for === classType);
+
+	return (
+		TONE_PLACES.every((place) => hasTone(place.tone)) &&
+		CLASS_CAST.every((entry) => hasDistrict(entry.classType))
+	);
+})();

@@ -26,6 +26,15 @@
 			},
 			{
 				"kind": "tone",
+				"for": "high",
+				"label": "rooftop",
+				"x": 0,
+				"y": 57,
+				"w": 13,
+				"h": 17
+			},
+			{
+				"kind": "tone",
 				"for": "falling",
 				"label": "waterfall",
 				"x": 32,

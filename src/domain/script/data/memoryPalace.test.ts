@@ -23,6 +23,7 @@ import {
 	TONE_PLACES,
 	TONE_SCENES,
 	tonePlaceOverviewFor,
+	WORLD_MAP_REACHES_EVERY_PLACE,
 } from "./memoryPalace";
 import { DISTRICTS, districtForClass } from "./sceneGrammar";
 import { ThaiSymbolClass, toneMarkRules, toneRules } from "./symbols";
@@ -358,5 +359,20 @@ describe("map hotspots", () => {
 				}
 			}
 		}
+	});
+});
+
+describe("the world map's coverage", () => {
+	it("can be clicked to reach every district and every tone place", () => {
+		// The high tone was missing for two commits and only a comment said so.
+		// A comment cannot fail a build.
+		expect(WORLD_MAP_REACHES_EVERY_PLACE).toBe(true);
+	});
+
+	it("has one region per landmark, and no more", () => {
+		const world = PALACE_PLACES.find((place) => place.id === "map-world");
+		expect(world?.hotspots).toHaveLength(
+			TONE_PLACES.length + CLASS_CAST.length,
+		);
 	});
 });
