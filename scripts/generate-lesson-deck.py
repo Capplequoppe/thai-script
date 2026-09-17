@@ -42,9 +42,10 @@ from lesson_deck.vendor import (  # noqa: E402
 	DEFAULT_MODEL_ID,
 	DEFAULT_VOICE_ID,
 	ElevenLabsVendor,
+	LocalThaiVoice,
 	LocalTranscriber,
 	MissingCredential,
-	S2ProEnglishVoice,
+	S2ProVoice,
 	Redactor,
 	SplitVendor,
 	VoiceSpec,
@@ -73,30 +74,94 @@ def build_parser() -> argparse.ArgumentParser:
 	parser.add_argument(
 		"--report", type=Path, help="write the run's counts here as JSON"
 	)
+	parser.add_argument(
+		"--metered-thai",
+		action="store_true",
+		help="voice Thai through ElevenLabs instead of this machine, which "
+		"costs per character and needs ELEVENLABS_API_KEY. Local Thai clones "
+		"the same voice from scripts/lesson_deck/reference/thai-voice.mp3 and "
+		"passes the same transcribe-back check, so this is for rebuilding "
+		"that reference or for comparing the two by ear — not for ordinary "
+		"builds.",
+	)
 	return parser
+
+
+def studio_is_holding_the_gpu() -> bool:
+	"""Is the studio server resident on the card?
+
+	There is one GPU and the narration engine wants 19.7 GB of it. The studio
+	keeps that engine loaded for as long as a deck is open, deliberately — it
+	is what makes regenerating a single line fast. A command-line build started
+	alongside it asks for a second copy and CUDA refuses with "invalid device
+	ordinal", which names neither the cause nor the cure.
+
+	Asked over HTTP rather than by looking for a process, because the question
+	is "is the studio holding the engine", not "is a python running". A studio
+	that is up but has never built holds nothing and is no obstacle.
+	"""
+	import json as _json  # noqa: PLC0415
+	import urllib.error  # noqa: PLC0415
+	import urllib.request  # noqa: PLC0415
+
+	try:
+		with urllib.request.urlopen(
+			"http://127.0.0.1:5174/__studio/api/gpu", timeout=1
+		) as response:
+			state = _json.loads(response.read())
+	except (urllib.error.URLError, OSError, ValueError):
+		# Not running, or too old to answer. Either way, not in the way.
+		return False
+	return bool(state.get("holding") or state.get("building"))
 
 
 def main(argv: list[str] | None = None) -> int:
 	args = build_parser().parse_args(argv)
 
-	# The credential is checked before anything else runs, so a machine with no
-	# key fails naming the key rather than naming whatever it reached next.
-	try:
-		api_key = load_api_key()
-	except MissingCredential as error:
-		print(f"error: {error}", file=sys.stderr)
+	if studio_is_holding_the_gpu():
+		print(
+			"error: the studio server is holding the narration engine, and the "
+			"card fits one copy of it. Stop the studio, or POST "
+			"http://127.0.0.1:5174/__studio/api/release to make it stand down, "
+			"then re-run. Nothing was written.",
+			file=sys.stderr,
+		)
 		return EXIT_NO_CREDENTIAL
 
+	# Only the metered path needs a credential, and it is checked before
+	# anything else runs, so a machine without one fails naming the key rather
+	# than naming whatever it reached next. An ordinary build reaches nothing
+	# but this machine and asks for nothing.
+	api_key = ""
+	if args.metered_thai:
+		try:
+			api_key = load_api_key()
+		except MissingCredential as error:
+			print(f"error: {error}", file=sys.stderr)
+			return EXIT_NO_CREDENTIAL
+
 	redactor = Redactor((api_key,))
+	# One engine for both languages: it is a voice cloner, and the language is
+	# decided by which reference it is handed. A second instance would be a
+	# second copy of a model that wants 19.7 GB of a 24.5 GB card.
+	voice = S2ProVoice()
+	# On the CPU, because with Thai voiced locally the trim runs while the
+	# engine is resident. Same model and the same answers, about four seconds
+	# slower per clip, and no contention for the card.
+	transcriber = LocalTranscriber(device="cpu" if not args.metered_thai else "cuda")
 	try:
 		script = parse_script(args.script)
 		report = generate(
 			script,
 			args.assets_root,
 			SplitVendor(
-				thai=ElevenLabsVendor(api_key, redactor),
-				english=S2ProEnglishVoice(),
-				transcriber=LocalTranscriber(),
+				thai=(
+					ElevenLabsVendor(api_key, redactor)
+					if args.metered_thai
+					else LocalThaiVoice(engine=voice, transcriber=transcriber)
+				),
+				english=voice,
+				transcriber=transcriber,
 			),
 			VoiceSpec(voice_id=args.voice_id, model_id=args.model_id),
 			redactor,

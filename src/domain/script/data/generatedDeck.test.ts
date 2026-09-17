@@ -350,7 +350,7 @@ function hashTree(root: string): Map<string, string> {
 }
 
 describe("the credential", () => {
-	it("is required, and its absence stops the run naming it", () => {
+	it("is required by the metered path, and its absence stops the run naming it", () => {
 		const root = temporaryRoot();
 		const { ELEVENLABS_API_KEY: _dropped, ...env } = process.env;
 		const result = spawnSync(
@@ -360,6 +360,7 @@ describe("the credential", () => {
 				join(FIXTURES, "lesson-02.md"),
 				"--assets-root",
 				root,
+				"--metered-thai",
 			],
 			{ encoding: "utf-8", env },
 		);
@@ -367,6 +368,32 @@ describe("the credential", () => {
 		expect(result.stderr).toContain("ELEVENLABS_API_KEY");
 		// Not a partial run that reads as a success: nothing was written.
 		expect(existsSync(join(root, "lesson-02"))).toBe(false);
+	});
+
+	it("is not required by an ordinary build, which reaches nothing but this machine", () => {
+		// Thai used to come from a metered vendor, so every build demanded a
+		// key before it would start. It is now voiced locally, cloned from a
+		// reference in the repository and checked by the same transcribe-back
+		// gate, and a build that calls nobody should not ask for a credential
+		// to call them with.
+		//
+		// Asked with a script that does not exist, so the run fails early and
+		// cheaply: the point is *which* complaint comes back, not that it
+		// succeeds.
+		const root = temporaryRoot();
+		const { ELEVENLABS_API_KEY: _dropped, ...env } = process.env;
+		const result = spawnSync(
+			"python3",
+			[
+				join(SCRIPTS, "generate-lesson-deck.py"),
+				join(FIXTURES, "no-such-lesson.md"),
+				"--assets-root",
+				root,
+			],
+			{ encoding: "utf-8", env },
+		);
+		expect(result.status).not.toBe(0);
+		expect(result.stderr).not.toContain("ELEVENLABS_API_KEY");
 	});
 
 	it("never reaches a committed artifact, even when the vendor echoes it back", () => {
