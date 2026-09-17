@@ -34,6 +34,10 @@ from dataclasses import dataclass, field, replace
 from pathlib import Path
 from typing import Literal
 
+#: Recordings are named relative to the repository, not to the script, so a
+#: lesson that moves does not silently point somewhere else.
+REPO_ROOT = Path(__file__).resolve().parents[2]
+
 SlideKind = Literal["exposition", "retrieval", "reveal", "rule"]
 SLIDE_KINDS: tuple[SlideKind, ...] = ("exposition", "retrieval", "reveal", "rule")
 
@@ -68,6 +72,16 @@ class Segment:
 	#: learner's clip next to the sentence that produced it — the studio — has
 	#: to be told, because it cannot be recovered from the text afterwards.
 	sources: tuple[int, ...] = ()
+	#: A clip already in the repository to use verbatim, instead of generating
+	#: one. Set by a `recording:` line; `None` for ordinary narration.
+	#:
+	#: For the handful of Thai the local engine gets wrong in a way that
+	#: matters. `วอ แหวน` is the case it exists for: every seed drops the ห of
+	#: แหวน, which changes the tone, and the course already ships a correct
+	#: native recording of that letter name for the listening quiz. Teaching
+	#: from a clip that is already there beats teaching a wrong tone, and beats
+	#: paying a vendor for a word we already own.
+	recording: Path | None = None
 
 
 @dataclass
@@ -146,6 +160,9 @@ def parse_script(path: Path) -> LessonScript:
 			lesson_id = value
 			continue
 
+		if key == "recording":
+			current.segments.append(_parse_recording(current, value, path, number))
+			continue
 		if key == "narration":
 			current.segments.append(
 				_parse_narration(current, value, path, number),
@@ -281,12 +298,12 @@ def _merge_runs(slide: Slide) -> list[Segment]:
 		flush()
 	flush()
 
+	# `replace`, not a fresh `Segment`: keys are the only thing being derived
+	# here, and listing the other fields by hand means every field added later
+	# is dropped on the floor by a line that looks like it is about keys. That
+	# already happened once, to `recording`.
 	return [
-		Segment(
-			key=f"{slide.id}-{index}", language=s.language, text=s.text,
-			sources=s.sources,
-		)
-		for index, s in enumerate(packed)
+		replace(s, key=f"{slide.id}-{index}") for index, s in enumerate(packed)
 	]
 
 
@@ -312,6 +329,46 @@ def _parse_narration(slide: Slide, value: str, path: Path, number: int) -> Segme
 		key=f"{slide.id}-{len(slide.segments)}",
 		language=language,
 		text=text,
+	)
+
+
+def _parse_recording(slide: Slide, value: str, path: Path, number: int) -> Segment:
+	"""`recording: th <what it says> <a file in the repository>`.
+
+	A narration line whose audio already exists, used verbatim.
+
+	It still declares what it says, for two reasons: the deck's transcript and
+	the studio both show that text, and a recording pointed at the wrong file
+	is otherwise invisible — nothing downstream would ever disagree with it.
+	"""
+	matched = _NARRATION.match(value)
+	if not matched:
+		raise ScriptError(
+			f"{path}:{number}: a recording line must begin with a language tag "
+			f"({' or '.join(LANGUAGES)}), like a narration line"
+		)
+	language: Language = matched.group("lang")  # type: ignore[assignment]
+	parts = matched.group("text").strip().rsplit(None, 1)
+	if len(parts) != 2:
+		raise ScriptError(
+			f"{path}:{number}: a recording line needs both what is said and "
+			"the file that says it, e.g. "
+			"`recording: th วอ แหวน public/audio/consonant-wo-weng.mp3`"
+		)
+	text, where = parts[0].strip(), Path(parts[1])
+	source = (REPO_ROOT / where).resolve()
+	if REPO_ROOT not in source.parents:
+		raise ScriptError(
+			f"{path}:{number}: a recording must come from inside the "
+			f"repository, and {where} does not"
+		)
+	if not source.is_file():
+		raise ScriptError(f"{path}:{number}: no such recording: {where}")
+	return Segment(
+		key=f"{slide.id}-{len(slide.segments)}",
+		language=language,
+		text=text,
+		recording=source,
 	)
 
 

@@ -28,12 +28,19 @@ SegmentState = Literal["absent", "generated", "failed"]
 #: vocabulary off the artifact rather than restating it.
 SEGMENT_STATES: tuple[SegmentState, ...] = ("absent", "generated", "failed")
 
-VerificationOutcome = Literal["not-required", "verified", "mismatch"]
+#: `recorded` is a clip taken verbatim from one already in the repository, and
+#: it is deliberately not `verified` or `not-required`. It was never generated,
+#: so nothing was checked — but unlike English, which is `not-required` because
+#: odd English merely sounds odd, this is Thai, where a wrong tone teaches a
+#: wrong word. What vouches for it is provenance rather than a check, and a
+#: reader of the manifest should be able to see which clips rest on that.
+VerificationOutcome = Literal["not-required", "verified", "mismatch", "recorded"]
 
 VERIFICATION_OUTCOMES: tuple[VerificationOutcome, ...] = (
 	"not-required",
 	"verified",
 	"mismatch",
+	"recorded",
 )
 
 MANIFEST_VERSION = 1
