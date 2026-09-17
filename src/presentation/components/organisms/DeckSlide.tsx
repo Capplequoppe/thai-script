@@ -357,6 +357,41 @@ function ReplayButton({
  * states what the slide teaches, which is the thing a learner who cannot see
  * the image actually needs.
  */
+/**
+ * Thai set large, for a slide whose job is to be read.
+ *
+ * The app's own font rather than a picture of the writing: sharp at any size,
+ * selectable, and correct — which a glyph rasterised into a watercolour is
+ * none of. The same argument `SlideIllustration` makes for keeping letterform
+ * *out* of the illustrations is the argument for putting it here instead.
+ *
+ * Sized in `vw` with a ceiling so a word fills a phone without overflowing a
+ * desktop, and given room to breathe: a learner decoding an unfamiliar script
+ * is looking at strokes, not skimming.
+ */
+function ReadingPanel({ thai }: { thai: string }) {
+	return (
+		<div
+			className="rounded-2xl py-10 px-4 text-center"
+			style={{
+				background: "var(--color-surface-2)",
+				border: "1px solid var(--color-border)",
+			}}
+		>
+			<span
+				className="thai"
+				style={{
+					fontSize: "clamp(3.5rem, 18vw, 7rem)",
+					lineHeight: 1.35,
+					display: "block",
+				}}
+			>
+				{thai}
+			</span>
+		</div>
+	);
+}
+
 function SlideIllustration({ url, alt }: { url: string; alt: string }) {
 	return (
 		<img
@@ -420,7 +455,15 @@ function DeckSlideContent({
 			return (
 				<div className="space-y-4">
 					<h2 className="text-lg font-bold text-center">{slide.heading}</h2>
-					{imageUrl && <SlideIllustration url={imageUrl} alt={slide.heading} />}
+					{/* A reading slide shows the writing and nothing else. The
+					    picture is not merely unnecessary there — it competes for
+					    the attention the decoding needs, which is why this wins
+					    over `imageUrl` rather than sitting beside it. */}
+					{slide.thai ? (
+						<ReadingPanel thai={slide.thai} />
+					) : (
+						imageUrl && <SlideIllustration url={imageUrl} alt={slide.heading} />
+					)}
 					<div className="space-y-2">
 						{slide.body.map((paragraph, i) => (
 							// biome-ignore lint/suspicious/noArrayIndexKey: body is a static ordered list of paragraphs with no other identity

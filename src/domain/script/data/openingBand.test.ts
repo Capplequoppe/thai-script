@@ -84,6 +84,7 @@ type RawSlide = {
 	retrievalSlideId?: string;
 	audio?: string[];
 	image?: string;
+	thai?: string;
 };
 type RawDeck = {
 	lessonId: string;
@@ -118,6 +119,11 @@ function textsOf(deck: RawDeck): string[] {
 	for (const slide of deck.slides) {
 		if (slide.heading) texts.push(slide.heading);
 		if (slide.prompt) texts.push(slide.prompt);
+		// The reading panel. A slide that shows nothing but the script, large,
+		// is where a symbol is most deliberately put in front of a learner —
+		// so leaving it out here made a lesson look like it never used the
+		// letter it spends three slides on.
+		if (slide.thai) texts.push(slide.thai);
 		texts.push(...(slide.body ?? []));
 		texts.push(...(slide.answers ?? []));
 	}
