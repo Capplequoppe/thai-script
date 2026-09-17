@@ -1,0 +1,266 @@
+{
+	"bo-baimai": {
+		"bytes": 195857,
+		"char": "บ",
+		"digest": "4b42ea2bdf928a93",
+		"file": "bo-baimai.mp3"
+	},
+	"chaaw-chooe": {
+		"bytes": 170780,
+		"char": "ฌ",
+		"digest": "77f095fa7c1b2d93",
+		"file": "chaaw-chooe.mp3"
+	},
+	"cho-chang": {
+		"bytes": 151554,
+		"char": "ช",
+		"digest": "e31ee5cbbe5ded0f",
+		"file": "cho-chang.mp3"
+	},
+	"cho-ching": {
+		"bytes": 170571,
+		"char": "ฉ",
+		"digest": "7b6fe1b8ffc00528",
+		"file": "cho-ching.mp3"
+	},
+	"do-chada": {
+		"bytes": 189170,
+		"char": "ฎ",
+		"digest": "b5da0c42b753595f",
+		"file": "do-chada.mp3"
+	},
+	"do-dek": {
+		"bytes": 219472,
+		"char": "ด",
+		"digest": "b556d2a6794b7a3a",
+		"file": "do-dek.mp3"
+	},
+	"fo-fa": {
+		"bytes": 154479,
+		"char": "ฝ",
+		"digest": "233954198280dfa5",
+		"file": "fo-fa.mp3"
+	},
+	"fo-fan": {
+		"bytes": 163466,
+		"char": "ฟ",
+		"digest": "727b376b802b0c5d",
+		"file": "fo-fan.mp3"
+	},
+	"ho-hip": {
+		"bytes": 190842,
+		"char": "ห",
+		"digest": "894266bf609f35cd",
+		"file": "ho-hip.mp3"
+	},
+	"ho-nokhu": {
+		"bytes": 175795,
+		"char": "ฮ",
+		"digest": "003216563834972b",
+		"file": "ho-nokhu.mp3"
+	},
+	"jo-jan": {
+		"bytes": 159704,
+		"char": "จ",
+		"digest": "90cfc8bf5991d1a2",
+		"file": "jo-jan.mp3"
+	},
+	"khaaw-khon": {
+		"bytes": 172452,
+		"char": "ฅ",
+		"digest": "ece4937d86d4cc4c",
+		"file": "khaaw-khon.mp3"
+	},
+	"khaaw-khuat": {
+		"bytes": 149673,
+		"char": "ฃ",
+		"digest": "d4a82a2ccd24b7bb",
+		"file": "khaaw-khuat.mp3"
+	},
+	"kho-khay": {
+		"bytes": 162421,
+		"char": "ข",
+		"digest": "bbccb5a402282f5c",
+		"file": "kho-khay.mp3"
+	},
+	"kho-khwai": {
+		"bytes": 235146,
+		"char": "ค",
+		"digest": "acb20ade92f83221",
+		"file": "kho-khwai.mp3"
+	},
+	"kho-rakhang": {
+		"bytes": 149255,
+		"char": "ฆ",
+		"digest": "626f1ece86e7dd9f",
+		"file": "kho-rakhang.mp3"
+	},
+	"ko-kai": {
+		"bytes": 189379,
+		"char": "ก",
+		"digest": "af510eaf6247987c",
+		"file": "ko-kai.mp3"
+	},
+	"lo-jula": {
+		"bytes": 162421,
+		"char": "ฬ",
+		"digest": "aa190db1882e1dc7",
+		"file": "lo-jula.mp3"
+	},
+	"lo-ling": {
+		"bytes": 133999,
+		"char": "ล",
+		"digest": "7033e1efcedfcec9",
+		"file": "lo-ling.mp3"
+	},
+	"mo-ma": {
+		"bytes": 206097,
+		"char": "ม",
+		"digest": "e0204845c05e4fc2",
+		"file": "mo-ma.mp3"
+	},
+	"ngo-ngu": {
+		"bytes": 149673,
+		"char": "ง",
+		"digest": "17eb2f62bafadcf8",
+		"file": "ngo-ngu.mp3"
+	},
+	"no-nen": {
+		"bytes": 173079,
+		"char": "ณ",
+		"digest": "f5fdc2d5e8819132",
+		"file": "no-nen.mp3"
+	},
+	"no-nu": {
+		"bytes": 272344,
+		"char": "น",
+		"digest": "a7ab2e891cf97d19",
+		"file": "no-nu.mp3"
+	},
+	"o-ang": {
+		"bytes": 151136,
+		"char": "อ",
+		"digest": "382861ca8f50ef2f",
+		"file": "o-ang.mp3"
+	},
+	"pho-phan": {
+		"bytes": 163884,
+		"char": "พ",
+		"digest": "21ea09c445472af9",
+		"file": "pho-phan.mp3"
+	},
+	"pho-phing": {
+		"bytes": 138597,
+		"char": "ผ",
+		"digest": "9a0608d291223613",
+		"file": "pho-phing.mp3"
+	},
+	"pho-samphau": {
+		"bytes": 162003,
+		"char": "ภ",
+		"digest": "76c6e78ee4bfb399",
+		"file": "pho-samphau.mp3"
+	},
+	"po-pla": {
+		"bytes": 153017,
+		"char": "ป",
+		"digest": "58a918684b1404be",
+		"file": "po-pla.mp3"
+	},
+	"ro-ria": {
+		"bytes": 147165,
+		"char": "ร",
+		"digest": "e636f298bccd6c03",
+		"file": "ro-ria.mp3"
+	},
+	"so-risi": {
+		"bytes": 139224,
+		"char": "ษ",
+		"digest": "bf488b5a6d3b09b4",
+		"file": "so-risi.mp3"
+	},
+	"so-sala": {
+		"bytes": 157196,
+		"char": "ศ",
+		"digest": "4a2991b42ce97f15",
+		"file": "so-sala.mp3"
+	},
+	"so-sia": {
+		"bytes": 165973,
+		"char": "ส",
+		"digest": "59121ee16ce6ea01",
+		"file": "so-sia.mp3"
+	},
+	"so-so": {
+		"bytes": 157196,
+		"char": "ซ",
+		"digest": "acb51d254c852a75",
+		"file": "so-so.mp3"
+	},
+	"tho-montho": {
+		"bytes": 206097,
+		"char": "ฑ",
+		"digest": "5e8beda4b4053cd0",
+		"file": "tho-montho.mp3"
+	},
+	"tho-phuthau": {
+		"bytes": 154897,
+		"char": "ฒ",
+		"digest": "2ea392294809b359",
+		"file": "tho-phuthau.mp3"
+	},
+	"tho-thahan": {
+		"bytes": 135880,
+		"char": "ท",
+		"digest": "6f76a6b992fc9034",
+		"file": "tho-thahan.mp3"
+	},
+	"tho-than": {
+		"bytes": 163048,
+		"char": "ฐ",
+		"digest": "2dc05cd779b4a91f",
+		"file": "tho-than.mp3"
+	},
+	"tho-thong": {
+		"bytes": 150091,
+		"char": "ธ",
+		"digest": "6344f450818c4785",
+		"file": "tho-thong.mp3"
+	},
+	"tho-thung": {
+		"bytes": 142359,
+		"char": "ถ",
+		"digest": "b95f8c9941074a95",
+		"file": "tho-thung.mp3"
+	},
+	"to-patak": {
+		"bytes": 159077,
+		"char": "ฏ",
+		"digest": "f799b653d6e190c5",
+		"file": "to-patak.mp3"
+	},
+	"to-tau": {
+		"bytes": 131492,
+		"char": "ต",
+		"digest": "908e851f2dc64db9",
+		"file": "to-tau.mp3"
+	},
+	"wo-weng": {
+		"bytes": 133999,
+		"char": "ว",
+		"digest": "eaa4d1609158a91e",
+		"file": "wo-weng.mp3"
+	},
+	"yo-yak": {
+		"bytes": 157405,
+		"char": "ย",
+		"digest": "902ccfaa26aaa2e9",
+		"file": "yo-yak.mp3"
+	},
+	"yo-ying": {
+		"bytes": 219263,
+		"char": "ญ",
+		"digest": "f0bca9c9ff944319",
+		"file": "yo-ying.mp3"
+	}
+}

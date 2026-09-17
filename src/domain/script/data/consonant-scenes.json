@@ -5,7 +5,8 @@
 		"name": "ม ม้า",
 		"meaning": "horse",
 		"district": "harbor",
-		"prompt": "An enormous grey horse reared up on its hind legs, both forelegs pawing the air one directly above the other, long straight tail hanging plumb behind it, on a fishing harbour quay, moored wooden longtail boats and drying nets behind."
+		"prompt": "An enormous grey horse reared up on its hind legs, both forelegs pawing the air one directly above the other, long straight tail hanging plumb behind it, on a fishing harbour quay, moored wooden longtail boats and drying nets behind.",
+		"narration": "The horse. [pause] Low class, so it lives down at the harbour. [pause] Two loops run down the left side, one directly beneath the other, and the right side falls as a plain stroke — a great grey horse reared up on the quay, both forelegs pawing the air one above the other, its straight tail hanging plumb behind. [pause] Close your lips and hum m, unaspirated and level: the idling drone of the harbor itself."
 	},
 	{
 		"id": "no-nu",
@@ -13,7 +14,8 @@
 		"name": "น หนู",
 		"meaning": "mouse/rat",
 		"district": "harbor",
-		"prompt": "A fat brown mouse swinging by one paw from a thick mooring rope, its long tail flung out low and wide to the other side, tiny feet kicking, on a fishing harbour quay, moored wooden longtail boats and drying nets behind."
+		"prompt": "A fat brown mouse swinging by one paw from a thick mooring rope, its long tail flung out low and wide to the other side, tiny feet kicking, on a fishing harbour quay, moored wooden longtail boats and drying nets behind.",
+		"narration": "The mouse. [pause] Low class, so it lives down at the harbour. [pause] The same loop high on the left, but the second is thrown across to the bottom right — a fat harbour mouse swinging from a mooring rope by one paw, its tail flung out low and wide to the other side. Where the horse's letter's horse rears with both legs stacked, the mouse hangs high and kicks low. [pause] Hum n at the tooth-ridge, easy and unaspirated — a mouse nibbling nnn along the mooring line."
 	},
 	{
 		"id": "ngo-ngu",
@@ -21,7 +23,8 @@
 		"name": "ง งู",
 		"meaning": "snake",
 		"district": "harbor",
-		"prompt": "A green snake lifting its round head clear out of the water, its body swerving away in a long curve along the stone edge, on a fishing harbour quay, moored wooden longtail boats and drying nets behind."
+		"prompt": "A green snake lifting its round head clear out of the water, its body swerving away in a long curve along the stone edge, on a fishing harbour quay, moored wooden longtail boats and drying nets behind.",
+		"narration": "The snake. [pause] Low class, so it lives down at the harbour. [pause] A snake lifts its round head out of the water, body swerving away along the harbor's edge. [pause] The ng that closes singing, moved to the front of the syllable — a hum from the nose, so it moors low."
 	},
 	{
 		"id": "yo-yak",
@@ -29,7 +32,8 @@
 		"name": "ย ยักษ์",
 		"meaning": "giant",
 		"district": "harbor",
-		"prompt": "A huge grinning giant wading chest-deep past a pier, chin and belly jutting out in two round bulges, dwarfing the boats, on a fishing harbour quay, moored wooden longtail boats and drying nets behind."
+		"prompt": "A huge grinning giant wading chest-deep past a pier, chin and belly jutting out in two round bulges, dwarfing the boats, on a fishing harbour quay, moored wooden longtail boats and drying nets behind.",
+		"narration": "The giant. [pause] Low class, so it lives down at the harbour. [pause] Two bumps stacked on one flank — no other letter carries that pair — a giant's chin and belly wading past the pier. [pause] A gliding y, hummed rather than hissed; the giant yawns yyy over the moored boats."
 	},
 	{
 		"id": "wo-weng",
@@ -37,7 +41,8 @@
 		"name": "ว แหวน",
 		"meaning": "ring",
 		"district": "harbor",
-		"prompt": "A single white life-ring hanging on one iron nail beside worn stone harbour steps, perfectly round, rope coiled beneath, on a fishing harbour quay, moored wooden longtail boats and drying nets behind."
+		"prompt": "A single white life-ring hanging on one iron nail beside worn stone harbour steps, perfectly round, rope coiled beneath, on a fishing harbour quay, moored wooden longtail boats and drying nets behind.",
+		"narration": "The ring. [pause] Low class, so it lives down at the harbour. [pause] One stroke closing into a single ring — a life-ring hung on its nail by the harbor steps. [pause] Round your lips into w and let it hum; at a syllable's tail it melts into an o-glide."
 	},
 	{
 		"id": "ko-kai",
@@ -45,7 +50,8 @@
 		"name": "ก ไก่",
 		"meaning": "chicken",
 		"district": "market",
-		"prompt": "A speckled chicken pecking at spilled grain between market stalls, head down, beak arching to the left, in a Thai open-air market of wooden stalls under striped awnings, baskets of produce around."
+		"prompt": "A speckled chicken pecking at spilled grain between market stalls, head down, beak arching to the left, in a Thai open-air market of wooden stalls under striped awnings, baskets of produce around.",
+		"narration": "The chicken. [pause] Mid class, so you will find it in the market. [pause] A headless open frame — no circle anywhere, only a beak-line arching leftward — a hen pecking between market stalls. [pause] A bare g with no puff and no buzz, the market's flat cluck; at a syllable's tail it snaps shut into a k-stop."
 	},
 	{
 		"id": "do-dek",
@@ -53,7 +59,8 @@
 		"name": "ด เด็ก",
 		"meaning": "child",
 		"district": "market",
-		"prompt": "A small child curled up fast asleep inside an enormous market bowl, one arm tucked under its head, bare toes poking out of the bottom, in a Thai open-air market of wooden stalls under striped awnings, baskets of produce around."
+		"prompt": "A small child curled up fast asleep inside an enormous market bowl, one arm tucked under its head, bare toes poking out of the bottom, in a Thai open-air market of wooden stalls under striped awnings, baskets of produce around.",
+		"narration": "The child. [pause] Mid class, so you will find it in the market. [pause] A round bowl with a smooth rim, its head curled clockwise inside, the bottom drawn down to a point — a small child curled up asleep inside a market bowl, one arm tucked in, toes pointing out of the bottom. [pause] A plain flat d with no breath riding it; at a syllable's tail the tongue seals it into a t-stop."
 	},
 	{
 		"id": "bo-baimai",
@@ -61,7 +68,8 @@
 		"name": "บ ใบไม้",
 		"meaning": "leaf",
 		"district": "market",
-		"prompt": "One enormous glossy green leaf growing straight up out of an open market basket, taller than the stall itself, shading the whole row, in a Thai open-air market of wooden stalls under striped awnings, baskets of produce around."
+		"prompt": "One enormous glossy green leaf growing straight up out of an open market basket, taller than the stall itself, shading the whole row, in a Thai open-air market of wooden stalls under striped awnings, baskets of produce around.",
+		"narration": "The leaf. [pause] Mid class, so you will find it in the market. [pause] An open basket with both walls stopping level at the rim — and one enormous glossy leaf growing straight up out of it, bigger than the stall it stands in, shading the whole market row. [pause] A plain flat b, nothing breathy about it; at a syllable's tail the lips seal on a p-stop and hold."
 	},
 	{
 		"id": "cho-chang",
@@ -69,7 +77,8 @@
 		"name": "ช ช้าง",
 		"meaning": "elephant",
 		"district": "harbor",
-		"prompt": "A grey elephant standing in the shallows hosing water over its own back with its raised trunk, tail flicked high, on a fishing harbour quay, moored wooden longtail boats and drying nets behind."
+		"prompt": "A grey elephant standing in the shallows hosing water over its own back with its raised trunk, tail flicked high, on a fishing harbour quay, moored wooden longtail boats and drying nets behind.",
+		"narration": "The elephant. [pause] Low class, so it lives down at the harbour. [pause] The climbing stroke runs smooth and unbroken, and a tail flicks up past the top line — an elephant at the harbor hosing down its own back. [pause] Ch ridden by a burst of breath — yet it moors low at the harbor, not up at the temple."
 	},
 	{
 		"id": "so-so",
@@ -77,7 +86,8 @@
 		"name": "ซ โซ่",
 		"meaning": "chain",
 		"district": "harbor",
-		"prompt": "One heavy rusted iron chain link snagged tight on a bollard, the rest of the chain trailing into the water, on a fishing harbour quay, moored wooden longtail boats and drying nets behind."
+		"prompt": "One heavy rusted iron chain link snagged tight on a bollard, the rest of the chain trailing into the water, on a fishing harbour quay, moored wooden longtail boats and drying nets behind.",
+		"narration": "The chain. [pause] Low class, so it lives down at the harbour. [pause] Like the elephant's letter, but a notch dents the climbing stroke — one link of chain snagged in it — with the same tail above. [pause] A plain hiss of s with no breath-burst: the low-berthed s, kept at the harbor while the temple keeps its own three."
 	},
 	{
 		"id": "pho-phan",
@@ -85,7 +95,8 @@
 		"name": "พ พาน",
 		"meaning": "offering tray",
 		"district": "harbor",
-		"prompt": "A golden three-pronged offering tray set flat on a wooden crate, its three tips level, wrapped in flowers, on a fishing harbour quay, moored wooden longtail boats and drying nets behind."
+		"prompt": "A golden three-pronged offering tray set flat on a wooden crate, its three tips level, wrapped in flowers, on a fishing harbour quay, moored wooden longtail boats and drying nets behind.",
+		"narration": "The offering tray. [pause] Low class, so it lives down at the harbour. [pause] Three prongs in a row, every tip stopping level, the head curled outside the left rim — an offering tray set flat on a harbor crate. [pause] P pushed out on a breath — ph — yet berthed low at the harbor."
 	},
 	{
 		"id": "fo-fan",
@@ -93,7 +104,8 @@
 		"name": "ฟ ฟัน",
 		"meaning": "tooth",
 		"district": "harbor",
-		"prompt": "A single enormous white tooth standing upright among a row of smaller ones, towering over the rest, on a fishing harbour quay, moored wooden longtail boats and drying nets behind."
+		"prompt": "A single enormous white tooth standing upright among a row of smaller ones, towering over the rest, on a fishing harbour quay, moored wooden longtail boats and drying nets behind.",
+		"narration": "The tooth. [pause] Low class, so it lives down at the harbour. [pause] Like the offering tray's letter — head outside — but the final stroke rises higher than the rest, one tooth outgrowing the row. [pause] F, breath brushing the teeth: the harbor's f, low where its temple twin sits high."
 	},
 	{
 		"id": "kho-khwai",
@@ -101,7 +113,8 @@
 		"name": "ค ควาย",
 		"meaning": "water buffalo",
 		"district": "harbor",
-		"prompt": "A black water buffalo wallowing shoulder-deep in thick harbour mud, head curled back over its shoulder, horns low, on a fishing harbour quay, moored wooden longtail boats and drying nets behind."
+		"prompt": "A black water buffalo wallowing shoulder-deep in thick harbour mud, head curled back over its shoulder, horns low, on a fishing harbour quay, moored wooden longtail boats and drying nets behind.",
+		"narration": "The water buffalo. [pause] Low class, so it lives down at the harbour. [pause] A rounded body whose head curls counter-clockwise, tucked inside the bowl — a buffalo wallowing in harbor mud. The child's letter turns its head clockwise; the water buffalo's letter turns it the other way. [pause] Kh — k on a gust of breath — yet it wallows low; its high twin the egg's letter chants up at the temple."
 	},
 	{
 		"id": "tho-thahan",
@@ -109,7 +122,8 @@
 		"name": "ท ทหาร",
 		"meaning": "soldier",
 		"district": "harbor",
-		"prompt": "A soldier in uniform pacing across a wooden harbour bridge, back straight, one arm swinging, on a fishing harbour quay, moored wooden longtail boats and drying nets behind."
+		"prompt": "A soldier in uniform pacing across a wooden harbour bridge, back straight, one arm swinging, on a fishing harbour quay, moored wooden longtail boats and drying nets behind.",
+		"narration": "The soldier. [pause] Low class, so it lives down at the harbour. [pause] A head curls in, the back climbs straight, then an arch marches down — a soldier pacing the harbor bridge. [pause] T carried out on a breath — th — pacing low along the waterfront."
 	},
 	{
 		"id": "ho-nokhu",
@@ -117,7 +131,8 @@
 		"name": "ฮ นกฮูก",
 		"meaning": "owl",
 		"district": "harbor",
-		"prompt": "A round-eyed owl with tall zigzag ear-tufts perched on a mooring post at night, one enormous eye blinking, on a fishing harbour quay, moored wooden longtail boats and drying nets behind."
+		"prompt": "A round-eyed owl with tall zigzag ear-tufts perched on a mooring post at night, one enormous eye blinking, on a fishing harbour quay, moored wooden longtail boats and drying nets behind.",
+		"narration": "The owl. [pause] Low class, so it lives down at the harbour. [pause] Like the basin's letter, but wearing a zigzag crest — an owl's ear-tufts over one round eye, blinking at the night harbor. [pause] A breathed h — The owl's hoo across the water; the one h berthed at the harbor while the chest's letter keeps the temple."
 	},
 	{
 		"id": "ro-ria",
@@ -125,7 +140,8 @@
 		"name": "ร เรือ",
 		"meaning": "boat",
 		"district": "harbor",
-		"prompt": "A wooden boat prow rising out of the water with a long pennant flying from its mast and hooking over at the tip, on a fishing harbour quay, moored wooden longtail boats and drying nets behind."
+		"prompt": "A wooden boat prow rising out of the water with a long pennant flying from its mast and hooking over at the tip, on a fishing harbour quay, moored wooden longtail boats and drying nets behind.",
+		"narration": "The boat. [pause] Low class, so it lives down at the harbour. [pause] A head sits low at the waterline while a pennant-line flies up and hooks over — a boat's prow flying its flag. [pause] A rolled r, the outboard motor turning over; at a syllable's tail it flattens out into n."
 	},
 	{
 		"id": "lo-ling",
@@ -133,7 +149,8 @@
 		"name": "ล ลิง",
 		"meaning": "monkey",
 		"district": "harbor",
-		"prompt": "A monkey crouched on top of a harbour post with its long tail arching up and over its own back, on a fishing harbour quay, moored wooden longtail boats and drying nets behind."
+		"prompt": "A monkey crouched on top of a harbour post with its long tail arching up and over its own back, on a fishing harbour quay, moored wooden longtail boats and drying nets behind.",
+		"narration": "The monkey. [pause] Low class, so it lives down at the harbour. [pause] A head at the base with a long tail arching right over its back — a monkey crouched on a harbor post. [pause] L lapped off the tongue-ridge, humming low; at the tail of a syllable it too lands as n."
 	},
 	{
 		"id": "jo-jan",
@@ -141,7 +158,8 @@
 		"name": "จ จาน",
 		"meaning": "plate/dish",
 		"district": "market",
-		"prompt": "A flat ceramic plate spinning on one fingertip above a noodle stall, tilted, hooking over at the top of its spin, in a Thai open-air market of wooden stalls under striped awnings, baskets of produce around."
+		"prompt": "A flat ceramic plate spinning on one fingertip above a noodle stall, tilted, hooking over at the top of its spin, in a Thai open-air market of wooden stalls under striped awnings, baskets of produce around.",
+		"narration": "The plate. [pause] Mid class, so you will find it in the market. [pause] A hook curving up and over from a mid-height head — a plate spun on one finger at the noodle stall. [pause] An unpuffed j, halfway toward ch — The market's plain j; its tail seals as a t-stop."
 	},
 	{
 		"id": "to-tau",
@@ -149,7 +167,8 @@
 		"name": "ต เต่า",
 		"meaning": "turtle",
 		"district": "market",
-		"prompt": "A turtle pulling its head right inside a notched shell, a clear dent in the rim where the head went in, in a Thai open-air market of wooden stalls under striped awnings, baskets of produce around."
+		"prompt": "A turtle pulling its head right inside a notched shell, a clear dent in the rim where the head went in, in a Thai open-air market of wooden stalls under striped awnings, baskets of produce around.",
+		"narration": "The turtle. [pause] Mid class, so you will find it in the market. [pause] Like the child's letter, but the rim is notched — a dent in the shell where the turtle tucked its head in. [pause] Dt — press d and t into one flat sound with no breath riding out."
 	},
 	{
 		"id": "po-pla",
@@ -157,7 +176,8 @@
 		"name": "ป ปลา",
 		"meaning": "fish",
 		"district": "market",
-		"prompt": "A silver fish leaping clear out of a market basket, its body rising higher than the basket's rim, in a Thai open-air market of wooden stalls under striped awnings, baskets of produce around."
+		"prompt": "A silver fish leaping clear out of a market basket, its body rising higher than the basket's rim, in a Thai open-air market of wooden stalls under striped awnings, baskets of produce around.",
+		"narration": "The fish. [pause] Mid class, so you will find it in the market. [pause] Like the leaf's letter, but the right wall rises higher than the rim — a fish jumping clear of the market basket. [pause] Bp — b and p pressed into one flat sound, no puff; the fish slaps back down bp."
 	},
 	{
 		"id": "o-ang",
@@ -165,7 +185,8 @@
 		"name": "อ อ่าง",
 		"meaning": "basin",
 		"district": "market",
-		"prompt": "A single empty round basin standing alone in the middle of an empty market row, plain and open, in a Thai open-air market of wooden stalls under striped awnings, baskets of produce around."
+		"prompt": "A single empty round basin standing alone in the middle of an empty market row, plain and open, in a Thai open-air market of wooden stalls under striped awnings, baskets of produce around.",
+		"narration": "The basin. [pause] Mid class, so you will find it in the market. [pause] A plain ring standing open — an empty basin in the middle of the market row. [pause] Silent at the front: it minds the stall for words that open on a vowel. Set after a consonant instead, it becomes the long vowel aaw."
 	},
 	{
 		"id": "kho-khay",
@@ -173,7 +194,8 @@
 		"name": "ข ไข่",
 		"meaning": "egg",
 		"district": "temple",
-		"prompt": "A single white egg resting in a monk's brass alms bowl, nothing else in the bowl, in the courtyard of a Thai temple with tiered golden roofs and white walls."
+		"prompt": "A single white egg resting in a monk's brass alms bowl, nothing else in the bowl, in the courtyard of a Thai temple with tiered golden roofs and white walls.",
+		"narration": "The egg. [pause] High class, so it belongs up at the temple. [pause] Like the elephant's letter stripped of its tail — nothing rises past the top line — an egg resting in the temple's alms bowl. [pause] Kh, a k wrapped in soft breath — The temple's hush; first face of the eleven that must be learned by sight."
 	},
 	{
 		"id": "cho-ching",
@@ -181,7 +203,8 @@
 		"name": "ฉ ฉิ่ง",
 		"meaning": "cymbals",
 		"district": "temple",
-		"prompt": "A pair of small brass finger-cymbals held up at the moment they chime, a flick of ribbon on top, in the courtyard of a Thai temple with tiered golden roofs and white walls."
+		"prompt": "A pair of small brass finger-cymbals held up at the moment they chime, a flick of ribbon on top, in the courtyard of a Thai temple with tiered golden roofs and white walls.",
+		"narration": "The cymbals. [pause] High class, so it belongs up at the temple. [pause] A profile as stubby as the mouse's letter, wearing a flicked tail on top — finger-cymbals held up mid-chime on the temple step. [pause] Ch on a breath, shimmering — The cymbal's hiss under the eaves; second face of the temple's eleven."
 	},
 	{
 		"id": "so-sala",
@@ -189,7 +212,8 @@
 		"name": "ศ ศาลา",
 		"meaning": "pavilion",
 		"district": "temple",
-		"prompt": "An open wooden pavilion with a pointed roof, a single pennant planted upright on the roof ridge, in the courtyard of a Thai temple with tiered golden roofs and white walls."
+		"prompt": "An open wooden pavilion with a pointed roof, a single pennant planted upright on the roof ridge, in the courtyard of a Thai temple with tiered golden roofs and white walls.",
+		"narration": "The pavilion. [pause] High class, so it belongs up at the temple. [pause] Like the water buffalo's letter, but with an extra flag-stroke planted on the roof — a pavilion flying its pennant on the temple grounds. [pause] S — wind hissing through the open pavilion; the first of the temple's three s-letters."
 	},
 	{
 		"id": "so-risi",
@@ -197,7 +221,8 @@
 		"name": "ษ ฤๅษี",
 		"meaning": "hermit",
 		"district": "temple",
-		"prompt": "A bearded hermit in a tiger-skin robe carrying a basket, his long wooden staff laid across it, in the courtyard of a Thai temple with tiered golden roofs and white walls."
+		"prompt": "A bearded hermit in a tiger-skin robe carrying a basket, his long wooden staff laid across it, in the courtyard of a Thai temple with tiered golden roofs and white walls.",
+		"narration": "The hermit. [pause] High class, so it belongs up at the temple. [pause] Like the leaf's letter, but crossed with an extra line — The hermit's staff laid across the basket he carries up to the temple. [pause] S — The second temple s, whispered through the hermit's beard."
 	},
 	{
 		"id": "so-sia",
@@ -205,7 +230,8 @@
 		"name": "ส เสือ",
 		"meaning": "tiger",
 		"district": "temple",
-		"prompt": "A tiger pacing behind a temple gate, one iron bar crossing its arched tail, in the courtyard of a Thai temple with tiered golden roofs and white walls."
+		"prompt": "A tiger pacing behind a temple gate, one iron bar crossing its arched tail, in the courtyard of a Thai temple with tiered golden roofs and white walls.",
+		"narration": "The tiger. [pause] High class, so it belongs up at the temple. [pause] Like the monkey's letter, but crossed with an extra line — a tiger behind the temple gate, one bar across its arched tail. [pause] S — The everyday s of Thai text, hissed at the gate; third and busiest of the temple's s-letters."
 	},
 	{
 		"id": "pho-phing",
@@ -213,7 +239,8 @@
 		"name": "ผ ผึ้ง",
 		"meaning": "bee",
 		"district": "temple",
-		"prompt": "A fat bee crawling head-first deep into an open pink lotus flower, only its striped back showing, in the courtyard of a Thai temple with tiered golden roofs and white walls."
+		"prompt": "A fat bee crawling head-first deep into an open pink lotus flower, only its striped back showing, in the courtyard of a Thai temple with tiered golden roofs and white walls.",
+		"narration": "The bee. [pause] High class, so it belongs up at the temple. [pause] Like the offering tray's letter in outline, but the head curls inside the left rim — a bee tucked head-first into a temple lotus. [pause] P on a puff of breath — ph — fanned upward by wings on the temple steps."
 	},
 	{
 		"id": "fo-fa",
@@ -221,7 +248,8 @@
 		"name": "ฝ ฝา",
 		"meaning": "lid/cover",
 		"district": "temple",
-		"prompt": "A lidded ceramic jar on a temple shelf, tall knob on its lid turned inward, the lid slightly ajar, in the courtyard of a Thai temple with tiered golden roofs and white walls."
+		"prompt": "A lidded ceramic jar on a temple shelf, tall knob on its lid turned inward, the lid slightly ajar, in the courtyard of a Thai temple with tiered golden roofs and white walls.",
+		"narration": "The lid. [pause] High class, so it belongs up at the temple. [pause] The head stays inside the rim and the last stroke stands tall — a lidded jar on the temple shelf, its knob turned inward. [pause] F — breath brushed past the jar's lip; temple air, so plain syllables drift upward."
 	},
 	{
 		"id": "ho-hip",
@@ -229,7 +257,8 @@
 		"name": "ห หีบ",
 		"meaning": "chest/trunk",
 		"district": "temple",
-		"prompt": "A big carved wooden chest with a domed lid set against a white temple wall, one corner kinked where the wood warped, in the courtyard of a Thai temple with tiered golden roofs and white walls."
+		"prompt": "A big carved wooden chest with a domed lid set against a white temple wall, one corner kinked where the wood warped, in the courtyard of a Thai temple with tiered golden roofs and white walls.",
+		"narration": "The chest. [pause] High class, so it belongs up at the temple. [pause] The left stroke kinks where the soldier's letter drops straight, then a loop and a tall right wall — a carved chest set against the temple wall. [pause] H — pure breath, the temple's own hush. Stood silent before a humming letter, it lifts that letter into temple tone rules."
 	},
 	{
 		"id": "pho-samphau",
@@ -237,7 +266,8 @@
 		"name": "ภ สำเภา",
 		"meaning": "Chinese junk ship",
 		"district": "harbor",
-		"prompt": "A Chinese junk ship with battened sails, its heavy iron anchor swung right out over the port side on a chain, on a fishing harbour quay, moored wooden longtail boats and drying nets behind."
+		"prompt": "A Chinese junk ship with battened sails, its heavy iron anchor swung right out over the port side on a chain, on a fishing harbour quay, moored wooden longtail boats and drying nets behind.",
+		"narration": "The Chinese junk ship. [pause] Low class, so it lives down at the harbour. [pause] Like the chicken's letter, but a head hangs outside the frame, off the left leg — a junk with its anchor swung out over the port side. [pause] Another breathy ph riding low — The heavy freighter ph of the harbor."
 	},
 	{
 		"id": "tho-thong",
@@ -245,7 +275,8 @@
 		"name": "ธ ธง",
 		"meaning": "flag",
 		"district": "harbor",
-		"prompt": "A cloth flag knotted shut around its line above a quay, unable to unfurl, a crossbar through the knot, on a fishing harbour quay, moored wooden longtail boats and drying nets behind."
+		"prompt": "A cloth flag knotted shut around its line above a quay, unable to unfurl, a crossbar through the knot, on a fishing harbour quay, moored wooden longtail boats and drying nets behind.",
+		"narration": "The flag. [pause] Low class, so it lives down at the harbour. [pause] Like the boat's letter, but the open top closes into a loop with a crossbar through it — a flag knotted shut on its line above the quay. [pause] A breathy th flying low — The flag snaps th-th in the harbor wind."
 	},
 	{
 		"id": "no-nen",
@@ -253,7 +284,8 @@
 		"name": "ณ เณร",
 		"meaning": "novice monk",
 		"district": "harbor",
-		"prompt": "A young novice monk in orange robes walking ahead down a wooden pier, a small mouse trotting behind him, on a fishing harbour quay, moored wooden longtail boats and drying nets behind."
+		"prompt": "A young novice monk in orange robes walking ahead down a wooden pier, a small mouse trotting behind him, on a fishing harbour quay, moored wooden longtail boats and drying nets behind.",
+		"narration": "The novice monk. [pause] Low class, so it lives down at the harbour. [pause] Like the mouse's letter, but a whole frame like the chicken's letter opens first, the loop arriving only at the end — The novice walking ahead of the mouse down the pier. [pause] An n your ear cannot tell from the mouse's letter — a second n humming at the harbor."
 	},
 	{
 		"id": "yo-ying",
@@ -261,7 +293,8 @@
 		"name": "ญ หญิง",
 		"meaning": "woman/female",
 		"district": "harbor",
-		"prompt": "A tall woman striding along a harbour wall, her long black hair streaming out behind her, one loose ringlet drifting below the hem of her skirt, on a fishing harbour quay, moored wooden longtail boats and drying nets behind."
+		"prompt": "A tall woman striding along a harbour wall, her long black hair streaming out behind her, one loose ringlet drifting below the hem of her skirt, on a fishing harbour quay, moored wooden longtail boats and drying nets behind.",
+		"narration": "The woman. [pause] Low class, so it lives down at the harbour. [pause] A frame flowing up to the right with a detached curl floating free underneath — a tall woman striding the harbour wall, her long hair streaming out behind her, one loose ringlet drifting down below the hem of her skirt. [pause] A second gliding y, humming low; doubled inside a word it closes one syllable and opens the next."
 	},
 	{
 		"id": "tho-thung",
@@ -269,7 +302,8 @@
 		"name": "ถ ถุง",
 		"meaning": "bag/sack",
 		"district": "temple",
-		"prompt": "A cloth alms bag bulging with fruit, carried open in both hands toward the temple steps, in the courtyard of a Thai temple with tiered golden roofs and white walls."
+		"prompt": "A cloth alms bag bulging with fruit, carried open in both hands toward the temple steps, in the courtyard of a Thai temple with tiered golden roofs and white walls.",
+		"narration": "The bag. [pause] High class, so it belongs up at the temple. [pause] Like the chicken's letter, but a head coils inside the near end of the frame — fruit sitting inside the cloth bag brought for the monks. [pause] T breathed open — th — The bag sighing as it is set down at the temple."
 	},
 	{
 		"id": "tho-than",
@@ -277,7 +311,8 @@
 		"name": "ฐ ฐาน",
 		"meaning": "base/platform",
 		"district": "temple",
-		"prompt": "A carved stone pedestal standing empty in a temple hall, an ornate curve floating above its footed base, in the courtyard of a Thai temple with tiered golden roofs and white walls."
+		"prompt": "A carved stone pedestal standing empty in a temple hall, an ornate curve floating above its footed base, in the courtyard of a Thai temple with tiered golden roofs and white walls.",
+		"narration": "The base. [pause] High class, so it belongs up at the temple. [pause] An upper curve like the plate's letter, floating over a separate footed base, head and curl beneath — The pedestal an image stands on in the temple hall. [pause] The same breathed th, raised on a pedestal — grand spellings favour it."
 	},
 	{
 		"id": "do-chada",
@@ -285,7 +320,8 @@
 		"name": "ฎ ชฎา",
 		"meaning": "pointed crown/headdress",
 		"district": "market",
-		"prompt": "An ornate pointed golden Thai crown resting on a velvet cushion at a silversmith's stall, a loop of chain hanging below it, in a Thai open-air market of wooden stalls under striped awnings, baskets of produce around."
+		"prompt": "An ornate pointed golden Thai crown resting on a velvet cushion at a silversmith's stall, a loop of chain hanging below it, in a Thai open-air market of wooden stalls under striped awnings, baskets of produce around.",
+		"narration": "The pointed crown. [pause] Mid class, so you will find it in the market. [pause] The child's letter in regalia: the pointed bowl again, but its base line runs smooth into a loop hung below — a crown on its cushion at the silversmith's stall. [pause] A plain d to the ear, twin of the child's letter — kept for royal and Pali spellings, still flat, still mid."
 	},
 	{
 		"id": "to-patak",
@@ -293,7 +329,8 @@
 		"name": "ฏ ปฏัก",
 		"meaning": "spear/goad",
 		"district": "market",
-		"prompt": "A long wooden cattle goad with an iron spear tip, a thick knuckle worked into the shaft near its base, in a Thai open-air market of wooden stalls under striped awnings, baskets of produce around."
+		"prompt": "A long wooden cattle goad with an iron spear tip, a thick knuckle worked into the shaft near its base, in a Thai open-air market of wooden stalls under striped awnings, baskets of produce around.",
+		"narration": "The spear. [pause] Mid class, so you will find it in the market. [pause] Like the pointed crown's letter, but a bump is worked into the base line before the loop — The knuckle on the goad's shaft. [pause] A flat unpuffed dt sharing duty with the turtle's letter — rare, royal, and still market-plain."
 	},
 	{
 		"id": "tho-montho",
@@ -301,7 +338,8 @@
 		"name": "ฑ มณโฑ",
 		"meaning": "Montho (literary character)",
 		"district": "harbor",
-		"prompt": "Queen Montho in a tall gilded Thai crown and court dress standing on a quay, shoulders squared, chin raised, on a fishing harbour quay, moored wooden longtail boats and drying nets behind."
+		"prompt": "Queen Montho in a tall gilded Thai crown and court dress standing on a quay, shoulders squared, chin raised, on a fishing harbour quay, moored wooden longtail boats and drying nets behind.",
+		"narration": "The Montho (literary character). [pause] Low class, so it lives down at the harbour. [pause] Like the soldier's letter, but a bump swells just after the head, before the upright — Queen Montho herself on the quay in her tall gilded crown, shoulders squared where the soldier's back climbs straight. [pause] The breathy th of the soldier's letter again — a palace name paying a rare call at the harbor."
 	},
 	{
 		"id": "tho-phuthau",
@@ -309,7 +347,8 @@
 		"name": "ฒ ผู้เฒ่า",
 		"meaning": "elder/old man",
 		"district": "harbor",
-		"prompt": "A stooped elderly man leaning on two walking canes on a stone quay, back bent, face deeply lined, on a fishing harbour quay, moored wooden longtail boats and drying nets behind."
+		"prompt": "A stooped elderly man leaning on two walking canes on a stone quay, back bent, face deeply lined, on a fishing harbour quay, moored wooden longtail boats and drying nets behind.",
+		"narration": "The elder. [pause] Low class, so it lives down at the harbour. [pause] Opens as the turtle's letter's notched bowl and closes into the horse's letter's shouldered loop — an elder stooped over two canes on the quay. [pause] A breathy th, rare and unhurried — The elder's soft th, low by the water."
 	},
 	{
 		"id": "lo-jula",
@@ -317,7 +356,8 @@
 		"name": "ฬ จุฬา",
 		"meaning": "star-shaped kite",
 		"district": "harbor",
-		"prompt": "A star-shaped kite high above the masts, its long tail snapping and coiling into an extra curl at the end, on a fishing harbour quay, moored wooden longtail boats and drying nets behind."
+		"prompt": "A star-shaped kite high above the masts, its long tail snapping and coiling into an extra curl at the end, on a fishing harbour quay, moored wooden longtail boats and drying nets behind.",
+		"narration": "The star-shaped kite. [pause] Low class, so it lives down at the harbour. [pause] Like the offering tray's letter, but the last stroke coils on into an extra curled tail — a star kite's tail snapping above the masts. [pause] A second l, flown high on its kite string yet berthed low at the harbor."
 	},
 	{
 		"id": "kho-rakhang",
@@ -325,7 +365,8 @@
 		"name": "ฆ ระฆัง",
 		"meaning": "bell",
 		"district": "harbor",
-		"prompt": "A big bronze ship's bell slung on a rope beside a mooring post, swinging mid-strike, on a fishing harbour quay, moored wooden longtail boats and drying nets behind."
+		"prompt": "A big bronze ship's bell slung on a rope beside a mooring post, swinging mid-strike, on a fishing harbour quay, moored wooden longtail boats and drying nets behind.",
+		"narration": "The bell. [pause] Low class, so it lives down at the harbour. [pause] Like the horse's letter, but an extra bumped curve swells in after the head — a ship's bell slung beside the mooring rope. [pause] A breathy kh in harbor bronze — strike it and the note hums away low."
 	},
 	{
 		"id": "khaaw-khuat",
@@ -333,7 +374,8 @@
 		"name": "ฃ ขวด",
 		"meaning": "bottle",
 		"district": "temple",
-		"prompt": "A glass bottle with a chipped rim standing on a dusty temple storeroom shelf, in the courtyard of a Thai temple with tiered golden roofs and white walls."
+		"prompt": "A glass bottle with a chipped rim standing on a dusty temple storeroom shelf, in the courtyard of a Thai temple with tiered golden roofs and white walls.",
+		"narration": "The bottle. [pause] High class, so it belongs up at the temple. [pause] Like the egg's letter, but a notch cut into the top stroke — a bottle with a chipped rim, shelved in the temple storeroom. [pause] A breathy kh no modern word still spells — everything it once held now pours from the egg's letter."
 	},
 	{
 		"id": "khaaw-khon",
@@ -341,7 +383,8 @@
 		"name": "ฅ คน",
 		"meaning": "person",
 		"district": "harbor",
-		"prompt": "A weathered old person in a dented flat cap sitting on a crate watching the water, hands on his knees, on a fishing harbour quay, moored wooden longtail boats and drying nets behind."
+		"prompt": "A weathered old person in a dented flat cap sitting on a crate watching the water, hands on his knees, on a fishing harbour quay, moored wooden longtail boats and drying nets behind.",
+		"narration": "The person. [pause] Low class, so it lives down at the harbour. [pause] Like the water buffalo's letter, but a notch cut into the top stroke — a retired stevedore in a dented cap, sitting out the day at the harbor. [pause] A breathy kh retired from every modern spelling — The word for person sailed on with the water buffalo's letter."
 	},
 	{
 		"id": "chaaw-chooe",
@@ -349,6 +392,7 @@
 		"name": "ฌ เฌอ",
 		"meaning": "tree",
 		"district": "harbor",
-		"prompt": "A young sapling tree tied to its supporting stake beside a harbour wall, one branch flicking up above the rest, on a fishing harbour quay, moored wooden longtail boats and drying nets behind."
+		"prompt": "A young sapling tree tied to its supporting stake beside a harbour wall, one branch flicking up above the rest, on a fishing harbour quay, moored wooden longtail boats and drying nets behind.",
+		"narration": "The tree. [pause] Low class, so it lives down at the harbour. [pause] A low arch first, then the taller stroke of the elephant's letter, with its flicked tail — a sapling planted beside its stake at the harbor wall. [pause] A breathy ch surviving in a handful of borrowed spellings — and its own name is an old word for tree."
 	}
 ]

@@ -10,6 +10,7 @@ import { describe, expect, it } from "vitest";
 import {
 	CONSONANT_SCENES,
 	consonantImageFor,
+	consonantNarrationFor,
 	consonantSceneFor,
 	consonantScenesIn,
 } from "./consonantScenes";
@@ -90,5 +91,69 @@ describe("consonant scenes", () => {
 		for (const district of ["harbor", "market", "temple"] as const) {
 			expect(consonantScenesIn(district).length).toBeGreaterThan(0);
 		}
+	});
+});
+
+describe("the spoken explanation", () => {
+	/** Thai script, which the English narrator must never be handed. */
+	const THAI = /[฀-๿]/;
+
+	it("writes a narration for every consonant", () => {
+		for (const scene of CONSONANT_SCENES) {
+			expect(scene.narration.length).toBeGreaterThan(80);
+		}
+	});
+
+	it("never asks the English voice to say a Thai word", () => {
+		// The defect this exists to prevent, twice over. First the letter's own
+		// romanized name was in the script, which would have had an English
+		// narrator mispronouncing the very thing the native clip is for. Then
+		// twenty-eight cues turned out to reference *other* letters by glyph —
+		// "Like ช, but a notch dents the climbing stroke" — which reads fine on
+		// a card and is unspeakable.
+		for (const scene of CONSONANT_SCENES) {
+			expect(THAI.test(scene.narration), scene.char).toBe(false);
+		}
+	});
+
+	it("names other letters by their word, which is sayable", () => {
+		// ซ's cue points at ช. Spoken, that has to become the elephant.
+		const chain = CONSONANT_SCENES.find((scene) => scene.char === "ซ");
+		expect(chain?.narration).toMatch(/the elephant's letter/i);
+	});
+
+	it("leaves the letter's own name to the native recording", () => {
+		// No romanization in the script at all: the name is the Thai clip's job
+		// and the dialog plays it first.
+		const horse = CONSONANT_SCENES.find((scene) => scene.char === "ม");
+		expect(horse?.narration).not.toMatch(/maaw/i);
+		expect(horse?.narration.startsWith("The horse.")).toBe(true);
+	});
+
+	it("speaks one sense of a meaning, not a slash", () => {
+		// "The base/platform" is fine on a card and a stumble out loud.
+		for (const scene of CONSONANT_SCENES) {
+			const opening = scene.narration.split("[pause]")[0] ?? "";
+			expect(opening, scene.char).not.toContain("/");
+		}
+	});
+
+	it("leaves no seam where a glyph was swapped for a phrase", () => {
+		// "a stubby น-profile" became "a stubby the mouse's letter-profile"
+		// before it was mended. A noun phrase cannot take the hyphen a single
+		// letter could.
+		for (const scene of CONSONANT_SCENES) {
+			expect(scene.narration, scene.char).not.toMatch(/letter-\w/);
+			expect(scene.narration.toLowerCase(), scene.char).not.toContain(
+				"the the",
+			);
+		}
+	});
+
+	it("points at a clip under the letter's own slug", () => {
+		expect(consonantNarrationFor("ม")).toBe(
+			"palace/consonants/audio/mo-ma.mp3",
+		);
+		expect(consonantNarrationFor("า")).toBeUndefined();
 	});
 });

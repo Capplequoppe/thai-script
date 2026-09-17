@@ -24,6 +24,17 @@ export interface ConsonantScene {
 	readonly district: District;
 	/** Written for the renderer; see `scripts/generate-consonant-images.py`. */
 	readonly prompt: string;
+	/**
+	 * What the English narrator says about this letter.
+	 *
+	 * Carries no Thai at all — not the letter's own name and not the
+	 * glyphs its cue points at — because the narrator voices English and
+	 * an English-accented Thai name teaches the wrong sound beside the
+	 * right letter. Other letters are named by their word instead: "the
+	 * elephant's letter", which is both sayable and the vocabulary the
+	 * learner already has.
+	 */
+	readonly narration: string;
 }
 
 export const CONSONANT_SCENES: readonly ConsonantScene[] =
@@ -58,4 +69,19 @@ export function consonantScenesIn(
 	district: District,
 ): readonly ConsonantScene[] {
 	return CONSONANT_SCENES.filter((scene) => scene.district === district);
+}
+
+/**
+ * Where a consonant's spoken explanation lives, or undefined for a letter
+ * with no scene.
+ *
+ * The clip says the letter's word, its district and its mnemonic — and
+ * deliberately never its Thai name. The name belongs to the native recording
+ * on `ThaiConsonant.audioUrl`, and an English narrator attempting it would be
+ * teaching the wrong sound beside the right letter. The two are played in
+ * order rather than merged so each stays replaceable on its own.
+ */
+export function consonantNarrationFor(character: string): string | undefined {
+	const scene = BY_CHARACTER.get(character);
+	return scene ? `palace/consonants/audio/${scene.id}.mp3` : undefined;
 }
