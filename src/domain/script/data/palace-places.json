@@ -4,16 +4,109 @@
 		"kind": "map",
 		"name": "The palace",
 		"caption": "Everywhere at once. The tone country lies beyond the three districts, and its places sit at the height their tone is spoken.",
-		"prompt": "A wide illustrated map of a whole valley seen from a high vantage point, painted in ink and watercolour. A golden Thai temple with tiered roofs stands on a high ridge at one side, a covered market of striped awnings fills the flat valley floor, and a fishing harbour with wooden longtail boats sits at the water's edge. Beyond them a flooded rice paddy, a round stone well, a flat-roofed building, a tall waterfall and a winding hill path are all visible in one landscape."
+		"prompt": "A wide illustrated map of a whole valley seen from a high vantage point, painted in ink and watercolour. A golden Thai temple with tiered roofs stands on a high ridge at one side, a covered market of striped awnings fills the flat valley floor, and a fishing harbour with wooden longtail boats sits at the water's edge. Beyond them a flooded rice paddy, a round stone well, a flat-roofed building, a tall waterfall and a winding hill path are all visible in one landscape.",
+		"hotspots": [
+			{
+				"kind": "tone",
+				"for": "rising",
+				"label": "hill path",
+				"x": 1,
+				"y": 3,
+				"w": 30,
+				"h": 28
+			},
+			{
+				"kind": "tone",
+				"for": "mid",
+				"label": "rice paddy",
+				"x": 2,
+				"y": 34,
+				"w": 29,
+				"h": 22
+			},
+			{
+				"kind": "tone",
+				"for": "falling",
+				"label": "waterfall",
+				"x": 32,
+				"y": 35,
+				"w": 12,
+				"h": 20
+			},
+			{
+				"kind": "district",
+				"for": "low",
+				"label": "harbor",
+				"x": 14,
+				"y": 61,
+				"w": 36,
+				"h": 35
+			},
+			{
+				"kind": "district",
+				"for": "mid",
+				"label": "market",
+				"x": 50,
+				"y": 45,
+				"w": 20,
+				"h": 26
+			},
+			{
+				"kind": "district",
+				"for": "high",
+				"label": "temple",
+				"x": 68,
+				"y": 3,
+				"w": 31,
+				"h": 42
+			},
+			{
+				"kind": "tone",
+				"for": "low",
+				"label": "well",
+				"x": 80,
+				"y": 71,
+				"w": 19,
+				"h": 27
+			}
+		]
 	},
 	{
 		"id": "map-districts",
 		"kind": "map",
 		"name": "The three districts",
 		"caption": "Where the consonants live. A letter's class is a place: the temple's hush, the market's flat haggling, the harbour's humming horns.",
-		"prompt": "An illustrated map of three neighbouring districts in ink and watercolour, seen from above at an angle. A golden Thai temple with tiered roofs on high ground, a crowded covered market of wooden stalls under striped awnings in the middle, and a fishing harbour with moored longtail boats and drying nets at the water's edge. One continuous landscape, paths running between the three."
+		"prompt": "An illustrated map of three neighbouring districts in ink and watercolour, seen from above at an angle. A golden Thai temple with tiered roofs on high ground, a crowded covered market of wooden stalls under striped awnings in the middle, and a fishing harbour with moored longtail boats and drying nets at the water's edge. One continuous landscape, paths running between the three.",
+		"hotspots": [
+			{
+				"kind": "district",
+				"for": "high",
+				"label": "temple",
+				"x": 1,
+				"y": 1,
+				"w": 30,
+				"h": 34
+			},
+			{
+				"kind": "district",
+				"for": "mid",
+				"label": "market",
+				"x": 26,
+				"y": 36,
+				"w": 34,
+				"h": 32
+			},
+			{
+				"kind": "district",
+				"for": "low",
+				"label": "harbor",
+				"x": 0,
+				"y": 52,
+				"w": 25,
+				"h": 46
+			}
+		]
 	},
-
 	{
 		"id": "district-temple",
 		"kind": "district",
@@ -38,7 +131,6 @@
 		"caption": "Low class — the humming sonorants, and the harbour's horns.",
 		"prompt": "A small fishing harbour with wooden longtail boats moored along a stone quay, nets hung out to dry on poles, still water and a low horizon. No people."
 	},
-
 	{
 		"id": "place-rice-paddy",
 		"kind": "tone",

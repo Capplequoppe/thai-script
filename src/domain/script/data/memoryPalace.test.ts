@@ -9,9 +9,11 @@ import {
 	ALL_RULE_IDS,
 	CLASS_CAST,
 	characterForClass,
+	districtPlaceFor,
 	EVERY_LOCATION_HAS_AN_OVERVIEW,
 	EVERY_RULE_HAS_ONE_SCENE,
 	EVERY_TONE_HAS_A_PLACE,
+	HOTSPOTS_LAND_ON_REAL_PLACES,
 	markRuleId,
 	OVERVIEW_NAMES_MATCH_THE_STRUCTURE,
 	PALACE_PLACES,
@@ -20,6 +22,7 @@ import {
 	TONE_PLACE_NAMES,
 	TONE_PLACES,
 	TONE_SCENES,
+	tonePlaceOverviewFor,
 } from "./memoryPalace";
 import { DISTRICTS, districtForClass } from "./sceneGrammar";
 import { ThaiSymbolClass, toneMarkRules, toneRules } from "./symbols";
@@ -298,5 +301,62 @@ describe("places and maps", () => {
 			...TONE_SCENES.map((scene) => scene.id),
 		];
 		expect(new Set(ids).size).toBe(ids.length);
+	});
+});
+
+describe("map hotspots", () => {
+	it("points every region at a place that exists, inside the picture", () => {
+		expect(HOTSPOTS_LAND_ON_REAL_PLACES).toBe(true);
+	});
+
+	it("gives both maps regions to click", () => {
+		for (const map of PALACE_PLACES.filter((place) => place.kind === "map")) {
+			expect(map.hotspots?.length ?? 0).toBeGreaterThan(0);
+		}
+	});
+
+	it("never puts two regions on the same place within one map", () => {
+		// Two boxes for the temple would be two ways to reach one panel and,
+		// worse, two things to remember about one place.
+		for (const map of PALACE_PLACES.filter((place) => place.hotspots)) {
+			const targets = (map.hotspots ?? []).map(
+				(spot) => `${spot.kind}:${spot.for}`,
+			);
+			expect(new Set(targets).size).toBe(targets.length);
+		}
+	});
+
+	it("labels a region with the name its place goes by", () => {
+		// The label on the painting and the label on the diagram have to agree,
+		// or the map teaches one name and the panel another.
+		for (const map of PALACE_PLACES.filter((place) => place.hotspots)) {
+			for (const spot of map.hotspots ?? []) {
+				const place =
+					spot.kind === "district"
+						? districtPlaceFor(spot.for as ThaiSymbolClass)
+						: tonePlaceOverviewFor(spot.for);
+				expect(spot.label).toBe(place?.name);
+			}
+		}
+	});
+
+	it("keeps regions apart enough to tap on a phone", () => {
+		// Overlapping boxes mean the top one swallows taps meant for the other.
+		// Checked as area overlap rather than any touching, because a shared
+		// edge is fine and a shared middle is not.
+		for (const map of PALACE_PLACES.filter((place) => place.hotspots)) {
+			const spots = map.hotspots ?? [];
+			for (let i = 0; i < spots.length; i++) {
+				for (let j = i + 1; j < spots.length; j++) {
+					const a = spots[i];
+					const b = spots[j];
+					if (!a || !b) continue;
+					const overlapX = Math.min(a.x + a.w, b.x + b.w) - Math.max(a.x, b.x);
+					const overlapY = Math.min(a.y + a.h, b.y + b.h) - Math.max(a.y, b.y);
+					const overlap = Math.max(0, overlapX) * Math.max(0, overlapY);
+					expect(overlap).toBe(0);
+				}
+			}
+		}
 	});
 });

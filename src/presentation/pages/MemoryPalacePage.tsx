@@ -1,9 +1,10 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import {
 	CLASS_CAST,
 	characterForClass,
 	districtPlaceFor,
 	mapNamed,
+	type PalacePlace,
 	placeForTone,
 	TONE_PLACES,
 	TONE_SCENES,
@@ -46,6 +47,25 @@ type Selection =
 
 export function MemoryPalacePage() {
 	const [selected, setSelected] = useState<Selection>(null);
+	const detailRef = useRef<HTMLDivElement | null>(null);
+
+	// Picking a region on the painted map opens a panel that can be a screen
+	// and a half further down, and on a phone it is always below the fold —
+	// so a tap would otherwise look like nothing happened. Scrolling on every
+	// selection rather than only on a map click, because the diagram and the
+	// district row have the same problem to a smaller degree and two different
+	// behaviours for one gesture would be the stranger thing.
+	//
+	// `scrollIntoView` is optional-called: jsdom does not implement it, and a
+	// page that throws in tests to do something cosmetic in a browser is a bad
+	// trade.
+	useEffect(() => {
+		if (!selected) return;
+		detailRef.current?.scrollIntoView?.({
+			behavior: "smooth",
+			block: "start",
+		});
+	}, [selected]);
 
 	return (
 		<div className="space-y-8 pb-10">
@@ -66,12 +86,16 @@ export function MemoryPalacePage() {
 				</p>
 			</header>
 
-			<WorldMap />
+			<WorldMap selected={selected} onSelect={setSelected} />
 			<ToneMap selected={selected} onSelect={setSelected} />
 			<DistrictRow selected={selected} onSelect={setSelected} />
 			<RoomRow selected={selected} onSelect={setSelected} />
 
-			<DetailPanel selected={selected} />
+			{/* The scroll target, wrapping rather than inside the panel so it
+			    exists before a selection does. */}
+			<div ref={detailRef} className="scroll-mt-4">
+				<DetailPanel selected={selected} />
+			</div>
 		</div>
 	);
 }
@@ -90,21 +114,117 @@ const MAP_HEIGHT = 260;
  * so the pitch is legible — a thing a painting is bad at and a diagram is good
  * at. Neither replaces the other.
  */
-function WorldMap() {
+function WorldMap({
+	selected,
+	onSelect,
+}: {
+	selected: Selection;
+	onSelect: (selection: Selection) => void;
+}) {
 	const map = mapNamed("map-world");
 	if (!map) return null;
 
 	return (
-		<section className="space-y-2">
-			<PalaceImage
-				id={map.id}
-				alt={map.prompt}
-				className="rounded-2xl w-full"
-			/>
+		<section className="space-y-2" aria-label="Map of the palace">
+			<ClickableMap map={map} selected={selected} onSelect={onSelect} />
 			<p className="text-xs" style={{ color: "var(--color-text-muted)" }}>
 				{map.caption}
 			</p>
 		</section>
+	);
+}
+
+/**
+ * A painted map with its regions made clickable, and visibly so.
+ *
+ * The regions are outlined and labelled at rest rather than on hover, because
+ * hover does not exist on a phone: a map whose affordance only appears under a
+ * cursor is, to half its readers, a picture. The outlines are kept faint so
+ * the painting still reads as one, and firm up on hover and focus for anyone
+ * who does have a pointer.
+ *
+ * Positions are percentages of the image box (see `MapHotspot`), so a region
+ * stays over the thing it marks at any width without measuring anything.
+ */
+function ClickableMap({
+	map,
+	selected,
+	onSelect,
+}: {
+	map: PalacePlace;
+	selected: Selection;
+	onSelect: (selection: Selection) => void;
+}) {
+	const [failed, setFailed] = useState(false);
+	if (failed) return null;
+
+	return (
+		<div className="relative">
+			<img
+				src={`${import.meta.env.BASE_URL}palace/scenes/${map.id}.jpg`}
+				alt={map.prompt}
+				loading="lazy"
+				className="rounded-2xl w-full block"
+				onError={() => setFailed(true)}
+			/>
+			{(map.hotspots ?? []).map((spot) => {
+				const isSelected =
+					spot.kind === "district"
+						? selected?.kind === "district" &&
+							selected.classType === (spot.for as ThaiSymbolClass)
+						: selected?.kind === "tone" && selected.tone === spot.for;
+
+				return (
+					<button
+						key={`${spot.kind}-${spot.for}`}
+						type="button"
+						onClick={() =>
+							onSelect(
+								spot.kind === "district"
+									? {
+											kind: "district",
+											classType: spot.for as ThaiSymbolClass,
+										}
+									: { kind: "tone", tone: spot.for },
+							)
+						}
+						className="absolute group flex items-end justify-center pb-1 rounded-lg transition-colors"
+						style={{
+							left: `${spot.x}%`,
+							top: `${spot.y}%`,
+							width: `${spot.w}%`,
+							height: `${spot.h}%`,
+							// Comfortably tappable even where a region is a small part
+							// of a narrow screen — the waterfall is 12% of the width.
+							minWidth: 44,
+							minHeight: 44,
+							border: `2px solid ${
+								isSelected
+									? "var(--color-accent)"
+									: "color-mix(in srgb, var(--color-surface) 55%, transparent)"
+							}`,
+							background: isSelected
+								? "color-mix(in srgb, var(--color-accent) 22%, transparent)"
+								: "transparent",
+						}}
+					>
+						<span
+							className="text-[10px] font-semibold px-1.5 py-0.5 rounded leading-none"
+							style={{
+								background: isSelected
+									? "var(--color-accent)"
+									: "color-mix(in srgb, var(--color-surface) 85%, transparent)",
+								color: isSelected
+									? "var(--color-surface)"
+									: "var(--color-text)",
+							}}
+						>
+							{spot.label}
+						</span>
+					</button>
+				);
+			})}
+		</div>
 	);
 }
 
@@ -116,7 +236,7 @@ function ToneMap({
 	onSelect: (selection: Selection) => void;
 }) {
 	return (
-		<section className="space-y-3">
+		<section className="space-y-3" aria-label="Where tones resolve">
 			<SectionHeader>Where tones resolve</SectionHeader>
 			<div
 				className="relative rounded-2xl px-4"
@@ -172,7 +292,12 @@ function TonePlaceMarker({
 	// mid, low, high, falling, rising — level tones first, then the two that
 	// move, so the moving ones sit together at the right and read as a pair.
 	const index = TONE_PLACES.indexOf(place);
+	// Five markers at 18% spacing from 8% puts the last at 80%, so a marker
+	// must stay under 20% wide or the rightmost runs off the edge. It used to
+	// carry a 92px minimum, which on a 360px phone made exactly that happen —
+	// 80% is 288px, and 288 + 92 is off the screen.
 	const left = `${8 + index * 18}%`;
+	const width = "17%";
 	const moves = place.from !== place.to;
 
 	return (
@@ -184,7 +309,8 @@ function TonePlaceMarker({
 					aria-hidden="true"
 					className="absolute w-0.5 rounded"
 					style={{
-						left: `calc(${left} + 28px)`,
+						// Centred on the marker, which is now sized in percent too.
+						left: `calc(${left} + 8.5%)`,
 						top: topFor(Math.max(place.from, place.to)) + 18,
 						height: Math.abs(topFor(place.to) - topFor(place.from)),
 						background: "var(--color-accent)",
@@ -195,7 +321,7 @@ function TonePlaceMarker({
 			<button
 				type="button"
 				onClick={onSelect}
-				className="absolute rounded-xl px-2.5 py-2 text-left transition-colors"
+				className="absolute rounded-xl px-1.5 py-1.5 text-left transition-colors"
 				style={{
 					left,
 					top: topFor(place.from),
@@ -234,14 +360,14 @@ function DistrictRow({
 	const districtsMap = mapNamed("map-districts");
 
 	return (
-		<section className="space-y-3">
+		<section className="space-y-3" aria-label="Where consonants live">
 			<SectionHeader>Where consonants live</SectionHeader>
 			{districtsMap && (
 				<>
-					<PalaceImage
-						id={districtsMap.id}
-						alt={districtsMap.prompt}
-						className="rounded-2xl w-full"
+					<ClickableMap
+						map={districtsMap}
+						selected={selected}
+						onSelect={onSelect}
 					/>
 					<p className="text-xs" style={{ color: "var(--color-text-muted)" }}>
 						{districtsMap.caption}
@@ -294,7 +420,7 @@ function RoomRow({
 	onSelect: (selection: Selection) => void;
 }) {
 	return (
-		<section className="space-y-3">
+		<section className="space-y-3" aria-label="Where words stage">
 			<SectionHeader>Where words stage</SectionHeader>
 			<div className="flex flex-wrap gap-2">
 				{ROOMS.map((room) => {

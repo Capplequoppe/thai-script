@@ -255,6 +255,32 @@ export interface PalacePlace {
 	readonly caption: string;
 	/** Written for the renderer, like a scene's — see `ToneScene.prompt`. */
 	readonly prompt: string;
+	/** Clickable regions, on a map. Absent on an establishing shot. */
+	readonly hotspots?: readonly MapHotspot[];
+}
+
+/**
+ * One clickable region of a map, in percentages of the image box.
+ *
+ * Percentages rather than pixels so a region stays over the thing it marks at
+ * any width, which is most of what makes the maps work on a phone.
+ *
+ * Hand-placed against a specific render — the seeds are in the manifest beside
+ * the images — so re-rolling a map means moving its regions. That coupling is
+ * real and is the price of hotspots on a painting instead of a diagram. It is
+ * paid once, and `HOTSPOTS_LAND_ON_REAL_PLACES` catches the half of a
+ * mistake that a coordinate cannot: a region pointing at a class or tone that
+ * does not exist.
+ */
+export interface MapHotspot {
+	readonly kind: "district" | "tone";
+	/** A `ThaiSymbolClass` when `kind` is district, a `ToneValue` when tone. */
+	readonly for: string;
+	readonly label: string;
+	readonly x: number;
+	readonly y: number;
+	readonly w: number;
+	readonly h: number;
 }
 
 export const PALACE_PLACES: readonly PalacePlace[] =
@@ -357,3 +383,29 @@ export const OVERVIEW_NAMES_MATCH_THE_STRUCTURE =
 	CLASS_CAST.every(
 		(entry) => districtPlaceFor(entry.classType)?.name === entry.district,
 	);
+
+/**
+ * Every hotspot points at a place that exists and sits inside its image.
+ *
+ * Coordinates cannot be checked against a painting by a test — whether the
+ * temple box is over the temple is a thing only eyes settle. What a test can
+ * settle is the half that rots silently: a region targeting a class or tone
+ * that has been renamed away, or one that has drifted outside the picture and
+ * so can never be clicked.
+ */
+export const HOTSPOTS_LAND_ON_REAL_PLACES = PALACE_PLACES.filter(
+	(place) => place.hotspots,
+).every((place) =>
+	(place.hotspots ?? []).every((spot) => {
+		const target =
+			spot.kind === "district"
+				? districtPlaceFor(spot.for as ThaiSymbolClass)
+				: tonePlaceOverviewFor(spot.for);
+		const inside =
+			spot.x >= 0 &&
+			spot.y >= 0 &&
+			spot.x + spot.w <= 100 &&
+			spot.y + spot.h <= 100;
+		return target !== undefined && inside;
+	}),
+);

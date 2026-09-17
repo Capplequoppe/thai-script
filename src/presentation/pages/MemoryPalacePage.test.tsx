@@ -3,9 +3,14 @@
  * The map's job is navigation, so these check you can get into each kind of
  * place and that what you find there is that place's own content — not that
  * the boxes are in the right pixels.
+ *
+ * Queries are scoped to a section throughout. A place is deliberately reachable
+ * two ways — as a region on the painting and as a marker on the pitch diagram —
+ * so "the button called rice paddy" is ambiguous by design, and a test that
+ * papered over that would stop noticing if one of the two disappeared.
  */
-import { fireEvent, screen } from "@testing-library/react";
-import { describe, expect, it } from "vitest";
+import { fireEvent, screen, within } from "@testing-library/react";
+import { describe, expect, it, vi } from "vitest";
 import { InMemoryStorage } from "../../infrastructure/persistence/Storage";
 import { renderWithApp } from "../test-utils/renderWithApp";
 import { MemoryPalacePage } from "./MemoryPalacePage";
@@ -16,12 +21,26 @@ function renderPalace() {
 	});
 }
 
+const worldMap = () =>
+	within(screen.getByRole("region", { name: "Map of the palace" }));
+const toneDiagram = () =>
+	within(screen.getByRole("region", { name: "Where tones resolve" }));
+const districts = () =>
+	within(screen.getByRole("region", { name: "Where consonants live" }));
+
 describe("MemoryPalacePage", () => {
 	it("shows all three kinds of place at once, which is the point of a map", () => {
 		renderPalace();
 
-		expect(screen.getByRole("button", { name: /rice paddy/i })).toBeTruthy();
-		expect(screen.getByRole("button", { name: /temple/i })).toBeTruthy();
+		expect(
+			toneDiagram().getByRole("button", { name: /rice paddy/i }),
+		).toBeTruthy();
+		// The district *card*, which names the class as well as the place. The
+		// map region inside the same section carries only the bare place name,
+		// so "high class" is what tells the two apart.
+		expect(
+			districts().getByRole("button", { name: /high class/i }),
+		).toBeTruthy();
 		expect(screen.getByRole("button", { name: /particles/i })).toBeTruthy();
 	});
 
@@ -32,10 +51,8 @@ describe("MemoryPalacePage", () => {
 
 	it("gathers every scene that ends in one tone into that tone's place", () => {
 		renderPalace();
-		fireEvent.click(screen.getByRole("button", { name: /^well/i }));
+		fireEvent.click(toneDiagram().getByRole("button", { name: /^well/i }));
 
-		// The well holds the four dead-syllable rules for mid and high class
-		// and both mai ek rules for those classes — two scenes, one outcome.
 		expect(screen.getByText(/fall down the same well/i)).toBeTruthy();
 		expect(screen.getByText(/one-pointed spear stands driven/i)).toBeTruthy();
 		expect(screen.getByText(/that is what makes it one place/i)).toBeTruthy();
@@ -43,18 +60,15 @@ describe("MemoryPalacePage", () => {
 
 	it("says how many rules a merged scene stands for", () => {
 		renderPalace();
-		fireEvent.click(screen.getByRole("button", { name: /^well/i }));
+		fireEvent.click(toneDiagram().getByRole("button", { name: /^well/i }));
 		expect(screen.getByText(/4 rules, which agree/)).toBeTruthy();
 	});
 
 	it("puts a district's own letters and its cast behind the district", () => {
 		renderPalace();
-		fireEvent.click(screen.getByRole("button", { name: /harbor/i }));
+		fireEvent.click(districts().getByRole("button", { name: /low class/i }));
 
-		// The detail sentence, which no button carries — "low class" alone
-		// matches the district button too.
 		expect(screen.getByText(/this district sends its fisherman/i)).toBeTruthy();
-
 		// ม is low class, so the harbor holds it. ก is mid and must not be here.
 		expect(screen.getByTitle("ม ม้า")).toBeTruthy();
 		expect(screen.queryByTitle("ก ไก่")).toBeNull();
@@ -62,11 +76,110 @@ describe("MemoryPalacePage", () => {
 
 	it("swaps the panel rather than stacking places", () => {
 		renderPalace();
-		fireEvent.click(screen.getByRole("button", { name: /^well/i }));
+		fireEvent.click(toneDiagram().getByRole("button", { name: /^well/i }));
 		expect(screen.getByText(/fall down the same well/i)).toBeTruthy();
 
-		fireEvent.click(screen.getByRole("button", { name: /rice paddy/i }));
+		fireEvent.click(toneDiagram().getByRole("button", { name: /rice paddy/i }));
 		expect(screen.queryByText(/fall down the same well/i)).toBeNull();
 		expect(screen.getByText(/flat rice paddy/i)).toBeTruthy();
+	});
+});
+
+describe("the painted map's regions", () => {
+	it("opens a place when its region on the painting is clicked", () => {
+		renderPalace();
+		fireEvent.click(worldMap().getByRole("button", { name: /waterfall/i }));
+
+		// The same panel the diagram would have opened — one destination, two
+		// ways in.
+		expect(screen.getByText(/nothing that goes over comes back/i)).toBeTruthy();
+	});
+
+	it("reaches a district from the painting too", () => {
+		renderPalace();
+		fireEvent.click(worldMap().getByRole("button", { name: /market/i }));
+		expect(
+			screen.getByText(/this district sends its market vendor/i),
+		).toBeTruthy();
+	});
+
+	it("labels its regions at rest, because a phone has no hover", () => {
+		renderPalace();
+		// The label is the button's own text, not a title or an aria-label, so
+		// it is on screen before anything is touched.
+		const region = worldMap().getByRole("button", { name: /^temple$/i });
+		expect(region.textContent).toBe("temple");
+	});
+
+	it("scrolls the panel into view, since it is below the fold on a phone", () => {
+		const scrollIntoView = vi.fn();
+		// jsdom implements no layout and so no scrollIntoView; the page calls it
+		// optionally for that reason, which means a missing call would otherwise
+		// look exactly like a working one.
+		Element.prototype.scrollIntoView = scrollIntoView;
+
+		renderPalace();
+		expect(scrollIntoView).not.toHaveBeenCalled();
+
+		fireEvent.click(worldMap().getByRole("button", { name: /waterfall/i }));
+		expect(scrollIntoView).toHaveBeenCalledWith({
+			behavior: "smooth",
+			block: "start",
+		});
+	});
+});
+
+describe("on a narrow screen", () => {
+	/** Percent off an inline style, e.g. "80%" -> 80. */
+	function percent(value: string | undefined): number {
+		return Number.parseFloat((value ?? "0").replace("%", ""));
+	}
+
+	it("keeps every tone marker inside the diagram", () => {
+		// jsdom does no layout, so this checks the arithmetic rather than the
+		// pixels: a marker whose left plus width passes 100% hangs off the edge
+		// at every width, which is what a 92px minimum used to do to the
+		// rightmost one on a 360px phone.
+		renderPalace();
+		const markers = toneDiagram()
+			.getAllByRole("button")
+			.filter((button) => button.style.left !== "");
+
+		expect(markers.length).toBe(5);
+		for (const marker of markers) {
+			const right = percent(marker.style.left) + percent(marker.style.width);
+			expect(right).toBeLessThanOrEqual(100);
+		}
+	});
+
+	it("keeps every map region inside the picture", () => {
+		renderPalace();
+		const regions = worldMap()
+			.getAllByRole("button")
+			.filter((button) => button.style.left !== "");
+
+		expect(regions.length).toBeGreaterThan(0);
+		for (const region of regions) {
+			expect(
+				percent(region.style.left) + percent(region.style.width),
+			).toBeLessThanOrEqual(100);
+			expect(
+				percent(region.style.top) + percent(region.style.height),
+			).toBeLessThanOrEqual(100);
+		}
+	});
+
+	it("gives every map region a tappable minimum", () => {
+		renderPalace();
+		const regions = worldMap()
+			.getAllByRole("button")
+			.filter((button) => button.style.left !== "");
+
+		for (const region of regions) {
+			// 44px is the usual floor for a touch target, and the waterfall is
+			// only 12% of the width — on a narrow phone that is under it.
+			expect(region.style.minWidth).toBe("44px");
+			expect(region.style.minHeight).toBe("44px");
+		}
 	});
 });
