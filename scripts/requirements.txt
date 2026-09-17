@@ -1,4 +1,6 @@
 pythainlp>=5.0
 python-crfsuite>=0.9
+# scripts/generate-lesson-deck.py — ElevenLabs text-to-speech and speech-to-text.
+requests>=2.31
 pytest>=8.0
 praat-parselmouth>=0.4

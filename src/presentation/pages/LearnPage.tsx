@@ -6,6 +6,7 @@ import {
 	MIN_GRAMMAR_POINTS,
 	MIN_VOCAB_COUNT,
 } from "../../domain/conversation/services/ConversationUnlockService";
+import { hasSeenOrientation } from "../../infrastructure/settings/OrientationSettings";
 import { SectionHeader } from "../components/atoms/SectionHeader";
 import { useApp } from "../hooks/useApp";
 
@@ -115,6 +116,10 @@ export function LearnPage() {
 	}, [state, lesson, review, vocab]);
 
 	const totalDue = d.scriptDue + d.vocabDue + d.grammarDue + d.sentenceDue;
+	// Read on render rather than held in state: nothing on this page writes
+	// it, and it changes only on the orientation page itself, which this one
+	// is navigated away to.
+	const seenOrientation = hasSeenOrientation();
 
 	const conversation = checkConversationUnlock(d.knownWords, d.grammarLearned);
 
@@ -210,6 +215,24 @@ export function LearnPage() {
 				</Button>
 			)}
 
+			{/* How the course works, before any of it. Permanently here rather
+			    than shown once and retired: the habits it argues for — review in
+			    the window, write by hand, say it aloud — are exactly the ones a
+			    learner quietly stops keeping around week three, which is when
+			    re-reading it is worth the most. It leads the page while unseen
+			    and drops below the lanes afterwards. */}
+			{!seenOrientation && (
+				<Button
+					type="button"
+					size="lg"
+					variant="secondary"
+					className="w-full"
+					onClick={() => navigate("/orientation")}
+				>
+					Start here — how this course works
+				</Button>
+			)}
+
 			<div className="space-y-3">
 				<SectionHeader className="mb-1">Lessons</SectionHeader>
 				{lessons.map((lane) => (
@@ -223,6 +246,17 @@ export function LearnPage() {
 					<LaneRow key={lane.key} lane={lane} />
 				))}
 			</div>
+
+			{seenOrientation && (
+				<button
+					type="button"
+					onClick={() => navigate("/orientation")}
+					className="w-full text-sm underline"
+					style={{ color: "var(--color-text-muted)" }}
+				>
+					How this course works
+				</button>
+			)}
 		</div>
 	);
 }

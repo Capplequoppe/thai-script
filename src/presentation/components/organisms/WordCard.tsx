@@ -1,9 +1,18 @@
+import type { PropertyCard } from "../../../domain/shared/types";
+import { assignRoom } from "../../../domain/vocabulary/data/rooms";
+import { toneExplanationFor } from "../../../domain/vocabulary/services/toneExplanation";
+import {
+	composeVocabMnemonic,
+	mnemonicStateFor,
+	roomLabel,
+} from "../../../domain/vocabulary/services/VocabMnemonic";
 import type { VocabEntry } from "../../../domain/vocabulary/types";
 import {
 	classBadgeStyle,
 	classColorForLevel,
 } from "../../utils/consonantClassColor";
 import { scaffoldLevel } from "../../utils/srsFade";
+import { bestScriptStage } from "../../utils/vocabStage";
 import { ToneContourIcon } from "../atoms/ToneContourIcon";
 import { MnemonicBlock } from "../molecules/MnemonicBlock";
 
@@ -59,16 +68,45 @@ function syllableTypeStyle(type: string): React.CSSProperties {
 export function WordCard({
 	word,
 	stageName,
+	scriptCards,
 }: {
 	word: VocabEntry;
 	/** This word's SRS stage name (e.g. "Burned"), if known — fades the color/tone scaffolding as mastery grows. Omit for a not-yet-reviewed word, which gets full scaffolding. */
 	stageName?: string | null;
+	/**
+	 * The learner's script cards, keyed by id — used to fade each syllable's
+	 * initial-consonant class colour by that CONSONANT's own mastery
+	 * (`bestScriptStage`), not the containing word's. Without this, a
+	 * well-known word would strip the class cue from a still-weak consonant
+	 * (and vice versa). Omit where no per-symbol tracking applies (e.g. the
+	 * vocab-intro walkthrough for a brand-new word) to fall back to the
+	 * word's own stage for every syllable.
+	 */
+	scriptCards?: Record<string, PropertyCard>;
 }) {
 	const hasDecomposition = word.syllables.some(
 		(s) => s.initialConsonant || s.vowel || s.finalConsonant,
 	);
 	const visibleSamples = word.samples.filter((s) => s.thai);
 	const level = scaffoldLevel(stageName);
+	// Falls back to the word's own level when no per-symbol cards are
+	// supplied, or when the consonant has no cards of its own yet.
+	const initialConsonantLevel = (character: string) =>
+		scriptCards
+			? scaffoldLevel(bestScriptStage(character, scriptCards))
+			: level;
+	// The staged, room-grammar mnemonic where this entry has one; the corpus's
+	// own prose otherwise. Matched on rank as well as spelling — two corpus
+	// entries can share a spelling and only one of them is the word staged.
+	const staged = mnemonicStateFor(word);
+	const mnemonicText =
+		staged.state === "has-mnemonic"
+			? composeVocabMnemonic(staged.mnemonic)
+			: word.mnemonic;
+	// This is a browse surface: the meaning, the romanization and the class are
+	// all already on screen, so the room confirms rather than cues. The rule
+	// that keeps it off a *review* prompt lives in `Flashcard`.
+	const roomAssignment = assignRoom(word.word_class);
 
 	return (
 		<div className="space-y-4">
@@ -112,6 +150,17 @@ export function WordCard({
 						{word.word_class}
 					</span>
 				)}
+				{roomAssignment.state === "assigned" && (
+					<span
+						className="inline-block mt-1 ml-1 px-2 py-0.5 rounded text-xs font-semibold"
+						style={{
+							background: "var(--color-surface-2)",
+							color: "var(--color-text-muted)",
+						}}
+					>
+						Room: {roomLabel(roomAssignment.room)}
+					</span>
+				)}
 				{word.description && (
 					<p
 						className="text-sm mt-3 text-center"
@@ -123,9 +172,7 @@ export function WordCard({
 			</div>
 
 			{/* 2. Mnemonic */}
-			{word.mnemonic && (
-				<MnemonicBlock text={word.mnemonic} label="Memory tip" />
-			)}
+			{mnemonicText && <MnemonicBlock text={mnemonicText} label="Memory tip" />}
 
 			{/* 3. Syllable Breakdown (enriched) */}
 			{word.syllables.length > 0 && (
@@ -199,8 +246,10 @@ export function WordCard({
 													className="thai text-sm font-semibold"
 													style={{
 														color:
-															classColorForLevel(syl.consonantClass, level) ??
-															"var(--color-text)",
+															classColorForLevel(
+																syl.consonantClass,
+																initialConsonantLevel(syl.initialConsonant),
+															) ?? "var(--color-text)",
 													}}
 												>
 													{syl.initialConsonant}
@@ -251,6 +300,39 @@ export function WordCard({
 										)}
 									</div>
 								)}
+								{(() => {
+									// Derived rather than read off the entry:
+									// `VocabEntry.toneRules` lists a word's rules
+									// deduplicated across all its syllables, so it cannot
+									// say which syllable each one belongs to.
+									const why = toneExplanationFor(syl);
+									if (!why) return null;
+									return (
+										<p
+											className="mt-1.5 text-xs leading-relaxed"
+											style={{
+												color: why.disagreesWithStored
+													? "var(--color-warning, #a16207)"
+													: "var(--color-text-muted)",
+											}}
+										>
+											{why.disagreesWithStored ? (
+												<>
+													<span className="font-semibold">Exception. </span>
+													The rules give {why.tone} here ({why.description}
+													), but this word is said with {syl.tone}.
+												</>
+											) : (
+												<>
+													{why.description}{" "}
+													<span className="opacity-60">
+														(lesson {why.lesson})
+													</span>
+												</>
+											)}
+										</p>
+									);
+								})()}
 							</div>
 						))}
 					</div>

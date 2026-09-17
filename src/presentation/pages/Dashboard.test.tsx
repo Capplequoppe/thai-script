@@ -95,7 +95,7 @@ describe("Dashboard — Ready to Learn", () => {
 	it("shows a pending catch-up callout and navigates to its catch-up page", () => {
 		const app = makeAppValue();
 		const state = app.storage.load();
-		state.completedLessons.push(22);
+		state.completedLessons.push(14);
 		app.storage.save(state);
 		app.value.lesson.reconcileAllContent();
 
@@ -123,7 +123,7 @@ describe("Dashboard — Ready to Learn", () => {
 		);
 
 		expect(screen.getByText("Ready to Learn")).toBeTruthy();
-		expect(screen.getByText("Lesson 22 Update")).toBeTruthy();
+		expect(screen.getByText("Lesson 14 Update")).toBeTruthy();
 		expect(screen.getByText(`${expectedCount} new items`)).toBeTruthy();
 
 		fireEvent.click(screen.getByText("Learn"));

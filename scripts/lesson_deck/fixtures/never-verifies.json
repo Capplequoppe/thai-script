@@ -1,0 +1,15 @@
+{
+	"comment": "The Thai line never comes back right, however many seeds are tried, so the segment is recorded failed and no deck is written. `alwaysMishears` says that outright rather than implying it by out-counting the retry budget, which stops being true the moment the budget changes.",
+	"script": "lesson-02.md",
+	"mishears": {
+		"งง": [
+			"ง่ง",
+			"ง้ง",
+			"ง๊ง",
+			"ง๋ง"
+		]
+	},
+	"alwaysMishears": [
+		"งง"
+	]
+}

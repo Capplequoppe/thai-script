@@ -1,0 +1,7 @@
+{
+	"comment": "The Thai line comes back wrong once, then right — the retry path a real bad take takes.",
+	"script": "lesson-02.md",
+	"mishears": {
+		"งง": ["ง่ง"]
+	}
+}

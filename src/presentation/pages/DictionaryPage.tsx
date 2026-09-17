@@ -523,6 +523,7 @@ export function DictionaryPage() {
 										? bestVocabStage(selectedEntry.thai, state.vocabCards)
 										: null
 								}
+								scriptCards={state.cards}
 							/>
 						</div>
 					</CardPager>

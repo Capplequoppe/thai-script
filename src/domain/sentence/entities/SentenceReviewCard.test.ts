@@ -101,7 +101,7 @@ describe("SentenceReviewCard", () => {
 			property: "readingComprehension",
 		};
 
-		let restored = SentenceReviewCard.fromDTO(dto);
+		const restored = SentenceReviewCard.fromDTO(dto);
 		restored.recordReview(RecallRating.GOOD, NOW);
 		expect(restored.schedule.learningStep).toBe(1);
 

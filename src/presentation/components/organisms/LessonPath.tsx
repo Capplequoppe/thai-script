@@ -1,8 +1,17 @@
+import {
+	type LessonSequenceEntry,
+	lessonSequence,
+} from "../../../domain/script/data/lessonSequence";
+
 interface LessonPathProps {
-	totalLessons: number;
 	completedLessons: Set<number>;
 	nextAvailable: number | null;
 	onLessonClick: (n: number) => void;
+	/**
+	 * One node is rendered per declared lesson, whatever the count. The
+	 * default is the app's real sequence; tests inject a shorter one.
+	 */
+	sequence?: readonly LessonSequenceEntry[];
 }
 
 const NODE_R = 22;
@@ -11,13 +20,13 @@ const SPACING_Y = 72;
 const COLS = 3;
 
 export function LessonPath({
-	totalLessons,
 	completedLessons,
 	nextAvailable,
 	onLessonClick,
+	sequence = lessonSequence,
 }: LessonPathProps) {
-	const lessons = Array.from({ length: totalLessons }, (_, i) => i + 1);
-	const numRows = Math.ceil(totalLessons / COLS);
+	const lessons = sequence.map((entry) => entry.position);
+	const numRows = Math.ceil(lessons.length / COLS);
 
 	// Compute positions: lesson 1 = bottom-left, ascending
 	// Row 0 = bottom row, row (numRows-1) = top row

@@ -5,9 +5,13 @@ import { InMemoryStorage } from "../../infrastructure/persistence/Storage";
 import { renderWithApp } from "../test-utils/renderWithApp";
 import { LearnedItemsPage } from "./LearnedItemsPage";
 
-/** Lesson 23 is the numerals lesson — ๑ ๒ ๓, the case that motivated
- *  paging: a short category a learner wants to flick through end to end. */
-const NUMERALS_LESSON = 23;
+/** Position 19 is the numerals lesson — the case that motivated paging: a
+ *  short category a learner wants to flick through end to end.
+ *
+ *  It was 23 on main. This branch resequenced the course and `RETIRED_LESSONS`
+ *  records 23, 24 and 25 as absorbed into one `lesson-numerals`, which the
+ *  declaration places last so an optional track cannot block the course. */
+const NUMERALS_LESSON = 19;
 
 function renderPage(completedLessons: number[] = [NUMERALS_LESSON]) {
 	const state = new InMemoryStorage().load();
@@ -28,18 +32,19 @@ describe("LearnedItemsPage", () => {
 		renderPage();
 		openNumeralsTab();
 
-		fireEvent.click(screen.getByText("๑"));
-		expect(pagerPosition()).toBe("1 / 3");
+		// ๐ first: the lesson teaches all ten digits in arabic order.
+		fireEvent.click(screen.getByText("๐"));
+		expect(pagerPosition()).toBe("1 / 10");
 
 		fireEvent.click(screen.getByRole("button", { name: "Next item" }));
 
-		expect(pagerPosition()).toBe("2 / 3");
-		expect(screen.getByText("๒")).toBeTruthy();
+		expect(pagerPosition()).toBe("2 / 10");
+		expect(screen.getByText("๑")).toBeTruthy();
 
 		fireEvent.click(screen.getByRole("button", { name: "Previous item" }));
 
-		expect(pagerPosition()).toBe("1 / 3");
-		expect(screen.getByText("๑")).toBeTruthy();
+		expect(pagerPosition()).toBe("1 / 10");
+		expect(screen.getByText("๐")).toBeTruthy();
 	});
 
 	// The tabs are the grouping, so paging stops at a category's edge rather
@@ -48,17 +53,19 @@ describe("LearnedItemsPage", () => {
 		renderPage();
 		openNumeralsTab();
 
-		fireEvent.click(screen.getByText("๑"));
+		fireEvent.click(screen.getByText("๐"));
 		expect(
 			screen
 				.getByRole("button", { name: "Previous item" })
 				.hasAttribute("disabled"),
 		).toBe(true);
 
-		fireEvent.click(screen.getByRole("button", { name: "Next item" }));
-		fireEvent.click(screen.getByRole("button", { name: "Next item" }));
+		// ๐ to ๙ is nine presses.
+		for (let step = 0; step < 9; step += 1) {
+			fireEvent.click(screen.getByRole("button", { name: "Next item" }));
+		}
 
-		expect(pagerPosition()).toBe("3 / 3");
+		expect(pagerPosition()).toBe("10 / 10");
 		expect(
 			screen
 				.getByRole("button", { name: "Next item" })
@@ -70,12 +77,12 @@ describe("LearnedItemsPage", () => {
 		renderPage();
 		openNumeralsTab();
 
-		fireEvent.click(screen.getByText("๑"));
+		fireEvent.click(screen.getByText("๐"));
 		fireEvent.click(screen.getByRole("button", { name: "Next item" }));
 		fireEvent.click(screen.getByRole("button", { name: /Back to list/ }));
 
-		// Back on the grid: all three numerals visible, no pager.
-		expect(screen.getByText("๓")).toBeTruthy();
+		// Back on the grid: the whole tab visible again, no pager.
+		expect(screen.getByText("๙")).toBeTruthy();
 		expect(screen.queryByRole("button", { name: "Next item" })).toBeNull();
 	});
 });

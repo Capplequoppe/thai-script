@@ -1,0 +1,626 @@
+{
+  "formatVersion": "1",
+  "runId": "run-20260913T202604Z",
+  "status": "incomplete",
+  "degraded": [
+    {
+      "input": "run: health delta",
+      "state": "partial",
+      "reason": "3 of 10 changed file(s) could not be fully measured: 'plans/lesson-rebuild/phase-1-tracer/task-1.1a-identity-and-deck-schema.md' unmeasured, 'plans/lesson-rebuild/phase-1-tracer/task-1.5-originality-corpus.md' unmeasured, 'src/domain/script/data/originality-corpus.json' unmeasured"
+    },
+    {
+      "input": "run: reviewer validation",
+      "state": "unmeasured",
+      "reason": "task 1.1a: unmeasured (task 1.1a's own criteria could not be established, so there is no total to validate against); task 1.5: unmeasured (task 1.5's own criteria could not be established, so there is no total to validate against)"
+    },
+    {
+      "input": "run: red-before-green",
+      "state": "unmeasured",
+      "reason": "task 1.1a: unmeasured (no task document found for task 1.1a under /run/media/capplequoppe/data/Repos/thai-script/.claude/worktrees/lesson-rebuild/plans/lesson-rebuild — nothing recorded to classify); task 1.5: unmeasured (task 1.5's document records no ac_tests, red_proof or red_proof_waived — nothing was ever recorded to classify)"
+    },
+    {
+      "input": "run: red/green cycles",
+      "state": "partial",
+      "reason": "task 1.1a: unmeasured (task 1.1a's phase is unknown (no task document located), so phase 2's storyline cannot locate the transcript to read)"
+    },
+    {
+      "input": "task 1.1a: red-before-green",
+      "state": "unmeasured",
+      "reason": "no task document found for task 1.1a under /run/media/capplequoppe/data/Repos/thai-script/.claude/worktrees/lesson-rebuild/plans/lesson-rebuild — nothing recorded to classify"
+    },
+    {
+      "input": "task 1.1a: reviewer validation",
+      "state": "unmeasured",
+      "reason": "task 1.1a's own criteria could not be established, so there is no total to validate against"
+    },
+    {
+      "input": "task 1.1a: red/green cycles",
+      "state": "unmeasured",
+      "reason": "task 1.1a's phase is unknown (no task document located), so phase 2's storyline cannot locate the transcript to read"
+    },
+    {
+      "input": "task 1.5: red-before-green",
+      "state": "unmeasured",
+      "reason": "task 1.5's document records no ac_tests, red_proof or red_proof_waived — nothing was ever recorded to classify"
+    },
+    {
+      "input": "task 1.5: reviewer validation",
+      "state": "unmeasured",
+      "reason": "task 1.5's own criteria could not be established, so there is no total to validate against"
+    }
+  ],
+  "header": {
+    "healthDelta": {
+      "state": "partial",
+      "value": {
+        "kind": "health-delta",
+        "fromRef": "124bee0856616d5e0f73addf00eb2a1658db0b84",
+        "toRef": "50d58e2e7883ba4ac68dde12f5ef72fd0567d93f",
+        "files": [
+          {
+            "path": "plans/lesson-rebuild/phase-1-tracer/task-1.1a-identity-and-deck-schema.md",
+            "delta": {
+              "state": "unmeasured",
+              "reason": "no grammar covers 'plans/lesson-rebuild/phase-1-tracer/task-1.1a-identity-and-deck-schema.md'",
+              "affected": []
+            }
+          },
+          {
+            "path": "plans/lesson-rebuild/phase-1-tracer/task-1.5-originality-corpus.md",
+            "delta": {
+              "state": "unmeasured",
+              "reason": "no grammar covers 'plans/lesson-rebuild/phase-1-tracer/task-1.5-originality-corpus.md'",
+              "affected": []
+            }
+          },
+          {
+            "path": "scripts/build-originality-corpus.py",
+            "delta": {
+              "state": "measured",
+              "production": {
+                "profile": "production",
+                "added": [
+                  {
+                    "name": "build",
+                    "path": "scripts/build-originality-corpus.py",
+                    "complexity": 8
+                  },
+                  {
+                    "name": "existing_salt",
+                    "path": "scripts/build-originality-corpus.py",
+                    "complexity": 3
+                  },
+                  {
+                    "name": "extract_text",
+                    "path": "scripts/build-originality-corpus.py",
+                    "complexity": 2
+                  },
+                  {
+                    "name": "main",
+                    "path": "scripts/build-originality-corpus.py",
+                    "complexity": 5
+                  },
+                  {
+                    "name": "ngrams",
+                    "path": "scripts/build-originality-corpus.py",
+                    "complexity": 2
+                  },
+                  {
+                    "name": "source_tag",
+                    "path": "scripts/build-originality-corpus.py",
+                    "complexity": 3
+                  }
+                ],
+                "removed": [],
+                "matched": []
+              },
+              "test": {
+                "profile": "test",
+                "added": [],
+                "removed": [],
+                "matched": []
+              }
+            }
+          },
+          {
+            "path": "src/domain/script/data/lessonContent.test.ts",
+            "delta": {
+              "state": "measured",
+              "production": {
+                "profile": "production",
+                "added": [],
+                "removed": [],
+                "matched": []
+              },
+              "test": {
+                "profile": "test",
+                "added": [
+                  {
+                    "name": "(anonymous)",
+                    "path": "src/domain/script/data/lessonContent.test.ts",
+                    "complexity": 2
+                  },
+                  {
+                    "name": "(anonymous)",
+                    "path": "src/domain/script/data/lessonContent.test.ts",
+                    "complexity": 2
+                  },
+                  {
+                    "name": "(anonymous)",
+                    "path": "src/domain/script/data/lessonContent.test.ts",
+                    "complexity": 2
+                  },
+                  {
+                    "name": "(anonymous)",
+                    "path": "src/domain/script/data/lessonContent.test.ts",
+                    "complexity": 2
+                  },
+                  {
+                    "name": "(anonymous)",
+                    "path": "src/domain/script/data/lessonContent.test.ts",
+                    "complexity": 2
+                  },
+                  {
+                    "name": "(anonymous)",
+                    "path": "src/domain/script/data/lessonContent.test.ts",
+                    "complexity": 2
+                  },
+                  {
+                    "name": "(anonymous)",
+                    "path": "src/domain/script/data/lessonContent.test.ts",
+                    "complexity": 2
+                  },
+                  {
+                    "name": "(anonymous)",
+                    "path": "src/domain/script/data/lessonContent.test.ts",
+                    "complexity": 2
+                  },
+                  {
+                    "name": "(anonymous)",
+                    "path": "src/domain/script/data/lessonContent.test.ts",
+                    "complexity": 2
+                  },
+                  {
+                    "name": "(anonymous)",
+                    "path": "src/domain/script/data/lessonContent.test.ts",
+                    "complexity": 2
+                  },
+                  {
+                    "name": "(anonymous)",
+                    "path": "src/domain/script/data/lessonContent.test.ts",
+                    "complexity": 3
+                  },
+                  {
+                    "name": "(anonymous)",
+                    "path": "src/domain/script/data/lessonContent.test.ts",
+                    "complexity": 3
+                  },
+                  {
+                    "name": "(anonymous)",
+                    "path": "src/domain/script/data/lessonContent.test.ts",
+                    "complexity": 4
+                  },
+                  {
+                    "name": "(anonymous)",
+                    "path": "src/domain/script/data/lessonContent.test.ts",
+                    "complexity": 5
+                  }
+                ],
+                "removed": [],
+                "matched": []
+              }
+            }
+          },
+          {
+            "path": "src/domain/script/data/lessonContent.ts",
+            "delta": {
+              "state": "measured",
+              "production": {
+                "profile": "production",
+                "added": [
+                  {
+                    "name": "(anonymous)",
+                    "path": "src/domain/script/data/lessonContent.ts",
+                    "complexity": 2
+                  },
+                  {
+                    "name": "(anonymous)",
+                    "path": "src/domain/script/data/lessonContent.ts",
+                    "complexity": 2
+                  },
+                  {
+                    "name": "(anonymous)",
+                    "path": "src/domain/script/data/lessonContent.ts",
+                    "complexity": 2
+                  },
+                  {
+                    "name": "(anonymous)",
+                    "path": "src/domain/script/data/lessonContent.ts",
+                    "complexity": 3
+                  },
+                  {
+                    "name": "checkRetrieval",
+                    "path": "src/domain/script/data/lessonContent.ts",
+                    "complexity": 7
+                  },
+                  {
+                    "name": "deckPathForLesson",
+                    "path": "src/domain/script/data/lessonContent.ts",
+                    "complexity": 2
+                  },
+                  {
+                    "name": "describeLessonContent",
+                    "path": "src/domain/script/data/lessonContent.ts",
+                    "complexity": 3
+                  },
+                  {
+                    "name": "isRecord",
+                    "path": "src/domain/script/data/lessonContent.ts",
+                    "complexity": 3
+                  },
+                  {
+                    "name": "isStringArray",
+                    "path": "src/domain/script/data/lessonContent.ts",
+                    "complexity": 2
+                  },
+                  {
+                    "name": "lessonContentFor",
+                    "path": "src/domain/script/data/lessonContent.ts",
+                    "complexity": 5
+                  },
+                  {
+                    "name": "lessonRules",
+                    "path": "src/domain/script/data/lessonContent.ts",
+                    "complexity": 2
+                  },
+                  {
+                    "name": "parseSlide",
+                    "path": "src/domain/script/data/lessonContent.ts",
+                    "complexity": 17
+                  },
+                  {
+                    "name": "renderRuleSlide",
+                    "path": "src/domain/script/data/lessonContent.ts",
+                    "complexity": 2
+                  },
+                  {
+                    "name": "resolveLessonContent",
+                    "path": "src/domain/script/data/lessonContent.ts",
+                    "complexity": 2
+                  },
+                  {
+                    "name": "validateDeck",
+                    "path": "src/domain/script/data/lessonContent.ts",
+                    "complexity": 11
+                  }
+                ],
+                "removed": [],
+                "matched": []
+              },
+              "test": {
+                "profile": "test",
+                "added": [],
+                "removed": [],
+                "matched": []
+              }
+            }
+          },
+          {
+            "path": "src/domain/script/data/lessonSequence.test.ts",
+            "delta": {
+              "state": "measured",
+              "production": {
+                "profile": "production",
+                "added": [],
+                "removed": [],
+                "matched": []
+              },
+              "test": {
+                "profile": "test",
+                "added": [
+                  {
+                    "name": "(anonymous)",
+                    "path": "src/domain/script/data/lessonSequence.test.ts",
+                    "complexity": 2
+                  },
+                  {
+                    "name": "(anonymous)",
+                    "path": "src/domain/script/data/lessonSequence.test.ts",
+                    "complexity": 3
+                  },
+                  {
+                    "name": "(anonymous)",
+                    "path": "src/domain/script/data/lessonSequence.test.ts",
+                    "complexity": 4
+                  }
+                ],
+                "removed": [],
+                "matched": []
+              }
+            }
+          },
+          {
+            "path": "src/domain/script/data/lessonSequence.ts",
+            "delta": {
+              "state": "measured",
+              "production": {
+                "profile": "production",
+                "added": [
+                  {
+                    "name": "lessonEntryById",
+                    "path": "src/domain/script/data/lessonSequence.ts",
+                    "complexity": 3
+                  },
+                  {
+                    "name": "parseLessonId",
+                    "path": "src/domain/script/data/lessonSequence.ts",
+                    "complexity": 3
+                  }
+                ],
+                "removed": [],
+                "matched": []
+              },
+              "test": {
+                "profile": "test",
+                "added": [],
+                "removed": [],
+                "matched": []
+              }
+            }
+          },
+          {
+            "path": "src/domain/script/data/originality-corpus.json",
+            "delta": {
+              "state": "unmeasured",
+              "reason": "no grammar covers 'src/domain/script/data/originality-corpus.json'",
+              "affected": []
+            }
+          },
+          {
+            "path": "src/domain/script/data/originality.test.ts",
+            "delta": {
+              "state": "measured",
+              "production": {
+                "profile": "production",
+                "added": [],
+                "removed": [],
+                "matched": []
+              },
+              "test": {
+                "profile": "test",
+                "added": [
+                  {
+                    "name": "(anonymous)",
+                    "path": "src/domain/script/data/originality.test.ts",
+                    "complexity": 2
+                  },
+                  {
+                    "name": "(anonymous)",
+                    "path": "src/domain/script/data/originality.test.ts",
+                    "complexity": 2
+                  },
+                  {
+                    "name": "(anonymous)",
+                    "path": "src/domain/script/data/originality.test.ts",
+                    "complexity": 2
+                  },
+                  {
+                    "name": "(anonymous)",
+                    "path": "src/domain/script/data/originality.test.ts",
+                    "complexity": 2
+                  },
+                  {
+                    "name": "(anonymous)",
+                    "path": "src/domain/script/data/originality.test.ts",
+                    "complexity": 3
+                  },
+                  {
+                    "name": "(anonymous)",
+                    "path": "src/domain/script/data/originality.test.ts",
+                    "complexity": 3
+                  },
+                  {
+                    "name": "(anonymous)",
+                    "path": "src/domain/script/data/originality.test.ts",
+                    "complexity": 3
+                  },
+                  {
+                    "name": "(anonymous)",
+                    "path": "src/domain/script/data/originality.test.ts",
+                    "complexity": 4
+                  },
+                  {
+                    "name": "(anonymous)",
+                    "path": "src/domain/script/data/originality.test.ts",
+                    "complexity": 4
+                  },
+                  {
+                    "name": "loadedCorpus",
+                    "path": "src/domain/script/data/originality.test.ts",
+                    "complexity": 2
+                  }
+                ],
+                "removed": [],
+                "matched": []
+              }
+            }
+          },
+          {
+            "path": "src/domain/script/data/originality.ts",
+            "delta": {
+              "state": "measured",
+              "production": {
+                "profile": "production",
+                "added": [
+                  {
+                    "name": "assertOriginal",
+                    "path": "src/domain/script/data/originality.ts",
+                    "complexity": 3
+                  },
+                  {
+                    "name": "checkOriginality",
+                    "path": "src/domain/script/data/originality.ts",
+                    "complexity": 4
+                  },
+                  {
+                    "name": "loadOriginalityCorpus",
+                    "path": "src/domain/script/data/originality.ts",
+                    "complexity": 14
+                  },
+                  {
+                    "name": "ngramsOf",
+                    "path": "src/domain/script/data/originality.ts",
+                    "complexity": 2
+                  },
+                  {
+                    "name": "tokenize",
+                    "path": "src/domain/script/data/originality.ts",
+                    "complexity": 2
+                  }
+                ],
+                "removed": [],
+                "matched": []
+              },
+              "test": {
+                "profile": "test",
+                "added": [],
+                "removed": [],
+                "matched": []
+              }
+            }
+          }
+        ],
+        "skipped": {
+          "deleted": 0,
+          "renamed-without-edit": 0,
+          "binary": 0,
+          "symlink": 0,
+          "submodule": 0
+        },
+        "refused": 0
+      },
+      "reason": "3 of 10 changed file(s) could not be fully measured: 'plans/lesson-rebuild/phase-1-tracer/task-1.1a-identity-and-deck-schema.md' unmeasured, 'plans/lesson-rebuild/phase-1-tracer/task-1.5-originality-corpus.md' unmeasured, 'src/domain/script/data/originality-corpus.json' unmeasured"
+    },
+    "conformance": {
+      "reviewerValidation": {
+        "state": "unmeasured",
+        "reason": "task 1.1a: unmeasured (task 1.1a's own criteria could not be established, so there is no total to validate against); task 1.5: unmeasured (task 1.5's own criteria could not be established, so there is no total to validate against)"
+      },
+      "redBeforeGreen": {
+        "state": "unmeasured",
+        "reason": "task 1.1a: unmeasured (no task document found for task 1.1a under /run/media/capplequoppe/data/Repos/thai-script/.claude/worktrees/lesson-rebuild/plans/lesson-rebuild — nothing recorded to classify); task 1.5: unmeasured (task 1.5's document records no ac_tests, red_proof or red_proof_waived — nothing was ever recorded to classify)"
+      },
+      "coversWarnings": {
+        "state": "measured",
+        "value": []
+      },
+      "worstContinuationRounds": {
+        "state": "measured",
+        "value": 2
+      },
+      "inheritedGates": {
+        "state": "measured",
+        "value": []
+      },
+      "worstRedGreenCycles": {
+        "state": "partial",
+        "value": 1,
+        "reason": "task 1.1a: unmeasured (task 1.1a's phase is unknown (no task document located), so phase 2's storyline cannot locate the transcript to read)"
+      }
+    },
+    "flags": [
+      {
+        "task": "1.1a",
+        "kind": "struggle",
+        "detail": "2 continuation round(s)"
+      },
+      {
+        "task": "1.5",
+        "kind": "struggle",
+        "detail": "2 continuation round(s); 1 red-then-green cycle(s)",
+        "seqRange": {
+          "first": 2874,
+          "last": 2875
+        }
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "task": "1.1a",
+      "conformance": {
+        "redBeforeGreen": {
+          "state": "unmeasured",
+          "reason": "no task document found for task 1.1a under /run/media/capplequoppe/data/Repos/thai-script/.claude/worktrees/lesson-rebuild/plans/lesson-rebuild — nothing recorded to classify"
+        },
+        "reviewerValidation": {
+          "state": "unmeasured",
+          "reason": "task 1.1a's own criteria could not be established, so there is no total to validate against"
+        },
+        "covers": {
+          "state": "measured",
+          "value": {
+            "warned": false
+          }
+        },
+        "continuationRounds": {
+          "state": "measured",
+          "value": 2
+        },
+        "inheritedGates": {
+          "state": "measured",
+          "value": []
+        },
+        "redGreenCycles": {
+          "state": "unmeasured",
+          "reason": "task 1.1a's phase is unknown (no task document located), so phase 2's storyline cannot locate the transcript to read"
+        }
+      },
+      "healthDelta": {
+        "state": "measured",
+        "value": {
+          "kind": "never-ran",
+          "reason": "the task has no final integrated commit — blocked, or never integrated"
+        }
+      }
+    },
+    {
+      "task": "1.5",
+      "conformance": {
+        "redBeforeGreen": {
+          "state": "unmeasured",
+          "reason": "task 1.5's document records no ac_tests, red_proof or red_proof_waived — nothing was ever recorded to classify"
+        },
+        "reviewerValidation": {
+          "state": "unmeasured",
+          "reason": "task 1.5's own criteria could not be established, so there is no total to validate against"
+        },
+        "covers": {
+          "state": "measured",
+          "value": {
+            "warned": false
+          }
+        },
+        "continuationRounds": {
+          "state": "measured",
+          "value": 2
+        },
+        "inheritedGates": {
+          "state": "measured",
+          "value": []
+        },
+        "redGreenCycles": {
+          "state": "measured",
+          "value": 1
+        }
+      },
+      "healthDelta": {
+        "state": "measured",
+        "value": {
+          "kind": "never-ran",
+          "reason": "the task has no final integrated commit — blocked, or never integrated"
+        }
+      }
+    }
+  ]
+}

@@ -8,15 +8,24 @@ import type {
 import { classColor } from "../../utils/consonantClassColor";
 import { ClassBadge } from "../atoms/ClassBadge";
 import { ThaiCharDisplay } from "../atoms/ThaiCharDisplay";
+import { ToneContourIcon } from "../atoms/ToneContourIcon";
 import { MnemonicBlock } from "../molecules/MnemonicBlock";
 import { SymbolInfoRow } from "../molecules/SymbolInfoRow";
 
 export function ConsonantCard({
 	c,
 	compact,
+	hideClassCue,
 }: {
 	c: ConsonantSummary;
 	compact?: boolean;
+	/**
+	 * The class-retrieval card's own question IS "what class is this
+	 * consonant" — suppresses colour *and* district so neither channel
+	 * renders the answer. Mirrors `ScriptCardGenerator.ts`'s existing
+	 * suppression of `consonantClass` on that same card.
+	 */
+	hideClassCue?: boolean;
 }) {
 	return (
 		<div className="space-y-3">
@@ -25,7 +34,7 @@ export function ConsonantCard({
 					character={c.character}
 					className="text-[96px]"
 					audioUrl={c.audioUrl}
-					color={classColor(c.classType)}
+					color={hideClassCue ? undefined : classColor(c.classType)}
 				/>
 				<h2 className="text-2xl font-semibold mt-2">{c.nameRomanized}</h2>
 				<p
@@ -56,7 +65,7 @@ export function ConsonantCard({
 					>
 						Class
 					</span>
-					<ClassBadge classType={c.classType} />
+					{!hideClassCue && <ClassBadge classType={c.classType} />}
 				</div>
 				<SymbolInfoRow label="Initial sound" value={c.initialSound} />
 				<SymbolInfoRow label="Final sound" value={c.finalSound} />
@@ -136,12 +145,36 @@ export function ToneMarkCard({ t }: { t: ToneMarkSummary }) {
 				className="rounded-xl p-4 space-y-0.5"
 				style={{ background: "var(--color-surface-2)" }}
 			>
-				<SymbolInfoRow label="Mid class →" value={t.midClassTone} />
+				<SymbolInfoRow
+					label="Mid class →"
+					value={
+						<span className="inline-flex items-center gap-2">
+							{t.midClassTone}
+							<ToneContourIcon tone={t.midClassTone} />
+						</span>
+					}
+				/>
 				{t.highClassTone && (
-					<SymbolInfoRow label="High class →" value={t.highClassTone} />
+					<SymbolInfoRow
+						label="High class →"
+						value={
+							<span className="inline-flex items-center gap-2">
+								{t.highClassTone}
+								<ToneContourIcon tone={t.highClassTone} />
+							</span>
+						}
+					/>
 				)}
 				{t.lowClassTone && (
-					<SymbolInfoRow label="Low class →" value={t.lowClassTone} />
+					<SymbolInfoRow
+						label="Low class →"
+						value={
+							<span className="inline-flex items-center gap-2">
+								{t.lowClassTone}
+								<ToneContourIcon tone={t.lowClassTone} />
+							</span>
+						}
+					/>
 				)}
 			</div>
 		</div>

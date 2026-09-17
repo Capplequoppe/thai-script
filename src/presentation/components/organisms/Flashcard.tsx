@@ -1,8 +1,17 @@
 import { useCallback, useEffect, useState } from "react";
 import type { RecallRating } from "../../../domain/shared/types";
 import { SrsStage } from "../../../domain/srs/value-objects/SrsStage";
+import { roomExposureFor } from "../../../domain/vocabulary/data/rooms";
+import {
+	isVocabProperty,
+	roomForVocabCardId,
+	roomLabel,
+} from "../../../domain/vocabulary/services/VocabMnemonic";
+import type { Room } from "../../../domain/vocabulary/types";
 import { useResetOnCardChange } from "../../hooks/useResetOnCardChange";
 import { classColor } from "../../utils/consonantClassColor";
+import { scaffoldLevel } from "../../utils/srsFade";
+import { DistrictBadge } from "../atoms/DistrictBadge";
 import { StageDot } from "../atoms/StageDot";
 import { ThaiCharDisplay } from "../atoms/ThaiCharDisplay";
 import { RatingButtons } from "./RatingButtons";
@@ -26,8 +35,31 @@ interface Props {
 	onRate: (rating: RecallRating) => void;
 }
 
+/**
+ * The word's room, as part of the answer.
+ *
+ * Never rendered before the learner has acted: a room is a part-of-speech
+ * signal, and on a recognition card the part of speech is half the answer. It
+ * is available on request instead — asking costs something, which leaves the
+ * retrieval attempt intact — and is shown unasked only once the answer is out.
+ * `roomExposureFor` owns that rule, per property; this component only draws
+ * what it decides.
+ */
+function RoomNote({ room, via }: { room: Room; via: "hint" | "reveal" }) {
+	return (
+		<p
+			className="text-center text-sm mt-2"
+			style={{ color: "var(--color-text-muted)" }}
+		>
+			Room: {roomLabel(room)}
+			{via === "hint" && <span className="ml-1 opacity-60">(hint)</span>}
+		</p>
+	);
+}
+
 export function Flashcard({ card, onRate }: Props) {
 	const [revealed, setRevealed] = useState(false);
+	const [roomHintRequested, setRoomHintRequested] = useState(false);
 
 	const cardProperty =
 		"property" in card ? (card as Record<string, unknown>).property : null;
@@ -62,15 +94,30 @@ export function Flashcard({ card, onRate }: Props) {
 	const hasTopAudio =
 		playsAudioUpfront || Boolean(symbolChar) || Boolean(promptWord);
 
+	// Only a vocabulary card has a room: the id carries the Thai spelling for
+	// all six properties, while promptWord does not (it is the English on an
+	// englishToThai card).
+	const vocabProperty = isVocabProperty(cardProperty) ? cardProperty : null;
+	const room = vocabProperty ? roomForVocabCardId(card.id) : null;
+	const roomExposure =
+		vocabProperty && room
+			? roomExposureFor(vocabProperty, {
+					revealed,
+					hintRequested: roomHintRequested,
+				})
+			: null;
+
 	const stage = card.srs
 		? SrsStage.fromScheduleData(card.srs.learningStep, card.srs.interval)
 		: null;
+	const scaffolding = scaffoldLevel(stage?.name);
 
 	// Reset during render, not in an effect: an effect resets after paint, and
 	// iOS Safari then shows a frame of the new card with the answer already
 	// revealed. See `useResetOnCardChange`.
 	useResetOnCardChange(card.id, () => {
 		setRevealed(false);
+		setRoomHintRequested(false);
 	});
 
 	useEffect(() => {
@@ -152,6 +199,19 @@ export function Flashcard({ card, onRate }: Props) {
 							hideAudio={hideAudioHint}
 							color={classColor(symbolClass)}
 						/>
+						{/* Colour is one class channel and fails for red-green CVD
+						    (see CONTEXT.md "Rejected alternatives") — the district
+						    glyph is the second, non-colour channel, and this is the
+						    only place a learner sees either during an actual SRS
+						    review. `symbolClass` is already `undefined` on the
+						    class-recall card itself (ScriptCardGenerator's
+						    deliberate suppression), so DistrictBadge renders
+						    nothing there, same as the colour above. */}
+						<DistrictBadge
+							classType={symbolClass}
+							level={scaffolding}
+							className="text-2xl mt-1 inline-block"
+						/>
 					</div>
 				) : promptWord ? (
 					<div className="text-center">
@@ -172,17 +232,35 @@ export function Flashcard({ card, onRate }: Props) {
 			</div>
 
 			{!revealed ? (
-				<button
-					type="button"
-					onClick={handleReveal}
-					className="w-full py-4 rounded-xl text-lg font-semibold transition-colors"
-					style={{
-						background: "var(--color-surface-2)",
-						color: "var(--color-text)",
-					}}
-				>
-					Show Answer <span className="text-xs opacity-50 ml-1">(Space)</span>
-				</button>
+				<>
+					{room && roomExposure?.visible === false && (
+						<button
+							type="button"
+							onClick={() => setRoomHintRequested(true)}
+							className="w-full py-2 rounded-xl text-sm"
+							style={{
+								background: "transparent",
+								color: "var(--color-text-muted)",
+							}}
+						>
+							Stuck? Show the room
+						</button>
+					)}
+					{room && roomExposure?.visible && (
+						<RoomNote room={room} via={roomExposure.via} />
+					)}
+					<button
+						type="button"
+						onClick={handleReveal}
+						className="w-full py-4 rounded-xl text-lg font-semibold transition-colors"
+						style={{
+							background: "var(--color-surface-2)",
+							color: "var(--color-text)",
+						}}
+					>
+						Show Answer <span className="text-xs opacity-50 ml-1">(Space)</span>
+					</button>
+				</>
 			) : (
 				<div
 					style={{ animation: "slideUp 0.25s ease-out" }}
@@ -215,6 +293,9 @@ export function Flashcard({ card, onRate }: Props) {
 							>
 								🔊
 							</button>
+						)}
+						{room && roomExposure?.visible && (
+							<RoomNote room={room} via={roomExposure.via} />
 						)}
 					</div>
 					<RatingButtons onRate={handleRate} />

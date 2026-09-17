@@ -1,5 +1,6 @@
 import type { CardRepository } from "../../ports/CardRepository";
 import type { LearnerStateRepository } from "../../ports/LearnerStateRepository";
+import { lessonSequence } from "../../script/data/lessonSequence";
 import {
 	consonants,
 	lessons,
@@ -38,18 +39,33 @@ export class VocabularyService {
 		);
 	}
 
+	/**
+	 * The `symbols.ts` lesson keys for the learner's completed lessons.
+	 * Completed lessons are positions in the declared sequence; `sym.lesson`
+	 * and `rule.lesson` still carry the pre-migration integers, so the join
+	 * routes through `lessonSequence` rather than comparing raw numbers.
+	 */
+	private getCompletedLegacyNumbers(): Set<number> {
+		const completedLessons = this.stateRepo.getCompletedLessons();
+		return new Set(
+			completedLessons
+				.map((position) => lessonSequence[position - 1]?.legacyNumber)
+				.filter((legacy): legacy is number => legacy !== undefined),
+		);
+	}
+
 	/** Get set of all Thai characters mastered from completed script lessons. */
 	private getMasteredCharacters(): Set<string> {
-		const completedLessons = this.stateRepo.getCompletedLessons();
+		const completedLessons = this.getCompletedLegacyNumbers();
 		const chars = new Set<string>();
 
 		for (const sym of consonants) {
-			if (sym.lesson != null && completedLessons.includes(sym.lesson)) {
+			if (sym.lesson != null && completedLessons.has(sym.lesson)) {
 				chars.add(sym.character);
 			}
 		}
 		for (const sym of vowels) {
-			if (sym.lesson != null && completedLessons.includes(sym.lesson)) {
+			if (sym.lesson != null && completedLessons.has(sym.lesson)) {
 				for (const ch of sym.character) {
 					if ("\u0e00" <= ch && ch <= "\u0e7f") {
 						chars.add(ch);
@@ -58,7 +74,7 @@ export class VocabularyService {
 			}
 		}
 		for (const sym of toneMarks) {
-			if (sym.lesson != null && completedLessons.includes(sym.lesson)) {
+			if (sym.lesson != null && completedLessons.has(sym.lesson)) {
 				chars.add(sym.character);
 			}
 		}
@@ -83,11 +99,11 @@ export class VocabularyService {
 
 	/** Get set of all tone rule IDs mastered from completed script lessons. */
 	private getMasteredToneRules(): Set<string> {
-		const completedLessons = this.stateRepo.getCompletedLessons();
+		const completedLessons = this.getCompletedLegacyNumbers();
 		const rules = new Set<string>();
 
 		for (const rule of toneRules) {
-			if (completedLessons.includes(rule.lesson)) {
+			if (completedLessons.has(rule.lesson)) {
 				rules.add(rule.id);
 			}
 		}
@@ -100,7 +116,7 @@ export class VocabularyService {
 		};
 
 		for (const rule of toneMarkRules) {
-			if (completedLessons.includes(rule.lesson)) {
+			if (completedLessons.has(rule.lesson)) {
 				const markId = markNameMap[rule.toneMarkName];
 				if (markId) {
 					rules.add(`${rule.consonantClass}-${markId}`);

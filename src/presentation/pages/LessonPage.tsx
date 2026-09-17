@@ -11,6 +11,9 @@ import {
 	DialogTitle,
 } from "@/presentation/components/ui/dialog";
 import { Progress } from "@/presentation/components/ui/progress";
+import { resolveLessonContent } from "../../domain/script/data/lessonContent";
+import { getLessonFormat } from "../../infrastructure/settings/LessonFormatSettings";
+import { lessonEntryByPosition } from "../../domain/script/data/lessonSequence";
 import type { PropertyCard } from "../../domain/shared/types";
 import { SectionHeader } from "../components/atoms/SectionHeader";
 import { SessionStatGrid } from "../components/molecules/SessionStatGrid";
@@ -43,6 +46,16 @@ export function LessonPage() {
 			return null;
 		}
 	}, [lesson, num]);
+
+	// What this lesson serves — video or deck. Resolved from the declared
+	// sequence, independently of `summary`: a lesson can be declared in the
+	// sequence and still fail to resolve content (an "unresolvable" lesson
+	// must never read the same as one that doesn't exist at all).
+	const contentResolution = useMemo(() => {
+		const entry = lessonEntryByPosition(num);
+		if (!entry) return { status: "undeclared" as const };
+		return resolveLessonContent(entry.id, getLessonFormat());
+	}, [num]);
 
 	useEffect(() => {
 		if (flow.isComplete) {
@@ -89,6 +102,21 @@ export function LessonPage() {
 		);
 	}
 
+	if (contentResolution.status !== "resolved") {
+		return (
+			<div className="text-center py-8">
+				<p style={{ color: "var(--color-text-muted)" }}>
+					{contentResolution.status === "unresolvable"
+						? contentResolution.reason
+						: "Lesson not found"}
+				</p>
+				<Button variant="link" className="mt-4" onClick={() => navigate("/")}>
+					Go Home
+				</Button>
+			</div>
+		);
+	}
+
 	const handleIntroComplete = () => {
 		try {
 			const result = lesson.startScript(num);
@@ -121,7 +149,11 @@ export function LessonPage() {
 				>
 					{summary.focus}
 				</p>
-				<LessonIntro summary={summary} onComplete={handleIntroComplete} />
+				<LessonIntro
+					summary={summary}
+					content={contentResolution.content}
+					onComplete={handleIntroComplete}
+				/>
 
 				<Dialog
 					open={blockedMessage !== null}

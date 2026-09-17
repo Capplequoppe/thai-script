@@ -1,0 +1,120 @@
+{
+	"lessonId": "lesson-13",
+	"title": "The Sanskrit set",
+	"slides": [
+		{
+			"kind": "exposition",
+			"id": "borrowed-letters",
+			"heading": "Six letters that mark a borrowed word",
+			"body": [
+				"Thai keeps extra letters for words it took from Sanskrit and Pali. They double sounds you already read, and seeing one is a hint that the word is old, formal, or borrowed.",
+				"ศ and ษ are temple s, like ส. ณ is harbor n, like น. ญ is harbor y, like ย. ภ is harbor ph, like พ. ธ is harbor th, like ท.",
+				"ศึกษา (sùek-sǎa) — to study — carries two of them at once. ภาพ (phâap) is a picture. เธอ (thooe) is you. คุณ (khun) — you, polite — ends on ณ."
+			]
+		},
+		{
+			"kind": "exposition",
+			"id": "telling-them-apart",
+			"heading": "Reading the six on sight",
+			"body": [
+				"ศ leans forward with a split head; ษ carries a broken crown. Both live uphill in the temple.",
+				"ณ is น with a long tail folded under it. ญ is ย standing over a small base. ภ is a steep sail; ธ is a flag on a pole.",
+				"ญาติ (yâat) is a relative. เงิน (ngoen) is money — harbor ง, level tone, and a vowel written in a way this lesson explains below."
+			]
+		},
+		{
+			"kind": "rule",
+			"id": "high-dead-short-rule",
+			"ruleId": "high-dead-short"
+		},
+		{
+			"kind": "rule",
+			"id": "high-dead-long-rule",
+			"ruleId": "high-dead-long"
+		},
+		{
+			"kind": "exposition",
+			"id": "temple-dead",
+			"heading": "The temple's other half: dead syllables fall low",
+			"body": [
+				"A temple letter on a live syllable rises — that was the last lesson. On a dead syllable it gives a low tone, short vowel or long.",
+				"หก (hòk) — six — is temple ห stopped by k: low. In ศึกษา (sùek-sǎa) the first half is temple ศ stopped by k, so it comes out low; the second half ends open and live, so it rises. One word, both temple rules."
+			]
+		},
+		{
+			"kind": "exposition",
+			"id": "sara-am",
+			"heading": "ำ — the vowel with a built-in ending",
+			"body": [
+				"The sign ำ is a circle-then-hook written after its consonant, and it packs a vowel and a final m into one shape.",
+				"ทำ (tham) is to do. จำ (jam) is to remember. Both end in m with no ม written anywhere — the vowel brought its own."
+			]
+		},
+		{
+			"kind": "rule",
+			"id": "sara-am-rule",
+			"ruleId": "sara-am-properties"
+		},
+		{
+			"kind": "exposition",
+			"id": "oe-vowel",
+			"heading": "เ-อ — the oe vowel, and the shape it takes before a final",
+			"body": [
+				"เ-อ wraps its consonant: เ in front, อ after. เธอ (thooe) is you; เจอ (jooe) is to meet.",
+				"Add a final consonant and the อ steps aside for ิ above: เงิน (ngoen), money, and เดิน (dooen), to walk, are เ-อ words in that closed shape.",
+				"The short mate เ-อะ clips it, and is rare in running text."
+			]
+		},
+		{
+			"kind": "rule",
+			"id": "gaaran-rule",
+			"ruleId": "gaaran"
+		},
+		{
+			"kind": "exposition",
+			"id": "gaaran",
+			"heading": "The gaa-ran sign — the silencer",
+			"body": [
+				"Borrowed words often keep letters Thai does not say. The sign ์ above a letter switches it off.",
+				"สัตว์ (sàt) — animal — writes a ว and switches it off: a temple letter, a stopped ending, a low tone, and one letter kept purely for the eye."
+			]
+		},
+		{
+			"kind": "retrieval",
+			"id": "two-halves",
+			"prompt": "ศึกษา (to study) is read sùek-sǎa — low then rising. Both halves open with a temple s. What makes the two tones come out different?",
+			"revealSlideId": "two-halves-answer"
+		},
+		{
+			"kind": "reveal",
+			"id": "two-halves-answer",
+			"retrievalSlideId": "two-halves",
+			"answers": [
+				"Live against dead. The first syllable is stopped by k — dead, so the temple gives it low. The second ends open on a long vowel — live, so the temple gives it rising."
+			]
+		},
+		{
+			"kind": "retrieval",
+			"id": "silent-letter",
+			"prompt": "สัตว์ (animal) is read sàt, one closed syllable. Its spelling ends with ว under a small sign. What is that sign doing, and what would the word lose without it?",
+			"revealSlideId": "silent-letter-answer"
+		},
+		{
+			"kind": "reveal",
+			"id": "silent-letter-answer",
+			"retrievalSlideId": "silent-letter",
+			"answers": [
+				"That is gaa-ran, the silencer, switching off the ว. Without it the spelling would ask you to read the ว; with it the borrowed spelling survives on paper while the mouth says sàt."
+			]
+		},
+		{
+			"kind": "exposition",
+			"id": "close",
+			"heading": "What you can now read",
+			"body": [
+				"The six loanword letters ศ ษ ณ ญ ภ ธ, the packed vowel ำ, เ-อ in both written shapes, and the silencer ์.",
+				"And the temple's tone behaviour is complete: rising when live, low when dead."
+			]
+		}
+	]
+}

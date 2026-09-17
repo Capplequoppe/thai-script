@@ -2196,6 +2196,9 @@ describe("GamePage", () => {
 			completedLessons: [1],
 			currentLesson: 2,
 			cards: {},
+			// Required by the validator since sessions began being recorded; a
+			// state without it is rejected as unreadable rather than defaulted.
+			sessionHistory: [],
 			vocabCards: Object.fromEntries(
 				RECORDED_SOUND_ALIKE_PAIR.map((thai) => [
 					`vocab:${thai}:thaiToEnglish`,

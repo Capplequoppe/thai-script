@@ -7,6 +7,7 @@ import type {
 	VowelProperty,
 } from "../../shared/types";
 import { SrsSchedule } from "../../srs/value-objects/SrsSchedule";
+import { lessonEntryByNumber, lessonSequence } from "../data/lessonSequence";
 import {
 	consonants,
 	type RareVowel,
@@ -145,11 +146,31 @@ function pickChoices(correct: string, pool: string[], count = 4): string[] {
 }
 
 // ---------------------------------------------------------------------------
+// Lesson identity
+// ---------------------------------------------------------------------------
+
+/**
+ * `symbols.ts` still keys its `lesson` fields on the pre-migration integers;
+ * a card is stamped with the declared sequence's *position* for that lesson
+ * (`PropertyCard.lessonNumber`), so the two stores convert through one
+ * mapping. 0 stays 0: it is the "belongs to no lesson" sentinel.
+ */
+function teachingPosition(symbolLesson: number | undefined): number {
+	if (symbolLesson == null) return 0;
+	return lessonEntryByNumber(symbolLesson)?.position ?? 0;
+}
+
+/** The `symbols.ts` lesson key for a 1-based position in the declared sequence. */
+function legacyNumberAt(position: number): number | undefined {
+	return lessonSequence[position - 1]?.legacyNumber;
+}
+
+// ---------------------------------------------------------------------------
 // Consonant Cards (5 per consonant)
 // ---------------------------------------------------------------------------
 
 function generateConsonantCards(c: ThaiConsonant): PropertyCard[] {
-	const lesson = c.lesson ?? 0;
+	const lesson = teachingPosition(c.lesson);
 	const srs = SrsSchedule.initial().toDTO();
 
 	const recognition: PropertyCard = {
@@ -166,7 +187,10 @@ function generateConsonantCards(c: ThaiConsonant): PropertyCard[] {
 	};
 
 	// No `consonantClass` here: this card's question IS "what class is this
-	// consonant", so the glyph must render with no color hint.
+	// consonant", so the glyph must render with no color hint. The district
+	// cue (see consonantClassColor.ts) derives from the same field, so
+	// omitting it here suppresses that channel too — no second suppression
+	// point to keep in sync.
 	const classCard: PropertyCard = {
 		id: `${c.character}:class`,
 		symbolCharacter: c.character,
@@ -246,7 +270,7 @@ function generateConsonantCards(c: ThaiConsonant): PropertyCard[] {
 // ---------------------------------------------------------------------------
 
 function generateVowelCards(v: ThaiVowel): PropertyCard[] {
-	const lesson = v.lesson ?? 0;
+	const lesson = teachingPosition(v.lesson);
 
 	const recognition: PropertyCard = {
 		id: `${v.character}:recognition`,
@@ -311,7 +335,7 @@ function generateVowelCards(v: ThaiVowel): PropertyCard[] {
 // ---------------------------------------------------------------------------
 
 function generateToneMarkCards(t: ThaiToneMark): PropertyCard[] {
-	const lesson = t.lesson ?? 0;
+	const lesson = teachingPosition(t.lesson);
 
 	const recognition: PropertyCard = {
 		id: `${t.character}:recognition`,
@@ -384,7 +408,7 @@ function generateToneMarkCards(t: ThaiToneMark): PropertyCard[] {
 // ---------------------------------------------------------------------------
 
 function generateRareVowelCards(v: RareVowel): PropertyCard[] {
-	const lesson = v.lesson;
+	const lesson = teachingPosition(v.lesson);
 
 	const recognition: PropertyCard = {
 		id: `${v.character}:recognition`,
@@ -427,7 +451,7 @@ function generateRareVowelCards(v: RareVowel): PropertyCard[] {
 // ---------------------------------------------------------------------------
 
 function generateNumeralCards(n: ThaiNumeral): PropertyCard[] {
-	const lesson = n.lesson;
+	const lesson = teachingPosition(n.lesson);
 
 	const value: PropertyCard = {
 		id: `${n.thai}:value`,
@@ -480,7 +504,7 @@ function generateToneRuleCard(rule: ToneRule): PropertyCard {
 		correctAnswer: rule.resultingTone,
 		choices: pickChoices(rule.resultingTone, toneValuePool),
 		srs: SrsSchedule.initial().toDTO(),
-		lessonNumber: rule.lesson,
+		lessonNumber: teachingPosition(rule.lesson),
 	};
 }
 
@@ -495,45 +519,53 @@ function generateToneMarkRuleCard(rule: ToneMarkRule): PropertyCard {
 		correctAnswer: rule.resultingTone,
 		choices: pickChoices(rule.resultingTone, toneValuePool),
 		srs: SrsSchedule.initial().toDTO(),
-		lessonNumber: rule.lesson,
+		lessonNumber: teachingPosition(rule.lesson),
 	};
 }
 
 // ---------------------------------------------------------------------------
-// Public API
+// Public API — `lesson` is a 1-based position in the declared sequence
 // ---------------------------------------------------------------------------
 
+/** Tone-rule and tone-mark-rule cards for the lesson at `lesson` (a 1-based position in the declared sequence). */
 export function generateToneRuleCards(lesson: number): PropertyCard[] {
+	const legacy = legacyNumberAt(lesson);
+	// An undeclared position teaches nothing — and must not fall through to
+	// `r.lesson === undefined`, which would match unassigned symbols.
+	if (legacy === undefined) return [];
 	const ruleCards = toneRules
-		.filter((r) => r.lesson === lesson)
+		.filter((r) => r.lesson === legacy)
 		.map(generateToneRuleCard);
 
 	const markRuleCards = toneMarkRules
-		.filter((r) => r.lesson === lesson)
+		.filter((r) => r.lesson === legacy)
 		.map(generateToneMarkRuleCard);
 
 	return [...ruleCards, ...markRuleCards];
 }
 
+/** Every review card the lesson at `lesson` (a 1-based position in the declared sequence) teaches; empty for an undeclared position. */
 export function generateCardsForLesson(lesson: number): PropertyCard[] {
+	const legacy = legacyNumberAt(lesson);
+	if (legacy === undefined) return [];
 	const consonantCards = consonants
-		.filter((c) => c.lesson === lesson)
+		.filter((c) => c.lesson === legacy)
 		.flatMap(generateConsonantCards);
 
 	const vowelCards = vowels
-		.filter((v) => v.lesson === lesson)
+		.filter((v) => v.lesson === legacy)
 		.flatMap(generateVowelCards);
 
 	const toneMarkCards = toneMarks
-		.filter((t) => t.lesson === lesson)
+		.filter((t) => t.lesson === legacy)
 		.flatMap(generateToneMarkCards);
 
 	const rareVowelCards = rareVowels
-		.filter((v) => v.lesson === lesson)
+		.filter((v) => v.lesson === legacy)
 		.flatMap(generateRareVowelCards);
 
 	const numeralCards = thaiNumerals
-		.filter((n) => n.lesson === lesson)
+		.filter((n) => n.lesson === legacy)
 		.flatMap(generateNumeralCards);
 
 	const toneCards = generateToneRuleCards(lesson);

@@ -23,6 +23,9 @@
  *   `navigator.mediaDevices.getUserMedia` whose outcome `setMicPermission`
  *   chooses (jsdom has neither) — between them enough for a test to drive
  *   `useMicRecorder`'s real state machine, refusal included.
+ * - a stubbed `fetch` (jsdom has none), returning JSON bodies registered
+ *   with `stubDeckJson`/`stubDeckFetchError` and 404-ing anything else, for
+ *   `DeckSlide`'s deck-JSON load.
  *
  * Test files still need their own `// @vitest-environment jsdom` docblock —
  * the pragma only works in the test file itself.
@@ -139,10 +142,14 @@ export function getFakeLocalStorage(): FakeLocalStorage {
 
 export class StubAudio {
 	static createdUrls: string[] = [];
+	/** Every clip constructed this test, in order, so a test can drive one on. */
+	static instances: StubAudio[] = [];
 	currentTime = 0;
+	private readonly listeners = new Map<string, Set<() => void>>();
 
 	constructor(readonly src?: string) {
 		StubAudio.createdUrls.push(src ?? "");
+		StubAudio.instances.push(this);
 	}
 
 	play(): Promise<void> {
@@ -150,6 +157,25 @@ export class StubAudio {
 	}
 
 	pause(): void {}
+
+	// `DeckSlide` plays a slide's narration as a *sequence*, stepping to the
+	// next clip on "ended" — so the double has to carry listeners, not just
+	// `play`. Without them the component throws rather than the test failing on
+	// what it meant to assert.
+	addEventListener(type: string, handler: () => void): void {
+		const forType = this.listeners.get(type) ?? new Set<() => void>();
+		forType.add(handler);
+		this.listeners.set(type, forType);
+	}
+
+	removeEventListener(type: string, handler: () => void): void {
+		this.listeners.get(type)?.delete(handler);
+	}
+
+	/** Fire an event on this clip — `dispatch("ended")` advances a sequence. */
+	dispatch(type: string): void {
+		for (const handler of [...(this.listeners.get(type) ?? [])]) handler();
+	}
 }
 
 /** URLs passed to `new Audio(url)` since the current test began. */
@@ -212,6 +238,24 @@ export class StubMediaRecorder {
 	}
 }
 
+// --- fetch stub (jsdom has none; `DeckSlide` loads deck JSON with it) ---
+
+type FetchOutcome =
+	| { readonly kind: "json"; readonly body: unknown; readonly status: number }
+	| { readonly kind: "error" };
+
+let fetchOutcomes = new Map<string, FetchOutcome>();
+
+/** The next `fetch(url)` in this test resolves with `body` as JSON. */
+export function stubDeckJson(url: string, body: unknown, status = 200): void {
+	fetchOutcomes.set(url, { kind: "json", body, status });
+}
+
+/** The next `fetch(url)` in this test rejects, as a network failure would. */
+export function stubDeckFetchError(url: string): void {
+	fetchOutcomes.set(url, { kind: "error" });
+}
+
 // --- Canvas 2D stub (jsdom has no 2D context without the canvas package) ---
 
 export const canvas2d = {
@@ -231,6 +275,26 @@ beforeEach(() => {
 	globalThis.localStorage = fakeLocalStorage;
 	globalThis.Audio = StubAudio as unknown as typeof Audio;
 	StubAudio.createdUrls = [];
+	StubAudio.instances = [];
+	fetchOutcomes = new Map();
+	globalThis.fetch = (async (input: RequestInfo | URL) => {
+		const url = typeof input === "string" ? input : input.toString();
+		const outcome = fetchOutcomes.get(url);
+		if (!outcome || outcome.kind === "error") {
+			return {
+				ok: false,
+				status: 404,
+				json: async () => {
+					throw new Error(`no fetch stub registered for ${url}`);
+				},
+			} as unknown as Response;
+		}
+		return {
+			ok: outcome.status >= 200 && outcome.status < 300,
+			status: outcome.status,
+			json: async () => outcome.body,
+		} as unknown as Response;
+	}) as typeof fetch;
 	objectUrlCount = 0;
 	revokedUrls = [];
 	URL.createObjectURL = () => {

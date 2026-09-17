@@ -1,0 +1,397 @@
+{
+  "version": 1,
+  "task": "5.2",
+  "pass": "before",
+  "result": {
+    "outcome": "unsupported",
+    "reason": "plans/lesson-rebuild/phase-5-vocabulary-palace/task-5.2-word-class-backfill.md: no grammar covers '.md' files (and 1 more) — 18 violations were measured before this and are not shown"
+  },
+  "findings": [
+    {
+      "rule": "length",
+      "severity": "warning",
+      "tier": "function",
+      "measured": 56,
+      "threshold": 50,
+      "symbol": {
+        "kind": "function",
+        "name": "rule_class",
+        "path": "scripts/backfill-word-class.py",
+        "bytes": {
+          "startIndex": 10067,
+          "endIndex": 12090
+        },
+        "lines": {
+          "startRow": 275,
+          "endRow": 330
+        }
+      }
+    },
+    {
+      "rule": "length",
+      "severity": "warning",
+      "tier": "function",
+      "measured": 144,
+      "threshold": 50,
+      "symbol": {
+        "kind": "function",
+        "name": "backfill",
+        "path": "scripts/backfill-word-class.py",
+        "bytes": {
+          "startIndex": 16439,
+          "endIndex": 21555
+        },
+        "lines": {
+          "startRow": 458,
+          "endRow": 601
+        }
+      }
+    },
+    {
+      "rule": "length",
+      "severity": "warning",
+      "tier": "function",
+      "measured": 59,
+      "threshold": 50,
+      "symbol": {
+        "kind": "function",
+        "name": "main",
+        "path": "scripts/backfill-word-class.py",
+        "bytes": {
+          "startIndex": 23937,
+          "endIndex": 26236
+        },
+        "lines": {
+          "startRow": 667,
+          "endRow": 725
+        }
+      }
+    },
+    {
+      "rule": "cyclomatic-complexity",
+      "severity": "warning",
+      "measured": 26,
+      "threshold": 10,
+      "tier": "function",
+      "symbol": {
+        "kind": "function",
+        "name": "rule_class",
+        "path": "scripts/backfill-word-class.py",
+        "bytes": {
+          "startIndex": 10067,
+          "endIndex": 12090
+        },
+        "lines": {
+          "startRow": 275,
+          "endRow": 330
+        }
+      }
+    },
+    {
+      "rule": "cyclomatic-complexity",
+      "severity": "warning",
+      "measured": 25,
+      "threshold": 10,
+      "tier": "function",
+      "symbol": {
+        "kind": "function",
+        "name": "backfill",
+        "path": "scripts/backfill-word-class.py",
+        "bytes": {
+          "startIndex": 16439,
+          "endIndex": 21555
+        },
+        "lines": {
+          "startRow": 458,
+          "endRow": 601
+        }
+      }
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 3.57,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "rule_class",
+        "path": "scripts/backfill-word-class.py",
+        "bytes": {
+          "startIndex": 10067,
+          "endIndex": 12090
+        },
+        "lines": {
+          "startRow": 275,
+          "endRow": 330
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "lexical_features",
+        "path": "scripts/backfill-word-class.py",
+        "bytes": {
+          "startIndex": 12314,
+          "endIndex": 13214
+        },
+        "lines": {
+          "startRow": 340,
+          "endRow": 362
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "__init__",
+        "path": "scripts/backfill-word-class.py",
+        "bytes": {
+          "startIndex": 14302,
+          "endIndex": 15084
+        },
+        "lines": {
+          "startRow": 392,
+          "endRow": 413
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "predict",
+        "path": "scripts/backfill-word-class.py",
+        "bytes": {
+          "startIndex": 15272,
+          "endIndex": 16022
+        },
+        "lines": {
+          "startRow": 419,
+          "endRow": 442
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "render_baseline",
+        "path": "scripts/backfill-word-class.py",
+        "bytes": {
+          "startIndex": 21833,
+          "endIndex": 23428
+        },
+        "lines": {
+          "startRow": 612,
+          "endRow": 649
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "main",
+        "path": "scripts/backfill-word-class.py",
+        "bytes": {
+          "startIndex": 23937,
+          "endIndex": 26236
+        },
+        "lines": {
+          "startRow": 667,
+          "endRow": 725
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "length",
+      "severity": "warning",
+      "measured": 730,
+      "threshold": 400,
+      "tier": "file",
+      "path": "scripts/backfill-word-class.py"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "(anonymous)",
+        "path": "src/domain/vocabulary/services/WordClassBackfill.test.ts",
+        "bytes": {
+          "startIndex": 1182,
+          "endIndex": 2483
+        },
+        "lines": {
+          "startRow": 32,
+          "endRow": 71
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 2.7,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "(anonymous)",
+        "path": "src/domain/vocabulary/services/WordClassBackfill.test.ts",
+        "bytes": {
+          "startIndex": 2617,
+          "endIndex": 3978
+        },
+        "lines": {
+          "startRow": 75,
+          "endRow": 111
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "cyclomatic-complexity",
+      "severity": "warning",
+      "measured": 13,
+      "threshold": 10,
+      "tier": "function",
+      "symbol": {
+        "kind": "function",
+        "name": "measureAccuracy",
+        "path": "src/domain/vocabulary/services/WordClassBackfill.ts",
+        "bytes": {
+          "startIndex": 8514,
+          "endIndex": 9679
+        },
+        "lines": {
+          "startRow": 248,
+          "endRow": 288
+        }
+      }
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 1,
+      "tier": "function",
+      "symbol": {
+        "name": "countBackfillStates",
+        "path": "src/domain/vocabulary/services/WordClassBackfill.ts",
+        "bytes": {
+          "startIndex": 5699,
+          "endIndex": 6247
+        },
+        "lines": {
+          "startRow": 160,
+          "endRow": 178
+        }
+      },
+      "check": "undocumented-export"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "reportSourceDisagreements",
+        "path": "src/domain/vocabulary/services/WordClassBackfill.ts",
+        "bytes": {
+          "startIndex": 7149,
+          "endIndex": 7726
+        },
+        "lines": {
+          "startRow": 202,
+          "endRow": 223
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "measureAccuracy",
+        "path": "src/domain/vocabulary/services/WordClassBackfill.ts",
+        "bytes": {
+          "startIndex": 8514,
+          "endIndex": 9679
+        },
+        "lines": {
+          "startRow": 248,
+          "endRow": 288
+        }
+      },
+      "check": "density-below-floor"
+    }
+  ],
+  "adapters": [
+    {
+      "tool": "biome",
+      "selection": {
+        "evidence": "configured",
+        "by": "biome.json"
+      },
+      "program": null,
+      "result": {
+        "outcome": "unsupported",
+        "reason": "biome did not resolve: 'biome' on PATH (31 entries). Its findings are missing from this report — that is a gap and not a pass."
+      },
+      "files": 3,
+      "findings": 0,
+      "refusedPaths": 0,
+      "outsideAnalysis": 0,
+      "refusedShape": 0
+    },
+    {
+      "tool": "ruff",
+      "selection": {
+        "evidence": "none",
+        "considered": [
+          "ruff"
+        ]
+      },
+      "program": null,
+      "result": {
+        "outcome": "unsupported",
+        "reason": "no native linter covered these files: looked for a configuration file for ruff at the repository root, and for ruff on PATH in a repository of that ecosystem. Their findings are missing from this report — that is a gap and not a pass."
+      },
+      "files": 1,
+      "findings": 0,
+      "refusedPaths": 0,
+      "outsideAnalysis": 0,
+      "refusedShape": 0
+    }
+  ]
+}

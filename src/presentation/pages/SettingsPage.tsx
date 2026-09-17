@@ -9,6 +9,11 @@ import {
 	setConversationBackendToken,
 	setConversationBackendUrl,
 } from "../../infrastructure/conversation/ConversationBackendSettings";
+import {
+	getLessonFormat,
+	setLessonFormat,
+} from "../../infrastructure/settings/LessonFormatSettings";
+import { clearOrientationSeen } from "../../infrastructure/settings/OrientationSettings";
 import { ConfirmDialog } from "../components/molecules/ConfirmDialog";
 import { useApp } from "../hooks/useApp";
 
@@ -36,6 +41,7 @@ export function SettingsPage() {
 	const { data, refresh } = useApp();
 	const navigate = useNavigate();
 	const fileInputRef = useRef<HTMLInputElement>(null);
+	const [lessonFormat, setLessonFormatState] = useState(getLessonFormat);
 	const [importStatus, setImportStatus] = useState<{
 		type: "success" | "error";
 		message: string;
@@ -159,6 +165,33 @@ export function SettingsPage() {
 	return (
 		<div className="space-y-8 py-4">
 			<h1 className="text-2xl font-bold">Settings</h1>
+
+			{/* Lesson format */}
+			<section className="space-y-2">
+				<h2
+					className="text-sm font-semibold"
+					style={{ color: "var(--color-text-muted)" }}
+				>
+					Lesson Material
+				</h2>
+				<p className="text-sm" style={{ color: "var(--color-text-muted)" }}>
+					{lessonFormat === "deck"
+						? "Using the new in-house lessons: own illustrations, mnemonics staged by consonant class, and a question before each reveal. Beta — switch back any time."
+						: "Using the original video lessons. The new in-house lessons are available as a beta."}
+				</p>
+				<Button
+					type="button"
+					onClick={() => {
+						const next = lessonFormat === "deck" ? "video" : "deck";
+						setLessonFormat(next);
+						setLessonFormatState(next);
+					}}
+				>
+					{lessonFormat === "deck"
+						? "Switch back to video lessons"
+						: "Try the new lessons (beta)"}
+				</Button>
+			</section>
 
 			{/* Export */}
 			<section className="space-y-2">
@@ -407,6 +440,11 @@ export function SettingsPage() {
 				isDestructive
 				onConfirm={() => {
 					data.reset();
+					// Its own key, so the state repository's reset does not reach it.
+					// Somebody starting the journey again should meet the
+					// orientation again rather than be silently skipped past the
+					// part that explains how any of this works.
+					clearOrientationSeen();
 					refresh();
 					navigate("/");
 				}}

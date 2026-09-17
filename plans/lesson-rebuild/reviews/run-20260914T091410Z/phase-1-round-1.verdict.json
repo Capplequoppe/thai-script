@@ -1,0 +1,326 @@
+{
+  "findings": [
+    {
+      "id": "F1",
+      "action": "fixed",
+      "message": "Task 1.4's AC1 was never actually satisfied by production code: DECK_LESSON_IDS in lessonContent.ts (task 1.1a's file) never gained \"lesson-01\", so resolveLessonContent(\"lesson-01\") still returned the video arm. lesson01Deck.test.ts's own module comment documented this as a deliberate gap (\"Making that edit here was tried and reverted\") and its equivalence test explicitly asserted `DECK_LESSON_IDS.has(id)` was false at the end, i.e. the test proved the wiring was absent rather than proving AC1. This is exactly the 'test pinned to the wrong thing reads as covered' failure mode the review role warns about — task 1.4's AC1 [red] proof covered card/vocabulary equivalence, not the actual dispatch behavior AC1 describes (\"Opening /lesson/1 renders in-house slides and no video element\"). Root cause: a coordination gap between 1.1a and 1.4 — no task's `covers` included both lessonContent.ts and the wiring change, and 1.4 correctly avoided editing a file it didn't own rather than silently breaking 1.1a's tests.",
+      "severity": 9,
+      "effort": 3,
+      "attribution": "orchestration",
+      "file": "src/domain/script/data/lessonContent.ts",
+      "line": 82,
+      "category": "criteria-not-proven"
+    },
+    {
+      "id": "F2",
+      "action": "fixed",
+      "message": "LESSON_ASSET_ROOT (and its Python mirror LESSON_ASSET_URL_ROOT) was \"/lessons\", omitting the app's deploy base path (\"/thai-script/\", vite.config.ts:11) that every existing asset URL in the codebase (symbols.ts's ~44 videoUrl/audioUrl fields) is hardcoded with. Confirmed live against the dev server before my fix: fetch(\"/lessons/lesson-01/deck.json\") returned 404 while fetch(\"/thai-script/lessons/lesson-01/deck.json\") returned 200 — so even with F1 fixed, DeckSlide would have shown \"Couldn't load this lesson\" for every real user. This would have silently broken the entire deck feature in the deployed app despite every unit test passing, since unit tests stub fetch and never exercise the real base path.",
+      "severity": 9,
+      "effort": 3,
+      "attribution": "task-execution",
+      "file": "src/domain/script/data/lessonContent.ts",
+      "line": 51,
+      "category": "correctness"
+    },
+    {
+      "id": "F3",
+      "action": "fixed",
+      "message": "e2e/lesson-intro.spec.ts (in task 1.1b's covers, subject of its AC8) still asserted a <video> element and a single-click transition to the maaw-maa card — behavior the phase's own README flagged as 'What will bite' and explicitly assigned to 1.1b to own. 1.1b's AC8 was WAIVED with the stated reason that no verify command runs Playwright, so the break was never observed. Once F1 and F2 are fixed (lesson 1 genuinely deck-served), this spec fails for real, exactly as predicted. Rewrote the spec to assert the deck's opening slide instead of a video, and to drive the deck's own Next/Continue/Show-Answer flow to the maaw-maa card; verified all three cases pass against a live dev server, and re-ran the sibling e2e/home.spec.ts to confirm no other regression.",
+      "severity": 6,
+      "effort": 3,
+      "attribution": "task-execution",
+      "file": "e2e/lesson-intro.spec.ts",
+      "line": 1,
+      "category": "test-coverage"
+    }
+  ],
+  "lessons": [
+    {
+      "lesson": "When a task's `covers` splits a file (e.g. lessonContent.ts) from the task that needs to change it (e.g. wiring a new lesson into a Set declared there), the executor correctly refuses to edit out-of-scope files — but nobody's `covers` then includes the wiring step, so it silently never happens. The phase-level reviewer is the first point that can see and cl… [clipped — full text in the transcript]"
+    },
+    {
+      "lesson": "This repo hardcodes the Vite `base: \"/thai-script/\"` deploy prefix into every asset URL string (symbols.ts's videoUrl/audioUrl) rather than deriving it from BASE_URL; a new asset-URL constant that omits it 404s in a live browser while every stubbed-fetch unit test stays green. Worth a live `npx playwright test` / dev-server curl check whenever a new hardcod… [clipped — full text in the transcript]"
+    },
+    {
+      "lesson": "e2e/lesson-intro.spec.ts is excluded from `npm test` and no `verify` command in this plan runs Playwright, so a real regression there is invisible to every automated gate. Playwright browsers were already installed and `pnpm dev` came up cleanly in this sandbox, so 'no verify covers it' is not the same as 'it cannot be checked' — worth actually running it r… [clipped — full text in the transcript]"
+    }
+  ],
+  "acValidations": [
+    {
+      "task_id": "1.1a",
+      "criterion": "AC1",
+      "locator": "src/domain/script/data/lessonContent.test.ts::lesson id charset",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "1.1a",
+      "criterion": "AC2",
+      "locator": "src/domain/script/data/lessonContent.ts (exhaustive switch, tsc verify)",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "1.1a",
+      "criterion": "AC3",
+      "locator": "src/domain/script/data/lessonContent.test.ts::the deck schema's retrieval requirement",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "1.1a",
+      "criterion": "AC4",
+      "locator": "src/domain/script/data/lessonSequence.test.ts",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "1.1a",
+      "criterion": "AC5",
+      "locator": "src/domain/script/data/lessonSequence.test.ts",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "1.1a",
+      "criterion": "AC6",
+      "locator": "src/domain/script/data/lessonContent.test.ts (byte-identical fixture case)",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "1.1a",
+      "criterion": "AC7",
+      "locator": "src/domain/script/data/lessonContent.test.ts::content resolution states",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "1.1a",
+      "criterion": "AC8",
+      "locator": "src/domain/script/data/lessonSequence.test.ts",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "1.1a",
+      "criterion": "AC9",
+      "locator": "src/presentation/components/organisms/DeckSlide.test.tsx::DeckSlide — rule slide",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "1.1b",
+      "criterion": "AC1",
+      "locator": "src/infrastructure/persistence/Storage.test.ts::converts every persisted store together onto the declared sequence",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "1.1b",
+      "criterion": "AC2",
+      "locator": "src/infrastructure/persistence/Storage.test.ts::runs the lesson conversion inside migrateState, not per consumer",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "1.1b",
+      "criterion": "AC3",
+      "locator": "src/domain/vocabulary/services/VocabularyLessonService.test.ts::returns the same unlocked words before and after the lesson-identity migration",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "1.1b",
+      "criterion": "AC4",
+      "locator": "src/infrastructure/persistence/MergeService.test.ts::unions a migrated and an unmigrated state across all five stores, losing nothing",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "1.1b",
+      "criterion": "AC5",
+      "locator": "src/infrastructure/persistence/Storage.test.ts::never reads unreadable as empty",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "1.1b",
+      "criterion": "AC6",
+      "locator": "src/domain/script/services/ScriptLessonService.test.ts::leaves no lesson-count literal in any of the named files",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "1.1b",
+      "criterion": "AC7",
+      "locator": "src/presentation/components/organisms/LessonPath.test.tsx::renders one node per declared lesson",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "1.1b",
+      "criterion": "AC8",
+      "locator": "e2e/lesson-intro.spec.ts (rewritten this round; confirmed passing live)",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "1.1b",
+      "criterion": "AC9",
+      "locator": "src/domain/script/services/ScriptLessonService.test.ts::refuses a lesson with an incomplete predecessor, naming that predecessor",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "1.2",
+      "criterion": "AC1",
+      "locator": "src/presentation/components/organisms/LessonIntro.test.tsx (both dispatch cases; fixed this round for the deck arm to actually be reachable at lesson-01 in prod)",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "1.2",
+      "criterion": "AC2",
+      "locator": "src/presentation/components/organisms/DeckSlide.test.tsx::renders the validation failure and no slide content",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "1.2",
+      "criterion": "AC3",
+      "locator": "src/presentation/components/organisms/DeckSlide.test.tsx::an empty deck and a failed fetch produce different output",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "1.2",
+      "criterion": "AC4",
+      "locator": "src/presentation/components/organisms/DeckSlide.test.tsx::shows markup characters literally rather than interpreting them",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "1.2",
+      "criterion": "AC5",
+      "locator": "src/presentation/components/organisms/DeckSlide.test.tsx::plays audio again when advancing to a slide sharing the same clip",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "1.2",
+      "criterion": "AC6",
+      "locator": "src/presentation/components/organisms/LessonIntro.test.tsx::stepping backward and forward after completion does not call it again",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "1.2",
+      "criterion": "AC7",
+      "locator": "src/presentation/components/organisms/DeckSlide.test.tsx::keeps the reveal slide's answer hidden until the learner acts",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "1.3",
+      "criterion": "AC1",
+      "locator": "src/domain/script/data/generatedDeck.test.ts::validates against the deck schema",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "1.3",
+      "criterion": "AC2",
+      "locator": "src/domain/script/data/generatedDeck.test.ts::issues no API call when nothing in the script changed",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "1.3",
+      "criterion": "AC3",
+      "locator": "src/domain/script/data/generatedDeck.test.ts::is required, and its absence stops the run naming it",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "1.3",
+      "criterion": "AC4",
+      "locator": "src/domain/script/data/generatedDeck.test.ts::refuses a path that escapes the lesson directory, and a refused lesson id",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "1.3",
+      "criterion": "AC5",
+      "locator": "src/domain/script/data/generatedDeck.test.ts::never reaches a committed artifact, even when the vendor echoes it back",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "1.3",
+      "criterion": "AC6",
+      "locator": "src/domain/script/data/generatedDeck.test.ts::retries a mismatched take and records the outcome that finally passed",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "1.3",
+      "criterion": "AC7",
+      "locator": "src/domain/script/data/generatedDeck.test.ts::record a failed segment as failed, never as one that is simply absent",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "1.4",
+      "criterion": "AC1",
+      "locator": "src/domain/script/data/lesson01Deck.test.ts::resolves to the deck arm: opening /lesson/1 renders in-house slides, not a video (added this round)",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "1.4",
+      "criterion": "AC2",
+      "locator": "src/domain/script/data/lesson01Deck.test.ts::teaches exactly the symbols lesson 1 declares — no more, no fewer",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "1.4",
+      "criterion": "AC3",
+      "locator": "src/domain/script/data/lesson01Deck.test.ts::every Thai example word resolves to a vocabulary.json entry",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "1.4",
+      "criterion": "AC4",
+      "locator": "src/domain/script/data/lesson01Deck.test.ts::produces identical scheduled cards and unlocked vocabulary whether lesson 1 is on the video arm or the deck arm (restructured this round to reflect that lesson-01 is now really deck-served)",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "1.4",
+      "criterion": "AC5",
+      "locator": "src/domain/script/data/lesson01Deck.test.ts::clears every piece of narration and mnemonic prose in the deck",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "1.4",
+      "criterion": "AC6",
+      "locator": "src/domain/script/data/lesson01Deck.test.ts::every asset the deck references exists on disk (path prefix corrected this round to match the real deploy base path)",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "1.5",
+      "criterion": "AC1",
+      "locator": "src/domain/script/data/originality.test.ts (corpus covers both PDF sets by source tag)",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "1.5",
+      "criterion": "AC2",
+      "locator": "src/domain/script/data/originality.test.ts (no entry reversible to text)",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "1.5",
+      "criterion": "AC3",
+      "locator": "src/domain/script/data/originality.test.ts (n=5 at the single call site)",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "1.5",
+      "criterion": "AC4",
+      "locator": "src/domain/script/data/originality.test.ts (canary phrase detected)",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "1.5",
+      "criterion": "AC5",
+      "locator": "src/domain/script/data/originality.test.ts (undersized corpus fails loudly)",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "1.5",
+      "criterion": "AC6",
+      "locator": "src/domain/script/data/originality.test.ts (MEASURED_DETECTION, updated to 46/82 this phase by task 1.4's mnemonic rewrite)",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "1.5",
+      "criterion": "AC7",
+      "locator": "src/domain/script/data/originality.test.ts (three check states)",
+      "verdict": "valid"
+    }
+  ],
+  "reviewedAt": "1e6d0b68168d3bafad9c691a7f4d526b711e8f44",
+  "answersAt": "4ff8137cd92c10e3",
+  "enforcement": [
+    "reviewer edited 1 path(s) the plan does not declare and they were reverted: plans/lesson-rebuild/resources.jsonl"
+  ],
+  "repairsVerified": true
+}

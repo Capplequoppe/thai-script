@@ -1,0 +1,54 @@
+# The tray and the tooth, two vowels below, and the falling tone
+
+lesson: lesson-05
+
+<!--
+Opening band, lesson 5 of 5. Declares พ and ฟ, and the vowels ุ and ู.
+previews: none
+-->
+
+## exposition tray-and-tooth
+heading: phaaw phaan and faaw fan
+- พ is three prongs in a row with every tip stopping level and the head curled outside the left rim — a tray set flat.
+- ฟ is that same figure with its last stroke grown taller than the rest, one tooth outgrowing the row. Its name word is fan, a tooth, which is a useful accident.
+- พ pushes p out on a breath. ฟ brushes breath past the teeth as f. Both breathe; neither hums and neither stops.
+
+## retrieval which-outgrew
+reveal: which-outgrew-answer
+prompt: พ and ฟ share a shape. Say the one difference, and which letter carries it.
+
+## reveal which-outgrew-answer
+retrieval: which-outgrew
+- The final stroke is taller than the others.
+- ฟ carries it. พ keeps all three tips level.
+
+## exposition u-vowels
+heading: The two vowels that hang below the line
+- ุ is a small hook hanging under the floor of its letter: a short u, lips rounded for one beat. ชุด (chút) is an outfit or a set.
+- ู doubles that hook into a deeper ladle: a long uu, held. ดู (duu) is to watch or to look at.
+- These are the first vowels you have met that live below the letter rather than above, before or after it. Thai uses all four positions.
+
+## rule low-dead-long
+rule: low-dead-long
+
+## exposition falling
+heading: Low class, stopped, on a long vowel
+- Last lesson a low class letter went high on a short vowel, stopped dead. Lengthen that vowel and the pitch does something else entirely: it starts high and drops.
+- พูด (phûut) is to speak. พ is low class, ู is long, and ด seals the syllable dead — so the pitch falls through it.
+- มาก (mâak) and ยาก (yâak) do the same thing with the long า and the k-stop of ก. You have been reading them since lesson three; now you know why they fall.
+- Set that beside พบ (phóp), to meet. Same letter, same kind of stop, short vowel — so it goes high instead.
+
+## retrieval short-or-long
+reveal: short-or-long-answer
+prompt: พูด and พบ both open on พ and both end dead. One falls and one goes high. Which is which, and what is the only thing separating them?
+
+## reveal short-or-long-answer
+retrieval: short-or-long
+- พูด falls. พบ goes high.
+- Vowel length, and nothing else. ู is long, so the low class dead rule sends it falling; พบ has a short vowel, so the rule you learned last lesson sends it up.
+
+## exposition more-words
+heading: Words you can read now
+- ฟัง (fang) is to listen. ฟัน (fan) is a tooth. พา (phaa) is to lead someone somewhere. พวก (phûak) is a group of people.
+- มุม (mum) is a corner or an angle — the short hook under ม, and a word you can read at a glance.
+- Twelve consonants and seven vowels in, and the words are ordinary ones. That was the point of the order they came in.

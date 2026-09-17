@@ -1,5 +1,26 @@
-import type { LearnerState } from "../../domain/shared/types";
+import type { LearnerState, PendingCatchUp } from "../../domain/shared/types";
 
+function mergePendingCatchUps(
+	current: readonly PendingCatchUp[],
+	incoming: readonly PendingCatchUp[],
+): PendingCatchUp[] {
+	const byLesson = new Map<number, string[]>();
+	for (const entry of [...current, ...incoming]) {
+		const ids = byLesson.get(entry.lessonNumber) ?? [];
+		byLesson.set(entry.lessonNumber, [...new Set([...ids, ...entry.cardIds])]);
+	}
+	return [...byLesson.entries()].map(([lessonNumber, cardIds]) => ({
+		lessonNumber,
+		cardIds,
+	}));
+}
+
+/**
+ * Unions two devices' learner states without losing anything from either
+ * side. Both inputs are expected in the current (migrated) representation —
+ * the storage boundary runs `migrateState` on an imported blob before calling
+ * this, so an export from an older device converts exactly once, there.
+ */
 export function mergeLearnerStates(
 	current: LearnerState,
 	incoming: LearnerState,
@@ -65,9 +86,19 @@ export function mergeLearnerStates(
 		...new Set([...current.achievements, ...incoming.achievements]),
 	];
 
+	const pendingCatchUps =
+		current.pendingCatchUps || incoming.pendingCatchUps
+			? mergePendingCatchUps(
+					current.pendingCatchUps ?? [],
+					incoming.pendingCatchUps ?? [],
+				)
+			: undefined;
+
 	return {
 		completedLessons,
-		currentLesson: current.currentLesson,
+		// A lesson in progress on either device survives the merge; the
+		// device doing the merging wins only when both have one.
+		currentLesson: current.currentLesson ?? incoming.currentLesson,
 		cards,
 		vocabCards,
 		grammarCards,
@@ -75,6 +106,6 @@ export function mergeLearnerStates(
 		sessionHistory: [...sessionMap.values()],
 		achievements,
 		apprenticeLimits: current.apprenticeLimits,
-		pendingCatchUps: current.pendingCatchUps,
+		pendingCatchUps,
 	};
 }

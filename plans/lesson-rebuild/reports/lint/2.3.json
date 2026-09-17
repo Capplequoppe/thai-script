@@ -1,0 +1,364 @@
+{
+  "version": 1,
+  "task": "2.3",
+  "pass": "after",
+  "result": {
+    "outcome": "incomplete",
+    "reason": "biome: biome did not resolve: 'biome' on PATH (31 entries). Its findings are missing from this report — that is a gap and not a pass."
+  },
+  "findings": [
+    {
+      "rule": "length",
+      "severity": "warning",
+      "tier": "function",
+      "measured": 95,
+      "threshold": 50,
+      "symbol": {
+        "kind": "function",
+        "name": "generateConsonantCards",
+        "path": "src/domain/script/services/ScriptCardGenerator.ts",
+        "bytes": {
+          "startIndex": 5760,
+          "endIndex": 8996
+        },
+        "lines": {
+          "startRow": 171,
+          "endRow": 265
+        }
+      }
+    },
+    {
+      "rule": "length",
+      "severity": "warning",
+      "measured": 581,
+      "threshold": 400,
+      "tier": "file",
+      "path": "src/domain/script/services/ScriptCardGenerator.ts"
+    },
+    {
+      "rule": "naming",
+      "severity": "convention",
+      "measured": 1,
+      "threshold": 0,
+      "tier": "function",
+      "symbol": {
+        "kind": "function",
+        "name": "ClassBadge",
+        "path": "src/presentation/components/atoms/ClassBadge.tsx",
+        "bytes": {
+          "startIndex": 343,
+          "endIndex": 655
+        },
+        "lines": {
+          "startRow": 10,
+          "endRow": 20
+        }
+      }
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 1,
+      "tier": "function",
+      "symbol": {
+        "name": "ClassBadge",
+        "path": "src/presentation/components/atoms/ClassBadge.tsx",
+        "bytes": {
+          "startIndex": 336,
+          "endIndex": 655
+        },
+        "lines": {
+          "startRow": 10,
+          "endRow": 20
+        }
+      },
+      "check": "undocumented-export"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "(anonymous)",
+        "path": "src/presentation/components/atoms/DistrictBadge.test.tsx",
+        "bytes": {
+          "startIndex": 367,
+          "endIndex": 1311
+        },
+        "lines": {
+          "startRow": 8,
+          "endRow": 34
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "naming",
+      "severity": "convention",
+      "measured": 1,
+      "threshold": 0,
+      "tier": "function",
+      "symbol": {
+        "kind": "function",
+        "name": "DistrictBadge",
+        "path": "src/presentation/components/atoms/DistrictBadge.tsx",
+        "bytes": {
+          "startIndex": 1250,
+          "endIndex": 2003
+        },
+        "lines": {
+          "startRow": 32,
+          "endRow": 65
+        }
+      }
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 1,
+      "tier": "function",
+      "symbol": {
+        "name": "DistrictBadge",
+        "path": "src/presentation/components/atoms/DistrictBadge.tsx",
+        "bytes": {
+          "startIndex": 1243,
+          "endIndex": 2003
+        },
+        "lines": {
+          "startRow": 32,
+          "endRow": 65
+        }
+      },
+      "check": "undocumented-export"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "DistrictBadge",
+        "path": "src/presentation/components/atoms/DistrictBadge.tsx",
+        "bytes": {
+          "startIndex": 1250,
+          "endIndex": 2003
+        },
+        "lines": {
+          "startRow": 32,
+          "endRow": 65
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "length",
+      "severity": "warning",
+      "tier": "function",
+      "measured": 73,
+      "threshold": 50,
+      "symbol": {
+        "kind": "function",
+        "name": "ConsonantCard",
+        "path": "src/presentation/components/organisms/SymbolCard.tsx",
+        "bytes": {
+          "startIndex": 524,
+          "endIndex": 2460
+        },
+        "lines": {
+          "startRow": 14,
+          "endRow": 86
+        }
+      }
+    },
+    {
+      "rule": "length",
+      "severity": "warning",
+      "tier": "function",
+      "measured": 51,
+      "threshold": 50,
+      "symbol": {
+        "kind": "function",
+        "name": "ToneMarkCard",
+        "path": "src/presentation/components/organisms/SymbolCard.tsx",
+        "bytes": {
+          "startIndex": 3379,
+          "endIndex": 4554
+        },
+        "lines": {
+          "startRow": 131,
+          "endRow": 181
+        }
+      }
+    },
+    {
+      "rule": "naming",
+      "severity": "convention",
+      "measured": 1,
+      "threshold": 0,
+      "tier": "function",
+      "symbol": {
+        "kind": "function",
+        "name": "ConsonantCard",
+        "path": "src/presentation/components/organisms/SymbolCard.tsx",
+        "bytes": {
+          "startIndex": 524,
+          "endIndex": 2460
+        },
+        "lines": {
+          "startRow": 14,
+          "endRow": 86
+        }
+      }
+    },
+    {
+      "rule": "naming",
+      "severity": "convention",
+      "measured": 1,
+      "threshold": 0,
+      "tier": "function",
+      "symbol": {
+        "kind": "function",
+        "name": "ToneMarkCard",
+        "path": "src/presentation/components/organisms/SymbolCard.tsx",
+        "bytes": {
+          "startIndex": 3379,
+          "endIndex": 4554
+        },
+        "lines": {
+          "startRow": 131,
+          "endRow": 181
+        }
+      }
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 1,
+      "tier": "function",
+      "symbol": {
+        "name": "ConsonantCard",
+        "path": "src/presentation/components/organisms/SymbolCard.tsx",
+        "bytes": {
+          "startIndex": 517,
+          "endIndex": 2460
+        },
+        "lines": {
+          "startRow": 14,
+          "endRow": 86
+        }
+      },
+      "check": "undocumented-export"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 1,
+      "tier": "function",
+      "symbol": {
+        "name": "ToneMarkCard",
+        "path": "src/presentation/components/organisms/SymbolCard.tsx",
+        "bytes": {
+          "startIndex": 3372,
+          "endIndex": 4554
+        },
+        "lines": {
+          "startRow": 131,
+          "endRow": 181
+        }
+      },
+      "check": "undocumented-export"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "ToneMarkCard",
+        "path": "src/presentation/components/organisms/SymbolCard.tsx",
+        "bytes": {
+          "startIndex": 3379,
+          "endIndex": 4554
+        },
+        "lines": {
+          "startRow": 131,
+          "endRow": 181
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 2.33,
+      "threshold": 5,
+      "tier": "file",
+      "path": "src/presentation/components/organisms/SymbolCard.tsx",
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 1,
+      "tier": "function",
+      "symbol": {
+        "name": "classCueState",
+        "path": "src/presentation/utils/consonantClassColor.ts",
+        "bytes": {
+          "startIndex": 1569,
+          "endIndex": 1786
+        },
+        "lines": {
+          "startRow": 40,
+          "endRow": 45
+        }
+      },
+      "check": "undocumented-export"
+    }
+  ],
+  "adapters": [
+    {
+      "tool": "biome",
+      "selection": {
+        "evidence": "configured",
+        "by": "biome.json"
+      },
+      "program": null,
+      "result": {
+        "outcome": "unsupported",
+        "reason": "biome did not resolve: 'biome' on PATH (31 entries). Its findings are missing from this report — that is a gap and not a pass."
+      },
+      "files": 3,
+      "findings": 0,
+      "refusedPaths": 0,
+      "outsideAnalysis": 0,
+      "refusedShape": 0
+    },
+    {
+      "tool": "no linter this feature ships",
+      "selection": {
+        "evidence": "none",
+        "considered": []
+      },
+      "program": null,
+      "result": {
+        "outcome": "unsupported",
+        "reason": "no native linter covered these files: looked for a configuration file for no linter this feature ships at the repository root, and for no linter this feature ships on PATH in a repository of that ecosystem. Their findings are missing from this report — that is a gap and not a pass."
+      },
+      "files": 5,
+      "findings": 0,
+      "refusedPaths": 0,
+      "outsideAnalysis": 0,
+      "refusedShape": 0
+    }
+  ]
+}

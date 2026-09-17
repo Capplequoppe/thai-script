@@ -1,0 +1,7 @@
+{
+	"comment": "The vendor rejects every call and echoes the request back, credential included — the shape that leaks a key into a committed artifact.",
+	"script": "lesson-02.md",
+	"errorsFor": {
+		"Three letters share a district today, and a district is a class.": 9
+	}
+}

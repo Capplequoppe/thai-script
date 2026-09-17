@@ -6,7 +6,7 @@ import { defineConfig } from "vitest/config";
 
 export default defineConfig({
 	test: {
-		exclude: ["e2e/**", "node_modules/**"],
+		exclude: ["e2e/**", "node_modules/**", ".plan-runner-worktrees/**"],
 	},
 	base: "/thai-script/",
 	build: {
@@ -37,6 +37,17 @@ export default defineConfig({
 		},
 	},
 	server: {
+		// The deck studio's backend (`scripts/studio_server.py`), proxied so the
+		// page can call it same-origin. Dev only, and deliberately not started
+		// by Vite: it holds several gigabytes of GPU models resident, which
+		// nobody running the app to *use* it should be made to pay for. Start it
+		// alongside when authoring — `npm run studio`.
+		proxy: {
+			"/__studio": {
+				target: "http://127.0.0.1:5174",
+				changeOrigin: false,
+			},
+		},
 		watch: {
 			// The dev server's default watcher covers the whole repo root (only
 			// node_modules/.git are excluded by chokidar's own defaults), which
@@ -51,12 +62,33 @@ export default defineConfig({
 			// project. None of these paths can ever affect what the app
 			// serves, so they are excluded from the watch outright rather than
 			// only from the client module graph.
+			// `scripts/*-env/` are Python virtual environments and a vendored
+			// fish-speech checkout — build inputs for the lesson-deck audio
+			// pipeline, and not a small number of files: each venv carries a
+			// full torch and CUDA stack, tens of thousands of files apiece.
+			// Watching them does not merely waste effort, it exhausts the
+			// kernel's inotify limit and the dev server dies on startup with
+			// `ENOSPC: System limit for number of file watchers reached`.
+			// Being gitignored does not help — chokidar watches the
+			// filesystem, not the index.
 			ignored: [
 				"**/plans/**",
 				"**/backend/**",
 				"**/test-results/**",
 				"**/playwright-report/**",
 				"**/.e2e-conversation-backend.pid",
+				"**/scripts/*-env/**",
+				// The deck studio writes here constantly — a rebuild lands sixty
+				// mp3s, a deck.json and a manifest, and saving one slide rewrites
+				// its Markdown. Each write broadcasts a full reload, so the page
+				// flashes and loses its place in the middle of the very operation
+				// it started. Nothing here is in the client module graph: the app
+				// fetches these over HTTP at runtime and the studio re-fetches
+				// through its own API, so a reload buys nothing and costs the
+				// author their scroll position, their selection and their
+				// unsaved edits.
+				"**/public/lessons/**",
+				"**/content/lessons/**",
 			],
 		},
 	},

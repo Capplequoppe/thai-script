@@ -1,0 +1,113 @@
+{
+	"lessonId": "lesson-10",
+	"title": "Three ways of saying a short vowel that counts as long",
+	"slides": [
+		{
+			"kind": "exposition",
+			"id": "ao-and-ai",
+			"heading": "เ-า, ไ and ใ",
+			"body": [
+				"เ-า brackets its consonant: the mast in front, the า post behind. The sound is ao, the yelp in the English how. เอา (ao) is to take or to want. เรา (rao) is we.",
+				"ไ is a mast whose top breaks into a zigzag, written in front and sounded after. The sound is ai, the English word I. ไป (bpai) is to go and ไฟ (fai) is fire.",
+				"ใ is the same sound with the top rolled into a curl instead. ใน (nai) is in, ใจ (jai) is the heart or mind, ใบ (bai) is a leaf.",
+				"ไ and ใ are not two sounds. They are two spellings of one sound, and which one a word uses is a fact about that word."
+			]
+		},
+		{
+			"kind": "exposition",
+			"id": "which-ai",
+			"heading": "Which ai a word takes",
+			"body": [
+				"ใ is the rare one. It is used in a closed list of about twenty common words and nowhere else; every other ai in the language is written ไ.",
+				"ใน, ใจ, ใบ and ใด (dai, meaning any) are four of them, and ใคร (khrai, who) is a fifth. You will meet the rest as words, not as a rule.",
+				"So the default is ไ. When you see the curled top instead, you are looking at one of the twenty, and the word itself is the thing to remember."
+			]
+		},
+		{
+			"kind": "retrieval",
+			"id": "two-spellings",
+			"prompt": "You hear a Thai word pronounced bpai and have to write it. Which of the two ai spellings do you reach for, and how confident should you be?",
+			"revealSlideId": "two-spellings-answer"
+		},
+		{
+			"kind": "reveal",
+			"id": "two-spellings-answer",
+			"retrievalSlideId": "two-spellings",
+			"answers": [
+				"ไ, the zigzag. ไป.",
+				"Very confident. ใ is a closed list of roughly twenty words; anything not on that list takes ไ."
+			]
+		},
+		{
+			"kind": "rule",
+			"id": "ao-ai-tone-exception",
+			"ruleId": "ao-ai-tone-exception"
+		},
+		{
+			"kind": "exposition",
+			"id": "short-but-live",
+			"heading": "Short in the mouth, long for the tone",
+			"body": [
+				"Say เอา and ไป. Both are over quickly — as short as the ะ of lesson four.",
+				"For tone they are counted the other way. เ-า, ไ and ใ make live syllables, and they take the live rule for their consonant's class, not the dead-short one.",
+				"ไป opens on ป, a market letter, so it takes mid class live: bpai, level. Say it beside ตก from last lesson, which is mid class dead and drops low. Same district, opposite endings, and the vowel is what decides which."
+			]
+		},
+		{
+			"kind": "retrieval",
+			"id": "short-or-live",
+			"prompt": "ไป is over as fast as a short vowel. Why does it not take the dead-syllable rule?",
+			"revealSlideId": "short-or-live-answer"
+		},
+		{
+			"kind": "reveal",
+			"id": "short-or-live-answer",
+			"retrievalSlideId": "short-or-live",
+			"answers": [
+				"Because เ-า, ไ and ใ are counted live for tone regardless of how short they sound.",
+				"The syllable ends on the vowel with nothing stopping it, so there is nothing to make it dead. Length of time is not what the rule measures."
+			]
+		},
+		{
+			"kind": "rule",
+			"id": "mai-yamok",
+			"ruleId": "mai-yamok"
+		},
+		{
+			"kind": "exposition",
+			"id": "the-repeat-mark",
+			"heading": "ๆ, the mark that means say it twice",
+			"body": [
+				"ๆ is not a letter and has no sound of its own. It stands after a word and tells you to repeat the word.",
+				"เด็ก ๆ is children — เด็ก said twice. ใคร ๆ is anyone at all. A space is normally left in front of the mark.",
+				"Doubling in Thai usually softens or generalises rather than intensifying: the repeated form is vaguer than the single one, not stronger."
+			]
+		},
+		{
+			"kind": "rule",
+			"id": "consonant-clusters",
+			"ruleId": "consonant-clusters"
+		},
+		{
+			"kind": "exposition",
+			"id": "clusters-named",
+			"heading": "Two consonants, one sound — named here, taught later",
+			"body": [
+				"ใคร has ค and ร back to back with no vowel between them, and it is one syllable, not two: khrai. The two letters run together into a single onset.",
+				"Only three letters ever do this in second position, and the rule slide above names them. That is the whole inventory, and it is closed.",
+				"It is also only half the story. Some pairs that look like clusters are not, one of them is read as a completely different sound, and one of the three letters can be written and not pronounced at all. All of that belongs together in one place, and that place is the clusters lesson.",
+				"Until then: two consonants with nothing between them are either a cluster or an unwritten vowel, and last lesson gave you the other one."
+			]
+		},
+		{
+			"kind": "exposition",
+			"id": "more-words",
+			"heading": "Words you can read now",
+			"body": [
+				"ใน (nai) is in, and it is one of the commonest words in the language. ไป (bpai) is to go. เรา (rao) is we or us.",
+				"ดีใจ (dii jai) is glad — literally a good heart. ตกใจ (dtòk jai) is startled — a heart that falls.",
+				"ไทย (thai) is Thai. Its consonants have been readable since lesson seven; today's zigzag mast is the last piece it needed."
+			]
+		}
+	]
+}

@@ -245,13 +245,23 @@ def parse_syllable(syllable_text: str) -> dict[str, Any] | None:
 
     first = positions[0]
     onset = [first]
+    # Two consonants and no written vowel: the second is the final, not half
+    # an onset. ผล is /pʰǒn/ and ละคร is lá-kʰɔːn — the unwritten vowel sits
+    # between the pair, so there is nothing for a cluster to be the onset of.
+    # ห นำ and อ นำ are exempt: their leader is silent, so the pair really is
+    # one onset however little follows it (แหละ, อย่า).
+    bare_pair = len(positions) == 2 and not any(
+        ch in VOWEL_CHARS for ch in source
+    )
     if len(positions) > 1 and positions[1] == first + 1:
         lead, second = source[first], source[positions[1]]
         after = source[positions[1] + 1] if positions[1] + 1 < len(source) else ""
+        silent_leader = (lead == "ห" and second in LEADING_H_SECOND) or (
+            lead == "อ" and second == "ย"
+        )
         if (
-            (lead == "ห" and second in LEADING_H_SECOND)
-            or (lead == "อ" and second == "ย")
-            or (lead + second) in ONSET_CLUSTERS
+            silent_leader
+            or ((lead + second) in ONSET_CLUSTERS and not bare_pair)
             or (
                 second == "ว"
                 and lead in CLUSTER_W_FIRST

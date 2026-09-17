@@ -1,6 +1,7 @@
 // @vitest-environment jsdom
 import { fireEvent, render, screen } from "@testing-library/react";
 import { describe, expect, it, vi } from "vitest";
+import { VOCAB_PROPERTIES } from "../../../domain/vocabulary/services/VocabMnemonic";
 import { createdAudioUrls } from "../../test-utils/renderWithApp";
 import { Flashcard } from "./Flashcard";
 
@@ -122,5 +123,75 @@ describe("Flashcard — existing symbol/vocab audio is unaffected", () => {
 		expect(
 			screen.queryByRole("button", { name: "Replay pronunciation" }),
 		).toBeNull();
+	});
+});
+
+// ---------------------------------------------------------------------------
+// Task 5.3 AC4 — the vocabulary room is never rendered before the learner has
+// acted, and is always available on demand. Declared per property, so all six
+// are exercised: `audioRecognition` and `spellingFromAudio` behave like
+// recognition here, which a two-way production/recognition model would miss.
+// Reveal state lives in this component; `WordCard` has none, so a pre- versus
+// post-reveal assertion made against WordCard would prove nothing.
+// ---------------------------------------------------------------------------
+
+function roomCard(property: string) {
+	return {
+		// ผม — "I (male)", a pronoun, so its room is people-and-pronouns.
+		id: `vocab:ผม:${property}`,
+		question: "What does this word mean?",
+		correctAnswer: "I (male)",
+		choices: [],
+		promptWord: property === "englishToThai" ? "I (male)" : "ผม",
+		property,
+	};
+}
+
+describe("Flashcard — the vocabulary room as post-reveal confirmation", () => {
+	for (const property of VOCAB_PROPERTIES) {
+		it(`hides the room until reveal, then shows it as part of the answer (${property})`, () => {
+			render(<Flashcard card={roomCard(property)} onRate={vi.fn()} />);
+
+			expect(screen.queryByText(/^Room:/)).toBeNull();
+
+			reveal();
+
+			expect(screen.getByText(/^Room: people and pronouns/)).toBeTruthy();
+		});
+	}
+
+	it("offers the room on demand before reveal, and marks that it was asked for", () => {
+		render(<Flashcard card={roomCard("thaiToEnglish")} onRate={vi.fn()} />);
+
+		expect(screen.queryByText(/^Room:/)).toBeNull();
+		fireEvent.click(screen.getByRole("button", { name: /Show the room/ }));
+
+		expect(screen.getByText(/^Room: people and pronouns/)).toBeTruthy();
+		expect(screen.getByText("(hint)")).toBeTruthy();
+		// Asking is a choice with a cost, not a substitute for answering.
+		expect(screen.getByRole("button", { name: /Show Answer/ })).toBeTruthy();
+	});
+
+	it("forgets a requested hint when the next card arrives", () => {
+		const { rerender } = render(
+			<Flashcard card={roomCard("thaiToEnglish")} onRate={vi.fn()} />,
+		);
+		fireEvent.click(screen.getByRole("button", { name: /Show the room/ }));
+		expect(screen.getByText(/^Room:/)).toBeTruthy();
+
+		rerender(<Flashcard card={roomCard("spelling")} onRate={vi.fn()} />);
+
+		expect(screen.queryByText(/^Room:/)).toBeNull();
+	});
+
+	it("shows no room on a card that is not a vocabulary card", () => {
+		render(<Flashcard card={SYMBOL_CARD} onRate={vi.fn()} />);
+
+		expect(screen.queryByText(/^Room:/)).toBeNull();
+		expect(screen.queryByRole("button", { name: /Show the room/ })).toBeNull();
+
+		reveal();
+
+		expect(screen.queryByText(/^Room:/)).toBeNull();
 	});
 });

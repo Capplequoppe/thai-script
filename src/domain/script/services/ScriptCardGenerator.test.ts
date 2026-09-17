@@ -66,7 +66,7 @@ describe("generateCardsForLesson", () => {
 	});
 
 	it("consonants without audioUrl still produce 5 cards", () => {
-		const cards = generateCardsForLesson(22);
+		const cards = generateCardsForLesson(14);
 		// ฃ, ฅ, ฌ have no audioUrl
 		for (const char of ["ฃ", "ฅ", "ฌ"]) {
 			const charCards = cards.filter((c) => c.id.startsWith(`${char}:`));
@@ -77,16 +77,16 @@ describe("generateCardsForLesson", () => {
 		}
 	});
 
-	it("generates 3 property cards per rare vowel for lesson 22 (ฤ, ฤๅ, ฦ, ฦๅ)", () => {
-		const cards = generateCardsForLesson(22);
+	it("generates 3 property cards per rare vowel for the rare-tail lesson (ฤ, ฤๅ, ฦ, ฦๅ)", () => {
+		const cards = generateCardsForLesson(14);
 		for (const char of ["ฤ", "ฤๅ", "ฦ", "ฦๅ"]) {
 			const charCards = cards.filter((c) => c.id.startsWith(`${char}:`));
 			expect(charCards).toHaveLength(3);
 		}
 	});
 
-	it("generates 3 property cards per numeral for lesson 23 (๑, ๒, ๓)", () => {
-		const cards = generateCardsForLesson(23);
+	it("generates 3 property cards per numeral for the numerals lesson (๑, ๒, ๓)", () => {
+		const cards = generateCardsForLesson(19);
 		for (const char of ["๑", "๒", "๓"]) {
 			const charCards = cards.filter((c) => c.id.startsWith(`${char}:`));
 			expect(charCards).toHaveLength(3);
@@ -94,7 +94,7 @@ describe("generateCardsForLesson", () => {
 	});
 
 	it("numeral cards quiz the arabic value, Thai word, and romanization", () => {
-		const cards = generateCardsForLesson(23);
+		const cards = generateCardsForLesson(19);
 		const oneCards = cards.filter((c) => c.id.startsWith("๑:"));
 		const byProperty = Object.fromEntries(oneCards.map((c) => [c.property, c]));
 		expect(byProperty.value?.correctAnswer).toBe("1");
@@ -115,8 +115,8 @@ describe("generateToneRuleCards", () => {
 		expect(cards).toHaveLength(0);
 	});
 
-	it("generates tone mark rule cards for lesson 17", () => {
-		const cards = generateToneRuleCards(17);
+	it("generates tone mark rule cards for the consolidated tone-mark lesson", () => {
+		const cards = generateToneRuleCards(16);
 		const markRuleCards = cards.filter((c) =>
 			c.id.startsWith("tone-mark-rule:"),
 		);

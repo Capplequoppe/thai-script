@@ -1,3 +1,5 @@
+import { lessonCount } from "../../../domain/script/data/lessonSequence";
+
 export interface AchievementDef {
 	id: string;
 	name: string;
@@ -21,7 +23,9 @@ export const ACHIEVEMENT_DEFS: AchievementDef[] = [
 	{
 		id: "all_lessons",
 		name: "Royal Student",
-		description: "Complete all 25 lessons",
+		// Derived from the declared sequence so the copy and
+		// AchievementService's unlock condition cannot drift apart.
+		description: `Complete all ${lessonCount} lessons`,
 		icon: "🏛",
 	},
 	{

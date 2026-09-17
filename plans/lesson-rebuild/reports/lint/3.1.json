@@ -1,0 +1,389 @@
+{
+  "version": 1,
+  "task": "3.1",
+  "pass": "after",
+  "result": {
+    "outcome": "unsupported",
+    "reason": "plans/lesson-rebuild/metrics.jsonl: no grammar covers '.jsonl' files (and 1 more) — 20 violations were measured before this and are not shown"
+  },
+  "findings": [
+    {
+      "rule": "length",
+      "severity": "warning",
+      "measured": 5537,
+      "threshold": 2000,
+      "tier": "module",
+      "module": "src/domain/script/data",
+      "members": [
+        "src/domain/script/data/lessonSequence.ts",
+        "src/domain/script/data/syllableRules.test.ts",
+        "src/domain/script/data/syllableRules.ts",
+        "src/domain/script/data/symbols.ts"
+      ]
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 3.23,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "(anonymous)",
+        "path": "src/domain/script/data/syllableRules.test.ts",
+        "bytes": {
+          "startIndex": 20322,
+          "endIndex": 21600
+        },
+        "lines": {
+          "startRow": 525,
+          "endRow": 555
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "length",
+      "severity": "warning",
+      "tier": "function",
+      "measured": 147,
+      "threshold": 50,
+      "symbol": {
+        "kind": "function",
+        "name": "candidatesAt",
+        "path": "src/domain/script/data/syllableRules.ts",
+        "bytes": {
+          "startIndex": 21601,
+          "endIndex": 25574
+        },
+        "lines": {
+          "startRow": 647,
+          "endRow": 793
+        }
+      }
+    },
+    {
+      "rule": "length",
+      "severity": "warning",
+      "tier": "function",
+      "measured": 162,
+      "threshold": 50,
+      "symbol": {
+        "kind": "function",
+        "name": "resolveWord",
+        "path": "src/domain/script/data/syllableRules.ts",
+        "bytes": {
+          "startIndex": 27336,
+          "endIndex": 31661
+        },
+        "lines": {
+          "startRow": 848,
+          "endRow": 1009
+        }
+      }
+    },
+    {
+      "rule": "length",
+      "severity": "warning",
+      "tier": "function",
+      "measured": 71,
+      "threshold": 50,
+      "symbol": {
+        "kind": "function",
+        "name": "walk",
+        "path": "src/domain/script/data/syllableRules.ts",
+        "bytes": {
+          "startIndex": 28012,
+          "endIndex": 30066
+        },
+        "lines": {
+          "startRow": 873,
+          "endRow": 943
+        }
+      }
+    },
+    {
+      "rule": "length",
+      "severity": "warning",
+      "tier": "function",
+      "measured": 77,
+      "threshold": 50,
+      "symbol": {
+        "kind": "function",
+        "name": "reconcileWithCorpus",
+        "path": "src/domain/script/data/syllableRules.ts",
+        "bytes": {
+          "startIndex": 36226,
+          "endIndex": 37980
+        },
+        "lines": {
+          "startRow": 1148,
+          "endRow": 1224
+        }
+      }
+    },
+    {
+      "rule": "cyclomatic-complexity",
+      "severity": "warning",
+      "measured": 11,
+      "threshold": 10,
+      "tier": "function",
+      "symbol": {
+        "kind": "function",
+        "name": "buildSyllable",
+        "path": "src/domain/script/data/syllableRules.ts",
+        "bytes": {
+          "startIndex": 20064,
+          "endIndex": 21361
+        },
+        "lines": {
+          "startRow": 599,
+          "endRow": 640
+        }
+      }
+    },
+    {
+      "rule": "cyclomatic-complexity",
+      "severity": "warning",
+      "measured": 28,
+      "threshold": 10,
+      "tier": "function",
+      "symbol": {
+        "kind": "function",
+        "name": "candidatesAt",
+        "path": "src/domain/script/data/syllableRules.ts",
+        "bytes": {
+          "startIndex": 21601,
+          "endIndex": 25574
+        },
+        "lines": {
+          "startRow": 647,
+          "endRow": 793
+        }
+      }
+    },
+    {
+      "rule": "cyclomatic-complexity",
+      "severity": "warning",
+      "measured": 22,
+      "threshold": 10,
+      "tier": "function",
+      "symbol": {
+        "kind": "function",
+        "name": "walk",
+        "path": "src/domain/script/data/syllableRules.ts",
+        "bytes": {
+          "startIndex": 28012,
+          "endIndex": 30066
+        },
+        "lines": {
+          "startRow": 873,
+          "endRow": 943
+        }
+      }
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 1,
+      "tier": "function",
+      "symbol": {
+        "name": "isThaiConsonant",
+        "path": "src/domain/script/data/syllableRules.ts",
+        "bytes": {
+          "startIndex": 2664,
+          "endIndex": 2773
+        },
+        "lines": {
+          "startRow": 59,
+          "endRow": 61
+        }
+      },
+      "check": "undocumented-export"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 1,
+      "tier": "function",
+      "symbol": {
+        "name": "isSonorant",
+        "path": "src/domain/script/data/syllableRules.ts",
+        "bytes": {
+          "startIndex": 3559,
+          "endIndex": 3654
+        },
+        "lines": {
+          "startRow": 92,
+          "endRow": 94
+        }
+      },
+      "check": "undocumented-export"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "resolveLeadingConsonant",
+        "path": "src/domain/script/data/syllableRules.ts",
+        "bytes": {
+          "startIndex": 13949,
+          "endIndex": 15115
+        },
+        "lines": {
+          "startRow": 396,
+          "endRow": 445
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "buildSyllable",
+        "path": "src/domain/script/data/syllableRules.ts",
+        "bytes": {
+          "startIndex": 20064,
+          "endIndex": 21361
+        },
+        "lines": {
+          "startRow": 599,
+          "endRow": 640
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "push",
+        "path": "src/domain/script/data/syllableRules.ts",
+        "bytes": {
+          "startIndex": 23300,
+          "endIndex": 23954
+        },
+        "lines": {
+          "startRow": 696,
+          "endRow": 726
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 2.47,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "resolveWord",
+        "path": "src/domain/script/data/syllableRules.ts",
+        "bytes": {
+          "startIndex": 27336,
+          "endIndex": 31661
+        },
+        "lines": {
+          "startRow": 848,
+          "endRow": 1009
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "walkWithClass",
+        "path": "src/domain/script/data/syllableRules.ts",
+        "bytes": {
+          "startIndex": 30092,
+          "endIndex": 30663
+        },
+        "lines": {
+          "startRow": 945,
+          "endRow": 968
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "reconcileWithCorpus",
+        "path": "src/domain/script/data/syllableRules.ts",
+        "bytes": {
+          "startIndex": 36226,
+          "endIndex": 37980
+        },
+        "lines": {
+          "startRow": 1148,
+          "endRow": 1224
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "length",
+      "severity": "warning",
+      "measured": 1239,
+      "threshold": 400,
+      "tier": "file",
+      "path": "src/domain/script/data/syllableRules.ts"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 4.09,
+      "threshold": 5,
+      "tier": "file",
+      "path": "src/domain/script/data/symbols.ts",
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "length",
+      "severity": "warning",
+      "measured": 3476,
+      "threshold": 400,
+      "tier": "file",
+      "path": "src/domain/script/data/symbols.ts"
+    }
+  ],
+  "adapters": [
+    {
+      "tool": "biome",
+      "selection": {
+        "evidence": "configured",
+        "by": "biome.json"
+      },
+      "program": null,
+      "result": {
+        "outcome": "unsupported",
+        "reason": "biome did not resolve: 'biome' on PATH (31 entries). Its findings are missing from this report — that is a gap and not a pass."
+      },
+      "files": 4,
+      "findings": 0,
+      "refusedPaths": 0,
+      "outsideAnalysis": 0,
+      "refusedShape": 0
+    }
+  ]
+}

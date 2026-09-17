@@ -1,0 +1,350 @@
+{
+  "version": 1,
+  "task": "2.1",
+  "pass": "after",
+  "result": {
+    "outcome": "unsupported",
+    "reason": "plans/lesson-rebuild/phase-2-encoding/task-2.1-scene-grammar-seam.md: no grammar covers '.md' files — 18 violations were measured before this and are not shown"
+  },
+  "findings": [
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "(anonymous)",
+        "path": "src/domain/script/data/sceneGrammar.test.ts",
+        "bytes": {
+          "startIndex": 5282,
+          "endIndex": 6016
+        },
+        "lines": {
+          "startRow": 145,
+          "endRow": 165
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 4.17,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "(anonymous)",
+        "path": "src/domain/script/data/sceneGrammar.test.ts",
+        "bytes": {
+          "startIndex": 6058,
+          "endIndex": 7384
+        },
+        "lines": {
+          "startRow": 168,
+          "endRow": 215
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "(anonymous)",
+        "path": "src/domain/script/data/sceneGrammar.test.ts",
+        "bytes": {
+          "startIndex": 6151,
+          "endIndex": 6655
+        },
+        "lines": {
+          "startRow": 170,
+          "endRow": 192
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "(anonymous)",
+        "path": "src/domain/script/data/sceneGrammar.test.ts",
+        "bytes": {
+          "startIndex": 6796,
+          "endIndex": 7380
+        },
+        "lines": {
+          "startRow": 195,
+          "endRow": 214
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 3.13,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "(anonymous)",
+        "path": "src/domain/script/data/sceneGrammar.test.ts",
+        "bytes": {
+          "startIndex": 7423,
+          "endIndex": 9644
+        },
+        "lines": {
+          "startRow": 217,
+          "endRow": 280
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "(anonymous)",
+        "path": "src/domain/script/data/sceneGrammar.test.ts",
+        "bytes": {
+          "startIndex": 7661,
+          "endIndex": 8687
+        },
+        "lines": {
+          "startRow": 220,
+          "endRow": 253
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "length",
+      "severity": "warning",
+      "measured": 4291,
+      "threshold": 2000,
+      "tier": "module",
+      "module": "src/domain/script/data",
+      "members": [
+        "src/domain/script/data/sceneGrammar.test.ts",
+        "src/domain/script/data/sceneGrammar.ts",
+        "src/domain/script/data/soundType.test.ts",
+        "src/domain/script/data/soundType.ts",
+        "src/domain/script/data/symbols.ts"
+      ]
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 1,
+      "tier": "function",
+      "symbol": {
+        "name": "annotationFor",
+        "path": "src/domain/script/data/sceneGrammar.ts",
+        "bytes": {
+          "startIndex": 13459,
+          "endIndex": 13569
+        },
+        "lines": {
+          "startRow": 485,
+          "endRow": 487
+        }
+      },
+      "check": "undocumented-export"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 1,
+      "tier": "function",
+      "symbol": {
+        "name": "validateConditionalForm",
+        "path": "src/domain/script/data/sceneGrammar.ts",
+        "bytes": {
+          "startIndex": 15569,
+          "endIndex": 16153
+        },
+        "lines": {
+          "startRow": 550,
+          "endRow": 570
+        }
+      },
+      "check": "undocumented-export"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 1,
+      "tier": "function",
+      "symbol": {
+        "name": "validateConfusablePair",
+        "path": "src/domain/script/data/sceneGrammar.ts",
+        "bytes": {
+          "startIndex": 16155,
+          "endIndex": 16820
+        },
+        "lines": {
+          "startRow": 572,
+          "endRow": 597
+        }
+      },
+      "check": "undocumented-export"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "validateSceneAnnotation",
+        "path": "src/domain/script/data/sceneGrammar.ts",
+        "bytes": {
+          "startIndex": 14865,
+          "endIndex": 15567
+        },
+        "lines": {
+          "startRow": 524,
+          "endRow": 548
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "validateConditionalForm",
+        "path": "src/domain/script/data/sceneGrammar.ts",
+        "bytes": {
+          "startIndex": 15576,
+          "endIndex": 16153
+        },
+        "lines": {
+          "startRow": 550,
+          "endRow": 570
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "validateConfusablePair",
+        "path": "src/domain/script/data/sceneGrammar.ts",
+        "bytes": {
+          "startIndex": 16162,
+          "endIndex": 16820
+        },
+        "lines": {
+          "startRow": 572,
+          "endRow": 597
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "length",
+      "severity": "warning",
+      "measured": 598,
+      "threshold": 400,
+      "tier": "file",
+      "path": "src/domain/script/data/sceneGrammar.ts"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "(anonymous)",
+        "path": "src/domain/script/data/soundType.test.ts",
+        "bytes": {
+          "startIndex": 2594,
+          "endIndex": 3347
+        },
+        "lines": {
+          "startRow": 77,
+          "endRow": 113
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "length",
+      "severity": "warning",
+      "tier": "function",
+      "measured": 61,
+      "threshold": 50,
+      "symbol": {
+        "kind": "function",
+        "name": "classifyConsonant",
+        "path": "src/domain/script/data/soundType.ts",
+        "bytes": {
+          "startIndex": 4303,
+          "endIndex": 6093
+        },
+        "lines": {
+          "startRow": 133,
+          "endRow": 193
+        }
+      }
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 3.83,
+      "threshold": 5,
+      "tier": "file",
+      "path": "src/domain/script/data/symbols.ts",
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "length",
+      "severity": "warning",
+      "measured": 3027,
+      "threshold": 400,
+      "tier": "file",
+      "path": "src/domain/script/data/symbols.ts"
+    }
+  ],
+  "adapters": [
+    {
+      "tool": "biome",
+      "selection": {
+        "evidence": "configured",
+        "by": "biome.json"
+      },
+      "program": null,
+      "result": {
+        "outcome": "unsupported",
+        "reason": "biome did not resolve: 'biome' on PATH (31 entries). Its findings are missing from this report — that is a gap and not a pass."
+      },
+      "files": 5,
+      "findings": 0,
+      "refusedPaths": 0,
+      "outsideAnalysis": 0,
+      "refusedShape": 0
+    }
+  ]
+}

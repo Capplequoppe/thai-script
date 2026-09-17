@@ -1,0 +1,82 @@
+{
+	"lessonId": "lesson-02",
+	"schema": {
+		"version": 1,
+		"segmentStates": ["absent", "generated", "failed"],
+		"verificationOutcomes": ["not-required", "verified", "mismatch"]
+	},
+	"voice": {
+		"voiceId": "JBFqnCBsd6RMkjVDRZzb",
+		"modelId": "eleven_multilingual_v2",
+		"settings": {
+			"stability": 0.5,
+			"similarity_boost": 0.75,
+			"speed": 1.0
+		}
+	},
+	"assets": [
+		{
+			"key": "district-0",
+			"kind": "audio",
+			"state": "generated",
+			"language": "en",
+			"inputHash": "3dc442d21246818c1bad9b0ac515cb195a57f8df9e70c4b2d690a1f11687b982",
+			"contentHash": "dfa1309e42a75984031a8398b8a99d9503f427aa126d04946302d8b48f151b37",
+			"path": "/thai-script/lessons/lesson-02/audio/district-0-3dc442d21246.mp3",
+			"file": "audio/district-0-3dc442d21246.mp3",
+			"verification": {
+				"outcome": "not-required",
+				"attempts": 1,
+				"expected": null,
+				"heard": []
+			},
+			"failure": null
+		},
+		{
+			"key": "district-1",
+			"kind": "audio",
+			"state": "generated",
+			"language": "th",
+			"inputHash": "88975f37b2624f89a09252d802b3fc468339303dbd49035357124c0bbe0cc340",
+			"contentHash": "00ec305ddeed99d23a9f65270e8d233fcc7738639843b5fef616fdfb7e5dbfef",
+			"path": "/thai-script/lessons/lesson-02/audio/district-1-88975f37b262.mp3",
+			"file": "audio/district-1-88975f37b262.mp3",
+			"verification": {
+				"outcome": "verified",
+				"attempts": 1,
+				"expected": "งง",
+				"heard": ["งง"]
+			},
+			"failure": null
+		},
+		{
+			"key": "which-tone-0",
+			"kind": "audio",
+			"state": "generated",
+			"language": "en",
+			"inputHash": "22345be98367864539c2acf0bc175a2b5e12fa3818cc23b1ee71fdcaa7c16a0c",
+			"contentHash": "447becb56e5daf31f50ce76784d06e0e7fdab2133f879daab551d008ab4d94a8",
+			"path": "/thai-script/lessons/lesson-02/audio/which-tone-0-22345be98367.mp3",
+			"file": "audio/which-tone-0-22345be98367.mp3",
+			"verification": {
+				"outcome": "not-required",
+				"attempts": 1,
+				"expected": null,
+				"heard": []
+			},
+			"failure": null
+		},
+		{
+			"key": "district-image",
+			"kind": "image",
+			"state": "generated",
+			"language": null,
+			"inputHash": "046d4ae0baa482eb00daadb0bd32807ad77cf48a2f047e12c07c303862ea8626",
+			"contentHash": "a0357b7c4386c2d3afc7fdb02f12a41984a18d2a120aea549e3bd2960a0f2747",
+			"path": "/thai-script/lessons/lesson-02/images/district-046d4ae0baa4.svg",
+			"file": "images/district-046d4ae0baa4.svg",
+			"verification": null,
+			"failure": null
+		}
+	]
+}

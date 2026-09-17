@@ -1,4 +1,5 @@
 import { describe, expect, it } from "vitest";
+import { lessonCount } from "../../script/data/lessonSequence";
 import type { LearnerState, SessionSummary } from "../../shared/types";
 import { INITIAL_LEARNER_STATE } from "../../shared/types";
 import { AchievementService } from "./AchievementService";
@@ -90,14 +91,27 @@ describe("AchievementService", () => {
 		expect(result).not.toContain("first_lesson");
 	});
 
-	it("unlocks all_lessons after completing all 25 lessons", () => {
+	it("unlocks all_lessons after completing every declared lesson", () => {
 		const state: LearnerState = {
 			...INITIAL_LEARNER_STATE,
-			completedLessons: Array.from({ length: 25 }, (_, i) => i + 1),
+			completedLessons: Array.from({ length: lessonCount }, (_, i) => i + 1),
 			achievements: ["first_lesson", "five_lessons"],
 		};
 		const result = service.checkNewAchievements(state, makeSession());
 		expect(result).toContain("all_lessons");
+	});
+
+	it("withholds all_lessons while any declared lesson is missing", () => {
+		const state: LearnerState = {
+			...INITIAL_LEARNER_STATE,
+			completedLessons: Array.from(
+				{ length: lessonCount - 1 },
+				(_, i) => i + 1,
+			),
+			achievements: ["first_lesson", "five_lessons"],
+		};
+		const result = service.checkNewAchievements(state, makeSession());
+		expect(result).not.toContain("all_lessons");
 	});
 
 	it("unlocks first_review on first review session", () => {
