@@ -1,31 +1,11 @@
 import type { CardRepository } from "../../ports/CardRepository";
 import { VocabCard } from "../../vocabulary/entities/VocabCard";
-import { toneSyllablesOf } from "../../vocabulary/services/toneSyllables";
-import type { VocabEntry, VocabProperty } from "../../vocabulary/types";
+import {
+	thaiWordFromToneCardId,
+	toneSyllablesOf,
+} from "../../vocabulary/services/toneSyllables";
+import type { VocabEntry } from "../../vocabulary/types";
 import type { ToneItemContent } from "../types";
-
-/**
- * Anchored to the typed `VocabProperty` union, unlike `VocabCard.property`
- * itself which is untyped `string` — see `WordGameItemSource`'s
- * id-parse-and-validate approach for the same reason.
- */
-const TONE_PROPERTY: VocabProperty = "toneIdentification";
-
-/**
- * Parses a tone-identification card id of the shape
- * `vocab:{thai}:toneIdentification`, returning the Thai word only when the
- * shape matches. Mirrors `WordGameItemSource`'s `thaiWordFromCardId` — the
- * only thing ever read off the card is its id, never `promptWord` or
- * `syllables`, both of which are unsafe to read generically (see
- * CONTEXT.md).
- */
-function thaiWordFromToneCardId(id: string): string | null {
-	const parts = id.split(":");
-	if (parts.length !== 3) return null;
-	const [prefix, thai, property] = parts;
-	if (prefix !== "vocab" || !thai || property !== TONE_PROPERTY) return null;
-	return thai;
-}
 
 /**
  * Not a `GameItemSource`: tone practice is independent of pool selection

@@ -4,7 +4,8 @@ import {
 	toneMarkRules,
 	toneRules,
 } from "../../script/data/symbols";
-import type { SyllableInfo } from "../types";
+import type { SyllableInfo, VocabEntry } from "../types";
+import { toneSyllableInfosOf } from "./toneSyllables";
 
 /**
  * Why a syllable takes the tone it does, in the learner's own terms.
@@ -158,4 +159,27 @@ export function toneExplanationFor(
 			syllable.tone && syllable.tone !== rule.resultingTone,
 		),
 	};
+}
+
+/**
+ * One explanation per syllable a tone card grades, in that card's order.
+ *
+ * Built on `toneSyllableInfosOf` rather than `entry.syllables` so the result
+ * lines up index-for-index with `toneSyllablesOf` — the list the card was
+ * built from — even for a word where some syllable's tone was never
+ * determined. See that function for why the alignment has to be structural
+ * rather than assumed.
+ *
+ * An entry is `undefined` where the tables do not reach the syllable at all;
+ * a syllable the rules reach but disagree with is returned with
+ * `disagreesWithStored` set, because "no taught rule predicts this one" is
+ * the honest thing to show a learner who just derived it correctly and was
+ * marked wrong.
+ */
+export function toneExplanationsOf(
+	entry: VocabEntry,
+): (ToneExplanation | undefined)[] {
+	return toneSyllableInfosOf(entry).map((syllable) =>
+		toneExplanationFor(syllable),
+	);
 }
