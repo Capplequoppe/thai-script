@@ -3,7 +3,10 @@ import { useNavigate } from "react-router";
 import { Button } from "@/presentation/components/ui/button";
 import { Card } from "@/presentation/components/ui/card";
 import { Progress } from "@/presentation/components/ui/progress";
-import { ratingFromCorrectness } from "../../domain/shared/ratingFromCorrectness";
+import {
+	isCorrectRating,
+	ratingFromCorrectness,
+} from "../../domain/shared/ratingFromCorrectness";
 import type { RecallRating } from "../../domain/shared/types";
 import type { VocabEntry, VocabularyCard } from "../../domain/vocabulary/types";
 import { SectionHeader } from "../components/atoms/SectionHeader";
@@ -12,7 +15,9 @@ import { AchievementBadge } from "../components/organisms/AchievementBadge";
 import { Flashcard } from "../components/organisms/Flashcard";
 import { MultipleChoice } from "../components/organisms/MultipleChoice";
 import { SentenceBuilder } from "../components/organisms/SentenceBuilder";
+import { TonePronunciationCard } from "../components/organisms/TonePronunciationCard";
 import { ToneQuiz } from "../components/organisms/ToneQuiz";
+import { ToneRuleQuiz } from "../components/organisms/ToneRuleQuiz";
 import { WordCard } from "../components/organisms/WordCard";
 import { useApp } from "../hooks/useApp";
 import { useReviewSession } from "../hooks/useReviewSession";
@@ -413,6 +418,13 @@ export function VocabularyPage() {
 				</div>
 				{currentVocabCard.property === "toneIdentification" ? (
 					<ToneQuiz card={currentVocabCard} onAnswer={flow.advance} />
+				) : currentVocabCard.property === "toneRule" ? (
+					<ToneRuleQuiz card={currentVocabCard} onAnswer={flow.advance} />
+				) : currentVocabCard.property === "tonePronunciation" ? (
+					<TonePronunciationCard
+						card={currentVocabCard}
+						onRate={(rating) => flow.advance(isCorrectRating(rating))}
+					/>
 				) : currentVocabCard.property === "spelling" ||
 					currentVocabCard.property === "spellingFromAudio" ? (
 					<SentenceBuilder card={currentVocabCard} onAnswer={flow.advance} />
@@ -541,6 +553,25 @@ export function VocabularyPage() {
 					<ToneQuiz
 						card={current.card as unknown as VocabularyCard}
 						onAnswer={handleMcAnswer}
+					/>
+				) : "property" in current.card &&
+					(current.card as unknown as VocabularyCard).property ===
+						"toneRule" ? (
+					<ToneRuleQuiz
+						card={current.card as unknown as VocabularyCard}
+						onAnswer={handleMcAnswer}
+					/>
+				) : "property" in current.card &&
+					(current.card as unknown as VocabularyCard).property ===
+						"tonePronunciation" ? (
+					/*
+					 * Rated, not answered: the analyzer's pitch score is a hint for
+					 * the learner, never a grade (see `TonePronunciationCard`), so
+					 * this goes to the same handler the flashcard path uses.
+					 */
+					<TonePronunciationCard
+						card={current.card as unknown as VocabularyCard}
+						onRate={handleReviewAdvance}
 					/>
 				) : "property" in current.card &&
 					((current.card as unknown as VocabularyCard).property ===

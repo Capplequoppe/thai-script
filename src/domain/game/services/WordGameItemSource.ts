@@ -8,6 +8,8 @@ const VOCAB_PROPERTIES: ReadonlySet<VocabProperty> = new Set([
 	"englishToThai",
 	"audioRecognition",
 	"toneIdentification",
+	"toneRule",
+	"tonePronunciation",
 	"spelling",
 	"spellingFromAudio",
 ]);
@@ -16,8 +18,8 @@ const VOCAB_PROPERTIES: ReadonlySet<VocabProperty> = new Set([
  * Parses a vocab card id of the shape `vocab:{thai}:{property}`, returning
  * the Thai word only when the shape and the trailing property are both
  * recognised. This is the only thing ever read off a card's own id — never
- * `promptWord`, which holds the Thai word for five `VocabProperty` values
- * but the *English* word for `englishToThai` (`VocabCardGenerator.ts`).
+ * `promptWord`, which holds the Thai word for every `VocabProperty` value
+ * but one — the *English* word for `englishToThai` (`VocabCardGenerator.ts`).
  */
 function thaiWordFromCardId(id: string): string | null {
 	const parts = id.split(":");

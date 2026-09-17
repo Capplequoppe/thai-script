@@ -67,19 +67,28 @@ export function toneSyllableInfosOf(
 }
 
 /**
- * The Thai word a tone-identification card id names, or `null` when the id
- * is not one.
+ * The Thai word a tone card id names, or `null` when the id is not one of
+ * that property.
  *
- * The id is the only field on a `toneIdentification` card that is safe to
- * read generically: `syllables` can be `undefined` on cards persisted
- * before that field existed, and `promptWord` is flagged unsafe elsewhere
- * (see `plans/practice-mode-expansion/CONTEXT.md`). Everything else about
- * the word comes from the matching `VocabEntry`.
+ * The id is the only field on a tone card that is safe to read generically:
+ * `syllables` can be `undefined` on cards persisted before that field
+ * existed, and `promptWord` is flagged unsafe elsewhere (see
+ * `plans/practice-mode-expansion/CONTEXT.md`). Everything else about the
+ * word comes from the matching `VocabEntry`.
+ *
+ * `property` is a parameter because the three tone properties share this id
+ * shape and differ only in that segment — and it is checked rather than
+ * skipped so that a `toneRule` id can never be mistaken for a
+ * `toneIdentification` one, which would silently hand a caller a card it did
+ * not ask for.
  */
-export function thaiWordFromToneCardId(id: string): string | null {
+export function thaiWordFromToneCardId(
+	id: string,
+	property: VocabProperty = TONE_PROPERTY,
+): string | null {
 	const parts = id.split(":");
 	if (parts.length !== 3) return null;
-	const [prefix, thai, property] = parts;
-	if (prefix !== "vocab" || !thai || property !== TONE_PROPERTY) return null;
+	const [prefix, thai, idProperty] = parts;
+	if (prefix !== "vocab" || !thai || idProperty !== property) return null;
 	return thai;
 }

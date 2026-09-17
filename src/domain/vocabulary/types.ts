@@ -5,6 +5,8 @@ export type VocabProperty =
 	| "englishToThai"
 	| "audioRecognition"
 	| "toneIdentification"
+	| "toneRule"
+	| "tonePronunciation"
 	| "spelling"
 	| "spellingFromAudio";
 

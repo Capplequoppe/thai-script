@@ -7,6 +7,8 @@ export const VOCAB_PROPERTY_LABELS: Record<VocabProperty, string> = {
 	englishToThai: "English → Thai",
 	audioRecognition: "Listening",
 	toneIdentification: "Tone",
+	toneRule: "Tone Rule",
+	tonePronunciation: "Tone (Speaking)",
 	spelling: "Spelling",
 	spellingFromAudio: "Spelling (Audio)",
 };

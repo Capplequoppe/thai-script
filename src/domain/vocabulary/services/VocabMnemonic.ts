@@ -825,19 +825,21 @@ export function roomForWord(thai: string): Room | null {
 	return assignment.state === "assigned" ? assignment.room : null;
 }
 
-/** The six properties a vocabulary review can present, as a value. */
+/** The properties a vocabulary review can present, as a value. */
 export const VOCAB_PROPERTIES: readonly VocabProperty[] = [
 	"thaiToEnglish",
 	"englishToThai",
 	"audioRecognition",
 	"toneIdentification",
+	"toneRule",
+	"tonePronunciation",
 	"spelling",
 	"spellingFromAudio",
 ];
 
 const VOCAB_PROPERTY_SET: ReadonlySet<string> = new Set(VOCAB_PROPERTIES);
 
-/** Whether an unknown value off a card is one of the six vocabulary properties. */
+/** Whether an unknown value off a card is one of the vocabulary properties. */
 export function isVocabProperty(value: unknown): value is VocabProperty {
 	return typeof value === "string" && VOCAB_PROPERTY_SET.has(value);
 }
@@ -846,8 +848,8 @@ export function isVocabProperty(value: unknown): value is VocabProperty {
  * The room behind a vocabulary card id (`vocab:<thai>:<property>`), or null.
  *
  * The card carries the Thai spelling nowhere else: `promptWord` is the
- * *English* on an englishToThai card, while the id holds the Thai for all six
- * properties. `WordGameItemSource.ts` parses the same id shape for the same
+ * *English* on an englishToThai card, while the id holds the Thai for every
+ * property. `WordGameItemSource.ts` parses the same id shape for the same
  * reason and keeps its parser private; this one is here rather than shared
  * because that file is not this task's to change.
  */

@@ -1,7 +1,12 @@
+import type { ToneGameItem } from "../../game/types";
 import vocabularyData from "../data/vocabulary.json";
-import type { VocabEntry } from "../types";
+import type { VocabEntry, VocabProperty } from "../types";
 import { type ToneExplanation, toneExplanationsOf } from "./toneExplanation";
-import { thaiWordFromToneCardId } from "./toneSyllables";
+import {
+	type ToneRuleComponents,
+	toneRuleComponentsOf,
+} from "./toneRuleComponents";
+import { thaiWordFromToneCardId, toneSyllablesOf } from "./toneSyllables";
 
 /**
  * Built on first use rather than at module load: this module is imported by
@@ -30,8 +35,58 @@ let byThai: Map<string, VocabEntry> | null = null;
 export function toneExplanationsForCard(
 	cardId: string,
 ): (ToneExplanation | undefined)[] {
-	const thai = thaiWordFromToneCardId(cardId);
-	if (!thai) return [];
+	const entry = entryForCard(cardId, "toneIdentification");
+	return entry ? toneExplanationsOf(entry) : [];
+}
+
+/**
+ * The inputs a `toneRule` card asks the learner to supply, or `null` when
+ * the card's word is no longer derivable from the taught rules.
+ *
+ * `null` is not the same as "no card": the generator only emits a `toneRule`
+ * card for a word that passes, so reaching `null` here means the corpus has
+ * changed under a persisted card. Rendering nothing is the honest response —
+ * far better than grading against components this build cannot reproduce.
+ */
+export function toneRuleComponentsForCard(
+	cardId: string,
+): ToneRuleComponents[] | null {
+	const entry = entryForCard(cardId, "toneRule");
+	return entry ? toneRuleComponentsOf(entry) : null;
+}
+
+/**
+ * A `tonePronunciation` card's word as the game's own tone item, or `null`
+ * when the corpus no longer has the word or its recording.
+ *
+ * The shape is the game's rather than a parallel one so the analyzer organism
+ * stays single-implementation. `challengeDirection` has exactly one value —
+ * tone practice is never a direction choice — so building the item here
+ * invents nothing.
+ */
+export function toneItemForCard(cardId: string): ToneGameItem | null {
+	const entry = entryForCard(cardId, "tonePronunciation");
+	if (!entry?.thai_audio_file) return null;
+
+	const syllables = toneSyllablesOf(entry);
+	if (syllables.length === 0) return null;
+
+	return {
+		kind: "tone",
+		thaiWord: entry.thai,
+		syllables,
+		audioUrl: entry.thai_audio_file,
+		challengeDirection: "identification",
+	};
+}
+
+/** The word behind a tone card of the given property, if the corpus still has it. */
+function entryForCard(
+	cardId: string,
+	property: VocabProperty,
+): VocabEntry | undefined {
+	const thai = thaiWordFromToneCardId(cardId, property);
+	if (!thai) return undefined;
 
 	if (!byThai) {
 		byThai = new Map(
@@ -42,6 +97,5 @@ export function toneExplanationsForCard(
 		);
 	}
 
-	const entry = byThai.get(thai);
-	return entry ? toneExplanationsOf(entry) : [];
+	return byThai.get(thai);
 }

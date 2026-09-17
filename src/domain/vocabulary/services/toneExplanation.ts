@@ -77,6 +77,13 @@ export function syllableShapeOf(
 	if (LIVE_OPEN_SHORT.some((sign) => vowel.includes(sign))) return "live";
 	// เ-า is live for tone purposes, the taught exception.
 	if (vowel.includes("เ") && vowel.includes("า") && !short) return "live";
+	// Nothing written at all, and nothing closing it: a bare consonant
+	// standing as its own syllable — the ข of ขนาด, the ต of ตลอด. It carries
+	// the implicit short /a/, so it is open *and* short, which is dead-short.
+	// This is the same defect as the closed case two branches up, in the one
+	// shape that branch does not reach: "no vowel written" was being read as
+	// "long vowel" here too, which made ข live and so rising instead of low.
+	if (!vowel) return "dead-short";
 	return short ? "dead-short" : "live";
 }
 
@@ -100,7 +107,8 @@ export interface ToneExplanation {
 	readonly disagreesWithStored: boolean;
 }
 
-const MARK_LABEL: Record<string, string> = {
+/** The corpus's `toneMark` ids to the names `toneMarkRules` and the lessons use. */
+export const MARK_LABEL: Record<string, string> = {
 	mayek: "mai ek",
 	maytho: "mai tho",
 	maytri: "mai tri",

@@ -346,3 +346,75 @@ describe("generateVocabCards", () => {
 		expect(card?.choices.length).toBeGreaterThan(3);
 	});
 });
+
+describe("the two derivation cards", () => {
+	it("produces a toneRule card alongside the tone card when the rules reach the word", () => {
+		const cards = generateVocabCards(testWordWithTones, [testWordWithTones]);
+		const ruleCard = cards.find((c) => c.property === "toneRule");
+
+		expect(ruleCard?.id).toBe("vocab:สวัสดี:toneRule");
+		// The expected inputs, not the tones: high class + a dead short
+		// syllable, then mid class + a live one.
+		expect(ruleCard?.correctAnswer).toBe("high+dead-short|mid+live");
+	});
+
+	it("withholds the toneRule card where a taught rule would be marked wrong", () => {
+		// The tone is *known* — so the tone card still stands — but no taught
+		// rule produces it. Asking a learner to assemble a formula here would
+		// mean marking a correct derivation wrong.
+		const lexicalException: VocabEntry = {
+			...testWordWithTones,
+			syllables: [
+				{
+					...testWordWithTones.syllables[0]!,
+					consonantClass: "low",
+					vowel: null,
+					finalConsonant: "ก",
+					toneMark: null,
+					// The rules give high for low class + dead short; stored as
+					// rising makes this an exception by construction.
+					tone: "rising",
+				},
+			],
+		};
+		const cards = generateVocabCards(lexicalException, [lexicalException]);
+
+		expect(
+			cards.find((c) => c.property === "toneIdentification"),
+		).toBeDefined();
+		expect(cards.find((c) => c.property === "toneRule")).toBeUndefined();
+	});
+
+	it("produces a tonePronunciation card only when there is a recording to compare against", () => {
+		const withoutAudio = generateVocabCards(testWordWithTones, [
+			testWordWithTones,
+		]);
+		expect(
+			withoutAudio.find((c) => c.property === "tonePronunciation"),
+		).toBeUndefined();
+
+		const spoken: VocabEntry = {
+			...testWordWithTones,
+			thai_audio_file: "/audio/thai/sawatdi.mp3",
+		};
+		const card = generateVocabCards(spoken, [spoken]).find(
+			(c) => c.property === "tonePronunciation",
+		);
+		expect(card?.audioUrl).toBe("/audio/thai/sawatdi.mp3");
+	});
+
+	it("makes no tone card of any kind for a word whose tones are unverified", () => {
+		const unverified: VocabEntry = {
+			...testWordWithTones,
+			toneStatus: "unsegmented",
+			thai_audio_file: "/audio/thai/sawatdi.mp3",
+		};
+		const properties = generateVocabCards(unverified, [unverified]).map(
+			(c) => c.property,
+		);
+
+		expect(properties).not.toContain("toneIdentification");
+		expect(properties).not.toContain("toneRule");
+		expect(properties).not.toContain("tonePronunciation");
+	});
+});

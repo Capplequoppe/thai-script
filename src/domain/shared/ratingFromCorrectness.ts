@@ -17,3 +17,16 @@ import type { RecallRating } from "./types";
 export function ratingFromCorrectness(correct: boolean): RecallRating {
 	return correct ? 4 : 2;
 }
+
+/**
+ * Whether a self-chosen rating counts as having recalled the card.
+ *
+ * The inverse direction of `ratingFromCorrectness`, needed where the learner
+ * grades themselves — the tone analyzer, whose pitch score is a hint rather
+ * than a verdict — but the surrounding flow counts correct answers. Three is
+ * the threshold the review summary already treats as a pass, kept in one
+ * place so the two cannot drift.
+ */
+export function isCorrectRating(rating: RecallRating): boolean {
+	return rating >= 3;
+}
