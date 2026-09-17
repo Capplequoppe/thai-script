@@ -440,20 +440,30 @@ describe("AC4 — the leading-consonant rule", () => {
  * defects, so a zero here would only be reachable by bending one of the two.
  * The number moving is the signal.
  *
- * It last moved the right way: re-deriving the corpus with
+ * It moved the right way twice. First, re-deriving the corpus with
  * `enrich-vocabulary.py --retokenize` took agreements from 95 to 104 and
- * disagreements from 212 to 203. Two changes account for it — the prefix
- * split, which divides ถนน and ขนม as these rules already did, and treating a
- * bare consonant pair as consonant-plus-final rather than as an onset cluster,
- * which gave ผล and ละคร back the final the rules say they have.
+ * disagreements from 212 to 203 — the prefix split, which divides ถนน and ขนม
+ * as these rules already did, and treating a bare consonant pair as
+ * consonant-plus-final rather than as an onset cluster, which gave ผล and
+ * ละคร back the final the rules say they have.
+ *
+ * Then 104/203 to 234/73, from one line in `parse_syllable`. It had always
+ * known that `อ` and a non-final `ว` are vowels — `hasLong` reads exactly
+ * that — but the `vowel` field it emitted was joined from `VOWEL_CHARS`,
+ * which contains neither, because both are consonant letters doing a vowel's
+ * job. So นอก, ขอ, ชอบ, ครอบ shipped with `vowel: null` beside a `tone` that
+ * had been derived knowing better, and every reader of the field downstream
+ * saw a syllable with nothing written and concluded the implicit short vowel.
+ * No tone changed when it was fixed: 1,395 syllables gained a vowel and
+ * nothing else in the corpus moved.
  */
 const CORPUS_BASELINE = {
 	considered: 5454,
 	resolved: 307,
 	unresolvable: 1,
 	unanalysed: 5146,
-	agreements: 104,
-	disagreements: 203,
+	agreements: 234,
+	disagreements: 73,
 	uncompared: 0,
 };
 
@@ -488,16 +498,24 @@ describe("AC5 — the rules against vocabulary.json", () => {
 			expect(disagreement.corpus).not.toBe("");
 			expect(disagreement.rules).not.toBe(disagreement.corpus);
 		}
-		const khaawng = report.disagreements.find(
-			(disagreement) => disagreement.word === "ของ",
+		// ของ used to be the example here: the corpus dropped its อ and recorded
+		// no vowel, where these rules read the อ as the vowel. This test was
+		// right that it was the corpus in the wrong — "not the one whose
+		// analysis still contains every letter of the word" — and
+		// `parse_syllable` now emits the อ it had always known about, so ของ
+		// agrees and is no longer in this report at all.
+		expect(
+			report.disagreements.some((disagreement) => disagreement.word === "ของ"),
+		).toBe(false);
+
+		// What still drops a letter is ร หัน, a different construct: the corpus
+		// records ธรรม as ธ + ม and loses the รร that carries the vowel.
+		const tham = report.disagreements.find(
+			(disagreement) => disagreement.word === "ธรรม",
 		);
-		// The corpus drops the อ entirely and records no vowel at all; the rules
-		// read it as the vowel. One of the two is wrong about rank 17, and it is
-		// not the one whose analysis still contains every letter of the word.
-		expect(khaawng?.rules).toBe("ข|-อ|ง");
-		expect(khaawng?.corpus).toBe("ข|-|ง");
-		expect(khaawng?.kind).toBe("dropped-letter");
-		expect(khaawng?.rank).toBe(17);
+		expect(tham?.rules).toBe("ธ|รร|ม");
+		expect(tham?.corpus).toBe("ธ|-|ม");
+		expect(tham?.kind).toBe("dropped-letter");
 		// Both kinds of defect are present, not just the cheap one.
 		expect(
 			new Set(report.disagreements.map((disagreement) => disagreement.kind)),

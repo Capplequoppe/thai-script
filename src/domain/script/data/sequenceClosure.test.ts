@@ -564,7 +564,7 @@ function sweepTaughtWindow(hi: number): ToneSweep {
 
 /**
  * Recorded, not asserted to be zero (AC5). Measured over ranks 1-2700:
- * agreement on 4,377 of 4,555 compared syllables (96.1%).
+ * agreement on 4,435 of 4,555 compared syllables (97.4%).
  *
  * Two earlier baselines are worth keeping in view, because each moved for the
  * same underlying reason. The first recorded 4,038 of 4,369 and blamed the
@@ -584,14 +584,21 @@ function sweepTaughtWindow(hi: number): ToneSweep {
  * syllables live and so rising instead of low. The fix landed in
  * `toneExplanation.ts`, which this sweep now shares.
  *
- * What is left is still mostly อักษรนำ, which the corpus resolves and this
- * sweep does not — but now it is the *second* syllable of those words: ขนาด's
- * นาด, ตลอด's ลอด, เสมอ's เมอ disagree because `governingClassOf` reads the
- * letter's own class where the corpus has handed the syllable its leader's.
- * Their leading syllables have stopped disagreeing. Next to that sits a
- * distinct corpus gap — อ standing as the vowel (นอก, ขอ, พอ, ชอบ) is stored
- * with `vowel: null` and the อ dropped — the genuinely irregular ก็, and a
- * tail this comment does not claim to have characterised.
+ * A fourth move, 4,377 to 4,435, came from the other side of the same
+ * question. `parse_syllable` had always known that `อ` and a non-final `ว`
+ * are vowels, but emitted a `vowel` field joined from `VOWEL_CHARS`, which
+ * holds neither — so นอก, ขอ, ชอบ, ครอบ shipped with `vowel: null` beside a
+ * tone derived knowing better. Fixing the field changed no tone at all;
+ * 1,395 syllables simply gained the vowel they are written with. Those two
+ * fixes needed each other: reading "no vowel written" as dead-short is only
+ * right once the words that *do* write a vowel say so.
+ *
+ * What is left is now almost entirely อักษรนำ's *second* syllable, which the
+ * corpus resolves and this sweep does not: ขนาด's นาด, ตลอด's ลอด, เสมอ's เมอ
+ * disagree because `governingClassOf` reads the letter's own class where the
+ * corpus has handed the syllable its leader's. Beside that sits the genuinely
+ * irregular ก็ and a short tail this comment does not claim to have
+ * characterised.
  *
  * A zero would only be reachable by bending the rules or the corpus until one
  * of them lied; the number moving is the signal.
@@ -599,9 +606,9 @@ function sweepTaughtWindow(hi: number): ToneSweep {
 const TONE_SWEEP_BASELINE = {
 	words: 2700,
 	syllables: 4555,
-	agreements: 4377,
+	agreements: 4435,
 	unresolved: 1,
-	disagreements: 177,
+	disagreements: 119,
 };
 
 describe("AC5 — the complete sequence's rules resolve the taught corpus", () => {

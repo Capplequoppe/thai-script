@@ -129,9 +129,12 @@ describe("ToneRuleQuiz", () => {
 	});
 
 	it("says so rather than rendering an unanswerable screen for a word it cannot derive", () => {
-		// นอก passes the tone gate but not the derivation gate, so a persisted
-		// card could outlive the corpus that produced it.
-		render(<ToneRuleQuiz card={ruleCardFor("นอก")} onAnswer={() => {}} />);
+		// A card whose word the corpus no longer carries — the durable form of
+		// "this card outlived the data that made it". A real word that merely
+		// fails the derivation gate would work here too, but every one tried so
+		// far has since been fixed into deriving correctly, which makes it a
+		// fixture that expires.
+		render(<ToneRuleQuiz card={ruleCardFor("ไม่มีคำนี้")} onAnswer={() => {}} />);
 		expect(screen.getByText(/tone rules have changed/i)).toBeTruthy();
 		expect(screen.queryByRole("button", { name: "Check" })).toBeNull();
 	});

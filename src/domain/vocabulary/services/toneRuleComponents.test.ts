@@ -52,10 +52,37 @@ describe("toneRuleComponentsOf", () => {
 	});
 
 	it("refuses a word the taught rules do not actually reach", () => {
-		// นอก is stored with `vowel: null` and the อ dropped, so the rules read
-		// it as closed-with-nothing-written and give high where the word is
-		// falling. Better to ask nothing than to ask this.
-		expect(toneRuleComponentsOf(wordFor("นอก"))).toBeNull();
+		// Built rather than borrowed from the corpus, and deliberately so. This
+		// assertion is about the gate, not about which words currently fail it,
+		// and every real word that used to serve here has since been fixed into
+		// deriving correctly — นอก was the third. A fixture that keeps needing
+		// replacement as the data improves is testing the data, not the gate.
+		const storedAgainstTheRule: VocabEntry = {
+			...wordFor("จะ"),
+			syllables: [
+				{
+					...wordFor("จะ").syllables[0],
+					// mid class + dead short gives low. Stored as rising, so no
+					// taught rule reaches it.
+					tone: "rising",
+				},
+			],
+		} as VocabEntry;
+
+		expect(toneRuleComponentsOf(storedAgainstTheRule)).toBeNull();
+	});
+
+	it("still asks the plain tone question about a word it refuses to ask the rule for", () => {
+		// The two gates are different questions and must not collapse into one:
+		// a tone that is known but underivable is fine to *name*, and only
+		// unfair to derive.
+		const storedAgainstTheRule: VocabEntry = {
+			...wordFor("จะ"),
+			syllables: [{ ...wordFor("จะ").syllables[0], tone: "rising" }],
+		} as VocabEntry;
+
+		expect(toneRuleComponentsOf(storedAgainstTheRule)).toBeNull();
+		expect(toneSyllablesOf(storedAgainstTheRule)).toHaveLength(1);
 	});
 
 	it("refuses a word whose tones are not verified at all", () => {

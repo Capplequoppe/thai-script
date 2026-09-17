@@ -294,6 +294,24 @@ def parse_syllable(syllable_text: str) -> dict[str, Any] | None:
     )
     has_long = any(ch in LONG_VOWELS for ch in window) or bool(vowel_like)
 
+    # The written vowel, including the `อ`/`ว` this function has already
+    # decided are vowels rather than finals. They are not in `VOWEL_CHARS` —
+    # they are consonant letters doing a vowel's job — so joining that set
+    # alone silently drops them, and นอก, ขอ, ชอบ come out with `vowel: None`
+    # while `hasLong` above says otherwise. The tone derived here stays right
+    # either way, because it reads `vowel_like` and not this string; what
+    # breaks is every *later* reader of the field, which sees a syllable with
+    # no vowel written and concludes the implicit short one. Keeping the two
+    # in agreement is the point.
+    vowel_indices = sorted(
+        [
+            i
+            for i, ch in enumerate(source)
+            if ch in VOWEL_CHARS and (final_index is None or i < final_index)
+        ]
+        + [i for i in vowel_like if final_index is None or i < final_index]
+    )
+
     return {
         # A syllable that is nothing but one consonant carries the unwritten
         # short /a/ of an open syllable — ส in ส+บาย is sà. That is DEAD and
@@ -302,7 +320,7 @@ def parse_syllable(syllable_text: str) -> dict[str, Any] | None:
         "barePrefix": len([c for c in source if c not in TONE_MARKS]) == 1,
         "initial": source[first],
         "final": source[final_index] if final_index is not None else None,
-        "vowel": "".join(ch for ch in window if ch in VOWEL_CHARS) or None,
+        "vowel": "".join(source[i] for i in vowel_indices) or None,
         "toneMark": _find_tone_mark(source),
         "hasShort": has_short,
         "hasLong": has_long,
