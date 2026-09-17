@@ -80,40 +80,56 @@ def load_env() -> None:
 class Engines:
 	"""The resident models, and the reason this server exists.
 
-	Built once and kept. `S2ProEnglishVoice` starts its worker lazily, so
-	nothing is loaded until the first build actually needs it — a session spent
-	only reading and editing text costs no GPU memory at all.
+	Built once and kept. `S2ProVoice` starts its worker lazily, so nothing is
+	loaded until the first build actually needs it — a session spent only
+	reading and editing text costs no GPU memory at all.
+
+	One engine voices both languages, pointed at a different reference for
+	each, because two would be two copies of a model that wants most of the
+	card. The studio therefore holds no credential and makes no metered call:
+	a build started from here reaches nothing but this machine.
 	"""
 
 	def __init__(self) -> None:
-		self._english: Any | None = None
+		self._voice: Any | None = None
 		self._transcriber: Any | None = None
 
 	def vendor(self) -> Any:
 		from lesson_deck.vendor import (
-			ElevenLabsVendor,
+			LocalThaiVoice,
 			LocalTranscriber,
-			Redactor,
-			S2ProEnglishVoice,
+			S2ProVoice,
 			SplitVendor,
-			load_api_key,
 		)
 
-		if self._english is None:
-			self._english = S2ProEnglishVoice()
+		if self._voice is None:
+			self._voice = S2ProVoice()
 		if self._transcriber is None:
-			self._transcriber = LocalTranscriber()
-		api_key = load_api_key()
+			# On the CPU: the Thai trim runs *while* the engine is resident,
+			# and 19.7 GB of engine and 4.1 GB of verifier do not share a
+			# 24.5 GB card. Same model, same answers, four seconds slower.
+			self._transcriber = LocalTranscriber(device="cpu")
 		return SplitVendor(
-			thai=ElevenLabsVendor(api_key, Redactor((api_key,))),
-			english=self._english,
+			thai=LocalThaiVoice(engine=self._voice, transcriber=self._transcriber),
+			english=self._voice,
 			transcriber=self._transcriber,
 		)
 
 	def release_english(self) -> None:
 		"""Hand the card back — image rendering needs most of it."""
-		if self._english is not None:
-			self._english.close()
+		if self._voice is not None:
+			self._voice.close()
+
+	def holding_gpu(self) -> bool:
+		"""Whether anything of ours is resident on the card right now.
+
+		The engine is asked, not merely counted: it is kept between builds and
+		stood down by `/__studio/api/release`, so whether the instance exists
+		and whether it holds memory are different questions. The transcriber
+		is not part of the answer at all — it runs on the CPU, which is what
+		lets it verify Thai while the engine is still loaded.
+		"""
+		return self._voice is not None and self._voice.resident
 
 
 ENGINES = Engines()
@@ -257,6 +273,27 @@ def clips_for(deck: str) -> dict[str, list[dict[str, Any]]]:
 				audio = [audio]
 			urls[slide.get("id", "")] = audio or []
 
+	# The manifest knows about clips the deck does not.
+	#
+	# A build that loses even one segment writes no deck at all — correct for
+	# the app, which must not ship a lesson with a hole, and exactly wrong for
+	# the studio, where a failed build is when you most want to hear what did
+	# come out. One bad Thai clip would otherwise hide twenty-five good English
+	# ones and leave the page looking like nothing ran.
+	#
+	# Keyed by segment rather than by slide, so it fills the individual gaps a
+	# partial build leaves rather than replacing a slide wholesale.
+	by_key: dict[str, str] = {}
+	manifest_path = ASSETS_ROOT / deck / "manifest.json"
+	if manifest_path.exists():
+		manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+		for asset in manifest.get("assets", []):
+			if asset.get("kind") == "audio" and asset.get("file"):
+				# Served by this server, not by the app's dev server — see the
+				# `/__studio/audio/` route for why the latter cannot see a clip
+				# that was written after it started.
+				by_key[asset["key"]] = f"/__studio/audio/{deck}/{asset['file']}"
+
 	out: dict[str, list[dict[str, Any]]] = {}
 	for slide in parse_script(CONTENT_DIR / f"{deck}.md").slides:
 		found = urls.get(slide.id, [])
@@ -270,7 +307,17 @@ def clips_for(deck: str) -> dict[str, list[dict[str, Any]]]:
 				# counting `[pause]` would inflate the studio's duration
 				# estimate and make a clip look closer to the cap than it is.
 				"words": len(strip_markup(segment.text).split()),
-				"url": found[index] if index < len(found) else None,
+				# The manifest first, because it is keyed by segment. The
+				# deck's `audio` is a positional array, so a build that
+				# produced nothing for one line shortens it and slides every
+				# later clip onto the wrong row — which is exactly how a
+				# scoped rebuild once had Thai lines playing English audio
+				# here. Falling back to it only when the manifest is silent
+				# keeps older decks working without inheriting that.
+				"url": (
+					by_key.get(segment.key)
+					or (found[index] if index < len(found) else None)
+				),
 			}
 			for index, segment in enumerate(slide.segments)
 		]
@@ -540,9 +587,49 @@ class Handler(BaseHTTPRequestHandler):
 				return self._send(200, {"decks": deck_ids()})
 			if path == "/__studio/api/job":
 				return self._send(200, JOB.snapshot())
+			if path == "/__studio/api/gpu":
+				# So a command-line build can ask before it starts, and say
+				# what is in its way rather than letting CUDA say "invalid
+				# device ordinal". The studio holds the narration engine
+				# resident on purpose — that is what makes regenerating one
+				# line fast — and there is only one card.
+				return self._send(
+					200,
+					{
+						"holding": ENGINES.holding_gpu(),
+						"building": JOB.snapshot().get("running", False),
+					},
+				)
+			if path == "/__studio/api/release":
+				# Stand down without shutting down: the next build reloads the
+				# engine, which is the same thing that happens after an image
+				# render.
+				ENGINES.release_english()
+				return self._send(200, {"released": True})
 			matched = re.match(r"^/__studio/api/deck/([A-Za-z0-9-]+)$", path)
 			if matched:
 				return self._send(200, deck_payload(matched.group(1)))
+			matched = re.match(r"^/__studio/audio/([A-Za-z0-9-]+)/(.+)$", path)
+			if matched:
+				# The studio serves its own clips rather than letting the app's
+				# dev server do it.
+				#
+				# `vite.config.ts` excludes `public/lessons/**` from the
+				# watcher, so a reload is not broadcast every time a build lands
+				# sixty mp3s — which is right, and has a consequence the comment
+				# there does not mention: Vite never learns the new files exist
+				# and answers a request for one with the SPA's index.html. The
+				# browser then reports "the element has no supported sources",
+				# which names neither the file nor the reason.
+				#
+				# Reading from disk per request has no such staleness, and this
+				# server is already the one the studio talks to.
+				deck, name = matched.group(1), matched.group(2)
+				target = (ASSETS_ROOT / deck / name).resolve()
+				lesson_dir = (ASSETS_ROOT / deck).resolve()
+				if lesson_dir not in target.parents or not target.is_file():
+					return self._send(404, {"error": "not found"})
+				return self._send(200, target.read_bytes(), "audio/mpeg")
 			matched = re.match(r"^/__studio/media/([A-Za-z0-9-]+)/(.+)$", path)
 			if matched:
 				target = (CONTENT_DIR / matched.group(2)).resolve()

@@ -318,15 +318,23 @@ export default function StudioPage() {
 					setJob(null);
 					await loadDeck(deckId);
 					setAudioVersion((version) => version + 1);
+					setStatus(null);
 					if (state.error) {
 						setError(state.error);
 					} else if (state.report) {
 						const { generated, reused, errors } = state.report;
-						setStatus(
-							errors.length > 0
-								? `${errors.length} failed: ${errors[0]}`
-								: `${generated} generated, ${reused} reused.`,
-						);
+						if (errors.length > 0) {
+							// Failures go to the red banner, not the green one.
+							// `setStatus` is the success channel and a build
+							// that lost clips reported through it read as a
+							// cheerful "16 failed".
+							setError(
+								`${errors.length} failed — ${errors[0]}` +
+									(generated > 0 ? ` (${generated} did generate)` : ""),
+							);
+						} else {
+							setStatus(`${generated} generated, ${reused} reused.`);
+						}
 					}
 				}
 			} catch (cause) {
@@ -448,8 +456,12 @@ export default function StudioPage() {
 					</span>
 				)}
 				{status && <span className="text-emerald-700">{status}</span>}
+				{/* Not truncated. A failure names the clip that broke and why,
+				    which is the whole value of showing it — at 40 characters
+				    "16 failed — three-hums-2: transcribed back as…" lost the
+				    part that says what to do next. */}
 				{error && (
-					<span className="max-w-[40ch] truncate text-red-700">{error}</span>
+					<span className="max-w-[70ch] text-red-700">{error}</span>
 				)}
 			</header>
 
