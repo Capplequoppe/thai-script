@@ -37,8 +37,8 @@ ITS ANSWER NEVER SHARE A SLIDE. All unchanged from lesson 3.
 image: images/lesson-06/what-is-here.jpg
 scene: A tidal river mouth beside a fishing harbour at midday, thick grey mud banks exposed by the low tide, reeds, moored boats further out, hard bright light.
 heading: One letter, two vowels, and a piece of furniture
-narration: en New band, and the shape of it changes slightly. Only one consonant today — but it is a letter that can cost you a whole word if you write it carelessly, and I want to spend the time on why. Then two vowels that English genuinely cannot make, which is a first. And a piece of furniture arrives with them: a mark that turns up in the writing purely to hold something else up, and which you are not going to learn as a letter today even though that is what it is.
-- One consonant, and a costly one to get wrong.
+narration: en New band, and the shape of it changes slightly. Only one consonant today — but it is a letter that can cost you a whole word if you write it carelessly, and I want to spend the time on why. Then two vowels that English genuinely cannot make, which is a first. And a piece of furniture arrives with them: a mark that turns up in the writing purely to hold something else up, and which you are going to treat as furniture today, even though it is a real letter.
+- One consonant, and one stroke inside it that can change the word.
 - Two vowels English cannot make.
 - And something that turns up only to prop a vowel up.
 
@@ -46,18 +46,18 @@ narration: en New band, and the shape of it changes slightly. Only one consonant
 image: images/lesson-06/the-trick.jpg
 scene: A black water buffalo lying shoulder-deep in thick grey harbour mud at a river mouth, only its back and horns clear of the surface, reeds and moored fishing boats behind, midday heat.
 heading: You already know how it sounds in a word
-narration: en Here is today's trick, and it is a rebate rather than a shortcut. Today's letter lives at the harbour, which means it is low class, which means every tone rule you have been using for the last three lessons applies to it completely unchanged. There is nothing new to learn about what it does to a tone. You already own that part. Which is exactly why we can afford to spend the whole lesson on the one thing about it that is new, and the new thing here is a direction rather than a sound.
+narration: en Here is today's trick, and it is a rebate rather than a shortcut. Today's letter lives at the harbour, which means it is low class, which means every tone rule you have been using for the last three lessons applies to it completely unchanged. There is nothing new to learn about what it does to a tone. Which is exactly why we can afford to spend the whole lesson on the one thing about it that is new, and the new thing here is a direction rather than a sound.
 - It lives at the harbour, so it is low class.
 - Every tone rule you have applies to it **unchanged**.
-- The new thing about it is not a sound. It is a direction.
+- The new thing is the direction your hand travels.
 
 ## exposition pen-still-there
 image: images/lesson-01/get-a-pen.jpg
 heading: Pen and paper, and today it is the point
-narration: en Pen and paper, and today more than any lesson so far, because today's letter is separated from one you already know by the direction your hand travels and by nothing else. You cannot learn that by looking. Your eye will tell you the two are the same shape, and your eye will be right. The hand is the only part of you that can tell them apart. And both halves of the name out loud, as always.
+narration: en Pen and paper, and today more than any lesson so far, because today's letter is separated from one you already know by one thing, which is the direction your hand travels. Your eye will tell you the two are the same shape, and your eye will be right. So the two of them go on the page one under the other, written alternately, until your hand knows which way it is turning. And both halves of the name out loud, as always.
 - Real paper, a real pen.
 - Today's letter differs from a known one **only by direction**.
-- The eye cannot see it. The hand can.
+- Write it beside the letter it resembles, and let the wrist learn the turn.
 
 ## exposition meet-khwaai
 image: images/lesson-06/meet-khwaai.jpg
@@ -68,7 +68,7 @@ cue: a gust of breath
 heading: The buffalo
 narration: en The letter. Listen to its name.
 recording: th คอ ควาย public/audio/consonant-kho-khwai.mp3
-narration: en That word means a water buffalo. The sound is a k with a gust of breath behind it — palm up, and it should move, the same way the elephant and the tray moved it. This is the third breathing letter you have met, so by now you should be able to feel the difference between one of these and the market's silent stops without being told which is which.
+narration: en That word means a water buffalo. The sound is a k with a gust of breath behind it — palm up, and it should move, the same way the elephant and the tray moved it. This is the third breathing letter you have met, and the market's silent stops are the ones that leave the palm still.
 - Its name is the sound, then a word beginning with that sound.
 - The word means a **water buffalo**.
 - A k with a gust of breath. The palm moves.
@@ -86,7 +86,7 @@ narration: en Up behind the harbour there are vegetable plots, and there is a bu
 image: images/lesson-06/khwaai-story-2.jpg
 scene: Close on a black water buffalo lowering itself into thick grey river mud, head thrown back over its shoulder, nostrils wide, a gust of breath visible in the humid air, reeds close around it, midday.
 heading: The sound it makes going in
-narration: en And it goes in slowly, the way something that heavy has to, and as it lowers itself down it blows out one enormous breath through its nose. Caked, cool, and completely calm within about a minute. That gust is the letter. Now watch what it does with its head, because this is the part that matters: it throws it back over its shoulder and leaves it there. It does not tuck it in. It throws it back.
+narration: en And it goes in slowly, the way something that heavy has to, and as it lowers itself down it blows out one enormous breath through its nose. Caked, cool, and completely calm within about a minute. That gust is the letter. Now watch what it does with its head, because this is the part that matters: it throws it back over its shoulder and leaves it there, the whole weight of it hanging off the neck.
 recording: th คอ ควาย public/audio/consonant-kho-khwai.mp3
 - One enormous breath out as it lowers itself in.
 - Caked, cool and completely calm.
@@ -96,22 +96,22 @@ recording: th คอ ควาย public/audio/consonant-kho-khwai.mp3
 thai: ค
 heading: The buffalo's letter
 - A rounded bowl, the same one you have seen before.
-- The head curls **outward and back**, not tucked inside.
+- The head curls **outward and back**, away from the bowl.
 
 ## exposition the-pair-lesson-one-promised
 image: images/lesson-06/the-pair.jpg
 scene: A small child asleep curled inside an enormous market bowl on the left, and a black water buffalo lying in river mud with its head thrown back over its shoulder on the right, the two scenes side by side as one image, warm light.
 heading: This is the pair you were warned about
-narration: en Cast your mind right back to lesson one. When you learned that every letter has a head and that most heads curl clockwise, you were told that some letters look almost identical and that the only thing separating them is which way that head was written — and that you would meet a pair like that in a few lessons' time. Remember that? This is the pair, and it has been waiting for you since the first half hour of this course. The child asleep in the market bowl, and the buffalo in the harbour mud. Same rounded body. The child curls his head inward, tucked into the bowl. The buffalo throws his back over his shoulder, the other way round entirely.
+narration: en Cast your mind right back to lesson one. When you learned that every letter has a head and that most heads curl clockwise, you were told that some letters look almost identical and that the only thing separating them is which way that head was written — and that you would meet a pair like that in a few lessons' time. Remember that? This is the pair, and it has been waiting for you since the first half hour of this course. The child asleep in the market bowl, and the buffalo in the harbour mud. Same rounded body. The child curls his head inward, tucked into the bowl. The buffalo throws his back over his shoulder, out and away from it.
 - Lesson one promised you a pair that differs only by head direction.
-- **This is it.** The child's letter and the buffalo's letter.
+- The child's letter and the buffalo's letter are that pair.
 - Same bowl. One head tucked in, one thrown back.
 
 ## exposition what-it-costs
 image: images/lesson-06/what-it-costs.jpg
 scene: A dirt track forking in two directions at the edge of a Thai village, one fork running down to a harbour and boats, the other up to a market under striped awnings, a worn signpost at the junction, late afternoon.
 heading: And what it costs to get it wrong
-narration: en Now here is why that one stroke is worth a slide of its own. The child lives in the market and the buffalo lives at the harbour. Market is mid class. Harbour is low class. So if your hand curls that head the wrong way, you have not made a spelling mistake — you have moved the letter to a different district, which changes its class, which changes the tone of the whole syllable, which changes the word. One stroke, in one direction, carrying all of that. It is the most expensive direction in the alphabet so far.
+narration: en Now here is why that one stroke is worth a slide of its own. The child lives in the market and the buffalo lives at the harbour. Market is mid class. Harbour is low class. So if your hand curls that head the wrong way, you have moved the letter to a different district, which changes its class, which changes the tone of the whole syllable, which changes the word. So when you write either of them, that first curl is the stroke to slow down for.
 - The child is in the market: **mid class**. The buffalo is at the harbour: **low class**.
 - Curl the head the wrong way and the letter changes district.
 - District changes class, class changes tone, tone changes the word.
@@ -119,10 +119,10 @@ narration: en Now here is why that one stroke is worth a slide of its own. The c
 ## exposition write-khwaai
 thai: ค
 heading: Write it, and write the other one beside it
-narration: en So write them both. Start with the child's letter, which your hand already knows — head inside the bowl, curling clockwise. Then the buffalo beside it, and this time let the head go the other way, outward and back over the shoulder. Do that four or five times, alternating, saying each name out loud as you go. What you are training is the direction your wrist turns. Your eye has already told you the two are the same shape, and your eye was right — the wrist is the only part of you that knows better, and it is what will save you when you are reading at speed later on.
+narration: en So write them both. Start with the child's letter, which your hand already knows — head inside the bowl, curling clockwise. Then the buffalo beside it, and this time let the head go the other way, outward and back over the shoulder. Do that four or five times, alternating, saying each name out loud as you go. What you are training is the direction your wrist turns. Then cover one of them with your hand and write the other from memory.
 - Write the child's letter first. Head inside, clockwise.
 - Then the buffalo beside it. Head **outward and back**.
-- Alternate them. You are training the wrist, not the eye.
+- Alternate them, then write one from memory with the other covered.
 
 ## retrieval which-way-round
 reveal: which-way-round-answer
@@ -142,7 +142,7 @@ heading: Back up to the roof, where somebody else lives
 narration: en Now the vowels, and you are going back up to the roof. You have been up there once, for the lodger whose mark is written above the consonant, and you met him long and then short. There is somebody else living up there. Two of them today, and they are the same person at two lengths, exactly like everybody else in this house — but the sound he makes is one that English has no way to produce at all, so this is going to work differently from every vowel so far.
 - Back to the roof, where a vowel written above lodges.
 - There is a second lodger up there.
-- His sound does not exist in English. That is new.
+- Every vowel so far had an English anchor. His has none.
 
 ## exposition meet-uen
 image: images/lesson-06/meet-uen.jpg
@@ -153,9 +153,9 @@ cue: made behind a grin
 heading: The other one upstairs
 narration: en Listen to his name.
 narration: th อื่น
-narration: en It means other, or another — which is what he is. The roof already had someone, and this is the second one. Now the sound, and for once I cannot give you an English word for it, because there is not one. Do this instead: spread your lips into a wide grin, as wide as you can manage. Hold the grin. Now, without letting it go, try to say the oo in boot. What comes out lands somewhere between oo and ee, and that is the sound you are after. Feel where it is sitting in your mouth?
+narration: en It means other, or another — which is what he is. The roof already had someone, and this is the second one. Now the sound, and for once there is no English word for it. Do this instead: spread your lips into a wide grin, as wide as you can manage. Hold the grin. Now, without letting it go, try to say the oo in boot. What comes out lands somewhere between oo and ee, and that is the sound you are after. Feel where it is sitting in your mouth?
 - The name means **other**, or another.
-- There is no English word for this sound. There is no point looking.
+- There is no English word for this sound, so you build it instead.
 - Wide grin, hold it, then try to say oo through it.
 
 ## exposition the-swedish-shortcut
@@ -165,7 +165,7 @@ heading: Unless you happen to speak Swedish
 narration: en And if you speak Swedish, you can throw all of that away, because you have been making this sound your whole life. It is the u in hus. It is the u in ut. That is very nearly exactly this vowel — near enough that the only correction you need is to pull your lips back rather than push them forward, and you are there. Which is worth knowing, because this is the one pair of vowels where every English course in existence has to wave its hands and say there is nothing quite like it. There is something quite like it. It simply lives in a different language.
 - Swedish speakers already own this sound: the u in **hus**, in **ut**.
 - Pull the lips back rather than pushing them forward.
-- English has nothing here. Swedish does.
+- Say hus, pull the lips back, and you are on the Thai vowel.
 
 ## exposition the-grin-pair
 image: images/lesson-06/the-grin-pair.jpg
@@ -174,9 +174,9 @@ glyph: ึ
 gloss: the same lodger, cut short
 cue: short above, long above
 heading: Both of him, and you know this trick
-narration: en And there are two of him, short and long, the same as everybody else in the house. By now you should be able to guess how the writing tells you which — and you would be right. The short one is the small mark with a little ring balanced on top of it. The long one has a second upright pinned beside it. More on the mark means longer. That is the third time this course has handed you the same rule, upstairs, downstairs and now upstairs again, and it is the last time I am going to point it out.
+narration: en And there are two of him, short and long, the same as everybody else in the house. The writing tells you which, the same way it has twice already. The short one is the small mark with a little ring balanced on top of it. The long one has a second upright pinned beside it. More on the mark means longer. That is the third time this course has handed you the same rule, upstairs, downstairs and now upstairs again, and it is the last time I am going to point it out.
 - Two of him: short and long, same sound.
-- **More on the mark means longer.** Third time you have met this.
+- **More on the mark means longer** — upstairs, downstairs, and upstairs again.
 - Short: a small ring on top. Long: a second upright beside it.
 
 ## exposition short-grin-word
@@ -186,10 +186,10 @@ scene: An elderly man sitting on a veranda step with his eyes closed and his hea
 heading: The short one, in a word
 narration: en Before you write them, hear the short one working. The mouse's letter from lesson one, the short grin vowel above it, and the chicken's letter from lesson three sealing it.
 narration: th นึก
-narration: en It means to call something to mind — to bring a thing back up out of memory on purpose, rather than having it turn up on its own. Which, given how this entire course is built, is a reasonably appropriate word to be the first one you read with it.
+narration: en It means to call something to mind — to bring a thing back up out of memory on purpose, rather than having it turn up on its own. Say it with the grin held, and let the chicken's letter cut it off short.
 - The mouse's letter, short grin vowel above, chicken's letter closing it.
 - **นึก** — to call something to mind.
-- Short: over before it settles.
+- Hold the grin, and let the chicken's letter cut the vowel off.
 
 ## exposition write-the-grin
 thai: ื
@@ -197,7 +197,7 @@ heading: Write them both
 narration: en Both of them on paper, above a consonant rather than alone, because like everyone else in this house neither of them ever stands on its own. Put them over the buffalo you just wrote. Say the whole syllable out loud each time, holding that grin, and do not worry that it feels ridiculous — it feels ridiculous to everybody, and the people who keep doing it anyway are the ones who end up able to say it. Here are the two names.
 recording: th สระอือ public/audio/sara-eu-long.mp3
 recording: th สระอึ public/audio/sara-eu-short.mp3
-- Always above a consonant. Never alone.
+- Always above a consonant, which it leans on to stand.
 - Put them over the letter you just learned.
 - Say the whole syllable, grin and all.
 
@@ -234,22 +234,22 @@ thai: คือ
 heading: And one you will use constantly
 narration: en Here is the same thing in a word you are going to meet in almost every sentence you ever read.
 narration: th คือ
-narration: en It means is. The buffalo, the long grin vowel, and the prop holding it up because nothing else does. And here is the test, which is the useful part: it is never about how the word sounds. It is only ever about whether a consonant follows the vowel. If one does, no prop. If none does, prop.
+narration: en It means is. The buffalo, the long grin vowel, and the prop holding it up because nothing else does. And here is the test. Look at what stands behind the vowel. A consonant, and the vowel already has something to sit on. Nothing, and the prop goes in.
 - **คือ** — the word for *is*.
-- The test is not the sound.
-- **Does a consonant follow the vowel?** If not, the prop goes in.
+- The test is what stands behind the vowel.
+- A consonant behind it, no prop. Nothing behind it, prop.
 
 ## retrieval seat-or-no-seat
 reveal: seat-or-no-seat-answer
 prompt: Of a syllable reading khuue, one reading khuuen and one reading muue, one needs no prop. Which, and why?
-narration: en Last question. Three syllables: one reads khuue, one reads khuuen, one reads muue. Two of them are written with the prop and one of them is not. Say which one stands on its own — and more importantly, say how you knew.
+narration: en Last question. Three syllables: one reads khuue, one reads khuuen, one reads muue. Two of them carry the prop and one of them does without. Say which one stands on its own — and more importantly, say how you knew.
 
 ## reveal seat-or-no-seat-answer
 retrieval: seat-or-no-seat
-narration: en The middle one. It already closes on the mouse's letter, so the vowel has something underneath it and needs nothing more. The other two end bare, so both get the prop. And how you knew has nothing to do with how any of them sound: you looked at whether a consonant followed the vowel, which is the only thing the rule has ever been about.
+narration: en The middle one. It already closes on the mouse's letter, so the vowel has something underneath it and needs nothing more. The other two end bare, so both get the prop. And how you knew was by looking at what stood behind the vowel in each of the three.
 - The one closing on a final consonant stands on its own.
 - The two that end bare are both written with the prop.
-- The test is never the sound. It is whether a consonant follows.
+- Read what stands behind the vowel, and the spelling follows from it.
 
 ## exposition read-khon
 thai: คน
@@ -263,12 +263,12 @@ narration: en Two letters, no vowel written between them at all — which is a t
 thai: คน
 heading: That one
 narration: th คน
-narration: en A person. Two letters, and it is one of the most common words in the language — you will see it inside dozens of other words as you go. Not bad for a letter you met twenty minutes ago.
+narration: en A person. Two letters, and it is one of the most common words in the language — you will see it inside dozens of other words as you go.
 - **คน** — a person.
 
 ## exposition read-close
 heading: One band down, and the shape of things
-narration: en That is the first lesson of the middle band. Thirteen letters, nine vowels, and you have now met the thing Thai does where a stroke direction carries a class. From here the alphabet mostly gets wider — more letters that sound like letters you already have, sorted into districts you already know. The machine does not get harder. It just gets more furniture.
+narration: en That is the first lesson of the middle band. Thirteen letters, nine vowels, and you have now met the thing Thai does where a stroke direction carries a class. From here the alphabet mostly gets wider — more letters that sound like letters you already have, sorted into districts you already know. Next lesson brings two of them, and the last room of the vowel house.
 - Thirteen letters, nine vowels.
-- A stroke direction can carry a class, and now you have met one.
-- From here: more letters, the same machine.
+- A stroke direction can carry a class, and the buffalo's head is one.
+- Next: two more letters, and the last room of the vowel house.

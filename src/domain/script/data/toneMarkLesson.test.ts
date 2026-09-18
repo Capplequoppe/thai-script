@@ -247,7 +247,12 @@ describe("AC2 — all twelve class-by-mark combinations appear", () => {
 		}
 		expect(allText).toMatch(/market/);
 		expect(allText).toMatch(/temple/);
-		expect(allText).toMatch(/harbor/);
+		// Spelling-tolerant, like UNREACHABLE_LINE above and the pair slide in
+		// middleBand.test.ts. This asks whether the lesson names all three
+		// districts; requiring the American spelling here forced one "harbor"
+		// into a lesson that says "harbour" five other times, which is a worse
+		// outcome than the check was ever trying to prevent.
+		expect(allText).toMatch(/harbou?r/);
 	});
 });
 

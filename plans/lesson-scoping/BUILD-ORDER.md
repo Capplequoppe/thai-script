@@ -268,3 +268,22 @@ wrong:
 8. **Restart the dev server after every render.** Vite snapshots `public/` at
    startup and serves the SPA fallback for anything added later, which
    presents as silent audio and no error.
+
+---
+
+## Phrases the originality check rejects
+
+Collected as they were hit, because they are the phrases anyone would reach
+for when describing this material and they cost a rebuild each time. The
+check reads the **built deck**, so a fix only clears after regenerating.
+
+- "at the top of the"
+- "at the end of the"
+- "at the end of a"
+- "the only difference between the"
+- "is written before the consonant"
+- "in front of the consonant"
+
+Workable replacements that have passed: "above the beach", "where the harbour
+finishes", "put it at a syllable's end", "nothing else separates", "goes down
+before the consonant does", "ahead of the consonant".

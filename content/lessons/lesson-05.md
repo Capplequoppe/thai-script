@@ -34,7 +34,7 @@ unchanged from lesson 3. A challenge and its answer never share a slide.
 image: images/lesson-05/what-is-here.jpg
 scene: A fishing harbour quay in the late afternoon, moored wooden longtail boats, drying nets on poles, the beach rising to scrub and a few low buildings at the top, warm light.
 heading: Two letters, two vowels, and the tone that falls
-narration: en Last of the opening band, and you are going to finish it able to read a fair number of ordinary words. Two consonants, and they are another near-identical pair, which by now you will have noticed is how this alphabet is built. Two vowels, and they open the one room of the house you have not been into yet. And one tone rule, which is the one that finally makes your voice do something interesting — everything so far has been flat, or it has jumped up. Today something falls.
+narration: en Last of the opening band, and you are going to finish it able to read a fair number of ordinary words. Two consonants, and they are another near-identical pair, which is how a great deal of this alphabet is built. Two vowels, and they open the one room of the house you have not been into yet. And one tone rule, which is the one that finally makes your voice do something interesting — everything so far has been flat, or it has jumped up. Today something falls.
 - Two consonants, another near-identical pair.
 - Two vowels, and the last room of the house.
 - The first tone that **falls**.
@@ -43,15 +43,15 @@ narration: en Last of the opening band, and you are going to finish it able to r
 image: images/lesson-05/the-trick.jpg
 scene: A small weathered spirit shrine on a post at the top of a harbour beach, a golden offering tray set on it wrapped in flowers, incense smoking, the sea and moored boats below and behind, late golden light.
 heading: The shrine above the beach
-narration: en Go up the beach, past where the elephant drags the boats out, to where the sand gives up and the scrub starts. There is a shrine up here on a post, about the height of your shoulder, and every harbour in the country has one. Nobody goes out in a boat without stopping at it. There is an offering tray on it, wrapped in flowers, and there is always incense going. And there is one other thing sitting on that tray which we will come to, because it is the second letter and it is the reason people stop and look. Both of today's letters live up here and both are low class, which is the harbour, so no surprises there. And both of them breathe. You have felt this once already, on the elephant — palm up, air thrown. Neither of today's two hums, and neither of them stops. They breathe, and they breathe in two different places in your mouth. Shall we go and find out where?
+narration: en Go up the beach, past where the elephant drags the boats out, to where the sand gives up and the scrub starts. There is a shrine up here on a post, about the height of your shoulder, and every harbour in the country has one. Nobody goes out in a boat without stopping at it. There is an offering tray on it, wrapped in flowers, and there is always incense going. And there is one other thing sitting on that tray which we will come to, because it is the second letter and it is the reason people stop and look. Both of today's letters live up here and both are low class, which is the harbour. And both of them breathe. You have felt this once already, on the elephant — palm up, air thrown. Everything before them either hummed or stopped dead. These two do the third thing, and they do it in two different places in your mouth. Shall we go and find out where?
 - Both low class, both at the harbour, both up at the shrine.
-- **Both breathe.** Neither hums, neither stops.
-- Two different places in your mouth. That is the whole difference.
+- **Both breathe**, like the elephant. Everything before them hummed or stopped.
+- Two different places in your mouth: the lips, and the teeth.
 
 ## exposition pen-still-there
 image: images/lesson-01/get-a-pen.jpg
 heading: Pen and paper first
-narration: en Pen and paper before anything, the same as every lesson. Today's pair is the closest yet — the second letter is the first one with a single stroke grown taller — and the hand is what separates letters that the eye slides over. And keep saying both halves of each name out loud while you write it. That habit has been in every lesson because it is the one that stops the alphabet turning into wallpaper.
+narration: en Pen and paper before anything, the same as every lesson. Today's pair is the closest yet — the second letter is the first one with a single stroke grown taller — and the hand is what separates letters that the eye slides over. And keep saying both halves of each name out loud while you write it, the same as every lesson behind you.
 - Real paper, a real pen.
 - Today's pair is the closest yet. The hand separates them.
 - Out loud, both halves, every time.
@@ -83,7 +83,7 @@ narration: en Somebody has to keep a shrine, and here it is a woman who has done
 image: images/lesson-05/phaan-story-2.jpg
 scene: Close on an elderly woman's face and hands as she purses her lips and blows out a lit incense stick at a small harbour shrine, a thin curl of smoke rising, golden offering tray with flowers beside her, dawn light.
 heading: The sound she makes at the end of it
-narration: en And the last thing she does, every morning, is lean in and put out the flame with one short puff. Not a blow — a puff, lips together and then open, and the smoke goes sideways. That is the letter. It is the sound of finishing at a shrine. Look at the shape while you hear it: three prongs standing in a row with every tip stopping dead level, which is a tray set flat, and the head curled outside the rim on the left where your pen starts.
+narration: en And the last thing she does, every morning, is lean in and put out the flame with one short puff. A puff rather than a blow, lips together and then open, and the smoke goes sideways. That is the letter. It is the sound of finishing at a shrine. Look at the shape while you hear it: three prongs standing in a row with every tip stopping dead level, which is a tray set flat, and the head curled outside the rim on the left where your pen starts.
 recording: th พอ พาน public/audio/consonant-pho-phan.mp3
 - One short puff to put the flame out. Lips together, then open.
 - Three prongs, all three tips level. A tray set flat.
@@ -98,7 +98,7 @@ heading: The tray's letter
 ## exposition write-phaan
 thai: พ
 heading: Write it now
-narration: en Head first — outside the rim on the left, and clockwise unless you are told otherwise, which you have not been. Then the three prongs, and the thing to get right is that all three tips stop at the same height. Level. That is what makes it a tray, and in about two minutes it is going to be what makes it not the other letter. Write it several times, out loud both halves of the name, and leave it on the page.
+narration: en Head first — outside the rim on the left, and clockwise, which stays the default until a letter tells you otherwise. Then the three prongs, and the thing to get right is that all three tips stop at the same height. In about two minutes you meet the letter where one of them keeps going. Write it several times, out loud both halves of the name, and leave it on the page.
 - **Start at the head**, outside the rim on the left.
 - Three prongs, and all three tips stop **level**.
 - Leave it on the page. You will need it in two minutes.
@@ -112,7 +112,7 @@ cue: breath past the teeth
 heading: The tooth
 narration: en The second letter, and it is the tray with one thing changed. Listen.
 recording: th ฟอ ฟัน public/audio/consonant-fo-fan.mp3
-narration: en That word means a tooth. And here is a free gift, which does not happen often: the sound of this letter is made at the teeth. Breath pushed out past them. The letter's own word is the part of your mouth that makes its sound, so there is nothing to memorise — put your top teeth on your bottom lip and push air through.
+narration: en That word means a tooth. And here is a rare free gift: the sound of this letter is made at the teeth. Breath pushed out past them. The letter's own word is the part of your mouth that makes its sound, so there is nothing to memorise — put your top teeth on your bottom lip and push air through.
 - Its name is the sound, then a word beginning with that sound.
 - The word means a **tooth**.
 - And the sound is **made at the teeth**. The word tells you how to say it.
@@ -130,7 +130,7 @@ narration: en So. The thing on the tray. It is a tooth, and it is the size of a 
 image: images/lesson-05/fan-story-2.jpg
 scene: Close on an enormous white tooth standing upright on a golden offering tray, noticeably taller than a row of smaller teeth laid in a line beside it, harbour and boats blurred behind, warm light.
 heading: Why it is that letter and not the other one
-narration: en Look at the two letters side by side and the tooth explains itself. The tray is three prongs, all level. The tooth is the same figure with the last stroke grown taller than the others — one standing up out of the row. Which is exactly what it is doing on that tray: a row of ordinary teeth would not be up there. That one is up there because it outgrew everything around it.
+narration: en Look at the two letters side by side and the tooth explains itself. The tray is three prongs, all level. The tooth is the same figure with the last stroke grown taller than the others — one standing up out of the row. Which is exactly what it is doing on that tray. That one earned its place up there by outgrowing everything around it.
 recording: th ฟอ ฟัน public/audio/consonant-fo-fan.mp3
 - Same figure as the tray, with the last stroke grown taller.
 - One tooth standing up out of the row.
@@ -145,7 +145,7 @@ heading: The tooth's letter
 ## exposition write-fan
 thai: ฟ
 heading: Write it under the tray
-narration: en Write this one directly underneath the tray you wrote a few minutes ago. Same head, same start, same three prongs — and then let the last one keep going up past the others. Now look at your own two, one above the other, in your own handwriting. That height is the entire difference between an offering tray and a tooth, and the page in front of you is the best argument for writing these down that I can give you.
+narration: en Write this one directly underneath the tray you wrote a few minutes ago. Same head, same start, same three prongs — and then let the last one keep going up past the others. Now look at your own two, one above the other, in your own handwriting. That height is the entire difference between an offering tray and a tooth.
 - Same head, same prongs. The last one keeps going.
 - Write it **directly under** the tray.
 - Compare your own two. That height is the whole difference.
@@ -157,14 +157,14 @@ narration: en Before the vowels. The two letters share a shape. Name the one dif
 
 ## reveal which-outgrew-answer
 retrieval: which-outgrew
-narration: en The final stroke is taller than the others, and the tooth is the one carrying it. The tray keeps all three tips level. If you wrote them both down you will have known that without thinking, and if you did not, go back and write them both down.
+narration: en The final stroke is taller than the others, and the tooth is the one carrying it. The tray keeps all three tips level. If you have not written them both down, go back and do that now.
 - The final stroke rises above the rest.
 - The **tooth** has it. The tray keeps all three level.
 
 ## exposition down-to-the-cellar
 image: images/lesson-01/the-vowel-house.jpg
 heading: The last room of the house
-narration: en Now the vowels, and back to the house. You have been in the back yard, where a vowel lodges when it is written after its letter, and up on the roof, where it lodges when it is written above. There is one more room and it is the one under the floor. Shall we go down? A house like this stands on stilts, so there is a whole storey of shade down there that is not quite a room and is used like one — and a vowel written underneath its consonant lodges in it. Two of them arrive today, and they arrive together, which is the first time that has happened.
+narration: en Now the vowels, and back to the house. You have been in the back yard, where a vowel lodges when it is written after its letter, and up on the roof, where it lodges when it is written above. There is one more room and it is the one under the floor. Shall we go down? A house like this stands on stilts, so there is a whole storey of shade down there that is not quite a room and is used like one — and a vowel written underneath its consonant lodges in it. Two of them arrive today, and they arrive together.
 - Back yard: written after. Roof: written above.
 - Underneath the floor is the **cellar**.
 - Two vowels today, and they arrive together.
@@ -190,7 +190,7 @@ glyph: ู
 gloss: the same lodger, held
 cue: the deeper hook is the long one
 heading: And you have seen this trick before
-narration: en Here is the part worth stopping on. There are two of him, and they are the same sound at two lengths — and you already know how to tell which is which. Does this feel familiar? It should. You learned it upstairs last lesson. The short one is a small hook. The long one is the same hook drawn deeper, reaching further down. That is the same idea as the flick on the roof's mark: more stroke means longer. Two rooms now, one rule, and it is the second cheat code this course has handed you. Upstairs and downstairs, the length is in the stroke.
+narration: en Here is the part worth stopping on. There are two of him, and they are the same sound at two lengths — and you already know how to tell which is which. Does this feel familiar? You learned it upstairs last lesson. The short one is a small hook. The long one is the same hook drawn deeper, reaching further down. That is the same idea as the flick on the roof's mark: more stroke means longer. Two rooms now, one rule, and it is the second cheat code this course has handed you.
 - Two of him: same sound, two lengths.
 - The long one is the same hook, drawn **deeper**.
 - **More stroke means longer.** Upstairs and down.
@@ -202,7 +202,7 @@ scene: The inside corner of a wooden room in a Thai house, two plank walls meeti
 heading: The short one, doing a job
 narration: en Before you write them, hear the short one in a real word. The horse's letter from lesson one, the small hook underneath it, and the horse's letter again closing it.
 narration: th มุม
-narration: en A corner, or an angle. Listen to how fast that vowel is over — it is there and then it is finished, and that is the whole of what short means. You will hear the long one beside it in a minute and the difference will be obvious.
+narration: en A corner, or an angle. Listen to how fast that vowel is over — it is there and then it is finished. You will hear the long one beside it in a minute and the difference will be obvious.
 - The horse's letter, the small hook beneath, the horse's letter again.
 - **มุม** — a corner, or an angle.
 - Short: there and finished.
@@ -210,12 +210,12 @@ narration: en A corner, or an angle. Listen to how fast that vowel is over — i
 ## exposition write-the-cellar
 thai: ู
 heading: Write them both
-narration: en Both of them, on paper, one under the other so you can see the difference in your own hand. Put each one under a consonant you already have — never on its own, because neither of them ever stands on its own. And say the whole syllable out loud as you finish it, not the vowel's name. Here is the long one's real name first, and then the short one's.
+narration: en Both of them, on paper, one under the other so you can see the difference in your own hand. Put each one under a consonant you already have, because both of them need one to lean on. And say the whole syllable out loud as you finish it, the sound the marks make together. Here is the long one's real name first, and then the short one's.
 recording: th สระอู public/audio/sara-u-long.mp3
 recording: th สระอุ public/audio/sara-u-short.mp3
 - Write both, one under the other. Compare the depth.
-- Always under a consonant. Never alone.
-- Say the **syllable** out loud, not the vowel's name.
+- Always under a consonant, one you already know.
+- Say the **syllable** out loud, the sound the marks make together.
 
 ## exposition read-duu
 thai: ดู
@@ -245,7 +245,7 @@ narration: th พบ
 narration: en To meet. Same letter at the front, same kind of dead ending, and the only thing that changed is that the vowel got short. So it goes high instead of falling.
 - Low class, long vowel, dead ending: the pitch **falls**.
 - Short vowel in the same frame: it goes **high** instead.
-- One difference between them, and it is the length.
+- The mark under the letter is where you read the length.
 
 ## exposition already-falling
 image: images/lesson-05/already-falling.jpg
@@ -255,10 +255,10 @@ narration: en And you have been saying two of these correctly for two lessons wi
 narration: th มาก
 narration: en Much, or very. Low class at the front, the long vowel from lesson one, and the chicken's letter sealing it dead. That is the falling rule, and you have been copying it by ear since lesson three. Here is the other one.
 narration: th ยาก
-narration: en Difficult. Same shape exactly. This is what the rules are for — you stop copying what you heard and start knowing what it has to be.
+narration: en Difficult. Same shape exactly. Every word you meet from here in that shape falls the same way, whether you have heard it before or not.
 - Both are low class, long vowel, dead ending.
 - Both fall, and both have since lesson three.
-- You stop copying by ear and start knowing.
+- The rule gives you the tone before you have heard the word.
 
 ## retrieval short-or-long
 reveal: short-or-long-answer
@@ -267,10 +267,10 @@ narration: en Last question of the opening band. Both words on screen open on th
 
 ## reveal short-or-long-answer
 retrieval: short-or-long
-narration: en The one with the long vowel falls. The one with the short vowel goes high. The class is the same in both, the ending is the same in both, and the vowel length is doing all of the work. Which is why the mark that tells you the length is worth as much as it is.
+narration: en The one with the long vowel falls. The one with the short vowel goes high. The class is the same in both, the ending is the same in both, and the vowel length is doing all of the work. You can see that length on the page, sitting under the letter.
 - Long vowel, dead ending, low class: **falls**.
 - Short vowel, same frame: **high**.
-- Length is the only difference, and you can see it.
+- Length decides it, and the depth of the hook shows the length.
 
 ## exposition read-fang
 thai: ฟัง
@@ -283,12 +283,12 @@ narration: en Three letters, and you have had all three for at least a lesson. T
 thai: ฟัง
 heading: That one
 narration: th ฟัง
-narration: en To listen. Which is what you have been doing for five lessons, and now you can read the word for it.
+narration: en To listen. The tooth's letter opens it, and the snake's letter closes it without stopping it.
 - **ฟัง** — to listen.
 
 ## exposition read-close
 heading: The opening band, finished
-narration: en That is the opening band done. Twelve letters, seven vowels, four tone rules, and a house with every room open. Look at what that actually buys you: you can pick up a word you have never seen, made of letters you know, and work out not only what sounds are in it but what your voice has to do with them. That is the thing almost nobody who learns Thai from romanisation can do, and you have it after five lessons. From here the alphabet gets wider rather than harder — more letters, the same machine.
+narration: en That is the opening band done. Twelve letters, seven vowels, four tone rules, and a house with every room open. Look at what that actually buys you: you can pick up a word you have never seen, made of letters you know, and work out not only what sounds are in it but what your voice has to do with them. That is the thing almost nobody who learns Thai from romanisation can do. From here the alphabet gets wider rather than harder — more letters, the same machine.
 - Twelve letters, seven vowels, four tone rules.
 - Every room of the vowels' house is open.
 - You can read a word you have never seen and know its tone.

@@ -47,7 +47,7 @@ TWO RULES STILL GOVERN NARRATION, unchanged from lesson 1.
 
 ## exposition overview
 heading: What is in this lesson
-narration: en Three consonants and one tone rule. That is the whole lesson, and by the end of it you will be reading words. Before any of that, the part that makes it easier than it sounds.
+narration: en Three consonants and one tone rule, and by the end of them you will be reading words. Before any of that, the part that makes it easier than it sounds.
 - Three consonants — three new letters, all from the same place.
 - One tone rule: your first, and the one every other is measured against.
 - No new vowels. Everything you read today uses the one you already have.
@@ -56,7 +56,7 @@ narration: en Three consonants and one tone rule. That is the whole lesson, and 
 image: images/lesson-02/the-trick.jpg
 scene: A wide view of a small Thai fishing harbour at golden hour, wooden longtail boats moored along a stone quay, nets drying on poles, calm water, low horizon. No people.
 heading: All three live in the same place
-narration: en Here is the trick, and it is worth more than the three letters put together. All three of today's consonants are low class, and low class is the harbour. You have been there before — the two letters you already know live there too. That is one fact covering three letters, and it is the fact the tone rule will need at the end. There is a second thing they share. All three can close a syllable and leave the sound still going, instead of stopping it dead. Only a handful of letters in the whole alphabet can do that, and after today you will know every one of them.
+narration: en Here is the trick. All three of today's consonants are low class, and low class is the harbour. You have been there before — the two letters you already know live there too. So one fact covers all three, and the tone rule at the end of the lesson runs on it. There is a second thing they share. All three can close a syllable and leave the sound still going, instead of stopping it dead. Only a handful of letters in the whole alphabet can do that, and after today you will know every one of them.
 - All three are low class, so all three are in the harbour.
 - All three can end a syllable without stopping the air.
 - Learn the district once and it pays for every letter that lives there.
@@ -80,7 +80,7 @@ narration: en Two parts, as always — the sound itself, then an ordinary word t
 image: images/lesson-02/ngu-story-1.jpg
 scene: A young Thai woman sitting cross-legged in a dim rope locker on a harbour quay, coiling heavy rope, a green snake resting in the coil beside her, dust floating in a shaft of light.
 heading: The rope-maker's daughter
-narration: en Years ago this harbour had a rope-maker, and the rope-maker had a daughter. She worked in the rope locker at the end of the pier, and she kept a snake in there with her. Not as a pet exactly — a snake in a rope locker means no rats, and no rats means no holes chewed through the nets. It lived down in the coils. It was the colour of wet rope, and you could look straight at it and not see it. And you have heard about this snake already, though you have not seen it until now. Last lesson there was a mouse living in a doorpost at the far end of the quay, as far from the pier as it could get and still be under a roof. This is what it was staying away from.
+narration: en Years ago this harbour had a rope-maker, and the rope-maker had a daughter. She worked in the rope locker at the end of the pier, and she kept a snake in there with her. She kept it for the work — a snake in a rope locker means no rats, and no rats means no holes chewed through the nets. It lived down in the coils. It was the colour of wet rope, and you could look straight at it and not see it. And you have heard about this snake already, though you have not seen it until now. Last lesson there was a mouse living in a doorpost at the far end of the quay, as far from the pier as it could get and still be under a roof. This is what it was staying away from.
 - She worked the rope locker out where the pier runs to sea.
 - The snake lived in the coils and kept the rats off the nets.
 - It is why last lesson's mouse lived at the *other* end of the quay.
@@ -89,7 +89,7 @@ narration: en Years ago this harbour had a rope-maker, and the rope-maker had a 
 image: images/lesson-02/ngu-story-2.jpg
 scene: Thick mooring ropes pulled taut and groaning over a stone bollard at high tide, a green snake's head rising out of the coiled rope beside them, evening light on the water.
 heading: The sound the harbour makes
-narration: en Every evening, when the tide came in, the mooring ropes pulled tight and groaned. Not a creak — a long, low hum that carried right across the water. A hundred ropes taking the weight of a hundred boats at once. And every evening the snake lifted its head out of the coil and held that note with them. The fishermen swore it was singing. They began calling that hum the harbour's own voice, and they named the voice after her snake.
+narration: en Every evening, when the tide came in, the mooring ropes pulled tight and groaned — a long, low hum that carried right across the water. A hundred ropes taking the weight of a hundred boats at once. And every evening the snake lifted its head out of the coil and held that note with them. The fishermen swore it was singing. They began calling that hum the harbour's own voice, and they named the voice after her snake.
 - At high tide the ropes hum, long and low across the water.
 - The snake lifts its head from the coil and holds the note with them.
 
@@ -99,7 +99,7 @@ scene: A weathered carved stone marker at the end of a wooden pier showing a coi
 heading: What the pier still keeps
 narration: en She died in a winter storm, and the snake stayed. It went on answering the ropes every evening for years after she was gone. At the end of that pier there is a carving now — a coil of rope, with a snake's head rising out of it. Look at the letter and you are looking at the carving: a curve, and a head lifting off it. And the sound the harbour makes at high tide still goes by her snake's name.
 narration: th งอ งู
-- A coil of rope with a snake's head rising out of it. That is the letter.
+- The carving where the pier runs out: a coil of rope, and a snake's head rising off it.
 - The hum at high tide still carries the snake's name.
 ## exposition see-ngu
 thai: ง
@@ -117,7 +117,7 @@ cue: the long yawn across the water
 heading: The second voice
 narration: en The second letter. Listen.
 narration: th ยอ ยักษ์
-narration: en The sound glides, like the y at the start of yes. The word means giant — not a large man, but a giant out of the old stories, the kind that wades where boats sail.
+narration: en The sound glides, like the y at the start of yes. The word means giant — a giant out of the old stories, the kind that wades where boats sail.
 - The sound glides, like the y in *yes*.
 - The word means *giant*.
 
@@ -125,7 +125,7 @@ narration: en The sound glides, like the y at the start of yes. The word means g
 image: images/lesson-02/yak-story-1.jpg
 scene: A colossal giant standing chest-deep in stormy grey water beyond a harbour wall, carrying two small fishing boats, one under each arm, rain and spray around him.
 heading: The one who brought the boats home
-narration: en Past the harbour wall, where the water goes deep, there lived a giant. He was too big for any boat and had no use for one. When storms came in and the little boats could not make the harbour mouth, he waded out chest-deep and carried them home — two at a time, one under each arm. He never spoke. Not once, in anyone's memory.
+narration: en Past the harbour wall, where the water goes deep, there lived a giant. He was too big for any boat and had no use for one. When storms came in and the little boats could not make the harbour mouth, he waded out chest-deep and carried them home — two at a time, one under each arm. In anyone's memory, he never spoke.
 - Too big for a boat, so he waded.
 - He carried the fishing boats home through the storms, two at a time.
 - He never spoke.
@@ -149,7 +149,7 @@ narration: th ยอ ยักษ์
 ## exposition see-yak
 thai: ย
 heading: The giant's letter
-narration: en There he is, lying down. Two bumps on the same flank, and no other letter in the alphabet has that pair. Once you have seen the chin and the belly you will not lose this one.
+narration: en There he is, lying down. The chin, then the belly — two bumps on the same flank. Can you see them?
 - The giant's letter.
 
 ## exposition meet-waen
@@ -201,12 +201,12 @@ recording: th วอ แหวน public/audio/consonant-wo-weng.mp3
 ## exposition see-waen
 thai: ว
 heading: The ring's letter
-narration: en And the ring on its nail. One stroke closing into a single circle, with nothing else hung on it — the simplest shape in the harbour.
+narration: en And the ring on its nail. One stroke closing into a single circle, with nothing else hung on it. Hold it in your eye for a moment, and then we have a rule to do.
 - The ring's letter.
 
 ## rule live-endings
 rule: live-endings
-narration: en Now the first of two rules, and you have already met every letter it needs. Five letters in the whole alphabet can close a syllable and leave the sound still going. Today's three are three of them. The other two are the horse and the mouse, from last lesson. Notice what the five have in common. They are the five you can hum — hold any one of them and it keeps going until you run out of breath. That is not a coincidence. A sound you can hold is a sound a word can end on without stopping. A syllable ending on a long vowel with nothing after it is open the same way. Listen.
+narration: en Now the first of two rules, and you have already met every letter it needs. Five letters in the whole alphabet can close a syllable and leave the sound still going. Today's three are three of them. The other two are the horse and the mouse, from last lesson. So what do all five have in common? They are the five you can hum — hold any one of them and it keeps going until you run out of breath. A sound you can hold is a sound a word can end on without stopping. A syllable ending on a long vowel with nothing after it is open the same way. Listen.
 narration: th นา
 narration: en Nothing closes it. The air simply keeps going. Anything that does stop the air is the other kind of ending, and that arrives next lesson.
 
@@ -220,17 +220,17 @@ narration: en There they all are, and they all live in the same place. The horse
 
 ## rule low-live
 rule: low-live
-narration: en And now your first tone rule, which needs both halves you have just been given. Every letter in the harbour is low class. When one of them opens a syllable and nothing stops the air at the end, the tone comes out flat — level from beginning to end, halfway up your speaking range. Low class, live ending, mid tone. That is the rule, and it is the one every other tone rule will be measured against.
+narration: en And now your first tone rule, which needs both halves you have just been given. Every letter in the harbour is low class. When one of them opens a syllable and nothing stops the air at the end, the tone comes out flat — level from beginning to end, halfway up your speaking range. Low class, live ending, mid tone. Every tone rule you meet after this one is measured against it.
 
 ## exposition the-paddy
 image: images/lesson-02/the-paddy.jpg
 scene: A fisherman and a market vendor stand talking in a flat rice paddy, both alive and unhurried, the horizon dead level behind them.
 heading: Where a flat tone lives
-narration: en A flat tone has a place of its own, and it is not the harbour. It is the rice paddy — level to the horizon in every direction, nothing rising and nothing falling. And there is a picture that goes with it, which you will meet again every time this rule comes up. A fisherman stands in the middle of that paddy, talking. He is a long way from the harbour and he is perfectly all right — alive, unhurried, nothing has happened to him. A syllable that ends live is a syllable nothing has happened to, and a harbour voice that nothing has happened to comes out flat. There is a market vendor standing with him. Ignore him for now; he is there for a rule you have not met yet, and when you do meet it you will find him already waiting. Listen to two of them.
+narration: en A flat tone has a place of its own, a long way inland from the harbour. It is the rice paddy — level to the horizon in every direction, nothing rising and nothing falling. And there is a picture that goes with it, which you will meet again every time this rule comes up. A fisherman stands in the middle of that paddy, talking. He is a long way from the harbour and he is perfectly all right — alive, unhurried, nothing has happened to him. A syllable that ends live is a syllable nothing has happened to, and a harbour voice that nothing has happened to comes out flat. There is a market vendor standing with him. Ignore him for now; he is there for a rule you have not met yet, and when you do meet it you will find him already waiting. Listen to two of them.
 narration: th งาน
 narration: en That one means work, or a job.
 narration: th ยาว
-narration: en That one means long. Both begin in the harbour, both end without stopping, and both come out level. Listen for the levelness rather than the meaning — the levelness is the thing you are learning.
+narration: en That one means long. Both begin in the harbour, both end without stopping, and both come out level. Listen for the levelness rather than the meaning, and say each one back on the same level.
 - The fisherman stands alive in a flat paddy, and nothing has happened to him.
 - A harbour voice that nothing stops comes out flat.
 - Flat tones live in the rice paddy.
@@ -244,7 +244,7 @@ narration: en One question before you read anything back. A word begins with the
 retrieval: tone-of-yaa
 narration: en Mid tone. Flat from start to finish.
 narration: th ยายา
-narration: en The giant is low class, because everything in the harbour is, and nothing stops the syllable, so it is live. Low class plus live ending gives mid. You did not need to know the word to know its tone — which is the entire reason for learning the rule before the vocabulary.
+narration: en The giant is low class, because everything in the harbour is, and nothing stops the syllable, so it is live. Low class plus live ending gives mid.
 - Mid tone, flat from start to finish.
 - The giant is low class and the syllable is live, so the low class live rule decides it.
 
@@ -257,9 +257,9 @@ narration: en Two words now, and neither of them needs a letter you have not met
 ## exposition read-ngaam
 thai: งาม
 heading: Read this one
-narration: en Take it slowly. A hum, a long vowel, and a hum to close it — three sounds, and all three of them are already yours.
+narration: en Take it slowly. A hum, a long vowel, and a hum to close it.
 narration: th งาม
-narration: en Beautiful. That is what it means, and you read it yourself.
+narration: en Beautiful. That is what it means. Did you get it before the voice did?
 - A hum, a long vowel, a hum to close it.
 
 ## exposition read-wong
@@ -267,11 +267,11 @@ thai: วง
 heading: And this one
 narration: en Two letters. The ring, and then the snake's letter closing it.
 narration: th วง
-narration: en A circle, or a ring. The word and the shape agree for once, and you know exactly why they do.
+narration: en A circle, or a ring. The word and the shape agree for once, and the harbour took the word from the woman on the steps.
 - The ring, then the snake's letter closing it.
 
 ## exposition read-close
 heading: Two lessons in
-narration: en Everything you just read was built from five letters and one vowel. That is what learning the district first buys you — not a pile of symbols, but a place where each one lives and a reason it sounds the way it does. Next lesson the air starts stopping, and you will meet the other kind of ending.
+narration: en Everything you just read was built from five letters and one vowel. That is what learning the district first buys you — a place where each letter lives, and a reason it sounds the way it does. Next lesson the air starts stopping, and you will meet the other kind of ending.
 - Five letters and one vowel between them.
 - Next: endings that stop the air.
