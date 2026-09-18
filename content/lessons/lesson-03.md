@@ -165,12 +165,12 @@ narration: en Nothing should move. These three release no breath at all. If your
 
 ## exposition the-vowel-house
 image: images/lesson-03/the-vowel-house.jpg
-scene: A wooden Thai house on stilts standing alone where three dirt tracks meet, wide veranda, steep tiled roof, open shaded space beneath the floor, rice fields beyond, late afternoon light. No people.
-heading: Vowels do not live in the districts
-narration: en Every consonant you have met lives somewhere, and where it lives tells you its class — and class is half of what decides the tone. Vowels do not work like that. A vowel will attach to any consonant at all, and it changes nobody's class, so there is nowhere in the three districts for one to belong. What they have instead is a house of their own, standing out where the three roads meet. Vowels lodge there. A vowel never stands alone — it always has a consonant to lean on — and which room of the house it lodges in is simply where it gets written. Above the consonant is the roof. Below it, the cellar. After it, the back yard, which is where the very first vowel you learned has been living since lesson one. Today you are going up to the roof.
-- Vowels carry no class, so they belong to no district.
-- One house, out where the three roads meet.
-- Where a vowel is *written* is the room it lives in.
+scene: A wooden Thai house on stilts seen from the yard behind it, steep tiled roof filling the upper frame, a plain back yard below with a single line of washing, late afternoon light. No people.
+heading: Back to the house
+narration: en You have been to the vowels' house once before, in lesson one, and you did not get past the back yard. That is the room a vowel lodges in when it is written after its consonant, which is where the long vowel you already know sits. Today's vowel is not written after anything. It is written above, and that puts it upstairs.
+- One house, and the room is decided by where the vowel is written.
+- Lesson one's vowel is written after, so it is in the back yard.
+- Today's is written above. That is the roof.
 
 ## exposition meet-ik
 image: images/lesson-03/meet-ik.jpg

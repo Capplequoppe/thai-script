@@ -389,6 +389,15 @@ narration: en There is the whole of it. The pier with the wooden horse at the en
 - In this course, low class is the **harbour**.
 - The place is the class. The class decides the tone.
 
+## exposition the-vowel-house
+image: images/lesson-01/the-vowel-house.jpg
+scene: A wooden Thai house on stilts standing alone where three dirt tracks meet, wide veranda, steep tiled roof, open shaded space beneath the floor, late afternoon light, the harbour small and distant behind it. No people.
+heading: And one place that is not a district
+narration: en One more place before the vowel, because the vowel does not live in the harbour and never will. Where a consonant lives tells you its class, and its class decides the tone. A vowel has no class at all. It will attach itself to any consonant you like and it changes nothing about that consonant, so there is nowhere in any of the districts for it to belong. What it has instead is a house of its own, standing out where the roads from all three districts meet. Vowels lodge there rather than live there, because a vowel never stands on its own — it always has a consonant to lean on. And the room it lodges in is decided by one thing only, which is where it gets written. Above the consonant is the roof. Below it, the cellar. After it, the back yard. Today you are going as far as the back yard and no further.
+- A vowel carries no class, so it belongs to no district.
+- One house, where the roads from all three districts meet.
+- The room it lodges in is simply **where it is written**.
+
 ## exposition meet-aa
 glyph: า
 anchor: AAH
@@ -397,10 +406,10 @@ cue: the boy's call, held to the end of his breath
 heading: The vowel you have already heard
 narration: en Now the vowel — and you have been listening to it all lesson, because it is the second half of what that boy was shouting off the end of the pier. The part after his lips came open. The long open note, held right out until he ran out of air. Listen to its name.
 recording: th สระอา public/audio/sara-a-long.mp3
-narration: en Long is not a decoration here. Length changes meaning in Thai, so the short version of this sound is a different vowel and very often a different word. When you say it, take it all the way out — think of somebody calling across water to be heard, not somebody saying a word in a room. And it never stands on its own. In Thai a vowel is a thing with a position, and this one always sits just after the consonant it belongs to, because the consonant starts the syllable and the vowel finishes it.
+narration: en Long is not a decoration here. Length changes meaning in Thai, so the short version of this sound is a different vowel and very often a different word. When you say it, take it all the way out — think of somebody calling across water to be heard, not somebody saying a word in a room. And it never stands on its own. In Thai a vowel is a thing with a position, and this one always sits just after the consonant it belongs to, because the consonant starts the syllable and the vowel finishes it. Written after — which is the back yard, and this is the first lodger you have met.
 - A **long**, open note, held until the breath runs out.
 - Length changes meaning. Long and short are different vowels.
-- It always follows its consonant, and never stands alone.
+- It is written **after** its consonant, so it lodges in the **back yard**.
 
 ## exposition write-aa
 thai: า
