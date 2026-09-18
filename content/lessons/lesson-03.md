@@ -18,20 +18,25 @@ one lesson 1 gave away. See docs/vowel-house.md. It gets one slide of its own
 before the lodger, because this is the only lesson that has to introduce the
 whole scheme; every later lesson just opens a room.
 
-MNEMONICS ARE TAKEN, NOT FORCED. Where an English word that starts with the
-letter's own sound is already the right word for the thing, use it and say
-nothing about it: the chicken eats spilled **g**rain, the child's letter is
-**d**rawn down to a point, the leaf grows out of an open **b**asket. All three
-were already the natural word. Lesson 1's "nocturnal, notorious,
-knot-nibbling neighbour" is the same trick with the volume up, and it works
-because a rodent gives English more N-words than anyone needs.
+MNEMONICS ARE TAKEN, NOT FORCED. Where the letter's own sound gives you the
+words, say the chain out loud and let it be heard — glorious golden grain for
+the chicken, drowsy, dreaming, deep in the dark for the child, one big, bright,
+beautiful leaf out of a basket. Lesson 1's "nocturnal, notorious,
+knot-nibbling neighbour" is the model. It works because a rodent hands English
+more N-words than anyone needs, and every word in it is still the word you
+would have reached for anyway.
 
-Where the hook is not free, there is none, and that is not a gap to fill. A
-forced alliteration costs a learner more to hold than the letter does. Naming
-the people in a story after its letter was considered and dropped for the same
-reason — it works for ม and น, where English makes the same sound, and it
-actively fights lesson 3, whose whole argument is that ก, ด and บ are *not*
-the English sounds. A chicken called Gary would unteach the slide before it.
+That last part is the test. A chain earns its place when the alliteration is
+free — when the words describe the thing accurately and happen to start with
+the right letter. Where they do not, there is no chain, and that is not a gap
+to fill: a forced one costs a learner more to hold than the letter it was
+meant to help with. ง gets none, and the rope-maker's daughter carries it on
+story alone.
+
+It follows that naming a story's people after its letter is out. English names
+teach an English sound, which is right for ม and น and wrong for ก, ด and บ —
+a chicken called Gary would unteach the slide it stands on. A chain describes;
+a name claims a pronunciation.
 
 NAMES. The roof's lodger is อีก, and the name is the sound — a Thai name
 beginning with a vowel is written with อ as a silent carrier, so the first
@@ -85,9 +90,9 @@ narration: en There is a woman at this market who opens before anyone. She has t
 image: images/lesson-03/gai-story-2.jpg
 scene: A speckled chicken pecking at spilled grain between market stalls, head down, beak arching to the left, in a Thai open-air market of wooden stalls under striped awnings, baskets of produce around.
 heading: The bird that stopped crowing
-narration: en A chicken crows at first light, and first light is exactly when the boy is still asleep. So the whole row went to work on it. Every morning for a year, the moment the bird drew breath to crow, somebody threw a handful of grain. It learned. It does not crow now. It clucks — short, flat, and finished, with no air behind it and nothing carrying on afterwards. That sound is the letter. Look at the shape and you are looking at the bird: no circle anywhere on it, an open frame, and a single beak-line arching away to the left.
+narration: en A chicken crows at first light, and first light is exactly when the boy is still asleep. So the whole row went to work on it. Every morning for a year, the moment the bird drew breath to crow, somebody threw a handful of glorious golden grain. It learned. It does not crow now. It clucks — short, flat, and finished, with no air behind it and nothing carrying on afterwards. That sound is the letter. Look at the shape and you are looking at the bird: no circle anywhere on it, an open frame, and a single beak-line arching away to the left.
 narration: th กอ ไก่
-- A year of thrown grain, and it stopped crowing.
+- A year of glorious golden grain, and it stopped crowing.
 - What is left is a cluck: short, flat, no breath, over at once.
 - No circle, an open frame, and a beak arching left.
 
@@ -114,9 +119,9 @@ narration: en That word means child. The sound is a d, plain and flat, with no b
 ## exposition dek-story-1
 image: images/lesson-03/dek-story-1.jpg
 scene: A small child curled up fast asleep inside an enormous market bowl, one arm tucked under his head, bare toes poking out of the bottom, in a Thai open-air market of wooden stalls under striped awnings, baskets of produce around.
-heading: The child in the bowl
-narration: en He sleeps in a bowl. It is an enormous thing, the sort that holds a morning's rice, and it sits in the shade under his mother's stall with a cloth over the rim. He is curled up inside it with one arm under his head and his toes poking out over the bottom edge. The whole row knows he is there. They have watched him sleep through that bowl since he was small enough to fit in it lying flat, and they are protective of it in the way a market is protective of things — loudly, and all at once, at anyone who forgets.
-- He sleeps in a rice bowl in the shade under the stall.
+heading: Drowsy, dreaming, deep in the dark
+narration: en He sleeps in a bowl. It is an enormous thing, the sort that holds a morning's rice, and it sits in the shade under his mother's stall with a cloth over the rim. He is curled up inside it with one arm under his head and his toes poking out over the bottom edge, drowsy and dreaming, deep in the dark under the stall. The whole row knows he is there. They have watched him sleep through that bowl since he was small enough to fit in it lying flat, and they are protective of it in the way a market is protective of things — loudly, and all at once, at anyone who forgets.
+- Drowsy, dreaming, deep in the dark under the stall.
 - Curled up, one arm under his head, toes over the edge.
 - The whole row knows, and the whole row minds.
 
@@ -154,9 +159,9 @@ narration: en That word means leaf. The sound is a b, and like the other two the
 image: images/lesson-03/bai-mai-story-1.jpg
 scene: One enormous glossy green leaf growing straight up out of an open market basket, taller than the stall itself, shading the whole row, in a Thai open-air market of wooden stalls under striped awnings, baskets of produce around.
 heading: The leaf that got out of hand
-narration: en Somebody left a cutting in a basket at the end of the row and never came back for it. It took. By the second year it was taller than the stall it stood in, and it has one leaf on it the size of a door, glossy and green and leaning out over the aisle. It is now the only shade the corner stall gets, which means it is the reason a bowl under that stall stays cool enough to sleep in through the afternoon. Nobody is allowed to cut it. Look at the letter: an open basket, both walls stopping level at the rim, waiting to be filled — and something enormous growing straight up out of it.
+narration: en Somebody left a cutting in a basket at the end of the row and never came back for it. It took. By the second year it was taller than the stall it stood in, and it has one leaf on it the size of a door — big, bright and beautiful, leaning out over the aisle from a basket nobody has moved in two years. It is now the only shade the corner stall gets, which means it is the reason a bowl under that stall stays cool enough to sleep in through the afternoon. Nobody is allowed to cut it. Look at the letter: an open basket, both walls stopping level at the rim, waiting to be filled — and something enormous growing straight up out of it.
 narration: th บอ ใบไม้
-- A cutting nobody collected, left in a basket at the end of the row.
+- One big, bright, beautiful leaf out of an open basket.
 - One leaf the size of a door, and the only shade the corner stall has.
 - An open basket with level walls, and something growing out of it.
 
