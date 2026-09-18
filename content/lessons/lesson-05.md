@@ -8,7 +8,7 @@ previews: none
 
 ONE PLACE, ONE PAIR. ฟ is พ with its last stroke grown taller — the shipped
 cue calls it one tooth outgrowing the row — so the two letters share a shrine
-at the top of the beach: a tray, and on the tray a tooth somebody brought back
+above the beach: a tray, and on the tray a tooth somebody brought back
 out of the water. Same bargain as the elephant and the chain.
 
 BOTH LETTERS BREATHE, which the learner can now test, because lesson 3 taught
@@ -42,8 +42,8 @@ narration: en Last of the opening band, and you are going to finish it able to r
 ## exposition the-trick
 image: images/lesson-05/the-trick.jpg
 scene: A small weathered spirit shrine on a post at the top of a harbour beach, a golden offering tray set on it wrapped in flowers, incense smoking, the sea and moored boats below and behind, late golden light.
-heading: The shrine at the top of the beach
-narration: en Go up the beach, past where the elephant drags the boats out, to where the sand gives up and the scrub starts. There is a shrine up here on a post, about the height of your shoulder, and every harbour in the country has one. Nobody goes out in a boat without stopping at it. There is an offering tray on it, wrapped in flowers, and there is always incense going. And there is one other thing sitting on that tray which we will come to, because it is the second letter and it is the reason people stop and look. Both of today's letters live up here and both are low class, which is the harbour, so no surprises there. And both of them breathe. You have felt this once already, on the elephant — palm up, air thrown. Neither of today's two hums, and neither of them stops. They breathe, and they breathe in two different places in your mouth.
+heading: The shrine above the beach
+narration: en Go up the beach, past where the elephant drags the boats out, to where the sand gives up and the scrub starts. There is a shrine up here on a post, about the height of your shoulder, and every harbour in the country has one. Nobody goes out in a boat without stopping at it. There is an offering tray on it, wrapped in flowers, and there is always incense going. And there is one other thing sitting on that tray which we will come to, because it is the second letter and it is the reason people stop and look. Both of today's letters live up here and both are low class, which is the harbour, so no surprises there. And both of them breathe. You have felt this once already, on the elephant — palm up, air thrown. Neither of today's two hums, and neither of them stops. They breathe, and they breathe in two different places in your mouth. Shall we go and find out where?
 - Both low class, both at the harbour, both up at the shrine.
 - **Both breathe.** Neither hums, neither stops.
 - Two different places in your mouth. That is the whole difference.
@@ -65,7 +65,7 @@ cue: a puff off the lips
 heading: The tray
 narration: en The first letter. Listen to its name.
 recording: th พอ พาน public/audio/consonant-pho-phan.mp3
-narration: en That word means an offering tray — the footed kind you put flowers and money on and leave at a shrine. The sound is a p with a puff behind it. Palm up: it should move, the same way the elephant moved it. Think of blowing out the incense when you have finished at the shrine, which is exactly the shape your mouth makes.
+narration: en That word means an offering tray — the footed kind you put flowers and money on and leave at a shrine. The sound is a p with a puff behind it. Palm up: it should move, the same way the elephant moved it. Did it? Think of blowing out the incense when you have finished at the shrine, which is exactly the shape your mouth makes.
 - Its name is the sound, then a word beginning with that sound.
 - The word means an **offering tray**.
 - A p with a puff behind it. The palm moves.
@@ -134,7 +134,7 @@ narration: en Look at the two letters side by side and the tooth explains itself
 recording: th ฟอ ฟัน public/audio/consonant-fo-fan.mp3
 - Same figure as the tray, with the last stroke grown taller.
 - One tooth standing up out of the row.
-- That is the only difference between the two letters.
+- Nothing else separates the two letters.
 
 ## exposition see-fan
 thai: ฟ
@@ -164,7 +164,7 @@ narration: en The final stroke is taller than the others, and the tooth is the o
 ## exposition down-to-the-cellar
 image: images/lesson-01/the-vowel-house.jpg
 heading: The last room of the house
-narration: en Now the vowels, and back to the house. You have been in the back yard, where a vowel lodges when it is written after its letter, and up on the roof, where it lodges when it is written above. There is one more room and it is the one under the floor. A house like this stands on stilts, so there is a whole storey of shade down there that is not quite a room and is used like one — and a vowel written underneath its consonant lodges in it. Two of them arrive today, and they arrive together, which is the first time that has happened.
+narration: en Now the vowels, and back to the house. You have been in the back yard, where a vowel lodges when it is written after its letter, and up on the roof, where it lodges when it is written above. There is one more room and it is the one under the floor. Shall we go down? A house like this stands on stilts, so there is a whole storey of shade down there that is not quite a room and is used like one — and a vowel written underneath its consonant lodges in it. Two of them arrive today, and they arrive together, which is the first time that has happened.
 - Back yard: written after. Roof: written above.
 - Underneath the floor is the **cellar**.
 - Two vowels today, and they arrive together.
@@ -185,15 +185,27 @@ narration: en It is an ordinary word and it means to carry, or to hold something
 
 ## exposition the-flick-again
 image: images/lesson-05/the-flick-again.jpg
-scene: Two small hooks side by side in the shade under a house on stilts, one short and one drawn much longer and deeper, chalked on a post, afternoon light.
+scene: Two wooden ladles hanging side by side from a beam in the deep shade under a Thai house on stilts, one with a small shallow cup and one with a much deeper longer bowl, worn and well used, the bright yard beyond them, afternoon light.
 glyph: ู
 gloss: the same lodger, held
 cue: the deeper hook is the long one
 heading: And you have seen this trick before
-narration: en Here is the part worth stopping on. There are two of him, and they are the same sound at two lengths — and you already know how to tell which is which, because you learned it upstairs last lesson. The short one is a small hook. The long one is the same hook drawn deeper, reaching further down. That is the same idea as the flick on the roof's mark: more stroke means longer. Two rooms now, one rule, and it is the second cheat code this course has handed you. Upstairs and downstairs, the length is in the stroke.
+narration: en Here is the part worth stopping on. There are two of him, and they are the same sound at two lengths — and you already know how to tell which is which. Does this feel familiar? It should. You learned it upstairs last lesson. The short one is a small hook. The long one is the same hook drawn deeper, reaching further down. That is the same idea as the flick on the roof's mark: more stroke means longer. Two rooms now, one rule, and it is the second cheat code this course has handed you. Upstairs and downstairs, the length is in the stroke.
 - Two of him: same sound, two lengths.
 - The long one is the same hook, drawn **deeper**.
 - **More stroke means longer.** Upstairs and down.
+
+## exposition short-in-a-word
+thai: มุม
+image: images/lesson-05/short-in-a-word.jpg
+scene: The inside corner of a wooden room in a Thai house, two plank walls meeting, a shaft of afternoon light falling across the join, a broom standing in the corner.
+heading: The short one, doing a job
+narration: en Before you write them, hear the short one in a real word. The horse's letter from lesson one, the small hook underneath it, and the horse's letter again closing it.
+narration: th มุม
+narration: en A corner, or an angle. Listen to how fast that vowel is over — it is there and then it is finished, and that is the whole of what short means. You will hear the long one beside it in a minute and the difference will be obvious.
+- The horse's letter, the small hook beneath, the horse's letter again.
+- **มุม** — a corner, or an angle.
+- Short: there and finished.
 
 ## exposition write-the-cellar
 thai: ู
@@ -251,7 +263,7 @@ narration: en Difficult. Same shape exactly. This is what the rules are for — 
 ## retrieval short-or-long
 reveal: short-or-long-answer
 prompt: Two words open on the tray's letter and both end dead. One falls and one goes high. Which is which, and what is the only thing separating them?
-narration: en Last question of the opening band. Both words on screen open on the tray's letter, and both of them end dead. One falls and one goes high. Say which is which — and then say what the only difference between them is.
+narration: en Last question of the opening band. Both words on screen open on the tray's letter, and both of them end dead. One falls and one goes high. Say which is which — and then say what separates them.
 
 ## reveal short-or-long-answer
 retrieval: short-or-long
