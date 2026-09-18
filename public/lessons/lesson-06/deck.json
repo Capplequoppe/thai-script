@@ -4,49 +4,272 @@
 	"slides": [
 		{
 			"kind": "exposition",
-			"id": "khaaw-khwaai",
-			"heading": "khaaw khwaai, a buffalo at the harbor",
+			"id": "what-is-here",
+			"heading": "One letter, two vowels, and a piece of furniture",
 			"body": [
-				"ค is a rounded body with its head curled counter-clockwise and tucked inside the bowl. Keep the buffalo: it is wallowing in harbor mud, and the mud is what tells you the class.",
-				"Harbor means low class. Every tone rule you already use for ช ซ พ ฟ works on ค unchanged — there is nothing new to learn about its tones.",
-				"The sound is kh: a k with a gust of breath behind it. Hold a palm close to your lips, say คิด (khít) — to think — and you should feel the puff land."
-			]
+				"One consonant, and a costly one to get wrong.",
+				"Two vowels English cannot make.",
+				"And something that turns up only to prop a vowel up."
+			],
+			"audio": ["/thai-script/lessons/lesson-06/audio/f770c82450f451a2.mp3"],
+			"audioLanguages": ["en"],
+			"image": "/thai-script/lessons/lesson-06/images/what-is-here-36a5a03cb6bc.jpg"
 		},
 		{
 			"kind": "exposition",
-			"id": "khaaw-not-daaw",
-			"heading": "ค and ด turn their heads the other way",
+			"id": "the-trick",
+			"heading": "You already know how it sounds in a word",
 			"body": [
-				"ด is the same rounded bowl, but its head curls clockwise, inside the rim — the spinning top from lesson three, resting on the market floor.",
-				"ค turns that head the other way. One stroke, one direction, and it is the only thing separating a market letter from a harbor one.",
-				"So the head direction is not decoration here. It carries the class, and the class decides the tone."
-			]
+				"It lives at the harbour, so it is low class.",
+				"Every tone rule you have applies to it **unchanged**.",
+				"The new thing about it is not a sound. It is a direction."
+			],
+			"audio": ["/thai-script/lessons/lesson-06/audio/859079a2dc4bffa9.mp3"],
+			"audioLanguages": ["en"],
+			"image": "/thai-script/lessons/lesson-06/images/the-trick-69158245a8dd.jpg"
+		},
+		{
+			"kind": "exposition",
+			"id": "pen-still-there",
+			"heading": "Pen and paper, and today it is the point",
+			"body": [
+				"Real paper, a real pen.",
+				"Today's letter differs from a known one **only by direction**.",
+				"The eye cannot see it. The hand can."
+			],
+			"audio": ["/thai-script/lessons/lesson-06/audio/b0615eb3113afd0c.mp3"],
+			"audioLanguages": ["en"],
+			"image": "/thai-script/lessons/lesson-06/images/pen-still-there-1bdf41db8b53.jpg"
+		},
+		{
+			"kind": "exposition",
+			"id": "meet-khwaai",
+			"heading": "The buffalo",
+			"body": [
+				"Its name is the sound, then a word beginning with that sound.",
+				"The word means a **water buffalo**.",
+				"A k with a gust of breath. The palm moves."
+			],
+			"audio": [
+				"/thai-script/lessons/lesson-06/audio/fa02eeb16ee2bd46.mp3",
+				"/thai-script/lessons/lesson-06/audio/e8ce48c839722392.mp3",
+				"/thai-script/lessons/lesson-06/audio/50093a8e17d59782.mp3"
+			],
+			"audioLanguages": ["en", "th", "en"],
+			"image": "/thai-script/lessons/lesson-06/images/meet-khwaai-83d9cbccf872.jpg"
+		},
+		{
+			"kind": "exposition",
+			"id": "khwaai-story-1",
+			"heading": "The one nobody quite owns",
+			"body": [
+				"It works the vegetable plots behind the harbour.",
+				"Nobody agrees whose it is, and it does not seem to mind.",
+				"At midday it takes itself down to the mud."
+			],
+			"audio": ["/thai-script/lessons/lesson-06/audio/5ac88cbe44b5374a.mp3"],
+			"audioLanguages": ["en"],
+			"image": "/thai-script/lessons/lesson-06/images/khwaai-story-1-3a6b7ccb0c06.jpg"
+		},
+		{
+			"kind": "exposition",
+			"id": "khwaai-story-2",
+			"heading": "The sound it makes going in",
+			"body": [
+				"One enormous breath out as it lowers itself in.",
+				"Caked, cool and completely calm.",
+				"And it throws its head **back over its shoulder**."
+			],
+			"audio": [
+				"/thai-script/lessons/lesson-06/audio/b10d081fe86227f5.mp3",
+				"/thai-script/lessons/lesson-06/audio/e8ce48c839722392.mp3"
+			],
+			"audioLanguages": ["en", "th"],
+			"image": "/thai-script/lessons/lesson-06/images/khwaai-story-2-65bb8093aa2f.jpg"
+		},
+		{
+			"kind": "exposition",
+			"id": "see-khwaai",
+			"heading": "The buffalo's letter",
+			"body": [
+				"A rounded bowl, the same one you have seen before.",
+				"The head curls **outward and back**, not tucked inside."
+			],
+			"thai": "ค"
+		},
+		{
+			"kind": "exposition",
+			"id": "the-pair-lesson-one-promised",
+			"heading": "This is the pair you were warned about",
+			"body": [
+				"Lesson one promised you a pair that differs only by head direction.",
+				"**This is it.** The child's letter and the buffalo's letter.",
+				"Same bowl. One head tucked in, one thrown back."
+			],
+			"audio": ["/thai-script/lessons/lesson-06/audio/b6036c23475bfd0d.mp3"],
+			"audioLanguages": ["en"],
+			"image": "/thai-script/lessons/lesson-06/images/the-pair-lesson-one-promised-140b6e820ed8.jpg"
+		},
+		{
+			"kind": "exposition",
+			"id": "what-it-costs",
+			"heading": "And what it costs to get it wrong",
+			"body": [
+				"The child is in the market: **mid class**. The buffalo is at the harbour: **low class**.",
+				"Curl the head the wrong way and the letter changes district.",
+				"District changes class, class changes tone, tone changes the word."
+			],
+			"audio": ["/thai-script/lessons/lesson-06/audio/9899318e37081c49.mp3"],
+			"audioLanguages": ["en"],
+			"image": "/thai-script/lessons/lesson-06/images/what-it-costs-ea6453bb85a9.jpg"
+		},
+		{
+			"kind": "exposition",
+			"id": "write-khwaai",
+			"heading": "Write it, and write the other one beside it",
+			"body": [
+				"Write the child's letter first. Head inside, clockwise.",
+				"Then the buffalo beside it. Head **outward and back**.",
+				"Alternate them. You are training the wrist, not the eye."
+			],
+			"audio": ["/thai-script/lessons/lesson-06/audio/658dadb719af106c.mp3"],
+			"audioLanguages": ["en"],
+			"thai": "ค"
 		},
 		{
 			"kind": "retrieval",
 			"id": "which-way-round",
-			"prompt": "ค and ด are the same bowl. Name the difference, and say what it costs you to get it wrong.",
-			"revealSlideId": "which-way-round-answer"
+			"prompt": "The child's letter and the buffalo's letter are the same bowl. Name the difference, and say what it costs you to get it wrong.",
+			"revealSlideId": "which-way-round-answer",
+			"audio": ["/thai-script/lessons/lesson-06/audio/e9f3b66cd73fbed3.mp3"],
+			"audioLanguages": ["en"]
 		},
 		{
 			"kind": "reveal",
 			"id": "which-way-round-answer",
 			"retrievalSlideId": "which-way-round",
 			"answers": [
-				"The head: ด curls clockwise, ค curls the other way.",
-				"Getting it wrong moves the letter from the market to the harbor — mid class to low class — and the tone of the whole syllable moves with it."
-			]
+				"The head: tucked in and clockwise, against thrown back the other way.",
+				"Wrong way round moves it from the market to the harbour.",
+				"Mid class becomes low class, and the tone follows."
+			],
+			"audio": ["/thai-script/lessons/lesson-06/audio/bfd6a06144a72a31.mp3"],
+			"audioLanguages": ["en"]
 		},
 		{
 			"kind": "exposition",
-			"id": "ue-vowels",
-			"heading": "The grin vowels, ึ and ื",
+			"id": "back-upstairs",
+			"heading": "Back up to the roof, where somebody else lives",
 			"body": [
-				"Both are made in a place English has no word for. Spread your lips into a wide grin, then try to say uu without letting the grin go. That sound is ue.",
-				"ึ is the ิ brim with a small ring balanced on top: short, one beat. นึก (núek) is to call something to mind.",
-				"ื is the ี beret with a second upright pinned beside it: the same sound held long. ยืน (yuuen) is to stand.",
-				"Nothing about them is audible in English, so do not look for an equivalent. Find the grin and the sound follows."
-			]
+				"Back to the roof, where a vowel written above lodges.",
+				"There is a second lodger up there.",
+				"His sound does not exist in English. That is new."
+			],
+			"audio": ["/thai-script/lessons/lesson-06/audio/c277bf19054b39df.mp3"],
+			"audioLanguages": ["en"],
+			"image": "/thai-script/lessons/lesson-06/images/back-upstairs-9cc652e5140c.jpg"
+		},
+		{
+			"kind": "exposition",
+			"id": "meet-uen",
+			"heading": "The other one upstairs",
+			"body": [
+				"The name means **other**, or another.",
+				"There is no English word for this sound. There is no point looking.",
+				"Wide grin, hold it, then try to say oo through it."
+			],
+			"audio": [
+				"/thai-script/lessons/lesson-06/audio/16ad14f3a3db0f84.mp3",
+				"/thai-script/lessons/lesson-06/audio/808f6070b025995b.mp3",
+				"/thai-script/lessons/lesson-06/audio/d929c030c8d950d5.mp3"
+			],
+			"audioLanguages": ["en", "th", "en"],
+			"image": "/thai-script/lessons/lesson-06/images/meet-uen-27a1e2c5a712.jpg"
+		},
+		{
+			"kind": "exposition",
+			"id": "the-swedish-shortcut",
+			"heading": "Unless you happen to speak Swedish",
+			"body": [
+				"Swedish speakers already own this sound: the u in **hus**, in **ut**.",
+				"Pull the lips back rather than pushing them forward.",
+				"English has nothing here. Swedish does."
+			],
+			"audio": ["/thai-script/lessons/lesson-06/audio/7d1fdcd3448b6d93.mp3"],
+			"audioLanguages": ["en"],
+			"image": "/thai-script/lessons/lesson-06/images/the-swedish-shortcut-3b618b8c277c.jpg"
+		},
+		{
+			"kind": "exposition",
+			"id": "the-grin-pair",
+			"heading": "Both of him, and you know this trick",
+			"body": [
+				"Two of him: short and long, same sound.",
+				"**More on the mark means longer.** Third time you have met this.",
+				"Short: a small ring on top. Long: a second upright beside it."
+			],
+			"audio": ["/thai-script/lessons/lesson-06/audio/65d4dd242b644e62.mp3"],
+			"audioLanguages": ["en"],
+			"image": "/thai-script/lessons/lesson-06/images/the-grin-pair-1cac749f4715.jpg"
+		},
+		{
+			"kind": "exposition",
+			"id": "short-grin-word",
+			"heading": "The short one, in a word",
+			"body": [
+				"The mouse's letter, short grin vowel above, chicken's letter closing it.",
+				"**นึก** — to call something to mind.",
+				"Short: over before it settles."
+			],
+			"audio": [
+				"/thai-script/lessons/lesson-06/audio/b6653efcda18567a.mp3",
+				"/thai-script/lessons/lesson-06/audio/b7fe8ed318cea6c6.mp3",
+				"/thai-script/lessons/lesson-06/audio/ceba0087f79b6de6.mp3"
+			],
+			"audioLanguages": ["en", "th", "en"],
+			"thai": "นึก",
+			"image": "/thai-script/lessons/lesson-06/images/short-grin-word-f16fe4ff6742.jpg"
+		},
+		{
+			"kind": "exposition",
+			"id": "write-the-grin",
+			"heading": "Write them both",
+			"body": [
+				"Always above a consonant. Never alone.",
+				"Put them over the letter you just learned.",
+				"Say the whole syllable, grin and all."
+			],
+			"audio": [
+				"/thai-script/lessons/lesson-06/audio/03b2ab65ad005949.mp3",
+				"/thai-script/lessons/lesson-06/audio/2df1b99568b65b05.mp3",
+				"/thai-script/lessons/lesson-06/audio/ffdaae06685ed3a0.mp3"
+			],
+			"audioLanguages": ["en", "th", "th"],
+			"thai": "ื"
+		},
+		{
+			"kind": "exposition",
+			"id": "read-khuen",
+			"heading": "Read this one",
+			"body": [
+				"Buffalo, long grin vowel above, mouse closing it.",
+				"**Say it aloud before you turn it over.**"
+			],
+			"audio": ["/thai-script/lessons/lesson-06/audio/d3d3e9a9ed6d83ed.mp3"],
+			"audioLanguages": ["en"],
+			"thai": "คืน"
+		},
+		{
+			"kind": "exposition",
+			"id": "read-khuen-answer",
+			"heading": "That one",
+			"body": ["**คืน** — to return, and also a night."],
+			"audio": [
+				"/thai-script/lessons/lesson-06/audio/8533fcfe052a2d63.mp3",
+				"/thai-script/lessons/lesson-06/audio/f0e2baea9c44b338.mp3"
+			],
+			"audioLanguages": ["th", "en"],
+			"thai": "คืน"
 		},
 		{
 			"kind": "rule",
@@ -56,38 +279,93 @@
 		{
 			"kind": "exposition",
 			"id": "the-prop",
-			"heading": "Why มือ has a letter you have not met",
+			"heading": "The word for hand has a letter you have never met",
 			"body": [
-				"ื is written above its consonant, and a vowel written above needs something beneath it once the syllable closes. With a final consonant there is something: คืน (khuuen), to return, sets ื over ค and closes on น.",
-				"With no final consonant there is nothing, so a prop is written in: มือ (muue), a hand, and คือ (khuue), the word for is.",
-				"That prop is a real letter with a name and a job of its own, and it gets a lesson of its own. Here it is furniture. ื needs a seat when the syllable ends bare."
-			]
+				"A vowel written **above** needs something beneath it to close the syllable.",
+				"When a final consonant closes it, there is something.",
+				"When the syllable ends bare, a **prop** is written in."
+			],
+			"audio": [
+				"/thai-script/lessons/lesson-06/audio/b403be8b21edd95e.mp3",
+				"/thai-script/lessons/lesson-06/audio/1c9f2745d82e0cfd.mp3",
+				"/thai-script/lessons/lesson-06/audio/dc28c794deb3f04a.mp3"
+			],
+			"audioLanguages": ["en", "th", "en"],
+			"image": "/thai-script/lessons/lesson-06/images/the-prop-f657964ee6dd.jpg"
+		},
+		{
+			"kind": "exposition",
+			"id": "the-prop-again",
+			"heading": "And one you will use constantly",
+			"body": [
+				"**คือ** — the word for *is*.",
+				"The test is not the sound.",
+				"**Does a consonant follow the vowel?** If not, the prop goes in."
+			],
+			"audio": [
+				"/thai-script/lessons/lesson-06/audio/b41b2e4b8f90f77b.mp3",
+				"/thai-script/lessons/lesson-06/audio/2381d5304464fa1b.mp3",
+				"/thai-script/lessons/lesson-06/audio/0a4655ed774360c2.mp3"
+			],
+			"audioLanguages": ["en", "th", "en"],
+			"thai": "คือ"
 		},
 		{
 			"kind": "retrieval",
 			"id": "seat-or-no-seat",
-			"prompt": "Two of these need the prop and one does not: a syllable reading khuue, one reading khuuen, one reading muue. Which one stands on its own, and why?",
-			"revealSlideId": "seat-or-no-seat-answer"
+			"prompt": "Of a syllable reading khuue, one reading khuuen and one reading muue, one needs no prop. Which, and why?",
+			"revealSlideId": "seat-or-no-seat-answer",
+			"audio": ["/thai-script/lessons/lesson-06/audio/3df1c6098ae88b74.mp3"],
+			"audioLanguages": ["en"]
 		},
 		{
 			"kind": "reveal",
 			"id": "seat-or-no-seat-answer",
 			"retrievalSlideId": "seat-or-no-seat",
 			"answers": [
-				"khuuen stands on its own: คืน already closes on น.",
-				"khuue and muue end bare, so both are written with the prop — คือ and มือ.",
-				"The test is never the sound. It is whether a consonant follows the vowel."
-			]
+				"The one closing on a final consonant stands on its own.",
+				"The two that end bare are both written with the prop.",
+				"The test is never the sound. It is whether a consonant follows."
+			],
+			"audio": ["/thai-script/lessons/lesson-06/audio/27161ff7e2015ae8.mp3"],
+			"audioLanguages": ["en"]
 		},
 		{
 			"kind": "exposition",
-			"id": "more-words",
-			"heading": "Words you can read now",
+			"id": "read-khon",
+			"heading": "One last word, and it is a big one",
 			"body": [
-				"คุย (khui) is to chat, and พูดคุย (phûut khui) is the same idea doubled — you have had พูด since lesson five.",
-				"ดึง (dueng) is to pull. ยืม (yuuem) is to borrow. มืด (mûuet) is dark. พืช (phûuet) is a plant.",
-				"คน (khon) is a person, and it is the most useful word this lesson opens up. Notice that nothing is written between ค and น: Thai leaves a short vowel out there, and that rule has a lesson of its own."
-			]
+				"Buffalo, then the mouse's letter, and nothing written between.",
+				"Thai leaves a short vowel out there.",
+				"**Say it before you turn it over.**"
+			],
+			"audio": ["/thai-script/lessons/lesson-06/audio/1da04c1aa70f3ff3.mp3"],
+			"audioLanguages": ["en"],
+			"thai": "คน"
+		},
+		{
+			"kind": "exposition",
+			"id": "read-khon-answer",
+			"heading": "That one",
+			"body": ["**คน** — a person."],
+			"audio": [
+				"/thai-script/lessons/lesson-06/audio/f957cc14383ce657.mp3",
+				"/thai-script/lessons/lesson-06/audio/b686834bcf97b492.mp3"
+			],
+			"audioLanguages": ["th", "en"],
+			"thai": "คน"
+		},
+		{
+			"kind": "exposition",
+			"id": "read-close",
+			"heading": "One band down, and the shape of things",
+			"body": [
+				"Thirteen letters, nine vowels.",
+				"A stroke direction can carry a class, and now you have met one.",
+				"From here: more letters, the same machine."
+			],
+			"audio": ["/thai-script/lessons/lesson-06/audio/04b00e0f8204b756.mp3"],
+			"audioLanguages": ["en"]
 		}
 	]
 }
