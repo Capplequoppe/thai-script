@@ -64,6 +64,78 @@ Add the three consonants that moonlight as vowel parts — `อ` the basin, `ว
 ring, `ย` the giant — and every one of the nineteen parts is accounted for,
 with nothing doubled and nothing left over.
 
+## The cast is Thai, not Swedish
+
+The names were Swedish, and that broke on contact with the narrator: an
+English mouth says *Ivar* as EYE-var, and EYE is a different lodger's sound.
+A cast named after the sound it makes, mispronounced, teaches the wrong vowel
+**by name** — in the one place the learner is told the name can be trusted.
+
+A Swedish renderer would fix the sound and nothing else. It costs a second
+engine on a card where S2 Pro already wants 19.7 of 24 GB, a second voice
+breaking into the narrator mid-sentence, and another dimension on the cache
+key — and it buys names that stay decoration.
+
+Thai names cost none of that, and three things fall out:
+
+**The existing narration rule already covers it.** English points, the Thai
+voice speaks — *"English never says 'this letter is called X'; it says
+'listen', and the Thai voice says it."* A Swedish name in an `en` line is
+exactly what that rule was written to stop, smuggled in through a third
+language. Thai names need no new rule and no new engine: they are `th` clips,
+and short single-syllable Thai is what the carrier trim was built for.
+
+**The name becomes exact rather than approximate.** A syllable that starts
+with a vowel sound is written with `อ` as a silent carrier, so a Thai name
+beginning with the vowel *is* the vowel plus a consonant. The first syllable
+is not merely close to the sound. It is the sound.
+
+**It gives back the beat this whole document was written around.** The
+founding problem was that vowels have no noun: `ม` is `ม้า`, a horse, and
+`สระอา` is "vowel aa". A Thai name is a real word in the target language
+attached to the vowel — not the alphabet's free gift, but far nearer to it
+than a Swede.
+
+### Candidates, from the course's own vocabulary
+
+Found by searching `vocabulary.json` for short words whose first syllable is a
+bare vowel. **Provisional** — these are corpus words, not verified nicknames,
+and which of them read as a plausible Thai name needs a speaker.
+
+| voice | candidate | meaning | fit |
+|---|---|---|---|
+| `เ` | **เอก** *èek* | one, first | ten of the thirty begin with him; a common nickname |
+| `ิ` `ี` | **อิง** *ing* | to lean on | what every vowel does to its consonant |
+| `ี` | **อีก** *ìik* | more | the long one is the short one carrying more |
+| `ึ` | **อึ้ง** *ûeng* | to be silent, stunned | the vowel English has no word for |
+| `ื` | **อื่น** *ùuen* | another | the *other* u |
+| `ุ` | **อุ้ม** *ûm* | to carry, hold | a common nickname |
+| `ู` | **อู่** *ùu* | garage | the cellar, already a room under the house |
+| `า` | **อา** *aa* | aunt or uncle | a person, one syllable, lesson 1's vowel |
+| `โ` | **โอบ** *òop* | to embrace, surround | holds the door on the front steps |
+| `อ` | **ออม** *aawm* | to save | a common nickname |
+| `แ` | **แอบ** *àaep* | to hide, sneak | weakest of these |
+| `ไ` | **ไอ** *ai* | cough, steam | weak; the real nickname is ไอซ์, not in the corpus |
+| `ำ` | **อำ** *am* | to conceal | the name is the whole vowel, ending included |
+
+Two things a Thai speaker has to settle. **Which read as names** — Thai
+nicknames are often ordinary words (`อ้วน` fat, `น้ำ` water), so this is not
+absurd, but `อีก` as a person is a stretch a native ear should judge. And
+**length**, because a Thai name commits to one: `อิง` is short and `อีก` is
+long, and one voice is supposed to cover both. Either the name carries the
+long form and the short is that name cut short, or `อิง` stops being a name
+and becomes the house's word for what a vowel does.
+
+`ใ` has no candidate and cannot have one — no Thai word begins `ใอ`. The
+couple needs another way to tell the twins apart.
+
+**The Swedish stays where it works.** `vowelAnalogies.ts` is about the
+learner's mouth, not the cast: *ä*, *å*, *ö* and *u* are sounds a Swedish
+speaker already owns, and nothing above touches them.
+
+*The prose below still uses the Swedish working names until the Thai ones are
+settled.*
+
 ## Two cheat codes do the work of twenty mnemonics
 
 Most of the thirty need no mnemonic at all, because two rules cover them.
