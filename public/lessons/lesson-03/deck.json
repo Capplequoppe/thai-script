@@ -4,48 +4,266 @@
 	"slides": [
 		{
 			"kind": "exposition",
-			"id": "three-plain",
-			"heading": "Three letters that stop the air and release nothing",
+			"id": "what-is-here",
+			"heading": "Three letters, one vowel, two rules",
 			"body": [
-				"gaaw gài, daaw dèk and baaw bai-mái are stops: the air halts completely, and not one of them pushes out a puff of breath behind it.",
-				"Put a palm up close to your lips. English \"key\" and \"pin\" blow air onto it. ก, ด and บ should not move it at all.",
-				"That missing puff is worth noticing now. It is the whole reason these three behave as a group, and a later lesson turns it into a shortcut."
-			]
+				"Three consonants, one long vowel, two rules.",
+				"The three are alike enough that one of them teaches the others.",
+				"Last lesson's letters let sounds ring on. These stop them."
+			],
+			"audio": ["/thai-script/lessons/lesson-03/audio/e0b9051c52ef9f41.mp3"],
+			"audioLanguages": ["en"],
+			"image": "/thai-script/lessons/lesson-03/images/what-is-here-da150e7fe62f.jpg"
 		},
 		{
 			"kind": "exposition",
-			"id": "plain-shapes",
-			"heading": "Reading the three shapes",
+			"id": "the-trick",
+			"heading": "One district, and no breath in any of it",
 			"body": [
-				"ก has no circle anywhere on it — an open frame with a single beak-line arching to the left.",
-				"ด is a bowl with a smooth rim, its head curled inside, drawn down to a point at the bottom.",
-				"บ is the same bowl with both walls stopping level at the rim, open like a basket waiting to be filled."
-			]
+				"All three are mid class, and mid class is the market.",
+				"The air stops, and no breath follows it.",
+				"English blows air on key and pin. These three do not."
+			],
+			"audio": ["/thai-script/lessons/lesson-03/audio/aabcb7544c4a9b7b.mp3"],
+			"audioLanguages": ["en"],
+			"image": "/thai-script/lessons/lesson-03/images/the-trick-0cfcdc5965f4.jpg"
+		},
+		{
+			"kind": "exposition",
+			"id": "meet-gai",
+			"heading": "The first of the three",
+			"body": [
+				"Its name is the sound, then a word beginning with that sound.",
+				"The word means *chicken*.",
+				"Flatter than an English g, and no breath behind it."
+			],
+			"audio": [
+				"/thai-script/lessons/lesson-03/audio/e319ce7827ffc5c8.mp3",
+				"/thai-script/lessons/lesson-03/audio/2860d74042a9e530.mp3",
+				"/thai-script/lessons/lesson-03/audio/b47540b2c74219ea.mp3"
+			],
+			"audioLanguages": ["en", "th", "en"],
+			"image": "/thai-script/lessons/lesson-03/images/meet-gai-92c378415644.jpg"
+		},
+		{
+			"kind": "exposition",
+			"id": "gai-story-1",
+			"heading": "The stall that opens first",
+			"body": [
+				"She opens the corner stall before anyone else arrives.",
+				"Her son sleeps under the stall while she works.",
+				"The chicken eats the spilled grain, and the rats stay away."
+			],
+			"audio": ["/thai-script/lessons/lesson-03/audio/93c047657f7f712d.mp3"],
+			"audioLanguages": ["en"],
+			"image": "/thai-script/lessons/lesson-03/images/gai-story-1-a832ad1444ba.jpg"
+		},
+		{
+			"kind": "exposition",
+			"id": "gai-story-2",
+			"heading": "The bird that stopped crowing",
+			"body": [
+				"A year of glorious golden grain, and it stopped crowing.",
+				"What is left is a cluck: short, flat, no breath, over at once.",
+				"No circle, an open frame, and a beak arching left."
+			],
+			"audio": [
+				"/thai-script/lessons/lesson-03/audio/6ec6eb0a23f9933b.mp3",
+				"/thai-script/lessons/lesson-03/audio/2860d74042a9e530.mp3"
+			],
+			"audioLanguages": ["en", "th"],
+			"image": "/thai-script/lessons/lesson-03/images/gai-story-2-21879f55a489.jpg"
+		},
+		{
+			"kind": "exposition",
+			"id": "see-gai",
+			"heading": "The chicken's letter",
+			"body": [
+				"No circle anywhere on it.",
+				"An open frame, and one beak-line arching to the left."
+			],
+			"thai": "ก"
+		},
+		{
+			"kind": "exposition",
+			"id": "meet-dek",
+			"heading": "The second of the three",
+			"body": [
+				"Its name is the sound, then a word beginning with that sound.",
+				"The word means *child*.",
+				"A plain flat d, with nothing blown out behind it."
+			],
+			"audio": [
+				"/thai-script/lessons/lesson-03/audio/cb67e2e96c94a44d.mp3",
+				"/thai-script/lessons/lesson-03/audio/d9aed37d7cdda810.mp3",
+				"/thai-script/lessons/lesson-03/audio/ab918e86b27e4d8b.mp3"
+			],
+			"audioLanguages": ["en", "th", "en"],
+			"image": "/thai-script/lessons/lesson-03/images/meet-dek-c5b327fca046.jpg"
+		},
+		{
+			"kind": "exposition",
+			"id": "dek-story-1",
+			"heading": "Drowsy, dreaming, deep in the dark",
+			"body": [
+				"Drowsy, dreaming, deep in the dark under the stall.",
+				"Curled up, one arm under his head, toes over the edge.",
+				"The whole row knows, and the whole row minds."
+			],
+			"audio": ["/thai-script/lessons/lesson-03/audio/1ee794002af068ef.mp3"],
+			"audioLanguages": ["en"],
+			"image": "/thai-script/lessons/lesson-03/images/dek-story-1-869a0d651ec4.jpg"
+		},
+		{
+			"kind": "exposition",
+			"id": "dek-story-2",
+			"heading": "How a market learns to be quiet",
+			"body": [
+				"The row trades quietly, and the quiet sounds are today's three.",
+				"Each one stops the air and releases nothing.",
+				"A bowl, a head curled inside, and a point at the bottom."
+			],
+			"audio": [
+				"/thai-script/lessons/lesson-03/audio/2a62ccb646437507.mp3",
+				"/thai-script/lessons/lesson-03/audio/d9aed37d7cdda810.mp3"
+			],
+			"audioLanguages": ["en", "th"],
+			"image": "/thai-script/lessons/lesson-03/images/dek-story-2-9464d7e76517.jpg"
+		},
+		{
+			"kind": "exposition",
+			"id": "see-dek",
+			"heading": "The child's letter",
+			"body": [
+				"A bowl with a smooth rim, head curled inside.",
+				"Drawn down to a point at the bottom."
+			],
+			"thai": "ด"
+		},
+		{
+			"kind": "exposition",
+			"id": "meet-bai-mai",
+			"heading": "The third of the three",
+			"body": [
+				"Its name is the sound, then a word beginning with that sound.",
+				"The word means *leaf*.",
+				"Lips together, sound, stop. No breath."
+			],
+			"audio": [
+				"/thai-script/lessons/lesson-03/audio/a292e94690e9b12f.mp3",
+				"/thai-script/lessons/lesson-03/audio/c39662efd06f7c12.mp3",
+				"/thai-script/lessons/lesson-03/audio/4e2059dca00283d9.mp3"
+			],
+			"audioLanguages": ["en", "th", "en"],
+			"image": "/thai-script/lessons/lesson-03/images/meet-bai-mai-e62227c7d8c7.jpg"
+		},
+		{
+			"kind": "exposition",
+			"id": "bai-mai-story-1",
+			"heading": "The leaf that got out of hand",
+			"body": [
+				"One big, bright, beautiful leaf out of an open bucket.",
+				"One leaf the size of a door, and the only shade the corner stall has.",
+				"An open bucket, straight-walled and flat-bottomed, with something growing out of it."
+			],
+			"audio": [
+				"/thai-script/lessons/lesson-03/audio/a3df1db691ab310e.mp3",
+				"/thai-script/lessons/lesson-03/audio/c39662efd06f7c12.mp3"
+			],
+			"audioLanguages": ["en", "th"],
+			"image": "/thai-script/lessons/lesson-03/images/bai-mai-story-1-dd409e771744.jpg"
+		},
+		{
+			"kind": "exposition",
+			"id": "see-bai-mai",
+			"heading": "The leaf's letter",
+			"body": [
+				"An open bucket: straight walls, flat bottom.",
+				"The child's letter curves to a point. This one does not. That is the difference."
+			],
+			"thai": "บ"
 		},
 		{
 			"kind": "retrieval",
 			"id": "no-puff",
-			"prompt": "Say gaaw, daaw and baaw with a palm held close to your lips. What should you feel, and what would feeling something tell you?",
-			"revealSlideId": "no-puff-answer"
+			"prompt": "Say the three letters' sounds with a palm held close to your lips. What should you feel, and what would feeling something tell you?",
+			"revealSlideId": "no-puff-answer",
+			"audio": ["/thai-script/lessons/lesson-03/audio/72a3583b7a2aed1c.mp3"],
+			"audioLanguages": ["en"]
 		},
 		{
 			"kind": "reveal",
 			"id": "no-puff-answer",
 			"retrievalSlideId": "no-puff",
 			"answers": [
-				"Nothing should move. These three release no breath at all.",
-				"If your hand moves, you are saying the English sound instead — and Thai keeps the breathy versions as separate letters, so the difference changes the word."
-			]
+				"Nothing should move. These three release no breath.",
+				"A moving hand means you said the English sound.",
+				"Thai keeps the breathy ones as separate letters, so it changes the word."
+			],
+			"audio": ["/thai-script/lessons/lesson-03/audio/36a45f7a6c5b6dab.mp3"],
+			"audioLanguages": ["en"]
 		},
 		{
 			"kind": "exposition",
-			"id": "long-ii",
-			"heading": "The long vowel ี",
+			"id": "the-vowel-house",
+			"heading": "Back to the house",
 			"body": [
-				"ี rides above its consonant like a beret, the brim flicking up at the right edge.",
-				"Hold it: it is the ee of \"green\", strung out through a smile rather than clipped.",
-				"มี (mii) is to have, or there is. ดี (dii) is good. Two of the commonest words in the language, and you can now read both."
-			]
+				"One house, and the room is decided by where the vowel is written.",
+				"Lesson one's vowel is written after, so it is in the back yard.",
+				"Today's is written above. That is the roof."
+			],
+			"audio": ["/thai-script/lessons/lesson-03/audio/29fae3e601ae789d.mp3"],
+			"audioLanguages": ["en"],
+			"image": "/thai-script/lessons/lesson-03/images/the-vowel-house-9cc652e5140c.jpg"
+		},
+		{
+			"kind": "exposition",
+			"id": "meet-ik",
+			"heading": "The lodger on the roof",
+			"body": [
+				"The name begins with the vowel it stands for. Everyone here is named that way.",
+				"The word means *more*.",
+				"Written above the consonant, so he lives on the roof.",
+				"Whole word, ordinary. First syllable alone in front of a name, an insult."
+			],
+			"audio": [
+				"/thai-script/lessons/lesson-03/audio/7a21e27af7264e35.mp3",
+				"/thai-script/lessons/lesson-03/audio/8e3f40f95493da2d.mp3",
+				"/thai-script/lessons/lesson-03/audio/cc6e92080bdfe6e2.mp3",
+				"/thai-script/lessons/lesson-03/audio/1dd10f2eeca897a7.mp3"
+			],
+			"audioLanguages": ["en", "th", "en", "en"],
+			"image": "/thai-script/lessons/lesson-03/images/meet-ik-bf6b1943c5b3.jpg"
+		},
+		{
+			"kind": "exposition",
+			"id": "see-ii",
+			"heading": "The mark itself",
+			"body": [
+				"It rides above the consonant like a beret.",
+				"The brim flicks up at the right edge. That flick means something."
+			],
+			"audio": ["/thai-script/lessons/lesson-03/audio/d0626f1b3a452545.mp3"],
+			"audioLanguages": ["en"],
+			"thai": "ี"
+		},
+		{
+			"kind": "exposition",
+			"id": "first-words",
+			"heading": "Two words you can already read",
+			"body": [
+				"The horse's letter with today's vowel: *to have*, or *there is*.",
+				"The child's letter with the same vowel: *good*."
+			],
+			"audio": [
+				"/thai-script/lessons/lesson-03/audio/bba7e091782b7a26.mp3",
+				"/thai-script/lessons/lesson-03/audio/9d8eef5e4efcb618.mp3",
+				"/thai-script/lessons/lesson-03/audio/c04aa053a82e98fe.mp3",
+				"/thai-script/lessons/lesson-03/audio/caa0d4f2485680bb.mp3",
+				"/thai-script/lessons/lesson-03/audio/31b72a9149420022.mp3"
+			],
+			"audioLanguages": ["en", "th", "en", "th", "en"],
+			"image": "/thai-script/lessons/lesson-03/images/first-words-10b2a3e6e0e7.jpg"
 		},
 		{
 			"kind": "rule",
@@ -57,10 +275,17 @@
 			"id": "stops-at-the-end",
 			"heading": "Where a syllable stops dead",
 			"body": [
-				"Last lesson five letters closed a syllable and left it ringing. These three do the opposite: they cut it off.",
-				"มาก (mâak) is much or very, and ยาก (yâak) is difficult. Both end on the k-stop of ก, sealed at the back of the throat with nothing released.",
-				"นก (nók) is a bird — short, stopped, and finished almost before it starts. บวก (bùak) is to add."
-			]
+				"The harbour's letters let a syllable ring on. These three seal it.",
+				"A syllable sealed like that is *dead*. One that can ring on is *live*.",
+				"Nothing about the letter at the front. Only the ending decides."
+			],
+			"audio": [
+				"/thai-script/lessons/lesson-03/audio/00b9868816816210.mp3",
+				"/thai-script/lessons/lesson-03/audio/01ad691f866355b6.mp3",
+				"/thai-script/lessons/lesson-03/audio/927c5454cd955750.mp3"
+			],
+			"audioLanguages": ["en", "th", "en"],
+			"image": "/thai-script/lessons/lesson-03/images/stops-at-the-end-92afc3d07903.jpg"
 		},
 		{
 			"kind": "rule",
@@ -72,26 +297,102 @@
 			"id": "mid-live-practice",
 			"heading": "Mid class, live syllable",
 			"body": [
-				"ก, ด and บ are the first mid class letters you have met, and a live syllable one of them opens lands flat — the same place a low class live syllable lands.",
-				"ดี (dii) is good. กา (gaa) is a crow. บน (bon) is on top of something. บาง (baang) is some, or thin.",
-				"Two classes, one tone, for now. The classes pull apart the moment a syllable stops dead, which is the next rule you get."
-			]
+				"A mid class letter on a live syllable lands flat.",
+				"So does a low class one. For now the two agree.",
+				"They come apart as soon as a syllable ends dead."
+			],
+			"audio": [
+				"/thai-script/lessons/lesson-03/audio/221b11a1f11bf112.mp3",
+				"/thai-script/lessons/lesson-03/audio/caa0d4f2485680bb.mp3",
+				"/thai-script/lessons/lesson-03/audio/4198fbad636b9a08.mp3",
+				"/thai-script/lessons/lesson-03/audio/ecc5eec8b55d95f0.mp3"
+			],
+			"audioLanguages": ["en", "th", "th", "en"],
+			"image": "/thai-script/lessons/lesson-03/images/mid-live-practice-af6c5db38fda.jpg"
 		},
 		{
 			"kind": "retrieval",
 			"id": "which-is-dead",
-			"prompt": "One of มี and มาก ends live and the other ends dead. Which is which, and what exactly makes the difference?",
-			"revealSlideId": "which-is-dead-answer"
+			"prompt": "One of the two words you read earlier ends live and the other ends dead. Which is which, and what exactly makes the difference?",
+			"revealSlideId": "which-is-dead-answer",
+			"audio": ["/thai-script/lessons/lesson-03/audio/15e78c01f0806456.mp3"],
+			"audioLanguages": ["en"]
 		},
 		{
 			"kind": "reveal",
 			"id": "which-is-dead-answer",
 			"retrievalSlideId": "which-is-dead",
 			"answers": [
-				"มี is live: it ends on a long vowel with nothing after it, so the sound can run on.",
-				"มาก is dead: ก seals the syllable at the back of the throat and the sound has nowhere to go.",
-				"The initial letter is the same in both. Only the ending decides."
-			]
+				"Live: it ends on a long vowel with nothing after it.",
+				"Dead: the chicken's letter seals it and the sound stops.",
+				"Same letter at the front. The ending is what decides."
+			],
+			"audio": ["/thai-script/lessons/lesson-03/audio/4a0036e0a911da4d.mp3"],
+			"audioLanguages": ["en"]
+		},
+		{
+			"kind": "exposition",
+			"id": "read-intro",
+			"heading": "Three words, and no new letters",
+			"body": [
+				"Read each one before the answer comes.",
+				"Everything here is from lessons one to three."
+			],
+			"audio": ["/thai-script/lessons/lesson-03/audio/0084381b1c95dad8.mp3"],
+			"audioLanguages": ["en"]
+		},
+		{
+			"kind": "exposition",
+			"id": "read-baang",
+			"heading": "Read this one",
+			"body": ["The leaf's letter, a long vowel, and a hum to close it."],
+			"audio": [
+				"/thai-script/lessons/lesson-03/audio/f552ca275740af5d.mp3",
+				"/thai-script/lessons/lesson-03/audio/be0edceffb6eab7e.mp3"
+			],
+			"audioLanguages": ["en", "th"],
+			"thai": "บาง"
+		},
+		{
+			"kind": "exposition",
+			"id": "read-nok",
+			"heading": "And this one",
+			"body": [
+				"The mouse's letter, then the chicken's letter sealing it.",
+				"Short, stopped, over at once. A *bird*."
+			],
+			"audio": [
+				"/thai-script/lessons/lesson-03/audio/bfd29c767c33c216.mp3",
+				"/thai-script/lessons/lesson-03/audio/4d3b4b8603353983.mp3",
+				"/thai-script/lessons/lesson-03/audio/db01efe0c0b20a23.mp3"
+			],
+			"audioLanguages": ["en", "th", "en"],
+			"thai": "นก"
+		},
+		{
+			"kind": "exposition",
+			"id": "read-dii",
+			"heading": "One more",
+			"body": ["The child's letter, with today's vowel on the roof."],
+			"audio": [
+				"/thai-script/lessons/lesson-03/audio/fea34825f1f4620a.mp3",
+				"/thai-script/lessons/lesson-03/audio/caa0d4f2485680bb.mp3",
+				"/thai-script/lessons/lesson-03/audio/b6bab76566cb0333.mp3"
+			],
+			"audioLanguages": ["en", "th", "en"],
+			"thai": "ดี"
+		},
+		{
+			"kind": "exposition",
+			"id": "read-close",
+			"heading": "Three lessons in",
+			"body": [
+				"Two districts: the harbour rings on, the market stops.",
+				"Eight letters, two vowels, one room of the house open.",
+				"Next: the shortener, and the shortcut it gives you."
+			],
+			"audio": ["/thai-script/lessons/lesson-03/audio/ca96ff449c393907.mp3"],
+			"audioLanguages": ["en"]
 		}
 	]
 }
