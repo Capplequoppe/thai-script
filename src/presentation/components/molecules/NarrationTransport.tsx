@@ -20,6 +20,41 @@ import {
  * learner who needs 0.75 needs it for the whole course, and being asked again
  * on every slide would be its own kind of punishment.
  */
+/**
+ * Transport icons, drawn rather than typed.
+ *
+ * Emoji were used here and came out as three different families: a coloured
+ * loudspeaker, a monochrome pause, a monochrome skip. These are one family and
+ * they take `currentColor`, so whatever the button is coloured, the glyph
+ * matches.
+ */
+function PlayIcon() {
+	return (
+		<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">
+			<path d="M8 5.5v13l11-6.5z" fill="currentColor" />
+		</svg>
+	);
+}
+
+function PauseIcon() {
+	return (
+		<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">
+			<rect x="7" y="5.5" width="3.5" height="13" rx="1" fill="currentColor" />
+			<rect x="13.5" y="5.5" width="3.5" height="13" rx="1" fill="currentColor" />
+		</svg>
+	);
+}
+
+/** Skip to the start: the bar is where it returns to. */
+function RestartIcon() {
+	return (
+		<svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
+			<rect x="5" y="5.5" width="2.5" height="13" rx="1" fill="currentColor" />
+			<path d="M19 5.5v13L9.5 12z" fill="currentColor" />
+		</svg>
+	);
+}
+
 export function NarrationTransport({
 	playing,
 	onPlay,
@@ -45,9 +80,9 @@ export function NarrationTransport({
 					background: "var(--color-surface-2)",
 					color: "var(--color-primary)",
 				}}
-				aria-label={playing ? "Stop audio" : "Play audio"}
+				aria-label={playing ? "Pause audio" : "Play audio"}
 			>
-				{playing ? "⏸" : "🔊"}
+				{playing ? <PauseIcon /> : <PlayIcon />}
 			</button>
 
 			<button
@@ -60,7 +95,7 @@ export function NarrationTransport({
 				}}
 				aria-label="Restart audio from the beginning"
 			>
-				⏮
+				<RestartIcon />
 			</button>
 
 			<div
@@ -83,7 +118,11 @@ export function NarrationTransport({
 							value === rate
 								? {
 										background: "var(--color-primary)",
-										color: "var(--color-surface-1)",
+										// `--color-surface`, not `--color-surface-1`: the
+										// latter does not exist, so this resolved to the
+										// inherited near-black and put dark text on a dark
+										// navy pill.
+										color: "var(--color-surface)",
 									}
 								: { color: "var(--color-text-muted)" }
 						}
