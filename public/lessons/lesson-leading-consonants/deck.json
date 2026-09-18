@@ -14,7 +14,8 @@
 			"audio": [
 				"/thai-script/lessons/lesson-leading-consonants/audio/139bd36ef8dc509a.mp3"
 			],
-			"audioLanguages": ["en"]
+			"audioLanguages": ["en"],
+			"image": "/thai-script/lessons/lesson-leading-consonants/images/what-is-here-a613bf340746.jpg"
 		},
 		{
 			"kind": "exposition",
@@ -44,7 +45,8 @@
 			"audio": [
 				"/thai-script/lessons/lesson-leading-consonants/audio/c323c3cf89555e41.mp3"
 			],
-			"audioLanguages": ["en"]
+			"audioLanguages": ["en"],
+			"image": "/thai-script/lessons/lesson-leading-consonants/images/why-it-exists-15ff29c85df5.jpg"
 		},
 		{
 			"kind": "exposition",
@@ -59,7 +61,8 @@
 			"audio": [
 				"/thai-script/lessons/lesson-leading-consonants/audio/5936e209183ad094.mp3"
 			],
-			"audioLanguages": ["en"]
+			"audioLanguages": ["en"],
+			"image": "/thai-script/lessons/lesson-leading-consonants/images/one-rule-90fde58aa8db.jpg"
 		},
 		{
 			"kind": "exposition",
@@ -73,7 +76,8 @@
 			"audio": [
 				"/thai-script/lessons/lesson-leading-consonants/audio/08e3a83a57fd3024.mp3"
 			],
-			"audioLanguages": ["en"]
+			"audioLanguages": ["en"],
+			"image": "/thai-script/lessons/lesson-leading-consonants/images/branch-silent-h-24fd0967179d.jpg"
 		},
 		{
 			"kind": "exposition",
@@ -87,7 +91,8 @@
 			"audio": [
 				"/thai-script/lessons/lesson-leading-consonants/audio/16e63640af6e901a.mp3"
 			],
-			"audioLanguages": ["en"]
+			"audioLanguages": ["en"],
+			"image": "/thai-script/lessons/lesson-leading-consonants/images/branch-silent-o-e186f7b80271.jpg"
 		},
 		{
 			"kind": "exposition",
@@ -101,7 +106,8 @@
 			"audio": [
 				"/thai-script/lessons/lesson-leading-consonants/audio/1704b3d06a33bb64.mp3"
 			],
-			"audioLanguages": ["en"]
+			"audioLanguages": ["en"],
+			"image": "/thai-script/lessons/lesson-leading-consonants/images/branch-spoken-leader-f0d5bffa68eb.jpg"
 		},
 		{
 			"kind": "retrieval",
@@ -147,7 +153,8 @@
 			"audio": [
 				"/thai-script/lessons/lesson-leading-consonants/audio/e0523f4540253a83.mp3"
 			],
-			"audioLanguages": ["en"]
+			"audioLanguages": ["en"],
+			"image": "/thai-script/lessons/lesson-leading-consonants/images/not-every-pair-f3f154735699.jpg"
 		},
 		{
 			"kind": "exposition",
@@ -161,7 +168,8 @@
 			"audio": [
 				"/thai-script/lessons/lesson-leading-consonants/audio/247e61ef987d1f90.mp3"
 			],
-			"audioLanguages": ["en"]
+			"audioLanguages": ["en"],
+			"image": "/thai-script/lessons/lesson-leading-consonants/images/strong-tendency-3f16cc2dcc52.jpg"
 		},
 		{
 			"kind": "exposition",
@@ -260,7 +268,8 @@
 			"audio": [
 				"/thai-script/lessons/lesson-leading-consonants/audio/5a3271dfd997a138.mp3"
 			],
-			"audioLanguages": ["en"]
+			"audioLanguages": ["en"],
+			"image": "/thai-script/lessons/lesson-leading-consonants/images/read-close-ff1b818050bb.jpg"
 		}
 	]
 }

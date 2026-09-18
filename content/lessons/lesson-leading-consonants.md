@@ -50,6 +50,8 @@ A CHALLENGE AND ITS ANSWER NEVER SHARE A SLIDE; PEN AND PAPER EVERY LESSON.
 -->
 
 ## exposition what-is-here
+image: images/lesson-leading-consonants/what-is-here.jpg
+scene: A foreman walking ahead of a line of workers along a dirt track at dawn, the others following in single file behind him.
 heading: The letter written in front that you never hear
 narration: en Last required lesson, and it closes a hole you have been walking around since lesson two. Ten of your consonants can only be written with three of the five tones. Rising and low are simply beyond them, because those two tones need a high or a mid class letter to spell them, and these ten letters are low class with no twin anywhere in the alphabet. So Thai does something you have already seen twice without being told what it was. It writes a second consonant in front. That letter is there for its class, and much of the time you never hear it at all. Today the three places you have met this get named as one thing, and the one thing has a name of its own in Thai. Ready for the last of the machinery?
 - Ten letters that cannot spell a rising tone or a low tone alone.
@@ -65,6 +67,8 @@ narration: en Pen and paper, and the same habit as always. There are no new shap
 - Both halves of the name, out loud, every time.
 
 ## exposition why-it-exists
+image: images/lesson-leading-consonants/why-it-exists.jpg
+scene: A worn stone doorstep dipped in the middle from generations of feet, a wooden door frame above it, morning light.
 heading: Ten letters that cannot be written with a rising tone
 narration: en Start with why anything like this needs to exist. Every consonant belongs to a district, and the district decides which tones a syllable can carry. Most sounds in Thai have a letter in two districts — the map you were shown in lesson seven, seven sounds with a harbour letter and a temple letter each. But ten letters have no partner at all. They are the ones whose sound you can hold and keep going: the hums, the roll, the l, and the two glides. Every one of them lives at the harbour, and there is no copy of any of them at the temple or the market. Which leaves them able to spell three tones and unable to spell two. Rising and low need a class those letters lack. And words needing those tones exist anyway, in quantity. So where was the class going to come from?
 - ง ญ ณ น ม ย ร ล ว ฬ are the sonorants: the ten letters you can hold and hum.
@@ -73,6 +77,8 @@ narration: en Start with why anything like this needs to exist. Every consonant 
 - Thai solves this by putting another letter in front. That front letter is not there to be heard. It is there to be a class.
 
 ## exposition one-rule
+image: images/lesson-leading-consonants/one-rule.jpg
+scene: A brass hand bell standing alone on a bare wooden desk, morning light across it.
 heading: The rule, once
 narration: en Here is the rule. I will state it once, and then spend the rest of the lesson showing it to you in three disguises. A letter from the market or the temple, written directly in front of one of those ten, takes over the tone calculation for the syllable behind it. Everything else stays exactly where it was. The vowel is the vowel you can see. The ending is the ending you can see. Live or dead is decided by that ending, the way it has been since lesson three. The only thing arriving from outside is the district. One more thing before the branches, and it is the honest version. This holds for the overwhelming majority of words, and it is a tendency rather than a law. A small number of words go their own way. You will meet one of them before the lesson closes.
 - A mid or high class consonant written directly in front of a sonorant leads it, and hands its class to the syllable the sonorant opens.
@@ -81,6 +87,8 @@ narration: en Here is the rule. I will state it once, and then spend the rest of
 - Everything below is that one sentence meeting three different first letters, rather than three separate rules.
 
 ## exposition branch-silent-h
+image: images/lesson-leading-consonants/branch-silent-h.jpg
+scene: A man holding a door open at the top of a flight of steps and standing aside, evening light in the hall beyond.
 heading: First letter ห, and you do not hear it
 narration: en First branch, and it is the one you meet most. The chest's letter, from the temple, standing in front of one of the ten. It is written, it is counted, and it makes no sound whatsoever. Say any of these words aloud and listen for a breath at the front of them. There is none. What it is doing there is the sentence from the slide before, applied to the temple — which buys the syllable the rising tone and the low tone that the letter behind it could never reach on its own. This branch stays open. Any of the ten may follow, and words coming into Thai still use it, so treat it as live machinery rather than a closed list of old spellings.
 - หมด (mòt) is finished, หลง (lǒng) is to be lost, หนัง (nǎng) is a film, หญิง (yǐng) is a woman, หมอ (mǎaw) is a doctor, หรอก (ràawk) softens a denial.
@@ -88,6 +96,8 @@ narration: en First branch, and it is the one you meet most. The chest's letter,
 - Any of the ten may follow it, and new words still take it, so treat this as open.
 
 ## exposition branch-silent-o
+image: images/lesson-leading-consonants/branch-silent-o.jpg
+scene: A wide empty basin standing upright on bare earth, plain and open, afternoon light.
 heading: First letter อ, four words, no more
 narration: en Second branch, and this one you can learn this afternoon and never think about again. The basin's letter, from the market, standing in front of the giant's letter. It is silent, exactly as the chest's letter was, and what it leaves behind is a market reading. And it happens in four words. Four, with no long tail behind them. Thai has been counting this branch at four for a very long time. All four are words you use constantly, which is why a branch this small earns a slide. Everywhere else the giant's letter stands on its own, and you read it as the harbour letter it is.
 - อย่า (yàa) is don't. อยู่ (yùu) is to stay. อย่าง (yàang) is a kind or sort. อยาก (yàak) is to want. That is the complete list.
@@ -95,6 +105,8 @@ narration: en Second branch, and this one you can learn this afternoon and never
 - There is no fifth word and no fifth is coming. Read ยาก and ยาว as the low class ย they are, because nothing precedes them.
 
 ## exposition branch-spoken-leader
+image: images/lesson-leading-consonants/branch-spoken-leader.jpg
+scene: Two women walking side by side down a market aisle in step with each other, baskets on their hips.
 heading: Any other mid or high first letter, and you do hear it
 narration: en Third branch, and it runs through everyday Thai from top to bottom. Take any other letter from the market or the temple. Put it in front of one of the ten. Now you do hear it. It becomes a light little syllable of its own, with a short a that nobody wrote down — the unwritten vowel from three lessons ago, doing the job it was built for. Then the syllable you were expecting arrives behind it. And the tone of that second syllable is worked out exactly as it was in the two branches above. The first Thai word most people ever learn is built this way. It sits at rank nine in the language.
 - สวัสดี (sà-wàt-dii) at rank nine is this branch, and so are ขนาด (khà-nàat), ตลอด (dtà-làawt), สงบ (sà-ngòp), สมัย (sà-mǎi), ผลิต (phà-lìt) and ถนน (thà-nǒn).
@@ -117,6 +129,8 @@ rule: hor-nam
 narration: en There is the branch stated as the course has always stated it, with a worked example on the card. That example is the word for a bear, and it is a rare one — a good demonstration and a word you can leave alone. What matters on that card is the middle sentence, which says what the arrangement buys you: two tones that the letter behind could never have reached by itself.
 
 ## exposition not-every-pair
+image: images/lesson-leading-consonants/not-every-pair.jpg
+scene: Two boats moored at a quay with a clear stretch of water between them, neither tied to the other, low sun.
 heading: When the first letter is simply the initial
 narration: en Now the thing that stops you over-applying all this, because a rule you cannot switch off is worse than no rule. Two consonants at the front of a word do not always mean a leader. Sometimes they are an ordinary opening and the vowel comes after both of them. So count syllables the short way first. Try reading the two letters together, inside one syllable, and only when that fails does the first one become a leader with a syllable of its own. And there is a second brake on it. A harbour letter in front leads nothing, ever, because it has the same district as the letter behind it and nothing to lend.
 - สนใจ (sǒn-jai) puts ส in front of น and is one syllable rather than two: both letters share a short o, and ส is simply the initial.
@@ -124,6 +138,8 @@ narration: en Now the thing that stops you over-applying all this, because a rul
 - And a low class first letter never leads at all. It has no class the sonorant does not already have, so นคร is ná-khaawn with two ordinary syllables.
 
 ## exposition strong-tendency
+image: images/lesson-leading-consonants/strong-tendency.jpg
+scene: A weathered signpost at a fork in a country road, one arm pointing along each track, late afternoon.
 heading: And one word that keeps its own class
 narration: en Here is the word I promised you, and the reason this lesson calls the rule a tendency. It means a member — of a club, of a family, of a committee. It opens with the tiger's letter in front of the horse's letter, and it splits into a light syllable and then the rest, exactly the way you have been splitting all afternoon. Work the tone out by the rule and you get a rising middle syllable. Listen to a Thai speaker and the middle syllable comes out flat. The horse's letter kept the class it was born with, so the reading you derived is the one a dictionary overrules. Derive anyway, because deriving is right nearly every time. Then let a dictionary correct the handful of words that went their own way.
 - สมาชิก (sà-maa-chík) is a member, and it splits into a light first syllable and then the rest, the way the whole lesson has trained you to split.
@@ -176,6 +192,8 @@ narration: en The shorter word opens on the horse's letter, which is a harbour l
 - หมด (mòt) is low tone, because the ห in front makes the reading a high class one.
 
 ## exposition read-close
+image: images/lesson-leading-consonants/read-close.jpg
+scene: A long straight road running away between fields towards hills, early morning light.
 heading: That is the required course
 narration: en That is the last required lesson. It is worth saying plainly what you hold. Forty-four consonants, every written vowel, four tone marks, the vowels nobody writes down, the cluster inventory, and this. Take an unfamiliar Thai word, split it, find its class, find its ending, and the tone falls out of the spelling. No recording, and nobody to say it for you first. That is the thing a learner working from romanisation never gets hold of. Write today's examples out one last time, both halves of every name aloud. And if you want the ten Thai digits as well, there is one optional lesson waiting.
 - Three branches, one rule, and a tendency rather than a law.

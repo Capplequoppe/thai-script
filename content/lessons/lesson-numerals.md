@@ -48,6 +48,8 @@ outside ก-ฮ and are exempt by construction.
 -->
 
 ## exposition what-is-here
+image: images/lesson-numerals/what-is-here.jpg
+scene: A hand-painted price board propped against a fruit stall in a Thai market, the paint chipped at the edges, morning light.
 heading: Ten glyphs, and permission to walk away
 narration: en One more lesson, and this one is optional in a way that none of the others were. Ten glyphs — Thailand's own digits, zero through nine. You can close the course right now without them and nothing behind you comes undone. So let me tell you what the ten are worth, and then you decide. They are rare in running text and common on exactly the things a visitor has to read. A price board, a date on a government form, the number over a door. And they cost about twenty minutes, because the ten words behind them are ordinary Thai spellings with no new letters in them. So — worth twenty minutes?
 - Ten glyphs, and an honest choice about whether to learn them.
@@ -63,12 +65,16 @@ narration: en Pen and paper, and for the first time in three lessons there are r
 - Say the number word out loud as you write each one.
 
 ## exposition why-optional
+image: images/lesson-numerals/why-optional.jpg
+scene: A printed bus ticket lying on a wooden bench beside a folded newspaper, afternoon light.
 heading: Ten glyphs, entirely optional
 narration: en Here is the honest case, both ways, and then I will stop pressing. Thailand runs on Arabic digits. Bus numbers, telephone numbers, most prices in most shops, every keyboard — all the digits you have used your whole life. What stayed with the Thai forms is the official and the formal. Government paperwork. Temple boards. The year printed on a banknote. Older house numbers. Museum labels. And the price written on a stall board by somebody who learned to write before the till did. None of it is daily, and all of it is the kind of thing you meet on the day it matters most.
 - Thailand writes numbers with Arabic digits almost everywhere. The Thai digits survive on official documents, temple signs, some price boards — and anywhere a date wants to look formal.
 - Skipping this lesson skips nothing else: no later material depends on it, and the course is complete without it. It waits here if a menu ever charges you the Thai-digit price.
 
 ## exposition zero-to-four
+image: images/lesson-numerals/zero-to-four.jpg
+scene: A wooden abacus lying flat on a shopkeeper's counter, its beads pushed to one side, warm afternoon light.
 heading: Zero through four: ๐ ๑ ๒ ๓ ๔
 narration: en The first five, and each one comes with an ordinary Thai word you can read. Zero is a plain ring, and its word starts on a temple letter and ends on a letter switched off by the silencer from lesson thirteen. One, two and three come next, and two and three are worth looking at together, because they are built on the same base and the three carries an extra hump on top of it. Four forks at the top like a small flag. Read the words in the bullets as you go, out loud, and copy each glyph onto your page beside its word.
 recording: th ศูนย์ public/audio/digit-0.mp3
@@ -81,6 +87,8 @@ recording: th สี่ public/audio/digit-4.mp3
 - ๔ is four, สี่ (sìi), and its glyph forks like a flag.
 
 ## exposition five-to-nine
+image: images/lesson-numerals/five-to-nine.jpg
+scene: A lottery vendor's wooden case open on a folding table, rows of slips held in place by elastic, street light.
 heading: Five through nine, ๕ to ๙
 narration: en The second five, and then the units above ten. Five coils back on itself, and six follows it. Seven and eight are the pair to be careful with — a matched set of hooks, facing opposite ways, and the two that a tired eye confuses. Nine finishes with a tail that climbs. Then the bigger units, and they need no new glyphs at all. Ten, a hundred, a thousand and a million are ordinary words, spelled out of letters you have owned for lessons.
 recording: th ห้า public/audio/digit-5.mp3
@@ -93,6 +101,8 @@ recording: th เก้า public/audio/digit-9.mp3
 - ๙ is nine, เก้า (gâo), with a tail that climbs. Larger units are ordinary words: สิบ (sìp) ten, ร้อย (ráawi) hundred, พัน (phan) thousand, ล้าน (láan) million.
 
 ## exposition reading-a-number
+image: images/lesson-numerals/reading-a-number.jpg
+scene: A house number plate screwed to a weathered wooden gatepost, paint faded, morning light.
 heading: Reading a number you meet on a sign
 narration: en Now the good part, and it is short, because there is nothing to learn. Thai digits work positionally, exactly as Arabic ones do. Same order, same columns, same reading from left to right. A two-digit number is tens then units. A three-digit number is hundreds, tens, units. Nothing is reversed and nothing is grouped differently. So once the ten shapes are in your eye, every number in the language is readable, however long it runs. Which leaves what, exactly? The shapes, and nothing else at all.
 - Thai digits combine exactly as Arabic ones do — position by position, nothing reordered.
@@ -137,6 +147,8 @@ narration: en Nine. The tail is the thing to look for, because it climbs above t
 - Nine. ๙ finishes with a tail that climbs above the line, while ๗ keeps a straight neck with a small hook.
 
 ## exposition close
+image: images/lesson-numerals/close.jpg
+scene: A quiet market aisle at closing time with the stalls shuttered and one lamp still lit.
 heading: Done — or happily skipped
 narration: en That is the ten, and that is the course. Ten glyphs, ten ordinary words behind them, and positional reading you already had. Write the ten out one more time before you go, each with its word said out loud, and then go and find a temple board or a banknote and read a real number off it. Whether you took this lesson or walked past it, everything behind you is finished and the whole writing system is yours.
 - Ten glyphs, their number words, and positional reading.

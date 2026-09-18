@@ -377,6 +377,18 @@
 			"failure": null
 		},
 		{
+			"key": "what-is-here-image",
+			"kind": "image",
+			"state": "generated",
+			"language": null,
+			"inputHash": "a613bf34074673874f424ea14c08239b7a236c30bc917dd612cf7cae3b39d98c",
+			"contentHash": "96c8b4ede73c4ff06880c86e31eb815ade15479eace8765703ab37a093444ec9",
+			"path": "/thai-script/lessons/lesson-leading-consonants/images/what-is-here-a613bf340746.jpg",
+			"file": "images/what-is-here-a613bf340746.jpg",
+			"verification": null,
+			"failure": null
+		},
+		{
 			"key": "pen-still-there-image",
 			"kind": "image",
 			"state": "generated",
@@ -385,6 +397,102 @@
 			"contentHash": "d5ee5c5c023898ed24512e1d09e65f95aecc922e11f54dab1cac9d33590ddab8",
 			"path": "/thai-script/lessons/lesson-leading-consonants/images/pen-still-there-1bdf41db8b53.jpg",
 			"file": "images/pen-still-there-1bdf41db8b53.jpg",
+			"verification": null,
+			"failure": null
+		},
+		{
+			"key": "why-it-exists-image",
+			"kind": "image",
+			"state": "generated",
+			"language": null,
+			"inputHash": "15ff29c85df56c9d455db519ffabda861e643fd5eb45383a864233b76dcca0d6",
+			"contentHash": "a3f5cc1cae643d640a9ab8860f82fc560181987434f31d83ab7dd63f6d2df40b",
+			"path": "/thai-script/lessons/lesson-leading-consonants/images/why-it-exists-15ff29c85df5.jpg",
+			"file": "images/why-it-exists-15ff29c85df5.jpg",
+			"verification": null,
+			"failure": null
+		},
+		{
+			"key": "one-rule-image",
+			"kind": "image",
+			"state": "generated",
+			"language": null,
+			"inputHash": "90fde58aa8db2f79425328bfa4c9fbbac3857a271ab86267b197fc7d1d6fc1b4",
+			"contentHash": "c674e8accd90ecfeee1b59ea908072f913c533b8759fd02b5b2e0c5b93b22f91",
+			"path": "/thai-script/lessons/lesson-leading-consonants/images/one-rule-90fde58aa8db.jpg",
+			"file": "images/one-rule-90fde58aa8db.jpg",
+			"verification": null,
+			"failure": null
+		},
+		{
+			"key": "branch-silent-h-image",
+			"kind": "image",
+			"state": "generated",
+			"language": null,
+			"inputHash": "24fd0967179d56a38932fd88c6fd206fc8603255c8481cfe7ed4a4deb266ca2c",
+			"contentHash": "6d92faa3e70b48fee19629cd98ebc1df0420e7e40be40809da47ad8c877366d1",
+			"path": "/thai-script/lessons/lesson-leading-consonants/images/branch-silent-h-24fd0967179d.jpg",
+			"file": "images/branch-silent-h-24fd0967179d.jpg",
+			"verification": null,
+			"failure": null
+		},
+		{
+			"key": "branch-silent-o-image",
+			"kind": "image",
+			"state": "generated",
+			"language": null,
+			"inputHash": "e186f7b8027112821b9463d47f34c067b088c446c5f300102731efc7697af093",
+			"contentHash": "804cb3e12a82a815acf59e1317b22df5853b05d62591849f8854bd261d2249c3",
+			"path": "/thai-script/lessons/lesson-leading-consonants/images/branch-silent-o-e186f7b80271.jpg",
+			"file": "images/branch-silent-o-e186f7b80271.jpg",
+			"verification": null,
+			"failure": null
+		},
+		{
+			"key": "branch-spoken-leader-image",
+			"kind": "image",
+			"state": "generated",
+			"language": null,
+			"inputHash": "f0d5bffa68eba501452d93b3d946879063ba9b20bab12817e43c938aae4e3989",
+			"contentHash": "ece69abf34df792e70447549313d13c0057ec702fdf5ad1e2eaa80bbbcd6edae",
+			"path": "/thai-script/lessons/lesson-leading-consonants/images/branch-spoken-leader-f0d5bffa68eb.jpg",
+			"file": "images/branch-spoken-leader-f0d5bffa68eb.jpg",
+			"verification": null,
+			"failure": null
+		},
+		{
+			"key": "not-every-pair-image",
+			"kind": "image",
+			"state": "generated",
+			"language": null,
+			"inputHash": "f3f154735699b6d1ff228eb78d42440b28150011503ed89efe636f7b9db4eb3f",
+			"contentHash": "ee99d91af672f21abc7f6428e10d5e3a0cc4e6e7441e9a49b4d0187d360d0d95",
+			"path": "/thai-script/lessons/lesson-leading-consonants/images/not-every-pair-f3f154735699.jpg",
+			"file": "images/not-every-pair-f3f154735699.jpg",
+			"verification": null,
+			"failure": null
+		},
+		{
+			"key": "strong-tendency-image",
+			"kind": "image",
+			"state": "generated",
+			"language": null,
+			"inputHash": "3f16cc2dcc521ddb4b3696f85cd145843f5534210c4b2c4b6fbe5d9e3b69a9df",
+			"contentHash": "9ed0448a19f63de5c27e14278c0b665d3a3abfc7866063de97684c14188668df",
+			"path": "/thai-script/lessons/lesson-leading-consonants/images/strong-tendency-3f16cc2dcc52.jpg",
+			"file": "images/strong-tendency-3f16cc2dcc52.jpg",
+			"verification": null,
+			"failure": null
+		},
+		{
+			"key": "read-close-image",
+			"kind": "image",
+			"state": "generated",
+			"language": null,
+			"inputHash": "ff1b818050bb6787bf713d9c55e2b47e20cb010c0829aa76ee990410f4602431",
+			"contentHash": "8b45ac23479dea304ffac3e86d0735e030f158637f4976f784e969fe9bb7f4ee",
+			"path": "/thai-script/lessons/lesson-leading-consonants/images/read-close-ff1b818050bb.jpg",
+			"file": "images/read-close-ff1b818050bb.jpg",
 			"verification": null,
 			"failure": null
 		}

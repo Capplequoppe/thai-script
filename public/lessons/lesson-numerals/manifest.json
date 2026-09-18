@@ -428,6 +428,18 @@
 			"failure": null
 		},
 		{
+			"key": "what-is-here-image",
+			"kind": "image",
+			"state": "generated",
+			"language": null,
+			"inputHash": "504b106541339a5e62ce75e9d089461cdbff6b8badbb2d7281d882803f1654ba",
+			"contentHash": "4057cb56dc784e6965f93b458794d44e1682919cef3d3471d2182d73441dfbd4",
+			"path": "/thai-script/lessons/lesson-numerals/images/what-is-here-504b10654133.jpg",
+			"file": "images/what-is-here-504b10654133.jpg",
+			"verification": null,
+			"failure": null
+		},
+		{
 			"key": "pen-still-there-image",
 			"kind": "image",
 			"state": "generated",
@@ -436,6 +448,66 @@
 			"contentHash": "d5ee5c5c023898ed24512e1d09e65f95aecc922e11f54dab1cac9d33590ddab8",
 			"path": "/thai-script/lessons/lesson-numerals/images/pen-still-there-1bdf41db8b53.jpg",
 			"file": "images/pen-still-there-1bdf41db8b53.jpg",
+			"verification": null,
+			"failure": null
+		},
+		{
+			"key": "why-optional-image",
+			"kind": "image",
+			"state": "generated",
+			"language": null,
+			"inputHash": "83bf51434a14277fe5f9cb94faa81f22c84e64f778e0a720570333c4fe09014b",
+			"contentHash": "7369331e3d6e093e732fd6043140043b0771b1e9c646fb0ca5ddf094dba37c18",
+			"path": "/thai-script/lessons/lesson-numerals/images/why-optional-83bf51434a14.jpg",
+			"file": "images/why-optional-83bf51434a14.jpg",
+			"verification": null,
+			"failure": null
+		},
+		{
+			"key": "zero-to-four-image",
+			"kind": "image",
+			"state": "generated",
+			"language": null,
+			"inputHash": "65c6148c10a9d4d3d5f45d009bd6e677c98c05ee4239ad4a799c084f3cbdab60",
+			"contentHash": "a556bd5bc920a9309b7ed2f3844a644a14168760ab68b97a411921df7a7f3dcf",
+			"path": "/thai-script/lessons/lesson-numerals/images/zero-to-four-65c6148c10a9.jpg",
+			"file": "images/zero-to-four-65c6148c10a9.jpg",
+			"verification": null,
+			"failure": null
+		},
+		{
+			"key": "five-to-nine-image",
+			"kind": "image",
+			"state": "generated",
+			"language": null,
+			"inputHash": "8b173967955c2fc6c34f3410cffc4edbfcd8bff203d97bce968c6e6d1b9e83e1",
+			"contentHash": "e7f3116011c197c82ba7b70cd8ea87ac3331243d17a24e13e04d88b43a056f88",
+			"path": "/thai-script/lessons/lesson-numerals/images/five-to-nine-8b173967955c.jpg",
+			"file": "images/five-to-nine-8b173967955c.jpg",
+			"verification": null,
+			"failure": null
+		},
+		{
+			"key": "reading-a-number-image",
+			"kind": "image",
+			"state": "generated",
+			"language": null,
+			"inputHash": "b8e894a4980f4bca51288f2f7f3baa08baaecf380a849f0d023b55bc1a434bfe",
+			"contentHash": "0a6002bbb4a606e190b7343af9a7020293263df18a7a57001432c06f3f932e3b",
+			"path": "/thai-script/lessons/lesson-numerals/images/reading-a-number-b8e894a4980f.jpg",
+			"file": "images/reading-a-number-b8e894a4980f.jpg",
+			"verification": null,
+			"failure": null
+		},
+		{
+			"key": "close-image",
+			"kind": "image",
+			"state": "generated",
+			"language": null,
+			"inputHash": "18d12f82a34477c2293fcc88fd39cbfcb7a0c33b41cc40ed12522e05d967516f",
+			"contentHash": "a097b7047e113e8b1d20e3b682527f8df0bd0f6d6e1e456ea1fdd4cdb77c5365",
+			"path": "/thai-script/lessons/lesson-numerals/images/close-18d12f82a344.jpg",
+			"file": "images/close-18d12f82a344.jpg",
 			"verification": null,
 			"failure": null
 		}

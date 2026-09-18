@@ -43,6 +43,8 @@ Unchanged from lesson 3. What the pen does here is the twenty pairs.
 -->
 
 ## exposition what-is-here
+image: images/lesson-clusters/what-is-here.jpg
+scene: A pair of worn wooden printing blocks lying side by side on a workbench, cut with letterforms, warm lamplight raking across the grain.
 heading: Twenty pairs, and one trap under all of them
 narration: en There are no new letters today. None next lesson either. You hold the whole alphabet now, every written vowel, and all four tone marks. What is left is the machinery — the rules that decide how the letters you own get read when they meet each other. This lesson is about two consonants standing side by side with no vowel written between them. Sometimes those two are one opening, and you say them together inside a single syllable. Sometimes they start two syllables, with a short vowel between them that nobody wrote down. And twice in the whole language they make a sound belonging to neither of them. Guess wrong and an ordinary word comes out as a noise Thai has never made. Which is why this gets a lesson of its own. The good news is the size of it. The whole thing is a list of twenty, and you will have read every one of them before we finish. Shall we open the list?
 - No new letters. One rule, and a list of twenty pairs.
@@ -58,6 +60,8 @@ narration: en Pen and paper, and this lesson asks something different of them. T
 - Both letter names out loud, the way you always have.
 
 ## exposition only-three-followers
+image: images/lesson-clusters/only-three-followers.jpg
+scene: Three iron keys hanging from a single nail on a plank wall, worn smooth with use, late afternoon light.
 heading: Only three letters ever come second
 narration: en Start with the half of the rule that costs you nothing. English will open a syllable with almost anything. Three consonants in a row, and four if you count the ones we spell and never say. Thai allows two. And the letter standing second can only ever be one of three. The boat, the monkey, and the ring. Learn those three and most of the guessing is gone before it starts. Any other letter sitting in second place tells you at once that you are looking at the front of two syllables. There is a second half to the rule as well. The letter in front is restricted too, and the list of twenty is what tells you which ones are allowed there.
 - English lets a syllable open with almost anything: str, spl, thw. Thai does not.
@@ -65,6 +69,8 @@ narration: en Start with the half of the rule that costs you nothing. English wi
 - And not every first letter is allowed either. The whole inventory is twenty pairs, and you are about to read all of them.
 
 ## exposition true-clusters
+image: images/lesson-clusters/true-clusters.jpg
+scene: Two oxen yoked together pulling a cart along a dirt road at dawn, both leaning into the same harness, dust rising behind them.
 heading: Fifteen pairs where you say both letters
 narration: en Here is the first group, and it is much the biggest. Fifteen pairs where both letters are spoken, in the order they are written, with nothing at all in between. Your mouth moves straight off the first consonant onto the second. An English speaker's instinct is to slip a small vowel in there to make the join comfortable. Take that out. Read the rows as they come. Six pairs that take the boat's letter, six that take the monkey's, three that take the ring's. Copy each pair onto your page as you say it. And one thing runs through all fifteen, which saves you a great deal of work. The tone is worked out from the letter in front. Exactly as it would be if the second letter had never been written.
 - With ร: กร, ขร, คร, ตร, ปร, พร. ตรง (dtrong) is straight, ครอง (khraawng) is to rule, ประตู (bprà-dtuu) is a door, พระ (phrá) is a monk, กรอบ (gràawp) is crisp.
@@ -73,6 +79,8 @@ narration: en Here is the first group, and it is much the biggest. Fifteen pairs
 - Speak both, left to right, with no vowel wedged between them. A pair always takes its class from the first letter.
 
 ## exposition false-sound-clusters
+image: images/lesson-clusters/false-sound-clusters.jpg
+scene: A painted shop sign hanging above a doorway, its paint weathered away in patches so the bare board shows through, morning light.
 heading: Two pairs that are not what they look like
 narration: en The second group holds two pairs, and they behave oddly enough to earn a slide of their own. Write the soldier's letter. Put the boat's letter behind it. What a Thai mouth produces is a plain s. Neither letter's own sound survives the meeting. The breath at the front goes, and so does the roll in the middle. A reader who has never been warned says the word with a hard t and an r, and watches the person opposite fail to understand something very ordinary. The other pair here is rare enough that you may go a year without meeting it, and it does the same thing. Now hold on to the part that stays put. The sound came out of nowhere. The class still comes off the letter written in front, the way it does in every other pair.
 - ทร is read as s. ทราบ (sâap) is to know, ทรง (song) is a form, ทราย (saai) is sand. It is never thr.
@@ -80,12 +88,16 @@ narration: en The second group holds two pairs, and they behave oddly enough to 
 - The sound changes but the class does not: ท is low class and ทราบ takes its tone from ท.
 
 ## exposition silent-second-clusters
+image: images/lesson-clusters/silent-second-clusters.jpg
+scene: A single empty chair set beside a laid table in an otherwise busy room, evening light through a window.
 heading: Three pairs where the ร is silent
 narration: en The third group is three pairs. In every one of them the boat's letter is written down and then never said. You see it, you step over it, and you go straight on to the vowel. It is there for the eye and for the word's history. The spelling was kept because the word looked that way in the language Thai borrowed it from, and the mouth quietly dropped it. So when one of the three turns up, read the letter in front, walk past the boat, and carry on into the rest of the syllable. Treat it as one consonant with an extra mark sitting after it. Does that feel like a cheat? It is how Thai readers have handled these words for centuries.
 - จร, ศร and สร drop the ร entirely. Say the first letter and go straight on to the vowel.
 - จริง (jing) is true, and สร้าง (sâang) is to build. Neither has an r in it anywhere.
 
 ## exposition lexical-pairs
+image: images/lesson-clusters/lexical-pairs.jpg
+scene: A worn dictionary lying open on a desk with a ribbon marker across the page, a reading lamp lit beside it, night.
 heading: ผล and พล are decided by the word, not by the spelling
 narration: en And here is the one place in this lesson where the page lets you down. I would rather you heard it from me now than found it out in a bookshop. Two of the twenty go both ways. The same two letters, written the same way, open one syllable in one word and two syllables in the next. Nothing on the page tells you which one you are holding. Four common words show you both readings, and between them they cover almost everything you will meet. Read them, say them, and store them as words rather than as a rule. No rule is available here to store. Everything else in the inventory is settled by the letters. These two are settled by the word.
 - ผลิต (phà-lìt) is to manufacture and ผลไม้ (phǒn-lá-máai) is fruit. Neither is a cluster: ผ is a separate light syllable in the first and ผล is a bare pair in the second.
@@ -108,6 +120,8 @@ rule: consonant-clusters
 narration: en There is the rule as the course has been holding it since lesson ten, and now you have the list that makes it usable. English gives you dozens of ways to open a syllable and asks you to recognise them by ear. Thai gives you twenty and asks you to know them.
 
 ## exposition the-closure
+image: images/lesson-clusters/the-closure.jpg
+scene: A closed ledger with a leather strap fastened around it, standing upright on a shelf, dim evening light.
 heading: Twenty pairs, and nothing else
 narration: en Now the part that turns a list into a reading skill. This inventory is closed. It has been closed a very long time. New words entering Thai do not add to it, and no borrowed word has ever talked its way in. So when two consonants stand together and the pair is outside the twenty, your answer arrives with no judgement involved. Two syllables. And a short vowel between them that the writing leaves out. That is what lets you separate two words at a glance when both begin with the same letter and only the second one differs.
 - Fifteen true, two read as s, three that drop the ร. That is the entire inventory, and it does not grow.
@@ -159,6 +173,8 @@ narration: en The harbour, because the harbour is what is written. A pair takes 
 - ท is low class and the syllable is long and dead, which is falling tone: sâap.
 
 ## exposition read-close
+image: images/lesson-clusters/read-close.jpg
+scene: A narrow footpath running out between two rice paddies towards distant hills, early morning mist on the water.
 heading: Where that leaves you
 narration: en Twenty pairs, three groups, and a list that never grows. And what it buys you happens in about a second. You look at two consonants and you know whether you are holding one syllable or two. That is close to the last thing standing between you and reading an unfamiliar word off a street sign. Write the twenty out one more time before you go, in their groups, saying both names aloud. Next lesson there is one more piece of machinery. It is the one that explains why a letter you cannot hear is written down at all.
 - Twenty pairs, three groups, and a closed list.

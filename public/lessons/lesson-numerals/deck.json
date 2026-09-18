@@ -14,7 +14,8 @@
 			"audio": [
 				"/thai-script/lessons/lesson-numerals/audio/a375757bfb4178d1.mp3"
 			],
-			"audioLanguages": ["en"]
+			"audioLanguages": ["en"],
+			"image": "/thai-script/lessons/lesson-numerals/images/what-is-here-504b10654133.jpg"
 		},
 		{
 			"kind": "exposition",
@@ -42,7 +43,8 @@
 			"audio": [
 				"/thai-script/lessons/lesson-numerals/audio/27c53e597d61b0b4.mp3"
 			],
-			"audioLanguages": ["en"]
+			"audioLanguages": ["en"],
+			"image": "/thai-script/lessons/lesson-numerals/images/why-optional-83bf51434a14.jpg"
 		},
 		{
 			"kind": "exposition",
@@ -61,7 +63,8 @@
 				"/thai-script/lessons/lesson-numerals/audio/43fa2a5d074a4f15.mp3",
 				"/thai-script/lessons/lesson-numerals/audio/2a66d784d4344165.mp3"
 			],
-			"audioLanguages": ["en", "th", "th", "th", "th", "th"]
+			"audioLanguages": ["en", "th", "th", "th", "th", "th"],
+			"image": "/thai-script/lessons/lesson-numerals/images/zero-to-four-65c6148c10a9.jpg"
 		},
 		{
 			"kind": "exposition",
@@ -80,7 +83,8 @@
 				"/thai-script/lessons/lesson-numerals/audio/94999d6f399fca0b.mp3",
 				"/thai-script/lessons/lesson-numerals/audio/0f8f5460840af5e7.mp3"
 			],
-			"audioLanguages": ["en", "th", "th", "th", "th", "th"]
+			"audioLanguages": ["en", "th", "th", "th", "th", "th"],
+			"image": "/thai-script/lessons/lesson-numerals/images/five-to-nine-8b173967955c.jpg"
 		},
 		{
 			"kind": "exposition",
@@ -94,7 +98,8 @@
 			"audio": [
 				"/thai-script/lessons/lesson-numerals/audio/2c52dbd31cff027f.mp3"
 			],
-			"audioLanguages": ["en"]
+			"audioLanguages": ["en"],
+			"image": "/thai-script/lessons/lesson-numerals/images/reading-a-number-b8e894a4980f.jpg"
 		},
 		{
 			"kind": "exposition",
@@ -183,7 +188,8 @@
 			"audio": [
 				"/thai-script/lessons/lesson-numerals/audio/0cf0fc634088b0b3.mp3"
 			],
-			"audioLanguages": ["en"]
+			"audioLanguages": ["en"],
+			"image": "/thai-script/lessons/lesson-numerals/images/close-18d12f82a344.jpg"
 		}
 	]
 }

@@ -377,6 +377,18 @@
 			"failure": null
 		},
 		{
+			"key": "what-is-here-image",
+			"kind": "image",
+			"state": "generated",
+			"language": null,
+			"inputHash": "2f1da953955a75f6937109520e33bb881bd490e0d5c97d9afb549a99f529d4bd",
+			"contentHash": "f002a00f14974977e1b0efb63a5ea7d36be907ac91c25f158ae27cb740c879c2",
+			"path": "/thai-script/lessons/lesson-clusters/images/what-is-here-2f1da953955a.jpg",
+			"file": "images/what-is-here-2f1da953955a.jpg",
+			"verification": null,
+			"failure": null
+		},
+		{
 			"key": "pen-still-there-image",
 			"kind": "image",
 			"state": "generated",
@@ -385,6 +397,90 @@
 			"contentHash": "d5ee5c5c023898ed24512e1d09e65f95aecc922e11f54dab1cac9d33590ddab8",
 			"path": "/thai-script/lessons/lesson-clusters/images/pen-still-there-1bdf41db8b53.jpg",
 			"file": "images/pen-still-there-1bdf41db8b53.jpg",
+			"verification": null,
+			"failure": null
+		},
+		{
+			"key": "only-three-followers-image",
+			"kind": "image",
+			"state": "generated",
+			"language": null,
+			"inputHash": "d7488fd5524263000722433b2050f1fdf1ac0cfa14bfc54e3bdcb5ac3e0fab75",
+			"contentHash": "54f40b116183de5c962301b210c7d72b577abdcd9ef375c6a2a9eb7e6f5e7667",
+			"path": "/thai-script/lessons/lesson-clusters/images/only-three-followers-d7488fd55242.jpg",
+			"file": "images/only-three-followers-d7488fd55242.jpg",
+			"verification": null,
+			"failure": null
+		},
+		{
+			"key": "true-clusters-image",
+			"kind": "image",
+			"state": "generated",
+			"language": null,
+			"inputHash": "19ae9962dc704ad6d949c49e00f5d5c309317322a1ea6cdf5cd0e33156491d94",
+			"contentHash": "50ddd5b0efc0d5277a648b1038926d6ad922ca2f71ee6e695bc7b31384c52e52",
+			"path": "/thai-script/lessons/lesson-clusters/images/true-clusters-19ae9962dc70.jpg",
+			"file": "images/true-clusters-19ae9962dc70.jpg",
+			"verification": null,
+			"failure": null
+		},
+		{
+			"key": "false-sound-clusters-image",
+			"kind": "image",
+			"state": "generated",
+			"language": null,
+			"inputHash": "ae91b2665afea72846215a30d21f3cfbff43bc2340ed5ac4e19cb9d4e29827f8",
+			"contentHash": "8e33bc3a1aad6cdadba5e0aa029f8c4a3639ac70fa005e4e9c5717b460ee0faa",
+			"path": "/thai-script/lessons/lesson-clusters/images/false-sound-clusters-ae91b2665afe.jpg",
+			"file": "images/false-sound-clusters-ae91b2665afe.jpg",
+			"verification": null,
+			"failure": null
+		},
+		{
+			"key": "silent-second-clusters-image",
+			"kind": "image",
+			"state": "generated",
+			"language": null,
+			"inputHash": "4264fdf3e53a685f9a60f332e8e33fb693019558de298471b3e2479d1104dfde",
+			"contentHash": "12aaf1e12695bcb5aa604d20751c32b9094ab2c9ad5179ffd216b01dbcd6e805",
+			"path": "/thai-script/lessons/lesson-clusters/images/silent-second-clusters-4264fdf3e53a.jpg",
+			"file": "images/silent-second-clusters-4264fdf3e53a.jpg",
+			"verification": null,
+			"failure": null
+		},
+		{
+			"key": "lexical-pairs-image",
+			"kind": "image",
+			"state": "generated",
+			"language": null,
+			"inputHash": "5a61e9afe028aad25dc0ae65c10617582b18f79534ae190b0f141fed643e6e73",
+			"contentHash": "b53407e8bc722074645f269cd000a429b8dced7501deeaffff03e6a02410ac30",
+			"path": "/thai-script/lessons/lesson-clusters/images/lexical-pairs-5a61e9afe028.jpg",
+			"file": "images/lexical-pairs-5a61e9afe028.jpg",
+			"verification": null,
+			"failure": null
+		},
+		{
+			"key": "the-closure-image",
+			"kind": "image",
+			"state": "generated",
+			"language": null,
+			"inputHash": "75118ae7d3fa41ad3898832f969bf81273a296945fbd4c1bc793b711ad9c942e",
+			"contentHash": "4fd54a93daf4555faaa4b2906be3b6af540313ff7bb7725f1a64504c156f7c3e",
+			"path": "/thai-script/lessons/lesson-clusters/images/the-closure-75118ae7d3fa.jpg",
+			"file": "images/the-closure-75118ae7d3fa.jpg",
+			"verification": null,
+			"failure": null
+		},
+		{
+			"key": "read-close-image",
+			"kind": "image",
+			"state": "generated",
+			"language": null,
+			"inputHash": "79087c2fbc1b0b0b9c96da453795523a35aaf48337871f9b93c9602cafa1fb28",
+			"contentHash": "9afab211e0b089e7385f3a44d62edf2a845ba8dcf6a4babd13d7ba1652479025",
+			"path": "/thai-script/lessons/lesson-clusters/images/read-close-79087c2fbc1b.jpg",
+			"file": "images/read-close-79087c2fbc1b.jpg",
 			"verification": null,
 			"failure": null
 		}

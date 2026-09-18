@@ -15,7 +15,8 @@
 				"/thai-script/lessons/lesson-clusters/audio/18edd47d67013a65.mp3",
 				"/thai-script/lessons/lesson-clusters/audio/e6ce10302bdf69fa.mp3"
 			],
-			"audioLanguages": ["en", "en"]
+			"audioLanguages": ["en", "en"],
+			"image": "/thai-script/lessons/lesson-clusters/images/what-is-here-2f1da953955a.jpg"
 		},
 		{
 			"kind": "exposition",
@@ -44,7 +45,8 @@
 			"audio": [
 				"/thai-script/lessons/lesson-clusters/audio/d1cd69209563fec3.mp3"
 			],
-			"audioLanguages": ["en"]
+			"audioLanguages": ["en"],
+			"image": "/thai-script/lessons/lesson-clusters/images/only-three-followers-d7488fd55242.jpg"
 		},
 		{
 			"kind": "exposition",
@@ -59,7 +61,8 @@
 			"audio": [
 				"/thai-script/lessons/lesson-clusters/audio/0f4a5ec261cc29a4.mp3"
 			],
-			"audioLanguages": ["en"]
+			"audioLanguages": ["en"],
+			"image": "/thai-script/lessons/lesson-clusters/images/true-clusters-19ae9962dc70.jpg"
 		},
 		{
 			"kind": "exposition",
@@ -73,7 +76,8 @@
 			"audio": [
 				"/thai-script/lessons/lesson-clusters/audio/752f4bb130b1b9a4.mp3"
 			],
-			"audioLanguages": ["en"]
+			"audioLanguages": ["en"],
+			"image": "/thai-script/lessons/lesson-clusters/images/false-sound-clusters-ae91b2665afe.jpg"
 		},
 		{
 			"kind": "exposition",
@@ -86,7 +90,8 @@
 			"audio": [
 				"/thai-script/lessons/lesson-clusters/audio/4d4015729426fae7.mp3"
 			],
-			"audioLanguages": ["en"]
+			"audioLanguages": ["en"],
+			"image": "/thai-script/lessons/lesson-clusters/images/silent-second-clusters-4264fdf3e53a.jpg"
 		},
 		{
 			"kind": "exposition",
@@ -100,7 +105,8 @@
 			"audio": [
 				"/thai-script/lessons/lesson-clusters/audio/88e07a6700245b89.mp3"
 			],
-			"audioLanguages": ["en"]
+			"audioLanguages": ["en"],
+			"image": "/thai-script/lessons/lesson-clusters/images/lexical-pairs-5a61e9afe028.jpg"
 		},
 		{
 			"kind": "retrieval",
@@ -146,7 +152,8 @@
 			"audio": [
 				"/thai-script/lessons/lesson-clusters/audio/0a5a8d9cb7c7ba92.mp3"
 			],
-			"audioLanguages": ["en"]
+			"audioLanguages": ["en"],
+			"image": "/thai-script/lessons/lesson-clusters/images/the-closure-75118ae7d3fa.jpg"
 		},
 		{
 			"kind": "exposition",
@@ -244,7 +251,8 @@
 			"audio": [
 				"/thai-script/lessons/lesson-clusters/audio/04dd78270c745961.mp3"
 			],
-			"audioLanguages": ["en"]
+			"audioLanguages": ["en"],
+			"image": "/thai-script/lessons/lesson-clusters/images/read-close-79087c2fbc1b.jpg"
 		}
 	]
 }
