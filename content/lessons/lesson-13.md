@@ -360,7 +360,7 @@ cue: mast, basin, and the hooks behind
 heading: The short one, and an honest gap
 narration: en There is a short version, spelled the way you would expect: the mast, the consonant, the basin, and then the two hooks to cut it off. The same shortener you have used since lesson four.
 recording: th สระเออะ public/audio/sara-uh-short.mp3
-narration: en And I have to be straight with you about this one, because the gap is in the language rather than in the lesson. Common Thai has no word that closes a short version of this vowel with a final consonant. So the rule exists, the spelling exists, and I have nothing real to show you doing it. Learn the open shape, recognise it, and do not spend an evening hunting for examples that are not there.
+narration: en And I have to be straight with you about this one, because the gap is in the language rather than in the lesson. Common Thai has no word that closes a short version of this vowel with a final consonant. So the rule exists, the spelling exists, and I have nothing real to show you doing it. Learn the open shape, recognise it on sight, and put your practice into the long one.
 - **เ-อะ** — mast, consonant, basin, then the two hooks.
 - Common Thai has no closed example of it.
 - Learn the open shape and move on.
