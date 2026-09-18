@@ -114,3 +114,46 @@ describe("ConsonantCard — class never renders as vertical position (AC4)", () 
 		}
 	});
 });
+
+describe("VowelCard — the Swedish a learner already says", () => {
+	// Queries are scoped to the container: this file renders without cleanup
+	// between tests, so a document-wide query sees every earlier card too.
+	const textOf = (v: Partial<VowelSummary>) =>
+		render(<VowelCard v={vowel(v)} />).container.textContent ?? "";
+
+	it("offers it under the English rather than in place of it", () => {
+		// Every other course and dictionary will give this vowel in English, so
+		// the English has to stay readable or the learner cannot follow them.
+		const text = textOf({
+			character: "เ",
+			name: "sara ee",
+			sound: "ee (like EY in British 'grey')",
+			length: "long",
+		});
+		expect(text).toContain("ee (like EY in British 'grey')");
+		expect(text).toContain("Swedish: e as in hel, ek");
+	});
+
+	it("finds it despite the placeholder space in the stored character", () => {
+		// Four roof vowels are stored as " ี" — the placeholder convention in
+		// thaiText.ts. A lookup keyed on the bare mark finds nothing and renders
+		// no line, which looks identical to having no analogy at all.
+		expect(
+			textOf({ character: " ื", name: "sara uee", length: "long" }),
+		).toContain("Swedish: u as in hus, ut");
+	});
+
+	it("carries the adjustment for the one match that is not exact", () => {
+		expect(
+			textOf({ character: " ื", name: "sara uee", length: "long" }),
+		).toContain("lips unrounded");
+	});
+
+	it("says nothing where English is already exact", () => {
+		// า is father and ี is green. A second way to say the same thing is one
+		// more thing to read.
+		expect(
+			textOf({ character: "า", name: "sara aa", length: "long" }),
+		).not.toContain("Swedish:");
+	});
+});
