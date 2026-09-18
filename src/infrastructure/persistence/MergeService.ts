@@ -106,6 +106,7 @@ export function mergeLearnerStates(
 		sessionHistory: [...sessionMap.values()],
 		achievements,
 		apprenticeLimits: current.apprenticeLimits,
+		reviewBatchSize: current.reviewBatchSize,
 		pendingCatchUps,
 	};
 }

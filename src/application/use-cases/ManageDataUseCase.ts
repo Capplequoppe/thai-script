@@ -23,4 +23,12 @@ export class ManageDataUseCase {
 	setApprenticeLimits(limits: ApprenticeLimits): void {
 		this.stateRepo.setApprenticeLimits(limits);
 	}
+
+	getReviewBatchSize(): number {
+		return this.stateRepo.getReviewBatchSize();
+	}
+
+	setReviewBatchSize(size: number): void {
+		this.stateRepo.setReviewBatchSize(size);
+	}
 }

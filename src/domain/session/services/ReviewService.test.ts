@@ -115,6 +115,40 @@ describe("ReviewService", () => {
 			const session = reviewService.startReviewSession(undefined, FUTURE_NOW);
 			expect(session.cards[0]?.mode).toBe("multipleChoice");
 		});
+
+		// A backlog arrives as a run of finishable rounds rather than one
+		// session nobody starts — see `ReviewBatchSize`.
+		it("falls back to the configured batch size when no size is named", () => {
+			const stateRepo = new StorageLearnerStateRepository(storage);
+			stateRepo.setReviewBatchSize(2);
+			expect(reviewService.getDueCards(FUTURE_NOW).length).toBeGreaterThan(2);
+
+			const session = reviewService.startReviewSession(undefined, FUTURE_NOW);
+
+			expect(session.cards).toHaveLength(2);
+		});
+
+		it("leaves the rest of the queue due for the next round", () => {
+			const stateRepo = new StorageLearnerStateRepository(storage);
+			stateRepo.setReviewBatchSize(2);
+			const dueBefore = reviewService.getDueCards(FUTURE_NOW).length;
+
+			const session = reviewService.startReviewSession(undefined, FUTURE_NOW);
+			for (const qc of session.cards) {
+				reviewService.recordReview(qc.card.id, 5, FUTURE_NOW);
+			}
+
+			expect(reviewService.getDueCards(FUTURE_NOW)).toHaveLength(dueBefore - 2);
+		});
+
+		it("lets an explicit maxCards win over the configured batch size", () => {
+			const stateRepo = new StorageLearnerStateRepository(storage);
+			stateRepo.setReviewBatchSize(2);
+
+			const session = reviewService.startReviewSession(5, FUTURE_NOW);
+
+			expect(session.cards).toHaveLength(5);
+		});
 	});
 
 	describe("endReviewSession", () => {
@@ -510,6 +544,29 @@ describe("ReviewService", () => {
 			expect(seen[0]?.allCards.length).toBeGreaterThanOrEqual(
 				seen[0]?.dueCards.length ?? 0,
 			);
+		});
+
+		// The sentence pool selects by coverage rather than overdueness, so
+		// the batch size has to reach it as its own cap — not be applied to
+		// whatever it hands back.
+		it("hands the configured batch size to the selector", () => {
+			const cardRepo = new StorageCardRepository(storage);
+			const stateRepo = new StorageLearnerStateRepository(storage);
+			stateRepo.setReviewBatchSize(4);
+			const seen: SessionCardSelectionInput[] = [];
+			const takeFirst: SessionCardSelector = {
+				select: (input) => {
+					seen.push(input);
+					return input.dueCards.slice(0, input.maxCards);
+				},
+			};
+			const service = new ReviewService(cardRepo, stateRepo, {
+				script: takeFirst,
+			});
+
+			service.startReviewSession(undefined, FUTURE_NOW);
+
+			expect(seen[0]?.maxCards).toBe(4);
 		});
 
 		it("leaves pools without a selector on the default ordering", () => {

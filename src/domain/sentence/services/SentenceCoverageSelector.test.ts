@@ -131,6 +131,48 @@ describe("SentenceCoverageSelector", () => {
 			expect(selected).toHaveLength(2);
 		});
 
+		// Every review now runs to a batch size, so the cap applies on every
+		// session rather than only when a caller asks for one — and a
+		// sentence's exercises are one unit, not four interchangeable cards.
+		it("stops on a sentence boundary rather than splitting one", () => {
+			const sentences = [entry("s1", ["a"]), entry("s2", ["b"])];
+			const cards = [
+				card("s1", at(-2 * DAY), "readingComprehension"),
+				card("s1", at(-2 * DAY), "sentenceBuilding"),
+				card("s2", at(-DAY), "readingComprehension"),
+				card("s2", at(-DAY), "sentenceBuilding"),
+			];
+
+			const selected = allDue(
+				new SentenceCoverageSelector(sentences),
+				cards,
+				3,
+			);
+
+			// Three cards would mean half of the second sentence; two whole
+			// ones is the honest round.
+			expect(selected).toHaveLength(2);
+			expect(sentenceIdsOf(selected)).toHaveLength(1);
+		});
+
+		it("splits only when not even one sentence fits the cap", () => {
+			const sentences = [entry("s1", ["a"])];
+			const cards = [
+				card("s1", at(-DAY), "readingComprehension"),
+				card("s1", at(-DAY), "sentenceBuilding"),
+				card("s1", at(-DAY), "selfValidation"),
+			];
+
+			const selected = allDue(
+				new SentenceCoverageSelector(sentences),
+				cards,
+				2,
+			);
+
+			// A round short of a whole sentence still beats an empty one.
+			expect(selected).toHaveLength(2);
+		});
+
 		it("returns nothing when nothing is due", () => {
 			const selector = new SentenceCoverageSelector([entry("s1", ["a"])]);
 

@@ -98,19 +98,41 @@ export class SentenceCoverageSelector implements SessionCardSelector {
 
 		const chosen = this.pickSentences(dueBySentence, lastSeen, nowMs);
 
-		const selected: ReviewableCard[] = [];
+		const groups: ReviewableCard[][] = [];
 		for (const sentenceId of chosen) {
 			const cards = dueBySentence.get(sentenceId) ?? [];
-			selected.push(...[...cards].sort(byProperty));
+			groups.push([...cards].sort(byProperty));
 		}
 		// Cards whose sentence is no longer in the shipped data can't be
 		// scored, but they are genuinely due — appending beats dropping them
-		// silently, and the budget slice below still bounds the session.
-		selected.push(...unattributed);
+		// silently, and the budget below still bounds the session. Each is its
+		// own group: with no sentence behind it, there is nothing it has to be
+		// kept together with.
+		groups.push(...unattributed.map((card) => [card]));
 
-		return input.maxCards === undefined
-			? selected
-			: selected.slice(0, input.maxCards);
+		const { maxCards } = input;
+		if (maxCards === undefined) return groups.flat();
+
+		// Filled a whole sentence at a time. Every review now runs in batches
+		// (`ReviewBatchSize`), so a card budget is no longer the rare explicit
+		// request it was — it applies on every session, and a blunt slice
+		// would split some sentence's exercises across two rounds on nearly
+		// every one of them. A sentence's two-to-four cards are different
+		// exercises on the same material (see this class's doc); half of that
+		// set is not half a review, it is a sentence reviewed twice. Better to
+		// hand back a round a card or two short of the budget.
+		const selected: ReviewableCard[] = [];
+		for (const group of groups) {
+			if (selected.length + group.length > maxCards) {
+				// Unless nothing fits at all: a budget smaller than the first
+				// sentence still has to yield a session to sit down to, and a
+				// split there is the lesser evil against an empty round.
+				if (selected.length === 0) return group.slice(0, maxCards);
+				break;
+			}
+			selected.push(...group);
+		}
+		return selected;
 	}
 
 	private groupDueCards(dueCards: readonly ReviewableCard[]): {

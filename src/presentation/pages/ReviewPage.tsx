@@ -170,17 +170,23 @@ export function ReviewPage() {
 
 				{/* Actions */}
 				<div className="space-y-3">
-					{review.getDueCount() > 0 && (
+					{/* Counted over `"script"` alone, which is the pool this page
+					    reviews — a bare `getDueCount()` sums all four, and since a
+					    round now ends with cards still due this button would offer
+					    to review vocabulary it cannot reach. */}
+					{review.getDueCount("script") > 0 && (
 						<Button
 							className="w-full"
 							onClick={() => {
 								startedRef.current = false;
 								achievementsRef.current = null;
 								summaryRef.current = null;
+								setSessionCorrect(0);
+								setSessionTotal(0);
 								setDone(false);
 							}}
 						>
-							Review More ({review.getDueCount()} due)
+							Review More ({review.getDueCount("script")} due)
 						</Button>
 					)}
 					<Button
