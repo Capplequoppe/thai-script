@@ -69,6 +69,27 @@ export const PART_SLOT: Readonly<Record<string, VowelSlot>> = Object.freeze({
 export const SHORTENER = "ะ";
 
 /**
+ * The three pairs whose length is told by the stroke, not by `ะ`.
+ *
+ * `ะ` is a one-way rule and it does not reach the roof or the cellar: `ึ` is
+ * short and carries no mark at all. What separates these pairs is the glyph —
+ * the long one is the short one reaching further, a flag standing up on the
+ * roof and a longer tail in the cellar.
+ *
+ * Recorded here because anything that walks from a short vowel to its long
+ * form has to know it. Stripping `ะ` finds the front-steps family and
+ * silently returns nothing for these three, which is how `ึ` — the one vowel
+ * English cannot gloss at all — ends up with the least help of any of the
+ * thirty.
+ */
+export const STROKE_LENGTH_PAIR: Readonly<Record<string, string>> =
+	Object.freeze({
+		"ิ": "ี",
+		"ุ": "ู",
+		"ึ": "ื",
+	});
+
+/**
  * Where each position lives in the vowels' house.
  *
  * Consonants are placed by class, because class decides tone. Vowels have no
@@ -101,6 +122,20 @@ export function partsOf(character: string): string[] {
 	return [...character.replace(" (as vowel)", "")].filter(
 		(part) => part !== "-" && part.trim() !== "",
 	);
+}
+
+/**
+ * A vowel's character with the notation stripped off, for use as a key.
+ *
+ * Stored characters carry two pieces of presentation. `อ (as vowel)` has an
+ * English gloss glued to it, and four of the roof vowels are written with a
+ * leading space — the placeholder convention `thaiText.ts` documents, which
+ * gives a combining mark something to sit on. `" ี"` and `"ี"` are the same
+ * vowel, and a lookup that does not know it returns nothing at all rather
+ * than reporting a miss.
+ */
+export function vowelKey(character: string): string {
+	return character.replace(" (as vowel)", "").trim();
 }
 
 /** Where a vowel is written, derived from its parts alone. */

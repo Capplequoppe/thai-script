@@ -171,9 +171,12 @@ The house sorts them by floor: **the U you have to learn lives upstairs; the U
 you already own lives downstairs.** One name each rather than four, and the
 contrast is sharper for it.
 
-`symbols.ts` currently offers *"try making 'uu' with lips spread wide"* for
-Urban, which is an instruction rather than a sound. For a Swedish speaker it
-can be a word they already say.
+`symbols.ts` offers *"try making 'uu' with lips spread wide"* for `ึ` and
+reaches for German *über* on `ื` — and *über* is the wrong vowel, front and
+rounded where Thai is back and unrounded. Urban now starts from **hus, ut**
+instead, with one correction: *say it with your lips unrounded.* A word the
+learner already says, changed in one way, rather than a sound built from
+scratch out of an instruction.
 
 ## The house
 
@@ -289,17 +292,27 @@ Same shape as a consonant's, with the noun beat replaced by the lodger:
 And a short vowel marked with `ะ` needs no slide of its own at all. It is a
 voice already introduced, with Arnold behind it.
 
-The sound line takes a Swedish equivalent where a native speaker has given
-one, because an exact match in the learner's own mouth beats an English
-approximation. `เ-อ` is **ö**; `symbols.ts` currently offers *"ER in 'her'
-with relaxed throat"*, which describes a compromise rather than a sound anyone
-can produce on request. Unmapped vowels keep their English gloss rather than
-getting a guess.
+The sound line takes a Swedish equivalent where Swedish is **better** than the
+English gloss, which is six of the thirty (`vowelAnalogies.ts`):
+
+| | English gloss | why it is worse | Swedish |
+|---|---|---|---|
+| `เ` | *EY in British grey* | a diphthong; it glides | **e** — *hel*, *ek* |
+| `แ` | *A in cat* | a different vowel | **ä** — *äta*, *läsa* |
+| `โ` | *O in go* | a diphthong; it glides | **å** — *båt*, *gå* |
+| `ื` | *German über* | front and rounded; Thai is back and unrounded | **u** — *hus*, *ut* |
+| `ู` | *OO in boot* | exact, but says nothing about Ove | **o** — *bok*, *sol* |
+| `เ-อ` | *ER in her with relaxed throat* | a compromise, not a sound | **ö** — *öra*, *söt* |
+
+The three glides are the quiet failure: *grey*, *go* and *cat* are close enough
+to read past, so a learner copies them, glides where Thai holds steady, and
+nothing in the lesson says otherwise. Swedish has all three as pure vowels.
+
+`า`, `ี` and `อ` keep their English on purpose — *father*, *green* and *saw*
+are exact, and a second way to say the same thing is one more thing to read.
+Unmapped vowels get no guess.
 
 ## Open questions
-
-**Swedish for `ึ`/`ื`.** *hus*, *ut* — if that is Urban's sound, the roof pair
-goes from the hardest vowels in the course to two the learner already says.
 
 **Does the house need pictures?** Nine lodgers and five rooms might need five
 establishing shots and nothing more, with the lodgers drawn in them. Far less
