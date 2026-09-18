@@ -49,7 +49,7 @@ name teaches the wrong target.
 image: images/lesson-03/what-is-here.jpg
 scene: A Thai open-air market at first light, wooden stalls under striped awnings, baskets of produce stacked and covered, no shoppers yet, long shadows.
 heading: Three letters, one vowel, two rules
-narration: en Three consonants today, one vowel, and two rules. That sounds like more than last lesson and it is less work, because the three letters are so alike that learning one of them teaches you most of the other two. They come from the same place, they are made the same way, and they all do the same thing to the end of a word. Last lesson every letter you met let a sound carry on ringing. These three cut it off.
+narration: en Three consonants today, one vowel and two rules, which is more than last lesson and is going to feel like less. The three letters are so nearly the same animal that once you have one of them properly the other two mostly come along behind it. They live in the same place, they are made with the same part of your mouth, and they all do the same thing to the end of a word. That last one is where today earns its keep. Every letter you have met so far lets a sound carry on ringing after it — you could hold the end of the word for as long as you had breath. These three stop it dead. And the moment a syllable can end in two different ways, the tone rules stop agreeing with each other, which is the machine you came here for.
 - Three consonants, one long vowel, two rules.
 - The three are alike enough that one of them teaches the others.
 - Last lesson's letters let sounds ring on. These stop them.
@@ -58,7 +58,7 @@ narration: en Three consonants today, one vowel, and two rules. That sounds like
 image: images/lesson-03/the-trick.jpg
 scene: A wide view of a Thai open-air market in late morning, rows of wooden stalls under striped awnings, baskets of produce, a few people moving quietly, dust in the light.
 heading: One district, and no breath in any of it
-narration: en Here is the trick. All three live in the market, and the market is mid class — a second district, and the second half of what decides a tone. And all three are made the same way. The air stops completely, and nothing is released behind it. Hold your palm close to your lips and say the English word key. You will feel the puff. Now do the same with pin. Another puff. Not one of today's letters does that. The air halts, and nothing comes out after it. That missing puff is not a detail. It is the reason these three behave as a group, and a later lesson turns it into a shortcut that saves you learning a whole set of letters one at a time.
+narration: en So. The market. You have spent two lessons down at the harbour and this is the other place you will keep coming back to, so get a picture of it before you meet anybody in it. It is open to the sky under long strips of striped awning, and it is really only one aisle — you could walk it end to end in about a minute. Wooden stalls down both sides, baskets standing on the ground with the produce stacked in them, and a floor covered in whatever has been dropped since dawn. It smells of cut fruit and wet stone. And here is the odd thing about it, which you can hear before you can explain: it is loud at the far end and it is strangely quiet down at this end, and by the time this lesson is finished you will know exactly why. Everything in the market is mid class, which is your second district and the second half of what decides a tone, so all three of today's letters live here. And all three are made the same way in your mouth. The air stops dead and nothing comes out behind it. Try it on your hand. Hold your palm up close to your lips and say the English word key — you will feel the puff hit it. Now say pin. Another puff. Today's three do not do that at all. The air halts, nothing follows it, and your hand should stay completely still. That missing puff is what makes them a group rather than three separate letters, and a later lesson turns it into a shortcut that saves you learning a whole set of them one at a time.
 - All three are mid class, and mid class is the market.
 - The air stops, and no breath follows it.
 - English blows air on key and pin. These three do not.
@@ -66,7 +66,7 @@ narration: en Here is the trick. All three live in the market, and the market is
 ## exposition pen-still-there
 image: images/lesson-01/get-a-pen.jpg
 heading: The pen, before anything else
-narration: en One thing before the first letter. You were told in lesson one to get a pen and real paper, and everything that follows assumes they are still in front of you. This is the part people drop first, because it is the only part that costs effort, and the lesson runs perfectly well without it right up until the moment you try to read something and find you cannot. Watching a shape is not knowing it. So if the pen has wandered off, go and find it now. I will wait, the same as last time.
+narration: en One thing before the first letter. You were told in lesson one to get a pen and real paper, and everything that follows assumes they are still in front of you. This is the part people drop first, because it is the only part that costs effort, and the lesson runs perfectly well without it right up until the moment you try to read something and find you cannot. Looking at a shape and making your own hand produce it are two different pieces of learning, and only one of them is the one you need. So if the pen has wandered off, go and find it now. I will wait, the same as last time.
 - Real paper, a real pen, still in front of you.
 - This is the first thing people quietly stop doing.
 - Go and fetch them if they have wandered off.
@@ -89,7 +89,7 @@ narration: en Two parts, the same as always — the sound, then an ordinary word
 image: images/lesson-03/gai-story-1.jpg
 scene: A woman in her thirties setting out produce at a wooden market stall before dawn, a speckled chicken pecking at spilled grain by her feet, a large covered bowl tucked in the shade under the stall.
 heading: The stall that opens first
-narration: en There is a woman at this market who opens before anyone. She has the corner stall, and she has a small son, and she has nobody to leave him with. So he comes with her, and he sleeps under the stall while she sets out the produce in the dark. She keeps a chicken too. It is not a pet and it is not for selling. A market floor drops grain all day, and a chicken that eats the grain keeps the rats off the baskets. It works the aisle from one end to the other and it has never once left the row.
+narration: en There is a woman at this market who opens before anyone. She has the corner stall, and she has a small son, and she has nobody to leave him with. So he comes with her, and he sleeps under the stall while she sets out the produce in the dark. She keeps a chicken too. She does not keep it as a pet and she is not going to sell it. A market floor drops grain all day, and a chicken that eats the grain keeps the rats off the baskets. It works the aisle from one end to the other and it has never once left the row.
 - She opens the corner stall before anyone else arrives.
 - Her son sleeps under the stall while she works. Remember him.
 - The chicken eats the spilled grain, and the rats stay away.
@@ -98,7 +98,7 @@ narration: en There is a woman at this market who opens before anyone. She has t
 image: images/lesson-03/gai-story-2.jpg
 scene: A speckled chicken pecking at spilled grain between market stalls, head down, beak arching to the left, in a Thai open-air market of wooden stalls under striped awnings, baskets of produce around.
 heading: The bird that stopped crowing
-narration: en A chicken crows at first light, and first light is exactly when the boy is still asleep. So the whole row went to work on it. Every morning for a year, the moment the bird drew breath to crow, somebody threw a handful of glorious golden grain. It learned. It does not crow now. It clucks — short, flat, and finished, with no air behind it and nothing carrying on afterwards. That sound is the letter. Look at the shape and you are looking at the bird: no circle anywhere on it, an open frame, and a single beak-line arching away to the left.
+narration: en A chicken crows at first light, and first light is exactly when the boy is still asleep. So the whole row went to work on it. Every morning for a year, the moment that bird drew breath to crow, somebody threw a handful of glorious golden grain at it. And it learned. It does not crow now. It clucks — short, flat, and finished, with no air behind it and nothing carrying on afterwards. That sound is the letter. Look at the shape and you are looking at the bird: no circle anywhere on it, an open frame, and a single beak-line arching away to the left.
 recording: th กอ ไก่ public/audio/consonant-ko-kai.mp3
 - A year of glorious golden grain, and it stopped crowing.
 - What is left is a cluck: short, flat, no breath, over at once.
@@ -184,7 +184,7 @@ narration: en That word means leaf. The sound is a b, and like the other two the
 image: images/lesson-03/bai-mai-story-1.jpg
 scene: One enormous glossy green leaf growing straight up out of an open straight-sided, flat-bottomed market bucket, taller than the stall itself, shading the whole row, in a Thai open-air market of wooden stalls under striped awnings, baskets of produce around.
 heading: The leaf that got out of hand
-narration: en Somebody left a cutting in a bucket at the end of the row and never came back for it. It took. By the second year it was taller than the stall it stood in, and it has one leaf on it the size of a door — big, bright and beautiful, leaning out over the aisle from a bucket nobody has moved in two years. It is now the only shade the corner stall gets, which means it is the reason a bowl under that stall stays cool enough to sleep in through the afternoon. Nobody is allowed to cut it. Look at the letter: an open bucket, straight walls and a flat bottom, waiting to be filled — and something enormous growing straight up out of it.
+narration: en Somebody left a cutting in a bucket at the end of the row and never came back for it, and the thing took. By the second year it was taller than the stall it stood in, and it has one leaf on it the size of a door — big, bright and beautiful, leaning out over the aisle from a bucket nobody has moved in two years. It is now the only shade the corner stall gets, which means it is the reason a bowl under that stall stays cool enough to sleep in through the afternoon. Nobody is allowed to cut it. Look at the letter: an open bucket, straight walls and a flat bottom, waiting to be filled — and something enormous growing straight up out of it.
 recording: th บอ ใบไม้ public/audio/consonant-bo-baimai.mp3
 - One big, bright, beautiful leaf out of an open bucket.
 - One leaf the size of a door, and the only shade the corner stall has.
@@ -211,7 +211,7 @@ narration: en Before the vowel, one question. Say the three sounds with your pal
 
 ## reveal no-puff-answer
 retrieval: no-puff
-narration: en Nothing should move. These three release no breath at all. If your hand moves you are saying the English sound instead, and Thai keeps the breathy versions as separate letters with their own shapes. The difference is not an accent. It changes the word.
+narration: en Nothing should move. These three release no breath at all. If your hand moves you are saying the English sound instead, and Thai keeps the breathy versions as separate letters with their own shapes. Get that wrong and you have not said the word with an accent, you have said a different word.
 - Nothing should move. These three release no breath.
 - A moving hand means you said the English sound.
 - Thai keeps the breathy ones as separate letters, so it changes the word.
@@ -219,7 +219,7 @@ narration: en Nothing should move. These three release no breath at all. If your
 ## exposition the-vowel-house
 image: images/lesson-01/the-vowel-house.jpg
 heading: Back to the house
-narration: en You have been to the vowels' house once before, in lesson one, and you did not get past the back yard. That is the room a vowel lodges in when it is written after its consonant, which is where the long vowel you already know sits. Today's vowel is not written after anything. It is written above, and that puts it upstairs.
+narration: en You have been to the vowels' house once before, in lesson one, and you did not get past the back yard. That is the room a vowel lodges in when it is written after its consonant, which is where the long vowel you already know sits. Today's vowel is written somewhere else entirely — above the consonant rather than behind it, which puts it upstairs.
 - One house, and the room is decided by where the vowel is written.
 - Lesson one's vowel is written after, so it is in the back yard.
 - Today's is written above. That is the roof.
@@ -250,7 +250,7 @@ narration: en Look at the mark on its own. It sits on top of its consonant like 
 ## exposition write-ii
 thai: ี
 heading: Write the vowel too
-narration: en And the vowel, which people skip because it is small. It is not optional and it is not decoration — leave it off and you have written a different word, or no word at all. Here is its real name, the one a Thai person would call it.
+narration: en And the vowel, which people skip because it is small. Leave it off and you have written a different word, or very often no word at all. Here is its real name, the one a Thai person would call it.
 recording: th สระอี public/audio/sara-i-long.mp3
 narration: en Write it above a consonant rather than on its own, because it never stands on its own. Put it over the horse's letter and over the child's letter, and say the whole syllable out loud as you do — not the vowel's name, the syllable it makes. That is the thing you are actually learning to read.
 - It is never written alone. Always above a consonant.
@@ -261,13 +261,19 @@ narration: en Write it above a consonant rather than on its own, because it neve
 image: images/lesson-03/first-words.jpg
 scene: A market stall's produce laid out in the early morning, mangoes and greens in shallow baskets, close in with a soft background.
 heading: Two words you can already read
-narration: en You can read two words now, and they are two of the commonest in the language. Here is the first.
+narration: en Two words, and you can already read both of them. The horse's letter from lesson one with today's vowel on the roof above it, and the child's letter from ten minutes ago with the same vowel again. Look at them and say both out loud before you turn this over.
+- Two words, both built from letters you have.
+- **Say both out loud first.**
+
+## exposition first-words-answer
+thai: มี
+heading: Those two
 narration: th มี
-narration: en That is the horse's letter from lesson one, with today's vowel on the roof above it. It means to have, or there is. Here is the second.
+narration: en To have, or there is.
 narration: th ดี
-narration: en The child's letter, and the same vowel again. It means good.
-- The horse's letter with today's vowel: *to have*, or *there is*.
-- The child's letter with the same vowel: *good*.
+narration: en And good. Two of the commonest words in the language, and neither of them needed anything you did not already have.
+- **มี** — to have, or *there is*.
+- **ดี** — good.
 
 ## rule dead-endings
 rule: dead-endings
@@ -319,26 +325,43 @@ narration: en Three words now, and not one of them needs a letter you have not m
 ## exposition read-baang
 thai: บาง
 heading: Read this one
-narration: en Three letters. The leaf's letter, the long vowel from lesson one, and the snake's letter closing it without stopping it.
-narration: th บาง
+narration: en Three letters, and you know all three. The leaf's letter, the long vowel from lesson one, and the snake's letter closing it off without stopping it. Work it out and say it aloud before you go on — I am not going to say it until you turn this over.
 - The leaf's letter, a long vowel, and a hum to close it.
+- **Say it aloud before you turn this over.**
+
+## exposition read-baang-answer
+thai: บาง
+heading: That one
+narration: th บาง
+narration: en Thin, or some of a thing. If your version was close, that counts — you read three letters in a script that looked like wallpaper a fortnight ago.
+- **บาง** — thin, or *some*.
 
 ## exposition read-nok
 thai: นก
 heading: And this one
-narration: en Two letters and no written vowel at all — which is a thing Thai does, and a later lesson explains it. The mouse's letter, then the chicken's letter sealing the end.
-narration: th นก
-narration: en A bird. Short, stopped, and finished almost before it starts.
+narration: en Two letters, and no written vowel anywhere. Thai does that, and a later lesson explains why. The mouse's letter, then the chicken's letter sealing the end. Same again — out loud, before you turn it over.
 - The mouse's letter, then the chicken's letter sealing it.
-- Short, stopped, over at once. A *bird*.
+- **Out loud, before you turn it over.**
+
+## exposition read-nok-answer
+thai: นก
+heading: That one
+narration: th นก
+narration: en A bird. Short, stopped, and finished almost before it started, because the chicken's letter shut the door on it.
+- **นก** — a bird. Short, stopped, over at once.
 
 ## exposition read-dii
 thai: ดี
 heading: One more
-narration: en You have already read this one once. Say it before I do.
-narration: th ดี
-narration: en Good. The child's letter, with the roof's lodger above it.
+narration: en You have read this one already today, so this should be quick. Say it before I do.
 - The child's letter, with today's vowel on the roof.
+
+## exposition read-dii-answer
+thai: ดี
+heading: And that one
+narration: th ดี
+narration: en Good. The child's letter with the roof's lodger sitting on top of it, and that is three words read off the page in a lesson where you also met three new letters.
+- **ดี** — good.
 
 ## exposition read-close
 heading: Three lessons in

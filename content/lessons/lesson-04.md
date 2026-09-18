@@ -38,7 +38,7 @@ without reaching, and a forced chain costs more than it pays.
 image: images/lesson-04/what-is-here.jpg
 scene: A fishing harbour quay at first light, moored wooden longtail boats, drying nets on poles, wet stone, still water, low sun. No people.
 heading: Two letters, one vowel, two spellings of it
-narration: en Back to the harbour. Two consonants today, and they are so nearly the same shape that one of them is very nearly free. Then one new vowel, which you will meet written two different ways, and a cheat code that comes with it — the single most useful shortcut in the writing system, and you get it in about a minute. Two rules at the end.
+narration: en Back down to the harbour, and it is the same harbour, so you already know the smell of it — wet rope, diesel, fish that has been out of the water slightly too long. The boats are the same boats. There is just more going on at the top end of the beach than you have noticed so far, and today you are going to go and look at it. Two consonants while you are down there, and they are so nearly the same shape that the second one is very nearly free. Then one new vowel, which you will meet written two different ways, and a shortcut that arrives with it — the single most useful one in the whole writing system, and it takes about a minute to learn. Two rules at the end.
 - Two consonants, and the second is nearly the first.
 - One new vowel, written two ways.
 - The best shortcut in the writing system, and it is short.
@@ -55,7 +55,7 @@ narration: en Both of today's letters live at the harbour, so both are low class
 ## exposition pen-still-there
 image: images/lesson-01/get-a-pen.jpg
 heading: Pen and paper, again
-narration: en Pen and paper before the first letter, the same as every lesson. Today's two are the closest pair you have met — one of them is the other with a single dent in it — and that is exactly the kind of pair the eye tells apart on the page and the hand tells apart properly. Writing them is not revision here, it is the thing that separates them. And keep saying both halves of each name out loud while you write. Both habits, every lesson, and they are the two people drop first.
+narration: en Pen and paper before the first letter, the same as every lesson. Today's two are the closest pair you have met — one of them is the other with a single dent in it — and that is exactly the kind of pair the eye tells apart on the page and the hand tells apart properly. Writing them is what separates them, which makes it the work rather than the revision. And keep saying both halves of each name out loud while you write. Both habits, every lesson, and they are the two people drop first.
 - Real paper, a real pen.
 - Today's pair is nearly identical. The hand separates them.
 - Out loud, both halves of the name, every time.
@@ -171,7 +171,7 @@ cue: when he turns up, it is over
 heading: The one who ends the visit
 narration: en Listen to his name.
 narration: th อัด
-narration: en It is an ordinary word and it means to press, or to compress — to squash a thing into less room than it had. That is his whole job. He is written as two small hooks, just after the consonant, and wherever he turns up the vowel is short. Not shortened a little. Over.
+narration: en It is an ordinary word and it means to press, or to compress — to squash a thing into less room than it had. That is his whole job. He is written as two small hooks, just after the consonant, and wherever he turns up the vowel is short. Not trimmed a bit shorter. Finished.
 - The name means *to press*, or *to compress*.
 - Two small hooks, written just after the consonant.
 - Where he turns up, the vowel is short.
@@ -200,10 +200,16 @@ narration: en Because look who is upstairs. That is the roof's lodger from last 
 ## exposition read-short
 thai: ซิ
 heading: Read this one
-narration: en The chain's letter, and the roof's lodger with no flick.
+narration: en Two marks, and you have met both of them in the last ten minutes. The chain's letter, and the roof's lodger with his flick taken off. Work out what it sounds like and say it aloud before you turn this over.
+- The chain's letter, with a short vowel above it.
+- **Say it aloud before you turn it over.**
+
+## exposition read-short-answer
+thai: ซิ
+heading: That one
 narration: th ซิ
-narration: en That is what you say to push somebody into doing a thing they are already thinking about. Go on. Do it.
-- The chain's letter with a short vowel above it.
+narration: en That is what you say to push somebody into doing the thing they are already thinking about doing. Go on. Do it. You will hear it constantly and it is two letters long.
+- **ซิ** — *go on, do it*.
 
 ## exposition write-short-vowels
 thai: ะ
