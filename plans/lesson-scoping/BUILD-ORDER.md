@@ -287,3 +287,31 @@ check reads the **built deck**, so a fix only clears after regenerating.
 Workable replacements that have passed: "above the beach", "where the harbour
 finishes", "put it at a syllable's end", "nothing else separates", "goes down
 before the consonant does", "ahead of the consonant".
+
+---
+
+## The five pinned recordings nobody had identified
+
+`recording:` skips the transcribe-back gate, which is its purpose — human
+recordings fail whisper, and five of five known-good native letter names are
+rejected by it. The cost is that a mislabelled clip ships in silence.
+
+Five were pinned on filename and duration alone. Transcribed on CPU, each
+comes back as a plausible mis-hearing of exactly the name claimed for it, and
+none resembles anything else:
+
+| clip | claimed | heard |
+|---|---|---|
+| `tone-maytri.mp3` | ไม้ตรี | `ไม่ตรี` — identical but for the tone mark |
+| `tone-mayjattawa.mp3` | ไม้จัตวา | `ไม่จัดตัวว่า` — the same four syllables |
+| `tone-maytho.mp3` | ไม้โท | `มัยโทษ` |
+| `other-mayyamok.mp3` | ไม้ยมก | `มายังหมด` |
+| `tone-mayek.mp3` | ไม้เอก | `MyAid` — latinised, but the syllables fit |
+
+Not proof; the transcriber is exactly the instrument these clips are known to
+defeat. But a wrong clip would have to mis-hear *into* its own filename, and
+five of them would have to do it at once. Kept.
+
+The ten `digit-*.mp3` clips remain unpinned and unidentified. A single digit
+is far shorter than any of the above, so the same method would settle
+nothing.

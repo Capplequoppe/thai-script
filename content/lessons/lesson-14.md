@@ -362,8 +362,8 @@ image: images/lesson-14/ua-closed.jpg
 scene: A gardener pulling a wooden gate closed behind him in the wall of a vegetable garden, late afternoon light.
 heading: And what it does when something follows
 narration: en You know this move by heart now, and this vowel does its own version of it. Put a final consonant after it and the curl on the roof disappears completely. The ring letter stays where it is and ends up sandwiched between the opening consonant and the closing one. So three consonants in a row on the page, and the middle one is the vowel.
-narration: th สวน
-narration: en The tiger, the ring, and the mouse. It means a garden, and it is the same vowel you just heard, at the same length, with the curl simply gone.
+narration: th ควร
+narration: en The buffalo, the ring, and the boat. It means should, as in you should do a thing, and it is the same vowel you just heard, at the same length, with the curl simply gone. Listen to the end of it as well — the boat's letter is last, so it lands as an n, exactly as lesson eight said it would.
 - With a final consonant, the **curl vanishes**.
 - The ring letter sits between the opening and closing consonants.
 - Three consonants in a row, and the middle one is the vowel.
@@ -386,7 +386,7 @@ narration: th เมือง
 narration: en And the horse's letter with the snake closing it, which means a city or a town.
 - The mast in front, the long grin mark above, the basin behind.
 - The tight-lipped **ue opening out into ah**, in one beat.
-- Three rooms, one vowel, the same shape as the ia vowel.
+- Three rooms, one vowel, built like the ia vowel.
 
 ## exposition the-short-mates
 glyph: เ-ือะ

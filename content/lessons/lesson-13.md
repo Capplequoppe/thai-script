@@ -142,10 +142,10 @@ rule: high-dead-long
 image: images/lesson-13/temple-dead.jpg
 scene: A closed wooden temple door with an iron ring handle, set in a white wall, flat morning light across it.
 heading: The temple's other half, and it is one tone for both lengths
-narration: en Two rules on the screen, and they say the same thing twice. A temple letter on a dead syllable gives a low tone. Long vowel, short vowel, the tone is low either way. Last lesson gave you what the temple does when the syllable runs live. This is the other half of it, so the temple's tone behaviour is finished as of this slide. Compare it with the harbour, which needed two separate dead rules because the lengths disagree — short goes high and long falls. The temple behaves like the market instead, and gives you one answer for both. Three words you already have. The first is a temple letter stopped by a k with a long vowel in between, and it means cheap. The second is a temple letter stopped by a d with a short vowel, and it means wrong. The third is the number six.
+narration: en Two rules on the screen, and they say the same thing twice. A temple letter on a dead syllable gives a low tone. Long vowel, short vowel, the tone is low either way. Last lesson gave you what the temple does when the syllable runs live. This is the other half of it, so the temple's tone behaviour is finished as of this slide. Compare it with the harbour, which needed two separate dead rules because the lengths disagree — short goes high and long falls. The temple behaves like the market instead, and gives you one answer for both. Three words you already have. The first is a temple letter stopped by a k with a long vowel in between, and it means cheap. The second is a temple letter stopped by a d with a short vowel, and it means wrong. The third is a temple letter stopped by a d with a long vowel, and it means to lack something.
 narration: th ถูก
 narration: th ผิด
-narration: th หก
+narration: th ขาด
 narration: en All three low, and only the middle one has a short vowel.
 - Temple letter, dead syllable, **low tone**.
 - Long vowel or short, the tone comes out the same.

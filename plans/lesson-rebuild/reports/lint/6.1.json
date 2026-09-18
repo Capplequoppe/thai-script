@@ -1,0 +1,306 @@
+{
+  "version": 1,
+  "task": "6.1",
+  "pass": "after",
+  "result": {
+    "outcome": "incomplete",
+    "reason": "biome: biome did not resolve: 'biome' on PATH (31 entries). Its findings are missing from this report — that is a gap and not a pass."
+  },
+  "findings": [
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "resolve_slide_assets",
+        "path": "scripts/export-deck-video.py",
+        "bytes": {
+          "startIndex": 5083,
+          "endIndex": 6205
+        },
+        "lines": {
+          "startRow": 135,
+          "endRow": 164
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "_probe_duration",
+        "path": "scripts/export-deck-video.py",
+        "bytes": {
+          "startIndex": 6466,
+          "endIndex": 7008
+        },
+        "lines": {
+          "startRow": 177,
+          "endRow": 197
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "_slide_audio_track",
+        "path": "scripts/export-deck-video.py",
+        "bytes": {
+          "startIndex": 7011,
+          "endIndex": 7915
+        },
+        "lines": {
+          "startRow": 200,
+          "endRow": 228
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "_render_slide_clip",
+        "path": "scripts/export-deck-video.py",
+        "bytes": {
+          "startIndex": 7918,
+          "endIndex": 8232
+        },
+        "lines": {
+          "startRow": 231,
+          "endRow": 253
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "_render",
+        "path": "scripts/export-deck-video.py",
+        "bytes": {
+          "startIndex": 8538,
+          "endIndex": 9404
+        },
+        "lines": {
+          "startRow": 264,
+          "endRow": 286
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 4.44,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "export",
+        "path": "scripts/export-deck-video.py",
+        "bytes": {
+          "startIndex": 10231,
+          "endIndex": 11697
+        },
+        "lines": {
+          "startRow": 325,
+          "endRow": 369
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 2.2,
+      "threshold": 5,
+      "tier": "file",
+      "path": "scripts/export-deck-video.py",
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "length",
+      "severity": "warning",
+      "measured": 409,
+      "threshold": 400,
+      "tier": "file",
+      "path": "scripts/export-deck-video.py"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "buildFixtureLesson",
+        "path": "src/domain/script/data/videoExport.test.ts",
+        "bytes": {
+          "startIndex": 2321,
+          "endIndex": 3572
+        },
+        "lines": {
+          "startRow": 69,
+          "endRow": 135
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 1.37,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "(anonymous)",
+        "path": "src/domain/script/data/videoExport.test.ts",
+        "bytes": {
+          "startIndex": 3637,
+          "endIndex": 6096
+        },
+        "lines": {
+          "startRow": 137,
+          "endRow": 209
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 3.85,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "(anonymous)",
+        "path": "src/domain/script/data/videoExport.test.ts",
+        "bytes": {
+          "startIndex": 3705,
+          "endIndex": 4590
+        },
+        "lines": {
+          "startRow": 138,
+          "endRow": 163
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "(anonymous)",
+        "path": "src/domain/script/data/videoExport.test.ts",
+        "bytes": {
+          "startIndex": 4668,
+          "endIndex": 5545
+        },
+        "lines": {
+          "startRow": 165,
+          "endRow": 191
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 3.33,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "(anonymous)",
+        "path": "src/domain/script/data/videoExport.test.ts",
+        "bytes": {
+          "startIndex": 6161,
+          "endIndex": 7208
+        },
+        "lines": {
+          "startRow": 211,
+          "endRow": 240
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 3.39,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "(anonymous)",
+        "path": "src/domain/script/data/videoExport.test.ts",
+        "bytes": {
+          "startIndex": 7279,
+          "endIndex": 9301
+        },
+        "lines": {
+          "startRow": 242,
+          "endRow": 300
+        }
+      },
+      "check": "density-below-floor"
+    }
+  ],
+  "adapters": [
+    {
+      "tool": "biome",
+      "selection": {
+        "evidence": "configured",
+        "by": "biome.json"
+      },
+      "program": null,
+      "result": {
+        "outcome": "unsupported",
+        "reason": "biome did not resolve: 'biome' on PATH (31 entries). Its findings are missing from this report — that is a gap and not a pass."
+      },
+      "files": 1,
+      "findings": 0,
+      "refusedPaths": 0,
+      "outsideAnalysis": 0,
+      "refusedShape": 0
+    },
+    {
+      "tool": "ruff",
+      "selection": {
+        "evidence": "none",
+        "considered": [
+          "ruff"
+        ]
+      },
+      "program": null,
+      "result": {
+        "outcome": "unsupported",
+        "reason": "no native linter covered these files: looked for a configuration file for ruff at the repository root, and for ruff on PATH in a repository of that ecosystem. Their findings are missing from this report — that is a gap and not a pass."
+      },
+      "files": 1,
+      "findings": 0,
+      "refusedPaths": 0,
+      "outsideAnalysis": 0,
+      "refusedShape": 0
+    }
+  ]
+}

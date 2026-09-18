@@ -4,39 +4,216 @@
 	"slides": [
 		{
 			"kind": "exposition",
-			"id": "ao-and-ai",
-			"heading": "เ-า, ไ and ใ",
+			"id": "what-is-here",
+			"heading": "No new letters, and three arrivals on the steps",
 			"body": [
-				"เ-า brackets its consonant: the mast in front, the า post behind. The sound is ao, the yelp in the English how. เอา (ao) is to take or to want. เรา (rao) is we.",
-				"ไ is a mast whose top breaks into a zigzag, written in front and sounded after. The sound is ai, the English word I. ไป (bpai) is to go and ไฟ (fai) is fire.",
-				"ใ is the same sound with the top rolled into a curl instead. ใน (nai) is in, ใจ (jai) is the heart or mind, ใบ (bai) is a leaf.",
-				"ไ and ใ are not two sounds. They are two spellings of one sound, and which one a word uses is a fact about that word."
-			]
+				"No new consonant. Every word today is built from letters you have.",
+				"Three vowels, all of them at the front steps.",
+				"Short in the mouth, counted long for the tone.",
+				"A repeat mark, and two consonants run together."
+			],
+			"audio": ["/thai-script/lessons/lesson-10/audio/b2b58ad80a8debeb.mp3"],
+			"audioLanguages": ["en"],
+			"image": "/thai-script/lessons/lesson-10/images/what-is-here-7918fcf51cf4.jpg"
 		},
 		{
 			"kind": "exposition",
-			"id": "which-ai",
-			"heading": "Which ai a word takes",
+			"id": "pen-still-there",
+			"heading": "Pen and paper",
 			"body": [
-				"ใ is the rare one. It is used in a closed list of about twenty common words and nowhere else; every other ai in the language is written ไ.",
-				"ใน, ใจ, ใบ and ใด (dai, meaning any) are four of them, and ใคร (khrai, who) is a fifth. You will meet the rest as words, not as a rule.",
-				"So the default is ไ. When you see the curled top instead, you are looking at one of the twenty, and the word itself is the thing to remember."
-			]
+				"Real paper, a real pen.",
+				"Both halves of the name, out loud, every time."
+			],
+			"audio": ["/thai-script/lessons/lesson-10/audio/9962e5bac2a193b0.mp3"],
+			"audioLanguages": ["en"],
+			"image": "/thai-script/lessons/lesson-10/images/pen-still-there-1bdf41db8b53.jpg"
+		},
+		{
+			"kind": "exposition",
+			"id": "back-to-the-steps",
+			"heading": "The busiest room in the house",
+			"body": [
+				"The steps opened in lesson seven and have been filling ever since.",
+				"Three more lodgers arrive today.",
+				"Written ahead of the consonant, spoken after it."
+			],
+			"audio": ["/thai-script/lessons/lesson-10/audio/f386a4418fa1fe01.mp3"],
+			"audioLanguages": ["en"],
+			"image": "/thai-script/lessons/lesson-10/images/back-to-the-steps-d6adf58a8dfb.jpg"
+		},
+		{
+			"kind": "exposition",
+			"id": "meet-ao",
+			"heading": "The first one comes in two pieces",
+			"body": [
+				"A mast in front, the consonant, then the long post from lesson one.",
+				"One vowel written in two pieces, in two rooms.",
+				"The sound is the vowel in *how*, and it goes by fast."
+			],
+			"audio": [
+				"/thai-script/lessons/lesson-10/audio/7c99b71b265b2864.mp3",
+				"/thai-script/lessons/lesson-10/audio/1ceda3981665f122.mp3",
+				"/thai-script/lessons/lesson-10/audio/339205d0895fb813.mp3"
+			],
+			"audioLanguages": ["en", "th", "en"],
+			"image": "/thai-script/lessons/lesson-10/images/meet-ao-96ed1501f341.jpg"
+		},
+		{
+			"kind": "exposition",
+			"id": "write-ao",
+			"heading": "Write it",
+			"body": [
+				"Mast, then consonant, then the long post. In that order on the page.",
+				"Say it aloud with the consonant leaving your mouth first.",
+				"Put the boat's letter in the middle and try it."
+			],
+			"audio": ["/thai-script/lessons/lesson-10/audio/7bd9214cfda5403b.mp3"],
+			"audioLanguages": ["en"]
+		},
+		{
+			"kind": "exposition",
+			"id": "read-rao",
+			"heading": "Read this one",
+			"body": [
+				"The mast, the boat's letter, the long post.",
+				"One vowel wrapped round one consonant. Out loud before you turn it over."
+			],
+			"audio": ["/thai-script/lessons/lesson-10/audio/21b256a5782b3348.mp3"],
+			"audioLanguages": ["en"],
+			"thai": "เรา"
+		},
+		{
+			"kind": "exposition",
+			"id": "read-rao-answer",
+			"heading": "That one",
+			"body": [
+				"**เรา** — we, or us.",
+				"Also a very common everyday word for *I*."
+			],
+			"audio": [
+				"/thai-script/lessons/lesson-10/audio/924dc9dfbbbe7445.mp3",
+				"/thai-script/lessons/lesson-10/audio/824e42f8bf87b9aa.mp3"
+			],
+			"audioLanguages": ["th", "en"],
+			"thai": "เรา"
+		},
+		{
+			"kind": "exposition",
+			"id": "meet-ai-malai",
+			"heading": "The second one, and the common one",
+			"body": [
+				"A single mast with a zigzag broken into its top.",
+				"The sound is the English word *I*, said fast.",
+				"This is the ordinary spelling, and you will meet it constantly."
+			],
+			"audio": [
+				"/thai-script/lessons/lesson-10/audio/120add5fc794a653.mp3",
+				"/thai-script/lessons/lesson-10/audio/adf3a7d6f3837740.mp3",
+				"/thai-script/lessons/lesson-10/audio/4c198834b800d071.mp3"
+			],
+			"audioLanguages": ["en", "th", "en"],
+			"image": "/thai-script/lessons/lesson-10/images/meet-ai-malai-cbe2bc52170e.jpg"
+		},
+		{
+			"kind": "exposition",
+			"id": "write-ai-malai",
+			"heading": "Write it",
+			"body": [
+				"One upright with a sharp zigzag on top.",
+				"Write it ahead of the fish's letter and say it aloud.",
+				"Consonant out of the mouth first, then the vowel."
+			],
+			"audio": ["/thai-script/lessons/lesson-10/audio/8afae67f2ba17236.mp3"],
+			"audioLanguages": ["en"],
+			"thai": "ไ"
+		},
+		{
+			"kind": "exposition",
+			"id": "read-bpai",
+			"heading": "Read this one",
+			"body": [
+				"The zigzag mast, then the fish's letter.",
+				"Out loud before you turn it over."
+			],
+			"audio": ["/thai-script/lessons/lesson-10/audio/352eb67e05c1479d.mp3"],
+			"audioLanguages": ["en"],
+			"thai": "ไป"
+		},
+		{
+			"kind": "exposition",
+			"id": "read-bpai-answer",
+			"heading": "That one",
+			"body": ["**ไป** — to go.", "The 34th commonest word in the language."],
+			"audio": [
+				"/thai-script/lessons/lesson-10/audio/71f0aef5ff7e7039.mp3",
+				"/thai-script/lessons/lesson-10/audio/d157e049a539be1f.mp3"
+			],
+			"audioLanguages": ["th", "en"],
+			"thai": "ไป"
+		},
+		{
+			"kind": "exposition",
+			"id": "meet-ai-muan",
+			"heading": "The third one, which sounds exactly like the second",
+			"body": [
+				"A single mast with its top rolled into a curl.",
+				"The same sound as the zigzag, with nothing in the sound to separate them.",
+				"The word's spelling decides which one it takes."
+			],
+			"audio": [
+				"/thai-script/lessons/lesson-10/audio/1fe7df730b47a263.mp3",
+				"/thai-script/lessons/lesson-10/audio/ef93dfc0fc8a091b.mp3",
+				"/thai-script/lessons/lesson-10/audio/775c2b30f16d71f6.mp3"
+			],
+			"audioLanguages": ["en", "th", "en"],
+			"image": "/thai-script/lessons/lesson-10/images/meet-ai-muan-aaf286b88b7c.jpg"
+		},
+		{
+			"kind": "exposition",
+			"id": "write-ai-muan",
+			"heading": "Write it",
+			"body": [
+				"One upright with a rolled curl on top.",
+				"Write it beside the zigzag and compare the two tops.",
+				"A flick against a curl. Nothing else separates them."
+			],
+			"audio": ["/thai-script/lessons/lesson-10/audio/01ef7c74e494eb30.mp3"],
+			"audioLanguages": ["en"],
+			"thai": "ใ"
+		},
+		{
+			"kind": "exposition",
+			"id": "the-guest-list",
+			"heading": "Which words take the curl",
+			"body": [
+				"**ใน** — in. The 23rd commonest word in Thai.",
+				"**ใจ** — the heart, or the mind.",
+				"**ใบ** — a leaf.",
+				"**ใด** — any."
+			],
+			"audio": ["/thai-script/lessons/lesson-10/audio/5cff62a1e3c185c5.mp3"],
+			"audioLanguages": ["en"],
+			"image": "/thai-script/lessons/lesson-10/images/the-guest-list-3b6a85a2a1f7.jpg"
 		},
 		{
 			"kind": "retrieval",
 			"id": "two-spellings",
-			"prompt": "You hear a Thai word pronounced bpai and have to write it. Which of the two ai spellings do you reach for, and how confident should you be?",
-			"revealSlideId": "two-spellings-answer"
+			"prompt": "You hear a Thai word with this sound in it and you have to write it down. Which of the two spellings do you reach for, and how confident should you be?",
+			"revealSlideId": "two-spellings-answer",
+			"audio": ["/thai-script/lessons/lesson-10/audio/03ffd1712605fdca.mp3"],
+			"audioLanguages": ["en"]
 		},
 		{
 			"kind": "reveal",
 			"id": "two-spellings-answer",
 			"retrievalSlideId": "two-spellings",
 			"answers": [
-				"ไ, the zigzag. ไป.",
-				"Very confident. ใ is a closed list of roughly twenty words; anything not on that list takes ไ."
-			]
+				"Reach for the zigzag **ไ**, unless you know the word is on the list.",
+				"The curl **ใ** covers roughly twenty words, and the zigzag covers everything else.",
+				"Learn the twenty as words, one at a time, as you meet them."
+			],
+			"audio": ["/thai-script/lessons/lesson-10/audio/bddb0244d01711d2.mp3"],
+			"audioLanguages": ["en"]
 		},
 		{
 			"kind": "rule",
@@ -48,25 +225,47 @@
 			"id": "short-but-live",
 			"heading": "Short in the mouth, long for the tone",
 			"body": [
-				"Say เอา and ไป. Both are over quickly — as short as the ะ of lesson four.",
-				"For tone they are counted the other way. เ-า, ไ and ใ make live syllables, and they take the live rule for their consonant's class, not the dead-short one.",
-				"ไป opens on ป, a market letter, so it takes mid class live: bpai, level. Say it beside ตก from last lesson, which is mid class dead and drops low. Same district, opposite endings, and the vowel is what decides which."
-			]
+				"The three vowels today are genuinely short in the mouth.",
+				"For working out a tone, all three are counted long.",
+				"A syllable ending on one of them is live."
+			],
+			"audio": ["/thai-script/lessons/lesson-10/audio/003d65e968b41c43.mp3"],
+			"audioLanguages": ["en"],
+			"image": "/thai-script/lessons/lesson-10/images/short-but-live-7b6ab1d23d1e.jpg"
+		},
+		{
+			"kind": "exposition",
+			"id": "what-makes-a-syllable-dead",
+			"heading": "What the live and dead rule is actually measuring",
+			"body": [
+				"**Dead** means something at the back stopped the air.",
+				"**ไป** ends on its vowel, with nothing behind it to stop anything.",
+				"**ตก** stops on the chicken's letter, and the air goes nowhere.",
+				"What stops the syllable is the whole of what the rule measures."
+			],
+			"audio": ["/thai-script/lessons/lesson-10/audio/c65da34e926ef979.mp3"],
+			"audioLanguages": ["en"],
+			"image": "/thai-script/lessons/lesson-10/images/what-makes-a-syllable-dead-340d4e0b3836.jpg"
 		},
 		{
 			"kind": "retrieval",
 			"id": "short-or-live",
-			"prompt": "ไป is over as fast as a short vowel. Why does it not take the dead-syllable rule?",
-			"revealSlideId": "short-or-live-answer"
+			"prompt": "ไป is over as fast as any short vowel you know. Say why it still takes the live rule rather than the dead one.",
+			"revealSlideId": "short-or-live-answer",
+			"audio": ["/thai-script/lessons/lesson-10/audio/ad9c0a0264942712.mp3"],
+			"audioLanguages": ["en"]
 		},
 		{
 			"kind": "reveal",
 			"id": "short-or-live-answer",
 			"retrievalSlideId": "short-or-live",
 			"answers": [
-				"Because เ-า, ไ and ใ are counted live for tone regardless of how short they sound.",
-				"The syllable ends on the vowel with nothing stopping it, so there is nothing to make it dead. Length of time is not what the rule measures."
-			]
+				"Nothing stops it, so the syllable is live.",
+				"Put a stopping consonant behind the vowel and it becomes dead.",
+				"**ไป** opens on a market letter and ends live, so lesson three's rule settles it."
+			],
+			"audio": ["/thai-script/lessons/lesson-10/audio/caae2a970ed3b534.mp3"],
+			"audioLanguages": ["en"]
 		},
 		{
 			"kind": "rule",
@@ -76,12 +275,32 @@
 		{
 			"kind": "exposition",
 			"id": "the-repeat-mark",
-			"heading": "ๆ, the mark that means say it twice",
+			"heading": "The mark that means say it twice",
 			"body": [
-				"ๆ is not a letter and has no sound of its own. It stands after a word and tells you to repeat the word.",
-				"เด็ก ๆ is children — เด็ก said twice. ใคร ๆ is anyone at all. A space is normally left in front of the mark.",
-				"Doubling in Thai usually softens or generalises rather than intensifying: the repeated form is vaguer than the single one, not stronger."
-			]
+				"Punctuation rather than a letter, and no sound of its own.",
+				"It stands after a word and tells you to say that word again.",
+				"A space is left in front of it."
+			],
+			"audio": [
+				"/thai-script/lessons/lesson-10/audio/714c0f6bb7334c5d.mp3",
+				"/thai-script/lessons/lesson-10/audio/14187d8b7dfdce6e.mp3",
+				"/thai-script/lessons/lesson-10/audio/606c72afb472aaf3.mp3"
+			],
+			"audioLanguages": ["en", "th", "en"],
+			"image": "/thai-script/lessons/lesson-10/images/the-repeat-mark-f8d76decb40a.jpg"
+		},
+		{
+			"kind": "exposition",
+			"id": "what-doubling-does",
+			"heading": "What doubling a word actually does",
+			"body": [
+				"**เด็ก ๆ** — children, from the word for a child.",
+				"English doubling usually intensifies.",
+				"Thai doubling usually broadens, and makes the word less exact."
+			],
+			"audio": ["/thai-script/lessons/lesson-10/audio/a4014c2b34fc5554.mp3"],
+			"audioLanguages": ["en"],
+			"image": "/thai-script/lessons/lesson-10/images/what-doubling-does-f3920e314bbd.jpg"
 		},
 		{
 			"kind": "rule",
@@ -91,23 +310,96 @@
 		{
 			"kind": "exposition",
 			"id": "clusters-named",
-			"heading": "Two consonants, one sound — named here, taught later",
+			"heading": "Two consonants that run together into one sound",
 			"body": [
-				"ใคร has ค and ร back to back with no vowel between them, and it is one syllable, not two: khrai. The two letters run together into a single onset.",
-				"Only three letters ever do this in second position, and the rule slide above names them. That is the whole inventory, and it is closed.",
-				"It is also only half the story. Some pairs that look like clusters are not, one of them is read as a completely different sound, and one of the three letters can be written and not pronounced at all. All of that belongs together in one place, and that place is the clusters lesson.",
-				"Until then: two consonants with nothing between them are either a cluster or an unwritten vowel, and last lesson gave you the other one."
-			]
+				"Two consonants can also run straight together into one sound.",
+				"One syllable, with the two letters sharing a single onset.",
+				"Only three letters can stand second, and the rule names all three.",
+				"Last lesson gave you the other reading of two bare consonants."
+			],
+			"audio": ["/thai-script/lessons/lesson-10/audio/486a3f7798330213.mp3"],
+			"audioLanguages": ["en"],
+			"image": "/thai-script/lessons/lesson-10/images/clusters-named-584d135d7904.jpg"
+		},
+		{
+			"kind": "exposition",
+			"id": "read-khrai",
+			"heading": "Read this one",
+			"body": [
+				"The curled mast, the buffalo's letter, the boat's letter.",
+				"The last two run together into a single syllable.",
+				"Out loud before you turn it over."
+			],
+			"audio": ["/thai-script/lessons/lesson-10/audio/abfa0e4fb84e27ff.mp3"],
+			"audioLanguages": ["en"],
+			"thai": "ใคร"
+		},
+		{
+			"kind": "exposition",
+			"id": "read-khrai-answer",
+			"heading": "That one",
+			"body": [
+				"**ใคร** — who, and a fifth word taking the curl.",
+				"**ใคร ๆ** — anyone at all."
+			],
+			"audio": [
+				"/thai-script/lessons/lesson-10/audio/6080a89560fee85c.mp3",
+				"/thai-script/lessons/lesson-10/audio/24a87d30928de168.mp3"
+			],
+			"audioLanguages": ["th", "en"],
+			"thai": "ใคร"
+		},
+		{
+			"kind": "exposition",
+			"id": "read-thai",
+			"heading": "One more, and you have been waiting for it",
+			"body": [
+				"The zigzag mast, the soldier's letter, the giant's letter.",
+				"Out loud before you turn it over."
+			],
+			"audio": ["/thai-script/lessons/lesson-10/audio/ab08e3a092ed81d8.mp3"],
+			"audioLanguages": ["en"],
+			"thai": "ไทย"
+		},
+		{
+			"kind": "exposition",
+			"id": "read-thai-answer",
+			"heading": "That one",
+			"body": [
+				"**ไทย** — Thai, and Thailand.",
+				"The last piece it needed was today's zigzag mast."
+			],
+			"audio": [
+				"/thai-script/lessons/lesson-10/audio/1af722dfdb3cdcdb.mp3",
+				"/thai-script/lessons/lesson-10/audio/17f7d9bff36c9223.mp3"
+			],
+			"audioLanguages": ["th", "en"],
+			"thai": "ไทย"
 		},
 		{
 			"kind": "exposition",
 			"id": "more-words",
-			"heading": "Words you can read now",
+			"heading": "Words you can read with them",
 			"body": [
-				"ใน (nai) is in, and it is one of the commonest words in the language. ไป (bpai) is to go. เรา (rao) is we or us.",
-				"ดีใจ (dii jai) is glad — literally a good heart. ตกใจ (dtòk jai) is startled — a heart that falls.",
-				"ไทย (thai) is Thai. Its consonants have been readable since lesson seven; today's zigzag mast is the last piece it needed."
-			]
+				"**ไฟ** — fire.",
+				"**เอา** — to take, or to want. The ring at its front is silent.",
+				"**ดีใจ** — glad. Good, and a heart.",
+				"**ตกใจ** — frightened. A heart that falls."
+			],
+			"audio": ["/thai-script/lessons/lesson-10/audio/11cf486ac2840042.mp3"],
+			"audioLanguages": ["en"]
+		},
+		{
+			"kind": "exposition",
+			"id": "read-close",
+			"heading": "Twenty letters, eighteen vowels",
+			"body": [
+				"Eighteen vowel spellings, and no new letters today.",
+				"A vowel at the back of a syllable stops nothing, so the syllable is live.",
+				"Next: the letter from lesson six gets its name, and the market's grid closes."
+			],
+			"audio": ["/thai-script/lessons/lesson-10/audio/2db8c04be8ad4220.mp3"],
+			"audioLanguages": ["en"]
 		}
 	]
 }

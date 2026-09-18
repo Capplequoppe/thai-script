@@ -218,10 +218,10 @@ narration: en Four marks, and three of them are the vowel wrapped round the midd
 ## exposition read-kaw-answer
 thai: เกาะ
 heading: That one
-narration: th เกาะ
-narration: en An island. It opens on a market letter, the vowel is short, and the hooks stop it dead with nothing running on afterwards. Which puts it in a corner of the tone grid you have never been given, and that corner is what the next three slides are for.
+narration: en An island. It opens on a market letter, the vowel is short, and the hooks stop it dead with nothing running on afterwards. Which puts it in a corner of the tone grid you have yet to be given, and that corner is what the next three slides are for. This one arrives without a recording, by the way — the voice this course uses mangles it, and a clip that says the wrong thing would teach you worse than silence does. Say it from the page and check it against a Thai speaker when you get the chance.
 - **เกาะ** — an island.
 - Market letter, short vowel, stopped dead.
+- Read from the page. This one has no recording here.
 - The tone on it is the thing still missing.
 
 ## exposition the-grid-so-far

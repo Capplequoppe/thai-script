@@ -203,8 +203,8 @@ narration: en Two symbols, and a mark you have been waiting three months of less
 ## exposition read-maa-answer
 thai: ม้า
 heading: That one, and the circle closes
-narration: th ม้า
-narration: en High, and held up there for the whole of the word. That is the animal, and the word on the plaque at the end of the pier. Now say the verb again, with nothing written above the letter and the voice running level. Two spellings, two tones, one difference on the page. This morning you got the name of the mark and the box that holds the tone. That is the thing lesson one said was coming.
+recording: th มอ ม้า public/audio/consonant-mo-ma.mp3
+narration: en That is the letter's own name, and the second half of it is the word — which is how you heard the animal for the first time in lesson one, before you had any idea what the mark above it was doing. High, and held up there for the whole of the word. That is the animal, and the word on the plaque at the end of the pier. Now say the verb again, with nothing written above the letter and the voice running level. Two spellings, two tones, one difference on the page. This morning you got the name of the mark and the box that holds the tone. That is the thing lesson one said was coming.
 - ม้า — high tone, and it means a horse.
 - มา with nothing above it stays flat, and it means to come.
 - A harbour letter under mai tho is the box that separates them.

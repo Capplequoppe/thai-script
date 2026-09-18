@@ -11,7 +11,7 @@
 				"One tone rule: your first, and the one every other is measured against.",
 				"No new vowels. Everything you read today uses the one you already have."
 			],
-			"audio": ["/thai-script/lessons/lesson-02/audio/f3fcda135e064d54.mp3"],
+			"audio": ["/thai-script/lessons/lesson-02/audio/29edba871c65b71d.mp3"],
 			"audioLanguages": ["en"]
 		},
 		{
@@ -23,7 +23,7 @@
 				"All three can end a syllable without stopping the air.",
 				"Learn the district once and it pays for every letter that lives there."
 			],
-			"audio": ["/thai-script/lessons/lesson-02/audio/87ac3e268cbe0104.mp3"],
+			"audio": ["/thai-script/lessons/lesson-02/audio/6707f6e1109d7e5a.mp3"],
 			"audioLanguages": ["en"],
 			"image": "/thai-script/lessons/lesson-02/images/the-trick-81194bde30c4.jpg"
 		},
@@ -53,7 +53,7 @@
 				"The snake lived in the coils and kept the rats off the nets.",
 				"It is why last lesson's mouse lived at the *other* end of the quay."
 			],
-			"audio": ["/thai-script/lessons/lesson-02/audio/6975c3bc50eec236.mp3"],
+			"audio": ["/thai-script/lessons/lesson-02/audio/ff015c054adab196.mp3"],
 			"audioLanguages": ["en"],
 			"image": "/thai-script/lessons/lesson-02/images/ngu-story-1-7033d5913a10.jpg"
 		},
@@ -65,7 +65,7 @@
 				"At high tide the ropes hum, long and low across the water.",
 				"The snake lifts its head from the coil and holds the note with them."
 			],
-			"audio": ["/thai-script/lessons/lesson-02/audio/b0e3f1836228b1df.mp3"],
+			"audio": ["/thai-script/lessons/lesson-02/audio/44084c559ab1c8c7.mp3"],
 			"audioLanguages": ["en"],
 			"image": "/thai-script/lessons/lesson-02/images/ngu-story-2-cd8af9c9058c.jpg"
 		},
@@ -74,7 +74,7 @@
 			"id": "ngu-story-3",
 			"heading": "What the pier still keeps",
 			"body": [
-				"A coil of rope with a snake's head rising out of it. That is the letter.",
+				"The carving where the pier runs out: a coil of rope, and a snake's head rising off it.",
 				"The hum at high tide still carries the snake's name."
 			],
 			"audio": [
@@ -104,7 +104,7 @@
 			"audio": [
 				"/thai-script/lessons/lesson-02/audio/7b9f4dc749d52891.mp3",
 				"/thai-script/lessons/lesson-02/audio/0237483839cf47f4.mp3",
-				"/thai-script/lessons/lesson-02/audio/ce57ae7f206b0c64.mp3"
+				"/thai-script/lessons/lesson-02/audio/f1cba9dee2da513a.mp3"
 			],
 			"audioLanguages": ["en", "th", "en"],
 			"image": "/thai-script/lessons/lesson-02/images/meet-yak-901bfab3abd1.jpg"
@@ -118,7 +118,7 @@
 				"He carried the fishing boats home through the storms, two at a time.",
 				"He never spoke."
 			],
-			"audio": ["/thai-script/lessons/lesson-02/audio/a019a2d67550343f.mp3"],
+			"audio": ["/thai-script/lessons/lesson-02/audio/db579f9af4ee4042.mp3"],
 			"audioLanguages": ["en"],
 			"image": "/thai-script/lessons/lesson-02/images/yak-story-1-6dfa11a7b43b.jpg"
 		},
@@ -154,7 +154,7 @@
 			"id": "see-yak",
 			"heading": "The giant's letter",
 			"body": ["The giant's letter."],
-			"audio": ["/thai-script/lessons/lesson-02/audio/e8e81ba7c953cb3f.mp3"],
+			"audio": ["/thai-script/lessons/lesson-02/audio/692b7b9f2e3adf1c.mp3"],
 			"audioLanguages": ["en"],
 			"thai": "ย"
 		},
@@ -230,7 +230,7 @@
 			"id": "see-waen",
 			"heading": "The ring's letter",
 			"body": ["The ring's letter."],
-			"audio": ["/thai-script/lessons/lesson-02/audio/1fad05b9cdf2d2f3.mp3"],
+			"audio": ["/thai-script/lessons/lesson-02/audio/48c790474cc51a8a.mp3"],
 			"audioLanguages": ["en"],
 			"thai": "ว"
 		},
@@ -239,7 +239,7 @@
 			"id": "live-endings",
 			"ruleId": "live-endings",
 			"audio": [
-				"/thai-script/lessons/lesson-02/audio/64e3eeadddf0b1e8.mp3",
+				"/thai-script/lessons/lesson-02/audio/8c738302f5258572.mp3",
 				"/thai-script/lessons/lesson-02/audio/65c63daa9e5d2035.mp3",
 				"/thai-script/lessons/lesson-02/audio/ad386c5c10910a28.mp3"
 			],
@@ -261,7 +261,7 @@
 			"kind": "rule",
 			"id": "low-live",
 			"ruleId": "low-live",
-			"audio": ["/thai-script/lessons/lesson-02/audio/c35cab53ad3a28c8.mp3"],
+			"audio": ["/thai-script/lessons/lesson-02/audio/2c7915e9f0b58c47.mp3"],
 			"audioLanguages": ["en"]
 		},
 		{
@@ -274,11 +274,11 @@
 				"Flat tones live in the rice paddy."
 			],
 			"audio": [
-				"/thai-script/lessons/lesson-02/audio/aa9ee794bda08cbe.mp3",
+				"/thai-script/lessons/lesson-02/audio/cd8eb09e5f7dde16.mp3",
 				"/thai-script/lessons/lesson-02/audio/697d790ce7aff27c.mp3",
 				"/thai-script/lessons/lesson-02/audio/e470d0fe2d87d992.mp3",
 				"/thai-script/lessons/lesson-02/audio/3a3729532353920f.mp3",
-				"/thai-script/lessons/lesson-02/audio/754f8aeb796b1390.mp3"
+				"/thai-script/lessons/lesson-02/audio/51dd2696f845ad02.mp3"
 			],
 			"audioLanguages": ["en", "th", "en", "th", "en"],
 			"image": "/thai-script/lessons/lesson-02/images/the-paddy-d42ee34ac6de.jpg"
@@ -302,7 +302,7 @@
 			"audio": [
 				"/thai-script/lessons/lesson-02/audio/90141eda6fc3355e.mp3",
 				"/thai-script/lessons/lesson-02/audio/8922d57142a6d866.mp3",
-				"/thai-script/lessons/lesson-02/audio/2bfe9a844367826d.mp3"
+				"/thai-script/lessons/lesson-02/audio/e148769cdb981259.mp3"
 			],
 			"audioLanguages": ["en", "th", "en"]
 		},
@@ -323,9 +323,9 @@
 			"heading": "Read this one",
 			"body": ["A hum, a long vowel, a hum to close it."],
 			"audio": [
-				"/thai-script/lessons/lesson-02/audio/e243987e2dab7bcb.mp3",
+				"/thai-script/lessons/lesson-02/audio/8d1dc351e02b0330.mp3",
 				"/thai-script/lessons/lesson-02/audio/6df0fd09c54ba48e.mp3",
-				"/thai-script/lessons/lesson-02/audio/18cb2020686eeb70.mp3"
+				"/thai-script/lessons/lesson-02/audio/b3521ff3a5439da1.mp3"
 			],
 			"audioLanguages": ["en", "th", "en"],
 			"thai": "งาม"
@@ -338,7 +338,7 @@
 			"audio": [
 				"/thai-script/lessons/lesson-02/audio/a2cf98998deeca08.mp3",
 				"/thai-script/lessons/lesson-02/audio/b2d4aa1efd697028.mp3",
-				"/thai-script/lessons/lesson-02/audio/762140500ea33187.mp3"
+				"/thai-script/lessons/lesson-02/audio/8d7a4f11503cdfe6.mp3"
 			],
 			"audioLanguages": ["en", "th", "en"],
 			"thai": "วง"
@@ -351,7 +351,7 @@
 				"Five letters and one vowel between them.",
 				"Next: endings that stop the air."
 			],
-			"audio": ["/thai-script/lessons/lesson-02/audio/cda61918ed30e19e.mp3"],
+			"audio": ["/thai-script/lessons/lesson-02/audio/5e2716fa6f872fef.mp3"],
 			"audioLanguages": ["en"]
 		}
 	]

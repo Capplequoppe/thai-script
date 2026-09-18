@@ -71,6 +71,11 @@ narration: en Here is the honest case, both ways, and then I will stop pressing.
 ## exposition zero-to-four
 heading: Zero through four: ๐ ๑ ๒ ๓ ๔
 narration: en The first five, and each one comes with an ordinary Thai word you can read. Zero is a plain ring, and its word starts on a temple letter and ends on a letter switched off by the silencer from lesson thirteen. One, two and three come next, and two and three are worth looking at together, because they are built on the same base and the three carries an extra hump on top of it. Four forks at the top like a small flag. Read the words in the bullets as you go, out loud, and copy each glyph onto your page beside its word.
+recording: th ศูนย์ public/audio/digit-0.mp3
+recording: th หนึ่ง public/audio/digit-1.mp3
+recording: th สอง public/audio/digit-2.mp3
+recording: th สาม public/audio/digit-3.mp3
+recording: th สี่ public/audio/digit-4.mp3
 - ๐ is zero, a plain ring — ศูนย์ (sǔun), a word you already can read: temple ศ up front and a silenced ย at the end.
 - ๑ is one, หนึ่ง (nùeng). ๒ is two, สอง (sǎawng). ๓ is three, สาม (sǎam) — the two and three share a base; three carries an extra hump.
 - ๔ is four, สี่ (sìi), and its glyph forks like a flag.
@@ -78,6 +83,11 @@ narration: en The first five, and each one comes with an ordinary Thai word you 
 ## exposition five-to-nine
 heading: Five through nine, ๕ to ๙
 narration: en The second five, and then the units above ten. Five coils back on itself, and six follows it. Seven and eight are the pair to be careful with — a matched set of hooks, facing opposite ways, and the two that a tired eye confuses. Nine finishes with a tail that climbs. Then the bigger units, and they need no new glyphs at all. Ten, a hundred, a thousand and a million are ordinary words, spelled out of letters you have owned for lessons.
+recording: th ห้า public/audio/digit-5.mp3
+recording: th หก public/audio/digit-6.mp3
+recording: th เจ็ด public/audio/digit-7.mp3
+recording: th แปด public/audio/digit-8.mp3
+recording: th เก้า public/audio/digit-9.mp3
 - ๕ is five, ห้า (hâa) — the glyph coils back on itself. ๖ is six, หก (hòk).
 - ๗ is seven, เจ็ด (jèt), and ๘ is eight, แปด (bpàaet) — a matched pair of hooks facing opposite ways.
 - ๙ is nine, เก้า (gâo), with a tail that climbs. Larger units are ordinary words: สิบ (sìp) ten, ร้อย (ráawi) hundred, พัน (phan) thousand, ล้าน (láan) million.
@@ -100,8 +110,7 @@ narration: en Two glyphs, and you have met both. Work out the number first, whic
 ## exposition say-the-number-answer
 thai: ๒๐
 heading: That one
-narration: th ยี่สิบ
-narration: en Twenty. And the front half of that word is a one-off worth knowing early, because twenty is the only ten that gets its own name. Thirty onwards go back to being predictable — the digit word, then the word for ten, in that order, all the way up to ninety.
+narration: en Twenty. You have the two halves of it recorded separately further up this lesson, and putting them together is the exercise — the voice this course uses cannot say the joined word without turning it back into a digit, so this one is read from the page. The front half is a one-off worth knowing early, because twenty is the only ten that gets its own name. Thirty onwards go back to being predictable — the digit word, then the word for ten, in that order, all the way up to ninety.
 - **๒๐** — twenty, ยี่สิบ (yîi-sìp).
 - Twenty is the one ten with a name of its own.
 - From thirty up: the digit word, then สิบ (sìp).
@@ -123,7 +132,7 @@ narration: en One more, and this is the confusable pair of the ten. Two glyphs t
 
 ## reveal spot-digit-answer
 retrieval: spot-digit
-narration: th เก้า
+recording: th เก้า public/audio/digit-9.mp3
 narration: en Nine. The tail is the thing to look for, because it climbs above the line and the seven's does not. Everything else about the two shapes is close enough that checking the tail first will save you a second every time.
 - Nine. ๙ finishes with a tail that climbs above the line, while ๗ keeps a straight neck with a small hook.
 

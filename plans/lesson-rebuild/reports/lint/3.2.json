@@ -1,0 +1,386 @@
+{
+  "version": 1,
+  "task": "3.2",
+  "pass": "after",
+  "result": {
+    "outcome": "unsupported",
+    "reason": "content/lessons/lesson-clusters.md: no grammar covers '.md' files (and 9 more) — 19 violations were measured before this and are not shown"
+  },
+  "findings": [
+    {
+      "rule": "length",
+      "severity": "warning",
+      "measured": 543,
+      "threshold": 400,
+      "tier": "file",
+      "path": "src/domain/script/data/lessonContent.ts"
+    },
+    {
+      "rule": "cyclomatic-complexity",
+      "severity": "warning",
+      "measured": 38,
+      "threshold": 20,
+      "tier": "function",
+      "symbol": {
+        "kind": "function",
+        "name": "syllablesAt",
+        "path": "src/domain/script/data/promotedLessons.test.ts",
+        "bytes": {
+          "startIndex": 20489,
+          "endIndex": 24739
+        },
+        "lines": {
+          "startRow": 607,
+          "endRow": 738
+        }
+      }
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "deriveUnwrittenVowel",
+        "path": "src/domain/script/data/promotedLessons.test.ts",
+        "bytes": {
+          "startIndex": 9930,
+          "endIndex": 11094
+        },
+        "lines": {
+          "startRow": 290,
+          "endRow": 326
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "clustersFromLesson",
+        "path": "src/domain/script/data/promotedLessons.test.ts",
+        "bytes": {
+          "startIndex": 13876,
+          "endIndex": 14821
+        },
+        "lines": {
+          "startRow": 407,
+          "endRow": 433
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "applyLeadingRule",
+        "path": "src/domain/script/data/promotedLessons.test.ts",
+        "bytes": {
+          "startIndex": 17885,
+          "endIndex": 19086
+        },
+        "lines": {
+          "startRow": 523,
+          "endRow": 561
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "emit",
+        "path": "src/domain/script/data/promotedLessons.test.ts",
+        "bytes": {
+          "startIndex": 21747,
+          "endIndex": 22207
+        },
+        "lines": {
+          "startRow": 645,
+          "endRow": 666
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "tone",
+        "path": "src/domain/script/data/promotedLessons.test.ts",
+        "bytes": {
+          "startIndex": 26672,
+          "endIndex": 27744
+        },
+        "lines": {
+          "startRow": 797,
+          "endRow": 830
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "(anonymous)",
+        "path": "src/domain/script/data/promotedLessons.test.ts",
+        "bytes": {
+          "startIndex": 26810,
+          "endIndex": 27727
+        },
+        "lines": {
+          "startRow": 799,
+          "endRow": 828
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "expectWordReads",
+        "path": "src/domain/script/data/promotedLessons.test.ts",
+        "bytes": {
+          "startIndex": 30352,
+          "endIndex": 31561
+        },
+        "lines": {
+          "startRow": 948,
+          "endRow": 975
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "(anonymous)",
+        "path": "src/domain/script/data/promotedLessons.test.ts",
+        "bytes": {
+          "startIndex": 31824,
+          "endIndex": 33289
+        },
+        "lines": {
+          "startRow": 981,
+          "endRow": 1026
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "(anonymous)",
+        "path": "src/domain/script/data/promotedLessons.test.ts",
+        "bytes": {
+          "startIndex": 31903,
+          "endIndex": 32698
+        },
+        "lines": {
+          "startRow": 982,
+          "endRow": 1009
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 2.67,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "(anonymous)",
+        "path": "src/domain/script/data/promotedLessons.test.ts",
+        "bytes": {
+          "startIndex": 33551,
+          "endIndex": 36243
+        },
+        "lines": {
+          "startRow": 1032,
+          "endRow": 1106
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 3.85,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "(anonymous)",
+        "path": "src/domain/script/data/promotedLessons.test.ts",
+        "bytes": {
+          "startIndex": 34199,
+          "endIndex": 34983
+        },
+        "lines": {
+          "startRow": 1050,
+          "endRow": 1075
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 2.17,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "(anonymous)",
+        "path": "src/domain/script/data/promotedLessons.test.ts",
+        "bytes": {
+          "startIndex": 36509,
+          "endIndex": 38149
+        },
+        "lines": {
+          "startRow": 1112,
+          "endRow": 1157
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 1.16,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "(anonymous)",
+        "path": "src/domain/script/data/promotedLessons.test.ts",
+        "bytes": {
+          "startIndex": 38430,
+          "endIndex": 41109
+        },
+        "lines": {
+          "startRow": 1163,
+          "endRow": 1248
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "(anonymous)",
+        "path": "src/domain/script/data/promotedLessons.test.ts",
+        "bytes": {
+          "startIndex": 38515,
+          "endIndex": 39378
+        },
+        "lines": {
+          "startRow": 1164,
+          "endRow": 1197
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "(anonymous)",
+        "path": "src/domain/script/data/promotedLessons.test.ts",
+        "bytes": {
+          "startIndex": 41368,
+          "endIndex": 42351
+        },
+        "lines": {
+          "startRow": 1254,
+          "endRow": 1281
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "(anonymous)",
+        "path": "src/domain/script/data/promotedLessons.test.ts",
+        "bytes": {
+          "startIndex": 42692,
+          "endIndex": 44180
+        },
+        "lines": {
+          "startRow": 1288,
+          "endRow": 1331
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "length",
+      "severity": "warning",
+      "measured": 1362,
+      "threshold": 1200,
+      "tier": "file",
+      "path": "src/domain/script/data/promotedLessons.test.ts"
+    }
+  ],
+  "adapters": [
+    {
+      "tool": "biome",
+      "selection": {
+        "evidence": "configured",
+        "by": "biome.json"
+      },
+      "program": null,
+      "result": {
+        "outcome": "unsupported",
+        "reason": "biome did not resolve: 'biome' on PATH (31 entries). Its findings are missing from this report — that is a gap and not a pass."
+      },
+      "files": 2,
+      "findings": 0,
+      "refusedPaths": 0,
+      "outsideAnalysis": 0,
+      "refusedShape": 0
+    }
+  ]
+}

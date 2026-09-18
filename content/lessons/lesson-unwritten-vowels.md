@@ -84,7 +84,7 @@ narration: en One question before we go on. Two letters on the page, nothing wri
 retrieval: read-a-bare-pair
 narration: en The short o goes into the middle, and the second letter shuts the syllable hard. That stop makes the ending dead, and the vowel you supplied is a short one. A harbour letter, a dead ending, a short vowel — which is the rule from lesson four, and it hands you a high tone.
 - yók — a short o between the two letters, and ก closes the syllable.
-- ก stops the air, so the ending is dead and the vowel is short.
+- ก stops the air, so the ending is dead and the vowel stays short.
 - Harbour letter, dead ending, short vowel: high tone.
 
 ## rule unwritten-vowels

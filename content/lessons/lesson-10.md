@@ -245,9 +245,7 @@ narration: en One mark instead of writing the whole word out twice, which saves 
 image: images/lesson-10/what-doubling-does.jpg
 scene: A group of young children running together down a narrow Thai street past shop fronts, late afternoon light.
 heading: What doubling a word actually does
-narration: en Here is the word for a child, from lesson seven, with the mark behind it.
-narration: th เด็ก ๆ
-narration: en That means children. And this is the part worth knowing, because English does the opposite. When English repeats a word it usually means more of it, or a stronger version. Thai usually goes the other way and makes the word vaguer, broader, less exact. Children in general rather than any particular children. Keep that direction in your head and doubled words will stop surprising you.
+narration: en Here is the word for a child, from lesson seven, with the mark behind it. Say it twice out loud — that is the whole of what the mark asks for, and the voice this course uses runs the two together, so this one is yours to say rather than mine. It means children. And this is the part worth knowing, because English does the opposite. When English repeats a word it usually means more of it, or a stronger version. Thai usually goes the other way and makes the word vaguer, broader, less exact. Children in general rather than any particular children. Keep that direction in your head and doubled words will stop surprising you.
 - **เด็ก ๆ** — children, from the word for a child.
 - English doubling usually intensifies.
 - Thai doubling usually broadens, and makes the word less exact.

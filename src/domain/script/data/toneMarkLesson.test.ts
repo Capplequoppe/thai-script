@@ -465,18 +465,23 @@ describe("AC6 — every asset the deck references exists", () => {
 			expect(file).not.toContain("..");
 			expect(existsSync(join(directory, file)), asset).toBe(true);
 		}
-		const onDisk = readdirSync(directory).filter(
-			(name) => name !== "deck.json" && name !== "manifest.json",
-		);
-		for (const name of onDisk) {
-			expect(
-				referenced.has(`/thai-script/lessons/${LESSON_ID}/${name}`),
-				`${LESSON_ID}/${name} is committed but no slide references it`,
-			).toBe(true);
+		// Two levels: the pipeline writes assets into `audio/` and `images/`
+		// rather than beside the deck, so a one-level walk asserts the
+		// subdirectory itself is a referenced asset. That could only pass
+		// while the lesson had no assets at all.
+		for (const child of readdirSync(directory)) {
+			if (child === "deck.json" || child === "manifest.json") continue;
+			for (const name of readdirSync(join(directory, child))) {
+				expect(
+					referenced.has(`/thai-script/lessons/${LESSON_ID}/${child}/${name}`),
+					`${LESSON_ID}/${child}/${name} is committed but no slide references it`,
+				).toBe(true);
+			}
 		}
 		for (const asset of manifest.assets) {
-			if (asset.path === null) continue;
-			expect(existsSync(join(directory, asset.path)), asset.path).toBe(true);
+			if (asset.file === null) continue;
+			// `path` is the URL the app fetches; `file` is where it sits on disk.
+			expect(existsSync(join(directory, asset.file)), asset.file).toBe(true);
 		}
 	});
 });
