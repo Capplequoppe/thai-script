@@ -3,16 +3,1153 @@
 	"schema": {
 		"version": 1,
 		"segmentStates": ["absent", "generated", "failed"],
-		"verificationOutcomes": ["not-required", "verified", "mismatch"]
+		"verificationOutcomes": ["not-required", "verified", "mismatch", "recorded"]
 	},
 	"voice": {
-		"voiceId": "JBFqnCBsd6RMkjVDRZzb",
-		"modelId": "eleven_multilingual_v2",
+		"voiceId": "brM9iIbwDREZaWL8luun",
+		"modelId": "eleven_v3",
 		"settings": {
 			"stability": 0.5,
 			"similarity_boost": 0.75,
 			"speed": 1.0
+		},
+		"english": {
+			"modelId": "fishaudio/s2-pro",
+			"reference": "8924c611339b8fe5"
 		}
 	},
-	"assets": []
+	"assets": [
+		{
+			"key": "what-is-here-0",
+			"kind": "audio",
+			"state": "generated",
+			"language": "en",
+			"inputHash": "93f506efa9a37c78383b79067b2104a0ca48ef7393cb6810c19507480e909e49",
+			"contentHash": "d82dbc42e2379915943c37de787170572f2ef30fa27df01ba5d3b17bb2407036",
+			"path": "/thai-script/lessons/lesson-04/audio/93f506efa9a37c78.mp3",
+			"file": "audio/93f506efa9a37c78.mp3",
+			"verification": {
+				"outcome": "not-required",
+				"attempts": 1,
+				"expected": null,
+				"heard": []
+			},
+			"failure": null
+		},
+		{
+			"key": "the-trick-0",
+			"kind": "audio",
+			"state": "generated",
+			"language": "en",
+			"inputHash": "2f3c30981d1ee3ec11b52f2c5126bac9ccf60ac2933820255af0808f3d059451",
+			"contentHash": "cb31ab26f6c1cd1034aaa02ccf46d98edef34ffae38565446bc7526a14cbce79",
+			"path": "/thai-script/lessons/lesson-04/audio/2f3c30981d1ee3ec.mp3",
+			"file": "audio/2f3c30981d1ee3ec.mp3",
+			"verification": {
+				"outcome": "not-required",
+				"attempts": 1,
+				"expected": null,
+				"heard": []
+			},
+			"failure": null
+		},
+		{
+			"key": "pen-still-there-0",
+			"kind": "audio",
+			"state": "generated",
+			"language": "en",
+			"inputHash": "95627ad8f817c68afccc27feddecca6964fd4fd42a50364486f1aabf072cecb3",
+			"contentHash": "e7031eb8bcd132e6000b6c7744256f4c90d74139b168d064c8260e89b6a0efae",
+			"path": "/thai-script/lessons/lesson-04/audio/95627ad8f817c68a.mp3",
+			"file": "audio/95627ad8f817c68a.mp3",
+			"verification": {
+				"outcome": "not-required",
+				"attempts": 1,
+				"expected": null,
+				"heard": []
+			},
+			"failure": null
+		},
+		{
+			"key": "meet-chaang-0",
+			"kind": "audio",
+			"state": "generated",
+			"language": "en",
+			"inputHash": "e319ce7827ffc5c88bc226211aadbc86a2022a80a69443da9758c8ccfc165ae4",
+			"contentHash": "6d4ea3ec7203456913d3d413db9ec34534c2c0571389cc0c92fdb72ecfb4255b",
+			"path": "/thai-script/lessons/lesson-04/audio/e319ce7827ffc5c8.mp3",
+			"file": "audio/e319ce7827ffc5c8.mp3",
+			"verification": {
+				"outcome": "not-required",
+				"attempts": 1,
+				"expected": null,
+				"heard": []
+			},
+			"failure": null
+		},
+		{
+			"key": "meet-chaang-1",
+			"kind": "audio",
+			"state": "generated",
+			"language": "th",
+			"inputHash": "ab9ccacf7a555d14b4e2a163fd549e8e805da8543b27883f08b07b538fc769a5",
+			"contentHash": "8997d3e427f4e2512dfba2da279731eb63433c4294022b0a0ef5fc339aa71f48",
+			"path": "/thai-script/lessons/lesson-04/audio/ab9ccacf7a555d14.mp3",
+			"file": "audio/ab9ccacf7a555d14.mp3",
+			"verification": {
+				"outcome": "recorded",
+				"attempts": 1,
+				"expected": null,
+				"heard": []
+			},
+			"failure": null
+		},
+		{
+			"key": "meet-chaang-2",
+			"kind": "audio",
+			"state": "generated",
+			"language": "en",
+			"inputHash": "cecd4ba267683739b8e3dac9a5853a8158f1c91b4603cc084b473927c3412324",
+			"contentHash": "931b865dbd7b58c706563adb73cd8b4cf782e56fc5c7c65e1c971d3575510383",
+			"path": "/thai-script/lessons/lesson-04/audio/cecd4ba267683739.mp3",
+			"file": "audio/cecd4ba267683739.mp3",
+			"verification": {
+				"outcome": "not-required",
+				"attempts": 1,
+				"expected": null,
+				"heard": []
+			},
+			"failure": null
+		},
+		{
+			"key": "chaang-story-1-0",
+			"kind": "audio",
+			"state": "generated",
+			"language": "en",
+			"inputHash": "58f381c1813f3773c67b74ee926916ae3d9c80e5f0c05528e9ebba7cfb3e961c",
+			"contentHash": "e7887aa944d6afad5466261c5ae49f336a7dc04654e0cbf7f87040de8d8a623a",
+			"path": "/thai-script/lessons/lesson-04/audio/58f381c1813f3773.mp3",
+			"file": "audio/58f381c1813f3773.mp3",
+			"verification": {
+				"outcome": "not-required",
+				"attempts": 1,
+				"expected": null,
+				"heard": []
+			},
+			"failure": null
+		},
+		{
+			"key": "chaang-story-2-0",
+			"kind": "audio",
+			"state": "generated",
+			"language": "en",
+			"inputHash": "f179be34314c539eb2a1d789d2fe9973f6f4da54fbfb9f5fefb4a99bdf94aadc",
+			"contentHash": "ed6ef5df551f83b2ce6ea2d28cdcd32b10f48e5f4b1b72f27325e0f8d8b8ed29",
+			"path": "/thai-script/lessons/lesson-04/audio/f179be34314c539e.mp3",
+			"file": "audio/f179be34314c539e.mp3",
+			"verification": {
+				"outcome": "not-required",
+				"attempts": 1,
+				"expected": null,
+				"heard": []
+			},
+			"failure": null
+		},
+		{
+			"key": "chaang-story-2-1",
+			"kind": "audio",
+			"state": "generated",
+			"language": "th",
+			"inputHash": "ab9ccacf7a555d14b4e2a163fd549e8e805da8543b27883f08b07b538fc769a5",
+			"contentHash": "8997d3e427f4e2512dfba2da279731eb63433c4294022b0a0ef5fc339aa71f48",
+			"path": "/thai-script/lessons/lesson-04/audio/ab9ccacf7a555d14.mp3",
+			"file": "audio/ab9ccacf7a555d14.mp3",
+			"verification": {
+				"outcome": "recorded",
+				"attempts": 1,
+				"expected": null,
+				"heard": []
+			},
+			"failure": null
+		},
+		{
+			"key": "write-chaang-0",
+			"kind": "audio",
+			"state": "generated",
+			"language": "en",
+			"inputHash": "a4ced6da6af7795ab4b3ae1b6401cba49ed8d64297b589380975522a76a4ce43",
+			"contentHash": "75c23681bc335c21064056ec5a1ef17ec79a2f786295c393a2314f87ba9164b4",
+			"path": "/thai-script/lessons/lesson-04/audio/a4ced6da6af7795a.mp3",
+			"file": "audio/a4ced6da6af7795a.mp3",
+			"verification": {
+				"outcome": "not-required",
+				"attempts": 1,
+				"expected": null,
+				"heard": []
+			},
+			"failure": null
+		},
+		{
+			"key": "meet-so-0",
+			"kind": "audio",
+			"state": "generated",
+			"language": "en",
+			"inputHash": "ab8efc4b6a2c47e7c2b9c8e8593926fe0ac1fc2d1b5d6aa972b136e2350684e3",
+			"contentHash": "75d3d76f89f3d49f9f5ae9cf64ecb03998245163e45b2eea0f881b70446e3e15",
+			"path": "/thai-script/lessons/lesson-04/audio/ab8efc4b6a2c47e7.mp3",
+			"file": "audio/ab8efc4b6a2c47e7.mp3",
+			"verification": {
+				"outcome": "not-required",
+				"attempts": 1,
+				"expected": null,
+				"heard": []
+			},
+			"failure": null
+		},
+		{
+			"key": "meet-so-1",
+			"kind": "audio",
+			"state": "generated",
+			"language": "th",
+			"inputHash": "0fb2210cec941cb633d5588c26996933c4d14e66fc0bf5d332f947c33e349f07",
+			"contentHash": "27f7f53601984a06364f5044eeefef9b1696f5a48aae6ef6f2311a0932cac34b",
+			"path": "/thai-script/lessons/lesson-04/audio/0fb2210cec941cb6.mp3",
+			"file": "audio/0fb2210cec941cb6.mp3",
+			"verification": {
+				"outcome": "recorded",
+				"attempts": 1,
+				"expected": null,
+				"heard": []
+			},
+			"failure": null
+		},
+		{
+			"key": "meet-so-2",
+			"kind": "audio",
+			"state": "generated",
+			"language": "en",
+			"inputHash": "e4467473bbd35c7945fd30fe8ee50665ddf8fbf59ee5ed65e09c4a5952518ca1",
+			"contentHash": "10ebc9d5151acbdb09092abb62952bb72f1f52c1958f889e2a48cbdab1d22c27",
+			"path": "/thai-script/lessons/lesson-04/audio/e4467473bbd35c79.mp3",
+			"file": "audio/e4467473bbd35c79.mp3",
+			"verification": {
+				"outcome": "not-required",
+				"attempts": 1,
+				"expected": null,
+				"heard": []
+			},
+			"failure": null
+		},
+		{
+			"key": "so-story-1-0",
+			"kind": "audio",
+			"state": "generated",
+			"language": "en",
+			"inputHash": "94f8db0423d61960a14670a9731d8d110ed6a5c5f53d9539fae4159381732354",
+			"contentHash": "243127a8b24a9cb4e6ffebbce35619a2dc6fa5f3aa020171c267d6001ac4e672",
+			"path": "/thai-script/lessons/lesson-04/audio/94f8db0423d61960.mp3",
+			"file": "audio/94f8db0423d61960.mp3",
+			"verification": {
+				"outcome": "not-required",
+				"attempts": 1,
+				"expected": null,
+				"heard": []
+			},
+			"failure": null
+		},
+		{
+			"key": "so-story-1-1",
+			"kind": "audio",
+			"state": "generated",
+			"language": "th",
+			"inputHash": "0fb2210cec941cb633d5588c26996933c4d14e66fc0bf5d332f947c33e349f07",
+			"contentHash": "27f7f53601984a06364f5044eeefef9b1696f5a48aae6ef6f2311a0932cac34b",
+			"path": "/thai-script/lessons/lesson-04/audio/0fb2210cec941cb6.mp3",
+			"file": "audio/0fb2210cec941cb6.mp3",
+			"verification": {
+				"outcome": "recorded",
+				"attempts": 1,
+				"expected": null,
+				"heard": []
+			},
+			"failure": null
+		},
+		{
+			"key": "write-so-0",
+			"kind": "audio",
+			"state": "generated",
+			"language": "en",
+			"inputHash": "a7a4038485605a2292cf7cb195fc1aa4a47faadfa366e14b1247e6f4309d0579",
+			"contentHash": "5e21cee4a9a97d90ddfd823d3943897debd185816d09a163f39ba169cac14b9f",
+			"path": "/thai-script/lessons/lesson-04/audio/a7a4038485605a22.mp3",
+			"file": "audio/a7a4038485605a22.mp3",
+			"verification": {
+				"outcome": "not-required",
+				"attempts": 1,
+				"expected": null,
+				"heard": []
+			},
+			"failure": null
+		},
+		{
+			"key": "spot-the-notch-0",
+			"kind": "audio",
+			"state": "generated",
+			"language": "en",
+			"inputHash": "80cbfba31bc5254c9433d0ed44a3fdc68f89b17942477dd67a498c1461b73ede",
+			"contentHash": "85da140f595f08d0c92f3ef7e29443eeff0b45962476fa49c8d70fa4e863a3d9",
+			"path": "/thai-script/lessons/lesson-04/audio/80cbfba31bc5254c.mp3",
+			"file": "audio/80cbfba31bc5254c.mp3",
+			"verification": {
+				"outcome": "not-required",
+				"attempts": 1,
+				"expected": null,
+				"heard": []
+			},
+			"failure": null
+		},
+		{
+			"key": "spot-the-notch-answer-0",
+			"kind": "audio",
+			"state": "generated",
+			"language": "en",
+			"inputHash": "3b494a46b9a4dc1867da19c59936dd1df492405e9384266649cae848de7df85f",
+			"contentHash": "c215f66c76f78f84735e967f630e2c2119c0222e8f6dabe3cabdd640a6a7f777",
+			"path": "/thai-script/lessons/lesson-04/audio/3b494a46b9a4dc18.mp3",
+			"file": "audio/3b494a46b9a4dc18.mp3",
+			"verification": {
+				"outcome": "not-required",
+				"attempts": 1,
+				"expected": null,
+				"heard": []
+			},
+			"failure": null
+		},
+		{
+			"key": "back-to-the-house-0",
+			"kind": "audio",
+			"state": "generated",
+			"language": "en",
+			"inputHash": "c8c31884c0830cb6978aab9bf526f70542fcb86308e7b2d746ee1a00921343c1",
+			"contentHash": "c1227646c897e820846b60db0900b7ba22117a27abfbd13f190cce116c240bac",
+			"path": "/thai-script/lessons/lesson-04/audio/c8c31884c0830cb6.mp3",
+			"file": "audio/c8c31884c0830cb6.mp3",
+			"verification": {
+				"outcome": "not-required",
+				"attempts": 1,
+				"expected": null,
+				"heard": []
+			},
+			"failure": null
+		},
+		{
+			"key": "meet-at-0",
+			"kind": "audio",
+			"state": "generated",
+			"language": "en",
+			"inputHash": "16ad14f3a3db0f8469aa3a94fde84e8a725fbe86a69b08344ef9a19dd78f1735",
+			"contentHash": "02b2ea78c9724ef35d817f744c5081a7039b57f78bdbf793787e25eedd73fd62",
+			"path": "/thai-script/lessons/lesson-04/audio/16ad14f3a3db0f84.mp3",
+			"file": "audio/16ad14f3a3db0f84.mp3",
+			"verification": {
+				"outcome": "not-required",
+				"attempts": 1,
+				"expected": null,
+				"heard": []
+			},
+			"failure": null
+		},
+		{
+			"key": "meet-at-1",
+			"kind": "audio",
+			"state": "generated",
+			"language": "th",
+			"inputHash": "2c8bde33693ba8e7f8ac945cf688b05f5e9a27d4fd670bd4eed8e2fc0f0fca2e",
+			"contentHash": "a05957a519f1a92fe99671b23f92efe372ed28a842ec192454adcecb44578e19",
+			"path": "/thai-script/lessons/lesson-04/audio/2c8bde33693ba8e7.mp3",
+			"file": "audio/2c8bde33693ba8e7.mp3",
+			"verification": {
+				"outcome": "verified",
+				"attempts": 2,
+				"expected": "อัด",
+				"heard": [" อั", " อัด"]
+			},
+			"failure": null
+		},
+		{
+			"key": "meet-at-2",
+			"kind": "audio",
+			"state": "generated",
+			"language": "en",
+			"inputHash": "010f942a1d98b4aaeb7b9b3591fdbc4b349539d5696bfa0e85a3eb7444d3e697",
+			"contentHash": "6b923acca6037b635619e0b4c92aeb4aa6d14a6b295b78428f6757496b25872e",
+			"path": "/thai-script/lessons/lesson-04/audio/010f942a1d98b4aa.mp3",
+			"file": "audio/010f942a1d98b4aa.mp3",
+			"verification": {
+				"outcome": "not-required",
+				"attempts": 1,
+				"expected": null,
+				"heard": []
+			},
+			"failure": null
+		},
+		{
+			"key": "the-cheat-code-0",
+			"kind": "audio",
+			"state": "generated",
+			"language": "en",
+			"inputHash": "8e6fc301232bfe282131f24f8292bd7c146ebc8c656b68347ce931ea6efebb0f",
+			"contentHash": "82eebc459ba31ff21cd50a2e2d5ce21e82f83836be4e5c93a2216a53021ec3de",
+			"path": "/thai-script/lessons/lesson-04/audio/8e6fc301232bfe28.mp3",
+			"file": "audio/8e6fc301232bfe28.mp3",
+			"verification": {
+				"outcome": "not-required",
+				"attempts": 1,
+				"expected": null,
+				"heard": []
+			},
+			"failure": null
+		},
+		{
+			"key": "short-i-0",
+			"kind": "audio",
+			"state": "generated",
+			"language": "en",
+			"inputHash": "2d9859b859827515456b293a391369a05f6a78b64636bf463c85d37c076cd6b5",
+			"contentHash": "2834993617a53e9e6978c3521da86c570af7da5d9cd3ae63734213fea0226ef1",
+			"path": "/thai-script/lessons/lesson-04/audio/2d9859b859827515.mp3",
+			"file": "audio/2d9859b859827515.mp3",
+			"verification": {
+				"outcome": "not-required",
+				"attempts": 1,
+				"expected": null,
+				"heard": []
+			},
+			"failure": null
+		},
+		{
+			"key": "read-short-0",
+			"kind": "audio",
+			"state": "generated",
+			"language": "en",
+			"inputHash": "f7a6f836a3a520862cd0048a3af80a4a47800973dc2e94fa9c72878a066a0d3b",
+			"contentHash": "3ee9fe7b72e3a1776a270b3a4f5a5c0322cc97cc705fd3fdb22a2e2cb440472a",
+			"path": "/thai-script/lessons/lesson-04/audio/f7a6f836a3a52086.mp3",
+			"file": "audio/f7a6f836a3a52086.mp3",
+			"verification": {
+				"outcome": "not-required",
+				"attempts": 1,
+				"expected": null,
+				"heard": []
+			},
+			"failure": null
+		},
+		{
+			"key": "read-short-answer-0",
+			"kind": "audio",
+			"state": "generated",
+			"language": "th",
+			"inputHash": "656113f5644473222d16306510a2f1aca7d40c6b407a40dbd6282fa3744b7c00",
+			"contentHash": "ee46427151bb385ec4d0e7175ea8fd3fcd5b91fa430d5fbafb2687c51bb9fdc3",
+			"path": "/thai-script/lessons/lesson-04/audio/656113f564447322.mp3",
+			"file": "audio/656113f564447322.mp3",
+			"verification": {
+				"outcome": "verified",
+				"attempts": 1,
+				"expected": "กิน",
+				"heard": [" กิน"]
+			},
+			"failure": null
+		},
+		{
+			"key": "read-short-answer-1",
+			"kind": "audio",
+			"state": "generated",
+			"language": "en",
+			"inputHash": "4024755b88d756ed05c34ccc3e625ca8291d1fc565688a6b8feb2170a5a65210",
+			"contentHash": "bef5a47e37bc207ea50c067a6ba61d30970004168296a9b5a6448374d562cdc7",
+			"path": "/thai-script/lessons/lesson-04/audio/4024755b88d756ed.mp3",
+			"file": "audio/4024755b88d756ed.mp3",
+			"verification": {
+				"outcome": "not-required",
+				"attempts": 1,
+				"expected": null,
+				"heard": []
+			},
+			"failure": null
+		},
+		{
+			"key": "write-short-vowels-0",
+			"kind": "audio",
+			"state": "generated",
+			"language": "en",
+			"inputHash": "a6e9c66690e023ecb8351a67f866da7e6964c5f018efc6d65fd540f2ff07434c",
+			"contentHash": "bb88c8555201a78e25a8317ef945653f9b61c1f69f4d90f43fe58f47f5c7003f",
+			"path": "/thai-script/lessons/lesson-04/audio/a6e9c66690e023ec.mp3",
+			"file": "audio/a6e9c66690e023ec.mp3",
+			"verification": {
+				"outcome": "not-required",
+				"attempts": 1,
+				"expected": null,
+				"heard": []
+			},
+			"failure": null
+		},
+		{
+			"key": "write-short-vowels-1",
+			"kind": "audio",
+			"state": "generated",
+			"language": "th",
+			"inputHash": "718aa0c3180c10416d8722bd87f130f0097343b8c1a9a6ccec3ec4922f5dc9d1",
+			"contentHash": "faad2209ed69e011e5c0f293fc72579c16bf2340f947ee05a052843185390fce",
+			"path": "/thai-script/lessons/lesson-04/audio/718aa0c3180c1041.mp3",
+			"file": "audio/718aa0c3180c1041.mp3",
+			"verification": {
+				"outcome": "recorded",
+				"attempts": 1,
+				"expected": null,
+				"heard": []
+			},
+			"failure": null
+		},
+		{
+			"key": "write-short-vowels-2",
+			"kind": "audio",
+			"state": "generated",
+			"language": "en",
+			"inputHash": "d5e4204282c1970bd850a26fbfd86f6460a8f34323ff9933cd3ce2b00d677ca3",
+			"contentHash": "d8f46ef354d2f9c06be5ebe5198c78015a7d98e0d2110402b5aa7112db2e1749",
+			"path": "/thai-script/lessons/lesson-04/audio/d5e4204282c1970b.mp3",
+			"file": "audio/d5e4204282c1970b.mp3",
+			"verification": {
+				"outcome": "not-required",
+				"attempts": 1,
+				"expected": null,
+				"heard": []
+			},
+			"failure": null
+		},
+		{
+			"key": "write-short-vowels-3",
+			"kind": "audio",
+			"state": "generated",
+			"language": "th",
+			"inputHash": "3f44c04e677b4519a4bfeb643c7328a787584df0d80594d93903cdc350bfee60",
+			"contentHash": "1fa17c28663a77b29c8bad2aa32e95be406c84fd82579f1f0d0d83ce55ed2600",
+			"path": "/thai-script/lessons/lesson-04/audio/3f44c04e677b4519.mp3",
+			"file": "audio/3f44c04e677b4519.mp3",
+			"verification": {
+				"outcome": "recorded",
+				"attempts": 1,
+				"expected": null,
+				"heard": []
+			},
+			"failure": null
+		},
+		{
+			"key": "write-short-vowels-4",
+			"kind": "audio",
+			"state": "generated",
+			"language": "en",
+			"inputHash": "b7ea42936cd82f9e927226116f26923e04477f98d7bc13d5eaf069b499efabc5",
+			"contentHash": "72927c61dc7d99de74a5c4dc134d14a1d47e72531981ef75f1c0b04a4d50a828",
+			"path": "/thai-script/lessons/lesson-04/audio/b7ea42936cd82f9e.mp3",
+			"file": "audio/b7ea42936cd82f9e.mp3",
+			"verification": {
+				"outcome": "not-required",
+				"attempts": 1,
+				"expected": null,
+				"heard": []
+			},
+			"failure": null
+		},
+		{
+			"key": "han-akat-0",
+			"kind": "audio",
+			"state": "generated",
+			"language": "en",
+			"inputHash": "edcdc74efd92c43fdb55a94988ba16fe59f84b4592cfced1a7fedbc4a1dd9ca8",
+			"contentHash": "55bbc4dcaaf878c278e5b82cd91070f102aa0656c06f8a847be72788ee37c647",
+			"path": "/thai-script/lessons/lesson-04/audio/edcdc74efd92c43f.mp3",
+			"file": "audio/edcdc74efd92c43f.mp3",
+			"verification": {
+				"outcome": "not-required",
+				"attempts": 1,
+				"expected": null,
+				"heard": []
+			},
+			"failure": null
+		},
+		{
+			"key": "han-akat-1",
+			"kind": "audio",
+			"state": "generated",
+			"language": "th",
+			"inputHash": "7b4324642c71d24fe80bb614ff6ddabb53ea03e29798bda2ebe15f2f56e225d2",
+			"contentHash": "5108d0b5eefe9f4aa6afd3660daad72552d9197d2d6db0696f305dd78bee0368",
+			"path": "/thai-script/lessons/lesson-04/audio/7b4324642c71d24f.mp3",
+			"file": "audio/7b4324642c71d24f.mp3",
+			"verification": {
+				"outcome": "verified",
+				"attempts": 1,
+				"expected": "วัน",
+				"heard": [" วัน"]
+			},
+			"failure": null
+		},
+		{
+			"key": "han-akat-2",
+			"kind": "audio",
+			"state": "generated",
+			"language": "en",
+			"inputHash": "3becd53e51e7d05197001bb7fa2d61b26a1b2234f618201625c42f3284a9a804",
+			"contentHash": "731bdb8f92a27fe1cc4af4503dfdb83c14de2b5ed005e96ed4271c682156b09d",
+			"path": "/thai-script/lessons/lesson-04/audio/3becd53e51e7d051.mp3",
+			"file": "audio/3becd53e51e7d051.mp3",
+			"verification": {
+				"outcome": "not-required",
+				"attempts": 1,
+				"expected": null,
+				"heard": []
+			},
+			"failure": null
+		},
+		{
+			"key": "han-akat-words-0",
+			"kind": "audio",
+			"state": "generated",
+			"language": "en",
+			"inputHash": "33f3c9258b54dc41455d25aeec013cb37a939d2dade906d3873ea4c45a79687d",
+			"contentHash": "9ae7bd468d2c079990331424b93f997caca6013b0c744650fde67b4debc2c191",
+			"path": "/thai-script/lessons/lesson-04/audio/33f3c9258b54dc41.mp3",
+			"file": "audio/33f3c9258b54dc41.mp3",
+			"verification": {
+				"outcome": "not-required",
+				"attempts": 1,
+				"expected": null,
+				"heard": []
+			},
+			"failure": null
+		},
+		{
+			"key": "han-akat-words-1",
+			"kind": "audio",
+			"state": "generated",
+			"language": "th",
+			"inputHash": "1383b430def5b0cb52dd6bbef6fc4d24bf67163d69735b8465ea76c4e119c7d4",
+			"contentHash": "0bcc92086383cbf8a1607ab26e2934f18a278ba7818c97912eeb18d0e7ed578a",
+			"path": "/thai-script/lessons/lesson-04/audio/1383b430def5b0cb.mp3",
+			"file": "audio/1383b430def5b0cb.mp3",
+			"verification": {
+				"outcome": "verified",
+				"attempts": 1,
+				"expected": "กัน",
+				"heard": [" กัน"]
+			},
+			"failure": null
+		},
+		{
+			"key": "han-akat-words-2",
+			"kind": "audio",
+			"state": "generated",
+			"language": "en",
+			"inputHash": "4aae7c6713fb58f44fd2c88cf643d917df3a8d9d58b4a3877b51a7a96f660b23",
+			"contentHash": "9b0ea38beb42f8fae7f952611da186fb57c177f4861a77943481722ff8671d4d",
+			"path": "/thai-script/lessons/lesson-04/audio/4aae7c6713fb58f4.mp3",
+			"file": "audio/4aae7c6713fb58f4.mp3",
+			"verification": {
+				"outcome": "not-required",
+				"attempts": 1,
+				"expected": null,
+				"heard": []
+			},
+			"failure": null
+		},
+		{
+			"key": "han-akat-words-3",
+			"kind": "audio",
+			"state": "generated",
+			"language": "th",
+			"inputHash": "a2326fa4e087ca5a167f88dfcd4439ae43e686de07df0a1ce8d94d81407b5339",
+			"contentHash": "38cce07241efe9abf8aab62173a0d0efad121a485ad36a11b10949186f896ad4",
+			"path": "/thai-script/lessons/lesson-04/audio/a2326fa4e087ca5a.mp3",
+			"file": "audio/a2326fa4e087ca5a.mp3",
+			"verification": {
+				"outcome": "verified",
+				"attempts": 1,
+				"expected": "ดัง",
+				"heard": [" ดัง"]
+			},
+			"failure": null
+		},
+		{
+			"key": "han-akat-words-4",
+			"kind": "audio",
+			"state": "generated",
+			"language": "en",
+			"inputHash": "bd4a71d542aa5f59331cb31f659b928c9224f165d19870b837b49e4b298d0263",
+			"contentHash": "5e6f1ea1268e1e2907ccfa0ae222afebda82f325dec87d8dd906df631a9b00b8",
+			"path": "/thai-script/lessons/lesson-04/audio/bd4a71d542aa5f59.mp3",
+			"file": "audio/bd4a71d542aa5f59.mp3",
+			"verification": {
+				"outcome": "not-required",
+				"attempts": 1,
+				"expected": null,
+				"heard": []
+			},
+			"failure": null
+		},
+		{
+			"key": "han-akat-words-5",
+			"kind": "audio",
+			"state": "generated",
+			"language": "th",
+			"inputHash": "5b35ce344505370191d76912a3c99685a210af8d9f4a12b86237fe326b899b7b",
+			"contentHash": "5db92c6338d2f5ad0810094c82b8f922fb79c3559cd3d44539af126fc43c37db",
+			"path": "/thai-script/lessons/lesson-04/audio/5b35ce3445053701.mp3",
+			"file": "audio/5b35ce3445053701.mp3",
+			"verification": {
+				"outcome": "verified",
+				"attempts": 1,
+				"expected": "วัด",
+				"heard": [" วัด"]
+			},
+			"failure": null
+		},
+		{
+			"key": "han-akat-words-6",
+			"kind": "audio",
+			"state": "generated",
+			"language": "en",
+			"inputHash": "9b6a182b32ef1abf3ac6c03504ba321175923d568a4becd65ce1d58f1f0e1164",
+			"contentHash": "c369443917ec9d31229d35528b5040b88186893fd9b0fb6adfbba4696ccf5999",
+			"path": "/thai-script/lessons/lesson-04/audio/9b6a182b32ef1abf.mp3",
+			"file": "audio/9b6a182b32ef1abf.mp3",
+			"verification": {
+				"outcome": "not-required",
+				"attempts": 1,
+				"expected": null,
+				"heard": []
+			},
+			"failure": null
+		},
+		{
+			"key": "write-han-akat-0",
+			"kind": "audio",
+			"state": "generated",
+			"language": "en",
+			"inputHash": "581e77b054fb33e930442dfe38e10bdb84bc285e1d2dd55760d10ca72915054c",
+			"contentHash": "693ea83e1f3b73d54662dd0c67aa257d7996362b087d04506ee7ba2d0e5bc4e5",
+			"path": "/thai-script/lessons/lesson-04/audio/581e77b054fb33e9.mp3",
+			"file": "audio/581e77b054fb33e9.mp3",
+			"verification": {
+				"outcome": "not-required",
+				"attempts": 1,
+				"expected": null,
+				"heard": []
+			},
+			"failure": null
+		},
+		{
+			"key": "high-tone-0",
+			"kind": "audio",
+			"state": "generated",
+			"language": "en",
+			"inputHash": "1b7139bb5ff92558b94ffd7595bf86c3b080bc10c4fb7ee56ce411ff7dcb45ea",
+			"contentHash": "d5bdc8623ab30c272c0252465649dd34568f9f17e0e2320ef7a2aab94e78a0a5",
+			"path": "/thai-script/lessons/lesson-04/audio/1b7139bb5ff92558.mp3",
+			"file": "audio/1b7139bb5ff92558.mp3",
+			"verification": {
+				"outcome": "not-required",
+				"attempts": 1,
+				"expected": null,
+				"heard": []
+			},
+			"failure": null
+		},
+		{
+			"key": "high-tone-1",
+			"kind": "audio",
+			"state": "generated",
+			"language": "th",
+			"inputHash": "e4c6041b8ef6be5f37882b84292da733b493a86917f5ff45709e5f644be10203",
+			"contentHash": "50a158bb2aaf87425f3c4273565732ce922227ab339ff230a53ac93a55dc223a",
+			"path": "/thai-script/lessons/lesson-04/audio/e4c6041b8ef6be5f.mp3",
+			"file": "audio/e4c6041b8ef6be5f.mp3",
+			"verification": {
+				"outcome": "verified",
+				"attempts": 1,
+				"expected": "ชิด",
+				"heard": [" ชิด"]
+			},
+			"failure": null
+		},
+		{
+			"key": "high-tone-2",
+			"kind": "audio",
+			"state": "generated",
+			"language": "en",
+			"inputHash": "6ffc6701ab93a31e327dd322e21f7ea9e1ff7170ed5d16d11a0c338cf928d66e",
+			"contentHash": "55ddfe555e6edb5693a99913a09adad76b869b0dfcb0d3f866ff84fe8d34b82e",
+			"path": "/thai-script/lessons/lesson-04/audio/6ffc6701ab93a31e.mp3",
+			"file": "audio/6ffc6701ab93a31e.mp3",
+			"verification": {
+				"outcome": "not-required",
+				"attempts": 1,
+				"expected": null,
+				"heard": []
+			},
+			"failure": null
+		},
+		{
+			"key": "high-tone-3",
+			"kind": "audio",
+			"state": "generated",
+			"language": "th",
+			"inputHash": "5b35ce344505370191d76912a3c99685a210af8d9f4a12b86237fe326b899b7b",
+			"contentHash": "5db92c6338d2f5ad0810094c82b8f922fb79c3559cd3d44539af126fc43c37db",
+			"path": "/thai-script/lessons/lesson-04/audio/5b35ce3445053701.mp3",
+			"file": "audio/5b35ce3445053701.mp3",
+			"verification": {
+				"outcome": "verified",
+				"attempts": 1,
+				"expected": "วัด",
+				"heard": [" วัด"]
+			},
+			"failure": null
+		},
+		{
+			"key": "high-tone-4",
+			"kind": "audio",
+			"state": "generated",
+			"language": "en",
+			"inputHash": "18232b2abdfc74e742b894d4d9c6c880cbdae184d4684ce69ce84503a934c00e",
+			"contentHash": "39a492b21492df380d9686581a43f88e668b6096bab0023d346f9373a53a5828",
+			"path": "/thai-script/lessons/lesson-04/audio/18232b2abdfc74e7.mp3",
+			"file": "audio/18232b2abdfc74e7.mp3",
+			"verification": {
+				"outcome": "not-required",
+				"attempts": 1,
+				"expected": null,
+				"heard": []
+			},
+			"failure": null
+		},
+		{
+			"key": "live-contrast-0",
+			"kind": "audio",
+			"state": "generated",
+			"language": "en",
+			"inputHash": "488788e0006a6dd324678e222bf2b1e8172c1574f1e1f6861649b3b561da85c6",
+			"contentHash": "6bfc7c0f7ea3ce99c4d1b8e21b98cdb40767e38b4fa32fa4b20b2c7a91786438",
+			"path": "/thai-script/lessons/lesson-04/audio/488788e0006a6dd3.mp3",
+			"file": "audio/488788e0006a6dd3.mp3",
+			"verification": {
+				"outcome": "not-required",
+				"attempts": 1,
+				"expected": null,
+				"heard": []
+			},
+			"failure": null
+		},
+		{
+			"key": "live-contrast-1",
+			"kind": "audio",
+			"state": "generated",
+			"language": "th",
+			"inputHash": "ed506e564973a1ece8f19a61b2b6d25d8c58b5adf271ee3feccdd6ea6c9a0845",
+			"contentHash": "e9200021e22d51b20bd1e897b50d4baf62c8f8757214a33b16d980c5c2fb1a9f",
+			"path": "/thai-script/lessons/lesson-04/audio/ed506e564973a1ec.mp3",
+			"file": "audio/ed506e564973a1ec.mp3",
+			"verification": {
+				"outcome": "verified",
+				"attempts": 1,
+				"expected": "ชาย",
+				"heard": [" ชาย"]
+			},
+			"failure": null
+		},
+		{
+			"key": "live-contrast-2",
+			"kind": "audio",
+			"state": "generated",
+			"language": "en",
+			"inputHash": "d27abafefde47e4224112f23c4fff0dc1b9a52739884fc82e196c18a9618829f",
+			"contentHash": "977c83801b66c78d5fe0227bc04e36feff4208fc2f9fefb59728c1427a286724",
+			"path": "/thai-script/lessons/lesson-04/audio/d27abafefde47e42.mp3",
+			"file": "audio/d27abafefde47e42.mp3",
+			"verification": {
+				"outcome": "not-required",
+				"attempts": 1,
+				"expected": null,
+				"heard": []
+			},
+			"failure": null
+		},
+		{
+			"key": "live-contrast-3",
+			"kind": "audio",
+			"state": "generated",
+			"language": "th",
+			"inputHash": "e16b2defdce005e006c6ae84f0a4b8e7da63c0716e576b82fe4a174578eb1ec8",
+			"contentHash": "e5d364b96d4df8ae9c9ced7d44ab27a49c690c6080cc98b6c66f35575dbbbf0a",
+			"path": "/thai-script/lessons/lesson-04/audio/e16b2defdce005e0.mp3",
+			"file": "audio/e16b2defdce005e0.mp3",
+			"verification": {
+				"outcome": "verified",
+				"attempts": 1,
+				"expected": "ชาว",
+				"heard": [" ชาว"]
+			},
+			"failure": null
+		},
+		{
+			"key": "live-contrast-4",
+			"kind": "audio",
+			"state": "generated",
+			"language": "en",
+			"inputHash": "7a7c083ce37434b7133fa67fabec49e00dda3afe863900efbd128838f41a5b2c",
+			"contentHash": "79c58e66dd5221f64ac83124013151e9e733dd93588be52632b95d42a5f654cd",
+			"path": "/thai-script/lessons/lesson-04/audio/7a7c083ce37434b7.mp3",
+			"file": "audio/7a7c083ce37434b7.mp3",
+			"verification": {
+				"outcome": "not-required",
+				"attempts": 1,
+				"expected": null,
+				"heard": []
+			},
+			"failure": null
+		},
+		{
+			"key": "two-endings-0",
+			"kind": "audio",
+			"state": "generated",
+			"language": "en",
+			"inputHash": "b98b66e5e0fd8abaa563297095f0c195040dd105d53699f2fb655a9ac20d0bfd",
+			"contentHash": "38bdec025fab6911255aa88e401dc6fe17c6c8b6b6b323403e9f01f2e2fce177",
+			"path": "/thai-script/lessons/lesson-04/audio/b98b66e5e0fd8aba.mp3",
+			"file": "audio/b98b66e5e0fd8aba.mp3",
+			"verification": {
+				"outcome": "not-required",
+				"attempts": 1,
+				"expected": null,
+				"heard": []
+			},
+			"failure": null
+		},
+		{
+			"key": "two-endings-answer-0",
+			"kind": "audio",
+			"state": "generated",
+			"language": "en",
+			"inputHash": "9281d29cc1cdbbf4cca84198bb9665e56209c10011f7f5bbb9de278cde504aa4",
+			"contentHash": "7db4a18263289e21f9b51f72bb3bad0def5a37d9a1220dc2ccd58f93f9a71a14",
+			"path": "/thai-script/lessons/lesson-04/audio/9281d29cc1cdbbf4.mp3",
+			"file": "audio/9281d29cc1cdbbf4.mp3",
+			"verification": {
+				"outcome": "not-required",
+				"attempts": 1,
+				"expected": null,
+				"heard": []
+			},
+			"failure": null
+		},
+		{
+			"key": "read-close-0",
+			"kind": "audio",
+			"state": "generated",
+			"language": "en",
+			"inputHash": "83fe0e60a4cbde3df40e13acc99416a19735ae4650960e775b194ad0a7252e03",
+			"contentHash": "37ab89cb9d7950c055eb2773e0ed5baac10f5960c31af5c52fd3749c8a1cc992",
+			"path": "/thai-script/lessons/lesson-04/audio/83fe0e60a4cbde3d.mp3",
+			"file": "audio/83fe0e60a4cbde3d.mp3",
+			"verification": {
+				"outcome": "not-required",
+				"attempts": 1,
+				"expected": null,
+				"heard": []
+			},
+			"failure": null
+		},
+		{
+			"key": "what-is-here-image",
+			"kind": "image",
+			"state": "generated",
+			"language": null,
+			"inputHash": "1478d99445863e11032bfce2c39adfbb7e6e2f78b2a5ecb5c5b805b2263a1701",
+			"contentHash": "2b9071c7e12d966c358eaf8e0c0c0d2f5a4dd3d9dd32d7983b856283d80fa3aa",
+			"path": "/thai-script/lessons/lesson-04/images/what-is-here-1478d9944586.jpg",
+			"file": "images/what-is-here-1478d9944586.jpg",
+			"verification": null,
+			"failure": null
+		},
+		{
+			"key": "the-trick-image",
+			"kind": "image",
+			"state": "generated",
+			"language": null,
+			"inputHash": "43ead26a5be5e9cfaec1cbe65137be9ccae72b03dc1fe8c448f470c1cfae29e9",
+			"contentHash": "d6d9b7cdc21f1a5eca6f0195e74f53cb213dcf6b6725f478ac9471ba3187ec3e",
+			"path": "/thai-script/lessons/lesson-04/images/the-trick-43ead26a5be5.jpg",
+			"file": "images/the-trick-43ead26a5be5.jpg",
+			"verification": null,
+			"failure": null
+		},
+		{
+			"key": "pen-still-there-image",
+			"kind": "image",
+			"state": "generated",
+			"language": null,
+			"inputHash": "1bdf41db8b53f4c1d37e35fe055407aff7aa9205fa5d41b74dbbcf7ff693faa8",
+			"contentHash": "d5ee5c5c023898ed24512e1d09e65f95aecc922e11f54dab1cac9d33590ddab8",
+			"path": "/thai-script/lessons/lesson-04/images/pen-still-there-1bdf41db8b53.jpg",
+			"file": "images/pen-still-there-1bdf41db8b53.jpg",
+			"verification": null,
+			"failure": null
+		},
+		{
+			"key": "meet-chaang-image",
+			"kind": "image",
+			"state": "generated",
+			"language": null,
+			"inputHash": "94c6c5bf7517a5635e6800fcd06c64cf208aa374b4b58f101682e152c85e7240",
+			"contentHash": "d011f0efaf5771eaaeb4c264fff45a4329296cdcaa4ce4b8677149f3b166bf55",
+			"path": "/thai-script/lessons/lesson-04/images/meet-chaang-94c6c5bf7517.jpg",
+			"file": "images/meet-chaang-94c6c5bf7517.jpg",
+			"verification": null,
+			"failure": null
+		},
+		{
+			"key": "chaang-story-1-image",
+			"kind": "image",
+			"state": "generated",
+			"language": null,
+			"inputHash": "004e74c0e9dc65926665a9f59cb22f409d6b752df35030eeab1d6a7f8016ecce",
+			"contentHash": "631e2ef343b4c3d5800a207311b047060e7ee5b6738d2377deaab52fad0024e1",
+			"path": "/thai-script/lessons/lesson-04/images/chaang-story-1-004e74c0e9dc.jpg",
+			"file": "images/chaang-story-1-004e74c0e9dc.jpg",
+			"verification": null,
+			"failure": null
+		},
+		{
+			"key": "chaang-story-2-image",
+			"kind": "image",
+			"state": "generated",
+			"language": null,
+			"inputHash": "ba50b8502cd01ae0b10a3d74849003ef5d44fdf5fd42c63d197248196f681da6",
+			"contentHash": "3ef88e59d5a4e60daf2034ede676c6e0249ecfd0df4fd1d5d72d24af5c4bd3ef",
+			"path": "/thai-script/lessons/lesson-04/images/chaang-story-2-ba50b8502cd0.jpg",
+			"file": "images/chaang-story-2-ba50b8502cd0.jpg",
+			"verification": null,
+			"failure": null
+		},
+		{
+			"key": "meet-so-image",
+			"kind": "image",
+			"state": "generated",
+			"language": null,
+			"inputHash": "387d95aa4a91e66d276517af9445fa823489c5d7bb8659b5cab9c639a0c3c0b5",
+			"contentHash": "79e5d1dac7a5037eef4244a9279763fef93495fd347c799e416732e9dea26414",
+			"path": "/thai-script/lessons/lesson-04/images/meet-so-387d95aa4a91.jpg",
+			"file": "images/meet-so-387d95aa4a91.jpg",
+			"verification": null,
+			"failure": null
+		},
+		{
+			"key": "so-story-1-image",
+			"kind": "image",
+			"state": "generated",
+			"language": null,
+			"inputHash": "36a5d625ed60e14c7709923daefe06c3c16a8b7ba0b94b3f1e48f8e01e004678",
+			"contentHash": "711fc71e49df99dac7a62e74c145fc2e07bfb59259b2a05e187064ff125625de",
+			"path": "/thai-script/lessons/lesson-04/images/so-story-1-36a5d625ed60.jpg",
+			"file": "images/so-story-1-36a5d625ed60.jpg",
+			"verification": null,
+			"failure": null
+		},
+		{
+			"key": "back-to-the-house-image",
+			"kind": "image",
+			"state": "generated",
+			"language": null,
+			"inputHash": "9cc652e5140cb6c51d870ce5527c1cd2c371cfd10134e3eaf1a83309c7eb0c2c",
+			"contentHash": "4d67fecbeab72061a62e09c9b37e832f90089fe0afb33b4b76f84ca74ab0549e",
+			"path": "/thai-script/lessons/lesson-04/images/back-to-the-house-9cc652e5140c.jpg",
+			"file": "images/back-to-the-house-9cc652e5140c.jpg",
+			"verification": null,
+			"failure": null
+		},
+		{
+			"key": "meet-at-image",
+			"kind": "image",
+			"state": "generated",
+			"language": null,
+			"inputHash": "755503537f09f0b2e092808cb85e0cdca24540088aecb4ffeafa319ea753de07",
+			"contentHash": "a5067d5923ec3114f3cb30a64dc4cff34b1a07262b8f735271ede101666738c0",
+			"path": "/thai-script/lessons/lesson-04/images/meet-at-755503537f09.jpg",
+			"file": "images/meet-at-755503537f09.jpg",
+			"verification": null,
+			"failure": null
+		},
+		{
+			"key": "the-cheat-code-image",
+			"kind": "image",
+			"state": "generated",
+			"language": null,
+			"inputHash": "b9e8f51c81ff06d096126180fe07c85fc25c8e5857516480365c63d3ec6ce7c6",
+			"contentHash": "a472be6a08047c92954fef50ccc99d5b83da365ac5e387a4936b54dbd5cb7874",
+			"path": "/thai-script/lessons/lesson-04/images/the-cheat-code-b9e8f51c81ff.jpg",
+			"file": "images/the-cheat-code-b9e8f51c81ff.jpg",
+			"verification": null,
+			"failure": null
+		},
+		{
+			"key": "short-i-image",
+			"kind": "image",
+			"state": "generated",
+			"language": null,
+			"inputHash": "ab72fe44a454be45609725d8e92042efeb1054b05490469a17a67c7cb5e82320",
+			"contentHash": "211186d29dc173ef150f92e7ff8cffa14b3d891d7f521a4919c6590e70611568",
+			"path": "/thai-script/lessons/lesson-04/images/short-i-ab72fe44a454.jpg",
+			"file": "images/short-i-ab72fe44a454.jpg",
+			"verification": null,
+			"failure": null
+		},
+		{
+			"key": "han-akat-image",
+			"kind": "image",
+			"state": "generated",
+			"language": null,
+			"inputHash": "dc2331b3dc4df8493afb1555d38f21940a11f7108be7c76b79b86895f79243c2",
+			"contentHash": "156d5b366c850a8208b371b721cee255646a606ce020993ad11c8529730d3d19",
+			"path": "/thai-script/lessons/lesson-04/images/han-akat-dc2331b3dc4d.jpg",
+			"file": "images/han-akat-dc2331b3dc4d.jpg",
+			"verification": null,
+			"failure": null
+		},
+		{
+			"key": "high-tone-image",
+			"kind": "image",
+			"state": "generated",
+			"language": null,
+			"inputHash": "6b7ebcd5f06f4f9e7526bb80769e62c79cb88e1257996c630e16a6be015a7068",
+			"contentHash": "9fadcaf7280093f414a24dc67893c39dc8de782cc9b7feaa2d7b43f9b73f69b3",
+			"path": "/thai-script/lessons/lesson-04/images/high-tone-6b7ebcd5f06f.jpg",
+			"file": "images/high-tone-6b7ebcd5f06f.jpg",
+			"verification": null,
+			"failure": null
+		},
+		{
+			"key": "live-contrast-image",
+			"kind": "image",
+			"state": "generated",
+			"language": null,
+			"inputHash": "51d4baf5fe5bb5d08932d0b51e1d8bc9d581fafe9ce8fe3bf73df6a684810ef7",
+			"contentHash": "1490a4d85da15f74178e81e6e7712861589974dcf8bbda90f10fa40c9dc0866f",
+			"path": "/thai-script/lessons/lesson-04/images/live-contrast-51d4baf5fe5b.jpg",
+			"file": "images/live-contrast-51d4baf5fe5b.jpg",
+			"verification": null,
+			"failure": null
+		}
+	]
 }

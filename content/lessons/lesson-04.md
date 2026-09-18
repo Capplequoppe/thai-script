@@ -198,18 +198,18 @@ narration: en Because look who is upstairs. That is the roof's lodger from last 
 - **The flick is the length.** With it long, without it short.
 
 ## exposition read-short
-thai: ซิ
+thai: กิน
 heading: Read this one
-narration: en Two marks, and you have met both of them in the last ten minutes. The chain's letter, and the roof's lodger with his flick taken off. Work out what it sounds like and say it aloud before you turn this over.
-- The chain's letter, with a short vowel above it.
+narration: en Three letters, from three different lessons. The chicken's letter from last time, the roof's lodger with his flick taken off, and the mouse's letter from the very first lesson closing it. Work out what it sounds like and say it aloud before you turn this over.
+- Chicken, short vowel above, mouse closing it.
 - **Say it aloud before you turn it over.**
 
 ## exposition read-short-answer
-thai: ซิ
+thai: กิน
 heading: That one
-narration: th ซิ
-narration: en That is what you say to push somebody into doing the thing they are already thinking about doing. Go on. Do it. You will hear it constantly and it is two letters long.
-- **ซิ** — *go on, do it*.
+narration: th กิน
+narration: en To eat. Which is a word you will use on your first day in the country and every day after it, and you have just read it off the page out of three letters you collected one lesson at a time.
+- **กิน** — to eat.
 
 ## exposition write-short-vowels
 thai: ะ
@@ -265,14 +265,14 @@ rule: low-dead-short
 image: images/lesson-04/high-tone.jpg
 scene: A steep rocky headland rising sharply above a harbour, a narrow path cut up the face of it, sea far below, bright hard morning light. No people.
 heading: Low class, stopped short
-narration: en Now the second rule, and it is the first time the harbour has done anything but land flat. A low class letter, a short vowel, and a syllable that stops dead — and the pitch goes to the top of your range. Listen.
-narration: th ซิ
-narration: en High. And nothing stopped that syllable, which is the part worth noticing: when a vowel is short and nothing follows it at all, that counts as stopped. The sound has nowhere to go because there is nothing to go to. Here it is again with a real ending on it.
+narration: en Now the second rule, and it is the first time the harbour has done anything except land flat. Take a low class letter, give it a short vowel, and stop the syllable dead — and the pitch goes to the top of your range. Here is one built entirely out of today.
+narration: th ชิด
+narration: en The elephant's letter, today's short vowel, and the child's letter from last lesson sealing it shut. It means close, as in close together, and you can hear where it sits: right up at the top. Here is another one.
 narration: th วัด
-narration: en To measure, and it stops on the market's child letter. Short vowel, sealed dead, low class opening — high again.
+narration: en To measure. Short vowel up on the roof this time, sealed dead by the same letter, opening on a low class letter — and high again. One more thing to file away, which you will not hear today because it needs a longer word than we have letters for. A short vowel with nothing after it at all also counts as stopped. The sound has nowhere to go because there is nothing for it to go to.
 - Low class, short vowel, dead ending: the pitch jumps high.
-- A short vowel with nothing after it **counts as stopped**.
-- Then the same thing again, sealed by a real final consonant.
+- Both of those are sealed by a real final consonant.
+- A short vowel with **nothing after it** counts as stopped too.
 
 ## exposition live-contrast
 image: images/lesson-04/live-contrast.jpg
