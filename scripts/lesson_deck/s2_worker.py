@@ -123,9 +123,13 @@ def main() -> int:
                 text=request["text"],
                 num_samples=1,
                 max_new_tokens=0,
-                top_p=0.9,
-                top_k=30,
-                temperature=1.0,
+                # Sent per request, so the cache key can cover them. The
+                # fallbacks are the values this worker used before they were
+                # hoisted into VoiceSpec; nothing in this repository relies on
+                # them any more.
+                top_p=float(request.get("top_p", 0.9)),
+                top_k=int(request.get("top_k", 30)),
+                temperature=float(request.get("temperature", 1.0)),
                 compile=args.compile,
                 iterative_prompt=True,
                 chunk_length=512,
