@@ -452,7 +452,7 @@ narration: en A rice field. If your pitch moved while you said it, say it once m
 
 ## exposition word-maa
 image: images/lesson-01/word-maa-dream.jpg
-scene: A woman walks out of calm shallow sea water toward a small boy standing on an empty beach at dawn, her arms lifting toward him, a grey horse waiting at his side. Soft hazy dreamlike light, the water like glass, the horizon glowing gold. Tender and unreal.
+scene: A woman walks toward a small boy across a flooded rice paddy at dawn, the shallow water flat and mirror-still around her ankles, rows of green shoots running away to a dead-level horizon. The boy waits at the edge with a grey horse beside him. Soft hazy dreamlike light, gold on the water. Tender and unreal.
 glyph: มา
 anchor: MAA
 gloss: to come

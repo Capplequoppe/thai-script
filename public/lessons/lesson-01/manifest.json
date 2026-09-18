@@ -909,7 +909,7 @@
 			"state": "generated",
 			"language": "th",
 			"inputHash": "143239eddba2e976656d69b659033ad434eea2c28c3403622c5c8b014656ad9d",
-			"contentHash": "b212a21c169eeefe1c1b145348028fc52348a12b8d8f175b88b6f017f358e9d1",
+			"contentHash": "b1a57b83272a3f8c9b6a311035628772c9e001a097727203aa513cf7f3c5a316",
 			"path": "/thai-script/lessons/lesson-01/audio/143239eddba2e976.mp3",
 			"file": "audio/143239eddba2e976.mp3",
 			"verification": {
@@ -994,7 +994,7 @@
 			"state": "generated",
 			"language": "th",
 			"inputHash": "143239eddba2e976656d69b659033ad434eea2c28c3403622c5c8b014656ad9d",
-			"contentHash": "fd832256b1045d48f65b5c73d51baac7417dc618722236a180ba23ab6997df51",
+			"contentHash": "b1a57b83272a3f8c9b6a311035628772c9e001a097727203aa513cf7f3c5a316",
 			"path": "/thai-script/lessons/lesson-01/audio/143239eddba2e976.mp3",
 			"file": "audio/143239eddba2e976.mp3",
 			"verification": {
@@ -1079,7 +1079,7 @@
 			"state": "generated",
 			"language": "th",
 			"inputHash": "143239eddba2e976656d69b659033ad434eea2c28c3403622c5c8b014656ad9d",
-			"contentHash": "fd832256b1045d48f65b5c73d51baac7417dc618722236a180ba23ab6997df51",
+			"contentHash": "b1a57b83272a3f8c9b6a311035628772c9e001a097727203aa513cf7f3c5a316",
 			"path": "/thai-script/lessons/lesson-01/audio/143239eddba2e976.mp3",
 			"file": "audio/143239eddba2e976.mp3",
 			"verification": {
@@ -1464,10 +1464,10 @@
 			"kind": "image",
 			"state": "generated",
 			"language": null,
-			"inputHash": "cfa6f6111701028c61b30914ac04bb321ed875b2dc063f3280eeedaa6ac6d00b",
-			"contentHash": "0189c4bc3e098572ecf7c6e56010e9770931c93ebcadfaf428c00fad76f72bb6",
-			"path": "/thai-script/lessons/lesson-01/images/word-maa-cfa6f6111701.jpg",
-			"file": "images/word-maa-cfa6f6111701.jpg",
+			"inputHash": "69dbbde162fe2dc9911f0723d28e68652a463ae6bfc2f9b88a0705a84fb5f325",
+			"contentHash": "daa2f81c609769c7b23f0a59039b8eba4c49b2aa8c57909367491760403b7ec9",
+			"path": "/thai-script/lessons/lesson-01/images/word-maa-69dbbde162fe.jpg",
+			"file": "images/word-maa-69dbbde162fe.jpg",
 			"verification": null,
 			"failure": null
 		},
