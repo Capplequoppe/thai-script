@@ -17,7 +17,7 @@ describe("BottomTabBar", () => {
 	// label (e.g. LotusIcon's `<title>Home</title>` next to the "Home" tab
 	// text) — a plain text query would match both, so tabs are queried by
 	// link role/name instead, which correctly ignores the hidden icon title.
-	it("shows five evergreen tabs before vocabulary unlocks", () => {
+	it("shows six evergreen tabs before vocabulary unlocks", () => {
 		render(
 			<MemoryRouter>
 				<BottomTabBar vocabUnlocked={false} dueCount={0} mobileOnly />
@@ -27,34 +27,51 @@ describe("BottomTabBar", () => {
 		expect(screen.getByRole("link", { name: "Home" })).toBeTruthy();
 		expect(screen.getByRole("link", { name: "Learn" })).toBeTruthy();
 		expect(screen.getByRole("link", { name: "Items" })).toBeTruthy();
+		expect(screen.getByRole("link", { name: "Palace" })).toBeTruthy();
 		expect(screen.getByRole("link", { name: "Progress" })).toBeTruthy();
 		expect(screen.getByRole("link", { name: "Settings" })).toBeTruthy();
-		expect(screen.queryByRole("link", { name: "Dictionary" })).toBeNull();
+		expect(screen.queryByRole("link", { name: "Words" })).toBeNull();
 	});
 
-	it("adds the Dictionary tab once vocabulary unlocks", () => {
+	it("adds the Words tab once vocabulary unlocks", () => {
 		render(
 			<MemoryRouter>
 				<BottomTabBar vocabUnlocked={true} dueCount={0} mobileOnly />
 			</MemoryRouter>,
 		);
 
-		expect(screen.getByRole("link", { name: "Dictionary" })).toBeTruthy();
+		expect(screen.getByRole("link", { name: "Words" })).toBeTruthy();
 	});
 
-	// Tabs now share the row's width (`flex-1`) instead of sizing to their
-	// own content inside an `overflow-x-auto` scroller, so an extra tab makes
-	// every tab narrower rather than silently pushing the last one off-screen.
-	// The ceiling is still worth pinning: six tabs is what the 390px viewport
-	// was measured against, and past that the labels stop being readable.
-	it("never exceeds six tabs, even fully unlocked", () => {
+	// The palace was reachable only from a link on the Items page, which is
+	// no way to find a map you are supposed to be living in.
+	it("reaches the memory palace from the bar", () => {
+		render(
+			<MemoryRouter>
+				<BottomTabBar vocabUnlocked={true} dueCount={0} mobileOnly />
+			</MemoryRouter>,
+		);
+
+		expect(
+			screen.getByRole("link", { name: "Palace" }).getAttribute("href"),
+		).toBe("/palace");
+	});
+
+	// Tabs share the row's width (`flex-1`) instead of sizing to their own
+	// content inside an `overflow-x-auto` scroller, so an extra tab makes every
+	// tab narrower rather than silently pushing the last one off-screen. The
+	// ceiling is still worth pinning: seven is what the 390px viewport was
+	// measured against — ~55px a tab, which is why the vocabulary tab is
+	// labelled "Words" and not "Dictionary" — and past that the labels stop
+	// being readable.
+	it("never exceeds seven tabs, even fully unlocked", () => {
 		render(
 			<MemoryRouter>
 				<BottomTabBar vocabUnlocked={true} dueCount={12} mobileOnly />
 			</MemoryRouter>,
 		);
 
-		expect(screen.getAllByRole("link")).toHaveLength(6);
+		expect(screen.getAllByRole("link")).toHaveLength(7);
 	});
 
 	// Grammar, Sentences and Game are lanes in the Learn hub, not tabs;
