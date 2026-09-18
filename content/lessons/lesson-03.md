@@ -18,6 +18,21 @@ one lesson 1 gave away. See docs/vowel-house.md. It gets one slide of its own
 before the lodger, because this is the only lesson that has to introduce the
 whole scheme; every later lesson just opens a room.
 
+MNEMONICS ARE TAKEN, NOT FORCED. Where an English word that starts with the
+letter's own sound is already the right word for the thing, use it and say
+nothing about it: the chicken eats spilled **g**rain, the child's letter is
+**d**rawn down to a point, the leaf grows out of an open **b**asket. All three
+were already the natural word. Lesson 1's "nocturnal, notorious,
+knot-nibbling neighbour" is the same trick with the volume up, and it works
+because a rodent gives English more N-words than anyone needs.
+
+Where the hook is not free, there is none, and that is not a gap to fill. A
+forced alliteration costs a learner more to hold than the letter does. Naming
+the people in a story after its letter was considered and dropped for the same
+reason — it works for ม and น, where English makes the same sound, and it
+actively fights lesson 3, whose whole argument is that ก, ด and บ are *not*
+the English sounds. A chicken called Gary would unteach the slide before it.
+
 NAMES. The roof's lodger is อีก, and the name is the sound — a Thai name
 beginning with a vowel is written with อ as a silent carrier, so the first
 syllable is the vowel exactly. It is said by the Thai voice, never the
