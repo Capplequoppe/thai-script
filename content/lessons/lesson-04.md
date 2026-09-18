@@ -52,6 +52,14 @@ narration: en Both of today's letters live at the harbour, so both are low class
 - The second letter is the first with a notch in it.
 - The notch is a link of chain.
 
+## exposition pen-still-there
+image: images/lesson-01/get-a-pen.jpg
+heading: Pen and paper, again
+narration: en Pen and paper before the first letter, the same as every lesson. Today's two are the closest pair you have met — one of them is the other with a single dent in it — and that is exactly the kind of pair the eye tells apart on the page and the hand tells apart properly. Writing them is not revision here, it is the thing that separates them. And keep saying both halves of each name out loud while you write. Both habits, every lesson, and they are the two people drop first.
+- Real paper, a real pen.
+- Today's pair is nearly identical. The hand separates them.
+- Out loud, both halves of the name, every time.
+
 ## exposition meet-chaang
 image: images/lesson-04/meet-chaang.jpg
 scene: A grey elephant standing in shallow harbour water with its trunk raised, moored wooden longtail boats and drying nets behind, morning light.
@@ -60,7 +68,7 @@ gloss: elephant letter
 cue: a burst of breath
 heading: The elephant
 narration: en The first letter. Listen to its name.
-narration: th ชอ ช้าง
+recording: th ชอ ช้าง public/audio/consonant-cho-chang.mp3
 narration: en That word means elephant. The sound is new to you, and so is the kind of sound. Everything you have met so far either hummed or stopped dead. This one breathes. Put your palm up again — and this time it is supposed to move. A burst of air behind the sound, thrown out.
 - Its name is the sound, then a word beginning with that sound.
 - The word means *elephant*.
@@ -80,7 +88,7 @@ image: images/lesson-04/chaang-story-2.jpg
 scene: A grey elephant standing in the shallows hosing water over its own back with its raised trunk, tail flicked high, on a fishing harbour quay, moored wooden longtail boats and drying nets behind.
 heading: The sound he makes when the work is done
 narration: en And when the boat is up and the chain goes slack, he walks himself into the shallows and hoses his own back down. Trunk up, and out it comes in one burst — not a hum, not a hiss, a lungful thrown. That burst is the letter. Look at the shape while you hear it: one climbing stroke, smooth the whole way up, and a tail flicking high above the line, which is exactly what his does.
-narration: th ชอ ช้าง
+recording: th ชอ ช้าง public/audio/consonant-cho-chang.mp3
 - Work done, trunk up, one burst of breath.
 - A smooth climbing stroke with a tail flicking up past the line.
 
@@ -90,6 +98,14 @@ heading: The elephant's letter
 - One climbing stroke, smooth the whole way.
 - A tail flicking up past the top line.
 
+## exposition write-chaang
+thai: ช
+heading: Write the elephant
+narration: en Head first, which is the rule from lesson one and it applies here: the loop is up at the top left. Clockwise, unless you have been told otherwise, and you have not. Out of the head the stroke climbs, smooth and unbroken the whole way, and finishes with the tail flicking up past the top line. Smooth is the word to hold on to. Nothing interrupts that climb. Write it several times, out loud both halves of the name, and leave the page where you can see it, because the next letter is this one again.
+- **Start at the head**, top left, clockwise.
+- The climb runs **smooth and unbroken**.
+- A tail flicking up past the top line. Out loud, every time.
+
 ## exposition meet-so
 image: images/lesson-04/meet-so.jpg
 scene: One heavy rusted iron chain link snagged tight on a bollard, the rest of the chain trailing into the water, on a fishing harbour quay, moored wooden longtail boats and drying nets behind.
@@ -98,7 +114,7 @@ gloss: chain letter
 cue: a flat hiss, no breath
 heading: The chain
 narration: en The second letter, and it is the elephant's letter with one thing added. Listen.
-narration: th ซอ โซ่
+recording: th ซอ โซ่ public/audio/consonant-so-so.mp3
 narration: en That word means chain. The sound is a plain hiss, and this is the pair worth feeling rather than hearing. The elephant throws air. This one lets it escape. Palm up: the elephant moves it, the chain does not.
 - Its name is the sound, then a word beginning with that sound.
 - The word means *chain*.
@@ -109,7 +125,7 @@ image: images/lesson-04/so-story-1.jpg
 scene: A long iron chain running slack across wet harbour stone and disappearing into the water, one link snagged hard against an iron bollard, boats moored behind, low light.
 heading: Snagged, slack and sliding
 narration: en The chain lives on the quay and it is never put away. When a boat is coming up it is tight and singing. The rest of the time it lies slack across the stone, and when the tide pulls it, it goes back into the water a link at a time with a long flat hiss — the sound it makes sliding over wet stone, which is the sound of the letter. It snags. There is one bollard it catches on every time, and that snagged link is the notch in the letter.
-narration: th ซอ โซ่
+recording: th ซอ โซ่ public/audio/consonant-so-so.mp3
 - Snagged, slack, sliding back into the water.
 - Sliding over wet stone is a long flat hiss.
 - The link that snags on the bollard is the notch.
@@ -119,6 +135,14 @@ thai: ซ
 heading: The chain's letter
 - The elephant's letter with a notch dented into the climb.
 - The same tail above. The notch is the whole difference.
+
+## exposition write-so
+thai: ซ
+heading: And the chain, on the same page
+narration: en Same head, same climb, same tail — and one dent in the climb on the way up. Write it directly underneath the elephant you just wrote, so the two sit one above the other on your own paper in your own hand. Now look at them. That notch is the only thing between an elephant and a chain, and on the page it is small. Your hand has just made it twice, which is worth more than looking at it twenty times. Out loud as always, and notice that the names are not remotely alike even though the letters nearly are.
+- Head, climb, tail — then one notch in the climb.
+- Write it **directly under** the elephant. Compare your own two.
+- The letters are near twins. The names are not.
 
 ## retrieval spot-the-notch
 reveal: spot-the-notch-answer
@@ -181,6 +205,18 @@ narration: th ซิ
 narration: en That is what you say to push somebody into doing a thing they are already thinking about. Go on. Do it.
 - The chain's letter with a short vowel above it.
 
+## exposition write-short-vowels
+thai: ะ
+heading: Write the vowel, both of its shapes
+narration: en The vowel now, and it needs writing more than the letters do, because it is small and people leave it off. Leave it off and the word is a different word. Here is its real name first.
+recording: th สระอะ public/audio/sara-a-short.mp3
+narration: en Two small hooks, written after the consonant. Put it after the chain's letter and after the elephant's letter, and say each syllable out loud as you finish it — the syllable, not the vowel's name. Then the one upstairs, which you met a moment ago.
+recording: th สระอิ public/audio/sara-i-short.mp3
+narration: en Write that one above a consonant rather than beside it, and keep it small and quick. Neither of these ever stands on its own, so never practise one on its own.
+- Never written alone. Always with a consonant.
+- Two hooks after, or the small mark above.
+- Say the **syllable** out loud, not the vowel's name.
+
 ## rule mai-han-akat
 rule: mai-han-akat
 
@@ -207,6 +243,14 @@ narration: th วัด
 narration: en To measure. Three words, three final consonants, three short vowels sitting up on the roof because the yard was full.
 - *together*, *loud*, *to measure*.
 - All three: short vowel, final consonant, curl on the roof.
+
+## exposition write-han-akat
+thai: วัน
+heading: Write the climb
+narration: en One more, and it is the one worth the paper. Write the word for a day: the ring's letter, then the curl above it, then the mouse's letter closing it. Watch what your hand does — the curl goes on *after* the first letter and *before* the last one, sitting above, because there was no room left behind. Write it, then write the two hooks version beside it, and say both out loud. They sound the same. That is the point, and your hand proving it is better than me saying it.
+- The curl goes above the first letter, not behind it.
+- Write it beside the two-hooks version.
+- **They sound the same.** Only the seat changed.
 
 ## rule low-dead-short
 rule: low-dead-short
