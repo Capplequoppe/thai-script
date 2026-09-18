@@ -68,8 +68,8 @@
 		"name": "บ ใบไม้",
 		"meaning": "leaf",
 		"district": "market",
-		"prompt": "One enormous glossy green leaf growing straight up out of an open market basket, taller than the stall itself, shading the whole row, in a Thai open-air market of wooden stalls under striped awnings, baskets of produce around.",
-		"narration": "The leaf. [pause] Mid class, so you will find it in the market. [pause] An open basket with both walls stopping level at the rim — and one enormous glossy leaf growing straight up out of it, bigger than the stall it stands in, shading the whole market row. [pause] A plain flat b, nothing breathy about it; at a syllable's tail the lips seal on a p-stop and hold."
+		"prompt": "One enormous glossy green leaf growing straight up out of an open market bucket, taller than the stall itself, shading the whole row, in a Thai open-air market of wooden stalls under striped awnings, baskets of produce around.",
+		"narration": "The leaf. [pause] Mid class, so you will find it in the market. [pause] An open bucket with both walls stopping level at the flat bottom — and one enormous glossy leaf growing straight up out of it, bigger than the stall it stands in, shading the whole market row. [pause] A plain flat b, nothing breathy about it; at a syllable's tail the lips seal on a p-stop and hold."
 	},
 	{
 		"id": "cho-chang",
@@ -177,7 +177,7 @@
 		"meaning": "fish",
 		"district": "market",
 		"prompt": "A silver fish leaping clear out of a market basket, its body rising higher than the basket's rim, in a Thai open-air market of wooden stalls under striped awnings, baskets of produce around.",
-		"narration": "The fish. [pause] Mid class, so you will find it in the market. [pause] Like the leaf's letter, but the right wall rises higher than the rim — a fish jumping clear of the market basket. [pause] Bp — b and p pressed into one flat sound, no puff; the fish slaps back down bp."
+		"narration": "The fish. [pause] Mid class, so you will find it in the market. [pause] Like the leaf's letter, but the right wall rises higher than the rim — a fish jumping clear of the market bucket. [pause] Bp — b and p pressed into one flat sound, no puff; the fish slaps back down bp."
 	},
 	{
 		"id": "o-ang",
@@ -222,7 +222,7 @@
 		"meaning": "hermit",
 		"district": "temple",
 		"prompt": "A bearded hermit in a tiger-skin robe carrying a basket, his long wooden staff laid across it, in the courtyard of a Thai temple with tiered golden roofs and white walls.",
-		"narration": "The hermit. [pause] High class, so it belongs up at the temple. [pause] Like the leaf's letter, but crossed with an extra line — The hermit's staff laid across the basket he carries up to the temple. [pause] S — The second temple s, whispered through the hermit's beard."
+		"narration": "The hermit. [pause] High class, so it belongs up at the temple. [pause] Like the leaf's letter, but crossed with an extra line — The hermit's staff laid across the bucket he carries up to the temple. [pause] S — The second temple s, whispered through the hermit's beard."
 	},
 	{
 		"id": "so-sia",

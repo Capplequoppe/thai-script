@@ -829,7 +829,7 @@ const consonants: ThaiConsonant[] = [
 		sceneMnemonic: {
 			district: "market",
 			shapeCue:
-				"An open basket with both walls stopping level at the rim — and one enormous glossy leaf growing straight up out of it, bigger than the stall it stands in, shading the whole market row.",
+				"An open bucket with both walls stopping level at the flat bottom — and one enormous glossy leaf growing straight up out of it, bigger than the stall it stands in, shading the whole market row.",
 			soundCue:
 				"A plain flat b, nothing breathy about it; at a syllable's tail the lips seal on a p-stop and hold.",
 		},
@@ -1093,7 +1093,7 @@ const consonants: ThaiConsonant[] = [
 		sceneMnemonic: {
 			district: "market",
 			shapeCue:
-				"Like บ, but the right wall rises higher than the rim — a fish jumping clear of the market basket.",
+				"Like บ, but the right wall rises higher than the rim — a fish jumping clear of the market bucket.",
 			soundCue:
 				"Bp — b and p pressed into one flat sound, no puff; the fish slaps back down bp.",
 		},
@@ -1204,7 +1204,7 @@ const consonants: ThaiConsonant[] = [
 		sceneMnemonic: {
 			district: "temple",
 			shapeCue:
-				"Like บ, but crossed with an extra line — the hermit's staff laid across the basket he carries up to the temple.",
+				"Like บ, but crossed with an extra line — the hermit's staff laid across the bucket he carries up to the temple.",
 			soundCue:
 				"S — the second temple s, whispered through the hermit's beard.",
 		},

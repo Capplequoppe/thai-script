@@ -21,7 +21,7 @@ whole scheme; every later lesson just opens a room.
 MNEMONICS ARE TAKEN, NOT FORCED. Where the letter's own sound gives you the
 words, say the chain out loud and let it be heard — glorious golden grain for
 the chicken, drowsy, dreaming, deep in the dark for the child, one big, bright,
-beautiful leaf out of a basket. Lesson 1's "nocturnal, notorious,
+beautiful leaf out of a bucket. Lesson 1's "nocturnal, notorious,
 knot-nibbling neighbour" is the model. It works because a rodent hands English
 more N-words than anyone needs, and every word in it is still the word you
 would have reached for anyway.
@@ -143,7 +143,7 @@ heading: The child's letter
 
 ## exposition meet-bai-mai
 image: images/lesson-03/meet-bai-mai.jpg
-scene: One enormous glossy green leaf standing straight up out of a market basket, backlit, the stall behind it in shade.
+scene: One enormous glossy green leaf standing straight up out of a straight-sided, flat-bottomed market bucket, backlit, the stall behind it in shade.
 glyph: บ
 gloss: leaf letter
 cue: the third quiet sound
@@ -157,19 +157,19 @@ narration: en That word means leaf. The sound is a b, and like the other two the
 
 ## exposition bai-mai-story-1
 image: images/lesson-03/bai-mai-story-1.jpg
-scene: One enormous glossy green leaf growing straight up out of an open market basket, taller than the stall itself, shading the whole row, in a Thai open-air market of wooden stalls under striped awnings, baskets of produce around.
+scene: One enormous glossy green leaf growing straight up out of an open straight-sided, flat-bottomed market bucket, taller than the stall itself, shading the whole row, in a Thai open-air market of wooden stalls under striped awnings, baskets of produce around.
 heading: The leaf that got out of hand
-narration: en Somebody left a cutting in a basket at the end of the row and never came back for it. It took. By the second year it was taller than the stall it stood in, and it has one leaf on it the size of a door — big, bright and beautiful, leaning out over the aisle from a basket nobody has moved in two years. It is now the only shade the corner stall gets, which means it is the reason a bowl under that stall stays cool enough to sleep in through the afternoon. Nobody is allowed to cut it. Look at the letter: an open basket, both walls stopping level at the rim, waiting to be filled — and something enormous growing straight up out of it.
+narration: en Somebody left a cutting in a bucket at the end of the row and never came back for it. It took. By the second year it was taller than the stall it stood in, and it has one leaf on it the size of a door — big, bright and beautiful, leaning out over the aisle from a bucket nobody has moved in two years. It is now the only shade the corner stall gets, which means it is the reason a bowl under that stall stays cool enough to sleep in through the afternoon. Nobody is allowed to cut it. Look at the letter: an open bucket, straight walls and a flat bottom, waiting to be filled — and something enormous growing straight up out of it.
 narration: th บอ ใบไม้
-- One big, bright, beautiful leaf out of an open basket.
+- One big, bright, beautiful leaf out of an open bucket.
 - One leaf the size of a door, and the only shade the corner stall has.
-- An open basket with level walls, and something growing out of it.
+- An open bucket, straight-walled and flat-bottomed, with something growing out of it.
 
 ## exposition see-bai-mai
 thai: บ
 heading: The leaf's letter
-- An open basket, both walls level at the rim.
-- The same bowl as the child's letter, opened at the top.
+- An open bucket: straight walls, flat bottom.
+- The child's letter curves to a point. This one does not. That is the difference.
 
 ## retrieval no-puff
 reveal: no-puff-answer
