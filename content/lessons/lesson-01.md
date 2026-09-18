@@ -489,17 +489,17 @@ narration: en To come.
 - **มา** — *to come*.
 
 ## exposition word-naan
-image: images/lesson-01/word-naan.jpg
-scene: An old fisherman sits alone on an upturned crate mending a net spread across his knees, hands working, face deeply lined. Behind him the same harbour lies still under a long low sun. Warm amber light and very long shadows stretch across the worn stone.
+image: images/lesson-01/word-naan-waiting.jpg
+scene: An old blind woman sits motionless in a dark doorway with one hand closed around a bare frayed cord end hanging from the post, an untouched bowl of rice beside her on the floor. Dust hangs in a shaft of low light and the shadows are very long. Weary, patient, and still.
 glyph: นาน
 anchor: NAAN
 gloss: a long time
 heading: Close the syllable
 narration: en One more, and this time nothing new is added at all. You will use a letter you already have, in a place you have not used it yet. Take your first word, the rice field, and put the mouse's letter on the end of it as well as the front.
 narration: th นาน
-narration: en That means a long time. Which is what the net-mender was counting, and what the boy on the pier was doing. The same letter just did two different jobs in one syllable. It started the sound, and it stopped it. Thai consonants do that routinely, and which job a letter is doing depends on nothing but where it sits. Listen to the ending once more. The sound closes cleanly and stays where it is. It does not trail off, and it does not pick up a little extra vowel on the way out.
+narration: en That means a long time — and you already know whose word it is. The old woman at the doorpost waited a long time. And when her fingers finally came down that cord, none of the knots were left. None at all. The waiting and the empty cord are the same word, and you have already sat through both of them. The same letter just did two different jobs in one syllable. It started the sound, and it stopped it. Thai consonants do that routinely, and which job a letter is doing depends on nothing but where it sits. Listen to the ending once more. The sound closes cleanly and stays where it is. It does not trail off, and it does not pick up a little extra vowel on the way out.
 - The mouse's letter, the long vowel, then the mouse's letter again.
-- It means **a long time**.
+- It means **a long time** — what the net-mender waited, with **none** of her knots left.
 - One consonant can both **open** and **close** a syllable. Position decides.
 
 ## exposition see-naan
