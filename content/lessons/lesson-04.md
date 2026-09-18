@@ -164,7 +164,7 @@ narration: en Now the vowel, and for that you go back to the house. You have bee
 
 ## exposition meet-at
 image: images/lesson-04/meet-at.jpg
-scene: A wooden Thai house on stilts seen across its swept back yard at dusk, one lit window, a low gate standing open at the edge of the yard, dry grass and distant hills. No people.
+scene: A man in a straw hat stepping in through a low wooden gate at the back of a Thai house on stilts, one hand already swinging the gate shut behind him, swept yard, one lit window above, dusk, dry grass and distant hills.
 glyph: ะ
 gloss: the back yard's lodger
 cue: when he turns up, it is over
@@ -178,7 +178,7 @@ narration: en It is an ordinary word and it means to press, or to compress — t
 
 ## exposition the-cheat-code
 image: images/lesson-04/the-cheat-code.jpg
-scene: A low wooden gate standing open at the edge of a swept yard, evening light across dry grass, distant hills beyond. No people.
+scene: A man in a straw hat leaning back against a closed wooden gate at the edge of a swept yard, arms folded, evening light across dry grass, distant hills beyond.
 heading: The best shortcut you will get
 narration: en Here is why he is worth more than the two letters. There are thirty vowels in Thai and every one of them is either long or short, and getting that wrong changes the word. Thirty things to learn — except that nine of them simply carry him on the end, and every single time he is there, the vowel is short. No exceptions. So a third of the problem is solved by looking. But listen to how that rule runs, because it runs one way only. Seeing him tells you it is short. Not seeing him tells you nothing at all.
 - Every vowel is long or short, and it changes the word.
@@ -187,7 +187,7 @@ narration: en Here is why he is worth more than the two letters. There are thirt
 
 ## exposition short-i
 image: images/lesson-04/short-i.jpg
-scene: A steep tiled roof seen from below against an evening sky, the eaves running away to one side, dry hills in the distance. No people.
+scene: A young woman in a plain dark dress hurrying down the outside stairs of a Thai house on stilts, one hand on the rail, the steep tiled roof and eaves above her, evening sky, dry hills in the distance.
 glyph: ิ
 gloss: the roof's lodger, in a hurry
 cue: the flick is gone
@@ -228,7 +228,7 @@ rule: mai-han-akat
 
 ## exposition han-akat
 image: images/lesson-04/han-akat.jpg
-scene: A swept back yard behind a wooden Thai house on stilts, a loaded handcart parked squarely across the yard leaving no room to stand, a ladder leaning up to the roof, evening light. No people.
+scene: A man in a straw hat halfway up a ladder to the roof of a Thai house on stilts, looking back down at a loaded handcart parked squarely across the swept yard below leaving no room to stand, evening light.
 heading: When the back yard is taken
 narration: en One thing about the back yard. It is not very big, and it is where a final consonant stands too. So when a syllable has a short vowel and something after it, both of them want the same spot, and the vowel is the one that moves. He goes up on the roof instead, and he leaves a different mark there — a single curl above the first letter. Same man. Same sound. Same short. The only thing that changed is where he was standing.
 narration: th วัน
