@@ -12,6 +12,7 @@ import {
 	NarrationTransport,
 	usePlaybackRate,
 } from "../molecules/NarrationTransport";
+import type { PlaybackRate } from "../../../infrastructure/settings/PlaybackSettings";
 
 interface Props {
 	/** Path of the deck's JSON, served from `public/lessons/<id>/deck.json`. */
@@ -204,6 +205,16 @@ function gapBefore(index: number, languages?: readonly string[]): number {
  * same sequence will satisfy either — the replay button is a user gesture and
  * will work.
  */
+/** A running narration: suspend it, take it up again, or change its speed. */
+interface Narration {
+	cancel(): void;
+	setRate(rate: number): void;
+	/** Hold where it is — the clip's position and the sequence's place both. */
+	pause(): void;
+	/** Carry on from wherever `pause` left it. */
+	resume(): void;
+}
+
 function playSequence(
 	urls: readonly string[],
 	languages?: readonly string[],
@@ -211,11 +222,27 @@ function playSequence(
 		readonly rate?: number;
 		/** Called when the last clip ends, but never on cancellation. */
 		readonly onFinished?: () => void;
+		/**
+		 * Called when the browser refuses to start the audio — almost always
+		 * its autoplay policy. Nothing is playing and nothing will until the
+		 * learner presses something, so the transport has to stop claiming
+		 * otherwise.
+		 */
+		readonly onBlocked?: () => void;
 	},
-): () => void {
+): Narration {
 	let cancelled = false;
+	let paused = false;
 	let playing: HTMLAudioElement | undefined;
 	let timer: ReturnType<typeof setTimeout> | undefined;
+	// The clip to take up next, set the moment one ends. Pausing during the
+	// gap between two clips has to resume into the *next* clip, not replay the
+	// one that just finished.
+	let pendingNext: number | undefined;
+	// Held rather than captured, so a change reaches the clip that is playing
+	// *and* every clip and gap after it. Captured, it would have reached
+	// neither, which is why changing speed used to restart the slide.
+	let rate = options?.rate ?? 1;
 
 	const playFrom = (index: number): void => {
 		if (cancelled) return;
@@ -228,35 +255,115 @@ function playSequence(
 		}
 		const url = urls[index];
 		if (!url) return;
+		pendingNext = undefined;
 		const audio = new Audio(url);
 		// `preservesPitch` keeps a slowed clip from dropping an octave, which
 		// matters more here than in most players: Thai tone is pitch, and a
 		// learner listening at 0.75 to catch a tone must hear the tone the
 		// speaker made.
 		audio.preservesPitch = true;
-		audio.playbackRate = options?.rate ?? 1;
+		audio.playbackRate = rate;
 		playing = audio;
 		audio.addEventListener("ended", () => {
 			if (cancelled) return;
+			pendingNext = index + 1;
+			// Paused across a clip boundary: remember where to take it up and
+			// wait to be resumed rather than running on regardless.
+			if (paused) return;
 			const wait = gapBefore(index + 1, languages);
 			// Gaps shrink with the speech they separate. At 2x an unchanged
 			// 420ms gap is half the length of the words around it and the
 			// narration sounds like it keeps stalling.
-			timer = setTimeout(
-				() => playFrom(index + 1),
-				wait / (options?.rate ?? 1),
-			);
+			timer = setTimeout(() => playFrom(index + 1), wait / rate);
 		});
-		audio.play().catch(() => {});
+		audio.play().catch(() => {
+			// Swallowed until a learner met a slide that showed a Pause button
+			// over silence. The rejection is the only signal that autoplay was
+			// refused, and dropping it left the state saying the opposite.
+			if (!cancelled) options?.onBlocked?.();
+		});
 	};
 
 	playFrom(0);
 
-	return () => {
-		cancelled = true;
-		if (timer !== undefined) clearTimeout(timer);
-		playing?.pause();
+	return {
+		cancel: () => {
+			cancelled = true;
+			if (timer !== undefined) clearTimeout(timer);
+			playing?.pause();
+		},
+		pause: () => {
+			paused = true;
+			if (timer !== undefined) clearTimeout(timer);
+			timer = undefined;
+			playing?.pause();
+		},
+		resume: () => {
+			if (cancelled) return;
+			paused = false;
+			// Mid-clip: the element still holds its position, so it simply
+			// carries on. Between clips: there is no position to hold, and the
+			// clip recorded as next is where to pick up.
+			if (playing && !playing.ended) {
+				playing.play().catch(() => {});
+				return;
+			}
+			if (pendingNext !== undefined) playFrom(pendingNext);
+		},
+		setRate: (next: number) => {
+			rate = next;
+			// The element already playing takes it immediately; `preservesPitch`
+			// keeps the voice where it was, which matters because Thai tone is
+			// pitch and a learner slowing down to catch one must hear the tone
+			// the speaker actually made.
+			if (playing) playing.playbackRate = next;
+		},
 	};
+}
+
+/**
+ * `**bold**` or `*italic*`, in that order.
+ *
+ * The doubled form is tried first by putting it first in the alternation —
+ * otherwise `**head**` matches the single-asterisk branch and renders as
+ * italic text still wearing a pair of asterisks.
+ */
+const EMPHASIS = /\*\*([^*]+)\*\*|\*([^*]+)\*/g;
+
+/**
+ * A line of slide text, with `**bold**` rendered as bold.
+ *
+ * Builds elements rather than interpreting markup. Every piece is a React
+ * child, so it is escaped exactly as a plain string would be — which is what
+ * keeps AC4 true: a deck carrying `<b>x</b>` still shows six characters and
+ * creates no element. The only thing this file will ever treat as markup is
+ * the one pattern above.
+ */
+function RichText({ text }: { text: string }) {
+	const parts: (string | React.ReactElement)[] = [];
+	let last = 0;
+	for (const match of text.matchAll(EMPHASIS)) {
+		const at = match.index ?? 0;
+		if (at > last) parts.push(text.slice(last, at));
+		const bold = match[1];
+		parts.push(
+			bold !== undefined ? (
+				<strong key={`${at}-b`} className="font-bold">
+					{bold}
+				</strong>
+			) : (
+				<em key={`${at}-i`} className="italic">
+					{match[2]}
+				</em>
+			),
+		);
+		last = at + match[0].length;
+	}
+	if (last < text.length) parts.push(text.slice(last));
+	// Nothing matched: the overwhelmingly common case, and returning the string
+	// keeps it a single text node rather than a fragment wrapping one.
+	if (parts.length === 0) return <>{text}</>;
+	return <>{parts}</>;
 }
 
 /**
@@ -290,58 +397,94 @@ function useNarration(
 	rate: number,
 ) {
 	const [playing, setPlaying] = useState(false);
-	const cancel = useRef<(() => void) | null>(null);
+	const running = useRef<Narration | null>(null);
 
 	const stop = useCallback(() => {
-		cancel.current?.();
-		cancel.current = null;
+		running.current?.cancel();
+		running.current = null;
+		setPlaying(false);
+	}, []);
+
+	const pause = useCallback(() => {
+		running.current?.pause();
 		setPlaying(false);
 	}, []);
 
 	const start = useCallback(() => {
 		if (!urls?.length) return;
-		cancel.current?.();
+		running.current?.cancel();
 		setPlaying(true);
-		cancel.current = playSequence(urls, languages, {
+		running.current = playSequence(urls, languages, {
 			rate,
 			onFinished: () => {
-				cancel.current = null;
+				running.current = null;
 				setPlaying(false);
 			},
+			// Kept rather than cleared: the element exists and is merely not
+			// permitted to start, so `resume` can take it up from inside the
+			// click handler that pressing Play provides.
+			onBlocked: () => setPlaying(false),
 		});
 	}, [urls, languages, rate]);
+
+	// Resume what is suspended, or begin if nothing is. A narration that ran to
+	// the end clears itself, so the next press starts it over — which is what a
+	// play button should do once the slide has finished speaking.
+	const resume = useCallback(() => {
+		if (running.current) {
+			running.current.resume();
+			setPlaying(true);
+			return;
+		}
+		start();
+	}, [start]);
+
+	// Applied to whatever is playing rather than by restarting it. Nothing
+	// happens if the slide is silent — the next `start` reads the stored rate.
+	const setSpeed = useCallback((next: number) => {
+		running.current?.setRate(next);
+	}, []);
 
 	// Stepping off the slide, or unmounting, stops the narration. Without this
 	// a clip carries on over whatever comes next.
 	useEffect(() => stop, [stop]);
 
-	return { playing, start, stop };
+	return { playing, start, stop, pause, resume, setSpeed };
 }
 
+/**
+ * The transport for the slide's narration.
+ *
+ * Deliberately owns nothing. It used to hold its own `useNarration`, which is
+ * what let a slide auto-play from one sequence while the button controlled a
+ * different one — the button showed Play over audio that was already running,
+ * and pressing it added a second voice. The narration belongs to the slide;
+ * this renders its state and calls back into it.
+ */
 function ReplayButton({
-	urls,
-	languages,
+	playing,
+	onPlay,
+	onPause,
+	onRestart,
+	rate,
+	onRate,
 }: {
-	urls: readonly string[];
-	languages?: readonly string[];
+	playing: boolean;
+	onPlay: () => void;
+	onPause: () => void;
+	/** From the first clip. The two buttons used to do the same thing. */
+	onRestart: () => void;
+	rate: PlaybackRate;
+	onRate: (rate: PlaybackRate) => void;
 }) {
-	const [rate, setRate] = usePlaybackRate();
-	const { playing, start, stop } = useNarration(urls, languages, rate);
-
 	return (
 		<NarrationTransport
 			playing={playing}
-			onPlay={start}
-			onStop={stop}
-			onRestart={start}
+			onPlay={onPlay}
+			onStop={onPause}
+			onRestart={onRestart}
 			rate={rate}
-			onRate={(next) => {
-				// Applied from the top rather than mid-clip: `playbackRate` on a
-				// playing element would change this clip and leave the rest of
-				// the sequence at the old speed, which sounds like a fault.
-				setRate(next);
-				if (playing) stop();
-			}}
+			onRate={onRate}
 		/>
 	);
 }
@@ -424,9 +567,15 @@ function DeckSlideContent({
 	// own identity so two consecutive slides that happen to share one audio
 	// clip still reset — see AC5.
 	const [revealed, setRevealed] = useState(false);
-	// Read here as well as in the transport so the slide's own auto-play starts
-	// at the learner's speed rather than at 1.0.
-	const [rate] = usePlaybackRate();
+	const [rate, setRate] = usePlaybackRate();
+	// One narration per slide, driven by both the auto-play below and the
+	// transport. When the transport owned a second one, the slide could be
+	// talking while the button still offered to start it.
+	const { playing, start, stop, pause, resume, setSpeed } = useNarration(
+		audioUrls,
+		audioLanguages,
+		rate,
+	);
 	useResetOnCardChange(slide.id, () => {
 		setRevealed(false);
 	});
@@ -434,11 +583,17 @@ function DeckSlideContent({
 	// biome-ignore lint/correctness/useExhaustiveDependencies: keys on the slide's own identity, not on audioUrls — two consecutive slides sharing a clip must still reset (see AC5)
 	useEffect(() => {
 		if (!audioUrls?.length || slide.kind === "reveal") return;
-		// The returned canceller is the cleanup: stepping off the slide stops
-		// whatever clip is mid-sentence rather than letting it talk over the
-		// next slide's narration.
-		return playSequence(audioUrls, audioLanguages, { rate });
-	}, [slide.id]);
+		// `start` cancels anything already running before it begins, so this
+		// cannot stack with the transport or with itself. Stopping on cleanup
+		// keeps a clip from talking over the next slide.
+		start();
+		return stop;
+		// `audioUrls` as well as the slide: keyed on the slide alone, a slide
+		// whose audio was not ready on the first pass would never start,
+		// because nothing would make the effect look again. The urls come from
+		// the deck's map and change only when the slide does, so AC5 — two
+		// consecutive slides sharing one clip must still replay — still holds.
+	}, [slide.id, audioUrls]);
 
 	// A "reveal" slide's audio is the answer's pronunciation, so it plays on
 	// reveal rather than on arrival — hearing it first would answer the
@@ -447,8 +602,26 @@ function DeckSlideContent({
 	// biome-ignore lint/correctness/useExhaustiveDependencies: fires once per reveal, not on every audioUrls/slide identity change
 	useEffect(() => {
 		if (!revealed || !audioUrls?.length) return;
-		return playSequence(audioUrls, audioLanguages, { rate });
+		start();
 	}, [revealed]);
+
+	const transport = (
+		<ReplayButton
+			playing={playing}
+			onPlay={resume}
+			onPause={pause}
+			onRestart={start}
+			rate={rate}
+			onRate={(next) => {
+				// Applied where the learner is, not from the top. Restarting
+				// meant that changing speed halfway through a story replayed the
+				// half already heard, which is the thing a speed control is for
+				// avoiding.
+				setRate(next);
+				setSpeed(next);
+			}}
+		/>
+	);
 
 	switch (slide.kind) {
 		case "exposition":
@@ -468,14 +641,12 @@ function DeckSlideContent({
 						{slide.body.map((paragraph, i) => (
 							// biome-ignore lint/suspicious/noArrayIndexKey: body is a static ordered list of paragraphs with no other identity
 							<p key={i} className="text-center">
-								{paragraph}
+								<RichText text={paragraph} />
 							</p>
 						))}
 					</div>
 					{audioUrls && audioUrls.length > 0 && (
-						<div className="flex justify-center">
-							<ReplayButton urls={audioUrls} languages={audioLanguages} />
-						</div>
+						<div className="flex justify-center">{transport}</div>
 					)}
 				</div>
 			);
@@ -484,17 +655,29 @@ function DeckSlideContent({
 			// schema itself refuses a retrieval slide that carries one.
 			return (
 				<div className="space-y-4">
-					<p className="text-center text-lg">{slide.prompt}</p>
+					<p className="text-center text-lg">
+						<RichText text={slide.prompt} />
+					</p>
 					{audioUrls && audioUrls.length > 0 && (
-						<div className="flex justify-center">
-							<ReplayButton urls={audioUrls} languages={audioLanguages} />
-						</div>
+						<div className="flex justify-center">{transport}</div>
 					)}
 				</div>
 			);
-		case "reveal":
+		case "reveal": {
+			// The question lives on the retrieval slide this one names. Without
+			// it the learner met a lone "Show Answer" button with nothing on
+			// screen saying what was being asked.
+			const asked = deck.slides.find(
+				(candidate) => candidate.id === slide.retrievalSlideId,
+			);
+			const question = asked?.kind === "retrieval" ? asked.prompt : undefined;
 			return (
 				<div className="space-y-4">
+					{question && (
+						<p className="text-center text-lg">
+							<RichText text={question} />
+						</p>
+					)}
 					{!revealed ? (
 						<button
 							type="button"
@@ -519,18 +702,17 @@ function DeckSlideContent({
 									className="text-2xl font-bold"
 									style={{ color: "var(--color-primary)" }}
 								>
-									{answer}
+									<RichText text={answer} />
 								</p>
 							))}
 							{audioUrls && audioUrls.length > 0 && (
-								<div className="flex justify-center">
-									<ReplayButton urls={audioUrls} languages={audioLanguages} />
-								</div>
+								<div className="flex justify-center">{transport}</div>
 							)}
 						</div>
 					)}
 				</div>
 			);
+		}
 		case "rule": {
 			const rule = renderRuleSlide(deck, slide);
 			if (!rule) {

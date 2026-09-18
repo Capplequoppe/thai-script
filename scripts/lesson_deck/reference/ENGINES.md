@@ -413,6 +413,91 @@ is worth buying, and where a tag is a small fraction of a fifty-word clip. It
 is not in use today only because the English engine is Qwen, which cannot read
 it. The plumbing is in place for the engine that replaces it.
 
+### And then it was used, and measured, and it does almost nothing
+
+The paragraph above was written before anything was rendered through it. Thirty
+annotations later, on lesson 1, here is what a tag actually buys.
+
+Calibrate first, because the obvious instrument is wrong. An early pass
+measured loudness over frames selected by a threshold taken from *each clip's
+own peak*, which normalises overall level away by construction: a whisper and a
+shout score the same. Absolute RMS over the whole waveform, five baseline seeds,
+and a floor that is the seed spread or a minimum worth caring about, whichever
+is larger:
+
+| tag | loudness | voiced fraction | verdict |
+|---|---|---|---|
+| `[whisper]` | **-0.0 dB** | +0.00 | nothing |
+| `[loud]` | -0.1 dB | -0.00 | nothing |
+
+A whisper is quiet and almost entirely unvoiced. Neither number moved. Every
+other tag tried — `[sad]`, `[delight]`, `[low voice]`, `[excited]`, `[pause]`,
+`[short pause]`, `[emphasis]` — moved pace, pitch, pitch spread, brightness,
+pause count and pause length **less than the engine moves them between seeds on
+the same text**. Confirmed by ear: bare and `[whisper]` are indistinguishable.
+
+**A tag behaves like a seed change, not like direction.** It is not ignored —
+every clip differs byte-for-byte from the untagged one — it simply perturbs
+generation without steering it.
+
+### Why, and what is not the reason
+
+Checked in the installed package rather than guessed. Checkpoint
+`fishaudio/s2-pro`, fish-speech 2.0.0 on current upstream.
+
+- **Not a syntax or plumbing fault.** Our text reaches `generate_long`
+  verbatim: no normalisation, no bracket handling, and `clean_text`
+  (`fish_speech/text/clean.py:24`) is never called on the inference path — it
+  belongs to dataset loading. The assembled prompt matches the trained format.
+  There is no flag, field, checkpoint variant or entry point being missed.
+- **Not the voice cloning.** fish-speech#1280 swept seven tags across
+  temperature 0.6-1.5 **with no reference audio at all** and got the same
+  result.
+- **Not a local-inference gap that better weights would close.** Fish Audio
+  state in discussion #1217 that the published weights are identical to
+  production, and attribute the web demo's advantage to an unreleased
+  orchestration pipeline. The `normalize` field their schema declares
+  (`fish_speech/utils/schema.py:97`) is read by nothing, so that stage does not
+  ship — but it is number and abbreviation expansion, which hand-written
+  teaching prose has no use for.
+
+**It is reproduced upstream and unanswered**: fish-speech#1280 and #1162 both
+closed as not planned, and vllm-omni#2248 reports it against an unrelated
+serving stack.
+
+### What does govern delivery
+
+The sentence, not the tag. fish-speech#1280 is the cleanest statement of it:
+
+    [happy] What a beautiful day!            renders clearly
+    [happy] The meeting starts at three.     near-inaudible
+
+The tag amplifies what the words already imply and cannot impose what they do
+not. The technical report says the same from the other side — Appendix A.2
+scores "whether the overall prosody and affective tone of an utterance align
+with the semantic content and contextual cues implied by the text and tags",
+and A.1 requires models to "infer these events from the semantic and
+conversational context".
+
+Which makes the earlier finding in this file — that the narration complaint was
+**phrasing, not pace**, and that the fix was a `[pause]` at a sentence boundary
+— the general rule rather than an anecdote. Write the delivery into the prose.
+
+### Two things worth trying, both untested here
+
+- **A full descriptive instruction rather than a keyword.** Report §6.2.2 used
+  an LLM to rewrite benchmark prompts into richer instructions before
+  synthesis, moving the Audio Turing Test posterior 0.483 to 0.515. The shape
+  rewarded is `[speaking slowly and deliberately, like a patient teacher]`, not
+  `[slowly]`. Short free-form phrases were tried here and did nothing.
+- **A `<|speaker:0|>` prefix on the synthesised text.** The CLI's own default
+  carries it, and the training transcripts paired speaker turns with injected
+  tags — we supply tags without turns. Both official frontends send raw text,
+  so upstream does not treat it as required. An experiment, not a fix.
+
+Both change the bytes without changing text, language or voice, so both need
+the cache-key treatment described under **Sampling** below.
+
 ## Pace and prosody, measured
 
 Findings that cost real time and should not be rediscovered:
@@ -433,6 +518,66 @@ Findings that cost real time and should not be rediscovered:
   described as apathetic. Stability is the expressiveness dial; turning it to
   the top removes the shape that makes slow speech sound deliberate rather than
   flat.
+
+## Sampling, and why it belongs in the cache key
+
+We sampled at `temperature=1.0`, `top_p=0.9` until it was checked against the
+package. Both sit at or above the ceiling of every official range in
+fish-speech 2.0.0:
+
+| | ours | web UI default | web UI max | other callers |
+|---|---|---|---|---|
+| `temperature` | **1.0** | 0.8 | **1.0** | 0.7 |
+| `top_p` | **0.9** | 0.8 | 0.95 | 0.7 |
+
+Nothing had chosen those numbers against a measurement. They are now 0.8 and
+0.8, the vendor's own operating point.
+
+This mattered more than it looked, because `MAX_MERGED_WORDS` had just gone
+from 75 to 150. The point where this model starts fabricating whole sentences —
+266 words, three seeds in five — was measured *while sampling at maximum
+temperature*, and approaching a length limit at the hottest available setting
+is the wrong way round.
+
+**It buys stability, not steering.** fish-speech#1280's reporter swept
+temperature from 0.6 to 1.5 and never rescued a tag on a neutral sentence.
+
+### Three parameters that do nothing
+
+Holes in fish-speech 2.0.0, not faults in our code. Do not reason about them
+and do not put them in a cache key — invalidating clips for a parameter that
+cannot change a byte of them is worse than leaving it out.
+
+- **`repetition_penalty`** — declared by `generate_long`
+  (`text2semantic/inference.py:533`) and never passed to `generate()`.
+  `model.fixed_repetition_penalty` is assigned and read nowhere. The web UI's
+  slider and the server's request field both feed it. If a blog suggests it as
+  a pacing knob, it cannot work on this code.
+- **`iterative_prompt`** — declared, never referenced in the body.
+- **`chunk_length`** — only reaches `group_turns_into_batches`, which runs only
+  when the text carries `<|speaker:N|>` markers. Ours does not, so the whole
+  string is one batch whatever the value. This is why a 266-word clip logs
+  `grouped into 1 batches`.
+
+### Anything that shapes a clip has to reach the key
+
+The sampling parameters were literals inside the worker and appeared in no
+cache key: a clip was keyed on `pipelineVersion + text + language + modelId +
+reference digest`. Changing a literal would therefore have left every clip
+already on disk at the old value while new clips used the new one — a deck
+built at two operating points, with nothing recording which was which.
+
+They now live on `VoiceSpec` and are hashed into the English projection, so
+changing one regenerates exactly the clips it affects.
+
+This is the second time this class of bug has been fixed here. `PIPELINE_VERSION`
+version 5 reads: "vendor.ENGLISH_TEMPO joined the English cache key so a tempo
+change regenerates rather than silently doing nothing." That precedent was lost
+when the tempo pass was removed in version 7 — the pattern was not.
+
+The rule: **if it changes the bytes, it goes in the key, or the version gets
+bumped.** A silent cache hit on stale settings is the failure mode, and it
+cannot be heard in one clip — only in a deck that drifts halfway through.
 
 ## Dead ends
 

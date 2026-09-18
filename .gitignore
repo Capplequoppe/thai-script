@@ -76,3 +76,8 @@ public/_samples/
 
 # Fish-Speech S2 Pro spike environment (torch 2.8 pin, conflicts with deck-env).
 scripts/fish-env/
+
+# Working copies of lesson scripts, regenerated on demand by
+# scripts/lesson-review.py. The lesson itself is the source of truth, and a
+# committed copy of it would go stale while still looking authoritative.
+review/

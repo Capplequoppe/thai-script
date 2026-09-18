@@ -244,11 +244,34 @@ describe("the committed deck", () => {
 		// is transcribed back before it is accepted, and `not-required` is what
 		// an English clip gets — so a Thai clip carrying it would mean the
 		// check had been skipped rather than passed.
+		//
+		// `recorded` is the one other outcome a Thai clip may carry: audio
+		// taken verbatim from a native recording already shipped here, which
+		// was never generated and so was never checked. What vouches for it is
+		// provenance. `มอ ม้า` is why the route exists — the local engine
+		// failed all eight seeds on it, hearing `หมอมา` six times, which drops
+		// the falling tone and makes it a different word.
 		const thai = manifest.assets.filter((a) => a.language === "th");
 		expect(thai.length).toBeGreaterThan(0);
 		for (const asset of thai) {
-			expect(asset.verification?.outcome).toBe("verified");
+			expect(["verified", "recorded"]).toContain(
+				asset.verification?.outcome,
+			);
 		}
+
+		// And `recorded` is not a loophole: exactly the clips a `recording:`
+		// line asked for may carry it. Without this, an unverified generated
+		// clip could wear the same label.
+		const recordedLines = readFileSync(
+			join(REPO_ROOT, "content", "lessons", "lesson-01.md"),
+			"utf8",
+		)
+			.split("\n")
+			.filter((line) => line.startsWith("recording: th ")).length;
+		const recorded = thai.filter(
+			(a) => a.verification?.outcome === "recorded",
+		);
+		expect(recorded.length).toBe(recordedLines);
 	});
 
 	it("no English narration line carries Thai, as a glyph or romanised", () => {
@@ -304,9 +327,11 @@ describe("the committed deck", () => {
 			join(REPO_ROOT, "content", "lessons", "lesson-01.md"),
 			"utf8",
 		);
+		// `recording:` counts as spoken: it is a line the learner hears, and a
+		// clip in the manifest. Only where it comes from differs.
 		const spoken = script
 			.split("\n")
-			.filter((line) => /^narration: (en|th) /.test(line));
+			.filter((line) => /^(narration|recording): (en|th) /.test(line));
 		// Consecutive English lines are merged into one call before synthesis,
 		// so a paragraph is one continuous utterance instead of several with
 		// the prosody reset between them. Thai never merges: each Thai clip is
@@ -327,8 +352,8 @@ describe("the committed deck", () => {
 				previous = undefined;
 				continue;
 			}
-			if (!/^narration: (en|th) /.test(line)) continue;
-			const language = line.startsWith("narration: th ") ? "th" : "en";
+			if (!/^(narration|recording): (en|th) /.test(line)) continue;
+			const language = / th /.test(line.slice(0, 14)) ? "th" : "en";
 			if (language === "en" && previous === "en") continue;
 			runs.push(language);
 			previous = language;
@@ -337,12 +362,35 @@ describe("the committed deck", () => {
 		// Clips only. Illustrations are manifest assets too, and counting them
 		// here would drift every time a slide gains or loses a picture.
 		const clips = manifest.assets.filter((a) => a.kind === "audio");
-		expect(runs.length).toBe(clips.length);
-		expect(runs.length).toBeLessThan(spoken.length);
 
-		// Every Thai line is still its own clip, one for one.
-		const thaiLines = spoken.filter((line) =>
-			line.startsWith("narration: th "),
+		// One run used to mean exactly one clip, and the packer used to be
+		// where merging happened. Neither is still true, and the difference is
+		// worth stating because the numbers look wrong otherwise.
+		//
+		// Merging moved into the source. Consecutive English lines were being
+		// used as paragraph breaks while the packer flushed a clip at every
+		// one of them, so a lesson of 139 authored lines became 139 audio
+		// files averaging 31 words against a cap of 75. They are merged in the
+		// script now, which is why runs and spoken lines are equal here — no
+		// two English lines are adjacent for the packer to join.
+		//
+		// So the packer's remaining job is the opposite one: `MAX_MERGED_WORDS`
+		// is 150 and now actually binds, splitting a long authored passage at a
+		// sentence boundary rather than sending it as one over-long clip. That
+		// is why there are *more* clips than lines.
+		//
+		// What is still worth asserting is that nothing is lost: every spoken
+		// line reaches at least one clip.
+		expect(clips.length).toBeGreaterThanOrEqual(spoken.length);
+		expect(runs.length).toBeGreaterThan(0);
+
+		// Every Thai line is still its own clip, one for one — counting the
+		// `recording:` ones too, which are Thai clips that simply came from a
+		// file rather than an engine.
+		const thaiLines = spoken.filter(
+			(line) =>
+				line.startsWith("narration: th ") ||
+				line.startsWith("recording: th "),
 		).length;
 		expect(manifest.assets.filter((a) => a.language === "th").length).toBe(
 			thaiLines,

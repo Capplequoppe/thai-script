@@ -111,6 +111,29 @@ DEFAULT_ENGLISH_REFERENCE_TEXT = REFERENCE_DIR / "english-voice.txt"
 DEFAULT_THAI_REFERENCE_AUDIO = REFERENCE_DIR / "thai-voice.mp3"
 DEFAULT_THAI_REFERENCE_TEXT = REFERENCE_DIR / "thai-voice.txt"
 
+#: How the local engine samples, at the vendor's own operating point.
+#:
+#: These ran at 1.0 and 0.9 until it was checked. Both sat at or above the
+#: maximum of every official range in fish-speech 2.0.0 — the web UI's
+#: temperature slider tops out at 1.0 and defaults to 0.8, its top_p tops out
+#: at 0.95 and defaults to 0.8, and three other callers in the package use 0.7
+#: for both. Nothing had chosen those numbers against a measurement.
+#:
+#: It matters more than it did. `MAX_MERGED_WORDS` is now 150, and the point
+#: at which this model starts fabricating whole sentences — 266 words, three
+#: seeds in five — was measured while sampling at maximum temperature.
+#: Approaching a length limit at the hottest setting available is the wrong
+#: way round.
+#:
+#: What this does not buy: tag adherence. The reporter of fish-speech #1280
+#: swept temperature from 0.6 to 1.5 and never rescued `[happy]` on a neutral
+#: sentence. This is about stability, not steering.
+DEFAULT_ENGLISH_TEMPERATURE = 0.8
+DEFAULT_ENGLISH_TOP_P = 0.8
+#: Already the package default (`inference.py:534`), and not exposed by the
+#: server at all. Here only so the key covers everything that shapes a clip.
+DEFAULT_ENGLISH_TOP_K = 30
+
 #: What the shipped clips are encoded as, matching
 #: `generate-sentence-audio.py` so every mp3 the app plays is one format.
 #:
@@ -219,6 +242,13 @@ class VoiceSpec:
 	english_reference_text: Path = DEFAULT_ENGLISH_REFERENCE_TEXT
 	thai_reference_audio: Path = DEFAULT_THAI_REFERENCE_AUDIO
 	thai_reference_text: Path = DEFAULT_THAI_REFERENCE_TEXT
+	#: How the local engine samples. Here rather than in the worker because
+	#: `for_language` hashes them into the cache key: two clips made at two
+	#: temperatures are two different recordings, and a key that cannot tell
+	#: them apart will serve one as the other.
+	english_temperature: float = DEFAULT_ENGLISH_TEMPERATURE
+	english_top_p: float = DEFAULT_ENGLISH_TOP_P
+	english_top_k: int = DEFAULT_ENGLISH_TOP_K
 
 	def to_json(self) -> dict[str, Any]:
 		"""The whole spec, for the manifest — a reader wants to see both
@@ -268,6 +298,11 @@ class VoiceSpec:
 		return {
 			"modelId": self.english_model_id,
 			"reference": self.english_reference_digest(),
+			"sampling": {
+				"temperature": self.english_temperature,
+				"topP": self.english_top_p,
+				"topK": self.english_top_k,
+			},
 		}
 
 	def reference_for(self, language: str) -> tuple[Path, Path]:
@@ -662,7 +697,21 @@ class S2ProVoice:
 		# during a run, and an unread pipe fills its buffer and deadlocks the
 		# engine mid-build. A file also survives the process, which is what
 		# makes a failure diagnosable afterwards.
-		self._log = self._log_path().open("w", encoding="utf-8")
+		#
+		# Appended, not truncated. It was opened "w" until a build lost three
+		# clips to twenty-four consecutive failed starts and left nothing to
+		# read: every restart erased the previous one's traceback, so the log
+		# the error message points at held only the successful start that
+		# eventually followed. A failure that deletes its own evidence is the
+		# one kind this file exists to prevent.
+		import datetime  # noqa: PLC0415
+
+		self._log = self._log_path().open("a", encoding="utf-8")
+		self._log.write(
+			f"\n===== worker start {datetime.datetime.now():%Y-%m-%d %H:%M:%S} "
+			f"(compile={self._compile}) =====\n"
+		)
+		self._log.flush()
 		self._process = subprocess.Popen(
 			args, cwd=FISH_ROOT, stdin=subprocess.PIPE, stdout=subprocess.PIPE,
 			stderr=self._log, text=True, bufsize=1,
@@ -803,6 +852,17 @@ class S2ProVoice:
 					f"could not decode the {language} reference: "
 					f"{completed.stderr.decode('utf-8', 'replace')[:200]}"
 				)
+			# The encoder is a second GPU process, and this one wants the
+			# card while the worker is holding 19.7 GB of it. Stand the
+			# worker down first; `_worker` brings it back on the next clip.
+			#
+			# Only ever paid on a cold cache, which is why this went unseen:
+			# both references were already encoded on this machine, so the
+			# first build that needed two of them never reached the encoder
+			# at all. A fresh checkout doing English *and* Thai would have
+			# run straight into it — the second language's reference is
+			# encoded long after the worker has started.
+			self._stop_worker()
 			self._run(
 				["fish_speech/models/dac/inference.py", "-i", str(wav),
 				 "--checkpoint-path", str(S2_MODEL_DIR / "codec.pth"),
@@ -847,6 +907,9 @@ class S2ProVoice:
 				"prompt_tokens": str(tokens),
 				"seed": seed,
 				"output": str(out),
+				"temperature": spec.english_temperature,
+				"top_p": spec.english_top_p,
+				"top_k": spec.english_top_k,
 			})
 			try:
 				worker.stdin.write(request + "\n")

@@ -200,9 +200,17 @@ def parse_script(path: Path) -> LessonScript:
 #: words, three of five seeds fabricated whole sentences that appear nowhere in
 #: the script.
 #:
-#: So 75 sits well inside the measured-safe range with a wide margin to the
-#: cliff, and it is enough to carry most authored paragraphs whole.
-MAX_MERGED_WORDS = 75
+#: This was 75 while authored line breaks were also flushing a clip, so it
+#: almost never bound anything: lessons ran at a median of 31 words per clip
+#: and the cap was slack. Now that a slide's English is merged, the cap is the
+#: only thing deciding where a clip ends, and it does real work — a single
+#: authored passage can run past 300 words, which is beyond the cliff.
+#:
+#: 150 sits inside the range the ladder measured clean, with 40 words of margin
+#: to the last verified point and far more to the cliff. It is also about a
+#: minute of speech, which is as long as one picture should have to hold a
+#: listener.
+MAX_MERGED_WORDS = 150
 
 
 def _sentences(text: str) -> list[str]:

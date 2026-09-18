@@ -1,5 +1,5 @@
 // @vitest-environment jsdom
-import { fireEvent, render, screen } from "@testing-library/react";
+import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { describe, expect, it, vi } from "vitest";
 import {
 	createdAudioUrls,
@@ -83,6 +83,75 @@ describe("DeckSlide — text-only rendering (AC4)", () => {
 	});
 });
 
+describe("DeckSlide — emphasis, without reopening AC4", () => {
+	it("renders **bold** as bold and leaves the asterisks out", async () => {
+		stubDeckJson(
+			DECK_PATH,
+			deck([
+				{
+					kind: "exposition",
+					id: "s1",
+					heading: "Heading",
+					body: ["Both open with the same **head**, high left."],
+				},
+				RETRIEVAL,
+				REVEAL,
+			]),
+		);
+		render(<DeckSlide deckPath={DECK_PATH} onComplete={() => {}} />);
+
+		const strong = await screen.findByText("head");
+		expect(strong.tagName).toBe("STRONG");
+		// The asterisks themselves are gone, not merely unstyled.
+		expect(screen.queryByText(/\*\*/)).toBeNull();
+	});
+
+	it("renders *italic* too, without the doubled form falling through to it", async () => {
+		stubDeckJson(
+			DECK_PATH,
+			deck([
+				{
+					kind: "exposition",
+					id: "s1",
+					heading: "Heading",
+					body: ["its *second* loop and its **head**"],
+				},
+				RETRIEVAL,
+				REVEAL,
+			]),
+		);
+		render(<DeckSlide deckPath={DECK_PATH} onComplete={() => {}} />);
+
+		expect((await screen.findByText("second")).tagName).toBe("EM");
+		// The doubled form has to be tried first: matched by the single-asterisk
+		// branch, `**head**` would come out italic and keep a pair of asterisks.
+		expect((await screen.findByText("head")).tagName).toBe("STRONG");
+		expect(screen.queryByText(/\*/)).toBeNull();
+	});
+
+	it("still refuses HTML, which is the boundary AC4 is about", async () => {
+		stubDeckJson(
+			DECK_PATH,
+			deck([
+				{
+					kind: "exposition",
+					id: "s1",
+					heading: "Heading",
+					// Both in one line: the emphasis is honoured, the markup is not.
+					body: ["a **b** <i>c</i>"],
+				},
+				RETRIEVAL,
+				REVEAL,
+			]),
+		);
+		render(<DeckSlide deckPath={DECK_PATH} onComplete={() => {}} />);
+
+		await screen.findByText("b");
+		expect(document.querySelector("i")).toBeNull();
+		expect(await screen.findByText(/<i>c<\/i>/)).toBeTruthy();
+	});
+});
+
 describe("DeckSlide — audio resets on advance, keyed on identity (AC5)", () => {
 	it("plays audio again when advancing to a slide sharing the same clip", async () => {
 		const audioUrl = `/thai-script/lessons/${LESSON_ID}/shared.mp3`;
@@ -110,12 +179,101 @@ describe("DeckSlide — audio resets on advance, keyed on identity (AC5)", () =>
 		render(<DeckSlide deckPath={DECK_PATH} onComplete={() => {}} />);
 
 		await screen.findByText("first");
-		expect(createdAudioUrls().filter((u) => u === audioUrl)).toHaveLength(1);
+		await waitFor(() =>
+			expect(createdAudioUrls().filter((u) => u === audioUrl)).toHaveLength(1),
+		);
 
 		fireEvent.click(screen.getByRole("button", { name: /Next/ }));
 
 		await screen.findByText("second");
+		await waitFor(() =>
+			expect(createdAudioUrls().filter((u) => u === audioUrl)).toHaveLength(2),
+		);
+	});
+});
+
+describe("DeckSlide — one narration per slide", () => {
+	const audioUrl = `/thai-script/lessons/${LESSON_ID}/one.mp3`;
+
+	function renderSlide() {
+		stubDeckJson(
+			DECK_PATH,
+			deck([
+				{
+					kind: "exposition",
+					id: "s1",
+					heading: "One",
+					body: ["first"],
+					audioUrl,
+				},
+				RETRIEVAL,
+				REVEAL,
+			]),
+		);
+		render(<DeckSlide deckPath={DECK_PATH} onComplete={() => {}} />);
+	}
+
+	it("shows a pause control on arrival, because the slide is already talking", async () => {
+		renderSlide();
+		await screen.findByText("first");
+
+		// The transport used to own a second narration and knew nothing about
+		// the auto-play, so it offered Play over audio already running.
+		// `getByRole` throws when absent, which is the assertion — this project
+		// does not load jest-dom's matchers.
+		screen.getByRole("button", { name: /Pause audio/ });
+	});
+
+	it("pauses and resumes rather than starting over", async () => {
+		renderSlide();
+		await screen.findByText("first");
+		await waitFor(() =>
+			expect(createdAudioUrls().filter((u) => u === audioUrl)).toHaveLength(1),
+		);
+
+		// Pause used to cancel the sequence outright, so play began at the
+		// first clip again — a restart wearing a pause button's icon. Resuming
+		// carries the same element on, so no new clip is constructed.
+		fireEvent.click(await screen.findByRole("button", { name: /Pause audio/ }));
+		expect(createdAudioUrls().filter((u) => u === audioUrl)).toHaveLength(1);
+
+		fireEvent.click(await screen.findByRole("button", { name: /Play audio/ }));
+		expect(createdAudioUrls().filter((u) => u === audioUrl)).toHaveLength(1);
+		await screen.findByRole("button", { name: /Pause audio/ });
+	});
+
+	it("restarts from the beginning when rewind is pressed", async () => {
+		renderSlide();
+		await screen.findByText("first");
+		await waitFor(() =>
+			expect(createdAudioUrls().filter((u) => u === audioUrl)).toHaveLength(1),
+		);
+
+		// The other half of the pair. Rewind is the button that does start
+		// over — which is what the two of them used to do identically.
+		fireEvent.click(
+			await screen.findByRole("button", {
+				name: /Restart audio from the beginning/,
+			}),
+		);
 		expect(createdAudioUrls().filter((u) => u === audioUrl)).toHaveLength(2);
+	});
+
+	it("changes speed without restarting, so the learner keeps their place", async () => {
+		renderSlide();
+		await screen.findByText("first");
+		await waitFor(() =>
+			expect(createdAudioUrls().filter((u) => u === audioUrl)).toHaveLength(1),
+		);
+
+		// Changing the rate used to cancel and restart the sequence, which
+		// replayed whatever had already been heard. The rate is applied to the
+		// clip that is playing instead, so no new clip is constructed.
+		fireEvent.click(await screen.findByRole("button", { name: "0.75×" }));
+		expect(createdAudioUrls().filter((u) => u === audioUrl)).toHaveLength(1);
+		// `findByRole` throws when absent, which is the assertion — this project
+		// does not load jest-dom's matchers.
+		await screen.findByRole("button", { name: /Pause audio/ });
 	});
 });
 
