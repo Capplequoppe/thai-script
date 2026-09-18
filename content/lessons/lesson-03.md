@@ -184,8 +184,7 @@ narration: en Nothing should move. These three release no breath at all. If your
 - Thai keeps the breathy ones as separate letters, so it changes the word.
 
 ## exposition the-vowel-house
-image: images/lesson-03/the-vowel-house.jpg
-scene: A wooden Thai house on stilts seen from the yard behind it, steep tiled roof filling the upper frame, a plain back yard below with a single line of washing, late afternoon light. No people.
+image: images/lesson-01/the-vowel-house.jpg
 heading: Back to the house
 narration: en You have been to the vowels' house once before, in lesson one, and you did not get past the back yard. That is the room a vowel lodges in when it is written after its consonant, which is where the long vowel you already know sits. Today's vowel is not written after anything. It is written above, and that puts it upstairs.
 - One house, and the room is decided by where the vowel is written.
@@ -217,7 +216,7 @@ narration: en Look at the mark on its own. It sits on top of its consonant like 
 
 ## exposition first-words
 image: images/lesson-03/first-words.jpg
-scene: Two market price cards written in Thai propped against baskets of produce, close, shallow depth of field.
+scene: A market stall's produce laid out in the early morning, mangoes and greens in shallow baskets, close in with a soft background.
 heading: Two words you can already read
 narration: en You can read two words now, and they are two of the commonest in the language. Here is the first.
 narration: th มี
@@ -232,7 +231,7 @@ rule: dead-endings
 
 ## exposition stops-at-the-end
 image: images/lesson-03/stops-at-the-end.jpg
-scene: A hand setting a heavy wooden lid down flat onto a market basket, sealing it, produce just visible underneath.
+scene: A heavy wooden lid closed flat over a market basket and pressed down tight, a few green leaves caught under the rim, early morning light.
 heading: Where a syllable stops dead
 narration: en Last lesson five letters closed a syllable and left it ringing — you could hold the end of the word as long as you had breath for it. These three do the opposite. They seal it. Listen.
 narration: th มาก

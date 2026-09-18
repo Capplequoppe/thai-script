@@ -391,7 +391,7 @@ narration: en There is the whole of it. The pier with the wooden horse at the en
 
 ## exposition the-vowel-house
 image: images/lesson-01/the-vowel-house.jpg
-scene: A wooden Thai house on stilts standing alone where three dirt tracks meet, wide veranda, steep tiled roof, open shaded space beneath the floor, late afternoon light, the harbour small and distant behind it. No people.
+scene: A wooden Thai house on stilts standing by itself at a crossroads in open farmland, three dirt tracks meeting in front of it and running away to the horizon, steep tiled roof, wide veranda, open shaded space beneath the raised floor, dry grass and distant hills, late afternoon light. No people.
 heading: And one place that is not a district
 narration: en One more place before the vowel, because the vowel does not live in the harbour and never will. Where a consonant lives tells you its class, and its class decides the tone. A vowel has no class at all. It will attach itself to any consonant you like and it changes nothing about that consonant, so there is nowhere in any of the districts for it to belong. What it has instead is a house of its own, standing out where the roads from all three districts meet. Vowels lodge there rather than live there, because a vowel never stands on its own — it always has a consonant to lean on. And the room it lodges in is decided by one thing only, which is where it gets written. Above the consonant is the roof. Below it, the cellar. After it, the back yard. Today you are going as far as the back yard and no further.
 - A vowel carries no class, so it belongs to no district.
