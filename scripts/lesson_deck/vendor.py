@@ -96,6 +96,21 @@ REFERENCE_DIR = Path(__file__).resolve().parent / "reference"
 DEFAULT_ENGLISH_REFERENCE_AUDIO = REFERENCE_DIR / "english-voice.mp3"
 DEFAULT_ENGLISH_REFERENCE_TEXT = REFERENCE_DIR / "english-voice.txt"
 
+#: The same arrangement for Thai, and it exists for the same reason: one
+#: metered call buys a reference, and every Thai clip after it is free.
+#:
+#: Nine sentences lifted whole from `sentences.json` — written rather than
+#: invented, because a reference whose text disagrees with its audio degrades
+#: every clone made from it — plus `งาน ง่าย งาม งดงาม งู`, appended because
+#: no female sentence in the corpus begins a word with ง and that is the sound
+#: the harbour lesson exists to teach. 213 characters, transcribed back at
+#: 0.97 before it was kept.
+#:
+#: Measured worth: cloning from a one-second clip put two of six words through
+#: the gate and turned ง into ม. Cloning from this put all of them through.
+DEFAULT_THAI_REFERENCE_AUDIO = REFERENCE_DIR / "thai-voice.mp3"
+DEFAULT_THAI_REFERENCE_TEXT = REFERENCE_DIR / "thai-voice.txt"
+
 #: What the shipped clips are encoded as, matching
 #: `generate-sentence-audio.py` so every mp3 the app plays is one format.
 #:
@@ -113,6 +128,15 @@ DEFAULT_ENGLISH_REFERENCE_TEXT = REFERENCE_DIR / "english-voice.txt"
 #: model made it.
 MP3_SAMPLE_RATE = "44100"
 MP3_BITRATE = "64k"
+
+#: The encoder settings themselves, named once. Two places now write a shipped
+#: mp3 — `encode_mp3`, and the carrier trim, which cuts straight to mp3 rather
+#: than decoding to WAV only to re-encode — and a clip must not play back at a
+#: different bitrate depending on which of them made it.
+MP3_ENCODE_ARGS = (
+	"-ac", "1", "-ar", MP3_SAMPLE_RATE, "-b:a", MP3_BITRATE,
+	"-codec:a", "libmp3lame",
+)
 DEFAULT_VOICE_SETTINGS: dict[str, Any] = {
 	"stability": 0.5,
 	"similarity_boost": 0.75,
@@ -162,6 +186,24 @@ class Redactor:
 		return cleaned
 
 
+#: Everything that is not a Thai character. Whitespace, Latin text and
+#: punctuation are things a transcriber adds or drops freely and none of them
+#: carries a tone.
+_NON_THAI = re.compile(r"[^\u0e00-\u0e7f]+")
+
+
+def normalise_thai(text: str) -> str:
+	"""Thai characters only, for comparing what was asked against what was said.
+
+	Lives here rather than in the pipeline because two things now depend on
+	agreeing exactly: the pipeline's transcribe-back check, and the trim that
+	finds a short word inside its carrier sentence. If those two normalised
+	differently, a clip could be cut on one reading of a word and judged on
+	another.
+	"""
+	return _NON_THAI.sub("", text)
+
+
 @dataclass(frozen=True)
 class VoiceSpec:
 	"""Everything about *how* a clip is voiced. Part of the cache key, so
@@ -175,6 +217,8 @@ class VoiceSpec:
 	english_model_id: str = DEFAULT_ENGLISH_MODEL_ID
 	english_reference_audio: Path = DEFAULT_ENGLISH_REFERENCE_AUDIO
 	english_reference_text: Path = DEFAULT_ENGLISH_REFERENCE_TEXT
+	thai_reference_audio: Path = DEFAULT_THAI_REFERENCE_AUDIO
+	thai_reference_text: Path = DEFAULT_THAI_REFERENCE_TEXT
 
 	def to_json(self) -> dict[str, Any]:
 		"""The whole spec, for the manifest — a reader wants to see both
@@ -199,8 +243,21 @@ class VoiceSpec:
 		nothing else.
 
 		The Thai projection is deliberately the exact shape the key had when
-		ElevenLabs was the only engine, so clips already generated and verified
-		stay cached across this change.
+		ElevenLabs was the only engine, and it stayed that shape when the local
+		engine learned Thai. That is the point rather than an oversight.
+
+		A Thai key names the speaker and the words, not the machine that made
+		them, because for Thai those are the same thing twice: the reference
+		the local engine clones *is* this voice_id, recorded by this vendor,
+		and every clip from either engine has to satisfy the same
+		transcribe-back check before it is written. Two clips under one key are
+		the same person saying the same words, both verified.
+
+		Naming the engine here would mean the course's existing Thai — native,
+		metered, already verified — is orphaned on the next build and quietly
+		replaced by clones of itself. Keeping the key is what confines the
+		local engine to Thai that does not exist yet, which is the whole of
+		what it was turned on to do.
 		"""
 		if language == "th":
 			return {
@@ -213,22 +270,28 @@ class VoiceSpec:
 			"reference": self.english_reference_digest(),
 		}
 
-	def english_reference_digest(self) -> str:
-		"""Identifies the cloned voice by its inputs, not by a name.
+	def reference_for(self, language: str) -> tuple[Path, Path]:
+		"""The clip and transcript the voice for `language` is cloned from."""
+		if language == "th":
+			return self.thai_reference_audio, self.thai_reference_text
+		return self.english_reference_audio, self.english_reference_text
+
+	def reference_digest(self, language: str) -> str:
+		"""Identifies a cloned voice by its inputs, not by a name.
 
 		A preset speaker has a stable id; a clone does not — it *is* the clip
-		and the transcript it was built from. Hashing both means replacing the
-		reference regenerates every English clip in the course, which is
-		correct, and that swapping the Thai voice leaves them alone, which is
-		the point of keying the two languages separately.
+		and the transcript it was built from. Hashing both means replacing a
+		reference regenerates exactly the clips cloned from it and no others.
 		"""
-		audio = self.english_reference_audio.read_bytes()
-		text = self.english_reference_text.read_text(encoding="utf-8").strip()
+		audio_path, text_path = self.reference_for(language)
 		digest = hashlib.sha256()
-		digest.update(audio)
+		digest.update(audio_path.read_bytes())
 		digest.update(b"\x00")
-		digest.update(text.encode("utf-8"))
+		digest.update(text_path.read_text(encoding="utf-8").strip().encode("utf-8"))
 		return digest.hexdigest()[:16]
+
+	def english_reference_digest(self) -> str:
+		return self.reference_digest("en")
 
 
 #: Delivery markup an author may write inline: `[pause]`, `[whispers]`,
@@ -374,8 +437,11 @@ class LocalTranscriber:
 	cached never loads it at all.
 	"""
 
-	def __init__(self, model_id: str = WHISPER_MODEL_ID) -> None:
+	def __init__(
+		self, model_id: str = WHISPER_MODEL_ID, device: str = "cuda"
+	) -> None:
 		self._model_id = model_id
+		self._device = device
 		self._model: Any | None = None
 
 	def _loaded(self) -> Any:
@@ -389,22 +455,57 @@ class LocalTranscriber:
 					"backend environment, e.g. `uv run --project backend "
 					"python scripts/generate-lesson-deck.py ...`"
 				) from error
-			_preload_cu12_libraries()
+			if self._device == "cuda":
+				_preload_cu12_libraries()
 			self._model = WhisperModel(
-				self._model_id, device="cuda", compute_type="float16"
+				self._model_id,
+				device=self._device,
+				compute_type="float16" if self._device == "cuda" else "int8",
 			)
 		return self._model
 
-	def transcribe(self, audio: bytes) -> str:
+	def _heard(self, audio: bytes, timestamps: bool) -> list[Any]:
 		import io  # noqa: PLC0415
 
 		from faster_whisper.audio import decode_audio  # noqa: PLC0415
 
-		decoded = decode_audio(io.BytesIO(audio))
 		segments, _info = self._loaded().transcribe(
-			decoded, language="th", vad_filter=True
+			decode_audio(io.BytesIO(audio)),
+			language="th",
+			vad_filter=True,
+			word_timestamps=timestamps,
 		)
-		return "".join(segment.text for segment in segments).strip()
+		return list(segments)
+
+	def transcribe(self, audio: bytes) -> str:
+		return "".join(s.text for s in self._heard(audio, False)).strip()
+
+	def words(self, audio: bytes) -> list[Any]:
+		"""Every word heard, each with the seconds it starts and ends at.
+
+		Only the carrier trim wants this. It is the same pass `transcribe`
+		makes, asked to keep the timings it otherwise discards.
+		"""
+		return [w for s in self._heard(audio, True) for w in (s.words or [])]
+
+	def release(self) -> None:
+		"""Hand the model's GPU memory back, and be usable again after.
+
+		The deck pipeline calls this between its Thai and English phases: the
+		English engine needs 19.7 GB of a 24 GB card and this is holding around
+		five of them for clips already verified and on disk. Dropping the
+		reference is not enough on its own — ctranslate2 frees on collection,
+		so the collection is asked for rather than waited for.
+
+		Not a close: `_loaded` rebuilds on the next call, so a caller that
+		releases early and then transcribes again is slow, not broken.
+		"""
+		if self._model is None:
+			return
+		import gc  # noqa: PLC0415
+
+		self._model = None
+		gc.collect()
 
 
 def encode_mp3(wav_bytes: bytes, tempo: float | None = None) -> bytes:
@@ -424,8 +525,7 @@ def encode_mp3(wav_bytes: bytes, tempo: float | None = None) -> bytes:
 			"ffmpeg", "-hide_banner", "-loglevel", "error",
 			"-f", "wav", "-i", "pipe:0",
 			*filters,
-			"-ac", "1", "-ar", MP3_SAMPLE_RATE, "-b:a", MP3_BITRATE,
-			"-codec:a", "libmp3lame", "-f", "mp3", "pipe:1",
+			*MP3_ENCODE_ARGS, "-f", "mp3", "pipe:1",
 		],
 		input=wav_bytes,
 		capture_output=True,
@@ -462,8 +562,14 @@ S2_WORKER = Path(__file__).resolve().parent / "s2_worker.py"
 S2_TIMEOUT_SECONDS = 600
 
 
-class S2ProEnglishVoice:
-	"""The English narration: Fish Audio S2 Pro, cloned, run on this machine.
+class S2ProVoice:
+	"""The narration: Fish Audio S2 Pro, cloned, run on this machine.
+
+	Both languages, and one worker for them — the engine is a voice cloner
+	rather than an English one, and which voice comes out is decided by which
+	reference it is pointed at. Two instances would mean two copies of a model
+	that wants 19.7 GB of a 24 GB card, so there is exactly one, and it is
+	handed a different reference depending on the language asked for.
 
 	Chosen over Qwen3-TTS by listening, after both cleared the accuracy bar —
 	see `reference/ENGINES.md` for the measurements. The short version is that
@@ -518,8 +624,7 @@ class S2ProEnglishVoice:
 	supports_markup = True
 
 	def __init__(self, compile_model: bool = True) -> None:
-		self._tokens: Path | None = None
-		self._tokens_key: str | None = None
+		self._tokens: dict[str, Path] = {}
 		self._process: Any | None = None
 		self._log: Any | None = None
 		self._compile = compile_model
@@ -592,6 +697,19 @@ class S2ProEnglishVoice:
 			self._log.close()
 			self._log = None
 
+	@property
+	def resident(self) -> bool:
+		"""Whether the worker is alive and holding the card *right now*.
+
+		Asked of the process rather than of this object, because the two part
+		company: `close` stands the worker down and leaves the instance in
+		place to start another on demand. Anything reporting on the card from
+		the object's existence says "held" forever after the first build, and
+		the studio's stand-down endpoint then frees memory nobody is told
+		about.
+		"""
+		return self._process is not None and self._process.poll() is None
+
 	def close(self) -> None:
 		"""Release the engine and its several gigabytes of GPU memory.
 
@@ -641,26 +759,30 @@ class S2ProEnglishVoice:
 				)
 			raise VendorError(f"{what} failed: {output[-400:]}")
 
-	def _tokens_for(self, spec: VoiceSpec) -> Path:
+	def _tokens_for(self, spec: VoiceSpec, language: str) -> Path:
 		"""The reference as VQ tokens, computed once and cached on disk.
 
 		Keyed by the reference digest rather than by a filename, so a narrator
 		swap produces a different path instead of silently reusing the previous
 		speaker's tokens — which would be invisible and would sound wrong.
-		"""
-		key = spec.english_reference_digest()
-		if self._tokens is not None and self._tokens_key == key:
-			return self._tokens
 
-		audio = spec.english_reference_audio
-		text_path = spec.english_reference_text
+		Held per digest rather than in a single slot, because one worker now
+		serves two references and alternating between them must not re-encode
+		each time it changes language.
+		"""
+		key = spec.reference_digest(language)
+		cached = self._tokens.get(key)
+		if cached is not None:
+			return cached
+
+		audio, text_path = spec.reference_for(language)
 		if not audio.exists() or not text_path.exists():
 			raise VendorError(
-				"the English reference voice is missing "
-				f"({audio.name} / {text_path.name}). The English narration is "
-				"cloned from it; regenerate it with "
-				"scripts/make-english-reference.py, which is one metered call "
-				"of about 113 characters."
+				f"the {language} reference voice is missing "
+				f"({audio.name} / {text_path.name}). The narration is cloned "
+				"from it; it is rebuilt by one metered call — "
+				"scripts/make-english-reference.py for English, and the Thai "
+				"one is nine corpus sentences read by the Thai voice."
 			)
 
 		cache = FISH_ROOT.parent / "reference-tokens" / key
@@ -678,37 +800,42 @@ class S2ProEnglishVoice:
 			)
 			if completed.returncode != 0:
 				raise VendorError(
-					"could not decode the English reference: "
+					f"could not decode the {language} reference: "
 					f"{completed.stderr.decode('utf-8', 'replace')[:200]}"
 				)
 			self._run(
 				["fish_speech/models/dac/inference.py", "-i", str(wav),
 				 "--checkpoint-path", str(S2_MODEL_DIR / "codec.pth"),
 				 "-o", str(cache / "ref_vq.wav")],
-				"encoding the English reference to VQ tokens",
+				f"encoding the {language} reference to VQ tokens",
 			)
 			if not tokens.exists():
 				raise VendorError(
 					"the reference encoder produced no tokens; expected "
 					f"{tokens}"
 				)
-		self._tokens = tokens
-		self._tokens_key = key
+		self._tokens[key] = tokens
 		return tokens
 
 	def synthesize(self, text: str, language: str, spec: VoiceSpec, seed: int) -> bytes:
-		if language != "en":
-			raise VendorError(
-				f"refusing to synthesize {language!r} through S2 Pro: this "
-				"engine voices the English narration, and Thai is taught by a "
-				"native voice that is checked before it is accepted"
-			)
+		"""One clip, in whichever language the reference is for.
+
+		This refused anything but English until the Thai reference existed,
+		and the refusal said Thai is taught by a native voice checked before
+		it is accepted. Half of that is still true and is the half that
+		mattered: every Thai clip is still checked before it is accepted, by
+		`LocalThaiVoice` and then again by the pipeline. What changed is that
+		the native voice is now something this engine can clone rather than
+		something only a metered call can reach — so the check stayed and the
+		bill went away.
+		"""
 		import json  # noqa: PLC0415
 		import shutil  # noqa: PLC0415
 		import tempfile  # noqa: PLC0415
 
-		tokens = self._tokens_for(spec)
-		reference = spec.english_reference_text.read_text(encoding="utf-8").strip()
+		tokens = self._tokens_for(spec, language)
+		_audio, text_path = spec.reference_for(language)
+		reference = text_path.read_text(encoding="utf-8").strip()
 		worker = self._worker()
 
 		work = Path(tempfile.mkdtemp(prefix="s2-clip-"))
@@ -728,13 +855,13 @@ class S2ProEnglishVoice:
 			except (BrokenPipeError, ValueError) as error:
 				self._stop_worker()
 				raise VendorError(
-					f"the English engine stopped responding: {error}. Its log "
+					f"the local engine stopped responding: {error}. Its log "
 					f"is at {self._log_path()}"
 				) from error
 			if not line:
 				self._stop_worker()
 				raise VendorError(
-					"the English engine exited without replying; its log is at "
+					"the local engine exited without replying; its log is at "
 					f"{self._log_path()}"
 				)
 			reply = json.loads(line)
@@ -742,9 +869,9 @@ class S2ProEnglishVoice:
 				# The worker survives a bad clip on purpose, so this is a
 				# normal failure the retry loop can act on rather than a dead
 				# engine.
-				raise VendorError(f"English synthesis failed: {reply.get('error')}")
+				raise VendorError(f"local synthesis failed: {reply.get('error')}")
 			if not out.exists():
-				raise VendorError("English synthesis reported success but wrote nothing")
+				raise VendorError("local synthesis reported success but wrote nothing")
 			# No `tempo`: this engine is driven by markup and by how the
 			# narration is written, not by stretching it afterwards. The
 			# `atempo` pass that used to live here was half of what made the
@@ -752,6 +879,228 @@ class S2ProEnglishVoice:
 			return encode_mp3(out.read_bytes())
 		finally:
 			shutil.rmtree(work, ignore_errors=True)
+
+
+#: What the target is held between. Thai on both sides, so the engine never
+#: leaves Thai phonetics, and short enough that the target is easy to find in
+#: what comes back. "Sorry" and "thank you" — two things the engine has heard
+#: a great many times, which is the point: the carrier's job is to be dull.
+CARRIER_PREFIX = "ขอโทษ ค่ะ"
+CARRIER_SUFFIX = "ขอบคุณ ค่ะ"
+
+#: Below this many Thai characters, a request gets a carrier. Above it the
+#: text is its own context and needs no help; a long sentence also gives the
+#: trim more chances to cut in the wrong place, so it is left alone.
+#:
+#: Twelve is above every letter name in the alphabet (`วอ แหวน` is six) and
+#: above the vocabulary this teaches one word at a time, and well below a
+#: narration sentence.
+CARRIER_LIMIT = 12
+
+#: Kept either side of the target when cutting. Whisper's Thai boundaries are
+#: good to a few hundredths and what surrounds the target here is silence, so
+#: padding generously costs nothing — and it protects the onset, which is the
+#: entire difference between ง and ม.
+CARRIER_PAD = 0.12
+
+
+@dataclass
+class LocalThaiVoice:
+	"""Thai, cloned on this machine, with short words given a sentence to live in.
+
+	The engine underneath is the same one that voices English — same worker,
+	same 19.7 GB, a different reference. What this adds is the handling short
+	Thai turns out to need.
+
+	A cloning engine asked for two syllables and nothing else has no context to
+	settle its prosody against, so it guesses, and the guess is wrong often
+	enough to matter: `วอ แหวน` came back as `วาเวน` on every seed tried. The
+	same engine asked for a *sentence* with those two syllables inside it says
+	them correctly. So it is asked for the sentence, and the sentence is thrown
+	away.
+
+	Measured on the five things lesson 2 needed and could not get:
+
+	    bare request, one seed      1 of 5
+	    bare request, eight seeds   3 of 5
+	    carrier, cut on silence     1 of 5   (and one clip cut to nothing)
+	    carrier, cut on timings     5 of 5
+
+	The middle row is why the cut is made on word timings rather than on
+	silence. `[pause]` is direction, not a guaranteed stretch of digital
+	silence: only half the clips had two gaps loud enough to find, and
+	measuring the silence measured the wrong thing.
+
+	The trim's transcriber runs on the **CPU**, and that is what keeps this
+	from reintroducing the contention it took two out-of-memory failures to
+	remove. Generating Thai locally puts a 19.7 GB engine and a 4.1 GB verifier
+	in the same phase of the same build, on a card holding 24.5. On the CPU the
+	verifier reads a three-second carrier in 4.8 seconds and returns exactly
+	what the GPU returned — same model, same text — so the phase stays a
+	single-engine phase and the pipeline's retry loop did not have to change.
+	"""
+
+	engine: Any
+	transcriber: LocalTranscriber
+
+	#: The carrier is built from tags, so it had better survive them.
+	supports_markup = True
+
+	#: What was heard for each clip handed back, keyed by the clip's bytes.
+	#:
+	#: Read by `SplitVendor.transcribe`, and the reason it exists is the
+	#: measurement in `reading_of`: a short Thai clip cannot be transcribed on
+	#: its own, so the reading taken inside the carrier is the only usable one
+	#: and it must survive as far as the pipeline's check.
+	_readings: dict[str, str] = field(default_factory=dict)
+
+	def synthesize(self, text: str, language: str, spec: VoiceSpec, seed: int) -> bytes:
+		if len(normalise_thai(text)) > CARRIER_LIMIT:
+			return self.engine.synthesize(text, language, spec, seed)
+
+		line = f"{CARRIER_PREFIX} [pause] {text} [pause] {CARRIER_SUFFIX}"
+		carrier = self.engine.synthesize(line, language, spec, seed)
+
+		words = self.transcriber.words(carrier)
+		if not words:
+			raise VendorError(
+				f"nothing was heard in the carrier for {text!r}; the clip is "
+				"discarded and the next seed tried"
+			)
+		heard, start, end = self._span(self._between_the_carrier(words), text)
+		clip = self._cut(carrier, start, end)
+		self._readings[hashlib.sha256(clip).hexdigest()] = heard
+		return clip
+
+	def reading_of(self, audio: bytes) -> str | None:
+		"""What this clip was heard to say, read where it could be heard.
+
+		The pipeline verifies a clip by transcribing it back, and for short
+		Thai that check does not work on the clip alone. Measured on the
+		course's own native recordings — clips that are correct, shipped, and
+		already used in the listening quiz:
+
+		    consonant-no-nu.mp3     นอ หนู    heard `นอนู`
+		    consonant-mo-ma.mp3     มอ ม้า    heard `มอมมา`
+		    consonant-ngo-ngu.mp3   งอ งู     heard `น้องโง่`
+		    consonant-yo-yak.mp3    ยอ ยักษ์   heard `ยอยยาก`
+		    consonant-wo-weng.mp3   วอ แหวน   heard `ว้าวแหวน`
+
+		Five of five fail the gate. A check that rejects every known-good clip
+		of a kind is not measuring that kind of clip, and it rejected the
+		locally generated letter names for the same reason it rejects these —
+		`วอ แหวน` generated here transcribes as `ว้าวแหวน`, which is
+		character-for-character what the native recording transcribes as.
+
+		A letter name is a syllable Thai does not otherwise use, so a
+		transcriber hands back the nearest real word: `มอ` becomes `หมอ`,
+		`งอ งู` becomes `น้องโง่`. Given the surrounding sentence it stops
+		guessing and reads what is there.
+
+		So the reading kept is the one taken inside the carrier, where the
+		words either side settle what the target is. It is a real transcript of
+		these bytes, not an exemption: a take that said the wrong word is heard
+		saying the wrong word and is still rejected. What changed is only where
+		whisper was standing when it listened.
+		"""
+		return self._readings.get(hashlib.sha256(audio).hexdigest())
+
+	@staticmethod
+	def _between_the_carrier(words: list[Any]) -> list[Any]:
+		"""The heard words with the carrier's own words dropped from each end.
+
+		Without this the target is searched for across the whole clip, and a
+		target that happens to resemble the carrier could be "found" in it —
+		`ขอ` inside `ขอโทษ`, `คะ` inside `ค่ะ`. The clip would then verify on
+		audio of the carrier saying something else entirely, which is the one
+		failure this whole arrangement must not have: a wrong clip that passes.
+
+		Nothing lesson 2 asks for collides today. The guard is here because the
+		cost of being wrong about that later is silent.
+
+		The ends are found by *matching*, not by counting words off. A
+		transcriber does not tokenise the same carrier the same way twice —
+		real failures from this build came back as `ค่ะ น้องโอ้` and
+		`สวัสดีครับ น้อง`, the second of which is a greeting nobody asked for —
+		so a fixed two-words-per-end would sometimes discard the target itself.
+
+		A carrier half is only dropped when it is clearly there. Below the
+		threshold the engine did not say it recognisably, and guessing where it
+		would have been is worse than searching the whole clip.
+		"""
+		import difflib  # noqa: PLC0415
+
+		def matches(said: list[Any], against: str) -> float:
+			return difflib.SequenceMatcher(
+				None,
+				normalise_thai(against),
+				normalise_thai("".join(w.word for w in said)),
+			).ratio()
+
+		#: Enough to say "the carrier is there", not enough to demand it be
+		#: transcribed perfectly — it never is, and it does not have to be.
+		floor = 0.6
+
+		first = max(
+			range(len(words)),
+			key=lambda i: matches(words[:i], CARRIER_PREFIX),
+			default=0,
+		)
+		if matches(words[:first], CARRIER_PREFIX) < floor:
+			first = 0
+
+		last = max(
+			range(first, len(words) + 1),
+			key=lambda j: matches(words[j:], CARRIER_SUFFIX),
+			default=len(words),
+		)
+		if matches(words[last:], CARRIER_SUFFIX) < floor:
+			last = len(words)
+
+		return words[first:last] or words
+
+	@staticmethod
+	def _span(words: list[Any], text: str) -> tuple[str, float, float]:
+		"""What the target was heard as, and where it sits inside the carrier.
+
+		Whichever contiguous run of heard words best matches what was asked
+		for — which is a more honest question than "what comes after the
+		prefix", because it does not assume the prefix was said correctly, and
+		because the run it picks is then both the thing to cut and the thing to
+		judge. One pass answers both, so the clip that ships and the transcript
+		it was accepted on cannot describe different stretches of audio.
+		"""
+		import difflib  # noqa: PLC0415 — only the Thai path needs it
+
+		wanted = normalise_thai(text)
+		best = (-1.0, "", words[0].start, words[-1].end)
+		for first in range(len(words)):
+			for last in range(first + 1, len(words) + 1):
+				said = "".join(w.word for w in words[first:last])
+				ratio = difflib.SequenceMatcher(
+					None, wanted, normalise_thai(said)
+				).ratio()
+				if ratio > best[0]:
+					best = (ratio, said, words[first].start, words[last - 1].end)
+		return best[1], best[2], best[3]
+
+	@staticmethod
+	def _cut(audio: bytes, start: float, end: float) -> bytes:
+		import subprocess  # noqa: PLC0415
+
+		completed = subprocess.run(
+			["ffmpeg", "-hide_banner", "-loglevel", "error", "-i", "pipe:0",
+			 "-ss", f"{max(0.0, start - CARRIER_PAD):.3f}",
+			 "-to", f"{end + CARRIER_PAD:.3f}",
+			 *MP3_ENCODE_ARGS, "-f", "mp3", "pipe:1"],
+			input=audio, capture_output=True, check=False,
+		)
+		if completed.returncode != 0 or not completed.stdout:
+			raise VendorError(
+				"could not cut the carrier down to the word: "
+				f"{completed.stderr.decode('utf-8', 'replace')[-200:]}"
+			)
+		return completed.stdout
 
 
 @dataclass
@@ -784,4 +1133,28 @@ class SplitVendor:
 		return engine.synthesize(payload, language, spec, seed)
 
 	def transcribe(self, audio: bytes) -> str:
+		"""What this clip says, for the pipeline's check.
+
+		A Thai engine that had to hear the words in order to cut them out
+		already holds a reading of them, taken where they could be heard. It is
+		asked first, because re-reading a one-second clip on its own is the
+		thing that does not work — see `LocalThaiVoice.reading_of`, which has
+		the measurement. Anything it does not recognise is transcribed
+		normally.
+		"""
+		reading = getattr(self.thai, "reading_of", None)
+		if reading is not None:
+			heard = reading(audio)
+			if heard is not None:
+				return heard
 		return self.transcriber.transcribe(audio)
+
+	def release_transcriber(self) -> None:
+		"""Drop the verifier once the Thai half of a build is done.
+
+		The pipeline runs Thai first and English second precisely so this can
+		happen in between: the English engine wants 19.7 GB of a 24 GB card and
+		the verifier is holding about five of them, for clips that are already
+		verified and written.
+		"""
+		self.transcriber.release()

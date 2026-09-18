@@ -99,7 +99,7 @@ function SearchIcon() {
 			className="w-6 h-6"
 			aria-hidden="true"
 		>
-			<title>Dictionary</title>
+			<title>Words</title>
 			<circle cx="10" cy="10" r="6.5" opacity="0.15" />
 			<circle
 				cx="10"
@@ -117,6 +117,26 @@ function SearchIcon() {
 				rx="1.2"
 				transform="rotate(45 14.8 14.8)"
 			/>
+		</svg>
+	);
+}
+
+function PalaceMapIcon() {
+	return (
+		<svg
+			viewBox="0 0 24 24"
+			fill="currentColor"
+			className="w-6 h-6"
+			aria-hidden="true"
+		>
+			<title>Palace</title>
+			{/* A folded map rather than a second temple: the Progress tab is
+			    already a pagoda, and two silhouettes of the same building in one
+			    row is a tab bar you have to read to navigate. */}
+			<path d="M9 3L3 5.2v15.3l6-2.2V3z" opacity="0.45" />
+			<path d="M15 5.4L9 3v15.3l6 2.4V5.4z" opacity="0.75" />
+			<path d="M21 3.3l-6 2.1v15.3l6-2.2V3.3z" opacity="0.45" />
+			<circle cx="12" cy="11" r="2.1" />
 		</svg>
 	);
 }
@@ -146,16 +166,19 @@ export function BottomTabBar({
 		},
 		{ to: "/learn", end: false, label: "Learn", icon: <GraduationIcon /> },
 		{ to: "/items", end: false, label: "Items", icon: <GemIcon /> },
+		// "Words", not "Dictionary": at seven tabs each label gets ~55px on a
+		// 390px phone, and "Dictionary" is the one that no longer fits whole.
 		...(vocabUnlocked
 			? [
 					{
 						to: "/dictionary",
 						end: false,
-						label: "Dictionary",
+						label: "Words",
 						icon: <SearchIcon />,
 					},
 				]
 			: []),
+		{ to: "/palace", end: false, label: "Palace", icon: <PalaceMapIcon /> },
 		{ to: "/progress", end: false, label: "Progress", icon: <PagodaIcon /> },
 		{ to: "/settings", end: false, label: "Settings", icon: <GearIcon /> },
 	];

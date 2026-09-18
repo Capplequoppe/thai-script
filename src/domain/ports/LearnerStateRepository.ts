@@ -19,6 +19,8 @@ export interface LearnerStateRepository {
 	clearPendingCatchUp(lessonNumber: number): void;
 	getApprenticeLimits(): ApprenticeLimits;
 	setApprenticeLimits(limits: ApprenticeLimits): void;
+	getReviewBatchSize(): number;
+	setReviewBatchSize(size: number): void;
 	reset(): void;
 	exportData(): string;
 	importData(json: string): void;

@@ -1,93 +1,406 @@
 {
 	"lessonId": "lesson-02",
-	"title": "Three hums, live endings, and the flat tone",
+	"title": "Three voices of the harbour",
 	"slides": [
 		{
 			"kind": "exposition",
-			"id": "three-hums",
-			"heading": "Three more letters you can hum",
+			"id": "overview",
+			"heading": "What is in this lesson",
 			"body": [
-				"ง, ย and ว join ม and น, and all five share one property: you can hold the sound and stretch it without ever stopping the air.",
-				"ngaaw nguu opens with the ng you already make at the end of \"sing\" — Thai simply lets that sound start a syllable instead of finishing one.",
-				"yaaw yák glides like the y in \"yes\". waaw wǎaen rounds the lips the way an English w does, and at the tail of a syllable it melts away into an o."
-			]
+				"Three consonants — three new letters, all from the same place.",
+				"One tone rule: your first, and the one every other is measured against.",
+				"No new vowels. Everything you read today uses the one you already have."
+			],
+			"audio": [
+				"/thai-script/lessons/lesson-02/audio/6960ec8db64bf191.mp3",
+				"/thai-script/lessons/lesson-02/audio/191bdfcfd0cbc1ad.mp3"
+			],
+			"audioLanguages": ["en", "en"]
 		},
 		{
 			"kind": "exposition",
-			"id": "shapes",
-			"heading": "Telling the three apart",
+			"id": "the-trick",
+			"heading": "All three live in the same place",
 			"body": [
-				"ง is one round head with the body swerving away to the right and nothing else hung on it.",
-				"ย carries two bumps on the same flank — no other letter you have met stacks a pair like that.",
-				"ว closes into a single clean ring and stops there."
-			]
+				"All three are low class, so all three are in the harbour.",
+				"All three can end a syllable without stopping the air.",
+				"Learn the district once and it pays for every letter that lives there."
+			],
+			"audio": [
+				"/thai-script/lessons/lesson-02/audio/8f42d5b26daec13c.mp3",
+				"/thai-script/lessons/lesson-02/audio/279beb0f83ee9b74.mp3",
+				"/thai-script/lessons/lesson-02/audio/d70783fc577b93f0.mp3"
+			],
+			"audioLanguages": ["en", "en", "en"],
+			"image": "/thai-script/lessons/lesson-02/images/the-trick-81194bde30c4.jpg"
 		},
 		{
-			"kind": "retrieval",
-			"id": "which-hums",
-			"prompt": "Of the three new letters, one closes into a single ring and one carries two bumps on the same flank. Which is which?",
-			"revealSlideId": "which-hums-answer"
+			"kind": "exposition",
+			"id": "meet-ngu",
+			"heading": "The first voice",
+			"body": [
+				"Its name is the sound, then a word beginning with that sound.",
+				"The word means *snake*.",
+				"You already make this sound — at the *end* of sing. Thai lets it lead."
+			],
+			"audio": [
+				"/thai-script/lessons/lesson-02/audio/b4d8214278bdd77e.mp3",
+				"/thai-script/lessons/lesson-02/audio/7496acd1ccd9e26e.mp3",
+				"/thai-script/lessons/lesson-02/audio/6b9f61e6e2d8b9df.mp3",
+				"/thai-script/lessons/lesson-02/audio/6ab9a87129b41e91.mp3"
+			],
+			"audioLanguages": ["en", "th", "en", "en"],
+			"image": "/thai-script/lessons/lesson-02/images/meet-ngu-fd49307e6ba3.jpg"
 		},
 		{
-			"kind": "reveal",
-			"id": "which-hums-answer",
-			"retrievalSlideId": "which-hums",
-			"answers": ["ว is the single ring.", "ย is the pair of bumps."]
+			"kind": "exposition",
+			"id": "ngu-story-1",
+			"heading": "The rope-maker's daughter",
+			"body": [
+				"She worked the rope locker out where the pier runs to sea.",
+				"The snake lived in the coils and kept the rats off the nets."
+			],
+			"audio": [
+				"/thai-script/lessons/lesson-02/audio/9c883c15c3b35efa.mp3",
+				"/thai-script/lessons/lesson-02/audio/68e1681ad0030a60.mp3"
+			],
+			"audioLanguages": ["en", "en"],
+			"image": "/thai-script/lessons/lesson-02/images/ngu-story-1-7033d5913a10.jpg"
+		},
+		{
+			"kind": "exposition",
+			"id": "ngu-story-2",
+			"heading": "The sound the harbour makes",
+			"body": [
+				"At high tide the ropes hum, long and low across the water.",
+				"The snake lifts its head from the coil and holds the note with them."
+			],
+			"audio": [
+				"/thai-script/lessons/lesson-02/audio/23f91bdcae283858.mp3",
+				"/thai-script/lessons/lesson-02/audio/7d28411a0c8eee1a.mp3"
+			],
+			"audioLanguages": ["en", "en"],
+			"image": "/thai-script/lessons/lesson-02/images/ngu-story-2-cd8af9c9058c.jpg"
+		},
+		{
+			"kind": "exposition",
+			"id": "ngu-story-3",
+			"heading": "What the pier still keeps",
+			"body": [
+				"A coil of rope with a snake's head rising out of it. That is the letter.",
+				"The hum at high tide still carries the snake's name."
+			],
+			"audio": [
+				"/thai-script/lessons/lesson-02/audio/741ea2e283ce1903.mp3",
+				"/thai-script/lessons/lesson-02/audio/9629948a937b27b3.mp3",
+				"/thai-script/lessons/lesson-02/audio/7496acd1ccd9e26e.mp3"
+			],
+			"audioLanguages": ["en", "en", "th"],
+			"image": "/thai-script/lessons/lesson-02/images/ngu-story-3-734b26e41a9e.jpg"
+		},
+		{
+			"kind": "exposition",
+			"id": "see-ngu",
+			"heading": "The snake's letter",
+			"body": ["The snake's letter."],
+			"audio": ["/thai-script/lessons/lesson-02/audio/87b9b917163b9e29.mp3"],
+			"audioLanguages": ["en"],
+			"thai": "ง"
+		},
+		{
+			"kind": "exposition",
+			"id": "meet-yak",
+			"heading": "The second voice",
+			"body": [
+				"The sound glides, like the y in *yes*.",
+				"The word means *giant*."
+			],
+			"audio": [
+				"/thai-script/lessons/lesson-02/audio/2dd02d61a5fc582b.mp3",
+				"/thai-script/lessons/lesson-02/audio/0237483839cf47f4.mp3",
+				"/thai-script/lessons/lesson-02/audio/e470e106a97b29a0.mp3"
+			],
+			"audioLanguages": ["en", "th", "en"],
+			"image": "/thai-script/lessons/lesson-02/images/meet-yak-901bfab3abd1.jpg"
+		},
+		{
+			"kind": "exposition",
+			"id": "yak-story-1",
+			"heading": "The one who brought the boats home",
+			"body": [
+				"Too big for a boat, so he waded.",
+				"He carried the fishing boats home through the storms, two at a time.",
+				"He never spoke."
+			],
+			"audio": [
+				"/thai-script/lessons/lesson-02/audio/b3d94e0367715737.mp3",
+				"/thai-script/lessons/lesson-02/audio/4246fd213e732f30.mp3"
+			],
+			"audioLanguages": ["en", "en"],
+			"image": "/thai-script/lessons/lesson-02/images/yak-story-1-6dfa11a7b43b.jpg"
+		},
+		{
+			"kind": "exposition",
+			"id": "yak-story-2",
+			"heading": "The only sound he made",
+			"body": [
+				"One sound only — a long yawn, rolling in across the water.",
+				"It meant the storm was over and the boats were coming home."
+			],
+			"audio": [
+				"/thai-script/lessons/lesson-02/audio/d048a162ee58f0ee.mp3",
+				"/thai-script/lessons/lesson-02/audio/2797b480a5f231f0.mp3"
+			],
+			"audioLanguages": ["en", "en"],
+			"image": "/thai-script/lessons/lesson-02/images/yak-story-2-d16dd0823917.jpg"
+		},
+		{
+			"kind": "exposition",
+			"id": "yak-story-3",
+			"heading": "Two humps in the sea wall",
+			"body": [
+				"Two humps in the sea wall: his chin and his belly.",
+				"No other letter has that pair."
+			],
+			"audio": [
+				"/thai-script/lessons/lesson-02/audio/6952a6b5c0e6fe2a.mp3",
+				"/thai-script/lessons/lesson-02/audio/e5414a82f5614bd3.mp3",
+				"/thai-script/lessons/lesson-02/audio/0237483839cf47f4.mp3"
+			],
+			"audioLanguages": ["en", "en", "th"],
+			"image": "/thai-script/lessons/lesson-02/images/yak-story-3-300d73070d25.jpg"
+		},
+		{
+			"kind": "exposition",
+			"id": "see-yak",
+			"heading": "The giant's letter",
+			"body": ["The giant's letter."],
+			"audio": ["/thai-script/lessons/lesson-02/audio/c8d1b6b8952230ba.mp3"],
+			"audioLanguages": ["en"],
+			"thai": "ย"
+		},
+		{
+			"kind": "exposition",
+			"id": "meet-waen",
+			"heading": "The third voice",
+			"body": [
+				"The lips round, as for an English *w*.",
+				"The word means *ring*."
+			],
+			"audio": [
+				"/thai-script/lessons/lesson-02/audio/885b5b76729c53c8.mp3",
+				"/thai-script/lessons/lesson-02/audio/d7a437034807b8f3.mp3",
+				"/thai-script/lessons/lesson-02/audio/832a87d1125d62d2.mp3"
+			],
+			"audioLanguages": ["en", "th", "en"],
+			"image": "/thai-script/lessons/lesson-02/images/meet-waen-976b43f46d2f.jpg"
+		},
+		{
+			"kind": "exposition",
+			"id": "waen-story-1",
+			"heading": "The day before he sailed",
+			"body": [
+				"A plain silver band, given the day before he sailed.",
+				"The boat came back without him."
+			],
+			"audio": [
+				"/thai-script/lessons/lesson-02/audio/2b7c273512666291.mp3",
+				"/thai-script/lessons/lesson-02/audio/654058532c361e39.mp3"
+			],
+			"audioLanguages": ["en", "en"],
+			"image": "/thai-script/lessons/lesson-02/images/waen-story-1-2277eb13349e.jpg"
+		},
+		{
+			"kind": "exposition",
+			"id": "waen-story-2",
+			"heading": "Forty years on the steps",
+			"body": [
+				"Forty years, watching the harbour mouth.",
+				"Turning it round and round on her finger."
+			],
+			"audio": [
+				"/thai-script/lessons/lesson-02/audio/8bd4c34bfb5101ee.mp3",
+				"/thai-script/lessons/lesson-02/audio/801ce515bc371ba6.mp3"
+			],
+			"audioLanguages": ["en", "en"],
+			"image": "/thai-script/lessons/lesson-02/images/waen-story-2-6da3212d97f1.jpg"
+		},
+		{
+			"kind": "exposition",
+			"id": "waen-story-3",
+			"heading": "What the fish gave back",
+			"body": [
+				"It had slipped from her finger into the water.",
+				"A week later a boy found it inside a fish."
+			],
+			"audio": [
+				"/thai-script/lessons/lesson-02/audio/fe39b96ba08a5865.mp3",
+				"/thai-script/lessons/lesson-02/audio/d8e6085feda548c5.mp3"
+			],
+			"audioLanguages": ["en", "en"],
+			"image": "/thai-script/lessons/lesson-02/images/waen-story-3-15a5ce98ea4d.jpg"
+		},
+		{
+			"kind": "exposition",
+			"id": "waen-story-4",
+			"heading": "Back on its nail",
+			"body": [
+				"One stroke closing into a single ring, and nothing else on it.",
+				"The harbour's word for a circle came from hers."
+			],
+			"audio": [
+				"/thai-script/lessons/lesson-02/audio/7673b5a85e42141b.mp3",
+				"/thai-script/lessons/lesson-02/audio/29ad5302434c09ed.mp3",
+				"/thai-script/lessons/lesson-02/audio/d7a437034807b8f3.mp3"
+			],
+			"audioLanguages": ["en", "en", "th"],
+			"image": "/thai-script/lessons/lesson-02/images/waen-story-4-9fb8a4c7f644.jpg"
+		},
+		{
+			"kind": "exposition",
+			"id": "see-waen",
+			"heading": "The ring's letter",
+			"body": ["The ring's letter."],
+			"audio": ["/thai-script/lessons/lesson-02/audio/edb3d7e56be213c6.mp3"],
+			"audioLanguages": ["en"],
+			"thai": "ว"
 		},
 		{
 			"kind": "rule",
 			"id": "live-endings",
-			"ruleId": "live-endings"
+			"ruleId": "live-endings",
+			"audio": [
+				"/thai-script/lessons/lesson-02/audio/ed69635a2df9a3bf.mp3",
+				"/thai-script/lessons/lesson-02/audio/ff6d416ba766118b.mp3",
+				"/thai-script/lessons/lesson-02/audio/4dc4382752516c9c.mp3",
+				"/thai-script/lessons/lesson-02/audio/fcec05bc09e8fb8d.mp3",
+				"/thai-script/lessons/lesson-02/audio/12f9f8e1b3953fcf.mp3",
+				"/thai-script/lessons/lesson-02/audio/f55c0c3566e6a1f8.mp3"
+			],
+			"audioLanguages": ["en", "en", "en", "en", "th", "en"]
 		},
 		{
 			"kind": "exposition",
-			"id": "live-syllables",
-			"heading": "Live endings, and why you were taught the hums first",
+			"id": "the-five",
+			"heading": "The five that keep going",
 			"body": [
-				"Exactly five letters can close a syllable and leave it still ringing: ม, น, ง, ย and ว — the same five you can hum, which is not a coincidence.",
-				"A syllable that ends on a long vowel with nothing after it is live too. มา is live, and so is นา.",
-				"Anything else stops the air, and that is the other kind of ending. It arrives next lesson."
-			]
+				"The horse, the mouse, the snake, the giant, the ring.",
+				"Every one is a sound you can hold — which is exactly why a syllable can end on it."
+			],
+			"audio": [
+				"/thai-script/lessons/lesson-02/audio/b79037d7ecb068b5.mp3",
+				"/thai-script/lessons/lesson-02/audio/d049e388c7fea67f.mp3"
+			],
+			"audioLanguages": ["en", "en"],
+			"image": "/thai-script/lessons/lesson-02/images/the-five-fdea1d4ca818.jpg"
 		},
 		{
 			"kind": "rule",
 			"id": "low-live",
-			"ruleId": "low-live"
+			"ruleId": "low-live",
+			"audio": [
+				"/thai-script/lessons/lesson-02/audio/8388130bae039459.mp3",
+				"/thai-script/lessons/lesson-02/audio/6a8c7e253dd5e422.mp3",
+				"/thai-script/lessons/lesson-02/audio/76961471d20c6c65.mp3"
+			],
+			"audioLanguages": ["en", "en", "en"]
 		},
 		{
 			"kind": "exposition",
-			"id": "first-tone-rule",
-			"heading": "Your first tone rule, applied",
+			"id": "the-paddy",
+			"heading": "Where a flat tone lives",
 			"body": [
-				"All five hummed letters are low class, so every live syllable one of them opens lands flat, halfway up your speaking range.",
-				"งาน (ngaan) is a job or a piece of work. วาง (waang) is to put something down. Both open on a hum, both end live, both sit flat.",
-				"ยาว (yaao) is long. นาง (naang) is the title you would read as Mrs. นาย (naai) is the one you would read as Mr."
-			]
+				"The fisherman stands alive in a flat paddy, and nothing has happened to him.",
+				"A harbour voice that nothing stops comes out flat.",
+				"Flat tones live in the rice paddy."
+			],
+			"audio": [
+				"/thai-script/lessons/lesson-02/audio/a6aa95dc45d89765.mp3",
+				"/thai-script/lessons/lesson-02/audio/2e9c77d373f8ec9e.mp3",
+				"/thai-script/lessons/lesson-02/audio/9e6e8f196ffe222b.mp3",
+				"/thai-script/lessons/lesson-02/audio/e0b799ed0d83c700.mp3",
+				"/thai-script/lessons/lesson-02/audio/0d2e11f39ce544b8.mp3",
+				"/thai-script/lessons/lesson-02/audio/697d790ce7aff27c.mp3",
+				"/thai-script/lessons/lesson-02/audio/a8e661af1f2a545b.mp3",
+				"/thai-script/lessons/lesson-02/audio/3a3729532353920f.mp3",
+				"/thai-script/lessons/lesson-02/audio/923661f5bfba5f55.mp3"
+			],
+			"audioLanguages": ["en", "en", "en", "en", "en", "th", "en", "th", "en"],
+			"image": "/thai-script/lessons/lesson-02/images/the-paddy-d42ee34ac6de.jpg"
 		},
 		{
 			"kind": "retrieval",
 			"id": "tone-of-yaa",
-			"prompt": "ยา (yaa) is medicine. Its first letter hums and its long vowel is left open with nothing after it. Which tone does the syllable take, and which rule told you so?",
-			"revealSlideId": "tone-of-yaa-answer"
+			"prompt": "A word begins with the giant's letter, and its long vowel is left open with nothing after it. Which tone does it take, and which rule told you so?",
+			"revealSlideId": "tone-of-yaa-answer",
+			"audio": ["/thai-script/lessons/lesson-02/audio/1d3725a765a10fa5.mp3"],
+			"audioLanguages": ["en"]
 		},
 		{
 			"kind": "reveal",
 			"id": "tone-of-yaa-answer",
 			"retrievalSlideId": "tone-of-yaa",
 			"answers": [
-				"Mid tone — flat from start to finish.",
-				"ย is low class and the syllable is live, so the low class live rule decides it."
-			]
+				"Mid tone, flat from start to finish.",
+				"The giant is low class and the syllable is live, so the low class live rule decides it."
+			],
+			"audio": [
+				"/thai-script/lessons/lesson-02/audio/452805eed3bb9b35.mp3",
+				"/thai-script/lessons/lesson-02/audio/8922d57142a6d866.mp3",
+				"/thai-script/lessons/lesson-02/audio/5963947d88351a8d.mp3"
+			],
+			"audioLanguages": ["en", "th", "en"]
 		},
 		{
 			"kind": "exposition",
-			"id": "read-back",
-			"heading": "Four words, no new letters",
+			"id": "read-intro",
+			"heading": "Two words, and no new letters",
 			"body": [
-				"งาม (ngaam) is beautiful. Read it aloud: a hum, a long vowel, a hum to close it.",
-				"วง (wong) is a circle or a ring — a word whose shape and meaning agree for once.",
-				"Every word on this slide is built from five letters and one vowel. That is what the sequencing buys you."
-			]
+				"Read each one before the answer comes.",
+				"Everything here is five letters and one vowel."
+			],
+			"audio": ["/thai-script/lessons/lesson-02/audio/8441ef8051dccfc2.mp3"],
+			"audioLanguages": ["en"]
+		},
+		{
+			"kind": "exposition",
+			"id": "read-ngaam",
+			"heading": "Read this one",
+			"body": ["A hum, a long vowel, a hum to close it."],
+			"audio": [
+				"/thai-script/lessons/lesson-02/audio/c51755b122a2aa8e.mp3",
+				"/thai-script/lessons/lesson-02/audio/6df0fd09c54ba48e.mp3",
+				"/thai-script/lessons/lesson-02/audio/191cbc09c745458e.mp3"
+			],
+			"audioLanguages": ["en", "th", "en"],
+			"thai": "งาม"
+		},
+		{
+			"kind": "exposition",
+			"id": "read-wong",
+			"heading": "And this one",
+			"body": ["The ring, then the snake's letter closing it."],
+			"audio": [
+				"/thai-script/lessons/lesson-02/audio/de653b05347ccc82.mp3",
+				"/thai-script/lessons/lesson-02/audio/b2d4aa1efd697028.mp3",
+				"/thai-script/lessons/lesson-02/audio/ac3f98f623d29c13.mp3"
+			],
+			"audioLanguages": ["en", "th", "en"],
+			"thai": "วง"
+		},
+		{
+			"kind": "exposition",
+			"id": "read-close",
+			"heading": "Two lessons in",
+			"body": [
+				"Five letters and one vowel between them.",
+				"Next: endings that stop the air."
+			],
+			"audio": [
+				"/thai-script/lessons/lesson-02/audio/fa61973db5dab421.mp3",
+				"/thai-script/lessons/lesson-02/audio/7e4bdb7c929356e9.mp3"
+			],
+			"audioLanguages": ["en", "en"]
 		}
 	]
 }

@@ -1,4 +1,5 @@
 import { beforeEach, describe, expect, it } from "vitest";
+import { DEFAULT_REVIEW_BATCH_SIZE } from "../../domain/session/ReviewBatchSize";
 import { DEFAULT_APPRENTICE_LIMITS } from "../../domain/shared/services/ApprenticeService";
 import type { SessionSummary } from "../../domain/shared/types";
 import { InMemoryStorage } from "./Storage";
@@ -163,6 +164,41 @@ describe("StorageLearnerStateRepository", () => {
 			repo.setApprenticeLimits({ general: 150, script: 20, sentence: 80 });
 			repo.reset();
 			expect(repo.getApprenticeLimits()).toEqual(DEFAULT_APPRENTICE_LIMITS);
+		});
+	});
+
+	describe("review batch size", () => {
+		it("returns DEFAULT_REVIEW_BATCH_SIZE when never customized", () => {
+			expect(repo.getReviewBatchSize()).toBe(DEFAULT_REVIEW_BATCH_SIZE);
+		});
+
+		it("returns the custom size after setting it", () => {
+			repo.setReviewBatchSize(35);
+			expect(repo.getReviewBatchSize()).toBe(35);
+		});
+
+		it("resets to DEFAULT_REVIEW_BATCH_SIZE", () => {
+			repo.setReviewBatchSize(35);
+			repo.reset();
+			expect(repo.getReviewBatchSize()).toBe(DEFAULT_REVIEW_BATCH_SIZE);
+		});
+
+		// An imported or hand-edited file can carry anything; a zero here
+		// would mean a session of no cards, and a huge one would restore the
+		// unbounded session the batch exists to replace.
+		it.each([
+			0,
+			-5,
+			2.5,
+			5000,
+			"20",
+			null,
+		])("reads %p as the default rather than honouring it", (stored) => {
+			const state = storage.load();
+			(state as { reviewBatchSize?: unknown }).reviewBatchSize = stored;
+			storage.save(state);
+
+			expect(repo.getReviewBatchSize()).toBe(DEFAULT_REVIEW_BATCH_SIZE);
 		});
 	});
 

@@ -192,6 +192,12 @@ export interface LearnerState {
 	sessionHistory: SessionSummary[];
 	achievements: string[];
 	apprenticeLimits?: ApprenticeLimits;
+	/**
+	 * How many cards one review sitting runs, for every pool. Absent on
+	 * any state written before the setting existed, and read as
+	 * `DEFAULT_REVIEW_BATCH_SIZE` there.
+	 */
+	reviewBatchSize?: number;
 	pendingCatchUps?: PendingCatchUp[];
 }
 

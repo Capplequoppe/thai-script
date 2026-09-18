@@ -1,4 +1,8 @@
 import type { LearnerStateRepository } from "../../domain/ports/LearnerStateRepository";
+import {
+	DEFAULT_REVIEW_BATCH_SIZE,
+	isValidReviewBatchSize,
+} from "../../domain/session/ReviewBatchSize";
 import { DEFAULT_APPRENTICE_LIMITS } from "../../domain/shared/services/ApprenticeService";
 import type {
 	ApprenticeLimits,
@@ -97,6 +101,23 @@ export class StorageLearnerStateRepository implements LearnerStateRepository {
 	setApprenticeLimits(limits: ApprenticeLimits): void {
 		const state = this.storage.load();
 		state.apprenticeLimits = limits;
+		this.storage.save(state);
+	}
+
+	/**
+	 * A size written by a build with different bounds — or hand-edited into an
+	 * imported file — reads as the default rather than propagating: an
+	 * out-of-range batch would either hand back a one-card session forever or
+	 * restore the unbounded one the batch exists to replace.
+	 */
+	getReviewBatchSize(): number {
+		const stored = this.storage.load().reviewBatchSize;
+		return isValidReviewBatchSize(stored) ? stored : DEFAULT_REVIEW_BATCH_SIZE;
+	}
+
+	setReviewBatchSize(size: number): void {
+		const state = this.storage.load();
+		state.reviewBatchSize = size;
 		this.storage.save(state);
 	}
 

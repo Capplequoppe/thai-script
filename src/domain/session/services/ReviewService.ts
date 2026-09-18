@@ -90,6 +90,16 @@ export class ReviewService {
 		return maxCards ? sorted.slice(0, maxCards) : sorted;
 	}
 
+	/**
+	 * A session of the learner's configured batch size, unless the caller
+	 * names a size of its own.
+	 *
+	 * The fallback lives here rather than at each of the four pages that start
+	 * a session, because "every kind of review comes in batches" is a property
+	 * of reviewing, not of any one screen — and a pool added later inherits it
+	 * without anyone remembering to. A caller that genuinely wants the whole
+	 * queue passes a `maxCards` big enough to hold it; nothing in the app does.
+	 */
 	startReviewSession(
 		maxCards?: number,
 		now?: string,
@@ -97,16 +107,17 @@ export class ReviewService {
 	): ActiveReviewSession {
 		const currentTime = now ?? new Date().toISOString();
 		const dueCards = this.getDueCards(currentTime, pool);
+		const batchSize = maxCards ?? this.stateRepo.getReviewBatchSize();
 
 		const selector = this.selectors[pool];
 		const selected = selector
 			? selector.select({
 					dueCards,
 					allCards: this.cardRepo.findAll(pool),
-					maxCards,
+					maxCards: batchSize,
 					now: currentTime,
 				})
-			: ReviewService.byOverdueness(dueCards, maxCards);
+			: ReviewService.byOverdueness(dueCards, batchSize);
 
 		const quizCards: ReviewQuizCard[] = selected.map((card) => ({
 			card,

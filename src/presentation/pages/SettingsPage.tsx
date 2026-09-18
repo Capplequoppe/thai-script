@@ -2,6 +2,10 @@ import { useRef, useState } from "react";
 import { useNavigate } from "react-router";
 import { Button } from "@/presentation/components/ui/button";
 import {
+	MAX_REVIEW_BATCH_SIZE,
+	MIN_REVIEW_BATCH_SIZE,
+} from "../../domain/session/ReviewBatchSize";
+import {
 	clearConversationBackendUrl,
 	getConversationBackendToken,
 	getConversationBackendUrl,
@@ -24,6 +28,13 @@ function parseLimit(value: string): number | null {
 	if (!/^\d+$/.test(value.trim())) return null;
 	const n = Number(value);
 	if (n < MIN_APPRENTICE_LIMIT || n > MAX_APPRENTICE_LIMIT) return null;
+	return n;
+}
+
+function parseBatchSize(value: string): number | null {
+	if (!/^\d+$/.test(value.trim())) return null;
+	const n = Number(value);
+	if (n < MIN_REVIEW_BATCH_SIZE || n > MAX_REVIEW_BATCH_SIZE) return null;
 	return n;
 }
 
@@ -57,6 +68,14 @@ export function SettingsPage() {
 		String(initialLimits.sentence),
 	);
 	const [limitsStatus, setLimitsStatus] = useState<{
+		type: "success" | "error";
+		message: string;
+	} | null>(null);
+
+	const [batchSize, setBatchSize] = useState(() =>
+		String(data.getReviewBatchSize()),
+	);
+	const [batchStatus, setBatchStatus] = useState<{
 		type: "success" | "error";
 		message: string;
 	} | null>(null);
@@ -123,6 +142,24 @@ export function SettingsPage() {
 		data.setApprenticeLimits({ general, script, sentence });
 		refresh();
 		setLimitsStatus({ type: "success", message: "Learning pace saved." });
+	}
+
+	function handleSaveBatchSize() {
+		const size = parseBatchSize(batchSize);
+		if (size === null) {
+			setBatchStatus({
+				type: "error",
+				message: `Enter a whole number between ${MIN_REVIEW_BATCH_SIZE} and ${MAX_REVIEW_BATCH_SIZE}.`,
+			});
+			return;
+		}
+
+		data.setReviewBatchSize(size);
+		refresh();
+		setBatchStatus({
+			type: "success",
+			message: `Review sessions will run ${size} cards at a time.`,
+		});
 	}
 
 	function handleExport() {
@@ -244,6 +281,57 @@ export function SettingsPage() {
 						}}
 					>
 						{importStatus.message}
+					</p>
+				)}
+			</section>
+
+			{/* Review Sessions */}
+			<section className="space-y-2">
+				<h2
+					className="text-sm font-semibold"
+					style={{ color: "var(--color-text-muted)" }}
+				>
+					Review Sessions
+				</h2>
+				<p className="text-sm" style={{ color: "var(--color-text-muted)" }}>
+					How many cards one round of review runs before it wraps up. Applies to
+					script, vocabulary, grammar and sentence reviews alike. A big backlog
+					is then a run of short rounds you can stop between, rather than one
+					session you have to find an hour for &mdash; when a round ends,
+					whatever is still due is waiting on the same button.
+				</p>
+				<div className="grid grid-cols-1 gap-3 max-w-xs">
+					<label
+						htmlFor="review-batch-size"
+						className="text-sm flex flex-col gap-1"
+					>
+						Cards per round
+						<input
+							id="review-batch-size"
+							type="number"
+							min={MIN_REVIEW_BATCH_SIZE}
+							max={MAX_REVIEW_BATCH_SIZE}
+							value={batchSize}
+							onChange={(e) => setBatchSize(e.target.value)}
+							className="rounded-md border px-3 py-2 text-sm"
+							style={{ borderColor: "var(--color-border)" }}
+						/>
+					</label>
+				</div>
+				<Button type="button" onClick={handleSaveBatchSize}>
+					Save Review Sessions
+				</Button>
+				{batchStatus && (
+					<p
+						className="text-sm"
+						style={{
+							color:
+								batchStatus.type === "success"
+									? "var(--color-master)"
+									: "var(--color-danger)",
+						}}
+					>
+						{batchStatus.message}
 					</p>
 				)}
 			</section>

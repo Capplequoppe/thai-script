@@ -264,6 +264,17 @@ export interface DeckExpositionSlide {
 	readonly id: string;
 	readonly heading: string;
 	readonly body: readonly string[];
+	/**
+	 * Thai to be *read*, shown large in the app's own font in place of an
+	 * illustration.
+	 *
+	 * A reading slide's subject is the writing, so a picture would be
+	 * competing with it rather than supporting it — and a glyph burned into a
+	 * watercolour is at whatever size the composition left over, soft, and
+	 * unselectable. Optional: most slides are not asking anyone to decode
+	 * anything.
+	 */
+	readonly thai?: string;
 }
 
 /**
@@ -366,7 +377,15 @@ function parseSlide(
 				});
 				return undefined;
 			}
-			return { kind: "exposition", id, heading: raw.heading, body: raw.body };
+			return {
+				kind: "exposition",
+				id,
+				heading: raw.heading,
+				body: raw.body,
+				...(typeof raw.thai === "string" && raw.thai
+					? { thai: raw.thai }
+					: {}),
+			};
 		}
 		case "retrieval": {
 			if (

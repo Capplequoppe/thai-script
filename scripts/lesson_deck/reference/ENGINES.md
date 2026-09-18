@@ -13,8 +13,15 @@ listed under **Dead ends**.
 
 | | engine | why |
 |---|---|---|
-| **Thai** | ElevenLabs `eleven_v3`, voice `brM9iIbwDREZaWL8luun` (Anna) | the only one that clears the tone gate |
+| **Thai words** | Fish Audio S2 Pro, cloned from `thai-voice.mp3`, said inside a carrier | clears the tone gate, and costs nothing per clip |
+| **Thai letter names** | the native recordings already in `public/audio/` | the engine is unreliable on them, and 42 correct clips already ship |
 | **English** | Fish Audio S2 Pro, cloned from a fixed reference, with `[markup]` | chosen by ear, and it keeps its outputs |
+
+The Thai row used to read "ElevenLabs, the only one that clears the tone gate",
+and the measurement behind it is still in this file and still correct. What
+changed is the reference and the carrier, not the standard — see **Thai on this
+machine**. The metered voice remains reachable with `--metered-thai`, and one
+metered call still buys the reference everything else is cloned from.
 
 ### How the English row was actually decided, and the assumption that was wrong
 
@@ -43,9 +50,14 @@ pausing, not as a fault, and insisting on one speaker made the Thai worse.
 
 Thai is also **tiny** — about 26 characters per lesson, because Thai clips are
 single words and letter names, content-addressed and shared across every slide
-and lesson that use them. The entire course's Thai is a rounding error. There
-was never much to save by moving it, and correctness is not for sale at that
-price.
+and lesson that use them. The entire course's Thai is a rounding error.
+
+That argued against moving it, and it is worth being clear that cost is not
+what moved it in the end. Correctness was never for sale at that price and
+still is not: local Thai ships because it passes the same gate, and the clips
+it cannot pass come from the native recordings instead. The saving is a
+by-product. What the move actually bought was that a lesson can be built,
+listened to, and rebuilt without reaching a vendor at all.
 
 ## Thai tone accuracy, measured
 
@@ -65,6 +77,96 @@ S2 Pro is closer than a first, badly-posed test suggested — see **Dead ends** 
 but `มอ ม้า` never passed. Across eight seeds it produced `หมอ มา`, `มอม่า` and
 `ม. ม.`; note that `หมอ **มา**` drops the tone on the second syllable outright.
 A wrong tone is a wrong word, and SRS will then drill it.
+
+## Thai on this machine
+
+Thai is now generated locally. Two things had to change first, and a third
+turned out to be measuring the wrong thing entirely.
+
+### A reference long enough to carry the language
+
+The first local attempt cloned Thai from a one-second clip of `นานา`. Two of
+six words cleared the gate and ง as an initial came back as ม. That was a
+verdict on a one-second reference, not on the engine. With thirty seconds of
+real Thai — see `README.md` for how the passage was chosen — `งาน` went from
+`มาน่า` to a clean 1.00.
+
+### A carrier sentence, because short requests have no context
+
+A cloning engine asked for two syllables and nothing else has nothing to settle
+its prosody against, so it guesses. The fix is to ask for a sentence and throw
+the sentence away: the target is held between two `[pause]` tags, and the clip
+is cut back to it afterwards.
+
+| | passed |
+|---|---|
+| bare request, one seed | 1 of 5 |
+| bare request, eight seeds | 3 of 5 |
+| carrier, cut on silence | 1 of 5 — and one clip cut to nothing |
+| carrier, cut on word timings | 5 of 5 |
+
+The third row is a dead end worth keeping. `[pause]` is direction, not a
+guaranteed stretch of digital silence: only half the clips had two gaps loud
+enough for `silencedetect` to find. The cut is made on whisper's word timings.
+
+### The gate cannot read an isolated letter name
+
+The first real build with the carrier still failed 7 of 12 clips, and the cause
+was not the engine. Run the pipeline's own check against the course's *native*
+recordings — clips that are correct, shipped, and already heard by learners in
+the listening quiz:
+
+| clip | asked for | heard |
+|---|---|---|
+| `consonant-no-nu.mp3` | `นอ หนู` | `นอนู` |
+| `consonant-mo-ma.mp3` | `มอ ม้า` | `มอมมา` |
+| `consonant-ngo-ngu.mp3` | `งอ งู` | `น้องโง่` |
+| `consonant-yo-yak.mp3` | `ยอ ยักษ์` | `ยอยยาก` |
+| `consonant-wo-weng.mp3` | `วอ แหวน` | `ว้าวแหวน` |
+
+**Five of five fail.** A letter name is a syllable Thai does not otherwise use,
+so a transcriber hands back the nearest real word. A check that rejects every
+known-good clip of a kind is not measuring that kind of clip — and it was
+rejecting the generated letter names for the same reason, not for being wrong:
+`วอ แหวน` generated here transcribes as `ว้าวแหวน`, character-for-character
+what the native recording transcribes as.
+
+So the reading the check sees is the one taken *inside the carrier*, where the
+surrounding words settle what the target is. It is a real transcript of the
+bytes that ship, not an exemption: a take that said the wrong word is heard
+saying the wrong word and is still rejected. What moved is where whisper was
+standing. With that, the same build went from 5 of 12 to **11 of 12**.
+
+### Where it still fails, re-measured
+
+The six clips from the table above, re-run through the shipped code — carrier,
+timing cut, in-context reading, eight seeds:
+
+| clip | S2 Pro, before | S2 Pro, now |
+|---|---|---|
+| `มอ ม้า` | never cleared in 8 | **never cleared in 8** |
+| `นอ หนู` | 2 seeds | 8 seeds |
+| `สระอา` | 1 seed | 1 seed |
+| `นานา` | 1 seed | 1 seed |
+| `มา` | 3 seeds | 1 seed |
+| `นาน` | 1 seed | 1 seed |
+| | 5 / 6 | **5 / 6** |
+
+The verdict did not move, and that is the point of having re-run it rather than
+assuming the carrier had swept the problem away.
+
+Put beside lesson 2's results, the line is clean and it is not about tone
+marks or vowel length:
+
+- **Words** — `งาน ยาว งาม วง นานา ยายา สระอา มา นาน` — all pass, usually on
+  the first seed.
+- **Letter names** — 3 of 5 pass, none of them comfortably. `มอ ม้า` and
+  `วอ แหวน` fail outright; `นอ หนู` needed all eight seeds.
+
+Letter names are therefore the class to take from the native recordings rather
+than generate. All 42 already ship for the listening quiz, and a lesson can
+point at one with a `recording:` line — which also means the learner hears the
+identical clip in the lesson and in the quiz that drills it.
 
 ## English narration, measured
 
@@ -347,6 +449,15 @@ that is not in this file.
   the hardest case and the first S2 Pro gate did exactly this, scoring 2/6 and
   producing `สวัสดีครับ` where `สระอา` was asked for. With a Thai reference the
   same model scored 5/6. The failure was the test, not the model.
+- **Cloning Thai from a one-second reference.** `นานา` as the whole reference:
+  2 of 6, with ง as an initial coming back as ม. Length is not optional for a
+  language the speaker has to carry.
+- **Cutting a carrier on detected silence.** `[pause]` is direction, not
+  guaranteed digital silence. Half the clips had no two gaps loud enough to
+  find and one was cut to nothing. Cut on whisper's word timings instead.
+- **Transcribing a one-second Thai letter name to verify it.** Rejects five of
+  five of the course's own native recordings. The clip has to be judged in a
+  context where it can be heard.
 
 ## Licensing, which is a real constraint
 

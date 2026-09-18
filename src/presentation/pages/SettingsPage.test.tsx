@@ -22,6 +22,8 @@ function renderSettings(dataOverrides: Partial<AppContextValue["data"]> = {}) {
 			sentence: 60,
 		})),
 		setApprenticeLimits: vi.fn(),
+		getReviewBatchSize: vi.fn(() => 20),
+		setReviewBatchSize: vi.fn(),
 		...dataOverrides,
 	} as unknown as AppContextValue["data"];
 
@@ -105,6 +107,51 @@ describe("SettingsPage — Learning Pace", () => {
 		fireEvent.click(screen.getByText("Save Learning Pace"));
 
 		expect(data.setApprenticeLimits).not.toHaveBeenCalled();
+	});
+});
+
+describe("SettingsPage — Review Sessions", () => {
+	it("prefills the batch size from data.getReviewBatchSize()", () => {
+		renderSettings({ getReviewBatchSize: vi.fn(() => 35) });
+
+		expect(
+			(screen.getByLabelText("Cards per round") as HTMLInputElement).value,
+		).toBe("35");
+	});
+
+	it("saves a valid batch size and refreshes", () => {
+		const { data, refresh } = renderSettings();
+
+		fireEvent.change(screen.getByLabelText("Cards per round"), {
+			target: { value: "15" },
+		});
+		fireEvent.click(screen.getByText("Save Review Sessions"));
+
+		expect(data.setReviewBatchSize).toHaveBeenCalledWith(15);
+		expect(refresh).toHaveBeenCalled();
+		expect(
+			screen.getByText("Review sessions will run 15 cards at a time."),
+		).toBeTruthy();
+	});
+
+	it.each([
+		"0",
+		"201",
+		"12.5",
+		"",
+		"lots",
+	])("rejects %p and does not save", (value) => {
+		const { data } = renderSettings();
+
+		fireEvent.change(screen.getByLabelText("Cards per round"), {
+			target: { value },
+		});
+		fireEvent.click(screen.getByText("Save Review Sessions"));
+
+		expect(data.setReviewBatchSize).not.toHaveBeenCalled();
+		expect(
+			screen.getByText("Enter a whole number between 1 and 200."),
+		).toBeTruthy();
 	});
 });
 

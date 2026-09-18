@@ -30,7 +30,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
-from lesson_deck.vendor import S2ProEnglishVoice, VoiceSpec  # noqa: E402
+from lesson_deck.vendor import S2ProVoice, VoiceSpec  # noqa: E402
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
 SCENES = REPO_ROOT / "src" / "domain" / "script" / "data" / "consonant-scenes.json"
@@ -103,7 +103,7 @@ def main() -> int:
         return 0
 
     print(f"{len(todo)} of {len(scenes)} clips to generate")
-    voice = S2ProEnglishVoice(compile_model=not args.no_compile)
+    voice = S2ProVoice(compile_model=not args.no_compile)
     spec = VoiceSpec()
 
     try:
