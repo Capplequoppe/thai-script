@@ -210,7 +210,7 @@ narration: en One thing about that name before you use it on anybody. The word i
 ## exposition see-ii
 thai: ี
 heading: The mark itself
-narration: en Look at the mark on its own. It sits on top of its consonant like a beret, and the brim flicks up at the right edge. Remember that flick. It is doing a job, and in two lessons you will find out what it is.
+narration: en Look at the mark on its own. It sits on top of its consonant like a beret, and the brim flicks up at the right edge. Remember that flick. It is doing a job, and next lesson you will find out what it is.
 - It rides above the consonant like a beret.
 - The brim flicks up at the right edge. That flick means something.
 
