@@ -8,6 +8,7 @@ import {
 	characterForClass,
 	districtPlaceFor,
 	mapNamed,
+	markRuleId,
 	type PalacePlace,
 	placeForTone,
 	TONE_PLACES,
@@ -17,6 +18,7 @@ import {
 	tonePlaceOverviewFor,
 } from "../../domain/script/data/memoryPalace";
 import { districtForClass } from "../../domain/script/data/sceneGrammar";
+import { useLearnedScript } from "../hooks/useLearnedScript";
 import {
 	consonants,
 	type ThaiSymbolClass,
@@ -499,9 +501,19 @@ function DetailPanel({
 
 function TonePlaceDetail({ tone }: { tone: string }) {
 	const place = placeForTone(tone as Parameters<typeof placeForTone>[0]);
+	const learned = useLearnedScript();
 	const scenes = useMemo(
-		() => TONE_SCENES.filter((scene) => scene.tone === tone),
-		[tone],
+		() =>
+			// Any rule, not all of them: a scene carries several on purpose,
+			// because the place exists to say they share an outcome, and holding
+			// the picture back until the last is learned withholds exactly the
+			// connection it is for.
+			TONE_SCENES.filter(
+				(scene) =>
+					scene.tone === tone &&
+					scene.covers.some((id) => learned.toneRules.has(id)),
+			),
+		[tone, learned.toneRules],
 	);
 	const overview = tonePlaceOverviewFor(tone);
 
@@ -531,11 +543,21 @@ function TonePlaceDetail({ tone }: { tone: string }) {
 				</p>
 			</div>
 
-			<div className="space-y-3">
-				{scenes.map((scene) => (
-					<SceneCard key={scene.id} scene={scene} />
-				))}
-			</div>
+			{scenes.length === 0 ? (
+				// The place, with nothing in it yet. Said plainly rather than
+				// dressed as an error: an empty paddy is a real paddy, and the
+				// learner is meant to arrive here before anything happens in it.
+				<p className="text-sm" style={{ color: "var(--color-text-muted)" }}>
+					Nothing has happened here yet. The rules that fill this place arrive
+					as you meet them.
+				</p>
+			) : (
+				<div className="space-y-3">
+					{scenes.map((scene) => (
+						<SceneCard key={scene.id} scene={scene} />
+					))}
+				</div>
+			)}
 
 			{/* Said outright, because it is the reason several scenes hold more
 			    than one character and a learner should not have to infer it. */}
@@ -649,16 +671,29 @@ function DistrictDetail({
 }) {
 	const district = districtForClass(classType);
 	const overview = districtPlaceFor(classType);
+	const learned = useLearnedScript();
 	const letters = useMemo(
-		() => consonants.filter((consonant) => consonant.classType === classType),
-		[classType],
+		() =>
+			consonants.filter(
+				(consonant) =>
+					consonant.classType === classType &&
+					learned.consonants.has(consonant.character),
+			),
+		[classType, learned.consonants],
 	);
 	const rules = useMemo(
 		() => [
-			...toneRules.filter((rule) => rule.consonantClass === classType),
-			...toneMarkRules.filter((rule) => rule.consonantClass === classType),
+			...toneRules.filter(
+				(rule) =>
+					rule.consonantClass === classType && learned.toneRules.has(rule.id),
+			),
+			...toneMarkRules.filter(
+				(rule) =>
+					rule.consonantClass === classType &&
+					learned.toneRules.has(markRuleId(rule.consonantClass, rule.toneMarkName)),
+			),
 		],
-		[classType],
+		[classType, learned.toneRules],
 	);
 
 	return (
@@ -680,8 +715,11 @@ function DistrictDetail({
 			<div>
 				<h2 className="text-lg font-semibold capitalize">{district}</h2>
 				<p className="text-sm" style={{ color: "var(--color-text-muted)" }}>
-					{classType} class — {letters.length} letters. In the tone scenes this
-					district sends its {characterForClass(classType)}.
+					{letters.length === 0
+						? `${classType} class. Nobody has moved in yet — the letters that live here arrive as you meet them.`
+						: `${classType} class — ${letters.length} ${
+								letters.length === 1 ? "letter" : "letters"
+							} so far. In the tone scenes this district sends its ${characterForClass(classType)}.`}
 				</p>
 			</div>
 
@@ -698,9 +736,17 @@ function DistrictDetail({
 				))}
 			</div>
 
-			<p className="text-xs" style={{ color: "var(--color-text-muted)" }}>
-				{rules.length} of the seventeen tone rules start here.
-			</p>
+			{/* Only once there is something to count, and without the total.
+			    "0 of the seventeen tone rules start here" told a learner who had
+			    been shown nothing exactly how much was being withheld, directly
+			    under a line saying the place was empty. */}
+			{rules.length > 0 && (
+				<p className="text-xs" style={{ color: "var(--color-text-muted)" }}>
+					{rules.length === 1
+						? "One tone rule starts here."
+						: `${rules.length} tone rules start here.`}
+				</p>
+			)}
 		</section>
 	);
 }

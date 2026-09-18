@@ -11,14 +11,30 @@
  */
 import { fireEvent, screen, within } from "@testing-library/react";
 import { describe, expect, it, vi } from "vitest";
+import { lessonSequence } from "../../domain/script/data/lessonSequence";
 import { InMemoryStorage } from "../../infrastructure/persistence/Storage";
 import { renderWithApp } from "../test-utils/renderWithApp";
 import { MemoryPalacePage } from "./MemoryPalacePage";
 
+/**
+ * The palace for a learner who has finished everything.
+ *
+ * These tests are about navigation and grouping — which scenes belong to which
+ * place, and that opening one place closes the last — so they need the palace
+ * populated. Gating is a separate concern with its own tests in
+ * `MemoryPalaceGating.test.tsx`; asserting on it here would make every one of
+ * these fail for a reason that has nothing to do with what it checks.
+ */
 function renderPalace() {
-	return renderWithApp(<MemoryPalacePage />, {
-		state: new InMemoryStorage().load(),
-	});
+	const state = new InMemoryStorage().load();
+	// Positions from the declared sequence, which is what `getLessonSummary`
+	// indexes. Not `lessons[].number`: those are the pre-migration integers and
+	// the two diverge, so a legacy number runs past the end and the lookup
+	// throws.
+	state.completedLessons.push(
+		...lessonSequence.map((entry) => entry.position),
+	);
+	return renderWithApp(<MemoryPalacePage />, { state });
 }
 
 const worldMap = () =>
