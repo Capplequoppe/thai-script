@@ -105,8 +105,12 @@ const MARK_SUFFIX: Readonly<Record<string, ToneMarkName>> = {
 const CELL_LINE =
 	/mai (ek|tho|tri|chattawa)\b[^.]*?\bgives\b[^.]*?\b(low|falling|high|rising)\b/i;
 
+// Spelling-tolerant for the same reason as the pair slide in
+// `middleBand.test.ts`: the district is an identifier in the data and English
+// prose in the lesson, and this is checking that the sentence was written, not
+// which side of the Atlantic wrote it.
 const UNREACHABLE_LINE =
-	/mai tri and mai chattawa never sit over a (?:temple|harbor) letter/i;
+	/mai tri and mai chattawa never sit over a (?:temple|harbou?r) letter/i;
 
 /**
  * The resolved cells stated on one class's slide — read fresh on every call so

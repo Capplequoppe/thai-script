@@ -256,6 +256,15 @@ wrong:
 7. **Image prompts:** never name what the scene is defined by *not* being;
    exclusions belong in `NEGATIVE_PROMPT`; never ask for Thai letterforms —
    `compose.py` overlays those in a real font.
+8. **Do not sharpen a prompt to force a relationship between figures.** Tried
+   twice, worse twice, and measurably: lesson 6's `the-pair` lost the bowl —
+   the glyph's own shape — when pushed to show the buffalo's head, and lesson
+   7's `written-first-spoken-second` went 0.239 to 0.222 and gained a third
+   figure when pushed to show one person waiting while another passes. The
+   model renders objects and settings well and relationships badly. Pick a
+   scene whose composition already implies the relationship, or let the
+   caption carry it. Reverting is free — the same prompt and seed reproduce
+   the earlier image exactly.
 8. **Restart the dev server after every render.** Vite snapshots `public/` at
    startup and serves the SPA fallback for anything added later, which
    presents as silent audio and no error.
