@@ -5,28 +5,31 @@
 		{
 			"kind": "exposition",
 			"id": "what-is-here",
-			"heading": "Three letters, one vowel, two rules",
+			"heading": "Inland, to where the noise stops",
 			"body": [
 				"Three consonants, one long vowel, two rules.",
 				"The three are alike enough that one of them teaches the others.",
 				"Last lesson's letters let sounds ring on. These stop them."
 			],
-			"audio": ["/thai-script/lessons/lesson-03/audio/3a697e8630fcf419.mp3"],
-			"audioLanguages": ["en"],
+			"audio": [
+				"/thai-script/lessons/lesson-03/audio/3a7bc437c35493eb.mp3",
+				"/thai-script/lessons/lesson-03/audio/5aaeb1ae82165d24.mp3"
+			],
+			"audioLanguages": ["en", "en"],
 			"image": "/thai-script/lessons/lesson-03/images/what-is-here-da150e7fe62f.jpg"
 		},
 		{
 			"kind": "exposition",
 			"id": "the-trick",
-			"heading": "One district, and no breath in any of it",
+			"heading": "The quiet end of the market",
 			"body": [
 				"All three are mid class, and mid class is the market.",
 				"The air stops, and no breath follows it.",
 				"English blows air on key and pin. Your palm stays still on these three."
 			],
 			"audio": [
-				"/thai-script/lessons/lesson-03/audio/54e983baecd66440.mp3",
-				"/thai-script/lessons/lesson-03/audio/f38c16b14f1066a5.mp3"
+				"/thai-script/lessons/lesson-03/audio/c0867aa7af5c8705.mp3",
+				"/thai-script/lessons/lesson-03/audio/7f7364701a92eb6c.mp3"
 			],
 			"audioLanguages": ["en", "en"],
 			"image": "/thai-script/lessons/lesson-03/images/the-trick-0cfcdc5965f4.jpg"
@@ -34,29 +37,29 @@
 		{
 			"kind": "exposition",
 			"id": "pen-still-there",
-			"heading": "The pen, before anything else",
+			"heading": "Before the first letter, the pen",
 			"body": [
 				"Real paper, a real pen, still in front of you.",
 				"This is the first thing people quietly stop doing.",
 				"Go and fetch them if they have wandered off."
 			],
-			"audio": ["/thai-script/lessons/lesson-03/audio/c7f02f83f1ee9428.mp3"],
+			"audio": ["/thai-script/lessons/lesson-03/audio/58b2ececd334592e.mp3"],
 			"audioLanguages": ["en"],
 			"image": "/thai-script/lessons/lesson-03/images/pen-still-there-1bdf41db8b53.jpg"
 		},
 		{
 			"kind": "exposition",
 			"id": "meet-gai",
-			"heading": "The first of the three",
+			"heading": "The letter every Thai child gets first",
 			"body": [
 				"Its name is the sound, then a word beginning with that sound.",
 				"The word means *chicken*.",
 				"Flatter than an English g, and no breath behind it."
 			],
 			"audio": [
-				"/thai-script/lessons/lesson-03/audio/e319ce7827ffc5c8.mp3",
+				"/thai-script/lessons/lesson-03/audio/872c8a6e8a15ba2d.mp3",
 				"/thai-script/lessons/lesson-03/audio/a048b68eb7689a2b.mp3",
-				"/thai-script/lessons/lesson-03/audio/b47540b2c74219ea.mp3"
+				"/thai-script/lessons/lesson-03/audio/baef9d1a9d65e3d5.mp3"
 			],
 			"audioLanguages": ["en", "th", "en"],
 			"teaches": ["ko-kai"],
@@ -68,10 +71,10 @@
 			"heading": "The stall that opens first",
 			"body": [
 				"She opens the corner stall before anyone else arrives.",
-				"Her son sleeps under the stall while she works. Remember him.",
+				"Her son sleeps under the stall, through a market waking up.",
 				"The chicken eats the spilled grain, and the rats stay away."
 			],
-			"audio": ["/thai-script/lessons/lesson-03/audio/163a315f2318eef5.mp3"],
+			"audio": ["/thai-script/lessons/lesson-03/audio/cec66e9e5480b4c7.mp3"],
 			"audioLanguages": ["en"],
 			"teaches": ["ko-kai"],
 			"image": "/thai-script/lessons/lesson-03/images/gai-story-1-a832ad1444ba.jpg"
@@ -86,7 +89,7 @@
 				"No circle, an open frame, and a beak arching left."
 			],
 			"audio": [
-				"/thai-script/lessons/lesson-03/audio/a9d999d0e4c18ea9.mp3",
+				"/thai-script/lessons/lesson-03/audio/a069daf9e0efe510.mp3",
 				"/thai-script/lessons/lesson-03/audio/a048b68eb7689a2b.mp3"
 			],
 			"audioLanguages": ["en", "th"],
@@ -113,7 +116,7 @@
 				"The beak arches left. Nothing curls.",
 				"Say both halves of its name **out loud**, every time."
 			],
-			"audio": ["/thai-script/lessons/lesson-03/audio/513968bc6354468c.mp3"],
+			"audio": ["/thai-script/lessons/lesson-03/audio/279b4e142d055269.mp3"],
 			"audioLanguages": ["en"],
 			"thai": "ก",
 			"teaches": ["ko-kai"]
@@ -121,16 +124,16 @@
 		{
 			"kind": "exposition",
 			"id": "meet-dek",
-			"heading": "The second of the three",
+			"heading": "The one this market is arranged around",
 			"body": [
 				"Its name is the sound, then a word beginning with that sound.",
 				"The word means *child*.",
 				"A plain flat d, with nothing blown out behind it."
 			],
 			"audio": [
-				"/thai-script/lessons/lesson-03/audio/cb67e2e96c94a44d.mp3",
+				"/thai-script/lessons/lesson-03/audio/caaa37f831edf2e9.mp3",
 				"/thai-script/lessons/lesson-03/audio/6b1fc82c600ba6d8.mp3",
-				"/thai-script/lessons/lesson-03/audio/ab918e86b27e4d8b.mp3"
+				"/thai-script/lessons/lesson-03/audio/2b3c2145555b683f.mp3"
 			],
 			"audioLanguages": ["en", "th", "en"],
 			"teaches": ["do-dek"],
@@ -146,11 +149,8 @@
 				"Curled up, one arm under his head, toes over the edge.",
 				"The whole row minds that bowl, loudly, at anyone who forgets."
 			],
-			"audio": [
-				"/thai-script/lessons/lesson-03/audio/a6f2a72c790dd8c0.mp3",
-				"/thai-script/lessons/lesson-03/audio/b8b10a7bca043395.mp3"
-			],
-			"audioLanguages": ["en", "en"],
+			"audio": ["/thai-script/lessons/lesson-03/audio/0a5e3d9e7e6f2be0.mp3"],
+			"audioLanguages": ["en"],
 			"teaches": ["do-dek"],
 			"image": "/thai-script/lessons/lesson-03/images/dek-story-1-869a0d651ec4.jpg"
 		},
@@ -164,7 +164,7 @@
 				"A bowl, a head curled inside, and a point at the bottom."
 			],
 			"audio": [
-				"/thai-script/lessons/lesson-03/audio/2a62ccb646437507.mp3",
+				"/thai-script/lessons/lesson-03/audio/4da72c86d5a4a855.mp3",
 				"/thai-script/lessons/lesson-03/audio/6b1fc82c600ba6d8.mp3"
 			],
 			"audioLanguages": ["en", "th"],
@@ -185,13 +185,13 @@
 		{
 			"kind": "exposition",
 			"id": "write-dek",
-			"heading": "Now this one, the same way",
+			"heading": "Round the head, then into the bowl",
 			"body": [
 				"**Start at the head**, curled inside the bowl, clockwise.",
 				"Out into the bowl, down to the point at the bottom.",
 				"Out loud, every time, while the hand is moving."
 			],
-			"audio": ["/thai-script/lessons/lesson-03/audio/1e01dbe5d0d8b497.mp3"],
+			"audio": ["/thai-script/lessons/lesson-03/audio/543cf910ca7927eb.mp3"],
 			"audioLanguages": ["en"],
 			"thai": "ด",
 			"teaches": ["do-dek"]
@@ -199,16 +199,16 @@
 		{
 			"kind": "exposition",
 			"id": "meet-bai-mai",
-			"heading": "The third of the three",
+			"heading": "The bucket nobody has moved",
 			"body": [
 				"Its name is the sound, then a word beginning with that sound.",
 				"The word means *leaf*.",
 				"Lips together, sound, stop. No breath."
 			],
 			"audio": [
-				"/thai-script/lessons/lesson-03/audio/a292e94690e9b12f.mp3",
+				"/thai-script/lessons/lesson-03/audio/1c7964c870de85fe.mp3",
 				"/thai-script/lessons/lesson-03/audio/abb9ce34161a8168.mp3",
-				"/thai-script/lessons/lesson-03/audio/4e2059dca00283d9.mp3"
+				"/thai-script/lessons/lesson-03/audio/da98325cdee3f893.mp3"
 			],
 			"audioLanguages": ["en", "th", "en"],
 			"teaches": ["bo-baimai"],
@@ -224,7 +224,7 @@
 				"An open bucket, straight-walled and flat-bottomed, with something growing out of it."
 			],
 			"audio": [
-				"/thai-script/lessons/lesson-03/audio/09d122d92bf1d06f.mp3",
+				"/thai-script/lessons/lesson-03/audio/3248d30942b41e20.mp3",
 				"/thai-script/lessons/lesson-03/audio/abb9ce34161a8168.mp3"
 			],
 			"audioLanguages": ["en", "th"],
@@ -245,13 +245,13 @@
 		{
 			"kind": "exposition",
 			"id": "write-bai-mai",
-			"heading": "And the third, which you half know already",
+			"heading": "Write it beside the child's letter",
 			"body": [
 				"**Start at the head**, top left, clockwise.",
 				"Straight down, flat across, straight up. Walls level.",
 				"Write it beside the child's letter and compare the two bottoms."
 			],
-			"audio": ["/thai-script/lessons/lesson-03/audio/a2466e98c6946ad9.mp3"],
+			"audio": ["/thai-script/lessons/lesson-03/audio/b1015030e7267c5a.mp3"],
 			"audioLanguages": ["en"],
 			"thai": "บ",
 			"teaches": ["bo-baimai", "do-dek"]
@@ -261,7 +261,7 @@
 			"id": "no-puff",
 			"prompt": "Say the three letters' sounds with a palm held close to your lips. What should you feel, and what would feeling something tell you?",
 			"revealSlideId": "no-puff-answer",
-			"audio": ["/thai-script/lessons/lesson-03/audio/72a3583b7a2aed1c.mp3"],
+			"audio": ["/thai-script/lessons/lesson-03/audio/ce9e666737665fea.mp3"],
 			"audioLanguages": ["en"],
 			"teaches": ["ko-kai", "do-dek", "bo-baimai"]
 		},
@@ -274,7 +274,7 @@
 				"A moving hand means you said the English sound.",
 				"Thai keeps the breathy ones as separate letters, so it changes the word."
 			],
-			"audio": ["/thai-script/lessons/lesson-03/audio/05d5eaa5500960c1.mp3"],
+			"audio": ["/thai-script/lessons/lesson-03/audio/43621cd144e25e30.mp3"],
 			"audioLanguages": ["en"],
 			"teaches": ["ko-kai", "do-dek", "bo-baimai"]
 		},
@@ -287,7 +287,7 @@
 				"Lesson one's vowel is written after, so it is in the back yard.",
 				"Today's is written above. That is the roof."
 			],
-			"audio": ["/thai-script/lessons/lesson-03/audio/82344c30488d191d.mp3"],
+			"audio": ["/thai-script/lessons/lesson-03/audio/4d775e8446c35c11.mp3"],
 			"audioLanguages": ["en"],
 			"teaches": ["sara-ii"],
 			"image": "/thai-script/lessons/lesson-03/images/the-vowel-house-9cc652e5140c.jpg"
@@ -303,10 +303,10 @@
 				"Whole word, ordinary. First syllable alone in front of a name, an insult."
 			],
 			"audio": [
-				"/thai-script/lessons/lesson-03/audio/7a21e27af7264e35.mp3",
+				"/thai-script/lessons/lesson-03/audio/ef5d593379a98281.mp3",
 				"/thai-script/lessons/lesson-03/audio/8e3f40f95493da2d.mp3",
-				"/thai-script/lessons/lesson-03/audio/ed775ea7f6e5018e.mp3",
-				"/thai-script/lessons/lesson-03/audio/a17f799be24de850.mp3"
+				"/thai-script/lessons/lesson-03/audio/92cdb96770d8ee24.mp3",
+				"/thai-script/lessons/lesson-03/audio/c6b373613853f33e.mp3"
 			],
 			"audioLanguages": ["en", "th", "en", "en"],
 			"teaches": ["sara-ii"],
@@ -320,7 +320,7 @@
 				"It rides above the consonant like a beret.",
 				"The brim flicks up at the right edge. Next lesson says what it is for."
 			],
-			"audio": ["/thai-script/lessons/lesson-03/audio/1566eb9f19c21ecf.mp3"],
+			"audio": ["/thai-script/lessons/lesson-03/audio/86cd31c75f34c608.mp3"],
 			"audioLanguages": ["en"],
 			"thai": "ี",
 			"teaches": ["sara-ii"]
@@ -335,9 +335,9 @@
 				"Say the **whole syllable** out loud, the sound the marks make together."
 			],
 			"audio": [
-				"/thai-script/lessons/lesson-03/audio/91030c25ac73cbd0.mp3",
+				"/thai-script/lessons/lesson-03/audio/d10017bc1a640b5c.mp3",
 				"/thai-script/lessons/lesson-03/audio/20e5407d30703218.mp3",
-				"/thai-script/lessons/lesson-03/audio/4c165cd31ccdecb9.mp3"
+				"/thai-script/lessons/lesson-03/audio/17986bebd19016f5.mp3"
 			],
 			"audioLanguages": ["en", "th", "en"],
 			"thai": "ี",
@@ -351,7 +351,7 @@
 				"Two words, both built from letters you have.",
 				"**Say both out loud first.**"
 			],
-			"audio": ["/thai-script/lessons/lesson-03/audio/a26d1f62383bcb01.mp3"],
+			"audio": ["/thai-script/lessons/lesson-03/audio/44a1fe9b6774556a.mp3"],
 			"audioLanguages": ["en"],
 			"image": "/thai-script/lessons/lesson-03/images/first-words-10b2a3e6e0e7.jpg"
 		},
@@ -364,7 +364,7 @@
 				"/thai-script/lessons/lesson-03/audio/9d8eef5e4efcb618.mp3",
 				"/thai-script/lessons/lesson-03/audio/20144bdb63c4df56.mp3",
 				"/thai-script/lessons/lesson-03/audio/caa0d4f2485680bb.mp3",
-				"/thai-script/lessons/lesson-03/audio/6ed3592aee7fbba0.mp3"
+				"/thai-script/lessons/lesson-03/audio/30f772dc51069547.mp3"
 			],
 			"audioLanguages": ["th", "en", "th", "en"],
 			"thai": "มี"
@@ -384,9 +384,9 @@
 				"The ending decides it, whatever letter opens the syllable."
 			],
 			"audio": [
-				"/thai-script/lessons/lesson-03/audio/00b9868816816210.mp3",
+				"/thai-script/lessons/lesson-03/audio/c3133fae78352fb1.mp3",
 				"/thai-script/lessons/lesson-03/audio/01ad691f866355b6.mp3",
-				"/thai-script/lessons/lesson-03/audio/e22ac261ab6020f4.mp3"
+				"/thai-script/lessons/lesson-03/audio/c7141797b82ef5da.mp3"
 			],
 			"audioLanguages": ["en", "th", "en"],
 			"image": "/thai-script/lessons/lesson-03/images/stops-at-the-end-92afc3d07903.jpg"
@@ -407,10 +407,10 @@
 				"They come apart as soon as a syllable ends dead."
 			],
 			"audio": [
-				"/thai-script/lessons/lesson-03/audio/221b11a1f11bf112.mp3",
+				"/thai-script/lessons/lesson-03/audio/8b261d9be288a389.mp3",
 				"/thai-script/lessons/lesson-03/audio/caa0d4f2485680bb.mp3",
 				"/thai-script/lessons/lesson-03/audio/4198fbad636b9a08.mp3",
-				"/thai-script/lessons/lesson-03/audio/ecc5eec8b55d95f0.mp3"
+				"/thai-script/lessons/lesson-03/audio/29e3f4fd78096d85.mp3"
 			],
 			"audioLanguages": ["en", "th", "th", "en"],
 			"teaches": ["mid-live", "paddy-alive"],
@@ -419,9 +419,9 @@
 		{
 			"kind": "retrieval",
 			"id": "which-is-dead",
-			"prompt": "One of the two words you read earlier ends live and the other ends dead. Which is which, and what exactly makes the difference?",
+			"prompt": "Of the two words on screen, one ends live and the other ends dead. Say which is which, and say what decides it.",
 			"revealSlideId": "which-is-dead-answer",
-			"audio": ["/thai-script/lessons/lesson-03/audio/15e78c01f0806456.mp3"],
+			"audio": ["/thai-script/lessons/lesson-03/audio/b4fa61e72ed04f1d.mp3"],
 			"audioLanguages": ["en"]
 		},
 		{
@@ -429,22 +429,22 @@
 			"id": "which-is-dead-answer",
 			"retrievalSlideId": "which-is-dead",
 			"answers": [
-				"Live: it ends on a long vowel with nothing after it.",
+				"Live: it finishes on a long vowel with nothing after it.",
 				"Dead: the chicken's letter seals it and the sound stops.",
-				"Same letter at the front. The ending is what decides."
+				"Same letter at the front. What changed is what stands after the vowel."
 			],
-			"audio": ["/thai-script/lessons/lesson-03/audio/4a0036e0a911da4d.mp3"],
+			"audio": ["/thai-script/lessons/lesson-03/audio/ba0740f8deef4c21.mp3"],
 			"audioLanguages": ["en"]
 		},
 		{
 			"kind": "exposition",
 			"id": "read-intro",
-			"heading": "Three words, and no new letters",
+			"heading": "Your turn first, mine second",
 			"body": [
 				"Read each one before the answer comes.",
 				"Everything here is from lessons one to three."
 			],
-			"audio": ["/thai-script/lessons/lesson-03/audio/7ec8587fa332199d.mp3"],
+			"audio": ["/thai-script/lessons/lesson-03/audio/c52c23fa74c94004.mp3"],
 			"audioLanguages": ["en"]
 		},
 		{
@@ -453,20 +453,20 @@
 			"heading": "Read this one",
 			"body": [
 				"The leaf's letter, a long vowel, and a hum to close it.",
-				"**Say it aloud before you turn this over.**"
+				"**Say it aloud before you move on.**"
 			],
-			"audio": ["/thai-script/lessons/lesson-03/audio/aa208891eaf2f03e.mp3"],
+			"audio": ["/thai-script/lessons/lesson-03/audio/f09686ab05894c8a.mp3"],
 			"audioLanguages": ["en"],
 			"thai": "บาง"
 		},
 		{
 			"kind": "exposition",
 			"id": "read-baang-answer",
-			"heading": "That one",
+			"heading": "What that one was",
 			"body": ["**บาง** — thin, or *some*."],
 			"audio": [
 				"/thai-script/lessons/lesson-03/audio/be0edceffb6eab7e.mp3",
-				"/thai-script/lessons/lesson-03/audio/800da3edad0005f6.mp3"
+				"/thai-script/lessons/lesson-03/audio/5beb1326b20c06dc.mp3"
 			],
 			"audioLanguages": ["th", "en"],
 			"thai": "บาง"
@@ -477,20 +477,20 @@
 			"heading": "And this one",
 			"body": [
 				"The mouse's letter, then the chicken's letter sealing it.",
-				"**Out loud, before you turn it over.**"
+				"**Out loud, before you look.**"
 			],
-			"audio": ["/thai-script/lessons/lesson-03/audio/4ba4e5b9fdfa3535.mp3"],
+			"audio": ["/thai-script/lessons/lesson-03/audio/da6fb0ea75d68065.mp3"],
 			"audioLanguages": ["en"],
 			"thai": "นก"
 		},
 		{
 			"kind": "exposition",
 			"id": "read-nok-answer",
-			"heading": "That one",
+			"heading": "And that one",
 			"body": ["**นก** — a bird. Short, stopped, over at once."],
 			"audio": [
 				"/thai-script/lessons/lesson-03/audio/4d3b4b8603353983.mp3",
-				"/thai-script/lessons/lesson-03/audio/c26696448ab919b3.mp3"
+				"/thai-script/lessons/lesson-03/audio/68fd3df1f9bb1667.mp3"
 			],
 			"audioLanguages": ["th", "en"],
 			"thai": "นก"
@@ -498,20 +498,20 @@
 		{
 			"kind": "exposition",
 			"id": "read-dii",
-			"heading": "One more",
+			"heading": "You have already had this one",
 			"body": ["The child's letter, with today's vowel on the roof."],
-			"audio": ["/thai-script/lessons/lesson-03/audio/a6eefb70b4821e94.mp3"],
+			"audio": ["/thai-script/lessons/lesson-03/audio/bcedd11244cd08a9.mp3"],
 			"audioLanguages": ["en"],
 			"thai": "ดี"
 		},
 		{
 			"kind": "exposition",
 			"id": "read-dii-answer",
-			"heading": "And that one",
+			"heading": "And the last",
 			"body": ["**ดี** — good."],
 			"audio": [
 				"/thai-script/lessons/lesson-03/audio/caa0d4f2485680bb.mp3",
-				"/thai-script/lessons/lesson-03/audio/c629230ff1306321.mp3"
+				"/thai-script/lessons/lesson-03/audio/8ca617e96c772a14.mp3"
 			],
 			"audioLanguages": ["th", "en"],
 			"thai": "ดี"
@@ -525,7 +525,7 @@
 				"Eight letters, two vowels, two rooms of the house open.",
 				"Next: the shortener, and the shortcut it gives you."
 			],
-			"audio": ["/thai-script/lessons/lesson-03/audio/184130ee0ee671bb.mp3"],
+			"audio": ["/thai-script/lessons/lesson-03/audio/26d44f4a26683474.mp3"],
 			"audioLanguages": ["en"]
 		}
 	]

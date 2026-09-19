@@ -365,7 +365,12 @@ describe("DeckSlide — a refused audioUrl is distinguishable from no audio (tru
 
 describe("DeckSlide — one thing's story (the `teaching` prop)", () => {
 	const TAGGED = [
-		{ kind: "exposition", id: "opening", heading: "Welcome back", body: ["Hi"] },
+		{
+			kind: "exposition",
+			id: "opening",
+			heading: "Welcome back",
+			body: ["Hi"],
+		},
 		{
 			kind: "exposition",
 			id: "meet-the-chicken",
@@ -388,7 +393,11 @@ describe("DeckSlide — one thing's story (the `teaching` prop)", () => {
 	it("shows only the slides tagged with the subject", async () => {
 		stubDeckJson(DECK_PATH, deck(TAGGED));
 		render(
-			<DeckSlide deckPath={DECK_PATH} teaching="ko-kai" onComplete={() => {}} />,
+			<DeckSlide
+				deckPath={DECK_PATH}
+				teaching="ko-kai"
+				onComplete={() => {}}
+			/>,
 		);
 
 		expect(await screen.findByText("The chicken")).toBeTruthy();
@@ -401,7 +410,11 @@ describe("DeckSlide — one thing's story (the `teaching` prop)", () => {
 	it("brings a reveal along with the retrieval that names it", async () => {
 		stubDeckJson(DECK_PATH, deck(TAGGED));
 		render(
-			<DeckSlide deckPath={DECK_PATH} teaching="ko-kai" onComplete={() => {}} />,
+			<DeckSlide
+				deckPath={DECK_PATH}
+				teaching="ko-kai"
+				onComplete={() => {}}
+			/>,
 		);
 
 		await screen.findByText("The chicken");
@@ -428,5 +441,80 @@ describe("DeckSlide — one thing's story (the `teaching` prop)", () => {
 		render(<DeckSlide deckPath={DECK_PATH} onComplete={() => {}} />);
 
 		expect(await screen.findByText("Welcome back")).toBeTruthy();
+	});
+});
+
+describe("DeckSlide — a reveal slide that speaks before its answer", () => {
+	// A reveal slide held every clip until the button was pressed, which is
+	// right for the answer and wrong for everything the teacher says to set
+	// the screen up. `audioBefore` is the narration spoken on arrival.
+	const REVEAL_WITH_BEFORE = {
+		...REVEAL,
+		audio: ["/thai-script/lessons/lesson-01/audio/answer.mp3"],
+		audioBefore: ["/thai-script/lessons/lesson-01/audio/setup.mp3"],
+	};
+
+	function deckWithBefore() {
+		return deck([RETRIEVAL, REVEAL_WITH_BEFORE]);
+	}
+
+	it("plays the setup clip on arrival, not the answer", async () => {
+		stubDeckJson(DECK_PATH, deckWithBefore());
+		render(<DeckSlide deckPath={DECK_PATH} onComplete={() => {}} />);
+
+		await screen.findByText(RETRIEVAL.prompt);
+		fireEvent.click(screen.getByRole("button", { name: /next/i }));
+
+		await waitFor(() => {
+			expect(createdAudioUrls()).toContain(
+				"/thai-script/lessons/lesson-01/audio/setup.mp3",
+			);
+		});
+		// The answer stays unspoken until it is asked for — the whole reason
+		// reveal slides withhold their audio in the first place.
+		expect(createdAudioUrls()).not.toContain(
+			"/thai-script/lessons/lesson-01/audio/answer.mp3",
+		);
+	});
+
+	it("plays the answer once the button is pressed", async () => {
+		stubDeckJson(DECK_PATH, deckWithBefore());
+		render(<DeckSlide deckPath={DECK_PATH} onComplete={() => {}} />);
+
+		await screen.findByText(RETRIEVAL.prompt);
+		fireEvent.click(screen.getByRole("button", { name: /next/i }));
+		fireEvent.click(
+			await screen.findByRole("button", { name: /show answer/i }),
+		);
+
+		await waitFor(() => {
+			expect(createdAudioUrls()).toContain(
+				"/thai-script/lessons/lesson-01/audio/answer.mp3",
+			);
+		});
+	});
+
+	it("leaves a reveal slide with no setup clip silent until revealed", async () => {
+		// The shape every deck authored before this existed has, and the one
+		// most reveal slides will keep: nothing to say before the answer.
+		stubDeckJson(
+			DECK_PATH,
+			deck([
+				RETRIEVAL,
+				{
+					...REVEAL,
+					audio: ["/thai-script/lessons/lesson-01/audio/answer.mp3"],
+				},
+			]),
+		);
+		render(<DeckSlide deckPath={DECK_PATH} onComplete={() => {}} />);
+
+		await screen.findByText(RETRIEVAL.prompt);
+		fireEvent.click(screen.getByRole("button", { name: /next/i }));
+		await screen.findByRole("button", { name: /show answer/i });
+
+		expect(createdAudioUrls()).not.toContain(
+			"/thai-script/lessons/lesson-01/audio/answer.mp3",
+		);
 	});
 });

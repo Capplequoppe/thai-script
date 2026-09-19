@@ -104,36 +104,45 @@ narration: en Almost everything that decides whether you reach the top of those 
 ## exposition forgetting
 heading: You don't forget slowly. You forget in a rush.
 image: images/orientation/forgetting.jpg
-scene: A lamplighter reaches up with a long brass pole to relight a street lamp at dusk, his whole body stretched upward. Along the street behind him a row of lamps has already gone dark. Cool blue evening shadow, one warm pool of gold beneath the single lit lamp.
+scene: An empty wooden swing hangs from long ropes under a large tree, moving in a small shallow arc, almost stopped. Dry leaves lie on the ground beneath it. Late afternoon light, long shadows across an empty garden.
 narration: en Something you learn today will be mostly gone in two days. It does not drain away slowly, the way most people picture forgetting. Most of it goes early and goes fast. Then the small remainder still standing hangs on for years.
 narration: en I spent four years studying precisely this, as it happens — a doctorate on how adults take on a second writing system — and I picked the subject for the least noble reason there is. I wanted to know why it had been so hard for me.
 narration: en Reading it again will not save it. That is the trap almost everybody falls into. Something you half know looks familiar while you are staring straight at it, and familiarity feels a great deal like knowing, right up to the moment somebody takes the page away.
 narration: en The only thing that genuinely holds knowledge in place is pulling it back out of your own head at a moment when there is nothing in front of you to look at.
-narration: en Look at the lamplighter for a moment. He walks past every lamp still burning well, because stopping at those would cost him his entire evening. He reaches each one just as it begins to gutter. That timing is his whole job. It is also the whole idea behind this application.
-- Most of what you learn fades within days.
+narration: en Look at that swing for a moment, because it is going to do a lot of work for us. Set one going and walk away. The first few passes lose most of the height — that part is quick and it is obvious. Then it keeps moving for a surprisingly long time, smaller and smaller, and it takes an age to genuinely stop.
+narration: en That is the shape of what you learned today. Fast at the start, then a long thin tail. I am showing you an object doing it because the curve is easier to trust when you have watched something obey it.
+- Most of what you learn fades within days — fast at first, then a long thin tail, exactly like a swing left alone.
 - Re-reading doesn't stop it. Recognising something isn't the same as knowing it.
 - What stops it is **recall** — pulling it out of your head, at the right moment.
 
 ## exposition the-appointment
 heading: When it tells you to review, review
 image: images/orientation/appointment.jpg
-scene: A lamplighter touches his flame to a lamp whose light has shrunk to a dying ember, the glass barely glowing, his arm stretched high above his head. He is alone on an empty street at nightfall. Cool blue dark all around, one small warm circle of gold at the lamp.
-narration: en The application keeps a running estimate, for every single thing you have learned, of roughly when you are about to lose it. When a batch of them is close to going, it tells you.
-narration: en I will be blunt about this part, because this is where most people quietly lose everything they have built. Ten minutes inside that window buys you more than a full hour of catching up later. A card you catch in time costs you one look. The same card a week late costs you most of the way back to where you started with it.
-narration: en Skipping costs you more than the ten minutes it saved. The work you already put into those cards leaks away while they sit there waiting for you, so when you finally come back they are harder than the day you left them. You pay for the same work twice.
+scene: A woman reaches up to push a wooden swing at the top of its arc, her arms extended and her weight on her toes, the swing high above her against a bright sky. A sunlit garden behind her, warm afternoon light.
+narration: en So somebody has to push it. That is the other half of the swing.
+narration: en You know how this goes. At the start you push often and you push hard for very little — short arcs, a lot of effort, nothing to show anybody. Then it turns. The higher it climbs the longer each pass takes, so you push less and less often while the swing carries more and more of itself.
+narration: en That is exactly what this application is doing with your reviews. A letter you met once comes back at you almost immediately. Get it right and the gap stretches, then stretches again. The intervals grow because you are holding the thing up yourself by then, and the application is only topping it up.
+narration: en It keeps a running estimate, for every single thing you have learned, of when you are about to lose it. When a batch is close to going, it tells you.
+narration: en Timing is the whole of it. This is where most people quietly lose everything they have built. A push at the top of the arc costs you almost nothing and adds height. The same push thrown in at the wrong moment fights the swing and takes height away. Ten minutes inside the window the application gives you buys more than an hour of catching up afterwards.
+narration: en And a swing nobody pushes does what any swing does. It comes down. Leave it long enough and you walk back to a swing hanging dead still, and you begin again from nothing — short arcs, hard work, no height. That is why coming back after a long gap feels like a mountain, when you were flying the last time you stood here. The work did not vanish. The momentum did. Momentum was the part doing the lifting.
 narration: en Treat that notification as an appointment with somebody you would be embarrassed to keep waiting.
-- The app tracks, per item, when *you* are about to forget it.
+- Like a swing: **frequent pushes at first, then rarer ones** as it carries itself. The app tracks when *you* are about to lose height.
 - Ten minutes in that window beats an hour of catching up later.
-- Skipping isn't a delay. You lose work you already did, and the cards come back harder.
+- Skipping isn't a delay. The swing comes down, and you start the next one from nothing.
 
 ## retrieval when-review
 reveal: when-review-answer
-prompt: So — when is the single best moment to review something you've learned? Say your answer out loud before you turn this over.
-narration: en Out loud, please. Say it to the room, even if you are only half sure — especially if you are only half sure. Then turn it over.
+prompt: So — when is the single best moment to review something you've learned? Answer out loud before you move on.
+narration: en This is the first question I have asked you, so let me say how these go, because the shape repeats for the rest of the course. A question sits on the screen. You work out your answer before you go anywhere — and only then does the next screen offer to show you it.
+narration: en Everything I just told you about reaching for a thing happens in those few seconds. Go straight past them and the question has taught you nothing; the answer will look obvious, the way answers do, and none of it will be there in a week.
+narration: en One more habit while I am at it, because it comes back on every card in this application. When something asks you what a word means, how it is spelled, how it is said, which tone it carries — answer it out loud. At the volume you would use talking to somebody across a table, rather than under your breath.
+narration: en The temptation is to skip that when you are unsure, because saying a wrong answer into an empty room is a peculiar feeling, and because it is quicker to think the answer and move on. Unsure is when it is worth the most. I did it silently for months before anyone told me, so I am telling you at the start instead.
+narration: en So — have a go, out loud, even if you are only half sure.
 
 ## reveal when-review-answer
 retrieval: when-review
-narration: en Right as it begins to go. That slightly awkward moment where you have to reach for something and it just about arrives. That awkward second is worth more than any other moment in your day, and finding it for you is the whole job of this application.
+narration-before: en There is the question again, and underneath it the button that shows you the answer. Say yours first — then press it, and see how close you were. That order is the whole of it, here and on every card after this one.
+narration: en The answer, when you are ready for it: right as the thing begins to go. That slightly awkward moment where you have to reach for something and it just about arrives. That awkward second is worth more than any other moment in your day, and finding it for you is the whole job of this application.
 - **Just as you begin to forget it** — when recall takes effort but still works.
 - Too early and you learn nothing. Too late and you're starting over.
 
@@ -141,26 +150,40 @@ narration: en Right as it begins to go. That slightly awkward moment where you h
 heading: Notice what just happened
 image: images/orientation/struggle.jpg
 scene: A young woman hauls hard on a thick rope, leaning right back with her whole weight and her heels dug into wet sand, dragging a small wooden boat up the beach. Spray catches the light around her. Warm low sun, long shadows, cool blue water behind.
-narration: en Notice what just happened there. You were asked before you were told anything at all. Did you feel that small scrape as you reached for it? I did that on purpose, and everything from here onward will do the same to you.
+narration: en Notice what just happened there. You were asked before you were told anything at all. I did that on purpose, and everything from here onward will do the same to you — so I want to spend a minute on what it felt like, because that feeling is the whole method and most people never learn to recognise it.
+narration: en Try another one. This one costs you nothing at all. What is my name? [pause] I told you at the very start.
+narration: en If it came straight back, good. If it did not, stop the lesson here for a second and genuinely go looking for it. Do not move on and do not scroll back. It is in there — you heard it a few slides ago, in the same breath as a grandmother and an alphabet song.
+narration: en Whether you found it does not matter in the slightest. What I want is for you to notice the *looking*. That pulling sensation, that thing sitting just out of reach on the tip of your tongue, the small frustration of knowing you know it.
+narration: en That sensation is your brain under load, in the same sense a muscle is under load. And the comparison is closer than it sounds. When you reach for something and get there, the connections in your brain that carried you to it come back thicker and faster — not as a figure of speech, but as a physical change in the cells, the way a muscle you use is physically a different muscle by the end of the month. Brains do that all your life, and the word for it is neuroplasticity. It is the whole reason this course is built as a series of demands rather than a list to read.
+narration: en Anything that makes you reach will do it. Working an answer out, reasoning from a rule you half remember, joining two things you already knew, saying it aloud, writing it with a pen, explaining it to somebody who does not speak a word of Thai. The reaching is the active ingredient in all of them.
+narration: en Which is why a wrong guess followed by a correction beats *I do not know, show me* by a distance. The reach is what opens the door. The correction then walks through it. Give up before you have reached and the correction arrives to find nothing open.
 narration: en I learned to read my own language at twenty-six, and I was bad at it. Properly bad. Sounding out a menu with my finger under the line while a waiter stood there being polite about it. What carried me through was getting it wrong out loud, over and over, in front of people who would correct me.
-narration: en Reaching for an answer, coming up empty and only then being shown it will fix that thing in your head far harder than reading the answer ever could. The straining IS the learning.
-narration: en Which means that uncomfortable, half-sure feeling is the sound of the method working. So answer first, every time. Guess badly if you must! A wrong guess that you then correct will stay with you better than a correct answer somebody simply handed you.
+narration: en So when the quizzes start, go looking for that strain on purpose. If you cannot feel it, hunt for it — because feeling it is how you know the right part of you has turned up for work.
 - Every lesson asks before it shows.
-- Guessing wrong, then being corrected, beats reading the right answer.
-- **That unsure feeling is the method working, not failing.**
-- Don't skip ahead to the answer.
+- **The strain of reaching is the active ingredient.** Notice it, and go looking for it when it's absent.
+- Reaching and finding strengthens the path, physically. Enough of it restructures the brain — neuroplasticity.
+- A wrong guess you then correct beats an answer you were simply handed.
+- Working it out, saying it aloud, writing it, teaching it — all of them are the same reach.
 
 ## exposition mnemonics
 heading: Nobody remembers squiggles. Everybody remembers a strange picture.
 image: images/orientation/mnemonics.jpg
 scene: An enormous orange cat sits calmly on a market stall roof wearing a tiny brass crown, one paw raised above the crowd below. Shoppers stop and look up, astonished. Warm golden afternoon light, bright striped awnings, dust motes drifting in the air.
 narration: en Try to memorise that one particular squiggle makes an m sound and it will be gone again inside a week. Your memory was never built for that kind of work. Hand that same memory a cat in a crown sitting on a market roof and next year the cat is still up there.
+narration: en Let me show you what it *was* built for. Think of a room you know well. You can walk through it in your head right now — which side the door opens, the drawer that sticks, where the light is. Nobody made you learn that room. It went in on its own and it has stayed for years.
+narration: en Now try to recall twenty words you read yesterday. [pause] Nothing at all. You were paying attention at the time, too.
+narration: en Neither of those is a failure. Your memory is superb at places, at faces, and at things that happened to somebody — because for almost all of the time there have been people, those were the only things worth keeping. Writing is about five thousand years old. The equipment you are reading this with is very much older. Nobody has updated it since.
+narration: en So the answer is not to try harder at the squiggle. It is to hand the squiggle to the part of you that already works for free — to turn a shape into something that happened, somewhere, to somebody.
+narration: en That is all a mnemonic is. Not a trick, and not a crutch for people with poor memories. It is a way of filing a new thing under an old system that has never let you down.
+narration: en It also explains why everything in here is slightly wrong in the head. You have seen a great many cats. They have all blurred into one another. You have seen exactly one wearing a brass crown on a market roof. Ordinary things stack up and cancel out; the odd one has nothing to be confused with.
 narration: en Every picture in this course was built by me, deliberately, out of things I could not shake loose. None of it is folklore. I went and read the oldest memory research there is, then made the images myself, because the ones printed in books belonged to somebody else's childhood and slid straight off mine.
-narration: en You will never be asked to store a bare shape. Every letter arrives already attached to something you can picture — a horse at a harbour, a mouse curled up inside a coil of rope. Strange and specific is good. Strange and specific is what stays.
-narration: en And you will not be doing this forever. The picture is scaffolding. Within a few weeks you will read the letter directly, without the image appearing at all, in the same way that you never think about a curved line when you read the letter C.
+narration: en So you will never be asked to store a bare shape. Every letter arrives already attached to something you can picture — a horse rearing on a quay, a mouse working away at a knotted cord in a doorway.
+narration: en And you will not be doing this forever. The picture is scaffolding, and you have taken scaffolding down before without noticing. When you first learned to read, you sounded words out one letter at a time, slowly, out loud. You do not do that now. You did not decide to stop, and you could not say which week it happened. The support came away on its own once the wall could stand. These pictures go the same way.
+- Your memory is built for **places, faces and events** — not for marks on a page.
+- A mnemonic files the new thing under the old system. It isn't a crutch.
+- **The odder the better.** Ordinary things blur together; the strange one has nothing to blur with.
 - You'll never be asked to memorise a bare shape.
-- Every letter arrives attached to a picture, and the odder the better.
-- The picture is **scaffolding**. It falls away by itself.
+- The picture is **scaffolding**, and it comes away on its own — the way sounding words out did.
 
 ## exposition districts
 heading: Every letter has an address
@@ -194,18 +217,21 @@ narration: en Stand here for a moment and look at it properly. Your first two le
 heading: The temple — up the hill
 image: images/orientation/tour-temple.jpg
 scene: A golden temple standing at the top of a long flight of stone steps on a hillside, seen from the bottom looking up, with bells hanging along the balustrade and gilded spires catching the light. No people. Warm golden afternoon light on the gold, cool blue-green shade in the trees below.
-narration: en Now climb. The temple stands above the town, up a long flight of stone steps. Gold, quiet, bells along the rail, a very long way from the water.
+narration: en Now come up with me. From the quay the road turns inland and after a few minutes it starts to climb.
+narration: en You will pass straight through the market on the way — awnings, crates, the flat ground between the water and the hill. Keep walking for now. I will bring you back down there in a moment, because that one has a trick hidden in it and I want the hill first.
+narration: en Then the steps, and they are a real climb: a long flight of stone, and by the time the gold starts showing through the trees you can hear the harbour behind you rather than see it. Temples here are built high on purpose, which suits me very well, because *up* is the thing I want lodged in your head. Bells along the rail, and quiet.
 narration: en Only eleven letters live up here. A short list sits in your head far more easily than a long one, so this small and rather exclusive neighbourhood is cheap to learn and you will be glad of that in a moment.
-narration: en Before you come back down, one honest warning. These letters are the high class, and the temple up on its hill is a hook to keep that name stuck to them. It does NOT mean these letters make high tones. The class is a label. What that label actually does to a tone is the whole of lesson two.
+narration: en Before you come back down, one honest warning, and I need to hand you one small fact to make it land. Thai has five tones, and somebody long ago gave one of them the name *high*. These eleven letters are also called the high class. Those two things have nothing whatever to do with each other.
+narration: en The hill is a hook for the name of the class, and that is the entire job it does. A letter from up here will produce a different tone depending on the word it lands in, and working out which is the whole of lesson two. Whenever you catch yourself thinking *high letter, therefore high sound*, that is the one thing this hill was never saying.
 - The **temple** is the high class — only **11 letters**.
 - Up the hill. Gold, bells, quiet, a long climb from the water.
-- The height keeps the *name* straight. It does **not** mean these letters sound high.
+- One of Thai's five tones is also called *high*. **The two are unrelated** — the hill only keeps the class's name straight.
 
 ## exposition tour-market
 heading: The market — and the trick this buys you
 image: images/orientation/tour-market.jpg
 scene: A covered street market on level ground between the harbour and the hill, stalls of fruit and cloth under striped awnings, crates stacked along the walkway, scales hanging from a beam. No people. Warm afternoon light filtering through the awnings, dust hanging in the air, cool shadow at the back of the stalls.
-narration: en Between the two, on flat ground, sits the market. Awnings, crates, fruit, scales hanging from a beam. Nine letters live here, the smallest of the three neighbourhoods.
+narration: en Back down the steps, then, to the place I walked you through without stopping. The market, on the flat ground between the hill and the water. Awnings, crates, fruit, scales hanging from a beam. Nine letters live here, the smallest of the three neighbourhoods.
 narration: en Now, work out what that arrangement has just bought you. Nine at the market. Eleven at the temple. How many of the forty-four addresses do you actually have to learn?
 narration: en Twenty of them. Everything else is down at the harbour, which means those twenty-four letters need no memorising whatsoever. You learn the two short lists, and anything missing from both has already told you where it lives.
 narration: en Anything not nailed to the hill or to the market stalls has rolled down to the water, the way that everything eventually does.
@@ -218,7 +244,7 @@ narration: en Anything not nailed to the hill or to the market stalls has rolled
 heading: Say it out loud. Every single time.
 image: images/orientation/aloud.jpg
 scene: A young man stands alone in a sunlit courtyard with his head lifted and his mouth open, speaking aloud to nobody, hands loose at his sides. Washing hangs on lines strung above him. Warm afternoon light slanting between the buildings, dust hanging in the air.
-narration: en Say it aloud. Properly aloud, at a volume where you can hear yourself — a mumble into your collar will do nothing for you at all.
+narration: en I made you do this a few minutes ago and did not tell you why. Here is why, because it is the habit that separates the people who get there from the people who give up, and it costs you nothing.
 narration: en There are two reasons, and the first one is about your mouth. Recognising a sound and producing one are separate skills. Producing is the half that gets you understood by a real person, so practise silently and you have trained the half you will never use.
 narration: en The second reason matters more. Thai has five tones. The same syllable at a different pitch is a completely different word, and you cannot hear your own pitch while the word is still inside your head. Say it where your ears can reach it and the mistake turns into something you can fix.
 narration: en Yes, you will feel slightly foolish talking to yourself. Feel foolish now, alone in a room. It is considerably cheaper than feeling foolish in Bangkok!
@@ -233,7 +259,7 @@ scene: An old scribe sits cross-legged at a low wooden table drawing a careful s
 narration: en Go and find a pen and some paper now, then keep both beside you while you work. Real paper, the kind you can tear. A pen that will eventually run out of ink. Have you got them? I will wait.
 narration: en Write each letter out as you meet it. Your hand picks up a shape in a way your eye never quite manages alone, and a letter you have drawn thirty times stops being something you identify. It becomes a movement you already own, and movements come back fast.
 narration: en My nephew is six and he is doing this at a kitchen table in Songkhla right now, properly, an hour at a sitting. He will be reading twenty years earlier than I managed. I find that far funnier than I find it sad, though I mention it because a six-year-old with a pencil beats an adult with a phone every single time.
-narration: en Stroke order matters more in Thai than you would expect. Nearly every letter begins at a small loop, and that loop is where your pen goes down. Get the order into your fingers and two letters that looked identical to you last week will stop looking anything like each other.
+narration: en Stroke order matters more in Thai than you would expect. Nearly every letter begins at a small loop, and that loop is where your pen goes down. Get the order into your fingers and two letters that looked identical when you met them will stop looking anything like each other.
 narration: en Give it ten minutes with a pen and you will be further along than an hour of staring at a screen would ever take you.
 - Pen. Paper. Actually writing, not tracing on glass.
 - The hand picks up shapes the eye doesn't.
@@ -255,7 +281,7 @@ narration: en So you are undoing something here rather than building it. Switchi
 
 ## retrieval three-habits
 reveal: three-habits-answer
-prompt: Three habits matter more than everything else in this course put together. Name all three out loud before you turn this over.
+prompt: Three habits matter more than everything else in this course put together. Name all three out loud, and then we will see how you did.
 narration: en Say them to the room. All three, even if the third one takes you a moment to find — especially then.
 
 ## reveal three-habits-answer
@@ -269,12 +295,12 @@ narration: en Review when the application tells you to. Write the letters by han
 heading: What this is actually going to feel like
 image: images/orientation/expect.jpg
 scene: A hiker stands on a high ridge looking back down at the long winding path she has already climbed, hands on her hips and a pack on her back. The valley falls away below her. Warm golden evening light, blue haze layering the distant hills.
-narration: en Before you go, let me tell you what the hard part is, so it does not take you by surprise. The alphabet is the steepest section of this entire course and it is sitting right at the start. Your first few weeks will be the slowest weeks you have, and somewhere around week two you will privately decide the whole thing has stalled.
+narration: en Before you go, let me tell you what the hard part is, so it does not take you by surprise. The alphabet is the steepest section of this entire course and it is sitting right at the start. The opening stretch is the slowest going you will have, and somewhere in it you will privately decide the whole thing has stalled.
 narration: en It is working. Then the whole thing flips over. Once the letters go automatic, everything new you meet hooks onto something you already own, and the pace picks up sharply.
-narration: en Vocabulary that would have been meaningless noise to you in week one turns into words you can half read before anybody has told you what they mean.
-narration: en So please do not judge this course in week one. Judge it in week six. Keep the three habits, answer before you reveal, show up when the application asks. That is the deal I am offering you.
+narration: en Vocabulary that would have been meaningless noise to you at the start turns into words you can half read before anybody has told you what they mean.
+narration: en So please do not judge this course while you are still in the alphabet. Judge it on the day you catch yourself reading a word before you meant to. Keep the three habits, answer before you reveal, show up when the application asks. That is the deal I am offering you.
 narration: en Right. Pen, paper, somewhere you can speak out loud without anybody minding. Your first two letters are waiting down at the harbour. Shall we go and meet them?
 - The alphabet is the hardest part and it comes **first**. That's on purpose.
-- Weeks one to three feel slow. That's the shape of the climb, not a warning.
+- The opening stretch feels slow. That's the shape of the climb, not a warning.
 - After that it compounds — new things hook onto what you already own.
-- **Don't judge this in week one. Judge it in week six.**
+- **Don't judge this from inside the alphabet.** Judge it when the letters go automatic.

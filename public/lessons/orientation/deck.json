@@ -7,18 +7,19 @@
 			"id": "welcome",
 			"heading": "Why this will work when other apps haven't",
 			"body": [
+				"Your teacher: **Pim**. Knew all forty-four letter names at seven, could not read a word until twenty-six.",
 				"This course uses **proven rapid-learning techniques** — some ancient, some recent.",
 				"School taught you to re-read and underline. That is close to the worst use of the hours.",
 				"Re-reading teaches your brain the material lives in the book, so it does not keep it.",
 				"Used properly, these techniques get you through Thai far faster than most people manage."
 			],
 			"audio": [
-				"/thai-script/lessons/orientation/audio/1fd3e03a4f6c4e99.mp3",
-				"/thai-script/lessons/orientation/audio/f682e6d601785535.mp3",
-				"/thai-script/lessons/orientation/audio/5f612753b0601019.mp3",
-				"/thai-script/lessons/orientation/audio/ddc8e22231248da9.mp3",
-				"/thai-script/lessons/orientation/audio/ddc5612989c8b257.mp3",
-				"/thai-script/lessons/orientation/audio/fc1b1539e24100c1.mp3"
+				"/thai-script/lessons/orientation/audio/f4f4479c0d220d34.mp3",
+				"/thai-script/lessons/orientation/audio/5b1be0ca8a3254df.mp3",
+				"/thai-script/lessons/orientation/audio/fac3d020a7d94d66.mp3",
+				"/thai-script/lessons/orientation/audio/966af799788525f5.mp3",
+				"/thai-script/lessons/orientation/audio/75f614331e438a1c.mp3",
+				"/thai-script/lessons/orientation/audio/8c70a2b0b52c9785.mp3"
 			],
 			"audioLanguages": ["en", "en", "en", "en", "en", "en"],
 			"image": "/thai-script/lessons/orientation/images/welcome-cc6bd1248ea3.jpg"
@@ -29,20 +30,22 @@
 			"heading": "Where this is going, and how you get there",
 			"body": [
 				"The goal is **speaking** Thai, not only reading it.",
+				"Ten phrases for a holiday makes a tourist. Reading makes a guest.",
 				"The route: script → words → grammar → whole sentences, heard *and* spoken aloud.",
 				"Your pronunciation is scored — the app matches your pitch against a native speaker's.",
 				"**Conversation practice unlocks at 200 words and 5 grammar points.**",
 				"The script comes first because Thai spelling carries the tone, and the tone *is* the word."
 			],
 			"audio": [
-				"/thai-script/lessons/orientation/audio/7607ad072c69e1b3.mp3",
-				"/thai-script/lessons/orientation/audio/da0c00706dcecb8e.mp3",
-				"/thai-script/lessons/orientation/audio/2b5b567104fdb69a.mp3",
-				"/thai-script/lessons/orientation/audio/cfac7169c6c328b6.mp3",
-				"/thai-script/lessons/orientation/audio/e717d79e2f0f1d47.mp3",
-				"/thai-script/lessons/orientation/audio/acf894f32a9a4c0e.mp3"
+				"/thai-script/lessons/orientation/audio/727e10d5229dded0.mp3",
+				"/thai-script/lessons/orientation/audio/1e42d3a75effd2d5.mp3",
+				"/thai-script/lessons/orientation/audio/90c9bc1963f8c485.mp3",
+				"/thai-script/lessons/orientation/audio/ae1a0410fe002683.mp3",
+				"/thai-script/lessons/orientation/audio/f29f15de213c5bac.mp3",
+				"/thai-script/lessons/orientation/audio/fc7a484b4157bb9f.mp3",
+				"/thai-script/lessons/orientation/audio/0bff4213ea32dcc6.mp3"
 			],
-			"audioLanguages": ["en", "en", "en", "en", "en", "en"],
+			"audioLanguages": ["en", "en", "en", "en", "en", "en", "en"],
 			"image": "/thai-script/lessons/orientation/images/the-route-ecdbe1133c82.jpg"
 		},
 		{
@@ -50,44 +53,55 @@
 			"id": "forgetting",
 			"heading": "You don't forget slowly. You forget in a rush.",
 			"body": [
-				"Most of what you learn fades within days.",
+				"Most of what you learn fades within days — fast at first, then a long thin tail, exactly like a swing left alone.",
 				"Re-reading doesn't stop it. Recognising something isn't the same as knowing it.",
 				"What stops it is **recall** — pulling it out of your head, at the right moment."
 			],
 			"audio": [
-				"/thai-script/lessons/orientation/audio/460fd805c0630a1f.mp3",
-				"/thai-script/lessons/orientation/audio/38385126b5eb8a24.mp3",
-				"/thai-script/lessons/orientation/audio/309bf8746b853049.mp3",
-				"/thai-script/lessons/orientation/audio/8c2dd6570789c377.mp3"
+				"/thai-script/lessons/orientation/audio/ec708460a1cce554.mp3",
+				"/thai-script/lessons/orientation/audio/507c9c0079b7a876.mp3",
+				"/thai-script/lessons/orientation/audio/db7da809b13e733b.mp3",
+				"/thai-script/lessons/orientation/audio/d23733182f3e0345.mp3",
+				"/thai-script/lessons/orientation/audio/71b33952f8f4b16a.mp3",
+				"/thai-script/lessons/orientation/audio/bc141919d4f43a4a.mp3"
 			],
-			"audioLanguages": ["en", "en", "en", "en"],
-			"image": "/thai-script/lessons/orientation/images/forgetting-288b6b597595.jpg"
+			"audioLanguages": ["en", "en", "en", "en", "en", "en"],
+			"image": "/thai-script/lessons/orientation/images/forgetting-790e734ff57e.jpg"
 		},
 		{
 			"kind": "exposition",
 			"id": "the-appointment",
 			"heading": "When it tells you to review, review",
 			"body": [
-				"The app tracks, per item, when *you* are about to forget it.",
-				"Ten minutes in that window beats an hour at the weekend.",
-				"Skipping isn't a delay. You lose work you already did, and the cards come back harder."
+				"Like a swing: **frequent pushes at first, then rarer ones** as it carries itself. The app tracks when *you* are about to lose height.",
+				"Ten minutes in that window beats an hour of catching up later.",
+				"Skipping isn't a delay. The swing comes down, and you start the next one from nothing."
 			],
 			"audio": [
-				"/thai-script/lessons/orientation/audio/2bc6105941c7bd43.mp3",
-				"/thai-script/lessons/orientation/audio/abc229bec63bc947.mp3",
-				"/thai-script/lessons/orientation/audio/72edda975b48067f.mp3",
-				"/thai-script/lessons/orientation/audio/83ad5babf4216e32.mp3"
+				"/thai-script/lessons/orientation/audio/9e298d74914e9aa1.mp3",
+				"/thai-script/lessons/orientation/audio/3e748c9162a45ccf.mp3",
+				"/thai-script/lessons/orientation/audio/007d0a64bfb23ef1.mp3",
+				"/thai-script/lessons/orientation/audio/90d7dd8ce4544659.mp3",
+				"/thai-script/lessons/orientation/audio/0196868997632ea9.mp3",
+				"/thai-script/lessons/orientation/audio/54974c1fc97d73c4.mp3",
+				"/thai-script/lessons/orientation/audio/76ac4e8e6598c01e.mp3"
 			],
-			"audioLanguages": ["en", "en", "en", "en"],
-			"image": "/thai-script/lessons/orientation/images/the-appointment-400012bbc52f.jpg"
+			"audioLanguages": ["en", "en", "en", "en", "en", "en", "en"],
+			"image": "/thai-script/lessons/orientation/images/the-appointment-6df602c4e739.jpg"
 		},
 		{
 			"kind": "retrieval",
 			"id": "when-review",
-			"prompt": "So — when is the single best moment to review something you've learned? Say your answer out loud before you turn this over.",
+			"prompt": "So — when is the single best moment to review something you've learned? Answer out loud before you move on.",
 			"revealSlideId": "when-review-answer",
-			"audio": ["/thai-script/lessons/orientation/audio/70447f15afb5e7fe.mp3"],
-			"audioLanguages": ["en"]
+			"audio": [
+				"/thai-script/lessons/orientation/audio/d4858af9a87696c8.mp3",
+				"/thai-script/lessons/orientation/audio/b6fe0de7d75c27dc.mp3",
+				"/thai-script/lessons/orientation/audio/e70201b2faab6e60.mp3",
+				"/thai-script/lessons/orientation/audio/663753f0ac858685.mp3",
+				"/thai-script/lessons/orientation/audio/e379a0767744b7a4.mp3"
+			],
+			"audioLanguages": ["en", "en", "en", "en", "en"]
 		},
 		{
 			"kind": "reveal",
@@ -97,7 +111,11 @@
 				"**Just as you begin to forget it** — when recall takes effort but still works.",
 				"Too early and you learn nothing. Too late and you're starting over."
 			],
-			"audio": ["/thai-script/lessons/orientation/audio/c98a079d60aa19b4.mp3"],
+			"audioBefore": [
+				"/thai-script/lessons/orientation/audio/e33d9f7200c02747.mp3"
+			],
+			"audioBeforeLanguages": ["en"],
+			"audio": ["/thai-script/lessons/orientation/audio/5f8212f0d7f270aa.mp3"],
 			"audioLanguages": ["en"]
 		},
 		{
@@ -106,16 +124,23 @@
 			"heading": "Notice what just happened",
 			"body": [
 				"Every lesson asks before it shows.",
-				"Guessing wrong, then being corrected, beats reading the right answer.",
-				"**That unsure feeling is the method working, not failing.**",
-				"Don't skip ahead to the answer."
+				"**The strain of reaching is the active ingredient.** Notice it, and go looking for it when it's absent.",
+				"Reaching and finding strengthens the path, physically. Enough of it restructures the brain — neuroplasticity.",
+				"A wrong guess you then correct beats an answer you were simply handed.",
+				"Working it out, saying it aloud, writing it, teaching it — all of them are the same reach."
 			],
 			"audio": [
-				"/thai-script/lessons/orientation/audio/6b02f7dd535ccec5.mp3",
-				"/thai-script/lessons/orientation/audio/b55aae9537606685.mp3",
-				"/thai-script/lessons/orientation/audio/ad985b459e0d11a0.mp3"
+				"/thai-script/lessons/orientation/audio/60d2b9e8b82f3654.mp3",
+				"/thai-script/lessons/orientation/audio/5c4981e6c8d126cf.mp3",
+				"/thai-script/lessons/orientation/audio/ae6f3a2d34f75375.mp3",
+				"/thai-script/lessons/orientation/audio/c7f64f21a4b76b0d.mp3",
+				"/thai-script/lessons/orientation/audio/e5406b0467a50f25.mp3",
+				"/thai-script/lessons/orientation/audio/8d0ea9db38bb3609.mp3",
+				"/thai-script/lessons/orientation/audio/30083d8ec9bfbc95.mp3",
+				"/thai-script/lessons/orientation/audio/20685c41022c7eec.mp3",
+				"/thai-script/lessons/orientation/audio/94b3c7a6a599475d.mp3"
 			],
-			"audioLanguages": ["en", "en", "en"],
+			"audioLanguages": ["en", "en", "en", "en", "en", "en", "en", "en", "en"],
 			"image": "/thai-script/lessons/orientation/images/struggle-28302748dc41.jpg"
 		},
 		{
@@ -123,16 +148,36 @@
 			"id": "mnemonics",
 			"heading": "Nobody remembers squiggles. Everybody remembers a strange picture.",
 			"body": [
+				"Your memory is built for **places, faces and events** — not for marks on a page.",
+				"A mnemonic files the new thing under the old system. It isn't a crutch.",
+				"**The odder the better.** Ordinary things blur together; the strange one has nothing to blur with.",
 				"You'll never be asked to memorise a bare shape.",
-				"Every letter arrives attached to a picture, and the odder the better.",
-				"The picture is **scaffolding**. It falls away by itself."
+				"The picture is **scaffolding**, and it comes away on its own — the way sounding words out did."
 			],
 			"audio": [
-				"/thai-script/lessons/orientation/audio/e7c8aff5d4704839.mp3",
-				"/thai-script/lessons/orientation/audio/68631c39047ce23f.mp3",
-				"/thai-script/lessons/orientation/audio/2be5852d56978ba1.mp3"
+				"/thai-script/lessons/orientation/audio/d88818bed18414c7.mp3",
+				"/thai-script/lessons/orientation/audio/ed8a29951d64f397.mp3",
+				"/thai-script/lessons/orientation/audio/6018796b0da3503e.mp3",
+				"/thai-script/lessons/orientation/audio/d0d5fa28d5efd213.mp3",
+				"/thai-script/lessons/orientation/audio/1937d96259813b64.mp3",
+				"/thai-script/lessons/orientation/audio/e37e851274bde868.mp3",
+				"/thai-script/lessons/orientation/audio/9d814c7a32451ff5.mp3",
+				"/thai-script/lessons/orientation/audio/77c2970b7365b500.mp3",
+				"/thai-script/lessons/orientation/audio/b02c5e8613cb5b7c.mp3",
+				"/thai-script/lessons/orientation/audio/05f04978827140b1.mp3"
 			],
-			"audioLanguages": ["en", "en", "en"],
+			"audioLanguages": [
+				"en",
+				"en",
+				"en",
+				"en",
+				"en",
+				"en",
+				"en",
+				"en",
+				"en",
+				"en"
+			],
 			"image": "/thai-script/lessons/orientation/images/mnemonics-335fe07a39f6.jpg"
 		},
 		{
@@ -147,13 +192,14 @@
 				"A room is a *hint and a confirmation*, never a free clue before you answer."
 			],
 			"audio": [
-				"/thai-script/lessons/orientation/audio/d880aeb74231279c.mp3",
-				"/thai-script/lessons/orientation/audio/83d90a8c3e852ead.mp3",
-				"/thai-script/lessons/orientation/audio/79a67bb97f0a7900.mp3",
-				"/thai-script/lessons/orientation/audio/a755c2b63b3fe41b.mp3",
-				"/thai-script/lessons/orientation/audio/eb6df91650fcdb80.mp3"
+				"/thai-script/lessons/orientation/audio/714c13cc86a89a88.mp3",
+				"/thai-script/lessons/orientation/audio/7d479919699913c6.mp3",
+				"/thai-script/lessons/orientation/audio/17d0a78009fc7b3f.mp3",
+				"/thai-script/lessons/orientation/audio/29b163ff46534652.mp3",
+				"/thai-script/lessons/orientation/audio/e8d755385833e7c6.mp3",
+				"/thai-script/lessons/orientation/audio/5bbf7aba5e3f411e.mp3"
 			],
-			"audioLanguages": ["en", "en", "en", "en", "en"],
+			"audioLanguages": ["en", "en", "en", "en", "en", "en"],
 			"image": "/thai-script/lessons/orientation/images/districts-0ba99b7bef79.jpg"
 		},
 		{
@@ -166,11 +212,12 @@
 				"Your first two letters move in here in lesson 1."
 			],
 			"audio": [
-				"/thai-script/lessons/orientation/audio/03e254e94ae9a30f.mp3",
-				"/thai-script/lessons/orientation/audio/2b7c77c91cfa1e8a.mp3",
-				"/thai-script/lessons/orientation/audio/7d7065af5f2e2786.mp3"
+				"/thai-script/lessons/orientation/audio/55a1e420986a3909.mp3",
+				"/thai-script/lessons/orientation/audio/6db062acfd0f5cfd.mp3",
+				"/thai-script/lessons/orientation/audio/464eeecc17edcba0.mp3",
+				"/thai-script/lessons/orientation/audio/372deeb1fe2419dc.mp3"
 			],
-			"audioLanguages": ["en", "en", "en"],
+			"audioLanguages": ["en", "en", "en", "en"],
 			"image": "/thai-script/lessons/orientation/images/tour-harbour-97838937994f.jpg"
 		},
 		{
@@ -180,14 +227,17 @@
 			"body": [
 				"The **temple** is the high class — only **11 letters**.",
 				"Up the hill. Gold, bells, quiet, a long climb from the water.",
-				"The height keeps the *name* straight. It does **not** mean these letters sound high."
+				"One of Thai's five tones is also called *high*. **The two are unrelated** — the hill only keeps the class's name straight."
 			],
 			"audio": [
-				"/thai-script/lessons/orientation/audio/94ee3d42efc2e896.mp3",
-				"/thai-script/lessons/orientation/audio/5b308adf4458ad25.mp3",
-				"/thai-script/lessons/orientation/audio/e9e7a27b7d8d534a.mp3"
+				"/thai-script/lessons/orientation/audio/bbed4058486b60ef.mp3",
+				"/thai-script/lessons/orientation/audio/e64f3d0a37436764.mp3",
+				"/thai-script/lessons/orientation/audio/bea815be3b631a6b.mp3",
+				"/thai-script/lessons/orientation/audio/743307ff9f4ed783.mp3",
+				"/thai-script/lessons/orientation/audio/8049741b7b65e31e.mp3",
+				"/thai-script/lessons/orientation/audio/bc77215190191920.mp3"
 			],
-			"audioLanguages": ["en", "en", "en"],
+			"audioLanguages": ["en", "en", "en", "en", "en", "en"],
 			"image": "/thai-script/lessons/orientation/images/tour-temple-bdfb365b12c9.jpg"
 		},
 		{
@@ -201,10 +251,10 @@
 				"Anything on neither list is at the harbour. That's 24 letters you never memorise."
 			],
 			"audio": [
-				"/thai-script/lessons/orientation/audio/10655295ee3bd47d.mp3",
-				"/thai-script/lessons/orientation/audio/8352714d3c8c7c33.mp3",
-				"/thai-script/lessons/orientation/audio/480a05c21f236b21.mp3",
-				"/thai-script/lessons/orientation/audio/e6a2a68920c64819.mp3"
+				"/thai-script/lessons/orientation/audio/3697515631bff316.mp3",
+				"/thai-script/lessons/orientation/audio/0a846af1fe89d0de.mp3",
+				"/thai-script/lessons/orientation/audio/d73f0eaadbf0a1b9.mp3",
+				"/thai-script/lessons/orientation/audio/790a36d53674335c.mp3"
 			],
 			"audioLanguages": ["en", "en", "en", "en"],
 			"image": "/thai-script/lessons/orientation/images/tour-market-17ce89383a4f.jpg"
@@ -219,10 +269,10 @@
 				"You can't hear your own tone errors silently."
 			],
 			"audio": [
-				"/thai-script/lessons/orientation/audio/8673904ad6a4b6cb.mp3",
-				"/thai-script/lessons/orientation/audio/c93c328c40ab27aa.mp3",
-				"/thai-script/lessons/orientation/audio/8881582f1828e5a8.mp3",
-				"/thai-script/lessons/orientation/audio/9bf45c8b74d52282.mp3"
+				"/thai-script/lessons/orientation/audio/c1164ca88d9315be.mp3",
+				"/thai-script/lessons/orientation/audio/d9dfaab7d346c0d0.mp3",
+				"/thai-script/lessons/orientation/audio/7bf209fffe20a2d6.mp3",
+				"/thai-script/lessons/orientation/audio/53aaa922eff313a4.mp3"
 			],
 			"audioLanguages": ["en", "en", "en", "en"],
 			"image": "/thai-script/lessons/orientation/images/aloud-bfd889db4027.jpg"
@@ -238,12 +288,13 @@
 				"**Ten minutes writing beats an hour looking.**"
 			],
 			"audio": [
-				"/thai-script/lessons/orientation/audio/ae711083c8813d9f.mp3",
-				"/thai-script/lessons/orientation/audio/d678d68c04b824d0.mp3",
-				"/thai-script/lessons/orientation/audio/61375d31641e0191.mp3",
-				"/thai-script/lessons/orientation/audio/2f3681de225b55cf.mp3"
+				"/thai-script/lessons/orientation/audio/e51036168598ca63.mp3",
+				"/thai-script/lessons/orientation/audio/b8d02dccc58922c4.mp3",
+				"/thai-script/lessons/orientation/audio/b2b67a2c75f955cb.mp3",
+				"/thai-script/lessons/orientation/audio/8658278c647bb28d.mp3",
+				"/thai-script/lessons/orientation/audio/2ea4e28c84f712e9.mp3"
 			],
-			"audioLanguages": ["en", "en", "en", "en"],
+			"audioLanguages": ["en", "en", "en", "en", "en"],
 			"image": "/thai-script/lessons/orientation/images/pen-3fe9472691c7.jpg"
 		},
 		{
@@ -257,10 +308,10 @@
 				"Do them anyway — especially then."
 			],
 			"audio": [
-				"/thai-script/lessons/orientation/audio/d486248fed7a3c89.mp3",
-				"/thai-script/lessons/orientation/audio/01641a532e89df05.mp3",
-				"/thai-script/lessons/orientation/audio/77432caeeae1cbbd.mp3",
-				"/thai-script/lessons/orientation/audio/30d987af4416a4c7.mp3"
+				"/thai-script/lessons/orientation/audio/1d83aa3cae5651e7.mp3",
+				"/thai-script/lessons/orientation/audio/55db1dea0ba845d1.mp3",
+				"/thai-script/lessons/orientation/audio/f40ea6ed56f2bb8e.mp3",
+				"/thai-script/lessons/orientation/audio/fd6a345594d6c60e.mp3"
 			],
 			"audioLanguages": ["en", "en", "en", "en"],
 			"image": "/thai-script/lessons/orientation/images/ears-ade6b8128fd8.jpg"
@@ -268,9 +319,9 @@
 		{
 			"kind": "retrieval",
 			"id": "three-habits",
-			"prompt": "Three habits matter more than everything else in this course put together. Name all three out loud before you turn this over.",
+			"prompt": "Three habits matter more than everything else in this course put together. Name all three out loud, and then we will see how you did.",
 			"revealSlideId": "three-habits-answer",
-			"audio": ["/thai-script/lessons/orientation/audio/635aa88de6119731.mp3"],
+			"audio": ["/thai-script/lessons/orientation/audio/14a733f50487f3bc.mp3"],
 			"audioLanguages": ["en"]
 		},
 		{
@@ -282,7 +333,7 @@
 				"**Write by hand**, with a pen, on paper.",
 				"**Say it out loud**, every time."
 			],
-			"audio": ["/thai-script/lessons/orientation/audio/355bf143b266c2fd.mp3"],
+			"audio": ["/thai-script/lessons/orientation/audio/a31ba2ca148b2a1f.mp3"],
 			"audioLanguages": ["en"]
 		},
 		{
@@ -291,17 +342,18 @@
 			"heading": "What this is actually going to feel like",
 			"body": [
 				"The alphabet is the hardest part and it comes **first**. That's on purpose.",
-				"Weeks one to three feel slow. That's the shape of the climb, not a warning.",
+				"The opening stretch feels slow. That's the shape of the climb, not a warning.",
 				"After that it compounds — new things hook onto what you already own.",
-				"**Don't judge this in week one. Judge it in week six.**"
+				"**Don't judge this from inside the alphabet.** Judge it when the letters go automatic."
 			],
 			"audio": [
-				"/thai-script/lessons/orientation/audio/bd52ff78a4c1819d.mp3",
-				"/thai-script/lessons/orientation/audio/487633646642018a.mp3",
-				"/thai-script/lessons/orientation/audio/93bffcc137a4337d.mp3",
-				"/thai-script/lessons/orientation/audio/916dfe1cf6f24919.mp3"
+				"/thai-script/lessons/orientation/audio/5d99c7614c76c301.mp3",
+				"/thai-script/lessons/orientation/audio/946ad1e57bbf18e0.mp3",
+				"/thai-script/lessons/orientation/audio/f9be8a43518b4c26.mp3",
+				"/thai-script/lessons/orientation/audio/28fb957883b69806.mp3",
+				"/thai-script/lessons/orientation/audio/28bd7fc97c7c930d.mp3"
 			],
-			"audioLanguages": ["en", "en", "en", "en"],
+			"audioLanguages": ["en", "en", "en", "en", "en"],
 			"image": "/thai-script/lessons/orientation/images/expect-dc497d7b54f7.jpg"
 		}
 	]

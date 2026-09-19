@@ -5,41 +5,41 @@
 		{
 			"kind": "exposition",
 			"id": "overview",
-			"heading": "What is in this lesson",
+			"heading": "What the rope locker has in it",
 			"body": [
-				"Three consonants — three new letters, all from the same place.",
-				"One tone rule: your first, and the one every other is measured against.",
-				"No new vowels. Everything you read today uses the one you already have."
+				"Three new letters, all from a place you have already walked.",
+				"Your first tone rule, and every later one is measured against it.",
+				"No new vowel. Everything today runs on the one you have."
 			],
-			"audio": ["/thai-script/lessons/lesson-02/audio/29edba871c65b71d.mp3"],
+			"audio": ["/thai-script/lessons/lesson-02/audio/aed5e3e0fcc74921.mp3"],
 			"audioLanguages": ["en"]
 		},
 		{
 			"kind": "exposition",
 			"id": "the-trick",
-			"heading": "All three live in the same place",
+			"heading": "All three of them live in one place",
 			"body": [
-				"All three are low class, so all three are in the harbour.",
-				"All three can end a syllable without stopping the air.",
-				"Learn the district once and it pays for every letter that lives there."
+				"All three are low class, which puts all three in the harbour.",
+				"You have walked it already: the pier, the beach, the doorways.",
+				"Learn a district once and every letter living there comes cheaper."
 			],
-			"audio": ["/thai-script/lessons/lesson-02/audio/6707f6e1109d7e5a.mp3"],
+			"audio": ["/thai-script/lessons/lesson-02/audio/a9a326629f270a83.mp3"],
 			"audioLanguages": ["en"],
 			"image": "/thai-script/lessons/lesson-02/images/the-trick-81194bde30c4.jpg"
 		},
 		{
 			"kind": "exposition",
 			"id": "meet-ngu",
-			"heading": "The first voice",
+			"heading": "The sound English keeps for the ends of words",
 			"body": [
-				"Its name is the sound, then a word beginning with that sound.",
+				"The name: the sound first, then an everyday word starting with it.",
 				"The word means *snake*.",
-				"You already make this sound — at the *end* of sing. Thai lets it lead."
+				"You already make it. Say *sing* and stop on the end. Thai lets it lead."
 			],
 			"audio": [
-				"/thai-script/lessons/lesson-02/audio/e319ce7827ffc5c8.mp3",
+				"/thai-script/lessons/lesson-02/audio/0abe6bff46deeb67.mp3",
 				"/thai-script/lessons/lesson-02/audio/7496acd1ccd9e26e.mp3",
-				"/thai-script/lessons/lesson-02/audio/f114aaa25a9a76ab.mp3"
+				"/thai-script/lessons/lesson-02/audio/cf983d35f9ec41d1.mp3"
 			],
 			"audioLanguages": ["en", "th", "en"],
 			"teaches": ["ngo-ngu"],
@@ -54,7 +54,7 @@
 				"The snake lived in the coils and kept the rats off the nets.",
 				"It is why last lesson's mouse lived at the *other* end of the quay."
 			],
-			"audio": ["/thai-script/lessons/lesson-02/audio/ff015c054adab196.mp3"],
+			"audio": ["/thai-script/lessons/lesson-02/audio/fb737df500217269.mp3"],
 			"audioLanguages": ["en"],
 			"teaches": ["ngo-ngu"],
 			"image": "/thai-script/lessons/lesson-02/images/ngu-story-1-7033d5913a10.jpg"
@@ -67,7 +67,7 @@
 				"At high tide the ropes hum, long and low across the water.",
 				"The snake lifts its head from the coil and holds the note with them."
 			],
-			"audio": ["/thai-script/lessons/lesson-02/audio/44084c559ab1c8c7.mp3"],
+			"audio": ["/thai-script/lessons/lesson-02/audio/fd82f6dcbb9c5e68.mp3"],
 			"audioLanguages": ["en"],
 			"teaches": ["ngo-ngu"],
 			"image": "/thai-script/lessons/lesson-02/images/ngu-story-2-cd8af9c9058c.jpg"
@@ -81,7 +81,7 @@
 				"The hum at high tide still carries the snake's name."
 			],
 			"audio": [
-				"/thai-script/lessons/lesson-02/audio/2a62ab93f25c1b5f.mp3",
+				"/thai-script/lessons/lesson-02/audio/6122b0ef68104916.mp3",
 				"/thai-script/lessons/lesson-02/audio/7496acd1ccd9e26e.mp3"
 			],
 			"audioLanguages": ["en", "th"],
@@ -91,25 +91,32 @@
 		{
 			"kind": "exposition",
 			"id": "see-ngu",
-			"heading": "The snake's letter",
-			"body": ["The snake's letter."],
-			"audio": ["/thai-script/lessons/lesson-02/audio/2335e8490eca803e.mp3"],
-			"audioLanguages": ["en"],
+			"heading": "Put the carving on paper",
+			"body": [
+				"A curve with a head lifting off it: the carving, in one stroke.",
+				"Start at the head, high on the left. The pen never lifts.",
+				"Write it six or seven times, saying both halves of its name."
+			],
+			"audio": [
+				"/thai-script/lessons/lesson-02/audio/a44c78f783477792.mp3",
+				"/thai-script/lessons/lesson-02/audio/09cec8bafb8ac947.mp3"
+			],
+			"audioLanguages": ["en", "en"],
 			"thai": "ง",
 			"teaches": ["ngo-ngu"]
 		},
 		{
 			"kind": "exposition",
 			"id": "meet-yak",
-			"heading": "The second voice",
+			"heading": "Something very large past the wall",
 			"body": [
 				"The sound glides, like the y in *yes*.",
-				"The word means *giant*."
+				"The word means *giant* — the wading kind, out of the old stories."
 			],
 			"audio": [
-				"/thai-script/lessons/lesson-02/audio/7b9f4dc749d52891.mp3",
+				"/thai-script/lessons/lesson-02/audio/7b477488d2c28b64.mp3",
 				"/thai-script/lessons/lesson-02/audio/0237483839cf47f4.mp3",
-				"/thai-script/lessons/lesson-02/audio/f1cba9dee2da513a.mp3"
+				"/thai-script/lessons/lesson-02/audio/f5b868dd4356c893.mp3"
 			],
 			"audioLanguages": ["en", "th", "en"],
 			"teaches": ["yo-yak"],
@@ -137,7 +144,7 @@
 				"One sound only — a long yawn, rolling in across the water.",
 				"It meant the storm was over and the boats were coming home."
 			],
-			"audio": ["/thai-script/lessons/lesson-02/audio/e9bdf4b5a439c8fe.mp3"],
+			"audio": ["/thai-script/lessons/lesson-02/audio/a242d60b7b696b87.mp3"],
 			"audioLanguages": ["en"],
 			"teaches": ["yo-yak"],
 			"image": "/thai-script/lessons/lesson-02/images/yak-story-2-d16dd0823917.jpg"
@@ -151,7 +158,7 @@
 				"No other letter has that pair."
 			],
 			"audio": [
-				"/thai-script/lessons/lesson-02/audio/7925b7cbac7a4194.mp3",
+				"/thai-script/lessons/lesson-02/audio/3d9347a301338f45.mp3",
 				"/thai-script/lessons/lesson-02/audio/0237483839cf47f4.mp3"
 			],
 			"audioLanguages": ["en", "th"],
@@ -161,25 +168,33 @@
 		{
 			"kind": "exposition",
 			"id": "see-yak",
-			"heading": "The giant's letter",
-			"body": ["The giant's letter."],
-			"audio": ["/thai-script/lessons/lesson-02/audio/692b7b9f2e3adf1c.mp3"],
-			"audioLanguages": ["en"],
+			"heading": "The giant, lying down on your page",
+			"body": [
+				"The chin, then the belly: two bumps on one flank.",
+				"No other letter carries that pair.",
+				"Head high on the left, down, both bumps, then up.",
+				"Write it while saying its name."
+			],
+			"audio": [
+				"/thai-script/lessons/lesson-02/audio/f85e1b5c643442fe.mp3",
+				"/thai-script/lessons/lesson-02/audio/5e3ec44d3d74abc3.mp3"
+			],
+			"audioLanguages": ["en", "en"],
 			"thai": "ย",
 			"teaches": ["yo-yak"]
 		},
 		{
 			"kind": "exposition",
 			"id": "meet-waen",
-			"heading": "The third voice",
+			"heading": "A plain silver band",
 			"body": [
 				"The lips round, as for an English *w*.",
-				"The word means *ring*."
+				"The word means a *ring* — a silver band on a finger."
 			],
 			"audio": [
-				"/thai-script/lessons/lesson-02/audio/98bd5b3923ad7510.mp3",
+				"/thai-script/lessons/lesson-02/audio/6a25ff9d1068bcec.mp3",
 				"/thai-script/lessons/lesson-02/audio/d7a437034807b8f3.mp3",
-				"/thai-script/lessons/lesson-02/audio/8fa5cd6b5091dd0b.mp3"
+				"/thai-script/lessons/lesson-02/audio/b5c1f6692f6eb698.mp3"
 			],
 			"audioLanguages": ["en", "th", "en"],
 			"teaches": ["wo-weng"],
@@ -206,8 +221,11 @@
 				"Forty years, watching the harbour mouth.",
 				"Turning it round and round on her finger."
 			],
-			"audio": ["/thai-script/lessons/lesson-02/audio/6c554392fe4dacf5.mp3"],
-			"audioLanguages": ["en"],
+			"audio": [
+				"/thai-script/lessons/lesson-02/audio/b65ff25f460228aa.mp3",
+				"/thai-script/lessons/lesson-02/audio/5e8df9fbbf410018.mp3"
+			],
+			"audioLanguages": ["en", "en"],
 			"teaches": ["wo-weng"],
 			"image": "/thai-script/lessons/lesson-02/images/waen-story-2-6da3212d97f1.jpg"
 		},
@@ -219,7 +237,7 @@
 				"It had slipped from her finger into the water.",
 				"A week later a boy found it inside a fish."
 			],
-			"audio": ["/thai-script/lessons/lesson-02/audio/f257b43b48706a66.mp3"],
+			"audio": ["/thai-script/lessons/lesson-02/audio/24b38f58a27063f7.mp3"],
 			"audioLanguages": ["en"],
 			"teaches": ["wo-weng"],
 			"image": "/thai-script/lessons/lesson-02/images/waen-story-3-15a5ce98ea4d.jpg"
@@ -233,7 +251,7 @@
 				"The harbour's word for a circle came from hers."
 			],
 			"audio": [
-				"/thai-script/lessons/lesson-02/audio/fe397e1cb05ff34f.mp3",
+				"/thai-script/lessons/lesson-02/audio/9225225974bd6dea.mp3",
 				"/thai-script/lessons/lesson-02/audio/d7a437034807b8f3.mp3"
 			],
 			"audioLanguages": ["en", "th"],
@@ -243,10 +261,17 @@
 		{
 			"kind": "exposition",
 			"id": "see-waen",
-			"heading": "The ring's letter",
-			"body": ["The ring's letter."],
-			"audio": ["/thai-script/lessons/lesson-02/audio/48c790474cc51a8a.mp3"],
-			"audioLanguages": ["en"],
+			"heading": "One closed circle, and then a rule",
+			"body": [
+				"One stroke, closing round into a single circle.",
+				"Start at the head, high on the left, and come back to it.",
+				"All three on the page now, each one named as you wrote it."
+			],
+			"audio": [
+				"/thai-script/lessons/lesson-02/audio/d05861a249898c55.mp3",
+				"/thai-script/lessons/lesson-02/audio/9ea965b171bb49f9.mp3"
+			],
+			"audioLanguages": ["en", "en"],
 			"thai": "ว",
 			"teaches": ["wo-weng"]
 		},
@@ -255,11 +280,12 @@
 			"id": "live-endings",
 			"ruleId": "live-endings",
 			"audio": [
-				"/thai-script/lessons/lesson-02/audio/8c738302f5258572.mp3",
+				"/thai-script/lessons/lesson-02/audio/8f3ad818bbab46cd.mp3",
+				"/thai-script/lessons/lesson-02/audio/61788e5ae073c449.mp3",
 				"/thai-script/lessons/lesson-02/audio/65c63daa9e5d2035.mp3",
-				"/thai-script/lessons/lesson-02/audio/ad386c5c10910a28.mp3"
+				"/thai-script/lessons/lesson-02/audio/281da7af641f9c8e.mp3"
 			],
-			"audioLanguages": ["en", "th", "en"]
+			"audioLanguages": ["en", "en", "th", "en"]
 		},
 		{
 			"kind": "exposition",
@@ -267,9 +293,9 @@
 			"heading": "The five that keep going",
 			"body": [
 				"The horse, the mouse, the snake, the giant, the ring.",
-				"Every one is a sound you can hold — which is exactly why a syllable can end on it."
+				"Every one is a sound you can hold, which is why a syllable may end on it."
 			],
-			"audio": ["/thai-script/lessons/lesson-02/audio/9c2e8ef6b38ebcde.mp3"],
+			"audio": ["/thai-script/lessons/lesson-02/audio/7e8e0218482749b3.mp3"],
 			"audioLanguages": ["en"],
 			"teaches": ["mo-ma", "no-nu", "ngo-ngu", "yo-yak", "wo-weng"],
 			"image": "/thai-script/lessons/lesson-02/images/the-five-fdea1d4ca818.jpg"
@@ -278,7 +304,7 @@
 			"kind": "rule",
 			"id": "low-live",
 			"ruleId": "low-live",
-			"audio": ["/thai-script/lessons/lesson-02/audio/2c7915e9f0b58c47.mp3"],
+			"audio": ["/thai-script/lessons/lesson-02/audio/50943244863b613e.mp3"],
 			"audioLanguages": ["en"],
 			"teaches": ["low-live"]
 		},
@@ -289,16 +315,18 @@
 			"body": [
 				"The fisherman stands alive in a flat paddy, and nothing has happened to him.",
 				"A harbour voice that nothing stops comes out flat.",
-				"Flat tones live in the rice paddy."
+				"Flat tones live in the rice paddy.",
+				"The other man is from a district you meet next lesson."
 			],
 			"audio": [
-				"/thai-script/lessons/lesson-02/audio/cd8eb09e5f7dde16.mp3",
+				"/thai-script/lessons/lesson-02/audio/8fa8bf5a28bce140.mp3",
+				"/thai-script/lessons/lesson-02/audio/8fcdc9455b62afd1.mp3",
 				"/thai-script/lessons/lesson-02/audio/697d790ce7aff27c.mp3",
-				"/thai-script/lessons/lesson-02/audio/e470d0fe2d87d992.mp3",
+				"/thai-script/lessons/lesson-02/audio/0be6890215663fdb.mp3",
 				"/thai-script/lessons/lesson-02/audio/3a3729532353920f.mp3",
-				"/thai-script/lessons/lesson-02/audio/51dd2696f845ad02.mp3"
+				"/thai-script/lessons/lesson-02/audio/cbd441ad4c50c244.mp3"
 			],
-			"audioLanguages": ["en", "th", "en", "th", "en"],
+			"audioLanguages": ["en", "en", "th", "en", "th", "en"],
 			"teaches": ["low-live", "paddy-alive"],
 			"image": "/thai-script/lessons/lesson-02/images/the-paddy-d42ee34ac6de.jpg"
 		},
@@ -307,7 +335,7 @@
 			"id": "tone-of-yaa",
 			"prompt": "A word begins with the giant's letter, and its long vowel is left open with nothing after it. Which tone does it take, and which rule told you so?",
 			"revealSlideId": "tone-of-yaa-answer",
-			"audio": ["/thai-script/lessons/lesson-02/audio/6414e344bb7cb7d8.mp3"],
+			"audio": ["/thai-script/lessons/lesson-02/audio/74db8151c421b237.mp3"],
 			"audioLanguages": ["en"],
 			"teaches": ["low-live"]
 		},
@@ -322,7 +350,7 @@
 			"audio": [
 				"/thai-script/lessons/lesson-02/audio/90141eda6fc3355e.mp3",
 				"/thai-script/lessons/lesson-02/audio/8922d57142a6d866.mp3",
-				"/thai-script/lessons/lesson-02/audio/e148769cdb981259.mp3"
+				"/thai-script/lessons/lesson-02/audio/fcb7dabb66a6b938.mp3"
 			],
 			"audioLanguages": ["en", "th", "en"],
 			"teaches": ["low-live"]
@@ -330,12 +358,12 @@
 		{
 			"kind": "exposition",
 			"id": "read-intro",
-			"heading": "Two words, and no new letters",
+			"heading": "You read these, I will keep quiet",
 			"body": [
-				"Read each one before the answer comes.",
-				"Everything here is five letters and one vowel."
+				"Read each one before the voice does.",
+				"Nothing here needs a letter you have yet to meet."
 			],
-			"audio": ["/thai-script/lessons/lesson-02/audio/44c028c77857516b.mp3"],
+			"audio": ["/thai-script/lessons/lesson-02/audio/7cf2ebccc0cbc805.mp3"],
 			"audioLanguages": ["en"]
 		},
 		{
@@ -344,9 +372,9 @@
 			"heading": "Read this one",
 			"body": ["A hum, a long vowel, a hum to close it."],
 			"audio": [
-				"/thai-script/lessons/lesson-02/audio/8d1dc351e02b0330.mp3",
+				"/thai-script/lessons/lesson-02/audio/598d52bc7f34a800.mp3",
 				"/thai-script/lessons/lesson-02/audio/6df0fd09c54ba48e.mp3",
-				"/thai-script/lessons/lesson-02/audio/b3521ff3a5439da1.mp3"
+				"/thai-script/lessons/lesson-02/audio/a5c0dd40d1fa8997.mp3"
 			],
 			"audioLanguages": ["en", "th", "en"],
 			"thai": "งาม"
@@ -357,9 +385,9 @@
 			"heading": "And this one",
 			"body": ["The ring, then the snake's letter closing it."],
 			"audio": [
-				"/thai-script/lessons/lesson-02/audio/a2cf98998deeca08.mp3",
+				"/thai-script/lessons/lesson-02/audio/3cf3de3f169b09bb.mp3",
 				"/thai-script/lessons/lesson-02/audio/b2d4aa1efd697028.mp3",
-				"/thai-script/lessons/lesson-02/audio/8d7a4f11503cdfe6.mp3"
+				"/thai-script/lessons/lesson-02/audio/d4b3ee0ec9f150de.mp3"
 			],
 			"audioLanguages": ["en", "th", "en"],
 			"thai": "วง"
@@ -369,10 +397,11 @@
 			"id": "read-close",
 			"heading": "Two lessons in",
 			"body": [
-				"Five letters and one vowel between them.",
-				"Next: endings that stop the air."
+				"Five letters and one vowel gave you both words.",
+				"An address for every letter, and a reason for its tone.",
+				"Next: the air stops, at a market with somebody asleep in it."
 			],
-			"audio": ["/thai-script/lessons/lesson-02/audio/5e2716fa6f872fef.mp3"],
+			"audio": ["/thai-script/lessons/lesson-02/audio/a3e5d0b9f19e2968.mp3"],
 			"audioLanguages": ["en"]
 		}
 	]

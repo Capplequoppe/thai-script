@@ -41,6 +41,12 @@ type LoadState =
 			readonly status: "ready";
 			readonly deck: LessonDeck;
 			readonly audioUrls: ReadonlyMap<string, readonly string[]>;
+			/**
+			 * Clips a reveal slide speaks on arrival rather than on reveal —
+			 * the teacher setting the screen up before the answer is offered.
+			 * Empty for every other slide kind, which plays on arrival anyway.
+			 */
+			readonly audioBefore: ReadonlyMap<string, readonly string[]>;
 			readonly imageUrls: ReadonlyMap<string, string>;
 			readonly audioLanguages: ReadonlyMap<string, readonly string[]>;
 	  };
@@ -64,21 +70,28 @@ type LoadState =
  */
 function readAudioCandidate(
 	item: unknown,
+	field: "audio" | "audioBefore" = "audio",
 ): { id: string; audioUrls: string[] } | undefined {
 	if (typeof item !== "object" || item === null) return undefined;
-	const { id, audio, audioUrl } = item as Record<string, unknown>;
+	const record = item as Record<string, unknown>;
+	const { id } = record;
 	if (typeof id !== "string") return undefined;
-	if (Array.isArray(audio)) {
-		const urls = audio.filter((url): url is string => typeof url === "string");
+	const list = record[field];
+	if (Array.isArray(list)) {
+		const urls = list.filter((url): url is string => typeof url === "string");
 		return urls.length > 0 ? { id, audioUrls: urls } : undefined;
 	}
-	if (typeof audioUrl === "string") return { id, audioUrls: [audioUrl] };
+	// The pre-split single-clip form, which only ever meant the main list.
+	if (field === "audio" && typeof record.audioUrl === "string") {
+		return { id, audioUrls: [record.audioUrl] };
+	}
 	return undefined;
 }
 
 function extractAudioUrls(
 	raw: unknown,
 	lessonId: string,
+	field: "audio" | "audioBefore" = "audio",
 ): ReadonlyMap<string, readonly string[]> {
 	const map = new Map<string, readonly string[]>();
 	if (typeof raw !== "object" || raw === null) return map;
@@ -87,7 +100,7 @@ function extractAudioUrls(
 
 	const prefix = `${LESSON_ASSET_ROOT}/${lessonId}/`;
 	for (const item of slidesRaw) {
-		const candidate = readAudioCandidate(item);
+		const candidate = readAudioCandidate(item, field);
 		if (!candidate) continue;
 		const { id, audioUrls } = candidate;
 
@@ -565,12 +578,15 @@ function DeckSlideContent({
 	deck,
 	slide,
 	audioUrls,
+	audioBefore,
 	audioLanguages,
 	imageUrl,
 }: {
 	deck: LessonDeck;
 	slide: DeckSlideData;
 	audioUrls?: readonly string[];
+	/** What a reveal slide says before its answer is offered. */
+	audioBefore?: readonly string[];
 	audioLanguages?: readonly string[];
 	imageUrl?: string;
 }) {
@@ -584,9 +600,24 @@ function DeckSlideContent({
 	// One narration per slide, driven by both the auto-play below and the
 	// transport. When the transport owned a second one, the slide could be
 	// talking while the button still offered to start it.
+	// A reveal slide has two things to say and a button between them. Before
+	// the button it speaks `audioBefore` — the teacher setting the screen up,
+	// or asking for an answer out loud; after it, the answer itself. Every
+	// other kind of slide has only the one list and plays it on arrival.
+	//
+	// One narration instance, switched, rather than two running side by side:
+	// the comment on `useNarration` records why a second one was removed —
+	// the slide could be talking while the transport still offered to start
+	// it.
+	//
+	// No languages for the before-clips. They are the teacher in English, so a
+	// uniform gap is the right one, and the language-aware gap exists to mark
+	// the crossing into a Thai word.
+	const beforeTheButton = slide.kind === "reveal" && !revealed;
+	const activeUrls = beforeTheButton ? audioBefore : audioUrls;
 	const { playing, start, stop, pause, resume, setSpeed } = useNarration(
-		audioUrls,
-		audioLanguages,
+		activeUrls,
+		beforeTheButton ? undefined : audioLanguages,
 		rate,
 	);
 	useResetOnCardChange(slide.id, () => {
@@ -595,7 +626,11 @@ function DeckSlideContent({
 
 	// biome-ignore lint/correctness/useExhaustiveDependencies: keys on the slide's own identity, not on audioUrls — two consecutive slides sharing a clip must still reset (see AC5)
 	useEffect(() => {
-		if (!audioUrls?.length || slide.kind === "reveal") return;
+		// Once revealed, the effect below owns playback; without this guard the
+		// list swapping under `activeUrls` would retrigger this one and the
+		// answer would start twice.
+		if (revealed) return;
+		if (!activeUrls?.length) return;
 		// `start` cancels anything already running before it begins, so this
 		// cannot stack with the transport or with itself. Stopping on cleanup
 		// keeps a clip from talking over the next slide.
@@ -606,7 +641,7 @@ function DeckSlideContent({
 		// because nothing would make the effect look again. The urls come from
 		// the deck's map and change only when the slide does, so AC5 — two
 		// consecutive slides sharing one clip must still replay — still holds.
-	}, [slide.id, audioUrls]);
+	}, [slide.id, activeUrls]);
 
 	// A "reveal" slide's audio is the answer's pronunciation, so it plays on
 	// reveal rather than on arrival — hearing it first would answer the
@@ -818,6 +853,7 @@ export function DeckSlide({ deckPath, onComplete, teaching }: Props) {
 								slides: [],
 							},
 							audioUrls: new Map(),
+							audioBefore: new Map(),
 							imageUrls: new Map(),
 							audioLanguages: new Map(),
 						});
@@ -833,6 +869,11 @@ export function DeckSlide({ deckPath, onComplete, teaching }: Props) {
 					status: "ready",
 					deck: result.deck,
 					audioUrls: extractAudioUrls(raw, result.deck.lessonId),
+					audioBefore: extractAudioUrls(
+						raw,
+						result.deck.lessonId,
+						"audioBefore",
+					),
 					imageUrls: extractImageUrls(raw, result.deck.lessonId),
 					audioLanguages: extractAudioLanguages(raw),
 				});
@@ -890,8 +931,8 @@ export function DeckSlide({ deckPath, onComplete, teaching }: Props) {
 	if (slides.length === 0 && teaching) {
 		return (
 			<p className="text-center" style={{ color: "var(--color-text-muted)" }}>
-				No slide in this lesson is marked as part of this story yet. The
-				lesson itself has it — open the lesson to find it.
+				No slide in this lesson is marked as part of this story yet. The lesson
+				itself has it — open the lesson to find it.
 			</p>
 		);
 	}
@@ -913,6 +954,7 @@ export function DeckSlide({ deckPath, onComplete, teaching }: Props) {
 				deck={state.deck}
 				slide={slide}
 				audioUrls={state.audioUrls.get(slide.id)}
+				audioBefore={state.audioBefore.get(slide.id)}
 				imageUrl={state.imageUrls.get(slide.id)}
 				audioLanguages={state.audioLanguages.get(slide.id)}
 			/>

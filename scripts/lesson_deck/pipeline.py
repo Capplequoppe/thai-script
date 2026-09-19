@@ -749,15 +749,26 @@ class DeckGenerator:
 			for segment in slide.segments
 			if (asset := self.manifest.by_key(segment.key)) and asset.path
 		]
-		if played:
-			body["audio"] = [asset.path for _, asset in played]
+		# A reveal slide holds its audio back until the learner presses the
+		# button, which is right for the answer and wrong for everything the
+		# teacher wants to say first. `narration-before:` lines are split out
+		# here so the player can speak them on arrival and keep the rest for
+		# the reveal.
+		before = [(s, a) for s, a in played if s.before_reveal]
+		after = [(s, a) for s, a in played if not s.before_reveal]
+
+		if before:
+			body["audioBefore"] = [asset.path for _, asset in before]
+			body["audioBeforeLanguages"] = [s.language for s, _ in before]
+		if after:
+			body["audio"] = [asset.path for _, asset in after]
 			# Which clip is which language, so the player can tell a language
 			# change from a sentence break. A pause belongs at the first and
 			# not at the second: crossing from the English voice to the Thai
 			# one is a teacher pausing before saying the word, while a pause
 			# between two English clips lands in the middle of one person's
 			# continuous prose and is heard as the end of a thought.
-			body["audioLanguages"] = [segment.language for segment, _ in played]
+			body["audioLanguages"] = [segment.language for segment, _ in after]
 		# Thai to be *read*, set large in the app's own font.
 		#
 		# Distinct from `glyph:`, which the image compositor burns into a

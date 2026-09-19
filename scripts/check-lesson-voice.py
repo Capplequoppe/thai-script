@@ -92,11 +92,35 @@ WHEN = re.compile(
 	r"monday|tuesday|wednesday|thursday|friday|saturday|sunday)\b",
 	re.I,
 )
+
+#: The same fault at a longer wavelength, and the one the first version of this
+#: check missed entirely. Banning weekdays and stopping there left orientation
+#: telling the learner what week two would feel like and to judge the course in
+#: week six — which assumes a study rate just as firmly as a weekday assumes a
+#: start date, and is wrong by a year for somebody taking a lesson a month.
+#:
+#: Only a *numbered* span counts. "A few weeks of your ears being confused" is a
+#: duration and is fine; "in week one" and "last week" name a position on a
+#: calendar the course cannot see.
+PACE = re.compile(
+	r"\b(?:week|month|year)s?\s+(?:one|two|three|four|five|six|\d+)\b"
+	r"|\b(?:last|next|this)\s+(?:week|month|year)\b"
+	r"|\bweeks?\s+(?:one|two|three)\s+to\s+\w+\b",
+	re.I,
+)
+
 SECOND_PERSON = re.compile(r"\b(?:you|your|yourself)\b", re.I)
 
 
 def assumes_when(sentence: str) -> bool:
-	return bool(WHEN.search(sentence) and SECOND_PERSON.search(sentence))
+	"""A clock, a calendar or a study rate, aimed at the learner.
+
+	Second person is required throughout: the stories are full of mornings and
+	of years passing, and every one of them should stay.
+	"""
+	if not SECOND_PERSON.search(sentence):
+		return False
+	return bool(WHEN.search(sentence) or PACE.search(sentence))
 
 
 def sentences(text: str) -> list[str]:

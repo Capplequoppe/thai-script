@@ -163,6 +163,41 @@ And sparingly. A teacher who reaches for slang every lesson is performing
 authenticity rather than having it. Once or twice a lesson, where it is the
 true thing to say, is more than enough.
 
+## Nothing arrives cold
+
+A slide has to follow from the one before it. The learner has no way back and
+no way to ask, so anything a slide assumes, it has to have been given.
+
+The fault, in the shape it actually took: orientation's first retrieval opened
+*"Out loud, please. Say it to the room"* — an instruction delivered as a
+standing rule, four slides and eighty-eight lines before the slide that
+establishes saying things aloud. A learner meeting that has been told off for
+breaking a rule nobody gave them, and the correction lands as a stranger being
+brisk with them.
+
+**Give the reason at the moment of the first ask, not later.** When she wants a
+new behaviour, she says what it is, why it is worth it, and what makes people
+skip it — right there, briefly, and preferably with the version of it she got
+wrong herself. The full treatment can still come later and is better for
+having something to refer back to: *"I made you do this a few minutes ago and
+did not tell you why. Here is why."*
+
+Things that should make you stop and check the slide before:
+
+- An instruction phrased as a reminder — *"as always"*, *"remember to"*,
+  *"please"* — is claiming a rule exists. Confirm it does.
+- A correction. She cannot correct a learner who was never told.
+- *"the X you learned"*, *"the rule from before"*, *"as I said"* — each names a
+  thing that has to be findable behind them.
+- A retrieval that asks for something in a form the lesson has not used yet.
+
+**No checker can see this.** It was looked for mechanically and the attempt
+returned two false positives and nothing true: a bullet describing the
+curriculum as *"heard and spoken aloud"*, and a slide explaining that letters
+have a stroke order. Both contain the words and neither is a demand. The only
+way to find this is to read the lesson in order, as somebody who knows nothing,
+and to stop at every slide that assumes.
+
 ## The aha rule
 
 **The puzzle bites before the release.** An insight a learner is handed is
