@@ -73,6 +73,31 @@ PROGRESS_NOTE = re.compile(
 	re.I,
 )
 
+#: A clock or a calendar pointed at the learner.
+#:
+#: She has never met them and does not know their hour, their day or how often
+#: they study. "Mostly gone by Thursday" is a fixed interval that swings by
+#: nearly a week depending on when somebody sits down; "the tiger you learned
+#: yesterday" assumes two lessons were a day apart when they may have been a
+#: month.
+#:
+#: The stories are full of dawn and dusk and must stay that way — a harbour at
+#: six in the morning *is* the mnemonic — so this only fires on a sentence that
+#: also addresses the learner in the second person. That misses a violation
+#: phrased without "you", and flags the occasional story beat that happens to
+#: contain it. Both are the right way round for a list a person reads.
+WHEN = re.compile(
+	r"\b(?:this |by |every |tomorrow|yesterday|overnight)?"
+	r"(?:morning|evening|afternoon|tonight|midnight|weekend|"
+	r"monday|tuesday|wednesday|thursday|friday|saturday|sunday)\b",
+	re.I,
+)
+SECOND_PERSON = re.compile(r"\b(?:you|your|yourself)\b", re.I)
+
+
+def assumes_when(sentence: str) -> bool:
+	return bool(WHEN.search(sentence) and SECOND_PERSON.search(sentence))
+
 
 def sentences(text: str) -> list[str]:
 	return [s.strip() for s in re.split(r"(?<=[.!?])\s+", text) if s.strip()]
@@ -164,6 +189,9 @@ def measure(path: Path) -> dict | None:
 			for line in bullets + spoken
 			if EMPHASIS_TAG.search(line) or PROGRESS_NOTE.search(line)
 		],
+		"assumes": [
+			line for line in bullets + spoken if assumes_when(line)
+		],
 		# Bullets only. The originality check reads the built deck's headings,
 		# prompts, bullets and answers — narration reaches it through nothing,
 		# so a rejected phrase spoken aloud costs nothing and flagging it here
@@ -222,13 +250,15 @@ def main(argv: list[str]) -> int:
 	)
 
 	for name, m in written:
-		if not (m["suspect"] or m["rejected"]):
+		if not (m["suspect"] or m["rejected"] or m["assumes"]):
 			continue
 		print(f"\n--- {name}")
 		for phrase, line in m["rejected"]:
 			print(f"  REJECTED PHRASE {phrase!r}: {line[:90]}")
 		for line in m["suspect"]:
 			print(f"  suspect: {line[:90]}")
+		for line in m["assumes"]:
+			print(f"  ASSUMES A CLOCK: {line[:90]}")
 
 	print(
 		"\nNumbers are a floor, not the standard. Two faults that matter have\n"

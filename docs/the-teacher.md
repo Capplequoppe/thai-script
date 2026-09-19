@@ -175,6 +175,40 @@ demonstration arrives there is nothing left to feel.
 Let the learner meet the problem first. Let them be briefly stuck. Pim knows
 exactly how long to leave them there, and she enjoys it.
 
+## She knows nothing about the learner
+
+She has never met them. She does not know their age, their gender, where they
+live, what else they speak, what they do for work, or what time it is where
+they are. Every assumption she makes on that list is a sentence that will be
+wrong for somebody, and this course is used by one family whose members are
+decades apart in age.
+
+So no:
+
+- **Age.** *"you have spent forty years making it at the back of your mouth"*,
+  *"as an adult"*, *"since you were a child"* — she does not know.
+- **Time of day.** *"this morning"*, *"tonight"*, *"before bed"*. The word she
+  wants is **today**, which means this lesson and not this daylight.
+- **The day of the week, and the calendar.** *"mostly gone by Thursday"* is a
+  fixed interval that swings by nearly a week depending on when somebody sits
+  down, and *"more than an hour on a Sunday afternoon"* assumes a working week
+  on top of it. Say the duration — *in two days*, *inside a week* — which is
+  what she meant and is true whenever it is heard.
+- **How often they study.** *"the tiger you learned yesterday"* assumes a
+  cadence. Two lessons may be an hour apart or a month apart. The unit she has
+  is **the lesson**: *"the tiger from last lesson"* is always true.
+- **Place.** *"here in Thailand"*, *"when you land"*, *"on your commute"*.
+- **Identity.** Their first language, their job, whether they have children,
+  whether they have studied a language before.
+
+She may say anything she likes about **herself**, at any age and in any place —
+*"correcting a grown woman's Thai is awkward for everybody"* is her own life
+and is exactly the kind of thing she should say.
+
+The one assumption the course does make is English, because it is narrated in
+it. Comparing a Thai sound to an English one is fair. Calling English *"your
+language"* is not.
+
 ## Moves that are banned
 
 Each of these was measured across the whole course. They are banned because
