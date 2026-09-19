@@ -718,6 +718,384 @@ export const VOCAB_MNEMONICS: readonly VocabMnemonic[] = [
 		soundCue: "That mock is mâak.",
 		meaningCue: "much, very",
 	},
+	{
+		thai: "แล้ว",
+		rank: 61,
+		room: "actions-and-states",
+		characters: ["chan"],
+		sceneCue:
+			"Chan lays her last tool in the workshop tray with a long oh of relief: everything on the list is done.",
+		soundCue: "That lay, then that oh, is láaeo.",
+		meaningCue: "already — the thing is finished and finished with",
+	},
+	{
+		thai: "ใคร",
+		rank: 62,
+		room: "people-and-pronouns",
+		characters: ["pom"],
+		sceneCue:
+			"A cry goes up somewhere along the hallway and Pom opens one door after another until he finds who made it.",
+		soundCue: "That cry is khrai.",
+		meaningCue: "who",
+	},
+	{
+		thai: "ไหน",
+		rank: 63,
+		room: "actions-and-states",
+		characters: ["chan"],
+		sceneCue:
+			"Chan holds a knife over the workshop bench and works along the row of jars, asking which one it has to go into.",
+		soundCue: "The nigh of that knife is nǎi.",
+		meaningCue: "where — it asks which one, out of all there are",
+	},
+	{
+		thai: "หรือเปล่า",
+		rank: 65,
+		room: "particles",
+		characters: ["chan"],
+		sceneCue:
+			"Chan props a plough across the doorway with a sprig of rue tied to its handle and will not move either until she has a yes or a no.",
+		soundCue: "That rue, then that plough, is rʉ̌ʉ-plàaw.",
+		meaningCue:
+			"it puts or-not on the end and turns the sentence into a yes-or-no question",
+	},
+	{
+		thai: "ถูก",
+		rank: 66,
+		room: "actions-and-states",
+		characters: ["pom"],
+		sceneCue:
+			"One coin buys the whole workshop bench, and Pom took every jar off it before anyone else came through.",
+		soundCue: "That took is thùuk.",
+		meaningCue: "cheap — it costs next to nothing",
+	},
+	{
+		thai: "ไว้",
+		rank: 67,
+		room: "actions-and-states",
+		characters: ["pom"],
+		sceneCue:
+			"Pom hangs every chisel on its own Y of bent wire above the workshop bench, where each will still be sitting tomorrow.",
+		soundCue: "That Y is wái.",
+		meaningCue: "to put something somewhere and leave it there",
+	},
+	{
+		thai: "หรือ",
+		rank: 68,
+		room: "connectors",
+		characters: ["pom"],
+		sceneCue:
+			"Pom holds a sprig of rue up at the fork in the corridor and lets it drop to settle which of the two ways he takes.",
+		soundCue: "That rue is rǔue.",
+		meaningCue: "or — it sets two choices side by side",
+	},
+	{
+		thai: "เพราะ",
+		rank: 69,
+		room: "connectors",
+		characters: ["chan"],
+		sceneCue:
+			"One prawn on a plate opens every door down the corridor as Chan carries it past.",
+		soundCue: "The praw of that prawn is phráw.",
+		meaningCue: "because — it hangs the reason on what was just said",
+	},
+	{
+		thai: "เวลา",
+		rank: 70,
+		room: "things",
+		characters: ["chan"],
+		sceneCue:
+			"Chan turns the hourglass on the shelf the other way up and holds one long la until the sand has run through.",
+		soundCue: "That way, then that la, is wee laa.",
+		meaningCue: "time — the hour on a clock, and the occasion as well",
+	},
+	{
+		thai: "รู้",
+		rank: 71,
+		room: "actions-and-states",
+		characters: ["pom"],
+		sceneCue:
+			"A kangaroo noses along the workshop bench and Pom names every tool it touches without once looking up.",
+		soundCue: "The roo of that kangaroo is rúu.",
+		meaningCue: "to know something",
+	},
+	{
+		thai: "กิน",
+		rank: 72,
+		room: "actions-and-states",
+		characters: ["chan"],
+		sceneCue:
+			"A guinea pig gets up onto the workshop bench and works through Chan's lunch while her back is turned.",
+		soundCue: "The guin of that guinea pig is gin.",
+		meaningCue: "to eat",
+	},
+	{
+		thai: "ทำไม",
+		rank: 73,
+		room: "actions-and-states",
+		characters: ["pom"],
+		sceneCue:
+			"Pom plants his thumb on the workshop bench beside a ruined frame — my frame, my two days of work — and waits for a reason.",
+		soundCue: "That thumb, then that my, is tham-mai.",
+		meaningCue: "why — it asks the reason for the whole sentence",
+	},
+	{
+		thai: "เท่าไหร่",
+		rank: 74,
+		room: "actions-and-states",
+		characters: ["chan"],
+		sceneCue:
+			"Chan asks the tow-truck driver in the workshop yard what the lift will cost, and he puts out a hand for a loaf of rye.",
+		soundCue: "That tow, then that rye, is thâo rài.",
+		meaningCue: "how much, how many — it asks the amount",
+	},
+	{
+		thai: "ยัง",
+		rank: 75,
+		room: "actions-and-states",
+		characters: ["pom"],
+		sceneCue:
+			"A young apprentice hovers at the workshop bench while Pom is still sanding the board he began with.",
+		soundCue: "That young is yang.",
+		meaningCue: "still, yet — the thing has not finished or not happened",
+	},
+	{
+		thai: "ทำ",
+		rank: 76,
+		room: "actions-and-states",
+		characters: ["chan"],
+		sceneCue:
+			"Chan works a lump of clay with her thumb at the workshop bench until it is a bowl.",
+		soundCue: "That thumb is tham.",
+		meaningCue: "to do, or to make",
+	},
+	{
+		thai: "เห็น",
+		rank: 78,
+		room: "actions-and-states",
+		characters: ["pom"],
+		sceneCue:
+			"A hen gets into the workshop and Pom picks it out from the far end, long before it reaches the bench.",
+		soundCue: "That hen is hěn.",
+		meaningCue: "to see, to notice",
+	},
+	{
+		thai: "เข้า",
+		rank: 79,
+		room: "actions-and-states",
+		characters: ["chan"],
+		sceneCue:
+			"A cow comes in at the workshop gate and stands where she stops, and Chan works round her all afternoon.",
+		soundCue: "That cow is khâo.",
+		meaningCue: "to enter, to go in",
+	},
+	{
+		thai: "ชั้น",
+		rank: 80,
+		room: "things",
+		characters: ["pom"],
+		sceneCue:
+			"Pom sets one chunk of teak on every level of the shelf, working up from the bottom one.",
+		soundCue: "That chunk is chán.",
+		meaningCue: "a floor of a building, or one tier of anything stacked",
+	},
+	// The one record in the top hundred that wants a Thai speaker's ear.
+	// `เลย` is /lɤːj/, mid-central and unrounded, and "low E" gives a rounded
+	// /loʊ iː/ — so a learner taking the hook literally says *loh-ee* rather
+	// than *luh-ee*. It is kept because the scene is right (a string ringing
+	// on long after the song has finished is exactly "not in the slightest")
+	// and a weak hook on a rank-81 word beats none at all. The sound cue is
+	// the first thing to replace if somebody can hear it.
+	{
+		thai: "เลย",
+		rank: 81,
+		room: "actions-and-states",
+		characters: ["pom"],
+		sceneCue:
+			"Pom plucks the low E on the guitar hung over the workshop bench and lets it ring on long after the song has finished.",
+		soundCue: "That low E is looei.",
+		meaningCue: "so, therefore — and after a negative, not in the slightest",
+	},
+	{
+		thai: "อย่างไร",
+		rank: 82,
+		room: "actions-and-states",
+		characters: ["chan"],
+		sceneCue:
+			"Chan lays a slice of rye on the workshop bench between two jars of different yang and asks which way they are meant to go together.",
+		soundCue: "That yang, then that rye, is yàang-rai.",
+		meaningCue: "how — it asks the manner a thing is done in",
+	},
+	{
+		thai: "บ้าน",
+		rank: 83,
+		room: "things",
+		characters: ["pom"],
+		sceneCue:
+			"Pom stands a model barn on the shelf and walks the whole family of little figures in through its door for the night.",
+		soundCue: "That barn is bâan.",
+		meaningCue: "a house, and the home somebody lives in",
+	},
+	{
+		thai: "พูด",
+		rank: 85,
+		room: "actions-and-states",
+		characters: ["pom"],
+		sceneCue:
+			"Pom squeezes the bulb horn on the workshop bench and it lets out one flat poot before he has opened his mouth.",
+		soundCue: "That poot is phûut.",
+		meaningCue: "to speak, to say",
+	},
+	{
+		thai: "ชอบ",
+		rank: 86,
+		room: "actions-and-states",
+		characters: ["chan"],
+		sceneCue:
+			"Chan keeps one knife on the workshop bench above all the others and reaches past every other blade for it at each chop.",
+		soundCue: "That chop is châawp.",
+		meaningCue: "to like",
+	},
+	{
+		thai: "กี่",
+		rank: 87,
+		room: "actions-and-states",
+		characters: ["chan"],
+		sceneCue:
+			"Chan loses count of the geese filing in at the workshop door and has to start the line again from the first bird.",
+		soundCue: "The gee of those geese is gìi.",
+		meaningCue: "how many",
+	},
+	{
+		thai: "เมื่อไหร่",
+		rank: 88,
+		room: "connectors",
+		characters: ["chan"],
+		sceneCue:
+			"Chan stands halfway down the corridor with a slice of rye in her hand and will not take a bite until the cow lows.",
+		soundCue: "That mooa, then that rye, is mûuea-rài.",
+		meaningCue: "when — it asks for the moment",
+	},
+	{
+		thai: "ซึ่ง",
+		rank: 89,
+		room: "connectors",
+		characters: ["pom"],
+		sceneCue:
+			"Pom holds one sung note down the corridor until the single door it belongs to swings open and none of the others move.",
+		soundCue: "That sung note is sûeng.",
+		meaningCue: "which — it hooks a description onto the thing just named",
+	},
+	{
+		thai: "ลง",
+		rank: 90,
+		room: "actions-and-states",
+		characters: ["chan"],
+		sceneCue:
+			"Chan runs the workshop hoist the other way and pays out the long rope until the crate is flat on the floor again.",
+		soundCue: "That long rope is long.",
+		meaningCue: "to go down, to get off, to put down",
+	},
+	{
+		thai: "ถ้า",
+		rank: 91,
+		room: "connectors",
+		characters: ["pom"],
+		sceneCue:
+			"Pom brushes a stripe of wet tar across the corridor floor: put a foot in that and you stay where you are.",
+		soundCue: "That tar is thâa.",
+		meaningCue: "if — it sets the condition everything after it hangs on",
+	},
+	{
+		thai: "ตัว",
+		rank: 92,
+		room: "things",
+		characters: ["chan"],
+		sceneCue:
+			"Chan stands a jointed wooden figure on the shelf and bends it into each pose herself, so the small doer takes every position she cannot hold.",
+		soundCue: "That doer is dtua.",
+		meaningCue: "a body — the whole physical self",
+	},
+	{
+		thai: "นักเรียน",
+		rank: 93,
+		room: "things",
+		characters: ["pom"],
+		sceneCue:
+			"Pom lines the exercise books up on the shelf, one per child, and writes on each cover the knack its owner has just got.",
+		soundCue: "That knack, then a long ree-an, is nák-riian.",
+		meaningCue: "a student",
+	},
+	{
+		thai: "ใช้",
+		rank: 94,
+		room: "actions-and-states",
+		characters: ["chan"],
+		sceneCue:
+			"Chan grinds from the same tin of chai at the workshop bench every morning, and the lid is worn smooth where her thumb goes.",
+		soundCue: "That chai is chái.",
+		meaningCue: "to use",
+	},
+	{
+		thai: "อยาก",
+		rank: 95,
+		room: "actions-and-states",
+		characters: ["pom"],
+		sceneCue:
+			"A yak leans in at the workshop door over Pom's lunch and will not be argued out of the half it has decided on.",
+		soundCue: "That yak is yàak.",
+		meaningCue: "to want to — it goes in front of the thing wanted",
+	},
+	{
+		thai: "แม่",
+		rank: 96,
+		room: "things",
+		characters: ["chan"],
+		sceneCue:
+			"Chan sets the carved mare on the shelf with her foal folded in under her, and never the foal out in front.",
+		soundCue: "That mare is mâae.",
+		meaningCue: "mother",
+	},
+	{
+		thai: "พ่อ",
+		rank: 97,
+		room: "things",
+		characters: ["pom"],
+		sceneCue:
+			"Pom keeps a plaster cast of one broad paw on the shelf, and his own hand sits down inside it with room to spare.",
+		soundCue: "That paw is phâaw.",
+		meaningCue: "father",
+	},
+	{
+		thai: "ข้าว",
+		rank: 98,
+		room: "things",
+		characters: ["chan"],
+		sceneCue:
+			"Chan goes all the way down in a full kowtow to the covered bowl on the shelf before she will let anyone lift its lid.",
+		soundCue: "The kow of that kowtow is khàao.",
+		meaningCue: "rice, and by extension the meal it is the middle of",
+	},
+	{
+		thai: "ดื่ม",
+		rank: 99,
+		room: "things",
+		characters: ["pom"],
+		sceneCue:
+			"Pom empties the tall glass in one go and knocks its base down on the drum beside the shelf: one low doom.",
+		soundCue: "That doom is dùuem.",
+		meaningCue: "to drink",
+	},
+	{
+		thai: "น้ำ",
+		rank: 100,
+		room: "things",
+		characters: ["chan"],
+		sceneCue:
+			"Chan holds her hand down in the jar on the shelf until the cold has taken every one of her fingers numb.",
+		soundCue: "That numb hand is náam.",
+		meaningCue: "water",
+	},
 ];
 
 // ----------------------------------------------------------------------------
@@ -760,6 +1138,24 @@ export const UNSUITABLE_FOR_MNEMONIC: readonly UnsuitableWord[] = [
 		rank: 29,
 		reason:
 			"a second corpus entry for ขอโทษ, and carrying the same backfilled noun class as rank 28",
+	},
+	{
+		thai: "หน่อย",
+		rank: 64,
+		reason:
+			"the corpus classes this softener as a noun, and by backfill rather than from source — it is what a speaker tacks onto a request to take the edge off, and staging it on that class would put it on the shelf among the objects",
+	},
+	{
+		thai: "ทำ",
+		rank: 77,
+		reason:
+			"a second corpus entry for the word staged at rank 76, glossed make where that one is glossed do; one Thai word gets one scene",
+	},
+	{
+		thai: "บ้าน",
+		rank: 84,
+		reason:
+			"a second corpus entry for the word staged at rank 83; one word gets one scene",
 	},
 ];
 
