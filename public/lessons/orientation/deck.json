@@ -38,12 +38,12 @@
 			],
 			"audio": [
 				"/thai-script/lessons/orientation/audio/727e10d5229dded0.mp3",
-				"/thai-script/lessons/orientation/audio/1e42d3a75effd2d5.mp3",
+				"/thai-script/lessons/orientation/audio/671a7219c6485b8e.mp3",
 				"/thai-script/lessons/orientation/audio/90c9bc1963f8c485.mp3",
-				"/thai-script/lessons/orientation/audio/ae1a0410fe002683.mp3",
+				"/thai-script/lessons/orientation/audio/51f849a163fbe068.mp3",
 				"/thai-script/lessons/orientation/audio/f29f15de213c5bac.mp3",
 				"/thai-script/lessons/orientation/audio/fc7a484b4157bb9f.mp3",
-				"/thai-script/lessons/orientation/audio/0bff4213ea32dcc6.mp3"
+				"/thai-script/lessons/orientation/audio/37e34b411ce9ad3e.mp3"
 			],
 			"audioLanguages": ["en", "en", "en", "en", "en", "en", "en"],
 			"image": "/thai-script/lessons/orientation/images/the-route-ecdbe1133c82.jpg"
@@ -58,11 +58,11 @@
 				"What stops it is **recall** — pulling it out of your head, at the right moment."
 			],
 			"audio": [
-				"/thai-script/lessons/orientation/audio/ec708460a1cce554.mp3",
-				"/thai-script/lessons/orientation/audio/507c9c0079b7a876.mp3",
-				"/thai-script/lessons/orientation/audio/db7da809b13e733b.mp3",
+				"/thai-script/lessons/orientation/audio/924966e9e3e5e393.mp3",
+				"/thai-script/lessons/orientation/audio/200f9a9736c699c7.mp3",
+				"/thai-script/lessons/orientation/audio/b68414ccbce2e2e0.mp3",
 				"/thai-script/lessons/orientation/audio/d23733182f3e0345.mp3",
-				"/thai-script/lessons/orientation/audio/bb7672d996efde27.mp3",
+				"/thai-script/lessons/orientation/audio/c91adc199e31aff0.mp3",
 				"/thai-script/lessons/orientation/audio/2f5132816ae42125.mp3"
 			],
 			"audioLanguages": ["en", "en", "en", "en", "en", "en"],
@@ -78,8 +78,8 @@
 				"Skipping isn't a delay. The swing comes down, and you restart from a standstill — which is where people quit and blame Thai."
 			],
 			"audio": [
-				"/thai-script/lessons/orientation/audio/4a25d6b3b80b45da.mp3",
-				"/thai-script/lessons/orientation/audio/1fa00f1a19432a3f.mp3",
+				"/thai-script/lessons/orientation/audio/e3c4007cfd9260c8.mp3",
+				"/thai-script/lessons/orientation/audio/6bd492b9e6b52676.mp3",
 				"/thai-script/lessons/orientation/audio/da17a60fa7faa64c.mp3",
 				"/thai-script/lessons/orientation/audio/7bb4624ddaf5f33b.mp3",
 				"/thai-script/lessons/orientation/audio/7390f6151f0056ad.mp3",
@@ -145,13 +145,13 @@
 			],
 			"audio": [
 				"/thai-script/lessons/orientation/audio/60d2b9e8b82f3654.mp3",
-				"/thai-script/lessons/orientation/audio/5c4981e6c8d126cf.mp3",
-				"/thai-script/lessons/orientation/audio/ae6f3a2d34f75375.mp3",
-				"/thai-script/lessons/orientation/audio/c7f64f21a4b76b0d.mp3",
-				"/thai-script/lessons/orientation/audio/e5406b0467a50f25.mp3",
+				"/thai-script/lessons/orientation/audio/aa0bb7ca02d780a7.mp3",
+				"/thai-script/lessons/orientation/audio/424d5e9fee4078f7.mp3",
+				"/thai-script/lessons/orientation/audio/60a5a47f6cfe3188.mp3",
+				"/thai-script/lessons/orientation/audio/6506467121a9daf6.mp3",
 				"/thai-script/lessons/orientation/audio/8d0ea9db38bb3609.mp3",
-				"/thai-script/lessons/orientation/audio/30083d8ec9bfbc95.mp3",
-				"/thai-script/lessons/orientation/audio/20685c41022c7eec.mp3",
+				"/thai-script/lessons/orientation/audio/bd35fca35a73c3cc.mp3",
+				"/thai-script/lessons/orientation/audio/5dd049253d17b48e.mp3",
 				"/thai-script/lessons/orientation/audio/94b3c7a6a599475d.mp3"
 			],
 			"audioLanguages": ["en", "en", "en", "en", "en", "en", "en", "en", "en"],
@@ -169,11 +169,11 @@
 				"The picture is **scaffolding**, and it comes away on its own — the way sounding words out did."
 			],
 			"audio": [
-				"/thai-script/lessons/orientation/audio/d88818bed18414c7.mp3",
-				"/thai-script/lessons/orientation/audio/ed8a29951d64f397.mp3",
-				"/thai-script/lessons/orientation/audio/6018796b0da3503e.mp3",
-				"/thai-script/lessons/orientation/audio/d0d5fa28d5efd213.mp3",
-				"/thai-script/lessons/orientation/audio/1937d96259813b64.mp3",
+				"/thai-script/lessons/orientation/audio/22b830cd60bd6960.mp3",
+				"/thai-script/lessons/orientation/audio/2d0126d2470c984a.mp3",
+				"/thai-script/lessons/orientation/audio/630c86138823bc83.mp3",
+				"/thai-script/lessons/orientation/audio/6396ef8d26007bc3.mp3",
+				"/thai-script/lessons/orientation/audio/b001e51d9e442d2a.mp3",
 				"/thai-script/lessons/orientation/audio/e37e851274bde868.mp3",
 				"/thai-script/lessons/orientation/audio/9d814c7a32451ff5.mp3",
 				"/thai-script/lessons/orientation/audio/77c2970b7365b500.mp3",
@@ -372,8 +372,8 @@
 		}
 	],
 	"timing": {
-		"spokenSeconds": 1506,
+		"spokenSeconds": 1437,
 		"practiceSeconds": 158,
-		"estimatedMinutes": 28
+		"estimatedMinutes": 27
 	}
 }
