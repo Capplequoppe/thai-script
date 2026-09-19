@@ -173,6 +173,7 @@ anchor: MMM
 gloss: horse letter
 cue: the long call across the water
 heading: Your first consonant, and what live means
+teaches: mo-ma
 narration: en The first consonant is the Thai version of the English M. Close your lips and hum through your nose. You have owned that sound your whole life, and Thai does nothing surprising with it. This letter has a characteristic that only a few consonants share, and it is worth naming now, because it comes back in a big way later. It is live. That means, roughly, that it is a sound you can hold. Start humming and you can keep going for as long as there is air in your lungs. Now try that with a P. You cannot. The sound happens and it is over — the air stops dead. That is a dead sound. This is not just trivia. It comes back when we get into the tone rules.
 - The Thai version of **M**.
 - Close your lips and hum through your nose.
@@ -181,6 +182,7 @@ narration: en The first consonant is the Thai version of the English M. Close yo
 
 ## exposition ma-name
 heading: Its name, and how to use what comes next
+teaches: mo-ma
 narration: en Remember that every consonant has a two-part name: the consonant plus the "awe" vowel, and then a word that starts with that sound. Want to hear it in Thai? Here it goes.
 recording: th มอ ม้า public/audio/consonant-mo-ma.mp3
 narration: en The second part is a real word, and it means horse. Hold on to that, because the whole of the next few minutes is about one particular horse. Now comes the part of the course that seems very strange at first. Stick with me. I am going to tell you a story, with some pictures alongside it. Your job is not to follow the story. Your job is to put yourself inside it. Hear the sounds. Feel the air on your face. Smell it. Look around you. And above all, let it get to you emotionally. The more senses you involve, the stronger your memories and associations will be. You will thank me later. Let us go down to the harbour, and I will tell you the story there.
@@ -193,6 +195,7 @@ narration: en The second part is a real word, and it means horse. Hold on to tha
 image: images/lesson-01/ma-story-1.jpg
 scene: A woman rides a grey horse chest-deep through shallow green sea water at dawn, a fishing net gathered across her lap, the water perfectly still around the horse's shoulders. An empty stone harbour and moored boats lie small in the distance behind her. Soft gold light, low mist on the water.
 heading: The woman who fished from horseback
+teaches: mo-ma
 narration: en Years ago this harbour had a woman who fished in a way nobody else here did, and nobody could talk her out of. She did not use a boat. She rode out at first light on a grey horse, straight off the beach and into the shallows, until the water came up over its shoulders, and she cast her net from the horse's back.
 - A woman who fished from horseback, out in the shallows.
 - No boat. Just the grey horse and a net.
@@ -202,6 +205,7 @@ narration: en Years ago this harbour had a woman who fished in a way nobody else
 image: images/lesson-01/ma-story-2.jpg
 scene: A small boy stands at the end of a stone pier at dawn with one arm flung out pointing across the water, mouth open mid-shout, while a woman on a grey horse turns to look back at him from the shallows. Warm low light, calm sea, boats at anchor behind.
 heading: The boy on the dock
+teaches: mo-ma
 narration: en Her son helped her from the dock. From up there he could see what she could not — the dark shifting patches out on the water where the schools of fish were — and he would fling out an arm and shout to his mother to point the way. He shouted "Mom!" to get her attention. Every morning, over and over, across the water. And the way children do, it wore down with use, until it was not "Mom" any more. It was just "Ma!"
 - From the dock the boy could see the fish; she could not.
 - He shouted to point the way.
@@ -211,6 +215,7 @@ narration: en Her son helped her from the dock. From up there he could see what 
 image: images/lesson-01/ma-story-3.jpg
 scene: Fishermen on a stone quay pause in their work and turn to look out to sea, one shading his eyes, nets and crates around them. Far out in the shallows a small figure on horseback is just visible. Warm morning light, the harbour busy and alive.
 heading: The whole harbour knew that sound
+teaches: mo-ma
 narration: en So the harbour did not need to look to know she was out there. They simply heard it, carrying across the water from the end of the pier. "Ma!" And everyone would glance up and know exactly where she was and what she was doing. And between them, the two of them caught more than any of the other fishermen. So they went on doing it, and after enough years of that the harbour stopped arguing and simply watched them go out each morning.
 - The whole harbour knew that sound, and what it meant.
 - Between them they out-fished everyone.
@@ -220,6 +225,7 @@ narration: en So the harbour did not need to look to know she was out there. The
 image: images/lesson-01/ma-story-4.jpg
 scene: An enormous dark wave rears up far out at sea under a bruised grey sky, the water ahead of it drawn back and unnaturally flat. A tiny distant figure on horseback is caught in the shallows beneath it. Cold desaturated light, no warmth anywhere.
 heading: The morning she went out alone
+teaches: mo-ma
 narration: en One morning the boy was not there. He had been kept back for something, and she went out on her own. And the sea got up. Out beyond the shallows the water drew back, flat and wrong, and then a wave came in off the ocean the like of which nobody there had seen. By the time it had settled, the only thing left to look at was water.
 - One morning the boy was not on the dock.
 - She went out alone.
@@ -229,6 +235,7 @@ narration: en One morning the boy was not there. He had been kept back for somet
 image: images/lesson-01/ma-story-5.jpg
 scene: A riderless grey horse walks alone out of the surf onto an empty beach, head low, water streaming from its flanks, an empty fishing net tangled around its legs. A small boy stands alone further up the sand watching it come. Grey overcast light, flat cold sea behind.
 heading: The horse came back
+teaches: mo-ma
 narration: en The horse came back. It came out of the surf on its own with the net still wrapped around its legs, and it walked up the beach to where the boy was standing, and it stopped in front of him. [sad] His mother was nowhere to be seen.
 - The horse came out of the surf alone.
 - The net still tangled around its legs.
@@ -238,6 +245,7 @@ narration: en The horse came back. It came out of the surf on its own with the n
 image: images/lesson-01/ma-story-6.jpg
 scene: A small boy stands at the very end of a stone pier with his head tipped back and his mouth wide open, tears on his face, calling out across an empty grey sea. The grey horse stands behind him on the wet stones. Cold flat light, no boats, the horizon completely empty.
 heading: He kept calling
+teaches: mo-ma
 narration: en [sad] He went out to the end of the pier and he called for her. The same sound he had shouted across that water every morning of his life. "Ma!" And again. "Ma!" With the tears pouring down his face. And the horse kept going out. Every day for weeks, on its own, out into the shallows where the two of them used to work. Looking for her.
 - He called from the end of the pier. "Ma!" And again.
 - Nothing came back.
@@ -247,6 +255,7 @@ narration: en [sad] He went out to the end of the pier and he called for her. Th
 image: images/lesson-01/ma-story-7.jpg
 scene: A weathered life-size wooden horse stands at the end of a stone pier facing out to sea, its surface worn smooth and pale by decades of hands and salt wind, a small tarnished brass plaque bolted to its flank. Fishing boats lie quiet at their moorings behind it. Warm low evening light, long shadows across wet stone.
 heading: What the harbour left there
+teaches: mo-ma
 narration: en The harbour never let the story go. Where the boy used to stand, at the very end of the pier, they put up a horse carved out of wood, facing the water. It is still there. Every hand that has touched it going past has worn it paler, and the fishermen still put a palm on its shoulder on the way out. And on its flank there is a small brass plaque, worn almost smooth. On it is the one sound the whole harbour came to associate with that horse, and that woman, and that boy. Just the one word. "Ma!"
 - A wooden horse stands where the pier runs out, worn pale by hands.
 - Fishermen still touch its shoulder on the way out.
@@ -254,6 +263,7 @@ narration: en The harbour never let the story go. Where the boy used to stand, a
 
 ## exposition ma-recall
 heading: Come back out of it
+teaches: mo-ma
 narration: en Come back out of the story for a moment, and see whether you can still stand in it. The very end of the pier. The far edge of the harbour. The wooden horse looking out at the water, warm under your hand, and the plaque on its flank. That is where this letter lives now. When you meet this sound again, you are not retrieving a symbol from a list. You are standing at the end of that pier, with a boy's voice going out across the water.
 - The end of the pier, the wooden horse, the plaque.
 - That is the letter's address.
@@ -262,6 +272,7 @@ narration: en Come back out of the story for a moment, and see whether you can s
 ## exposition see-ma
 thai: ม
 heading: The horse's letter
+teaches: mo-ma
 narration: en And here it is. Look at it properly for a moment — the head at the top left, and then what the stroke does after that.
 - The horse's letter.
 
@@ -277,6 +288,7 @@ narration: en Now, while you are still in the story and still attached to it, le
 ## exposition write-ma
 thai: ม
 heading: Now write it, and keep writing it
+teaches: mo-ma
 narration: en Good. Now look at the symbol on the screen, because that is what you are about to draw. Start in the upper left corner, at the head, and make your loop clockwise — the standard direction, as you now know. Then, without lifting the pen, carry the stroke straight down. Make a second loop at the bottom. Come across to the other side, and finish by going straight up. That is it. You have written your first Thai symbol. One habit to start right now, and to keep for the whole course. Whenever you write a symbol — on its own, or while spelling out a word — say both parts of its name out loud as you do it. So before we go any further, practise writing it over and over while saying its name.
 - Start at the head, upper left. Loop **clockwise**.
 - Straight down. Second loop at the bottom.
@@ -289,6 +301,7 @@ anchor: NNN
 gloss: mouse letter
 cue: the sound counted out in the dark
 heading: Your second consonant
+teaches: no-nu
 narration: en The second consonant is the Thai version of the English N, and it is the other hum you already make. This time your lips stay open, and the tip of your tongue touches the ridge just behind your top teeth. Try it, and hold it. Notice that you can hold it. That makes it live, exactly like the first one. One warning. Neither of today's letters takes any puff of air after it. If you hear a small breath escaping, that is an English habit, and you should take it out. Same pattern as before. The consonant plus the "awe" vowel, and then the everyday word that begins with that sound. Listen.
 narration: th นอ หนู
 narration: en And that word means mouse.
@@ -301,6 +314,7 @@ narration: en And that word means mouse.
 image: images/lesson-01/nu-story-1.jpg
 scene: An old woman sits alone in a dim doorway at night mending a fishing net by touch, her eyes clouded and unfocused, hands working the mesh without looking. A single oil lamp burns unused beside her. Warm dark interior, deep shadows, harbour water faintly visible outside.
 heading: The net-mender who worked in the dark
+teaches: no-nu
 narration: en At the other end of the same harbour there was an old woman who mended nets. Go and stand in her doorway for a minute. The damp rope smell, the cold coming off the water, the lamp burning beside her that she has no use for. She had gone blind years before, and it had not cost her the work, because a net is mended with the fingers and she had never really needed to look. She worked at night as readily as by day. It made no difference to her at all. Her son had gone out on a boat that would be away a long season, and she wanted to know how long he had been gone. That was the one thing her hands could not tell her.
 - An old net-mender, blind, working by touch.
 - Her son away at sea for a long season.
@@ -310,6 +324,7 @@ narration: en At the other end of the same harbour there was an old woman who me
 image: images/lesson-01/nu-story-2.jpg
 scene: An old blind woman sits in a dark doorway with one hand raised to a thick knotted cord hanging from the wooden doorpost, her lips parted and her face tilted slightly upward, calm. A row of tight knots runs down the cord below her fingers. Very low warm lamplight, everything else in deep shadow.
 heading: Counting out loud in the dark
+teaches: no-nu
 narration: en So before he sailed, her son knotted a cord for her and hung it on the doorpost. One knot for every night he expected to be away. Every night she was to untie one, and whatever was left in her fingers was how much longer she had to wait. And every night she did. She found the cord in the dark, ran her fingers down what was left of it, and counted the knots aloud so she would not lose the number. Not words. Just one long steady hum for each knot. Mouth open, tongue at the ridge behind her teeth — the sound you make when you are keeping count and do not want to be interrupted. That hum is this letter. Stand in the doorway and listen to her do it, night after night, working down the cord in the dark.
 - Her son left a knotted cord. One knot for each night away.
 - She untied one every night and hummed her way down what was left.
@@ -319,6 +334,7 @@ narration: en So before he sailed, her son knotted a cord for her and hung it on
 image: images/lesson-01/nu-story-3.jpg
 scene: A close view of a small brown mouse gripping a thick knotted cord that hangs down a wooden doorpost, pulling a loosened knot apart with its paws and teeth, loose rope fibre hanging from its mouth. Warm lamplight from one side, dark background.
 heading: Her nocturnal, notorious, knot-nibbling neighbour
+teaches: no-nu
 narration: en Now, there was a mouse living in that doorpost, and she knew all about it. A blind woman hears everything, and every night there it was, working away in the wood a hand's breadth from her ear. She had a name for it, and she used the whole thing every time. Her nocturnal, notorious, knot-nibbling neighbour. Listen to the front of every one of those words, because that is the sound you are learning today, four times over. And there was a reason it had picked her doorpost out of all the wood in the harbour. Right down at the other end, in the rope locker out on the pier, something lives that no mouse here will go anywhere near. A snake. The rope-makers keep it on purpose, because a snake in a rope locker means nothing chewing holes in the nets. So every mouse in this harbour knows exactly where that locker is, and keeps the whole length of the quay between itself and it. Which is how this one came to be in an old woman's doorpost, as far from the pier as it could get and still be under a roof. You will meet that snake next lesson. Remember that it is there. And she was right about it. The mouse wanted her cord — not to eat, but for the fibre, to line the nest it was building in the wood. So it worked at the knots, the way a mouse will work at anything, and it took them apart faster than she did, some nights one and some nights three. But she could not see the cord. She could only feel how much of it was left, and she could never be sure whether she had miscounted or been robbed. Every night there was less of it than there should have been.
 - A mouse in the post, and she knew it: her **n**octurnal, **n**otorious, **k**not-**n**ibbling **n**eighbour.
 - It lives at this end of the quay because of the **snake** in the rope locker on the pier.
@@ -329,6 +345,7 @@ narration: en Now, there was a mouse living in that doorpost, and she knew all a
 image: images/lesson-01/nu-story-4.jpg
 scene: An old woman sits alone in a dark doorway with one hand closed around a short bare frayed cord end hanging from the doorpost, her head bowed, mouth closed. The doorway is empty and the harbour beyond is black. Cold dim light, no lamp, deep shadow.
 heading: The night the cord ran out
+teaches: no-nu
 narration: en And then one night her fingers came down the cord and closed on the frayed end of it. [sad] No knots. Weeks before there should have been none. She sat in that doorway and did not hum. There was nothing left to count. And a woman who has been told exactly how long to wait, and has waited longer, only has one thing to think. She stayed there like that for days.
 - Her fingers found the bare end, weeks too early.
 - Nothing left to count, so the humming stopped.
@@ -338,6 +355,7 @@ narration: en And then one night her fingers came down the cord and closed on th
 image: images/lesson-01/nu-story-5.jpg
 scene: A fishing boat comes in to a harbour quay at dusk with a man standing in the bow, seen past a weathered doorway in the foreground where a short frayed cord hangs from the post. Warm gold light on the water, lamps coming on along the quay.
 heading: And then his boat came in
+teaches: no-nu
 narration: en [delight] His boat came in on the evening he had always said it would. Not a day late. The cord had been wrong, and she had been sitting in the dark grieving for a man who was simply at sea. It was her son who found the nest, later, tucked up in the wood of the post and lined all the way round with rope fibre. Her nocturnal, notorious, knot-nibbling neighbour had spent the season stealing her count and sleeping on it. She never took the cord down. It is still on that post, a frayed end with nothing left on it, and the mouse is still somewhere in the wood. So that is this letter's address. A doorpost at the harbour's edge, a hum counted out in the dark, and a mouse that took the count apart.
 - He came in on the night he had always said.
 - Her son found the nest in the post, lined with her stolen count.
@@ -346,6 +364,7 @@ narration: en [delight] His boat came in on the evening he had always said it wo
 ## exposition see-nu
 thai: น
 heading: The mouse's letter, and the stroke that makes it
+teaches: no-nu
 narration: en There it is. The same head at the top left as the horse's letter — and then the stroke does something different, which is the next thing to look at. Pen again. Start at the head in the upper left, clockwise as usual, and carry the stroke straight down. Then, instead of looping again on the left, run along the bottom and throw your second loop out to the far right before coming back up. Write it out several times, saying both parts of its name each time, exactly as you did with the first one. Then put the two of them side by side on the page and look at the difference.
 - The mouse's letter.
 - Head at the upper left, clockwise, then straight down.
@@ -356,6 +375,7 @@ narration: en There it is. The same head at the top left as the horse's letter �
 image: images/lesson-01/shapes.jpg
 scene: A dockworker in a heavy jacket swings a thick mooring rope over an iron bollard at the edge of a stone quay, arms raised wide with the rope arcing above him. Fishing boats crowd the water behind. Warm golden evening light throws long shadows across the wet stone.
 heading: Two loops, and where the second one lands
+teaches: mo-ma, no-nu
 narration: en You will have noticed while writing them that both letters begin the same way — the same head, high on the left. Nearly every Thai consonant does. It is simply where the pen starts, so it can never tell you which letter you are looking at. The second loop is the whole question. The horse's letter drops its second loop straight down beneath the first, so both sit on the left, one above the other. The mouse's letter throws its second loop across to the far corner instead, low and to the right.
 - Both open with the same **head**, high left. It never tells them apart.
 - **ม** — second loop drops **straight down the left**. Stacked.
@@ -364,16 +384,19 @@ narration: en You will have noticed while writing them that both letters begin t
 ## retrieval spot-the-loop
 reveal: spot-the-loop-answer
 prompt: Both letters carry a head high on the left. Where does each one put its *second* loop — and which of the two is the horse?
+teaches: mo-ma, no-nu
 narration: en One question before you go on, and it is the only thing you have to be able to tell apart today. Both of the letters start with the same head, high on the left. But one of them stacks its second loop straight down the left as well, so both sit on the same side. The other throws its second loop right across to the bottom corner instead. So — which one keeps both loops on the left, and which one sends the second one over to the other side? And which of the two is the horse? Answer out loud before you turn this over. Getting it wrong and then being corrected will fix it far harder than reading the right answer would.
 
 ## reveal spot-the-loop-answer
 retrieval: spot-the-loop
+teaches: mo-ma, no-nu
 narration: en The horse stacks both of its loops down the left. The mouse sends its second one across to the bottom right.
 - **ม** — both loops down the **left** — the *horse*.
 - **น** — head left, then low **right** — the *mouse*.
 
 ## exposition harbour-low
 heading: Where these two letters live
+teaches: mo-ma, no-nu
 narration: en Now the first rule, and it costs you nothing today, because you have already done the work for it. Remember that every Thai consonant belongs to one of three classes, and that the class decides the tone. Both of today's letters belong to the same class, and in this course that class is the harbour. Which is exactly where you have been for the last twenty minutes — the pier with the wooden horse on the end of it, the beach where the grey horse came out of the surf, and the doorway along the quay with the knotted cord on it. So when the tone rules arrive next lesson, you will not have to learn where these two letters live. You have already been there.
 - Every consonant belongs to one of three **classes**.
 - The class decides the tone. That is the engine of the whole system.
@@ -393,6 +416,7 @@ narration: en There is the whole of it. The pier with the wooden horse at the en
 image: images/lesson-01/the-vowel-house.jpg
 scene: A wooden Thai house on stilts standing by itself at a crossroads in open farmland, three dirt tracks meeting in front of it and running away to the horizon, steep tiled roof, wide veranda, open shaded space beneath the raised floor, dry grass and distant hills, late afternoon light. No people.
 heading: And one place that is not a district
+teaches: sara-aa
 narration: en One more place before the vowel, because the vowel does not live in the harbour and never will. Where a consonant lives tells you its class, and its class decides the tone. A vowel has no class at all. It will attach itself to any consonant you like and it changes nothing about that consonant, so there is nowhere in any of the districts for it to belong. What it has instead is a house of its own, standing out where the roads from all three districts meet. Vowels lodge there rather than live there, because a vowel never stands on its own — it always has a consonant to lean on. And the room it lodges in is decided by one thing only, which is where it gets written. Above the consonant is the roof. Below it, the cellar. After it, the back yard. Today you are going as far as the back yard and no further.
 - A vowel carries no class, so it belongs to no district.
 - One house, where the roads from all three districts meet.
@@ -404,6 +428,7 @@ anchor: AAH
 gloss: long open ah
 cue: the boy's call, held to the end of his breath
 heading: The vowel you have already heard
+teaches: sara-aa
 narration: en Now the vowel — and you have been listening to it all lesson, because it is the second half of what that boy was shouting off the end of the pier. The part after his lips came open. The long open note, held right out until he ran out of air. Listen to its name.
 recording: th สระอา public/audio/sara-a-long.mp3
 narration: en Long is not a decoration here. Length changes meaning in Thai, so the short version of this sound is a different vowel and very often a different word. When you say it, take it all the way out — think of somebody calling across water to be heard, not somebody saying a word in a room. And it never stands on its own. In Thai a vowel is a thing with a position, and this one always sits just after the consonant it belongs to, because the consonant starts the syllable and the vowel finishes it. Written after — which is the back yard, and this is the first lodger you have met.
@@ -414,6 +439,7 @@ narration: en Long is not a decoration here. Length changes meaning in Thai, so 
 ## exposition write-aa
 thai: า
 heading: Write the vowel
+teaches: sara-aa
 narration: en This one is easy, and it is one of the few that breaks the loop rule — there is no head to start at, because there is no loop at all. One stroke. Start at the top, make the small turn, and come straight down. Write it a few times, and then write it to the right of each of your two consonants, which is where it will always sit.
 - No loop, so no head — one of the exceptions.
 - One stroke: a small turn at the top, then straight down.
@@ -434,6 +460,7 @@ glyph: นา
 anchor: NAA
 gloss: a rice field
 heading: Your first word
+teaches: sara-aa
 narration: en Put the mouse's letter in front of the long vowel. Consonant first, vowel after — that is the order every Thai syllable is built in, and it is the order you will use for the rest of your life in this language.
 narration: th นา
 narration: en You heard it twice there, which is how a teacher would drill it. It means a rice field. About as ordinary a word as Thai has, and you built it out of two pieces you met twenty minutes ago.
@@ -466,6 +493,7 @@ glyph: มา
 anchor: MAA
 gloss: to come
 heading: Change the front, keep the back
+teaches: mo-ma
 narration: en Now change only the first piece. Same long vowel, but put the horse's letter in front of it instead of the mouse's. Which means you are about to say exactly what that boy was shouting off the end of the pier. And this is where the boy got what he was calling for — not really, but in the way you do, asleep, with the whole thing put right.
 narration: th มา
 narration: en It is a verb, and it means to come. It turns up everywhere — in greetings, in directions, in asking somebody where they are from. Which is why that sound is already in your head — you have had a boy shouting it across the water for the whole lesson. Notice what just happened, too. You did not learn a new word. You swapped one letter in a word you already had, and Thai handed you a second one.
@@ -504,6 +532,7 @@ glyph: นาน
 anchor: NAAN
 gloss: a long time
 heading: Close the syllable
+teaches: no-nu
 narration: en One more, and this time nothing new is added at all. You will use a letter you already have, in a place you have not used it yet. Take your first word, the rice field, and put the mouse's letter on the end of it as well as the front.
 narration: th นาน
 narration: en That means a long time — and you already know whose word it is. The old woman at the doorpost waited a long time. And when her fingers finally came down that cord, none of the knots were left. None at all. The waiting and the empty cord are the same word, and you have already sat through both of them. The same letter just did two different jobs in one syllable. It started the sound, and it stopped it. Thai consonants do that routinely, and which job a letter is doing depends on nothing but where it sits. Listen to the ending once more. The sound closes cleanly and stays where it is. It does not trail off, and it does not pick up a little extra vowel on the way out.

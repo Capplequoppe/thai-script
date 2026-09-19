@@ -71,6 +71,7 @@
 				"/thai-script/lessons/lesson-13/audio/0aa6e7c319ee6432.mp3"
 			],
 			"audioLanguages": ["en", "th", "en"],
+			"teaches": ["so-sala"],
 			"image": "/thai-script/lessons/lesson-13/images/meet-saalaa-c00fa8c12557.jpg"
 		},
 		{
@@ -89,6 +90,7 @@
 				"/thai-script/lessons/lesson-13/audio/a1acf02f295f5f1a.mp3"
 			],
 			"audioLanguages": ["en", "th", "en"],
+			"teaches": ["so-risi"],
 			"image": "/thai-script/lessons/lesson-13/images/meet-ruesii-9aa2e62ee441.jpg"
 		},
 		{
@@ -102,17 +104,20 @@
 			],
 			"audio": ["/thai-script/lessons/lesson-13/audio/b03cc1edda53714a.mp3"],
 			"audioLanguages": ["en"],
-			"thai": "ศ ษ"
+			"thai": "ศ ษ",
+			"teaches": ["so-sala", "so-risi", "so-sia"]
 		},
 		{
 			"kind": "rule",
 			"id": "high-dead-short-rule",
-			"ruleId": "high-dead-short"
+			"ruleId": "high-dead-short",
+			"teaches": ["high-dead-short"]
 		},
 		{
 			"kind": "rule",
 			"id": "high-dead-long-rule",
-			"ruleId": "high-dead-long"
+			"ruleId": "high-dead-long",
+			"teaches": ["high-dead-long"]
 		},
 		{
 			"kind": "exposition",
@@ -132,6 +137,12 @@
 				"/thai-script/lessons/lesson-13/audio/a85f7788f4bf28ef.mp3"
 			],
 			"audioLanguages": ["en", "en", "th", "th", "th", "en"],
+			"teaches": [
+				"high-dead-short",
+				"high-dead-long",
+				"low-dead-short",
+				"low-dead-long"
+			],
 			"image": "/thai-script/lessons/lesson-13/images/temple-dead-32ce8c994f2a.jpg"
 		},
 		{
@@ -145,7 +156,8 @@
 			],
 			"audio": ["/thai-script/lessons/lesson-13/audio/758b3516091b8792.mp3"],
 			"audioLanguages": ["en"],
-			"thai": "พิเศษ"
+			"thai": "พิเศษ",
+			"teaches": ["so-sala", "so-risi", "high-dead-long"]
 		},
 		{
 			"kind": "exposition",
@@ -162,7 +174,8 @@
 				"/thai-script/lessons/lesson-13/audio/ece78dba7e29c616.mp3"
 			],
 			"audioLanguages": ["th", "en"],
-			"thai": "พิเศษ"
+			"thai": "พิเศษ",
+			"teaches": ["so-sala", "so-risi", "high-dead-long"]
 		},
 		{
 			"kind": "exposition",
@@ -193,6 +206,7 @@
 				"/thai-script/lessons/lesson-13/audio/035ecbab67b33fd2.mp3"
 			],
 			"audioLanguages": ["en", "th", "en"],
+			"teaches": ["no-nen"],
 			"image": "/thai-script/lessons/lesson-13/images/meet-neen-d7ca59ce4182.jpg"
 		},
 		{
@@ -211,6 +225,7 @@
 				"/thai-script/lessons/lesson-13/audio/1ad2085c66f76c5e.mp3"
 			],
 			"audioLanguages": ["en", "th", "en"],
+			"teaches": ["yo-ying"],
 			"image": "/thai-script/lessons/lesson-13/images/meet-ying-09a912c43a72.jpg"
 		},
 		{
@@ -228,6 +243,7 @@
 				"/thai-script/lessons/lesson-13/audio/13d7464f9c56468b.mp3"
 			],
 			"audioLanguages": ["en", "th", "en"],
+			"teaches": ["pho-samphau"],
 			"image": "/thai-script/lessons/lesson-13/images/meet-samphao-152b7974c04b.jpg"
 		},
 		{
@@ -245,6 +261,7 @@
 				"/thai-script/lessons/lesson-13/audio/93e22fdf01aed9c6.mp3"
 			],
 			"audioLanguages": ["en", "th", "en"],
+			"teaches": ["tho-thong"],
 			"image": "/thai-script/lessons/lesson-13/images/meet-thong-0b5dbc1b9642.jpg"
 		},
 		{
@@ -259,7 +276,8 @@
 			],
 			"audio": ["/thai-script/lessons/lesson-13/audio/67aa1d18ff4cd219.mp3"],
 			"audioLanguages": ["en"],
-			"thai": "ณ ญ ภ ธ"
+			"thai": "ณ ญ ภ ธ",
+			"teaches": ["no-nen", "yo-ying", "pho-samphau", "tho-thong"]
 		},
 		{
 			"kind": "exposition",
@@ -272,7 +290,8 @@
 			],
 			"audio": ["/thai-script/lessons/lesson-13/audio/8bfff96d58d2eab3.mp3"],
 			"audioLanguages": ["en"],
-			"thai": "ภาษา"
+			"thai": "ภาษา",
+			"teaches": ["pho-samphau", "so-risi"]
 		},
 		{
 			"kind": "exposition",
@@ -288,7 +307,8 @@
 				"/thai-script/lessons/lesson-13/audio/c622f0486f954b60.mp3"
 			],
 			"audioLanguages": ["th", "en"],
-			"thai": "ภาษา"
+			"thai": "ภาษา",
+			"teaches": ["pho-samphau", "so-risi"]
 		},
 		{
 			"kind": "exposition",
@@ -309,12 +329,14 @@
 				"/thai-script/lessons/lesson-13/audio/8397e12b03d69207.mp3"
 			],
 			"audioLanguages": ["en", "th", "en", "th", "en", "th", "en"],
+			"teaches": ["sara-am"],
 			"image": "/thai-script/lessons/lesson-13/images/sara-am-9cc652e5140c.jpg"
 		},
 		{
 			"kind": "rule",
 			"id": "sara-am-rule",
-			"ruleId": "sara-am-properties"
+			"ruleId": "sara-am-properties",
+			"teaches": ["sara-am"]
 		},
 		{
 			"kind": "exposition",
@@ -331,6 +353,7 @@
 				"/thai-script/lessons/lesson-13/audio/7f0082476382b310.mp3"
 			],
 			"audioLanguages": ["en", "th", "en"],
+			"teaches": ["sara-am"],
 			"image": "/thai-script/lessons/lesson-13/images/am-is-always-live-28d658ad9a2b.jpg"
 		},
 		{
@@ -344,7 +367,8 @@
 			],
 			"audio": ["/thai-script/lessons/lesson-13/audio/fa2c7a8d2507d142.mp3"],
 			"audioLanguages": ["en"],
-			"thai": "สำคัญ"
+			"thai": "สำคัญ",
+			"teaches": ["sara-am", "yo-ying"]
 		},
 		{
 			"kind": "exposition",
@@ -361,7 +385,8 @@
 				"/thai-script/lessons/lesson-13/audio/1106de35559f7c1a.mp3"
 			],
 			"audioLanguages": ["th", "en"],
-			"thai": "สำคัญ"
+			"thai": "สำคัญ",
+			"teaches": ["sara-am", "yo-ying"]
 		},
 		{
 			"kind": "exposition",
@@ -382,6 +407,7 @@
 				"/thai-script/lessons/lesson-13/audio/d9de7379acea87d8.mp3"
 			],
 			"audioLanguages": ["en", "th", "en", "th", "en", "th", "en"],
+			"teaches": ["sara-ooe"],
 			"image": "/thai-script/lessons/lesson-13/images/oe-vowel-3410bf5152d2.jpg"
 		},
 		{
@@ -401,6 +427,7 @@
 				"/thai-script/lessons/lesson-13/audio/942f64fa331dbaf4.mp3"
 			],
 			"audioLanguages": ["en", "th", "en", "th", "en"],
+			"teaches": ["sara-ooe"],
 			"image": "/thai-script/lessons/lesson-13/images/oe-closed-db017a8cbc7d.jpg"
 		},
 		{
@@ -418,6 +445,7 @@
 				"/thai-script/lessons/lesson-13/audio/58849a6b24eca111.mp3"
 			],
 			"audioLanguages": ["en", "th", "en"],
+			"teaches": ["sara-ooe"],
 			"image": "/thai-script/lessons/lesson-13/images/oe-before-y-80e458e0dece.jpg"
 		},
 		{
@@ -434,7 +462,8 @@
 				"/thai-script/lessons/lesson-13/audio/de214dc3a2518520.mp3",
 				"/thai-script/lessons/lesson-13/audio/9c580c97a55f3822.mp3"
 			],
-			"audioLanguages": ["en", "th", "en"]
+			"audioLanguages": ["en", "th", "en"],
+			"teaches": ["sara-oe"]
 		},
 		{
 			"kind": "exposition",
@@ -446,7 +475,8 @@
 			],
 			"audio": ["/thai-script/lessons/lesson-13/audio/a185026fcba1c25c.mp3"],
 			"audioLanguages": ["en"],
-			"thai": "เดิน"
+			"thai": "เดิน",
+			"teaches": ["sara-ooe"]
 		},
 		{
 			"kind": "exposition",
@@ -462,7 +492,8 @@
 				"/thai-script/lessons/lesson-13/audio/a6287a0061bfe4e1.mp3"
 			],
 			"audioLanguages": ["th", "en"],
-			"thai": "เดิน"
+			"thai": "เดิน",
+			"teaches": ["sara-ooe"]
 		},
 		{
 			"kind": "rule",
@@ -504,6 +535,14 @@
 			],
 			"audio": ["/thai-script/lessons/lesson-13/audio/4c8d6f39c93fa837.mp3"],
 			"audioLanguages": ["en"],
+			"teaches": [
+				"so-sala",
+				"so-risi",
+				"no-nen",
+				"yo-ying",
+				"pho-samphau",
+				"tho-thong"
+			],
 			"image": "/thai-script/lessons/lesson-13/images/six-words-815b437b0227.jpg"
 		},
 		{
@@ -512,7 +551,8 @@
 			"prompt": "ศึกษา is read sùek-sǎa — low, then rising. Both halves open with a temple s letter. So what makes the two tones come out different?",
 			"revealSlideId": "two-halves-answer",
 			"audio": ["/thai-script/lessons/lesson-13/audio/d73728b508a33d62.mp3"],
-			"audioLanguages": ["en"]
+			"audioLanguages": ["en"],
+			"teaches": ["so-sala", "so-risi", "high-dead-short", "high-live"]
 		},
 		{
 			"kind": "reveal",
@@ -525,7 +565,8 @@
 				"Both temple rules in a single word."
 			],
 			"audio": ["/thai-script/lessons/lesson-13/audio/969745029e217432.mp3"],
-			"audioLanguages": ["en"]
+			"audioLanguages": ["en"],
+			"teaches": ["so-sala", "so-risi", "high-dead-short", "high-live"]
 		},
 		{
 			"kind": "retrieval",

@@ -64,6 +64,7 @@ glyph: ท
 gloss: soldier letter
 cue: a t carried out on breath
 heading: The soldier on the bridge
+teaches: tho-thahan
 narration: en The first letter. Listen to its name.
 recording: th ทอ ทหาร public/audio/consonant-tho-thahan.mp3
 narration: en That word means a soldier. The sound is a t with breath carried out behind it — the fourth breathing letter you have met, so put the palm up and check it moves. It lives at the harbour, which by now tells you everything about its tones: low class, and every rule you have learned applies to it without a single change.
@@ -75,6 +76,7 @@ narration: en That word means a soldier. The sound is a t with breath carried ou
 image: images/lesson-07/thahaan-story.jpg
 scene: A soldier pacing the length of a wooden harbour footbridge at dawn, straight-backed, seen from the side, the arch of the bridge rising and falling behind him, boats below.
 heading: What he does all night
+teaches: tho-thahan
 narration: en There is a bridge over the creek at the end of the harbour and there has been a soldier on it for as long as anyone can remember. He is guarding nothing in particular. He walks to the far end, he turns, he walks back, and he does it all night. Which is the letter, if you look at it: the head curls in at the start, the back climbs straight up, and then the arch marches back down the other side. A man pacing a bridge, in one stroke.
 recording: th ทอ ทหาร public/audio/consonant-tho-thahan.mp3
 - A bridge over the creek where the harbour finishes, and a soldier on it all night.
@@ -84,12 +86,14 @@ recording: th ทอ ทหาร public/audio/consonant-tho-thahan.mp3
 ## exposition see-thahaan
 thai: ท
 heading: The soldier's letter
+teaches: tho-thahan
 - The head curls inward at the start.
 - A straight climb, then an arch back down.
 
 ## exposition write-thahaan
 thai: ท
 heading: Write it
+teaches: tho-thahan
 narration: en Head first, curling inward, the way most of them do. Then straight up the back, and over and down the far side in one movement without lifting the pen. Write it half a dozen times saying the name out loud, and then read this: the breath on that letter only happens at the front of a syllable. Put it at the end instead and the breath vanishes and it becomes a plain stopped t, exactly like the dead endings you learned in lesson three.
 - **Start at the head**, curling inward.
 - Straight up, then the arch over and down.
@@ -98,6 +102,7 @@ narration: en Head first, curling inward, the way most of them do. Then straight
 ## exposition read-thaang
 thai: ทาง
 heading: Read this one
+teaches: tho-thahan
 narration: en Three letters, all yours. The soldier, the long vowel from lesson one, and the snake's letter closing it without stopping it. Out loud before you turn it over.
 - Soldier, long vowel, snake closing it.
 - **Out loud before you turn it over.**
@@ -105,6 +110,7 @@ narration: en Three letters, all yours. The soldier, the long vowel from lesson 
 ## exposition read-thaang-answer
 thai: ทาง
 heading: That one
+teaches: tho-thahan
 narration: th ทาง
 narration: en A way, or a road, or a direction. And listen to the front of it — that breath is the whole difference between this letter and a plain t.
 - **ทาง** — a way, a road, a direction.
@@ -116,6 +122,7 @@ glyph: ฮ
 gloss: owl letter
 cue: a plain h
 heading: The owl, and the rarest letter here
+teaches: ho-nokhu
 narration: en The second letter. Listen.
 recording: th ฮอ นกฮูก public/audio/consonant-ho-nokhu.mp3
 narration: en That word means an owl. The sound is a plain h, the same one you make in English. And here is the honest thing about this letter: it is the rarest one you will meet in this whole course. Barely one character in ten thousand of running Thai. You could read for a week before one turns up.
@@ -127,6 +134,7 @@ narration: en That word means an owl. The sound is a plain h, the same one you m
 image: images/lesson-07/why-learn-the-owl.jpg
 scene: A single owl sitting alone on the last post of a long line of empty mooring posts stretching away along a dark harbour, lamplight on the water, night.
 heading: So why are we bothering
+teaches: ho-nokhu
 narration: en Which raises a fair question, and I would rather answer it than have you wonder. Why spend a slide on a letter you will almost never see? Because of where it sits. In about ten minutes I am going to show you a pattern that covers seven different sounds and fourteen letters, and this owl is the last piece of it. Without it the pattern has a hole, and the hole is in the row belonging to the fourth commonest sound at the front of a Thai syllable. So give it ten minutes now, and the map at the end of the lesson will hold together.
 - It is rare, and the pattern it completes covers seven sounds.
 - Its partner is the fourth commonest syllable initial in Thai.
@@ -135,12 +143,14 @@ narration: en Which raises a fair question, and I would rather answer it than ha
 ## exposition see-nok-huuk
 thai: ฮ
 heading: The owl's letter
+teaches: ho-nokhu
 - One round eye, with a zigzag crest over the top.
 - Ear tufts, blinking at a dark harbour.
 
 ## exposition read-haa
 thai: ฮา
 heading: And its one word
+teaches: ho-nokhu
 narration: en There is one word in common use that begins with the owl, and there it is. Two letters — the owl, and the long vowel from lesson one — and you can read it already. It means to laugh, the loud kind, a whole room going at once. I will leave it undrilled and you can leave it alone, because the next word down the list is rare enough to keep for years. Read it once, recognise it if it ever turns up, and look for the letter again in the map at the end of this lesson.
 - **ฮา** — to laugh, the whole-room kind.
 - The one common word beginning with this letter.
@@ -149,6 +159,7 @@ narration: en There is one word in common use that begins with the owl, and ther
 ## exposition the-last-room
 image: images/lesson-01/the-vowel-house.jpg
 heading: The last room of the house
+teaches: sara-ee, sara-e
 narration: en Now the vowel, and back to the house one more time — because after today you have been in all of it. You know the back yard, where a vowel written after its consonant lodges. You know the roof, for one written above. You know the cellar, underneath. Today you go round to the front, up the steps, and meet the lodger who lives there. And he does something none of the others do. Shall we?
 - Back yard, roof, cellar. All three already open.
 - Today: the **front steps**.
@@ -161,6 +172,7 @@ glyph: เ
 gloss: the front steps' lodger
 cue: written first, spoken second
 heading: The one who holds the door
+teaches: sara-ee
 narration: en There he is, and he is always there first. He stands at the top of the steps holding the door open, which means that when you come up to this house he is the first person you see. His mark goes down before the consonant does — to the left of it, out in front, where your eye lands first. So you read him first.
 recording: th สระเอ public/audio/sara-e-long.mp3
 narration: en And then he waits until the consonant has gone in ahead of him before he says a word.
@@ -172,6 +184,7 @@ narration: en And then he waits until the consonant has gone in ahead of him bef
 image: images/lesson-07/written-first-spoken-second.jpg
 scene: A man holding a front door open at the top of wooden steps while an older woman walks past him into the house ahead of him, his hand still on the door, warm interior light beyond.
 heading: This is the thing to get right today
+teaches: sara-ee
 narration: en This is the single most disorienting fact in the Thai writing system and I want to put it as plainly as I can. The mark is written first and it is spoken second. You see it before the consonant and you say it after the consonant. Everything you have done for six lessons has been consonant first, vowel after, in the order written. This breaks that. Read it left to right and say it in that order and you will say the wrong word every single time.
 narration: th เท
 narration: en Listen to that again. The mast is written on the left and the soldier on the right, and what comes out is the soldier first. It means to pour. Say it back with the soldier leading, and let the mast wait its turn.
@@ -182,6 +195,7 @@ narration: en Listen to that again. The mast is written on the left and the sold
 ## exposition write-the-mast
 thai: เ
 heading: Write it, and say it in the right order
+teaches: sara-ee
 narration: en One stroke, and the easiest mark you will write all course — a single upright with a small curve at the top, standing in front of the consonant like a mast. Write it in front of the soldier. And then, while you look at what your hand has made, say the syllable out loud and hear yourself say the consonant first. Do that until it stops feeling wrong, because the feeling of wrongness is the entire problem and it goes away with about twenty repetitions and no other way.
 - One upright with a small curve at the top.
 - Write it **ahead of** the consonant.
@@ -194,6 +208,7 @@ glyph: เ-ะ
 gloss: the same lodger, cut short
 cue: two hooks behind, when nothing follows
 heading: And the short one, which you can already guess
+teaches: sara-e
 narration: en There is a short version, and it is written with two hooks behind the consonant — the same two hooks you met in lesson four, the man who turns up and ends the visit. The mast in front, the consonant, and him behind it cutting it short.
 recording: th สระเอะ public/audio/sara-e-short.mp3
 - **เ-ะ** — the mast in front, and the two hooks **ะ** behind.
@@ -204,6 +219,7 @@ recording: th สระเอะ public/audio/sara-e-short.mp3
 image: images/lesson-07/what-the-hooks-become.jpg
 scene: A man crouched on a roof ridge of a Thai house on stilts fitting a small tile into place, the veranda and open front door below him, late afternoon light.
 heading: Unless something follows it
+teaches: sara-e, mai-taikhu
 narration: en And here is the part worth your attention, because it is the same thing that happened upstairs in lesson four. Those two hooks stand behind the consonant — and a final consonant wants to stand there too. There is only room for one. So the hooks give way, climb up, and turn into a small roof perched over the letter instead. The sound and the length stay exactly where they were, and the mark now sits above the consonant rather than behind it.
 narration: th เด็ก
 narration: en A child. Mast in front, the child's letter from the market, the little roof where the hooks would have been, and the chicken's letter sealing it.
@@ -214,6 +230,7 @@ narration: en A child. Mast in front, the child's letter from the market, the li
 ## exposition read-yen
 thai: เย็น
 heading: Read this one
+teaches: sara-e, mai-taikhu
 narration: en Four marks and every one of them is yours. The mast, the giant's letter from lesson two, the little roof, and the mouse's letter closing it. Take your time with the order. Out loud before you turn it over.
 - Mast, giant's letter, the small roof, mouse closing it.
 - **Watch the order.** Out loud before you turn it over.
@@ -221,6 +238,7 @@ narration: en Four marks and every one of them is yours. The mast, the giant's l
 ## exposition read-yen-answer
 thai: เย็น
 heading: That one
+teaches: sara-e, mai-taikhu
 narration: th เย็น
 narration: en Cool — as in a cool evening, and it is also simply the word for evening. If you said the vowel before the consonant, go back and say it again with the giant's letter leading.
 - **เย็น** — cool, and also *evening*.
@@ -228,10 +246,12 @@ narration: en Cool — as in a cool evening, and it is also simply the word for 
 ## retrieval hooks-or-roof
 reveal: hooks-or-roof-answer
 prompt: You want to write the short e sound twice — once in a syllable ending in k, once in a syllable ending in nothing. What changes between them?
+teaches: sara-e, mai-taikhu
 narration: en A question before the map. You want to write that short e sound twice. Once in a syllable that ends on a k, and once in a syllable that ends on nothing at all. What is different between the two spellings — and what, if anything, is different about the sound?
 
 ## reveal hooks-or-roof-answer
 retrieval: hooks-or-roof
+teaches: sara-e, mai-taikhu
 narration: en With a final consonant the hooks become the little roof over the letter. With nothing following, the hooks stay where they are, written out behind. And the sound comes out the same both times. Only the spelling reacts to what comes next, the same way the hooks upstairs did in lesson four.
 - With a final consonant: the hooks become the **roof**.
 - With nothing following: the hooks stay written out behind.

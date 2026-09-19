@@ -883,6 +883,19 @@ export function DeckSlide({ deckPath, onComplete, teaching }: Props) {
 		);
 	}
 
+	// An empty lesson and an empty story are two different absences, and the
+	// second one is a tagging gap rather than a missing lesson. Saying "this
+	// lesson has no slides" over a lesson with forty of them would send
+	// whoever reads it looking in the wrong place entirely.
+	if (slides.length === 0 && teaching) {
+		return (
+			<p className="text-center" style={{ color: "var(--color-text-muted)" }}>
+				No slide in this lesson is marked as part of this story yet. The
+				lesson itself has it — open the lesson to find it.
+			</p>
+		);
+	}
+
 	if (slides.length === 0) {
 		return (
 			<p className="text-center" style={{ color: "var(--color-text-muted)" }}>

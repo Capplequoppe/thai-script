@@ -91,6 +91,7 @@ narration: en The second group holds two pairs, and they behave oddly enough to 
 image: images/lesson-clusters/silent-second-clusters.jpg
 scene: A single empty chair set beside a laid table in an otherwise busy room, evening light through a window.
 heading: Three pairs where the ร is silent
+teaches: ro-ria
 narration: en The third group is three pairs. In every one of them the boat's letter is written down and then never said. You see it, you step over it, and you go straight on to the vowel. It is there for the eye and for the word's history. The spelling was kept because the word looked that way in the language Thai borrowed it from, and the mouth quietly dropped it. So when one of the three turns up, read the letter in front, walk past the boat, and carry on into the rest of the syllable. Treat it as one consonant with an extra mark sitting after it. Does that feel like a cheat? It is how Thai readers have handled these words for centuries.
 - จร, ศร and สร drop the ร entirely. Say the first letter and go straight on to the vowel.
 - จริง (jing) is true, and สร้าง (sâang) is to build. Neither has an r in it anywhere.
@@ -147,6 +148,7 @@ narration: en The polite particle a man puts on the end of almost every sentence
 ## exposition read-set
 thai: เสร็จ
 heading: And this one, where the pair hides behind a vowel
+teaches: ro-ria
 narration: en Five marks this time, and the pair you need is buried in the middle of them. The mast goes down first and is spoken second, the way it has been since lesson seven. Then the tiger's letter. The boat's letter. The little roof, and the plate's letter closing it. Look at those two consonants in the middle and decide which of the three groups they belong to. Out loud, then turn it over.
 - Mast first, then two consonants, then the small roof and a stop.
 - The pair in the middle is one of the twenty.
@@ -155,6 +157,7 @@ narration: en Five marks this time, and the pair you need is buried in the middl
 ## exposition read-set-answer
 thai: เสร็จ
 heading: That one
+teaches: ro-ria
 narration: th เสร็จ
 narration: en Finished, or done. The pair in the middle is the tiger and the boat. Third group, so the boat is written and never spoken. And a vowel standing in front of the pair changes none of that. A vowel written ahead of a consonant still belongs behind it in the mouth, which is what lesson seven told you. So find the pair first, and read the vowel into its place afterwards.
 - **เสร็จ** — finished, done.

@@ -83,6 +83,7 @@
 				"/thai-script/lessons/lesson-12/audio/b99762f16db7f6e0.mp3"
 			],
 			"audioLanguages": ["en", "th", "en"],
+			"teaches": ["so-sia"],
 			"image": "/thai-script/lessons/lesson-12/images/meet-suuea-2268cc64252b.jpg"
 		},
 		{
@@ -93,7 +94,8 @@
 				"The monkey's arching tail, and one bar across it.",
 				"Head at the base, the same as the monkey's."
 			],
-			"thai": "ส"
+			"thai": "ส",
+			"teaches": ["so-sia"]
 		},
 		{
 			"kind": "exposition",
@@ -111,6 +113,7 @@
 				"/thai-script/lessons/lesson-12/audio/0bb7c2f026bd94d6.mp3"
 			],
 			"audioLanguages": ["en", "th", "en"],
+			"teaches": ["ho-hip"],
 			"image": "/thai-script/lessons/lesson-12/images/meet-hiip-7a1069b2f1de.jpg"
 		},
 		{
@@ -121,7 +124,8 @@
 				"A kink where the soldier climbs straight.",
 				"Then a loop, and a tall wall up the right."
 			],
-			"thai": "ห"
+			"thai": "ห",
+			"teaches": ["ho-hip"]
 		},
 		{
 			"kind": "exposition",
@@ -134,12 +138,14 @@
 			],
 			"audio": ["/thai-script/lessons/lesson-12/audio/c76c6df59d2b6889.mp3"],
 			"audioLanguages": ["en"],
-			"thai": "ส ห"
+			"thai": "ส ห",
+			"teaches": ["so-sia", "ho-hip"]
 		},
 		{
 			"kind": "rule",
 			"id": "high-live-rule",
-			"ruleId": "high-live"
+			"ruleId": "high-live",
+			"teaches": ["high-live"]
 		},
 		{
 			"kind": "exposition",
@@ -156,6 +162,7 @@
 				"/thai-script/lessons/lesson-12/audio/a3687312e20cdc70.mp3"
 			],
 			"audioLanguages": ["en", "th", "en"],
+			"teaches": ["high-live"],
 			"image": "/thai-script/lessons/lesson-12/images/rising-in-the-mouth-1589228b152e.jpg"
 		},
 		{
@@ -169,7 +176,8 @@
 			],
 			"audio": ["/thai-script/lessons/lesson-12/audio/82c5fcc06ed50cdf.mp3"],
 			"audioLanguages": ["en"],
-			"thai": "สูง"
+			"thai": "สูง",
+			"teaches": ["so-sia", "high-live"]
 		},
 		{
 			"kind": "exposition",
@@ -184,7 +192,8 @@
 				"/thai-script/lessons/lesson-12/audio/3bc1dc4213b6ff2d.mp3"
 			],
 			"audioLanguages": ["th", "en"],
-			"thai": "สูง"
+			"thai": "สูง",
+			"teaches": ["so-sia", "high-live"]
 		},
 		{
 			"kind": "exposition",
@@ -214,6 +223,7 @@
 				"/thai-script/lessons/lesson-12/audio/071a309c8d3fc700.mp3"
 			],
 			"audioLanguages": ["en", "th", "en"],
+			"teaches": ["kho-khay"],
 			"image": "/thai-script/lessons/lesson-12/images/meet-khai-c0c51ea325ed.jpg"
 		},
 		{
@@ -231,6 +241,7 @@
 				"/thai-script/lessons/lesson-12/audio/f449ae907470ea92.mp3"
 			],
 			"audioLanguages": ["en", "th", "en"],
+			"teaches": ["tho-thung"],
 			"image": "/thai-script/lessons/lesson-12/images/meet-thung-0ceb4ba6065e.jpg"
 		},
 		{
@@ -248,6 +259,7 @@
 				"/thai-script/lessons/lesson-12/audio/7ae14bac4896a51d.mp3"
 			],
 			"audioLanguages": ["en", "th", "en"],
+			"teaches": ["pho-phing"],
 			"image": "/thai-script/lessons/lesson-12/images/meet-phueng-8872e37ac53a.jpg"
 		},
 		{
@@ -262,7 +274,8 @@
 			],
 			"audio": ["/thai-script/lessons/lesson-12/audio/6a8796faefa1d629.mp3"],
 			"audioLanguages": ["en"],
-			"thai": "ข ถ ผ"
+			"thai": "ข ถ ผ",
+			"teaches": ["kho-khay", "tho-thung", "pho-phing"]
 		},
 		{
 			"kind": "exposition",
@@ -275,7 +288,8 @@
 			],
 			"audio": ["/thai-script/lessons/lesson-12/audio/24d917d1050e64ef.mp3"],
 			"audioLanguages": ["en"],
-			"thai": "เขา"
+			"thai": "เขา",
+			"teaches": ["kho-khay", "high-live"]
 		},
 		{
 			"kind": "exposition",
@@ -291,7 +305,8 @@
 				"/thai-script/lessons/lesson-12/audio/2ba5c5485481e69b.mp3"
 			],
 			"audioLanguages": ["th", "en"],
-			"thai": "เขา"
+			"thai": "เขา",
+			"teaches": ["kho-khay", "high-live"]
 		},
 		{
 			"kind": "exposition",
@@ -321,6 +336,7 @@
 				"/thai-script/lessons/lesson-12/audio/2492b7fc9ac3c095.mp3"
 			],
 			"audioLanguages": ["en", "th", "en"],
+			"teaches": ["cho-ching"],
 			"image": "/thai-script/lessons/lesson-12/images/meet-ching-265b1d556bdb.jpg"
 		},
 		{
@@ -338,6 +354,7 @@
 				"/thai-script/lessons/lesson-12/audio/512b0aa2ae4991ac.mp3"
 			],
 			"audioLanguages": ["en", "th", "en"],
+			"teaches": ["fo-fa"],
 			"image": "/thai-script/lessons/lesson-12/images/meet-fa-0599fb3d0f9b.jpg"
 		},
 		{
@@ -352,7 +369,8 @@
 			],
 			"audio": ["/thai-script/lessons/lesson-12/audio/ac6429e561fba5a6.mp3"],
 			"audioLanguages": ["en"],
-			"thai": "ฉ ฝ"
+			"thai": "ฉ ฝ",
+			"teaches": ["cho-ching", "fo-fa", "pho-phing"]
 		},
 		{
 			"kind": "exposition",
@@ -369,6 +387,7 @@
 				"/thai-script/lessons/lesson-12/audio/3dce8aa3f0bef7e2.mp3"
 			],
 			"audioLanguages": ["en", "th", "en"],
+			"teaches": ["sara-iia"],
 			"image": "/thai-script/lessons/lesson-12/images/ia-vowel-9cc652e5140c.jpg"
 		},
 		{
@@ -382,7 +401,8 @@
 			],
 			"audio": ["/thai-script/lessons/lesson-12/audio/4eaed822a561d042.mp3"],
 			"audioLanguages": ["en"],
-			"thai": "เ-ีย"
+			"thai": "เ-ีย",
+			"teaches": ["sara-iia"]
 		},
 		{
 			"kind": "exposition",
@@ -399,7 +419,8 @@
 				"/thai-script/lessons/lesson-12/audio/e36ba67f20680876.mp3",
 				"/thai-script/lessons/lesson-12/audio/3c68000b5e9cc9f9.mp3"
 			],
-			"audioLanguages": ["en", "th", "en", "en"]
+			"audioLanguages": ["en", "th", "en", "en"],
+			"teaches": ["sara-ia", "sara-iia"]
 		},
 		{
 			"kind": "exposition",
@@ -412,7 +433,8 @@
 			],
 			"audio": ["/thai-script/lessons/lesson-12/audio/e638ae98415dc747.mp3"],
 			"audioLanguages": ["en"],
-			"thai": "เสีย"
+			"thai": "เสีย",
+			"teaches": ["sara-iia", "so-sia"]
 		},
 		{
 			"kind": "exposition",
@@ -427,7 +449,8 @@
 				"/thai-script/lessons/lesson-12/audio/ecb1c7f4a38e0737.mp3"
 			],
 			"audioLanguages": ["th", "en"],
-			"thai": "เสีย"
+			"thai": "เสีย",
+			"teaches": ["sara-iia", "so-sia"]
 		},
 		{
 			"kind": "exposition",
@@ -440,7 +463,8 @@
 			],
 			"audio": ["/thai-script/lessons/lesson-12/audio/be5048860bb4a798.mp3"],
 			"audioLanguages": ["en"],
-			"thai": "เรียน"
+			"thai": "เรียน",
+			"teaches": ["sara-iia", "high-live", "low-live"]
 		},
 		{
 			"kind": "exposition",
@@ -456,7 +480,8 @@
 				"/thai-script/lessons/lesson-12/audio/b5cc01dcd6ccf68d.mp3"
 			],
 			"audioLanguages": ["th", "en"],
-			"thai": "เรียน"
+			"thai": "เรียน",
+			"teaches": ["sara-iia", "high-live", "low-live"]
 		},
 		{
 			"kind": "exposition",
@@ -474,6 +499,15 @@
 			],
 			"audio": ["/thai-script/lessons/lesson-12/audio/d5f854ea720bb319.mp3"],
 			"audioLanguages": ["en"],
+			"teaches": [
+				"so-sia",
+				"ho-hip",
+				"kho-khay",
+				"tho-thung",
+				"pho-phing",
+				"cho-ching",
+				"fo-fa"
+			],
 			"image": "/thai-script/lessons/lesson-12/images/seven-words-6bc77e66a8e1.jpg"
 		},
 		{
@@ -482,7 +516,8 @@
 			"prompt": "เขา is read with a rising tone. Respell it with the water buffalo's letter in place of the egg's and the climb disappears. Same sound out of your mouth, same vowel — so what is that one written change doing?",
 			"revealSlideId": "which-cousin-answer",
 			"audio": ["/thai-script/lessons/lesson-12/audio/1e1e1aacfb3ea7f2.mp3"],
-			"audioLanguages": ["en"]
+			"audioLanguages": ["en"],
+			"teaches": ["kho-khay", "kho-khwai", "high-live", "low-live"]
 		},
 		{
 			"kind": "reveal",
@@ -495,7 +530,8 @@
 				"Two letters for one sound is how the script spells a tone."
 			],
 			"audio": ["/thai-script/lessons/lesson-12/audio/269b036c3c1481e3.mp3"],
-			"audioLanguages": ["en"]
+			"audioLanguages": ["en"],
+			"teaches": ["kho-khay", "kho-khwai", "high-live", "low-live"]
 		},
 		{
 			"kind": "retrieval",
@@ -503,7 +539,8 @@
 			"prompt": "You hear a word pronounced with a breathed t at the front, a long open vowel, and a hum closing it — and the whole thing rises. Two letters in Thai write that breathed t. Which one is on the page, and how do you know?",
 			"revealSlideId": "which-letter-answer",
 			"audio": ["/thai-script/lessons/lesson-12/audio/aee45079d4414871.mp3"],
-			"audioLanguages": ["en"]
+			"audioLanguages": ["en"],
+			"teaches": ["tho-thung", "tho-thahan", "high-live"]
 		},
 		{
 			"kind": "reveal",
@@ -516,7 +553,8 @@
 				"Hearing the tone tells you the spelling, with the word unseen."
 			],
 			"audio": ["/thai-script/lessons/lesson-12/audio/408a1ce9e0e6171c.mp3"],
-			"audioLanguages": ["en"]
+			"audioLanguages": ["en"],
+			"teaches": ["tho-thung", "tho-thahan", "high-live"]
 		},
 		{
 			"kind": "exposition",

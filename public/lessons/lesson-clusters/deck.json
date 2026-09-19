@@ -91,6 +91,7 @@
 				"/thai-script/lessons/lesson-clusters/audio/4d4015729426fae7.mp3"
 			],
 			"audioLanguages": ["en"],
+			"teaches": ["ro-ria"],
 			"image": "/thai-script/lessons/lesson-clusters/images/silent-second-clusters-4264fdf3e53a.jpg"
 		},
 		{
@@ -198,7 +199,8 @@
 				"/thai-script/lessons/lesson-clusters/audio/8fc33c4bade4b8d6.mp3"
 			],
 			"audioLanguages": ["en"],
-			"thai": "เสร็จ"
+			"thai": "เสร็จ",
+			"teaches": ["ro-ria"]
 		},
 		{
 			"kind": "exposition",
@@ -214,7 +216,8 @@
 				"/thai-script/lessons/lesson-clusters/audio/4b671acbc16218ee.mp3"
 			],
 			"audioLanguages": ["th", "en"],
-			"thai": "เสร็จ"
+			"thai": "เสร็จ",
+			"teaches": ["ro-ria"]
 		},
 		{
 			"kind": "retrieval",

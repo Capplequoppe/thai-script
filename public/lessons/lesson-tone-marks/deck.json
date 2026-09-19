@@ -45,6 +45,7 @@
 				"/thai-script/lessons/lesson-tone-marks/audio/d826c48f974a3a3c.mp3"
 			],
 			"audioLanguages": ["en"],
+			"teaches": ["low-mai-tho"],
 			"image": "/thai-script/lessons/lesson-tone-marks/images/the-horse-and-the-verb-d40618501937.jpg"
 		},
 		{
@@ -79,6 +80,14 @@
 				"/thai-script/lessons/lesson-tone-marks/audio/28b664926d6e4f21.mp3"
 			],
 			"audioLanguages": ["en", "th", "en", "th", "en"],
+			"teaches": [
+				"mid-mai-ek",
+				"mid-mai-tho",
+				"high-mai-ek",
+				"high-mai-tho",
+				"low-mai-ek",
+				"low-mai-tho"
+			],
 			"image": "/thai-script/lessons/lesson-tone-marks/images/the-first-two-marks-8cdb4f0ab0ae.jpg"
 		},
 		{
@@ -99,6 +108,7 @@
 				"/thai-script/lessons/lesson-tone-marks/audio/7c7cf4aea83a0f15.mp3"
 			],
 			"audioLanguages": ["en", "th", "en", "th", "en"],
+			"teaches": ["mid-mai-tri", "mid-mai-chattawa"],
 			"image": "/thai-script/lessons/lesson-tone-marks/images/the-market-only-marks-f540b125dde7.jpg"
 		},
 		{
@@ -116,6 +126,12 @@
 				"/thai-script/lessons/lesson-tone-marks/audio/3603e4553ac6e71e.mp3"
 			],
 			"audioLanguages": ["en"],
+			"teaches": [
+				"mid-mai-ek",
+				"mid-mai-tho",
+				"mid-mai-tri",
+				"mid-mai-chattawa"
+			],
 			"image": "/thai-script/lessons/lesson-tone-marks/images/mid-class-marks-a6318424b72f.jpg"
 		},
 		{
@@ -132,6 +148,7 @@
 				"/thai-script/lessons/lesson-tone-marks/audio/ad495fd52f6dbd4a.mp3"
 			],
 			"audioLanguages": ["en"],
+			"teaches": ["high-mai-ek", "high-mai-tho"],
 			"image": "/thai-script/lessons/lesson-tone-marks/images/high-class-marks-16d0eee8a31c.jpg"
 		},
 		{
@@ -148,6 +165,7 @@
 				"/thai-script/lessons/lesson-tone-marks/audio/36cb2c351c52d717.mp3"
 			],
 			"audioLanguages": ["en"],
+			"teaches": ["low-mai-ek", "low-mai-tho"],
 			"image": "/thai-script/lessons/lesson-tone-marks/images/low-class-marks-0b587ae9656a.jpg"
 		},
 		{
@@ -158,7 +176,8 @@
 			"audio": [
 				"/thai-script/lessons/lesson-tone-marks/audio/53cd71202e9b52cf.mp3"
 			],
-			"audioLanguages": ["en"]
+			"audioLanguages": ["en"],
+			"teaches": ["mid-mai-chattawa"]
 		},
 		{
 			"kind": "reveal",
@@ -171,7 +190,8 @@
 			"audio": [
 				"/thai-script/lessons/lesson-tone-marks/audio/0cd81b5ce65d4d0e.mp3"
 			],
-			"audioLanguages": ["en"]
+			"audioLanguages": ["en"],
+			"teaches": ["mid-mai-chattawa"]
 		},
 		{
 			"kind": "retrieval",
@@ -181,7 +201,8 @@
 			"audio": [
 				"/thai-script/lessons/lesson-tone-marks/audio/21d3eefb0d8ac042.mp3"
 			],
-			"audioLanguages": ["en"]
+			"audioLanguages": ["en"],
+			"teaches": ["low-mai-ek"]
 		},
 		{
 			"kind": "reveal",
@@ -194,7 +215,8 @@
 			"audio": [
 				"/thai-script/lessons/lesson-tone-marks/audio/aea0688403e29936.mp3"
 			],
-			"audioLanguages": ["en"]
+			"audioLanguages": ["en"],
+			"teaches": ["low-mai-ek"]
 		},
 		{
 			"kind": "exposition",
@@ -208,7 +230,8 @@
 				"/thai-script/lessons/lesson-tone-marks/audio/2c1e9cc0c37262e7.mp3"
 			],
 			"audioLanguages": ["en"],
-			"thai": "โต๊ะ"
+			"thai": "โต๊ะ",
+			"teaches": ["mid-mai-tri"]
 		},
 		{
 			"kind": "exposition",
@@ -223,7 +246,8 @@
 				"/thai-script/lessons/lesson-tone-marks/audio/fb7d3b11fc9f5d3c.mp3"
 			],
 			"audioLanguages": ["th", "en"],
-			"thai": "โต๊ะ"
+			"thai": "โต๊ะ",
+			"teaches": ["mid-mai-tri"]
 		},
 		{
 			"kind": "exposition",
@@ -237,7 +261,8 @@
 				"/thai-script/lessons/lesson-tone-marks/audio/72bc503de052a21c.mp3"
 			],
 			"audioLanguages": ["en"],
-			"thai": "ข่าว"
+			"thai": "ข่าว",
+			"teaches": ["high-mai-ek"]
 		},
 		{
 			"kind": "exposition",
@@ -252,7 +277,8 @@
 				"/thai-script/lessons/lesson-tone-marks/audio/1a5a63e3ff617e04.mp3"
 			],
 			"audioLanguages": ["th", "en"],
-			"thai": "ข่าว"
+			"thai": "ข่าว",
+			"teaches": ["high-mai-ek"]
 		},
 		{
 			"kind": "exposition",
@@ -266,7 +292,8 @@
 				"/thai-script/lessons/lesson-tone-marks/audio/13711012d22834ca.mp3"
 			],
 			"audioLanguages": ["en"],
-			"thai": "ม้า"
+			"thai": "ม้า",
+			"teaches": ["low-mai-tho"]
 		},
 		{
 			"kind": "exposition",
@@ -282,7 +309,8 @@
 				"/thai-script/lessons/lesson-tone-marks/audio/2e4bac939714ddc8.mp3"
 			],
 			"audioLanguages": ["th", "en"],
-			"thai": "ม้า"
+			"thai": "ม้า",
+			"teaches": ["low-mai-tho"]
 		},
 		{
 			"kind": "exposition",
@@ -316,7 +344,8 @@
 			"audio": [
 				"/thai-script/lessons/lesson-tone-marks/audio/ef4928410e7b7cab.mp3"
 			],
-			"audioLanguages": ["en"]
+			"audioLanguages": ["en"],
+			"teaches": ["mid-mai-tri", "mid-mai-chattawa"]
 		},
 		{
 			"kind": "exposition",

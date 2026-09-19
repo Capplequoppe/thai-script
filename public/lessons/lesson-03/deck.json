@@ -59,6 +59,7 @@
 				"/thai-script/lessons/lesson-03/audio/b47540b2c74219ea.mp3"
 			],
 			"audioLanguages": ["en", "th", "en"],
+			"teaches": ["ko-kai"],
 			"image": "/thai-script/lessons/lesson-03/images/meet-gai-92c378415644.jpg"
 		},
 		{
@@ -72,6 +73,7 @@
 			],
 			"audio": ["/thai-script/lessons/lesson-03/audio/163a315f2318eef5.mp3"],
 			"audioLanguages": ["en"],
+			"teaches": ["ko-kai"],
 			"image": "/thai-script/lessons/lesson-03/images/gai-story-1-a832ad1444ba.jpg"
 		},
 		{
@@ -88,6 +90,7 @@
 				"/thai-script/lessons/lesson-03/audio/a048b68eb7689a2b.mp3"
 			],
 			"audioLanguages": ["en", "th"],
+			"teaches": ["ko-kai"],
 			"image": "/thai-script/lessons/lesson-03/images/gai-story-2-21879f55a489.jpg"
 		},
 		{
@@ -98,7 +101,8 @@
 				"No circle anywhere on it.",
 				"An open frame, and one beak-line arching to the left."
 			],
-			"thai": "ก"
+			"thai": "ก",
+			"teaches": ["ko-kai"]
 		},
 		{
 			"kind": "exposition",
@@ -111,7 +115,8 @@
 			],
 			"audio": ["/thai-script/lessons/lesson-03/audio/513968bc6354468c.mp3"],
 			"audioLanguages": ["en"],
-			"thai": "ก"
+			"thai": "ก",
+			"teaches": ["ko-kai"]
 		},
 		{
 			"kind": "exposition",
@@ -128,6 +133,7 @@
 				"/thai-script/lessons/lesson-03/audio/ab918e86b27e4d8b.mp3"
 			],
 			"audioLanguages": ["en", "th", "en"],
+			"teaches": ["do-dek"],
 			"image": "/thai-script/lessons/lesson-03/images/meet-dek-c5b327fca046.jpg"
 		},
 		{
@@ -145,6 +151,7 @@
 				"/thai-script/lessons/lesson-03/audio/b8b10a7bca043395.mp3"
 			],
 			"audioLanguages": ["en", "en"],
+			"teaches": ["do-dek"],
 			"image": "/thai-script/lessons/lesson-03/images/dek-story-1-869a0d651ec4.jpg"
 		},
 		{
@@ -161,6 +168,7 @@
 				"/thai-script/lessons/lesson-03/audio/6b1fc82c600ba6d8.mp3"
 			],
 			"audioLanguages": ["en", "th"],
+			"teaches": ["do-dek"],
 			"image": "/thai-script/lessons/lesson-03/images/dek-story-2-9464d7e76517.jpg"
 		},
 		{
@@ -171,7 +179,8 @@
 				"A bowl with a smooth rim, head curled inside.",
 				"Drawn down to a point at the bottom."
 			],
-			"thai": "ด"
+			"thai": "ด",
+			"teaches": ["do-dek"]
 		},
 		{
 			"kind": "exposition",
@@ -184,7 +193,8 @@
 			],
 			"audio": ["/thai-script/lessons/lesson-03/audio/1e01dbe5d0d8b497.mp3"],
 			"audioLanguages": ["en"],
-			"thai": "ด"
+			"thai": "ด",
+			"teaches": ["do-dek"]
 		},
 		{
 			"kind": "exposition",
@@ -201,6 +211,7 @@
 				"/thai-script/lessons/lesson-03/audio/4e2059dca00283d9.mp3"
 			],
 			"audioLanguages": ["en", "th", "en"],
+			"teaches": ["bo-baimai"],
 			"image": "/thai-script/lessons/lesson-03/images/meet-bai-mai-e62227c7d8c7.jpg"
 		},
 		{
@@ -217,6 +228,7 @@
 				"/thai-script/lessons/lesson-03/audio/abb9ce34161a8168.mp3"
 			],
 			"audioLanguages": ["en", "th"],
+			"teaches": ["bo-baimai"],
 			"image": "/thai-script/lessons/lesson-03/images/bai-mai-story-1-dd409e771744.jpg"
 		},
 		{
@@ -227,7 +239,8 @@
 				"An open bucket: straight walls, flat bottom.",
 				"The child's letter curves to a point. This one runs flat across the bottom."
 			],
-			"thai": "บ"
+			"thai": "บ",
+			"teaches": ["bo-baimai", "do-dek"]
 		},
 		{
 			"kind": "exposition",
@@ -240,7 +253,8 @@
 			],
 			"audio": ["/thai-script/lessons/lesson-03/audio/a2466e98c6946ad9.mp3"],
 			"audioLanguages": ["en"],
-			"thai": "บ"
+			"thai": "บ",
+			"teaches": ["bo-baimai", "do-dek"]
 		},
 		{
 			"kind": "retrieval",
@@ -248,7 +262,8 @@
 			"prompt": "Say the three letters' sounds with a palm held close to your lips. What should you feel, and what would feeling something tell you?",
 			"revealSlideId": "no-puff-answer",
 			"audio": ["/thai-script/lessons/lesson-03/audio/72a3583b7a2aed1c.mp3"],
-			"audioLanguages": ["en"]
+			"audioLanguages": ["en"],
+			"teaches": ["ko-kai", "do-dek", "bo-baimai"]
 		},
 		{
 			"kind": "reveal",
@@ -260,7 +275,8 @@
 				"Thai keeps the breathy ones as separate letters, so it changes the word."
 			],
 			"audio": ["/thai-script/lessons/lesson-03/audio/05d5eaa5500960c1.mp3"],
-			"audioLanguages": ["en"]
+			"audioLanguages": ["en"],
+			"teaches": ["ko-kai", "do-dek", "bo-baimai"]
 		},
 		{
 			"kind": "exposition",
@@ -273,6 +289,7 @@
 			],
 			"audio": ["/thai-script/lessons/lesson-03/audio/82344c30488d191d.mp3"],
 			"audioLanguages": ["en"],
+			"teaches": ["sara-ii"],
 			"image": "/thai-script/lessons/lesson-03/images/the-vowel-house-9cc652e5140c.jpg"
 		},
 		{
@@ -292,6 +309,7 @@
 				"/thai-script/lessons/lesson-03/audio/a17f799be24de850.mp3"
 			],
 			"audioLanguages": ["en", "th", "en", "en"],
+			"teaches": ["sara-ii"],
 			"image": "/thai-script/lessons/lesson-03/images/meet-ik-bf6b1943c5b3.jpg"
 		},
 		{
@@ -304,7 +322,8 @@
 			],
 			"audio": ["/thai-script/lessons/lesson-03/audio/1566eb9f19c21ecf.mp3"],
 			"audioLanguages": ["en"],
-			"thai": "ี"
+			"thai": "ี",
+			"teaches": ["sara-ii"]
 		},
 		{
 			"kind": "exposition",
@@ -321,7 +340,8 @@
 				"/thai-script/lessons/lesson-03/audio/4c165cd31ccdecb9.mp3"
 			],
 			"audioLanguages": ["en", "th", "en"],
-			"thai": "ี"
+			"thai": "ี",
+			"teaches": ["sara-ii"]
 		},
 		{
 			"kind": "exposition",
@@ -374,7 +394,8 @@
 		{
 			"kind": "rule",
 			"id": "mid-live",
-			"ruleId": "mid-live"
+			"ruleId": "mid-live",
+			"teaches": ["mid-live"]
 		},
 		{
 			"kind": "exposition",
@@ -392,6 +413,7 @@
 				"/thai-script/lessons/lesson-03/audio/ecc5eec8b55d95f0.mp3"
 			],
 			"audioLanguages": ["en", "th", "th", "en"],
+			"teaches": ["mid-live", "paddy-alive"],
 			"image": "/thai-script/lessons/lesson-03/images/mid-live-practice-af6c5db38fda.jpg"
 		},
 		{

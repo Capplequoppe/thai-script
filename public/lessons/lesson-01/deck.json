@@ -106,7 +106,8 @@
 				"**Live** — a sound you can hold as long as you have breath."
 			],
 			"audio": ["/thai-script/lessons/lesson-01/audio/7b8220e16183a996.mp3"],
-			"audioLanguages": ["en"]
+			"audioLanguages": ["en"],
+			"teaches": ["mo-ma"]
 		},
 		{
 			"kind": "exposition",
@@ -123,7 +124,8 @@
 				"/thai-script/lessons/lesson-01/audio/755cd9f806f260fc.mp3",
 				"/thai-script/lessons/lesson-01/audio/9d4036cb7840ba51.mp3"
 			],
-			"audioLanguages": ["en", "th", "en"]
+			"audioLanguages": ["en", "th", "en"],
+			"teaches": ["mo-ma"]
 		},
 		{
 			"kind": "exposition",
@@ -136,6 +138,7 @@
 			],
 			"audio": ["/thai-script/lessons/lesson-01/audio/0c7f9b08b900bde0.mp3"],
 			"audioLanguages": ["en"],
+			"teaches": ["mo-ma"],
 			"image": "/thai-script/lessons/lesson-01/images/ma-story-1-2528c631ab82.jpg"
 		},
 		{
@@ -149,6 +152,7 @@
 			],
 			"audio": ["/thai-script/lessons/lesson-01/audio/de2fa7fe94b5da14.mp3"],
 			"audioLanguages": ["en"],
+			"teaches": ["mo-ma"],
 			"image": "/thai-script/lessons/lesson-01/images/ma-story-2-ff29ba281fa3.jpg"
 		},
 		{
@@ -162,6 +166,7 @@
 			],
 			"audio": ["/thai-script/lessons/lesson-01/audio/a218d454ef61cb2f.mp3"],
 			"audioLanguages": ["en"],
+			"teaches": ["mo-ma"],
 			"image": "/thai-script/lessons/lesson-01/images/ma-story-3-daf962ab912c.jpg"
 		},
 		{
@@ -175,6 +180,7 @@
 			],
 			"audio": ["/thai-script/lessons/lesson-01/audio/db4eaef0317e0684.mp3"],
 			"audioLanguages": ["en"],
+			"teaches": ["mo-ma"],
 			"image": "/thai-script/lessons/lesson-01/images/ma-story-4-899ae99155cd.jpg"
 		},
 		{
@@ -188,6 +194,7 @@
 			],
 			"audio": ["/thai-script/lessons/lesson-01/audio/7145a7be786dcd54.mp3"],
 			"audioLanguages": ["en"],
+			"teaches": ["mo-ma"],
 			"image": "/thai-script/lessons/lesson-01/images/ma-story-5-10e015c076f4.jpg"
 		},
 		{
@@ -201,6 +208,7 @@
 			],
 			"audio": ["/thai-script/lessons/lesson-01/audio/dc67ec2fd0ab669e.mp3"],
 			"audioLanguages": ["en"],
+			"teaches": ["mo-ma"],
 			"image": "/thai-script/lessons/lesson-01/images/ma-story-6-f4e741458a76.jpg"
 		},
 		{
@@ -214,6 +222,7 @@
 			],
 			"audio": ["/thai-script/lessons/lesson-01/audio/17ab77e391744f91.mp3"],
 			"audioLanguages": ["en"],
+			"teaches": ["mo-ma"],
 			"image": "/thai-script/lessons/lesson-01/images/ma-story-7-d40618501937.jpg"
 		},
 		{
@@ -226,7 +235,8 @@
 				"A place you have stood, not a symbol on a list."
 			],
 			"audio": ["/thai-script/lessons/lesson-01/audio/d018b35145ee63ca.mp3"],
-			"audioLanguages": ["en"]
+			"audioLanguages": ["en"],
+			"teaches": ["mo-ma"]
 		},
 		{
 			"kind": "exposition",
@@ -235,7 +245,8 @@
 			"body": ["The horse's letter."],
 			"audio": ["/thai-script/lessons/lesson-01/audio/45ac83bb4fef7512.mp3"],
 			"audioLanguages": ["en"],
-			"thai": "ม"
+			"thai": "ม",
+			"teaches": ["mo-ma"]
 		},
 		{
 			"kind": "exposition",
@@ -262,7 +273,8 @@
 			],
 			"audio": ["/thai-script/lessons/lesson-01/audio/c53914912288872a.mp3"],
 			"audioLanguages": ["en"],
-			"thai": "ม"
+			"thai": "ม",
+			"teaches": ["mo-ma"]
 		},
 		{
 			"kind": "exposition",
@@ -279,7 +291,8 @@
 				"/thai-script/lessons/lesson-01/audio/16db45bc59ad6aec.mp3",
 				"/thai-script/lessons/lesson-01/audio/90e1882a097f47dd.mp3"
 			],
-			"audioLanguages": ["en", "th", "en"]
+			"audioLanguages": ["en", "th", "en"],
+			"teaches": ["no-nu"]
 		},
 		{
 			"kind": "exposition",
@@ -292,6 +305,7 @@
 			],
 			"audio": ["/thai-script/lessons/lesson-01/audio/42d5e883ab33a706.mp3"],
 			"audioLanguages": ["en"],
+			"teaches": ["no-nu"],
 			"image": "/thai-script/lessons/lesson-01/images/nu-story-1-212366d66b0e.jpg"
 		},
 		{
@@ -305,6 +319,7 @@
 			],
 			"audio": ["/thai-script/lessons/lesson-01/audio/6efd89ed67734716.mp3"],
 			"audioLanguages": ["en"],
+			"teaches": ["no-nu"],
 			"image": "/thai-script/lessons/lesson-01/images/nu-story-2-09f246b31385.jpg"
 		},
 		{
@@ -323,6 +338,7 @@
 				"/thai-script/lessons/lesson-01/audio/e565e291758340c8.mp3"
 			],
 			"audioLanguages": ["en", "en", "en"],
+			"teaches": ["no-nu"],
 			"image": "/thai-script/lessons/lesson-01/images/nu-story-3-547d324416f2.jpg"
 		},
 		{
@@ -336,6 +352,7 @@
 			],
 			"audio": ["/thai-script/lessons/lesson-01/audio/85a4415aa1804013.mp3"],
 			"audioLanguages": ["en"],
+			"teaches": ["no-nu"],
 			"image": "/thai-script/lessons/lesson-01/images/nu-story-4-bf8dd0a8c744.jpg"
 		},
 		{
@@ -349,6 +366,7 @@
 			],
 			"audio": ["/thai-script/lessons/lesson-01/audio/56365a25bdcd234a.mp3"],
 			"audioLanguages": ["en"],
+			"teaches": ["no-nu"],
 			"image": "/thai-script/lessons/lesson-01/images/nu-story-5-858001d6393d.jpg"
 		},
 		{
@@ -363,7 +381,8 @@
 			],
 			"audio": ["/thai-script/lessons/lesson-01/audio/abddcb4a06fe89d7.mp3"],
 			"audioLanguages": ["en"],
-			"thai": "น"
+			"thai": "น",
+			"teaches": ["no-nu"]
 		},
 		{
 			"kind": "exposition",
@@ -376,6 +395,7 @@
 			],
 			"audio": ["/thai-script/lessons/lesson-01/audio/86f7f3f12be634e9.mp3"],
 			"audioLanguages": ["en"],
+			"teaches": ["mo-ma", "no-nu"],
 			"image": "/thai-script/lessons/lesson-01/images/shapes-73d3e60e8be1.jpg"
 		},
 		{
@@ -384,7 +404,8 @@
 			"prompt": "Both letters carry a head high on the left. Where does each one put its *second* loop — and which of the two is the horse?",
 			"revealSlideId": "spot-the-loop-answer",
 			"audio": ["/thai-script/lessons/lesson-01/audio/ca65bf8f3a72db2d.mp3"],
-			"audioLanguages": ["en"]
+			"audioLanguages": ["en"],
+			"teaches": ["mo-ma", "no-nu"]
 		},
 		{
 			"kind": "reveal",
@@ -395,7 +416,8 @@
 				"**น** — head left, then low **right** — the *mouse*."
 			],
 			"audio": ["/thai-script/lessons/lesson-01/audio/6f53ffb6da083f65.mp3"],
-			"audioLanguages": ["en"]
+			"audioLanguages": ["en"],
+			"teaches": ["mo-ma", "no-nu"]
 		},
 		{
 			"kind": "exposition",
@@ -408,7 +430,8 @@
 				"The rules themselves arrive next lesson."
 			],
 			"audio": ["/thai-script/lessons/lesson-01/audio/2b20342dc3a4a5f6.mp3"],
-			"audioLanguages": ["en"]
+			"audioLanguages": ["en"],
+			"teaches": ["mo-ma", "no-nu"]
 		},
 		{
 			"kind": "exposition",
@@ -437,6 +460,7 @@
 				"/thai-script/lessons/lesson-01/audio/20bc1a07cdf2b46d.mp3"
 			],
 			"audioLanguages": ["en", "en"],
+			"teaches": ["sara-aa"],
 			"image": "/thai-script/lessons/lesson-01/images/the-vowel-house-9cc652e5140c.jpg"
 		},
 		{
@@ -453,7 +477,8 @@
 				"/thai-script/lessons/lesson-01/audio/823d442bff951539.mp3",
 				"/thai-script/lessons/lesson-01/audio/0e590767e3ea9ad6.mp3"
 			],
-			"audioLanguages": ["en", "th", "en"]
+			"audioLanguages": ["en", "th", "en"],
+			"teaches": ["sara-aa"]
 		},
 		{
 			"kind": "exposition",
@@ -466,7 +491,8 @@
 			],
 			"audio": ["/thai-script/lessons/lesson-01/audio/089d99c62f7159a3.mp3"],
 			"audioLanguages": ["en"],
-			"thai": "า"
+			"thai": "า",
+			"teaches": ["sara-aa"]
 		},
 		{
 			"kind": "exposition",
@@ -496,6 +522,7 @@
 				"/thai-script/lessons/lesson-01/audio/c04ddf80436b05a8.mp3"
 			],
 			"audioLanguages": ["en", "th", "en"],
+			"teaches": ["sara-aa"],
 			"image": "/thai-script/lessons/lesson-01/images/word-naa-c672dac1cc3b.jpg"
 		},
 		{
@@ -551,6 +578,7 @@
 				"/thai-script/lessons/lesson-01/audio/e091f239e4379b72.mp3"
 			],
 			"audioLanguages": ["en", "th", "en", "en", "th", "en", "th", "en", "en"],
+			"teaches": ["mo-ma"],
 			"image": "/thai-script/lessons/lesson-01/images/word-maa-69dbbde162fe.jpg"
 		},
 		{
@@ -596,6 +624,7 @@
 				"/thai-script/lessons/lesson-01/audio/328fba7be989d525.mp3"
 			],
 			"audioLanguages": ["en", "th", "en"],
+			"teaches": ["no-nu"],
 			"image": "/thai-script/lessons/lesson-01/images/word-naan-7510d8a5b50d.jpg"
 		},
 		{

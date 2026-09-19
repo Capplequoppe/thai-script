@@ -78,6 +78,7 @@ glyph: ก
 gloss: chicken letter
 cue: the market's flat cluck
 heading: The first of the three
+teaches: ko-kai
 narration: en The first letter. Listen to its name.
 recording: th กอ ไก่ public/audio/consonant-ko-kai.mp3
 narration: en Two parts, the same as always — the sound, then an ordinary word that begins with it. That word means chicken. The sound is close to the g in the English word go, but flatter, and with nothing blown out behind it. It is the market's own cluck.
@@ -89,6 +90,7 @@ narration: en Two parts, the same as always — the sound, then an ordinary word
 image: images/lesson-03/gai-story-1.jpg
 scene: A woman in her thirties setting out produce at a wooden market stall before dawn, a speckled chicken pecking at spilled grain by her feet, a large covered bowl tucked in the shade under the stall.
 heading: The stall that opens first
+teaches: ko-kai
 narration: en There is a woman at this market who opens before anyone. She has the corner stall, and she has a small son, and she has nobody to leave him with. So he comes with her, and he sleeps under the stall while she sets out the produce in the dark. She keeps a chicken too, and it is there to work. A market floor drops grain all day, and a chicken that eats the grain keeps the rats off the baskets. It works the aisle from one end to the other and it has never once left the row.
 - She opens the corner stall before anyone else arrives.
 - Her son sleeps under the stall while she works. Remember him.
@@ -98,6 +100,7 @@ narration: en There is a woman at this market who opens before anyone. She has t
 image: images/lesson-03/gai-story-2.jpg
 scene: A speckled chicken pecking at spilled grain between market stalls, head down, beak arching to the left, in a Thai open-air market of wooden stalls under striped awnings, baskets of produce around.
 heading: The bird that stopped crowing
+teaches: ko-kai
 narration: en A chicken crows at first light, and first light is exactly when the boy is still asleep. So the whole row went to work on it. Every morning for a year, the moment that bird drew breath to crow, somebody threw a handful of glorious golden grain at it. And it learned. What comes out of it now is a cluck — short, flat, and finished, with no air behind it and nothing carrying on afterwards. That sound is the letter. Look at the shape and you are looking at the bird: no circle anywhere on it, an open frame, and a single beak-line arching away to the left.
 recording: th กอ ไก่ public/audio/consonant-ko-kai.mp3
 - A year of glorious golden grain, and it stopped crowing.
@@ -107,12 +110,14 @@ recording: th กอ ไก่ public/audio/consonant-ko-kai.mp3
 ## exposition see-gai
 thai: ก
 heading: The chicken's letter
+teaches: ko-kai
 - No circle anywhere on it.
 - An open frame, and one beak-line arching to the left.
 
 ## exposition write-gai
 thai: ก
 heading: Write it before you meet the next one
+teaches: ko-kai
 narration: en Paper. And this one breaks the first cheat code: it is headless. No loop anywhere on it, so there is nowhere to start a loop and the usual rule has nothing to say. Copy what is on the screen — the beak arching away to the left at the top, the open frame under it, and no curl anywhere at all. Write it until your hand goes without your eyes. And every single time you write it, say both halves of its name out loud while the hand is moving, loud enough that you hear yourself. Then leave it on the page, because the next letter is drawn nothing like this one.
 - **Headless.** No loop, so the head rule does not apply here.
 - The beak arches left. Nothing curls.
@@ -125,6 +130,7 @@ glyph: ด
 gloss: child letter
 cue: the sound that does not wake him
 heading: The second of the three
+teaches: do-dek
 narration: en The second letter, and it is the one this market is arranged around. Listen.
 recording: th ดอ เด็ก public/audio/consonant-do-dek.mp3
 narration: en That word means child. The sound is a d, plain and flat, with no breath riding on it at all. Say it with your hand up and nothing should move.
@@ -136,6 +142,7 @@ narration: en That word means child. The sound is a d, plain and flat, with no b
 image: images/lesson-03/dek-story-1.jpg
 scene: A small child curled up fast asleep inside an enormous market bowl, one arm tucked under his head, bare toes poking out of the bottom, in a Thai open-air market of wooden stalls under striped awnings, baskets of produce around.
 heading: Drowsy, dreaming, deep in the dark
+teaches: do-dek
 narration: en You have already met him. He is the small son from the first letter — the one who comes to work with his mother because there is nobody to leave him with, and sleeps under the stall while she sets out the produce in the dark. This is where he sleeps. It is an enormous thing, the sort that holds a morning's rice, and it sits in the shade under his mother's stall with a cloth over the rim. He is curled up inside it with one arm under his head and his toes poking out over the bottom edge, drowsy and dreaming, deep in the dark under the stall. The whole row knows he is there. They have watched him sleep through that bowl since he was small enough to fit in it lying flat, and they are protective of it in the way a market is protective of things — loudly, and all at once, at anyone who forgets.
 - The same small son from the chicken's stall. This is where he sleeps.
 - Drowsy, dreaming, deep in the dark under the stall.
@@ -146,6 +153,7 @@ narration: en You have already met him. He is the small son from the first lette
 image: images/lesson-03/dek-story-2.jpg
 scene: Traders at neighbouring market stalls leaning in and speaking to each other in near-silence, hands doing the talking, a covered bowl with a sleeping child visible in the shade beneath one stall.
 heading: How a market learns to be quiet
+teaches: do-dek
 narration: en So the aisle taught itself to trade quietly, and what is left of the noise is the three sounds you are learning today. Every one of them stops the air and lets nothing out behind it. You can say all three across a sleeping child and not move a hair on his head. Look at the letter: a round bowl with a smooth rim, the head curled up inside it, drawn down to a point at the bottom where his toes are.
 recording: th ดอ เด็ก public/audio/consonant-do-dek.mp3
 - The row trades quietly, and the quiet sounds are today's three.
@@ -155,12 +163,14 @@ recording: th ดอ เด็ก public/audio/consonant-do-dek.mp3
 ## exposition see-dek
 thai: ด
 heading: The child's letter
+teaches: do-dek
 - A bowl with a smooth rim, head curled inside.
 - Drawn down to a point at the bottom.
 
 ## exposition write-dek
 thai: ด
 heading: Now this one, the same way
+teaches: do-dek
 narration: en Paper again. This one does have a head, so the rule from lesson one is back: start at the loop. It sits inside the bowl, and it curls clockwise, which is what most of them do. Round the head, out into the bowl, and down to the point at the bottom where his toes are. Then again, and again, out loud each time. Do not read on until your hand has done it, because the next letter is this same bowl with one thing changed.
 - **Start at the head**, curled inside the bowl, clockwise.
 - Out into the bowl, down to the point at the bottom.
@@ -173,6 +183,7 @@ glyph: บ
 gloss: leaf letter
 cue: the third quiet sound
 heading: The third of the three
+teaches: bo-baimai
 narration: en The third letter. Listen.
 recording: th บอ ใบไม้ public/audio/consonant-bo-baimai.mp3
 narration: en That word means leaf. The sound is a b, and like the other two there is nothing breathy about it. Lips together, sound, stop.
@@ -184,6 +195,7 @@ narration: en That word means leaf. The sound is a b, and like the other two the
 image: images/lesson-03/bai-mai-story-1.jpg
 scene: One enormous glossy green leaf growing straight up out of an open straight-sided, flat-bottomed market bucket, taller than the stall itself, shading the whole row, in a Thai open-air market of wooden stalls under striped awnings, baskets of produce around.
 heading: The leaf that got out of hand
+teaches: bo-baimai
 narration: en Somebody left a cutting in a bucket at the end of the row and never came back for it, and the thing took. By the second year it was taller than the stall it stood in, and it has one leaf on it the size of a door — big, bright and beautiful, leaning out over the aisle from a bucket nobody has moved in two years. It is now the only shade the corner stall gets, which means it is the reason a bowl under that stall stays cool enough to sleep in through the afternoon. Nobody is allowed to cut it. Look at the letter: an open bucket, straight walls and a flat bottom, waiting to be filled — and something enormous growing straight up out of it.
 recording: th บอ ใบไม้ public/audio/consonant-bo-baimai.mp3
 - One big, bright, beautiful leaf out of an open bucket.
@@ -193,12 +205,14 @@ recording: th บอ ใบไม้ public/audio/consonant-bo-baimai.mp3
 ## exposition see-bai-mai
 thai: บ
 heading: The leaf's letter
+teaches: bo-baimai, do-dek
 - An open bucket: straight walls, flat bottom.
 - The child's letter curves to a point. This one runs flat across the bottom.
 
 ## exposition write-bai-mai
 thai: บ
 heading: And the third, which you half know already
+teaches: bo-baimai, do-dek
 narration: en Last one, and your hand has met most of it. Head first again, up at the top left this time rather than tucked inside, and clockwise unless you are told otherwise. Then straight down, flat across the bottom, and straight back up — walls level, bottom flat. Write it next to the child's letter and look at the two of them together. Same bowl. One curves to a point, one sits flat. Make your hand learn that now rather than your eye learn it later. Out loud, both halves, every time.
 - **Start at the head**, top left, clockwise.
 - Straight down, flat across, straight up. Walls level.
@@ -207,10 +221,12 @@ narration: en Last one, and your hand has met most of it. Head first again, up a
 ## retrieval no-puff
 reveal: no-puff-answer
 prompt: Say the three letters' sounds with a palm held close to your lips. What should you feel, and what would feeling something tell you?
+teaches: ko-kai, do-dek, bo-baimai
 narration: en Before the vowel, one question. Say the three sounds with your palm close to your lips. What should you feel — and if you do feel something, what has gone wrong?
 
 ## reveal no-puff-answer
 retrieval: no-puff
+teaches: ko-kai, do-dek, bo-baimai
 narration: en Nothing should move. These three release no breath at all. If your hand moves you are saying the English sound instead, and Thai keeps the breathy versions as separate letters with their own shapes. Get that wrong and what comes out of your mouth is a different word.
 - Nothing should move. These three release no breath.
 - A moving hand means you said the English sound.
@@ -219,6 +235,7 @@ narration: en Nothing should move. These three release no breath at all. If your
 ## exposition the-vowel-house
 image: images/lesson-01/the-vowel-house.jpg
 heading: Back to the house
+teaches: sara-ii
 narration: en Do you remember the house the vowels lodge in? You were there in lesson one, and you did not get past the back yard. That is the room a vowel lodges in when it is written after its consonant, which is where the long vowel you already know sits. Today's vowel is written somewhere else entirely — above the consonant rather than behind it, which puts it upstairs.
 - One house, and the room is decided by where the vowel is written.
 - Lesson one's vowel is written after, so it is in the back yard.
@@ -231,6 +248,7 @@ glyph: ี
 gloss: the roof's lodger
 cue: written above, and long
 heading: The lodger on the roof
+teaches: sara-ii
 narration: en The one who lodges on the roof. Listen to the name.
 narration: th อีก
 narration: en The name begins with the vowel, which is how everyone in this house is named, so once you have met them you never have to look one up. That name is also an ordinary word you will use constantly. It means more. Hold the vowel: it is the ee of green, strung out through a smile rather than clipped short. And it is written above the consonant rather than beside it, which is what puts him on the roof.
@@ -243,6 +261,7 @@ narration: en One thing about that name before you use it on anybody. The word i
 ## exposition see-ii
 thai: ี
 heading: The mark itself
+teaches: sara-ii
 narration: en Look at the mark on its own. It sits on top of its consonant like a beret, and the brim flicks up at the right edge. Remember that flick. It is doing a job, and next lesson you will find out what it is.
 - It rides above the consonant like a beret.
 - The brim flicks up at the right edge. Next lesson says what it is for.
@@ -250,6 +269,7 @@ narration: en Look at the mark on its own. It sits on top of its consonant like 
 ## exposition write-ii
 thai: ี
 heading: Write the vowel too
+teaches: sara-ii
 narration: en And the vowel, which people skip because it is small. Leave it off and you have written a different word, or very often no word at all. Here is its real name, the one a Thai person would call it.
 recording: th สระอี public/audio/sara-i-long.mp3
 narration: en Write it above a consonant rather than on its own, because it never stands on its own. Put it over the horse's letter and over the child's letter, and say the whole syllable out loud as you do — the sound the two marks make together. That is the thing you are actually learning to read.
@@ -291,11 +311,13 @@ narration: en That means much, or very. The chicken's letter is on the end of it
 
 ## rule mid-live
 rule: mid-live
+teaches: mid-live
 
 ## exposition mid-live-practice
 image: images/lesson-03/mid-live-practice.jpg
 scene: A flat green rice paddy under an even grey sky, water lying still between the rows, no wind.
 heading: Mid class, live syllable
+teaches: mid-live, paddy-alive
 narration: en These are the first mid class letters you have met, and when one of them opens a syllable that ends live, the tone comes out flat. Which is where the harbour's live syllables landed too. Listen.
 narration: th ดี
 narration: th กา

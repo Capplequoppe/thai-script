@@ -56,6 +56,7 @@
 				"/thai-script/lessons/lesson-10/audio/339205d0895fb813.mp3"
 			],
 			"audioLanguages": ["en", "th", "en"],
+			"teaches": ["sara-ao"],
 			"image": "/thai-script/lessons/lesson-10/images/meet-ao-96ed1501f341.jpg"
 		},
 		{
@@ -68,7 +69,8 @@
 				"Put the boat's letter in the middle and try it."
 			],
 			"audio": ["/thai-script/lessons/lesson-10/audio/7bd9214cfda5403b.mp3"],
-			"audioLanguages": ["en"]
+			"audioLanguages": ["en"],
+			"teaches": ["sara-ao"]
 		},
 		{
 			"kind": "exposition",
@@ -80,7 +82,8 @@
 			],
 			"audio": ["/thai-script/lessons/lesson-10/audio/21b256a5782b3348.mp3"],
 			"audioLanguages": ["en"],
-			"thai": "เรา"
+			"thai": "เรา",
+			"teaches": ["sara-ao"]
 		},
 		{
 			"kind": "exposition",
@@ -95,7 +98,8 @@
 				"/thai-script/lessons/lesson-10/audio/824e42f8bf87b9aa.mp3"
 			],
 			"audioLanguages": ["th", "en"],
-			"thai": "เรา"
+			"thai": "เรา",
+			"teaches": ["sara-ao"]
 		},
 		{
 			"kind": "exposition",
@@ -112,6 +116,7 @@
 				"/thai-script/lessons/lesson-10/audio/4c198834b800d071.mp3"
 			],
 			"audioLanguages": ["en", "th", "en"],
+			"teaches": ["sara-ai-mai-malaai"],
 			"image": "/thai-script/lessons/lesson-10/images/meet-ai-malai-cbe2bc52170e.jpg"
 		},
 		{
@@ -125,7 +130,8 @@
 			],
 			"audio": ["/thai-script/lessons/lesson-10/audio/8afae67f2ba17236.mp3"],
 			"audioLanguages": ["en"],
-			"thai": "ไ"
+			"thai": "ไ",
+			"teaches": ["sara-ai-mai-malaai"]
 		},
 		{
 			"kind": "exposition",
@@ -137,7 +143,8 @@
 			],
 			"audio": ["/thai-script/lessons/lesson-10/audio/352eb67e05c1479d.mp3"],
 			"audioLanguages": ["en"],
-			"thai": "ไป"
+			"thai": "ไป",
+			"teaches": ["sara-ai-mai-malaai"]
 		},
 		{
 			"kind": "exposition",
@@ -149,7 +156,8 @@
 				"/thai-script/lessons/lesson-10/audio/d157e049a539be1f.mp3"
 			],
 			"audioLanguages": ["th", "en"],
-			"thai": "ไป"
+			"thai": "ไป",
+			"teaches": ["sara-ai-mai-malaai"]
 		},
 		{
 			"kind": "exposition",
@@ -166,6 +174,7 @@
 				"/thai-script/lessons/lesson-10/audio/775c2b30f16d71f6.mp3"
 			],
 			"audioLanguages": ["en", "th", "en"],
+			"teaches": ["sara-ai-mai-muuan"],
 			"image": "/thai-script/lessons/lesson-10/images/meet-ai-muan-aaf286b88b7c.jpg"
 		},
 		{
@@ -179,7 +188,8 @@
 			],
 			"audio": ["/thai-script/lessons/lesson-10/audio/01ef7c74e494eb30.mp3"],
 			"audioLanguages": ["en"],
-			"thai": "ใ"
+			"thai": "ใ",
+			"teaches": ["sara-ai-mai-muuan"]
 		},
 		{
 			"kind": "exposition",
@@ -193,6 +203,7 @@
 			],
 			"audio": ["/thai-script/lessons/lesson-10/audio/5cff62a1e3c185c5.mp3"],
 			"audioLanguages": ["en"],
+			"teaches": ["sara-ai-mai-muuan"],
 			"image": "/thai-script/lessons/lesson-10/images/the-guest-list-3b6a85a2a1f7.jpg"
 		},
 		{
@@ -201,7 +212,8 @@
 			"prompt": "You hear a Thai word with this sound in it and you have to write it down. Which of the two spellings do you reach for, and how confident should you be?",
 			"revealSlideId": "two-spellings-answer",
 			"audio": ["/thai-script/lessons/lesson-10/audio/03ffd1712605fdca.mp3"],
-			"audioLanguages": ["en"]
+			"audioLanguages": ["en"],
+			"teaches": ["sara-ai-mai-muuan", "sara-ai-mai-malaai"]
 		},
 		{
 			"kind": "reveal",
@@ -213,12 +225,14 @@
 				"Learn the twenty as words, one at a time, as you meet them."
 			],
 			"audio": ["/thai-script/lessons/lesson-10/audio/bddb0244d01711d2.mp3"],
-			"audioLanguages": ["en"]
+			"audioLanguages": ["en"],
+			"teaches": ["sara-ai-mai-muuan", "sara-ai-mai-malaai"]
 		},
 		{
 			"kind": "rule",
 			"id": "ao-ai-tone-exception",
-			"ruleId": "ao-ai-tone-exception"
+			"ruleId": "ao-ai-tone-exception",
+			"teaches": ["sara-ao", "sara-ai-mai-malaai", "sara-ai-mai-muuan"]
 		},
 		{
 			"kind": "exposition",
@@ -231,6 +245,7 @@
 			],
 			"audio": ["/thai-script/lessons/lesson-10/audio/003d65e968b41c43.mp3"],
 			"audioLanguages": ["en"],
+			"teaches": ["sara-ao", "sara-ai-mai-malaai", "sara-ai-mai-muuan"],
 			"image": "/thai-script/lessons/lesson-10/images/short-but-live-7b6ab1d23d1e.jpg"
 		},
 		{
@@ -332,7 +347,8 @@
 			],
 			"audio": ["/thai-script/lessons/lesson-10/audio/abfa0e4fb84e27ff.mp3"],
 			"audioLanguages": ["en"],
-			"thai": "ใคร"
+			"thai": "ใคร",
+			"teaches": ["sara-ai-mai-muuan"]
 		},
 		{
 			"kind": "exposition",
@@ -347,7 +363,8 @@
 				"/thai-script/lessons/lesson-10/audio/24a87d30928de168.mp3"
 			],
 			"audioLanguages": ["th", "en"],
-			"thai": "ใคร"
+			"thai": "ใคร",
+			"teaches": ["sara-ai-mai-muuan"]
 		},
 		{
 			"kind": "exposition",
@@ -359,7 +376,8 @@
 			],
 			"audio": ["/thai-script/lessons/lesson-10/audio/ab08e3a092ed81d8.mp3"],
 			"audioLanguages": ["en"],
-			"thai": "ไทย"
+			"thai": "ไทย",
+			"teaches": ["sara-ai-mai-malaai"]
 		},
 		{
 			"kind": "exposition",
@@ -374,7 +392,8 @@
 				"/thai-script/lessons/lesson-10/audio/17f7d9bff36c9223.mp3"
 			],
 			"audioLanguages": ["th", "en"],
-			"thai": "ไทย"
+			"thai": "ไทย",
+			"teaches": ["sara-ai-mai-malaai"]
 		},
 		{
 			"kind": "exposition",
@@ -387,7 +406,8 @@
 				"**ตกใจ** — frightened. A heart that falls."
 			],
 			"audio": ["/thai-script/lessons/lesson-10/audio/11cf486ac2840042.mp3"],
-			"audioLanguages": ["en"]
+			"audioLanguages": ["en"],
+			"teaches": ["sara-ai-mai-malaai", "sara-ao", "sara-ai-mai-muuan"]
 		},
 		{
 			"kind": "exposition",

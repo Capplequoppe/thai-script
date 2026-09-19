@@ -20,6 +20,11 @@ import {
 } from "../../domain/script/data/memoryPalace";
 import { districtForClass } from "../../domain/script/data/sceneGrammar";
 import {
+	type Story,
+	storyForConsonant,
+	storyForVowel,
+} from "../../domain/script/data/slideTags";
+import {
 	consonants,
 	type ThaiSymbolClass,
 	type ThaiVowel,
@@ -38,6 +43,7 @@ import {
 	ConsonantDetailDialog,
 	consonantSummaryFor,
 } from "../components/organisms/ConsonantDetailDialog";
+import { StoryViewer } from "../components/organisms/StoryViewer";
 import { useClipSequence } from "../hooks/useClipSequence";
 import { useLearnedScript } from "../hooks/useLearnedScript";
 
@@ -58,6 +64,18 @@ import { useLearnedScript } from "../hooks/useLearnedScript";
  * would cost more than it gave.
  */
 
+/** The letter and its word, which is what a letter is learned as. */
+function storyTitle(character: string): string {
+	const scene = consonantSceneFor(character);
+	return scene ? `${character} — the ${scene.meaning}` : character;
+}
+
+/** What the viewer needs: which slides, and what to call them. */
+interface Playing {
+	readonly story: Story;
+	readonly title: string;
+}
+
 type Selection =
 	| { kind: "tone"; tone: string }
 	| { kind: "district"; classType: ThaiSymbolClass }
@@ -70,6 +88,14 @@ type Selection =
 export function MemoryPalacePage() {
 	const [selected, setSelected] = useState<Selection>(null);
 	const [openLetter, setOpenLetter] = useState<string | null>(null);
+	// The story playing, if any — resolved, rather than held as a character,
+	// because a letter, a vowel and a tone rule each resolve differently and
+	// the viewer wants the same two things from all of them.
+	//
+	// Separate from `openLetter` because opening a story closes the letter
+	// dialog: two stacked modals on a phone is a thing you cannot reliably get
+	// out of.
+	const [playing, setPlaying] = useState<Playing | null>(null);
 	const detailRef = useRef<HTMLDivElement | null>(null);
 
 	// Picking a region on the painted map opens a panel that can be a screen
@@ -118,12 +144,28 @@ export function MemoryPalacePage() {
 			{/* The scroll target, wrapping rather than inside the panel so it
 			    exists before a selection does. */}
 			<div ref={detailRef} className="scroll-mt-4">
-				<DetailPanel selected={selected} onOpenLetter={setOpenLetter} />
+				<DetailPanel
+					selected={selected}
+					onOpenLetter={setOpenLetter}
+					onPlayStory={setPlaying}
+				/>
 			</div>
 
 			<ConsonantDetailDialog
 				summary={openLetter ? consonantSummaryFor(openLetter) : null}
 				onClose={() => setOpenLetter(null)}
+				onWatchStory={(character) => {
+					const story = storyForConsonant(character);
+					if (!story) return;
+					setOpenLetter(null);
+					setPlaying({ story, title: storyTitle(character) });
+				}}
+			/>
+
+			<StoryViewer
+				story={playing?.story ?? null}
+				title={playing?.title ?? ""}
+				onClose={() => setPlaying(null)}
 			/>
 		</div>
 	);
@@ -415,9 +457,11 @@ function RoomRow({
 function DetailPanel({
 	selected,
 	onOpenLetter,
+	onPlayStory,
 }: {
 	selected: Selection;
 	onOpenLetter: (character: string) => void;
+	onPlayStory: (playing: Playing) => void;
 }) {
 	if (!selected) {
 		return (
@@ -431,7 +475,8 @@ function DetailPanel({
 	}
 
 	if (selected.kind === "tone") return <TonePlaceDetail tone={selected.tone} />;
-	if (selected.kind === "house") return <HouseDetail />;
+	if (selected.kind === "house")
+		return <HouseDetail onPlayStory={onPlayStory} />;
 	if (selected.kind === "district")
 		return (
 			<DistrictDetail
@@ -787,7 +832,11 @@ function ConsonantTile({
  * room. `เ-ือ` really is written in three places, and finding it on the front
  * steps and on the roof is the fact rather than a duplicate.
  */
-function HouseDetail() {
+function HouseDetail({
+	onPlayStory,
+}: {
+	onPlayStory: (playing: Playing) => void;
+}) {
 	const house = housePlace();
 	const learned = useLearnedScript();
 	const lodgers = useMemo(() => {
@@ -832,6 +881,7 @@ function HouseDetail() {
 						key={room.slug}
 						room={room}
 						lodgers={lodgers.get(room.slug) ?? []}
+						onPlayStory={onPlayStory}
 					/>
 				))}
 			</div>
@@ -842,9 +892,11 @@ function HouseDetail() {
 function HouseRoomCard({
 	room,
 	lodgers,
+	onPlayStory,
 }: {
 	room: HouseRoom;
 	lodgers: readonly ThaiVowel[];
+	onPlayStory: (playing: Playing) => void;
 }) {
 	const place = roomPlaceFor(room.slug);
 
@@ -874,25 +926,66 @@ function HouseRoomCard({
 			) : (
 				<div className="flex flex-wrap gap-2">
 					{lodgers.map((vowel) => (
-						<span
+						<Lodger
 							key={vowel.character}
-							className="rounded-lg px-2 py-1 flex items-baseline gap-1.5"
-							style={{ background: "var(--color-surface)" }}
-						>
-							<span className="thai text-lg leading-none">
-								{vowel.character}
-							</span>
-							<span
-								className="text-[11px]"
-								style={{ color: "var(--color-text-muted)" }}
-							>
-								{vowel.sound}
-							</span>
-						</span>
+							vowel={vowel}
+							onPlayStory={onPlayStory}
+						/>
 					))}
 				</div>
 			)}
 		</article>
+	);
+}
+
+/**
+ * One vowel in its room, and a door into the lesson that taught it.
+ *
+ * A vowel with no tagged story stays a plain tile rather than becoming a
+ * button that opens nothing: a control that does nothing when pressed is worse
+ * than no control, and the lessons are tagged one at a time.
+ */
+function Lodger({
+	vowel,
+	onPlayStory,
+}: {
+	vowel: ThaiVowel;
+	onPlayStory: (playing: Playing) => void;
+}) {
+	const story = storyForVowel(vowel.character);
+	const inside = (
+		<>
+			<span className="thai text-lg leading-none">{vowel.character}</span>
+			<span
+				className="text-[11px]"
+				style={{ color: "var(--color-text-muted)" }}
+			>
+				{vowel.sound}
+			</span>
+		</>
+	);
+	const className = "rounded-lg px-2 py-1 flex items-baseline gap-1.5";
+	const style = { background: "var(--color-surface)" };
+
+	if (!story) {
+		return (
+			<span className={className} style={style}>
+				{inside}
+			</span>
+		);
+	}
+
+	return (
+		<button
+			type="button"
+			onClick={() =>
+				onPlayStory({ story, title: `${vowel.character} — ${vowel.name}` })
+			}
+			className={`${className} transition-transform active:scale-[0.98]`}
+			style={style}
+		>
+			{inside}
+		</button>
 	);
 }
 

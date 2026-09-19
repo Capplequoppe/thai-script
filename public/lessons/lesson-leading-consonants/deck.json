@@ -77,6 +77,7 @@
 				"/thai-script/lessons/lesson-leading-consonants/audio/08e3a83a57fd3024.mp3"
 			],
 			"audioLanguages": ["en"],
+			"teaches": ["ho-hip"],
 			"image": "/thai-script/lessons/lesson-leading-consonants/images/branch-silent-h-24fd0967179d.jpg"
 		},
 		{
@@ -92,6 +93,7 @@
 				"/thai-script/lessons/lesson-leading-consonants/audio/16e63640af6e901a.mp3"
 			],
 			"audioLanguages": ["en"],
+			"teaches": ["o-ang", "yo-yak"],
 			"image": "/thai-script/lessons/lesson-leading-consonants/images/branch-silent-o-e186f7b80271.jpg"
 		},
 		{
@@ -139,7 +141,8 @@
 			"audio": [
 				"/thai-script/lessons/lesson-leading-consonants/audio/c711bd47c3c28f7a.mp3"
 			],
-			"audioLanguages": ["en"]
+			"audioLanguages": ["en"],
+			"teaches": ["ho-hip"]
 		},
 		{
 			"kind": "exposition",
@@ -184,7 +187,8 @@
 				"/thai-script/lessons/lesson-leading-consonants/audio/3c7f4840a40e5d3c.mp3"
 			],
 			"audioLanguages": ["en"],
-			"thai": "หนังสือ"
+			"thai": "หนังสือ",
+			"teaches": ["ho-hip"]
 		},
 		{
 			"kind": "exposition",
@@ -200,7 +204,8 @@
 				"/thai-script/lessons/lesson-leading-consonants/audio/4207ab50752c75ad.mp3"
 			],
 			"audioLanguages": ["th", "en"],
-			"thai": "หนังสือ"
+			"thai": "หนังสือ",
+			"teaches": ["ho-hip"]
 		},
 		{
 			"kind": "exposition",
@@ -241,7 +246,8 @@
 			"audio": [
 				"/thai-script/lessons/lesson-leading-consonants/audio/e1ca870e7a32e216.mp3"
 			],
-			"audioLanguages": ["en"]
+			"audioLanguages": ["en"],
+			"teaches": ["ho-hip"]
 		},
 		{
 			"kind": "reveal",
@@ -254,7 +260,8 @@
 			"audio": [
 				"/thai-script/lessons/lesson-leading-consonants/audio/bc8e3e41a515c889.mp3"
 			],
-			"audioLanguages": ["en"]
+			"audioLanguages": ["en"],
+			"teaches": ["ho-hip"]
 		},
 		{
 			"kind": "exposition",

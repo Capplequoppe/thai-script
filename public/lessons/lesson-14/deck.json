@@ -82,6 +82,7 @@
 				"/thai-script/lessons/lesson-14/audio/ed16a1c04d872e7f.mp3"
 			],
 			"audioLanguages": ["en", "th", "en"],
+			"teaches": ["do-chada"],
 			"image": "/thai-script/lessons/lesson-14/images/meet-chada-00c98a8287f5.jpg"
 		},
 		{
@@ -99,6 +100,7 @@
 				"/thai-script/lessons/lesson-14/audio/efff90389818496f.mp3"
 			],
 			"audioLanguages": ["en", "th", "en"],
+			"teaches": ["to-patak"],
 			"image": "/thai-script/lessons/lesson-14/images/meet-patak-598410a8ec09.jpg"
 		},
 		{
@@ -112,7 +114,8 @@
 			],
 			"audio": ["/thai-script/lessons/lesson-14/audio/5de252f3863c8e92.mp3"],
 			"audioLanguages": ["en"],
-			"thai": "ฎ ฏ"
+			"thai": "ฎ ฏ",
+			"teaches": ["do-chada", "to-patak", "do-dek", "to-tau"]
 		},
 		{
 			"kind": "exposition",
@@ -125,7 +128,8 @@
 			],
 			"audio": ["/thai-script/lessons/lesson-14/audio/8a5618e9e77ab57b.mp3"],
 			"audioLanguages": ["en"],
-			"thai": "กฎหมาย"
+			"thai": "กฎหมาย",
+			"teaches": ["do-chada"]
 		},
 		{
 			"kind": "exposition",
@@ -141,7 +145,8 @@
 				"/thai-script/lessons/lesson-14/audio/c5e1a078380bdeee.mp3"
 			],
 			"audioLanguages": ["th", "en"],
-			"thai": "กฎหมาย"
+			"thai": "กฎหมาย",
+			"teaches": ["do-chada"]
 		},
 		{
 			"kind": "exposition",
@@ -171,6 +176,7 @@
 				"/thai-script/lessons/lesson-14/audio/292eed969cecdd4a.mp3"
 			],
 			"audioLanguages": ["en", "th", "en"],
+			"teaches": ["tho-than"],
 			"image": "/thai-script/lessons/lesson-14/images/meet-thaan-32c0866c8fb2.jpg"
 		},
 		{
@@ -189,6 +195,7 @@
 				"/thai-script/lessons/lesson-14/audio/8cef91aaa21b7219.mp3"
 			],
 			"audioLanguages": ["en", "th", "en"],
+			"teaches": ["tho-montho"],
 			"image": "/thai-script/lessons/lesson-14/images/meet-montho-5b55294c1c60.jpg"
 		},
 		{
@@ -206,6 +213,7 @@
 				"/thai-script/lessons/lesson-14/audio/df22d6361c93cc50.mp3"
 			],
 			"audioLanguages": ["en", "th", "en"],
+			"teaches": ["tho-phuthau"],
 			"image": "/thai-script/lessons/lesson-14/images/meet-phuthao-a55a95b06b3c.jpg"
 		},
 		{
@@ -220,7 +228,8 @@
 			],
 			"audio": ["/thai-script/lessons/lesson-14/audio/5e2cdd251a9a807a.mp3"],
 			"audioLanguages": ["en"],
-			"thai": "ฐ ฑ ฒ"
+			"thai": "ฐ ฑ ฒ",
+			"teaches": ["tho-than", "tho-montho", "tho-phuthau"]
 		},
 		{
 			"kind": "exposition",
@@ -233,7 +242,8 @@
 			],
 			"audio": ["/thai-script/lessons/lesson-14/audio/6f23b3713e33c599.mp3"],
 			"audioLanguages": ["en"],
-			"thai": "รัฐ"
+			"thai": "รัฐ",
+			"teaches": ["tho-than"]
 		},
 		{
 			"kind": "exposition",
@@ -249,7 +259,8 @@
 				"/thai-script/lessons/lesson-14/audio/f528351c3d699ec4.mp3"
 			],
 			"audioLanguages": ["th", "en"],
-			"thai": "รัฐ"
+			"thai": "รัฐ",
+			"teaches": ["tho-than"]
 		},
 		{
 			"kind": "exposition",
@@ -263,6 +274,7 @@
 			],
 			"audio": ["/thai-script/lessons/lesson-14/audio/e3b2fb04100c2af2.mp3"],
 			"audioLanguages": ["en"],
+			"teaches": ["lo-jula", "kho-rakhang"],
 			"image": "/thai-script/lessons/lesson-14/images/two-that-mislead-7d319f6f5671.jpg"
 		},
 		{
@@ -280,6 +292,7 @@
 				"/thai-script/lessons/lesson-14/audio/a0948279fcd3ccb4.mp3"
 			],
 			"audioLanguages": ["en", "th", "en"],
+			"teaches": ["lo-jula"],
 			"image": "/thai-script/lessons/lesson-14/images/meet-jula-06e851999905.jpg"
 		},
 		{
@@ -297,6 +310,7 @@
 				"/thai-script/lessons/lesson-14/audio/7ab2dab628879aed.mp3"
 			],
 			"audioLanguages": ["en", "th", "en"],
+			"teaches": ["kho-rakhang"],
 			"image": "/thai-script/lessons/lesson-14/images/meet-rakhang-ef6719e287df.jpg"
 		},
 		{
@@ -310,12 +324,14 @@
 			],
 			"audio": ["/thai-script/lessons/lesson-14/audio/54b48953070135a9.mp3"],
 			"audioLanguages": ["en"],
-			"thai": "ฬ ฆ"
+			"thai": "ฬ ฆ",
+			"teaches": ["lo-jula", "kho-rakhang"]
 		},
 		{
 			"kind": "rule",
 			"id": "obsolete-rule",
-			"ruleId": "obsolete-consonants"
+			"ruleId": "obsolete-consonants",
+			"teaches": ["khaaw-khuat", "khaaw-khon"]
 		},
 		{
 			"kind": "exposition",
@@ -329,6 +345,7 @@
 			],
 			"audio": ["/thai-script/lessons/lesson-14/audio/3435f831924f7b66.mp3"],
 			"audioLanguages": ["en"],
+			"teaches": ["khaaw-khuat"],
 			"image": "/thai-script/lessons/lesson-14/images/the-retired-bottle-71d16f06e42f.jpg"
 		},
 		{
@@ -343,6 +360,7 @@
 			],
 			"audio": ["/thai-script/lessons/lesson-14/audio/62e58d36a170fef3.mp3"],
 			"audioLanguages": ["en"],
+			"teaches": ["khaaw-khon", "khaaw-khuat"],
 			"image": "/thai-script/lessons/lesson-14/images/the-retired-cap-601bdb6d64cd.jpg"
 		},
 		{
@@ -356,6 +374,7 @@
 			],
 			"audio": ["/thai-script/lessons/lesson-14/audio/3c2aaea345b4def5.mp3"],
 			"audioLanguages": ["en"],
+			"teaches": ["khaaw-khuat", "khaaw-khon"],
 			"image": "/thai-script/lessons/lesson-14/images/still-in-the-alphabet-abb817dbefb5.jpg"
 		},
 		{
@@ -373,6 +392,7 @@
 				"/thai-script/lessons/lesson-14/audio/450aa54fd54083ea.mp3"
 			],
 			"audioLanguages": ["en", "en"],
+			"teaches": ["chaaw-chooe"],
 			"image": "/thai-script/lessons/lesson-14/images/the-last-letter-8c28cd4ef4b0.jpg"
 		},
 		{
@@ -394,6 +414,7 @@
 				"/thai-script/lessons/lesson-14/audio/6c4b0d4c090c4f6a.mp3"
 			],
 			"audioLanguages": ["en", "th", "en", "th", "en", "th", "en"],
+			"teaches": ["sara-uua"],
 			"image": "/thai-script/lessons/lesson-14/images/ua-vowel-9cc652e5140c.jpg"
 		},
 		{
@@ -411,6 +432,7 @@
 				"/thai-script/lessons/lesson-14/audio/3a757151a2bfb8d8.mp3"
 			],
 			"audioLanguages": ["en", "th", "en"],
+			"teaches": ["sara-uua"],
 			"image": "/thai-script/lessons/lesson-14/images/ua-closed-c6babd60bc5b.jpg"
 		},
 		{
@@ -434,6 +456,7 @@
 				"/thai-script/lessons/lesson-14/audio/e64413a519b6334a.mp3"
 			],
 			"audioLanguages": ["en", "th", "en", "th", "en", "th", "en", "th", "en"],
+			"teaches": ["sara-uuea"],
 			"image": "/thai-script/lessons/lesson-14/images/uea-vowel-45a7ffac375d.jpg"
 		},
 		{
@@ -451,7 +474,8 @@
 				"/thai-script/lessons/lesson-14/audio/750b69b3491a732c.mp3",
 				"/thai-script/lessons/lesson-14/audio/9a85a34d5dcb1c1c.mp3"
 			],
-			"audioLanguages": ["en", "th", "th", "en"]
+			"audioLanguages": ["en", "th", "th", "en"],
+			"teaches": ["sara-ua", "sara-uea", "sara-uua", "sara-uuea"]
 		},
 		{
 			"kind": "exposition",
@@ -463,7 +487,8 @@
 			],
 			"audio": ["/thai-script/lessons/lesson-14/audio/8e5782839c06e1f9.mp3"],
 			"audioLanguages": ["en"],
-			"thai": "เดือน"
+			"thai": "เดือน",
+			"teaches": ["sara-uuea"]
 		},
 		{
 			"kind": "exposition",
@@ -479,7 +504,8 @@
 				"/thai-script/lessons/lesson-14/audio/c89f3704c24805b4.mp3"
 			],
 			"audioLanguages": ["th", "en"],
-			"thai": "เดือน"
+			"thai": "เดือน",
+			"teaches": ["sara-uuea"]
 		},
 		{
 			"kind": "exposition",
@@ -507,7 +533,8 @@
 			"prompt": "เมฆ is read mêek, and it falls. The letter closing it is one of today's ten, standing where you would normally expect the chicken. Which letter is it, and what does its presence tell you about the word?",
 			"revealSlideId": "spot-the-rare-answer",
 			"audio": ["/thai-script/lessons/lesson-14/audio/f89fbf4acf090c80.mp3"],
-			"audioLanguages": ["en"]
+			"audioLanguages": ["en"],
+			"teaches": ["kho-rakhang", "low-dead-long"]
 		},
 		{
 			"kind": "reveal",
@@ -520,7 +547,8 @@
 				"Its presence marks the word as bookish or borrowed."
 			],
 			"audio": ["/thai-script/lessons/lesson-14/audio/e9e232e3600f36f9.mp3"],
-			"audioLanguages": ["en"]
+			"audioLanguages": ["en"],
+			"teaches": ["kho-rakhang", "low-dead-long"]
 		},
 		{
 			"kind": "retrieval",
@@ -528,7 +556,8 @@
 			"prompt": "The two market letters you met first today are crowned twins of two letters you have had since lessons three and nine. Say which sound each twin carries, which district it sits in, and what its crown actually changes.",
 			"revealSlideId": "crown-twins-answer",
 			"audio": ["/thai-script/lessons/lesson-14/audio/2df6a4f2f7f287f6.mp3"],
-			"audioLanguages": ["en"]
+			"audioLanguages": ["en"],
+			"teaches": ["do-chada", "to-patak"]
 		},
 		{
 			"kind": "reveal",
@@ -541,7 +570,8 @@
 				"The crown's one job is marking where the word came from."
 			],
 			"audio": ["/thai-script/lessons/lesson-14/audio/27673f30438fd98b.mp3"],
-			"audioLanguages": ["en"]
+			"audioLanguages": ["en"],
+			"teaches": ["do-chada", "to-patak"]
 		},
 		{
 			"kind": "exposition",
@@ -559,6 +589,15 @@
 			],
 			"audio": ["/thai-script/lessons/lesson-14/audio/5c834c9a774fe136.mp3"],
 			"audioLanguages": ["en"],
+			"teaches": [
+				"tho-than",
+				"to-patak",
+				"tho-montho",
+				"tho-phuthau",
+				"lo-jula",
+				"kho-rakhang",
+				"do-chada"
+			],
 			"image": "/thai-script/lessons/lesson-14/images/ten-words-f3717b0efbad.jpg"
 		},
 		{

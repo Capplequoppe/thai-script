@@ -2,6 +2,7 @@ import { useMemo } from "react";
 import { useNavigate } from "react-router";
 import { consonantNarrationFor } from "../../../domain/script/data/consonantScenes";
 import { lessonEntryByNumber } from "../../../domain/script/data/lessonSequence";
+import { storyForConsonant } from "../../../domain/script/data/slideTags";
 import {
 	consonants,
 	lessons,
@@ -60,10 +61,19 @@ function lessonFor(character: string): {
 export function ConsonantDetailDialog({
 	summary,
 	onClose,
+	onWatchStory,
 }: {
 	/** The letter to show, or null when nothing is open. */
 	summary: ConsonantSummary | null;
 	onClose: () => void;
+	/**
+	 * Asked for this letter's story from the lesson that tells it.
+	 *
+	 * Raised rather than opened here: the story is itself a dialog, and two
+	 * stacked modals on a phone is a thing you cannot reliably get out of. The
+	 * page closes this one and opens that one in its place.
+	 */
+	onWatchStory?: (character: string) => void;
 }) {
 	const navigate = useNavigate();
 	const lesson = summary ? lessonFor(summary.character) : null;
@@ -71,6 +81,7 @@ export function ConsonantDetailDialog({
 	// The native name first, then the explanation — in that order because the
 	// explanation refers to a sound the learner should have just heard.
 	const base = import.meta.env.BASE_URL;
+	const story = summary ? storyForConsonant(summary.character) : undefined;
 	const nativeName = summary?.audioUrl;
 	const narration = summary
 		? consonantNarrationFor(summary.character)
@@ -121,6 +132,23 @@ export function ConsonantDetailDialog({
 						)}
 
 						<ConsonantCard c={summary} />
+
+						{onWatchStory && story && (
+							<button
+								type="button"
+								onClick={() => onWatchStory(summary.character)}
+								className="w-full py-2.5 px-4 rounded-lg text-sm font-medium text-left"
+								style={{
+									background:
+										"color-mix(in srgb, var(--color-accent) 12%, var(--color-surface))",
+									color: "var(--color-accent)",
+									border:
+										"1px solid color-mix(in srgb, var(--color-accent) 30%, transparent)",
+								}}
+							>
+								Watch this letter&rsquo;s story &rarr;
+							</button>
+						)}
 
 						{lesson && (
 							<button

@@ -783,9 +783,20 @@ class DeckGenerator:
 		# while teaching ข is common and would be indistinguishable to any
 		# scan, and a story viewer that opens on the wrong letter's story is
 		# worse than one that opens on nothing.
+		#
+		# Slugs, not glyphs: a consonant's scene id (`ko-kai`), a vowel's name
+		# kebab-cased (`sara-aa`), a tone rule's id (`low-live`). Glyphs were
+		# the obvious choice and are the wrong one — `อ` is both a consonant
+		# and a vowel and the two would be one tag, four of the roof vowels
+		# are stored with a leading placeholder space, and `อ (as vowel)`
+		# carries an English gloss. Slugs have none of that and read better in
+		# the markdown besides.
+		#
+		# Comma-separated, so a tag that ever does carry a space survives.
 		teaches = slide.fields.get("teaches")
 		if teaches:
-			body["teaches"] = teaches.split()
+			subjects = [part.strip() for part in teaches.split(",")]
+			body["teaches"] = [subject for subject in subjects if subject]
 		image = self.manifest.by_key(f"{slide.id}-image")
 		if image and image.path:
 			body["image"] = image.path

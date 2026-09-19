@@ -26,6 +26,7 @@
 			],
 			"audio": ["/thai-script/lessons/lesson-04/audio/ea859bb3554e2557.mp3"],
 			"audioLanguages": ["en"],
+			"teaches": ["cho-chang", "so-so"],
 			"image": "/thai-script/lessons/lesson-04/images/the-trick-43ead26a5be5.jpg"
 		},
 		{
@@ -56,6 +57,7 @@
 				"/thai-script/lessons/lesson-04/audio/589ffe2ca00c16bc.mp3"
 			],
 			"audioLanguages": ["en", "th", "en"],
+			"teaches": ["cho-chang"],
 			"image": "/thai-script/lessons/lesson-04/images/meet-chaang-94c6c5bf7517.jpg"
 		},
 		{
@@ -69,6 +71,7 @@
 			],
 			"audio": ["/thai-script/lessons/lesson-04/audio/9a3daace33fc2dcf.mp3"],
 			"audioLanguages": ["en"],
+			"teaches": ["cho-chang"],
 			"image": "/thai-script/lessons/lesson-04/images/chaang-story-1-004e74c0e9dc.jpg"
 		},
 		{
@@ -84,6 +87,7 @@
 				"/thai-script/lessons/lesson-04/audio/ab9ccacf7a555d14.mp3"
 			],
 			"audioLanguages": ["en", "th"],
+			"teaches": ["cho-chang"],
 			"image": "/thai-script/lessons/lesson-04/images/chaang-story-2-ba50b8502cd0.jpg"
 		},
 		{
@@ -94,7 +98,8 @@
 				"One climbing stroke, smooth the whole way.",
 				"A tail flicking up past the top line."
 			],
-			"thai": "ช"
+			"thai": "ช",
+			"teaches": ["cho-chang"]
 		},
 		{
 			"kind": "exposition",
@@ -107,7 +112,8 @@
 			],
 			"audio": ["/thai-script/lessons/lesson-04/audio/9329c262b106bac2.mp3"],
 			"audioLanguages": ["en"],
-			"thai": "ช"
+			"thai": "ช",
+			"teaches": ["cho-chang"]
 		},
 		{
 			"kind": "exposition",
@@ -124,6 +130,7 @@
 				"/thai-script/lessons/lesson-04/audio/aaf384620a81b8f4.mp3"
 			],
 			"audioLanguages": ["en", "th", "en"],
+			"teaches": ["so-so"],
 			"image": "/thai-script/lessons/lesson-04/images/meet-so-387d95aa4a91.jpg"
 		},
 		{
@@ -140,6 +147,7 @@
 				"/thai-script/lessons/lesson-04/audio/0fb2210cec941cb6.mp3"
 			],
 			"audioLanguages": ["en", "th"],
+			"teaches": ["so-so"],
 			"image": "/thai-script/lessons/lesson-04/images/so-story-1-36a5d625ed60.jpg"
 		},
 		{
@@ -150,7 +158,8 @@
 				"The elephant's letter with a notch dented into the climb.",
 				"The same tail above. Nothing else separates them."
 			],
-			"thai": "ซ"
+			"thai": "ซ",
+			"teaches": ["so-so", "cho-chang"]
 		},
 		{
 			"kind": "exposition",
@@ -163,7 +172,8 @@
 			],
 			"audio": ["/thai-script/lessons/lesson-04/audio/62dea26a70911544.mp3"],
 			"audioLanguages": ["en"],
-			"thai": "ซ"
+			"thai": "ซ",
+			"teaches": ["so-so", "cho-chang"]
 		},
 		{
 			"kind": "retrieval",
@@ -171,7 +181,8 @@
 			"prompt": "The two letters differ by one detail. Name it, and say which of the two carries it.",
 			"revealSlideId": "spot-the-notch-answer",
 			"audio": ["/thai-script/lessons/lesson-04/audio/80cbfba31bc5254c.mp3"],
-			"audioLanguages": ["en"]
+			"audioLanguages": ["en"],
+			"teaches": ["cho-chang", "so-so"]
 		},
 		{
 			"kind": "reveal",
@@ -182,7 +193,8 @@
 				"The chain has it. The elephant runs smooth."
 			],
 			"audio": ["/thai-script/lessons/lesson-04/audio/e0c64633267ff8a8.mp3"],
-			"audioLanguages": ["en"]
+			"audioLanguages": ["en"],
+			"teaches": ["cho-chang", "so-so"]
 		},
 		{
 			"kind": "exposition",
@@ -194,6 +206,7 @@
 			],
 			"audio": ["/thai-script/lessons/lesson-04/audio/63fd55a14a19c057.mp3"],
 			"audioLanguages": ["en"],
+			"teaches": ["sara-a"],
 			"image": "/thai-script/lessons/lesson-04/images/back-to-the-house-9cc652e5140c.jpg"
 		},
 		{
@@ -211,6 +224,7 @@
 				"/thai-script/lessons/lesson-04/audio/c1c993da57f18966.mp3"
 			],
 			"audioLanguages": ["en", "th", "en"],
+			"teaches": ["sara-a"],
 			"image": "/thai-script/lessons/lesson-04/images/meet-at-d1da4fd7fcbd.jpg"
 		},
 		{
@@ -224,6 +238,7 @@
 			],
 			"audio": ["/thai-script/lessons/lesson-04/audio/b3f5b01566e49787.mp3"],
 			"audioLanguages": ["en"],
+			"teaches": ["sara-a"],
 			"image": "/thai-script/lessons/lesson-04/images/the-cheat-code-e199671a8de4.jpg"
 		},
 		{
@@ -237,6 +252,7 @@
 			],
 			"audio": ["/thai-script/lessons/lesson-04/audio/0a065bca9807c551.mp3"],
 			"audioLanguages": ["en"],
+			"teaches": ["sara-i", "sara-ii"],
 			"image": "/thai-script/lessons/lesson-04/images/short-i-859f6ebadd94.jpg"
 		},
 		{
@@ -249,7 +265,8 @@
 			],
 			"audio": ["/thai-script/lessons/lesson-04/audio/f7a6f836a3a52086.mp3"],
 			"audioLanguages": ["en"],
-			"thai": "กิน"
+			"thai": "กิน",
+			"teaches": ["sara-i"]
 		},
 		{
 			"kind": "exposition",
@@ -261,7 +278,8 @@
 				"/thai-script/lessons/lesson-04/audio/36c1d9bac6c4b4c6.mp3"
 			],
 			"audioLanguages": ["th", "en"],
-			"thai": "กิน"
+			"thai": "กิน",
+			"teaches": ["sara-i"]
 		},
 		{
 			"kind": "exposition",
@@ -280,12 +298,14 @@
 				"/thai-script/lessons/lesson-04/audio/ca167969d18884a8.mp3"
 			],
 			"audioLanguages": ["en", "th", "en", "th", "en"],
-			"thai": "ะ"
+			"thai": "ะ",
+			"teaches": ["sara-a", "sara-i"]
 		},
 		{
 			"kind": "rule",
 			"id": "mai-han-akat",
-			"ruleId": "mai-han-akat"
+			"ruleId": "mai-han-akat",
+			"teaches": ["mai-han-akat"]
 		},
 		{
 			"kind": "exposition",
@@ -302,6 +322,7 @@
 				"/thai-script/lessons/lesson-04/audio/59d8ff2d48abbd6a.mp3"
 			],
 			"audioLanguages": ["en", "th", "en"],
+			"teaches": ["mai-han-akat", "sara-a"],
 			"image": "/thai-script/lessons/lesson-04/images/han-akat-a6550318c06a.jpg"
 		},
 		{
@@ -322,7 +343,8 @@
 				"/thai-script/lessons/lesson-04/audio/bca0d49fd0e999a3.mp3"
 			],
 			"audioLanguages": ["en", "th", "en", "th", "en", "th", "en"],
-			"thai": "กัน"
+			"thai": "กัน",
+			"teaches": ["mai-han-akat"]
 		},
 		{
 			"kind": "exposition",
@@ -335,12 +357,14 @@
 			],
 			"audio": ["/thai-script/lessons/lesson-04/audio/a4074e1c623d14bc.mp3"],
 			"audioLanguages": ["en"],
-			"thai": "วัน"
+			"thai": "วัน",
+			"teaches": ["mai-han-akat", "sara-a"]
 		},
 		{
 			"kind": "rule",
 			"id": "low-dead-short",
-			"ruleId": "low-dead-short"
+			"ruleId": "low-dead-short",
+			"teaches": ["low-dead-short"]
 		},
 		{
 			"kind": "exposition",
@@ -359,6 +383,7 @@
 				"/thai-script/lessons/lesson-04/audio/18232b2abdfc74e7.mp3"
 			],
 			"audioLanguages": ["en", "th", "en", "th", "en"],
+			"teaches": ["low-dead-short"],
 			"image": "/thai-script/lessons/lesson-04/images/high-tone-6b7ebcd5f06f.jpg"
 		},
 		{
@@ -378,6 +403,7 @@
 				"/thai-script/lessons/lesson-04/audio/263fa8786f5762d6.mp3"
 			],
 			"audioLanguages": ["en", "th", "en", "th", "en"],
+			"teaches": ["low-dead-short", "low-live"],
 			"image": "/thai-script/lessons/lesson-04/images/live-contrast-51d4baf5fe5b.jpg"
 		},
 		{
@@ -386,7 +412,8 @@
 			"prompt": "Two words open on the same low class letter. One lands flat and one lands high. Say which is which, and name the two things that decide it.",
 			"revealSlideId": "two-endings-answer",
 			"audio": ["/thai-script/lessons/lesson-04/audio/b98b66e5e0fd8aba.mp3"],
-			"audioLanguages": ["en"]
+			"audioLanguages": ["en"],
+			"teaches": ["low-dead-short", "low-live"]
 		},
 		{
 			"kind": "reveal",
@@ -398,7 +425,8 @@
 				"The class was the same. Length and ending decided."
 			],
 			"audio": ["/thai-script/lessons/lesson-04/audio/9281d29cc1cdbbf4.mp3"],
-			"audioLanguages": ["en"]
+			"audioLanguages": ["en"],
+			"teaches": ["low-dead-short", "low-live"]
 		},
 		{
 			"kind": "exposition",

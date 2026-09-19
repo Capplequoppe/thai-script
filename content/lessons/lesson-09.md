@@ -61,6 +61,7 @@ glyph: จ
 gloss: plate letter
 cue: a j with the breath held back
 heading: The plate
+teaches: jo-jan
 narration: en The first letter. Listen to its name.
 recording: th จอ จาน public/audio/consonant-jo-jan.mp3
 narration: en That word means a plate. The sound is close to the English j in jump, leaning a little toward ch, with the breath held back so that nothing escapes behind it. It stands in the market, which makes it mid class, and the tone rule you were given in lesson three covers it with nothing added.
@@ -72,6 +73,7 @@ narration: en That word means a plate. The sound is close to the English j in ju
 image: images/lesson-09/jaan-story.jpg
 scene: A noodle cook standing behind his stall in a Thai open-air market with one arm raised and a plate balanced spinning on his fingertip, striped awning above, baskets of produce around.
 heading: The cook who would not put it down
+teaches: jo-jan
 narration: en There is a noodle stall where the market aisle begins. The man who runs it has one trick, and he has been doing it for thirty years. He takes a plate off the stack, and before it goes down in front of you he puts it up on one finger and lets it spin. The plate tilts as it slows and hooks over on the high side of its turn. He catches it flat and sets it down without spilling a drop of broth. Stand in that aisle for a moment. The charcoal smoke, the noise, the plate going round above his hand. Now look at the letter, because the whole trick is drawn into it. A head at middle height, and a hook curving up and over from it.
 recording: th จอ จาน public/audio/consonant-jo-jan.mp3
 - A noodle stall where the market aisle begins, and a cook with one trick.
@@ -81,12 +83,14 @@ recording: th จอ จาน public/audio/consonant-jo-jan.mp3
 ## exposition see-jaan
 thai: จ
 heading: The plate's letter
+teaches: jo-jan
 - A head at middle height.
 - One hook curving up and over.
 
 ## exposition write-jaan
 thai: จ
 heading: Write it
+teaches: jo-jan
 narration: en Start at the head, which sits about halfway up rather than high on the left like most of them, and turn it clockwise as usual. Then carry the stroke up, over, and down into the tail on the right, without lifting the pen off the paper. Write it six or seven times with both halves of the name out loud each time. One thing to carry away while your hand is busy. Put this letter last in a syllable and the tail seals it as a plain t-stop. That is a dead ending of exactly the kind lesson three drilled into you.
 - **Start at the head**, halfway up, clockwise.
 - Up, over, and down into the tail. One stroke.
@@ -99,6 +103,7 @@ glyph: ต
 gloss: turtle letter
 cue: d and t pressed flat together
 heading: The turtle
+teaches: to-tau
 narration: en The second letter. Listen.
 recording: th ตอ เต่า public/audio/consonant-to-tau.mp3
 narration: en That word means a turtle. The sound sits between an English d and an English t. Press the two of them into one flat sound, and let no breath ride out behind it. Hold your palm up in front of your lips and say the English word tin, and you will feel the puff land on your hand. Say this letter, and your hand stays where it is.
@@ -110,6 +115,7 @@ narration: en That word means a turtle. The sound sits between an English d and 
 image: images/lesson-09/dtao-story.jpg
 scene: A turtle sitting in a shallow woven basket at a market stall with its head drawn right inside a shell that is dented at the front, striped awning above, baskets of produce around.
 heading: The one nobody could keep in a basket
+teaches: to-tau
 narration: en Halfway down the aisle a woman sells turtles out of a shallow basket. One of them sat in that basket for the better part of a year, because nobody would take it. Every time a hand came over the rim it pulled its head straight in, and it pulled hard. Hard enough that the front of the shell went in where the head did, and the dent stayed. The other turtles in that basket kept their rims round and smooth. This one carried a notch cut into the front of its. That notch is the whole letter. What you are looking at is the child's letter from lesson three with a dent knocked into the rim.
 recording: th ตอ เต่า public/audio/consonant-to-tau.mp3
 - A shallow basket of turtles halfway down the aisle.
@@ -119,12 +125,14 @@ recording: th ตอ เต่า public/audio/consonant-to-tau.mp3
 ## exposition see-dtao
 thai: ต
 heading: The turtle's letter
+teaches: to-tau
 - The same bowl as the child's letter.
 - A notch cut into the front of the rim.
 
 ## exposition write-dtao
 thai: ต
 heading: Write it, and put it beside the child's letter
+teaches: to-tau, do-dek
 narration: en Head first, clockwise, then round the bowl and up the far side. The notch goes in as a small dent in the rim on your way over. Write it half a dozen times with the name out loud. Then write the child's letter from lesson three next to it and look hard at the two rims. One is a smooth curve and the other has a dent in it. That dent is the thing your eye has to catch when you are reading at speed.
 - **Start at the head**, clockwise, round the bowl.
 - The notch goes into the rim on the way over.
@@ -137,6 +145,7 @@ glyph: ป
 gloss: fish letter
 cue: b and p pressed flat together
 heading: The fish
+teaches: po-pla
 narration: en The third letter. Listen.
 recording: th ปอ ปลา public/audio/consonant-po-pla.mp3
 narration: en That word means a fish. The sound is the same trick as the turtle, moved forward to your lips. A b and a p pressed flat together, with no puff behind them. Say the English word pin with your palm up, feel the air arrive, and then take the air away and keep everything else. Market again, mid class again, and the same tone rule again.
@@ -148,6 +157,7 @@ narration: en That word means a fish. The sound is the same trick as the turtle,
 image: images/lesson-09/bplaa-story.jpg
 scene: A silver fish caught in mid-air above a wide flat market basket with water droplets flying off it, striped awning above, baskets of produce around.
 heading: The one that got out
+teaches: po-pla
 narration: en The fish stall keeps its catch in wide flat baskets with a hand's width of water in the bottom, and every so often one of them goes. It comes straight up out of the water, clear over the rim, and lands slapping on the boards between the stalls. The entire aisle stops what it is doing and turns to watch. Somebody's grandmother gets to it first. She always does. Look at the letter now and you have the moment held still. A bowl like the leaf's letter from lesson three, and one wall carrying straight on up past the rim. That wall is the fish going over.
 recording: th ปอ ปลา public/audio/consonant-po-pla.mp3
 - Wide flat baskets, a hand's width of water, and one fish that goes.
@@ -157,12 +167,14 @@ recording: th ปอ ปลา public/audio/consonant-po-pla.mp3
 ## exposition see-bplaa
 thai: ป
 heading: The fish's letter
+teaches: po-pla
 - The same bowl as the leaf's letter.
 - One wall rising clear past the rim.
 
 ## exposition write-bplaa
 thai: ป
 heading: Write it, and put it beside the leaf's letter
+teaches: po-pla, bo-baimai
 narration: en Head first, clockwise, and round the bowl exactly as you did for the leaf's letter in lesson three. Then, instead of stopping level with the rim, carry the right-hand stroke on up and leave it standing above everything else on the page. Write it several times with the name out loud. Then put the leaf's letter beside it, because these two differ by the height of one stroke and nothing else separates them.
 - **Start at the head**, clockwise, round the bowl.
 - Carry the right stroke up past the rim and leave it standing.
@@ -197,6 +209,7 @@ glyph: โ
 gloss: the leaning mast
 cue: a long round o, held in a circle
 heading: The third lodger on the front steps
+teaches: sara-oo
 narration: en Back to the house now, and round to the front steps, where you have already met two people. Lesson seven put a single mast there and lesson eight raised two of them side by side. Today there is a third, the same height as the first, with his top curled over into a loop that leans forward across the steps. Everything the steps taught you holds for him without exception. His mark goes down ahead of the consonant, your eye reaches him first, and he waits until the consonant has spoken before he says anything at all. Listen to his name.
 recording: th สระโอ public/audio/sara-o-long.mp3
 narration: en Long, round and steady. The mouth pulls into a circle and holds it there for the whole of the vowel. An English speaker saying go slides toward a w on the way out. Thai holds the circle still instead. Aim for the first half of the English word and stay there.
@@ -208,6 +221,7 @@ narration: en Long, round and steady. The mouth pulls into a circle and holds it
 ## exposition write-the-leaning-mast
 thai: โ
 heading: Write it
+teaches: sara-oo
 narration: en One stroke, and it takes about a second. An upright, with a small loop curling forward at its head. Write it a few times on its own. Then write it ahead of the turtle's letter and say that syllable out loud, with the consonant coming first out of your mouth. Two lessons of practice at that order should make this one quick. If the reading order still fights you, say it ten more times rather than five.
 - An upright with a loop curling forward at its head.
 - Write it ahead of the turtle's letter and say it aloud.
@@ -216,6 +230,7 @@ narration: en One stroke, and it takes about a second. An upright, with a small 
 ## exposition read-lok
 thai: โลก
 heading: Read this one
+teaches: sara-oo
 narration: en Three marks, and every one of them is already yours. The leaning mast, the monkey's letter from last lesson, and the chicken's letter sealing the end. Watch the order, and say it out loud before you turn it over.
 - The leaning mast, the monkey's letter, the chicken sealing it.
 - Out loud before you turn it over.
@@ -223,6 +238,7 @@ narration: en Three marks, and every one of them is already yours. The leaning m
 ## exposition read-lok-answer
 thai: โลก
 heading: That one
+teaches: sara-oo
 narration: th โลก
 narration: en The world. It opens on the monkey's letter, which lives at the harbour. It stops dead on a long vowel. Lesson five turned that pair of facts into a falling tone.
 - **โลก** — the world.
@@ -235,6 +251,7 @@ glyph: โ-ะ
 gloss: the same lodger, cut short
 cue: a clipped round o
 heading: And the short one
+teaches: sara-o
 narration: en There is a short version, and by now the way Thai writes a short version should be familiar. The mast goes in front, and the two hooks from lesson four go behind it, cutting the sound off. Same man as lesson four, same job, fourth time of asking. Listen.
 recording: th สระโอะ public/audio/sara-o-short.mp3
 narration: en The same round mouth, over almost before it has started. One honest thing before we go on. Every common word that spells this vowel out in full needs a mark from a later lesson, so the full spelling waits until that mark arrives rather than turning up here attached to a word I made up. And this is where this vowel parts company with the two short ones before it, in what it does when a final consonant turns up.
@@ -246,6 +263,7 @@ narration: en The same round mouth, over almost before it has started. One hones
 image: images/lesson-09/the-vowel-you-cannot-see.jpg
 scene: An empty wooden chair standing alone on the veranda of a Thai house on stilts with the front door open behind it, late afternoon light.
 heading: What happens when a consonant follows it
+teaches: sara-o
 narration: en Put a final consonant into that syllable and the two hooks give way, the way they always do. In lessons seven and eight they climbed up and became a little roof. Here they simply go, and nothing arrives to take their place. The vowel ends up written with no mark whatsoever. What is left on the page is two bare consonants standing side by side. The gap between them is yours to fill in from your own head. Which you have been doing correctly since lesson three, in words nobody explained at the time.
 - A final consonant arrives and the hooks give way.
 - Nothing is written in their place at all.
@@ -254,6 +272,7 @@ narration: en Put a final consonant into that syllable and the two hooks give wa
 ## exposition read-khon
 thai: คน
 heading: You have read this one before
+teaches: sara-o
 narration: en Two marks, both old friends, and you met this exact word in lesson six with a promise hanging off it that nobody cashed. The buffalo's letter, and the mouse's letter closing it. Say it out loud, in one single beat, before you turn it over.
 - The buffalo's letter, then the mouse's letter closing it.
 - One beat. Out loud before you turn it over.
@@ -261,6 +280,7 @@ narration: en Two marks, both old friends, and you met this exact word in lesson
 ## exposition read-khon-answer
 thai: คน
 heading: That one
+teaches: sara-o
 narration: th คน
 narration: en A person. The sound sitting between those two letters is the short round vowel you have just met. Nobody writes it down, in this word or in any other word built the same way.
 - **คน** — a person.
@@ -268,6 +288,7 @@ narration: en A person. The sound sitting between those two letters is the short
 
 ## exposition two-more-of-the-shape
 heading: Two more built the same way
+teaches: sara-o
 narration: en One example of this looks like a quirk of one word, so here are two more. The turtle's letter with the chicken's letter behind it means to fall. The plate's letter with the mouse's letter behind it means until. Both of them are one syllable, both take that same short round vowel, and neither of them writes a single mark between the two consonants.
 narration: th ตก
 narration: th จน
@@ -279,10 +300,12 @@ narration: en Say each one as a single beat. The trap this spelling sets is a sm
 ## retrieval nothing-between
 reveal: nothing-between-answer
 prompt: You meet a two-letter word with no vowel written anywhere in it. What sound goes between the letters, and how many syllables is the word?
+teaches: sara-o
 narration: en A question, and it is the one this spelling exists to make you answer. You come across a word made of two consonants with no vowel written anywhere between them. What sound goes into that gap, and how many syllables are you looking at? Both answers out loud before you turn it over.
 
 ## reveal nothing-between-answer
 retrieval: nothing-between
+teaches: sara-o
 narration: en The short round vowel, unwritten. And one syllable — the first letter opens it, the second closes it, and the vowel sits in between without ever being spelled out. That holds for every word of that shape, and the complete rule, including what happens when three consonants line up, has a lesson to itself further on.
 - The short round vowel of **โ-ะ**, with nothing on the page.
 - **One** syllable, opened and closed by the two letters.
@@ -305,6 +328,7 @@ narration: en To be. It is the tenth commonest word in the language. Three piece
 
 ## exposition more-words
 heading: Words these three letters open
+teaches: jo-jan, to-tau, po-pla
 narration: en A handful more before we stop, and I would rather you read them off the page than learn them off a list. The plate's letter opens the word that marks the future, which is the third commonest word in the entire language. It opens the word for from as well. The turtle's letter gives you an eye, and to follow, and to hit. The fish's letter gives you a mouth and a year, and the leaning mast gives you the rest.
 - **จะ** — marks the future, and the third commonest word in Thai.
 - **จาก** — from. **จับ** — to catch.

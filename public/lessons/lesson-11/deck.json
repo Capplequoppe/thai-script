@@ -43,6 +43,7 @@
 				"/thai-script/lessons/lesson-11/audio/5c93f1e5c5520abb.mp3"
 			],
 			"audioLanguages": ["en", "th", "en"],
+			"teaches": ["o-ang"],
 			"image": "/thai-script/lessons/lesson-11/images/meet-aang-2f54d9bcbe04.jpg"
 		},
 		{
@@ -56,6 +57,7 @@
 			],
 			"audio": ["/thai-script/lessons/lesson-11/audio/6bbfeaaebea6ccd5.mp3"],
 			"audioLanguages": ["en"],
+			"teaches": ["o-ang"],
 			"image": "/thai-script/lessons/lesson-11/images/aang-story-0e96246ddcf4.jpg"
 		},
 		{
@@ -69,6 +71,7 @@
 			],
 			"audio": ["/thai-script/lessons/lesson-11/audio/1557e5da57a1cb5b.mp3"],
 			"audioLanguages": ["en"],
+			"teaches": ["o-ang"],
 			"image": "/thai-script/lessons/lesson-11/images/aang-story-2-23e43012260e.jpg"
 		},
 		{
@@ -79,7 +82,8 @@
 				"A plain ring, standing open.",
 				"One stroke, and every part of it curved."
 			],
-			"thai": "อ"
+			"thai": "อ",
+			"teaches": ["o-ang"]
 		},
 		{
 			"kind": "exposition",
@@ -92,12 +96,14 @@
 			],
 			"audio": ["/thai-script/lessons/lesson-11/audio/dd1ec95b1bd2d13a.mp3"],
 			"audioLanguages": ["en"],
-			"thai": "อ"
+			"thai": "อ",
+			"teaches": ["o-ang"]
 		},
 		{
 			"kind": "rule",
 			"id": "o-ang-dual-role",
-			"ruleId": "o-ang-dual-role"
+			"ruleId": "o-ang-dual-role",
+			"teaches": ["o-ang", "sara-aaw"]
 		},
 		{
 			"kind": "exposition",
@@ -110,6 +116,7 @@
 			],
 			"audio": ["/thai-script/lessons/lesson-11/audio/fc01f44a3e936486.mp3"],
 			"audioLanguages": ["en"],
+			"teaches": ["o-ang"],
 			"image": "/thai-script/lessons/lesson-11/images/job-one-ff23fc99c768.jpg"
 		},
 		{
@@ -122,7 +129,8 @@
 			],
 			"audio": ["/thai-script/lessons/lesson-11/audio/6fce4947f943a2ed.mp3"],
 			"audioLanguages": ["en"],
-			"thai": "อีก"
+			"thai": "อีก",
+			"teaches": ["o-ang"]
 		},
 		{
 			"kind": "exposition",
@@ -137,7 +145,8 @@
 				"/thai-script/lessons/lesson-11/audio/f1977cb8427c16d3.mp3"
 			],
 			"audioLanguages": ["th", "en"],
-			"thai": "อีก"
+			"thai": "อีก",
+			"teaches": ["o-ang"]
 		},
 		{
 			"kind": "exposition",
@@ -156,6 +165,7 @@
 				"/thai-script/lessons/lesson-11/audio/46ab1b246479c7eb.mp3"
 			],
 			"audioLanguages": ["en", "th", "en", "th", "en"],
+			"teaches": ["o-ang"],
 			"image": "/thai-script/lessons/lesson-11/images/the-prop-was-this-48a61d8367de.jpg"
 		},
 		{
@@ -173,6 +183,7 @@
 				"/thai-script/lessons/lesson-11/audio/e8cd21cff7f5b9c2.mp3"
 			],
 			"audioLanguages": ["en", "th", "en"],
+			"teaches": ["o-ang", "sara-aaw"],
 			"image": "/thai-script/lessons/lesson-11/images/job-two-b671f5e73ba7.jpg"
 		},
 		{
@@ -185,7 +196,8 @@
 			],
 			"audio": ["/thai-script/lessons/lesson-11/audio/ae4cd2f0f272de36.mp3"],
 			"audioLanguages": ["en"],
-			"thai": "นอน"
+			"thai": "นอน",
+			"teaches": ["sara-aaw"]
 		},
 		{
 			"kind": "exposition",
@@ -200,7 +212,8 @@
 				"/thai-script/lessons/lesson-11/audio/9faba83ba7ce0fe9.mp3"
 			],
 			"audioLanguages": ["th", "en"],
-			"thai": "นอน"
+			"thai": "นอน",
+			"teaches": ["sara-aaw"]
 		},
 		{
 			"kind": "exposition",
@@ -213,7 +226,8 @@
 			],
 			"audio": ["/thai-script/lessons/lesson-11/audio/1f470e151b4e4abf.mp3"],
 			"audioLanguages": ["en"],
-			"thai": "ออก"
+			"thai": "ออก",
+			"teaches": ["o-ang", "sara-aaw"]
 		},
 		{
 			"kind": "exposition",
@@ -228,7 +242,8 @@
 				"/thai-script/lessons/lesson-11/audio/158947573df10f9f.mp3"
 			],
 			"audioLanguages": ["th", "en"],
-			"thai": "ออก"
+			"thai": "ออก",
+			"teaches": ["o-ang", "sara-aaw"]
 		},
 		{
 			"kind": "retrieval",
@@ -236,7 +251,8 @@
 			"prompt": "Two syllables, each written with the ring. In one it is the first character; in the other it follows a consonant with nothing written between them. Which is silent, and which is the vowel?",
 			"revealSlideId": "which-job-answer",
 			"audio": ["/thai-script/lessons/lesson-11/audio/d7b8c6fbdca5df2c.mp3"],
-			"audioLanguages": ["en"]
+			"audioLanguages": ["en"],
+			"teaches": ["o-ang", "sara-aaw"]
 		},
 		{
 			"kind": "reveal",
@@ -248,7 +264,8 @@
 				"The position settles it, without your knowing the word."
 			],
 			"audio": ["/thai-script/lessons/lesson-11/audio/dd66f847b2e615ea.mp3"],
-			"audioLanguages": ["en"]
+			"audioLanguages": ["en"],
+			"teaches": ["o-ang", "sara-aaw"]
 		},
 		{
 			"kind": "exposition",
@@ -265,6 +282,7 @@
 				"/thai-script/lessons/lesson-11/audio/e85c4fc460f9404b.mp3"
 			],
 			"audioLanguages": ["en", "th", "en"],
+			"teaches": ["sara-aw"],
 			"image": "/thai-script/lessons/lesson-11/images/meet-short-aw-14f6957a7c9b.jpg"
 		},
 		{
@@ -277,7 +295,8 @@
 			],
 			"audio": ["/thai-script/lessons/lesson-11/audio/882c81c9269bc3d6.mp3"],
 			"audioLanguages": ["en"],
-			"thai": "เกาะ"
+			"thai": "เกาะ",
+			"teaches": ["sara-aw"]
 		},
 		{
 			"kind": "exposition",
@@ -291,7 +310,8 @@
 			],
 			"audio": ["/thai-script/lessons/lesson-11/audio/6ca0c80362d2d5f7.mp3"],
 			"audioLanguages": ["en"],
-			"thai": "เกาะ"
+			"thai": "เกาะ",
+			"teaches": ["sara-aw"]
 		},
 		{
 			"kind": "exposition",
@@ -309,17 +329,20 @@
 				"/thai-script/lessons/lesson-11/audio/ca0e15449ebb542a.mp3"
 			],
 			"audioLanguages": ["en", "th", "en"],
+			"teaches": ["mid-dead-short", "mid-dead-long"],
 			"image": "/thai-script/lessons/lesson-11/images/the-grid-so-far-b9f3222c246d.jpg"
 		},
 		{
 			"kind": "rule",
 			"id": "mid-dead-short",
-			"ruleId": "mid-dead-short"
+			"ruleId": "mid-dead-short",
+			"teaches": ["mid-dead-short"]
 		},
 		{
 			"kind": "rule",
 			"id": "mid-dead-long",
-			"ruleId": "mid-dead-long"
+			"ruleId": "mid-dead-long",
+			"teaches": ["mid-dead-long"]
 		},
 		{
 			"kind": "exposition",
@@ -333,6 +356,7 @@
 			],
 			"audio": ["/thai-script/lessons/lesson-11/audio/58d15c19d51e2d6b.mp3"],
 			"audioLanguages": ["en"],
+			"teaches": ["mid-dead-short", "mid-dead-long"],
 			"image": "/thai-script/lessons/lesson-11/images/the-grid-closes-2445c7299847.jpg"
 		},
 		{
@@ -346,6 +370,12 @@
 			],
 			"audio": ["/thai-script/lessons/lesson-11/audio/541a0c8e8754098a.mp3"],
 			"audioLanguages": ["en"],
+			"teaches": [
+				"mid-dead-short",
+				"mid-dead-long",
+				"low-dead-short",
+				"low-dead-long"
+			],
 			"image": "/thai-script/lessons/lesson-11/images/compare-the-harbour-4d0410121ef8.jpg"
 		},
 		{
@@ -354,7 +384,8 @@
 			"prompt": "บอก and เกาะ both open on a market letter and both end dead, one with a long vowel and one with a short one. What tone does each take, and how many rules did you need?",
 			"revealSlideId": "close-the-grid-answer",
 			"audio": ["/thai-script/lessons/lesson-11/audio/612e8d0ad35f8157.mp3"],
-			"audioLanguages": ["en"]
+			"audioLanguages": ["en"],
+			"teaches": ["mid-dead-short", "mid-dead-long"]
 		},
 		{
 			"kind": "reveal",
@@ -366,7 +397,8 @@
 				"The market's grid is closed, in all four corners."
 			],
 			"audio": ["/thai-script/lessons/lesson-11/audio/bef611ac64189c0b.mp3"],
-			"audioLanguages": ["en"]
+			"audioLanguages": ["en"],
+			"teaches": ["mid-dead-short", "mid-dead-long"]
 		},
 		{
 			"kind": "exposition",
@@ -380,7 +412,8 @@
 				"**อัน** — the classifier for small things. **อา** — a parent's younger sibling."
 			],
 			"audio": ["/thai-script/lessons/lesson-11/audio/26ce04b4c087352e.mp3"],
-			"audioLanguages": ["en"]
+			"audioLanguages": ["en"],
+			"teaches": ["o-ang", "sara-aaw"]
 		},
 		{
 			"kind": "exposition",

@@ -362,3 +362,71 @@ describe("DeckSlide — a refused audioUrl is distinguishable from no audio (tru
 		warn.mockRestore();
 	});
 });
+
+describe("DeckSlide — one thing's story (the `teaching` prop)", () => {
+	const TAGGED = [
+		{ kind: "exposition", id: "opening", heading: "Welcome back", body: ["Hi"] },
+		{
+			kind: "exposition",
+			id: "meet-the-chicken",
+			heading: "The chicken",
+			body: ["It pecks."],
+			teaches: ["ko-kai"],
+		},
+		{
+			kind: "exposition",
+			id: "meet-the-egg",
+			heading: "The egg",
+			body: ["It sits."],
+			teaches: ["kho-khay"],
+		},
+		{ ...RETRIEVAL, teaches: ["ko-kai"] },
+		REVEAL,
+		{ kind: "exposition", id: "closing", heading: "Done", body: ["Bye"] },
+	];
+
+	it("shows only the slides tagged with the subject", async () => {
+		stubDeckJson(DECK_PATH, deck(TAGGED));
+		render(
+			<DeckSlide deckPath={DECK_PATH} teaching="ko-kai" onComplete={() => {}} />,
+		);
+
+		expect(await screen.findByText("The chicken")).toBeTruthy();
+		// The lesson's opener, its closer and the other letter's slide are all
+		// still in the deck, and none of them belongs to this story.
+		expect(screen.queryByText("Welcome back")).toBeNull();
+		expect(screen.queryByText("The egg")).toBeNull();
+	});
+
+	it("brings a reveal along with the retrieval that names it", async () => {
+		stubDeckJson(DECK_PATH, deck(TAGGED));
+		render(
+			<DeckSlide deckPath={DECK_PATH} teaching="ko-kai" onComplete={() => {}} />,
+		);
+
+		await screen.findByText("The chicken");
+		fireEvent.click(screen.getByRole("button", { name: /next/i }));
+		expect(screen.getByText(RETRIEVAL.prompt)).toBeTruthy();
+	});
+
+	it("says a story is untagged rather than calling the lesson empty", async () => {
+		stubDeckJson(DECK_PATH, deck(TAGGED));
+		render(
+			<DeckSlide deckPath={DECK_PATH} teaching="mo-ma" onComplete={() => {}} />,
+		);
+
+		// The deck has six slides. Reporting "no slides yet" over a full lesson
+		// would send whoever read it looking in entirely the wrong place.
+		expect(
+			await screen.findByText(/marked as part of this story/i),
+		).toBeTruthy();
+		expect(screen.queryByText(/deck has no slides yet/i)).toBeNull();
+	});
+
+	it("plays the whole deck when no subject is asked for", async () => {
+		stubDeckJson(DECK_PATH, deck(TAGGED));
+		render(<DeckSlide deckPath={DECK_PATH} onComplete={() => {}} />);
+
+		expect(await screen.findByText("Welcome back")).toBeTruthy();
+	});
+});

@@ -90,6 +90,7 @@ narration: en Here is the rule. I will state it once, and then spend the rest of
 image: images/lesson-leading-consonants/branch-silent-h.jpg
 scene: A man holding a door open at the top of a flight of steps and standing aside, evening light in the hall beyond.
 heading: First letter ห, and you do not hear it
+teaches: ho-hip
 narration: en First branch, and it is the one you meet most. The chest's letter, from the temple, standing in front of one of the ten. It is written, it is counted, and it makes no sound whatsoever. Say any of these words aloud and listen for a breath at the front of them. There is none. What it is doing there is the sentence from the slide before, applied to the temple — which buys the syllable the rising tone and the low tone that the letter behind it could never reach on its own. This branch stays open. Any of the ten may follow, and words coming into Thai still use it, so treat it as live machinery rather than a closed list of old spellings.
 - หมด (mòt) is finished, หลง (lǒng) is to be lost, หนัง (nǎng) is a film, หญิง (yǐng) is a woman, หมอ (mǎaw) is a doctor, หรอก (ràawk) softens a denial.
 - There is no h in any of them. ห in this position is written and never spoken.
@@ -99,6 +100,7 @@ narration: en First branch, and it is the one you meet most. The chest's letter,
 image: images/lesson-leading-consonants/branch-silent-o.jpg
 scene: A wide empty basin standing upright on bare earth, plain and open, afternoon light.
 heading: First letter อ, four words, no more
+teaches: o-ang, yo-yak
 narration: en Second branch, and this one you can learn this afternoon and never think about again. The basin's letter, from the market, standing in front of the giant's letter. It is silent, exactly as the chest's letter was, and what it leaves behind is a market reading. And it happens in four words. Four, with no long tail behind them. Thai has been counting this branch at four for a very long time. All four are words you use constantly, which is why a branch this small earns a slide. Everywhere else the giant's letter stands on its own, and you read it as the harbour letter it is.
 - อย่า (yàa) is don't. อยู่ (yùu) is to stay. อย่าง (yàang) is a kind or sort. อยาก (yàak) is to want. That is the complete list.
 - อ in front of ย is silent here, exactly as ห is.
@@ -126,6 +128,7 @@ narration: en Both of them work the tone out from the letter in front. What diff
 
 ## rule hor-nam
 rule: hor-nam
+teaches: ho-hip
 narration: en There is the branch stated as the course has always stated it, with a worked example on the card. That example is the word for a bear, and it is a rare one — a good demonstration and a word you can leave alone. What matters on that card is the middle sentence, which says what the arrangement buys you: two tones that the letter behind could never have reached by itself.
 
 ## exposition not-every-pair
@@ -149,6 +152,7 @@ narration: en Here is the word I promised you, and the reason this lesson calls 
 ## exposition read-nangsuue
 thai: หนังสือ
 heading: Read this one
+teaches: ho-hip
 narration: en Seven marks, and two syllables. The chest's letter opens it, with the mouse's letter behind it and the snake's letter closing that first syllable. Then the tiger's letter, with the roof vowel from lesson six above it and the prop standing behind to hold it up. Work out each syllable's tone separately before you say anything. Out loud, then turn it over.
 - Chest, mouse, snake closing the first syllable.
 - Then the tiger's letter, a roof vowel, and the prop behind it.
@@ -157,6 +161,7 @@ narration: en Seven marks, and two syllables. The chest's letter opens it, with 
 ## exposition read-nangsuue-answer
 thai: หนังสือ
 heading: That one
+teaches: ho-hip
 narration: th หนังสือ
 narration: en A book. And look at what you just did twice over. The first syllable rises because the chest's letter put it in the temple, and the second syllable rises because the tiger's letter lives in the temple already. One word, one tone, two different routes to it — one spelled with a leader and one spelled with a plain temple letter. And it sits on every shopfront in the country, so you will get plenty of practice.
 - **หนังสือ** — a book.
@@ -183,10 +188,12 @@ narration: en An airport. The mouse's letter has a long vowel and an ending of i
 ## retrieval which-tone
 reveal: which-tone-answer
 prompt: หมด and มด are both real words, both read with a short o and a d that stops the air. Why do they not have the same tone?
+teaches: ho-hip
 narration: en Last question of the last required lesson. Two words, and the second is the first with its front letter taken off. Both have the same vowel, the same short sound, and the same stop at the end. Both are real Thai words you could meet this week. And their tones are different. Say why, out loud, before you turn this over.
 
 ## reveal which-tone-answer
 retrieval: which-tone
+teaches: ho-hip
 narration: en The shorter word opens on the horse's letter, which is a harbour letter, and a harbour letter on a short stopped syllable gives a high tone. The longer word has the chest's letter in front, so the syllable is read as a temple one, and the temple on a short stopped syllable gives a low tone. Same vowel, same ending, and one letter of difference that you never hear. That letter is doing nothing but changing the district, and the district is half of every tone decision you make.
 - มด (mót) is high tone, because ม is low class and the syllable is short and dead.
 - หมด (mòt) is low tone, because the ห in front makes the reading a high class one.

@@ -60,6 +60,7 @@
 				"/thai-script/lessons/lesson-unwritten-vowels/audio/7858c6535648389d.mp3"
 			],
 			"audioLanguages": ["en"],
+			"teaches": ["sara-o"],
 			"image": "/thai-script/lessons/lesson-unwritten-vowels/images/implicit-o-0c9063b25b47.jpg"
 		},
 		{
@@ -70,7 +71,8 @@
 			"audio": [
 				"/thai-script/lessons/lesson-unwritten-vowels/audio/f8facffe14e4badf.mp3"
 			],
-			"audioLanguages": ["en"]
+			"audioLanguages": ["en"],
+			"teaches": ["sara-o"]
 		},
 		{
 			"kind": "reveal",
@@ -84,7 +86,8 @@
 			"audio": [
 				"/thai-script/lessons/lesson-unwritten-vowels/audio/6c8de8c0c9ffac54.mp3"
 			],
-			"audioLanguages": ["en"]
+			"audioLanguages": ["en"],
+			"teaches": ["sara-o"]
 		},
 		{
 			"kind": "rule",
@@ -93,7 +96,8 @@
 			"audio": [
 				"/thai-script/lessons/lesson-unwritten-vowels/audio/38ac52b9d92e8cc3.mp3"
 			],
-			"audioLanguages": ["en"]
+			"audioLanguages": ["en"],
+			"teaches": ["sara-o", "sara-a"]
 		},
 		{
 			"kind": "exposition",
@@ -109,6 +113,7 @@
 				"/thai-script/lessons/lesson-unwritten-vowels/audio/aba7d7e2476a3f92.mp3"
 			],
 			"audioLanguages": ["en"],
+			"teaches": ["sara-a"],
 			"image": "/thai-script/lessons/lesson-unwritten-vowels/images/implicit-a-be9c36a47f0e.jpg"
 		},
 		{
@@ -123,7 +128,8 @@
 				"/thai-script/lessons/lesson-unwritten-vowels/audio/44f86fe917ec5074.mp3"
 			],
 			"audioLanguages": ["en"],
-			"thai": "ตลาด"
+			"thai": "ตลาด",
+			"teaches": ["sara-a"]
 		},
 		{
 			"kind": "exposition",
@@ -138,7 +144,8 @@
 				"/thai-script/lessons/lesson-unwritten-vowels/audio/8c63907f058ef7d0.mp3"
 			],
 			"audioLanguages": ["th", "en"],
-			"thai": "ตลาด"
+			"thai": "ตลาด",
+			"teaches": ["sara-a"]
 		},
 		{
 			"kind": "exposition",
@@ -154,6 +161,7 @@
 				"/thai-script/lessons/lesson-unwritten-vowels/audio/c1a434e30323d15c.mp3"
 			],
 			"audioLanguages": ["en"],
+			"teaches": ["sara-aaw", "ro-ria"],
 			"image": "/thai-script/lessons/lesson-unwritten-vowels/images/bare-final-ro-6f2f18202462.jpg"
 		},
 		{
@@ -169,6 +177,7 @@
 				"/thai-script/lessons/lesson-unwritten-vowels/audio/84240157bde6004a.mp3"
 			],
 			"audioLanguages": ["en"],
+			"teaches": ["ro-ria"],
 			"image": "/thai-script/lessons/lesson-unwritten-vowels/images/ro-han-b6c76d047d25.jpg"
 		},
 		{
@@ -185,6 +194,7 @@
 				"/thai-script/lessons/lesson-unwritten-vowels/audio/b8a8c92cffdc806a.mp3"
 			],
 			"audioLanguages": ["en"],
+			"teaches": ["sara-aaw"],
 			"image": "/thai-script/lessons/lesson-unwritten-vowels/images/o-as-vowel-9cc652e5140c.jpg"
 		},
 		{
@@ -199,7 +209,8 @@
 				"/thai-script/lessons/lesson-unwritten-vowels/audio/6e17e48d781b0a80.mp3"
 			],
 			"audioLanguages": ["en"],
-			"thai": "สอน"
+			"thai": "สอน",
+			"teaches": ["sara-aaw"]
 		},
 		{
 			"kind": "exposition",
@@ -214,7 +225,8 @@
 				"/thai-script/lessons/lesson-unwritten-vowels/audio/07f3351d33f2daa1.mp3"
 			],
 			"audioLanguages": ["th", "en"],
-			"thai": "สอน"
+			"thai": "สอน",
+			"teaches": ["sara-aaw"]
 		},
 		{
 			"kind": "exposition",
@@ -229,7 +241,8 @@
 			"audio": [
 				"/thai-script/lessons/lesson-unwritten-vowels/audio/2b2050577931fa6f.mp3"
 			],
-			"audioLanguages": ["en"]
+			"audioLanguages": ["en"],
+			"teaches": ["sara-uua"]
 		},
 		{
 			"kind": "retrieval",
