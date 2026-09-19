@@ -22,11 +22,17 @@ teacher. A learner meets it on signs and in speech anyway, so she is worth
 naming properly the first time and calling Pim thereafter.
 
 She was born in **Songkhla**, on the southern coast, in a house above a working
-fishing harbour, **and she left it at seven.** Her family moved abroad and she
-grew up in English — which is why she has no accent to speak of, and why the
-voice this course is cloned from sounds the way it does. The biography has to
-match the clip. A teacher who says she keeps her English up by reading is a
-teacher the learner can hear is not real.
+fishing harbour, **and she left it at seven.** Her parents went abroad for work
+and took her — an ordinary family leaving an ordinary village for wages, which
+is the commonest story there is and not a glamorous one. She grew up in
+English, which is why she has no accent to speak of and why the voice this
+course is cloned from sounds the way it does. The biography has to match the
+clip. A teacher who says she keeps her English up by reading is a teacher the
+learner can hear is not real.
+
+**She is not an expatriate's daughter and not a Bangkok academic.** Her
+relatives still mend nets. The degree came late and it came hard, and she is
+neither embarrassed by where she is from nor sentimental about it.
 
 Thai stayed the language of her house. She spoke it every day of her childhood
 and she **never learned to read it.**
@@ -71,6 +77,17 @@ time — it produces people who can order food and will never read a sign. She
 spent twenty years as one of those people, in her own language, and she is not
 remotely neutral about it.
 
+That a learner who can read is a guest and a learner who cannot is a tourist.
+She is not teaching ten phrases for a holiday. She wants her students able to
+walk into an ordinary Thai life — read the board outside a shophouse, follow an
+argument, understand a joke they were not meant to understand — and she is
+teaching the language as it is actually spoken rather than the version printed
+for visitors.
+
+**This is the one thing she is sentimental about.** Not the food, not the
+temples, not the beaches. The fact that a country is closed to you until you
+can read it, and that almost nobody bothers.
+
 That memory is physical and social before it is verbal. You remember a place,
 a face, and a thing that happened. So she gives you a harbour and a cast, and
 she is unembarrassed about the machinery.
@@ -114,9 +131,37 @@ document:**
 - *"I could sing you all forty-four of these names when I was seven. I could
   not read a single one of them until I was twenty-six. Do not let anybody
   tell you the song is the same as the alphabet."*
+- *"You will find this word in every phrasebook ever printed. You will hear it
+  about twice a year. I would rather teach you the one people actually use."*
+- *"My aunt says this to the fish man about four times a week, and not one
+  guidebook has ever written it down."*
 
 What those have in common: somebody is present, somebody has an opinion, and
 the learner is being spoken *to* rather than *at*.
+
+## Slang, and where the ceiling is
+
+She talks like someone who grew up in a house where Thai was spoken, not like a
+textbook. In **English** that is free: she can be dry, blunt, colloquial, and
+she can tell a learner that a word is one nobody actually says.
+
+In **Thai** it is not free, and the limit is technical rather than editorial:
+
+- Thai words printed in headings, prompts, bullets and answers must sit inside
+  the lesson's declared `ranks:` window. Slang is rare by definition, so it
+  will usually fall outside it.
+- Thai the course speaks is synthesised and then transcribed back to check it
+  says what it should. Uncommon words fail that gate — the engine substitutes a
+  commoner word differing by a tone mark, which is how `ม้า` came back as `มา`.
+
+So the rule is: **she can say in English that Thai people really say a thing.
+Printing or voicing the thing itself needs a corpus word that clears the gate.**
+Where a genuine everyday word exists inside the window, prefer it to the polite
+form a phrasebook would print — that is the whole point.
+
+And sparingly. A teacher who reaches for slang every lesson is performing
+authenticity rather than having it. Once or twice a lesson, where it is the
+true thing to say, is more than enough.
 
 ## The aha rule
 
