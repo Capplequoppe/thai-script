@@ -1,12 +1,23 @@
 import { describe, expect, it } from "vitest";
+import { lessonEntryByNumber } from "../data/lessonSequence";
 import {
 	generateCardsForLesson,
 	generateToneRuleCards,
 } from "./ScriptCardGenerator";
 
+/**
+ * The position of the lesson `symbols.ts` files under this number.
+ *
+ * These tests mean "the lesson that teaches ม", not "position 1" — the two
+ * were the same integer until a lesson was inserted ahead of them. Resolved
+ * through the sequence so they stay correct across a resequence.
+ */
+const at = (legacyNumber: number): number =>
+	lessonEntryByNumber(legacyNumber)?.position ?? legacyNumber;
+
 describe("generateCardsForLesson", () => {
 	it("generates 6 property cards per consonant with audio for lesson 1 (ม, น)", () => {
-		const cards = generateCardsForLesson(1);
+		const cards = generateCardsForLesson(at(1));
 		const consonantCards = cards.filter(
 			(c) => c.id.startsWith("ม:") || c.id.startsWith("น:"),
 		);
@@ -14,13 +25,13 @@ describe("generateCardsForLesson", () => {
 	});
 
 	it("generates 4 property cards per vowel with audio for lesson 1 (า)", () => {
-		const cards = generateCardsForLesson(1);
+		const cards = generateCardsForLesson(at(1));
 		const vowelCards = cards.filter((c) => c.id.startsWith("า:"));
 		expect(vowelCards).toHaveLength(4);
 	});
 
 	it("each card has question, correctAnswer, and choices containing the answer", () => {
-		const cards = generateCardsForLesson(1);
+		const cards = generateCardsForLesson(at(1));
 		for (const card of cards) {
 			expect(card.question).toBeTruthy();
 			expect(card.correctAnswer).toBeTruthy();
@@ -30,13 +41,13 @@ describe("generateCardsForLesson", () => {
 	});
 
 	it("generates unique card IDs", () => {
-		const cards = generateCardsForLesson(1);
+		const cards = generateCardsForLesson(at(1));
 		const ids = cards.map((c) => c.id);
 		expect(new Set(ids).size).toBe(ids.length);
 	});
 
 	it("populates audioUrl on consonant and vowel cards", () => {
-		const cards = generateCardsForLesson(1);
+		const cards = generateCardsForLesson(at(1));
 		const consonantCards = cards.filter((c) => c.id.startsWith("ม:"));
 		for (const card of consonantCards) {
 			expect(card.audioUrl).toBe("/thai-script/audio/consonant-mo-ma.mp3");
@@ -48,13 +59,13 @@ describe("generateCardsForLesson", () => {
 	});
 
 	it("includes tone rule cards when lesson has them", () => {
-		const cards = generateCardsForLesson(2); // lesson 2 has tone rule "low-live"
+		const cards = generateCardsForLesson(at(2)); // lesson 2 has tone rule "low-live"
 		const toneCards = cards.filter((c) => c.id.startsWith("tone-rule:"));
 		expect(toneCards.length).toBeGreaterThanOrEqual(1);
 	});
 
 	it("audioRecognition card has empty symbolCharacter and valid audioUrl", () => {
-		const cards = generateCardsForLesson(1);
+		const cards = generateCardsForLesson(at(1));
 		const audioCards = cards.filter((c) => c.property === "audioRecognition");
 		expect(audioCards.length).toBeGreaterThanOrEqual(1);
 		for (const card of audioCards) {
@@ -66,7 +77,7 @@ describe("generateCardsForLesson", () => {
 	});
 
 	it("consonants without audioUrl still produce 5 cards", () => {
-		const cards = generateCardsForLesson(14);
+		const cards = generateCardsForLesson(at(14));
 		// ฃ, ฅ, ฌ have no audioUrl
 		for (const char of ["ฃ", "ฅ", "ฌ"]) {
 			const charCards = cards.filter((c) => c.id.startsWith(`${char}:`));
@@ -78,7 +89,7 @@ describe("generateCardsForLesson", () => {
 	});
 
 	it("generates 3 property cards per rare vowel for the rare-tail lesson (ฤ, ฤๅ, ฦ, ฦๅ)", () => {
-		const cards = generateCardsForLesson(14);
+		const cards = generateCardsForLesson(at(14));
 		for (const char of ["ฤ", "ฤๅ", "ฦ", "ฦๅ"]) {
 			const charCards = cards.filter((c) => c.id.startsWith(`${char}:`));
 			expect(charCards).toHaveLength(3);
@@ -86,7 +97,7 @@ describe("generateCardsForLesson", () => {
 	});
 
 	it("generates 3 property cards per numeral for the numerals lesson (๑, ๒, ๓)", () => {
-		const cards = generateCardsForLesson(19);
+		const cards = generateCardsForLesson(at(30));
 		for (const char of ["๑", "๒", "๓"]) {
 			const charCards = cards.filter((c) => c.id.startsWith(`${char}:`));
 			expect(charCards).toHaveLength(3);
@@ -94,7 +105,7 @@ describe("generateCardsForLesson", () => {
 	});
 
 	it("numeral cards quiz the arabic value, Thai word, and romanization", () => {
-		const cards = generateCardsForLesson(19);
+		const cards = generateCardsForLesson(at(30));
 		const oneCards = cards.filter((c) => c.id.startsWith("๑:"));
 		const byProperty = Object.fromEntries(oneCards.map((c) => [c.property, c]));
 		expect(byProperty.value?.correctAnswer).toBe("1");
@@ -105,18 +116,18 @@ describe("generateCardsForLesson", () => {
 
 describe("generateToneRuleCards", () => {
 	it("generates cards for tone rules introduced in lesson 2", () => {
-		const cards = generateToneRuleCards(2);
+		const cards = generateToneRuleCards(at(2));
 		expect(cards.length).toBeGreaterThanOrEqual(1);
 		expect(cards[0]?.id).toContain("tone-rule:");
 	});
 
 	it("returns empty for lessons with no tone rules", () => {
-		const cards = generateToneRuleCards(1);
+		const cards = generateToneRuleCards(at(1));
 		expect(cards).toHaveLength(0);
 	});
 
 	it("generates tone mark rule cards for the consolidated tone-mark lesson", () => {
-		const cards = generateToneRuleCards(16);
+		const cards = generateToneRuleCards(at(29));
 		const markRuleCards = cards.filter((c) =>
 			c.id.startsWith("tone-mark-rule:"),
 		);

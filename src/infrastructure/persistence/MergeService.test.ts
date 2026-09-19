@@ -1,4 +1,5 @@
 import { describe, expect, it } from "vitest";
+import { lessonEntryByNumber } from "../../domain/script/data/lessonSequence";
 import type {
 	LearnerState,
 	PropertyCard,
@@ -9,7 +10,11 @@ import {
 	INITIAL_LEARNER_STATE,
 } from "../../domain/shared/types";
 import { mergeLearnerStates } from "./MergeService";
-import { migrateState } from "./Storage";
+import { LESSON_IDENTITY_EPOCH, migrateState } from "./Storage";
+
+/** The position of the lesson `symbols.ts` files under this number. */
+const at = (legacyNumber: number): number =>
+	lessonEntryByNumber(legacyNumber)?.position ?? legacyNumber;
 
 function makeCard(
 	id: string,
@@ -115,12 +120,14 @@ describe("mergeLearnerStates", () => {
 	// conversion pass a load uses — and only then merges, so nothing from
 	// either side is lost across any of the five lesson-identity stores.
 	it("unions a migrated and an unmigrated state across all five stores, losing nothing", () => {
+		// Already converted, and stamped as such: these are positions.
 		const current: LearnerState = {
 			...INITIAL_LEARNER_STATE,
 			completedLessons: [1, 4],
 			currentLesson: null,
 			cards: { "ก:recognition": makeCard("ก:recognition", 2, 1) },
 			pendingCatchUps: [{ lessonNumber: 4, cardIds: ["x"] }],
+			lessonEpoch: LESSON_IDENTITY_EPOCH,
 		};
 
 		// Written by an older install: same shape, but its cards still carry
@@ -130,6 +137,7 @@ describe("mergeLearnerStates", () => {
 		delete (legacyCard.srs as { lapseCount?: number }).lapseCount;
 		const unmigrated: LearnerState = {
 			...INITIAL_LEARNER_STATE,
+			lessonEpoch: undefined,
 			completedLessons: [2, 4],
 			currentLesson: 3,
 			cards: { "ม:recognition": legacyCard },
@@ -138,17 +146,25 @@ describe("mergeLearnerStates", () => {
 
 		const result = mergeLearnerStates(current, migrateState(unmigrated));
 
-		expect([...result.completedLessons].sort()).toEqual([1, 2, 4]);
-		expect(result.currentLesson).toBe(3);
+		// The legacy side's lessons 2 and 4 land on the positions those lessons
+		// now occupy, and position 1 is credited to a learner with progress;
+		// the already-converted side's 1 and 4 are left where they are.
+		expect([...result.completedLessons].sort((a, b) => a - b)).toEqual([
+			1,
+			at(2),
+			4,
+			at(4),
+		]);
+		expect(result.currentLesson).toBe(at(3));
 		expect(result.cards["ก:recognition"].srs.repetitions).toBe(2);
 		expect(result.cards["ม:recognition"].srs.repetitions).toBe(5);
-		expect(result.cards["ม:recognition"].lessonNumber).toBe(2);
+		expect(result.cards["ม:recognition"].lessonNumber).toBe(at(2));
 		// The unmigrated card came through the migration, not around it.
 		expect(result.cards["ม:recognition"].srs.learningStep).toBeNull();
 		expect(result.cards["ม:recognition"].srs.lapseCount).toBe(0);
 		expect(result.pendingCatchUps).toEqual([
 			{ lessonNumber: 4, cardIds: ["x"] },
-			{ lessonNumber: 2, cardIds: ["y"] },
+			{ lessonNumber: at(2), cardIds: ["y"] },
 		]);
 	});
 

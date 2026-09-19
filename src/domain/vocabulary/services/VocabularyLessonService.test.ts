@@ -5,6 +5,7 @@ import {
 } from "../../../infrastructure/persistence/Storage";
 import { StorageCardRepository } from "../../../infrastructure/persistence/StorageCardRepository";
 import { StorageLearnerStateRepository } from "../../../infrastructure/persistence/StorageLearnerStateRepository";
+import { lessonEntryByNumber } from "../../script/data/lessonSequence";
 import { ApprenticeService } from "../../shared/services/ApprenticeService";
 import type { SrsData } from "../../shared/types";
 import { DEFAULT_SRS_DATA } from "../../shared/types";
@@ -12,6 +13,17 @@ import { RecallRating } from "../../srs/value-objects/RecallRating";
 import { VocabCard } from "../entities/VocabCard";
 import type { VocabEntry } from "../types";
 import { VocabularyService } from "./VocabularyLessonService";
+
+/**
+ * Positions of the lessons `symbols.ts` files under these numbers.
+ *
+ * These fixtures mean "the learner has finished the lesson that teaches ม and
+ * the one that teaches the low-class rule" — not "positions 1 and 2". Resolved
+ * through the sequence so that inserting a lesson ahead of them moves the
+ * fixtures with them rather than leaving them pointing somewhere else.
+ */
+const taught = (...legacyNumbers: number[]): number[] =>
+	legacyNumbers.map((n) => lessonEntryByNumber(n)?.position ?? n);
 
 function makeEntry(overrides: Partial<VocabEntry> = {}): VocabEntry {
 	return {
@@ -63,7 +75,7 @@ describe("VocabularyService", () => {
 		const service = new VocabularyService(cardRepo, stateRepo, vocabulary);
 
 		const state = storage.load();
-		state.completedLessons = [1, 2];
+		state.completedLessons = taught(1, 2);
 		storage.save(state);
 
 		const unlocked = service.getUnlockedWords();
@@ -71,12 +83,18 @@ describe("VocabularyService", () => {
 		expect(unlocked[0]?.thai).toBe("มา");
 	});
 
-	// The join-key proof for the lesson-identity migration: the mastered
+	// The join-key proof for the lesson-identity migration. The mastered
 	// characters and tone rules gate `getUnlockedWords()` through the private
-	// helpers, so identical public output either side of `migrateState`
-	// covers both joins. A part-way learner is the interesting case — an
-	// empty or complete one would pass under many wrong mappings.
-	it("returns the same unlocked words before and after the lesson-identity migration", () => {
+	// helpers, so the words a converted state unlocks cover both joins. A
+	// part-way learner is the interesting case — an empty or complete one
+	// would pass under many wrong mappings.
+	//
+	// This used to assert identical output either side of `migrateState`,
+	// which held only while legacy number and position were the same integer.
+	// `lesson-loops` ended that, so the assertion is now the one that was
+	// always the point: a state written in legacy space unlocks the right
+	// words once converted, and converting it again does not move it.
+	it("unlocks the right words once a legacy state is converted, and stays put", () => {
 		const vocabulary = [
 			makeEntry(),
 			makeEntry({
@@ -89,19 +107,31 @@ describe("VocabularyService", () => {
 		];
 		const service = new VocabularyService(cardRepo, stateRepo, vocabulary);
 
+		// Legacy space: the numbers `symbols.ts` files lessons under, and no
+		// epoch stamp — exactly what a state written before the resequence
+		// holds on disk.
 		const state = storage.load();
 		state.completedLessons = [1, 2];
 		state.currentLesson = 3;
+		state.lessonEpoch = undefined;
 		storage.save(state);
 
-		const before = service.getUnlockedWords().map((w) => w.thai);
+		storage.save(migrateState(storage.load()));
+
 		// Non-vacuous: one word is unlocked and one still locked.
-		expect(before).toEqual(["มา"]);
+		expect(service.getUnlockedWords().map((w) => w.thai)).toEqual(["มา"]);
+		// The learner landed on the lessons that teach ม, า and "low-live",
+		// wherever the sequence currently puts them.
+		expect(storage.load().completedLessons).toEqual(
+			expect.arrayContaining(taught(1, 2)),
+		);
 
-		const migrated = migrateState(storage.load());
-		storage.save(migrated);
-
-		expect(service.getUnlockedWords().map((w) => w.thai)).toEqual(before);
+		// Converting an already-converted state must be a no-op. Without the
+		// epoch guard each load would read the positions as legacy numbers and
+		// walk the learner one lesson further along every time.
+		const once = storage.load().completedLessons;
+		storage.save(migrateState(storage.load()));
+		expect(storage.load().completedLessons).toEqual(once);
 	});
 
 	it("does not unlock words when only characters are mastered but tone rules are missing", () => {
@@ -109,7 +139,7 @@ describe("VocabularyService", () => {
 		const service = new VocabularyService(cardRepo, stateRepo, vocabulary);
 
 		const state = storage.load();
-		state.completedLessons = [1]; // Has ม, า but not tone rule "low-live" (lesson 2)
+		state.completedLessons = taught(1); // Has ม, า but not tone rule "low-live" (lesson 2)
 		storage.save(state);
 
 		expect(service.getUnlockedWords()).toHaveLength(0);
@@ -139,7 +169,7 @@ describe("VocabularyService", () => {
 		const service = new VocabularyService(cardRepo, stateRepo, vocabulary);
 
 		const state = storage.load();
-		state.completedLessons = [1, 2];
+		state.completedLessons = taught(1, 2);
 		storage.save(state);
 
 		const unlearned = service.getUnlearnedWords();
@@ -157,7 +187,7 @@ describe("VocabularyService", () => {
 		const service = new VocabularyService(cardRepo, stateRepo, vocabulary);
 
 		const state = storage.load();
-		state.completedLessons = [1, 2];
+		state.completedLessons = taught(1, 2);
 		storage.save(state);
 
 		const lesson = service.getNextLesson();
@@ -178,7 +208,7 @@ describe("VocabularyService", () => {
 		const service = new VocabularyService(cardRepo, stateRepo, vocabulary);
 
 		const state = storage.load();
-		state.completedLessons = [1, 2];
+		state.completedLessons = taught(1, 2);
 		state.vocabCards["vocab:มา:thaiToEnglish"] = {
 			id: "vocab:มา:thaiToEnglish",
 			promptWord: "มา",
@@ -208,7 +238,7 @@ describe("VocabularyService", () => {
 		const service = new VocabularyService(cardRepo, stateRepo, vocabulary);
 
 		const state = storage.load();
-		state.completedLessons = [1, 2];
+		state.completedLessons = taught(1, 2);
 		state.vocabCards["vocab:มา:thaiToEnglish"] = {
 			id: "vocab:มา:thaiToEnglish",
 			promptWord: "มา",
@@ -243,7 +273,7 @@ describe("VocabularyService", () => {
 		const service = new VocabularyService(cardRepo, stateRepo, vocabulary);
 
 		const state = storage.load();
-		state.completedLessons = [1, 2];
+		state.completedLessons = taught(1, 2);
 		storage.save(state);
 
 		const cards = service.generateLessonCards();
@@ -286,7 +316,7 @@ describe("VocabularyService", () => {
 		const service = new VocabularyService(cardRepo, stateRepo, vocabulary);
 
 		const state = storage.load();
-		state.completedLessons = [1, 2];
+		state.completedLessons = taught(1, 2);
 		storage.save(state);
 
 		expect(service.getUnlockedCount()).toBe(2);
@@ -311,7 +341,7 @@ describe("VocabularyService", () => {
 		const service = new VocabularyService(cardRepo, stateRepo, vocabulary);
 
 		const state = storage.load();
-		state.completedLessons = [1, 2];
+		state.completedLessons = taught(1, 2);
 		storage.save(state);
 
 		// All 3 words pass mastery filter. First unlearned rank is 1, window is 1–50.
@@ -331,7 +361,7 @@ describe("VocabularyService", () => {
 		const service = new VocabularyService(cardRepo, stateRepo, vocabulary);
 
 		const state = storage.load();
-		state.completedLessons = [1, 2];
+		state.completedLessons = taught(1, 2);
 		// Learn the first word (rank 10) so the window starts at rank 20 → 20–69
 		state.vocabCards["vocab:มา0:thaiToEnglish"] = {
 			id: "vocab:มา0:thaiToEnglish",
@@ -369,7 +399,7 @@ describe("VocabularyService", () => {
 		const service = new VocabularyService(cardRepo, stateRepo, vocabulary);
 
 		const state = storage.load();
-		state.completedLessons = [1, 2];
+		state.completedLessons = taught(1, 2);
 		storage.save(state);
 
 		const unlocked = service.getUnlockedWords();
@@ -384,7 +414,7 @@ describe("VocabularyService", () => {
 		const service = new VocabularyService(cardRepo, stateRepo, vocabulary);
 
 		const state = storage.load();
-		state.completedLessons = [1, 2];
+		state.completedLessons = taught(1, 2);
 		state.vocabCards["vocab:มา:thaiToEnglish"] = {
 			id: "vocab:มา:thaiToEnglish",
 			promptWord: "มา",
@@ -421,7 +451,7 @@ describe("VocabularyService", () => {
 		const service = new VocabularyService(cardRepo, stateRepo, vocabulary);
 
 		const state = storage.load();
-		state.completedLessons = [1, 2];
+		state.completedLessons = taught(1, 2);
 		storage.save(state);
 
 		expect(service.getLearnedCount()).toBe(0);
@@ -447,7 +477,7 @@ describe("VocabularyService", () => {
 		const service = new VocabularyService(cardRepo, stateRepo, vocabulary);
 
 		const state = storage.load();
-		state.completedLessons = [1, 2];
+		state.completedLessons = taught(1, 2);
 		storage.save(state);
 
 		expect(service.getLearnedEntries()).toHaveLength(0); // none learned yet
@@ -479,7 +509,7 @@ describe("VocabularyService", () => {
 		const service = new VocabularyService(cardRepo, stateRepo, vocabulary);
 
 		const state = storage.load();
-		state.completedLessons = [1, 2];
+		state.completedLessons = taught(1, 2);
 		const baseSrs = {
 			easeFactor: 2.0,
 			interval: 10,
@@ -526,7 +556,7 @@ describe("VocabularyService", () => {
 			const vocabulary = [makeEntry()];
 			const service = new VocabularyService(cardRepo, stateRepo, vocabulary);
 			const state = storage.load();
-			state.completedLessons = [1, 2];
+			state.completedLessons = taught(1, 2);
 			storage.save(state);
 
 			expect(service.isPullable(vocabulary[0]!)).toBe(true);
@@ -536,7 +566,7 @@ describe("VocabularyService", () => {
 			const vocabulary = [makeEntry()];
 			const service = new VocabularyService(cardRepo, stateRepo, vocabulary);
 			const state = storage.load();
-			state.completedLessons = [1, 2];
+			state.completedLessons = taught(1, 2);
 			storage.save(state);
 			cardRepo.saveAll([
 				VocabCard.fromDTO({
@@ -564,7 +594,7 @@ describe("VocabularyService", () => {
 			const vocabulary = [makeEntry({ rank: null })];
 			const service = new VocabularyService(cardRepo, stateRepo, vocabulary);
 			const state = storage.load();
-			state.completedLessons = [1, 2];
+			state.completedLessons = taught(1, 2);
 			storage.save(state);
 
 			const pullable = service.getPullableWords();
@@ -575,7 +605,7 @@ describe("VocabularyService", () => {
 			const vocabulary = [makeEntry()];
 			const service = new VocabularyService(cardRepo, stateRepo, vocabulary);
 			const state = storage.load();
-			state.completedLessons = [1]; // characters mastered, tone rule "low-live" (lesson 2) is not
+			state.completedLessons = taught(1); // characters mastered, tone rule "low-live" (lesson 2) is not
 			storage.save(state);
 
 			expect(service.getMissingPrerequisites(vocabulary[0]!)).toEqual({
@@ -588,7 +618,7 @@ describe("VocabularyService", () => {
 			const vocabulary = [makeEntry()];
 			const service = new VocabularyService(cardRepo, stateRepo, vocabulary);
 			const state = storage.load();
-			state.completedLessons = [1, 2];
+			state.completedLessons = taught(1, 2);
 			storage.save(state);
 
 			expect(service.getMissingPrerequisites(vocabulary[0]!)).toEqual({
@@ -613,7 +643,7 @@ describe("VocabularyService", () => {
 			const vocabulary = [makeEntry()];
 			const service = new VocabularyService(cardRepo, stateRepo, vocabulary);
 			const state = storage.load();
-			state.completedLessons = [1, 2];
+			state.completedLessons = taught(1, 2);
 			storage.save(state);
 
 			const cards = service.generateCardsForWord("มา");
@@ -632,7 +662,7 @@ describe("VocabularyService", () => {
 			const vocabulary = [makeEntry()];
 			const service = new VocabularyService(cardRepo, stateRepo, vocabulary);
 			const state = storage.load();
-			state.completedLessons = [1, 2];
+			state.completedLessons = taught(1, 2);
 			storage.save(state);
 
 			expect(service.generateCardsForWord("ไม่มี")).toBeNull();
@@ -648,7 +678,7 @@ describe("VocabularyService", () => {
 				apprenticeService,
 			);
 			const state = storage.load();
-			state.completedLessons = [1, 2];
+			state.completedLessons = taught(1, 2);
 			storage.save(state);
 			stateRepo.setApprenticeLimits({ general: 0, script: 35, sentence: 60 });
 
@@ -686,7 +716,7 @@ describe("VocabularyService", () => {
 		const service = new VocabularyService(cardRepo, stateRepo, vocabulary);
 
 		const state = storage.load();
-		state.completedLessons = [1, 2]; // masters ม, น, า and "low-live" but NOT ก or "mid-live"
+		state.completedLessons = taught(1, 2); // masters ม, น, า and "low-live" but NOT ก or "mid-live"
 		storage.save(state);
 
 		const unlocked = service.getUnlockedWords();
@@ -722,7 +752,7 @@ describe("VocabularyService", () => {
 
 		function seedApprenticeWords(count: number): void {
 			const state = storage.load();
-			state.completedLessons = [1, 2];
+			state.completedLessons = taught(1, 2);
 			for (let i = 0; i < count; i++) {
 				const word = `word${i}`;
 				state.vocabCards[`vocab:${word}:thaiToEnglish`] = makeLearningVocabCard(
@@ -768,7 +798,7 @@ describe("VocabularyService", () => {
 
 		it("counts distinct words, not cards — multiple cards per word do not inflate the count", () => {
 			const state = storage.load();
-			state.completedLessons = [1, 2];
+			state.completedLessons = taught(1, 2);
 			// Add 19 words with 2 cards each = 38 cards but only 19 distinct words
 			for (let i = 0; i < 19; i++) {
 				const word = `word${i}`;

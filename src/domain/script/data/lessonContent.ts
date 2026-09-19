@@ -92,6 +92,7 @@ export function deckPathForLesson(
  * from any route until that sequencing decision is made.
  */
 export const DECK_LESSON_IDS: ReadonlySet<string> = new Set<string>([
+	"lesson-loops",
 	"lesson-01",
 	"lesson-02",
 	"lesson-03",

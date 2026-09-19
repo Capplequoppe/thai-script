@@ -1,4 +1,10 @@
 import { describe, expect, it } from "vitest";
+import { lessonEntryByNumber } from "../../domain/script/data/lessonSequence";
+
+/** The position of the lesson `symbols.ts` files under this number. */
+const at = (legacyNumber: number): number =>
+	lessonEntryByNumber(legacyNumber)?.position ?? legacyNumber;
+
 import { GrammarService } from "../../domain/grammar/services/GrammarLessonService";
 import type { GrammarEntry } from "../../domain/grammar/types";
 import { LearningService } from "../../domain/script/services/ScriptLessonService";
@@ -77,7 +83,7 @@ describe("StartLessonUseCase.pullInVocabWord", () => {
 		const vocabulary = [makeEntry()];
 		const { useCase, cardRepo, storage } = createUseCase(vocabulary);
 		const state = storage.load();
-		state.completedLessons = [1, 2];
+		state.completedLessons = [at(1), at(2)];
 		storage.save(state);
 
 		expect(useCase.pullInVocabWord("มา")).toBe(true);

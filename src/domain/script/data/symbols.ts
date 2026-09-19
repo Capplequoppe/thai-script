@@ -3182,6 +3182,21 @@ export interface Lesson {
 }
 
 export const lessons: Lesson[] = [
+	// The only lesson in the course that teaches no symbol: it teaches the two
+	// systems every symbol obeys, so that forty-four letters arrive as
+	// variations on something already held rather than as forty-four
+	// unrelated things.
+	{
+		number: 31,
+		title: "Before the First Letter",
+		focus:
+			"How Thai symbols are written and how Thai letters are named — the systems, before any instance",
+		consonants: [],
+		vowels: [],
+		toneMarks: [],
+		toneRulesIntroduced: [],
+		specialRulesIntroduced: [],
+	},
 	{
 		number: 1,
 		title: "Maaw maa, Naaw nuu, and Long a",

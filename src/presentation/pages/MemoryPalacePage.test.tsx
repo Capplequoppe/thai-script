@@ -11,7 +11,15 @@
  */
 import { fireEvent, screen, within } from "@testing-library/react";
 import { describe, expect, it, vi } from "vitest";
-import { lessonSequence } from "../../domain/script/data/lessonSequence";
+import {
+	lessonEntryByNumber,
+	lessonSequence,
+} from "../../domain/script/data/lessonSequence";
+
+/** The position of the lesson `symbols.ts` files under this number. */
+const at = (legacyNumber: number): number =>
+	lessonEntryByNumber(legacyNumber)?.position ?? legacyNumber;
+
 import { InMemoryStorage } from "../../infrastructure/persistence/Storage";
 import { renderWithApp } from "../test-utils/renderWithApp";
 import { MemoryPalacePage } from "./MemoryPalacePage";
@@ -31,9 +39,7 @@ function renderPalace() {
 	// indexes. Not `lessons[].number`: those are the pre-migration integers and
 	// the two diverge, so a legacy number runs past the end and the lookup
 	// throws.
-	state.completedLessons.push(
-		...lessonSequence.map((entry) => entry.position),
-	);
+	state.completedLessons.push(...lessonSequence.map((entry) => entry.position));
 	return renderWithApp(<MemoryPalacePage />, { state });
 }
 
@@ -254,7 +260,7 @@ describe("opening a letter from its district", () => {
 		// conversion lives.
 		expect(
 			within(screen.getByRole("dialog")).getByRole("button", {
-				name: /taught in lesson 1/i,
+				name: new RegExp(`taught in lesson ${at(1)}`, "i"),
 			}),
 		).toBeTruthy();
 	});

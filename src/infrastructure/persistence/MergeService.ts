@@ -108,5 +108,11 @@ export function mergeLearnerStates(
 		apprenticeLimits: current.apprenticeLimits,
 		reviewBatchSize: current.reviewBatchSize,
 		pendingCatchUps,
+		// Both sides reach this function already converted — `current` came
+		// through a load and `importData` migrates `incoming` before merging —
+		// so the result is in position space and must say so. Dropping the
+		// stamp here would hand the next load a state that looks legacy, and
+		// it would convert a second time, walking the learner forward a lesson.
+		lessonEpoch: current.lessonEpoch ?? incoming.lessonEpoch,
 	};
 }

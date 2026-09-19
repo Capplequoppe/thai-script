@@ -182,7 +182,12 @@ export function LessonIntro({
 			<div className="space-y-6">
 				<DeckSlide
 					deckPath={content.deckPath}
-					onComplete={() => setDeckDone(true)}
+					// A lesson that teaches no symbol has no card phase to hand
+					// over to, so the deck ending is the lesson ending. Without
+					// this the component renders nothing and never completes.
+					onComplete={() =>
+						cardSlides.length === 0 ? onComplete() : setDeckDone(true)
+					}
 				/>
 			</div>
 		);

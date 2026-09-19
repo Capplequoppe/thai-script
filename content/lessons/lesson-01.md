@@ -1,10 +1,4 @@
 <!--
-previews: ชอบกินข้าวที่บ้านมาก — one sentence shown whole on `loops-are-friends`
-and `stroke-order`, so a learner can see what Thai actually looks like before
-meeting a letter, and be told when they will be able to read it. Every word in
-it is inside the top hundred by frequency. Nothing here is taught or tested;
-the slides say outright that it cannot be read yet.
-
 previews: สระ and สระอา — the word *sara*, printed on `meet-aa` beside its
 romanisation. The learner hears it on the vowel's name recording and has no way
 to know it simply means "vowel", so the slide says so and shows the spelling
@@ -15,6 +9,11 @@ VOICE. Ajarn Pim — `docs/the-teacher.md` is who is speaking, here and in every
 other lesson. The learner has already met her in `orientation.md`: Songkhla,
 the alphabet song at seven, reading at twenty-six. This lesson draws on all
 three and retells none of them.
+
+The seven system slides this lesson used to open with — loops, stroke
+order, the naming pattern — are now `lesson-loops`, which runs before it.
+`ma-name` spends the naming rule and `see-ma` spends the loop rule, so
+both lessons are load-bearing for this one and neither may be reordered.
 
 This lesson is also the reference for how every later one should sound. A
 teacher talking to one person, in the room, with time. It asks questions and
@@ -155,66 +154,12 @@ lesson: lesson-01
 
 ## exposition overview
 heading: What is in this lesson, and why it matters
-narration: en Before we go anywhere near a letter, let me put the thing that sits underneath this whole alphabet in front of you, because it is the reason the script comes first and it takes about a minute to say. A great many Thai consonants make exactly the same sound as one another. There is one sound in here with six separate letters for writing it. Six, landing identically on your ear, all of them in ordinary daily use. That looks like a mess until you find out what the spare ones are carrying. Each of them belongs to a class. The class is most of what decides the tone of the syllable that letter lands in. So every consonant is doing two jobs at once. It hands you the sound, then it hands you the tune. Which is why a Thai reader never guesses a tone. They take it straight off the spelling, the way you take the beat off an English word you have never seen before. Nobody sat you down and taught you where the stress falls in a word like photograph. You put it in the right place anyway. All of that is what gets thrown away when somebody learns this language out of romanised text. Most of them never find out that they threw it away. They spend years saying words that are very nearly right, being politely misunderstood, then deciding privately that they have no ear for languages. Today, then. Two consonants, one vowel, one habit you are going to have to take out of your own voice. And three real Thai words to read by the end of it.
+narration: en Right. Last time you got the systems — how a Thai symbol is written, how a Thai letter is named — and no letters at all to use them on. That was deliberate, and it stops now. Today two consonants go in, and one vowel, and by the end of it you will be reading three real Thai words. Not recognising them. Reading them, out loud, on the right tone, having built each one yourself out of parts you will have met a few minutes earlier.
+narration: en There is one more thing in here that nobody warns you about, and it is a habit in your own voice rather than anything on the page. We will get to it when you can hear it. And everything you learn today lands somewhere — a real place, with weather and noise and people in it. That is the part that sounds strange until it happens to you.
 - Two consonants, one vowel.
+- Three real Thai words, built rather than memorised.
 - One habit of the voice.
-- Three real Thai words.
-- Many consonants share a sound. Their **class** is what separates them.
-
-## exposition loops-are-friends
-thai: ชอบกินข้าวที่บ้านมาก
-heading: The loops are your friends
-narration: en That is a sentence of ordinary Thai on the screen. Look at it properly for a moment, because I want you to see it now, at the point where it means nothing to you at all.
-narration: en If you have ever seen Thai written down you probably thought it was a great many squiggles and loops, and I understand completely why that looks frightening. Six words. Six. There is no space between any of them either, which is the other thing people notice and quietly panic about.
-narration: en Now count the little circles. Nearly every one of those shapes has one, usually at a corner, usually where you would start drawing it. That is the first thing I am taking off you as a problem and handing back as a tool, before you have met a single letter. The loops are the most useful thing on the page. Once you know what they are doing there, they stop being decoration and start telling you where to put your pen.
-- **ชอบกินข้าวที่บ้านมาก** — six ordinary words, run together with no spaces.
-- Thai script looks like squiggles and loops.
-- The loops are your friends. They tell you where the pen goes down.
-
-## exposition stroke-order
-thai: ชอบกินข้าวที่บ้านมาก
-heading: There is a right way to write every symbol
-narration: en Same sentence, still unreadable, and I will leave it there while I tell you what your hand is going to do with it.
-narration: en Every symbol in Thai has a stroke order — a correct place to start, a correct way to carry on, a correct way to finish. Almost all of them are drawn as a single continuous stroke, with the pen never leaving the paper. Most of them have a loop, at least when they are written the traditional way. There is your first cheat code. Wherever a symbol has a loop, that loop is where you start. One fact like that covers most of the alphabet. A piece of vocabulary before we move on. The loop a symbol starts from has a name: it is called the head. So when I say a letter's head curls one way or the other, you know what I am pointing at and you know it is where your pen goes first. Makes sense?
-narration: en One more thing about that sentence before it goes away. Nine of the shapes in it arrive in the next three lessons, so it will start opening up faster than you expect. The last pieces are the two small marks sitting above the line, which decide the tune the words are sung on, and those come near the end.
-narration: en When they do, you will not just recognise this. You will read it aloud on the right tones, write it out by hand, and know what it says — which is somebody telling you they very much like eating at home. I am showing it to you on day one so that you have something to measure yourself against later.
-- Every symbol has a **stroke order** — a right way to write it.
-- Almost all are one continuous stroke, pen never lifted.
-- **Cheat code one:** start at the loop, if there is one.
-- The starting loop is called the **head**.
-- **ชอบกินข้าวที่บ้านมาก** — you'll read, say and write this yourself before the end.
-
-## exposition loop-direction
-heading: Which way the loop turns
-narration: en Careful here, because this is where the alphabet tries to double its own size on you. Heads turn. They do not all turn the same way — some go clockwise, some go round the other way. There are pairs of letters where that single difference is the whole of what separates them. You will meet one of those pairs in a few lessons' time. Which appears to leave you with forty-four letters and a direction to memorise on every one of them. [pause] Look at that again before you accept it. The real list is far shorter. Most symbols turn clockwise. The ones going the other way come to less than half as many. So leave the crowd alone. Assume clockwise, because it usually is, then go to the trouble of learning only the handful that refuse. Your second cheat code.
-- Some loops go **clockwise**, others **counter-clockwise**.
-- Some characters differ *only* in that.
-- Most symbols turn **clockwise**. Less than half as many go the other way.
-- **Cheat code two:** assume clockwise, and learn only the exceptions.
-
-## exposition names-two-parts
-heading: Every letter has a two-part name
-narration: en Names next, and this is the one I wish somebody had said out loud to me when I was small, because I sang these things for years of my childhood without ever noticing what the front of them was for. Thai gives every letter a proper name, two words long, in a way English never bothered with. Children get the names before anything else. They get them as a song. There is a tune. It goes at a fair clip. A child of six can rattle off all forty-four in order without stopping for breath — my nephew is six and he goes faster than I can follow, which he knows perfectly well. What nobody ever mentioned to me, and what I did not work out until I was grown and sitting down with a book, is that the first word of each of those names is an instruction. It is the letter's own sound, said out loud, with one fixed vowel hung off the back of it so that the thing can be sung at all. It is the same vowel every single time, on all forty-four. It is the one in the English word "awe". Try the pattern on your own alphabet: name the letters S, P and J the Thai way and out they come as "Saw", "Paw" and "Jaw". Consonant at the front, that one vowel behind it, nothing else to it. All of which means the front of a name is worth a great deal to you. The only thing you ever have to catch is the sound at the very start, because everything behind it is identical on all forty-four of them. I had that identical part in my mouth for most of my life before anybody told me the rest of it was a pronunciation guide.
-- Every letter's name has **two parts**.
-- Catch the sound at the front. The rest never changes.
-- First part = **the consonant sound plus one fixed vowel**, the one in "awe".
-- In English it would be **Saw**, **Paw**, **Jaw**.
-
-## exposition names-nato
-heading: And the second part is the NATO alphabet
-narration: en So why a second half at all? Because a great many Thai consonants make exactly the same sound as one another. A first half on its own would leave nobody any the wiser about which letter you meant. You already know how people solve that. Spelling your surname down a bad phone line, you reach for Alpha, Bravo, Charlie, Delta. Thai built the same solution into the alphabet itself: every consonant carries an everyday word beginning with its own sound. That word is the second half of its name. And those words are exactly what I had in my head for twenty years. The song my grandmother taught me is a list of them — the first letter is the chicken, and on through all forty-four in order. Having the words was pleasant and completely useless on its own. What I never had was any idea which shape each word belonged to, and that shape is the half we are building here.
-- Many consonants share a sound, so the name needs a second half.
-- That half is an everyday word starting with that sound.
-- Exactly like Alpha, Bravo, Charlie — built into the alphabet itself.
-- The alphabet song is a list of these words. It teaches no shapes.
-
-## exposition names-superpower
-heading: Why that turns into a superpower here
-narration: en Which is where this course does something with that convention that nobody in a Thai classroom bothers to do. Every classroom I ever sat in treated the word on a letter's name as a label and left it at that. We take that word and put it somewhere instead — a particular place, with something happening in it. The place then hands you the grammar afterwards without your ever working for it. You will see the whole machinery inside four minutes, so trust me with it until then. Explaining a thing like this in advance convinces nobody. Having it work on you once convinces everybody. There is a bonus you get whether you want it or not. Forty-four consonants means forty-four ordinary Thai words, picked up while you were busy learning letters, with no vocabulary study anywhere in sight. That was quite the introduction, I know. Every part of it gets spent today and you never have to be told any of it again. Ready for your first consonant?
-- Each letter comes attached to a **word**.
-- We put those words in **places**, and build stories there.
-- The place quietly teaches the grammar. And you get 44 free words.
-- Loops, stroke order and the naming system — all paid for once.
+- And a place to keep it all.
 
 ## exposition meet-ma
 glyph: ม
@@ -232,7 +177,7 @@ narration: en Close your lips and hum through your nose. Keep going — hold it 
 ## exposition ma-name
 heading: Its name, and how to use what comes next
 teaches: mo-ma
-narration: en Its name, then. The sound you have just been holding, with that fixed vowel behind it, and then the everyday word that starts the same way. Want to hear it?
+narration: en Its name, then — and it is built exactly the way you learned last time. The sound you have just been holding, with that fixed vowel behind it, and then the everyday word that starts the same way. Want to hear it?
 recording: th มอ ม้า public/audio/consonant-mo-ma.mp3
 narration: en The word on the end of it means horse. Hold on to that, because the next few minutes are about one particular horse. And this is the part of the course that sounds strange the first time, so stay with me. I am going to tell you a story, with pictures beside it. Following the story is the wrong job. Your job is to stand inside it — hear what it sounds like, feel the air on your face, smell the place, look around you. And let it get to you. Memory is physical and social a long time before it is verbal, which is exactly why a thing that happened to somebody stays while a list of letters slides straight off. The more of your senses you put in, the harder it holds. Come down to the harbour with me and I will tell it to you there.
 - Its name: the hum plus the fixed vowel, then a word.

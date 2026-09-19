@@ -87,6 +87,9 @@ const RESEQUENCED: readonly LessonSequenceEntry[] = [
 function legacyState(): LearnerState {
 	return {
 		...structuredClone(INITIAL_LEARNER_STATE),
+		// Written before the epoch field existed, which is the only thing that
+		// marks a state as still carrying legacy numbers.
+		lessonEpoch: undefined,
 		completedLessons: [7, 4],
 		currentLesson: 9,
 		cards: {
@@ -189,7 +192,10 @@ describe("migrateLessonIdentity", () => {
 
 		expect(() => migrateLessonIdentity(state)).not.toThrow();
 
-		expect(state.completedLessons).toEqual([lesson12Position]);
+		// Position 1 rides along because this learner had progress and
+		// `lesson-loops` was carved out of lesson 1's opening; what this test
+		// is pinning is that the retired numbers resolved at all.
+		expect(state.completedLessons).toContain(lesson12Position);
 		expect(state.currentLesson).toBe(lesson14Position);
 		expect(state.cards["ม:initialSound"].lessonNumber).toBe(lesson12Position);
 		expect(state.pendingCatchUps).toEqual([
@@ -222,29 +228,39 @@ describe("migrateState — the one conversion boundary (AC1, AC2)", () => {
 	it("converts a five-store pre-migration fixture in one load", () => {
 		const state = loadFixture(FIVE_STORE_FIXTURE);
 
-		// Under the sequence as declared today the mapping is the identity —
-		// nothing a learner has moves. Every store came through the one pass.
-		expect(state.completedLessons).toEqual([1, 2, 3]);
-		expect(state.currentLesson).toBe(4);
-		expect(state.cards["ม:initialSound"].lessonNumber).toBe(1);
-		expect(state.cards["น:initialSound"].lessonNumber).toBe(2);
+		// `lesson-loops` sits at position 1, so every legacy number lands one
+		// further along — and every store moved together in the one pass.
+		// Position 1 is credited because this learner was taught its content
+		// back when it was the opening of the lesson they finished.
+		expect(state.completedLessons).toEqual([1, 2, 3, 4]);
+		expect(state.currentLesson).toBe(5);
+		expect(state.cards["ม:initialSound"].lessonNumber).toBe(2);
+		expect(state.cards["น:initialSound"].lessonNumber).toBe(3);
 		expect(state.pendingCatchUps).toEqual([
-			{ lessonNumber: 3, cardIds: ["ม:initialSound"] },
+			{ lessonNumber: 4, cardIds: ["ม:initialSound"] },
 		]);
 	});
 
-	it("re-serialises the pre-migration fixture byte-identically, and re-saving is stable", () => {
+	it("moves a pre-migration fixture once, and then holds it still", () => {
 		const adapter = new LocalStorageAdapter();
 		fakeLocalStorage.setItem(KEY, FIVE_STORE_FIXTURE);
 
+		// It moves: the mapping stopped being the identity when a lesson was
+		// inserted at the front of the course.
 		const state = adapter.load();
-		expect(JSON.stringify(state)).toBe(FIVE_STORE_FIXTURE);
+		expect(JSON.stringify(state)).not.toBe(FIVE_STORE_FIXTURE);
+		const converted = JSON.stringify(state);
 
+		// And then it holds still, however many times it is loaded and saved.
+		// Without the epoch marker each pass would read the positions as legacy
+		// numbers and move the learner one lesson further along again.
 		adapter.save(state);
-		expect(fakeLocalStorage.getItem(KEY)).toBe(FIVE_STORE_FIXTURE);
-		expect(JSON.stringify(new LocalStorageAdapter().load())).toBe(
-			FIVE_STORE_FIXTURE,
-		);
+		expect(JSON.stringify(adapter.load())).toBe(converted);
+		adapter.save(adapter.load());
+		expect(JSON.stringify(adapter.load())).toBe(converted);
+		// A fresh adapter over the already-converted bytes must agree: the
+		// epoch is in the stored state, not in the adapter instance.
+		expect(JSON.stringify(new LocalStorageAdapter().load())).toBe(converted);
 	});
 
 	it("runs the lesson conversion inside migrateState, not per consumer", () => {
@@ -358,7 +374,9 @@ describe("importData migrates before it merges", () => {
 		adapter.importData(legacyExport);
 
 		const merged = adapter.load();
-		expect(merged.completedLessons.sort()).toEqual([1, 2, 3]);
+		// The imported blob's lessons 1-3 land one position further along, and
+		// position 1 is credited to a learner who already had progress.
+		expect(merged.completedLessons.sort()).toEqual([1, 2, 3, 4]);
 		// The imported card exists and carries the migrated SRS shape — proof
 		// the import passed through migrateState before mergeLearnerStates.
 		expect(merged.cards["ม:initialSound"].srs.learningStep).toBeNull();
