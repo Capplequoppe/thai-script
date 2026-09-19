@@ -12,10 +12,9 @@
 				"Eight boxes hold a tone. Four stay empty in every standard spelling."
 			],
 			"audio": [
-				"/thai-script/lessons/lesson-tone-marks/audio/b6978a7f4fce125e.mp3",
-				"/thai-script/lessons/lesson-tone-marks/audio/ab20e2368f07f0b4.mp3"
+				"/thai-script/lessons/lesson-tone-marks/audio/73ba91ff5be39ded.mp3"
 			],
-			"audioLanguages": ["en", "en"],
+			"audioLanguages": ["en"],
 			"image": "/thai-script/lessons/lesson-tone-marks/images/what-is-here-8619da93dbce.jpg"
 		},
 		{
@@ -73,7 +72,7 @@
 				"Write each of them above a letter you already know."
 			],
 			"audio": [
-				"/thai-script/lessons/lesson-tone-marks/audio/a4e296c120c7c6ae.mp3",
+				"/thai-script/lessons/lesson-tone-marks/audio/600d7dccf6e19376.mp3",
 				"/thai-script/lessons/lesson-tone-marks/audio/871bea1de6dadafb.mp3",
 				"/thai-script/lessons/lesson-tone-marks/audio/6cea7f18ef4fe7d7.mp3",
 				"/thai-script/lessons/lesson-tone-marks/audio/f32e4e75d7cb417e.mp3",
@@ -306,7 +305,7 @@
 			],
 			"audio": [
 				"/thai-script/lessons/lesson-tone-marks/audio/755cd9f806f260fc.mp3",
-				"/thai-script/lessons/lesson-tone-marks/audio/2e4bac939714ddc8.mp3"
+				"/thai-script/lessons/lesson-tone-marks/audio/806a706a1cdca915.mp3"
 			],
 			"audioLanguages": ["th", "en"],
 			"thai": "ม้า",
@@ -372,7 +371,7 @@
 				"Next: two consonants run together at the front of a syllable."
 			],
 			"audio": [
-				"/thai-script/lessons/lesson-tone-marks/audio/976dfb72707c1928.mp3"
+				"/thai-script/lessons/lesson-tone-marks/audio/31cb3945e5636a5a.mp3"
 			],
 			"audioLanguages": ["en"]
 		}

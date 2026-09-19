@@ -205,11 +205,11 @@
 			"heading": "That one",
 			"body": [
 				"**นอน** — to lie down, or to sleep.",
-				"Harbour letter, live ending, flat and level."
+				"Harbour letter, the syllable alive, flat and level."
 			],
 			"audio": [
 				"/thai-script/lessons/lesson-11/audio/8b269b6e07a695a9.mp3",
-				"/thai-script/lessons/lesson-11/audio/9faba83ba7ce0fe9.mp3"
+				"/thai-script/lessons/lesson-11/audio/c42330b00122bf05.mp3"
 			],
 			"audioLanguages": ["th", "en"],
 			"thai": "นอน",
@@ -318,13 +318,13 @@
 			"id": "the-grid-so-far",
 			"heading": "Three corners you already hold",
 			"body": [
-				"A tone comes from the district, and from live against dead.",
+				"A tone comes from the district, and from alive against dead.",
 				"Four corners per district, and the market has had one since lesson three.",
-				"**ตาม** — to follow. Market letter, live ending, flat and level.",
+				"**ตาม** — to follow. Market letter, the syllable alive, flat and level.",
 				"The two dead corners are all that is left."
 			],
 			"audio": [
-				"/thai-script/lessons/lesson-11/audio/1314a558c2c321f9.mp3",
+				"/thai-script/lessons/lesson-11/audio/d5704a163c1eaa09.mp3",
 				"/thai-script/lessons/lesson-11/audio/8e46b34582dbc904.mp3",
 				"/thai-script/lessons/lesson-11/audio/ca0e15449ebb542a.mp3"
 			],
@@ -396,7 +396,7 @@
 				"One rule in practice, because both lengths give the same answer.",
 				"The market's grid is closed, in all four corners."
 			],
-			"audio": ["/thai-script/lessons/lesson-11/audio/bef611ac64189c0b.mp3"],
+			"audio": ["/thai-script/lessons/lesson-11/audio/19129793843d1d2c.mp3"],
 			"audioLanguages": ["en"],
 			"teaches": ["mid-dead-short", "mid-dead-long"]
 		},
@@ -429,7 +429,7 @@
 		}
 	],
 	"timing": {
-		"spokenSeconds": 710,
+		"spokenSeconds": 713,
 		"practiceSeconds": 236,
 		"estimatedMinutes": 16
 	}

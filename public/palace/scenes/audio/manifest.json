@@ -1,7 +1,7 @@
 {
 	"hill-monk-climbs": {
-		"bytes": 267119,
-		"digest": "31d8141993f2c3e9",
+		"bytes": 286137,
+		"digest": "92de092b8a6635d6",
 		"file": "hill-monk-climbs.mp3",
 		"tone": "rising"
 	},
@@ -12,8 +12,8 @@
 		"tone": "rising"
 	},
 	"paddy-alive": {
-		"bytes": 288644,
-		"digest": "4f085b105238c330",
+		"bytes": 293033,
+		"digest": "c53f8c51d77adc45",
 		"file": "paddy-alive.mp3",
 		"tone": "mid"
 	},
@@ -54,8 +54,8 @@
 		"tone": "falling"
 	},
 	"well-speared-once": {
-		"bytes": 265657,
-		"digest": "027a69d02d5afd84",
+		"bytes": 266075,
+		"digest": "2185f09a3c14cada",
 		"file": "well-speared-once.mp3",
 		"tone": "low"
 	},

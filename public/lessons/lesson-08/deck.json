@@ -201,9 +201,9 @@
 		{
 			"kind": "retrieval",
 			"id": "final-r",
-			"prompt": "A syllable is written with the boat's letter in last position. What sound ends it, and is the syllable live or dead?",
+			"prompt": "A syllable is written with the boat's letter in last position. What sound ends it, and is the syllable alive or dead?",
 			"revealSlideId": "final-r-answer",
-			"audio": ["/thai-script/lessons/lesson-08/audio/bc9710bacd1c5c19.mp3"],
+			"audio": ["/thai-script/lessons/lesson-08/audio/7bc62517242a2303.mp3"],
 			"audioLanguages": ["en"],
 			"teaches": ["ro-ria"]
 		},
@@ -213,10 +213,10 @@
 			"retrievalSlideId": "final-r",
 			"answers": [
 				"It ends in **n**.",
-				"**Live** — because n is one of the hummable five.",
-				"It takes the live rule for its class, as the mouse's letter would."
+				"**Alive** — because n is one of the hummable five.",
+				"It counts as alive for its class, as the mouse's letter would."
 			],
-			"audio": ["/thai-script/lessons/lesson-08/audio/030ed8d2607b76b0.mp3"],
+			"audio": ["/thai-script/lessons/lesson-08/audio/c3f09edd9dc96c04.mp3"],
 			"audioLanguages": ["en"],
 			"teaches": ["ro-ria"]
 		},
@@ -271,11 +271,11 @@
 			"heading": "That one",
 			"body": [
 				"**แดง** — red.",
-				"Live ending, low class, and the tone comes out flat."
+				"The syllable alive, low class, and the tone comes out flat."
 			],
 			"audio": [
 				"/thai-script/lessons/lesson-08/audio/00aa3495f5c6937a.mp3",
-				"/thai-script/lessons/lesson-08/audio/64eb2cb9c3b77c3b.mp3"
+				"/thai-script/lessons/lesson-08/audio/1eb6628a351b27f0.mp3"
 			],
 			"audioLanguages": ["th", "en"],
 			"thai": "แดง",
@@ -368,7 +368,7 @@
 		}
 	],
 	"timing": {
-		"spokenSeconds": 490,
+		"spokenSeconds": 492,
 		"practiceSeconds": 206,
 		"estimatedMinutes": 12
 	}

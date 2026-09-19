@@ -344,7 +344,7 @@ export const toneRules: ToneRule[] = [
 		syllableType: "live",
 		resultingTone: "mid",
 		description:
-			"Low class consonant + live syllable = mid tone. A mid tone is pronounced at a flat pitch in the middle of your regular vocal range.",
+			"Low class consonant, and a syllable that ends alive, = mid tone. A mid tone is pronounced at a flat pitch in the middle of your regular vocal range.",
 		lesson: 2,
 	},
 	// Lesson 3: Mid class live
@@ -353,7 +353,8 @@ export const toneRules: ToneRule[] = [
 		consonantClass: ThaiSymbolClass.Mid,
 		syllableType: "live",
 		resultingTone: "mid",
-		description: "Mid class consonant + live syllable = mid tone.",
+		description:
+			"Mid class consonant, and a syllable that ends alive, = mid tone.",
 		lesson: 3,
 	},
 	// Lesson 4: Low class dead short
@@ -400,7 +401,8 @@ export const toneRules: ToneRule[] = [
 		consonantClass: ThaiSymbolClass.High,
 		syllableType: "live",
 		resultingTone: "rising",
-		description: "High class consonant + live syllable = rising tone.",
+		description:
+			"High class consonant, and a syllable that ends alive, = rising tone.",
 		lesson: 12,
 	},
 	// Lesson 13: High class dead
@@ -502,9 +504,9 @@ export interface SpecialRule {
 export const specialRules: SpecialRule[] = [
 	{
 		id: "live-endings",
-		title: "Live Consonant Endings",
+		title: "Endings That Leave a Syllable Alive",
 		description:
-			"Only ม, น, ง, ย, and ว can end a syllable and keep it live. These sounds can resonate indefinitely (mmm, nnn, nggg). Syllables ending in long vowels with no final consonant are also live.",
+			"Only ม, น, ง, ย, and ว can end a syllable and keep it alive. These sounds can resonate indefinitely (mmm, nnn, nggg). A syllable ending on a long vowel with no final consonant is alive too.",
 		lesson: 2,
 	},
 	{
@@ -546,7 +548,7 @@ export const specialRules: SpecialRule[] = [
 		id: "ao-ai-tone-exception",
 		title: "สระ เอา and สระ ไอ Tone Exception",
 		description:
-			"Although สระ เอา (ao) and สระ ไอ/ใอ (ai) are short vowels, they count as long vowels / live syllable endings for tone determination purposes.",
+			"Although สระ เอา (ao) and สระ ไอ/ใอ (ai) are short vowels, for working out the tone they count as long vowels — endings that leave the syllable alive.",
 		lesson: 10,
 	},
 	{
@@ -595,7 +597,7 @@ export const specialRules: SpecialRule[] = [
 		id: "sara-am-properties",
 		title: "สระ อำ (sara am) Properties",
 		description:
-			"สระ อำ combines สระ อะ (a) + ม (m). It always forms a live syllable because of its built-in final ม sound. Any letters following it begin the next syllable.",
+			"สระ อำ combines สระ อะ (a) + ม (m). Its built-in final ม sound always leaves the syllable alive. Any letters following it begin the next syllable.",
 		lesson: 13,
 	},
 	{

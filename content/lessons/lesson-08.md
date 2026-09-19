@@ -181,17 +181,17 @@ narration: en No roll anywhere in it. It ends on an n, because that is what the 
 
 ## retrieval final-r
 reveal: final-r-answer
-prompt: A syllable is written with the boat's letter in last position. What sound ends it, and is the syllable live or dead?
+prompt: A syllable is written with the boat's letter in last position. What sound ends it, and is the syllable alive or dead?
 teaches: ro-ria
-narration: en So here is the question, and it has two halves. A syllable is written with the boat's letter in last position. First: what sound actually ends it? And second, which is the half that matters: is that syllable live or dead?
+narration: en So here is the question, and it has two halves. A syllable is written with the boat's letter in last position. First: what sound actually ends it? And second, which is the half that matters: is that syllable alive or dead?
 
 ## reveal final-r-answer
 retrieval: final-r
 teaches: ro-ria
-narration: en It ends in n. And it is live — because n is one of the five you can hum, and the boat's letter landing as n inherits everything n has. So that syllable takes the live rule for its class, exactly as if the letter written there had been the mouse's all along.
+narration: en It ends in n. And it is alive — because n is one of the five you can hum, and the boat's letter landing as n inherits everything n has. So that syllable counts as alive for its class, exactly as if the letter written there had been the mouse's all along.
 - It ends in **n**.
-- **Live** — because n is one of the hummable five.
-- It takes the live rule for its class, as the mouse's letter would.
+- **Alive** — because n is one of the hummable five.
+- It counts as alive for its class, as the mouse's letter would.
 
 ## exposition twin-masts
 image: images/lesson-08/twin-masts.jpg
@@ -230,9 +230,9 @@ thai: แดง
 heading: That one
 teaches: sara-aae
 narration: th แดง
-narration: en Red. It ends on a hum, so it is live, and a live syllable on a low-class letter with no tone mark comes out flat.
+narration: en Red. It ends on a hum, so it is alive, and a syllable that ends alive on a low-class letter with no tone mark comes out flat.
 - **แดง** — red.
-- Live ending, low class, and the tone comes out flat.
+- The syllable alive, low class, and the tone comes out flat.
 
 ## exposition the-short-twins
 image: images/lesson-08/the-short-twins.jpg

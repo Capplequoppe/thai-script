@@ -239,10 +239,10 @@ narration: en Pen again. The pedestal is the plate's curve set above a separate 
 thai: รัฐ
 heading: Read this one
 teaches: tho-than
-narration: en Three marks. The boat's letter from lesson eight, the curl on the roof from lesson four, and then the pedestal's letter sealing it. Think about what the pedestal is doing back there. It is a breathed t at the front of a syllable, and a breathed letter closing one has behaved the same way since lesson seven. So: which district opens it, is the syllable live or dead, and is the vowel long or short? Then say it out loud before you turn it over.
+narration: en Three marks. The boat's letter from lesson eight, the curl on the roof from lesson four, and then the pedestal's letter sealing it. Think about what the pedestal is doing back there. It is a breathed t at the front of a syllable, and a breathed letter closing one has behaved the same way since lesson seven. So: which district opens it, is the syllable alive or dead, and is the vowel long or short? Then say it out loud before you turn it over.
 - Boat, the curl on the roof, the pedestal closing it.
 - **A breathed letter at the back loses its breath.** Lesson seven.
-- District, live or dead, long or short. Then say it.
+- District, alive or dead, long or short. Then say it.
 
 ## exposition read-rat-answer
 thai: รัฐ
@@ -438,9 +438,9 @@ thai: เดือน
 heading: That one
 teaches: sara-uuea
 narration: th เดือน
-narration: en A month, and it is also the word for the moon. The child's letter stands in the market. The mouse closes the syllable with a hum, so it is live, and a market letter on a live syllable is flat. Five marks and one syllable. Count the marks again, then say it as a single beat.
+narration: en A month, and it is also the word for the moon. The child's letter stands in the market. The mouse closes the syllable with a hum, so it is alive, and a market letter on a syllable that ends alive is flat. Five marks and one syllable. Count the marks again, then say it as a single beat.
 - **เดือน** — a month, and also the moon.
-- Market letter, live ending — flat.
+- Market letter, the syllable alive — flat.
 - Five marks, one syllable.
 
 ## exposition rare-vowel-signs

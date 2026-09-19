@@ -129,7 +129,7 @@
 				"The harbour needed two rules here. The temple needs one."
 			],
 			"audio": [
-				"/thai-script/lessons/lesson-13/audio/34ea6e5d77848003.mp3",
+				"/thai-script/lessons/lesson-13/audio/7b8ae13781d77b18.mp3",
 				"/thai-script/lessons/lesson-13/audio/b2c5bd78888ea3a7.mp3",
 				"/thai-script/lessons/lesson-13/audio/027a7a974443d528.mp3",
 				"/thai-script/lessons/lesson-13/audio/f8548190352ce363.mp3",
@@ -197,13 +197,13 @@
 			"body": [
 				"The word means a **novice monk**.",
 				"The mouse's n, and the two sound identical.",
-				"It closes a syllable with a hum, so the syllable stays live.",
+				"It closes a syllable with a hum, so the syllable stays alive.",
 				"A whole **chicken frame first**, and the mouse's loop last."
 			],
 			"audio": [
 				"/thai-script/lessons/lesson-13/audio/0e5b9ecbf64d46eb.mp3",
 				"/thai-script/lessons/lesson-13/audio/631964264bd41a5b.mp3",
-				"/thai-script/lessons/lesson-13/audio/035ecbab67b33fd2.mp3"
+				"/thai-script/lessons/lesson-13/audio/072f91368866dd8d.mp3"
 			],
 			"audioLanguages": ["en", "th", "en"],
 			"teaches": ["no-nen"],
@@ -286,7 +286,7 @@
 			"body": [
 				"Junk, long post, hermit, long post.",
 				"One harbour letter and one temple letter, in one word.",
-				"Both halves run live. **Out loud before you turn it over.**"
+				"Both halves run alive. **Out loud before you turn it over.**"
 			],
 			"audio": ["/thai-script/lessons/lesson-13/audio/8bfff96d58d2eab3.mp3"],
 			"audioLanguages": ["en"],
@@ -299,12 +299,12 @@
 			"heading": "That one",
 			"body": [
 				"**ภาษา** — a language.",
-				"First half: harbour, live — flat.",
-				"Second half: temple, live — rising."
+				"First half: harbour, alive — flat.",
+				"Second half: temple, alive — rising."
 			],
 			"audio": [
 				"/thai-script/lessons/lesson-13/audio/59f7dd54152b1d4e.mp3",
-				"/thai-script/lessons/lesson-13/audio/c622f0486f954b60.mp3"
+				"/thai-script/lessons/lesson-13/audio/6f124ef147cced0d.mp3"
 			],
 			"audioLanguages": ["th", "en"],
 			"thai": "ภาษา",
@@ -341,14 +341,14 @@
 		{
 			"kind": "exposition",
 			"id": "am-is-always-live",
-			"heading": "Which means every syllable it finishes is live",
+			"heading": "Which means every syllable it finishes is alive",
 			"body": [
 				"The syllable ends on a hum, so the air keeps running.",
-				"Every syllable this vowel finishes is **live**.",
+				"Every syllable this vowel finishes is **alive**.",
 				"Short as it is, the hum keeps the air running, so the syllable lives."
 			],
 			"audio": [
-				"/thai-script/lessons/lesson-13/audio/c7b9534c466ab81a.mp3",
+				"/thai-script/lessons/lesson-13/audio/09eea726686185c4.mp3",
 				"/thai-script/lessons/lesson-13/audio/c1787b0def4f83a2.mp3",
 				"/thai-script/lessons/lesson-13/audio/7f0082476382b310.mp3"
 			],
@@ -376,13 +376,13 @@
 			"heading": "That one",
 			"body": [
 				"**สำคัญ** — important.",
-				"First half: temple, live — rising.",
-				"Second half: harbour, live — flat.",
-				"The woman's letter lands as **n**, and the hum keeps it live."
+				"First half: temple, alive — rising.",
+				"Second half: harbour, alive — flat.",
+				"The woman's letter lands as **n**, and the hum keeps it alive."
 			],
 			"audio": [
 				"/thai-script/lessons/lesson-13/audio/60954bf115f85b31.mp3",
-				"/thai-script/lessons/lesson-13/audio/1106de35559f7c1a.mp3"
+				"/thai-script/lessons/lesson-13/audio/8ec0c46fecb561cf.mp3"
 			],
 			"audioLanguages": ["th", "en"],
 			"thai": "สำคัญ",
@@ -485,11 +485,11 @@
 			"body": [
 				"**เดิน** — to walk.",
 				"The long vowel in its closed shape, brim on the roof.",
-				"Market letter, live syllable, flat."
+				"Market letter, the syllable alive, flat."
 			],
 			"audio": [
 				"/thai-script/lessons/lesson-13/audio/a9699e7dce9facb9.mp3",
-				"/thai-script/lessons/lesson-13/audio/a6287a0061bfe4e1.mp3"
+				"/thai-script/lessons/lesson-13/audio/333ac288ce7cf914.mp3"
 			],
 			"audioLanguages": ["th", "en"],
 			"thai": "เดิน",
@@ -561,10 +561,10 @@
 			"answers": [
 				"**ศึกษา** — to study.",
 				"First half: stopped by the chicken, so dead — low.",
-				"Second half: open long vowel, so live — rising.",
+				"Second half: open long vowel, so alive — rising.",
 				"Both temple rules in a single word."
 			],
-			"audio": ["/thai-script/lessons/lesson-13/audio/969745029e217432.mp3"],
+			"audio": ["/thai-script/lessons/lesson-13/audio/e5aff4384d73e4c4.mp3"],
 			"audioLanguages": ["en"],
 			"teaches": ["so-sala", "so-risi", "high-dead-short", "high-live"]
 		},
@@ -599,12 +599,12 @@
 				"**ำ** carries its own m, **เ-อ** wraps around, and **์** silences.",
 				"Next: the last ten letters, and two the language has retired."
 			],
-			"audio": ["/thai-script/lessons/lesson-13/audio/f7747bd19bae86ba.mp3"],
+			"audio": ["/thai-script/lessons/lesson-13/audio/42f462ce7af727c4.mp3"],
 			"audioLanguages": ["en"]
 		}
 	],
 	"timing": {
-		"spokenSeconds": 1136,
+		"spokenSeconds": 1148,
 		"practiceSeconds": 284,
 		"estimatedMinutes": 24
 	}

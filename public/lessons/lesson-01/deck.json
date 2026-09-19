@@ -45,7 +45,7 @@
 			"audio": [
 				"/thai-script/lessons/lesson-01/audio/45c6d46de7ca1c25.mp3",
 				"/thai-script/lessons/lesson-01/audio/755cd9f806f260fc.mp3",
-				"/thai-script/lessons/lesson-01/audio/8cab39c883974e40.mp3"
+				"/thai-script/lessons/lesson-01/audio/0932d98e7257a2ca.mp3"
 			],
 			"audioLanguages": ["en", "th", "en"],
 			"teaches": ["mo-ma"]
@@ -309,7 +309,7 @@
 				"Second loop thrown out to the **bottom right**.",
 				"Write it out, saying its name every time."
 			],
-			"audio": ["/thai-script/lessons/lesson-01/audio/1b1259c5b51e5229.mp3"],
+			"audio": ["/thai-script/lessons/lesson-01/audio/0f829db08d9ffe43.mp3"],
 			"audioLanguages": ["en"],
 			"thai": "น",
 			"teaches": ["no-nu"]
@@ -392,10 +392,12 @@
 				"Thai runs left to right, so *behind the consonant* and *to its right* are the same place."
 			],
 			"audio": [
-				"/thai-script/lessons/lesson-01/audio/c4805e66758cdd5f.mp3",
-				"/thai-script/lessons/lesson-01/audio/7c7fb4cf383f0e6a.mp3"
+				"/thai-script/lessons/lesson-01/audio/c19894c9eded704e.mp3",
+				"/thai-script/lessons/lesson-01/audio/38db6c0f5f00454a.mp3",
+				"/thai-script/lessons/lesson-01/audio/ece09120ff953b54.mp3",
+				"/thai-script/lessons/lesson-01/audio/3d66d81f893e437d.mp3"
 			],
-			"audioLanguages": ["en", "en"],
+			"audioLanguages": ["en", "en", "en", "en"],
 			"teaches": ["sara-aa"],
 			"image": "/thai-script/lessons/lesson-01/images/the-vowel-house-9cc652e5140c.jpg"
 		},
@@ -475,7 +477,7 @@
 			"audio": [
 				"/thai-script/lessons/lesson-01/audio/52e7cd20bf1613ef.mp3",
 				"/thai-script/lessons/lesson-01/audio/65c63daa9e5d2035.mp3",
-				"/thai-script/lessons/lesson-01/audio/3a063929a106af75.mp3",
+				"/thai-script/lessons/lesson-01/audio/ac63d8d8101b1b41.mp3",
 				"/thai-script/lessons/lesson-01/audio/d939253d554a9d3e.mp3"
 			],
 			"audioLanguages": ["en", "th", "en", "en"],
@@ -622,14 +624,14 @@
 				"Next: three more harbour letters, and why they all sound flat."
 			],
 			"audio": [
-				"/thai-script/lessons/lesson-01/audio/f3de038a7211e758.mp3",
+				"/thai-script/lessons/lesson-01/audio/f93c1cd318dbf102.mp3",
 				"/thai-script/lessons/lesson-01/audio/8dd1b0487d54a9c7.mp3"
 			],
 			"audioLanguages": ["en", "en"]
 		}
 	],
 	"timing": {
-		"spokenSeconds": 1666,
+		"spokenSeconds": 1683,
 		"practiceSeconds": 364,
 		"estimatedMinutes": 34
 	},

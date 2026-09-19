@@ -54,12 +54,12 @@
 			"heading": "The rule, once",
 			"body": [
 				"A mid or high class consonant written directly in front of a sonorant leads it, and hands its class to the syllable the sonorant opens.",
-				"Nothing else changes. The vowel, the final and the live or dead reading are whatever the written syllable says they are; only the class comes from outside.",
+				"Nothing else changes. The vowel, the final and the alive or dead reading are whatever the written syllable says they are; only the class comes from outside.",
 				"Hold it as a strong tendency rather than a law. A small number of words keep the second letter's own class, and one of them is coming up.",
 				"Everything below is that one sentence meeting three different first letters, rather than three separate rules."
 			],
 			"audio": [
-				"/thai-script/lessons/lesson-leading-consonants/audio/5936e209183ad094.mp3"
+				"/thai-script/lessons/lesson-leading-consonants/audio/7d7fc9512e5516da.mp3"
 			],
 			"audioLanguages": ["en"],
 			"image": "/thai-script/lessons/lesson-leading-consonants/images/one-rule-90fde58aa8db.jpg"
@@ -74,7 +74,7 @@
 				"Any of the ten may follow it, and new words still take it, so treat this as open."
 			],
 			"audio": [
-				"/thai-script/lessons/lesson-leading-consonants/audio/08e3a83a57fd3024.mp3"
+				"/thai-script/lessons/lesson-leading-consonants/audio/ca5e14c7ddc947f1.mp3"
 			],
 			"audioLanguages": ["en"],
 			"teaches": ["ho-hip"],
@@ -90,7 +90,7 @@
 				"There is no fifth word and no fifth is coming. Read ยาก and ยาว as the low class ย they are, because nothing precedes them."
 			],
 			"audio": [
-				"/thai-script/lessons/lesson-leading-consonants/audio/16e63640af6e901a.mp3"
+				"/thai-script/lessons/lesson-leading-consonants/audio/d28c8ef546c92240.mp3"
 			],
 			"audioLanguages": ["en"],
 			"teaches": ["o-ang", "yo-yak"],
@@ -169,7 +169,7 @@
 				"Derive the reading, then let a dictionary overrule you on the few words that go their own way."
 			],
 			"audio": [
-				"/thai-script/lessons/lesson-leading-consonants/audio/247e61ef987d1f90.mp3"
+				"/thai-script/lessons/lesson-leading-consonants/audio/72fe35ae2685924f.mp3"
 			],
 			"audioLanguages": ["en"],
 			"image": "/thai-script/lessons/lesson-leading-consonants/images/strong-tendency-3f16cc2dcc52.jpg"
@@ -244,7 +244,7 @@
 			"prompt": "หมด and มด are both real words, both read with a short o and a d that stops the air. Why do they not have the same tone?",
 			"revealSlideId": "which-tone-answer",
 			"audio": [
-				"/thai-script/lessons/lesson-leading-consonants/audio/e1ca870e7a32e216.mp3"
+				"/thai-script/lessons/lesson-leading-consonants/audio/44bd1547650a359a.mp3"
 			],
 			"audioLanguages": ["en"],
 			"teaches": ["ho-hip"]
@@ -280,7 +280,7 @@
 		}
 	],
 	"timing": {
-		"spokenSeconds": 647,
+		"spokenSeconds": 648,
 		"practiceSeconds": 164,
 		"estimatedMinutes": 14
 	}

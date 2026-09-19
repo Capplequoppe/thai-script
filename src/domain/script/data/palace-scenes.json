@@ -12,9 +12,9 @@
 		],
 		"fate": "alive",
 		"scene": "A fisherman and a market vendor stand talking in a flat rice paddy, both alive and unhurried, the horizon dead level behind them.",
-		"teaches": "A live syllable is a mid tone for low and mid class alike — the two agree here, which is why they share the scene.",
+		"teaches": "A syllable that ends alive is a mid tone for low and mid class alike — the two agree here, which is why they share the scene.",
 		"prompt": "A fisherman in a conical straw hat and rolled-up trousers and a market vendor in a flat straw hat and a work apron standing and talking in a flooded green rice paddy, both upright, unhurt and relaxed, the horizon a dead flat line behind them under a wide open sky.",
-		"narration": "The rice paddy. [pause] A fisherman has walked up from the harbour and a market vendor has come out from town, and the two of them are standing in the middle of the field talking, in no hurry at all. [pause] The paddy runs flat to the horizon behind them, and their voices run just as flat — opening level, holding level, finishing level. [pause] A live syllable, one that ends on a vowel or on a soft ending, comes out mid tone for a low-class letter and for a mid-class letter alike. [pause] When you see those two standing in a flat field, read the syllable flat."
+		"narration": "The rice paddy. [pause] A fisherman has walked up from the harbour and a market vendor has come out from town, and the two of them are standing in the middle of the field talking, in no hurry at all. [pause] The paddy runs flat to the horizon behind them, and their voices run just as flat — opening level, holding level, finishing level. [pause] A syllable that ends alive — one finishing on a vowel or on a soft ending — comes out mid tone for a low-class letter and for a mid-class letter alike. [pause] When you see those two standing in a flat field, read the syllable flat."
 	},
 	{
 		"id": "hill-monk-climbs",
@@ -27,9 +27,9 @@
 		],
 		"fate": "alive",
 		"scene": "A monk walks down into a dip and then climbs a long hill path, alive and steady, robes bright against the slope.",
-		"teaches": "High class is the one exception on a live syllable: it rises where the others stay level.",
+		"teaches": "High class is the one exception when the syllable ends alive: it rises where the others stay level.",
 		"prompt": "A monk in an orange robe with a shaved head walking up a long steep hill path, seen from below, the path dipping in the foreground and then rising sharply to a high ridge against the sky.",
-		"narration": "The hill path. [pause] The monk sets out from the temple on his own, and the path drops into a dip before it climbs, so he goes down a little first and then up and up, his robes bright against the slope. [pause] His voice does what his feet do — down at the start, climbing the whole rest of the way. [pause] A high-class letter on a live syllable rises. [pause] The fisherman and the vendor stayed flat in their field; the monk is walking uphill. So when a high-class letter opens a live syllable, take your voice down and then up."
+		"narration": "The hill path. [pause] The monk sets out from the temple on his own, and the path drops into a dip before it climbs, so he goes down a little first and then up and up, his robes bright against the slope. [pause] His voice does what his feet do — down at the start, climbing the whole rest of the way. [pause] A high-class letter, on a syllable that ends alive, rises. [pause] The fisherman and the vendor stayed flat in their field; the monk is walking uphill. So when a high-class letter opens a syllable that ends alive, take your voice down and then up."
 	},
 	{
 		"id": "rooftop-fisherman-struck",
@@ -96,7 +96,7 @@
 		"teaches": "Mai ek over mid or high class: low tone. The one-pointed spear is the mark, and it decides the tone whatever the syllable was doing.",
 		"prop": "a plain one-pointed spear",
 		"prompt": "A plain one-pointed spear standing upright, driven into the stone rim of a round well. A market vendor in a flat straw hat and a work apron and a monk in an orange robe with a shaved head tumbling down the dark shaft beside it, arms above their heads, seen from the well mouth looking down.",
-		"narration": "The well again, and now there is a spear. [pause] One shaft, one point, driven into the rim and left standing there — and the vendor and the monk are already down in the dark below it. [pause] Count the points: one. Mai ek is the first of the four tone marks, and one point is how you will know it. [pause] Mai ek over a mid-class or a high-class letter gives a low tone. [pause] The spear settles it. Live, dead, short, long — once that mark is written, the answer comes from the mark."
+		"narration": "The well again, and now there is a spear. [pause] One shaft, one point, driven into the rim and left standing there — and the vendor and the monk are already down in the dark below it. [pause] Count the points: one. Mai ek is the first of the four tone marks, and one point is how you will know it. [pause] Mai ek over a mid-class or a high-class letter gives a low tone. [pause] The spear settles it. Alive, dead, short, long — once that mark is written, the answer comes from the mark."
 	},
 	{
 		"id": "waterfall-hooked-twice",

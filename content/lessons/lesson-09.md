@@ -184,7 +184,7 @@ narration: en Head first, clockwise, and round the bowl exactly as you did for t
 image: images/lesson-09/why-the-market.jpg
 scene: A market vendor standing in the aisle of a Thai open-air market holding one palm up flat in front of his mouth, striped awnings above, baskets of produce around.
 heading: Why the market is the district you can hear
-narration: en Now the thing lesson three promised you, arriving on time. Back then you met the chicken, the child and the leaf. All three stop the air dead and release no breath behind them, and you were told that a later lesson would turn that into a shortcut. Here it is. Put your palm up in front of your lips again and say the English word key, and the puff hits your hand. Say pin, and another puff arrives. Now say the three letters you learned this morning, one after another, and your hand should stay perfectly still through all three. That missing puff is the market's signature, and it works the other way round as well. Any Thai consonant that stops the air and lets no breath out behind it lives in the market. Mid class, and the rule has no way out of it. So you never have to sit down and memorise which letters are mid class. You listen, and when nothing lands on your hand, you are in the market.
+narration: en Now the thing lesson three promised you, arriving on time. Back then you met the chicken, the child and the leaf. All three stop the air dead and release no breath behind them, and you were told that a later lesson would turn that into a shortcut. Here it is. Put your palm up in front of your lips again and say the English word key, and the puff hits your hand. Say pin, and another puff arrives. Now say the three letters this lesson gave you, one after another, and your hand should stay perfectly still through all three. That missing puff is the market's signature, and it works the other way round as well. Any Thai consonant that stops the air and lets no breath out behind it lives in the market. Mid class, and the rule has no way out of it. So you never have to sit down and memorise which letters are mid class. You listen, and when nothing lands on your hand, you are in the market.
 - Lesson three promised the missing puff would turn into a shortcut.
 - Palm up: **ก**, **ด**, **บ**, **จ**, **ต**, **ป**. Nothing lands on your hand.
 - A stop that releases no breath is mid class, with no way out of it.
@@ -322,7 +322,7 @@ narration: en Four marks, and all four of them came out of the last three lesson
 thai: เป็น
 heading: That one
 narration: th เป็น
-narration: en To be. It is the tenth commonest word in the language. Three pieces built it: a vowel from lesson seven, a letter from this morning, and the rule about hooks climbing onto the roof when a final consonant wants their seat.
+narration: en To be. It is the tenth commonest word in the language. Three pieces built it: a vowel from lesson seven, a letter from this one, and the rule about hooks climbing onto the roof when a final consonant wants their seat.
 - **เป็น** — to be, and the tenth commonest word in Thai.
 - A lesson-seven vowel, a market letter, and the little roof.
 

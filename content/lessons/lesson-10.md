@@ -212,16 +212,16 @@ image: images/lesson-10/short-but-live.jpg
 scene: A brass handbell standing upright on the wooden veranda rail of a Thai house on stilts, late afternoon light behind it.
 heading: Short in the mouth, long for the tone
 teaches: sara-ao, sara-ai-mai-malaai, sara-ai-mai-muuan
-narration: en Now the rule that looks wrong. Say the three vowels you have just learned, and time them against the two hooks from lesson four. They are quick. Short, by any honest measure of how long your mouth spends on them. And yet when you go to work out the tone, Thai counts all three of them as long, and treats every syllable they end as live. So is this simply an exception you have to memorise and carry around with you? It is worth a minute to see why it is far less arbitrary than it looks.
+narration: en Now the rule that looks wrong. Say the three vowels you have just learned, and time them against the two hooks from lesson four. They are quick. Short, by any honest measure of how long your mouth spends on them. And yet when you go to work out the tone, Thai counts all three of them as long, and treats every syllable they end as alive. So is this simply an exception you have to memorise and carry around with you? It is worth a minute to see why it is far less arbitrary than it looks.
 - The three vowels today are genuinely short in the mouth.
 - For working out a tone, all three are counted long.
-- A syllable ending on one of them is live.
+- A syllable ending on one of them is alive.
 
 ## exposition what-makes-a-syllable-dead
 image: images/lesson-10/what-makes-a-syllable-dead.jpg
 scene: A wooden shutter swinging wide open on the side wall of a Thai house on stilts, the room beyond dark, late afternoon light.
-heading: What the live and dead rule is actually measuring
-narration: en Go back to lesson three for a moment and look at what live and dead were ever about. A syllable is dead when something stops it — a consonant at the back that shuts the air off and leaves nothing ringing. A syllable is live when nothing does that, and the sound is free to carry on. The back of the syllable is the whole of it. Take the word for to go, which you read five minutes ago. It ends on its vowel, and there is nothing behind that vowel to shut it off, so nothing makes it dead. Now take the word for to fall from last lesson, which stops on the chicken's letter, and the air goes nowhere. One of those is live and the other is dead, and the difference lies entirely in what sits behind the vowel.
+heading: What the dead-or-alive rule is actually measuring
+narration: en Go back to lesson three for a moment and look at what dead and alive were ever about. A syllable is dead when something stops it — a consonant at the back that shuts the air off and leaves nothing ringing. A syllable is alive when nothing does that, and the sound is free to carry on. The back of the syllable is the whole of it. Take the word for to go, which you read five minutes ago. It ends on its vowel, and there is nothing behind that vowel to shut it off, so nothing makes it dead. Now take the word for to fall from last lesson, which stops on the chicken's letter, and the air goes nowhere. One of those is alive and the other is dead, and the difference lies entirely in what sits behind the vowel.
 - **Dead** means something at the back stopped the air.
 - **ไป** ends on its vowel, with nothing behind it to stop anything.
 - **ตก** stops on the chicken's letter, and the air goes nowhere.
@@ -229,15 +229,15 @@ narration: en Go back to lesson three for a moment and look at what live and dea
 
 ## retrieval short-or-live
 reveal: short-or-live-answer
-prompt: ไป is over as fast as any short vowel you know. Say why it still takes the live rule rather than the dead one.
-narration: en A question, then. The word for to go is over as fast as any short vowel you have learned, and yet it takes the live rule. Say why, out loud, before you turn it over. And say what you would have to add to that word to make it dead.
+prompt: ไป is over as fast as any short vowel you know. Say why it still counts as alive rather than dead.
+narration: en A question, then. The word for to go is over as fast as any short vowel you have learned, and yet it counts as alive. Say why, out loud, before you turn it over. And say what you would have to add to that word to make it dead.
 
 ## reveal short-or-live-answer
 retrieval: short-or-live
-narration: en Because nothing stops it. The syllable runs out on the vowel, with no consonant behind it shutting the air off, so there is nothing there to make it dead. To make it dead you would have to put a stopping consonant on the back of it, and then the ending would be doing the deciding rather than the vowel. That leaves the market's rule for a live syllable, which lesson three gave you, and it is the one you reach for here.
-- Nothing stops it, so the syllable is live.
+narration: en Because nothing stops it. The syllable runs out on the vowel, with no consonant behind it shutting the air off, so there is nothing there to make it dead. To make it dead you would have to put a stopping consonant on the back of it, and then the ending would be doing the deciding rather than the vowel. That leaves the market's rule for a syllable that ends alive, which lesson three gave you, and it is the one you reach for here.
+- Nothing stops it, so the syllable is alive.
 - Put a stopping consonant behind the vowel and it becomes dead.
-- **ไป** opens on a market letter and ends live, so lesson three's rule settles it.
+- **ไป** opens on a market letter and ends alive, so lesson three's rule settles it.
 
 ## rule mai-yamok
 rule: mai-yamok
@@ -324,7 +324,7 @@ narration: en A handful more before we finish. The zigzag gives you fire. The tw
 
 ## exposition read-close
 heading: Twenty letters, eighteen vowels
-narration: en Twenty letters still, and eighteen vowel spellings. Today cost you no new consonants at all and it bought you three vowels, a mark, and the beginning of clusters. And look at the shape of what you learned about tone, because it will come back. The rule that sounded like an exception turned out to be lesson three's live and dead rule, applied without a stopwatch. Next lesson is the last of this run, and it is the one that finishes the market: a letter you have been looking at since lesson six without being told its name, which is silent in one place and a vowel in another.
+narration: en Twenty letters still, and eighteen vowel spellings. Today cost you no new consonants at all and it bought you three vowels, a mark, and the beginning of clusters. And look at the shape of what you learned about tone, because it will come back. The rule that sounded like an exception turned out to be lesson three's dead-or-alive rule, applied without a stopwatch. Next lesson is the last of this run, and it is the one that finishes the market: a letter you have been looking at since lesson six without being told its name, which is silent in one place and a vowel in another.
 - Eighteen vowel spellings, and no new letters today.
-- A vowel at the back of a syllable stops nothing, so the syllable is live.
+- A vowel at the back of a syllable stops nothing, so the syllable is alive.
 - Next: the letter from lesson six gets its name, and the market's grid closes.

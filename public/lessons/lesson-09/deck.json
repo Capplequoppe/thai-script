@@ -215,7 +215,7 @@
 				"Listen for the missing puff instead of memorising a list."
 			],
 			"audio": [
-				"/thai-script/lessons/lesson-09/audio/bdb441f84c0b09c3.mp3",
+				"/thai-script/lessons/lesson-09/audio/69df0166933899ad.mp3",
 				"/thai-script/lessons/lesson-09/audio/2174448e618caa41.mp3"
 			],
 			"audioLanguages": ["en", "en"],
@@ -426,7 +426,7 @@
 			],
 			"audio": [
 				"/thai-script/lessons/lesson-09/audio/5e878e4f5fc0682c.mp3",
-				"/thai-script/lessons/lesson-09/audio/45cf2f5971c9c1a3.mp3"
+				"/thai-script/lessons/lesson-09/audio/609c70af0c9de525.mp3"
 			],
 			"audioLanguages": ["th", "en"],
 			"thai": "เป็น"
@@ -460,7 +460,7 @@
 		}
 	],
 	"timing": {
-		"spokenSeconds": 832,
+		"spokenSeconds": 828,
 		"practiceSeconds": 242,
 		"estimatedMinutes": 18
 	}

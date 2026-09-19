@@ -302,15 +302,15 @@ narration: en To measure. Short vowel up on the roof this time, sealed dead by t
 ## exposition live-contrast
 image: images/lesson-04/live-contrast.jpg
 scene: A flat green rice paddy under an even grey sky, still water lying between the rows, no wind, low horizon.
-heading: The same letter, ending live
+heading: The same letter, ending alive
 teaches: low-dead-short, low-live
 narration: en And now the same opening letter, ending the other way. Listen.
 narration: th ชาย
-narration: en A man. The elephant's letter, a long vowel, and a hum to close it — so the syllable is live, and a live syllable off a low class letter lands flat, which you have known since lesson two.
+narration: en A man. The elephant's letter, a long vowel, and a hum to close it — so the syllable is alive, and a syllable that ends alive off a low class letter lands flat, which you have known since lesson two.
 narration: th ชาว
 narration: en The people of a place. One letter, two tones, and nothing decided it except how the syllable ended and how long the vowel was.
 - Both open on the elephant's letter, which is low class.
-- Both end on a hum, so both are live, so both land flat.
+- Both end on a hum, so both are alive, so both land flat.
 - Same letter, two tones. The ending and the length decide.
 
 ## retrieval two-endings
@@ -322,8 +322,8 @@ narration: en Last question. Both of the words on screen open on a low class let
 ## reveal two-endings-answer
 retrieval: two-endings
 teaches: low-dead-short, low-live
-narration: en The first lands flat. It ends on a hum, so the syllable is live, and low class plus live is mid. The second lands high: the vowel is short and nothing follows it, so it counts as dead, and low class plus dead plus short is high. The class was identical in both. The vowel length and the ending did all of it.
-- Flat: ends on a hum, so live. Low class plus live is mid.
+narration: en The first lands flat. It ends on a hum, so the syllable is alive, and low class plus alive is mid. The second lands high: the vowel is short and nothing follows it, so it counts as dead, and low class plus dead plus short is high. The class was identical in both. The vowel length and the ending did all of it.
+- Flat: ends on a hum, so alive. Low class plus alive is mid.
 - High: short vowel, nothing after it, so dead.
 - The class was the same. Length and ending decided.
 

@@ -80,9 +80,9 @@ narration: en Start with why anything like this needs to exist. Every consonant 
 image: images/lesson-leading-consonants/one-rule.jpg
 scene: A brass hand bell standing alone on a bare wooden desk, morning light across it.
 heading: The rule, once
-narration: en Here is the rule. I will state it once, and then spend the rest of the lesson showing it to you in three disguises. A letter from the market or the temple, written directly in front of one of those ten, takes over the tone calculation for the syllable behind it. Everything else stays exactly where it was. The vowel is the vowel you can see. The ending is the ending you can see. Live or dead is decided by that ending, the way it has been since lesson three. The only thing arriving from outside is the district. One more thing before the branches, and it is the honest version. This holds for the overwhelming majority of words, and it is a tendency rather than a law. A small number of words go their own way. You will meet one of them before the lesson closes.
+narration: en Here is the rule. I will state it once, and then spend the rest of the lesson showing it to you in three disguises. A letter from the market or the temple, written directly in front of one of those ten, takes over the tone calculation for the syllable behind it. Everything else stays exactly where it was. The vowel is the vowel you can see. The ending is the ending you can see. Dead or alive is decided by that ending, the way it has been since lesson three. The only thing arriving from outside is the district. One more thing before the branches, and it is the honest version. This holds for the overwhelming majority of words, and it is a tendency rather than a law. A small number of words go their own way. You will meet one of them before the lesson closes.
 - A mid or high class consonant written directly in front of a sonorant leads it, and hands its class to the syllable the sonorant opens.
-- Nothing else changes. The vowel, the final and the live or dead reading are whatever the written syllable says they are; only the class comes from outside.
+- Nothing else changes. The vowel, the final and the alive or dead reading are whatever the written syllable says they are; only the class comes from outside.
 - Hold it as a strong tendency rather than a law. A small number of words keep the second letter's own class, and one of them is coming up.
 - Everything below is that one sentence meeting three different first letters, rather than three separate rules.
 
@@ -91,7 +91,7 @@ image: images/lesson-leading-consonants/branch-silent-h.jpg
 scene: A man holding a door open at the top of a flight of steps and standing aside, evening light in the hall beyond.
 heading: First letter ห, and you do not hear it
 teaches: ho-hip
-narration: en First branch, and it is the one you meet most. The chest's letter, from the temple, standing in front of one of the ten. It is written, it is counted, and it makes no sound whatsoever. Say any of these words aloud and listen for a breath at the front of them. There is none. What it is doing there is the sentence from the slide before, applied to the temple — which buys the syllable the rising tone and the low tone that the letter behind it could never reach on its own. This branch stays open. Any of the ten may follow, and words coming into Thai still use it, so treat it as live machinery rather than a closed list of old spellings.
+narration: en First branch, and it is the one you meet most. The chest's letter, from the temple, standing in front of one of the ten. It is written, it is counted, and it makes no sound whatsoever. Say any of these words aloud and listen for a breath at the front of them. There is none. What it is doing there is the sentence from the slide before, applied to the temple — which buys the syllable the rising tone and the low tone that the letter behind it could never reach on its own. This branch stays open. Any of the ten may follow, and words coming into Thai still use it, so treat it as working machinery rather than a closed list of old spellings.
 - หมด (mòt) is finished, หลง (lǒng) is to be lost, หนัง (nǎng) is a film, หญิง (yǐng) is a woman, หมอ (mǎaw) is a doctor, หรอก (ràawk) softens a denial.
 - There is no h in any of them. ห in this position is written and never spoken.
 - Any of the ten may follow it, and new words still take it, so treat this as open.
@@ -101,7 +101,7 @@ image: images/lesson-leading-consonants/branch-silent-o.jpg
 scene: A wide empty basin standing upright on bare earth, plain and open, afternoon light.
 heading: First letter อ, four words, no more
 teaches: o-ang, yo-yak
-narration: en Second branch, and this one you can learn this afternoon and never think about again. The basin's letter, from the market, standing in front of the giant's letter. It is silent, exactly as the chest's letter was, and what it leaves behind is a market reading. And it happens in four words. Four, with no long tail behind them. Thai has been counting this branch at four for a very long time. All four are words you use constantly, which is why a branch this small earns a slide. Everywhere else the giant's letter stands on its own, and you read it as the harbour letter it is.
+narration: en Second branch, and this one you can learn in a single sitting and never think about again. The basin's letter, from the market, standing in front of the giant's letter. It is silent, exactly as the chest's letter was, and what it leaves behind is a market reading. And it happens in four words. Four, with no long tail behind them. Thai has been counting this branch at four for a very long time. All four are words you use constantly, which is why a branch this small earns a slide. Everywhere else the giant's letter stands on its own, and you read it as the harbour letter it is.
 - อย่า (yàa) is don't. อยู่ (yùu) is to stay. อย่าง (yàang) is a kind or sort. อยาก (yàak) is to want. That is the complete list.
 - อ in front of ย is silent here, exactly as ห is.
 - There is no fifth word and no fifth is coming. Read ยาก and ยาว as the low class ย they are, because nothing precedes them.
@@ -144,7 +144,7 @@ narration: en Now the thing that stops you over-applying all this, because a rul
 image: images/lesson-leading-consonants/strong-tendency.jpg
 scene: A weathered signpost at a fork in a country road, one arm pointing along each track, late afternoon.
 heading: And one word that keeps its own class
-narration: en Here is the word I promised you, and the reason this lesson calls the rule a tendency. It means a member — of a club, of a family, of a committee. It opens with the tiger's letter in front of the horse's letter, and it splits into a light syllable and then the rest, exactly the way you have been splitting all afternoon. Work the tone out by the rule and you get a rising middle syllable. Listen to a Thai speaker and the middle syllable comes out flat. The horse's letter kept the class it was born with, so the reading you derived is the one a dictionary overrules. Derive anyway, because deriving is right nearly every time. Then let a dictionary correct the handful of words that went their own way.
+narration: en Here is the word I promised you, and the reason this lesson calls the rule a tendency. It means a member — of a club, of a family, of a committee. It opens with the tiger's letter in front of the horse's letter, and it splits into a light syllable and then the rest, exactly the way you have been splitting them all along. Work the tone out by the rule and you get a rising middle syllable. Listen to a Thai speaker and the middle syllable comes out flat. The horse's letter kept the class it was born with, so the reading you derived is the one a dictionary overrules. Derive anyway, because deriving is right nearly every time. Then let a dictionary correct the handful of words that went their own way.
 - สมาชิก (sà-maa-chík) is a member, and it splits into a light first syllable and then the rest, the way the whole lesson has trained you to split.
 - The middle syllable keeps the class it was born with, so it comes out flat where the rule predicts a rising tone.
 - Derive the reading, then let a dictionary overrule you on the few words that go their own way.
@@ -189,7 +189,7 @@ narration: en An airport. The mouse's letter has a long vowel and an ending of i
 reveal: which-tone-answer
 prompt: หมด and มด are both real words, both read with a short o and a d that stops the air. Why do they not have the same tone?
 teaches: ho-hip
-narration: en Last question of the last required lesson. Two words, and the second is the first with its front letter taken off. Both have the same vowel, the same short sound, and the same stop at the end. Both are real Thai words you could meet this week. And their tones are different. Say why, out loud, before you turn this over.
+narration: en Last question of the last required lesson. Two words, and the second is the first with its front letter taken off. Both have the same vowel, the same short sound, and the same stop at the end. Both are real Thai words you could meet anywhere. And their tones are different. Say why, out loud, before you turn this over.
 
 ## reveal which-tone-answer
 retrieval: which-tone

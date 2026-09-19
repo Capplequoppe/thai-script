@@ -148,7 +148,7 @@ image: images/lesson-13/temple-dead.jpg
 scene: A closed wooden temple door with an iron ring handle, set in a white wall, flat morning light across it.
 heading: The temple's other half, and it is one tone for both lengths
 teaches: high-dead-short, high-dead-long, low-dead-short, low-dead-long
-narration: en Two rules on the screen, and they say the same thing twice. A temple letter on a dead syllable gives a low tone. Long vowel, short vowel, the tone is low either way. Last lesson gave you what the temple does when the syllable runs live. This is the other half of it, so the temple's tone behaviour is finished as of this slide. Compare it with the harbour, which needed two separate dead rules because the lengths disagree — short goes high and long falls. The temple behaves like the market instead, and gives you one answer for both. Three words you already have. The first is a temple letter stopped by a k with a long vowel in between, and it means cheap. The second is a temple letter stopped by a d with a short vowel, and it means wrong. The third is a temple letter stopped by a d with a long vowel, and it means to lack something.
+narration: en Two rules on the screen, and they say the same thing twice. A temple letter on a dead syllable gives a low tone. Long vowel, short vowel, the tone is low either way. Last lesson gave you what the temple does when the syllable runs alive. This is the other half of it, so the temple's tone behaviour is finished as of this slide. Compare it with the harbour, which needed two separate dead rules because the lengths disagree — short goes high and long falls. The temple behaves like the market instead, and gives you one answer for both. Three words you already have. The first is a temple letter stopped by a k with a long vowel in between, and it means cheap. The second is a temple letter stopped by a d with a short vowel, and it means wrong. The third is a temple letter stopped by a d with a long vowel, and it means to lack something.
 narration: th ถูก
 narration: th ผิด
 narration: th ขาด
@@ -196,10 +196,10 @@ heading: The novice on the pier
 teaches: no-nen
 narration: en Listen.
 recording: th ณอ เณร public/audio/consonant-no-nen.mp3
-narration: en That word means a novice monk, a boy ordained young, in orange robes. The sound is n. It is the same n as the mouse's letter from lesson one, and the two sound identical coming out of your mouth. It ends a syllable the same way too, with a hum that leaves the syllable live. The shape opens with a whole chicken frame from lesson three, and only at the end of it does the mouse's loop arrive. So the novice walks ahead and the mouse comes along behind him, down the length of the pier.
+narration: en That word means a novice monk, a boy ordained young, in orange robes. The sound is n. It is the same n as the mouse's letter from lesson one, and the two sound identical coming out of your mouth. It ends a syllable the same way too, with a hum that leaves the syllable alive. The shape opens with a whole chicken frame from lesson three, and only at the end of it does the mouse's loop arrive. So the novice walks ahead and the mouse comes along behind him, down the length of the pier.
 - The word means a **novice monk**.
 - The mouse's n, and the two sound identical.
-- It closes a syllable with a hum, so the syllable stays live.
+- It closes a syllable with a hum, so the syllable stays alive.
 - A whole **chicken frame first**, and the mouse's loop last.
 
 ## exposition meet-ying
@@ -265,17 +265,17 @@ teaches: pho-samphau, so-risi
 narration: en Four marks, two syllables, two of today's letters. The junk opens it, then the long post from lesson one. Then the hermit's letter, and the long post again. One of those letters lives at the harbour and the other lives at the temple. Both syllables end open on a long vowel, with nothing stopping either of them. So the two halves take different rules. Work them out and say the whole word before you turn it over.
 - Junk, long post, hermit, long post.
 - One harbour letter and one temple letter, in one word.
-- Both halves run live. **Out loud before you turn it over.**
+- Both halves run alive. **Out loud before you turn it over.**
 
 ## exposition read-phaasaa-answer
 thai: ภาษา
 heading: That one
 teaches: pho-samphau, so-risi
 narration: th ภาษา
-narration: en It means a language, and it is the word you would use to say Thai language or English language. The first half is a harbour letter on a live syllable, so it comes out flat. The second half is a temple letter on a live syllable, so it rises. One word, one letter from each district, and two different tones out of the same kind of ending.
+narration: en It means a language, and it is the word you would use to say Thai language or English language. The first half is a harbour letter on a syllable that ends alive, so it comes out flat. The second half is a temple letter on a syllable that ends alive, so it rises. One word, one letter from each district, and two different tones out of the same kind of ending.
 - **ภาษา** — a language.
-- First half: harbour, live — flat.
-- Second half: temple, live — rising.
+- First half: harbour, alive — flat.
+- Second half: temple, alive — rising.
 
 ## exposition sara-am
 image: images/lesson-01/the-vowel-house.jpg
@@ -302,13 +302,13 @@ teaches: sara-am
 ## exposition am-is-always-live
 image: images/lesson-13/am-is-always-live.jpg
 scene: A brass temple gong hanging from a wooden frame in a courtyard, still humming after a strike, morning light on the metal.
-heading: Which means every syllable it finishes is live
+heading: Which means every syllable it finishes is alive
 teaches: sara-am
-narration: en That built-in m has a consequence, and it falls straight out of the rules you already have. A syllable is dead when the air stops at the end of it. This vowel ends on a hum, and a hum cannot stop the air. So every syllable this vowel finishes is live, whatever letter opened it, and it stays live however short it sounds. Take the plate's letter from lesson nine with this vowel behind it. Market letter, live syllable, so the tone is flat, straight off lesson three's rule.
+narration: en That built-in m has a consequence, and it falls straight out of the rules you already have. A syllable is dead when the air stops at the end of it. This vowel ends on a hum, and a hum cannot stop the air. So every syllable this vowel finishes is alive, whatever letter opened it, and it stays alive however short it sounds. Take the plate's letter from lesson nine with this vowel behind it. Market letter, the syllable alive, so the tone is flat, straight off lesson three's rule.
 narration: th จำ
 narration: en That means to remember.
 - The syllable ends on a hum, so the air keeps running.
-- Every syllable this vowel finishes is **live**.
+- Every syllable this vowel finishes is **alive**.
 - Short as it is, the hum keeps the air running, so the syllable lives.
 
 ## exposition read-samkhan
@@ -325,11 +325,11 @@ thai: สำคัญ
 heading: That one
 teaches: sara-am, yo-ying
 narration: th สำคัญ
-narration: en It means important, and it is among the four hundred commonest words in Thai. The first half rises: a temple letter, and the new vowel keeping the syllable live. The second half is flat: a harbour letter, and the woman's letter closing it as an n, which is a hum, which keeps it live too. She is a y at the front of a syllable and an n at the back of one.
+narration: en It means important, and it is among the four hundred commonest words in Thai. The first half rises: a temple letter, and the new vowel keeping the syllable alive. The second half is flat: a harbour letter, and the woman's letter closing it as an n, which is a hum, which keeps it alive too. She is a y at the front of a syllable and an n at the back of one.
 - **สำคัญ** — important.
-- First half: temple, live — rising.
-- Second half: harbour, live — flat.
-- The woman's letter lands as **n**, and the hum keeps it live.
+- First half: temple, alive — rising.
+- Second half: harbour, alive — flat.
+- The woman's letter lands as **n**, and the hum keeps it alive.
 
 ## exposition oe-vowel
 image: images/lesson-13/oe-vowel.jpg
@@ -402,10 +402,10 @@ thai: เดิน
 heading: That one
 teaches: sara-ooe
 narration: th เดิน
-narration: en To walk. The vowel is the long one you just met, in its closed spelling with the brim on the roof. The child's letter stands in the market. The mouse closes the syllable with a hum, so it is live. A market letter on a live syllable has been flat since lesson three.
+narration: en To walk. The vowel is the long one you just met, in its closed spelling with the brim on the roof. The child's letter stands in the market. The mouse closes the syllable with a hum, so it is alive. A market letter on a syllable that ends alive has been flat since lesson three.
 - **เดิน** — to walk.
 - The long vowel in its closed shape, brim on the roof.
-- Market letter, live syllable, flat.
+- Market letter, the syllable alive, flat.
 
 ## rule gaaran-rule
 rule: gaaran
@@ -447,10 +447,10 @@ narration: en Two questions. The first is about a word you have not read yet, an
 ## reveal two-halves-answer
 retrieval: two-halves
 teaches: so-sala, so-risi, high-dead-short, high-live
-narration: en Live against dead. The first syllable is stopped by the chicken, so the air ends there, and a temple letter on a dead syllable gives a low tone. The second syllable finishes on a long open vowel with nothing to stop it, so it is live, and a temple letter on a live syllable rises. One word, one class, and the two temple rules sitting next to each other.
+narration: en Alive against dead. The first syllable is stopped by the chicken, so the air ends there, and a temple letter on a dead syllable gives a low tone. The second syllable finishes on a long open vowel with nothing to stop it, so it is alive, and a temple letter on a syllable that ends alive rises. One word, one class, and the two temple rules sitting next to each other.
 - **ศึกษา** — to study.
 - First half: stopped by the chicken, so dead — low.
-- Second half: open long vowel, so live — rising.
+- Second half: open long vowel, so alive — rising.
 - Both temple rules in a single word.
 
 ## retrieval silent-letter
@@ -468,7 +468,7 @@ narration: en The mark silences the letter it sits over. Without it, the spellin
 
 ## exposition read-close
 heading: Thirty-four letters, and the temple finished
-narration: en Six letters, and every one of them a shape rather than a sound. Thirty-four of the forty-four consonants are now yours. The temple's tone behaviour is complete: rising when the syllable runs live, low when it stops. Every one of the three classes is now closed. Before you stop, write the six out and write the letter each one doubles beside it. Then read the two n letters and the two y letters as small columns of their own. That is how they will come at you on the page. Next lesson is the last of the consonants: ten of them, all rare, and two that modern Thai stopped using altogether.
+narration: en Six letters, and every one of them a shape rather than a sound. Thirty-four of the forty-four consonants are now yours. The temple's tone behaviour is complete: rising when the syllable runs alive, low when it stops. Every one of the three classes is now closed. Before you stop, write the six out and write the letter each one doubles beside it. Then read the two n letters and the two y letters as small columns of their own. That is how they will come at you on the page. Next lesson is the last of the consonants: ten of them, all rare, and two that modern Thai stopped using altogether.
 - **ศ** pavilion, **ษ** hermit, **ณ** novice, **ญ** woman, **ภ** junk, **ธ** flag.
 - Thirty-four consonants, and every tone class now complete.
 - **ำ** carries its own m, **เ-อ** wraps around, and **์** silences.

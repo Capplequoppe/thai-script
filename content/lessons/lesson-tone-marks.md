@@ -56,7 +56,7 @@ four marks themselves, written over letters the learner already owns.
 image: images/lesson-tone-marks/what-is-here.jpg
 scene: A woman at a covered market stall before opening, lifting a small brass weight out of a fitted wooden box, more weights still nested in their slots beside it, lamps strung above the awning.
 heading: Four marks, and the twelve boxes they fill
-narration: en Lesson one left you holding a promise. The word for horse and the verb meaning to come are built from the same two symbols in the same order. The tone is the whole of what separates them. And I told you then that the mark which writes that difference was on its way. It arrives this morning. Thai has four tone marks, and you will have met all four inside ten minutes. Each one is a single small stroke written above the first letter of a syllable. What takes the rest of the lesson is what they do once they are up there, which depends on the district the letter underneath them lives in. Three districts, four marks, twelve boxes in the grid. Eight of those boxes hold a tone and four of them stay empty. Knowing which four are empty saves you as much reading time as knowing the eight.
+narration: en Lesson one left you holding a promise. The word for horse and the verb meaning to come are built from the same two symbols in the same order. The tone is the whole of what separates them. And I told you then that the mark which writes that difference was on its way. It arrives here. Thai has four tone marks, and you will have met all four inside ten minutes. Each one is a single small stroke written above the first letter of a syllable. What takes the rest of the lesson is what they do once they are up there, which depends on the district the letter underneath them lives in. Three districts, four marks, twelve boxes in the grid. Eight of those boxes hold a tone and four of them stay empty. Knowing which four are empty saves you as much reading time as knowing the eight.
 - Four tone marks, each one a single stroke above a letter.
 - Three districts underneath them, so twelve boxes in all.
 - Eight boxes hold a tone. Four stay empty in every standard spelling.
@@ -89,7 +89,7 @@ image: images/lesson-tone-marks/the-first-two-marks.jpg
 scene: A signwriter's fine brush lying across the lip of a small ink pot on a bare plank table, a folded rag beside it, warm afternoon light raking across the wood.
 heading: The two marks any district can take
 teaches: mid-mai-ek, mid-mai-tho, high-mai-ek, high-mai-tho, low-mai-ek, low-mai-tho
-narration: en The four marks are numbered one to four in Thai, and their names are simply those numbers. So I will call them by number all morning, and the recordings will give you the names themselves. The first mark is a single short stroke, a small tick standing above the letter. Listen to its name.
+narration: en The four marks are numbered one to four in Thai, and their names are simply those numbers. So I will call them by number throughout, and the recordings will give you the names themselves. The first mark is a single short stroke, a small tick standing above the letter. Listen to its name.
 recording: th ไม้เอก public/audio/tone-mayek.mp3
 narration: en The second is a stroke that doubles back on itself, a little hook with two bends in it. Here is its name.
 recording: th ไม้โท public/audio/tone-maytho.mp3
@@ -220,7 +220,7 @@ thai: ม้า
 heading: That one, and the circle closes
 teaches: low-mai-tho
 recording: th มอ ม้า public/audio/consonant-mo-ma.mp3
-narration: en That is the letter's own name, and the second half of it is the word — which is how you heard the animal for the first time in lesson one, before you had any idea what the mark above it was doing. High, and held up there for the whole of the word. That is the animal, and the word on the plaque at the end of the pier. Now say the verb again, with nothing written above the letter and the voice running level. Two spellings, two tones, one difference on the page. This morning you got the name of the mark and the box that holds the tone. That is the thing lesson one said was coming.
+narration: en That is the letter's own name, and the second half of it is the word — which is how you heard the animal for the first time in lesson one, before you had any idea what the mark above it was doing. High, and held up there for the whole of the word. That is the animal, and the word on the plaque at the end of the pier. Now say the verb again, with nothing written above the letter and the voice running level. Two spellings, two tones, one difference on the page. You have the name of the mark now, and the box that holds the tone. That is the thing lesson one said was coming.
 - ม้า — high tone, and it means a horse.
 - มา with nothing above it stays flat, and it means to come.
 - A harbour letter under mai tho is the box that separates them.
@@ -254,7 +254,7 @@ narration: en Now put the whole thing back together, because the table is smalle
 
 ## exposition read-close
 heading: Where that leaves you
-narration: en Four marks, and the tone system is in front of you rather than ahead of you. Take a written Thai syllable. Find the district its opening letter lives in. Decide whether the ending runs live or stops dead. Look above the letter for a mark. Then say the word on the right tone. That is what lesson one promised in its opening minute, and this is the lesson that finishes paying for it. Before you stop, write the four marks out once more over a letter of your own choosing, and say aloud the tone each one produces there. Next lesson: two consonants run together at the front of a syllable, and what the pair of them does to the sound that comes out.
+narration: en Four marks, and the tone system is in front of you rather than ahead of you. Take a written Thai syllable. Find the district its opening letter lives in. Decide whether the ending runs alive or stops dead. Look above the letter for a mark. Then say the word on the right tone. That is what lesson one promised in its opening minute, and this is the lesson that finishes paying for it. Before you stop, write the four marks out once more over a letter of your own choosing, and say aloud the tone each one produces there. Next lesson: two consonants run together at the front of a syllable, and what the pair of them does to the sound that comes out.
 - Four marks, and every box of the table accounted for.
 - District, ending, and the mark above the letter. The tone follows from those three.
 - Next: two consonants run together at the front of a syllable.

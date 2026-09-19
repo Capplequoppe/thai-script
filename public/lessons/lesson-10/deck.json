@@ -241,9 +241,9 @@
 			"body": [
 				"The three vowels today are genuinely short in the mouth.",
 				"For working out a tone, all three are counted long.",
-				"A syllable ending on one of them is live."
+				"A syllable ending on one of them is alive."
 			],
-			"audio": ["/thai-script/lessons/lesson-10/audio/003d65e968b41c43.mp3"],
+			"audio": ["/thai-script/lessons/lesson-10/audio/fd40b89d62f03f01.mp3"],
 			"audioLanguages": ["en"],
 			"teaches": ["sara-ao", "sara-ai-mai-malaai", "sara-ai-mai-muuan"],
 			"image": "/thai-script/lessons/lesson-10/images/short-but-live-7b6ab1d23d1e.jpg"
@@ -251,23 +251,23 @@
 		{
 			"kind": "exposition",
 			"id": "what-makes-a-syllable-dead",
-			"heading": "What the live and dead rule is actually measuring",
+			"heading": "What the dead-or-alive rule is actually measuring",
 			"body": [
 				"**Dead** means something at the back stopped the air.",
 				"**ไป** ends on its vowel, with nothing behind it to stop anything.",
 				"**ตก** stops on the chicken's letter, and the air goes nowhere.",
 				"What stops the syllable is the whole of what the rule measures."
 			],
-			"audio": ["/thai-script/lessons/lesson-10/audio/c65da34e926ef979.mp3"],
+			"audio": ["/thai-script/lessons/lesson-10/audio/9f43d6c84fc98ade.mp3"],
 			"audioLanguages": ["en"],
 			"image": "/thai-script/lessons/lesson-10/images/what-makes-a-syllable-dead-340d4e0b3836.jpg"
 		},
 		{
 			"kind": "retrieval",
 			"id": "short-or-live",
-			"prompt": "ไป is over as fast as any short vowel you know. Say why it still takes the live rule rather than the dead one.",
+			"prompt": "ไป is over as fast as any short vowel you know. Say why it still counts as alive rather than dead.",
 			"revealSlideId": "short-or-live-answer",
-			"audio": ["/thai-script/lessons/lesson-10/audio/ad9c0a0264942712.mp3"],
+			"audio": ["/thai-script/lessons/lesson-10/audio/7420e4335176ca44.mp3"],
 			"audioLanguages": ["en"]
 		},
 		{
@@ -275,11 +275,11 @@
 			"id": "short-or-live-answer",
 			"retrievalSlideId": "short-or-live",
 			"answers": [
-				"Nothing stops it, so the syllable is live.",
+				"Nothing stops it, so the syllable is alive.",
 				"Put a stopping consonant behind the vowel and it becomes dead.",
-				"**ไป** opens on a market letter and ends live, so lesson three's rule settles it."
+				"**ไป** opens on a market letter and ends alive, so lesson three's rule settles it."
 			],
-			"audio": ["/thai-script/lessons/lesson-10/audio/caae2a970ed3b534.mp3"],
+			"audio": ["/thai-script/lessons/lesson-10/audio/4b700625aec4ee24.mp3"],
 			"audioLanguages": ["en"]
 		},
 		{
@@ -415,15 +415,15 @@
 			"heading": "Twenty letters, eighteen vowels",
 			"body": [
 				"Eighteen vowel spellings, and no new letters today.",
-				"A vowel at the back of a syllable stops nothing, so the syllable is live.",
+				"A vowel at the back of a syllable stops nothing, so the syllable is alive.",
 				"Next: the letter from lesson six gets its name, and the market's grid closes."
 			],
-			"audio": ["/thai-script/lessons/lesson-10/audio/2db8c04be8ad4220.mp3"],
+			"audio": ["/thai-script/lessons/lesson-10/audio/e332dfd66312bc14.mp3"],
 			"audioLanguages": ["en"]
 		}
 	],
 	"timing": {
-		"spokenSeconds": 705,
+		"spokenSeconds": 698,
 		"practiceSeconds": 242,
 		"estimatedMinutes": 16
 	}

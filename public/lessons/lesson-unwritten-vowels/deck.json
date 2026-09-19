@@ -12,7 +12,7 @@
 				"A bare row of consonants has gaps, and the gaps have rules."
 			],
 			"audio": [
-				"/thai-script/lessons/lesson-unwritten-vowels/audio/d4ec911bb16b63cd.mp3"
+				"/thai-script/lessons/lesson-unwritten-vowels/audio/6aa74549aa50f333.mp3"
 			],
 			"audioLanguages": ["en"],
 			"image": "/thai-script/lessons/lesson-unwritten-vowels/images/what-is-here-763579846c84.jpg"
@@ -26,7 +26,7 @@
 				"Today you mark the gaps rather than drill a shape."
 			],
 			"audio": [
-				"/thai-script/lessons/lesson-unwritten-vowels/audio/0ba4e6450ab48bd7.mp3"
+				"/thai-script/lessons/lesson-unwritten-vowels/audio/e9c8e33b0ee28a08.mp3"
 			],
 			"audioLanguages": ["en"],
 			"image": "/thai-script/lessons/lesson-unwritten-vowels/images/pen-still-there-1bdf41db8b53.jpg"
@@ -203,7 +203,7 @@
 			"heading": "And this one",
 			"body": [
 				"Tiger, the post in the middle, and the mouse's letter closing it.",
-				"Temple letter, live ending. Out loud before you turn it over."
+				"Temple letter, the syllable alive. Out loud before you turn it over."
 			],
 			"audio": [
 				"/thai-script/lessons/lesson-unwritten-vowels/audio/6e17e48d781b0a80.mp3"
@@ -218,11 +218,11 @@
 			"heading": "That one",
 			"body": [
 				"สอน — to teach.",
-				"Temple letter, live ending, and the tone rises."
+				"Temple letter, the syllable alive, and the tone rises."
 			],
 			"audio": [
 				"/thai-script/lessons/lesson-unwritten-vowels/audio/2530b9aa1f93be28.mp3",
-				"/thai-script/lessons/lesson-unwritten-vowels/audio/07f3351d33f2daa1.mp3"
+				"/thai-script/lessons/lesson-unwritten-vowels/audio/75bdc80a7dd5883f.mp3"
 			],
 			"audioLanguages": ["th", "en"],
 			"thai": "สอน",
@@ -235,11 +235,11 @@
 			"body": [
 				"รวม (ruam) is to combine. ดวง (duang) is a round object. ขวด (khùat) is a bottle. ตรวจ (dtrùat) is to inspect.",
 				"With a consonant on each side and no other vowel in the syllable, ว is the vowel ua rather than a w.",
-				"ua counts as long, so a syllable closing on it stays live.",
+				"ua counts as long, so a syllable closing on it stays alive.",
 				"Opening a syllable, ว is still the consonant w, as in วง, and after a vowel it closes the syllable."
 			],
 			"audio": [
-				"/thai-script/lessons/lesson-unwritten-vowels/audio/2b2050577931fa6f.mp3"
+				"/thai-script/lessons/lesson-unwritten-vowels/audio/85387c2ef734cbde.mp3"
 			],
 			"audioLanguages": ["en"],
 			"teaches": ["sara-uua"]
@@ -278,7 +278,7 @@
 				"And the bare ร ending beats the short o, which is the one place a longer reading wins."
 			],
 			"audio": [
-				"/thai-script/lessons/lesson-unwritten-vowels/audio/b9dbfff480234d87.mp3"
+				"/thai-script/lessons/lesson-unwritten-vowels/audio/b3ee782ed4200e7b.mp3"
 			],
 			"audioLanguages": ["en"]
 		},
@@ -292,13 +292,13 @@
 				"Next: the four tone marks, and what each one does."
 			],
 			"audio": [
-				"/thai-script/lessons/lesson-unwritten-vowels/audio/1bfbdb4653b51f55.mp3"
+				"/thai-script/lessons/lesson-unwritten-vowels/audio/8f9ea367b99a6e6d.mp3"
 			],
 			"audioLanguages": ["en"]
 		}
 	],
 	"timing": {
-		"spokenSeconds": 644,
+		"spokenSeconds": 648,
 		"practiceSeconds": 170,
 		"estimatedMinutes": 14
 	}

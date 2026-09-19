@@ -389,16 +389,16 @@
 		{
 			"kind": "exposition",
 			"id": "live-contrast",
-			"heading": "The same letter, ending live",
+			"heading": "The same letter, ending alive",
 			"body": [
 				"Both open on the elephant's letter, which is low class.",
-				"Both end on a hum, so both are live, so both land flat.",
+				"Both end on a hum, so both are alive, so both land flat.",
 				"Same letter, two tones. The ending and the length decide."
 			],
 			"audio": [
 				"/thai-script/lessons/lesson-04/audio/488788e0006a6dd3.mp3",
 				"/thai-script/lessons/lesson-04/audio/ed506e564973a1ec.mp3",
-				"/thai-script/lessons/lesson-04/audio/d27abafefde47e42.mp3",
+				"/thai-script/lessons/lesson-04/audio/b3617e0a51fb4812.mp3",
 				"/thai-script/lessons/lesson-04/audio/e16b2defdce005e0.mp3",
 				"/thai-script/lessons/lesson-04/audio/263fa8786f5762d6.mp3"
 			],
@@ -420,11 +420,11 @@
 			"id": "two-endings-answer",
 			"retrievalSlideId": "two-endings",
 			"answers": [
-				"Flat: ends on a hum, so live. Low class plus live is mid.",
+				"Flat: ends on a hum, so alive. Low class plus alive is mid.",
 				"High: short vowel, nothing after it, so dead.",
 				"The class was the same. Length and ending decided."
 			],
-			"audio": ["/thai-script/lessons/lesson-04/audio/9281d29cc1cdbbf4.mp3"],
+			"audio": ["/thai-script/lessons/lesson-04/audio/1c64c97c918d906a.mp3"],
 			"audioLanguages": ["en"],
 			"teaches": ["low-dead-short", "low-live"]
 		},
@@ -442,7 +442,7 @@
 		}
 	],
 	"timing": {
-		"spokenSeconds": 677,
+		"spokenSeconds": 679,
 		"practiceSeconds": 236,
 		"estimatedMinutes": 15
 	}

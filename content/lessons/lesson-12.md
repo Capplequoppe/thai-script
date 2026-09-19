@@ -76,7 +76,7 @@ narration: en Pen and paper first, as every lesson, and both halves of each name
 image: images/lesson-12/up-to-the-temple.jpg
 scene: A swept temple courtyard with white walls and tiered golden roofs standing empty in early morning light, flagstones still wet.
 heading: The third district, and the first letters to live in it
-narration: en You know two of the three districts. The harbour, down at the water, where fourteen of your letters live. The market, up the road, where the other seven stand among the stalls. And all this time there has been a third place on the hill above both. You have seen it from a distance twice and never walked into it. Until this morning it was empty. Every letter in this lesson lives here. The temple is the high class, and it is the one district whose letters can make a syllable climb.
+narration: en You know two of the three districts. The harbour, down at the water, where fourteen of your letters live. The market, up the road, where the other seven stand among the stalls. And all this time there has been a third place on the hill above both. You have seen it from a distance twice and never walked into it. Until now it was empty. Every letter in this lesson lives here. The temple is the high class, and it is the one district whose letters can make a syllable climb.
 - Harbour, market, and the hill above both.
 - The temple is the **high class**.
 - Today it goes from empty to seven residents.
@@ -84,7 +84,7 @@ narration: en You know two of the three districts. The harbour, down at the wate
 ## exposition the-map-again
 image: images/lesson-07/cousin-pairs.jpg
 heading: The map from lesson seven, and what it promised
-narration: en In lesson seven I showed you a map and told you to look at the shape of it rather than learn it. Seven sounds, each with two letters — one down at the harbour and one up at the temple. You have held the entire harbour column since that day. Kh, ch, th, ph, f, s and h, all seven of them, all low class, all yours. The temple column is the other half of that map, and it arrives this morning, in one piece. So the thing each of these seven letters actually costs you is small. You know what it sounds like, because its cousin taught you. You know why it exists, because the map told you. All that is left is the shape it takes and the tone it produces. Ready for the other half of that map?
+narration: en In lesson seven I showed you a map and told you to look at the shape of it rather than learn it. Seven sounds, each with two letters — one down at the harbour and one up at the temple. You have held the entire harbour column since that day. Kh, ch, th, ph, f, s and h, all seven of them, all low class, all yours. The temple column is the other half of that map, and it arrives here, in one piece. So the thing each of these seven letters actually costs you is small. You know what it sounds like, because its cousin taught you. You know why it exists, because the map told you. All that is left is the shape it takes and the tone it produces. Ready for the other half of that map?
 - Seven sounds, two letters each. The harbour column has been yours since lesson seven.
 - Today the temple column arrives whole.
 - Each letter costs a shape and a tone, and the sound comes free.
@@ -131,7 +131,7 @@ heading: The chest against the wall
 teaches: ho-hip
 narration: en The second letter. Listen.
 recording: th หอ หีบ public/audio/consonant-ho-hip.mp3
-narration: en That word means a chest — the big carved kind with a domed lid, standing against a wall. The sound is a plain h. It is the owl's sound from lesson seven, and that morning I told you the owl was worth ten minutes because of the letter it propped up. This is that letter. The owl turns up once in ten thousand characters. This one is the fourth commonest sound a Thai syllable can open with. So you have been holding that row the wrong way round, with the rare half learned and the common half missing, and today fixes it. The shape is the soldier's letter with a kink put into the left stroke, where his back climbs dead straight. Then a loop, and a tall wall up the right side.
+narration: en That word means a chest — the big carved kind with a domed lid, standing against a wall. The sound is a plain h. It is the owl's sound from lesson seven, where I told you the owl was worth ten minutes because of the letter it propped up. This is that letter. The owl turns up once in ten thousand characters. This one is the fourth commonest sound a Thai syllable can open with. So you have been holding that row the wrong way round, with the rare half learned and the common half missing, and today fixes it. The shape is the soldier's letter with a kink put into the left stroke, where his back climbs dead straight. Then a loop, and a tall wall up the right side.
 - Its name is the sound, then a word beginning with that sound.
 - The word means a **chest**.
 - The owl's h, and this is the half of that pair the language actually uses.
@@ -173,9 +173,9 @@ narration: en Three letters, all of them yours. The tiger, the long oo from less
 thai: สูง
 heading: Read this one
 teaches: so-sia, high-live
-narration: en There it is on its own. The tiger opens it and the long oo sits underneath in the cellar. The snake closes it with a hum, which makes the syllable live. Temple letter, live syllable — so you have the rule and you have the letter. Say it out loud with the dip in it before you turn this over.
+narration: en There it is on its own. The tiger opens it and the long oo sits underneath in the cellar. The snake closes it with a hum, which makes the syllable alive. Temple letter, the syllable alive — so you have the rule and you have the letter. Say it out loud with the dip in it before you turn this over.
 - Tiger, the long oo in the cellar, the snake closing it.
-- Live ending, temple letter.
+- The syllable alive, temple letter.
 - **Out loud, with the dip, before you turn it over.**
 
 ## exposition read-suung-answer
@@ -185,7 +185,7 @@ teaches: so-sia, high-live
 narration: th สูง
 narration: en Tall, or high. Rising, exactly as the rule promised. If your voice went straight up without dipping, say it again and start lower than feels right.
 - **สูง** — tall.
-- Rising, from the temple letter and the live ending.
+- Rising, from the temple letter and the ending that leaves it alive.
 
 ## exposition three-that-breathe
 image: images/lesson-12/three-that-breathe.jpg
@@ -265,9 +265,9 @@ thai: เขา
 heading: That one
 teaches: kho-khay, high-live
 narration: th เขา
-narration: en He, or she — Thai uses the one word for both, and it is among the two hundred commonest words in the language. Rising, because a temple letter opened it and the syllable runs live to the end. Now say the same syllable with the water buffalo in front instead. The sound out of your mouth is identical and the tone goes flat, because the harbour's live rule gives you the mid tone.
+narration: en He, or she — Thai uses the one word for both, and it is among the two hundred commonest words in the language. Rising, because a temple letter opened it and the syllable runs alive to the end. Now say the same syllable with the water buffalo in front instead. The sound out of your mouth is identical and the tone goes flat, because the harbour, counting it alive, gives you the mid tone.
 - **เขา** — he, or she.
-- Rising: temple letter, live syllable.
+- Rising: temple letter, the syllable alive.
 - The same sound from the harbour would come out flat.
 
 ## exposition the-last-two
@@ -350,7 +350,7 @@ heading: And the short one
 teaches: sara-ia, sara-iia
 narration: en There is a short version, and you can probably guess how it will be spelled. The same three stations, and then the two hooks behind. That is the shortener from lesson four, lesson seven and lesson eight. Fourth time of asking, same job.
 recording: th สระเอียะ public/audio/sara-ia-short.mp3
-narration: en One honest thing about it. I cannot give you a word, because common Thai has none. It survives in a handful of exclamations and in nothing you will read this year. Know the spelling, recognise it if it turns up, and spend your time on the long one.
+narration: en One honest thing about it. I cannot give you a word, because common Thai has none. It survives in a handful of exclamations and in nothing you are going to read for a very long time. Know the spelling, recognise it if it turns up, and spend your time on the long one.
 narration: en One more thing about the long one, and it cuts against what you have learned to expect. Twice now you have watched a vowel's hooks climb up and turn into a little roof when a final consonant wanted their seat. This one holds its ground. Put a final consonant after it and all three of its marks stay exactly where they were.
 - **เ-ียะ** — the same three stations, with the two hooks behind.
 - No common word uses it. Recognise the spelling and move on.
@@ -360,9 +360,9 @@ narration: en One more thing about the long one, and it cuts against what you ha
 thai: เสีย
 heading: Read this one
 teaches: sara-iia, so-sia
-narration: en Four marks, and all four are yours as of about two minutes ago. The mast, the tiger, the mark on the roof, and the giant's letter closing the vowel off. Nothing stops the syllable, so it is live, and the letter doing the opening lives at the temple. Work out the tone, then say it out loud before you turn it over.
+narration: en Four marks, and all four are yours as of about two minutes ago. The mast, the tiger, the mark on the roof, and the giant's letter closing the vowel off. Nothing stops the syllable, so it is alive, and the letter doing the opening lives at the temple. Work out the tone, then say it out loud before you turn it over.
 - Mast, tiger, the roof mark, the giant's letter.
-- Live syllable, temple letter.
+- The syllable alive, temple letter.
 - **Tone first, then out loud.**
 
 ## exposition read-sia-answer
@@ -370,15 +370,15 @@ thai: เสีย
 heading: That one
 teaches: sara-iia, so-sia
 narration: th เสีย
-narration: en To lose something, or to waste it, or for a thing to break. One word covers all of that, and you will hear it constantly. Rising, from a temple letter on a live syllable. Write it once beside the tall one you read earlier, and say the two of them one after the other.
+narration: en To lose something, or to waste it, or for a thing to break. One word covers all of that, and you will hear it constantly. Rising, from a temple letter on a syllable that ends alive. Write it once beside the tall one you read earlier, and say the two of them one after the other.
 - **เสีย** — to lose, to waste, to break.
-- Rising: temple letter, live syllable.
+- Rising: temple letter, the syllable alive.
 
 ## exposition read-rian
 thai: เรียน
 heading: Now the same vowel from the harbour
 teaches: sara-iia, high-live, low-live
-narration: en Same vowel, different district, and this is the comparison worth stopping on. Five marks this time. The mast, the boat's letter from lesson eight, the mark on the roof, the giant's letter. Then the mouse closing the whole thing off with a hum. The boat lives at the harbour. The ending hums, so the syllable is live. Work that pair of facts against the rules you have and say what tone comes out, before you turn it over.
+narration: en Same vowel, different district, and this is the comparison worth stopping on. Five marks this time. The mast, the boat's letter from lesson eight, the mark on the roof, the giant's letter. Then the mouse closing the whole thing off with a hum. The boat lives at the harbour. The ending hums, so the syllable is alive. Work that pair of facts against the rules you have and say what tone comes out, before you turn it over.
 - Mast, boat, roof mark, giant's letter, mouse closing it.
 - The boat lives at the **harbour**, and the ending hums.
 - Say the tone out loud before you turn it over.
@@ -388,9 +388,9 @@ thai: เรียน
 heading: That one
 teaches: sara-iia, high-live, low-live
 narration: th เรียน
-narration: en To study, or to learn. Flat and level. A harbour letter on a live syllable gives the mid tone, which you learned in lesson two and have used ever since. Put the two words side by side. Same vowel, same kind of ending, two different tones. The one thing carrying that difference is which district the opening letter lives in. Which is why the alphabet needs forty-four letters for a good deal fewer than forty-four sounds.
+narration: en To study, or to learn. Flat and level. A harbour letter on a syllable that ends alive gives the mid tone, which you learned in lesson two and have used ever since. Put the two words side by side. Same vowel, same kind of ending, two different tones. The one thing carrying that difference is which district the opening letter lives in. Which is why the alphabet needs forty-four letters for a good deal fewer than forty-four sounds.
 - **เรียน** — to study.
-- Flat: harbour letter, live syllable.
+- Flat: harbour letter, the syllable alive.
 - Same vowel as the last word, and a different tone, from the district alone.
 
 ## exposition seven-words
@@ -398,7 +398,7 @@ image: images/lesson-12/seven-words.jpg
 scene: A sheet of lined practice paper lying on a wooden desk under warm lamplight, a pen resting across one corner of it.
 heading: One word for each of the seven
 teaches: so-sia, ho-hip, kho-khay, tho-thung, pho-phing, cho-ching, fo-fa
-narration: en Before the questions, one word for each letter, so that none of the seven leaves this lesson as a shape with nothing attached to it. Read each one out loud. Every one of them opens on a temple letter and closes live, so every one of them rises. Read the list twice, and on the second pass say the tone before you say the word.
+narration: en Before the questions, one word for each letter, so that none of the seven leaves this lesson as a shape with nothing attached to it. Read each one out loud. Every one of them opens on a temple letter and closes alive, so every one of them rises. Read the list twice, and on the second pass say the tone before you say the word.
 - **ของ** — of, or a thing. The egg's letter opening it.
 - **ฉัน** — I, the word a woman uses for herself. The cymbals.
 - **ถาม** — to ask. The bag, the long post, and the horse humming it shut.
@@ -417,10 +417,10 @@ narration: en Two questions before the end. Here is the first. You read the word
 ## reveal which-cousin-answer
 retrieval: which-cousin
 teaches: kho-khay, kho-khwai, high-live, low-live
-narration: en It is changing the district, and the district decides the tone. The egg's letter lives at the temple, and a temple letter on a live syllable gives a rising tone. The buffalo writes the same sound from the harbour, where a live syllable comes out flat. Which is why the language keeps two letters for one sound. The choice of letter is the only place on the page where that tone is written down.
+narration: en It is changing the district, and the district decides the tone. The egg's letter lives at the temple, and a temple letter on a syllable that ends alive gives a rising tone. The buffalo writes the same sound from the harbour, where a syllable that ends alive comes out flat. Which is why the language keeps two letters for one sound. The choice of letter is the only place on the page where that tone is written down.
 - The district changed, and the district decides the tone.
-- Temple letter, live syllable, rising.
-- Harbour letter, live syllable, flat.
+- Temple letter, the syllable alive, rising.
+- Harbour letter, the syllable alive, flat.
 - Two letters for one sound is how the script spells a tone.
 
 ## retrieval which-letter
@@ -432,16 +432,16 @@ narration: en And the second, which is the same question turned round. You hear 
 ## reveal which-letter-answer
 retrieval: which-letter
 teaches: tho-thung, tho-thahan, high-live
-narration: en The bag's letter, up at the temple. The ending hums, so the syllable is live. A rising tone on a live syllable is something only a temple letter produces. Put the soldier there instead and the harbour's live rule hands you a flat tone. So hearing the rise tells you which of the two letters was written, without ever seeing the word. Once the tone marks arrive, that same reasoning will run in both directions for you.
+narration: en The bag's letter, up at the temple. The ending hums, so the syllable is alive. A rising tone on a syllable that ends alive is something only a temple letter produces. Put the soldier there instead and the harbour, counting it alive, hands you a flat tone. So hearing the rise tells you which of the two letters was written, without ever seeing the word. Once the tone marks arrive, that same reasoning will run in both directions for you.
 - The bag's letter — the temple one.
-- The hum makes it live, and live plus temple gives rising.
+- The hum makes it alive, and alive plus temple gives rising.
 - The harbour letter would hand you a flat tone instead.
 - Hearing the tone tells you the spelling, with the word unseen.
 
 ## exposition read-close
 heading: Twenty-eight letters, and the temple open
-narration: en Seven letters in one morning, and they cost you seven shapes rather than seven sounds, which is what lesson seven was buying when it spent ten minutes on an owl. The temple has residents now, and one rule covers all of them so far: a temple letter on a live syllable rises. Before you stop, write the seven out once more in a column. Put each one's harbour cousin beside it, and say both names as you go. Next lesson brings six more letters. Every one of them doubles a sound you are already reading. Two go up to the temple, and four stay down at the water.
+narration: en Seven letters in one lesson, and they cost you seven shapes rather than seven sounds, which is what lesson seven was buying when it spent ten minutes on an owl. The temple has residents now, and one rule covers all of them so far: a temple letter on a syllable that ends alive rises. Before you stop, write the seven out once more in a column. Put each one's harbour cousin beside it, and say both names as you go. Next lesson brings six more letters. Every one of them doubles a sound you are already reading. Two go up to the temple, and four stay down at the water.
 - Seven temple letters: **ส** tiger, **ห** chest, **ข** egg, **ถ** bag, **ผ** bee, **ฉ** cymbals, **ฝ** lid.
-- One rule for all of them so far: temple plus live gives **rising**.
+- One rule for all of them so far: temple plus alive gives **rising**.
 - Write the column, with each harbour cousin beside it.
 - Next: six more doubled sounds, two at the temple and four at the harbour.

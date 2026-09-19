@@ -175,9 +175,9 @@ thai: นอน
 heading: That one
 teaches: sara-aaw
 narration: th นอน
-narration: en To lie down, and to sleep. It opens on a harbour letter and ends on a hum that leaves the sound running, so it is live. Lesson two's rule puts it flat and level.
+narration: en To lie down, and to sleep. It opens on a harbour letter and ends on a hum that leaves the sound running, so it is alive. Lesson two's rule puts it flat and level.
 - **นอน** — to lie down, or to sleep.
-- Harbour letter, live ending, flat and level.
+- Harbour letter, the syllable alive, flat and level.
 
 ## exposition read-aawk
 thai: ออก
@@ -249,12 +249,12 @@ image: images/lesson-11/the-grid-so-far.jpg
 scene: An empty wooden market stall standing open and swept clean at the end of the day, striped awning above, the aisle beyond empty.
 heading: Three corners you already hold
 teaches: mid-dead-short, mid-dead-long
-narration: en Take stock for a moment, because you are one rule away from finishing a whole district. A tone comes from two facts: which district the opening consonant lives in, and whether the syllable ends live or dead. That gives every district four corners. The market has had one of them since lesson three, which is a live ending, and it puts the syllable flat and level.
+narration: en Take stock for a moment, because you are one rule away from finishing a whole district. A tone comes from two facts: which district the opening consonant lives in, and whether the syllable ends alive or dead. That gives every district four corners. The market has had one of them since lesson three, which is an ending that leaves it alive, and it puts the syllable flat and level.
 narration: th ตาม
 narration: en That is the word for to follow, and it is a market letter with a hum on the end that keeps the sound running. Flat and level, by lesson three's rule. The two corners still dark are the dead ones, short and long, and they are the last two rules the market ever needs.
-- A tone comes from the district, and from live against dead.
+- A tone comes from the district, and from alive against dead.
 - Four corners per district, and the market has had one since lesson three.
-- **ตาม** — to follow. Market letter, live ending, flat and level.
+- **ตาม** — to follow. Market letter, the syllable alive, flat and level.
 - The two dead corners are all that is left.
 
 ## rule mid-dead-short
@@ -297,7 +297,7 @@ narration: en Last question of the lesson, and of this run of six. Here are two 
 ## reveal close-the-grid-answer
 retrieval: close-the-grid
 teaches: mid-dead-short, mid-dead-long
-narration: en Both of them are low. And you needed one rule, whatever the book says there are two of, because the answer was low before you reached the vowel. That closes the market. Every syllable opening on one of its letters now has a tone you can work out from the spelling alone, live or dead, long or short, with nothing left over.
+narration: en Both of them are low. And you needed one rule, whatever the book says there are two of, because the answer was low before you reached the vowel. That closes the market. Every syllable opening on one of its letters now has a tone you can work out from the spelling alone, alive or dead, long or short, with nothing left over.
 - Both **low**.
 - One rule in practice, because both lengths give the same answer.
 - The market's grid is closed, in all four corners.

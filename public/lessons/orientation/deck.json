@@ -86,7 +86,7 @@
 				"/thai-script/lessons/orientation/audio/fd5662d37c05ec84.mp3",
 				"/thai-script/lessons/orientation/audio/7bfe1d3253ace3ec.mp3",
 				"/thai-script/lessons/orientation/audio/e4646ae8f1434bad.mp3",
-				"/thai-script/lessons/orientation/audio/946800c4da5ef22f.mp3",
+				"/thai-script/lessons/orientation/audio/bd7de6d31d525d96.mp3",
 				"/thai-script/lessons/orientation/audio/76ac4e8e6598c01e.mp3"
 			],
 			"audioLanguages": [
@@ -372,7 +372,7 @@
 		}
 	],
 	"timing": {
-		"spokenSeconds": 1507,
+		"spokenSeconds": 1506,
 		"practiceSeconds": 158,
 		"estimatedMinutes": 28
 	}
