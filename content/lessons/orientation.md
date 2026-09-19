@@ -152,7 +152,7 @@ narration: en The answer, when you are ready for it: right as the thing begins t
 ## exposition struggle
 heading: Notice what just happened
 image: images/orientation/struggle.jpg
-scene: A woman up on her toes with one arm pushed deep into the dark back of a high wooden shelf, her face turned away and her eyes lowered as she feels for something she cannot see, fingers spread and straining. Warm afternoon light from a window behind her, dust hanging in the air.
+scene: A young man sits hunched forward on a low stone step in the posture of Rodin's The Thinker, chin resting on the back of his fist, elbow planted on his knee, his whole body curled around the thought. Behind him a quiet Thai temple courtyard, worn stone paving and the gold edge of a tiered roof. Warm late afternoon light, long shadows.
 narration: en Notice what just happened there. You were asked before you were told anything at all. I did that on purpose, and everything from here onward will do the same to you — so I want to spend a minute on what it felt like, because that feeling is the whole method and most people never learn to recognise it.
 narration: en Try another one. This one costs you nothing at all. What is my name? [pause] I told you at the very start.
 narration: en If it came straight back, good. If it did not, stop the lesson here for a second and genuinely go looking for it. Do not move on and do not scroll back. It is in there — you heard it a few slides ago, in the same breath as a grandmother and an alphabet song.
