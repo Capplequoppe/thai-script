@@ -468,10 +468,13 @@ image: images/lesson-01/the-vowel-house.jpg
 scene: A wooden Thai house on stilts standing by itself at a crossroads in open farmland, three dirt tracks meeting in front of it and running away to the horizon, steep tiled roof, wide veranda, open shaded space beneath the raised floor, dry grass and distant hills, late afternoon light. No people.
 heading: And one place that is not a district
 teaches: sara-aa
-narration: en A vowel will never live in the harbour, so there is one more address to hand you before you meet one. Where a consonant lives tells you its class, and its class decides the tone. A vowel has no class whatsoever. It will attach itself to any consonant you like without changing a thing about it, so there is nowhere in any of the three districts for it to belong. What it gets instead is a house of its own, standing out where the roads from all three districts meet. Vowels lodge there rather than live there, because a vowel never stands on its own — it always has a consonant to lean on. And the room it lodges in is settled by one thing only: where it gets written. Above the consonant is the roof. Beneath it, the cellar. Behind it, the back yard. Today you are going as far as the back yard and no further.
+narration: en A vowel will never live in the harbour, so there is one more address to hand you before you meet one. Where a consonant lives tells you its class, and its class decides the tone. A vowel has no class whatsoever. It will attach itself to any consonant you like without changing a thing about it, so there is nowhere in any of the three districts for it to belong. What it gets instead is a house of its own, standing out where the roads from all three districts meet. Vowels lodge there rather than live there, because a vowel never stands on its own — it always has a consonant to lean on. And the room it lodges in is settled by one thing only: where it gets written. Here is the floor plan, and I am going to give you each room with its plain direction word attached, because you will be asked for both and they are the same fact wearing two hats. Thai runs left to right along the line, exactly as English does. So a vowel written in front of its consonant is the one on the left, and those are the front steps. Written above it is the roof. Written underneath it is the cellar. Written behind it means written to its right, because on a line that runs left to right, behind is right — and that is the back yard. Last, a vowel that wraps all the way round its consonant gets the veranda, which does the same thing to the house. Five rooms, five directions, one fact each. Today you are going as far as the back yard and no further.
 - A vowel carries no class, so it belongs to no district.
 - One house, where the roads from all three districts meet.
-- The room it lodges in is simply **where it is written**.
+- The room it lodges in is simply **where it is written**:
+- **left** → the front steps · **above** → the roof · **below** → the cellar
+- **right** → the **back yard** · **around** → the veranda
+- Thai runs left to right, so *behind the consonant* and *to its right* are the same place.
 
 ## exposition meet-aa
 glyph: า
@@ -483,12 +486,12 @@ teaches: sara-aa
 narration: en The vowel now, and you have had it in your ear all lesson without being told — it is the second half of what that boy was shouting off the pier. The part after his lips came open. That long open note, held right out until the air ran out of him.
 narration: en Before I play you its name, one thing about how vowels are named, because it is the same trick you already know and it is easier the second time. Two parts again. On a consonant the front of the name is the letter's own sound, so it changes on every single one of them. On a vowel the front never changes at all. It is one word, every time, and the word is sara. That is all it means: vowel. So the thing you are about to hear is the word vowel, followed by the sound. Vowel aa. English could do exactly the same if we went about calling our letters Vowel A, Vowel E, Vowel I. Every vowel in this course turns up wearing that word on the front, so hear it once now and it never has to puzzle you again.
 recording: th สระอา public/audio/sara-a-long.mp3
-narration: en Long matters here more than it would in English. Length changes meaning in Thai, so the short version of this sound is a different vowel and very often a different word altogether. When you say it, take it all the way out — somebody calling across water to be heard, rather than somebody saying a word in a room. And it never stands alone. A Thai vowel is a thing with a position. This one always sits just behind the consonant it belongs to, because the consonant opens the syllable and the vowel finishes it. Written behind — which makes the back yard its room. You have just met the first lodger.
+narration: en Long matters here more than it would in English. Length changes meaning in Thai, so the short version of this sound is a different vowel and very often a different word altogether. When you say it, take it all the way out — somebody calling across water to be heard, rather than somebody saying a word in a room. And it never stands alone. A Thai vowel is a thing with a position. This one always sits just behind the consonant it belongs to, because the consonant opens the syllable and the vowel finishes it. Written behind it — and behind, on a line that runs left to right, means to its right. So whichever of those two words you are ever asked for, this vowel is the right-hand one, and the back yard is its room. You have just met the first lodger.
 - A **long**, open note, held until the breath runs out.
 - Vowel names are two parts too — but the front is always **สระ *sara***, meaning *vowel*.
 - So **สระอา** is simply *Vowel aa*.
 - Length changes meaning. Long and short are different vowels.
-- It is written **after** its consonant, so it lodges in the **back yard**.
+- It is written **after** its consonant — which is **to its right** — so it lodges in the **back yard**.
 
 ## exposition aa-story
 image: images/lesson-01/aa-water-jar.jpg
@@ -508,7 +511,7 @@ teaches: sara-aa
 narration: en This one is easy, and it is one of the few that breaks the loop rule — no loop on it at all, so no head to start from. One stroke, and you already know its shape: the crook first, then the handle. Begin high, make the small turn, then come straight down. Write it a few times on its own. Then write it to the right of each of your two consonants, which is where it will be sitting for the rest of your life.
 - No loop, so no head — one of the exceptions.
 - One stroke: a small turn at the top, then straight down.
-- It always sits to the **right** of its consonant.
+- It always sits to the **right** of its consonant. Right, behind, the back yard: one place.
 
 ## exposition flat-tone
 heading: One rule about your own voice

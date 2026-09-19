@@ -485,11 +485,14 @@
 			"body": [
 				"A vowel carries no class, so it belongs to no district.",
 				"One house, where the roads from all three districts meet.",
-				"The room it lodges in is simply **where it is written**."
+				"The room it lodges in is simply **where it is written**:",
+				"**left** → the front steps · **above** → the roof · **below** → the cellar",
+				"**right** → the **back yard** · **around** → the veranda",
+				"Thai runs left to right, so *behind the consonant* and *to its right* are the same place."
 			],
 			"audio": [
-				"/thai-script/lessons/lesson-01/audio/6e6a54f4249168a5.mp3",
-				"/thai-script/lessons/lesson-01/audio/20bc1a07cdf2b46d.mp3"
+				"/thai-script/lessons/lesson-01/audio/c4805e66758cdd5f.mp3",
+				"/thai-script/lessons/lesson-01/audio/7c7fb4cf383f0e6a.mp3"
 			],
 			"audioLanguages": ["en", "en"],
 			"teaches": ["sara-aa"],
@@ -504,13 +507,13 @@
 				"Vowel names are two parts too — but the front is always **สระ *sara***, meaning *vowel*.",
 				"So **สระอา** is simply *Vowel aa*.",
 				"Length changes meaning. Long and short are different vowels.",
-				"It is written **after** its consonant, so it lodges in the **back yard**."
+				"It is written **after** its consonant — which is **to its right** — so it lodges in the **back yard**."
 			],
 			"audio": [
 				"/thai-script/lessons/lesson-01/audio/bd36cfdd9b22b32a.mp3",
 				"/thai-script/lessons/lesson-01/audio/6160f92f16001dc1.mp3",
 				"/thai-script/lessons/lesson-01/audio/823d442bff951539.mp3",
-				"/thai-script/lessons/lesson-01/audio/2bae0921cbc2baee.mp3"
+				"/thai-script/lessons/lesson-01/audio/70b1a9fd01568c83.mp3"
 			],
 			"audioLanguages": ["en", "en", "th", "en"],
 			"teaches": ["sara-aa"]
@@ -539,7 +542,7 @@
 			"body": [
 				"No loop, so no head — one of the exceptions.",
 				"One stroke: a small turn at the top, then straight down.",
-				"It always sits to the **right** of its consonant."
+				"It always sits to the **right** of its consonant. Right, behind, the back yard: one place."
 			],
 			"audio": ["/thai-script/lessons/lesson-01/audio/326fa5a563ce1c3c.mp3"],
 			"audioLanguages": ["en"],
@@ -725,9 +728,9 @@
 		}
 	],
 	"timing": {
-		"spokenSeconds": 2057,
+		"spokenSeconds": 2100,
 		"practiceSeconds": 400,
-		"estimatedMinutes": 41
+		"estimatedMinutes": 42
 	},
 	"teachingWords": [
 		{
