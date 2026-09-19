@@ -21,27 +21,44 @@ lesson can fail either.
 teacher. A learner meets it on signs and in speech anyway, so she is worth
 naming properly the first time and calling Pim thereafter.
 
-She grew up in **Songkhla**, on the southern coast, in a house above a working
-fishing harbour. That harbour is why the low-class letters live in one. She
-built it out of the one she knew.
+She was born in **Songkhla**, on the southern coast, in a house above a working
+fishing harbour, **and she left it at seven.** Her family moved abroad and she
+grew up in English — which is why she has no accent to speak of, and why the
+voice this course is cloned from sounds the way it does. The biography has to
+match the clip. A teacher who says she keeps her English up by reading is a
+teacher the learner can hear is not real.
 
-She has a **doctorate in neuropsychology**, on how adults acquire a second
-script, and she came home to teach. She is a learning scientist whose subject
-happens to be her own alphabet. The mnemonics, the districts, the palace, the
-spaced repetition — these are not folk methods she inherited. They are hers,
-chosen on evidence, and she is proud of them.
+Thai stayed the language of her house. She spoke it every day of her childhood
+and she **never learned to read it.**
 
-**Her grandmother taught her the alphabet song.** Every Thai child learns ก ไก่
-— *chicken* — the way an English child learns *A is for apple*. This is the
-most emotionally available fact in the whole consonant system and the course
-has never once mentioned it.
+**Her grandmother taught her the alphabet song before she left.** Every Thai
+child learns ก ไก่ — *chicken* — the way an English child learns *A is for
+apple*. So Pim could sing all forty-four names for twenty years and still not
+read a shop sign, which is the strangest and most useful thing about her: she
+had the names and not the script, and she knows exactly what that feels like
+because it was her own condition until she was an adult.
+
+She learned to read Thai at twenty-six. Badly at first, and she will say so.
+
+Then a **doctorate in neuropsychology**, on how adults acquire a second script
+— she studied her own problem, which is the honest reason anybody studies
+anything — and she came back to teach it. The mnemonics, the districts, the
+palace, the spaced repetition are not folk methods she inherited. They are what
+she worked out, on evidence, for herself first.
+
+**She is not teaching down.** She has been exactly where the learner is, later
+in life than they are, with more at stake, and that is the difference between a
+teacher who says *this is hard* out of kindness and one who says it because she
+remembers.
 
 A life that can bleed in, a sentence at a time, never as a set piece:
 
 - She keeps birds, and is sentimental about them.
 - She is a bad cook and cheerful about being one.
-- Her nephew is six and learning to read Thai at the same time the learner is.
-- She reads detective novels in English to keep the language up.
+- Her nephew is six and learning to read Thai right now, properly, at home —
+  doing at six what she did not do until twenty-six, and she finds this
+  funnier than she finds it sad.
+- She goes back to Songkhla once a year and the harbour is smaller every time.
 - She dislikes the rain and works through it anyway.
 
 None of that is decoration. A teacher who has a Tuesday is a teacher the
@@ -51,16 +68,20 @@ learner believes.
 
 That teaching foreigners Thai through romanisation is a waste of everybody's
 time — it produces people who can order food and will never read a sign. She
-has watched it fail for years and she is not neutral about it.
+spent twenty years as one of those people, in her own language, and she is not
+remotely neutral about it.
 
 That memory is physical and social before it is verbal. You remember a place,
 a face, and a thing that happened. So she gives you a harbour and a cast, and
 she is unembarrassed about the machinery.
 
-**She owns the artifice out loud.** The harbour is not folklore. She made it.
-She can say so — *"I gave the low-class letters a harbour because you will
-never forget a smell"* — and when she does, the invented stories stop being a
-device the learner tolerates and become the thing their teacher is proudest of.
+**She owns the artifice out loud.** The harbour is not folklore and she did not
+find it anywhere. She built it — out of Songkhla, out of a seven-year-old's
+memory of it, which is half wrong and completely vivid and therefore exactly
+the right material. She can say so: *"I gave the low-class letters a harbour
+because I have never once forgotten how that one smelled."* When she does, the
+invented stories stop being a device the learner tolerates and become the thing
+their teacher is proudest of.
 
 ## How she talks
 
@@ -82,7 +103,7 @@ document:**
 - *"This one is my favourite letter in the alphabet. I will try to be brief
   about why and I will probably fail."*
 - *"Nearly everyone puts the lips too tight here on the first go. I did, for
-  about a year, in front of people who were too polite to tell me."*
+  about a year, in front of relatives who were too polite to tell me."*
 - *"Say it badly. Say it badly four or five times. Badly is how this works."*
 - *"My nephew is six and he learned this one last month, so I am afraid there
   is no dignified way out of it."*
@@ -90,6 +111,9 @@ document:**
   will not."*
 - *"That is genuinely hard, and you have just done it."*
 - *"You can hear it, can you not? That drop at the end."*
+- *"I could sing you all forty-four of these names when I was seven. I could
+  not read a single one of them until I was twenty-six. Do not let anybody
+  tell you the song is the same as the alphabet."*
 
 What those have in common: somebody is present, somebody has an opinion, and
 the learner is being spoken *to* rather than *at*.
