@@ -543,6 +543,34 @@ class LocalTranscriber:
 		gc.collect()
 
 
+def _run_ffmpeg(args: list[str], what: str, **kwargs):
+	"""`subprocess.run` for ffmpeg, reporting its absence like its failures.
+
+	Every call site below turns a non-zero ffmpeg into a `VendorError` naming
+	what was being attempted — but `subprocess` raises `FileNotFoundError`
+	when the binary is missing outright, before any of that can run. Two
+	things then go wrong: a machine without ffmpeg gets a bare traceback
+	instead of a sentence telling it what to install, and any test asserting
+	the documented failure mode passes or fails depending on whether the
+	machine running it happens to have ffmpeg. The second is not theoretical
+	— it is how `test_carrier_trim.py` came to pass locally and fail on CI,
+	where nothing needs ffmpeg and nothing installs it.
+
+	Mirrors the `FISH_PYTHON.exists()` guard in `S2ProVoice._run`: a missing
+	tool is a `VendorError` about the tool, not a traceback from `subprocess`.
+	"""
+	import subprocess  # noqa: PLC0415
+
+	try:
+		return subprocess.run(["ffmpeg", *args], check=False, **kwargs)
+	except FileNotFoundError as exc:
+		raise VendorError(
+			f"ffmpeg is not on PATH, so {what} cannot run. Every clip this "
+			"pipeline encodes or cuts is handed to it; install ffmpeg and "
+			"re-run. Nothing was written."
+		) from exc
+
+
 def encode_mp3(wav_bytes: bytes, tempo: float | None = None) -> bytes:
 	"""WAV in, the shipped clips' mp3 format out, in memory.
 
@@ -552,19 +580,17 @@ def encode_mp3(wav_bytes: bytes, tempo: float | None = None) -> bytes:
 	`generate-sentence-audio.py`, so one lesson does not play back at a
 	different bitrate from the vocabulary clips beside it.
 	"""
-	import subprocess  # noqa: PLC0415
-
 	filters = [] if tempo is None else ["-af", f"atempo={tempo}"]
-	completed = subprocess.run(
+	completed = _run_ffmpeg(
 		[
-			"ffmpeg", "-hide_banner", "-loglevel", "error",
+			"-hide_banner", "-loglevel", "error",
 			"-f", "wav", "-i", "pipe:0",
 			*filters,
 			*MP3_ENCODE_ARGS, "-f", "mp3", "pipe:1",
 		],
+		"encoding a clip",
 		input=wav_bytes,
 		capture_output=True,
-		check=False,
 	)
 	if completed.returncode != 0:
 		raise VendorError(
@@ -837,15 +863,14 @@ class S2ProVoice:
 		cache = FISH_ROOT.parent / "reference-tokens" / key
 		tokens = cache / "ref_vq.npy"
 		if not tokens.exists():
-			import subprocess  # noqa: PLC0415
-
 			cache.mkdir(parents=True, exist_ok=True)
 			wav = cache / "ref.wav"
-			completed = subprocess.run(
-				["ffmpeg", "-hide_banner", "-loglevel", "error", "-y",
+			completed = _run_ffmpeg(
+				["-hide_banner", "-loglevel", "error", "-y",
 				 "-i", str(audio.absolute()), "-ac", "1", "-ar", "44100",
 				 str(wav)],
-				capture_output=True, check=False,
+				f"decoding the {language} reference voice",
+				capture_output=True,
 			)
 			if completed.returncode != 0:
 				raise VendorError(
@@ -1149,14 +1174,13 @@ class LocalThaiVoice:
 
 	@staticmethod
 	def _cut(audio: bytes, start: float, end: float) -> bytes:
-		import subprocess  # noqa: PLC0415
-
-		completed = subprocess.run(
-			["ffmpeg", "-hide_banner", "-loglevel", "error", "-i", "pipe:0",
+		completed = _run_ffmpeg(
+			["-hide_banner", "-loglevel", "error", "-i", "pipe:0",
 			 "-ss", f"{max(0.0, start - CARRIER_PAD):.3f}",
 			 "-to", f"{end + CARRIER_PAD:.3f}",
 			 *MP3_ENCODE_ARGS, "-f", "mp3", "pipe:1"],
-			input=audio, capture_output=True, check=False,
+			"cutting the carrier down to the word",
+			input=audio, capture_output=True,
 		)
 		if completed.returncode != 0 or not completed.stdout:
 			raise VendorError(
