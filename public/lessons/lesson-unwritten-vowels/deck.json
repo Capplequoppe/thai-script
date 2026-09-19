@@ -296,5 +296,10 @@
 			],
 			"audioLanguages": ["en"]
 		}
-	]
+	],
+	"timing": {
+		"spokenSeconds": 644,
+		"practiceSeconds": 170,
+		"estimatedMinutes": 14
+	}
 }

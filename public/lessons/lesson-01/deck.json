@@ -13,8 +13,8 @@
 				"Many consonants share a sound. Their **class** is what separates them."
 			],
 			"audio": [
-				"/thai-script/lessons/lesson-01/audio/838fa057eabdc2c2.mp3",
-				"/thai-script/lessons/lesson-01/audio/693dc63d16eb913f.mp3"
+				"/thai-script/lessons/lesson-01/audio/9a96303965fbd2f1.mp3",
+				"/thai-script/lessons/lesson-01/audio/3be1a85cf1c65db0.mp3"
 			],
 			"audioLanguages": ["en", "en"]
 		},
@@ -23,12 +23,17 @@
 			"id": "loops-are-friends",
 			"heading": "The loops are your friends",
 			"body": [
+				"**ชอบกินข้าวที่บ้านมาก** — six ordinary words, run together with no spaces.",
 				"Thai script looks like squiggles and loops.",
 				"The loops are your friends. They tell you where the pen goes down."
 			],
-			"audio": ["/thai-script/lessons/lesson-01/audio/ac5466b63d9616f1.mp3"],
-			"audioLanguages": ["en"],
-			"image": "/thai-script/lessons/lesson-01/images/loops-are-friends-4a2a65305160.jpg"
+			"audio": [
+				"/thai-script/lessons/lesson-01/audio/1a11c0dd0b0b50ea.mp3",
+				"/thai-script/lessons/lesson-01/audio/38fa9fe34fa2c9fc.mp3",
+				"/thai-script/lessons/lesson-01/audio/c78e0e9d8723204f.mp3"
+			],
+			"audioLanguages": ["en", "en", "en"],
+			"thai": "ชอบกินข้าวที่บ้านมาก"
 		},
 		{
 			"kind": "exposition",
@@ -38,11 +43,17 @@
 				"Every symbol has a **stroke order** — a right way to write it.",
 				"Almost all are one continuous stroke, pen never lifted.",
 				"**Cheat code one:** start at the loop, if there is one.",
-				"The starting loop is called the **head**."
+				"The starting loop is called the **head**.",
+				"**ชอบกินข้าวที่บ้านมาก** — you'll read, say and write this yourself before the end."
 			],
-			"audio": ["/thai-script/lessons/lesson-01/audio/ee17bf123e8d9beb.mp3"],
-			"audioLanguages": ["en"],
-			"image": "/thai-script/lessons/lesson-01/images/stroke-order-94f7aa402f04.jpg"
+			"audio": [
+				"/thai-script/lessons/lesson-01/audio/ac0d6a56497baba5.mp3",
+				"/thai-script/lessons/lesson-01/audio/ee17bf123e8d9beb.mp3",
+				"/thai-script/lessons/lesson-01/audio/d4606c6781101dde.mp3",
+				"/thai-script/lessons/lesson-01/audio/d7043589a3e21582.mp3"
+			],
+			"audioLanguages": ["en", "en", "en", "en"],
+			"thai": "ชอบกินข้าวที่บ้านมาก"
 		},
 		{
 			"kind": "exposition",
@@ -54,7 +65,7 @@
 				"Most symbols turn **clockwise**. Less than half as many go the other way.",
 				"**Cheat code two:** assume clockwise, and learn only the exceptions."
 			],
-			"audio": ["/thai-script/lessons/lesson-01/audio/f5e45b3aed34d621.mp3"],
+			"audio": ["/thai-script/lessons/lesson-01/audio/50609353bf4193d9.mp3"],
 			"audioLanguages": ["en"]
 		},
 		{
@@ -67,8 +78,12 @@
 				"First part = **the consonant sound plus one fixed vowel**, the one in \"awe\".",
 				"In English it would be **Saw**, **Paw**, **Jaw**."
 			],
-			"audio": ["/thai-script/lessons/lesson-01/audio/a4851e882ce53a79.mp3"],
-			"audioLanguages": ["en"]
+			"audio": [
+				"/thai-script/lessons/lesson-01/audio/114e1ee348c3876f.mp3",
+				"/thai-script/lessons/lesson-01/audio/2e02fb722882e0bf.mp3",
+				"/thai-script/lessons/lesson-01/audio/769b916032c079cb.mp3"
+			],
+			"audioLanguages": ["en", "en", "en"]
 		},
 		{
 			"kind": "exposition",
@@ -97,22 +112,22 @@
 				"Loops, stroke order and the naming system — all paid for once."
 			],
 			"audio": [
-				"/thai-script/lessons/lesson-01/audio/18b0bdd0c26c7889.mp3",
-				"/thai-script/lessons/lesson-01/audio/cd57f0bece4e16e7.mp3"
+				"/thai-script/lessons/lesson-01/audio/44b0fe2d9271f7cf.mp3",
+				"/thai-script/lessons/lesson-01/audio/df0ba5892a381c36.mp3"
 			],
 			"audioLanguages": ["en", "en"]
 		},
 		{
 			"kind": "exposition",
 			"id": "meet-ma",
-			"heading": "Your first consonant, and what live means",
+			"heading": "Your first consonant, and what alive means",
 			"body": [
 				"The Thai version of **M**.",
 				"Close your lips and hum through your nose.",
 				"You already own this sound.",
-				"**Live** — a sound you can hold as long as you have breath."
+				"**Alive** — a sound you can hold as long as you have breath."
 			],
-			"audio": ["/thai-script/lessons/lesson-01/audio/fea37fbb27c9260b.mp3"],
+			"audio": ["/thai-script/lessons/lesson-01/audio/3e4d44e63331f270.mp3"],
 			"audioLanguages": ["en"],
 			"teaches": ["mo-ma"]
 		},
@@ -249,8 +264,11 @@
 			"kind": "exposition",
 			"id": "see-ma",
 			"heading": "The horse's letter",
-			"body": ["The horse's letter."],
-			"audio": ["/thai-script/lessons/lesson-01/audio/7b6ce33a6bc3d8a0.mp3"],
+			"body": [
+				"The horse's letter.",
+				"Find the **head** in the upper left, then follow the stroke down."
+			],
+			"audio": ["/thai-script/lessons/lesson-01/audio/fc208d87e1270d33.mp3"],
 			"audioLanguages": ["en"],
 			"thai": "ม",
 			"teaches": ["mo-ma"]
@@ -276,10 +294,14 @@
 				"Start at the head, upper left. Loop **clockwise**.",
 				"Straight down. Second loop at the bottom.",
 				"Across, then straight up. One continuous stroke.",
+				"It will look wrong for a while. Fill the line anyway.",
 				"Write it again and again, saying both halves of its name."
 			],
-			"audio": ["/thai-script/lessons/lesson-01/audio/5c5d0e6d32b4fc88.mp3"],
-			"audioLanguages": ["en"],
+			"audio": [
+				"/thai-script/lessons/lesson-01/audio/30e95ee64bca7b8c.mp3",
+				"/thai-script/lessons/lesson-01/audio/644b1232d2fb1902.mp3"
+			],
+			"audioLanguages": ["en", "en"],
 			"thai": "ม",
 			"teaches": ["mo-ma"]
 		},
@@ -289,14 +311,14 @@
 			"heading": "Your second consonant",
 			"body": [
 				"The Thai version of **N**. Tongue to the ridge behind your top teeth.",
-				"You can hold it, so it is **live** — like the first one.",
+				"You can hold it, so it is **alive** — like the first one.",
 				"No puff of air after it.",
 				"The same two-part pattern as the first letter."
 			],
 			"audio": [
-				"/thai-script/lessons/lesson-01/audio/c25b13cd9d988476.mp3",
+				"/thai-script/lessons/lesson-01/audio/49f6263a8df3cc7e.mp3",
 				"/thai-script/lessons/lesson-01/audio/16db45bc59ad6aec.mp3",
-				"/thai-script/lessons/lesson-01/audio/6a85b061cef96a45.mp3"
+				"/thai-script/lessons/lesson-01/audio/b1f4b2d3d61134fc.mp3"
 			],
 			"audioLanguages": ["en", "th", "en"],
 			"teaches": ["no-nu"]
@@ -400,7 +422,7 @@
 				"**ม** — second loop drops **straight down the left**. Stacked.",
 				"**น** — second loop thrown **across to the bottom right**. A diagonal."
 			],
-			"audio": ["/thai-script/lessons/lesson-01/audio/4d67da2cfd8543a6.mp3"],
+			"audio": ["/thai-script/lessons/lesson-01/audio/78e237dfbf23251e.mp3"],
 			"audioLanguages": ["en"],
 			"teaches": ["mo-ma", "no-nu"],
 			"image": "/thai-script/lessons/lesson-01/images/shapes-73d3e60e8be1.jpg"
@@ -410,7 +432,7 @@
 			"id": "spot-the-loop",
 			"prompt": "Both letters carry a head high on the left. Where does each one put its *second* loop — and which of the two is the horse?",
 			"revealSlideId": "spot-the-loop-answer",
-			"audio": ["/thai-script/lessons/lesson-01/audio/5f7e3eb405bdb162.mp3"],
+			"audio": ["/thai-script/lessons/lesson-01/audio/f1b87bc36f4ca21c.mp3"],
 			"audioLanguages": ["en"],
 			"teaches": ["mo-ma", "no-nu"]
 		},
@@ -436,7 +458,7 @@
 				"Both of today's letters are in the same class — the **harbour**.",
 				"The rules themselves arrive next lesson."
 			],
-			"audio": ["/thai-script/lessons/lesson-01/audio/5573024d772e6924.mp3"],
+			"audio": ["/thai-script/lessons/lesson-01/audio/e40a10019d42d3de.mp3"],
 			"audioLanguages": ["en"],
 			"teaches": ["mo-ma", "no-nu"]
 		},
@@ -479,16 +501,36 @@
 			"heading": "The vowel you have already heard",
 			"body": [
 				"A **long**, open note, held until the breath runs out.",
+				"Vowel names are two parts too — but the front is always **สระ *sara***, meaning *vowel*.",
+				"So **สระอา** is simply *Vowel aa*.",
 				"Length changes meaning. Long and short are different vowels.",
 				"It is written **after** its consonant, so it lodges in the **back yard**."
 			],
 			"audio": [
-				"/thai-script/lessons/lesson-01/audio/d05d5500cdfc3aa0.mp3",
+				"/thai-script/lessons/lesson-01/audio/bd36cfdd9b22b32a.mp3",
+				"/thai-script/lessons/lesson-01/audio/6160f92f16001dc1.mp3",
 				"/thai-script/lessons/lesson-01/audio/823d442bff951539.mp3",
 				"/thai-script/lessons/lesson-01/audio/2bae0921cbc2baee.mp3"
 			],
-			"audioLanguages": ["en", "th", "en"],
+			"audioLanguages": ["en", "en", "th", "en"],
 			"teaches": ["sara-aa"]
+		},
+		{
+			"kind": "exposition",
+			"id": "aa-story",
+			"heading": "What lodges in the back yard",
+			"body": [
+				"The **dipper** by the water jar: a small crook at the top, then a long straight handle.",
+				"It hangs round the **back** of the house — where this vowel is written.",
+				"Tip it over your neck and you make the sound. Long, open, until the water stops."
+			],
+			"audio": [
+				"/thai-script/lessons/lesson-01/audio/f5bb6ffb3431b124.mp3",
+				"/thai-script/lessons/lesson-01/audio/df0844dd1d8fb008.mp3"
+			],
+			"audioLanguages": ["en", "en"],
+			"teaches": ["sara-aa"],
+			"image": "/thai-script/lessons/lesson-01/images/aa-story-263f5301fcb9.jpg"
 		},
 		{
 			"kind": "exposition",
@@ -499,7 +541,7 @@
 				"One stroke: a small turn at the top, then straight down.",
 				"It always sits to the **right** of its consonant."
 			],
-			"audio": ["/thai-script/lessons/lesson-01/audio/fb6bcba89eb722f7.mp3"],
+			"audio": ["/thai-script/lessons/lesson-01/audio/326fa5a563ce1c3c.mp3"],
 			"audioLanguages": ["en"],
 			"thai": "า",
 			"teaches": ["sara-aa"]
@@ -523,15 +565,16 @@
 			"heading": "Your first word",
 			"body": [
 				"The mouse's letter, then the long vowel.",
-				"It means a **rice field**.",
+				"It means a **rice field** — and from now on it names the flat field where your mid tones live.",
 				"Consonant first, vowel second. Every syllable, always."
 			],
 			"audio": [
-				"/thai-script/lessons/lesson-01/audio/e4d33f19b379d508.mp3",
+				"/thai-script/lessons/lesson-01/audio/52e7cd20bf1613ef.mp3",
 				"/thai-script/lessons/lesson-01/audio/65c63daa9e5d2035.mp3",
-				"/thai-script/lessons/lesson-01/audio/b7933b9057fec099.mp3"
+				"/thai-script/lessons/lesson-01/audio/3a063929a106af75.mp3",
+				"/thai-script/lessons/lesson-01/audio/d939253d554a9d3e.mp3"
 			],
-			"audioLanguages": ["en", "th", "en"],
+			"audioLanguages": ["en", "th", "en", "en"],
 			"teaches": ["sara-aa"],
 			"image": "/thai-script/lessons/lesson-01/images/word-naa-c672dac1cc3b.jpg"
 		},
@@ -562,7 +605,7 @@
 			],
 			"audio": [
 				"/thai-script/lessons/lesson-01/audio/65c63daa9e5d2035.mp3",
-				"/thai-script/lessons/lesson-01/audio/c658322bba0cb83c.mp3"
+				"/thai-script/lessons/lesson-01/audio/9578f747199c624f.mp3"
 			],
 			"audioLanguages": ["th", "en"]
 		},
@@ -674,8 +717,30 @@
 				"Stroke order, the head, the clockwise default, and the naming pattern.",
 				"Next: three more harbour letters, and why they all sound flat."
 			],
-			"audio": ["/thai-script/lessons/lesson-01/audio/cffa311fc3907562.mp3"],
-			"audioLanguages": ["en"]
+			"audio": [
+				"/thai-script/lessons/lesson-01/audio/f3de038a7211e758.mp3",
+				"/thai-script/lessons/lesson-01/audio/8dd1b0487d54a9c7.mp3"
+			],
+			"audioLanguages": ["en", "en"]
+		}
+	],
+	"timing": {
+		"spokenSeconds": 2057,
+		"practiceSeconds": 400,
+		"estimatedMinutes": 41
+	},
+	"teachingWords": [
+		{
+			"thai": "ชอบกินข้าวที่บ้านมาก",
+			"reason": "one sentence shown whole on `loops-are-friends` and `stroke-order`, so a learner can see what Thai actually looks like before meeting a letter, and be told when they will be able to read it. Every word in it is inside the top hundred by frequency. Nothing here is taught or tested; the slides say outright that it cannot be read yet."
+		},
+		{
+			"thai": "สระ",
+			"reason": "the word *sara*, printed on `meet-aa` beside its romanisation. The learner hears it on the vowel's name recording and has no way to know it simply means \"vowel\", so the slide says so and shows the spelling once. Shown, never taught and never tested; the narration itself says \"sara\" in Latin letters, so none of these four shapes is ever asked for."
+		},
+		{
+			"thai": "สระอา",
+			"reason": "the word *sara*, printed on `meet-aa` beside its romanisation. The learner hears it on the vowel's name recording and has no way to know it simply means \"vowel\", so the slide says so and shows the spelling once. Shown, never taught and never tested; the narration itself says \"sara\" in Latin letters, so none of these four shapes is ever asked for."
 		}
 	]
 }

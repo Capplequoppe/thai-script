@@ -376,5 +376,10 @@
 			],
 			"audioLanguages": ["en"]
 		}
-	]
+	],
+	"timing": {
+		"spokenSeconds": 794,
+		"practiceSeconds": 194,
+		"estimatedMinutes": 16
+	}
 }

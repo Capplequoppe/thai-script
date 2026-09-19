@@ -323,10 +323,52 @@ export type DeckSlide =
 	| DeckRevealSlide
 	| DeckRuleSlide;
 
+/**
+ * How long a deck takes, measured at render time rather than guessed.
+ *
+ * `spokenSeconds` is the sum of the deck's own clips; `practiceSeconds` is
+ * modelled from countable things (see `scripts/lesson_deck/timing.py`) and
+ * excludes handwriting practice, which is the learner's own to spend. Optional
+ * because a deck rendered where durations could not be probed reports nothing
+ * rather than a confident wrong number.
+ */
+export interface DeckTiming {
+	readonly spokenSeconds: number;
+	readonly practiceSeconds: number;
+	readonly estimatedMinutes: number;
+}
+
 export interface LessonDeck {
 	readonly lessonId: string;
 	readonly title: string;
 	readonly slides: readonly DeckSlide[];
+	readonly timing?: DeckTiming;
+}
+
+/**
+ * A deck's timing block, or undefined.
+ *
+ * Absent and malformed are treated the same way on purpose: a deck whose
+ * timing cannot be trusted reports none, and the UI says nothing rather than
+ * showing a number nobody measured. A non-finite or negative figure is
+ * malformed — a lesson cannot take minus four minutes.
+ */
+function parseTiming(value: unknown): DeckTiming | undefined {
+	if (typeof value !== "object" || value === null) return undefined;
+	const raw = value as Record<string, unknown>;
+	const numbers = [
+		raw.spokenSeconds,
+		raw.practiceSeconds,
+		raw.estimatedMinutes,
+	];
+	if (
+		!numbers.every((n) => typeof n === "number" && Number.isFinite(n) && n >= 0)
+	) {
+		return undefined;
+	}
+	const [spokenSeconds, practiceSeconds, estimatedMinutes] =
+		numbers as number[];
+	return { spokenSeconds, practiceSeconds, estimatedMinutes };
 }
 
 export type DeckErrorCode =
@@ -602,9 +644,15 @@ export function validateDeck(value: unknown): DeckValidationResult {
 	}
 
 	if (errors.length > 0) return { ok: false, errors };
+	const timing = parseTiming(value.timing);
 	return {
 		ok: true,
-		deck: { lessonId: lessonId.id, title: value.title as string, slides },
+		deck: {
+			lessonId: lessonId.id,
+			title: value.title as string,
+			slides,
+			...(timing ? { timing } : {}),
+		},
 	};
 }
 

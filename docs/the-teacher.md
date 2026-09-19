@@ -244,6 +244,38 @@ The one assumption the course does make is English, because it is narrated in
 it. Comparing a Thai sound to an English one is fair. Calling English *"your
 language"* is not.
 
+## Dead or alive, never "live"
+
+The speech engine reads *live* as the verb — /lɪv/, as in "to live another
+day" — so every spoken "live syllable" in the course is mispronounced, on the
+single most load-bearing distinction in Thai reading.
+
+So a syllable is **dead or alive**. It is marginally loose as linguistics and
+it is exactly right as a mnemonic, which is the trade this course makes
+everywhere else too.
+
+"Alive" will not go attributively, though. English says *a live wire* and never
+*an alive wire*, so the swap only works where the word is predicative:
+
+| written | spoken |
+|---|---|
+| the syllable is live | the syllable **is alive** |
+| it ends live | it **ends alive** |
+| a live syllable lands flat | a syllable that is **still alive** lands flat |
+| low class, live ending, mid tone | low class, the syllable **alive**, mid tone |
+
+Restructure rather than write *an alive syllable*.
+
+**The other sense of the word is untouched.** Letters *live* at the harbour, a
+snake *lives* in the rope locker, every letter gets somewhere *to live*. That
+is the metaphor the whole palace runs on. `lives`, `lived` and `living` are
+always that sense.
+
+This governs what she says and the on-screen text with it, so the two agree.
+It governs nothing in the code: the rule ids are `low-live` and `mid-live`,
+`syllableType` is `"live"`, and the corpus joins on those strings. A learner
+never sees one.
+
 ## Moves that are banned
 
 Each of these was measured across the whole course. They are banned because

@@ -280,7 +280,7 @@
 			"id": "live-endings",
 			"ruleId": "live-endings",
 			"audio": [
-				"/thai-script/lessons/lesson-02/audio/8f3ad818bbab46cd.mp3",
+				"/thai-script/lessons/lesson-02/audio/2c3add73e3510388.mp3",
 				"/thai-script/lessons/lesson-02/audio/61788e5ae073c449.mp3",
 				"/thai-script/lessons/lesson-02/audio/65c63daa9e5d2035.mp3",
 				"/thai-script/lessons/lesson-02/audio/281da7af641f9c8e.mp3"
@@ -295,7 +295,7 @@
 				"The horse, the mouse, the snake, the giant, the ring.",
 				"Every one is a sound you can hold, which is why a syllable may end on it."
 			],
-			"audio": ["/thai-script/lessons/lesson-02/audio/7e8e0218482749b3.mp3"],
+			"audio": ["/thai-script/lessons/lesson-02/audio/bde43a12fff48e03.mp3"],
 			"audioLanguages": ["en"],
 			"teaches": ["mo-ma", "no-nu", "ngo-ngu", "yo-yak", "wo-weng"],
 			"image": "/thai-script/lessons/lesson-02/images/the-five-fdea1d4ca818.jpg"
@@ -304,7 +304,7 @@
 			"kind": "rule",
 			"id": "low-live",
 			"ruleId": "low-live",
-			"audio": ["/thai-script/lessons/lesson-02/audio/50943244863b613e.mp3"],
+			"audio": ["/thai-script/lessons/lesson-02/audio/ede3b290308dd233.mp3"],
 			"audioLanguages": ["en"],
 			"teaches": ["low-live"]
 		},
@@ -319,7 +319,7 @@
 				"The other man is from a district you meet next lesson."
 			],
 			"audio": [
-				"/thai-script/lessons/lesson-02/audio/8fa8bf5a28bce140.mp3",
+				"/thai-script/lessons/lesson-02/audio/4fcf826427bff6b7.mp3",
 				"/thai-script/lessons/lesson-02/audio/8fcdc9455b62afd1.mp3",
 				"/thai-script/lessons/lesson-02/audio/697d790ce7aff27c.mp3",
 				"/thai-script/lessons/lesson-02/audio/0be6890215663fdb.mp3",
@@ -345,12 +345,12 @@
 			"retrievalSlideId": "tone-of-yaa",
 			"answers": [
 				"Mid tone, flat from start to finish.",
-				"The giant is low class and the syllable is live, so the low class live rule decides it."
+				"The giant is low class and the syllable is alive, so that rule decides it."
 			],
 			"audio": [
 				"/thai-script/lessons/lesson-02/audio/90141eda6fc3355e.mp3",
 				"/thai-script/lessons/lesson-02/audio/8922d57142a6d866.mp3",
-				"/thai-script/lessons/lesson-02/audio/fcb7dabb66a6b938.mp3"
+				"/thai-script/lessons/lesson-02/audio/17b2a7ba06aa15e8.mp3"
 			],
 			"audioLanguages": ["en", "th", "en"],
 			"teaches": ["low-live"]
@@ -404,5 +404,10 @@
 			"audio": ["/thai-script/lessons/lesson-02/audio/a3e5d0b9f19e2968.mp3"],
 			"audioLanguages": ["en"]
 		}
-	]
+	],
+	"timing": {
+		"spokenSeconds": 777,
+		"practiceSeconds": 193,
+		"estimatedMinutes": 16
+	}
 }

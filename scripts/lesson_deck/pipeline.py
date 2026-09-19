@@ -32,7 +32,7 @@ import hashlib
 import json
 import re
 from dataclasses import dataclass, field
-from pathlib import Path
+from pathlib import Path, PurePosixPath
 from collections.abc import Callable, Iterable
 from typing import Any
 
@@ -47,6 +47,7 @@ from .manifest import (
 	verification_from_json,
 )
 from .script_parser import LessonScript, Segment, Slide
+from .timing import Timing, TimingUnavailable, measure
 from .vendor import (
 	Redactor,
 	Vendor,
@@ -721,11 +722,51 @@ class DeckGenerator:
 	# -- the deck ----------------------------------------------------------
 
 	def _deck_json(self) -> dict[str, Any]:
-		return {
+		deck: dict[str, Any] = {
 			"lessonId": self.paths.lesson_id,
 			"title": self.script.title,
 			"slides": [self._slide_json(slide) for slide in self.script.slides],
 		}
+		# How long this will take, so the learner is told before they start
+		# rather than finding out. Measured from the clips themselves; absent
+		# when they cannot be probed, because a wrong number here costs more
+		# than a missing one. See `timing.py` for the practice model.
+		timing = self._timing()
+		if timing is not None:
+			deck["timing"] = timing.as_json()
+		# Thai the script shows without teaching, declared as `previews:` in its
+		# comment block. The band tests accept a declared word in place of a
+		# `vocabulary.json` entry, so this is what lets a lesson put a whole
+		# sentence on screen before the learner can read a letter of it. Absent
+		# when nothing is declared, so a deck that previews nothing carries no
+		# key rather than an empty one.
+		if self.script.teaching_words:
+			deck["teachingWords"] = [
+				{"thai": word.thai, "reason": word.reason}
+				for word in self.script.teaching_words
+			]
+		return deck
+
+	def _timing(self) -> Timing | None:
+		"""This deck's measured length, or None if it could not be measured."""
+		clips: list[Path] = []
+		for slide in self.script.slides:
+			for segment in slide.segments:
+				asset = self.manifest.by_key(segment.key)
+				if asset and asset.path:
+					# `asset.path` is the public URL the app fetches. The file
+					# on disk is the same basename inside this lesson's own
+					# audio directory, and it goes back through `resolve` so
+					# the containment check still applies.
+					name = PurePosixPath(asset.path).name
+					clips.append(self.paths.resolve(f"audio/{name}"))
+		if not clips:
+			return None
+		retrievals = sum(1 for s in self.script.slides if s.kind == "retrieval")
+		try:
+			return measure(clips, len(self.script.slides), retrievals)
+		except TimingUnavailable:
+			return None
 
 	def _slide_json(self, slide: Slide) -> dict[str, Any]:
 		body: dict[str, Any] = {"kind": slide.kind, "id": slide.id}

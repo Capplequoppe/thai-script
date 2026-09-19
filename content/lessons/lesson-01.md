@@ -1,4 +1,16 @@
 <!--
+previews: ชอบกินข้าวที่บ้านมาก — one sentence shown whole on `loops-are-friends`
+and `stroke-order`, so a learner can see what Thai actually looks like before
+meeting a letter, and be told when they will be able to read it. Every word in
+it is inside the top hundred by frequency. Nothing here is taught or tested;
+the slides say outright that it cannot be read yet.
+
+previews: สระ and สระอา — the word *sara*, printed on `meet-aa` beside its
+romanisation. The learner hears it on the vowel's name recording and has no way
+to know it simply means "vowel", so the slide says so and shows the spelling
+once. Shown, never taught and never tested; the narration itself says "sara" in
+Latin letters, so none of these four shapes is ever asked for.
+
 VOICE. Ajarn Pim — `docs/the-teacher.md` is who is speaking, here and in every
 other lesson. The learner has already met her in `orientation.md`: Songkhla,
 the alphabet song at seven, reading at twenty-six. This lesson draws on all
@@ -14,7 +26,7 @@ and then waits.
 THREE THINGS THE INSTRUCTION MUST KEEP DOING, because they were put there
 deliberately and are easy to sand off:
 
-  * The puzzle bites before the release. The live/dead distinction arrives by
+  * The puzzle bites before the release. The dead/alive distinction arrives by
     asking the learner to hold a P; the tone pair on `word-maa` is two clips
     played back to back with the question asked *before* the answer. Announcing
     either first ("here is the trick") spends the whole effect.
@@ -143,33 +155,38 @@ lesson: lesson-01
 
 ## exposition overview
 heading: What is in this lesson, and why it matters
-narration: en Most people who set out to learn Thai never learn to read it. The script looks frightening, so they work from romanisation instead. Romanisation cannot show them a tone, so they spend years saying words that are very nearly right and wondering why nobody understands them. I want to tell you what they are giving up. A great many Thai consonants make exactly the same sound as one another. What separates them is the class each one belongs to, and the class is what decides the tone of the word. So a Thai reader never guesses a tone. They read it straight off the spelling, the way you read the stress in an English word you have never seen before. That is the prize. It is also the whole reason we begin with letters. Today you get two consonants, one vowel, one habit of your own voice — and three real Thai words to read by the end of it.
+narration: en Before we go anywhere near a letter, let me put the thing that sits underneath this whole alphabet in front of you, because it is the reason the script comes first and it takes about a minute to say. A great many Thai consonants make exactly the same sound as one another. There is one sound in here with six separate letters for writing it. Six, landing identically on your ear, all of them in ordinary daily use. That looks like a mess until you find out what the spare ones are carrying. Each of them belongs to a class. The class is most of what decides the tone of the syllable that letter lands in. So every consonant is doing two jobs at once. It hands you the sound, then it hands you the tune. Which is why a Thai reader never guesses a tone. They take it straight off the spelling, the way you take the beat off an English word you have never seen before. Nobody sat you down and taught you where the stress falls in a word like photograph. You put it in the right place anyway. All of that is what gets thrown away when somebody learns this language out of romanised text. Most of them never find out that they threw it away. They spend years saying words that are very nearly right, being politely misunderstood, then deciding privately that they have no ear for languages. Today, then. Two consonants, one vowel, one habit you are going to have to take out of your own voice. And three real Thai words to read by the end of it.
 - Two consonants, one vowel.
 - One habit of the voice.
 - Three real Thai words.
 - Many consonants share a sound. Their **class** is what separates them.
 
 ## exposition loops-are-friends
-image: images/lesson-01/loops-are-friends.jpg
-scene: An extreme close-up of traditional Thai script painted in black on a weathered temple wall, the round head-loops of each character catching warm side light, paint slightly cracked with age. Shallow depth of field, rich golden tones.
+thai: ชอบกินข้าวที่บ้านมาก
 heading: The loops are your friends
-narration: en If you have ever seen Thai written down, you probably thought it was a great many squiggles and loops, and I understand completely why that looks scary. So let me take one of those loops off you as a problem and hand it back as a tool, before you meet a single letter. The loops are the most useful thing on the page. Once you know what they are doing there, they stop being decoration and start telling you where to put your pen.
+narration: en That is a sentence of ordinary Thai on the screen. Look at it properly for a moment, because I want you to see it now, at the point where it means nothing to you at all.
+narration: en If you have ever seen Thai written down you probably thought it was a great many squiggles and loops, and I understand completely why that looks frightening. Six words. Six. There is no space between any of them either, which is the other thing people notice and quietly panic about.
+narration: en Now count the little circles. Nearly every one of those shapes has one, usually at a corner, usually where you would start drawing it. That is the first thing I am taking off you as a problem and handing back as a tool, before you have met a single letter. The loops are the most useful thing on the page. Once you know what they are doing there, they stop being decoration and start telling you where to put your pen.
+- **ชอบกินข้าวที่บ้านมาก** — six ordinary words, run together with no spaces.
 - Thai script looks like squiggles and loops.
 - The loops are your friends. They tell you where the pen goes down.
 
 ## exposition stroke-order
-image: images/lesson-01/stroke-order.jpg
-scene: A hand holding a pen mid-stroke over a sheet of practice paper, forming a single rounded loop in dark ink, other practice marks visible on the page. Warm desk lamp light from the left, quiet and focused.
+thai: ชอบกินข้าวที่บ้านมาก
 heading: There is a right way to write every symbol
+narration: en Same sentence, still unreadable, and I will leave it there while I tell you what your hand is going to do with it.
 narration: en Every symbol in Thai has a stroke order — a correct place to start, a correct way to carry on, a correct way to finish. Almost all of them are drawn as a single continuous stroke, with the pen never leaving the paper. Most of them have a loop, at least when they are written the traditional way. There is your first cheat code. Wherever a symbol has a loop, that loop is where you start. One fact like that covers most of the alphabet. A piece of vocabulary before we move on. The loop a symbol starts from has a name: it is called the head. So when I say a letter's head curls one way or the other, you know what I am pointing at and you know it is where your pen goes first. Makes sense?
+narration: en One more thing about that sentence before it goes away. Nine of the shapes in it arrive in the next three lessons, so it will start opening up faster than you expect. The last pieces are the two small marks sitting above the line, which decide the tune the words are sung on, and those come near the end.
+narration: en When they do, you will not just recognise this. You will read it aloud on the right tones, write it out by hand, and know what it says — which is somebody telling you they very much like eating at home. I am showing it to you on day one so that you have something to measure yourself against later.
 - Every symbol has a **stroke order** — a right way to write it.
 - Almost all are one continuous stroke, pen never lifted.
 - **Cheat code one:** start at the loop, if there is one.
 - The starting loop is called the **head**.
+- **ชอบกินข้าวที่บ้านมาก** — you'll read, say and write this yourself before the end.
 
 ## exposition loop-direction
 heading: Which way the loop turns
-narration: en Careful here, because this is where the alphabet tries to double its own size on you. Some heads are drawn clockwise and some counter-clockwise. There are pairs of letters where the direction of the head is the only thing separating them. You will meet one of those pairs in a few lessons' time. So that looks like forty-four letters with a direction to memorise on each. [pause] The real list is far shorter. Most symbols turn clockwise. The ones going the other way come to less than half as many. So leave them alone. Assume clockwise, because it usually is, then learn only the handful that go against it. That is your second cheat code.
+narration: en Careful here, because this is where the alphabet tries to double its own size on you. Heads turn. They do not all turn the same way — some go clockwise, some go round the other way. There are pairs of letters where that single difference is the whole of what separates them. You will meet one of those pairs in a few lessons' time. Which appears to leave you with forty-four letters and a direction to memorise on every one of them. [pause] Look at that again before you accept it. The real list is far shorter. Most symbols turn clockwise. The ones going the other way come to less than half as many. So leave the crowd alone. Assume clockwise, because it usually is, then go to the trouble of learning only the handful that refuse. Your second cheat code.
 - Some loops go **clockwise**, others **counter-clockwise**.
 - Some characters differ *only* in that.
 - Most symbols turn **clockwise**. Less than half as many go the other way.
@@ -177,7 +194,7 @@ narration: en Careful here, because this is where the alphabet tries to double i
 
 ## exposition names-two-parts
 heading: Every letter has a two-part name
-narration: en Names next. Thai names its letters in a way English never bothered with. Once you can hear the pattern you have all forty-four of them. The name is two words. The first is the consonant's own sound with one particular vowel hung off the back of it — the vowel in the English word "awe", the same one every time. Try it on your own alphabet. Name the letters S, P and J this way and they come out as "Saw", "Paw" and "Jaw". Consonant, then that fixed vowel. That is the entire first half. So you only ever have to catch the sound at the front, because everything behind it is identical on all forty-four.
+narration: en Names next, and this is the one I wish somebody had said out loud to me when I was small, because I sang these things for years of my childhood without ever noticing what the front of them was for. Thai gives every letter a proper name, two words long, in a way English never bothered with. Children get the names before anything else. They get them as a song. There is a tune. It goes at a fair clip. A child of six can rattle off all forty-four in order without stopping for breath — my nephew is six and he goes faster than I can follow, which he knows perfectly well. What nobody ever mentioned to me, and what I did not work out until I was grown and sitting down with a book, is that the first word of each of those names is an instruction. It is the letter's own sound, said out loud, with one fixed vowel hung off the back of it so that the thing can be sung at all. It is the same vowel every single time, on all forty-four. It is the one in the English word "awe". Try the pattern on your own alphabet: name the letters S, P and J the Thai way and out they come as "Saw", "Paw" and "Jaw". Consonant at the front, that one vowel behind it, nothing else to it. All of which means the front of a name is worth a great deal to you. The only thing you ever have to catch is the sound at the very start, because everything behind it is identical on all forty-four of them. I had that identical part in my mouth for most of my life before anybody told me the rest of it was a pronunciation guide.
 - Every letter's name has **two parts**.
 - Catch the sound at the front. The rest never changes.
 - First part = **the consonant sound plus one fixed vowel**, the one in "awe".
@@ -193,7 +210,7 @@ narration: en So why a second half at all? Because a great many Thai consonants 
 
 ## exposition names-superpower
 heading: Why that turns into a superpower here
-narration: en Which is where this course does something with that convention that nobody in a Thai classroom bothers to do. We take the everyday word each letter carries and put it somewhere — a particular place, with something happening in it. The place will hand you the grammar afterwards without you ever working for it. You will see the whole machinery inside four minutes, so trust me with it until then. Explaining a thing like that in advance convinces nobody. Having it work on you once convinces everybody. There is a bonus you get whether you want it or not. Forty-four consonants means forty-four ordinary Thai words, picked up while you were busy learning letters, with no vocabulary study anywhere in sight. That was quite the introduction, I know. Every part of it gets spent today and you never have to be told any of it again. Ready for your first consonant?
+narration: en Which is where this course does something with that convention that nobody in a Thai classroom bothers to do. Every classroom I ever sat in treated the word on a letter's name as a label and left it at that. We take that word and put it somewhere instead — a particular place, with something happening in it. The place then hands you the grammar afterwards without your ever working for it. You will see the whole machinery inside four minutes, so trust me with it until then. Explaining a thing like this in advance convinces nobody. Having it work on you once convinces everybody. There is a bonus you get whether you want it or not. Forty-four consonants means forty-four ordinary Thai words, picked up while you were busy learning letters, with no vocabulary study anywhere in sight. That was quite the introduction, I know. Every part of it gets spent today and you never have to be told any of it again. Ready for your first consonant?
 - Each letter comes attached to a **word**.
 - We put those words in **places**, and build stories there.
 - The place quietly teaches the grammar. And you get 44 free words.
@@ -204,13 +221,13 @@ glyph: ม
 anchor: MMM
 gloss: horse letter
 cue: the long call across the water
-heading: Your first consonant, and what live means
+heading: Your first consonant, and what alive means
 teaches: mo-ma
-narration: en Close your lips and hum through your nose. Keep going — hold it as long as you have breath for. That is your first Thai consonant. You have owned the sound since before you could talk, because Thai does nothing surprising to an M. Now try the same thing with a P. Go on, try to hold a P. [pause] You cannot. It happens and it is finished. The air stops dead behind it. That difference has a name. It is also the first piece of grammar in this course. A sound you can hold is live. A sound that stops is dead. Only a handful of consonants are live. This one is among them, and I am pointing it out now because it comes back in a very big way when the tone rules arrive.
+narration: en Close your lips and hum through your nose. Keep going — hold it as long as you have breath for. That is your first Thai consonant. You have owned the sound since before you could talk, because Thai does nothing surprising to an M. Now try the same thing with a P. Go on, try to hold a P. [pause] You cannot. It happens and it is finished. The air stops dead behind it. That difference has a name. It is also the first piece of grammar in this course. A sound you can hold is alive. A sound that stops is dead. Only a handful of consonants are alive. This one is among them, and I am pointing it out now because it comes back in a very big way when the tone rules arrive.
 - The Thai version of **M**.
 - Close your lips and hum through your nose.
 - You already own this sound.
-- **Live** — a sound you can hold as long as you have breath.
+- **Alive** — a sound you can hold as long as you have breath.
 
 ## exposition ma-name
 heading: Its name, and how to use what comes next
@@ -305,8 +322,9 @@ narration: en Come up out of the story for a moment and see whether you can stil
 thai: ม
 heading: The horse's letter
 teaches: mo-ma
-narration: en Look at it properly before you draw a single line. Find the head up in the left corner first, then follow what the stroke does below it.
+narration: en Here it is on its own, as large as the screen will let me make it. Take a moment over it before you draw a single line, because this is the first Thai letter you have ever looked at while knowing what to look for. Find the head first, up in the left corner. That little loop is where your pen will go down. Then follow what the stroke does underneath it — down the left, round again, across, then up. And there is a horse in it, if you want one. Two loops stacked down the left like a pair of forelegs pawing the air one above the other, with a straight tail hanging plumb behind. Some people see that at once. Some never do. The story does the real work either way.
 - The horse's letter.
+- Find the **head** in the upper left, then follow the stroke down.
 
 ## exposition get-a-pen
 image: images/lesson-01/get-a-pen.jpg
@@ -321,10 +339,11 @@ narration: en While you are still inside it and still a little attached to her, 
 thai: ม
 heading: Now write it, and keep writing it
 teaches: mo-ma
-narration: en Good. Pen down in the upper left corner, on the head. Take the loop round clockwise — the ordinary direction, as you already know. Without lifting the pen, carry the stroke straight down. Second loop at the bottom. Across to the other side, then straight up. Stop. You have written a Thai letter. One habit to start this minute and keep for the rest of the course: whenever you write a symbol, on its own or inside a word, say both halves of its name while your hand is moving. Your mouth and your hand learn it together. Neither then has to wait for the other. So sit with this one a while. Write it over and over, saying its name every time.
+narration: en Good. Pen down in the upper left corner, on the head. Take the loop round clockwise — the ordinary direction, as you already know. Without lifting the pen, carry the stroke straight down. Second loop at the bottom. Across to the other side, then straight up. Stop. You have written a Thai letter. It will look wrong. Mine looked like a drawing of a letter rather than a letter for a long while, which is simply the way through, so fill the line and let them be bad. One habit to start here and keep for the whole course: whenever you write a symbol, on its own or inside a word, say both halves of its name while your hand is moving. Your mouth and your hand then learn it together, so neither has to wait for the other afterwards. Sit with this one a while. Write it over and over, saying its name every time.
 - Start at the head, upper left. Loop **clockwise**.
 - Straight down. Second loop at the bottom.
 - Across, then straight up. One continuous stroke.
+- It will look wrong for a while. Fill the line anyway.
 - Write it again and again, saying both halves of its name.
 
 ## exposition meet-nu
@@ -334,11 +353,11 @@ gloss: mouse letter
 cue: the sound counted out in the dark
 heading: Your second consonant
 teaches: no-nu
-narration: en Tongue tip up against the ridge behind your top teeth, lips apart this time, and hum through that. Hold it. It holds, which puts it in the same bracket as the horse's letter — live, with no natural end to it. Now a warning that covers both of today's letters. Neither takes a puff of air behind it. If you can feel a small breath escaping after the sound, that is an English habit riding in with it. Take it out. The name works exactly as it did before, so take it from the Thai voice.
+narration: en Tongue tip up against the ridge behind your top teeth this time, lips apart, and hum through that. Hold it. It holds, which puts it in the same bracket as the horse's letter — alive, with nothing in it that has to stop. Now a warning that covers both of today's letters. Neither of them carries a puff of air behind it. Put your palm flat in front of your mouth and say them both. If a small breath arrives against your hand after the sound, that is an English habit riding in on the back of a Thai letter. Take it out before it settles in — far easier now than in a year. The name is built on exactly the pattern you have just learned, so listen for the sound at the front and then the word on the back of it.
 narration: th นอ หนู
-narration: en A mouse. That is what the word on the end of that name means.
+narration: en A mouse. That is what the word on the back of that name means, and this harbour has one in particular.
 - The Thai version of **N**. Tongue to the ridge behind your top teeth.
-- You can hold it, so it is **live** — like the first one.
+- You can hold it, so it is **alive** — like the first one.
 - No puff of air after it.
 - The same two-part pattern as the first letter.
 
@@ -408,7 +427,7 @@ image: images/lesson-01/shapes.jpg
 scene: A dockworker in a heavy jacket swings a thick mooring rope over an iron bollard at the edge of a stone quay, arms raised wide with the rope arcing above him. Fishing boats crowd the water behind. Warm golden evening light throws long shadows across the wet stone.
 heading: Two loops, and where the second one lands
 teaches: mo-ma, no-nu
-narration: en You will have felt that while writing them: both letters open the same way, with the same head high on the left. Nearly every Thai consonant does. It is simply where the pen goes down, so it can never tell you which letter you are looking at. The second loop is the whole question. The horse's letter drops its second loop straight down beneath the first, so the pair sit on the left, one above the other. The mouse's letter throws its second loop across to the far corner instead, low and to the right.
+narration: en Your hand will have told you this already. Both letters open in the same place, with the same head high on the left. Nearly every Thai consonant in the alphabet does the same. It is simply where the pen goes down, so it can never tell you which letter you are looking at. The second loop is the whole question. The horse's letter drops its second loop straight down beneath the first, so the two of them sit together on the left, one above the other. The mouse's letter throws its second loop across to the far corner instead, low and over on the right. Put the pair side by side on your page. Your eye has one place to look.
 - Both open with the same **head**, high left. Nearly every Thai consonant does.
 - **ม** — second loop drops **straight down the left**. Stacked.
 - **น** — second loop thrown **across to the bottom right**. A diagonal.
@@ -417,7 +436,7 @@ narration: en You will have felt that while writing them: both letters open the 
 reveal: spot-the-loop-answer
 prompt: Both letters carry a head high on the left. Where does each one put its *second* loop — and which of the two is the horse?
 teaches: mo-ma, no-nu
-narration: en Before you go on, answer me something. Both letters carry that head high on the left. But one of them stacks its second loop straight down the left as well, so the pair sit on the same side. The other throws its second loop right across to the bottom corner. So — which one keeps both loops on the left, and which one sends the second one over? And which of the two is the horse? Say it out loud before you go on. Getting it wrong and then being corrected will fix it far harder than reading the right answer would.
+narration: en Look away from the screen for this one. Both letters carry that head high on the left. One of them stacks its second loop straight down the left as well, so the two sit on the same side of the letter. The other throws its second loop across to the bottom corner. So which is which — and which of the two is the horse? Say it where you can hear yourself before you go on.
 
 ## reveal spot-the-loop-answer
 retrieval: spot-the-loop
@@ -429,7 +448,7 @@ narration: en The horse stacks both of its loops down the left. The mouse sends 
 ## exposition harbour-low
 heading: Where these two letters live
 teaches: mo-ma, no-nu
-narration: en Your first rule of the course, then — and it is already paid for. Every Thai consonant belongs to one of three classes. The class is what decides the tone, which makes it the single most useful thing to know about any letter. Both of today's letters sit in the same class, and in this course that class is the harbour. Which is where you have been standing for the past twenty minutes: the pier with the wooden horse on the end, the beach where the grey horse came out of the surf, the doorway along the quay with the knotted cord on the post. When the tone rules arrive next lesson, nobody will have to tell you where these two live. You have already been there.
+narration: en Your first rule of the course, then. You have already paid for it. Every Thai consonant belongs to one of three classes. The class is what decides the tone. Both of today's letters sit in the same class. In this course that class is the harbour. And that is where you have been standing this whole time: the pier with the wooden horse on the end, the beach where the grey horse came out of the surf, the doorway along the quay with the knotted cord on the post. So when the tone rules arrive next lesson, nobody will have to tell you where these two live. You have already been there.
 - Every consonant belongs to one of three **classes**.
 - The class decides the tone. That is the engine of the whole system.
 - Both of today's letters are in the same class — the **harbour**.
@@ -461,18 +480,32 @@ gloss: long open ah
 cue: the boy's call, held to the end of his breath
 heading: The vowel you have already heard
 teaches: sara-aa
-narration: en The vowel now, and you have had it in your ear all lesson without being told — it is the second half of what that boy was shouting off the pier. The part after his lips came open. That long open note, held right out until the air ran out of him. Here is its name.
+narration: en The vowel now, and you have had it in your ear all lesson without being told — it is the second half of what that boy was shouting off the pier. The part after his lips came open. That long open note, held right out until the air ran out of him.
+narration: en Before I play you its name, one thing about how vowels are named, because it is the same trick you already know and it is easier the second time. Two parts again. On a consonant the front of the name is the letter's own sound, so it changes on every single one of them. On a vowel the front never changes at all. It is one word, every time, and the word is sara. That is all it means: vowel. So the thing you are about to hear is the word vowel, followed by the sound. Vowel aa. English could do exactly the same if we went about calling our letters Vowel A, Vowel E, Vowel I. Every vowel in this course turns up wearing that word on the front, so hear it once now and it never has to puzzle you again.
 recording: th สระอา public/audio/sara-a-long.mp3
 narration: en Long matters here more than it would in English. Length changes meaning in Thai, so the short version of this sound is a different vowel and very often a different word altogether. When you say it, take it all the way out — somebody calling across water to be heard, rather than somebody saying a word in a room. And it never stands alone. A Thai vowel is a thing with a position. This one always sits just behind the consonant it belongs to, because the consonant opens the syllable and the vowel finishes it. Written behind — which makes the back yard its room. You have just met the first lodger.
 - A **long**, open note, held until the breath runs out.
+- Vowel names are two parts too — but the front is always **สระ *sara***, meaning *vowel*.
+- So **สระอา** is simply *Vowel aa*.
 - Length changes meaning. Long and short are different vowels.
 - It is written **after** its consonant, so it lodges in the **back yard**.
+
+## exposition aa-story
+image: images/lesson-01/aa-water-jar.jpg
+scene: A large glazed brown earthenware water jar standing in the shaded back yard behind a wooden Thai house on stilts, filled to the brim with still water. A metal dipper hangs from the roof beam beside the jar, its long straight handle vertical and a small hook at the top where it catches on the beam. Dry swept ground, banana leaves, hard midday sun beyond the shade. No people.
+heading: What lodges in the back yard
+teaches: sara-aa
+narration: en Round the back of that house, in the strip of shade where the wall keeps the sun off, there is a water jar. Every house I knew had one. Waist high, glazed brown, always full, and far too heavy to shift once it is. Hanging beside it, off the beam, is the dipper. One long straight handle hanging dead vertical, with a small crook at the top where it catches on the wood. Look at that hook and that handle, then look at your vowel, because they are the same shape — and the jar stands round the back, which is exactly where this vowel stands.
+narration: en Now the afternoon. It is thirty-five degrees, you have been out in it, and you take that dipper down and tip the whole thing over the back of your neck. Nobody has ever done that quietly. What comes out of you is one long open note that runs until the water stops. [pause] That is the sound, and that is its length. The crook on the jar, the cold water down your neck, and the noise you cannot help making.
+- The **dipper** by the water jar: a small crook at the top, then a long straight handle.
+- It hangs round the **back** of the house — where this vowel is written.
+- Tip it over your neck and you make the sound. Long, open, until the water stops.
 
 ## exposition write-aa
 thai: า
 heading: Write the vowel
 teaches: sara-aa
-narration: en This one is easy, and it is one of the few that breaks the loop rule — no loop on it at all, so no head to start from. One stroke. Begin high, make the small turn, then come straight down. Write it a few times on its own. Then write it to the right of each of your two consonants, which is where it will be sitting for the rest of your life.
+narration: en This one is easy, and it is one of the few that breaks the loop rule — no loop on it at all, so no head to start from. One stroke, and you already know its shape: the crook first, then the handle. Begin high, make the small turn, then come straight down. Write it a few times on its own. Then write it to the right of each of your two consonants, which is where it will be sitting for the rest of your life.
 - No loop, so no head — one of the exceptions.
 - One stroke: a small turn at the top, then straight down.
 - It always sits to the **right** of its consonant.
@@ -493,11 +526,11 @@ anchor: NAA
 gloss: a rice field
 heading: Your first word
 teaches: sara-aa
-narration: en Put the mouse's letter in front of the long vowel. Consonant first, vowel after — that is the order every Thai syllable is built in, and it is the order you will use for the rest of your life in this language.
+narration: en Put the mouse's letter in front of the long vowel. Consonant first, vowel behind it — that is the order every Thai syllable is built in. You will be using it for as long as you read this language.
 narration: th นา
-narration: en It means a rice field. About as ordinary a word as Thai has. You assembled it out of two pieces you met twenty minutes ago.
+narration: en A rice field. I will be straight with you about that one: it is not a word you are going to need this week, and I would rather say so than sell it to you. It is here for two better reasons. You built it out of two pieces instead of memorising it — that is the first. The second is that it is about to stop being a word at all and turn into an address. Everything you say today comes out flat. Next lesson you find out why. And the place that flatness comes from, in the map we are putting together in your head, is a flooded field running dead level to the horizon. From here on that field has a Thai name, and the name is the word on your screen. The road inland out of Songkhla runs past very little else for an hour, so it costs me nothing to picture. When it comes back at you in a later lesson you will not be hearing vocabulary. You will be standing somewhere you have already been.
 - The mouse's letter, then the long vowel.
-- It means a **rice field**.
+- It means a **rice field** — and from now on it names the flat field where your mid tones live.
 - Consonant first, vowel second. Every syllable, always.
 
 ## exposition see-naa
@@ -514,7 +547,7 @@ narration: en Build one yourself now. Take the letter whose second loop lands ov
 ## reveal build-naa-answer
 retrieval: build-naa
 narration: th นา
-narration: en A rice field. If your pitch moved while you said it, say it once more and hold it level.
+narration: en Yes — a rice field. If your pitch moved while you said it, say it once more and hold it level.
 - **นา** — a rice field.
 - Flat, mid tone. No rise, no fall.
 
@@ -591,7 +624,7 @@ narration: en A long time.
 
 ## exposition close
 heading: Where that leaves you
-narration: en Where that leaves you, then. Two consonants and a vowel went in. Three real Thai words came out, and you assembled all three rather than memorising any of them. You picked up more than three words, though. You know that every symbol has a stroke order and that the head is where your pen goes down. You know that almost everything turns clockwise. You know how all forty-four consonants are named, so the remaining forty-two arrive already half learned. And you know that a letter lives somewhere — and that where it lives decides how it sounds. Before you go, write out both letters and all three words one last time, saying each name while your hand moves. Next lesson: three more voices out of the same harbour, the rope locker finally opened, and the rule that says why everything today came out flat.
+narration: en Look at what you are carrying out of this lesson. Two consonants and one vowel went in. Three real Thai words came out, which you built rather than learning any of them by heart. The words are the smaller half of it, though. Every symbol has a right way to be written. The head is where your pen goes down. Almost everything turns clockwise. All forty-four consonants are named on one pattern, so the remaining forty-two will arrive already half learned. And a letter lives somewhere, which is the fact the whole of next lesson is built on. Before you go, write both letters and all three words out one more time, saying each name while your hand moves. Two minutes of that is the difference between recognising these next lesson and owning them. Next lesson: three more voices out of the same harbour, the rope locker finally opened, and the rule that says why every single thing you said today came out flat.
 - Two consonants and one vowel gave you three words.
 - Stroke order, the head, the clockwise default, and the naming pattern.
 - Next: three more harbour letters, and why they all sound flat.

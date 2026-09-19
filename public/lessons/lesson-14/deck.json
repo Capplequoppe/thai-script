@@ -614,5 +614,10 @@
 			"audio": ["/thai-script/lessons/lesson-14/audio/1128759e23a4f548.mp3"],
 			"audioLanguages": ["en"]
 		}
-	]
+	],
+	"timing": {
+		"spokenSeconds": 1307,
+		"practiceSeconds": 284,
+		"estimatedMinutes": 27
+	}
 }

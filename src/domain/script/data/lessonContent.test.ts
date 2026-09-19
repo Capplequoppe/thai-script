@@ -165,6 +165,58 @@ describe("content resolution states", () => {
 	});
 });
 
+describe("a deck's stated length", () => {
+	const WITH_SLIDES = [RETRIEVAL, REVEAL];
+
+	it("carries the timing block through when the deck states one", () => {
+		const result = validateDeck({
+			...deck(WITH_SLIDES),
+			timing: {
+				spokenSeconds: 2057,
+				practiceSeconds: 400,
+				estimatedMinutes: 41,
+			},
+		});
+		expect(result.ok).toBe(true);
+		if (!result.ok) return;
+		expect(result.deck.timing).toEqual({
+			spokenSeconds: 2057,
+			practiceSeconds: 400,
+			estimatedMinutes: 41,
+		});
+	});
+
+	it("accepts a deck that states no timing, and reports none", () => {
+		const result = validateDeck(deck(WITH_SLIDES));
+		expect(result.ok).toBe(true);
+		if (!result.ok) return;
+		expect(result.deck.timing).toBeUndefined();
+	});
+
+	it("drops a malformed timing block rather than refusing the deck", () => {
+		// A deck is still perfectly playable without a length, so a broken
+		// timing block must not cost the learner the lesson. It is dropped,
+		// and the UI then says nothing rather than something wrong.
+		for (const timing of [
+			{ spokenSeconds: 10, practiceSeconds: 5 },
+			{ spokenSeconds: "ten", practiceSeconds: 5, estimatedMinutes: 1 },
+			{ spokenSeconds: -1, practiceSeconds: 5, estimatedMinutes: 1 },
+			{
+				spokenSeconds: Number.NaN,
+				practiceSeconds: 5,
+				estimatedMinutes: 1,
+			},
+			"41 minutes",
+			null,
+		]) {
+			const result = validateDeck({ ...deck(WITH_SLIDES), timing });
+			expect(result.ok).toBe(true);
+			if (!result.ok) continue;
+			expect(result.deck.timing).toBeUndefined();
+		}
+	});
+});
+
 describe("the deck schema's retrieval requirement", () => {
 	it("accepts a deck whose retrieval step precedes its reveal", () => {
 		const result = validateDeck(

@@ -52,6 +52,18 @@ _BULLET = re.compile(r"^-\s+(?P<text>.+)$")
 _NARRATION = re.compile(r"^(?P<lang>en|th)\s+(?P<text>.+)$")
 _THAI = re.compile(r"[\u0e00-\u0e7f]")
 
+#: A `previews:` line inside the leading comment block, which is where a script
+#: declares Thai it shows without teaching. The tests read the same line for its
+#: glyphs; this reads it for whole words, so one declaration serves both and
+#: neither can drift from the other. The reason is mandatory — a bare glyph list
+#: would make `previews:` a blanket exemption, which is exactly what the band
+#: tests refuse.
+_PREVIEWS = re.compile(r"^previews:\s*(?P<subject>.+?)\s+[—-]\s+(?P<reason>.+)$")
+#: Runs of two or more Thai characters: a word, rather than a single glyph.
+#: Single glyphs are already covered by the per-character declaration, so only
+#: words need carrying into the deck.
+_THAI_WORD = re.compile(r"[\u0e00-\u0e7f]{2,}")
+
 
 class ScriptError(ValueError):
 	"""A lesson script that cannot be turned into a deck. Carries the line."""
@@ -106,12 +118,26 @@ class Slide:
 	segments: list[Segment] = field(default_factory=list)
 
 
+@dataclass(frozen=True)
+class TeachingWord:
+	"""Thai a script shows without teaching, and the reason it is allowed to.
+
+	Declared as `previews: <thai> — <why>` in the leading comment block and
+	carried into `deck.json`, where the band tests accept it in place of a
+	`vocabulary.json` entry. An empty reason does not count.
+	"""
+
+	thai: str
+	reason: str
+
+
 @dataclass
 class LessonScript:
 	lesson_id: str
 	title: str
 	slides: list[Slide]
 	source: Path
+	teaching_words: list[TeachingWord] = field(default_factory=list)
 
 	@property
 	def segments(self) -> list[Segment]:
@@ -125,11 +151,39 @@ def parse_script(path: Path) -> LessonScript:
 	slides: list[Slide] = []
 	current: Slide | None = None
 	in_comment = False
+	teaching: list[TeachingWord] = []
+	#: The `previews:` reason runs on until a blank line, so its continuation
+	#: lines are gathered here rather than truncating the reason at line one.
+	pending: tuple[list[str], list[str]] | None = None
+
+	def close_previews() -> None:
+		nonlocal pending
+		if pending is None:
+			return
+		words, reason_parts = pending
+		reason = " ".join(reason_parts).strip()
+		if reason:
+			teaching.extend(TeachingWord(thai=w, reason=reason) for w in words)
+		pending = None
 
 	for number, raw in enumerate(lines, start=1):
 		line = raw.rstrip()
 		if in_comment:
-			in_comment = "-->" not in line
+			if not line.strip():
+				close_previews()
+			elif pending is not None:
+				pending[1].append(line.strip())
+			else:
+				declaration = _PREVIEWS.match(line.strip())
+				if declaration:
+					pending = (
+						_THAI_WORD.findall(declaration.group("subject")),
+						[declaration.group("reason")],
+					)
+			if "-->" not in line:
+				continue
+			close_previews()
+			in_comment = False
 			continue
 		if line.startswith("<!--"):
 			in_comment = "-->" not in line
@@ -211,7 +265,13 @@ def parse_script(path: Path) -> LessonScript:
 		slide.segments = _merge_runs(slide)
 
 	_check_slides(slides, path)
-	return LessonScript(lesson_id=lesson_id, title=title, slides=slides, source=path)
+	return LessonScript(
+		lesson_id=lesson_id,
+		title=title,
+		slides=slides,
+		source=path,
+		teaching_words=teaching,
+	)
 
 
 #: How much English one call may carry, in words.

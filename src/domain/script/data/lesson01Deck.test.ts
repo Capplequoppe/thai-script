@@ -53,7 +53,13 @@ type RawSlide = {
 	audio?: string[];
 	image?: string;
 };
-type RawDeck = { lessonId: string; title: string; slides: RawSlide[] };
+type RawDeck = {
+	lessonId: string;
+	title: string;
+	slides: RawSlide[];
+	/** Thai the script shows without teaching, each with its reason. */
+	teachingWords?: { thai: string; reason: string }[];
+};
 
 const rawDeck = JSON.parse(readFileSync(DECK_PATH, "utf-8")) as RawDeck;
 type RawAsset = {
@@ -173,19 +179,32 @@ describe("the committed deck", () => {
 	it("teaches exactly the symbols lesson 1 declares — no more, no fewer", () => {
 		expect(lesson1).toBeDefined();
 		if (!lesson1) return;
+		// A previewed word is shown, never taught, so its glyphs are not part
+		// of what the lesson declares — the deck carries the declaration and
+		// the reason alongside it. Without this the test would force every
+		// lesson to teach any script it puts on screen, which is the opposite
+		// of what `previews:` exists for.
+		const previewed = new Set(
+			(rawDeck.teachingWords ?? [])
+				.filter((word) => word.reason.trim().length > 0)
+				.flatMap((word) => [...word.thai]),
+		);
 		const declared = new Set([...lesson1.consonants, ...lesson1.vowels]);
-		const used = thaiCharsIn(rawDeck);
+		const used = new Set(
+			[...thaiCharsIn(rawDeck)].filter(
+				(ch) => declared.has(ch) || !previewed.has(ch),
+			),
+		);
 		expect([...used].sort()).toEqual([...declared].sort());
+		// Not vacuous: the sentence this lesson previews really does reach
+		// outside what it teaches, so the filter above is doing work.
+		expect([...previewed].some((ch) => !declared.has(ch))).toBe(true);
 	});
 
 	it("every Thai example word resolves to a vocabulary.json entry (or is declared in teachingWords with a reason)", () => {
-		const teachingWords = (
-			(
-				rawDeck as unknown as {
-					teachingWords?: { thai: string; reason: string }[];
-				}
-			).teachingWords ?? []
-		).filter((w) => w.reason.trim().length > 0);
+		const teachingWords = (rawDeck.teachingWords ?? []).filter(
+			(w) => w.reason.trim().length > 0,
+		);
 		const teachingWordSet = new Set(teachingWords.map((w) => w.thai));
 
 		const words = thaiWordsIn(rawDeck);
@@ -197,12 +216,18 @@ describe("the committed deck", () => {
 				`${word} is neither in vocabulary.json nor teachingWords`,
 			).toBe(true);
 		}
-		// This deck's `teachingWords` is empty — every word resolves through
-		// vocabulary.json. Prove that branch is genuinely exercised (not
-		// vacuously true because `words` came back empty, or because
-		// `vocabularyByThai` itself failed to load): the three words this
-		// lesson builds are really in the loaded vocabulary.
+		// Both arms are genuinely exercised, so neither is passing vacuously:
+		// the three words this lesson builds resolve through vocabulary.json,
+		// and the sentence it previews resolves only through the declaration.
 		expect(["มา", "นา", "นาน"].every((w) => vocabularyByThai.has(w))).toBe(
+			true,
+		);
+		// At least one declared word resolves ONLY through the declaration, so
+		// the second arm is load-bearing rather than shadowed by the corpus.
+		// Not all of them: สระ is itself an ordinary Thai word and sits in
+		// vocabulary.json, which is why this asks for one and not for all.
+		expect(teachingWordSet.size).toBeGreaterThan(0);
+		expect([...teachingWordSet].some((w) => !vocabularyByThai.has(w))).toBe(
 			true,
 		);
 	});
@@ -254,9 +279,7 @@ describe("the committed deck", () => {
 		const thai = manifest.assets.filter((a) => a.language === "th");
 		expect(thai.length).toBeGreaterThan(0);
 		for (const asset of thai) {
-			expect(["verified", "recorded"]).toContain(
-				asset.verification?.outcome,
-			);
+			expect(["verified", "recorded"]).toContain(asset.verification?.outcome);
 		}
 
 		// And `recorded` is not a loophole: exactly the clips a `recording:`
@@ -268,9 +291,7 @@ describe("the committed deck", () => {
 		)
 			.split("\n")
 			.filter((line) => line.startsWith("recording: th ")).length;
-		const recorded = thai.filter(
-			(a) => a.verification?.outcome === "recorded",
-		);
+		const recorded = thai.filter((a) => a.verification?.outcome === "recorded");
 		expect(recorded.length).toBe(recordedLines);
 	});
 
@@ -389,8 +410,7 @@ describe("the committed deck", () => {
 		// file rather than an engine.
 		const thaiLines = spoken.filter(
 			(line) =>
-				line.startsWith("narration: th ") ||
-				line.startsWith("recording: th "),
+				line.startsWith("narration: th ") || line.startsWith("recording: th "),
 		).length;
 		expect(manifest.assets.filter((a) => a.language === "th").length).toBe(
 			thaiLines,

@@ -278,5 +278,10 @@
 			"audioLanguages": ["en"],
 			"image": "/thai-script/lessons/lesson-leading-consonants/images/read-close-ff1b818050bb.jpg"
 		}
-	]
+	],
+	"timing": {
+		"spokenSeconds": 647,
+		"practiceSeconds": 164,
+		"estimatedMinutes": 14
+	}
 }

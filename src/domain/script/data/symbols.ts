@@ -1638,9 +1638,9 @@ const vowels: ThaiVowel[] = [
 		lesson: 1,
 		sceneMnemonic: {
 			shapeCue:
-				"A post planted to the right of its consonant, its top curling over like a shepherd's crook.",
+				"The dipper hanging by the water jar behind the house: a small crook at the top, then one long straight handle down the right of its consonant.",
 			soundCue:
-				"An open aa held long — the doctor's say-aah drawn all the way out.",
+				"The long open aah you let out tipping that water over your neck — held until the dipper runs dry.",
 		},
 	}),
 

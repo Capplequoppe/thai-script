@@ -379,5 +379,10 @@
 			"audio": ["/thai-script/lessons/lesson-07/audio/5a11a28ee1cae0c8.mp3"],
 			"audioLanguages": ["en"]
 		}
-	]
+	],
+	"timing": {
+		"spokenSeconds": 604,
+		"practiceSeconds": 212,
+		"estimatedMinutes": 14
+	}
 }

@@ -257,5 +257,10 @@
 			"audioLanguages": ["en"],
 			"image": "/thai-script/lessons/lesson-clusters/images/read-close-79087c2fbc1b.jpg"
 		}
-	]
+	],
+	"timing": {
+		"spokenSeconds": 561,
+		"practiceSeconds": 158,
+		"estimatedMinutes": 12
+	}
 }

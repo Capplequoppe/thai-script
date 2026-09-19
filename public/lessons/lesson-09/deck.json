@@ -458,5 +458,10 @@
 			"audio": ["/thai-script/lessons/lesson-09/audio/a83f6c8020320e03.mp3"],
 			"audioLanguages": ["en"]
 		}
-	]
+	],
+	"timing": {
+		"spokenSeconds": 832,
+		"practiceSeconds": 242,
+		"estimatedMinutes": 18
+	}
 }

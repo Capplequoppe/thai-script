@@ -338,9 +338,9 @@ scene: A heavy wooden lid closed flat over a market basket and pressed down tigh
 heading: Where a syllable stops dead
 narration: en Last lesson the harbour's letters closed a syllable and left it ringing, so you could hold the end of a word for as long as you had breath for it. These three do the opposite. They seal it shut. Listen to what that does.
 narration: th มาก
-narration: en Much, or very. The chicken's letter is sitting on the end of it, shutting the sound off at the back of the throat with nothing released. There is nowhere left for the sound to go. A syllable that finishes like that has a name. It is dead, and one that can carry on ringing is live. Those two words are what every tone rule in Thai gets built out of. You get the first of them next.
+narration: en Much, or very. The chicken's letter is sitting on the end of it, shutting the sound off at the back of the throat with nothing released. There is nowhere left for the sound to go. A syllable that finishes like that has a name. It is dead, and one that can carry on ringing is alive. Those two words are what every tone rule in Thai gets built out of. You get the first of them next.
 - The harbour's letters let a syllable ring on. These three seal it.
-- A syllable sealed like that is *dead*. One that can ring on is *live*.
+- A syllable sealed like that is *dead*. One that can ring on is *alive*.
 - The ending decides it, whatever letter opens the syllable.
 
 ## rule mid-live
@@ -350,25 +350,25 @@ teaches: mid-live
 ## exposition mid-live-practice
 image: images/lesson-03/mid-live-practice.jpg
 scene: A flat green rice paddy under an even grey sky, water lying still between the rows, no wind.
-heading: Mid class, live syllable
+heading: Mid class, and the syllable alive
 teaches: mid-live, paddy-alive
-narration: en These are the first mid class letters you have met. Put one of them at the front of a syllable that ends live and the tone comes out flat, which is exactly where the harbour's live syllables landed. Listen to a pair of them.
+narration: en These are the first mid class letters you have met. Put one of them at the front of a syllable that ends alive and the tone comes out flat, which is exactly where the harbour's landed. Listen to a pair of them.
 narration: th ดี
 narration: th กา
-narration: en Good, then a crow. You have two classes on the books now and for the moment they agree with each other, because both hand you a flat tone on a live ending. They come apart the instant a syllable stops dead. That is the rule waiting for you next.
-- A mid class letter on a live syllable lands flat.
+narration: en Good, then a crow. You have two classes on the books now and for the moment they agree with each other, because both hand you a flat tone when the syllable ends alive. They come apart the instant a syllable stops dead. That is the rule waiting for you next.
+- A mid class letter, on a syllable that ends alive, lands flat.
 - So does a low class one. For now the two agree.
 - They come apart as soon as a syllable ends dead.
 
 ## retrieval which-is-dead
 reveal: which-is-dead-answer
-prompt: Of the two words on screen, one ends live and the other ends dead. Say which is which, and say what decides it.
-narration: en Something to answer before you read anything back. Of the two words on screen, one ends live and the other ends dead. Which is which — and what exactly is it that decides?
+prompt: Of the two words on screen, one ends alive and the other ends dead. Say which is which, and say what decides it.
+narration: en Something to answer before you read anything back. Of the two words on screen, one ends alive and the other ends dead. Which is which — and what exactly is it that decides?
 
 ## reveal which-is-dead-answer
 retrieval: which-is-dead
-narration: en The first one is live. It finishes on a long vowel with nothing after it, so the sound can run on as long as you like. The second is dead, because the chicken's letter seals it at the back of the throat and leaves the sound nowhere to go. The letter at the front is the same in both. What changed is what stands after the vowel.
-- Live: it finishes on a long vowel with nothing after it.
+narration: en The first one is alive. It finishes on a long vowel with nothing after it, so the sound can run on as long as you like. The second is dead, because the chicken's letter seals it at the back of the throat and leaves the sound nowhere to go. The letter at the front is the same in both. What changed is what stands after the vowel.
+- Alive: it finishes on a long vowel with nothing after it.
 - Dead: the chicken's letter seals it and the sound stops.
 - Same letter at the front. What changed is what stands after the vowel.
 

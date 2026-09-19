@@ -370,5 +370,10 @@
 			"audioLanguages": ["en", "en", "en", "en", "en"],
 			"image": "/thai-script/lessons/orientation/images/expect-dc497d7b54f7.jpg"
 		}
-	]
+	],
+	"timing": {
+		"spokenSeconds": 1507,
+		"practiceSeconds": 158,
+		"estimatedMinutes": 28
+	}
 }

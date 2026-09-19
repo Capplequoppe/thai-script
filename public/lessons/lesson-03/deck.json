@@ -380,13 +380,13 @@
 			"heading": "Where a syllable stops dead",
 			"body": [
 				"The harbour's letters let a syllable ring on. These three seal it.",
-				"A syllable sealed like that is *dead*. One that can ring on is *live*.",
+				"A syllable sealed like that is *dead*. One that can ring on is *alive*.",
 				"The ending decides it, whatever letter opens the syllable."
 			],
 			"audio": [
 				"/thai-script/lessons/lesson-03/audio/c3133fae78352fb1.mp3",
 				"/thai-script/lessons/lesson-03/audio/01ad691f866355b6.mp3",
-				"/thai-script/lessons/lesson-03/audio/c7141797b82ef5da.mp3"
+				"/thai-script/lessons/lesson-03/audio/e33a687b2a1686c8.mp3"
 			],
 			"audioLanguages": ["en", "th", "en"],
 			"image": "/thai-script/lessons/lesson-03/images/stops-at-the-end-92afc3d07903.jpg"
@@ -400,17 +400,17 @@
 		{
 			"kind": "exposition",
 			"id": "mid-live-practice",
-			"heading": "Mid class, live syllable",
+			"heading": "Mid class, and the syllable alive",
 			"body": [
-				"A mid class letter on a live syllable lands flat.",
+				"A mid class letter, on a syllable that ends alive, lands flat.",
 				"So does a low class one. For now the two agree.",
 				"They come apart as soon as a syllable ends dead."
 			],
 			"audio": [
-				"/thai-script/lessons/lesson-03/audio/8b261d9be288a389.mp3",
+				"/thai-script/lessons/lesson-03/audio/e6bb61b61d3ae6f7.mp3",
 				"/thai-script/lessons/lesson-03/audio/caa0d4f2485680bb.mp3",
 				"/thai-script/lessons/lesson-03/audio/4198fbad636b9a08.mp3",
-				"/thai-script/lessons/lesson-03/audio/29e3f4fd78096d85.mp3"
+				"/thai-script/lessons/lesson-03/audio/33c82600aaeaa01c.mp3"
 			],
 			"audioLanguages": ["en", "th", "th", "en"],
 			"teaches": ["mid-live", "paddy-alive"],
@@ -419,9 +419,9 @@
 		{
 			"kind": "retrieval",
 			"id": "which-is-dead",
-			"prompt": "Of the two words on screen, one ends live and the other ends dead. Say which is which, and say what decides it.",
+			"prompt": "Of the two words on screen, one ends alive and the other ends dead. Say which is which, and say what decides it.",
 			"revealSlideId": "which-is-dead-answer",
-			"audio": ["/thai-script/lessons/lesson-03/audio/b4fa61e72ed04f1d.mp3"],
+			"audio": ["/thai-script/lessons/lesson-03/audio/0a7248dadf1dbb96.mp3"],
 			"audioLanguages": ["en"]
 		},
 		{
@@ -429,11 +429,11 @@
 			"id": "which-is-dead-answer",
 			"retrievalSlideId": "which-is-dead",
 			"answers": [
-				"Live: it finishes on a long vowel with nothing after it.",
+				"Alive: it finishes on a long vowel with nothing after it.",
 				"Dead: the chicken's letter seals it and the sound stops.",
 				"Same letter at the front. What changed is what stands after the vowel."
 			],
-			"audio": ["/thai-script/lessons/lesson-03/audio/ba0740f8deef4c21.mp3"],
+			"audio": ["/thai-script/lessons/lesson-03/audio/2e7a241133f95601.mp3"],
 			"audioLanguages": ["en"]
 		},
 		{
@@ -528,5 +528,10 @@
 			"audio": ["/thai-script/lessons/lesson-03/audio/26d44f4a26683474.mp3"],
 			"audioLanguages": ["en"]
 		}
-	]
+	],
+	"timing": {
+		"spokenSeconds": 972,
+		"practiceSeconds": 284,
+		"estimatedMinutes": 21
+	}
 }

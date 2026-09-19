@@ -274,7 +274,7 @@ narration: en Before you go any further, do one thing for me. Hum the five lette
 
 ## rule live-endings
 rule: live-endings
-narration: en Did you hear it? Every one of those five is a sound you can hum. Start any of them and you can hold it until your breath gives out, which is precisely why a word is allowed to finish on one — the sound has somewhere to keep going. That is what live means. You have been hearing the word since lesson one without being told what decides it. Five letters in the whole alphabet can end a syllable live, and you now own all five of them.
+narration: en Did you hear it? Every one of those five is a sound you can hum. Start any of them and you can hold it until your breath gives out, which is precisely why a word is allowed to finish on one — the sound has somewhere to keep going. That is what alive means. You have been hearing the word since lesson one without being told what decides it. Five letters in the whole alphabet can end a syllable alive, and you now own all five of them.
 narration: en A syllable that ends on a long vowel with nothing behind it stays open the same way. Here is one of those.
 narration: th นา
 narration: en Nothing closes it. The air simply keeps going. An ending that stops the air dead is the other kind. You meet that one next lesson.
@@ -284,21 +284,21 @@ image: images/lesson-02/the-five.jpg
 scene: Five things arranged along a stone harbour quay at golden hour — a grey horse, a mouse on a mooring rope, a coil of rope with a snake rising from it, a giant's silhouette wading beyond the wall, and a silver ring on a nail. Warm light, calm water.
 heading: The five that keep going
 teaches: mo-ma, no-nu, ngo-ngu, yo-yak, wo-weng
-narration: en There they all are. Every one of them lives in the same place. The horse, the mouse, the snake, the giant, the ring — every voice the harbour has, and each of them a sound you can hold. That is the whole set. You will never sit down and memorise which letters end live: you hum a letter, and your own mouth tells you.
+narration: en There they all are. Every one of them lives in the same place. The horse, the mouse, the snake, the giant, the ring — every voice the harbour has, and each of them a sound you can hold. That is the whole set. You will never sit down and memorise which letters end a syllable alive: you hum a letter, and your own mouth tells you.
 - The horse, the mouse, the snake, the giant, the ring.
 - Every one is a sound you can hold, which is why a syllable may end on it.
 
 ## rule low-live
 rule: low-live
 teaches: low-live
-narration: en Both halves are in your hand now. Every letter in the harbour is low class. Put one of them at the front of a syllable and let the syllable finish live: the tone comes out flat, level from start to finish, about halfway up your speaking range. Low class, live ending, mid tone. Every tone rule you meet after this one is measured against it.
+narration: en Both halves are in your hand now. Every letter in the harbour is low class. Put one of them at the front of a syllable and let the syllable finish alive: the tone comes out flat, level from start to finish, about halfway up your speaking range. Low class, the syllable alive, mid tone. Every tone rule you meet after this one is measured against it.
 
 ## exposition the-paddy
 image: images/lesson-02/the-paddy.jpg
 scene: A fisherman and a market vendor stand talking in a flat rice paddy, both alive and unhurried, the horizon dead level behind them.
 heading: Where a flat tone lives
 teaches: low-live, paddy-alive
-narration: en A flat tone has a place of its own, a long way inland from the harbour. It is a rice paddy, level to the horizon in every direction, nothing rising anywhere and nothing falling. A fisherman is standing in the middle of it, miles from his boat, talking. Look at him properly: he is perfectly all right. Alive, unhurried, nothing whatever has happened to him. A syllable that ends live is a syllable nothing has happened to. A harbour voice that nothing has happened to comes out flat.
+narration: en A flat tone has a place of its own, a long way inland from the harbour. It is a rice paddy, level to the horizon in every direction, nothing rising anywhere and nothing falling. A fisherman is standing in the middle of it, miles from his boat, talking. Look at him properly: he is perfectly all right. Alive, unhurried, nothing whatever has happened to him. A syllable that ends alive is a syllable nothing has happened to. A harbour voice that nothing has happened to comes out flat.
 narration: en The other man in the field sells in a market. He is standing out there for the same reason the fisherman is — nothing has happened to him either — and where his market is turns out to matter a great deal. Next lesson. Two words for you first.
 narration: th งาน
 narration: en That one is work, in the sense of a job or the doing of one.
@@ -320,9 +320,9 @@ retrieval: tone-of-yaa
 teaches: low-live
 narration: en Mid tone. Flat from start to finish.
 narration: th ยายา
-narration: en The giant is low class, because everything in the harbour is. Nothing stops the syllable, so it ends live. Low class plus a live ending gives mid.
+narration: en The giant is low class, because everything in the harbour is. Nothing stops the syllable, so it ends alive. Low class, and a syllable left alive, gives mid.
 - Mid tone, flat from start to finish.
-- The giant is low class and the syllable is live, so the low class live rule decides it.
+- The giant is low class and the syllable is alive, so that rule decides it.
 
 ## exposition read-intro
 heading: You read these, I will keep quiet

@@ -2,6 +2,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { Button } from "@/presentation/components/ui/button";
 import {
 	type DeckSlide as DeckSlideData,
+	type DeckTiming,
 	LESSON_ASSET_ROOT,
 	type LessonDeck,
 	renderRuleSlide,
@@ -818,6 +819,29 @@ function slidesTeaching(
 	return slides.filter((slide) => tagged.has(slide.id));
 }
 
+/**
+ * What the learner is committing to, shown once before the lesson starts.
+ *
+ * Somebody deciding whether to begin now needs the number before the first
+ * slide, not after the last. The listening figure is measured from the deck's
+ * own clips; the remainder is the time the audio is stopped while they answer.
+ * Handwriting practice is deliberately outside the estimate — how long anybody
+ * spends filling a line is their own business, and inventing minutes for it
+ * would make every other number here less believable.
+ */
+function TimeToExpect({ timing }: { timing: DeckTiming }) {
+	const listening = Math.round(timing.spokenSeconds / 60);
+	return (
+		<p
+			className="text-sm text-center"
+			style={{ color: "var(--color-text-muted)" }}
+		>
+			About {timing.estimatedMinutes} minutes — {listening} of listening, the
+			rest answering out loud. Writing practice on top of that.
+		</p>
+	);
+}
+
 export function DeckSlide({ deckPath, onComplete, teaching }: Props) {
 	const [state, setState] = useState<LoadState>({ status: "loading" });
 	const [idx, setIdx] = useState(0);
@@ -948,8 +972,16 @@ export function DeckSlide({ deckPath, onComplete, teaching }: Props) {
 	const slide = slides[idx];
 	if (!slide) return null;
 
+	// Only on arrival, and only for a whole deck: the story viewer passes
+	// `teaching` to show a handful of slides out of a lesson, where a
+	// whole-lesson estimate would be plainly wrong.
+	const showTime = idx === 0 && !teaching && state.deck.timing !== undefined;
+
 	return (
 		<div className="space-y-6">
+			{showTime && state.deck.timing && (
+				<TimeToExpect timing={state.deck.timing} />
+			)}
 			<DeckSlideContent
 				deck={state.deck}
 				slide={slide}

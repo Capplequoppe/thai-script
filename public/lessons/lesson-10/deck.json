@@ -421,5 +421,10 @@
 			"audio": ["/thai-script/lessons/lesson-10/audio/2db8c04be8ad4220.mp3"],
 			"audioLanguages": ["en"]
 		}
-	]
+	],
+	"timing": {
+		"spokenSeconds": 705,
+		"practiceSeconds": 242,
+		"estimatedMinutes": 16
+	}
 }
