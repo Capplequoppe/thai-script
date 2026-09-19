@@ -11,7 +11,7 @@
 				"A vowel that breaks the reading order.",
 				"And a map of half the letters you have not met."
 			],
-			"audio": ["/thai-script/lessons/lesson-07/audio/1a78cd1828c75b3a.mp3"],
+			"audio": ["/thai-script/lessons/lesson-07/audio/e8616fb399010f83.mp3"],
 			"audioLanguages": ["en"],
 			"image": "/thai-script/lessons/lesson-07/images/what-is-here-82830ac9c088.jpg"
 		},
@@ -23,7 +23,7 @@
 				"Real paper, a real pen.",
 				"Both halves of the name, out loud, every time."
 			],
-			"audio": ["/thai-script/lessons/lesson-07/audio/d962c61b9293dbb4.mp3"],
+			"audio": ["/thai-script/lessons/lesson-07/audio/d80ad3a01fed2525.mp3"],
 			"audioLanguages": ["en"],
 			"image": "/thai-script/lessons/lesson-07/images/pen-still-there-1bdf41db8b53.jpg"
 		},
@@ -55,7 +55,7 @@
 				"One stroke, from the head to the foot of the arch."
 			],
 			"audio": [
-				"/thai-script/lessons/lesson-07/audio/84db7259b27a0561.mp3",
+				"/thai-script/lessons/lesson-07/audio/c2542517da1e3ca2.mp3",
 				"/thai-script/lessons/lesson-07/audio/143065acfa1714fd.mp3"
 			],
 			"audioLanguages": ["en", "th"],
@@ -92,7 +92,7 @@
 			"id": "read-thaang",
 			"prompt": "Soldier, long vowel, snake closing it. **Out loud before you turn it over.**",
 			"revealSlideId": "read-thaang-answer",
-			"audio": ["/thai-script/lessons/lesson-07/audio/8412c7ca919254bd.mp3"],
+			"audio": ["/thai-script/lessons/lesson-07/audio/d5ef12556b3b539c.mp3"],
 			"audioLanguages": ["en"],
 			"thai": "ทาง",
 			"teaches": ["tho-thahan"]
@@ -122,7 +122,7 @@
 			"audio": [
 				"/thai-script/lessons/lesson-07/audio/7b9f4dc749d52891.mp3",
 				"/thai-script/lessons/lesson-07/audio/10232f6c3c8dd00c.mp3",
-				"/thai-script/lessons/lesson-07/audio/4606c31c1557948c.mp3"
+				"/thai-script/lessons/lesson-07/audio/4f3b17ca9d314504.mp3"
 			],
 			"audioLanguages": ["en", "th", "en"],
 			"teaches": ["ho-nokhu"],
@@ -137,7 +137,7 @@
 				"Its partner is the fourth commonest syllable initial in Thai.",
 				"The map arrives at the end of this lesson, with the owl in it."
 			],
-			"audio": ["/thai-script/lessons/lesson-07/audio/2542ff4484783aa4.mp3"],
+			"audio": ["/thai-script/lessons/lesson-07/audio/d5e2c7927de3b03a.mp3"],
 			"audioLanguages": ["en"],
 			"teaches": ["ho-nokhu"],
 			"image": "/thai-script/lessons/lesson-07/images/why-learn-the-owl-287be12ebe16.jpg"
@@ -191,7 +191,7 @@
 				"And he speaks only once the consonant has gone in."
 			],
 			"audio": [
-				"/thai-script/lessons/lesson-07/audio/eb40624d3a9a055e.mp3",
+				"/thai-script/lessons/lesson-07/audio/ca43808afc47fc4e.mp3",
 				"/thai-script/lessons/lesson-07/audio/7038c8acf05da125.mp3",
 				"/thai-script/lessons/lesson-07/audio/754aecd9fcb05e4d.mp3"
 			],
@@ -226,7 +226,7 @@
 				"Write it **ahead of** the consonant.",
 				"Say it aloud until the order stops feeling wrong."
 			],
-			"audio": ["/thai-script/lessons/lesson-07/audio/77756cb1d30e7c17.mp3"],
+			"audio": ["/thai-script/lessons/lesson-07/audio/939cecd0c7870e6d.mp3"],
 			"audioLanguages": ["en"],
 			"thai": "เ",
 			"teaches": ["sara-ee"]
@@ -241,7 +241,7 @@
 				"Written in full only when nothing follows."
 			],
 			"audio": [
-				"/thai-script/lessons/lesson-07/audio/93226d53d507cf61.mp3",
+				"/thai-script/lessons/lesson-07/audio/90a6bda9efbf26eb.mp3",
 				"/thai-script/lessons/lesson-07/audio/dc038da18f357833.mp3"
 			],
 			"audioLanguages": ["en", "th"],
@@ -271,7 +271,7 @@
 			"id": "read-yen",
 			"prompt": "Mast, giant's letter, the small roof, mouse closing it. **Watch the order.** Out loud before you turn it over.",
 			"revealSlideId": "read-yen-answer",
-			"audio": ["/thai-script/lessons/lesson-07/audio/bf5e87d52809ec77.mp3"],
+			"audio": ["/thai-script/lessons/lesson-07/audio/595f682d77383586.mp3"],
 			"audioLanguages": ["en"],
 			"thai": "เย็น",
 			"teaches": ["sara-e", "mai-taikhu"]
@@ -283,7 +283,7 @@
 			"answers": ["**เย็น** — cool, and also *evening*."],
 			"audio": [
 				"/thai-script/lessons/lesson-07/audio/05323ebbe13c188e.mp3",
-				"/thai-script/lessons/lesson-07/audio/12a61a2f94252eb0.mp3"
+				"/thai-script/lessons/lesson-07/audio/8bef5240da990a91.mp3"
 			],
 			"audioLanguages": ["th", "en"],
 			"thai": "เย็น",
@@ -320,7 +320,7 @@
 				"The ones that **breathe or hiss** give you nothing.",
 				"So Thai gives each of those sounds **two letters**, in two districts."
 			],
-			"audio": ["/thai-script/lessons/lesson-07/audio/ec7794c9950c278f.mp3"],
+			"audio": ["/thai-script/lessons/lesson-07/audio/432af3856c6dc046.mp3"],
 			"audioLanguages": ["en"],
 			"image": "/thai-script/lessons/lesson-07/images/the-map-is-coming-664930a6a024.jpg"
 		},
@@ -337,7 +337,7 @@
 				"ซ is harbour and ส is temple. Both say s.",
 				"ฮ is harbour and ห is temple. Both say h."
 			],
-			"audio": ["/thai-script/lessons/lesson-07/audio/ea30bc17a023a773.mp3"],
+			"audio": ["/thai-script/lessons/lesson-07/audio/6ff951b791500b45.mp3"],
 			"audioLanguages": ["en"],
 			"image": "/thai-script/lessons/lesson-07/images/cousin-pairs-1c36d1eaba8c.jpg"
 		},
@@ -375,7 +375,7 @@
 		}
 	],
 	"timing": {
-		"spokenSeconds": 604,
+		"spokenSeconds": 608,
 		"practiceSeconds": 262,
 		"estimatedMinutes": 14
 	}

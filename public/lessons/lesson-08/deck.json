@@ -11,7 +11,7 @@
 				"Put them last in a word and they turn into the same sound.",
 				"And a vowel that is last lesson's, written twice."
 			],
-			"audio": ["/thai-script/lessons/lesson-08/audio/cafde0a18f84f3d7.mp3"],
+			"audio": ["/thai-script/lessons/lesson-08/audio/bee86a8494ad7d2f.mp3"],
 			"audioLanguages": ["en"],
 			"image": "/thai-script/lessons/lesson-08/images/what-is-here-cc6c55291ad9.jpg"
 		},
@@ -20,7 +20,7 @@
 			"id": "pen-still-there",
 			"heading": "Pen and paper",
 			"body": ["Real paper, a real pen.", "Both halves of the name, out loud."],
-			"audio": ["/thai-script/lessons/lesson-08/audio/ce1dd9ef33d9d220.mp3"],
+			"audio": ["/thai-script/lessons/lesson-08/audio/c914fd814fcffb89.mp3"],
 			"audioLanguages": ["en"],
 			"image": "/thai-script/lessons/lesson-08/images/pen-still-there-1bdf41db8b53.jpg"
 		},
@@ -96,7 +96,7 @@
 			"audio": [
 				"/thai-script/lessons/lesson-08/audio/7b9f4dc749d52891.mp3",
 				"/thai-script/lessons/lesson-08/audio/17bd93fc9306d351.mp3",
-				"/thai-script/lessons/lesson-08/audio/39d564a64670a506.mp3"
+				"/thai-script/lessons/lesson-08/audio/1393fb912325025f.mp3"
 			],
 			"audioLanguages": ["en", "th", "en"],
 			"teaches": ["lo-ling"],
@@ -112,7 +112,7 @@
 				"The head at the base, and a tail arching over its back."
 			],
 			"audio": [
-				"/thai-script/lessons/lesson-08/audio/01fc017a344e954d.mp3",
+				"/thai-script/lessons/lesson-08/audio/710a119391e1c19b.mp3",
 				"/thai-script/lessons/lesson-08/audio/17bd93fc9306d351.mp3"
 			],
 			"audioLanguages": ["en", "th"],
@@ -164,7 +164,7 @@
 				"These two stay outside the set.",
 				"They arrive **as** the mouse's letter, and are read as one."
 			],
-			"audio": ["/thai-script/lessons/lesson-08/audio/f19c28844830608e.mp3"],
+			"audio": ["/thai-script/lessons/lesson-08/audio/1bde9664ecdc8e2c.mp3"],
 			"audioLanguages": ["en"],
 			"teaches": ["ro-ria", "lo-ling"],
 			"image": "/thai-script/lessons/lesson-08/images/not-a-sixth-ending-641240bde4cf.jpg"
@@ -174,7 +174,7 @@
 			"id": "read-gaan",
 			"prompt": "Chicken, long vowel, and the boat's letter at the end. **Remember what it does there.** Out loud before you turn it over.",
 			"revealSlideId": "read-gaan-answer",
-			"audio": ["/thai-script/lessons/lesson-08/audio/18b4049cab4ca4e6.mp3"],
+			"audio": ["/thai-script/lessons/lesson-08/audio/3720e04011655b84.mp3"],
 			"audioLanguages": ["en"],
 			"thai": "การ",
 			"teaches": ["ro-ria"]
@@ -200,7 +200,7 @@
 			"id": "final-r",
 			"prompt": "A syllable is written with the boat's letter in last position. What sound ends it, and is the syllable alive or dead?",
 			"revealSlideId": "final-r-answer",
-			"audio": ["/thai-script/lessons/lesson-08/audio/7bc62517242a2303.mp3"],
+			"audio": ["/thai-script/lessons/lesson-08/audio/ca4fd8f11cc60cf2.mp3"],
 			"audioLanguages": ["en"],
 			"teaches": ["ro-ria"]
 		},
@@ -227,7 +227,7 @@
 				"The sound is the vowel in *cat*, held long."
 			],
 			"audio": [
-				"/thai-script/lessons/lesson-08/audio/d06450bff568b288.mp3",
+				"/thai-script/lessons/lesson-08/audio/cdab94ef66a167cb.mp3",
 				"/thai-script/lessons/lesson-08/audio/aba2d48dbe93cbef.mp3",
 				"/thai-script/lessons/lesson-08/audio/3fa01a111ac281e9.mp3"
 			],
@@ -244,7 +244,7 @@
 				"Written **ahead of** the consonant.",
 				"Say each syllable aloud, with the consonant leading."
 			],
-			"audio": ["/thai-script/lessons/lesson-08/audio/b7fcbcc97e0fe88c.mp3"],
+			"audio": ["/thai-script/lessons/lesson-08/audio/654c5efb5afc7b37.mp3"],
 			"audioLanguages": ["en"],
 			"thai": "แ",
 			"teaches": ["sara-aae"]
@@ -254,7 +254,7 @@
 			"id": "read-daaeng",
 			"prompt": "Twin masts, the child's letter, the snake closing it. **Watch the order.** Out loud before you turn it over.",
 			"revealSlideId": "read-daaeng-answer",
-			"audio": ["/thai-script/lessons/lesson-08/audio/93a600eb2e62f0d0.mp3"],
+			"audio": ["/thai-script/lessons/lesson-08/audio/e1e841a57fd3c663.mp3"],
 			"audioLanguages": ["en"],
 			"thai": "แดง",
 			"teaches": ["sara-aae"]
@@ -284,7 +284,7 @@
 				"The same shortener as lesson four and lesson seven."
 			],
 			"audio": [
-				"/thai-script/lessons/lesson-08/audio/75d98a287b9b3abb.mp3",
+				"/thai-script/lessons/lesson-08/audio/1c521ada0b32d64b.mp3",
 				"/thai-script/lessons/lesson-08/audio/88cbfab802801842.mp3"
 			],
 			"audioLanguages": ["en", "th"],
@@ -301,7 +301,7 @@
 				"It means *and*, and it is the 21st commonest word in Thai."
 			],
 			"audio": [
-				"/thai-script/lessons/lesson-08/audio/c805f58b2d5dbaa4.mp3",
+				"/thai-script/lessons/lesson-08/audio/a7dd80ee4737fac6.mp3",
 				"/thai-script/lessons/lesson-08/audio/89fa7bcc6361781a.mp3",
 				"/thai-script/lessons/lesson-08/audio/d30b08d05fa898ca.mp3"
 			],
@@ -320,7 +320,7 @@
 			],
 			"audio": [
 				"/thai-script/lessons/lesson-08/audio/82c121969db8d53e.mp3",
-				"/thai-script/lessons/lesson-08/audio/4700adfb12db712d.mp3"
+				"/thai-script/lessons/lesson-08/audio/1cb16240c546eeec.mp3"
 			],
 			"audioLanguages": ["en", "en"],
 			"teaches": ["sara-ae"],
@@ -344,7 +344,7 @@
 				"Both written ahead of the consonant, both voiced after it.",
 				"Every mast after this one works the same way."
 			],
-			"audio": ["/thai-script/lessons/lesson-08/audio/f362c3b37d3e404d.mp3"],
+			"audio": ["/thai-script/lessons/lesson-08/audio/c77eee241d3bf527.mp3"],
 			"audioLanguages": ["en"],
 			"teaches": ["sara-aae", "sara-ee"]
 		},
@@ -362,7 +362,7 @@
 		}
 	],
 	"timing": {
-		"spokenSeconds": 492,
+		"spokenSeconds": 491,
 		"practiceSeconds": 256,
 		"estimatedMinutes": 12
 	}

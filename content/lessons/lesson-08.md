@@ -46,7 +46,7 @@ ITS ANSWER NEVER SHARE A SLIDE. All unchanged from lesson 3.
 image: images/lesson-08/what-is-here.jpg
 scene: A wooden fishing boat tied alongside a stone harbour quay in the afternoon sun, a small pennant flying at its prow, calm water.
 heading: Two letters that change their minds
-narration: en Two consonants today, and for once you can tell the two apart at a glance. What they share is stranger than a shape. At the front of a word they sound nothing like each other. Put either of them at the end of a word and they become the same letter, and it is a letter you have had since lesson one. Then a vowel that is last lesson's vowel, doubled.
+narration: en Today you get two consonants, and for once you can tell them apart at a glance. What they share is stranger than a shape. At the front of a word they sound nothing like each other. Put either of them at the end of a word and they become the same letter. It is a letter you have had since lesson one. Then a vowel that is last lesson's vowel, doubled.
 - Two consonants: a rolled r, and an l.
 - Put them last in a word and they turn into the same sound.
 - And a vowel that is last lesson's, written twice.
@@ -54,7 +54,7 @@ narration: en Two consonants today, and for once you can tell the two apart at a
 ## exposition pen-still-there
 image: images/lesson-01/get-a-pen.jpg
 heading: Pen and paper
-narration: en Pen and paper, and both halves of every name out loud as you write. You know the drill by now. Go and get them.
+narration: en Pen and paper. Both halves of every name out loud as you write. You know the drill by now. Go and get them.
 - Real paper, a real pen.
 - Both halves of the name, out loud.
 
@@ -110,7 +110,7 @@ heading: The monkey
 teaches: lo-ling
 narration: en The second letter. Listen.
 recording: th ลอ ลิง public/audio/consonant-lo-ling.mp3
-narration: en That word means a monkey. The sound is an l, lapped off the ridge behind your top teeth — a plain one, nothing like the dark l at the end of an English word like ball. Harbour again, low class again, no new tone rules again.
+narration: en A monkey, that one. The sound is an l, lapped off the ridge behind your top teeth — a plain one, nothing like the dark l at the end of an English word like ball. Harbour again, low class again, no new tone rules again.
 - Its name is the sound, then a word beginning with that sound.
 - The word means a **monkey**.
 - A light l off the tongue ridge.
@@ -120,7 +120,7 @@ image: images/lesson-08/ling-story.jpg
 scene: A monkey sitting on a harbour mooring post holding a stolen piece of fruit, long tail arching high over its back, fishermen's baskets below and behind, late afternoon.
 heading: The one everybody swears at
 teaches: lo-ling
-narration: en There is a monkey on this quay and there is no getting rid of it. It sits on the last mooring post, it takes whatever is left uncovered, and it has never once been caught. Long, loose and leaping, along the whole row of posts. Look at the letter and you have got it: the head at the base, and one long tail arching right up over its back.
+narration: en There is a monkey on this quay and there is no getting rid of it. It sits on the last mooring post, it takes whatever is left uncovered — it has never once been caught. Long, loose and leaping, along the whole row of posts. Look at the letter and you have got it: the head at the base, and one long tail arching right up over its back.
 recording: th ลอ ลิง public/audio/consonant-lo-ling.mp3
 - It lives on the last post and steals whatever is uncovered.
 - Long, loose and leaping down the row.
@@ -157,7 +157,7 @@ image: images/lesson-08/not-a-sixth-ending.jpg
 scene: Five wooden mooring posts standing in a row along a harbour quay at dusk, with two figures walking towards them from the side carrying coats, lamps lit along the wall behind.
 heading: And the set of five still stands
 teaches: ro-ria, lo-ling
-narration: en Now, in lesson two you were told something flatly, and I want to protect it rather than quietly take it back. Five letters in the whole alphabet can close a syllable and leave the sound running, and you were told that was the whole set — the five you can hum. That is still true. These two stay outside it. What is happening is that when they turn up last in a word they stop being themselves and become one of the five. So the count of endings you have to remember stays where it was, and in that position you read either of them as the mouse's letter.
+narration: en Now, in lesson two you were told something flatly. I want to protect it rather than quietly take it back. Five letters in the whole alphabet can close a syllable and leave the sound running — you were told that was the whole set — the five you can hum. That is still true. These two stay outside it. What is happening is that when they turn up last in a word they stop being themselves and become one of the five. So the count of endings you have to remember stays where it was, and in that position you read either of them as the mouse's letter.
 - Lesson two: five hummable endings, and **that is still the whole set**.
 - These two stay outside the set.
 - They arrive **as** the mouse's letter, and are read as one.
@@ -167,7 +167,7 @@ reveal: read-gaan-answer
 prompt: Chicken, long vowel, and the boat's letter at the end. **Remember what it does there.** Out loud before you turn it over.
 thai: การ
 teaches: ro-ria
-narration: en Three letters, all yours, and this is the commonest word in the language built this way. The chicken's letter, the long vowel, and the boat's letter at the end. Remember what the boat does in last position. Out loud before you turn it over.
+narration: en All three letters are yours. This is the commonest word in the language built this way. The chicken's letter, the long vowel, and the boat's letter at the end. Remember what the boat does in last position. Out loud before you turn it over.
 
 ## reveal read-gaan-answer
 retrieval: read-gaan
@@ -183,7 +183,7 @@ narration: en No roll anywhere in it. It ends on an n, because that is what the 
 reveal: final-r-answer
 prompt: A syllable is written with the boat's letter in last position. What sound ends it, and is the syllable alive or dead?
 teaches: ro-ria
-narration: en So here is the question, and it has two halves. A syllable is written with the boat's letter in last position. First: what sound actually ends it? And second, which is the half that matters: is that syllable alive or dead?
+narration: en So here is the question — it has two halves. A syllable is written with the boat's letter in last position. First: what sound actually ends it? And second, which is the half that matters: is that syllable alive or dead?
 
 ## reveal final-r-answer
 retrieval: final-r
@@ -201,7 +201,7 @@ gloss: the front steps, twice
 cue: one mast is ee, two is ae
 heading: The same mast, raised twice
 teaches: sara-aae
-narration: en Now the vowel, and you have done most of the work already. Last lesson a single mast went up in front of the consonant, and you learned the thing that makes it hard: written first, spoken second. This is that mast raised twice, side by side. Everything about how it behaves is identical — it stands in front, and it is voiced after. What differs is the sound, and here it is.
+narration: en Now the vowel. You have done most of the work already. Last lesson a single mast went up in front of the consonant — you learned the thing that makes it hard: written first, spoken second. This is that mast raised twice, side by side. Everything about how it behaves is identical — it stands in front. It is voiced after. What differs is the sound, and here it is.
 recording: th สระแอ public/audio/sara-ae-long.mp3
 narration: en Long and flat. It is the vowel in the English word cat, held out.
 - Two masts, side by side, ahead of the consonant.
@@ -212,7 +212,7 @@ narration: en Long and flat. It is the vowel in the English word cat, held out.
 thai: แ
 heading: Write it
 teaches: sara-aae
-narration: en Two uprights with the small curve at the top of each, side by side, ahead of the consonant. Write it in front of the boat's letter and then in front of the monkey's, and say each syllable out loud with the consonant first. Keep going until your mouth stops reaching for the mast first.
+narration: en A pair of uprights with the small curve at the top of each, side by side, ahead of the consonant. Write it in front of the boat's letter and then in front of the monkey's, and say each syllable out loud with the consonant first. Keep going until your mouth stops reaching for the mast first.
 - Two uprights with a curve at the top of each.
 - Written **ahead of** the consonant.
 - Say each syllable aloud, with the consonant leading.
@@ -222,7 +222,7 @@ reveal: read-daaeng-answer
 prompt: Twin masts, the child's letter, the snake closing it. **Watch the order.** Out loud before you turn it over.
 thai: แดง
 teaches: sara-aae
-narration: en Three marks. Twin masts, the child's letter from the market, and the snake's letter closing it. Watch the order. Out loud before you turn it over.
+narration: en There are three marks here. Twin masts, the child's letter from the market, and the snake's letter closing it. Watch the order. Out loud before you turn it over.
 
 ## reveal read-daaeng-answer
 retrieval: read-daaeng
@@ -242,7 +242,7 @@ gloss: the same vowel, cut short
 cue: two masts, two hooks
 heading: And the short one
 teaches: sara-ae
-narration: en There is a short version, built out of two pieces you already have. Twin masts in front, and the two hooks behind — the same shortener you met in lesson four and again in lesson seven, doing the same job here.
+narration: en A short version exists, built out of two pieces you already have. Twin masts in front, and the two hooks behind — the same shortener you met in lesson four and again in lesson seven, doing the same job here.
 recording: th สระแอะ public/audio/sara-ae-short.mp3
 - **แ-ะ** — twin masts in front, the two hooks **ะ** behind.
 - The same shortener as lesson four and lesson seven.
@@ -251,7 +251,7 @@ recording: th สระแอะ public/audio/sara-ae-short.mp3
 thai: และ
 heading: And you have been reading it since lesson one
 teaches: sara-ae
-narration: en Now here is something worth stopping for. There is a word you have seen in almost every list in this course, and you have probably been treating it as just another word to learn. Look at what it is made of. Twin masts, the monkey's letter, and the two hooks behind. That is this vowel — the short one, exactly as you just learned it.
+narration: en Now here is something worth stopping for. There is a word you have seen in almost every list in this course — you have probably been treating it as just another word to learn. Look at what it is made of. Twin masts, the monkey's letter, and the two hooks behind. That is this vowel — the short one, exactly as you just learned it.
 narration: th และ
 narration: en It means and. It is the twenty-first commonest word in the entire language.
 - **และ** — twin masts, monkey's letter, two hooks.
@@ -264,7 +264,7 @@ scene: A workman on a roof ridge of a harbour building fitting a tile, a ladder 
 heading: What happens when something follows it
 teaches: sara-ae
 narration: en And you can guess the rest of this too. Those two hooks sit behind the consonant, and a final consonant wants that spot. So they climb and become the little roof over the letter instead — the same move as last lesson, the same move as lesson four, and the sound and the length are untouched by it.
-narration: en One honest thing about that. Every common word that actually does it needs a letter from lesson twelve, so the first example you see will be there, about ten minutes after you meet the letter it needs. Hold the rule until it arrives.
+narration: en An honest word about that. Every common word that actually does it needs a letter from lesson twelve, so the first example you see will be there, about ten minutes after you meet the letter it needs. Hold the rule until it arrives.
 - Two hooks behind, a final consonant wants the spot, the hooks climb.
 - Same sound, same length. The mark moves up over the letter.
 - **No example today.** The common ones need a lesson-12 letter.
@@ -278,7 +278,7 @@ narration: en Last question. You now know one mast and you know two masts. Say w
 ## reveal one-mast-two-answer
 retrieval: one-mast-two
 teaches: sara-aae, sara-ee
-narration: en One mast is ee. Two masts is ae, the vowel in cat. And both of them are put down ahead of their consonant and voiced after it. The eye takes them first and the mouth takes them second, and that is true of every mast you will ever meet.
+narration: en A single mast is ee. Two masts is ae, the vowel in cat. And both of them are put down ahead of their consonant and voiced after it. The eye takes them first and the mouth takes them second. That is true of every mast you will ever meet.
 - One mast: **ee**. Two masts: **ae**.
 - Both written ahead of the consonant, both voiced after it.
 - Every mast after this one works the same way.

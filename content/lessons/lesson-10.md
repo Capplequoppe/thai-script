@@ -60,7 +60,7 @@ narration: en Something different today. No consonant at all. You have twenty le
 ## exposition pen-still-there
 image: images/lesson-01/get-a-pen.jpg
 heading: Pen and paper
-narration: en Pen and paper, as always, and the names out loud while you write. Vowels have two-part names too, and you have been saying them since lesson one. Go and get them, and come back when they are in front of you.
+narration: en Pen and paper, as always, and the names out loud while you write. Vowels have two-part names too. You have been saying them since lesson one. Go and get them, and come back when they are in front of you.
 - Real paper, a real pen.
 - Both halves of the name, out loud, every time.
 
@@ -68,7 +68,7 @@ narration: en Pen and paper, as always, and the names out loud while you write. 
 image: images/lesson-10/back-to-the-steps.jpg
 scene: A flight of wooden front steps running up to the veranda of a Thai house on stilts, worn smooth in the middle of each tread, late afternoon light.
 heading: The busiest room in the house
-narration: en The front steps have been open since lesson seven, and by the end of today they will be the most crowded part of the house. One mast came first. Then two masts side by side. Then a mast with its top curled over into a lean, last lesson. Today three more arrive, and every one of them keeps the habit the steps are famous for. The mark goes down ahead of the consonant, your eye reaches it first, and the consonant still comes out of your mouth first. The order on the page and the order in your mouth part company here, and today is the third lesson running where that costs you something.
+narration: en The front steps have been open since lesson seven, and by the end of today they will be the most crowded part of the house. One mast came first. Then two masts side by side. Then a mast with its top curled over into a lean, last lesson. Today three more arrive, every one of them keeping the habit the steps are famous for. The mark goes down ahead of the consonant, your eye reaches it first, and the consonant still comes out of your mouth first. The order on the page and the order in your mouth part company here, and today is the third lesson running where that costs you something.
 - The steps opened in lesson seven and have been filling ever since.
 - Three more lodgers arrive today.
 - Written ahead of the consonant, spoken after it.
@@ -83,7 +83,7 @@ heading: The first one comes in two pieces
 teaches: sara-ao
 narration: en The first of the three is written in two halves, with the consonant sitting between them. A single mast in front, the one you met in lesson seven. And behind the consonant, the long post from lesson one, standing in the back yard where it always stands. One vowel, two marks, two rooms. Listen to it.
 recording: th สระเอา public/audio/sara-au.mp3
-narration: en That is the vowel in the English word how, and it comes out as a yelp. It is over fast. Hold on to that, because in about ten minutes I am going to tell you that Thai counts it as long, and you will want to have heard how short it really is.
+narration: en That is the vowel in the English word how, and it comes out as a yelp. It is over fast. Hold on to that, because in about ten minutes I am going to tell you that Thai counts it as long — you will want to have heard how short it really is.
 - A mast in front, the consonant, then the long post from lesson one.
 - One vowel written in two pieces, in two rooms.
 - The sound is the vowel in *how*, and it goes by fast.
@@ -101,7 +101,7 @@ reveal: read-rao-answer
 prompt: The mast, the boat's letter, the long post. One vowel wrapped round one consonant. Out loud before you turn it over.
 thai: เรา
 teaches: sara-ao
-narration: en Three marks, and the middle one is the boat. Take the two outer marks together as one vowel, put the boat between them, and say it out loud before you turn it over.
+narration: en There are three marks, and the middle one is the boat. Take the two outer marks together as one vowel, put the boat between them, then say it out loud before you turn it over.
 
 ## reveal read-rao-answer
 retrieval: read-rao
@@ -109,7 +109,7 @@ thai: เรา
 heading: That one
 teaches: sara-ao
 narration: th เรา
-narration: en We, or us. It is how a Thai speaker says we, and it is also how a great many people say I in ordinary conversation, depending on who they are talking to.
+narration: en We, or us. It is how a Thai speaker says we. It is also how a great many people say I in ordinary conversation, depending on who they are talking to.
 - **เรา** — we, or us.
 - Also a very common everyday word for *I*.
 
@@ -123,7 +123,7 @@ heading: The second one, and the common one
 teaches: sara-ai-mai-malaai
 narration: en The second arrival is a single mast again, and it stands on the steps like the others. What marks it out is the top, which breaks into a small sharp zigzag instead of a smooth curve. Listen to its name.
 recording: th สระไอ ไม้มลาย public/audio/sara-ay-may-malay.mp3
-narration: en The sound is the English word I, said quickly. This one is the ordinary, everyday spelling of that sound, and it will turn up several times on every page of Thai you ever read.
+narration: en The sound is the English word I, said quickly. This one is the ordinary, everyday spelling of that sound — it will turn up several times on every page of Thai you ever read.
 - A single mast with a zigzag broken into its top.
 - The sound is the English word *I*, said fast.
 - This is the ordinary spelling, and you will meet it constantly.
@@ -132,7 +132,7 @@ narration: en The sound is the English word I, said quickly. This one is the ord
 thai: ไ
 heading: Write it
 teaches: sara-ai-mai-malaai
-narration: en One upright, and the zigzag goes on at the top as a small sharp flick rather than a curl. Write it a few times. Then write it ahead of the fish's letter from last lesson and say what comes out, with the consonant first.
+narration: en A single upright, with the zigzag going on at the top as a small sharp flick rather than a curl. Write it a few times. Then write it ahead of the fish's letter from last lesson and say what comes out, with the consonant first.
 - One upright with a sharp zigzag on top.
 - Write it ahead of the fish's letter and say it aloud.
 - Consonant out of the mouth first, then the vowel.
@@ -142,7 +142,7 @@ reveal: read-bpai-answer
 prompt: The zigzag mast, then the fish's letter. Out loud before you turn it over.
 thai: ไป
 teaches: sara-ai-mai-malaai
-narration: en Two marks. The zigzag mast, and the fish's letter you learned last lesson. It is one of the commonest words in the language and you have everything you need for it. Out loud before you turn it over.
+narration: en Just two marks. The zigzag mast, and the fish's letter you learned last lesson. It is one of the commonest words in the language and you have everything you need for it. Out loud before you turn it over.
 
 ## reveal read-bpai-answer
 retrieval: read-bpai
@@ -150,7 +150,7 @@ thai: ไป
 heading: That one
 teaches: sara-ai-mai-malaai
 narration: th ไป
-narration: en To go. It is the thirty-fourth commonest word in Thai, and it does far more work than the English word does, turning up inside directions, inside tenses, and on the end of verbs to mean away from here.
+narration: en To go. It is the thirty-fourth commonest word in Thai. It does far more work than the English word does, turning up inside directions, inside tenses, and on the end of verbs to mean away from here.
 - **ไป** — to go.
 - The 34th commonest word in the language.
 
@@ -164,7 +164,7 @@ heading: The third one, which sounds exactly like the second
 teaches: sara-ai-mai-muuan
 narration: en Now the strange one. Here is a mast whose top rolls over into a curl instead of breaking into a zigzag. Listen to its name.
 recording: th สระไอ ไม้ม้วน public/audio/sara-ay-may-muan.mp3
-narration: en Different name, different mark, and the same sound coming out of your mouth. These two are the one place in the entire vowel system where two spellings share a single sound with nothing to separate them. They never turn up in the same word, and no word gives you a choice between them. The spelling of the word decides which of the two answers the door, and your ear will never tell you. So how are you supposed to know which one a word takes?
+narration: en Different name, different mark — the same sound coming out of your mouth. These two are the one place in the entire vowel system where two spellings share a single sound with nothing to separate them. They never turn up in the same word, and no word gives you a choice between them. The spelling of the word decides which of the two answers the door, and your ear will never tell you. So how are you supposed to know which one a word takes?
 - A single mast with its top rolled into a curl.
 - The same sound as the zigzag, with nothing in the sound to separate them.
 - The word's spelling decides which one it takes.
@@ -173,7 +173,7 @@ narration: en Different name, different mark, and the same sound coming out of y
 thai: ใ
 heading: Write it
 teaches: sara-ai-mai-muuan
-narration: en One upright again, and the top rolls over into a closed curl this time. Write the two of them next to each other on the page and look at what your hand has made. A flick, and a curl. That difference is all the page will ever give you.
+narration: en The same upright again, its top rolling over into a closed curl this time. Write the two of them next to each other on the page and look at what your hand has made. A flick, and a curl. That difference is all the page will ever give you.
 - One upright with a rolled curl on top.
 - Write it beside the zigzag and compare the two tops.
 - A flick against a curl. Nothing else separates them.
@@ -183,7 +183,7 @@ image: images/lesson-10/the-guest-list.jpg
 scene: A short handwritten guest list pinned to the wooden doorframe of a Thai house on stilts, corners lifting in the air, late afternoon light.
 heading: Which words take the curl
 teaches: sara-ai-mai-muuan
-narration: en Here is the useful part, and it makes this much smaller than it first sounds. The curl is used in a closed list of about twenty common words and nowhere else in the language. Every other word with this sound in it takes the zigzag. So the curl works like a guest list pinned to the door. About twenty houses, twenty named visitors, and everybody else goes round the other way. You have four of them today, and they are all words you will use constantly.
+narration: en Here is the useful part, and it makes this much smaller than it first sounds. The curl is used in a closed list of about twenty common words and nowhere else in the language. Every other word with this sound in it takes the zigzag. So the curl works like a guest list pinned to the door. About twenty houses, twenty named visitors, and everybody else goes round the other way. You have four of them today. They are all words you will use constantly.
 - **ใน** — in. The 23rd commonest word in Thai.
 - **ใจ** — the heart, or the mind.
 - **ใบ** — a leaf.
@@ -193,7 +193,7 @@ narration: en Here is the useful part, and it makes this much smaller than it fi
 reveal: two-spellings-answer
 prompt: You hear a Thai word with this sound in it and you have to write it down. Which of the two spellings do you reach for, and how confident should you be?
 teaches: sara-ai-mai-muuan, sara-ai-mai-malaai
-narration: en So here is the question, and it is the practical one. Somebody says a Thai word to you with that sound in it, and you have to write the word down. Which of the two masts do you reach for? And then the second half: how confident are you allowed to be about it? Say both out loud before you turn it over.
+narration: en So here is the question — it is the practical one. Somebody says a Thai word to you with that sound in it. You have to write the word down. Which of the two masts do you reach for? And then the second half: how confident are you allowed to be about it? Say both out loud before you turn it over.
 
 ## reveal two-spellings-answer
 retrieval: two-spellings
@@ -221,7 +221,7 @@ narration: en Now the rule that looks wrong. Say the three vowels you have just 
 image: images/lesson-10/what-makes-a-syllable-dead.jpg
 scene: A wooden shutter swinging wide open on the side wall of a Thai house on stilts, the room beyond dark, late afternoon light.
 heading: What the dead-or-alive rule is actually measuring
-narration: en Go back to lesson three for a moment and look at what dead and alive were ever about. A syllable is dead when something stops it — a consonant at the back that shuts the air off and leaves nothing ringing. A syllable is alive when nothing does that, and the sound is free to carry on. The back of the syllable is the whole of it. Take the word for to go, which you read five minutes ago. It ends on its vowel, and there is nothing behind that vowel to shut it off, so nothing makes it dead. Now take the word for to fall from last lesson, which stops on the chicken's letter, and the air goes nowhere. One of those is alive and the other is dead, and the difference lies entirely in what sits behind the vowel.
+narration: en Go back to lesson three for a moment and look at what dead and alive were ever about. A syllable is dead when something stops it — a consonant at the back that shuts the air off and leaves nothing ringing. A syllable is alive when nothing does that, and the sound is free to carry on. The back of the syllable is the whole of it. Take the word for to go, which you read five minutes ago. It ends on its vowel — there is nothing behind that vowel to shut it off, so nothing makes it dead. Now take the word for to fall from last lesson, which stops on the chicken's letter, and the air goes nowhere. One of those is alive and the other is dead, and the difference lies entirely in what sits behind the vowel.
 - **Dead** means something at the back stopped the air.
 - **ไป** ends on its vowel, with nothing behind it to stop anything.
 - **ตก** stops on the chicken's letter, and the air goes nowhere.
@@ -234,7 +234,7 @@ narration: en A question, then. The word for to go is over as fast as any short 
 
 ## reveal short-or-live-answer
 retrieval: short-or-live
-narration: en Because nothing stops it. The syllable runs out on the vowel, with no consonant behind it shutting the air off, so there is nothing there to make it dead. To make it dead you would have to put a stopping consonant on the back of it, and then the ending would be doing the deciding rather than the vowel. That leaves the market's rule for a syllable that ends alive, which lesson three gave you, and it is the one you reach for here.
+narration: en Because nothing stops it. The syllable runs out on the vowel, with no consonant behind it shutting the air off, so there is nothing there to make it dead. To make it dead you would have to put a stopping consonant on the back of it, and then the ending would be doing the deciding rather than the vowel. That leaves the market's rule for a syllable that ends alive, which lesson three gave you. It is the one you reach for here.
 - Nothing stops it, so the syllable is alive.
 - Put a stopping consonant behind the vowel and it becomes dead.
 - **ไป** opens on a market letter and ends alive, so lesson three's rule settles it.
@@ -251,7 +251,7 @@ cue: one mark, one repetition
 heading: The mark that means say it twice
 narration: en Something completely different for two minutes. This mark is punctuation rather than a letter, and it carries no sound of its own. It stands after a word and it means: say that word again. Listen to what it is called.
 recording: th ไม้ยมก public/audio/other-mayyamok.mp3
-narration: en One mark instead of writing the whole word out twice, which saves the ink and saves your eye. It goes after the word with a space in front of it, so the mark stands slightly apart from the word it is repeating.
+narration: en A single mark instead of writing the whole word out twice, which saves the ink and saves your eye. It goes after the word with a space in front of it, so the mark stands slightly apart from the word it is repeating.
 - Punctuation rather than a letter, and no sound of its own.
 - It stands after a word and tells you to say that word again.
 - A space is left in front of it.
@@ -260,7 +260,7 @@ narration: en One mark instead of writing the whole word out twice, which saves 
 image: images/lesson-10/what-doubling-does.jpg
 scene: A group of young children running together down a narrow Thai street past shop fronts, late afternoon light.
 heading: What doubling a word actually does
-narration: en Here is the word for a child, from lesson seven, with the mark behind it. Say it twice out loud — that is the whole of what the mark asks for, and the voice this course uses runs the two together, so this one is yours to say rather than mine. It means children. And this is the part worth knowing, because English does the opposite. When English repeats a word it usually means more of it, or a stronger version. Thai usually goes the other way and makes the word vaguer, broader, less exact. Children in general rather than any particular children. Keep that direction in your head and doubled words will stop surprising you.
+narration: en Take the word for a child, from lesson seven, with the mark behind it. Say it twice out loud — that is the whole of what the mark asks for, and the voice this course uses runs the two together, so this one is yours to say rather than mine. It means children. And this is the part worth knowing, because English does the opposite. When English repeats a word it usually means more of it, or a stronger version. Thai usually goes the other way and makes the word vaguer, broader, less exact. Children in general rather than any particular children. Keep that direction in your head and doubled words will stop surprising you.
 - **เด็ก ๆ** — children, from the word for a child.
 - English doubling usually intensifies.
 - Thai doubling usually broadens, and makes the word less exact.
@@ -272,7 +272,7 @@ rule: consonant-clusters
 image: images/lesson-10/clusters-named.jpg
 scene: A thick twisted mooring line running along a stone harbour quay, its strands wound tightly into one rope, late afternoon light on the stone.
 heading: Two consonants that run together into one sound
-narration: en Last thing today. You met two bare consonants side by side last lesson, and you were told to put an unwritten vowel between them. There is a second thing two consonants can do when they stand side by side. Sometimes they take no vowel between them at all. They run together into a single sound at the front of one syllable, the way the English word tree runs a t and an r together without anything in between. Thai keeps this very tight. Only three letters in the whole alphabet can be the second one, and the rule above names all three. English will let a dozen different letters ride second, and Thai lets three.
+narration: en Last thing today. You met two bare consonants side by side last lesson — you were told to put an unwritten vowel between them. There is a second thing two consonants can do when they stand side by side. Sometimes they take no vowel between them at all. They run together into a single sound at the front of one syllable, the way the English word tree runs a t and an r together without anything in between. Thai keeps this very tight. Only three letters in the whole alphabet can be the second one. The rule above names all three. English will let a dozen different letters ride second, and Thai lets three.
 - Two consonants can also run straight together into one sound.
 - One syllable, with the two letters sharing a single onset.
 - Only three letters can stand second, and the rule names all three.
@@ -283,7 +283,7 @@ reveal: read-khrai-answer
 prompt: The curled mast, the buffalo's letter, the boat's letter. The last two run together into a single syllable. Out loud before you turn it over.
 thai: ใคร
 teaches: sara-ai-mai-muuan
-narration: en Three marks. The curled mast, the buffalo's letter, and the boat's letter — and those last two are a cluster, so run them together as one sound. It is one syllable. Say it out loud before you turn it over.
+narration: en Three of them on the page. The curled mast, the buffalo's letter, and the boat's letter — and those last two are a cluster, so run them together as one sound. It is one syllable. Say it out loud before you turn it over.
 
 ## reveal read-khrai-answer
 retrieval: read-khrai
@@ -300,7 +300,7 @@ reveal: read-thai-answer
 prompt: The zigzag mast, the soldier's letter, the giant's letter. Out loud before you turn it over.
 thai: ไทย
 teaches: sara-ai-mai-malaai
-narration: en Three marks, and every one of them has been yours for a while. The zigzag mast from today, the soldier's letter from lesson seven, and the giant's letter from lesson two. Out loud before you turn it over.
+narration: en Look at the marks: three, every one of them yours for a while now. The zigzag mast from today, the soldier's letter from lesson seven, and the giant's letter from lesson two. Out loud before you turn it over.
 
 ## reveal read-thai-answer
 retrieval: read-thai
@@ -323,7 +323,7 @@ narration: en A handful more before we finish. The zigzag gives you fire. The tw
 
 ## exposition read-close
 heading: Twenty letters, eighteen vowels
-narration: en Twenty letters still, and eighteen vowel spellings. Today cost you no new consonants at all and it bought you three vowels, a mark, and the beginning of clusters. And look at the shape of what you learned about tone, because it will come back. The rule that sounded like an exception turned out to be lesson three's dead-or-alive rule, applied without a stopwatch. Next lesson is the last of this run, and it is the one that finishes the market: a letter you have been looking at since lesson six without being told its name, which is silent in one place and a vowel in another.
+narration: en Twenty letters still, and eighteen vowel spellings. Today cost you no new consonants at all and it bought you three vowels, a mark, and the beginning of clusters. And look at the shape of what you learned about tone, because it will come back. The rule that sounded like an exception turned out to be lesson three's dead-or-alive rule, applied without a stopwatch. Next lesson is the last of this run — it is the one that finishes the market: a letter you have been looking at since lesson six without being told its name, which is silent in one place and a vowel in another.
 - Eighteen vowel spellings, and no new letters today.
 - A vowel at the back of a syllable stops nothing, so the syllable is alive.
 - Next: the letter from lesson six gets its name, and the market's grid closes.
