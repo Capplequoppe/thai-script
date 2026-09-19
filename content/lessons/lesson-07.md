@@ -45,8 +45,8 @@ ITS ANSWER NEVER SHARE A SLIDE. All unchanged from lesson 3.
 image: images/lesson-07/what-is-here.jpg
 scene: A wooden footbridge crossing a tidal creek at the edge of a fishing harbour before dawn, lamps still lit along the rail, boats dark at their moorings, mist on the water.
 heading: Two letters, the last room of the house, and a map
-narration: en Two consonants today. One of them you will use constantly and the other is the rarest letter in this entire course, and I am going to spend real time on the rare one, which will need explaining. Then a vowel that breaks something you have been relying on since lesson one, and I mean that literally — it breaks the rule that you read a syllable in the order it is written. And at the end, a map. Seven sounds, fourteen letters, and a pattern that turns half the alphabet you have not met yet into letters you already know.
-- Two consonants: one constant, one the rarest here.
+narration: en Two consonants today. One of them you will use constantly and the other is the rarest letter you will actually meet, and I am going to spend real time on the rare one, which will need explaining. Then a vowel that breaks something you have been relying on since lesson one, and I mean that literally — it breaks the rule that you read a syllable in the order it is written. And at the end, a map. Seven sounds, fourteen letters, and a pattern that turns half the alphabet you have not met yet into letters you already know.
+- Two consonants: one constant, one you will hardly ever meet.
 - A vowel that breaks the reading order.
 - And a map of half the letters you have not met.
 
@@ -125,7 +125,7 @@ heading: The owl, and the rarest letter here
 teaches: ho-nokhu
 narration: en The second letter. Listen.
 recording: th ฮอ นกฮูก public/audio/consonant-ho-nokhu.mp3
-narration: en That word means an owl. The sound is a plain h, the same one you make in English. And here is the honest thing about this letter: it is the rarest one you will meet in this whole course. Barely one character in ten thousand of running Thai. You could read for a week before one turns up.
+narration: en That word means an owl. The sound is a plain h, the same one you make in English. And here is the honest thing about this letter: of all the letters that actually turn up in Thai, this is the last of them. Barely one character in ten thousand of running Thai. You could read for a week before one turns up.
 - Its name is the sound, then a word beginning with that sound.
 - The word means an **owl**.
 - The rarest letter in this course: about one character in ten thousand.
@@ -160,7 +160,7 @@ narration: en There is one word in common use that begins with the owl, and ther
 image: images/lesson-01/the-vowel-house.jpg
 heading: The last room of the house
 teaches: sara-ee, sara-e
-narration: en Now the vowel, and back to the house one more time — because after today you have been in all of it. You know the back yard, where a vowel written after its consonant lodges. You know the roof, for one written above. You know the cellar, underneath. Today you go round to the front, up the steps, and meet the lodger who lives there. And he does something none of the others do. Shall we?
+narration: en Now the vowel, and back to the house one more time — because after today you have been in all four of its rooms. You know the back yard, where a vowel written after its consonant lodges. You know the roof, for one written above. You know the cellar, underneath. Today you go round to the front, up the steps, and meet the lodger who lives there. And he does something none of the others do. Shall we?
 - Back yard, roof, cellar. All three already open.
 - Today: the **front steps**.
 - And the one who lives there behaves differently from everybody else.
@@ -270,7 +270,7 @@ narration: en Last thing, and it is the reason the owl was worth ten minutes. Ev
 image: images/lesson-07/cousin-pairs.jpg
 scene: A temple on a hill above a fishing harbour, seen from across the water at dusk, a path running between the two, lamps lit in both.
 heading: Seven sounds, two letters each
-narration: en Here is the whole pattern, and this is the only slide in this course where I am going to show you seven letters you have not been taught. Do not try to learn them. Look at the shape of the thing instead. Seven sounds. Each one has a letter down at the harbour and a letter up at the temple. You already hold the entire harbour column. The temple column arrives one letter at a time over the lessons ahead, and each of those letters makes a sound your mouth already knows how to make. So learn it as seven rows rather than fourteen letters.
+narration: en Here is the whole pattern, and this is the only slide in this course where I am going to show you seven letters you have not been taught. Do not try to learn them. Look at the shape of the thing instead. Seven sounds. Each one has a letter down at the harbour and a letter up at the temple. You already hold the entire harbour column. The temple column is still ahead of you, and every letter in it makes a sound your mouth already knows how to make. So learn it as seven rows rather than fourteen letters.
 - ค is harbour and ข is temple. Both say kh.
 - ช is harbour and ฉ is temple. Both say ch.
 - ท is harbour and ถ is temple. Both say th.

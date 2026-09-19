@@ -165,7 +165,7 @@ thai: กฎหมาย
 heading: That one
 teaches: do-chada
 narration: th กฎหมาย
-narration: en It means law, and it is the commonest word in the language containing the crown's letter. The first syllable is a market letter on a dead short syllable, which gives a low tone — lesson eleven's rule, unchanged. The second syllable has a silent letter in front of the horse's, and that whole arrangement is what lesson twenty-eight is about. For now, note where the crown turned up: inside a legal word, closing a syllable, doing a plain t-stop.
+narration: en It means law, and it is the commonest word in the language containing the crown's letter. The first syllable is a market letter on a dead short syllable, which gives a low tone — lesson eleven's rule, unchanged. The second syllable has a silent letter in front of the horse's, and that whole arrangement gets a lesson of its own near the end of the course. For now, note where the crown turned up: inside a legal word, closing a syllable, doing a plain t-stop.
 - **กฎหมาย** — law.
 - First syllable: market letter, dead, short — low.
 - The crown appears **inside a legal word**, closing a syllable.

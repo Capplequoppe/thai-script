@@ -8,10 +8,10 @@
 			"heading": "Two letters, two vowels, and the tone that falls",
 			"body": [
 				"Two consonants, another near-identical pair.",
-				"Two vowels, and the last room of the house.",
+				"Two vowels, and the room under the floor.",
 				"The first tone that **falls**."
 			],
-			"audio": ["/thai-script/lessons/lesson-05/audio/62064231213ec72e.mp3"],
+			"audio": ["/thai-script/lessons/lesson-05/audio/1d17bd56514078c6.mp3"],
 			"audioLanguages": ["en"],
 			"image": "/thai-script/lessons/lesson-05/images/what-is-here-8205045e22f2.jpg"
 		},
@@ -346,7 +346,7 @@
 			],
 			"audioLanguages": ["en", "th", "en", "th", "en"],
 			"teaches": ["low-dead-long", "low-dead-short"],
-			"image": "/thai-script/lessons/lesson-05/images/falling-ae4ce0dca51b.jpg"
+			"image": "/thai-script/lessons/lesson-05/images/falling-e417648dbaca.jpg"
 		},
 		{
 			"kind": "exposition",
@@ -420,10 +420,10 @@
 			"heading": "The opening band, finished",
 			"body": [
 				"Twelve letters, seven vowels, four tone rules.",
-				"Every room of the vowels' house is open.",
+				"Three rooms of the vowels' house are open.",
 				"You can read a word you have never seen and know its tone."
 			],
-			"audio": ["/thai-script/lessons/lesson-05/audio/537dfa44d261de8b.mp3"],
+			"audio": ["/thai-script/lessons/lesson-05/audio/af44ea6d888e56d0.mp3"],
 			"audioLanguages": ["en"]
 		}
 	]

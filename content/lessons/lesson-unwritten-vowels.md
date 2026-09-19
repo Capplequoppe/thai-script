@@ -201,7 +201,7 @@ narration: en Last thing, and it is the tiebreak. Every so often a row of conson
 
 ## exposition read-close
 heading: Where that leaves you
-narration: en Six readings, and no new symbol to carry any of them. A bare row of consonants now comes apart the same way every time. Look for a written vowel first. If there is none, count the letters and work from the back of the word, and give the leftover at the front its short a. Watch for the boat's letter shutting a two-letter word. Watch for two of them standing side by side, and for the post or the ring wedged between two consonants. Before you stop, write this morning's examples out in a column and mark the missing vowel into each gap with your pen. Next lesson: two consonants at the front of a syllable that are spoken together rather than pulled apart.
+narration: en Six readings, and no new symbol to carry any of them. A bare row of consonants now comes apart the same way every time. Look for a written vowel first. If there is none, count the letters and work from the back of the word, and give the leftover at the front its short a. Watch for the boat's letter shutting a two-letter word. Watch for two of them standing side by side, and for the post or the ring wedged between two consonants. Before you stop, write this morning's examples out in a column and mark the missing vowel into each gap with your pen. Next lesson: the four marks that sit above a word and take the tone out of your hands entirely.
 - Six readings, and no new symbol to carry them.
 - Look for a written vowel, then count the letters and work from the back.
-- Next: two consonants at the front of a syllable, spoken together.
+- Next: the four tone marks, and what each one does.

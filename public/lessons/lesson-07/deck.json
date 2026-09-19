@@ -7,11 +7,11 @@
 			"id": "what-is-here",
 			"heading": "Two letters, the last room of the house, and a map",
 			"body": [
-				"Two consonants: one constant, one the rarest here.",
+				"Two consonants: one constant, one you will hardly ever meet.",
 				"A vowel that breaks the reading order.",
 				"And a map of half the letters you have not met."
 			],
-			"audio": ["/thai-script/lessons/lesson-07/audio/b68115fce70dcbb1.mp3"],
+			"audio": ["/thai-script/lessons/lesson-07/audio/1a78cd1828c75b3a.mp3"],
 			"audioLanguages": ["en"],
 			"image": "/thai-script/lessons/lesson-07/images/what-is-here-82830ac9c088.jpg"
 		},
@@ -125,7 +125,7 @@
 			"audio": [
 				"/thai-script/lessons/lesson-07/audio/7b9f4dc749d52891.mp3",
 				"/thai-script/lessons/lesson-07/audio/10232f6c3c8dd00c.mp3",
-				"/thai-script/lessons/lesson-07/audio/c35895534a90aeca.mp3"
+				"/thai-script/lessons/lesson-07/audio/4606c31c1557948c.mp3"
 			],
 			"audioLanguages": ["en", "th", "en"],
 			"teaches": ["ho-nokhu"],
@@ -179,7 +179,7 @@
 				"Today: the **front steps**.",
 				"And the one who lives there behaves differently from everybody else."
 			],
-			"audio": ["/thai-script/lessons/lesson-07/audio/f5ac07c484aca460.mp3"],
+			"audio": ["/thai-script/lessons/lesson-07/audio/00abc4336ae3ed3d.mp3"],
 			"audioLanguages": ["en"],
 			"teaches": ["sara-ee", "sara-e"],
 			"image": "/thai-script/lessons/lesson-07/images/the-last-room-9cc652e5140c.jpg"
@@ -343,7 +343,7 @@
 				"ซ is harbour and ส is temple. Both say s.",
 				"ฮ is harbour and ห is temple. Both say h."
 			],
-			"audio": ["/thai-script/lessons/lesson-07/audio/aee80c2634f5b32e.mp3"],
+			"audio": ["/thai-script/lessons/lesson-07/audio/ea30bc17a023a773.mp3"],
 			"audioLanguages": ["en"],
 			"image": "/thai-script/lessons/lesson-07/images/cousin-pairs-1c36d1eaba8c.jpg"
 		},

@@ -120,8 +120,8 @@ narration: en A Thai syllable is built consonant first and vowel after. That has
 thai: อีก
 heading: Read this one
 teaches: o-ang
-narration: en Three marks, and the first of them is silent. Skip straight past the ring, read the long grin vowel from lesson three, and let the chicken's letter stop it. Out loud before you turn it over.
-- The ring, silent. Then the long vowel, then the chicken stopping it.
+narration: en Three marks, and the first of them is silent. Skip straight past the ring, and what is left is the lodger on the roof saying his own name — then the chicken's letter stops it. Out loud before you turn it over.
+- The ring, silent. Then the roof's lodger, then the chicken stopping it.
 - Out loud before you turn it over.
 
 ## exposition read-iik-answer

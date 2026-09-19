@@ -34,9 +34,9 @@ unchanged from lesson 3. A challenge and its answer never share a slide.
 image: images/lesson-05/what-is-here.jpg
 scene: A fishing harbour quay in the late afternoon, moored wooden longtail boats, drying nets on poles, the beach rising to scrub and a few low buildings at the top, warm light.
 heading: Two letters, two vowels, and the tone that falls
-narration: en Last of the opening band, and you are going to finish it able to read a fair number of ordinary words. Two consonants, and they are another near-identical pair, which is how a great deal of this alphabet is built. Two vowels, and they open the one room of the house you have not been into yet. And one tone rule, which is the one that finally makes your voice do something interesting — everything so far has been flat, or it has jumped up. Today something falls.
+narration: en Last of the opening band, and you are going to finish it able to read a fair number of ordinary words. Two consonants, and they are another near-identical pair, which is how a great deal of this alphabet is built. Two vowels, and they open the room under the floor, which is the one part of the house you have walked past twice without going into. And one tone rule, which is the one that finally makes your voice do something interesting — everything so far has been flat, or it has jumped up. Today something falls.
 - Two consonants, another near-identical pair.
-- Two vowels, and the last room of the house.
+- Two vowels, and the room under the floor.
 - The first tone that **falls**.
 
 ## exposition the-trick
@@ -256,7 +256,7 @@ teaches: low-dead-long
 
 ## exposition falling
 image: images/lesson-05/falling.jpg
-scene: A steep tiled roof edge against a bright sky with rain running off it in a heavy sheet, falling away down out of frame, blurred harbour below.
+scene: A tall waterfall dropping in one unbroken fall from a high rock lip into a pool far below, spray at the bottom, bright sky, blurred harbour beyond.
 heading: Low class, stopped, on a long vowel
 teaches: low-dead-long, low-dead-short
 narration: en Last lesson a low class letter on a short vowel, stopped dead, went high. Keep everything the same and make the vowel long, and the pitch does something else entirely. It starts high and it falls all the way through the word. Listen.
@@ -312,7 +312,7 @@ narration: en To listen. The tooth's letter opens it, and the snake's letter clo
 
 ## exposition read-close
 heading: The opening band, finished
-narration: en That is the opening band done. Twelve letters, seven vowels, four tone rules, and a house with every room open. Look at what that actually buys you: you can pick up a word you have never seen, made of letters you know, and work out not only what sounds are in it but what your voice has to do with them. That is the thing almost nobody who learns Thai from romanisation can do. From here the alphabet gets wider rather than harder — more letters, the same machine.
+narration: en That is the opening band done. Twelve letters, seven vowels, four tone rules, and three rooms of the house open. Look at what that actually buys you: you can pick up a word you have never seen, made of letters you know, and work out not only what sounds are in it but what your voice has to do with them. That is the thing almost nobody who learns Thai from romanisation can do. From here the alphabet gets wider rather than harder — more letters, the same machine. Next lesson brings the buffalo, and two vowels you make behind a grin.
 - Twelve letters, seven vowels, four tone rules.
-- Every room of the vowels' house is open.
+- Three rooms of the vowels' house are open.
 - You can read a word you have never seen and know its tone.

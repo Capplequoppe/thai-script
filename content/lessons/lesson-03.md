@@ -387,7 +387,7 @@ narration: en Good. The child's letter with the roof's lodger sitting on top of 
 
 ## exposition read-close
 heading: Three lessons in
-narration: en Two districts now. The harbour, where sounds carry on, and the market, where they stop. Eight letters, two vowels, and a house that the vowels live in with one room opened. Next lesson the shortener arrives, and with it the single most useful shortcut in the whole writing system — one mark that tells you, every time it appears, exactly how long a vowel is.
+narration: en Two districts now. The harbour, where sounds carry on, and the market, where they stop. Eight letters, two vowels, and a house that the vowels live in with two of its rooms opened. Next lesson the shortener arrives, and with it the single most useful shortcut in the whole writing system — one mark that tells you, every time it appears, exactly how long a vowel is.
 - Two districts: the harbour rings on, the market stops.
-- Eight letters, two vowels, one room of the house open.
+- Eight letters, two vowels, two rooms of the house open.
 - Next: the shortener, and the shortcut it gives you.

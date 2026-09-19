@@ -287,7 +287,7 @@ teaches: low-dead-short
 
 ## exposition high-tone
 image: images/lesson-04/high-tone.jpg
-scene: A steep rocky headland rising sharply above a harbour, a narrow path cut up the face of it, sea far below, bright hard morning light. No people.
+scene: A flat tiled rooftop terrace high above a fishing harbour, a low parapet along its edge, the sea and moored boats far below, bright hard morning light.
 heading: Low class, stopped short
 teaches: low-dead-short
 narration: en Now the second rule, and it is the first time the harbour has done anything except land flat. Take a low class letter, give it a short vowel, and stop the syllable dead — and the pitch goes to the top of your range. Here is one built entirely out of today.

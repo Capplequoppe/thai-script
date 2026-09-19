@@ -41,7 +41,7 @@
 		"name": "ว แหวน",
 		"meaning": "ring",
 		"district": "harbor",
-		"prompt": "A single white life-ring hanging on one iron nail beside worn stone harbour steps, perfectly round, rope coiled beneath, on a fishing harbour quay, moored wooden longtail boats and drying nets behind.",
+		"prompt": "A single plain silver ring hanging on one iron nail beside worn stone harbour steps, perfectly round, rope coiled beneath, on a fishing harbour quay, moored wooden longtail boats and drying nets behind.",
 		"narration": "The ring. [pause] Low class, so it lives down at the harbour. [pause] One stroke closing into a single ring — a life-ring hung on its nail by the harbor steps. [pause] Round your lips into w and let it hum; at a syllable's tail it melts into an o-glide."
 	},
 	{
@@ -284,8 +284,8 @@
 		"name": "ณ เณร",
 		"meaning": "novice monk",
 		"district": "harbor",
-		"prompt": "A young novice monk in orange robes walking ahead down a wooden pier, a small mouse trotting behind him, on a fishing harbour quay, moored wooden longtail boats and drying nets behind.",
-		"narration": "The novice monk. [pause] Low class, so it lives down at the harbour. [pause] Like the mouse's letter, but a whole frame like the chicken's letter opens first, the loop arriving only at the end — The novice walking ahead of the mouse down the pier. [pause] An n your ear cannot tell from the mouse's letter — a second n humming at the harbor."
+		"prompt": "A young novice monk in orange robes walking ahead along the quay, a small mouse trotting behind him, on a fishing harbour quay, moored wooden longtail boats and drying nets behind.",
+		"narration": "The novice monk. [pause] Low class, so it lives down at the harbour. [pause] Like the mouse's letter, but a whole frame like the chicken's letter opens first, the loop arriving only at the end — The novice walking ahead of the mouse along the quay. [pause] An n your ear cannot tell from the mouse's letter — a second n humming at the harbor."
 	},
 	{
 		"id": "yo-ying",
