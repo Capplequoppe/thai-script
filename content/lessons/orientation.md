@@ -104,14 +104,14 @@ narration: en Almost everything that decides whether you reach the top of those 
 ## exposition forgetting
 heading: You don't forget slowly. You forget in a rush.
 image: images/orientation/forgetting.jpg
-scene: An empty wooden swing hangs from long ropes under a large tree, moving in a small shallow arc, almost stopped. Dry leaves lie on the ground beneath it. Late afternoon light, long shadows across an empty garden.
+scene: A bed of deep red coals glowing low inside a ring of stones, covered in soft grey ash, with the blackened stub ends of two burnt logs lying among them. A single thin thread of smoke drifts upward. Deep blue night all around, the coals the only light.
 narration: en Something you learn today will be mostly gone in two days. It does not drain away slowly, the way most people picture forgetting. Most of it goes early and goes fast. Then the small remainder still standing hangs on for years.
 narration: en I spent four years studying precisely this, as it happens — a doctorate on how adults take on a second writing system — and I picked the subject for the least noble reason there is. I wanted to know why it had been so hard for me.
 narration: en Reading it again will not save it. That is the trap almost everybody falls into. Something you half know looks familiar while you are staring straight at it, and familiarity feels a great deal like knowing, right up to the moment somebody takes the page away.
 narration: en The only thing that genuinely holds knowledge in place is pulling it back out of your own head at a moment when there is nothing in front of you to look at.
-narration: en Look at that swing for a moment, because it is going to do a lot of work for us. Set one going and walk away. The first few passes lose most of the height — that part is quick and it is obvious. Then it keeps moving for a surprisingly long time, smaller and smaller, and it takes an age to genuinely stop.
-narration: en That is the shape of what you learned today. Fast at the start, then a long thin tail. I am showing you an object doing it because the curve is easier to trust when you have watched something obey it.
-- Most of what you learn fades within days — fast at first, then a long thin tail, exactly like a swing left alone.
+narration: en Look at that fire for a moment. An hour ago it stood three times that height. The big flames are the part that goes fast, while everybody is still sitting around watching it. What you can see now is most of the way to coals, and coals will sit there half the night.
+narration: en That is the shape of what you learned today: nearly all of it gone in the first rush, a thin remainder glowing on for years. My job is to get to you while there is still something to catch.
+- Most of what you learn fades within days — a rush, then a thin remainder, like flames going to embers.
 - Re-reading doesn't stop it. Recognising something isn't the same as knowing it.
 - What stops it is **recall** — pulling it out of your head, at the right moment.
 
@@ -119,16 +119,19 @@ narration: en That is the shape of what you learned today. Fast at the start, th
 heading: When it tells you to review, review
 image: images/orientation/appointment.jpg
 scene: A woman reaches up to push a wooden swing at the top of its arc, her arms extended and her weight on her toes, the swing high above her against a bright sky. A sunlit garden behind her, warm afternoon light.
-narration: en So somebody has to push it. That is the other half of the swing.
-narration: en You know how this goes. At the start you push often and you push hard for very little — short arcs, a lot of effort, nothing to show anybody. Then it turns. The higher it climbs the longer each pass takes, so you push less and less often while the swing carries more and more of itself.
-narration: en That is exactly what this application is doing with your reviews. A letter you met once comes back at you almost immediately. Get it right and the gap stretches, then stretches again. The intervals grow because you are holding the thing up yourself by then, and the application is only topping it up.
-narration: en It keeps a running estimate, for every single thing you have learned, of when you are about to lose it. When a batch is close to going, it tells you.
-narration: en Timing is the whole of it. This is where most people quietly lose everything they have built. A push at the top of the arc costs you almost nothing and adds height. The same push thrown in at the wrong moment fights the swing and takes height away. Ten minutes inside the window the application gives you buys more than an hour of catching up afterwards.
-narration: en And a swing nobody pushes does what any swing does. It comes down. Leave it long enough and you walk back to a swing hanging dead still, and you begin again from nothing — short arcs, hard work, no height. That is why coming back after a long gap feels like a mountain, when you were flying the last time you stood here. The work did not vanish. The momentum did. Momentum was the part doing the lifting.
+narration: en Here is the picture I want you to hold for the rest of the course. A swing.
+narration: en It starts dead still, with somebody sitting on it. You want it going as high as it will go. So you push. It comes back almost at once, because the arc is tiny, and you push again. Then again, close together, small pushes into a short swing.
+narration: en Then the arc opens out. The returns start taking longer. You are pushing further and further apart now. The odd thing is that each push still costs you about the same — it is the waiting between them that keeps growing. Eventually it is swinging high and you are barely touching it. A hand out, once in a while, and it stays up there.
+narration: en Notice what you could not do. You could not get it to full height in one enormous shove. It does not matter how strong you are; the swing will not take it. Height is built by many small pushes with the right gaps between them, and no single effort substitutes for that.
+narration: en Your reviews are those pushes. A letter you met once comes back at you almost immediately, because the arc is short. Get it right and the gap stretches, then stretches again. Each review still takes you about the same few seconds. The application keeps a running estimate, for every single thing you know, of when the swing is coming back to you.
+narration: en Timing is the whole of it. Meet the swing as it reaches you and a touch adds height. Put your hand out at the wrong moment and you are stopping it instead — and stopping a loaded swing takes real force, as anybody who has tried it knows. Ten minutes inside the window the application gives you buys more than an hour of catching up afterwards.
+narration: en Once it is high it is genuinely hard to stop, which is the reward for building it properly. But nobody pushing it for long enough and it comes down anyway. You walk back expecting to carry on where you left off. What is actually waiting is a swing barely moving. Now you either start from a standstill or shove much harder than you ever had to before.
+narration: en Both of those are the moment people quit. And almost nobody says *I let the momentum go*. They say Thai is too hard. I would rather you knew in advance which one it actually was.
+narration: en So yes, being told when to review is inconvenient. Five or ten items, every so often, is a small thing. A hundred that have piled up while you were away is a different afternoon entirely, and every one of them will be harder to reach than it would have been.
 narration: en Treat that notification as an appointment with somebody you would be embarrassed to keep waiting.
-- Like a swing: **frequent pushes at first, then rarer ones** as it carries itself. The app tracks when *you* are about to lose height.
+- A swing is built by **many small pushes with growing gaps**, never by one big shove. The app times the pushes.
 - Ten minutes in that window beats an hour of catching up later.
-- Skipping isn't a delay. The swing comes down, and you start the next one from nothing.
+- Skipping isn't a delay. The swing comes down, and you restart from a standstill — which is where people quit and blame Thai.
 
 ## retrieval when-review
 reveal: when-review-answer

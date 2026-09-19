@@ -53,7 +53,7 @@
 			"id": "forgetting",
 			"heading": "You don't forget slowly. You forget in a rush.",
 			"body": [
-				"Most of what you learn fades within days — fast at first, then a long thin tail, exactly like a swing left alone.",
+				"Most of what you learn fades within days — a rush, then a thin remainder, like flames going to embers.",
 				"Re-reading doesn't stop it. Recognising something isn't the same as knowing it.",
 				"What stops it is **recall** — pulling it out of your head, at the right moment."
 			],
@@ -62,31 +62,45 @@
 				"/thai-script/lessons/orientation/audio/507c9c0079b7a876.mp3",
 				"/thai-script/lessons/orientation/audio/db7da809b13e733b.mp3",
 				"/thai-script/lessons/orientation/audio/d23733182f3e0345.mp3",
-				"/thai-script/lessons/orientation/audio/71b33952f8f4b16a.mp3",
-				"/thai-script/lessons/orientation/audio/bc141919d4f43a4a.mp3"
+				"/thai-script/lessons/orientation/audio/bb7672d996efde27.mp3",
+				"/thai-script/lessons/orientation/audio/2f5132816ae42125.mp3"
 			],
 			"audioLanguages": ["en", "en", "en", "en", "en", "en"],
-			"image": "/thai-script/lessons/orientation/images/forgetting-790e734ff57e.jpg"
+			"image": "/thai-script/lessons/orientation/images/forgetting-2920eb282624.jpg"
 		},
 		{
 			"kind": "exposition",
 			"id": "the-appointment",
 			"heading": "When it tells you to review, review",
 			"body": [
-				"Like a swing: **frequent pushes at first, then rarer ones** as it carries itself. The app tracks when *you* are about to lose height.",
+				"A swing is built by **many small pushes with growing gaps**, never by one big shove. The app times the pushes.",
 				"Ten minutes in that window beats an hour of catching up later.",
-				"Skipping isn't a delay. The swing comes down, and you start the next one from nothing."
+				"Skipping isn't a delay. The swing comes down, and you restart from a standstill — which is where people quit and blame Thai."
 			],
 			"audio": [
-				"/thai-script/lessons/orientation/audio/9e298d74914e9aa1.mp3",
-				"/thai-script/lessons/orientation/audio/3e748c9162a45ccf.mp3",
-				"/thai-script/lessons/orientation/audio/007d0a64bfb23ef1.mp3",
-				"/thai-script/lessons/orientation/audio/90d7dd8ce4544659.mp3",
-				"/thai-script/lessons/orientation/audio/0196868997632ea9.mp3",
-				"/thai-script/lessons/orientation/audio/54974c1fc97d73c4.mp3",
+				"/thai-script/lessons/orientation/audio/4a25d6b3b80b45da.mp3",
+				"/thai-script/lessons/orientation/audio/1fa00f1a19432a3f.mp3",
+				"/thai-script/lessons/orientation/audio/da17a60fa7faa64c.mp3",
+				"/thai-script/lessons/orientation/audio/7bb4624ddaf5f33b.mp3",
+				"/thai-script/lessons/orientation/audio/7390f6151f0056ad.mp3",
+				"/thai-script/lessons/orientation/audio/fd5662d37c05ec84.mp3",
+				"/thai-script/lessons/orientation/audio/7bfe1d3253ace3ec.mp3",
+				"/thai-script/lessons/orientation/audio/e4646ae8f1434bad.mp3",
+				"/thai-script/lessons/orientation/audio/946800c4da5ef22f.mp3",
 				"/thai-script/lessons/orientation/audio/76ac4e8e6598c01e.mp3"
 			],
-			"audioLanguages": ["en", "en", "en", "en", "en", "en", "en"],
+			"audioLanguages": [
+				"en",
+				"en",
+				"en",
+				"en",
+				"en",
+				"en",
+				"en",
+				"en",
+				"en",
+				"en"
+			],
 			"image": "/thai-script/lessons/orientation/images/the-appointment-6df602c4e739.jpg"
 		},
 		{
