@@ -4,6 +4,7 @@ import { SrsSchedule } from "../../srs/value-objects/SrsSchedule";
 import type { VocabEntry, VocabularyCard } from "../types";
 import { toneRuleComponentsOf } from "./toneRuleComponents";
 import { toneSyllablesOf } from "./toneSyllables";
+import { mnemonicTextFor } from "./VocabMnemonic";
 
 function pickChoices(correct: string, pool: string[], count = 4): string[] {
 	const distractors = pool.filter((item) => item !== correct);
@@ -199,7 +200,9 @@ export function generateVocabCards(
 ): VocabularyCard[] {
 	const thaiPool = allWords.map((w) => w.thai);
 	const englishPool = allWords.map((w) => w.english);
-	const mnemonic = word.mnemonic;
+	// The staged record where this word has one — see `mnemonicTextFor`, which
+	// is shared with the dictionary so the two surfaces cannot drift again.
+	const mnemonic = mnemonicTextFor(word);
 
 	const cards: VocabularyCard[] = [];
 

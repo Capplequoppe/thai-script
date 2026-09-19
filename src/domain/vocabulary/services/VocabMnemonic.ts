@@ -797,6 +797,33 @@ export function mnemonicStateFor(entry: {
 	return { state: "none-yet" };
 }
 
+/**
+ * The mnemonic a learner should actually be shown for this word: the staged
+ * record where one exists, and the corpus's own prose otherwise.
+ *
+ * This exists because the two surfaces had drifted apart in the worst possible
+ * direction. `WordCard` — the dictionary page, seen once and only if a learner
+ * goes looking — resolved the staged record. `VocabCardGenerator`, which
+ * builds every review card, took `word.mnemonic` straight out of the JSON. So
+ * the sixty mnemonics written in the course's own world reached the browse
+ * surface, and every single repetition to mastery drilled the corpus's
+ * ALL-CAPS romanisation instead — which is the half of the corpus whose hooks
+ * are sometimes a different Thai word entirely.
+ *
+ * One function, both callers, so the drift cannot recur.
+ */
+export function mnemonicTextFor(entry: {
+	thai: string;
+	rank: number | null;
+	mnemonic?: string | null;
+}): string | undefined {
+	const staged = mnemonicStateFor(entry);
+	if (staged.state === "has-mnemonic") {
+		return composeVocabMnemonic(staged.mnemonic);
+	}
+	return entry.mnemonic ?? undefined;
+}
+
 // ----------------------------------------------------------------------------
 // Room lookup for a card
 // ----------------------------------------------------------------------------
