@@ -3,15 +3,19 @@
 	"schema": {
 		"version": 1,
 		"segmentStates": ["absent", "generated", "failed"],
-		"verificationOutcomes": ["not-required", "verified", "mismatch"]
+		"verificationOutcomes": ["not-required", "verified", "mismatch", "recorded"]
 	},
 	"voice": {
-		"voiceId": "JBFqnCBsd6RMkjVDRZzb",
-		"modelId": "eleven_multilingual_v2",
+		"voiceId": "brM9iIbwDREZaWL8luun",
+		"modelId": "eleven_v3",
 		"settings": {
 			"stability": 0.5,
 			"similarity_boost": 0.75,
 			"speed": 1.0
+		},
+		"english": {
+			"modelId": "fishaudio/s2-pro",
+			"reference": "8924c611339b8fe5"
 		}
 	},
 	"assets": []

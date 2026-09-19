@@ -1,5 +1,11 @@
 // @vitest-environment jsdom
 import { fireEvent, screen } from "@testing-library/react";
+import { lessonEntryByNumber } from "../../domain/script/data/lessonSequence";
+
+/** The position of the lesson `symbols.ts` files under this number. */
+const at = (legacyNumber: number): number =>
+	lessonEntryByNumber(legacyNumber)?.position ?? legacyNumber;
+
 import { Route, Routes } from "react-router";
 import { describe, expect, it } from "vitest";
 import {
@@ -52,15 +58,15 @@ describe("CatchUpPage", () => {
 			],
 		});
 		const state = app.storage.load();
-		state.completedLessons.push(14);
+		state.completedLessons.push(at(14));
 		app.storage.save(state);
 		app.value.lesson.reconcileAllContent();
 
-		renderAt(14, app.value);
+		renderAt(at(14), app.value);
 
-		expect(screen.getByText("New in Lesson 14")).toBeTruthy();
+		expect(screen.getByText(`New in Lesson ${at(14)}`)).toBeTruthy();
 		// No video slide — the learner already watched it the first time.
-		expect(screen.queryByTitle(/^Lesson 14:/)).toBeNull();
+		expect(screen.queryByTitle(new RegExp(`^Lesson ${at(14)}:`))).toBeNull();
 
 		// The rare tail is a deck lesson now, so the intro walks the deck
 		// first (its own stepping: Show Answer on retrieval slides, Continue

@@ -47,6 +47,9 @@ export interface LessonSequenceEntry {
  *
  * The ordering constraints this declaration satisfies, in one place so a
  * resequence can check itself against them:
+ * - `lesson-loops` is first: it teaches stroke order and the naming
+ *   pattern, which `lesson-01` spends immediately and every lesson after
+ *   relies on;
  * - lessons 12-14 teach every consonant and written vowel not taught by the
  *   opening and middle bands, so everything after them may use any symbol;
  * - `lesson-tone-marks` comes after every spelling-based tone rule
@@ -58,6 +61,10 @@ export interface LessonSequenceEntry {
  *   complete, so an optional track anywhere else would block the course.
  */
 const DECLARED: readonly Omit<LessonSequenceEntry, "position">[] = [
+	// Before lesson 1 because it teaches the two systems every letter
+	// obeys — stroke order and the naming pattern — and `lesson-01` spends
+	// both on its first two slides. It teaches no symbol of its own.
+	{ id: "lesson-loops", legacyNumber: 31, required: true },
 	{ id: "lesson-01", legacyNumber: 1, required: true },
 	{ id: "lesson-02", legacyNumber: 2, required: true },
 	{ id: "lesson-03", legacyNumber: 3, required: true },

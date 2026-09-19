@@ -3,7 +3,19 @@ import { InMemoryStorage } from "../../../infrastructure/persistence/Storage";
 import { StorageCardRepository } from "../../../infrastructure/persistence/StorageCardRepository";
 import { StorageLearnerStateRepository } from "../../../infrastructure/persistence/StorageLearnerStateRepository";
 import type { GrammarCard } from "../../grammar/types";
+import { lessonEntryByNumber } from "../../script/data/lessonSequence";
 import { LearningService } from "../../script/services/ScriptLessonService";
+
+/**
+ * The position of the lesson `symbols.ts` files under this number.
+ *
+ * These tests mean "the lesson that teaches ม", not "position 1" — the two
+ * were the same integer until a lesson was inserted ahead of them. Resolved
+ * through the sequence so they stay correct across a resequence.
+ */
+const at = (legacyNumber: number): number =>
+	lessonEntryByNumber(legacyNumber)?.position ?? legacyNumber;
+
 import type {
 	SessionCardSelectionInput,
 	SessionCardSelector,
@@ -27,9 +39,16 @@ describe("ReviewService", () => {
 		const stateRepo = new StorageLearnerStateRepository(storage);
 		learningService = new LearningService(cardRepo, stateRepo);
 		reviewService = new ReviewService(cardRepo, stateRepo);
-		// Complete lesson 1 so there are cards to review
-		learningService.startLesson(1);
-		learningService.completeLesson(1);
+		// Complete lesson 1 so there are cards to review. Everything ahead of
+		// it goes first because `startLesson` refuses a lesson whose
+		// predecessors are incomplete; `lesson-loops` teaches no symbol, so
+		// this adds no cards and only unblocks the chain.
+		for (let position = 1; position < at(1); position++) {
+			learningService.startLesson(position);
+			learningService.completeLesson(position);
+		}
+		learningService.startLesson(at(1));
+		learningService.completeLesson(at(1));
 	});
 
 	describe("getDueCards", () => {

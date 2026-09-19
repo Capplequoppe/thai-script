@@ -12,7 +12,7 @@
 				"A bare row of consonants has gaps, and the gaps have rules."
 			],
 			"audio": [
-				"/thai-script/lessons/lesson-unwritten-vowels/audio/d4ec911bb16b63cd.mp3"
+				"/thai-script/lessons/lesson-unwritten-vowels/audio/6aa74549aa50f333.mp3"
 			],
 			"audioLanguages": ["en"],
 			"image": "/thai-script/lessons/lesson-unwritten-vowels/images/what-is-here-763579846c84.jpg"
@@ -26,7 +26,7 @@
 				"Today you mark the gaps rather than drill a shape."
 			],
 			"audio": [
-				"/thai-script/lessons/lesson-unwritten-vowels/audio/0ba4e6450ab48bd7.mp3"
+				"/thai-script/lessons/lesson-unwritten-vowels/audio/e9c8e33b0ee28a08.mp3"
 			],
 			"audioLanguages": ["en"],
 			"image": "/thai-script/lessons/lesson-unwritten-vowels/images/pen-still-there-1bdf41db8b53.jpg"
@@ -60,6 +60,7 @@
 				"/thai-script/lessons/lesson-unwritten-vowels/audio/7858c6535648389d.mp3"
 			],
 			"audioLanguages": ["en"],
+			"teaches": ["sara-o"],
 			"image": "/thai-script/lessons/lesson-unwritten-vowels/images/implicit-o-0c9063b25b47.jpg"
 		},
 		{
@@ -70,7 +71,8 @@
 			"audio": [
 				"/thai-script/lessons/lesson-unwritten-vowels/audio/f8facffe14e4badf.mp3"
 			],
-			"audioLanguages": ["en"]
+			"audioLanguages": ["en"],
+			"teaches": ["sara-o"]
 		},
 		{
 			"kind": "reveal",
@@ -84,7 +86,8 @@
 			"audio": [
 				"/thai-script/lessons/lesson-unwritten-vowels/audio/6c8de8c0c9ffac54.mp3"
 			],
-			"audioLanguages": ["en"]
+			"audioLanguages": ["en"],
+			"teaches": ["sara-o"]
 		},
 		{
 			"kind": "rule",
@@ -93,7 +96,8 @@
 			"audio": [
 				"/thai-script/lessons/lesson-unwritten-vowels/audio/38ac52b9d92e8cc3.mp3"
 			],
-			"audioLanguages": ["en"]
+			"audioLanguages": ["en"],
+			"teaches": ["sara-o", "sara-a"]
 		},
 		{
 			"kind": "exposition",
@@ -109,6 +113,7 @@
 				"/thai-script/lessons/lesson-unwritten-vowels/audio/aba7d7e2476a3f92.mp3"
 			],
 			"audioLanguages": ["en"],
+			"teaches": ["sara-a"],
 			"image": "/thai-script/lessons/lesson-unwritten-vowels/images/implicit-a-be9c36a47f0e.jpg"
 		},
 		{
@@ -123,7 +128,8 @@
 				"/thai-script/lessons/lesson-unwritten-vowels/audio/44f86fe917ec5074.mp3"
 			],
 			"audioLanguages": ["en"],
-			"thai": "ตลาด"
+			"thai": "ตลาด",
+			"teaches": ["sara-a"]
 		},
 		{
 			"kind": "exposition",
@@ -138,7 +144,8 @@
 				"/thai-script/lessons/lesson-unwritten-vowels/audio/8c63907f058ef7d0.mp3"
 			],
 			"audioLanguages": ["th", "en"],
-			"thai": "ตลาด"
+			"thai": "ตลาด",
+			"teaches": ["sara-a"]
 		},
 		{
 			"kind": "exposition",
@@ -154,6 +161,7 @@
 				"/thai-script/lessons/lesson-unwritten-vowels/audio/c1a434e30323d15c.mp3"
 			],
 			"audioLanguages": ["en"],
+			"teaches": ["sara-aaw", "ro-ria"],
 			"image": "/thai-script/lessons/lesson-unwritten-vowels/images/bare-final-ro-6f2f18202462.jpg"
 		},
 		{
@@ -169,6 +177,7 @@
 				"/thai-script/lessons/lesson-unwritten-vowels/audio/84240157bde6004a.mp3"
 			],
 			"audioLanguages": ["en"],
+			"teaches": ["ro-ria"],
 			"image": "/thai-script/lessons/lesson-unwritten-vowels/images/ro-han-b6c76d047d25.jpg"
 		},
 		{
@@ -185,6 +194,7 @@
 				"/thai-script/lessons/lesson-unwritten-vowels/audio/b8a8c92cffdc806a.mp3"
 			],
 			"audioLanguages": ["en"],
+			"teaches": ["sara-aaw"],
 			"image": "/thai-script/lessons/lesson-unwritten-vowels/images/o-as-vowel-9cc652e5140c.jpg"
 		},
 		{
@@ -193,13 +203,14 @@
 			"heading": "And this one",
 			"body": [
 				"Tiger, the post in the middle, and the mouse's letter closing it.",
-				"Temple letter, live ending. Out loud before you turn it over."
+				"Temple letter, the syllable alive. Out loud before you turn it over."
 			],
 			"audio": [
 				"/thai-script/lessons/lesson-unwritten-vowels/audio/6e17e48d781b0a80.mp3"
 			],
 			"audioLanguages": ["en"],
-			"thai": "สอน"
+			"thai": "สอน",
+			"teaches": ["sara-aaw"]
 		},
 		{
 			"kind": "exposition",
@@ -207,14 +218,15 @@
 			"heading": "That one",
 			"body": [
 				"สอน — to teach.",
-				"Temple letter, live ending, and the tone rises."
+				"Temple letter, the syllable alive, and the tone rises."
 			],
 			"audio": [
 				"/thai-script/lessons/lesson-unwritten-vowels/audio/2530b9aa1f93be28.mp3",
-				"/thai-script/lessons/lesson-unwritten-vowels/audio/07f3351d33f2daa1.mp3"
+				"/thai-script/lessons/lesson-unwritten-vowels/audio/75bdc80a7dd5883f.mp3"
 			],
 			"audioLanguages": ["th", "en"],
-			"thai": "สอน"
+			"thai": "สอน",
+			"teaches": ["sara-aaw"]
 		},
 		{
 			"kind": "exposition",
@@ -223,13 +235,14 @@
 			"body": [
 				"รวม (ruam) is to combine. ดวง (duang) is a round object. ขวด (khùat) is a bottle. ตรวจ (dtrùat) is to inspect.",
 				"With a consonant on each side and no other vowel in the syllable, ว is the vowel ua rather than a w.",
-				"ua counts as long, so a syllable closing on it stays live.",
+				"ua counts as long, so a syllable closing on it stays alive.",
 				"Opening a syllable, ว is still the consonant w, as in วง, and after a vowel it closes the syllable."
 			],
 			"audio": [
-				"/thai-script/lessons/lesson-unwritten-vowels/audio/2b2050577931fa6f.mp3"
+				"/thai-script/lessons/lesson-unwritten-vowels/audio/85387c2ef734cbde.mp3"
 			],
-			"audioLanguages": ["en"]
+			"audioLanguages": ["en"],
+			"teaches": ["sara-uua"]
 		},
 		{
 			"kind": "retrieval",
@@ -265,7 +278,7 @@
 				"And the bare ร ending beats the short o, which is the one place a longer reading wins."
 			],
 			"audio": [
-				"/thai-script/lessons/lesson-unwritten-vowels/audio/b9dbfff480234d87.mp3"
+				"/thai-script/lessons/lesson-unwritten-vowels/audio/b3ee782ed4200e7b.mp3"
 			],
 			"audioLanguages": ["en"]
 		},
@@ -276,12 +289,17 @@
 			"body": [
 				"Six readings, and no new symbol to carry them.",
 				"Look for a written vowel, then count the letters and work from the back.",
-				"Next: two consonants at the front of a syllable, spoken together."
+				"Next: the four tone marks, and what each one does."
 			],
 			"audio": [
-				"/thai-script/lessons/lesson-unwritten-vowels/audio/ea73e9327ddc8772.mp3"
+				"/thai-script/lessons/lesson-unwritten-vowels/audio/8f9ea367b99a6e6d.mp3"
 			],
 			"audioLanguages": ["en"]
 		}
-	]
+	],
+	"timing": {
+		"spokenSeconds": 648,
+		"practiceSeconds": 170,
+		"estimatedMinutes": 14
+	}
 }

@@ -2,8 +2,13 @@
 import { screen } from "@testing-library/react";
 import { Route, Routes } from "react-router";
 import { describe, expect, it } from "vitest";
+import { lessonEntryByNumber } from "../../domain/script/data/lessonSequence";
 import { renderWithApp, stubDeckJson } from "../test-utils/renderWithApp";
 import { LessonPage } from "./LessonPage";
+
+/** The position of the lesson `symbols.ts` files under this number. */
+const at = (legacyNumber: number): number =>
+	lessonEntryByNumber(legacyNumber)?.position ?? legacyNumber;
 
 function renderAt(position: number) {
 	return renderWithApp(
@@ -26,7 +31,7 @@ describe("LessonPage — content resolution keys off position, not legacy number
 	// throughout) already found the lesson fine. Task 6.2 fixed the call to
 	// `lessonEntryByPosition`; this pins it so a regression shows up as a
 	// broken lesson page rather than as a silent divergence again.
-	it("renders the deck for position 15 (lesson-unwritten-vowels, legacy number 26)", async () => {
+	it("renders the deck for lesson-unwritten-vowels, whose legacy number is 26", async () => {
 		stubDeckJson("/thai-script/lessons/lesson-unwritten-vowels/deck.json", {
 			lessonId: "lesson-unwritten-vowels",
 			title: "Vowels That Are Not Written",
@@ -53,12 +58,12 @@ describe("LessonPage — content resolution keys off position, not legacy number
 			],
 		});
 
-		renderAt(15);
+		renderAt(at(26));
 
 		// Never the undeclared/unresolvable error branch: that branch shows
 		// this exact copy instead of a heading matching the summary.
 		expect(screen.queryByText("Lesson not found")).toBeNull();
 		expect(await screen.findByText("Unwritten vowels")).toBeTruthy();
-		expect(screen.getByText("Lesson 15")).toBeTruthy();
+		expect(screen.getByText(`Lesson ${at(26)}`)).toBeTruthy();
 	});
 });

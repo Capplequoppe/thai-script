@@ -165,6 +165,58 @@ describe("content resolution states", () => {
 	});
 });
 
+describe("a deck's stated length", () => {
+	const WITH_SLIDES = [RETRIEVAL, REVEAL];
+
+	it("carries the timing block through when the deck states one", () => {
+		const result = validateDeck({
+			...deck(WITH_SLIDES),
+			timing: {
+				spokenSeconds: 2057,
+				practiceSeconds: 400,
+				estimatedMinutes: 41,
+			},
+		});
+		expect(result.ok).toBe(true);
+		if (!result.ok) return;
+		expect(result.deck.timing).toEqual({
+			spokenSeconds: 2057,
+			practiceSeconds: 400,
+			estimatedMinutes: 41,
+		});
+	});
+
+	it("accepts a deck that states no timing, and reports none", () => {
+		const result = validateDeck(deck(WITH_SLIDES));
+		expect(result.ok).toBe(true);
+		if (!result.ok) return;
+		expect(result.deck.timing).toBeUndefined();
+	});
+
+	it("drops a malformed timing block rather than refusing the deck", () => {
+		// A deck is still perfectly playable without a length, so a broken
+		// timing block must not cost the learner the lesson. It is dropped,
+		// and the UI then says nothing rather than something wrong.
+		for (const timing of [
+			{ spokenSeconds: 10, practiceSeconds: 5 },
+			{ spokenSeconds: "ten", practiceSeconds: 5, estimatedMinutes: 1 },
+			{ spokenSeconds: -1, practiceSeconds: 5, estimatedMinutes: 1 },
+			{
+				spokenSeconds: Number.NaN,
+				practiceSeconds: 5,
+				estimatedMinutes: 1,
+			},
+			"41 minutes",
+			null,
+		]) {
+			const result = validateDeck({ ...deck(WITH_SLIDES), timing });
+			expect(result.ok).toBe(true);
+			if (!result.ok) continue;
+			expect(result.deck.timing).toBeUndefined();
+		}
+	});
+});
+
 describe("the deck schema's retrieval requirement", () => {
 	it("accepts a deck whose retrieval step precedes its reveal", () => {
 		const result = validateDeck(
@@ -323,11 +375,20 @@ describe("persisted state is untouched by this task", () => {
 	const FIXTURE =
 		'{"completedLessons":[1,2,3],"currentLesson":4,"cards":{"sym-m-sound":{"id":"sym-m-sound","question":"What sound does ม make?","correctAnswer":"m","choices":["m","n","ng","y"],"srs":{"easeFactor":2.5,"interval":10,"repetitions":0,"learningStep":1,"nextReviewDate":"2026-01-01T00:00:00.000Z","lastReviewDate":null,"lapseCount":0},"symbolCharacter":"ม","property":"sound","lessonNumber":1}},"vocabCards":{},"grammarCards":{},"sentenceCards":{},"sessionHistory":[],"achievements":["first-lesson"]}';
 
-	it("loads a pre-change thai-srs-state fixture and re-serialises byte-identically", () => {
+	it("loads a pre-change thai-srs-state fixture and converts it once", () => {
 		const parsed = JSON.parse(FIXTURE) as LearnerState;
 		expect(validateLearnerState(parsed)).toBe(true);
 		const migrated = migrateState(parsed, "2026-01-01T00:00:00.000Z");
-		expect(JSON.stringify(migrated)).toBe(FIXTURE);
+		// This used to assert the bytes came back unchanged, which held only
+		// while legacy number and position were the same integer. Inserting
+		// `lesson-loops` at the front ended that: the fixture now moves, and
+		// what matters is that it moves exactly once.
+		const once = JSON.stringify(migrated);
+		expect(once).not.toBe(FIXTURE);
+		expect(
+			JSON.stringify(migrateState(migrated, "2026-01-01T00:00:00.000Z")),
+		).toBe(once);
+		expect(validateLearnerState(migrated)).toBe(true);
 	});
 
 	it("still keys lessons by number in every persisted store", () => {

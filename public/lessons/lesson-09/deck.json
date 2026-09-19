@@ -42,6 +42,7 @@
 				"/thai-script/lessons/lesson-09/audio/210c417d40d5fac0.mp3"
 			],
 			"audioLanguages": ["en", "th", "en"],
+			"teaches": ["jo-jan"],
 			"image": "/thai-script/lessons/lesson-09/images/meet-jaan-3b6caf0a850e.jpg"
 		},
 		{
@@ -58,6 +59,7 @@
 				"/thai-script/lessons/lesson-09/audio/1f10eaee0e53fb43.mp3"
 			],
 			"audioLanguages": ["en", "th"],
+			"teaches": ["jo-jan"],
 			"image": "/thai-script/lessons/lesson-09/images/jaan-story-ec6440eea1e0.jpg"
 		},
 		{
@@ -65,7 +67,8 @@
 			"id": "see-jaan",
 			"heading": "The plate's letter",
 			"body": ["A head at middle height.", "One hook curving up and over."],
-			"thai": "จ"
+			"thai": "จ",
+			"teaches": ["jo-jan"]
 		},
 		{
 			"kind": "exposition",
@@ -78,7 +81,8 @@
 			],
 			"audio": ["/thai-script/lessons/lesson-09/audio/63060311aa44a279.mp3"],
 			"audioLanguages": ["en"],
-			"thai": "จ"
+			"thai": "จ",
+			"teaches": ["jo-jan"]
 		},
 		{
 			"kind": "exposition",
@@ -95,6 +99,7 @@
 				"/thai-script/lessons/lesson-09/audio/1c1bb75b36d8d907.mp3"
 			],
 			"audioLanguages": ["en", "th", "en"],
+			"teaches": ["to-tau"],
 			"image": "/thai-script/lessons/lesson-09/images/meet-dtao-4fb43af67675.jpg"
 		},
 		{
@@ -111,6 +116,7 @@
 				"/thai-script/lessons/lesson-09/audio/d78a47b081c555e9.mp3"
 			],
 			"audioLanguages": ["en", "th"],
+			"teaches": ["to-tau"],
 			"image": "/thai-script/lessons/lesson-09/images/dtao-story-79d0d4b1568e.jpg"
 		},
 		{
@@ -121,7 +127,8 @@
 				"The same bowl as the child's letter.",
 				"A notch cut into the front of the rim."
 			],
-			"thai": "ต"
+			"thai": "ต",
+			"teaches": ["to-tau"]
 		},
 		{
 			"kind": "exposition",
@@ -134,7 +141,8 @@
 			],
 			"audio": ["/thai-script/lessons/lesson-09/audio/8974389abc6b93cf.mp3"],
 			"audioLanguages": ["en"],
-			"thai": "ต"
+			"thai": "ต",
+			"teaches": ["to-tau", "do-dek"]
 		},
 		{
 			"kind": "exposition",
@@ -151,6 +159,7 @@
 				"/thai-script/lessons/lesson-09/audio/1250c98e530870ac.mp3"
 			],
 			"audioLanguages": ["en", "th", "en"],
+			"teaches": ["po-pla"],
 			"image": "/thai-script/lessons/lesson-09/images/meet-bplaa-6d08aff77874.jpg"
 		},
 		{
@@ -167,6 +176,7 @@
 				"/thai-script/lessons/lesson-09/audio/d0e2ecc255a54d62.mp3"
 			],
 			"audioLanguages": ["en", "th"],
+			"teaches": ["po-pla"],
 			"image": "/thai-script/lessons/lesson-09/images/bplaa-story-6708f3a99bb3.jpg"
 		},
 		{
@@ -177,7 +187,8 @@
 				"The same bowl as the leaf's letter.",
 				"One wall rising clear past the rim."
 			],
-			"thai": "ป"
+			"thai": "ป",
+			"teaches": ["po-pla"]
 		},
 		{
 			"kind": "exposition",
@@ -190,7 +201,8 @@
 			],
 			"audio": ["/thai-script/lessons/lesson-09/audio/c321eb20f283496b.mp3"],
 			"audioLanguages": ["en"],
-			"thai": "ป"
+			"thai": "ป",
+			"teaches": ["po-pla", "bo-baimai"]
 		},
 		{
 			"kind": "exposition",
@@ -203,7 +215,7 @@
 				"Listen for the missing puff instead of memorising a list."
 			],
 			"audio": [
-				"/thai-script/lessons/lesson-09/audio/bdb441f84c0b09c3.mp3",
+				"/thai-script/lessons/lesson-09/audio/69df0166933899ad.mp3",
 				"/thai-script/lessons/lesson-09/audio/2174448e618caa41.mp3"
 			],
 			"audioLanguages": ["en", "en"],
@@ -245,6 +257,7 @@
 				"/thai-script/lessons/lesson-09/audio/bdedf00d5a4eeffa.mp3"
 			],
 			"audioLanguages": ["en", "th", "en"],
+			"teaches": ["sara-oo"],
 			"image": "/thai-script/lessons/lesson-09/images/meet-the-leaning-mast-16ccc1b21747.jpg"
 		},
 		{
@@ -258,7 +271,8 @@
 			],
 			"audio": ["/thai-script/lessons/lesson-09/audio/ff36f086e41049e5.mp3"],
 			"audioLanguages": ["en"],
-			"thai": "โ"
+			"thai": "โ",
+			"teaches": ["sara-oo"]
 		},
 		{
 			"kind": "exposition",
@@ -270,7 +284,8 @@
 			],
 			"audio": ["/thai-script/lessons/lesson-09/audio/be0fec2734beaafe.mp3"],
 			"audioLanguages": ["en"],
-			"thai": "โลก"
+			"thai": "โลก",
+			"teaches": ["sara-oo"]
 		},
 		{
 			"kind": "exposition",
@@ -285,7 +300,8 @@
 				"/thai-script/lessons/lesson-09/audio/548d1db0157bc1c6.mp3"
 			],
 			"audioLanguages": ["th", "en"],
-			"thai": "โลก"
+			"thai": "โลก",
+			"teaches": ["sara-oo"]
 		},
 		{
 			"kind": "exposition",
@@ -302,6 +318,7 @@
 				"/thai-script/lessons/lesson-09/audio/66834769410363fc.mp3"
 			],
 			"audioLanguages": ["en", "th", "en"],
+			"teaches": ["sara-o"],
 			"image": "/thai-script/lessons/lesson-09/images/meet-the-short-o-ae1026a5f95b.jpg"
 		},
 		{
@@ -315,6 +332,7 @@
 			],
 			"audio": ["/thai-script/lessons/lesson-09/audio/a9793b26f3756924.mp3"],
 			"audioLanguages": ["en"],
+			"teaches": ["sara-o"],
 			"image": "/thai-script/lessons/lesson-09/images/the-vowel-you-cannot-see-9162f89ee2ed.jpg"
 		},
 		{
@@ -327,7 +345,8 @@
 			],
 			"audio": ["/thai-script/lessons/lesson-09/audio/f473f693f8224380.mp3"],
 			"audioLanguages": ["en"],
-			"thai": "คน"
+			"thai": "คน",
+			"teaches": ["sara-o"]
 		},
 		{
 			"kind": "exposition",
@@ -342,7 +361,8 @@
 				"/thai-script/lessons/lesson-09/audio/f760445444059f34.mp3"
 			],
 			"audioLanguages": ["th", "en"],
-			"thai": "คน"
+			"thai": "คน",
+			"teaches": ["sara-o"]
 		},
 		{
 			"kind": "exposition",
@@ -359,7 +379,8 @@
 				"/thai-script/lessons/lesson-09/audio/1c53d3939c0c6d26.mp3",
 				"/thai-script/lessons/lesson-09/audio/5cd74e2d7a8f8452.mp3"
 			],
-			"audioLanguages": ["en", "th", "th", "en"]
+			"audioLanguages": ["en", "th", "th", "en"],
+			"teaches": ["sara-o"]
 		},
 		{
 			"kind": "retrieval",
@@ -367,7 +388,8 @@
 			"prompt": "You meet a two-letter word with no vowel written anywhere in it. What sound goes between the letters, and how many syllables is the word?",
 			"revealSlideId": "nothing-between-answer",
 			"audio": ["/thai-script/lessons/lesson-09/audio/13b209cbfa3e1ee4.mp3"],
-			"audioLanguages": ["en"]
+			"audioLanguages": ["en"],
+			"teaches": ["sara-o"]
 		},
 		{
 			"kind": "reveal",
@@ -379,7 +401,8 @@
 				"The complete rule, and what three consonants do, comes later."
 			],
 			"audio": ["/thai-script/lessons/lesson-09/audio/0858ee775b3fcf3e.mp3"],
-			"audioLanguages": ["en"]
+			"audioLanguages": ["en"],
+			"teaches": ["sara-o"]
 		},
 		{
 			"kind": "exposition",
@@ -403,7 +426,7 @@
 			],
 			"audio": [
 				"/thai-script/lessons/lesson-09/audio/5e878e4f5fc0682c.mp3",
-				"/thai-script/lessons/lesson-09/audio/45cf2f5971c9c1a3.mp3"
+				"/thai-script/lessons/lesson-09/audio/609c70af0c9de525.mp3"
 			],
 			"audioLanguages": ["th", "en"],
 			"thai": "เป็น"
@@ -420,7 +443,8 @@
 				"**โต** — to grow, or to be large. **โดย** — by, or by means of."
 			],
 			"audio": ["/thai-script/lessons/lesson-09/audio/9276d6c2f3a1cae7.mp3"],
-			"audioLanguages": ["en"]
+			"audioLanguages": ["en"],
+			"teaches": ["jo-jan", "to-tau", "po-pla"]
 		},
 		{
 			"kind": "exposition",
@@ -434,5 +458,10 @@
 			"audio": ["/thai-script/lessons/lesson-09/audio/a83f6c8020320e03.mp3"],
 			"audioLanguages": ["en"]
 		}
-	]
+	],
+	"timing": {
+		"spokenSeconds": 828,
+		"practiceSeconds": 242,
+		"estimatedMinutes": 18
+	}
 }

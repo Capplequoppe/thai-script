@@ -2,8 +2,7 @@ import type { PropertyCard } from "../../../domain/shared/types";
 import { assignRoom } from "../../../domain/vocabulary/data/rooms";
 import { toneExplanationFor } from "../../../domain/vocabulary/services/toneExplanation";
 import {
-	composeVocabMnemonic,
-	mnemonicStateFor,
+	mnemonicTextFor,
 	roomLabel,
 } from "../../../domain/vocabulary/services/VocabMnemonic";
 import type { VocabEntry } from "../../../domain/vocabulary/types";
@@ -98,11 +97,7 @@ export function WordCard({
 	// The staged, room-grammar mnemonic where this entry has one; the corpus's
 	// own prose otherwise. Matched on rank as well as spelling — two corpus
 	// entries can share a spelling and only one of them is the word staged.
-	const staged = mnemonicStateFor(word);
-	const mnemonicText =
-		staged.state === "has-mnemonic"
-			? composeVocabMnemonic(staged.mnemonic)
-			: word.mnemonic;
+	const mnemonicText = mnemonicTextFor(word);
 	// This is a browse surface: the meaning, the romanization and the class are
 	// all already on screen, so the room confirms rather than cues. The rule
 	// that keeps it off a *review* prompt lives in `Flashcard`.

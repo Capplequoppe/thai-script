@@ -16,6 +16,12 @@
  * and reads as generosity right up until it is a wall of material.
  */
 import { fireEvent, render, screen } from "@testing-library/react";
+import { lessonEntryByNumber } from "../../domain/script/data/lessonSequence";
+
+/** The position of the lesson `symbols.ts` files under this number. */
+const at = (legacyNumber: number): number =>
+	lessonEntryByNumber(legacyNumber)?.position ?? legacyNumber;
+
 import { MemoryRouter } from "react-router";
 import { describe, expect, it } from "vitest";
 import { consonants } from "../../domain/script/data/symbols";
@@ -83,7 +89,7 @@ describe("the palace before any lesson is finished", () => {
 
 describe("the palace after lesson 1", () => {
 	it("shows the letters that lesson taught", () => {
-		palaceAfter([1]);
+		palaceAfter([at(1)]);
 
 		// And the empty-state line is gone, which is what proves the panel is
 		// rendering contents rather than simply rendering nothing.
@@ -93,7 +99,7 @@ describe("the palace after lesson 1", () => {
 	});
 
 	it("withholds a letter from the same district that belongs to a later lesson", () => {
-		palaceAfter([1]);
+		palaceAfter([at(1)]);
 
 		// ง is low class and lives in the same harbour, but it is lesson 2's.
 		// A district that showed it would be showing the whole class.
@@ -101,7 +107,7 @@ describe("the palace after lesson 1", () => {
 	});
 
 	it("gives no hint of what is missing", () => {
-		palaceAfter([1]);
+		palaceAfter([at(1)]);
 
 		// A count would be the same wall of material in a quieter voice, and
 		// placeholders would draw the eye to the absence.

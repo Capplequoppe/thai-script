@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 import type { VocabEntry } from "../types";
 import { generateVocabCards } from "./VocabCardGenerator";
+import { mnemonicTextFor } from "./VocabMnemonic";
 
 const testWord: VocabEntry = {
 	thai: "ที่",
@@ -141,11 +142,39 @@ describe("generateVocabCards", () => {
 		void _check;
 	});
 
-	it("all card types carry mnemonic from source word", () => {
+	it("gives every card type the same mnemonic", () => {
+		// The fixture is ที่ at rank 1, which has a staged record, so the text
+		// is the staged one — see the case below. What this asserts is that
+		// whatever the mnemonic turns out to be, no card type disagrees.
 		const cards = generateVocabCards(testWordWithMnemonic, allWords);
-		for (const card of cards) {
-			expect(card.mnemonic).toBe("tea tree → falling tone");
-		}
+		const texts = new Set(cards.map((card) => card.mnemonic));
+		expect(cards.length).toBeGreaterThan(1);
+		expect(texts.size).toBe(1);
+	});
+
+	it("drills the staged mnemonic rather than the corpus's own prose", () => {
+		// The fix this pins: review cards took `word.mnemonic` straight from
+		// the JSON while the dictionary page resolved the staged record, so
+		// the sixty mnemonics written in the course's own world reached the
+		// browse surface and every repetition to mastery drilled the corpus's
+		// ALL-CAPS romanisation instead.
+		const cards = generateVocabCards(testWordWithMnemonic, allWords);
+		const mnemonic = cards[0]?.mnemonic;
+		expect(mnemonic).toBe(mnemonicTextFor(testWordWithMnemonic));
+		expect(mnemonic).not.toBe(testWordWithMnemonic.mnemonic);
+	});
+
+	it("falls back to the corpus prose for a word with no staged record", () => {
+		// Most of the corpus is in this state — sixty staged records against
+		// five and a half thousand entries — so the fallback is the common
+		// path, not the exceptional one.
+		const unstaged: VocabEntry = {
+			...testWordWithMnemonic,
+			thai: "ไม่มีอยู่จริง",
+			rank: 999_999,
+		};
+		const cards = generateVocabCards(unstaged, allWords);
+		expect(cards[0]?.mnemonic).toBe("tea tree → falling tone");
 	});
 
 	it("produces a toneIdentification card when syllables have tones", () => {
@@ -288,10 +317,13 @@ describe("generateVocabCards", () => {
 		expect(card?.promptWord).toBe("ที่");
 	});
 
-	it("spelling cards carry mnemonic from source word", () => {
+	it("gives the spelling card the same mnemonic as the rest", () => {
+		// Spelling cards were added later than the others and had their own
+		// assertion, so they are worth keeping separately named: a mnemonic
+		// that reached every card type except this one would still be wrong.
 		const cards = generateVocabCards(testWordWithMnemonic, allWords);
 		const spellingCard = cards.find((c) => c.property === "spelling");
-		expect(spellingCard?.mnemonic).toBe("tea tree → falling tone");
+		expect(spellingCard?.mnemonic).toBe(mnemonicTextFor(testWordWithMnemonic));
 	});
 
 	it("spelling distractors include a consonant sharing the word's final sound (ท → ต, both T-stop)", () => {

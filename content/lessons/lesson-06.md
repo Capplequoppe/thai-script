@@ -66,6 +66,7 @@ glyph: ค
 gloss: buffalo letter
 cue: a gust of breath
 heading: The buffalo
+teaches: kho-khwai
 narration: en The letter. Listen to its name.
 recording: th คอ ควาย public/audio/consonant-kho-khwai.mp3
 narration: en That word means a water buffalo. The sound is a k with a gust of breath behind it — palm up, and it should move, the same way the elephant and the tray moved it. This is the third breathing letter you have met, and the market's silent stops are the ones that leave the palm still.
@@ -77,6 +78,7 @@ narration: en That word means a water buffalo. The sound is a k with a gust of b
 image: images/lesson-06/khwaai-story-1.jpg
 scene: A black water buffalo walking slowly down a worn track between vegetable plots towards a muddy river mouth in the midday heat, harbour and boats visible beyond, dust, hard light.
 heading: The one nobody quite owns
+teaches: kho-khwai
 narration: en Up behind the harbour there are vegetable plots, and there is a buffalo that works them. Whose is it? Ask four people and you will get four answers. It ploughs for whoever needs ploughing. It is fed by whoever it is standing nearest at the time. And in the middle of the day, when it is too hot to do anything at all, it walks itself down the track to the river mouth, because that is where the mud is.
 - It works the vegetable plots behind the harbour.
 - Nobody agrees whose it is, and it does not seem to mind.
@@ -86,6 +88,7 @@ narration: en Up behind the harbour there are vegetable plots, and there is a bu
 image: images/lesson-06/khwaai-story-2.jpg
 scene: Close on a black water buffalo lowering itself into thick grey river mud, head thrown back over its shoulder, nostrils wide, a gust of breath visible in the humid air, reeds close around it, midday.
 heading: The sound it makes going in
+teaches: kho-khwai
 narration: en And it goes in slowly, the way something that heavy has to, and as it lowers itself down it blows out one enormous breath through its nose. Caked, cool, and completely calm within about a minute. That gust is the letter. Now watch what it does with its head, because this is the part that matters: it throws it back over its shoulder and leaves it there, the whole weight of it hanging off the neck.
 recording: th คอ ควาย public/audio/consonant-kho-khwai.mp3
 - One enormous breath out as it lowers itself in.
@@ -95,6 +98,7 @@ recording: th คอ ควาย public/audio/consonant-kho-khwai.mp3
 ## exposition see-khwaai
 thai: ค
 heading: The buffalo's letter
+teaches: kho-khwai
 - A rounded bowl, the same one you have seen before.
 - The head curls **outward and back**, away from the bowl.
 
@@ -102,6 +106,7 @@ heading: The buffalo's letter
 image: images/lesson-06/the-pair.jpg
 scene: A small child asleep curled inside an enormous market bowl on the left, and a black water buffalo lying in river mud with its head thrown back over its shoulder on the right, the two scenes side by side as one image, warm light.
 heading: This is the pair you were warned about
+teaches: kho-khwai, do-dek
 narration: en Cast your mind right back to lesson one. When you learned that every letter has a head and that most heads curl clockwise, you were told that some letters look almost identical and that the only thing separating them is which way that head was written — and that you would meet a pair like that in a few lessons' time. Remember that? This is the pair, and it has been waiting for you since the first half hour of this course. The child asleep in the market bowl, and the buffalo in the harbour mud. Same rounded body. The child curls his head inward, tucked into the bowl. The buffalo throws his back over his shoulder, out and away from it.
 - Lesson one promised you a pair that differs only by head direction.
 - The child's letter and the buffalo's letter are that pair.
@@ -111,6 +116,7 @@ narration: en Cast your mind right back to lesson one. When you learned that eve
 image: images/lesson-06/what-it-costs.jpg
 scene: A dirt track forking in two directions at the edge of a Thai village, one fork running down to a harbour and boats, the other up to a market under striped awnings, a worn signpost at the junction, late afternoon.
 heading: And what it costs to get it wrong
+teaches: kho-khwai, do-dek
 narration: en Now here is why that one stroke is worth a slide of its own. The child lives in the market and the buffalo lives at the harbour. Market is mid class. Harbour is low class. So if your hand curls that head the wrong way, you have moved the letter to a different district, which changes its class, which changes the tone of the whole syllable, which changes the word. So when you write either of them, that first curl is the stroke to slow down for.
 - The child is in the market: **mid class**. The buffalo is at the harbour: **low class**.
 - Curl the head the wrong way and the letter changes district.
@@ -119,6 +125,7 @@ narration: en Now here is why that one stroke is worth a slide of its own. The c
 ## exposition write-khwaai
 thai: ค
 heading: Write it, and write the other one beside it
+teaches: kho-khwai, do-dek
 narration: en So write them both. Start with the child's letter, which your hand already knows — head inside the bowl, curling clockwise. Then the buffalo beside it, and this time let the head go the other way, outward and back over the shoulder. Do that four or five times, alternating, saying each name out loud as you go. What you are training is the direction your wrist turns. Then cover one of them with your hand and write the other from memory.
 - Write the child's letter first. Head inside, clockwise.
 - Then the buffalo beside it. Head **outward and back**.
@@ -127,10 +134,12 @@ narration: en So write them both. Start with the child's letter, which your hand
 ## retrieval which-way-round
 reveal: which-way-round-answer
 prompt: The child's letter and the buffalo's letter are the same bowl. Name the difference, and say what it costs you to get it wrong.
+teaches: kho-khwai, do-dek
 narration: en So, before the vowels. Those two letters are the same bowl. Name the one difference between them — and then tell me what it actually costs you if your hand gets it the wrong way round.
 
 ## reveal which-way-round-answer
 retrieval: which-way-round
+teaches: kho-khwai, do-dek
 narration: en The head. The child tucks it inside, clockwise. The buffalo throws it back the other way. And the cost is a different word said on a different pitch. It moves the letter from the market to the harbour, from mid class to low class, and the tone of the whole syllable moves along with it.
 - The head: tucked in and clockwise, against thrown back the other way.
 - Wrong way round moves it from the market to the harbour.
@@ -139,6 +148,7 @@ narration: en The head. The child tucks it inside, clockwise. The buffalo throws
 ## exposition back-upstairs
 image: images/lesson-01/the-vowel-house.jpg
 heading: Back up to the roof, where somebody else lives
+teaches: sara-ue, sara-uee
 narration: en Now the vowels, and you are going back up to the roof. You have been up there once, for the lodger whose mark is written above the consonant, and you met him long and then short. There is somebody else living up there. Two of them today, and they are the same person at two lengths, exactly like everybody else in this house — but the sound he makes is one that English has no way to produce at all, so this is going to work differently from every vowel so far.
 - Back to the roof, where a vowel written above lodges.
 - There is a second lodger up there.
@@ -151,6 +161,7 @@ glyph: ื
 gloss: the roof's other lodger
 cue: made behind a grin
 heading: The other one upstairs
+teaches: sara-uee, sara-ue
 narration: en Listen to his name.
 narration: th อื่น
 narration: en It means other, or another — which is what he is. The roof already had someone, and this is the second one. Now the sound, and for once there is no English word for it. Do this instead: spread your lips into a wide grin, as wide as you can manage. Hold the grin. Now, without letting it go, try to say the oo in boot. What comes out lands somewhere between oo and ee, and that is the sound you are after. Feel where it is sitting in your mouth?
@@ -162,6 +173,7 @@ narration: en It means other, or another — which is what he is. The roof alrea
 image: images/lesson-06/the-swedish-shortcut.jpg
 scene: Two mugs of coffee on a worn kitchen table by a window with flat northern light and birch trees outside, a Thai phrasebook lying open beside them, quiet domestic morning.
 heading: Unless you happen to speak Swedish
+teaches: sara-ue, sara-uee
 narration: en And if you speak Swedish, you can throw all of that away, because you have been making this sound your whole life. It is the u in hus. It is the u in ut. That is very nearly exactly this vowel — near enough that the only correction you need is to pull your lips back rather than push them forward, and you are there. Which is worth knowing, because this is the one pair of vowels where every English course in existence has to wave its hands and say there is nothing quite like it. There is something quite like it. It simply lives in a different language.
 - Swedish speakers already own this sound: the u in **hus**, in **ut**.
 - Pull the lips back rather than pushing them forward.
@@ -174,6 +186,7 @@ glyph: ึ
 gloss: the same lodger, cut short
 cue: short above, long above
 heading: Both of him, and you know this trick
+teaches: sara-ue, sara-uee
 narration: en And there are two of him, short and long, the same as everybody else in the house. The writing tells you which, the same way it has twice already. The short one is the small mark with a little ring balanced on top of it. The long one has a second upright pinned beside it. More on the mark means longer. That is the third time this course has handed you the same rule, upstairs, downstairs and now upstairs again, and it is the last time I am going to point it out.
 - Two of him: short and long, same sound.
 - **More on the mark means longer** — upstairs, downstairs, and upstairs again.
@@ -184,6 +197,7 @@ thai: นึก
 image: images/lesson-06/short-grin-word.jpg
 scene: An elderly man sitting on a veranda step with his eyes closed and his head tilted back slightly, remembering something, a cup of tea going cold beside him, quiet late afternoon light.
 heading: The short one, in a word
+teaches: sara-ue
 narration: en Before you write them, hear the short one working. The mouse's letter from lesson one, the short grin vowel above it, and the chicken's letter from lesson three sealing it.
 narration: th นึก
 narration: en It means to call something to mind — to bring a thing back up out of memory on purpose, rather than having it turn up on its own. Say it with the grin held, and let the chicken's letter cut it off short.
@@ -194,6 +208,7 @@ narration: en It means to call something to mind — to bring a thing back up ou
 ## exposition write-the-grin
 thai: ื
 heading: Write them both
+teaches: sara-ue, sara-uee
 narration: en Both of them on paper, above a consonant rather than alone, because like everyone else in this house neither of them ever stands on its own. Put them over the buffalo you just wrote. Say the whole syllable out loud each time, holding that grin, and do not worry that it feels ridiculous — it feels ridiculous to everybody, and the people who keep doing it anyway are the ones who end up able to say it. Here are the two names.
 recording: th สระอือ public/audio/sara-eu-long.mp3
 recording: th สระอึ public/audio/sara-eu-short.mp3
@@ -217,11 +232,13 @@ narration: en To return, or to give something back. And a night, as it happens �
 
 ## rule sara-uee-placeholder
 rule: sara-uee-placeholder
+teaches: sara-uee
 
 ## exposition the-prop
 image: images/lesson-06/the-prop.jpg
 scene: A long wooden pole propped under the sagging eave of a Thai house on stilts, holding it up where there is nothing else beneath it, the rest of the eave resting on the wall further along, afternoon light.
 heading: The word for hand has a letter you have never met
+teaches: sara-uee
 narration: en Now the furniture. That long vowel is written above its consonant, and a mark sitting up there needs something underneath it at the end of the syllable. In the word you just read there is something: the mouse's letter closes it, so the vowel has a letter to sit over and everything is fine. But plenty of words end right there, on the vowel, with nothing after it at all. And then there is nothing underneath, so Thai writes a prop in — a mark that is there to be stood on and for no other reason.
 narration: th มือ
 narration: en A hand. Look at the end of it and you will see a letter you have never been taught. Do not learn it today. It is a real letter with a real name and a job of its own and it gets a whole lesson later on. Today it is a chair.
@@ -232,6 +249,7 @@ narration: en A hand. Look at the end of it and you will see a letter you have n
 ## exposition the-prop-again
 thai: คือ
 heading: And one you will use constantly
+teaches: sara-uee
 narration: en Here is the same thing in a word you are going to meet in almost every sentence you ever read.
 narration: th คือ
 narration: en It means is. The buffalo, the long grin vowel, and the prop holding it up because nothing else does. And here is the test. Look at what stands behind the vowel. A consonant, and the vowel already has something to sit on. Nothing, and the prop goes in.
@@ -242,10 +260,12 @@ narration: en It means is. The buffalo, the long grin vowel, and the prop holdin
 ## retrieval seat-or-no-seat
 reveal: seat-or-no-seat-answer
 prompt: Of a syllable reading khuue, one reading khuuen and one reading muue, one needs no prop. Which, and why?
+teaches: sara-uee
 narration: en Last question. Three syllables: one reads khuue, one reads khuuen, one reads muue. Two of them carry the prop and one of them does without. Say which one stands on its own — and more importantly, say how you knew.
 
 ## reveal seat-or-no-seat-answer
 retrieval: seat-or-no-seat
+teaches: sara-uee
 narration: en The middle one. It already closes on the mouse's letter, so the vowel has something underneath it and needs nothing more. The other two end bare, so both get the prop. And how you knew was by looking at what stood behind the vowel in each of the three.
 - The one closing on a final consonant stands on its own.
 - The two that end bare are both written with the prop.

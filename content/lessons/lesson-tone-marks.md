@@ -56,7 +56,7 @@ four marks themselves, written over letters the learner already owns.
 image: images/lesson-tone-marks/what-is-here.jpg
 scene: A woman at a covered market stall before opening, lifting a small brass weight out of a fitted wooden box, more weights still nested in their slots beside it, lamps strung above the awning.
 heading: Four marks, and the twelve boxes they fill
-narration: en Lesson one left you holding a promise. The word for horse and the verb meaning to come are built from the same two symbols in the same order. The tone is the whole of what separates them. And I told you then that the mark which writes that difference was on its way. It arrives this morning. Thai has four tone marks, and you will have met all four inside ten minutes. Each one is a single small stroke written above the first letter of a syllable. What takes the rest of the lesson is what they do once they are up there, which depends on the district the letter underneath them lives in. Three districts, four marks, twelve boxes in the grid. Eight of those boxes hold a tone and four of them stay empty. Knowing which four are empty saves you as much reading time as knowing the eight.
+narration: en Lesson one left you holding a promise. The word for horse and the verb meaning to come are built from the same two symbols in the same order. The tone is the whole of what separates them. And I told you then that the mark which writes that difference was on its way. It arrives here. Thai has four tone marks, and you will have met all four inside ten minutes. Each one is a single small stroke written above the first letter of a syllable. What takes the rest of the lesson is what they do once they are up there, which depends on the district the letter underneath them lives in. Three districts, four marks, twelve boxes in the grid. Eight of those boxes hold a tone and four of them stay empty. Knowing which four are empty saves you as much reading time as knowing the eight.
 - Four tone marks, each one a single stroke above a letter.
 - Three districts underneath them, so twelve boxes in all.
 - Eight boxes hold a tone. Four stay empty in every standard spelling.
@@ -71,6 +71,7 @@ narration: en Pen and paper before anything else, and today you will be writing 
 ## exposition the-horse-and-the-verb
 image: images/lesson-01/ma-story-7.jpg
 heading: The word on the plaque, and the word beside it
+teaches: low-mai-tho
 narration: en Go back to the end of that pier for a moment and put your hand on the wooden horse. The plaque on its flank carries the one sound the whole harbour came to know, and the letter's own name carries the same word on the end of it. Now set the verb down beside it. To come and horse are the horse's letter and the long vowel, in that order, in both words. A Thai speaker hears two entirely different words, because the pitch of the voice goes somewhere different in each of them. The verb runs flat and level, the way every syllable in lesson one ran. The animal starts high in your range and stays up there for the length of the word. What holds it up there is a small hooked mark written above the first letter, and that mark is the second thing you meet today.
 - มา is the verb, flat and level, and it means to come.
 - ม้า is the animal, held high, and one small mark above the letter is the difference.
@@ -87,7 +88,8 @@ narration: en Here is the frame, before any of the detail goes into it. Every co
 image: images/lesson-tone-marks/the-first-two-marks.jpg
 scene: A signwriter's fine brush lying across the lip of a small ink pot on a bare plank table, a folded rag beside it, warm afternoon light raking across the wood.
 heading: The two marks any district can take
-narration: en The four marks are numbered one to four in Thai, and their names are simply those numbers. So I will call them by number all morning, and the recordings will give you the names themselves. The first mark is a single short stroke, a small tick standing above the letter. Listen to its name.
+teaches: mid-mai-ek, mid-mai-tho, high-mai-ek, high-mai-tho, low-mai-ek, low-mai-tho
+narration: en The four marks are numbered one to four in Thai, and their names are simply those numbers. So I will call them by number throughout, and the recordings will give you the names themselves. The first mark is a single short stroke, a small tick standing above the letter. Listen to its name.
 recording: th ไม้เอก public/audio/tone-mayek.mp3
 narration: en The second is a stroke that doubles back on itself, a little hook with two bends in it. Here is its name.
 recording: th ไม้โท public/audio/tone-maytho.mp3
@@ -101,6 +103,7 @@ narration: en These two are the ones that go anywhere. A market letter, a temple
 image: images/lesson-tone-marks/the-market-only-marks.jpg
 scene: A hand-painted wooden noodle cart parked at the edge of a market lane at midday, its shutters propped open and folding stools stacked underneath.
 heading: The two marks that stay among the stalls
+teaches: mid-mai-tri, mid-mai-chattawa
 narration: en Marks three and four behave differently, and that difference is the most useful thing in this lesson. The third mark is a small kinked peak, floating clear above the letter. Listen.
 recording: th ไม้ตรี public/audio/tone-maytri.mp3
 narration: en The fourth is a tiny cross with four points to it, which is a pleasant accident given where it comes in the order. Here it is.
@@ -115,6 +118,7 @@ narration: en Now the useful part. Both of these marks appear over market letter
 image: images/lesson-tone-marks/mid-class-marks.jpg
 scene: A market trader standing among stacked baskets of fruit under a canvas awning at midday, one hand resting on the edge of a crate.
 heading: The market takes all four, in order
+teaches: mid-mai-ek, mid-mai-tho, mid-mai-tri, mid-mai-chattawa
 narration: en Start at the market, because the market is the tidy row. All four marks go over a market letter, and each one lands the syllable on a tone of its own, in the order the marks are numbered. Mark one takes the voice down and holds it along the floor of your range. Mark two starts it high and tips it over into a fall. Mark three parks it up high and leaves it there. Mark four dips it and swings it back up. Four marks, four tones, and no two of them overlapping. Learn this row properly and the other two districts come down to a short list of differences from it.
 - mai ek (่) gives low tone, and ไก่ (gài) is a chicken.
 - mai tho (้) gives falling tone, and เก้า (gâo) is nine.
@@ -126,6 +130,7 @@ narration: en Start at the market, because the market is the tidy row. All four 
 image: images/lesson-tone-marks/high-class-marks.jpg
 scene: A whitewashed temple standing alone on a wooded hillside above a valley in the early morning, its stairway climbing out of the trees.
 heading: The temple takes two
+teaches: high-mai-ek, high-mai-tho
 narration: en Up at the temple the row gets shorter. Only the first two marks ever go over a temple letter, so the temple has two filled boxes and two empty ones. Mark one gives the same low tone it gave the market. Mark two gives falling, again the same as the market. So the whole temple row is the top half of the market row, copied straight across, and you have already learned it. The two empty boxes are marks three and four, which keep to the stalls.
 - mai ek (่) gives low tone here as well, and ข่าว (khàao) is the news.
 - mai tho (้) gives falling tone, and ให้ (hâi) is to give.
@@ -135,6 +140,7 @@ narration: en Up at the temple the row gets shorter. Only the first two marks ev
 ## exposition low-class-marks
 image: images/lesson-01/the-harbour.jpg
 heading: The harbour takes two, and swaps them
+teaches: low-mai-ek, low-mai-tho
 narration: en Down at the water the row is two boxes again, and this is where the table stops being tidy. The same two marks go over a harbour letter, and both of them come out somewhere else. Mark one gave low at the market and low at the temple; over a harbour letter it gives falling. Mark two gave falling at the market and falling at the temple; over a harbour letter it gives high. So the harbour takes the same two marks and hands back the other two tones. That swap is the one piece of this table you will have to sit down with. And there is the animal from the pier. It is a harbour letter with mark two above it. That is exactly why it comes out high and held, while the verb with nothing above it runs flat.
 - mai ek (่) gives falling tone here, and ล่าง (lâang) means lower.
 - mai tho (้) gives high tone here, and ม้า (máa) is the animal on the plaque from lesson one.
@@ -144,10 +150,12 @@ narration: en Down at the water the row is two boxes again, and this is where th
 ## retrieval which-tone-a
 reveal: which-tone-a-answer
 prompt: ตั๋ว (dtǔua, a ticket) carries mai chattawa over ต. What tone does that give, and why did one row of the table settle it?
+teaches: mid-mai-chattawa
 narration: en A question before you read anything. A word turns up with mark four written above its opening letter, and that letter is the market's own hard t, the turtle. What tone does the word come out on? And then the second half, which is the half worth having: why did you only have to look at one row of the table to answer? Both out loud before you turn it over.
 
 ## reveal which-tone-a-answer
 retrieval: which-tone-a
+teaches: mid-mai-chattawa
 narration: en Rising. The letter tells you the row, the mark tells you the column, and the box where the two meet holds a rising tone. And one row was enough because of the empty boxes. Mark four goes over market letters and nowhere else, so the moment it appeared, the temple and the harbour were out of the running.
 - Rising. ต is a market letter, and mark four only ever appears there.
 - One row settles it, because the other two districts are blank in that column.
@@ -155,10 +163,12 @@ narration: en Rising. The letter tells you the row, the mark tells you the colum
 ## retrieval which-tone-b
 reveal: which-tone-b-answer
 prompt: ล่าง (lâang, lower) carries mai ek over ล, a harbour letter. The market's mai ek gives low tone. Does ล่าง come out low as well?
+teaches: low-mai-ek
 narration: en One more, and this one is the trap the whole lesson exists to spring safely. A word carries mark one above its opening letter, and that letter lives down at the harbour. You know what mark one does at the market and what it does at the temple, because both districts gave you the same answer. So does the water give you that answer too? Say yes or no out loud, and then say the tone.
 
 ## reveal which-tone-b-answer
 retrieval: which-tone-b
+teaches: low-mai-ek
 narration: en It comes out falling. The harbour is the district that swaps the pair, so mark one tips the voice over instead of holding it down. Mark two makes the matching move in the other direction and lands high. The two remaining marks keep to the stalls, so the harbour row finishes with the same two blanks the temple row has.
 - Falling. The harbour swaps the pair, so mai ek tips the voice over rather than holding it low.
 - mai tho makes the matching move and lands high.
@@ -166,6 +176,7 @@ narration: en It comes out falling. The harbour is the district that swaps the p
 ## exposition read-dtoh
 thai: โต๊ะ
 heading: Read this one
+teaches: mid-mai-tri
 narration: en Four symbols, and every one of them is yours. The leaning mast out in front, the turtle's letter, the two hooks behind cutting the vowel short, and mark three sitting above the turtle. Work it in that order. The turtle lives among the stalls, the mark is mark three, so go to the market row and the third column. Say the whole word out loud before you turn it over.
 - Leaning mast, the turtle's letter, two hooks behind, and mai tri above.
 - Market row, third column. Out loud before you turn it over.
@@ -173,6 +184,7 @@ narration: en Four symbols, and every one of them is yours. The leaning mast out
 ## exposition read-dtoh-answer
 thai: โต๊ะ
 heading: That one
+teaches: mid-mai-tri
 narration: th โต๊ะ
 narration: en High, and clipped short by the hooks. It means a table — the kind you eat at, which is a fair clue to where this mark spends its time. A market letter under mark three gives a high tone, and there is no other district you could have been reading.
 - โต๊ะ — high tone, and it means a table.
@@ -181,6 +193,7 @@ narration: en High, and clipped short by the hooks. It means a table — the kin
 ## exposition read-khaao
 thai: ข่าว
 heading: And this one
+teaches: high-mai-ek
 narration: en Three symbols and a mark. The egg's letter from lesson twelve opens it, the long vowel follows, and the ring's letter closes the syllable with a hum. Mark one sits above the egg. The egg lives up the hill at the temple, so this time you want the temple row and the first column. Take your time, and say it out loud before you turn it over.
 - The egg's letter, the long vowel, the ring closing it, and mai ek above.
 - Temple row, first column. Out loud before you turn it over.
@@ -188,6 +201,7 @@ narration: en Three symbols and a mark. The egg's letter from lesson twelve open
 ## exposition read-khaao-answer
 thai: ข่าว
 heading: That one
+teaches: high-mai-ek
 narration: th ข่าว
 narration: en Low. It means the news, the sort that comes on in the evening. A temple letter under mark one gives a low tone. The market gives the same answer under that mark. That agreement is what makes the temple row the cheap one to learn.
 - ข่าว — low tone, and it means the news.
@@ -196,6 +210,7 @@ narration: en Low. It means the news, the sort that comes on in the evening. A t
 ## exposition read-maa
 thai: ม้า
 heading: And the one lesson one promised you
+teaches: low-mai-tho
 narration: en Two symbols, and a mark you have been waiting three months of lessons for. The horse's letter, the long vowel behind it, and mark two above the first of the two. The horse's letter berths at the harbour, and the mark is mark two, so you want the bottom row and the second column. Say the word out loud, on the tone that box gives you, before you turn it over.
 - The horse's letter, the long vowel, and mai tho above.
 - Harbour row, second column. Out loud before you turn it over.
@@ -203,8 +218,9 @@ narration: en Two symbols, and a mark you have been waiting three months of less
 ## exposition read-maa-answer
 thai: ม้า
 heading: That one, and the circle closes
+teaches: low-mai-tho
 recording: th มอ ม้า public/audio/consonant-mo-ma.mp3
-narration: en That is the letter's own name, and the second half of it is the word — which is how you heard the animal for the first time in lesson one, before you had any idea what the mark above it was doing. High, and held up there for the whole of the word. That is the animal, and the word on the plaque at the end of the pier. Now say the verb again, with nothing written above the letter and the voice running level. Two spellings, two tones, one difference on the page. This morning you got the name of the mark and the box that holds the tone. That is the thing lesson one said was coming.
+narration: en That is the letter's own name, and the second half of it is the word — which is how you heard the animal for the first time in lesson one, before you had any idea what the mark above it was doing. High, and held up there for the whole of the word. That is the animal, and the word on the plaque at the end of the pier. Now say the verb again, with nothing written above the letter and the voice running level. Two spellings, two tones, one difference on the page. You have the name of the mark now, and the box that holds the tone. That is the thing lesson one said was coming.
 - ม้า — high tone, and it means a horse.
 - มา with nothing above it stays flat, and it means to come.
 - A harbour letter under mai tho is the box that separates them.
@@ -225,6 +241,7 @@ narration: en There is the placement rule in full. One line of it is worth readi
 
 ## rule mai-tri-chattawa-scope
 rule: mai-tri-chattawa-middle-only
+teaches: mid-mai-tri, mid-mai-chattawa
 narration: en And the second rule is the one that empties four of the twelve boxes. Marks three and four are market property. Standard Thai spelling puts them over market letters and leaves them there, which is why the temple row and the harbour row both finish two boxes short. You will see the shapes elsewhere occasionally, in a loanword or in somebody writing the way they speak. That is a different kind of writing from the kind this course teaches you to read.
 
 ## exposition the-shape-of-the-table
@@ -237,7 +254,7 @@ narration: en Now put the whole thing back together, because the table is smalle
 
 ## exposition read-close
 heading: Where that leaves you
-narration: en Four marks, and the tone system is in front of you rather than ahead of you. Take a written Thai syllable. Find the district its opening letter lives in. Decide whether the ending runs live or stops dead. Look above the letter for a mark. Then say the word on the right tone. That is what lesson one promised in its opening minute, and this is the lesson that finishes paying for it. Before you stop, write the four marks out once more over a letter of your own choosing, and say aloud the tone each one produces there. Next lesson: two consonants run together at the front of a syllable, and what the pair of them does to the sound that comes out.
+narration: en Four marks, and the tone system is in front of you rather than ahead of you. Take a written Thai syllable. Find the district its opening letter lives in. Decide whether the ending runs alive or stops dead. Look above the letter for a mark. Then say the word on the right tone. That is what lesson one promised in its opening minute, and this is the lesson that finishes paying for it. Before you stop, write the four marks out once more over a letter of your own choosing, and say aloud the tone each one produces there. Next lesson: two consonants run together at the front of a syllable, and what the pair of them does to the sound that comes out.
 - Four marks, and every box of the table accounted for.
 - District, ending, and the mark above the letter. The tone follows from those three.
 - Next: two consonants run together at the front of a syllable.

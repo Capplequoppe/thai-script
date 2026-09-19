@@ -191,5 +191,10 @@
 			"audioLanguages": ["en"],
 			"image": "/thai-script/lessons/lesson-numerals/images/close-18d12f82a344.jpg"
 		}
-	]
+	],
+	"timing": {
+		"spokenSeconds": 340,
+		"practiceSeconds": 128,
+		"estimatedMinutes": 8
+	}
 }

@@ -7,11 +7,11 @@
 			"id": "what-is-here",
 			"heading": "Two letters, the last room of the house, and a map",
 			"body": [
-				"Two consonants: one constant, one the rarest here.",
+				"Two consonants: one constant, one you will hardly ever meet.",
 				"A vowel that breaks the reading order.",
 				"And a map of half the letters you have not met."
 			],
-			"audio": ["/thai-script/lessons/lesson-07/audio/b68115fce70dcbb1.mp3"],
+			"audio": ["/thai-script/lessons/lesson-07/audio/1a78cd1828c75b3a.mp3"],
 			"audioLanguages": ["en"],
 			"image": "/thai-script/lessons/lesson-07/images/what-is-here-82830ac9c088.jpg"
 		},
@@ -42,6 +42,7 @@
 				"/thai-script/lessons/lesson-07/audio/4e28371f67c76124.mp3"
 			],
 			"audioLanguages": ["en", "th", "en"],
+			"teaches": ["tho-thahan"],
 			"image": "/thai-script/lessons/lesson-07/images/meet-thahaan-8e43a9078237.jpg"
 		},
 		{
@@ -58,6 +59,7 @@
 				"/thai-script/lessons/lesson-07/audio/143065acfa1714fd.mp3"
 			],
 			"audioLanguages": ["en", "th"],
+			"teaches": ["tho-thahan"],
 			"image": "/thai-script/lessons/lesson-07/images/thahaan-story-4a3eb8dee9e9.jpg"
 		},
 		{
@@ -68,7 +70,8 @@
 				"The head curls inward at the start.",
 				"A straight climb, then an arch back down."
 			],
-			"thai": "ท"
+			"thai": "ท",
+			"teaches": ["tho-thahan"]
 		},
 		{
 			"kind": "exposition",
@@ -81,7 +84,8 @@
 			],
 			"audio": ["/thai-script/lessons/lesson-07/audio/923f8c0e7daea338.mp3"],
 			"audioLanguages": ["en"],
-			"thai": "ท"
+			"thai": "ท",
+			"teaches": ["tho-thahan"]
 		},
 		{
 			"kind": "exposition",
@@ -93,7 +97,8 @@
 			],
 			"audio": ["/thai-script/lessons/lesson-07/audio/8412c7ca919254bd.mp3"],
 			"audioLanguages": ["en"],
-			"thai": "ทาง"
+			"thai": "ทาง",
+			"teaches": ["tho-thahan"]
 		},
 		{
 			"kind": "exposition",
@@ -105,7 +110,8 @@
 				"/thai-script/lessons/lesson-07/audio/fcfc4d6a10caad15.mp3"
 			],
 			"audioLanguages": ["th", "en"],
-			"thai": "ทาง"
+			"thai": "ทาง",
+			"teaches": ["tho-thahan"]
 		},
 		{
 			"kind": "exposition",
@@ -119,9 +125,10 @@
 			"audio": [
 				"/thai-script/lessons/lesson-07/audio/7b9f4dc749d52891.mp3",
 				"/thai-script/lessons/lesson-07/audio/10232f6c3c8dd00c.mp3",
-				"/thai-script/lessons/lesson-07/audio/c35895534a90aeca.mp3"
+				"/thai-script/lessons/lesson-07/audio/4606c31c1557948c.mp3"
 			],
 			"audioLanguages": ["en", "th", "en"],
+			"teaches": ["ho-nokhu"],
 			"image": "/thai-script/lessons/lesson-07/images/meet-nok-huuk-2dfe55e57c2e.jpg"
 		},
 		{
@@ -135,6 +142,7 @@
 			],
 			"audio": ["/thai-script/lessons/lesson-07/audio/2542ff4484783aa4.mp3"],
 			"audioLanguages": ["en"],
+			"teaches": ["ho-nokhu"],
 			"image": "/thai-script/lessons/lesson-07/images/why-learn-the-owl-287be12ebe16.jpg"
 		},
 		{
@@ -145,7 +153,8 @@
 				"One round eye, with a zigzag crest over the top.",
 				"Ear tufts, blinking at a dark harbour."
 			],
-			"thai": "ฮ"
+			"thai": "ฮ",
+			"teaches": ["ho-nokhu"]
 		},
 		{
 			"kind": "exposition",
@@ -158,7 +167,8 @@
 			],
 			"audio": ["/thai-script/lessons/lesson-07/audio/7d31fa56e390ad47.mp3"],
 			"audioLanguages": ["en"],
-			"thai": "ฮา"
+			"thai": "ฮา",
+			"teaches": ["ho-nokhu"]
 		},
 		{
 			"kind": "exposition",
@@ -169,8 +179,9 @@
 				"Today: the **front steps**.",
 				"And the one who lives there behaves differently from everybody else."
 			],
-			"audio": ["/thai-script/lessons/lesson-07/audio/f5ac07c484aca460.mp3"],
+			"audio": ["/thai-script/lessons/lesson-07/audio/00abc4336ae3ed3d.mp3"],
 			"audioLanguages": ["en"],
+			"teaches": ["sara-ee", "sara-e"],
 			"image": "/thai-script/lessons/lesson-07/images/the-last-room-9cc652e5140c.jpg"
 		},
 		{
@@ -188,6 +199,7 @@
 				"/thai-script/lessons/lesson-07/audio/754aecd9fcb05e4d.mp3"
 			],
 			"audioLanguages": ["en", "th", "en"],
+			"teaches": ["sara-ee"],
 			"image": "/thai-script/lessons/lesson-07/images/meet-the-mast-33e39d9acb24.jpg"
 		},
 		{
@@ -205,6 +217,7 @@
 				"/thai-script/lessons/lesson-07/audio/c4bea4e89e3ac1ed.mp3"
 			],
 			"audioLanguages": ["en", "th", "en"],
+			"teaches": ["sara-ee"],
 			"image": "/thai-script/lessons/lesson-07/images/written-first-spoken-second-2905065f0bb1.jpg"
 		},
 		{
@@ -218,7 +231,8 @@
 			],
 			"audio": ["/thai-script/lessons/lesson-07/audio/77756cb1d30e7c17.mp3"],
 			"audioLanguages": ["en"],
-			"thai": "เ"
+			"thai": "เ",
+			"teaches": ["sara-ee"]
 		},
 		{
 			"kind": "exposition",
@@ -234,6 +248,7 @@
 				"/thai-script/lessons/lesson-07/audio/dc038da18f357833.mp3"
 			],
 			"audioLanguages": ["en", "th"],
+			"teaches": ["sara-e"],
 			"image": "/thai-script/lessons/lesson-07/images/the-short-mast-fbb540e20e83.jpg"
 		},
 		{
@@ -251,6 +266,7 @@
 				"/thai-script/lessons/lesson-07/audio/2e4bb98400b85592.mp3"
 			],
 			"audioLanguages": ["en", "th", "en"],
+			"teaches": ["sara-e", "mai-taikhu"],
 			"image": "/thai-script/lessons/lesson-07/images/what-the-hooks-become-750aeb229ab2.jpg"
 		},
 		{
@@ -263,7 +279,8 @@
 			],
 			"audio": ["/thai-script/lessons/lesson-07/audio/bf5e87d52809ec77.mp3"],
 			"audioLanguages": ["en"],
-			"thai": "เย็น"
+			"thai": "เย็น",
+			"teaches": ["sara-e", "mai-taikhu"]
 		},
 		{
 			"kind": "exposition",
@@ -275,7 +292,8 @@
 				"/thai-script/lessons/lesson-07/audio/12a61a2f94252eb0.mp3"
 			],
 			"audioLanguages": ["th", "en"],
-			"thai": "เย็น"
+			"thai": "เย็น",
+			"teaches": ["sara-e", "mai-taikhu"]
 		},
 		{
 			"kind": "retrieval",
@@ -283,7 +301,8 @@
 			"prompt": "You want to write the short e sound twice — once in a syllable ending in k, once in a syllable ending in nothing. What changes between them?",
 			"revealSlideId": "hooks-or-roof-answer",
 			"audio": ["/thai-script/lessons/lesson-07/audio/cfd00efdf1e8adc4.mp3"],
-			"audioLanguages": ["en"]
+			"audioLanguages": ["en"],
+			"teaches": ["sara-e", "mai-taikhu"]
 		},
 		{
 			"kind": "reveal",
@@ -295,7 +314,8 @@
 				"The sound is identical, and the spelling answers to what follows."
 			],
 			"audio": ["/thai-script/lessons/lesson-07/audio/a7a521f01faf600d.mp3"],
-			"audioLanguages": ["en"]
+			"audioLanguages": ["en"],
+			"teaches": ["sara-e", "mai-taikhu"]
 		},
 		{
 			"kind": "exposition",
@@ -323,7 +343,7 @@
 				"ซ is harbour and ส is temple. Both say s.",
 				"ฮ is harbour and ห is temple. Both say h."
 			],
-			"audio": ["/thai-script/lessons/lesson-07/audio/aee80c2634f5b32e.mp3"],
+			"audio": ["/thai-script/lessons/lesson-07/audio/ea30bc17a023a773.mp3"],
 			"audioLanguages": ["en"],
 			"image": "/thai-script/lessons/lesson-07/images/cousin-pairs-1c36d1eaba8c.jpg"
 		},
@@ -359,5 +379,10 @@
 			"audio": ["/thai-script/lessons/lesson-07/audio/5a11a28ee1cae0c8.mp3"],
 			"audioLanguages": ["en"]
 		}
-	]
+	],
+	"timing": {
+		"spokenSeconds": 604,
+		"practiceSeconds": 212,
+		"estimatedMinutes": 14
+	}
 }

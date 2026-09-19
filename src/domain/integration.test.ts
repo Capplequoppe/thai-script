@@ -2,8 +2,32 @@ import { beforeEach, describe, expect, it } from "vitest";
 import { InMemoryStorage } from "../infrastructure/persistence/Storage";
 import { StorageCardRepository } from "../infrastructure/persistence/StorageCardRepository";
 import { StorageLearnerStateRepository } from "../infrastructure/persistence/StorageLearnerStateRepository";
+import { lessonEntryByNumber } from "./script/data/lessonSequence";
 import { LearningService } from "./script/services/ScriptLessonService";
 import { ReviewService } from "./session/services/ReviewService";
+
+/**
+ * The position of the lesson `symbols.ts` files under this number, and a way
+ * past the lessons ahead of it.
+ *
+ * These tests are about the learn-then-review cycle, not about the
+ * prerequisite chain, so anything sitting in front of the lesson under test is
+ * marked complete straight into the state — it creates no cards and cannot
+ * affect what the assertions count.
+ */
+const at = (legacyNumber: number): number =>
+	lessonEntryByNumber(legacyNumber)?.position ?? legacyNumber;
+
+const unblock = (storage: InMemoryStorage, position: number): void => {
+	const state = storage.load();
+	state.completedLessons = [
+		...new Set([
+			...state.completedLessons,
+			...Array.from({ length: position - 1 }, (_, i) => i + 1),
+		]),
+	];
+	storage.save(state);
+};
 
 // Cards start at learning step 1 (interval 10 min), so they're due 10 min after creation.
 // Use a future timestamp to simulate time passing so cards become due.
@@ -23,9 +47,10 @@ describe("Learn-then-Review flow", () => {
 	});
 
 	it("full lesson 1 -> review cycle", () => {
-		const lesson = learning.startLesson(1);
+		unblock(storage, at(1));
+		const lesson = learning.startLesson(at(1));
 		expect(lesson.cards.length).toBeGreaterThan(0);
-		learning.completeLesson(1);
+		learning.completeLesson(at(1));
 
 		const dueCards = review.getDueCards(FUTURE_NOW);
 		expect(dueCards.length).toBe(lesson.cards.length);
@@ -45,12 +70,13 @@ describe("Learn-then-Review flow", () => {
 		expect(summary.totalCards).toBe(dueCards.length);
 		expect(summary.accuracy).toBe(100);
 
-		expect(learning.getNextLesson()).toBe(2);
+		expect(learning.getNextLesson()).toBe(at(2));
 	});
 
 	it("sequential lessons build up card pool", () => {
-		learning.startLesson(1);
-		learning.completeLesson(1);
+		unblock(storage, at(1));
+		learning.startLesson(at(1));
+		learning.completeLesson(at(1));
 		const afterLesson1 = Object.keys(storage.load().cards).length;
 
 		// Graduate lesson 1 cards so mastery gate passes
@@ -63,16 +89,17 @@ describe("Learn-then-Review flow", () => {
 		}
 		storage.save(state1);
 
-		learning.startLesson(2);
-		learning.completeLesson(2);
+		learning.startLesson(at(2));
+		learning.completeLesson(at(2));
 		const afterLesson2 = Object.keys(storage.load().cards).length;
 
 		expect(afterLesson2).toBeGreaterThan(afterLesson1);
 	});
 
 	it("unlearnLesson removes only that lesson's cards", () => {
-		learning.startLesson(1);
-		learning.completeLesson(1);
+		unblock(storage, at(1));
+		learning.startLesson(at(1));
+		learning.completeLesson(at(1));
 
 		// Graduate lesson 1 cards so mastery gate passes
 		const state1 = storage.load();
@@ -84,11 +111,11 @@ describe("Learn-then-Review flow", () => {
 		}
 		storage.save(state1);
 
-		learning.startLesson(2);
-		learning.completeLesson(2);
+		learning.startLesson(at(2));
+		learning.completeLesson(at(2));
 
 		const totalBefore = Object.keys(storage.load().cards).length;
-		learning.unlearnLesson(2);
+		learning.unlearnLesson(at(2));
 		const totalAfter = Object.keys(storage.load().cards).length;
 
 		expect(totalAfter).toBeLessThan(totalBefore);
@@ -96,8 +123,9 @@ describe("Learn-then-Review flow", () => {
 	});
 
 	it("rating 1 (blackout) keeps card due immediately", () => {
-		learning.startLesson(1);
-		learning.completeLesson(1);
+		unblock(storage, at(1));
+		learning.startLesson(at(1));
+		learning.completeLesson(at(1));
 
 		const dueCards = review.getDueCards(FUTURE_NOW);
 		const firstCard = dueCards[0]!;
@@ -109,8 +137,9 @@ describe("Learn-then-Review flow", () => {
 	});
 
 	it("after multiple good ratings, card gets flashcard mode", () => {
-		learning.startLesson(1);
-		learning.completeLesson(1);
+		unblock(storage, at(1));
+		learning.startLesson(at(1));
+		learning.completeLesson(at(1));
 
 		const cards = review.getDueCards(FUTURE_NOW);
 		const card = cards[0]!;
@@ -133,8 +162,9 @@ describe("Learn-then-Review flow", () => {
 	});
 
 	it("keeps scheduled cards and the next lesson identical across an export to a second device", () => {
-		learning.startLesson(1);
-		learning.completeLesson(1);
+		unblock(storage, at(1));
+		learning.startLesson(at(1));
+		learning.completeLesson(at(1));
 		const dueBefore = review
 			.getDueCards(FUTURE_NOW)
 			.map((c) => c.id)
@@ -162,12 +192,13 @@ describe("Learn-then-Review flow", () => {
 				.map((c) => c.id)
 				.sort(),
 		).toEqual(dueBefore);
-		expect(secondLearning.getNextLesson()).toBe(2);
+		expect(secondLearning.getNextLesson()).toBe(at(2));
 	});
 
 	it("session history accumulates across multiple sessions", () => {
-		learning.startLesson(1);
-		learning.completeLesson(1);
+		unblock(storage, at(1));
+		learning.startLesson(at(1));
+		learning.completeLesson(at(1));
 
 		const s1 = review.startReviewSession(2, FUTURE_NOW);
 		for (const qc of s1.cards) {

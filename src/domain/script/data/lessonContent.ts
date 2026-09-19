@@ -92,6 +92,7 @@ export function deckPathForLesson(
  * from any route until that sequencing decision is made.
  */
 export const DECK_LESSON_IDS: ReadonlySet<string> = new Set<string>([
+	"lesson-loops",
 	"lesson-01",
 	"lesson-02",
 	"lesson-03",
@@ -259,7 +260,21 @@ export function lessonRules(legacyNumber: number): readonly LessonRule[] {
 // The deck schema
 // ============================================================================
 
-export interface DeckExpositionSlide {
+/**
+ * What a slide is the story of, if it is the story of anything — a consonant's
+ * glyph, a vowel's written form, a tone rule's id. Usually one thing, usually
+ * absent.
+ *
+ * It exists so the palace can offer a learner the part of a lesson that taught
+ * the letter they just tapped, rather than the lesson from its first slide. A
+ * deck written before this simply has none, and the palace then offers the
+ * whole lesson, which is what it always did.
+ */
+export interface DeckSlideSubject {
+	readonly teaches?: readonly string[];
+}
+
+export interface DeckExpositionSlide extends DeckSlideSubject {
 	readonly kind: "exposition";
 	readonly id: string;
 	readonly heading: string;
@@ -282,14 +297,14 @@ export interface DeckExpositionSlide {
  * carries no answer itself — the attempt is the mechanism, so an answer
  * sitting on the same slide defeats the slide entirely.
  */
-export interface DeckRetrievalSlide {
+export interface DeckRetrievalSlide extends DeckSlideSubject {
 	readonly kind: "retrieval";
 	readonly id: string;
 	readonly prompt: string;
 	readonly revealSlideId: string;
 }
 
-export interface DeckRevealSlide {
+export interface DeckRevealSlide extends DeckSlideSubject {
 	readonly kind: "reveal";
 	readonly id: string;
 	readonly retrievalSlideId: string;
@@ -297,7 +312,7 @@ export interface DeckRevealSlide {
 }
 
 /** Renders from the lesson's rules block; holds no prose of its own. */
-export interface DeckRuleSlide {
+export interface DeckRuleSlide extends DeckSlideSubject {
 	readonly kind: "rule";
 	readonly id: string;
 	readonly ruleId: string;
@@ -309,10 +324,52 @@ export type DeckSlide =
 	| DeckRevealSlide
 	| DeckRuleSlide;
 
+/**
+ * How long a deck takes, measured at render time rather than guessed.
+ *
+ * `spokenSeconds` is the sum of the deck's own clips; `practiceSeconds` is
+ * modelled from countable things (see `scripts/lesson_deck/timing.py`) and
+ * excludes handwriting practice, which is the learner's own to spend. Optional
+ * because a deck rendered where durations could not be probed reports nothing
+ * rather than a confident wrong number.
+ */
+export interface DeckTiming {
+	readonly spokenSeconds: number;
+	readonly practiceSeconds: number;
+	readonly estimatedMinutes: number;
+}
+
 export interface LessonDeck {
 	readonly lessonId: string;
 	readonly title: string;
 	readonly slides: readonly DeckSlide[];
+	readonly timing?: DeckTiming;
+}
+
+/**
+ * A deck's timing block, or undefined.
+ *
+ * Absent and malformed are treated the same way on purpose: a deck whose
+ * timing cannot be trusted reports none, and the UI says nothing rather than
+ * showing a number nobody measured. A non-finite or negative figure is
+ * malformed — a lesson cannot take minus four minutes.
+ */
+function parseTiming(value: unknown): DeckTiming | undefined {
+	if (typeof value !== "object" || value === null) return undefined;
+	const raw = value as Record<string, unknown>;
+	const numbers = [
+		raw.spokenSeconds,
+		raw.practiceSeconds,
+		raw.estimatedMinutes,
+	];
+	if (
+		!numbers.every((n) => typeof n === "number" && Number.isFinite(n) && n >= 0)
+	) {
+		return undefined;
+	}
+	const [spokenSeconds, practiceSeconds, estimatedMinutes] =
+		numbers as number[];
+	return { spokenSeconds, practiceSeconds, estimatedMinutes };
 }
 
 export type DeckErrorCode =
@@ -351,6 +408,20 @@ function isStringArray(value: unknown): value is string[] {
 	);
 }
 
+/**
+ * A slide's `teaches`, or nothing at all where it has none or the field is the
+ * wrong shape.
+ *
+ * A malformed `teaches` is dropped rather than refused. It steers a viewer and
+ * decides nothing about what a lesson says, so a typo in it should cost a
+ * learner one missing shortcut and never a lesson that will not load.
+ */
+function subjectOf(raw: Record<string, unknown>): DeckSlideSubject {
+	return isStringArray(raw.teaches) && raw.teaches.length > 0
+		? { teaches: raw.teaches }
+		: {};
+}
+
 function parseSlide(
 	raw: unknown,
 	index: number,
@@ -378,13 +449,12 @@ function parseSlide(
 				return undefined;
 			}
 			return {
+				...subjectOf(raw),
 				kind: "exposition",
 				id,
 				heading: raw.heading,
 				body: raw.body,
-				...(typeof raw.thai === "string" && raw.thai
-					? { thai: raw.thai }
-					: {}),
+				...(typeof raw.thai === "string" && raw.thai ? { thai: raw.thai } : {}),
 			};
 		}
 		case "retrieval": {
@@ -409,6 +479,7 @@ function parseSlide(
 				return undefined;
 			}
 			return {
+				...subjectOf(raw),
 				kind: "retrieval",
 				id,
 				prompt: raw.prompt,
@@ -428,6 +499,7 @@ function parseSlide(
 				return undefined;
 			}
 			return {
+				...subjectOf(raw),
 				kind: "reveal",
 				id,
 				retrievalSlideId: raw.retrievalSlideId,
@@ -452,7 +524,7 @@ function parseSlide(
 				});
 				return undefined;
 			}
-			return { kind: "rule", id, ruleId: raw.ruleId };
+			return { ...subjectOf(raw), kind: "rule", id, ruleId: raw.ruleId };
 		}
 		default:
 			errors.push({
@@ -573,9 +645,15 @@ export function validateDeck(value: unknown): DeckValidationResult {
 	}
 
 	if (errors.length > 0) return { ok: false, errors };
+	const timing = parseTiming(value.timing);
 	return {
 		ok: true,
-		deck: { lessonId: lessonId.id, title: value.title as string, slides },
+		deck: {
+			lessonId: lessonId.id,
+			title: value.title as string,
+			slides,
+			...(timing ? { timing } : {}),
+		},
 	};
 }
 

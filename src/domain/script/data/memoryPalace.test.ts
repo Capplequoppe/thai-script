@@ -12,6 +12,7 @@ import {
 	districtPlaceFor,
 	EVERY_LOCATION_HAS_AN_OVERVIEW,
 	EVERY_RULE_HAS_ONE_SCENE,
+	EVERY_SCENE_IS_NARRATED,
 	EVERY_TONE_HAS_A_PLACE,
 	HOTSPOTS_LAND_ON_REAL_PLACES,
 	markRuleId,
@@ -93,6 +94,13 @@ describe("the cast", () => {
 describe("scenes against the rules", () => {
 	it("pictures every rule exactly once", () => {
 		expect(EVERY_RULE_HAS_ONE_SCENE).toBe(true);
+	});
+
+	it("tells every scene out loud as well as drawing it", () => {
+		// The caption and the story are separate fields and only one of them is
+		// rendered to audio, so a scene added with a caption and no `narration`
+		// would look complete on the page and be silent on it.
+		expect(EVERY_SCENE_IS_NARRATED).toBe(true);
 	});
 
 	it("covers all seventeen rules with eleven scenes", () => {

@@ -1,24 +1,38 @@
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { Button } from "@/presentation/components/ui/button";
 import {
 	type DeckSlide as DeckSlideData,
+	type DeckTiming,
 	LESSON_ASSET_ROOT,
 	type LessonDeck,
 	renderRuleSlide,
 	validateDeck,
 } from "../../../domain/script/data/lessonContent";
+import type { PlaybackRate } from "../../../infrastructure/settings/PlaybackSettings";
 import { useResetOnCardChange } from "../../hooks/useResetOnCardChange";
 import {
 	NarrationTransport,
 	usePlaybackRate,
 } from "../molecules/NarrationTransport";
-import type { PlaybackRate } from "../../../infrastructure/settings/PlaybackSettings";
 
 interface Props {
 	/** Path of the deck's JSON, served from `public/lessons/<id>/deck.json`. */
 	deckPath: string;
 	/** Fires once, when the deck's own last slide is confirmed forward. */
 	onComplete: () => void;
+	/**
+	 * Show only the slides that name this subject in their `teaches`, in the
+	 * order the lesson puts them.
+	 *
+	 * For the palace, which offers a learner the story of the letter they just
+	 * tapped rather than the lesson it came from. Omitted everywhere the
+	 * lesson is being taken, which is every other caller.
+	 *
+	 * A retrieval slide and the reveal that answers it come as a pair whichever
+	 * of the two is tagged — a question shown without its answer is a dead end,
+	 * and an answer shown without its question is a non sequitur.
+	 */
+	teaching?: string;
 }
 
 type LoadState =
@@ -28,6 +42,12 @@ type LoadState =
 			readonly status: "ready";
 			readonly deck: LessonDeck;
 			readonly audioUrls: ReadonlyMap<string, readonly string[]>;
+			/**
+			 * Clips a reveal slide speaks on arrival rather than on reveal —
+			 * the teacher setting the screen up before the answer is offered.
+			 * Empty for every other slide kind, which plays on arrival anyway.
+			 */
+			readonly audioBefore: ReadonlyMap<string, readonly string[]>;
 			readonly imageUrls: ReadonlyMap<string, string>;
 			readonly audioLanguages: ReadonlyMap<string, readonly string[]>;
 	  };
@@ -51,21 +71,28 @@ type LoadState =
  */
 function readAudioCandidate(
 	item: unknown,
+	field: "audio" | "audioBefore" = "audio",
 ): { id: string; audioUrls: string[] } | undefined {
 	if (typeof item !== "object" || item === null) return undefined;
-	const { id, audio, audioUrl } = item as Record<string, unknown>;
+	const record = item as Record<string, unknown>;
+	const { id } = record;
 	if (typeof id !== "string") return undefined;
-	if (Array.isArray(audio)) {
-		const urls = audio.filter((url): url is string => typeof url === "string");
+	const list = record[field];
+	if (Array.isArray(list)) {
+		const urls = list.filter((url): url is string => typeof url === "string");
 		return urls.length > 0 ? { id, audioUrls: urls } : undefined;
 	}
-	if (typeof audioUrl === "string") return { id, audioUrls: [audioUrl] };
+	// The pre-split single-clip form, which only ever meant the main list.
+	if (field === "audio" && typeof record.audioUrl === "string") {
+		return { id, audioUrls: [record.audioUrl] };
+	}
 	return undefined;
 }
 
 function extractAudioUrls(
 	raw: unknown,
 	lessonId: string,
+	field: "audio" | "audioBefore" = "audio",
 ): ReadonlyMap<string, readonly string[]> {
 	const map = new Map<string, readonly string[]>();
 	if (typeof raw !== "object" || raw === null) return map;
@@ -74,7 +101,7 @@ function extractAudioUrls(
 
 	const prefix = `${LESSON_ASSET_ROOT}/${lessonId}/`;
 	for (const item of slidesRaw) {
-		const candidate = readAudioCandidate(item);
+		const candidate = readAudioCandidate(item, field);
 		if (!candidate) continue;
 		const { id, audioUrls } = candidate;
 
@@ -552,12 +579,15 @@ function DeckSlideContent({
 	deck,
 	slide,
 	audioUrls,
+	audioBefore,
 	audioLanguages,
 	imageUrl,
 }: {
 	deck: LessonDeck;
 	slide: DeckSlideData;
 	audioUrls?: readonly string[];
+	/** What a reveal slide says before its answer is offered. */
+	audioBefore?: readonly string[];
 	audioLanguages?: readonly string[];
 	imageUrl?: string;
 }) {
@@ -571,9 +601,24 @@ function DeckSlideContent({
 	// One narration per slide, driven by both the auto-play below and the
 	// transport. When the transport owned a second one, the slide could be
 	// talking while the button still offered to start it.
+	// A reveal slide has two things to say and a button between them. Before
+	// the button it speaks `audioBefore` — the teacher setting the screen up,
+	// or asking for an answer out loud; after it, the answer itself. Every
+	// other kind of slide has only the one list and plays it on arrival.
+	//
+	// One narration instance, switched, rather than two running side by side:
+	// the comment on `useNarration` records why a second one was removed —
+	// the slide could be talking while the transport still offered to start
+	// it.
+	//
+	// No languages for the before-clips. They are the teacher in English, so a
+	// uniform gap is the right one, and the language-aware gap exists to mark
+	// the crossing into a Thai word.
+	const beforeTheButton = slide.kind === "reveal" && !revealed;
+	const activeUrls = beforeTheButton ? audioBefore : audioUrls;
 	const { playing, start, stop, pause, resume, setSpeed } = useNarration(
-		audioUrls,
-		audioLanguages,
+		activeUrls,
+		beforeTheButton ? undefined : audioLanguages,
 		rate,
 	);
 	useResetOnCardChange(slide.id, () => {
@@ -582,7 +627,11 @@ function DeckSlideContent({
 
 	// biome-ignore lint/correctness/useExhaustiveDependencies: keys on the slide's own identity, not on audioUrls — two consecutive slides sharing a clip must still reset (see AC5)
 	useEffect(() => {
-		if (!audioUrls?.length || slide.kind === "reveal") return;
+		// Once revealed, the effect below owns playback; without this guard the
+		// list swapping under `activeUrls` would retrigger this one and the
+		// answer would start twice.
+		if (revealed) return;
+		if (!activeUrls?.length) return;
 		// `start` cancels anything already running before it begins, so this
 		// cannot stack with the transport or with itself. Stopping on cleanup
 		// keeps a clip from talking over the next slide.
@@ -593,7 +642,7 @@ function DeckSlideContent({
 		// because nothing would make the effect look again. The urls come from
 		// the deck's map and change only when the slide does, so AC5 — two
 		// consecutive slides sharing one clip must still replay — still holds.
-	}, [slide.id, audioUrls]);
+	}, [slide.id, activeUrls]);
 
 	// A "reveal" slide's audio is the answer's pronunciation, so it plays on
 	// reveal rather than on arrival — hearing it first would answer the
@@ -746,7 +795,54 @@ function DeckSlideContent({
  * slide is confirmed forward, so the caller can hand off to whatever follows
  * (the lesson's symbol cards) using its own, separate navigation.
  */
-export function DeckSlide({ deckPath, onComplete }: Props) {
+/**
+ * The slides of one story, in the order the lesson tells it.
+ *
+ * A retrieval and its reveal are pulled in together whichever of the two
+ * carries the tag, so a story never ends on an unanswered question and never
+ * opens on an answer to one that was not asked.
+ */
+function slidesTeaching(
+	slides: readonly DeckSlideData[],
+	subject: string,
+): readonly DeckSlideData[] {
+	const tagged = new Set(
+		slides
+			.filter((slide) => slide.teaches?.includes(subject))
+			.map((slide) => slide.id),
+	);
+	for (const slide of slides) {
+		if (!tagged.has(slide.id)) continue;
+		if (slide.kind === "retrieval") tagged.add(slide.revealSlideId);
+		if (slide.kind === "reveal") tagged.add(slide.retrievalSlideId);
+	}
+	return slides.filter((slide) => tagged.has(slide.id));
+}
+
+/**
+ * What the learner is committing to, shown once before the lesson starts.
+ *
+ * Somebody deciding whether to begin now needs the number before the first
+ * slide, not after the last. The listening figure is measured from the deck's
+ * own clips; the remainder is the time the audio is stopped while they answer.
+ * Handwriting practice is deliberately outside the estimate — how long anybody
+ * spends filling a line is their own business, and inventing minutes for it
+ * would make every other number here less believable.
+ */
+function TimeToExpect({ timing }: { timing: DeckTiming }) {
+	const listening = Math.round(timing.spokenSeconds / 60);
+	return (
+		<p
+			className="text-sm text-center"
+			style={{ color: "var(--color-text-muted)" }}
+		>
+			About {timing.estimatedMinutes} minutes — {listening} of listening, the
+			rest answering out loud. Writing practice on top of that.
+		</p>
+	);
+}
+
+export function DeckSlide({ deckPath, onComplete, teaching }: Props) {
 	const [state, setState] = useState<LoadState>({ status: "loading" });
 	const [idx, setIdx] = useState(0);
 
@@ -781,6 +877,7 @@ export function DeckSlide({ deckPath, onComplete }: Props) {
 								slides: [],
 							},
 							audioUrls: new Map(),
+							audioBefore: new Map(),
 							imageUrls: new Map(),
 							audioLanguages: new Map(),
 						});
@@ -796,6 +893,11 @@ export function DeckSlide({ deckPath, onComplete }: Props) {
 					status: "ready",
 					deck: result.deck,
 					audioUrls: extractAudioUrls(raw, result.deck.lessonId),
+					audioBefore: extractAudioUrls(
+						raw,
+						result.deck.lessonId,
+						"audioBefore",
+					),
 					imageUrls: extractImageUrls(raw, result.deck.lessonId),
 					audioLanguages: extractAudioLanguages(raw),
 				});
@@ -814,7 +916,11 @@ export function DeckSlide({ deckPath, onComplete }: Props) {
 	}, [deckPath]);
 
 	const isReady = state.status === "ready";
-	const slides = isReady ? state.deck.slides : [];
+	const allSlides = isReady ? state.deck.slides : [];
+	const slides = useMemo(
+		() => (teaching ? slidesTeaching(allSlides, teaching) : allSlides),
+		[allSlides, teaching],
+	);
 	const isLast = idx === slides.length - 1;
 
 	const advance = useCallback(() => {
@@ -842,6 +948,19 @@ export function DeckSlide({ deckPath, onComplete }: Props) {
 		);
 	}
 
+	// An empty lesson and an empty story are two different absences, and the
+	// second one is a tagging gap rather than a missing lesson. Saying "this
+	// lesson has no slides" over a lesson with forty of them would send
+	// whoever reads it looking in the wrong place entirely.
+	if (slides.length === 0 && teaching) {
+		return (
+			<p className="text-center" style={{ color: "var(--color-text-muted)" }}>
+				No slide in this lesson is marked as part of this story yet. The lesson
+				itself has it — open the lesson to find it.
+			</p>
+		);
+	}
+
 	if (slides.length === 0) {
 		return (
 			<p className="text-center" style={{ color: "var(--color-text-muted)" }}>
@@ -853,12 +972,21 @@ export function DeckSlide({ deckPath, onComplete }: Props) {
 	const slide = slides[idx];
 	if (!slide) return null;
 
+	// Only on arrival, and only for a whole deck: the story viewer passes
+	// `teaching` to show a handful of slides out of a lesson, where a
+	// whole-lesson estimate would be plainly wrong.
+	const showTime = idx === 0 && !teaching && state.deck.timing !== undefined;
+
 	return (
 		<div className="space-y-6">
+			{showTime && state.deck.timing && (
+				<TimeToExpect timing={state.deck.timing} />
+			)}
 			<DeckSlideContent
 				deck={state.deck}
 				slide={slide}
 				audioUrls={state.audioUrls.get(slide.id)}
+				audioBefore={state.audioBefore.get(slide.id)}
 				imageUrl={state.imageUrls.get(slide.id)}
 				audioLanguages={state.audioLanguages.get(slide.id)}
 			/>

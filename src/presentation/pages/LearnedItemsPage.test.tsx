@@ -1,6 +1,7 @@
 // @vitest-environment jsdom
 import { fireEvent, screen } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
+import { lessonSequence } from "../../domain/script/data/lessonSequence";
 import { InMemoryStorage } from "../../infrastructure/persistence/Storage";
 import { renderWithApp } from "../test-utils/renderWithApp";
 import { LearnedItemsPage } from "./LearnedItemsPage";
@@ -11,7 +12,8 @@ import { LearnedItemsPage } from "./LearnedItemsPage";
  *  It was 23 on main. This branch resequenced the course and `RETIRED_LESSONS`
  *  records 23, 24 and 25 as absorbed into one `lesson-numerals`, which the
  *  declaration places last so an optional track cannot block the course. */
-const NUMERALS_LESSON = 19;
+const NUMERALS_LESSON =
+	lessonSequence.find((entry) => entry.id === "lesson-numerals")?.position ?? 0;
 
 function renderPage(completedLessons: number[] = [NUMERALS_LESSON]) {
 	const state = new InMemoryStorage().load();

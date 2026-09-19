@@ -8,10 +8,10 @@
 			"heading": "Two letters, two vowels, and the tone that falls",
 			"body": [
 				"Two consonants, another near-identical pair.",
-				"Two vowels, and the last room of the house.",
+				"Two vowels, and the room under the floor.",
 				"The first tone that **falls**."
 			],
-			"audio": ["/thai-script/lessons/lesson-05/audio/62064231213ec72e.mp3"],
+			"audio": ["/thai-script/lessons/lesson-05/audio/1d17bd56514078c6.mp3"],
 			"audioLanguages": ["en"],
 			"image": "/thai-script/lessons/lesson-05/images/what-is-here-8205045e22f2.jpg"
 		},
@@ -59,6 +59,7 @@
 				"/thai-script/lessons/lesson-05/audio/074b21632ca547bf.mp3"
 			],
 			"audioLanguages": ["en", "th", "en"],
+			"teaches": ["pho-phan"],
 			"image": "/thai-script/lessons/lesson-05/images/meet-phaan-96609d50aae8.jpg"
 		},
 		{
@@ -72,6 +73,7 @@
 			],
 			"audio": ["/thai-script/lessons/lesson-05/audio/241fc41bfd7bb3f7.mp3"],
 			"audioLanguages": ["en"],
+			"teaches": ["pho-phan"],
 			"image": "/thai-script/lessons/lesson-05/images/phaan-story-1-06b39dfdcfdc.jpg"
 		},
 		{
@@ -88,6 +90,7 @@
 				"/thai-script/lessons/lesson-05/audio/54b6625274ea1bb3.mp3"
 			],
 			"audioLanguages": ["en", "th"],
+			"teaches": ["pho-phan"],
 			"image": "/thai-script/lessons/lesson-05/images/phaan-story-2-8eb4d9c17e91.jpg"
 		},
 		{
@@ -98,7 +101,8 @@
 				"Three prongs in a row, every tip level.",
 				"The head sits outside the rim, on the left."
 			],
-			"thai": "พ"
+			"thai": "พ",
+			"teaches": ["pho-phan"]
 		},
 		{
 			"kind": "exposition",
@@ -111,7 +115,8 @@
 			],
 			"audio": ["/thai-script/lessons/lesson-05/audio/e5b6b00deddd4f32.mp3"],
 			"audioLanguages": ["en"],
-			"thai": "พ"
+			"thai": "พ",
+			"teaches": ["pho-phan"]
 		},
 		{
 			"kind": "exposition",
@@ -128,6 +133,7 @@
 				"/thai-script/lessons/lesson-05/audio/61cba05e859c85ce.mp3"
 			],
 			"audioLanguages": ["en", "th", "en"],
+			"teaches": ["fo-fan"],
 			"image": "/thai-script/lessons/lesson-05/images/meet-fan-682eafbfbc07.jpg"
 		},
 		{
@@ -141,6 +147,7 @@
 			],
 			"audio": ["/thai-script/lessons/lesson-05/audio/f941e58aa5b75d52.mp3"],
 			"audioLanguages": ["en"],
+			"teaches": ["fo-fan"],
 			"image": "/thai-script/lessons/lesson-05/images/fan-story-1-d15a8da3ae3f.jpg"
 		},
 		{
@@ -157,6 +164,7 @@
 				"/thai-script/lessons/lesson-05/audio/468a8ff680176df7.mp3"
 			],
 			"audioLanguages": ["en", "th"],
+			"teaches": ["fo-fan", "pho-phan"],
 			"image": "/thai-script/lessons/lesson-05/images/fan-story-2-8702124d7c47.jpg"
 		},
 		{
@@ -167,7 +175,8 @@
 				"The tray, with the final stroke risen above the rest.",
 				"Same head, same prongs. One of them outgrew the row."
 			],
-			"thai": "ฟ"
+			"thai": "ฟ",
+			"teaches": ["fo-fan", "pho-phan"]
 		},
 		{
 			"kind": "exposition",
@@ -180,7 +189,8 @@
 			],
 			"audio": ["/thai-script/lessons/lesson-05/audio/858ebfefdbff681b.mp3"],
 			"audioLanguages": ["en"],
-			"thai": "ฟ"
+			"thai": "ฟ",
+			"teaches": ["fo-fan", "pho-phan"]
 		},
 		{
 			"kind": "retrieval",
@@ -188,7 +198,8 @@
 			"prompt": "The two letters share a shape. Say the one difference, and which of them carries it.",
 			"revealSlideId": "which-outgrew-answer",
 			"audio": ["/thai-script/lessons/lesson-05/audio/940a657a896aec24.mp3"],
-			"audioLanguages": ["en"]
+			"audioLanguages": ["en"],
+			"teaches": ["pho-phan", "fo-fan"]
 		},
 		{
 			"kind": "reveal",
@@ -199,7 +210,8 @@
 				"The **tooth** has it. The tray keeps all three level."
 			],
 			"audio": ["/thai-script/lessons/lesson-05/audio/710570b65b7379e7.mp3"],
-			"audioLanguages": ["en"]
+			"audioLanguages": ["en"],
+			"teaches": ["pho-phan", "fo-fan"]
 		},
 		{
 			"kind": "exposition",
@@ -212,6 +224,7 @@
 			],
 			"audio": ["/thai-script/lessons/lesson-05/audio/8dd41becb792d778.mp3"],
 			"audioLanguages": ["en"],
+			"teaches": ["sara-u", "sara-uu"],
 			"image": "/thai-script/lessons/lesson-05/images/down-to-the-cellar-9cc652e5140c.jpg"
 		},
 		{
@@ -229,6 +242,7 @@
 				"/thai-script/lessons/lesson-05/audio/cb05aaf3415c8f8b.mp3"
 			],
 			"audioLanguages": ["en", "th", "en"],
+			"teaches": ["sara-u"],
 			"image": "/thai-script/lessons/lesson-05/images/meet-um-f4a4d5525880.jpg"
 		},
 		{
@@ -242,6 +256,7 @@
 			],
 			"audio": ["/thai-script/lessons/lesson-05/audio/fd603318dd5e2531.mp3"],
 			"audioLanguages": ["en"],
+			"teaches": ["sara-u", "sara-uu"],
 			"image": "/thai-script/lessons/lesson-05/images/the-flick-again-1970d86a74ed.jpg"
 		},
 		{
@@ -260,6 +275,7 @@
 			],
 			"audioLanguages": ["en", "th", "en"],
 			"thai": "มุม",
+			"teaches": ["sara-u"],
 			"image": "/thai-script/lessons/lesson-05/images/short-in-a-word-1faf64388abd.jpg"
 		},
 		{
@@ -277,7 +293,8 @@
 				"/thai-script/lessons/lesson-05/audio/53086e9233c79a8c.mp3"
 			],
 			"audioLanguages": ["en", "th", "th"],
-			"thai": "ู"
+			"thai": "ู",
+			"teaches": ["sara-u", "sara-uu"]
 		},
 		{
 			"kind": "exposition",
@@ -289,7 +306,8 @@
 			],
 			"audio": ["/thai-script/lessons/lesson-05/audio/960fa10635c28e33.mp3"],
 			"audioLanguages": ["en"],
-			"thai": "ดู"
+			"thai": "ดู",
+			"teaches": ["sara-uu"]
 		},
 		{
 			"kind": "exposition",
@@ -301,12 +319,14 @@
 				"/thai-script/lessons/lesson-05/audio/14597a4ba3a2a01d.mp3"
 			],
 			"audioLanguages": ["th", "en"],
-			"thai": "ดู"
+			"thai": "ดู",
+			"teaches": ["sara-uu"]
 		},
 		{
 			"kind": "rule",
 			"id": "low-dead-long",
-			"ruleId": "low-dead-long"
+			"ruleId": "low-dead-long",
+			"teaches": ["low-dead-long"]
 		},
 		{
 			"kind": "exposition",
@@ -325,7 +345,8 @@
 				"/thai-script/lessons/lesson-05/audio/0b26cb8adadfc3f6.mp3"
 			],
 			"audioLanguages": ["en", "th", "en", "th", "en"],
-			"image": "/thai-script/lessons/lesson-05/images/falling-ae4ce0dca51b.jpg"
+			"teaches": ["low-dead-long", "low-dead-short"],
+			"image": "/thai-script/lessons/lesson-05/images/falling-e417648dbaca.jpg"
 		},
 		{
 			"kind": "exposition",
@@ -344,6 +365,7 @@
 				"/thai-script/lessons/lesson-05/audio/aa4a6846d7883a26.mp3"
 			],
 			"audioLanguages": ["en", "th", "en", "th", "en"],
+			"teaches": ["low-dead-long"],
 			"image": "/thai-script/lessons/lesson-05/images/already-falling-7bbc973f1a31.jpg"
 		},
 		{
@@ -352,7 +374,8 @@
 			"prompt": "Two words open on the tray's letter and both end dead. One falls and one goes high. Which is which, and what is the only thing separating them?",
 			"revealSlideId": "short-or-long-answer",
 			"audio": ["/thai-script/lessons/lesson-05/audio/aad343f41a3fd800.mp3"],
-			"audioLanguages": ["en"]
+			"audioLanguages": ["en"],
+			"teaches": ["low-dead-long", "low-dead-short"]
 		},
 		{
 			"kind": "reveal",
@@ -364,7 +387,8 @@
 				"Length decides it, and the depth of the hook shows the length."
 			],
 			"audio": ["/thai-script/lessons/lesson-05/audio/e0bc7f2cdc6f8e25.mp3"],
-			"audioLanguages": ["en"]
+			"audioLanguages": ["en"],
+			"teaches": ["low-dead-long", "low-dead-short"]
 		},
 		{
 			"kind": "exposition",
@@ -396,11 +420,16 @@
 			"heading": "The opening band, finished",
 			"body": [
 				"Twelve letters, seven vowels, four tone rules.",
-				"Every room of the vowels' house is open.",
+				"Three rooms of the vowels' house are open.",
 				"You can read a word you have never seen and know its tone."
 			],
-			"audio": ["/thai-script/lessons/lesson-05/audio/537dfa44d261de8b.mp3"],
+			"audio": ["/thai-script/lessons/lesson-05/audio/af44ea6d888e56d0.mp3"],
 			"audioLanguages": ["en"]
 		}
-	]
+	],
+	"timing": {
+		"spokenSeconds": 643,
+		"practiceSeconds": 230,
+		"estimatedMinutes": 15
+	}
 }

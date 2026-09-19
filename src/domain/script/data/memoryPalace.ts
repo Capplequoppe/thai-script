@@ -8,6 +8,7 @@ import {
 	toneMarkRules,
 	toneRules,
 } from "./symbols";
+import { HOUSE_ROOMS } from "./vowelHouse";
 
 // ============================================================================
 // The memory palace, as a place a learner can walk
@@ -214,10 +215,32 @@ export interface ToneScene {
 	readonly prompt: string;
 	/** What the picture is *for*, said plainly, for the caption under it. */
 	readonly teaches: string;
+	/**
+	 * The scene told out loud, in the narrator's voice — the same register a
+	 * consonant's `narration` is written in, and rendered by the same script.
+	 *
+	 * `scene` is one sentence, which is the right length for a caption under
+	 * a picture and much too short to be a mnemonic. A learner holding these
+	 * for years needs the place, the cast, the moment and then the rule, which
+	 * is what this says and what the caption cannot. `[pause]` is the engine's
+	 * breath mark and is not read aloud.
+	 */
+	readonly narration: string;
 }
 
 export const TONE_SCENES: readonly ToneScene[] =
 	sceneData as unknown as readonly ToneScene[];
+
+/**
+ * Where a tone scene's spoken story lives.
+ *
+ * A path rather than a check that the file is there — the app cannot know
+ * that, and the component falls back on an `onError`, which is also what
+ * covers a scene whose clip has not been rendered yet.
+ */
+export function toneNarrationFor(sceneId: string): string {
+	return `palace/scenes/audio/${sceneId}.mp3`;
+}
 
 /** The id a `toneMarkRules` entry is referred to by, matching `toneExplanationFor`. */
 export function markRuleId(
@@ -235,18 +258,29 @@ export function markRuleId(
 // you have to be able to stand in a place before you can put anything there,
 // and eleven action shots never give you the empty room.
 //
-// The two maps are the same idea one level up. A learner navigating between
+// The world map is the same idea one level up. A learner navigating between
 // districts and tone places has, until now, had only a list of names and a
 // diagram — and a memory palace held as a list is a list.
+//
+// One map, not two. A second painting of the three districts shipped beside
+// it for a while and was cut: the lessons now walk a learner into the temple,
+// the market and the harbour with a story each, so a closer-zoom map of the
+// same three places was repeating a lesson, and everything on it could
+// already be clicked here.
 
-export type PlaceKind = "map" | "district" | "tone";
+/**
+ * `house` is the vowels' house itself; `room` is one room inside it. Both are
+ * establishing shots, and they differ only in what clicking them opens.
+ */
+export type PlaceKind = "map" | "district" | "tone" | "house" | "room";
 
 export interface PalacePlace {
 	readonly id: string;
 	readonly kind: PlaceKind;
 	/**
 	 * What this place stands for — a `ThaiSymbolClass` on a district, a
-	 * `ToneValue` on a tone place, absent on a map. It is what makes
+	 * `ToneValue` on a tone place, a `HouseRoom.slug` on a room, absent on a
+	 * map and on the house itself. It is what makes
 	 * `EVERY_LOCATION_HAS_AN_OVERVIEW` checkable rather than a promise.
 	 */
 	readonly for?: string;
@@ -273,8 +307,12 @@ export interface PalacePlace {
  * does not exist.
  */
 export interface MapHotspot {
-	readonly kind: "district" | "tone";
-	/** A `ThaiSymbolClass` when `kind` is district, a `ToneValue` when tone. */
+	readonly kind: "district" | "tone" | "house";
+	/**
+	 * A `ThaiSymbolClass` when `kind` is district, a `ToneValue` when tone.
+	 * The house is one building with no variants, so its region carries the
+	 * empty string and its kind is the whole of what it says.
+	 */
 	readonly for: string;
 	readonly label: string;
 	readonly x: number;
@@ -305,7 +343,17 @@ export function tonePlaceOverviewFor(tone: string): PalacePlace | undefined {
 	return PLACE_BY_KIND_AND_FOR.get(`tone:${tone}`);
 }
 
-/** A map by id — `map-world` for everywhere, `map-districts` for the consonants. */
+/** The establishing shot of the vowels' house, if one has been drawn. */
+export function housePlace(): PalacePlace | undefined {
+	return PALACE_PLACES.find((place) => place.kind === "house");
+}
+
+/** The establishing shot of one room inside the house. */
+export function roomPlaceFor(slug: string): PalacePlace | undefined {
+	return PLACE_BY_KIND_AND_FOR.get(`room:${slug}`);
+}
+
+/** A map by id. There is one: `map-world`, which reaches everywhere. */
 export function mapNamed(id: string): PalacePlace | undefined {
 	return PALACE_PLACES.find((place) => place.kind === "map" && place.id === id);
 }
@@ -326,13 +374,25 @@ export const ALL_RULE_IDS: readonly string[] = [
 // and `rooms.ts` already pair a `ROOMS_AND_DISTRICTS_ARE_DISJOINT` constant
 // with the same intent — this widens it from two vocabularies to three.
 
-const ALL_PLACE_WORDS = [...DISTRICTS, ...ROOMS, ...TONE_PLACE_NAMES];
+const ALL_PLACE_WORDS = [
+	...DISTRICTS,
+	...ROOMS,
+	...TONE_PLACE_NAMES,
+	...HOUSE_ROOMS.map((room) => room.name),
+];
 
 /**
  * No word names two different things. The failure this prevents is not a
  * crash but a slow one: a learner who has to ask "market as in the class, or
  * market as in the tone?" has lost the instant recognition the whole scheme
  * is built to buy.
+ *
+ * The house's rooms joined this list when the house went on the map, and they
+ * are the tightest fit in it — a vowel lodges in "the roof" while a syllable
+ * resolves on the "rooftop", and those are two different places one letter
+ * apart. They stay distinct because the tone place is a flat roof you stand on
+ * and the house's is the roof you write above a letter, and the map draws them
+ * far apart. A third near-miss would be worth renaming rather than defending.
  */
 export const PLACE_VOCABULARIES_ARE_DISJOINT =
 	new Set(ALL_PLACE_WORDS).size === ALL_PLACE_WORDS.length;
@@ -344,6 +404,11 @@ export const EVERY_TONE_HAS_A_PLACE = (
 
 const COVERED_RULE_IDS = TONE_SCENES.flatMap((scene) => scene.covers);
 
+/** Every scene has its story written, which is what the clips are rendered from. */
+export const EVERY_SCENE_IS_NARRATED = TONE_SCENES.every(
+	(scene) => scene.narration.trim().length > 0,
+);
+
 /** Every rule is pictured somewhere, and no rule is pictured twice. */
 export const EVERY_RULE_HAS_ONE_SCENE =
 	new Set(COVERED_RULE_IDS).size === COVERED_RULE_IDS.length &&
@@ -351,13 +416,18 @@ export const EVERY_RULE_HAS_ONE_SCENE =
 	ALL_RULE_IDS.every((id) => COVERED_RULE_IDS.includes(id));
 
 /**
- * Every district and every tone place has an establishing shot, and both maps
- * exist.
+ * Every district, every tone place and the house have an establishing shot,
+ * and the map exists.
  *
  * The same shape of promise as `EVERY_RULE_HAS_ONE_SCENE`, for the same
  * reason: a location a learner can click into and find nothing is worse than
  * one that was never on the map, because the first time they meet the hole is
  * the moment they were trying to use it.
+ *
+ * The house's rooms are deliberately absent from this. A room is drawn where a
+ * drawing earns its place and is a heading otherwise — five more establishing
+ * shots of an empty roof and an empty cellar would be five pictures of nothing
+ * happening, and `roomPlaceFor` returning undefined is the supported answer.
  */
 export const EVERY_LOCATION_HAS_AN_OVERVIEW =
 	CLASS_CAST.every(
@@ -366,8 +436,8 @@ export const EVERY_LOCATION_HAS_AN_OVERVIEW =
 	TONE_PLACES.every(
 		(place) => tonePlaceOverviewFor(place.tone) !== undefined,
 	) &&
-	mapNamed("map-world") !== undefined &&
-	mapNamed("map-districts") !== undefined;
+	housePlace() !== undefined &&
+	mapNamed("map-world") !== undefined;
 
 /**
  * An overview names the same place the structure does.
@@ -382,7 +452,11 @@ export const OVERVIEW_NAMES_MATCH_THE_STRUCTURE =
 	) &&
 	CLASS_CAST.every(
 		(entry) => districtPlaceFor(entry.classType)?.name === entry.district,
-	);
+	) &&
+	HOUSE_ROOMS.every((room) => {
+		const place = roomPlaceFor(room.slug);
+		return place === undefined || place.name === room.name;
+	});
 
 /**
  * Every hotspot points at a place that exists and sits inside its image.
@@ -400,7 +474,9 @@ export const HOTSPOTS_LAND_ON_REAL_PLACES = PALACE_PLACES.filter(
 		const target =
 			spot.kind === "district"
 				? districtPlaceFor(spot.for as ThaiSymbolClass)
-				: tonePlaceOverviewFor(spot.for);
+				: spot.kind === "house"
+					? housePlace()
+					: tonePlaceOverviewFor(spot.for);
 		const inside =
 			spot.x >= 0 &&
 			spot.y >= 0 &&
@@ -438,3 +514,21 @@ export const WORLD_MAP_REACHES_EVERY_PLACE = (() => {
 		CLASS_CAST.every((entry) => hasDistrict(entry.classType))
 	);
 })();
+
+/**
+ * The vowels' house is reachable, by a region on the map or by a card beside
+ * the districts.
+ *
+ * Separate from `WORLD_MAP_REACHES_EVERY_PLACE` because the house is not on
+ * the painting, and the reason is worth recording rather than rediscovering.
+ * Sixteen renders of a valley carrying the house alongside the eight places
+ * already on it produced none with all nine: the model draws seven or eight
+ * and drops a different one each seed, so the best render of the house had no
+ * well and the best render of the well had no house. Putting a region over a
+ * house nobody painted would teach a learner something false about the world
+ * they are memorising, which is the one thing a map here must never do.
+ *
+ * So the card is the route, and this is what fails if the card is ever taken
+ * away without the painting gaining the house first.
+ */
+export const THE_HOUSE_IS_REACHABLE = housePlace() !== undefined;

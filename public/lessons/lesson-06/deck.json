@@ -56,6 +56,7 @@
 				"/thai-script/lessons/lesson-06/audio/f34ab393d05e3871.mp3"
 			],
 			"audioLanguages": ["en", "th", "en"],
+			"teaches": ["kho-khwai"],
 			"image": "/thai-script/lessons/lesson-06/images/meet-khwaai-83d9cbccf872.jpg"
 		},
 		{
@@ -69,6 +70,7 @@
 			],
 			"audio": ["/thai-script/lessons/lesson-06/audio/5ac88cbe44b5374a.mp3"],
 			"audioLanguages": ["en"],
+			"teaches": ["kho-khwai"],
 			"image": "/thai-script/lessons/lesson-06/images/khwaai-story-1-3a6b7ccb0c06.jpg"
 		},
 		{
@@ -85,6 +87,7 @@
 				"/thai-script/lessons/lesson-06/audio/e8ce48c839722392.mp3"
 			],
 			"audioLanguages": ["en", "th"],
+			"teaches": ["kho-khwai"],
 			"image": "/thai-script/lessons/lesson-06/images/khwaai-story-2-65bb8093aa2f.jpg"
 		},
 		{
@@ -95,7 +98,8 @@
 				"A rounded bowl, the same one you have seen before.",
 				"The head curls **outward and back**, away from the bowl."
 			],
-			"thai": "ค"
+			"thai": "ค",
+			"teaches": ["kho-khwai"]
 		},
 		{
 			"kind": "exposition",
@@ -108,6 +112,7 @@
 			],
 			"audio": ["/thai-script/lessons/lesson-06/audio/fbdd4a92ce939997.mp3"],
 			"audioLanguages": ["en"],
+			"teaches": ["kho-khwai", "do-dek"],
 			"image": "/thai-script/lessons/lesson-06/images/the-pair-lesson-one-promised-140b6e820ed8.jpg"
 		},
 		{
@@ -121,6 +126,7 @@
 			],
 			"audio": ["/thai-script/lessons/lesson-06/audio/2975a3212759c2ef.mp3"],
 			"audioLanguages": ["en"],
+			"teaches": ["kho-khwai", "do-dek"],
 			"image": "/thai-script/lessons/lesson-06/images/what-it-costs-ea6453bb85a9.jpg"
 		},
 		{
@@ -134,7 +140,8 @@
 			],
 			"audio": ["/thai-script/lessons/lesson-06/audio/13d25508ca573776.mp3"],
 			"audioLanguages": ["en"],
-			"thai": "ค"
+			"thai": "ค",
+			"teaches": ["kho-khwai", "do-dek"]
 		},
 		{
 			"kind": "retrieval",
@@ -142,7 +149,8 @@
 			"prompt": "The child's letter and the buffalo's letter are the same bowl. Name the difference, and say what it costs you to get it wrong.",
 			"revealSlideId": "which-way-round-answer",
 			"audio": ["/thai-script/lessons/lesson-06/audio/e9f3b66cd73fbed3.mp3"],
-			"audioLanguages": ["en"]
+			"audioLanguages": ["en"],
+			"teaches": ["kho-khwai", "do-dek"]
 		},
 		{
 			"kind": "reveal",
@@ -154,7 +162,8 @@
 				"Mid class becomes low class, and the tone follows."
 			],
 			"audio": ["/thai-script/lessons/lesson-06/audio/bfd6a06144a72a31.mp3"],
-			"audioLanguages": ["en"]
+			"audioLanguages": ["en"],
+			"teaches": ["kho-khwai", "do-dek"]
 		},
 		{
 			"kind": "exposition",
@@ -167,6 +176,7 @@
 			],
 			"audio": ["/thai-script/lessons/lesson-06/audio/c277bf19054b39df.mp3"],
 			"audioLanguages": ["en"],
+			"teaches": ["sara-ue", "sara-uee"],
 			"image": "/thai-script/lessons/lesson-06/images/back-upstairs-9cc652e5140c.jpg"
 		},
 		{
@@ -184,6 +194,7 @@
 				"/thai-script/lessons/lesson-06/audio/2a37a614727bbbe5.mp3"
 			],
 			"audioLanguages": ["en", "th", "en"],
+			"teaches": ["sara-uee", "sara-ue"],
 			"image": "/thai-script/lessons/lesson-06/images/meet-uen-27a1e2c5a712.jpg"
 		},
 		{
@@ -197,6 +208,7 @@
 			],
 			"audio": ["/thai-script/lessons/lesson-06/audio/7d1fdcd3448b6d93.mp3"],
 			"audioLanguages": ["en"],
+			"teaches": ["sara-ue", "sara-uee"],
 			"image": "/thai-script/lessons/lesson-06/images/the-swedish-shortcut-3b618b8c277c.jpg"
 		},
 		{
@@ -210,6 +222,7 @@
 			],
 			"audio": ["/thai-script/lessons/lesson-06/audio/34549fec59d13b37.mp3"],
 			"audioLanguages": ["en"],
+			"teaches": ["sara-ue", "sara-uee"],
 			"image": "/thai-script/lessons/lesson-06/images/the-grin-pair-1cac749f4715.jpg"
 		},
 		{
@@ -228,6 +241,7 @@
 			],
 			"audioLanguages": ["en", "th", "en"],
 			"thai": "นึก",
+			"teaches": ["sara-ue"],
 			"image": "/thai-script/lessons/lesson-06/images/short-grin-word-f16fe4ff6742.jpg"
 		},
 		{
@@ -245,7 +259,8 @@
 				"/thai-script/lessons/lesson-06/audio/ffdaae06685ed3a0.mp3"
 			],
 			"audioLanguages": ["en", "th", "th"],
-			"thai": "ื"
+			"thai": "ื",
+			"teaches": ["sara-ue", "sara-uee"]
 		},
 		{
 			"kind": "exposition",
@@ -274,7 +289,8 @@
 		{
 			"kind": "rule",
 			"id": "sara-uee-placeholder",
-			"ruleId": "sara-uee-placeholder"
+			"ruleId": "sara-uee-placeholder",
+			"teaches": ["sara-uee"]
 		},
 		{
 			"kind": "exposition",
@@ -291,6 +307,7 @@
 				"/thai-script/lessons/lesson-06/audio/dc28c794deb3f04a.mp3"
 			],
 			"audioLanguages": ["en", "th", "en"],
+			"teaches": ["sara-uee"],
 			"image": "/thai-script/lessons/lesson-06/images/the-prop-f657964ee6dd.jpg"
 		},
 		{
@@ -308,7 +325,8 @@
 				"/thai-script/lessons/lesson-06/audio/946361802ac3dc21.mp3"
 			],
 			"audioLanguages": ["en", "th", "en"],
-			"thai": "คือ"
+			"thai": "คือ",
+			"teaches": ["sara-uee"]
 		},
 		{
 			"kind": "retrieval",
@@ -316,7 +334,8 @@
 			"prompt": "Of a syllable reading khuue, one reading khuuen and one reading muue, one needs no prop. Which, and why?",
 			"revealSlideId": "seat-or-no-seat-answer",
 			"audio": ["/thai-script/lessons/lesson-06/audio/8f5c2cecde530e9f.mp3"],
-			"audioLanguages": ["en"]
+			"audioLanguages": ["en"],
+			"teaches": ["sara-uee"]
 		},
 		{
 			"kind": "reveal",
@@ -328,7 +347,8 @@
 				"Read what stands behind the vowel, and the spelling follows from it."
 			],
 			"audio": ["/thai-script/lessons/lesson-06/audio/45b670da43871829.mp3"],
-			"audioLanguages": ["en"]
+			"audioLanguages": ["en"],
+			"teaches": ["sara-uee"]
 		},
 		{
 			"kind": "exposition",
@@ -367,5 +387,10 @@
 			"audio": ["/thai-script/lessons/lesson-06/audio/56655144820d3cea.mp3"],
 			"audioLanguages": ["en"]
 		}
-	]
+	],
+	"timing": {
+		"spokenSeconds": 631,
+		"practiceSeconds": 218,
+		"estimatedMinutes": 14
+	}
 }

@@ -13,6 +13,7 @@ import type { ApprenticeService } from "../../shared/services/ApprenticeService"
 import { reconcileGeneratedCards } from "../../shared/services/reconcileCards";
 import { VocabCard } from "../entities/VocabCard";
 import type { VocabEntry, VocabLessonSummary, VocabularyCard } from "../types";
+import { CORPUS_MARK_ID } from "./toneExplanation";
 import { generateVocabCards } from "./VocabCardGenerator";
 
 const BATCH_SIZE = 5;
@@ -108,16 +109,15 @@ export class VocabularyService {
 			}
 		}
 
-		const markNameMap: Record<string, string> = {
-			"mai ek": "mayek",
-			"mai tho": "maytho",
-			"mai tri": "maytri",
-			"mai chattawa": "mayjattawa",
-		};
-
+		// `CORPUS_MARK_ID` rather than a copy of it kept here. The corpus and
+		// the lessons spell these four marks differently — `mayjattawa` against
+		// `mai chattawa` — and this map used to be retyped by hand, which made
+		// a silent failure available: `isWordMastered` asks whether every id in
+		// an entry's `toneRules` is in this set, so one spelling drifting apart
+		// would mean the word is never unlocked, with no error anywhere.
 		for (const rule of toneMarkRules) {
 			if (completedLessons.has(rule.lesson)) {
-				const markId = markNameMap[rule.toneMarkName];
+				const markId = CORPUS_MARK_ID[rule.toneMarkName];
 				if (markId) {
 					rules.add(`${rule.consonantClass}-${markId}`);
 				}

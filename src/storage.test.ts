@@ -4,6 +4,7 @@ import { INITIAL_LEARNER_STATE } from "./domain/shared/types";
 import { LAPSE_RECOVERY_INTERVAL_MINUTES } from "./domain/srs/value-objects/SrsSchedule";
 import {
 	InMemoryStorage,
+	LESSON_IDENTITY_EPOCH,
 	migrateState,
 } from "./infrastructure/persistence/Storage";
 
@@ -67,10 +68,18 @@ describe("InMemoryStorage exportData/importData", () => {
 	});
 
 	it("importData merges with existing state", () => {
-		storage.save({ ...INITIAL_LEARNER_STATE, completedLessons: [1] });
+		// Both sides are stamped as already converted: this is about the union,
+		// and an unstamped state would be taken for legacy numbers and moved
+		// onto positions on the way through.
+		storage.save({
+			...INITIAL_LEARNER_STATE,
+			completedLessons: [1],
+			lessonEpoch: LESSON_IDENTITY_EPOCH,
+		});
 		const incoming: LearnerState = {
 			...INITIAL_LEARNER_STATE,
 			completedLessons: [2, 3],
+			lessonEpoch: LESSON_IDENTITY_EPOCH,
 		};
 		storage.importData(JSON.stringify(incoming));
 		const loaded = storage.load();

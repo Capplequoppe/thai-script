@@ -199,7 +199,25 @@ export interface LearnerState {
 	 */
 	reviewBatchSize?: number;
 	pendingCatchUps?: PendingCatchUp[];
+	/**
+	 * Which identity space the lesson stores above are written in.
+	 *
+	 * Absent means the legacy space — every state written before the sequence
+	 * first changed shape. `migrateLessonIdentity` converts those once and
+	 * stamps this, which is what stops a second load converting an
+	 * already-converted state again. See `LESSON_IDENTITY_EPOCH`.
+	 */
+	lessonEpoch?: number;
 }
+
+/**
+ * The identity space lesson numbers are written in today.
+ *
+ * Stamped on every state this app writes. Absent means the legacy space — a
+ * blob written before the sequence first changed shape — which is the one and
+ * only signal `migrateLessonIdentity` has that a conversion is owed.
+ */
+export const LESSON_IDENTITY_EPOCH = 1;
 
 export const INITIAL_LEARNER_STATE: LearnerState = {
 	completedLessons: [],
@@ -210,4 +228,5 @@ export const INITIAL_LEARNER_STATE: LearnerState = {
 	sentenceCards: {},
 	sessionHistory: [],
 	achievements: [],
+	lessonEpoch: LESSON_IDENTITY_EPOCH,
 };

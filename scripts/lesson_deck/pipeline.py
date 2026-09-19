@@ -32,7 +32,7 @@ import hashlib
 import json
 import re
 from dataclasses import dataclass, field
-from pathlib import Path
+from pathlib import Path, PurePosixPath
 from collections.abc import Callable, Iterable
 from typing import Any
 
@@ -47,6 +47,7 @@ from .manifest import (
 	verification_from_json,
 )
 from .script_parser import LessonScript, Segment, Slide
+from .timing import Timing, TimingUnavailable, measure
 from .vendor import (
 	Redactor,
 	Vendor,
@@ -721,11 +722,51 @@ class DeckGenerator:
 	# -- the deck ----------------------------------------------------------
 
 	def _deck_json(self) -> dict[str, Any]:
-		return {
+		deck: dict[str, Any] = {
 			"lessonId": self.paths.lesson_id,
 			"title": self.script.title,
 			"slides": [self._slide_json(slide) for slide in self.script.slides],
 		}
+		# How long this will take, so the learner is told before they start
+		# rather than finding out. Measured from the clips themselves; absent
+		# when they cannot be probed, because a wrong number here costs more
+		# than a missing one. See `timing.py` for the practice model.
+		timing = self._timing()
+		if timing is not None:
+			deck["timing"] = timing.as_json()
+		# Thai the script shows without teaching, declared as `previews:` in its
+		# comment block. The band tests accept a declared word in place of a
+		# `vocabulary.json` entry, so this is what lets a lesson put a whole
+		# sentence on screen before the learner can read a letter of it. Absent
+		# when nothing is declared, so a deck that previews nothing carries no
+		# key rather than an empty one.
+		if self.script.teaching_words:
+			deck["teachingWords"] = [
+				{"thai": word.thai, "reason": word.reason}
+				for word in self.script.teaching_words
+			]
+		return deck
+
+	def _timing(self) -> Timing | None:
+		"""This deck's measured length, or None if it could not be measured."""
+		clips: list[Path] = []
+		for slide in self.script.slides:
+			for segment in slide.segments:
+				asset = self.manifest.by_key(segment.key)
+				if asset and asset.path:
+					# `asset.path` is the public URL the app fetches. The file
+					# on disk is the same basename inside this lesson's own
+					# audio directory, and it goes back through `resolve` so
+					# the containment check still applies.
+					name = PurePosixPath(asset.path).name
+					clips.append(self.paths.resolve(f"audio/{name}"))
+		if not clips:
+			return None
+		retrievals = sum(1 for s in self.script.slides if s.kind == "retrieval")
+		try:
+			return measure(clips, len(self.script.slides), retrievals)
+		except TimingUnavailable:
+			return None
 
 	def _slide_json(self, slide: Slide) -> dict[str, Any]:
 		body: dict[str, Any] = {"kind": slide.kind, "id": slide.id}
@@ -749,15 +790,26 @@ class DeckGenerator:
 			for segment in slide.segments
 			if (asset := self.manifest.by_key(segment.key)) and asset.path
 		]
-		if played:
-			body["audio"] = [asset.path for _, asset in played]
+		# A reveal slide holds its audio back until the learner presses the
+		# button, which is right for the answer and wrong for everything the
+		# teacher wants to say first. `narration-before:` lines are split out
+		# here so the player can speak them on arrival and keep the rest for
+		# the reveal.
+		before = [(s, a) for s, a in played if s.before_reveal]
+		after = [(s, a) for s, a in played if not s.before_reveal]
+
+		if before:
+			body["audioBefore"] = [asset.path for _, asset in before]
+			body["audioBeforeLanguages"] = [s.language for s, _ in before]
+		if after:
+			body["audio"] = [asset.path for _, asset in after]
 			# Which clip is which language, so the player can tell a language
 			# change from a sentence break. A pause belongs at the first and
 			# not at the second: crossing from the English voice to the Thai
 			# one is a teacher pausing before saying the word, while a pause
 			# between two English clips lands in the middle of one person's
 			# continuous prose and is heard as the end of a thought.
-			body["audioLanguages"] = [segment.language for segment, _ in played]
+			body["audioLanguages"] = [segment.language for segment, _ in after]
 		# Thai to be *read*, set large in the app's own font.
 		#
 		# Distinct from `glyph:`, which the image compositor burns into a
@@ -769,6 +821,34 @@ class DeckGenerator:
 		reading = slide.fields.get("thai")
 		if reading:
 			body["thai"] = reading
+		# What this slide is the story of — a consonant's glyph, a vowel's
+		# written form, a tone rule's id — whitespace-separated, and usually
+		# one thing.
+		#
+		# The palace reads it. A learner who opens ก in the market has met the
+		# chicken once, in a lesson they finished weeks ago, and until this
+		# existed there was no way back to it: the decks carried no per-slide
+		# reference to what they taught, so the only offer the palace could
+		# make was the whole lesson from its first slide.
+		#
+		# Authored rather than derived from the prose. A slide that mentions ก
+		# while teaching ข is common and would be indistinguishable to any
+		# scan, and a story viewer that opens on the wrong letter's story is
+		# worse than one that opens on nothing.
+		#
+		# Slugs, not glyphs: a consonant's scene id (`ko-kai`), a vowel's name
+		# kebab-cased (`sara-aa`), a tone rule's id (`low-live`). Glyphs were
+		# the obvious choice and are the wrong one — `อ` is both a consonant
+		# and a vowel and the two would be one tag, four of the roof vowels
+		# are stored with a leading placeholder space, and `อ (as vowel)`
+		# carries an English gloss. Slugs have none of that and read better in
+		# the markdown besides.
+		#
+		# Comma-separated, so a tag that ever does carry a space survives.
+		teaches = slide.fields.get("teaches")
+		if teaches:
+			subjects = [part.strip() for part in teaches.split(",")]
+			body["teaches"] = [subject for subject in subjects if subject]
 		image = self.manifest.by_key(f"{slide.id}-image")
 		if image and image.path:
 			body["image"] = image.path

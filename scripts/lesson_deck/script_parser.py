@@ -52,6 +52,18 @@ _BULLET = re.compile(r"^-\s+(?P<text>.+)$")
 _NARRATION = re.compile(r"^(?P<lang>en|th)\s+(?P<text>.+)$")
 _THAI = re.compile(r"[\u0e00-\u0e7f]")
 
+#: A `previews:` line inside the leading comment block, which is where a script
+#: declares Thai it shows without teaching. The tests read the same line for its
+#: glyphs; this reads it for whole words, so one declaration serves both and
+#: neither can drift from the other. The reason is mandatory — a bare glyph list
+#: would make `previews:` a blanket exemption, which is exactly what the band
+#: tests refuse.
+_PREVIEWS = re.compile(r"^previews:\s*(?P<subject>.+?)\s+[—-]\s+(?P<reason>.+)$")
+#: Runs of two or more Thai characters: a word, rather than a single glyph.
+#: Single glyphs are already covered by the per-character declaration, so only
+#: words need carrying into the deck.
+_THAI_WORD = re.compile(r"[\u0e00-\u0e7f]{2,}")
+
 
 class ScriptError(ValueError):
 	"""A lesson script that cannot be turned into a deck. Carries the line."""
@@ -82,6 +94,19 @@ class Segment:
 	#: from a clip that is already there beats teaching a wrong tone, and beats
 	#: paying a vendor for a word we already own.
 	recording: Path | None = None
+	#: Spoken when the slide appears rather than when its answer is revealed.
+	#:
+	#: Only meaningful on a reveal slide. Everything on one of those waited for
+	#: the "Show Answer" button, which is right for the answer itself — hearing
+	#: it on arrival would settle the question the learner is supposed to be
+	#: reaching for — and wrong for everything else. The teacher needs to be
+	#: able to set the question up, tell the learner what the screen is for, or
+	#: ask them to commit out loud, all of which have to be heard *before* the
+	#: button is pressed.
+	#:
+	#: Written `narration-before:` in the script. Absent everywhere else, so a
+	#: deck authored before this exists behaves exactly as it did.
+	before_reveal: bool = False
 
 
 @dataclass
@@ -93,12 +118,26 @@ class Slide:
 	segments: list[Segment] = field(default_factory=list)
 
 
+@dataclass(frozen=True)
+class TeachingWord:
+	"""Thai a script shows without teaching, and the reason it is allowed to.
+
+	Declared as `previews: <thai> — <why>` in the leading comment block and
+	carried into `deck.json`, where the band tests accept it in place of a
+	`vocabulary.json` entry. An empty reason does not count.
+	"""
+
+	thai: str
+	reason: str
+
+
 @dataclass
 class LessonScript:
 	lesson_id: str
 	title: str
 	slides: list[Slide]
 	source: Path
+	teaching_words: list[TeachingWord] = field(default_factory=list)
 
 	@property
 	def segments(self) -> list[Segment]:
@@ -112,11 +151,39 @@ def parse_script(path: Path) -> LessonScript:
 	slides: list[Slide] = []
 	current: Slide | None = None
 	in_comment = False
+	teaching: list[TeachingWord] = []
+	#: The `previews:` reason runs on until a blank line, so its continuation
+	#: lines are gathered here rather than truncating the reason at line one.
+	pending: tuple[list[str], list[str]] | None = None
+
+	def close_previews() -> None:
+		nonlocal pending
+		if pending is None:
+			return
+		words, reason_parts = pending
+		reason = " ".join(reason_parts).strip()
+		if reason:
+			teaching.extend(TeachingWord(thai=w, reason=reason) for w in words)
+		pending = None
 
 	for number, raw in enumerate(lines, start=1):
 		line = raw.rstrip()
 		if in_comment:
-			in_comment = "-->" not in line
+			if not line.strip():
+				close_previews()
+			elif pending is not None:
+				pending[1].append(line.strip())
+			else:
+				declaration = _PREVIEWS.match(line.strip())
+				if declaration:
+					pending = (
+						_THAI_WORD.findall(declaration.group("subject")),
+						[declaration.group("reason")],
+					)
+			if "-->" not in line:
+				continue
+			close_previews()
+			in_comment = False
 			continue
 		if line.startswith("<!--"):
 			in_comment = "-->" not in line
@@ -168,6 +235,21 @@ def parse_script(path: Path) -> LessonScript:
 				_parse_narration(current, value, path, number),
 			)
 			continue
+		# Spoken on arrival rather than on reveal. Only a reveal slide holds
+		# anything back, so anywhere else this would be an author expecting a
+		# distinction the player does not make.
+		if key == "narration-before":
+			if current.kind != "reveal":
+				raise ScriptError(
+					f"{path}:{number}: `narration-before:` only means something "
+					f"on a reveal slide, and this is a {current.kind} slide. "
+					"Every other kind plays its narration on arrival already, "
+					"so use `narration:`."
+				)
+			current.segments.append(
+				_parse_narration(current, value, path, number, before_reveal=True),
+			)
+			continue
 		if key in current.fields:
 			raise ScriptError(f"{path}:{number}: field {key!r} is already set")
 		current.fields[key] = value
@@ -183,7 +265,13 @@ def parse_script(path: Path) -> LessonScript:
 		slide.segments = _merge_runs(slide)
 
 	_check_slides(slides, path)
-	return LessonScript(lesson_id=lesson_id, title=title, slides=slides, source=path)
+	return LessonScript(
+		lesson_id=lesson_id,
+		title=title,
+		slides=slides,
+		source=path,
+		teaching_words=teaching,
+	)
 
 
 #: How much English one call may carry, in words.
@@ -263,9 +351,15 @@ def _merge_runs(slide: Slide) -> list[Segment]:
 	buffer: list[str] = []
 	buffered_words = 0
 	buffered_sources: list[int] = []
+	# Whether the line currently in the buffer is one of the reveal slide's
+	# before-the-button lines. A buffer only ever holds one authored line —
+	# every line flushes at its own end, see below — so one flag is enough,
+	# and a `narration-before:` can never be packed together with a
+	# `narration:` even if both would fit under the cap.
+	buffered_before = False
 
 	def flush() -> None:
-		nonlocal buffer, buffered_words, buffered_sources
+		nonlocal buffer, buffered_words, buffered_sources, buffered_before
 		if buffer:
 			# Joined with a blank line, not a space: each piece was its own
 			# thought, and a paragraph break is the only pause control the
@@ -273,10 +367,12 @@ def _merge_runs(slide: Slide) -> list[Segment]:
 			packed.append(Segment(
 				key="", language="en", text="\n\n".join(buffer),
 				sources=tuple(dict.fromkeys(buffered_sources)),
+				before_reveal=buffered_before,
 			))
 			buffer = []
 			buffered_words = 0
 			buffered_sources = []
+			buffered_before = False
 
 	for source, segment in enumerate(slide.segments):
 		if segment.language != "en":
@@ -290,6 +386,7 @@ def _merge_runs(slide: Slide) -> list[Segment]:
 			buffer.append(sentence)
 			buffered_words += words
 			buffered_sources.append(source)
+			buffered_before = segment.before_reveal
 		# One authored line never shares a clip with the next. Packing used to
 		# run straight through the boundary, which produced a mapping nobody
 		# could hold in their head: five lines became six clips, one line fed
@@ -315,7 +412,13 @@ def _merge_runs(slide: Slide) -> list[Segment]:
 	]
 
 
-def _parse_narration(slide: Slide, value: str, path: Path, number: int) -> Segment:
+def _parse_narration(
+	slide: Slide,
+	value: str,
+	path: Path,
+	number: int,
+	before_reveal: bool = False,
+) -> Segment:
 	matched = _NARRATION.match(value)
 	if not matched:
 		raise ScriptError(
@@ -337,6 +440,7 @@ def _parse_narration(slide: Slide, value: str, path: Path, number: int) -> Segme
 		key=f"{slide.id}-{len(slide.segments)}",
 		language=language,
 		text=text,
+		before_reveal=before_reveal,
 	)
 
 

@@ -1,13 +1,15 @@
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useMemo } from "react";
 import { useNavigate } from "react-router";
 import { consonantNarrationFor } from "../../../domain/script/data/consonantScenes";
 import { lessonEntryByNumber } from "../../../domain/script/data/lessonSequence";
+import { storyForConsonant } from "../../../domain/script/data/slideTags";
 import {
 	consonants,
 	lessons,
 	type ThaiSymbolClass,
 } from "../../../domain/script/data/symbols";
 import type { ConsonantSummary } from "../../../domain/script/services/ScriptLessonService";
+import { useClipSequence } from "../../hooks/useClipSequence";
 import {
 	Dialog,
 	DialogContent,
@@ -56,68 +58,22 @@ function lessonFor(character: string): {
 	return { position: entry.position, title: meta?.title ?? entry.id };
 }
 
-/**
- * Plays the native name, then the English explanation.
- *
- * Two clips rather than one recording, because they come from different mouths
- * for a reason: the name is Thai and is spoken by the native voice the course
- * already ships, and the explanation is English and is spoken by the narrator.
- * Merging them offline would mean regenerating both whenever either changed,
- * and would put an English-accented Thai name one careless edit away.
- *
- * Deliberately not `DeckSlide`'s `playSequence`: that carries playback rate and
- * per-language gaps a slide needs and this does not, and it is not exported.
- * Two clips and a stop button is less code than the seam would be.
- */
-function useClipSequence(urls: readonly string[]) {
-	const [playing, setPlaying] = useState(false);
-	const audioRef = useRef<HTMLAudioElement | null>(null);
-
-	const stop = useCallback(() => {
-		audioRef.current?.pause();
-		audioRef.current = null;
-		setPlaying(false);
-	}, []);
-
-	// Closing the dialog mid-sentence must not leave a voice talking to an
-	// empty screen.
-	useEffect(() => stop, [stop]);
-
-	const play = useCallback(() => {
-		if (urls.length === 0) return;
-		stop();
-		setPlaying(true);
-
-		let index = 0;
-		const next = (): void => {
-			const url = urls[index];
-			if (url === undefined) {
-				setPlaying(false);
-				audioRef.current = null;
-				return;
-			}
-			index += 1;
-			const audio = new Audio(url);
-			audioRef.current = audio;
-			audio.addEventListener("ended", next);
-			// A missing clip is not a reason to swallow the rest: ฃ and ฅ have no
-			// native recording at all, so the English half still plays.
-			audio.addEventListener("error", next);
-			void audio.play?.()?.catch?.(() => next());
-		};
-		next();
-	}, [urls, stop]);
-
-	return { playing, play, stop };
-}
-
 export function ConsonantDetailDialog({
 	summary,
 	onClose,
+	onWatchStory,
 }: {
 	/** The letter to show, or null when nothing is open. */
 	summary: ConsonantSummary | null;
 	onClose: () => void;
+	/**
+	 * Asked for this letter's story from the lesson that tells it.
+	 *
+	 * Raised rather than opened here: the story is itself a dialog, and two
+	 * stacked modals on a phone is a thing you cannot reliably get out of. The
+	 * page closes this one and opens that one in its place.
+	 */
+	onWatchStory?: (character: string) => void;
 }) {
 	const navigate = useNavigate();
 	const lesson = summary ? lessonFor(summary.character) : null;
@@ -125,6 +81,7 @@ export function ConsonantDetailDialog({
 	// The native name first, then the explanation — in that order because the
 	// explanation refers to a sound the learner should have just heard.
 	const base = import.meta.env.BASE_URL;
+	const story = summary ? storyForConsonant(summary.character) : undefined;
 	const nativeName = summary?.audioUrl;
 	const narration = summary
 		? consonantNarrationFor(summary.character)
@@ -175,6 +132,23 @@ export function ConsonantDetailDialog({
 						)}
 
 						<ConsonantCard c={summary} />
+
+						{onWatchStory && story && (
+							<button
+								type="button"
+								onClick={() => onWatchStory(summary.character)}
+								className="w-full py-2.5 px-4 rounded-lg text-sm font-medium text-left"
+								style={{
+									background:
+										"color-mix(in srgb, var(--color-accent) 12%, var(--color-surface))",
+									color: "var(--color-accent)",
+									border:
+										"1px solid color-mix(in srgb, var(--color-accent) 30%, transparent)",
+								}}
+							>
+								Watch this letter&rsquo;s story &rarr;
+							</button>
+						)}
 
 						{lesson && (
 							<button

@@ -107,13 +107,43 @@ export interface ToneExplanation {
 	readonly disagreesWithStored: boolean;
 }
 
-/** The corpus's `toneMark` ids to the names `toneMarkRules` and the lessons use. */
+/**
+ * The corpus's `toneMark` ids to the names `toneMarkRules` and the lessons use.
+ *
+ * Two dialects exist because two things mint them independently and neither
+ * knows about the other. `scripts/enrich-vocabulary.py` writes the corpus
+ * spelling into every entry's `toneRules` straight from the Unicode codepoint;
+ * `markRuleId` in `memoryPalace.ts` builds the palace spelling out of
+ * `toneMarkRules`' own `toneMarkName`.
+ *
+ * `mayjattawa` against `mai chattawa` is the one that would catch somebody
+ * out: it is a different romanisation rather than a hyphenation, so a regex
+ * that strips hyphens still misses it.
+ */
 export const MARK_LABEL: Record<string, string> = {
 	mayek: "mai ek",
 	maytho: "mai tho",
 	maytri: "mai tri",
 	mayjattawa: "mai chattawa",
 };
+
+/**
+ * The same mapping the other way, derived rather than retyped.
+ *
+ * `VocabularyLessonService` kept its own hand-written copy of this, and the
+ * failure that would have caused is the quietest one in the codebase:
+ * `isWordMastered` asks whether every id in an entry's `toneRules` is in the
+ * learner's mastered set, and a single spelling that disagreed would mean the
+ * word is **never unlocked** — no error, no warning, nothing in a log. The
+ * symptom a learner reports is "my vocabulary has stopped growing", weeks
+ * later, with nothing to point at.
+ *
+ * Both tables agreed exactly when this was written. Deriving one from the
+ * other is what keeps that true without anybody having to remember.
+ */
+export const CORPUS_MARK_ID: Record<string, string> = Object.fromEntries(
+	Object.entries(MARK_LABEL).map(([corpus, palace]) => [palace, corpus]),
+);
 
 /**
  * The rule that explains one syllable's tone, or `undefined` when the tables

@@ -4,7 +4,15 @@ import {
 	RETIRED_LESSONS,
 } from "../../domain/script/data/lessonSequence";
 import type { LearnerState, SrsCard } from "../../domain/shared/types";
-import { INITIAL_LEARNER_STATE } from "../../domain/shared/types";
+import {
+	INITIAL_LEARNER_STATE,
+	LESSON_IDENTITY_EPOCH,
+} from "../../domain/shared/types";
+
+// Re-exported so callers that already reach for the storage layer do not
+// need a second import path for the stamp it writes.
+export { LESSON_IDENTITY_EPOCH };
+
 import { LAPSE_RECOVERY_INTERVAL_MINUTES } from "../../domain/srs/value-objects/SrsSchedule";
 import { mergeLearnerStates } from "./MergeService";
 import { validateLearnerStateDetailed } from "./Validation";
@@ -69,13 +77,13 @@ const NO_LESSON = 0;
  * legacy space; every runtime join against them now routes through
  * `lessonSequence` too, so all five convert together or not at all.
  *
- * Under the sequence as declared today the mapping is the identity, so a
- * pre-migration blob re-serialises byte-identically — nothing a learner has
- * is moved. The machinery is what this task ships: a resequence changes only
- * the declaration. NOTE for the first *non-identity* resequence (phase 4):
- * an already-converted state is indistinguishable from a legacy one without
- * a marker, so that change must introduce a persisted epoch field (absent =
- * legacy space) before it ships, or a second load would double-convert.
+ * The mapping was the identity until `lesson-loops` was inserted ahead of the
+ * course, and is not any more: every legacy number now resolves one position
+ * further along. That is the non-identity resequence this function's earlier
+ * NOTE anticipated, and it shipped with what the NOTE asked for — {@link
+ * LESSON_IDENTITY_EPOCH}, a persisted marker (absent = legacy space) without
+ * which a second load would read the converted positions as legacy numbers and
+ * convert them again, walking a learner forward on every load.
  *
  * Every reference is resolved before anything is written: a state carrying
  * only some convertible stores is reported via {@link LessonIdentityMigrationError}
@@ -85,6 +93,11 @@ export function migrateLessonIdentity(
 	state: LearnerState,
 	sequence: readonly LessonSequenceEntry[] = lessonSequence,
 ): void {
+	// Already converted. Doing this twice would read each position as though
+	// it were a legacy number and convert it again, walking a learner's
+	// progress forward by one lesson on every load.
+	if (state.lessonEpoch === LESSON_IDENTITY_EPOCH) return;
+
 	const positionByLegacy = new Map<number, number>();
 	for (const entry of sequence) {
 		positionByLegacy.set(entry.legacyNumber, entry.position);
@@ -161,6 +174,28 @@ export function migrateLessonIdentity(
 			([lessonNumber, cardIds]) => ({ lessonNumber, cardIds }),
 		);
 	}
+
+	// A lesson inserted ahead of work a learner has already done is work they
+	// have already done. `lesson-loops` was the first seven slides of lesson 1
+	// until it was split out, so anybody who completed lesson 1 was taught its
+	// content; and `startLesson` refuses to begin anything while an earlier
+	// position is incomplete, so without this they would be locked out of the
+	// course they are halfway through. Credit is given only to a learner who
+	// had actually started: a fresh state has nothing to preserve and should
+	// meet the lesson normally.
+	if (state.completedLessons.length > 0) {
+		const taughtBefore = sequence.find(
+			(entry) => entry.id === "lesson-loops",
+		)?.position;
+		if (
+			taughtBefore !== undefined &&
+			!state.completedLessons.includes(taughtBefore)
+		) {
+			state.completedLessons = [taughtBefore, ...state.completedLessons];
+		}
+	}
+
+	state.lessonEpoch = LESSON_IDENTITY_EPOCH;
 }
 
 /**

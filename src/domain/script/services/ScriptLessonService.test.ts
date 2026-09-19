@@ -11,8 +11,37 @@ import {
 } from "../../shared/services/ApprenticeService";
 import type { SrsData } from "../../shared/types";
 import { RecallRating } from "../../srs/value-objects/RecallRating";
-import { lessonSequence } from "../data/lessonSequence";
+import { lessonEntryByNumber, lessonSequence } from "../data/lessonSequence";
+
+/**
+ * The position of the lesson `symbols.ts` files under this number.
+ *
+ * These tests mean "the lesson that teaches ม", not "position 1" — the two
+ * were the same integer until a lesson was inserted ahead of them. Resolved
+ * through the sequence so they stay correct across a resequence.
+ */
+const at = (legacyNumber: number): number =>
+	lessonEntryByNumber(legacyNumber)?.position ?? legacyNumber;
+
 import { LearningService } from "./ScriptLessonService";
+
+/**
+ * Marks every position ahead of `position` complete, straight into the state.
+ *
+ * `startLesson` refuses a lesson whose predecessors are incomplete, and most
+ * of these tests are about the lesson they name rather than about that rule.
+ * Written to the state rather than played so it creates no cards.
+ */
+const unblock = (storage: InMemoryStorage, position: number): void => {
+	const state = storage.load();
+	state.completedLessons = [
+		...new Set([
+			...state.completedLessons,
+			...Array.from({ length: position - 1 }, (_, i) => i + 1),
+		]),
+	];
+	storage.save(state);
+};
 
 describe("LearningService", () => {
 	let service: LearningService;
@@ -29,63 +58,71 @@ describe("LearningService", () => {
 
 	describe("startLesson", () => {
 		it("starts lesson 1 and generates cards", () => {
-			const lesson = service.startLesson(1);
+			unblock(storage, at(1));
+			const lesson = service.startLesson(at(1));
 			expect(lesson).not.toBeNull();
-			expect(lesson?.lessonNumber).toBe(1);
+			expect(lesson?.lessonNumber).toBe(at(1));
 			expect(lesson?.cards.length).toBeGreaterThan(0);
 		});
 
 		it("persists cards to storage", () => {
-			service.startLesson(1);
+			unblock(storage, at(1));
+			service.startLesson(at(1));
 			const state = storage.load();
 			expect(Object.keys(state.cards).length).toBeGreaterThan(0);
 		});
 
 		it("sets currentLesson in state", () => {
-			service.startLesson(1);
+			unblock(storage, at(1));
+			service.startLesson(at(1));
 			const state = storage.load();
-			expect(state.currentLesson).toBe(1);
+			expect(state.currentLesson).toBe(at(1));
 		});
 
 		it("throws if lesson is already completed", () => {
-			service.startLesson(1);
-			service.completeLesson(1);
-			expect(() => service.startLesson(1)).toThrow();
+			unblock(storage, at(1));
+			service.startLesson(at(1));
+			service.completeLesson(at(1));
+			expect(() => service.startLesson(at(1))).toThrow();
 		});
 
 		it("requires sequential lessons (cannot skip)", () => {
-			expect(() => service.startLesson(3)).toThrow();
+			expect(() => service.startLesson(at(3))).toThrow();
 		});
 
 		it("refuses a lesson with an incomplete predecessor, naming that predecessor", () => {
-			service.startLesson(1);
-			service.completeLesson(1);
+			unblock(storage, at(1));
+			service.startLesson(at(1));
+			service.completeLesson(at(1));
 
-			// Prerequisites come from the declared order: with only lesson 1
-			// done, the first incomplete predecessor of lesson 4 is lesson 2.
-			expect(() => service.startLesson(4)).toThrow(
-				"Must complete lesson 2 before starting lesson 4",
+			// Prerequisites come from the declared order: with everything up to
+			// the harbour lesson done, the first incomplete predecessor of the
+			// fourth teaching lesson is the second one.
+			expect(() => service.startLesson(at(4))).toThrow(
+				`Must complete lesson ${at(2)} before starting lesson ${at(4)}`,
 			);
 		});
 	});
 
 	describe("completeLesson", () => {
 		it("marks lesson as completed", () => {
-			service.startLesson(1);
-			service.completeLesson(1);
+			unblock(storage, at(1));
+			service.startLesson(at(1));
+			service.completeLesson(at(1));
 			const state = storage.load();
-			expect(state.completedLessons).toContain(1);
+			expect(state.completedLessons).toContain(at(1));
 			expect(state.currentLesson).toBeNull();
 		});
 	});
 
 	describe("unlearnLesson", () => {
 		it("removes lesson and its cards from state", () => {
-			service.startLesson(1);
-			service.completeLesson(1);
-			service.unlearnLesson(1);
+			unblock(storage, at(1));
+			service.startLesson(at(1));
+			service.completeLesson(at(1));
+			service.unlearnLesson(at(1));
 			const state = storage.load();
-			expect(state.completedLessons).not.toContain(1);
+			expect(state.completedLessons).not.toContain(at(1));
 			const lesson1Cards = Object.values(state.cards).filter(
 				(c) => c.lessonNumber === 1,
 			);
@@ -99,9 +136,10 @@ describe("LearningService", () => {
 		});
 
 		it("returns 2 after lesson 1 completed", () => {
-			service.startLesson(1);
-			service.completeLesson(1);
-			expect(service.getNextLesson()).toBe(2);
+			unblock(storage, at(1));
+			service.startLesson(at(1));
+			service.completeLesson(at(1));
+			expect(service.getNextLesson()).toBe(at(2));
 		});
 
 		it("returns null after every declared lesson is completed", () => {
@@ -189,34 +227,34 @@ describe("LearningService", () => {
 			// `symbols.ts` lesson number — and this branch resequenced the
 			// course. ห นำ is position 18 (`lesson-leading-consonants`, legacy
 			// 28), where it now arrives with the rest of อักษรนำ.
-			expect(service.getLessonSummary(18).specialRules).toEqual([
+			expect(service.getLessonSummary(at(28)).specialRules).toEqual([
 				expect.objectContaining({ id: "hor-nam" }),
 				expect.objectContaining({ id: "silent-o-before-yo" }),
 			]);
 			expect(
-				service.getLessonSummary(15).specialRules.map((r) => r.id),
+				service.getLessonSummary(at(26)).specialRules.map((r) => r.id),
 			).toEqual(["unwritten-vowels", "ror-han"]);
 		});
 
 		it("carries a title and description for each, not just an id", () => {
-			const [rule] = service.getLessonSummary(18).specialRules;
+			const [rule] = service.getLessonSummary(at(28)).specialRules;
 
 			expect(rule?.title).toContain("ห นำ");
 			expect(rule?.description.length).toBeGreaterThan(40);
 		});
 
 		it("is empty for a lesson that introduces none", () => {
-			expect(service.getLessonSummary(1).specialRules).toEqual([]);
+			expect(service.getLessonSummary(at(1)).specialRules).toEqual([]);
 		});
 
 		it("returns lesson with symbol info for a given lesson number", () => {
-			const summary = service.getLessonSummary(1);
-			expect(summary.lessonNumber).toBe(1);
+			const summary = service.getLessonSummary(at(1));
+			expect(summary.lessonNumber).toBe(at(1));
 			expect(summary.consonants.length).toBeGreaterThan(0);
 		});
 
 		it("includes rare vowels for the rare-tail lesson", () => {
-			const summary = service.getLessonSummary(14);
+			const summary = service.getLessonSummary(at(14));
 			expect(summary.rareVowels.map((v) => v.character)).toEqual([
 				"ฤ",
 				"ฤๅ",
@@ -226,7 +264,7 @@ describe("LearningService", () => {
 		});
 
 		it("includes all ten numerals for the numerals lesson", () => {
-			const summary = service.getLessonSummary(19);
+			const summary = service.getLessonSummary(at(30));
 			expect(summary.numerals.map((n) => n.character)).toEqual([
 				"๐",
 				"๑",
@@ -242,14 +280,14 @@ describe("LearningService", () => {
 		});
 
 		it("includes tone rule ids matching their generated card ids", () => {
-			const summary = service.getLessonSummary(2);
+			const summary = service.getLessonSummary(at(2));
 			expect(summary.toneRules).toEqual([
 				{ id: "tone-rule:low-live", description: expect.any(String) },
 			]);
 		});
 
 		it("includes tone mark rule ids matching their generated card ids", () => {
-			const summary = service.getLessonSummary(16);
+			const summary = service.getLessonSummary(at(29));
 			const ids = summary.toneRules.map((r) => r.id);
 			expect(ids).toContain("tone-mark-rule:mai ek-mid");
 			expect(ids).toContain("tone-mark-rule:mai tho-mid");
@@ -276,45 +314,49 @@ describe("LearningService", () => {
 		});
 
 		it("startLesson allows lesson 2 after completing lesson 1", () => {
-			service.startLesson(1);
-			service.completeLesson(1);
-			expect(service.startLesson(2)).not.toBeNull();
+			unblock(storage, at(1));
+			service.startLesson(at(1));
+			service.completeLesson(at(1));
+			expect(service.startLesson(at(2))).not.toBeNull();
 		});
 
 		it("getLessonMasteryProgress returns correct total/graduated/percentage", () => {
-			service.startLesson(1);
-			service.completeLesson(1);
+			unblock(storage, at(1));
+			service.startLesson(at(1));
+			service.completeLesson(at(1));
 
-			const beforeProgress = service.getLessonMasteryProgress(1);
+			const beforeProgress = service.getLessonMasteryProgress(at(1));
 			expect(beforeProgress.total).toBeGreaterThan(0);
 			expect(beforeProgress.graduated).toBe(0);
 			expect(beforeProgress.percentage).toBe(0);
 
 			// Graduate all cards
-			graduateAllCards(storage, 1);
+			graduateAllCards(storage, at(1));
 
-			const afterProgress = service.getLessonMasteryProgress(1);
+			const afterProgress = service.getLessonMasteryProgress(at(1));
 			expect(afterProgress.graduated).toBe(afterProgress.total);
 			expect(afterProgress.percentage).toBe(1);
 		});
 
 		it("startLesson succeeds when previous lesson is mastered", () => {
-			service.startLesson(1);
-			service.completeLesson(1);
-			graduateAllCards(storage, 1);
+			unblock(storage, at(1));
+			service.startLesson(at(1));
+			service.completeLesson(at(1));
+			graduateAllCards(storage, at(1));
 
-			const lesson2 = service.startLesson(2);
+			const lesson2 = service.startLesson(at(2));
 			expect(lesson2).not.toBeNull();
-			expect(lesson2?.lessonNumber).toBe(2);
+			expect(lesson2?.lessonNumber).toBe(at(2));
 		});
 
 		it("isNextLessonAvailable returns true after completing lessons", () => {
-			service.startLesson(1);
-			service.completeLesson(1);
-			service.startLesson(2);
-			service.completeLesson(2);
-			service.startLesson(3);
-			service.completeLesson(3);
+			unblock(storage, at(1));
+			service.startLesson(at(1));
+			service.completeLesson(at(1));
+			service.startLesson(at(2));
+			service.completeLesson(at(2));
+			service.startLesson(at(3));
+			service.completeLesson(at(3));
 			expect(service.isNextLessonAvailable()).toBe(true);
 		});
 	});
@@ -357,21 +399,24 @@ describe("LearningService", () => {
 				stateRepo,
 				apprenticeService,
 			);
-			const result = gatedService.startLesson(1);
+			unblock(storage, at(1));
+			const result = gatedService.startLesson(at(1));
 			expect(result).toBeNull();
 		});
 
 		it("works normally without ApprenticeService (backward compat)", () => {
-			const result = service.startLesson(1);
+			unblock(storage, at(1));
+			const result = service.startLesson(at(1));
 			expect(result).not.toBeNull();
-			expect(result?.lessonNumber).toBe(1);
+			expect(result?.lessonNumber).toBe(at(1));
 		});
 	});
 
 	describe("reconcileCards", () => {
 		it("backfills a persisted card's audioUrl once completed lessons regain it, without touching other cards' srs", () => {
-			service.startLesson(1);
-			service.completeLesson(1);
+			unblock(storage, at(1));
+			service.startLesson(at(1));
+			service.completeLesson(at(1));
 
 			const persistedBefore = cardRepo.findAll("script");
 			expect(persistedBefore.length).toBeGreaterThan(0);
@@ -436,12 +481,12 @@ describe("LearningService", () => {
 		}
 
 		it("has nothing pending before any reconcile runs", () => {
-			completeLessonsUpTo(14);
+			completeLessonsUpTo(at(14));
 			expect(service.getPendingCatchUps()).toHaveLength(0);
 		});
 
 		it("flags a pending catch-up scoped to just the backfilled items", () => {
-			completeLessonsUpTo(14);
+			completeLessonsUpTo(at(14));
 			// Simulate the rare-tail lesson having been completed before rare vowels were
 			// wired into card generation.
 			deleteCardsStartingWith("ฤ:");
@@ -453,7 +498,7 @@ describe("LearningService", () => {
 
 			const pending = service.getPendingCatchUps();
 			expect(pending).toHaveLength(1);
-			expect(pending[0]?.lessonNumber).toBe(14);
+			expect(pending[0]?.lessonNumber).toBe(at(14));
 			expect(pending[0]?.summary.rareVowels.map((v) => v.character)).toEqual([
 				"ฤ",
 				"ฤๅ",
@@ -467,27 +512,27 @@ describe("LearningService", () => {
 		});
 
 		it("getPendingCatchUpCards returns only the pending items' live review cards", () => {
-			completeLessonsUpTo(14);
+			completeLessonsUpTo(at(14));
 			deleteCardsStartingWith("ฤ:");
 			service.reconcileCards();
 
-			const cards = service.getPendingCatchUpCards(14);
+			const cards = service.getPendingCatchUpCards(at(14));
 			expect(cards.length).toBeGreaterThan(0);
 			expect(cards.every((c) => c.id.startsWith("ฤ:"))).toBe(true);
 		});
 
 		it("returns no cards for a lesson with nothing pending", () => {
-			completeLessonsUpTo(14);
-			expect(service.getPendingCatchUpCards(14)).toHaveLength(0);
+			completeLessonsUpTo(at(14));
+			expect(service.getPendingCatchUpCards(at(14))).toHaveLength(0);
 		});
 
 		it("dismissPendingCatchUp clears the pending entry", () => {
-			completeLessonsUpTo(14);
+			completeLessonsUpTo(at(14));
 			deleteCardsStartingWith("ฤ:");
 			service.reconcileCards();
 			expect(service.getPendingCatchUps()).toHaveLength(1);
 
-			service.dismissPendingCatchUp(14);
+			service.dismissPendingCatchUp(at(14));
 
 			expect(service.getPendingCatchUps()).toHaveLength(0);
 		});

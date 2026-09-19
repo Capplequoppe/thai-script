@@ -750,7 +750,7 @@ describe("retired legacy numbers stay resolvable for the persistence migration",
 			);
 		}
 		const union = [...declared, ...retired].sort((a, b) => a - b);
-		expect(union).toEqual(Array.from({ length: 30 }, (_, index) => index + 1));
+		expect(union).toEqual(Array.from({ length: 31 }, (_, index) => index + 1));
 		const ids = new Set(lessonSequence.map((entry) => entry.id));
 		for (const { absorbedBy } of RETIRED_LESSONS) {
 			expect(ids.has(absorbedBy), absorbedBy).toBe(true);

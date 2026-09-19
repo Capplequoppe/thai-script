@@ -39,6 +39,7 @@
 				"/thai-script/lessons/lesson-08/audio/f0115dfd9714050d.mp3"
 			],
 			"audioLanguages": ["en", "th", "en"],
+			"teaches": ["ro-ria"],
 			"image": "/thai-script/lessons/lesson-08/images/meet-ruuea-959b4f840803.jpg"
 		},
 		{
@@ -55,6 +56,7 @@
 				"/thai-script/lessons/lesson-08/audio/792c4f3485eb13ef.mp3"
 			],
 			"audioLanguages": ["en", "th"],
+			"teaches": ["ro-ria"],
 			"image": "/thai-script/lessons/lesson-08/images/ruuea-story-c514cb4a7f97.jpg"
 		},
 		{
@@ -65,7 +67,8 @@
 				"The head low, down at the waterline.",
 				"One line flying up, hooking right."
 			],
-			"thai": "ร"
+			"thai": "ร",
+			"teaches": ["ro-ria"]
 		},
 		{
 			"kind": "exposition",
@@ -78,7 +81,8 @@
 			],
 			"audio": ["/thai-script/lessons/lesson-08/audio/9f32f15f713b9ed2.mp3"],
 			"audioLanguages": ["en"],
-			"thai": "ร"
+			"thai": "ร",
+			"teaches": ["ro-ria"]
 		},
 		{
 			"kind": "exposition",
@@ -95,6 +99,7 @@
 				"/thai-script/lessons/lesson-08/audio/39d564a64670a506.mp3"
 			],
 			"audioLanguages": ["en", "th", "en"],
+			"teaches": ["lo-ling"],
 			"image": "/thai-script/lessons/lesson-08/images/meet-ling-42b8768468ce.jpg"
 		},
 		{
@@ -111,6 +116,7 @@
 				"/thai-script/lessons/lesson-08/audio/17bd93fc9306d351.mp3"
 			],
 			"audioLanguages": ["en", "th"],
+			"teaches": ["lo-ling"],
 			"image": "/thai-script/lessons/lesson-08/images/ling-story-6d65c3d3f5a9.jpg"
 		},
 		{
@@ -118,7 +124,8 @@
 			"id": "see-ling",
 			"heading": "The monkey's letter",
 			"body": ["The head at the base.", "One long tail, arching up and over."],
-			"thai": "ล"
+			"thai": "ล",
+			"teaches": ["lo-ling"]
 		},
 		{
 			"kind": "exposition",
@@ -131,7 +138,8 @@
 			],
 			"audio": ["/thai-script/lessons/lesson-08/audio/6a2ad676212f9d29.mp3"],
 			"audioLanguages": ["en"],
-			"thai": "ล"
+			"thai": "ล",
+			"teaches": ["lo-ling"]
 		},
 		{
 			"kind": "exposition",
@@ -144,6 +152,7 @@
 			],
 			"audio": ["/thai-script/lessons/lesson-08/audio/239a1fe4a2a2115d.mp3"],
 			"audioLanguages": ["en"],
+			"teaches": ["ro-ria", "lo-ling"],
 			"image": "/thai-script/lessons/lesson-08/images/landing-as-n-52db023af784.jpg"
 		},
 		{
@@ -157,6 +166,7 @@
 			],
 			"audio": ["/thai-script/lessons/lesson-08/audio/f19c28844830608e.mp3"],
 			"audioLanguages": ["en"],
+			"teaches": ["ro-ria", "lo-ling"],
 			"image": "/thai-script/lessons/lesson-08/images/not-a-sixth-ending-641240bde4cf.jpg"
 		},
 		{
@@ -169,7 +179,8 @@
 			],
 			"audio": ["/thai-script/lessons/lesson-08/audio/18b4049cab4ca4e6.mp3"],
 			"audioLanguages": ["en"],
-			"thai": "การ"
+			"thai": "การ",
+			"teaches": ["ro-ria"]
 		},
 		{
 			"kind": "exposition",
@@ -184,15 +195,17 @@
 				"/thai-script/lessons/lesson-08/audio/ca479ff81af24f47.mp3"
 			],
 			"audioLanguages": ["th", "en"],
-			"thai": "การ"
+			"thai": "การ",
+			"teaches": ["ro-ria"]
 		},
 		{
 			"kind": "retrieval",
 			"id": "final-r",
-			"prompt": "A syllable is written with the boat's letter in last position. What sound ends it, and is the syllable live or dead?",
+			"prompt": "A syllable is written with the boat's letter in last position. What sound ends it, and is the syllable alive or dead?",
 			"revealSlideId": "final-r-answer",
-			"audio": ["/thai-script/lessons/lesson-08/audio/bc9710bacd1c5c19.mp3"],
-			"audioLanguages": ["en"]
+			"audio": ["/thai-script/lessons/lesson-08/audio/7bc62517242a2303.mp3"],
+			"audioLanguages": ["en"],
+			"teaches": ["ro-ria"]
 		},
 		{
 			"kind": "reveal",
@@ -200,11 +213,12 @@
 			"retrievalSlideId": "final-r",
 			"answers": [
 				"It ends in **n**.",
-				"**Live** — because n is one of the hummable five.",
-				"It takes the live rule for its class, as the mouse's letter would."
+				"**Alive** — because n is one of the hummable five.",
+				"It counts as alive for its class, as the mouse's letter would."
 			],
-			"audio": ["/thai-script/lessons/lesson-08/audio/030ed8d2607b76b0.mp3"],
-			"audioLanguages": ["en"]
+			"audio": ["/thai-script/lessons/lesson-08/audio/c3f09edd9dc96c04.mp3"],
+			"audioLanguages": ["en"],
+			"teaches": ["ro-ria"]
 		},
 		{
 			"kind": "exposition",
@@ -221,6 +235,7 @@
 				"/thai-script/lessons/lesson-08/audio/3fa01a111ac281e9.mp3"
 			],
 			"audioLanguages": ["en", "th", "en"],
+			"teaches": ["sara-aae"],
 			"image": "/thai-script/lessons/lesson-08/images/twin-masts-11a1f9db44ad.jpg"
 		},
 		{
@@ -234,7 +249,8 @@
 			],
 			"audio": ["/thai-script/lessons/lesson-08/audio/b7fcbcc97e0fe88c.mp3"],
 			"audioLanguages": ["en"],
-			"thai": "แ"
+			"thai": "แ",
+			"teaches": ["sara-aae"]
 		},
 		{
 			"kind": "exposition",
@@ -246,7 +262,8 @@
 			],
 			"audio": ["/thai-script/lessons/lesson-08/audio/93a600eb2e62f0d0.mp3"],
 			"audioLanguages": ["en"],
-			"thai": "แดง"
+			"thai": "แดง",
+			"teaches": ["sara-aae"]
 		},
 		{
 			"kind": "exposition",
@@ -254,14 +271,15 @@
 			"heading": "That one",
 			"body": [
 				"**แดง** — red.",
-				"Live ending, low class, and the tone comes out flat."
+				"The syllable alive, low class, and the tone comes out flat."
 			],
 			"audio": [
 				"/thai-script/lessons/lesson-08/audio/00aa3495f5c6937a.mp3",
-				"/thai-script/lessons/lesson-08/audio/64eb2cb9c3b77c3b.mp3"
+				"/thai-script/lessons/lesson-08/audio/1eb6628a351b27f0.mp3"
 			],
 			"audioLanguages": ["th", "en"],
-			"thai": "แดง"
+			"thai": "แดง",
+			"teaches": ["sara-aae"]
 		},
 		{
 			"kind": "exposition",
@@ -276,6 +294,7 @@
 				"/thai-script/lessons/lesson-08/audio/88cbfab802801842.mp3"
 			],
 			"audioLanguages": ["en", "th"],
+			"teaches": ["sara-ae"],
 			"image": "/thai-script/lessons/lesson-08/images/the-short-twins-9349f047b0a8.jpg"
 		},
 		{
@@ -293,7 +312,8 @@
 				"/thai-script/lessons/lesson-08/audio/d30b08d05fa898ca.mp3"
 			],
 			"audioLanguages": ["en", "th", "en"],
-			"thai": "และ"
+			"thai": "และ",
+			"teaches": ["sara-ae"]
 		},
 		{
 			"kind": "exposition",
@@ -309,6 +329,7 @@
 				"/thai-script/lessons/lesson-08/audio/4700adfb12db712d.mp3"
 			],
 			"audioLanguages": ["en", "en"],
+			"teaches": ["sara-ae"],
 			"image": "/thai-script/lessons/lesson-08/images/the-roof-again-05e8e3cb113c.jpg"
 		},
 		{
@@ -317,7 +338,8 @@
 			"prompt": "You know one mast and two masts. Say which sound each carries, and what both of them do to reading order.",
 			"revealSlideId": "one-mast-two-answer",
 			"audio": ["/thai-script/lessons/lesson-08/audio/a3be554f09dac79b.mp3"],
-			"audioLanguages": ["en"]
+			"audioLanguages": ["en"],
+			"teaches": ["sara-aae", "sara-ee"]
 		},
 		{
 			"kind": "reveal",
@@ -329,7 +351,8 @@
 				"Every mast after this one works the same way."
 			],
 			"audio": ["/thai-script/lessons/lesson-08/audio/f362c3b37d3e404d.mp3"],
-			"audioLanguages": ["en"]
+			"audioLanguages": ["en"],
+			"teaches": ["sara-aae", "sara-ee"]
 		},
 		{
 			"kind": "exposition",
@@ -343,5 +366,10 @@
 			"audio": ["/thai-script/lessons/lesson-08/audio/10b784b98196ac1c.mp3"],
 			"audioLanguages": ["en"]
 		}
-	]
+	],
+	"timing": {
+		"spokenSeconds": 492,
+		"practiceSeconds": 206,
+		"estimatedMinutes": 12
+	}
 }

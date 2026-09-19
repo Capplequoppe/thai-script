@@ -1,0 +1,166 @@
+{
+	"lessonId": "lesson-loops",
+	"title": "Before the first letter",
+	"slides": [
+		{
+			"kind": "exposition",
+			"id": "overview",
+			"heading": "What is in this lesson, and why it matters",
+			"body": [
+				"Many consonants share a sound. Their **class** is what separates them.",
+				"The class decides the tone — so spelling carries the tune.",
+				"Today: **no letters**. The two systems every letter obeys."
+			],
+			"audio": [
+				"/thai-script/lessons/lesson-loops/audio/9a96303965fbd2f1.mp3",
+				"/thai-script/lessons/lesson-loops/audio/7d49cc71d32e6f0a.mp3",
+				"/thai-script/lessons/lesson-loops/audio/17fb849e38b991af.mp3"
+			],
+			"audioLanguages": ["en", "en", "en"]
+		},
+		{
+			"kind": "exposition",
+			"id": "loops-are-friends",
+			"heading": "The loops are your friends",
+			"body": [
+				"**ชอบกินข้าวที่บ้านมาก** — six ordinary words, run together with no spaces.",
+				"Thai script looks like squiggles and loops.",
+				"The loops are your friends. They tell you where the pen goes down."
+			],
+			"audio": [
+				"/thai-script/lessons/lesson-loops/audio/1a11c0dd0b0b50ea.mp3",
+				"/thai-script/lessons/lesson-loops/audio/38fa9fe34fa2c9fc.mp3",
+				"/thai-script/lessons/lesson-loops/audio/c78e0e9d8723204f.mp3"
+			],
+			"audioLanguages": ["en", "en", "en"],
+			"thai": "ชอบกินข้าวที่บ้านมาก"
+		},
+		{
+			"kind": "exposition",
+			"id": "stroke-order",
+			"heading": "There is a right way to write every symbol",
+			"body": [
+				"Every symbol has a **stroke order** — a right way to write it.",
+				"Almost all are one continuous stroke, pen never lifted.",
+				"**Cheat code one:** start at the loop, if there is one.",
+				"The starting loop is called the **head**.",
+				"**ชอบกินข้าวที่บ้านมาก** — you'll read, say and write this yourself before long."
+			],
+			"audio": [
+				"/thai-script/lessons/lesson-loops/audio/ac0d6a56497baba5.mp3",
+				"/thai-script/lessons/lesson-loops/audio/ee17bf123e8d9beb.mp3",
+				"/thai-script/lessons/lesson-loops/audio/0173e36ba1d7de16.mp3",
+				"/thai-script/lessons/lesson-loops/audio/5c0d94dfedeac8b2.mp3"
+			],
+			"audioLanguages": ["en", "en", "en", "en"],
+			"thai": "ชอบกินข้าวที่บ้านมาก"
+		},
+		{
+			"kind": "exposition",
+			"id": "loop-direction",
+			"heading": "Which way the loop turns",
+			"body": [
+				"Some loops go **clockwise**, others **counter-clockwise**.",
+				"Some characters differ *only* in that.",
+				"Most symbols turn **clockwise**. Less than half as many go the other way.",
+				"**Cheat code two:** assume clockwise, learn the exceptions."
+			],
+			"audio": [
+				"/thai-script/lessons/lesson-loops/audio/fa8061911f42c4c8.mp3",
+				"/thai-script/lessons/lesson-loops/audio/755053f90183ff0a.mp3"
+			],
+			"audioLanguages": ["en", "en"]
+		},
+		{
+			"kind": "exposition",
+			"id": "names-two-parts",
+			"heading": "Every letter has a two-part name",
+			"body": [
+				"Every letter's name has **two parts**.",
+				"Catch the sound at the front. The rest never changes.",
+				"First part = **the consonant sound plus one fixed vowel**, the one in \"awe\".",
+				"In English it would be **Saw**, **Paw**, **Jaw**."
+			],
+			"audio": [
+				"/thai-script/lessons/lesson-loops/audio/114e1ee348c3876f.mp3",
+				"/thai-script/lessons/lesson-loops/audio/2e02fb722882e0bf.mp3",
+				"/thai-script/lessons/lesson-loops/audio/769b916032c079cb.mp3"
+			],
+			"audioLanguages": ["en", "en", "en"]
+		},
+		{
+			"kind": "exposition",
+			"id": "names-nato",
+			"heading": "And the second part is the NATO alphabet",
+			"body": [
+				"Many consonants share a sound, so the name needs a second half.",
+				"That half is an everyday word starting with that sound.",
+				"Exactly like Alpha, Bravo, Charlie — built into the alphabet itself.",
+				"The alphabet song is a list of these words. It teaches no shapes."
+			],
+			"audio": [
+				"/thai-script/lessons/lesson-loops/audio/aad5e529e361a664.mp3",
+				"/thai-script/lessons/lesson-loops/audio/494e6cf608e776e5.mp3"
+			],
+			"audioLanguages": ["en", "en"]
+		},
+		{
+			"kind": "exposition",
+			"id": "names-superpower",
+			"heading": "Why that turns into a superpower here",
+			"body": [
+				"Each letter comes attached to a **word**.",
+				"We put those words in **places**, and build stories there.",
+				"The place quietly teaches the grammar. And you get 44 free words."
+			],
+			"audio": ["/thai-script/lessons/lesson-loops/audio/e20fcd54b7de43c3.mp3"],
+			"audioLanguages": ["en"]
+		},
+		{
+			"kind": "retrieval",
+			"id": "name-the-letters",
+			"prompt": "If English named its letters the Thai way, what would **S**, **P** and **J** come out as? Say all three out loud.",
+			"revealSlideId": "name-the-letters-answer",
+			"audio": ["/thai-script/lessons/lesson-loops/audio/5c09a52b3e6a714f.mp3"],
+			"audioLanguages": ["en"]
+		},
+		{
+			"kind": "reveal",
+			"id": "name-the-letters-answer",
+			"retrievalSlideId": "name-the-letters",
+			"answers": [
+				"**S → Saw · P → Paw · J → Jaw**",
+				"The sound, then the fixed \"awe\" vowel. Always."
+			],
+			"audio": ["/thai-script/lessons/lesson-loops/audio/ea4d9897c4661c70.mp3"],
+			"audioLanguages": ["en"]
+		},
+		{
+			"kind": "exposition",
+			"id": "close",
+			"heading": "What you are taking with you",
+			"body": [
+				"Every symbol has a right way to be written. Start at the **head**.",
+				"Assume **clockwise**; learn the handful that refuse.",
+				"All 44 names follow **one pattern**. Catch the front.",
+				"Spelling carries the **tone**. That is why the script comes first."
+			],
+			"audio": [
+				"/thai-script/lessons/lesson-loops/audio/13f14a057f9c497c.mp3",
+				"/thai-script/lessons/lesson-loops/audio/ea6a6b3451ae7003.mp3"
+			],
+			"audioLanguages": ["en", "en"]
+		}
+	],
+	"timing": {
+		"spokenSeconds": 607,
+		"practiceSeconds": 85,
+		"estimatedMinutes": 12
+	},
+	"teachingWords": [
+		{
+			"thai": "ชอบกินข้าวที่บ้านมาก",
+			"reason": "one sentence shown whole on `loops-are-friends` and `stroke-order`, so a learner can see what Thai actually looks like before meeting a letter, and be told when they will be able to read it. Every word in it is inside the top hundred by frequency. Nothing here is taught or tested; the slides say outright that it cannot be read yet."
+		}
+	]
+}

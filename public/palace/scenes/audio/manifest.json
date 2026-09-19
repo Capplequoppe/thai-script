@@ -1,0 +1,68 @@
+{
+	"hill-monk-climbs": {
+		"bytes": 286137,
+		"digest": "92de092b8a6635d6",
+		"file": "hill-monk-climbs.mp3",
+		"tone": "rising"
+	},
+	"hill-vendor-four-poles": {
+		"bytes": 237444,
+		"digest": "f5e9f5500670f403",
+		"file": "hill-vendor-four-poles.mp3",
+		"tone": "rising"
+	},
+	"paddy-alive": {
+		"bytes": 293033,
+		"digest": "c53f8c51d77adc45",
+		"file": "paddy-alive.mp3",
+		"tone": "mid"
+	},
+	"rooftop-fisherman-hooked": {
+		"bytes": 224697,
+		"digest": "f6fdc78edfe81ffe",
+		"file": "rooftop-fisherman-hooked.mp3",
+		"tone": "high"
+	},
+	"rooftop-fisherman-struck": {
+		"bytes": 247057,
+		"digest": "9b45f15bfb204864",
+		"file": "rooftop-fisherman-struck.mp3",
+		"tone": "high"
+	},
+	"rooftop-vendor-three-flags": {
+		"bytes": 213621,
+		"digest": "41d69c4e1f97decf",
+		"file": "rooftop-vendor-three-flags.mp3",
+		"tone": "high"
+	},
+	"waterfall-fisherman-drowns": {
+		"bytes": 262940,
+		"digest": "e4d9b639c0233759",
+		"file": "waterfall-fisherman-drowns.mp3",
+		"tone": "falling"
+	},
+	"waterfall-fisherman-speared": {
+		"bytes": 232638,
+		"digest": "990e1e1f63fe058e",
+		"file": "waterfall-fisherman-speared.mp3",
+		"tone": "falling"
+	},
+	"waterfall-hooked-twice": {
+		"bytes": 239952,
+		"digest": "f7c78e16327fef2f",
+		"file": "waterfall-hooked-twice.mp3",
+		"tone": "falling"
+	},
+	"well-speared-once": {
+		"bytes": 266075,
+		"digest": "2185f09a3c14cada",
+		"file": "well-speared-once.mp3",
+		"tone": "low"
+	},
+	"well-vendor-and-monk-fall": {
+		"bytes": 250401,
+		"digest": "f214f91c51964870",
+		"file": "well-vendor-and-monk-fall.mp3",
+		"tone": "low"
+	}
+}
