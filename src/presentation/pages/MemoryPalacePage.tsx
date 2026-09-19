@@ -7,30 +7,39 @@ import {
 	CLASS_CAST,
 	characterForClass,
 	districtPlaceFor,
+	housePlace,
 	mapNamed,
 	markRuleId,
 	type PalacePlace,
 	placeForTone,
-	TONE_PLACES,
+	roomPlaceFor,
 	TONE_SCENES,
-	type TonePlace,
 	type ToneScene,
+	toneNarrationFor,
 	tonePlaceOverviewFor,
 } from "../../domain/script/data/memoryPalace";
 import { districtForClass } from "../../domain/script/data/sceneGrammar";
-import { useLearnedScript } from "../hooks/useLearnedScript";
 import {
 	consonants,
 	type ThaiSymbolClass,
+	type ThaiVowel,
 	toneMarkRules,
 	toneRules,
+	vowels,
 } from "../../domain/script/data/symbols";
+import {
+	HOUSE_ROOMS,
+	type HouseRoom,
+	roomsForPosition,
+} from "../../domain/script/data/vowelHouse";
 import { ROOMS } from "../../domain/vocabulary/types";
 import { SectionHeader } from "../components/atoms/SectionHeader";
 import {
 	ConsonantDetailDialog,
 	consonantSummaryFor,
 } from "../components/organisms/ConsonantDetailDialog";
+import { useClipSequence } from "../hooks/useClipSequence";
+import { useLearnedScript } from "../hooks/useLearnedScript";
 
 /**
  * The world, drawn — which until now it never was.
@@ -52,6 +61,9 @@ import {
 type Selection =
 	| { kind: "tone"; tone: string }
 	| { kind: "district"; classType: ThaiSymbolClass }
+	// The vowels' house, which is one building rather than a set — so unlike
+	// the others this carries nothing beyond its own kind.
+	| { kind: "house" }
 	| { kind: "room"; room: string }
 	| null;
 
@@ -91,15 +103,16 @@ export function MemoryPalacePage() {
 					className="text-sm leading-relaxed"
 					style={{ color: "var(--color-text-muted)" }}
 				>
-					Three kinds of place, and no word means two of them. Consonants live
-					in a district by class, words stage in a room by what they do, and a
+					Four kinds of place, and no word means two of them. Consonants live in
+					a district by class, vowels lodge in the house at the crossroads by
+					where they are written, words stage in a room by what they do, and a
 					tone rule resolves at the height its tone is spoken.
 				</p>
 			</header>
 
 			<WorldMap selected={selected} onSelect={setSelected} />
-			<ToneMap selected={selected} onSelect={setSelected} />
 			<DistrictRow selected={selected} onSelect={setSelected} />
+			<HouseRow selected={selected} onSelect={setSelected} />
 			<RoomRow selected={selected} onSelect={setSelected} />
 
 			{/* The scroll target, wrapping rather than inside the panel so it
@@ -117,10 +130,8 @@ export function MemoryPalacePage() {
 }
 
 // ----------------------------------------------------------------------------
-// The tone country — a pitch axis you can click
+// The painted world, and its clickable regions
 // ----------------------------------------------------------------------------
-
-const MAP_HEIGHT = 260;
 
 /**
  * The whole valley in one picture, above the clickable diagrams.
@@ -188,7 +199,9 @@ function ClickableMap({
 					spot.kind === "district"
 						? selected?.kind === "district" &&
 							selected.classType === (spot.for as ThaiSymbolClass)
-						: selected?.kind === "tone" && selected.tone === spot.for;
+						: spot.kind === "house"
+							? selected?.kind === "house"
+							: selected?.kind === "tone" && selected.tone === spot.for;
 
 				return (
 					<button
@@ -201,7 +214,9 @@ function ClickableMap({
 											kind: "district",
 											classType: spot.for as ThaiSymbolClass,
 										}
-									: { kind: "tone", tone: spot.for },
+									: spot.kind === "house"
+										? { kind: "house" }
+										: { kind: "tone", tone: spot.for },
 							)
 						}
 						className="absolute group flex items-end justify-center pb-1 rounded-lg transition-colors"
@@ -244,124 +259,6 @@ function ClickableMap({
 	);
 }
 
-function ToneMap({
-	selected,
-	onSelect,
-}: {
-	selected: Selection;
-	onSelect: (selection: Selection) => void;
-}) {
-	return (
-		<section className="space-y-3" aria-label="Where tones resolve">
-			<SectionHeader>Where tones resolve</SectionHeader>
-			<div
-				className="relative rounded-2xl px-4"
-				style={{
-					height: MAP_HEIGHT,
-					background: "var(--color-surface-2)",
-					border: "1px solid var(--color-border)",
-				}}
-			>
-				{/* The pitch axis, so "higher up the map" is legible as "higher
-				    pitch" rather than left to be inferred. */}
-				<span
-					className="absolute left-2 top-2 text-[10px] uppercase tracking-wide"
-					style={{ color: "var(--color-text-muted)" }}
-				>
-					high pitch
-				</span>
-				<span
-					className="absolute left-2 bottom-2 text-[10px] uppercase tracking-wide"
-					style={{ color: "var(--color-text-muted)" }}
-				>
-					low pitch
-				</span>
-
-				{TONE_PLACES.map((place) => (
-					<TonePlaceMarker
-						key={place.tone}
-						place={place}
-						active={selected?.kind === "tone" && selected.tone === place.tone}
-						onSelect={() => onSelect({ kind: "tone", tone: place.tone })}
-					/>
-				))}
-			</div>
-		</section>
-	);
-}
-
-/** Vertical position on the map: `from` is a fraction where 1 is the top. */
-function topFor(fraction: number): number {
-	return (1 - fraction) * (MAP_HEIGHT - 64) + 8;
-}
-
-function TonePlaceMarker({
-	place,
-	active,
-	onSelect,
-}: {
-	place: TonePlace;
-	active: boolean;
-	onSelect: () => void;
-}) {
-	// Spread the five places across the width in declared order, which runs
-	// mid, low, high, falling, rising — level tones first, then the two that
-	// move, so the moving ones sit together at the right and read as a pair.
-	const index = TONE_PLACES.indexOf(place);
-	// Five markers at 18% spacing from 8% puts the last at 80%, so a marker
-	// must stay under 20% wide or the rightmost runs off the edge. It used to
-	// carry a 92px minimum, which on a 360px phone made exactly that happen —
-	// 80% is 288px, and 288 + 92 is off the screen.
-	const left = `${8 + index * 18}%`;
-	const width = "17%";
-	const moves = place.from !== place.to;
-
-	return (
-		<>
-			{moves && (
-				// The contour drawn as the drop or the climb it is. Decorative:
-				// the button below carries the label and the interaction.
-				<span
-					aria-hidden="true"
-					className="absolute w-0.5 rounded"
-					style={{
-						// Centred on the marker, which is now sized in percent too.
-						left: `calc(${left} + 8.5%)`,
-						top: topFor(Math.max(place.from, place.to)) + 18,
-						height: Math.abs(topFor(place.to) - topFor(place.from)),
-						background: "var(--color-accent)",
-						opacity: 0.45,
-					}}
-				/>
-			)}
-			<button
-				type="button"
-				onClick={onSelect}
-				className="absolute rounded-xl px-1.5 py-1.5 text-left transition-colors"
-				style={{
-					left,
-					top: topFor(place.from),
-					width: "15%",
-					minWidth: 92,
-					background: active ? "var(--color-accent)" : "var(--color-surface)",
-					color: active ? "var(--color-surface)" : "var(--color-text)",
-					border: `2px solid ${active ? "transparent" : "var(--color-border)"}`,
-				}}
-			>
-				<span className="block text-xs font-semibold leading-tight">
-					{place.name}
-				</span>
-				<span
-					className="block text-[10px] uppercase tracking-wide"
-					style={{ opacity: 0.7 }}
-				>
-					{place.tone}
-				</span>
-			</button>
-		</>
-	);
-}
-
 // ----------------------------------------------------------------------------
 // The class districts and the part-of-speech rooms
 // ----------------------------------------------------------------------------
@@ -373,23 +270,19 @@ function DistrictRow({
 	selected: Selection;
 	onSelect: (selection: Selection) => void;
 }) {
-	const districtsMap = mapNamed("map-districts");
-
 	return (
+		// The three districts as a row of cards, and no second map.
+		//
+		// There used to be a painted districts map here as well, which drew the
+		// temple, the market and the harbour a second time at a closer zoom. It
+		// dated from before the lessons carried the districts themselves: a
+		// learner meets the temple in lesson 2 now and the harbour in lesson 3,
+		// with a story and a picture each, so a map whose whole content was
+		// "these three places exist" was repeating a lesson rather than adding
+		// to it — and every place on it was already reachable from the world
+		// map above.
 		<section className="space-y-3" aria-label="Where consonants live">
 			<SectionHeader>Where consonants live</SectionHeader>
-			{districtsMap && (
-				<>
-					<ClickableMap
-						map={districtsMap}
-						selected={selected}
-						onSelect={onSelect}
-					/>
-					<p className="text-xs" style={{ color: "var(--color-text-muted)" }}>
-						{districtsMap.caption}
-					</p>
-				</>
-			)}
 			<div className="grid grid-cols-3 gap-3">
 				{CLASS_CAST.map((entry) => {
 					const active =
@@ -424,6 +317,55 @@ function DistrictRow({
 					);
 				})}
 			</div>
+		</section>
+	);
+}
+
+/**
+ * The vowels' house, as one card rather than a region on the painting.
+ *
+ * It should be a region, and `THE_HOUSE_IS_REACHABLE` in `memoryPalace.ts`
+ * records why it is not yet: sixteen renders of the valley with the house in
+ * it, and not one drew all nine places. A region over a building the painting
+ * does not contain is the one kind of wrong a map here cannot afford.
+ *
+ * Its own row rather than a fourth tile in the district row, because it is not
+ * a district: the districts sort consonants by class, and the whole point of
+ * the house is that vowels have no class to be sorted by.
+ */
+function HouseRow({
+	selected,
+	onSelect,
+}: {
+	selected: Selection;
+	onSelect: (selection: Selection) => void;
+}) {
+	const active = selected?.kind === "house";
+
+	return (
+		<section className="space-y-3" aria-label="Where vowels lodge">
+			<SectionHeader>Where vowels lodge</SectionHeader>
+			<button
+				type="button"
+				onClick={() => onSelect({ kind: "house" })}
+				className="w-full rounded-xl p-3 text-left transition-colors"
+				style={{
+					background: active ? "var(--color-accent)" : "var(--color-surface-2)",
+					color: active ? "var(--color-surface)" : "var(--color-text)",
+					border: `2px solid ${active ? "transparent" : "var(--color-border)"}`,
+				}}
+			>
+				<span className="block text-sm font-semibold">
+					The vowels&rsquo; house
+				</span>
+				<span className="block text-xs" style={{ opacity: 0.75 }}>
+					Out at the crossroads, where the roads from all three districts meet
+				</span>
+				<span className="block text-xs mt-1" style={{ opacity: 0.6 }}>
+					{HOUSE_ROOMS.length} rooms — a vowel lodges in the one it is written
+					in
+				</span>
+			</button>
 		</section>
 	);
 }
@@ -489,6 +431,7 @@ function DetailPanel({
 	}
 
 	if (selected.kind === "tone") return <TonePlaceDetail tone={selected.tone} />;
+	if (selected.kind === "house") return <HouseDetail />;
 	if (selected.kind === "district")
 		return (
 			<DistrictDetail
@@ -641,13 +584,41 @@ function SceneIllustration({ scene }: { scene: ToneScene }) {
 	);
 }
 
+/**
+ * One scene: the picture, the story told out loud, and then the story in text.
+ *
+ * The button sits above the prose because the prose is the same story written
+ * down — someone who listens has no reason to read it afterwards, and someone
+ * who would rather read has lost nothing by scrolling past a button.
+ */
 function SceneCard({ scene }: { scene: ToneScene }) {
+	const clips = useMemo(
+		() => [`${import.meta.env.BASE_URL}${toneNarrationFor(scene.id)}`],
+		[scene.id],
+	);
+	const { playing, play, stop } = useClipSequence(clips);
+
 	return (
 		<article
 			className="rounded-xl p-3 space-y-2"
 			style={{ background: "var(--color-surface-2)" }}
 		>
 			<SceneIllustration scene={scene} />
+			<button
+				type="button"
+				onClick={playing ? stop : play}
+				className="w-full py-2 px-3 rounded-lg text-sm font-medium"
+				style={{
+					background: playing
+						? "var(--color-accent)"
+						: "color-mix(in srgb, var(--color-accent) 14%, var(--color-surface))",
+					color: playing ? "var(--color-surface)" : "var(--color-accent)",
+					border:
+						"1px solid color-mix(in srgb, var(--color-accent) 35%, transparent)",
+				}}
+			>
+				{playing ? "■ Stop" : "▶ Hear what happens here"}
+			</button>
 			<p className="text-sm leading-relaxed">{scene.scene}</p>
 			<p className="text-xs" style={{ color: "var(--color-text-muted)" }}>
 				{scene.teaches}
@@ -690,7 +661,9 @@ function DistrictDetail({
 			...toneMarkRules.filter(
 				(rule) =>
 					rule.consonantClass === classType &&
-					learned.toneRules.has(markRuleId(rule.consonantClass, rule.toneMarkName)),
+					learned.toneRules.has(
+						markRuleId(rule.consonantClass, rule.toneMarkName),
+					),
 			),
 		],
 		[classType, learned.toneRules],
@@ -798,6 +771,128 @@ function ConsonantTile({
 				</span>
 			</span>
 		</button>
+	);
+}
+
+/**
+ * Inside the house: five rooms, and whoever is lodging in each of them.
+ *
+ * The rooms are all here from the first day, empty ones included, for the same
+ * reason the districts are. Knowing a vowel is written above its consonant is
+ * knowing which room it is in, so the floor plan is worth having before there
+ * is anything in it — and a learner who has met one vowel should be able to see
+ * the four rooms it has not reached yet.
+ *
+ * A compound vowel appears in every room it reaches rather than in one chosen
+ * room. `เ-ือ` really is written in three places, and finding it on the front
+ * steps and on the roof is the fact rather than a duplicate.
+ */
+function HouseDetail() {
+	const house = housePlace();
+	const learned = useLearnedScript();
+	const lodgers = useMemo(() => {
+		const byRoom = new Map<string, ThaiVowel[]>(
+			HOUSE_ROOMS.map((room) => [room.slug, []]),
+		);
+		for (const vowel of vowels) {
+			if (!learned.vowels.has(vowel.character)) continue;
+			for (const room of roomsForPosition(vowel.position)) {
+				byRoom.get(room.slug)?.push(vowel);
+			}
+		}
+		return byRoom;
+	}, [learned.vowels]);
+
+	return (
+		<section
+			className="rounded-2xl p-4 space-y-4"
+			style={{
+				background: "var(--color-surface)",
+				border: "1px solid var(--color-border)",
+			}}
+		>
+			{house && (
+				<PalaceImage
+					id={house.id}
+					alt={house.prompt}
+					className="rounded-xl w-full"
+				/>
+			)}
+
+			<div>
+				<h2 className="text-lg font-semibold">The vowels&rsquo; house</h2>
+				<p className="text-sm" style={{ color: "var(--color-text-muted)" }}>
+					{house?.caption}
+				</p>
+			</div>
+
+			<div className="space-y-3">
+				{HOUSE_ROOMS.map((room) => (
+					<HouseRoomCard
+						key={room.slug}
+						room={room}
+						lodgers={lodgers.get(room.slug) ?? []}
+					/>
+				))}
+			</div>
+		</section>
+	);
+}
+
+function HouseRoomCard({
+	room,
+	lodgers,
+}: {
+	room: HouseRoom;
+	lodgers: readonly ThaiVowel[];
+}) {
+	const place = roomPlaceFor(room.slug);
+
+	return (
+		<article
+			className="rounded-xl p-3 space-y-2"
+			style={{ background: "var(--color-surface-2)" }}
+		>
+			{place && (
+				<PalaceImage
+					id={place.id}
+					alt={place.prompt}
+					className="rounded-lg w-full"
+				/>
+			)}
+			<div>
+				<h3 className="text-sm font-semibold capitalize">{room.name}</h3>
+				<p className="text-xs" style={{ color: "var(--color-text-muted)" }}>
+					Written {room.written}. {room.reason}
+				</p>
+			</div>
+
+			{lodgers.length === 0 ? (
+				<p className="text-xs" style={{ color: "var(--color-text-muted)" }}>
+					Empty so far. The vowels written here move in as you meet them.
+				</p>
+			) : (
+				<div className="flex flex-wrap gap-2">
+					{lodgers.map((vowel) => (
+						<span
+							key={vowel.character}
+							className="rounded-lg px-2 py-1 flex items-baseline gap-1.5"
+							style={{ background: "var(--color-surface)" }}
+						>
+							<span className="thai text-lg leading-none">
+								{vowel.character}
+							</span>
+							<span
+								className="text-[11px]"
+								style={{ color: "var(--color-text-muted)" }}
+							>
+								{vowel.sound}
+							</span>
+						</span>
+					))}
+				</div>
+			)}
+		</article>
 	);
 }
 

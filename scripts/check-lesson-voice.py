@@ -10,17 +10,35 @@ the reading time goes on the half that needs a person.
 
 The suspect list is deliberately over-inclusive. A flagged line is a line to
 look at, and roughly half of them turn out to be fine.
+
+The lessons are not the only prose a learner hears. The consonant mnemonics
+and the tone-rule stories are narrated in the same voice by the same engine
+and live in JSON rather than in `content/lessons/`, so until they were added
+here nothing measured them at all — and they are the writing a learner comes
+back to for years. They are listed under their file's stem alongside the
+lessons.
 """
 
 from __future__ import annotations
 
+import json
 import re
 import sys
 from pathlib import Path
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 LESSONS = REPO_ROOT / "content" / "lessons"
+DATA = REPO_ROOT / "src" / "domain" / "script" / "data"
 REFERENCE = "lesson-01"
+
+#: Narration that ships as data rather than as a lesson. Each is a list of
+#: objects with a `narration` field, which is the whole of what a learner
+#: hears there — these carry no bullets, so the rejected-phrase check has
+#: nothing to read and correctly reports none.
+SCENE_FILES = (
+	DATA / "consonant-scenes.json",
+	DATA / "palace-scenes.json",
+)
 
 #: Each has cost a rebuild. The originality check reads the built deck, so a
 #: fix only clears after regenerating — which makes catching them here worth
@@ -60,10 +78,37 @@ def sentences(text: str) -> list[str]:
 	return [s.strip() for s in re.split(r"(?<=[.!?])\s+", text) if s.strip()]
 
 
-def measure(path: Path) -> dict | None:
+def read_lesson(path: Path) -> tuple[list[str], list[str]]:
+	"""A lesson's spoken English and its bullets."""
 	source = path.read_text(encoding="utf-8")
-	narration = [m.group(1) for m in re.finditer(r"^narration: en (.+)$", source, re.M)]
-	bullets = [m.group(1).strip() for m in re.finditer(r"^- (.+)$", source, re.M)]
+	return (
+		[m.group(1) for m in re.finditer(r"^narration: en (.+)$", source, re.M)],
+		[m.group(1).strip() for m in re.finditer(r"^- (.+)$", source, re.M)],
+	)
+
+
+def read_scenes(path: Path) -> tuple[list[str], list[str]]:
+	"""A scene file's narration, with the engine's breath marks taken out.
+
+	`[pause]` is an instruction to the voice and not a word anyone hears, so
+	leaving it in would put a five-letter "sentence" into the fragment count
+	every time one lands after a full stop.
+	"""
+	scenes = json.loads(path.read_text(encoding="utf-8"))
+	return (
+		[
+			scene["narration"].replace("[pause]", " ")
+			for scene in scenes
+			if scene.get("narration")
+		],
+		[],
+	)
+
+
+def measure(path: Path) -> dict | None:
+	narration, bullets = (
+		read_scenes(path) if path.suffix == ".json" else read_lesson(path)
+	)
 	if not narration:
 		return None
 
@@ -95,7 +140,7 @@ def measure(path: Path) -> dict | None:
 
 def main(argv: list[str]) -> int:
 	wanted = argv[1:] or None
-	paths = sorted(LESSONS.glob("*.md"))
+	paths = [*sorted(LESSONS.glob("*.md")), *SCENE_FILES]
 	if wanted:
 		paths = [p for p in paths if p.stem in wanted]
 

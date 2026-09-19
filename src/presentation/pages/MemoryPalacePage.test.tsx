@@ -4,9 +4,9 @@
  * place and that what you find there is that place's own content — not that
  * the boxes are in the right pixels.
  *
- * Queries are scoped to a section throughout. A place is deliberately reachable
- * two ways — as a region on the painting and as a marker on the pitch diagram —
- * so "the button called rice paddy" is ambiguous by design, and a test that
+ * Queries are scoped to a section throughout. The painting is the only way into
+ * a tone place now, and a district answers to both the painting and its card,
+ * so "the button called harbor" is still ambiguous by design — a test that
  * papered over that would stop noticing if one of the two disappeared.
  */
 import { fireEvent, screen, within } from "@testing-library/react";
@@ -39,17 +39,17 @@ function renderPalace() {
 
 const worldMap = () =>
 	within(screen.getByRole("region", { name: "Map of the palace" }));
-const toneDiagram = () =>
-	within(screen.getByRole("region", { name: "Where tones resolve" }));
 const districts = () =>
 	within(screen.getByRole("region", { name: "Where consonants live" }));
+const house = () =>
+	within(screen.getByRole("region", { name: "Where vowels lodge" }));
 
 describe("MemoryPalacePage", () => {
-	it("shows all three kinds of place at once, which is the point of a map", () => {
+	it("shows all four kinds of place at once, which is the point of a map", () => {
 		renderPalace();
 
 		expect(
-			toneDiagram().getByRole("button", { name: /rice paddy/i }),
+			worldMap().getByRole("button", { name: /rice paddy/i }),
 		).toBeTruthy();
 		// The district *card*, which names the class as well as the place. The
 		// map region inside the same section carries only the bare place name,
@@ -57,6 +57,7 @@ describe("MemoryPalacePage", () => {
 		expect(
 			districts().getByRole("button", { name: /high class/i }),
 		).toBeTruthy();
+		expect(house().getByRole("button", { name: /crossroads/i })).toBeTruthy();
 		expect(screen.getByRole("button", { name: /particles/i })).toBeTruthy();
 	});
 
@@ -67,7 +68,7 @@ describe("MemoryPalacePage", () => {
 
 	it("gathers every scene that ends in one tone into that tone's place", () => {
 		renderPalace();
-		fireEvent.click(toneDiagram().getByRole("button", { name: /^well/i }));
+		fireEvent.click(worldMap().getByRole("button", { name: /^well/i }));
 
 		expect(screen.getByText(/fall down the same well/i)).toBeTruthy();
 		expect(screen.getByText(/one-pointed spear stands driven/i)).toBeTruthy();
@@ -76,7 +77,7 @@ describe("MemoryPalacePage", () => {
 
 	it("says how many rules a merged scene stands for", () => {
 		renderPalace();
-		fireEvent.click(toneDiagram().getByRole("button", { name: /^well/i }));
+		fireEvent.click(worldMap().getByRole("button", { name: /^well/i }));
 		expect(screen.getByText(/4 rules, which agree/)).toBeTruthy();
 	});
 
@@ -94,12 +95,36 @@ describe("MemoryPalacePage", () => {
 		expect(screen.queryByText("chicken")).toBeNull();
 	});
 
+	it("opens the house onto its rooms, with its lodgers in them", () => {
+		renderPalace();
+		fireEvent.click(house().getByRole("button", { name: /crossroads/i }));
+
+		// Every room is there from the first day, the same way every district
+		// is: knowing a vowel is written above its consonant is knowing which
+		// room it is in, so the floor plan is worth having before it fills.
+		expect(screen.getByText(/^the roof$/i)).toBeTruthy();
+		expect(screen.getByText(/^the cellar$/i)).toBeTruthy();
+		expect(screen.getByText(/^the back yard$/i)).toBeTruthy();
+
+		// Sara aa is written after its consonant and is lesson 1's vowel, so a
+		// learner who has finished everything has it, and it lodges out the
+		// back rather than anywhere else.
+		const backYard = screen.getByText(/^the back yard$/i).closest("article");
+		expect(backYard).toBeTruthy();
+		expect(within(backYard as HTMLElement).getByText("า")).toBeTruthy();
+
+		// And it is out the back rather than on the roof, which is the whole
+		// use of sorting the house by where a thing is written.
+		const roof = screen.getByText(/^the roof$/i).closest("article");
+		expect(within(roof as HTMLElement).queryByText("า")).toBeNull();
+	});
+
 	it("swaps the panel rather than stacking places", () => {
 		renderPalace();
-		fireEvent.click(toneDiagram().getByRole("button", { name: /^well/i }));
+		fireEvent.click(worldMap().getByRole("button", { name: /^well/i }));
 		expect(screen.getByText(/fall down the same well/i)).toBeTruthy();
 
-		fireEvent.click(toneDiagram().getByRole("button", { name: /rice paddy/i }));
+		fireEvent.click(worldMap().getByRole("button", { name: /rice paddy/i }));
 		expect(screen.queryByText(/fall down the same well/i)).toBeNull();
 		expect(screen.getByText(/flat rice paddy/i)).toBeTruthy();
 	});
@@ -110,8 +135,6 @@ describe("the painted map's regions", () => {
 		renderPalace();
 		fireEvent.click(worldMap().getByRole("button", { name: /waterfall/i }));
 
-		// The same panel the diagram would have opened — one destination, two
-		// ways in.
 		expect(screen.getByText(/nothing that goes over comes back/i)).toBeTruthy();
 	});
 
@@ -155,24 +178,10 @@ describe("on a narrow screen", () => {
 		return Number.parseFloat((value ?? "0").replace("%", ""));
 	}
 
-	it("keeps every tone marker inside the diagram", () => {
-		// jsdom does no layout, so this checks the arithmetic rather than the
-		// pixels: a marker whose left plus width passes 100% hangs off the edge
-		// at every width, which is what a 92px minimum used to do to the
-		// rightmost one on a 360px phone.
-		renderPalace();
-		const markers = toneDiagram()
-			.getAllByRole("button")
-			.filter((button) => button.style.left !== "");
-
-		expect(markers.length).toBe(5);
-		for (const marker of markers) {
-			const right = percent(marker.style.left) + percent(marker.style.width);
-			expect(right).toBeLessThanOrEqual(100);
-		}
-	});
-
 	it("keeps every map region inside the picture", () => {
+		// jsdom does no layout, so this checks the arithmetic rather than the
+		// pixels: a region whose left plus width passes 100% hangs off the edge
+		// at every width, and no width makes it clickable again.
 		renderPalace();
 		const regions = worldMap()
 			.getAllByRole("button")

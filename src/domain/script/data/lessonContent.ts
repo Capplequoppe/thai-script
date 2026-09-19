@@ -259,7 +259,21 @@ export function lessonRules(legacyNumber: number): readonly LessonRule[] {
 // The deck schema
 // ============================================================================
 
-export interface DeckExpositionSlide {
+/**
+ * What a slide is the story of, if it is the story of anything — a consonant's
+ * glyph, a vowel's written form, a tone rule's id. Usually one thing, usually
+ * absent.
+ *
+ * It exists so the palace can offer a learner the part of a lesson that taught
+ * the letter they just tapped, rather than the lesson from its first slide. A
+ * deck written before this simply has none, and the palace then offers the
+ * whole lesson, which is what it always did.
+ */
+export interface DeckSlideSubject {
+	readonly teaches?: readonly string[];
+}
+
+export interface DeckExpositionSlide extends DeckSlideSubject {
 	readonly kind: "exposition";
 	readonly id: string;
 	readonly heading: string;
@@ -282,14 +296,14 @@ export interface DeckExpositionSlide {
  * carries no answer itself — the attempt is the mechanism, so an answer
  * sitting on the same slide defeats the slide entirely.
  */
-export interface DeckRetrievalSlide {
+export interface DeckRetrievalSlide extends DeckSlideSubject {
 	readonly kind: "retrieval";
 	readonly id: string;
 	readonly prompt: string;
 	readonly revealSlideId: string;
 }
 
-export interface DeckRevealSlide {
+export interface DeckRevealSlide extends DeckSlideSubject {
 	readonly kind: "reveal";
 	readonly id: string;
 	readonly retrievalSlideId: string;
@@ -297,7 +311,7 @@ export interface DeckRevealSlide {
 }
 
 /** Renders from the lesson's rules block; holds no prose of its own. */
-export interface DeckRuleSlide {
+export interface DeckRuleSlide extends DeckSlideSubject {
 	readonly kind: "rule";
 	readonly id: string;
 	readonly ruleId: string;
@@ -351,6 +365,20 @@ function isStringArray(value: unknown): value is string[] {
 	);
 }
 
+/**
+ * A slide's `teaches`, or nothing at all where it has none or the field is the
+ * wrong shape.
+ *
+ * A malformed `teaches` is dropped rather than refused. It steers a viewer and
+ * decides nothing about what a lesson says, so a typo in it should cost a
+ * learner one missing shortcut and never a lesson that will not load.
+ */
+function subjectOf(raw: Record<string, unknown>): DeckSlideSubject {
+	return isStringArray(raw.teaches) && raw.teaches.length > 0
+		? { teaches: raw.teaches }
+		: {};
+}
+
 function parseSlide(
 	raw: unknown,
 	index: number,
@@ -378,13 +406,12 @@ function parseSlide(
 				return undefined;
 			}
 			return {
+				...subjectOf(raw),
 				kind: "exposition",
 				id,
 				heading: raw.heading,
 				body: raw.body,
-				...(typeof raw.thai === "string" && raw.thai
-					? { thai: raw.thai }
-					: {}),
+				...(typeof raw.thai === "string" && raw.thai ? { thai: raw.thai } : {}),
 			};
 		}
 		case "retrieval": {
@@ -409,6 +436,7 @@ function parseSlide(
 				return undefined;
 			}
 			return {
+				...subjectOf(raw),
 				kind: "retrieval",
 				id,
 				prompt: raw.prompt,
@@ -428,6 +456,7 @@ function parseSlide(
 				return undefined;
 			}
 			return {
+				...subjectOf(raw),
 				kind: "reveal",
 				id,
 				retrievalSlideId: raw.retrievalSlideId,
@@ -452,7 +481,7 @@ function parseSlide(
 				});
 				return undefined;
 			}
-			return { kind: "rule", id, ruleId: raw.ruleId };
+			return { ...subjectOf(raw), kind: "rule", id, ruleId: raw.ruleId };
 		}
 		default:
 			errors.push({

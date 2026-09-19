@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { Button } from "@/presentation/components/ui/button";
 import {
 	type DeckSlide as DeckSlideData,
@@ -7,18 +7,31 @@ import {
 	renderRuleSlide,
 	validateDeck,
 } from "../../../domain/script/data/lessonContent";
+import type { PlaybackRate } from "../../../infrastructure/settings/PlaybackSettings";
 import { useResetOnCardChange } from "../../hooks/useResetOnCardChange";
 import {
 	NarrationTransport,
 	usePlaybackRate,
 } from "../molecules/NarrationTransport";
-import type { PlaybackRate } from "../../../infrastructure/settings/PlaybackSettings";
 
 interface Props {
 	/** Path of the deck's JSON, served from `public/lessons/<id>/deck.json`. */
 	deckPath: string;
 	/** Fires once, when the deck's own last slide is confirmed forward. */
 	onComplete: () => void;
+	/**
+	 * Show only the slides that name this subject in their `teaches`, in the
+	 * order the lesson puts them.
+	 *
+	 * For the palace, which offers a learner the story of the letter they just
+	 * tapped rather than the lesson it came from. Omitted everywhere the
+	 * lesson is being taken, which is every other caller.
+	 *
+	 * A retrieval slide and the reveal that answers it come as a pair whichever
+	 * of the two is tagged — a question shown without its answer is a dead end,
+	 * and an answer shown without its question is a non sequitur.
+	 */
+	teaching?: string;
 }
 
 type LoadState =
@@ -746,7 +759,31 @@ function DeckSlideContent({
  * slide is confirmed forward, so the caller can hand off to whatever follows
  * (the lesson's symbol cards) using its own, separate navigation.
  */
-export function DeckSlide({ deckPath, onComplete }: Props) {
+/**
+ * The slides of one story, in the order the lesson tells it.
+ *
+ * A retrieval and its reveal are pulled in together whichever of the two
+ * carries the tag, so a story never ends on an unanswered question and never
+ * opens on an answer to one that was not asked.
+ */
+function slidesTeaching(
+	slides: readonly DeckSlideData[],
+	subject: string,
+): readonly DeckSlideData[] {
+	const tagged = new Set(
+		slides
+			.filter((slide) => slide.teaches?.includes(subject))
+			.map((slide) => slide.id),
+	);
+	for (const slide of slides) {
+		if (!tagged.has(slide.id)) continue;
+		if (slide.kind === "retrieval") tagged.add(slide.revealSlideId);
+		if (slide.kind === "reveal") tagged.add(slide.retrievalSlideId);
+	}
+	return slides.filter((slide) => tagged.has(slide.id));
+}
+
+export function DeckSlide({ deckPath, onComplete, teaching }: Props) {
 	const [state, setState] = useState<LoadState>({ status: "loading" });
 	const [idx, setIdx] = useState(0);
 
@@ -814,7 +851,11 @@ export function DeckSlide({ deckPath, onComplete }: Props) {
 	}, [deckPath]);
 
 	const isReady = state.status === "ready";
-	const slides = isReady ? state.deck.slides : [];
+	const allSlides = isReady ? state.deck.slides : [];
+	const slides = useMemo(
+		() => (teaching ? slidesTeaching(allSlides, teaching) : allSlides),
+		[allSlides, teaching],
+	);
 	const isLast = idx === slides.length - 1;
 
 	const advance = useCallback(() => {

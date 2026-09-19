@@ -37,9 +37,9 @@
 	},
 	"map-world": {
 		"file": "map-world.jpg",
-		"prompt": "A wide illustrated map of a whole valley seen from a high vantage point, painted in ink and watercolour. A golden Thai temple with tiered roofs stands on a high ridge at one side, a covered market of striped awnings fills the flat valley floor, and a fishing harbour with wooden longtail boats sits at the water's edge. Beyond them a flooded rice paddy, a round stone well, a flat-roofed building, a tall waterfall and a winding hill path are all visible in one landscape. Anime illustration with clean confident ink linework and a soft watercolour wash. Warm golden key light against cool blue shadows, drifting dust motes, visible paper grain, rich saturated colour. Expressive faces, cinematic composition, detailed background. No text, letters, numbers or signage anywhere in the image.",
-		"scene": "Everywhere at once. The tone country lies beyond the three districts, and its places sit at the height their tone is spoken.",
-		"seed": 42
+		"prompt": "A wide illustrated map of a whole valley seen from a high vantage point, painted in ink and watercolour. A golden Thai temple with tiered roofs stands on a high ridge at one side, a covered market of striped awnings fills the flat valley floor, and a fishing harbour with wooden longtail boats sits at the water's edge. Beyond them a flooded rice paddy, a round stone well, a flat-roofed building, a tall waterfall and a winding hill path are all visible in one landscape, and a small wooden house on stilts stands alone at a crossroads in the open ground between them. Anime illustration with clean confident ink linework and a soft watercolour wash. Warm golden key light against cool blue shadows, drifting dust motes, visible paper grain, rich saturated colour. Expressive faces, cinematic composition, detailed background. No text, letters, numbers or signage anywhere in the image.",
+		"scene": "Everywhere at once. The three districts hold the consonants, the house at the crossroads lodges the vowels, and the tone country beyond sits at the height each tone is spoken.",
+		"seed": 55
 	},
 	"paddy-alive": {
 		"file": "paddy-alive.jpg",
@@ -63,6 +63,12 @@
 		"file": "place-rooftop.jpg",
 		"prompt": "A flat clay-tiled rooftop seen from roof level, running away to a low parapet with open sky beyond and the tops of distant buildings below. No people. Anime illustration with clean confident ink linework and a soft watercolour wash. Warm golden key light against cool blue shadows, drifting dust motes, visible paper grain, rich saturated colour. Expressive faces, cinematic composition, detailed background. No text, letters, numbers or signage anywhere in the image.",
 		"scene": "High tone. Up, and flat once you are there — high is held, not climbed.",
+		"seed": 42
+	},
+	"place-vowel-house": {
+		"file": "place-vowel-house.jpg",
+		"prompt": "A wooden Thai house on stilts standing by itself at a crossroads in open farmland, three dirt tracks meeting in front of it and running away to the horizon, steep tiled roof, wide veranda, open shaded space beneath the raised floor, dry grass and distant hills, late afternoon light. No people. Anime illustration with clean confident ink linework and a soft watercolour wash. Warm golden key light against cool blue shadows, drifting dust motes, visible paper grain, rich saturated colour. Expressive faces, cinematic composition, detailed background. No text, letters, numbers or signage anywhere in the image.",
+		"scene": "Out where the roads from all three districts meet. Vowels carry no class, so they lodge here rather than living in any district — and the room they lodge in is where they are written.",
 		"seed": 42
 	},
 	"place-waterfall": {

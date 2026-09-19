@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useMemo } from "react";
 import { useNavigate } from "react-router";
 import { consonantNarrationFor } from "../../../domain/script/data/consonantScenes";
 import { lessonEntryByNumber } from "../../../domain/script/data/lessonSequence";
@@ -8,6 +8,7 @@ import {
 	type ThaiSymbolClass,
 } from "../../../domain/script/data/symbols";
 import type { ConsonantSummary } from "../../../domain/script/services/ScriptLessonService";
+import { useClipSequence } from "../../hooks/useClipSequence";
 import {
 	Dialog,
 	DialogContent,
@@ -54,61 +55,6 @@ function lessonFor(character: string): {
 
 	const meta = lessons.find((lesson) => lesson.number === legacyNumber);
 	return { position: entry.position, title: meta?.title ?? entry.id };
-}
-
-/**
- * Plays the native name, then the English explanation.
- *
- * Two clips rather than one recording, because they come from different mouths
- * for a reason: the name is Thai and is spoken by the native voice the course
- * already ships, and the explanation is English and is spoken by the narrator.
- * Merging them offline would mean regenerating both whenever either changed,
- * and would put an English-accented Thai name one careless edit away.
- *
- * Deliberately not `DeckSlide`'s `playSequence`: that carries playback rate and
- * per-language gaps a slide needs and this does not, and it is not exported.
- * Two clips and a stop button is less code than the seam would be.
- */
-function useClipSequence(urls: readonly string[]) {
-	const [playing, setPlaying] = useState(false);
-	const audioRef = useRef<HTMLAudioElement | null>(null);
-
-	const stop = useCallback(() => {
-		audioRef.current?.pause();
-		audioRef.current = null;
-		setPlaying(false);
-	}, []);
-
-	// Closing the dialog mid-sentence must not leave a voice talking to an
-	// empty screen.
-	useEffect(() => stop, [stop]);
-
-	const play = useCallback(() => {
-		if (urls.length === 0) return;
-		stop();
-		setPlaying(true);
-
-		let index = 0;
-		const next = (): void => {
-			const url = urls[index];
-			if (url === undefined) {
-				setPlaying(false);
-				audioRef.current = null;
-				return;
-			}
-			index += 1;
-			const audio = new Audio(url);
-			audioRef.current = audio;
-			audio.addEventListener("ended", next);
-			// A missing clip is not a reason to swallow the rest: ฃ and ฅ have no
-			// native recording at all, so the English half still plays.
-			audio.addEventListener("error", next);
-			void audio.play?.()?.catch?.(() => next());
-		};
-		next();
-	}, [urls, stop]);
-
-	return { playing, play, stop };
 }
 
 export function ConsonantDetailDialog({

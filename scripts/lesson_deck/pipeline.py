@@ -769,6 +769,23 @@ class DeckGenerator:
 		reading = slide.fields.get("thai")
 		if reading:
 			body["thai"] = reading
+		# What this slide is the story of — a consonant's glyph, a vowel's
+		# written form, a tone rule's id — whitespace-separated, and usually
+		# one thing.
+		#
+		# The palace reads it. A learner who opens ก in the market has met the
+		# chicken once, in a lesson they finished weeks ago, and until this
+		# existed there was no way back to it: the decks carried no per-slide
+		# reference to what they taught, so the only offer the palace could
+		# make was the whole lesson from its first slide.
+		#
+		# Authored rather than derived from the prose. A slide that mentions ก
+		# while teaching ข is common and would be indistinguishable to any
+		# scan, and a story viewer that opens on the wrong letter's story is
+		# worse than one that opens on nothing.
+		teaches = slide.fields.get("teaches")
+		if teaches:
+			body["teaches"] = teaches.split()
 		image = self.manifest.by_key(f"{slide.id}-image")
 		if image and image.path:
 			body["image"] = image.path
