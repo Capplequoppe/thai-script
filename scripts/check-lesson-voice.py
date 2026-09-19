@@ -78,6 +78,28 @@ def sentences(text: str) -> list[str]:
 	return [s.strip() for s in re.split(r"(?<=[.!?])\s+", text) if s.strip()]
 
 
+#: A slide opener that begins by counting the slide's contents — "Two letters,
+#: and…", "Three consonants today…". Nobody has ever started a sentence this
+#: way out loud. See `the-teacher.md`.
+COUNT_OPENER = re.compile(
+	r"^(?:One|Two|Three|Four|Five|Six|Seven|Eight|Nine|Ten|Eleven|Twelve)\b",
+	re.I,
+)
+
+#: "X, and it is Y." A normal English construction that became the prose's only
+#: rhythm — measured at 24–39% of every sentence in the course.
+COMMA_AND = re.compile(r",\s+and\b")
+
+
+def opener_signature(sentence: str) -> str:
+	"""The first three words, lowercased, for spotting two slides that open
+	the same way. Three rather than one: "The horse." and "The tide was out."
+	are different openings, while "The first letter." and "The second letter."
+	are the same one twice."""
+	words = re.findall(r"[a-z']+", sentence.lower())
+	return " ".join(words[:3])
+
+
 def read_lesson(path: Path) -> tuple[list[str], list[str]]:
 	"""A lesson's spoken English and its bullets."""
 	source = path.read_text(encoding="utf-8")
@@ -114,8 +136,25 @@ def measure(path: Path) -> dict | None:
 
 	spoken = sentences(" ".join(narration))
 	words = [len(s.split()) for s in spoken]
+
+	# What a listener hears each time a new picture appears. Measured on the
+	# first sentence of each slide rather than on every sentence, because that
+	# is where the formulas live — every `meet-` slide in the course opened
+	# with a bare ordinal, and no sentence-level measure could see it.
+	openers = [sentences(line)[0] for line in narration if sentences(line)]
+	signatures = [opener_signature(o) for o in openers if opener_signature(o)]
+	repeated = len(signatures) - len(set(signatures))
+
 	return {
 		"sentences": len(spoken),
+		"openers": len(openers),
+		"count_opener": (
+			100 * sum(bool(COUNT_OPENER.match(o)) for o in openers) / len(openers)
+			if openers
+			else 0.0
+		),
+		"comma_and": 100 * sum(bool(COMMA_AND.search(s)) for s in spoken) / len(spoken),
+		"repeat_openers": repeated,
 		"negation": 100 * sum(bool(NEGATION.search(s)) for s in spoken) / len(spoken),
 		"questions": 100 * sum(s.endswith("?") for s in spoken) / len(spoken),
 		"fragments": 100 * sum(w <= 5 for w in words) / len(spoken),
@@ -162,6 +201,26 @@ def main(argv: list[str]) -> int:
 			f"{m['mean_words']:>12.1f}{len(m['suspect']):>9}{mark}"
 		)
 
+	# Delivery — whether a person is speaking, or a slide is being read out.
+	# Separate table because these are measured per *slide opener* rather than
+	# per sentence, and because every lesson passed the four above for the
+	# whole time the course sounded like a manual.
+	print(
+		f"\n{'lesson':<26}{'openers':>9}{'counted':>10}{'comma-and':>11}"
+		f"{'same twice':>12}"
+	)
+	for name, m in written:
+		mark = "  <- reference" if name == REFERENCE else ""
+		print(
+			f"{name:<26}{m['openers']:>9}{m['count_opener']:>9.0f}%"
+			f"{m['comma_and']:>10.0f}%{m['repeat_openers']:>12}{mark}"
+		)
+	print(
+		"  targets: counted under 5%, comma-and under 15%, same-twice zero.\n"
+		"  See docs/the-teacher.md — these are the two habits that made the\n"
+		"  course sound like a manual while every measure above stayed green."
+	)
+
 	for name, m in written:
 		if not (m["suspect"] or m["rejected"]):
 			continue
@@ -172,9 +231,10 @@ def main(argv: list[str]) -> int:
 			print(f"  suspect: {line[:90]}")
 
 	print(
-		"\nNumbers are a floor, not the standard. The fault that matters —\n"
-		"a clause whose only job is to comment on the clause before it —\n"
-		"has no surface form. Read docs/lesson-voice.md and then read the lesson."
+		"\nNumbers are a floor, not the standard. Two faults that matter have\n"
+		"no surface form at all: a clause whose only job is to comment on the\n"
+		"clause before it, and nobody being in the room. Read\n"
+		"docs/lesson-voice.md and docs/the-teacher.md, then read the lesson."
 	)
 	return 0
 
