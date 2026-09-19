@@ -816,14 +816,19 @@ describe("the authored lessons ship only what their decks reference", () => {
 				);
 				expect(asset).not.toContain("..");
 			}
-			const onDisk = readdirSync(directory).filter(
-				(name) => name !== "deck.json" && name !== "manifest.json",
-			);
-			for (const name of onDisk) {
-				expect(
-					referenced.has(`/thai-script/lessons/${id}/${name}`),
-					`${id}/${name} is committed but unreferenced`,
-				).toBe(true);
+			// Two levels, because the pipeline writes assets into `audio/` and
+			// `images/` rather than beside the deck. Walking one level asserts
+			// that the subdirectory itself is a referenced asset, which it
+			// never is — a check that could only pass while a lesson had no
+			// assets at all, which is exactly how it survived this long.
+			for (const child of readdirSync(directory)) {
+				if (child === "deck.json" || child === "manifest.json") continue;
+				for (const name of readdirSync(join(directory, child))) {
+					expect(
+						referenced.has(`/thai-script/lessons/${id}/${child}/${name}`),
+						`${id}/${child}/${name} is committed but unreferenced`,
+					).toBe(true);
+				}
 			}
 		});
 	}

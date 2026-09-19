@@ -1,0 +1,153 @@
+{
+  "version": 1,
+  "task": "3.3",
+  "pass": "after",
+  "result": {
+    "outcome": "unsupported",
+    "reason": "content/lessons/lesson-06.md: no grammar covers '.md' files (and 18 more) — 7 violations were measured before this and are not shown"
+  },
+  "findings": [
+    {
+      "rule": "length",
+      "severity": "warning",
+      "measured": 3001,
+      "threshold": 2000,
+      "tier": "module",
+      "module": "src/domain/script/data",
+      "members": [
+        "src/domain/script/data/lesson01Deck.test.ts",
+        "src/domain/script/data/lessonContent.ts",
+        "src/domain/script/data/middleBand.test.ts",
+        "src/domain/script/data/openingBand.test.ts",
+        "src/domain/script/data/syllableRules.test.ts"
+      ]
+    },
+    {
+      "rule": "length",
+      "severity": "warning",
+      "measured": 554,
+      "threshold": 400,
+      "tier": "file",
+      "path": "src/domain/script/data/lessonContent.ts"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 2.7,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "(anonymous)",
+        "path": "src/domain/script/data/middleBand.test.ts",
+        "bytes": {
+          "startIndex": 13973,
+          "endIndex": 15185
+        },
+        "lines": {
+          "startRow": 375,
+          "endRow": 411
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 4.41,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "(anonymous)",
+        "path": "src/domain/script/data/middleBand.test.ts",
+        "bytes": {
+          "startIndex": 17927,
+          "endIndex": 20098
+        },
+        "lines": {
+          "startRow": 486,
+          "endRow": 553
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "(anonymous)",
+        "path": "src/domain/script/data/middleBand.test.ts",
+        "bytes": {
+          "startIndex": 22507,
+          "endIndex": 23111
+        },
+        "lines": {
+          "startRow": 621,
+          "endRow": 641
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "(anonymous)",
+        "path": "src/domain/script/data/middleBand.test.ts",
+        "bytes": {
+          "startIndex": 25440,
+          "endIndex": 26421
+        },
+        "lines": {
+          "startRow": 705,
+          "endRow": 735
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "(anonymous)",
+        "path": "src/domain/script/data/middleBand.test.ts",
+        "bytes": {
+          "startIndex": 25513,
+          "endIndex": 26417
+        },
+        "lines": {
+          "startRow": 706,
+          "endRow": 734
+        }
+      },
+      "check": "density-below-floor"
+    }
+  ],
+  "adapters": [
+    {
+      "tool": "biome",
+      "selection": {
+        "evidence": "configured",
+        "by": "biome.json"
+      },
+      "program": null,
+      "result": {
+        "outcome": "unsupported",
+        "reason": "biome did not resolve: 'biome' on PATH (31 entries). Its findings are missing from this report — that is a gap and not a pass."
+      },
+      "files": 5,
+      "findings": 0,
+      "refusedPaths": 0,
+      "outsideAnalysis": 0,
+      "refusedShape": 0
+    }
+  ]
+}

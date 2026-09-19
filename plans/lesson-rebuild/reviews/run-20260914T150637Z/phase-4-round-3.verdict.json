@@ -1,0 +1,143 @@
+{
+  "findings": [],
+  "acValidations": [
+    {
+      "task_id": "4.1",
+      "criterion": "AC1",
+      "locator": "src/domain/script/data/toneMarkTable.test.ts::enumerates all twelve combinations with none missing",
+      "verdict": "valid",
+      "evidence": "already-settled by 6ce579d6 verdict; no change to covered files since"
+    },
+    {
+      "task_id": "4.1",
+      "criterion": "AC2",
+      "locator": "src/domain/script/data/toneMarkTable.test.ts::declares exactly the four stated combinations unreachable",
+      "verdict": "valid",
+      "evidence": "already-settled by 6ce579d6 verdict; no change to covered files since"
+    },
+    {
+      "task_id": "4.1",
+      "criterion": "AC3",
+      "locator": "src/domain/script/data/toneMarkTable.test.ts::resolves to the mark's tone even when the spelling rule disagrees",
+      "verdict": "valid",
+      "evidence": "already-settled by 6ce579d6 verdict; no change to covered files since"
+    },
+    {
+      "task_id": "4.1",
+      "criterion": "AC4",
+      "locator": "src/domain/script/data/symbolPriority.test.ts::reads ThaiConsonant.priority directly rather than a parallel map",
+      "verdict": "valid",
+      "evidence": "already-settled by 6ce579d6 verdict; no change to covered files since"
+    },
+    {
+      "task_id": "4.1",
+      "criterion": "AC5",
+      "locator": "src/domain/script/data/symbolPriority.test.ts::matches the declared symbols.ts priority for every consonant",
+      "verdict": "valid",
+      "evidence": "already-settled by 6ce579d6 verdict; no change to covered files since"
+    },
+    {
+      "task_id": "4.1",
+      "criterion": "AC6",
+      "locator": "src/domain/script/data/symbolPriority.test.ts::assigns every rank 1..44 exactly once — demotion reorders, never removes",
+      "verdict": "valid",
+      "evidence": "already-settled by 6ce579d6 verdict; no change to covered files since"
+    },
+    {
+      "task_id": "4.1",
+      "criterion": "AC7",
+      "locator": "src/domain/script/data/toneMarkTable.test.ts::gives three distinct values for the three query states",
+      "verdict": "valid",
+      "evidence": "already-settled by 6ce579d6 verdict; no change to covered files since"
+    },
+    {
+      "task_id": "4.2",
+      "criterion": "AC1",
+      "locator": "src/domain/script/data/toneMarkLesson.test.ts::AC1",
+      "verdict": "valid",
+      "evidence": "already-settled by 6ce579d6 verdict; no change to covered files since"
+    },
+    {
+      "task_id": "4.2",
+      "criterion": "AC2",
+      "locator": "src/domain/script/data/toneMarkLesson.test.ts::AC2",
+      "verdict": "valid",
+      "evidence": "already-settled by 6ce579d6 verdict; no change to covered files since"
+    },
+    {
+      "task_id": "4.2",
+      "criterion": "AC3",
+      "locator": "src/domain/script/data/toneMarkLesson.test.ts::AC3",
+      "verdict": "valid",
+      "evidence": "already-settled by 6ce579d6 verdict; no change to covered files since"
+    },
+    {
+      "task_id": "4.2",
+      "criterion": "AC4",
+      "locator": "src/domain/script/data/toneMarkLesson.test.ts::AC4",
+      "verdict": "valid",
+      "evidence": "already-settled by 6ce579d6 verdict; no change to covered files since"
+    },
+    {
+      "task_id": "4.2",
+      "criterion": "AC5",
+      "locator": "src/domain/script/data/toneMarkLesson.test.ts::AC5",
+      "verdict": "valid",
+      "evidence": "already-settled by 6ce579d6 verdict; no change to covered files since"
+    },
+    {
+      "task_id": "4.2",
+      "criterion": "AC6",
+      "locator": "src/domain/script/data/toneMarkLesson.test.ts::AC6",
+      "verdict": "valid",
+      "evidence": "already-settled by 6ce579d6 verdict; no change to covered files since"
+    },
+    {
+      "task_id": "4.3",
+      "criterion": "AC1",
+      "locator": "src/domain/script/data/sequenceClosure.test.ts::AC1",
+      "verdict": "valid",
+      "evidence": "already-settled by 6ce579d6 verdict; no change to covered files since"
+    },
+    {
+      "task_id": "4.3",
+      "criterion": "AC2",
+      "locator": "src/domain/script/data/sequenceClosure.test.ts::AC2",
+      "verdict": "valid",
+      "evidence": "already-settled by 6ce579d6 verdict; no change to covered files since"
+    },
+    {
+      "task_id": "4.3",
+      "criterion": "AC3",
+      "locator": "src/domain/script/data/sequenceClosure.test.ts::AC3",
+      "verdict": "valid",
+      "evidence": "already-settled by 6ce579d6 verdict; no change to covered files since"
+    },
+    {
+      "task_id": "4.3",
+      "criterion": "AC4",
+      "locator": "src/domain/script/data/sequenceClosure.test.ts::AC4",
+      "verdict": "valid",
+      "evidence": "already-settled by 6ce579d6 verdict; no change to covered files since"
+    },
+    {
+      "task_id": "4.3",
+      "criterion": "AC5",
+      "locator": "src/domain/script/data/sequenceClosure.test.ts::AC5",
+      "verdict": "valid",
+      "evidence": "already-settled by 6ce579d6 verdict; no change to covered files since"
+    },
+    {
+      "task_id": "4.3",
+      "criterion": "AC6",
+      "locator": "src/domain/script/data/sequenceClosure.test.ts::AC6",
+      "verdict": "valid",
+      "evidence": "already-settled by 6ce579d6 verdict; no change to covered files since"
+    }
+  ],
+  "reviewedAt": "55e6864569564e495784d69fd31ddc212e2a581d",
+  "answersAt": "4ff8137cd92c10e3",
+  "enforcement": [
+    "reviewer edited 1 path(s) the plan does not declare and they were reverted: plans/lesson-rebuild/resources.jsonl"
+  ]
+}

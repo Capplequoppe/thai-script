@@ -1,0 +1,191 @@
+{
+  "version": 1,
+  "task": "4.1",
+  "pass": "after",
+  "result": {
+    "outcome": "incomplete",
+    "reason": "biome: biome did not resolve: 'biome' on PATH (31 entries). Its findings are missing from this report — that is a gap and not a pass."
+  },
+  "findings": [
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "(anonymous)",
+        "path": "src/domain/script/data/symbolPriority.test.ts",
+        "bytes": {
+          "startIndex": 985,
+          "endIndex": 1584
+        },
+        "lines": {
+          "startRow": 30,
+          "endRow": 50
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "(anonymous)",
+        "path": "src/domain/script/data/symbolPriority.test.ts",
+        "bytes": {
+          "startIndex": 1662,
+          "endIndex": 2606
+        },
+        "lines": {
+          "startRow": 52,
+          "endRow": 80
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "file",
+      "path": "src/domain/script/data/symbolPriority.test.ts",
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "length",
+      "severity": "warning",
+      "measured": 3970,
+      "threshold": 2000,
+      "tier": "module",
+      "module": "src/domain/script/data",
+      "members": [
+        "src/domain/script/data/symbolPriority.test.ts",
+        "src/domain/script/data/symbolPriority.ts",
+        "src/domain/script/data/symbols.ts",
+        "src/domain/script/data/toneMarkTable.test.ts",
+        "src/domain/script/data/toneMarkTable.ts"
+      ]
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 4.09,
+      "threshold": 5,
+      "tier": "file",
+      "path": "src/domain/script/data/symbols.ts",
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "length",
+      "severity": "warning",
+      "measured": 3476,
+      "threshold": 400,
+      "tier": "file",
+      "path": "src/domain/script/data/symbols.ts"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "(anonymous)",
+        "path": "src/domain/script/data/toneMarkTable.test.ts",
+        "bytes": {
+          "startIndex": 697,
+          "endIndex": 2183
+        },
+        "lines": {
+          "startRow": 20,
+          "endRow": 63
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "(anonymous)",
+        "path": "src/domain/script/data/toneMarkTable.test.ts",
+        "bytes": {
+          "startIndex": 765,
+          "endIndex": 1362
+        },
+        "lines": {
+          "startRow": 21,
+          "endRow": 41
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "(anonymous)",
+        "path": "src/domain/script/data/toneMarkTable.test.ts",
+        "bytes": {
+          "startIndex": 2272,
+          "endIndex": 3070
+        },
+        "lines": {
+          "startRow": 65,
+          "endRow": 87
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "getToneMarkCell",
+        "path": "src/domain/script/data/toneMarkTable.ts",
+        "bytes": {
+          "startIndex": 3422,
+          "endIndex": 3942
+        },
+        "lines": {
+          "startRow": 94,
+          "endRow": 116
+        }
+      },
+      "check": "density-below-floor"
+    }
+  ],
+  "adapters": [
+    {
+      "tool": "biome",
+      "selection": {
+        "evidence": "configured",
+        "by": "biome.json"
+      },
+      "program": null,
+      "result": {
+        "outcome": "unsupported",
+        "reason": "biome did not resolve: 'biome' on PATH (31 entries). Its findings are missing from this report — that is a gap and not a pass."
+      },
+      "files": 5,
+      "findings": 0,
+      "refusedPaths": 0,
+      "outsideAnalysis": 0,
+      "refusedShape": 0
+    }
+  ]
+}

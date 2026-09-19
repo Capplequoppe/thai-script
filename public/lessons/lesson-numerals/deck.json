@@ -4,12 +4,47 @@
 	"slides": [
 		{
 			"kind": "exposition",
+			"id": "what-is-here",
+			"heading": "Ten glyphs, and permission to walk away",
+			"body": [
+				"Ten glyphs, and an honest choice about whether to learn them.",
+				"Rare in running text, and common on signs, forms and doors.",
+				"The words behind the digits are words you can read already."
+			],
+			"audio": [
+				"/thai-script/lessons/lesson-numerals/audio/a375757bfb4178d1.mp3"
+			],
+			"audioLanguages": ["en"],
+			"image": "/thai-script/lessons/lesson-numerals/images/what-is-here-504b10654133.jpg"
+		},
+		{
+			"kind": "exposition",
+			"id": "pen-still-there",
+			"heading": "Pen and paper",
+			"body": [
+				"Real paper, a real pen.",
+				"Ten new shapes, and the same stroke habits as the letters.",
+				"Say the number word out loud as you write each one."
+			],
+			"audio": [
+				"/thai-script/lessons/lesson-numerals/audio/d1b4eaf0626fcdee.mp3"
+			],
+			"audioLanguages": ["en"],
+			"image": "/thai-script/lessons/lesson-numerals/images/pen-still-there-1bdf41db8b53.jpg"
+		},
+		{
+			"kind": "exposition",
 			"id": "why-optional",
 			"heading": "Ten glyphs, entirely optional",
 			"body": [
 				"Thailand writes numbers with Arabic digits almost everywhere. The Thai digits survive on official documents, temple signs, some price boards — and anywhere a date wants to look formal.",
 				"Skipping this lesson skips nothing else: no later material depends on it, and the course is complete without it. It waits here if a menu ever charges you the Thai-digit price."
-			]
+			],
+			"audio": [
+				"/thai-script/lessons/lesson-numerals/audio/27c53e597d61b0b4.mp3"
+			],
+			"audioLanguages": ["en"],
+			"image": "/thai-script/lessons/lesson-numerals/images/why-optional-83bf51434a14.jpg"
 		},
 		{
 			"kind": "exposition",
@@ -19,7 +54,17 @@
 				"๐ is zero, a plain ring — ศูนย์ (sǔun), a word you already can read: temple ศ up front and a silenced ย at the end.",
 				"๑ is one, หนึ่ง (nùeng). ๒ is two, สอง (sǎawng). ๓ is three, สาม (sǎam) — the two and three share a base; three carries an extra hump.",
 				"๔ is four, สี่ (sìi), and its glyph forks like a flag."
-			]
+			],
+			"audio": [
+				"/thai-script/lessons/lesson-numerals/audio/66ac143be0ec1333.mp3",
+				"/thai-script/lessons/lesson-numerals/audio/027089f87cc9cab8.mp3",
+				"/thai-script/lessons/lesson-numerals/audio/6a178434cb895889.mp3",
+				"/thai-script/lessons/lesson-numerals/audio/2e8e75b7fac990ce.mp3",
+				"/thai-script/lessons/lesson-numerals/audio/43fa2a5d074a4f15.mp3",
+				"/thai-script/lessons/lesson-numerals/audio/2a66d784d4344165.mp3"
+			],
+			"audioLanguages": ["en", "th", "th", "th", "th", "th"],
+			"image": "/thai-script/lessons/lesson-numerals/images/zero-to-four-65c6148c10a9.jpg"
 		},
 		{
 			"kind": "exposition",
@@ -29,7 +74,17 @@
 				"๕ is five, ห้า (hâa) — the glyph coils back on itself. ๖ is six, หก (hòk).",
 				"๗ is seven, เจ็ด (jèt), and ๘ is eight, แปด (bpàaet) — a matched pair of hooks facing opposite ways.",
 				"๙ is nine, เก้า (gâo), with a tail that climbs. Larger units are ordinary words: สิบ (sìp) ten, ร้อย (ráawi) hundred, พัน (phan) thousand, ล้าน (láan) million."
-			]
+			],
+			"audio": [
+				"/thai-script/lessons/lesson-numerals/audio/b380e0024b0bb208.mp3",
+				"/thai-script/lessons/lesson-numerals/audio/3cc346763c19fbc8.mp3",
+				"/thai-script/lessons/lesson-numerals/audio/40a20e98fcd487e2.mp3",
+				"/thai-script/lessons/lesson-numerals/audio/c14b176db6e19b59.mp3",
+				"/thai-script/lessons/lesson-numerals/audio/94999d6f399fca0b.mp3",
+				"/thai-script/lessons/lesson-numerals/audio/0f8f5460840af5e7.mp3"
+			],
+			"audioLanguages": ["en", "th", "th", "th", "th", "th"],
+			"image": "/thai-script/lessons/lesson-numerals/images/five-to-nine-8b173967955c.jpg"
 		},
 		{
 			"kind": "exposition",
@@ -39,13 +94,52 @@
 				"Thai digits combine exactly as Arabic ones do — position by position, nothing reordered.",
 				"๒๕ is 25. ๑๐๐ is 100. A ticket stamped ๗๕ is asking for 75, and the only new skill is glyph recognition.",
 				"The word เลข (lêek) — number — is what signs use to label them."
-			]
+			],
+			"audio": [
+				"/thai-script/lessons/lesson-numerals/audio/2c52dbd31cff027f.mp3"
+			],
+			"audioLanguages": ["en"],
+			"image": "/thai-script/lessons/lesson-numerals/images/reading-a-number-b8e894a4980f.jpg"
+		},
+		{
+			"kind": "exposition",
+			"id": "say-the-number",
+			"heading": "Read it, and then say it",
+			"body": [
+				"Two digits. Work out the number first.",
+				"Then say it in Thai, out loud.",
+				"Turn it over afterwards."
+			],
+			"audio": [
+				"/thai-script/lessons/lesson-numerals/audio/e458e03534d40344.mp3"
+			],
+			"audioLanguages": ["en"],
+			"thai": "๒๐"
+		},
+		{
+			"kind": "exposition",
+			"id": "say-the-number-answer",
+			"heading": "That one",
+			"body": [
+				"**๒๐** — twenty, ยี่สิบ (yîi-sìp).",
+				"Twenty is the one ten with a name of its own.",
+				"From thirty up: the digit word, then สิบ (sìp)."
+			],
+			"audio": [
+				"/thai-script/lessons/lesson-numerals/audio/4dc4df95eccc1e8c.mp3"
+			],
+			"audioLanguages": ["en"],
+			"thai": "๒๐"
 		},
 		{
 			"kind": "retrieval",
 			"id": "read-price",
 			"prompt": "A market stall lists a price as ๓๕. What number is that, and which two digit glyphs did you just read?",
-			"revealSlideId": "read-price-answer"
+			"revealSlideId": "read-price-answer",
+			"audio": [
+				"/thai-script/lessons/lesson-numerals/audio/93ab11f785642f07.mp3"
+			],
+			"audioLanguages": ["en"]
 		},
 		{
 			"kind": "reveal",
@@ -53,13 +147,21 @@
 			"retrievalSlideId": "read-price",
 			"answers": [
 				"35. ๓ is three — the humped glyph — and ๕ is five, the one that coils back on itself. Position works exactly as in Arabic digits."
-			]
+			],
+			"audio": [
+				"/thai-script/lessons/lesson-numerals/audio/94035a8966463cfa.mp3"
+			],
+			"audioLanguages": ["en"]
 		},
 		{
 			"kind": "retrieval",
 			"id": "spot-digit",
 			"prompt": "๙ and ๗ both rise to a point. A date stamp reads ๙. Which number is it, and what tells the two glyphs apart?",
-			"revealSlideId": "spot-digit-answer"
+			"revealSlideId": "spot-digit-answer",
+			"audio": [
+				"/thai-script/lessons/lesson-numerals/audio/b431cc0ce2f0dbc4.mp3"
+			],
+			"audioLanguages": ["en"]
 		},
 		{
 			"kind": "reveal",
@@ -67,15 +169,27 @@
 			"retrievalSlideId": "spot-digit",
 			"answers": [
 				"Nine. ๙ finishes with a tail that climbs above the line, while ๗ keeps a straight neck with a small hook."
-			]
+			],
+			"audio": [
+				"/thai-script/lessons/lesson-numerals/audio/0f8f5460840af5e7.mp3",
+				"/thai-script/lessons/lesson-numerals/audio/73e564455b94dfe9.mp3"
+			],
+			"audioLanguages": ["th", "en"]
 		},
 		{
 			"kind": "exposition",
 			"id": "close",
 			"heading": "Done — or happily skipped",
 			"body": [
-				"Ten glyphs, their number words, and positional reading. Whether you learned them or skipped them, the course stands complete behind you."
-			]
+				"Ten glyphs, their number words, and positional reading.",
+				"Larger numbers need no new shapes, only the words you already read.",
+				"Taken or skipped, the course stands complete behind you."
+			],
+			"audio": [
+				"/thai-script/lessons/lesson-numerals/audio/0cf0fc634088b0b3.mp3"
+			],
+			"audioLanguages": ["en"],
+			"image": "/thai-script/lessons/lesson-numerals/images/close-18d12f82a344.jpg"
 		}
 	]
 }

@@ -389,6 +389,15 @@ narration: en There is the whole of it. The pier with the wooden horse at the en
 - In this course, low class is the **harbour**.
 - The place is the class. The class decides the tone.
 
+## exposition the-vowel-house
+image: images/lesson-01/the-vowel-house.jpg
+scene: A wooden Thai house on stilts standing by itself at a crossroads in open farmland, three dirt tracks meeting in front of it and running away to the horizon, steep tiled roof, wide veranda, open shaded space beneath the raised floor, dry grass and distant hills, late afternoon light. No people.
+heading: And one place that is not a district
+narration: en One more place before the vowel, because the vowel does not live in the harbour and never will. Where a consonant lives tells you its class, and its class decides the tone. A vowel has no class at all. It will attach itself to any consonant you like and it changes nothing about that consonant, so there is nowhere in any of the districts for it to belong. What it has instead is a house of its own, standing out where the roads from all three districts meet. Vowels lodge there rather than live there, because a vowel never stands on its own — it always has a consonant to lean on. And the room it lodges in is decided by one thing only, which is where it gets written. Above the consonant is the roof. Below it, the cellar. After it, the back yard. Today you are going as far as the back yard and no further.
+- A vowel carries no class, so it belongs to no district.
+- One house, where the roads from all three districts meet.
+- The room it lodges in is simply **where it is written**.
+
 ## exposition meet-aa
 glyph: า
 anchor: AAH
@@ -397,10 +406,10 @@ cue: the boy's call, held to the end of his breath
 heading: The vowel you have already heard
 narration: en Now the vowel — and you have been listening to it all lesson, because it is the second half of what that boy was shouting off the end of the pier. The part after his lips came open. The long open note, held right out until he ran out of air. Listen to its name.
 recording: th สระอา public/audio/sara-a-long.mp3
-narration: en Long is not a decoration here. Length changes meaning in Thai, so the short version of this sound is a different vowel and very often a different word. When you say it, take it all the way out — think of somebody calling across water to be heard, not somebody saying a word in a room. And it never stands on its own. In Thai a vowel is a thing with a position, and this one always sits just after the consonant it belongs to, because the consonant starts the syllable and the vowel finishes it.
+narration: en Long is not a decoration here. Length changes meaning in Thai, so the short version of this sound is a different vowel and very often a different word. When you say it, take it all the way out — think of somebody calling across water to be heard, not somebody saying a word in a room. And it never stands on its own. In Thai a vowel is a thing with a position, and this one always sits just after the consonant it belongs to, because the consonant starts the syllable and the vowel finishes it. Written after — which is the back yard, and this is the first lodger you have met.
 - A **long**, open note, held until the breath runs out.
 - Length changes meaning. Long and short are different vowels.
-- It always follows its consonant, and never stands alone.
+- It is written **after** its consonant, so it lodges in the **back yard**.
 
 ## exposition write-aa
 thai: า
@@ -489,17 +498,17 @@ narration: en To come.
 - **มา** — *to come*.
 
 ## exposition word-naan
-image: images/lesson-01/word-naan.jpg
-scene: An old fisherman sits alone on an upturned crate mending a net spread across his knees, hands working, face deeply lined. Behind him the same harbour lies still under a long low sun. Warm amber light and very long shadows stretch across the worn stone.
+image: images/lesson-01/word-naan-waiting.jpg
+scene: An old blind woman sits motionless in a dark doorway with one hand closed around a bare frayed cord end hanging from the post, an untouched bowl of rice beside her on the floor. Dust hangs in a shaft of low light and the shadows are very long. Weary, patient, and still.
 glyph: นาน
 anchor: NAAN
 gloss: a long time
 heading: Close the syllable
 narration: en One more, and this time nothing new is added at all. You will use a letter you already have, in a place you have not used it yet. Take your first word, the rice field, and put the mouse's letter on the end of it as well as the front.
 narration: th นาน
-narration: en That means a long time. Which is what the net-mender was counting, and what the boy on the pier was doing. The same letter just did two different jobs in one syllable. It started the sound, and it stopped it. Thai consonants do that routinely, and which job a letter is doing depends on nothing but where it sits. Listen to the ending once more. The sound closes cleanly and stays where it is. It does not trail off, and it does not pick up a little extra vowel on the way out.
+narration: en That means a long time — and you already know whose word it is. The old woman at the doorpost waited a long time. And when her fingers finally came down that cord, none of the knots were left. None at all. The waiting and the empty cord are the same word, and you have already sat through both of them. The same letter just did two different jobs in one syllable. It started the sound, and it stopped it. Thai consonants do that routinely, and which job a letter is doing depends on nothing but where it sits. Listen to the ending once more. The sound closes cleanly and stays where it is. It does not trail off, and it does not pick up a little extra vowel on the way out.
 - The mouse's letter, the long vowel, then the mouse's letter again.
-- It means **a long time**.
+- It means **a long time** — what the net-mender waited, with **none** of her knots left.
 - One consonant can both **open** and **close** a syllable. Position decides.
 
 ## exposition see-naan

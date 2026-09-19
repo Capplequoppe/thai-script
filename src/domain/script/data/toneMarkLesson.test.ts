@@ -105,8 +105,12 @@ const MARK_SUFFIX: Readonly<Record<string, ToneMarkName>> = {
 const CELL_LINE =
 	/mai (ek|tho|tri|chattawa)\b[^.]*?\bgives\b[^.]*?\b(low|falling|high|rising)\b/i;
 
+// Spelling-tolerant for the same reason as the pair slide in
+// `middleBand.test.ts`: the district is an identifier in the data and English
+// prose in the lesson, and this is checking that the sentence was written, not
+// which side of the Atlantic wrote it.
 const UNREACHABLE_LINE =
-	/mai tri and mai chattawa never sit over a (?:temple|harbor) letter/i;
+	/mai tri and mai chattawa never sit over a (?:temple|harbou?r) letter/i;
 
 /**
  * The resolved cells stated on one class's slide — read fresh on every call so
@@ -243,7 +247,12 @@ describe("AC2 — all twelve class-by-mark combinations appear", () => {
 		}
 		expect(allText).toMatch(/market/);
 		expect(allText).toMatch(/temple/);
-		expect(allText).toMatch(/harbor/);
+		// Spelling-tolerant, like UNREACHABLE_LINE above and the pair slide in
+		// middleBand.test.ts. This asks whether the lesson names all three
+		// districts; requiring the American spelling here forced one "harbor"
+		// into a lesson that says "harbour" five other times, which is a worse
+		// outcome than the check was ever trying to prevent.
+		expect(allText).toMatch(/harbou?r/);
 	});
 });
 
@@ -456,18 +465,23 @@ describe("AC6 — every asset the deck references exists", () => {
 			expect(file).not.toContain("..");
 			expect(existsSync(join(directory, file)), asset).toBe(true);
 		}
-		const onDisk = readdirSync(directory).filter(
-			(name) => name !== "deck.json" && name !== "manifest.json",
-		);
-		for (const name of onDisk) {
-			expect(
-				referenced.has(`/thai-script/lessons/${LESSON_ID}/${name}`),
-				`${LESSON_ID}/${name} is committed but no slide references it`,
-			).toBe(true);
+		// Two levels: the pipeline writes assets into `audio/` and `images/`
+		// rather than beside the deck, so a one-level walk asserts the
+		// subdirectory itself is a referenced asset. That could only pass
+		// while the lesson had no assets at all.
+		for (const child of readdirSync(directory)) {
+			if (child === "deck.json" || child === "manifest.json") continue;
+			for (const name of readdirSync(join(directory, child))) {
+				expect(
+					referenced.has(`/thai-script/lessons/${LESSON_ID}/${child}/${name}`),
+					`${LESSON_ID}/${child}/${name} is committed but no slide references it`,
+				).toBe(true);
+			}
 		}
 		for (const asset of manifest.assets) {
-			if (asset.path === null) continue;
-			expect(existsSync(join(directory, asset.path)), asset.path).toBe(true);
+			if (asset.file === null) continue;
+			// `path` is the URL the app fetches; `file` is where it sits on disk.
+			expect(existsSync(join(directory, asset.file)), asset.file).toBe(true);
 		}
 	});
 });

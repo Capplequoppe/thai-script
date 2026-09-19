@@ -4,13 +4,95 @@
 	"slides": [
 		{
 			"kind": "exposition",
-			"id": "aaw-aang",
-			"heading": "aaw àang, an empty basin",
+			"id": "what-is-here",
+			"heading": "One letter, two jobs, and the last corner of a grid",
 			"body": [
-				"อ is a plain ring standing open — a basin set down among the market stalls, and the market is the class: อ is mid.",
-				"You have already been reading it. Since lesson six it has been the prop under a bare ื, in มือ and คือ, and nothing was asked of it there.",
-				"It has two jobs, and which one it is doing depends only on where it sits in the syllable."
-			]
+				"The letter from lesson six finally gets its name.",
+				"Two jobs, one glyph, and the position tells you which.",
+				"A short vowel to go with the long one.",
+				"And the last two tone rules the market needs."
+			],
+			"audio": ["/thai-script/lessons/lesson-11/audio/3aecb9462b3105de.mp3"],
+			"audioLanguages": ["en"],
+			"image": "/thai-script/lessons/lesson-11/images/what-is-here-29d94620684a.jpg"
+		},
+		{
+			"kind": "exposition",
+			"id": "pen-still-there",
+			"heading": "Pen and paper",
+			"body": [
+				"Real paper, a real pen.",
+				"Both halves of the name, out loud, every time."
+			],
+			"audio": ["/thai-script/lessons/lesson-11/audio/7308265d5a4a9a1b.mp3"],
+			"audioLanguages": ["en"],
+			"image": "/thai-script/lessons/lesson-11/images/pen-still-there-1bdf41db8b53.jpg"
+		},
+		{
+			"kind": "exposition",
+			"id": "meet-aang",
+			"heading": "The basin",
+			"body": [
+				"Its name is the sound, then a word beginning with that sound.",
+				"The word means a **basin**.",
+				"A plain open ring. Mid class, in the market."
+			],
+			"audio": [
+				"/thai-script/lessons/lesson-11/audio/5be8e66b337fe414.mp3",
+				"/thai-script/lessons/lesson-11/audio/c6fcbf83b6b66626.mp3",
+				"/thai-script/lessons/lesson-11/audio/5c93f1e5c5520abb.mp3"
+			],
+			"audioLanguages": ["en", "th", "en"],
+			"image": "/thai-script/lessons/lesson-11/images/meet-aang-2f54d9bcbe04.jpg"
+		},
+		{
+			"kind": "exposition",
+			"id": "aang-story",
+			"heading": "The woman who sold nothing",
+			"body": [
+				"A pitch is kept only while something of yours is standing in it.",
+				"The fish-seller set an empty basin in her sister's place.",
+				"She filled it every day for four months so it would look like somebody's."
+			],
+			"audio": ["/thai-script/lessons/lesson-11/audio/6bbfeaaebea6ccd5.mp3"],
+			"audioLanguages": ["en"],
+			"image": "/thai-script/lessons/lesson-11/images/aang-story-0e96246ddcf4.jpg"
+		},
+		{
+			"kind": "exposition",
+			"id": "aang-story-2",
+			"heading": "What the basin was for",
+			"body": [
+				"The pitch was still there in the autumn, because the basin had been.",
+				"It sold nothing and held nothing but water.",
+				"Standing in a slot, saying nothing, keeping the place open."
+			],
+			"audio": ["/thai-script/lessons/lesson-11/audio/1557e5da57a1cb5b.mp3"],
+			"audioLanguages": ["en"],
+			"image": "/thai-script/lessons/lesson-11/images/aang-story-2-23e43012260e.jpg"
+		},
+		{
+			"kind": "exposition",
+			"id": "see-aang",
+			"heading": "The basin's letter",
+			"body": [
+				"A plain ring, standing open.",
+				"One stroke, and every part of it curved."
+			],
+			"thai": "อ"
+		},
+		{
+			"kind": "exposition",
+			"id": "write-aang",
+			"heading": "Write it",
+			"body": [
+				"**Start at the head**, upper left, clockwise.",
+				"Carry the ring round and close it.",
+				"You drew this in lesson six without knowing its name."
+			],
+			"audio": ["/thai-script/lessons/lesson-11/audio/dd1ec95b1bd2d13a.mp3"],
+			"audioLanguages": ["en"],
+			"thai": "อ"
 		},
 		{
 			"kind": "rule",
@@ -20,48 +102,214 @@
 		{
 			"kind": "exposition",
 			"id": "job-one",
-			"heading": "Job one — minding the stall",
+			"heading": "Job one, and it is the basin's job",
 			"body": [
-				"Thai syllables are written consonant first. A word whose first sound is a vowel has no consonant to write, so อ stands in the slot and says nothing.",
-				"อีก (ìik) is more or again. อัน (an) is the classifier for small things. อา (aa) is a parent's younger sibling. อาจ (àat) is may or might.",
-				"In every one of those the ring is silent. It is holding the place, exactly as it held the place under ื."
-			]
+				"A syllable is written consonant first, and Thai keeps to that.",
+				"Some words open on a vowel and have no consonant to write.",
+				"The basin stands in the slot and makes no sound."
+			],
+			"audio": ["/thai-script/lessons/lesson-11/audio/fc01f44a3e936486.mp3"],
+			"audioLanguages": ["en"],
+			"image": "/thai-script/lessons/lesson-11/images/job-one-ff23fc99c768.jpg"
+		},
+		{
+			"kind": "exposition",
+			"id": "read-iik",
+			"heading": "Read this one",
+			"body": [
+				"The ring, silent. Then the long vowel, then the chicken stopping it.",
+				"Out loud before you turn it over."
+			],
+			"audio": ["/thai-script/lessons/lesson-11/audio/6fce4947f943a2ed.mp3"],
+			"audioLanguages": ["en"],
+			"thai": "อีก"
+		},
+		{
+			"kind": "exposition",
+			"id": "read-iik-answer",
+			"heading": "That one",
+			"body": [
+				"**อีก** — more, or again.",
+				"The ring says nothing. The vowel behind it is the sound."
+			],
+			"audio": [
+				"/thai-script/lessons/lesson-11/audio/8e3f40f95493da2d.mp3",
+				"/thai-script/lessons/lesson-11/audio/f1977cb8427c16d3.mp3"
+			],
+			"audioLanguages": ["th", "en"],
+			"thai": "อีก"
+		},
+		{
+			"kind": "exposition",
+			"id": "the-prop-was-this",
+			"heading": "And this is what the prop was",
+			"body": [
+				"**มือ** — a hand. **คือ** — is.",
+				"The prop from lesson six was this letter the whole time.",
+				"Front of a word or under a bare vowel, it holds a place and says nothing."
+			],
+			"audio": [
+				"/thai-script/lessons/lesson-11/audio/011cd16b14a02eeb.mp3",
+				"/thai-script/lessons/lesson-11/audio/1c9f2745d82e0cfd.mp3",
+				"/thai-script/lessons/lesson-11/audio/0c11e52bcb114610.mp3",
+				"/thai-script/lessons/lesson-11/audio/2381d5304464fa1b.mp3",
+				"/thai-script/lessons/lesson-11/audio/46ab1b246479c7eb.mp3"
+			],
+			"audioLanguages": ["en", "th", "en", "th", "en"],
+			"image": "/thai-script/lessons/lesson-11/images/the-prop-was-this-48a61d8367de.jpg"
 		},
 		{
 			"kind": "exposition",
 			"id": "job-two",
-			"heading": "Job two — being the vowel aaw",
+			"heading": "Job two, where the basin fills up",
 			"body": [
-				"Put อ after a consonant with no vowel written, and it stops being silent and becomes a long aaw — a yawn with the jaw dropped all the way.",
-				"พอ (phaaw) is enough. รอ (raaw) is to wait. ตอน (dtaawn) is a part or a moment. นอน (naawn) is to sleep. มอง (maawng) is to look at.",
-				"Two jobs, one glyph, and the position settles it every time: in front of the vowel slot it is a silent consonant, in the vowel slot it is aaw."
-			]
+				"Put the ring after a consonant with no vowel written between them.",
+				"It stops being silent and becomes a long aw.",
+				"The jaw drops all the way, as in the English word *saw*."
+			],
+			"audio": [
+				"/thai-script/lessons/lesson-11/audio/ea742be5d1c70c29.mp3",
+				"/thai-script/lessons/lesson-11/audio/8f3d2eadb788b747.mp3",
+				"/thai-script/lessons/lesson-11/audio/e8cd21cff7f5b9c2.mp3"
+			],
+			"audioLanguages": ["en", "th", "en"],
+			"image": "/thai-script/lessons/lesson-11/images/job-two-b671f5e73ba7.jpg"
+		},
+		{
+			"kind": "exposition",
+			"id": "read-naawn",
+			"heading": "Read this one",
+			"body": [
+				"Mouse, basin as the vowel, mouse again closing it.",
+				"Hold the vowel long. Out loud before you turn it over."
+			],
+			"audio": ["/thai-script/lessons/lesson-11/audio/ae4cd2f0f272de36.mp3"],
+			"audioLanguages": ["en"],
+			"thai": "นอน"
+		},
+		{
+			"kind": "exposition",
+			"id": "read-naawn-answer",
+			"heading": "That one",
+			"body": [
+				"**นอน** — to lie down, or to sleep.",
+				"Harbour letter, live ending, flat and level."
+			],
+			"audio": [
+				"/thai-script/lessons/lesson-11/audio/8b269b6e07a695a9.mp3",
+				"/thai-script/lessons/lesson-11/audio/9faba83ba7ce0fe9.mp3"
+			],
+			"audioLanguages": ["th", "en"],
+			"thai": "นอน"
+		},
+		{
+			"kind": "exposition",
+			"id": "read-aawk",
+			"heading": "Both jobs in one word",
+			"body": [
+				"The first ring: silent, holding the slot.",
+				"The second ring: the long vowel.",
+				"Then the chicken's letter stopping it. Out loud first."
+			],
+			"audio": ["/thai-script/lessons/lesson-11/audio/1f470e151b4e4abf.mp3"],
+			"audioLanguages": ["en"],
+			"thai": "ออก"
+		},
+		{
+			"kind": "exposition",
+			"id": "read-aawk-answer",
+			"heading": "That one",
+			"body": [
+				"**ออก** — out, or to go out.",
+				"The same letter twice: silent, then the vowel."
+			],
+			"audio": [
+				"/thai-script/lessons/lesson-11/audio/b91c9df6858b8601.mp3",
+				"/thai-script/lessons/lesson-11/audio/158947573df10f9f.mp3"
+			],
+			"audioLanguages": ["th", "en"],
+			"thai": "ออก"
 		},
 		{
 			"kind": "retrieval",
 			"id": "which-job",
-			"prompt": "Two syllables, each written with อ. In one the ring is the first character; in the other it follows a consonant with nothing between. Which is silent, and which is a vowel?",
-			"revealSlideId": "which-job-answer"
+			"prompt": "Two syllables, each written with the ring. In one it is the first character; in the other it follows a consonant with nothing written between them. Which is silent, and which is the vowel?",
+			"revealSlideId": "which-job-answer",
+			"audio": ["/thai-script/lessons/lesson-11/audio/d7b8c6fbdca5df2c.mp3"],
+			"audioLanguages": ["en"]
 		},
 		{
 			"kind": "reveal",
 			"id": "which-job-answer",
 			"retrievalSlideId": "which-job",
 			"answers": [
-				"First character: silent. It is minding an empty consonant slot for a word that opens on a vowel.",
-				"After a consonant with nothing between: the vowel aaw.",
-				"You never have to guess. The position is the rule."
-			]
+				"At the front: **silent**, holding an empty consonant slot.",
+				"Behind a consonant with nothing between: the long **aw**.",
+				"The position settles it, without your knowing the word."
+			],
+			"audio": ["/thai-script/lessons/lesson-11/audio/dd66f847b2e615ea.mp3"],
+			"audioLanguages": ["en"]
 		},
 		{
 			"kind": "exposition",
-			"id": "short-aw",
-			"heading": "เ-าะ, the clipped yawn",
+			"id": "meet-short-aw",
+			"heading": "And the short version",
 			"body": [
-				"เ-าะ is the short version of the same sound: the mast in front, then the า post and the stacked hooks — three pieces wrapping one very short syllable.",
-				"เกาะ (gàw) is an island, and it is dead-short: the vowel is clipped and nothing follows it.",
-				"Beside it, ออก (àawk) is long. Same aw, held, and then stopped by ก. The two lengths are different vowels in Thai, not a matter of emphasis."
-			]
+				"**เ-าะ** — the mast in front, the post behind, the two hooks last.",
+				"The same mouth as the long aw, cut off early.",
+				"Long and short are two separate vowels here, as they have been since lesson one."
+			],
+			"audio": [
+				"/thai-script/lessons/lesson-11/audio/1d477b46a36c0edc.mp3",
+				"/thai-script/lessons/lesson-11/audio/d454ee18f02777aa.mp3",
+				"/thai-script/lessons/lesson-11/audio/e85c4fc460f9404b.mp3"
+			],
+			"audioLanguages": ["en", "th", "en"],
+			"image": "/thai-script/lessons/lesson-11/images/meet-short-aw-14f6957a7c9b.jpg"
+		},
+		{
+			"kind": "exposition",
+			"id": "read-kaw",
+			"heading": "Read this one",
+			"body": [
+				"Three marks of vowel, wrapped round the chicken's letter.",
+				"Short. Out loud before you turn it over."
+			],
+			"audio": ["/thai-script/lessons/lesson-11/audio/882c81c9269bc3d6.mp3"],
+			"audioLanguages": ["en"],
+			"thai": "เกาะ"
+		},
+		{
+			"kind": "exposition",
+			"id": "read-kaw-answer",
+			"heading": "That one",
+			"body": [
+				"**เกาะ** — an island.",
+				"Market letter, short vowel, stopped dead.",
+				"Read from the page. This one has no recording here.",
+				"The tone on it is the thing still missing."
+			],
+			"audio": ["/thai-script/lessons/lesson-11/audio/6ca0c80362d2d5f7.mp3"],
+			"audioLanguages": ["en"],
+			"thai": "เกาะ"
+		},
+		{
+			"kind": "exposition",
+			"id": "the-grid-so-far",
+			"heading": "Three corners you already hold",
+			"body": [
+				"A tone comes from the district, and from live against dead.",
+				"Four corners per district, and the market has had one since lesson three.",
+				"**ตาม** — to follow. Market letter, live ending, flat and level.",
+				"The two dead corners are all that is left."
+			],
+			"audio": [
+				"/thai-script/lessons/lesson-11/audio/1314a558c2c321f9.mp3",
+				"/thai-script/lessons/lesson-11/audio/8e46b34582dbc904.mp3",
+				"/thai-script/lessons/lesson-11/audio/ca0e15449ebb542a.mp3"
+			],
+			"audioLanguages": ["en", "th", "en"],
+			"image": "/thai-script/lessons/lesson-11/images/the-grid-so-far-b9f3222c246d.jpg"
 		},
 		{
 			"kind": "rule",
@@ -76,39 +324,75 @@
 		{
 			"kind": "exposition",
 			"id": "the-grid-closes",
-			"heading": "The market's four corners",
+			"heading": "The market's four corners, closed",
 			"body": [
-				"Mid class live you have had since lesson three: ตาม (dtaam) sits level.",
-				"Mid class dead is one tone whichever length the vowel is, and that tone is low. เกาะ (gàw) is dead-short and low. ออก (àawk) is dead-long and low. จาก (jàak), ปาก (bpàak) and ตก (dtòk) are all the same corner.",
-				"That closes the market's tone grid. Every syllable opening on ก ด บ จ ต ป or อ now has a tone you can work out from the page alone, live or dead, long or short.",
-				"Compare the low class, which needed two dead rules because the lengths disagree — short goes high, long falls. The market is the simpler district in every direction."
-			]
+				"Market letter, dead ending, short vowel: **low**.",
+				"Market letter, dead ending, long vowel: **low**.",
+				"The length is written into both rules, and both give the same answer.",
+				"**เกาะ** is short. **ออก** is long. Both are low."
+			],
+			"audio": ["/thai-script/lessons/lesson-11/audio/58d15c19d51e2d6b.mp3"],
+			"audioLanguages": ["en"],
+			"image": "/thai-script/lessons/lesson-11/images/the-grid-closes-2445c7299847.jpg"
+		},
+		{
+			"kind": "exposition",
+			"id": "compare-the-harbour",
+			"heading": "Why that is a gift, and what the harbour charges instead",
+			"body": [
+				"Harbour, dead, short: **high**. Harbour, dead, long: **falling**.",
+				"Market, dead: **low**, at either length.",
+				"The harbour makes you measure the vowel. The market takes the letter and stops."
+			],
+			"audio": ["/thai-script/lessons/lesson-11/audio/541a0c8e8754098a.mp3"],
+			"audioLanguages": ["en"],
+			"image": "/thai-script/lessons/lesson-11/images/compare-the-harbour-4d0410121ef8.jpg"
 		},
 		{
 			"kind": "retrieval",
 			"id": "close-the-grid",
-			"prompt": "บอก and เกาะ both open on a market letter and both end dead, one long and one short. What tone does each take, and how many rules did you need?",
-			"revealSlideId": "close-the-grid-answer"
+			"prompt": "บอก and เกาะ both open on a market letter and both end dead, one with a long vowel and one with a short one. What tone does each take, and how many rules did you need?",
+			"revealSlideId": "close-the-grid-answer",
+			"audio": ["/thai-script/lessons/lesson-11/audio/612e8d0ad35f8157.mp3"],
+			"audioLanguages": ["en"]
 		},
 		{
 			"kind": "reveal",
 			"id": "close-the-grid-answer",
 			"retrievalSlideId": "close-the-grid",
 			"answers": [
-				"Both are low.",
-				"One rule, effectively. A market letter on a dead syllable gives low, and vowel length makes no difference to it — which is exactly what the harbor does not do."
-			]
+				"Both **low**.",
+				"One rule in practice, because both lengths give the same answer.",
+				"The market's grid is closed, in all four corners."
+			],
+			"audio": ["/thai-script/lessons/lesson-11/audio/bef611ac64189c0b.mp3"],
+			"audioLanguages": ["en"]
 		},
 		{
 			"kind": "exposition",
 			"id": "more-words",
-			"heading": "Words you can read now",
+			"heading": "Words the basin gives you",
 			"body": [
-				"ชอบ (châawp) is to like, บอก (bàawk) is to tell, ตอบ (dtàawp) is to answer, and ยอม (yaawm) is to consent.",
-				"ออก (àawk) is to go out, and you will see it on every exit sign in the country.",
-				"อาชีพ (aa chîip) is an occupation. อายุ (aa yú) is age — the word Thai uses where English says how old someone is.",
-				"Eleven lessons in: seven of the nine market letters, the whole harbor side of the seven pairs, and twenty vowel spellings."
-			]
+				"**ชอบ** — to like. **บอก** — to tell. **ตอบ** — to answer.",
+				"**ยอม** — to permit. **พอ** — enough. **รอ** — to wait.",
+				"**ตอน** — a part, or a moment. **มอง** — to look at.",
+				"**อายุ** — age. **อาชีพ** — an occupation. **อาจ** — may, or might.",
+				"**อัน** — the classifier for small things. **อา** — a parent's younger sibling."
+			],
+			"audio": ["/thai-script/lessons/lesson-11/audio/26ce04b4c087352e.mp3"],
+			"audioLanguages": ["en"]
+		},
+		{
+			"kind": "exposition",
+			"id": "read-close",
+			"heading": "Twenty-one letters, and the end of a run",
+			"body": [
+				"Twenty-one letters, twenty vowel spellings.",
+				"The market's tone grid is closed, and the harbour's has been since lesson five.",
+				"Next: the temple, and the seven letters you were shown the map of."
+			],
+			"audio": ["/thai-script/lessons/lesson-11/audio/ef8ebdfe30bdeb69.mp3"],
+			"audioLanguages": ["en"]
 		}
 	]
 }

@@ -4,24 +4,313 @@
 	"slides": [
 		{
 			"kind": "exposition",
-			"id": "the-long-tail",
-			"heading": "Ten letters you will mostly wave at",
+			"id": "what-is-here",
+			"heading": "The last ten letters, and how little they weigh",
 			"body": [
-				"The alphabet has a long tail: ten letters that together carry less than one word in a hundred. You need to recognise them; you will rarely write them.",
-				"They are ฐ ฎ ฏ ฑ ฒ (mostly inside borrowed spellings), ฬ ฆ ฌ (rare doubles of ล ค ช), and ฃ ฅ — two letters modern Thai has retired outright.",
-				"The review queue schedules these at the lowest priority. They stay in the deck forever, but they will never crowd out the letters that carry the language."
-			]
+				"Ten consonants, and the alphabet is finished.",
+				"Together they are about three characters in a thousand.",
+				"Recognise all ten. Expect to write almost none of them."
+			],
+			"audio": ["/thai-script/lessons/lesson-14/audio/047113095917b602.mp3"],
+			"audioLanguages": ["en"],
+			"image": "/thai-script/lessons/lesson-14/images/what-is-here-53aa8fbfa4f3.jpg"
 		},
 		{
 			"kind": "exposition",
-			"id": "where-they-hide",
-			"heading": "Where the tail actually shows up",
+			"id": "pen-still-there",
+			"heading": "Pen and paper",
 			"body": [
-				"ฐ, temple th, ends รัฐ (rát) — state — and opens ฐาน (thǎan) — base.",
-				"ฏ, market dt, sits inside ปฏิบัติ (bpà-dtì-bàt) — to carry out. ฎ is its market d twin, and both wear a crown-like base.",
-				"ฑ appears in บัณฑิต (ban-dìt) — a graduate. ฒ in พัฒนา (phát-thá-naa) — to develop. ฬ is the harbor l of กีฬา (gii-laa) — sport. ฆ opens โฆษณา (khôot-sà-naa) — advertising — and ends เมฆ (mêek) — cloud.",
-				"ฌ is the rarest consonant in the alphabet; outside a handful of ceremonial words you will meet it on charts and nowhere else."
-			]
+				"Real paper, a real pen.",
+				"Both halves of the name, out loud.",
+				"Writing it once is what makes it recognisable a year later."
+			],
+			"audio": ["/thai-script/lessons/lesson-14/audio/cc93b4f8de1e1be9.mp3"],
+			"audioLanguages": ["en"],
+			"image": "/thai-script/lessons/lesson-14/images/pen-still-there-1bdf41db8b53.jpg"
+		},
+		{
+			"kind": "exposition",
+			"id": "how-rare-is-rare",
+			"heading": "What \"rare\" is actually worth here",
+			"body": [
+				"The tiger's letter: eight hundred appearances. The chest's: seven hundred.",
+				"All ten of today's letters together: about a hundred.",
+				"They sit at the back of the review queue and stay there."
+			],
+			"audio": ["/thai-script/lessons/lesson-14/audio/b5cbb548a52dcded.mp3"],
+			"audioLanguages": ["en"],
+			"image": "/thai-script/lessons/lesson-14/images/how-rare-is-rare-ca2dd8712816.jpg"
+		},
+		{
+			"kind": "exposition",
+			"id": "three-tiers",
+			"heading": "Ten letters in three tiers",
+			"body": [
+				"**Seven** rare but alive, inside borrowed and official words.",
+				"**Two** retired, kept in the chart and used nowhere.",
+				"**One** alone at the bottom, scarcer than either of those."
+			],
+			"audio": ["/thai-script/lessons/lesson-14/audio/4ef2913936677562.mp3"],
+			"audioLanguages": ["en"],
+			"image": "/thai-script/lessons/lesson-14/images/three-tiers-2a6fc80e4c17.jpg"
+		},
+		{
+			"kind": "exposition",
+			"id": "the-two-crowns",
+			"heading": "First tier, first pair — two letters wearing crowns",
+			"body": [
+				"Two in the market, mid class, no new tone rules.",
+				"A second d, and a second unpuffed t.",
+				"Both kept for royal and religious spellings."
+			],
+			"audio": ["/thai-script/lessons/lesson-14/audio/72c284ed1dc8aa24.mp3"],
+			"audioLanguages": ["en"],
+			"image": "/thai-script/lessons/lesson-14/images/the-two-crowns-98f0bbada059.jpg"
+		},
+		{
+			"kind": "exposition",
+			"id": "meet-chada",
+			"heading": "The pointed crown on its cushion",
+			"body": [
+				"The word means a **pointed crown**.",
+				"The child's d, and the market again. Mid class.",
+				"The child's bowl, with **a loop hung below the base line**."
+			],
+			"audio": [
+				"/thai-script/lessons/lesson-14/audio/e319ce7827ffc5c8.mp3",
+				"/thai-script/lessons/lesson-14/audio/59e05156c3124399.mp3",
+				"/thai-script/lessons/lesson-14/audio/ed16a1c04d872e7f.mp3"
+			],
+			"audioLanguages": ["en", "th", "en"],
+			"image": "/thai-script/lessons/lesson-14/images/meet-chada-00c98a8287f5.jpg"
+		},
+		{
+			"kind": "exposition",
+			"id": "meet-patak",
+			"heading": "The goad with the knuckle in it",
+			"body": [
+				"The word means a **goad**.",
+				"The turtle's dt, and the market. Mid class.",
+				"The crown, with **a bump worked into the base line**."
+			],
+			"audio": [
+				"/thai-script/lessons/lesson-14/audio/7b9f4dc749d52891.mp3",
+				"/thai-script/lessons/lesson-14/audio/409422cd2584ac79.mp3",
+				"/thai-script/lessons/lesson-14/audio/efff90389818496f.mp3"
+			],
+			"audioLanguages": ["en", "th", "en"],
+			"image": "/thai-script/lessons/lesson-14/images/meet-patak-598410a8ec09.jpg"
+		},
+		{
+			"kind": "exposition",
+			"id": "write-the-crowns",
+			"heading": "Write the two of them",
+			"body": [
+				"The crown: **the child's bowl, with a loop hung below**.",
+				"The goad: **the same again, with a bump in the base line**.",
+				"Put the child's letter and the turtle's letter beside them."
+			],
+			"audio": ["/thai-script/lessons/lesson-14/audio/5de252f3863c8e92.mp3"],
+			"audioLanguages": ["en"],
+			"thai": "ฎ ฏ"
+		},
+		{
+			"kind": "exposition",
+			"id": "read-gotmaai",
+			"heading": "Read the first half of this one",
+			"body": [
+				"Chicken, crown, and nothing written between them.",
+				"Lesson nine: two bare consonants take the **unwritten short o**.",
+				"**Work out the first syllable's tone** before you turn it over."
+			],
+			"audio": ["/thai-script/lessons/lesson-14/audio/8a5618e9e77ab57b.mp3"],
+			"audioLanguages": ["en"],
+			"thai": "กฎหมาย"
+		},
+		{
+			"kind": "exposition",
+			"id": "read-gotmaai-answer",
+			"heading": "That one",
+			"body": [
+				"**กฎหมาย** — law.",
+				"First syllable: market letter, dead, short — low.",
+				"The crown appears **inside a legal word**, closing a syllable."
+			],
+			"audio": [
+				"/thai-script/lessons/lesson-14/audio/9500899be0d32791.mp3",
+				"/thai-script/lessons/lesson-14/audio/c5e1a078380bdeee.mp3"
+			],
+			"audioLanguages": ["th", "en"],
+			"thai": "กฎหมาย"
+		},
+		{
+			"kind": "exposition",
+			"id": "three-more-breathed-t",
+			"heading": "Next, three more breathed t letters",
+			"body": [
+				"Three more breathed t letters, and the set is then complete.",
+				"One at the temple, two at the harbour.",
+				"A shape and a district each, and the tone rules stay as they are."
+			],
+			"audio": ["/thai-script/lessons/lesson-14/audio/6c874ae6fd9e71e9.mp3"],
+			"audioLanguages": ["en"],
+			"image": "/thai-script/lessons/lesson-14/images/three-more-breathed-t-c555946a1e15.jpg"
+		},
+		{
+			"kind": "exposition",
+			"id": "meet-thaan",
+			"heading": "The pedestal in the hall",
+			"body": [
+				"The word means a **base**, or a pedestal.",
+				"The bag's th, and the temple. High class.",
+				"The plate's curve **floating over a separate footed base**."
+			],
+			"audio": [
+				"/thai-script/lessons/lesson-14/audio/0e5b9ecbf64d46eb.mp3",
+				"/thai-script/lessons/lesson-14/audio/bdd3dfa3b67ff70d.mp3",
+				"/thai-script/lessons/lesson-14/audio/292eed969cecdd4a.mp3"
+			],
+			"audioLanguages": ["en", "th", "en"],
+			"image": "/thai-script/lessons/lesson-14/images/meet-thaan-32c0866c8fb2.jpg"
+		},
+		{
+			"kind": "exposition",
+			"id": "meet-montho",
+			"heading": "The queen on the quay",
+			"body": [
+				"The word is a **queen's name** out of the old epic.",
+				"The soldier's th, at the harbour. Low class.",
+				"The soldier's letter, with **a bump just after the head**.",
+				"Sometimes it says **d** instead, and the word itself is what tells you."
+			],
+			"audio": [
+				"/thai-script/lessons/lesson-14/audio/0e5b9ecbf64d46eb.mp3",
+				"/thai-script/lessons/lesson-14/audio/db2a9712a7e501f6.mp3",
+				"/thai-script/lessons/lesson-14/audio/8cef91aaa21b7219.mp3"
+			],
+			"audioLanguages": ["en", "th", "en"],
+			"image": "/thai-script/lessons/lesson-14/images/meet-montho-5b55294c1c60.jpg"
+		},
+		{
+			"kind": "exposition",
+			"id": "meet-phuthao",
+			"heading": "The elder on the canes",
+			"body": [
+				"The word means an **elder**.",
+				"The soldier's th again, at the harbour.",
+				"**The turtle's notched bowl**, closing into **the horse's loop**."
+			],
+			"audio": [
+				"/thai-script/lessons/lesson-14/audio/0e5b9ecbf64d46eb.mp3",
+				"/thai-script/lessons/lesson-14/audio/33759f2860a6c227.mp3",
+				"/thai-script/lessons/lesson-14/audio/df22d6361c93cc50.mp3"
+			],
+			"audioLanguages": ["en", "th", "en"],
+			"image": "/thai-script/lessons/lesson-14/images/meet-phuthao-a55a95b06b3c.jpg"
+		},
+		{
+			"kind": "exposition",
+			"id": "write-the-three-t",
+			"heading": "Write all three",
+			"body": [
+				"The pedestal: **the plate's curve over a footed base**.",
+				"The queen: **the soldier, with a bump after the head**.",
+				"The elder: **the turtle's bowl into the horse's loop**.",
+				"Six spellings, one sound. Read the column."
+			],
+			"audio": ["/thai-script/lessons/lesson-14/audio/5e2cdd251a9a807a.mp3"],
+			"audioLanguages": ["en"],
+			"thai": "ฐ ฑ ฒ"
+		},
+		{
+			"kind": "exposition",
+			"id": "read-rat",
+			"heading": "Read this one",
+			"body": [
+				"Boat, the curl on the roof, the pedestal closing it.",
+				"**A breathed letter at the back loses its breath.** Lesson seven.",
+				"District, live or dead, long or short. Then say it."
+			],
+			"audio": ["/thai-script/lessons/lesson-14/audio/6f23b3713e33c599.mp3"],
+			"audioLanguages": ["en"],
+			"thai": "รัฐ"
+		},
+		{
+			"kind": "exposition",
+			"id": "read-rat-answer",
+			"heading": "That one",
+			"body": [
+				"**รัฐ** — a state.",
+				"Harbour letter, dead ending, short vowel — high tone.",
+				"The pedestal closes it as a **plain t-stop**."
+			],
+			"audio": [
+				"/thai-script/lessons/lesson-14/audio/1f6a0889e3b85798.mp3",
+				"/thai-script/lessons/lesson-14/audio/f528351c3d699ec4.mp3"
+			],
+			"audioLanguages": ["th", "en"],
+			"thai": "รัฐ"
+		},
+		{
+			"kind": "exposition",
+			"id": "two-that-mislead",
+			"heading": "And two whose shape points the wrong way",
+			"body": [
+				"Both are harbour letters, low class.",
+				"One looks like the **offering tray** and says **l**.",
+				"The other looks like the **horse** and says **kh**.",
+				"Learn these two by name, because the shape misleads."
+			],
+			"audio": ["/thai-script/lessons/lesson-14/audio/e3b2fb04100c2af2.mp3"],
+			"audioLanguages": ["en"],
+			"image": "/thai-script/lessons/lesson-14/images/two-that-mislead-7d319f6f5671.jpg"
+		},
+		{
+			"kind": "exposition",
+			"id": "meet-jula",
+			"heading": "The star kite above the masts",
+			"body": [
+				"The word means a **star-shaped kite**.",
+				"The monkey's l, at the harbour. Low class.",
+				"The offering tray with **an extra curled tail on the last stroke**."
+			],
+			"audio": [
+				"/thai-script/lessons/lesson-14/audio/0e5b9ecbf64d46eb.mp3",
+				"/thai-script/lessons/lesson-14/audio/a5030429c7ad0d43.mp3",
+				"/thai-script/lessons/lesson-14/audio/a0948279fcd3ccb4.mp3"
+			],
+			"audioLanguages": ["en", "th", "en"],
+			"image": "/thai-script/lessons/lesson-14/images/meet-jula-06e851999905.jpg"
+		},
+		{
+			"kind": "exposition",
+			"id": "meet-rakhang",
+			"heading": "The bell beside the mooring post",
+			"body": [
+				"The word means a **bell**.",
+				"The buffalo's kh, at the harbour. Low class.",
+				"The horse's letter with **a bumped curve after the head**."
+			],
+			"audio": [
+				"/thai-script/lessons/lesson-14/audio/0e5b9ecbf64d46eb.mp3",
+				"/thai-script/lessons/lesson-14/audio/4cca8224757794bc.mp3",
+				"/thai-script/lessons/lesson-14/audio/7ab2dab628879aed.mp3"
+			],
+			"audioLanguages": ["en", "th", "en"],
+			"image": "/thai-script/lessons/lesson-14/images/meet-rakhang-ef6719e287df.jpg"
+		},
+		{
+			"kind": "exposition",
+			"id": "write-the-two-that-mislead",
+			"heading": "Write them, and label them",
+			"body": [
+				"The kite: **the tray, with the last stroke coiled into a tail**.",
+				"The bell: **the horse, with a bump after the head**.",
+				"Say the **sound** aloud as you write, rather than the shape."
+			],
+			"audio": ["/thai-script/lessons/lesson-14/audio/54b48953070135a9.mp3"],
+			"audioLanguages": ["en"],
+			"thai": "ฬ ฆ"
 		},
 		{
 			"kind": "rule",
@@ -30,69 +319,261 @@
 		},
 		{
 			"kind": "exposition",
-			"id": "the-retired-two",
-			"heading": "ฃ and ฅ — retired, still counted",
+			"id": "the-retired-bottle",
+			"heading": "The first of the two retired letters",
 			"body": [
-				"ฃ (temple kh) and ฅ (harbor kh) sit in every alphabet chart and in no modern word. Typewriters dropped them a century ago and the spellings that used them moved to ข and ค.",
-				"They are still letters of the alphabet, so they are still in your deck — at the very back of the queue."
-			]
+				"**ฃ** — the bottle, and **no modern Thai word is spelled with it**.",
+				"It said the same kh as the egg's letter, from the same district.",
+				"**The egg's letter, with a notch cut into the top stroke**.",
+				"There is no recording of its name here, because no living word needs one."
+			],
+			"audio": ["/thai-script/lessons/lesson-14/audio/3435f831924f7b66.mp3"],
+			"audioLanguages": ["en"],
+			"image": "/thai-script/lessons/lesson-14/images/the-retired-bottle-71d16f06e42f.jpg"
 		},
 		{
 			"kind": "exposition",
-			"id": "ua-uea",
-			"heading": "The last two vowel families",
+			"id": "the-retired-cap",
+			"heading": "And the second one, which is its mirror",
 			"body": [
-				"-ัว is ua: ตัว (dtua) — body, or the classifier for animals — and หัว (hǔua) — head, rising on its temple ห.",
-				"เ-ือ is uea, three signs around one consonant: เสือ (sǔuea) is tiger, เรือ (ruuea) is boat, เดือน (duuean) is month, เมือง (muueang) is city or town.",
-				"Each has a clipped short mate, -ัวะ and เ-ือะ, both rare on the page."
-			]
+				"**ฅ** — the flat cap. Low class, at the harbour, saying the buffalo's kh.",
+				"**The buffalo's letter, with a notch cut into the top stroke**.",
+				"The same idea as the bottle, one district down.",
+				"Again, no recording, because no modern word spells it."
+			],
+			"audio": ["/thai-script/lessons/lesson-14/audio/62e58d36a170fef3.mp3"],
+			"audioLanguages": ["en"],
+			"image": "/thai-script/lessons/lesson-14/images/the-retired-cap-601bdb6d64cd.jpg"
+		},
+		{
+			"kind": "exposition",
+			"id": "still-in-the-alphabet",
+			"heading": "So why are they still counted",
+			"body": [
+				"The alphabet is a recited list, and lists shed members slowly.",
+				"They survive in old printing, old documents, and every classroom chart.",
+				"Your job is to recognise one and keep reading."
+			],
+			"audio": ["/thai-script/lessons/lesson-14/audio/3c2aaea345b4def5.mp3"],
+			"audioLanguages": ["en"],
+			"image": "/thai-script/lessons/lesson-14/images/still-in-the-alphabet-abb817dbefb5.jpg"
+		},
+		{
+			"kind": "exposition",
+			"id": "the-last-letter",
+			"heading": "The rarest letter in the alphabet",
+			"body": [
+				"**ฌ** — the sapling. Forty-fourth of forty-four, and still technically in use.",
+				"A breathed **ch** — the elephant's sound. Harbour, low class.",
+				"**A low arch first, then the elephant's taller stroke with its flick.**",
+				"No recording here, and no word in this course's vocabulary."
+			],
+			"audio": [
+				"/thai-script/lessons/lesson-14/audio/945828afd690dbed.mp3",
+				"/thai-script/lessons/lesson-14/audio/450aa54fd54083ea.mp3"
+			],
+			"audioLanguages": ["en", "en"],
+			"image": "/thai-script/lessons/lesson-14/images/the-last-letter-8c28cd4ef4b0.jpg"
+		},
+		{
+			"kind": "exposition",
+			"id": "ua-vowel",
+			"heading": "-ัว, and the vowels are finished after this",
+			"body": [
+				"A curl on the roof, and the ring letter in the back yard.",
+				"An **oo swinging open into ah**, held long.",
+				"Two rooms, one vowel, and the consonant between them."
+			],
+			"audio": [
+				"/thai-script/lessons/lesson-14/audio/8886ee4144286395.mp3",
+				"/thai-script/lessons/lesson-14/audio/5fc1e67e113b32ef.mp3",
+				"/thai-script/lessons/lesson-14/audio/85e3e2e970b2a670.mp3",
+				"/thai-script/lessons/lesson-14/audio/824db04ff60465d8.mp3",
+				"/thai-script/lessons/lesson-14/audio/755a8935e856f96e.mp3",
+				"/thai-script/lessons/lesson-14/audio/b61cac2d3748b5ff.mp3",
+				"/thai-script/lessons/lesson-14/audio/6c4b0d4c090c4f6a.mp3"
+			],
+			"audioLanguages": ["en", "th", "en", "th", "en", "th", "en"],
+			"image": "/thai-script/lessons/lesson-14/images/ua-vowel-9cc652e5140c.jpg"
+		},
+		{
+			"kind": "exposition",
+			"id": "ua-closed",
+			"heading": "And what it does when something follows",
+			"body": [
+				"With a final consonant, the **curl vanishes**.",
+				"The ring letter sits between the opening and closing consonants.",
+				"Three consonants in a row, and the middle one is the vowel."
+			],
+			"audio": [
+				"/thai-script/lessons/lesson-14/audio/b338d92788034248.mp3",
+				"/thai-script/lessons/lesson-14/audio/691fdf8ac6161f30.mp3",
+				"/thai-script/lessons/lesson-14/audio/3a757151a2bfb8d8.mp3"
+			],
+			"audioLanguages": ["en", "th", "en"],
+			"image": "/thai-script/lessons/lesson-14/images/ua-closed-c6babd60bc5b.jpg"
+		},
+		{
+			"kind": "exposition",
+			"id": "uea-vowel",
+			"heading": "เ-ือ, the last written vowel family",
+			"body": [
+				"The mast in front, the long grin mark above, the basin behind.",
+				"The tight-lipped **ue opening out into ah**, in one beat.",
+				"Three rooms, one vowel, built like the ia vowel."
+			],
+			"audio": [
+				"/thai-script/lessons/lesson-14/audio/861a93307e848b85.mp3",
+				"/thai-script/lessons/lesson-14/audio/a9f589124cee10f9.mp3",
+				"/thai-script/lessons/lesson-14/audio/93661a2d79355e9a.mp3",
+				"/thai-script/lessons/lesson-14/audio/dc2db25d0014bfe7.mp3",
+				"/thai-script/lessons/lesson-14/audio/c38bf09fa258fea2.mp3",
+				"/thai-script/lessons/lesson-14/audio/8277ae7dea6d546d.mp3",
+				"/thai-script/lessons/lesson-14/audio/29c55a8c3651fb45.mp3",
+				"/thai-script/lessons/lesson-14/audio/06367da274c4422a.mp3",
+				"/thai-script/lessons/lesson-14/audio/e64413a519b6334a.mp3"
+			],
+			"audioLanguages": ["en", "th", "en", "th", "en", "th", "en", "th", "en"],
+			"image": "/thai-script/lessons/lesson-14/images/uea-vowel-45a7ffac375d.jpg"
+		},
+		{
+			"kind": "exposition",
+			"id": "the-short-mates",
+			"heading": "Both of them have short mates, spelled as you would guess",
+			"body": [
+				"**-ัวะ** — the curl and the ring, with the two hooks behind.",
+				"**เ-ือะ** — the three-room spelling, with the same two hooks.",
+				"Neither has a word in this course. Recognise the shape and move on."
+			],
+			"audio": [
+				"/thai-script/lessons/lesson-14/audio/0a37589db85a8257.mp3",
+				"/thai-script/lessons/lesson-14/audio/9faff2e08f681b12.mp3",
+				"/thai-script/lessons/lesson-14/audio/750b69b3491a732c.mp3",
+				"/thai-script/lessons/lesson-14/audio/9a85a34d5dcb1c1c.mp3"
+			],
+			"audioLanguages": ["en", "th", "th", "en"]
+		},
+		{
+			"kind": "exposition",
+			"id": "read-duuean",
+			"heading": "Read this one",
+			"body": [
+				"Mast, child's letter, the grin mark above, the basin, the mouse.",
+				"**Name the vowel first**, then the district, then the ending."
+			],
+			"audio": ["/thai-script/lessons/lesson-14/audio/8e5782839c06e1f9.mp3"],
+			"audioLanguages": ["en"],
+			"thai": "เดือน"
+		},
+		{
+			"kind": "exposition",
+			"id": "read-duuean-answer",
+			"heading": "That one",
+			"body": [
+				"**เดือน** — a month, and also the moon.",
+				"Market letter, live ending — flat.",
+				"Five marks, one syllable."
+			],
+			"audio": [
+				"/thai-script/lessons/lesson-14/audio/c3f0add15f019dbf.mp3",
+				"/thai-script/lessons/lesson-14/audio/c89f3704c24805b4.mp3"
+			],
+			"audioLanguages": ["th", "en"],
+			"thai": "เดือน"
 		},
 		{
 			"kind": "exposition",
 			"id": "rare-vowel-signs",
-			"heading": "Four vowel signs that act like syllables",
+			"heading": "Three more signs, and only one you will meet",
 			"body": [
-				"ฤ writes r plus a short vowel in one sign: ฤดู (rúe-duu) is season, and อังกฤษ (ang-grìt) — English — hides it mid-word.",
-				"Lengthen it with ๅ and you get the long form; ฦ and its long form are its l-shaped mates, kept for completeness and effectively extinct.",
-				"Treat all four as spellings to recognise, not machinery to learn rules for."
-			]
+				"**ฤ** writes the boat's sound plus a short tight vowel, in one mark.",
+				"**ฤดู** is a season. **อังกฤษ** is England, with the sign mid-word.",
+				"**ๅ** lengthens it, and **ฦ** is its l-shaped mate.",
+				"The last three have no example here, because no common word uses them."
+			],
+			"audio": [
+				"/thai-script/lessons/lesson-14/audio/224811b634002efc.mp3",
+				"/thai-script/lessons/lesson-14/audio/53d5c9996a33245c.mp3",
+				"/thai-script/lessons/lesson-14/audio/4e17655869d38055.mp3",
+				"/thai-script/lessons/lesson-14/audio/0d382f094dc1223b.mp3",
+				"/thai-script/lessons/lesson-14/audio/c95726108924c583.mp3"
+			],
+			"audioLanguages": ["en", "th", "en", "th", "en"],
+			"image": "/thai-script/lessons/lesson-14/images/rare-vowel-signs-683765aa1a48.jpg"
 		},
 		{
 			"kind": "retrieval",
 			"id": "spot-the-rare",
-			"prompt": "เมฆ (cloud) is read mêek and falls. Its last letter is not the k you usually see. Which letter is it, and what does it tell you about the word?",
-			"revealSlideId": "spot-the-rare-answer"
+			"prompt": "เมฆ is read mêek, and it falls. The letter closing it is one of today's ten, standing where you would normally expect the chicken. Which letter is it, and what does its presence tell you about the word?",
+			"revealSlideId": "spot-the-rare-answer",
+			"audio": ["/thai-script/lessons/lesson-14/audio/f89fbf4acf090c80.mp3"],
+			"audioLanguages": ["en"]
 		},
 		{
 			"kind": "reveal",
 			"id": "spot-the-rare-answer",
 			"retrievalSlideId": "spot-the-rare",
 			"answers": [
-				"ฆ, the rare harbor kh. As a final it just stops the syllable like any k — its real message is that เมฆ is a borrowed, bookish spelling, which is exactly where the tail letters live."
-			]
+				"The bell's letter — the rare harbour kh.",
+				"As a final it is a plain k-stop, so the syllable is dead.",
+				"Harbour, dead, long vowel — falling.",
+				"Its presence marks the word as bookish or borrowed."
+			],
+			"audio": ["/thai-script/lessons/lesson-14/audio/e9e232e3600f36f9.mp3"],
+			"audioLanguages": ["en"]
 		},
 		{
 			"kind": "retrieval",
 			"id": "crown-twins",
-			"prompt": "ฎ and ฏ are the crown-wearing twins of ด and ต. ปฏิบัติ uses one of them — which sound does the ฏ carry, and which district does it sit in?",
-			"revealSlideId": "crown-twins-answer"
+			"prompt": "The two market letters you met first today are crowned twins of two letters you have had since lessons three and nine. Say which sound each twin carries, which district it sits in, and what its crown actually changes.",
+			"revealSlideId": "crown-twins-answer",
+			"audio": ["/thai-script/lessons/lesson-14/audio/2df6a4f2f7f287f6.mp3"],
+			"audioLanguages": ["en"]
 		},
 		{
 			"kind": "reveal",
 			"id": "crown-twins-answer",
 			"retrievalSlideId": "crown-twins",
 			"answers": [
-				"ฏ is dt, exactly as ต is, and it sits in the market. The twins change no sound and no class — they only mark the word as an old borrowing."
-			]
+				"The crown: a plain **d**, like the child's letter. Market, mid class.",
+				"The goad: an unpuffed **dt**, like the turtle's. Market, mid class.",
+				"The sound stays the same, and so does the class.",
+				"The crown's one job is marking where the word came from."
+			],
+			"audio": ["/thai-script/lessons/lesson-14/audio/27673f30438fd98b.mp3"],
+			"audioLanguages": ["en"]
 		},
 		{
 			"kind": "exposition",
-			"id": "close",
-			"heading": "The alphabet is complete",
+			"id": "ten-words",
+			"heading": "Where the seven live ones actually turn up",
 			"body": [
-				"All forty-four consonants are now yours, every written vowel family, and the four rare signs. Nothing on a Thai page is an unknown shape any more.",
-				"What remains for the course is machinery, not letters: the vowels that are not written, the tone marks, clusters, and the leading consonants."
-			]
+				"**ฐาน** — a base. **รัฐ** — a state, in the political sense.",
+				"**ปฏิบัติ** — to carry out, or to put into practice. The goad's letter, mid-word.",
+				"**บัณฑิต** — a graduate. The queen's letter here says **d**, not th.",
+				"**พัฒนา** — to develop. The elder's letter, mid-word.",
+				"**กีฬา** — sport. The kite's letter, doing the monkey's l.",
+				"**โฆษณา** — advertising. The bell's letter opening it.",
+				"**เมฆ** — a cloud. The bell's letter closing it.",
+				"**กฎหมาย** — law. The crown's letter, the one word you will meet it in."
+			],
+			"audio": ["/thai-script/lessons/lesson-14/audio/5c834c9a774fe136.mp3"],
+			"audioLanguages": ["en"],
+			"image": "/thai-script/lessons/lesson-14/images/ten-words-f3717b0efbad.jpg"
+		},
+		{
+			"kind": "exposition",
+			"id": "read-close",
+			"heading": "Forty-four out of forty-four",
+			"body": [
+				"Today's ten: **ฐ** **ฎ** **ฏ** **ฬ** **ฆ** **ฑ** **ฒ** alive, **ฃ** **ฅ** retired, **ฌ** alone at the bottom.",
+				"**Forty-four consonants**, and every written vowel family.",
+				"Every shape on a Thai page is now one you can name.",
+				"Next: unwritten vowels, tone marks, clusters, and leading consonants.",
+				"Write the ten in a column, with the letter each one doubles beside it."
+			],
+			"audio": ["/thai-script/lessons/lesson-14/audio/1128759e23a4f548.mp3"],
+			"audioLanguages": ["en"]
 		}
 	]
 }

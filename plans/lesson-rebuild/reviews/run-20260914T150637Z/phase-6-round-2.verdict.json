@@ -1,0 +1,81 @@
+{
+  "findings": [],
+  "lessons": [
+    {
+      "lesson": "A round's small diff can be the entirety of a prior round's already-committed fix; verifying it means re-running the gates on HEAD rather than re-deriving the finding, since `git status`/`git diff HEAD` quickly confirm nothing is left uncommitted."
+    }
+  ],
+  "acValidations": [
+    {
+      "task_id": "6.1",
+      "criterion": "AC1",
+      "locator": "src/domain/script/data/videoExport.test.ts::names one output covering every slide in order (AC1)",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "6.1",
+      "criterion": "AC2",
+      "locator": "src/domain/script/data/videoExport.test.ts::detects a deck edited after export as stale, never as absent (AC2)",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "6.1",
+      "criterion": "AC3",
+      "locator": "none",
+      "verdict": "none"
+    },
+    {
+      "task_id": "6.1",
+      "criterion": "AC4",
+      "locator": "src/domain/script/data/videoExport.test.ts::refuses a deck whose slide asset path escapes the lesson directory",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "6.1",
+      "criterion": "AC5",
+      "locator": "src/domain/script/data/videoExport.test.ts::are three distinct values, declared on the export manifest itself",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "6.2",
+      "criterion": "AC1",
+      "locator": "src/domain/script/data/decommission.test.ts::resolves every declared lesson to the deck arm",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "6.2",
+      "criterion": "AC2",
+      "locator": "tsc --noEmit (exhaustive never-default on LessonContent, verified this round)",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "6.2",
+      "criterion": "AC3",
+      "locator": "src/domain/script/data/decommission.test.ts::finds no occurrence of the token in any source file",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "6.2",
+      "criterion": "AC4",
+      "locator": "src/domain/script/data/decommission.test.ts::the directory is gone, or if present, holds nothing",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "6.2",
+      "criterion": "AC5",
+      "locator": "src/domain/script/data/decommission.test.ts::matches the recorded baseline for scheduled cards, next lesson, and unlocked words",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "6.2",
+      "criterion": "AC6",
+      "locator": "src/presentation/pages/LessonPage.test.tsx::renders the deck for position 15 (lesson-unwritten-vowels, legacy number 26); src/presentation/components/organisms/LessonIntro.test.tsx::renders a deck the way LessonPage/CatchUpPage calls it",
+      "verdict": "valid"
+    }
+  ],
+  "reviewedAt": "8d66e4c9f6a3bab5bceb9e1614af660fcd782737",
+  "answersAt": "4ff8137cd92c10e3",
+  "enforcement": [
+    "reviewer edited 1 path(s) the plan does not declare and they were reverted: plans/lesson-rebuild/resources.jsonl"
+  ]
+}

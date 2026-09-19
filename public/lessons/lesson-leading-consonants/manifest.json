@@ -3,16 +3,498 @@
 	"schema": {
 		"version": 1,
 		"segmentStates": ["absent", "generated", "failed"],
-		"verificationOutcomes": ["not-required", "verified", "mismatch"]
+		"verificationOutcomes": ["not-required", "verified", "mismatch", "recorded"]
 	},
 	"voice": {
-		"voiceId": "JBFqnCBsd6RMkjVDRZzb",
-		"modelId": "eleven_multilingual_v2",
+		"voiceId": "brM9iIbwDREZaWL8luun",
+		"modelId": "eleven_v3",
 		"settings": {
 			"stability": 0.5,
 			"similarity_boost": 0.75,
 			"speed": 1.0
+		},
+		"english": {
+			"modelId": "fishaudio/s2-pro",
+			"reference": "8924c611339b8fe5"
 		}
 	},
-	"assets": []
+	"assets": [
+		{
+			"key": "what-is-here-0",
+			"kind": "audio",
+			"state": "generated",
+			"language": "en",
+			"inputHash": "139bd36ef8dc509a87e3a52fe0a2fee12388a655da4dc06ca31e8ecd6816dd77",
+			"contentHash": "ecff2e5c3bb1595553b2354a0343a3e0719bebc8bdb447034efdd680ab6f50d9",
+			"path": "/thai-script/lessons/lesson-leading-consonants/audio/139bd36ef8dc509a.mp3",
+			"file": "audio/139bd36ef8dc509a.mp3",
+			"verification": {
+				"outcome": "not-required",
+				"attempts": 1,
+				"expected": null,
+				"heard": []
+			},
+			"failure": null
+		},
+		{
+			"key": "pen-still-there-0",
+			"kind": "audio",
+			"state": "generated",
+			"language": "en",
+			"inputHash": "9d7d1d067c6dc27974d58730a9c8eff4c3a95e9779a97d334a33494fb321ff72",
+			"contentHash": "00188800f3f9239eb5024e489af4cfab288c0d00f0b925f1bc008922393035e8",
+			"path": "/thai-script/lessons/lesson-leading-consonants/audio/9d7d1d067c6dc279.mp3",
+			"file": "audio/9d7d1d067c6dc279.mp3",
+			"verification": {
+				"outcome": "not-required",
+				"attempts": 1,
+				"expected": null,
+				"heard": []
+			},
+			"failure": null
+		},
+		{
+			"key": "why-it-exists-0",
+			"kind": "audio",
+			"state": "generated",
+			"language": "en",
+			"inputHash": "c323c3cf89555e4117b42e967ec717a5b4db4a51126ccfe41a2ad9428a3f9a41",
+			"contentHash": "604f144f6c23d108b8b55738a3bbbc131ee0cd65c0103d8dfe5faf2cb97cd23b",
+			"path": "/thai-script/lessons/lesson-leading-consonants/audio/c323c3cf89555e41.mp3",
+			"file": "audio/c323c3cf89555e41.mp3",
+			"verification": {
+				"outcome": "not-required",
+				"attempts": 1,
+				"expected": null,
+				"heard": []
+			},
+			"failure": null
+		},
+		{
+			"key": "one-rule-0",
+			"kind": "audio",
+			"state": "generated",
+			"language": "en",
+			"inputHash": "5936e209183ad094c672035251d23a3773b5e695bf4b46036e933d2d2266704f",
+			"contentHash": "c35c6f7cbcd1525451df622ab49f720d8169ad9921731918f14784288cea1a8c",
+			"path": "/thai-script/lessons/lesson-leading-consonants/audio/5936e209183ad094.mp3",
+			"file": "audio/5936e209183ad094.mp3",
+			"verification": {
+				"outcome": "not-required",
+				"attempts": 1,
+				"expected": null,
+				"heard": []
+			},
+			"failure": null
+		},
+		{
+			"key": "branch-silent-h-0",
+			"kind": "audio",
+			"state": "generated",
+			"language": "en",
+			"inputHash": "08e3a83a57fd3024886a0f919751e4c1460b4751cea9878c6f98549e26ae1dec",
+			"contentHash": "e008d37e4f2a9793595311db5206a69deadf25021fe16885330e483dbd57b904",
+			"path": "/thai-script/lessons/lesson-leading-consonants/audio/08e3a83a57fd3024.mp3",
+			"file": "audio/08e3a83a57fd3024.mp3",
+			"verification": {
+				"outcome": "not-required",
+				"attempts": 1,
+				"expected": null,
+				"heard": []
+			},
+			"failure": null
+		},
+		{
+			"key": "branch-silent-o-0",
+			"kind": "audio",
+			"state": "generated",
+			"language": "en",
+			"inputHash": "16e63640af6e901ac5238843add5dfda723e9f32b32501a0126eb5377e1e0e18",
+			"contentHash": "4cee7bc568f77645666a93cb1dbd03e4ca36b4c9a821e299137e77fe77c5f935",
+			"path": "/thai-script/lessons/lesson-leading-consonants/audio/16e63640af6e901a.mp3",
+			"file": "audio/16e63640af6e901a.mp3",
+			"verification": {
+				"outcome": "not-required",
+				"attempts": 1,
+				"expected": null,
+				"heard": []
+			},
+			"failure": null
+		},
+		{
+			"key": "branch-spoken-leader-0",
+			"kind": "audio",
+			"state": "generated",
+			"language": "en",
+			"inputHash": "1704b3d06a33bb64394a16d19d216ae851b6e59c3b198b1c5b7e43f5678f9278",
+			"contentHash": "772807b2344d6fc129554161fd3b1125849520b6c2ed021040ca5d5041768d5f",
+			"path": "/thai-script/lessons/lesson-leading-consonants/audio/1704b3d06a33bb64.mp3",
+			"file": "audio/1704b3d06a33bb64.mp3",
+			"verification": {
+				"outcome": "not-required",
+				"attempts": 1,
+				"expected": null,
+				"heard": []
+			},
+			"failure": null
+		},
+		{
+			"key": "two-first-letters-0",
+			"kind": "audio",
+			"state": "generated",
+			"language": "en",
+			"inputHash": "835c3f43a5a8da75bd543bedc2f6373324256c67fe4f260ce36a5f7f4c560a70",
+			"contentHash": "fee4972b0f0327607be01f5c74fb2bf6c465f8aa07081656b72e2a4e29b0fff8",
+			"path": "/thai-script/lessons/lesson-leading-consonants/audio/835c3f43a5a8da75.mp3",
+			"file": "audio/835c3f43a5a8da75.mp3",
+			"verification": {
+				"outcome": "not-required",
+				"attempts": 1,
+				"expected": null,
+				"heard": []
+			},
+			"failure": null
+		},
+		{
+			"key": "two-first-letters-answer-0",
+			"kind": "audio",
+			"state": "generated",
+			"language": "en",
+			"inputHash": "1834208a3863331d62fc89eb2ec7e84c4d8c8738511334af15903ebcdbc7a3f5",
+			"contentHash": "748f0028a5b8ec71199184903a7568aaa61b84f7fa63ea9eccaec9a75c409ed4",
+			"path": "/thai-script/lessons/lesson-leading-consonants/audio/1834208a3863331d.mp3",
+			"file": "audio/1834208a3863331d.mp3",
+			"verification": {
+				"outcome": "not-required",
+				"attempts": 1,
+				"expected": null,
+				"heard": []
+			},
+			"failure": null
+		},
+		{
+			"key": "hor-nam-0",
+			"kind": "audio",
+			"state": "generated",
+			"language": "en",
+			"inputHash": "c711bd47c3c28f7ab2ee269c95ad8c19dd26124e1f10a153f22d5698ea84859a",
+			"contentHash": "3fb303d3cac4df53dacf648e8bc61cf56cca457bb65db201420fe344521f25d3",
+			"path": "/thai-script/lessons/lesson-leading-consonants/audio/c711bd47c3c28f7a.mp3",
+			"file": "audio/c711bd47c3c28f7a.mp3",
+			"verification": {
+				"outcome": "not-required",
+				"attempts": 1,
+				"expected": null,
+				"heard": []
+			},
+			"failure": null
+		},
+		{
+			"key": "not-every-pair-0",
+			"kind": "audio",
+			"state": "generated",
+			"language": "en",
+			"inputHash": "e0523f4540253a83e5938a2261e1819f7aeb3c2916d54ff218448dd1dd6d9157",
+			"contentHash": "2b8d830472a6a110da596af532e509e42d551dd5d7965e48a59ee0d8acc886c7",
+			"path": "/thai-script/lessons/lesson-leading-consonants/audio/e0523f4540253a83.mp3",
+			"file": "audio/e0523f4540253a83.mp3",
+			"verification": {
+				"outcome": "not-required",
+				"attempts": 1,
+				"expected": null,
+				"heard": []
+			},
+			"failure": null
+		},
+		{
+			"key": "strong-tendency-0",
+			"kind": "audio",
+			"state": "generated",
+			"language": "en",
+			"inputHash": "247e61ef987d1f907826be5db3712f3e72213f8dfd8ec7e9beed93a1b654632a",
+			"contentHash": "a62e300430b6657e7f88f214167f7366b91a2a74e9f09d86748efe5983d4f463",
+			"path": "/thai-script/lessons/lesson-leading-consonants/audio/247e61ef987d1f90.mp3",
+			"file": "audio/247e61ef987d1f90.mp3",
+			"verification": {
+				"outcome": "not-required",
+				"attempts": 1,
+				"expected": null,
+				"heard": []
+			},
+			"failure": null
+		},
+		{
+			"key": "read-nangsuue-0",
+			"kind": "audio",
+			"state": "generated",
+			"language": "en",
+			"inputHash": "3c7f4840a40e5d3ca9bb13ace98a892eae94bb1d6b5523279cb8ffac6cb6c6d6",
+			"contentHash": "257328414bdc5c727faa5e0ab8713d7095e1d37f8f0ba54e07d7e2fe7fc170bb",
+			"path": "/thai-script/lessons/lesson-leading-consonants/audio/3c7f4840a40e5d3c.mp3",
+			"file": "audio/3c7f4840a40e5d3c.mp3",
+			"verification": {
+				"outcome": "not-required",
+				"attempts": 1,
+				"expected": null,
+				"heard": []
+			},
+			"failure": null
+		},
+		{
+			"key": "read-nangsuue-answer-0",
+			"kind": "audio",
+			"state": "generated",
+			"language": "th",
+			"inputHash": "53bc59706e294477040d4a7c167e73d3b9d7e2550a8c5ffe77804a9dba0db8e9",
+			"contentHash": "790acd160151763310d8991bc4ba7ac3ef139f3e8037fa8ea72950cfbc5666c8",
+			"path": "/thai-script/lessons/lesson-leading-consonants/audio/53bc59706e294477.mp3",
+			"file": "audio/53bc59706e294477.mp3",
+			"verification": {
+				"outcome": "verified",
+				"attempts": 1,
+				"expected": "หนังสือ",
+				"heard": [" หนังสือ"]
+			},
+			"failure": null
+		},
+		{
+			"key": "read-nangsuue-answer-1",
+			"kind": "audio",
+			"state": "generated",
+			"language": "en",
+			"inputHash": "4207ab50752c75ad5cbae28a8b91ce0f5feb8e7322555e57ebd5dc8e16943d9c",
+			"contentHash": "b630c8a15b86ab2cd714ab5af3a2a5d2388ccb9c476edc930eebd8db45504cc0",
+			"path": "/thai-script/lessons/lesson-leading-consonants/audio/4207ab50752c75ad.mp3",
+			"file": "audio/4207ab50752c75ad.mp3",
+			"verification": {
+				"outcome": "not-required",
+				"attempts": 1,
+				"expected": null,
+				"heard": []
+			},
+			"failure": null
+		},
+		{
+			"key": "read-sanaambin-0",
+			"kind": "audio",
+			"state": "generated",
+			"language": "en",
+			"inputHash": "f79112d2872ab9ec5c0242959238e464a48a456b504c78d2c30fe39a21ada1fb",
+			"contentHash": "624e1e897f9ced30df9ab6fc4a2ebc56d6f44fc51679eefc974d4fc72b75fdbb",
+			"path": "/thai-script/lessons/lesson-leading-consonants/audio/f79112d2872ab9ec.mp3",
+			"file": "audio/f79112d2872ab9ec.mp3",
+			"verification": {
+				"outcome": "not-required",
+				"attempts": 1,
+				"expected": null,
+				"heard": []
+			},
+			"failure": null
+		},
+		{
+			"key": "read-sanaambin-answer-0",
+			"kind": "audio",
+			"state": "generated",
+			"language": "th",
+			"inputHash": "c22881001f3a2dbdd7d552c5b10da795ab40152d3ab71356bac744a66489ef5f",
+			"contentHash": "1e6ccd38af516c5c96b052194d61c988432de9b9844c7271536db54711edeeb8",
+			"path": "/thai-script/lessons/lesson-leading-consonants/audio/c22881001f3a2dbd.mp3",
+			"file": "audio/c22881001f3a2dbd.mp3",
+			"verification": {
+				"outcome": "verified",
+				"attempts": 1,
+				"expected": "สนามบิน",
+				"heard": [" สนามบิน"]
+			},
+			"failure": null
+		},
+		{
+			"key": "read-sanaambin-answer-1",
+			"kind": "audio",
+			"state": "generated",
+			"language": "en",
+			"inputHash": "8f52f86e51734c7f8b6a0bc421eb6622616d9dc5061155a1279658315e13eb75",
+			"contentHash": "ed582ede6348317dbba9c306bfb09cff4d699bab52c0366c9fd09b16fa8ed5fe",
+			"path": "/thai-script/lessons/lesson-leading-consonants/audio/8f52f86e51734c7f.mp3",
+			"file": "audio/8f52f86e51734c7f.mp3",
+			"verification": {
+				"outcome": "not-required",
+				"attempts": 1,
+				"expected": null,
+				"heard": []
+			},
+			"failure": null
+		},
+		{
+			"key": "which-tone-0",
+			"kind": "audio",
+			"state": "generated",
+			"language": "en",
+			"inputHash": "e1ca870e7a32e216a218f8f36a40ca7f402e3958a20526928582d993a22e7769",
+			"contentHash": "fbaf82f5779011cc6e2e002cf42cf062f44728b0208ded04fc91a47039b9edbb",
+			"path": "/thai-script/lessons/lesson-leading-consonants/audio/e1ca870e7a32e216.mp3",
+			"file": "audio/e1ca870e7a32e216.mp3",
+			"verification": {
+				"outcome": "not-required",
+				"attempts": 1,
+				"expected": null,
+				"heard": []
+			},
+			"failure": null
+		},
+		{
+			"key": "which-tone-answer-0",
+			"kind": "audio",
+			"state": "generated",
+			"language": "en",
+			"inputHash": "bc8e3e41a515c8895e6ee52fbbf65e5796a8f1c9e77d110ea832d8d15bbed317",
+			"contentHash": "bb0dfb0fb5501410361d1daff412ca27495a48d4007f4d2af17bb92bf52d8980",
+			"path": "/thai-script/lessons/lesson-leading-consonants/audio/bc8e3e41a515c889.mp3",
+			"file": "audio/bc8e3e41a515c889.mp3",
+			"verification": {
+				"outcome": "not-required",
+				"attempts": 1,
+				"expected": null,
+				"heard": []
+			},
+			"failure": null
+		},
+		{
+			"key": "read-close-0",
+			"kind": "audio",
+			"state": "generated",
+			"language": "en",
+			"inputHash": "5a3271dfd997a138014311e23d46db3c8cfdd52f8eb029d57ae344284e0e3f69",
+			"contentHash": "68f474e1874b40f813d7625917753233d43594cd0f2e45141b0af0df4a799ecf",
+			"path": "/thai-script/lessons/lesson-leading-consonants/audio/5a3271dfd997a138.mp3",
+			"file": "audio/5a3271dfd997a138.mp3",
+			"verification": {
+				"outcome": "not-required",
+				"attempts": 1,
+				"expected": null,
+				"heard": []
+			},
+			"failure": null
+		},
+		{
+			"key": "what-is-here-image",
+			"kind": "image",
+			"state": "generated",
+			"language": null,
+			"inputHash": "a613bf34074673874f424ea14c08239b7a236c30bc917dd612cf7cae3b39d98c",
+			"contentHash": "96c8b4ede73c4ff06880c86e31eb815ade15479eace8765703ab37a093444ec9",
+			"path": "/thai-script/lessons/lesson-leading-consonants/images/what-is-here-a613bf340746.jpg",
+			"file": "images/what-is-here-a613bf340746.jpg",
+			"verification": null,
+			"failure": null
+		},
+		{
+			"key": "pen-still-there-image",
+			"kind": "image",
+			"state": "generated",
+			"language": null,
+			"inputHash": "1bdf41db8b53f4c1d37e35fe055407aff7aa9205fa5d41b74dbbcf7ff693faa8",
+			"contentHash": "d5ee5c5c023898ed24512e1d09e65f95aecc922e11f54dab1cac9d33590ddab8",
+			"path": "/thai-script/lessons/lesson-leading-consonants/images/pen-still-there-1bdf41db8b53.jpg",
+			"file": "images/pen-still-there-1bdf41db8b53.jpg",
+			"verification": null,
+			"failure": null
+		},
+		{
+			"key": "why-it-exists-image",
+			"kind": "image",
+			"state": "generated",
+			"language": null,
+			"inputHash": "15ff29c85df56c9d455db519ffabda861e643fd5eb45383a864233b76dcca0d6",
+			"contentHash": "a3f5cc1cae643d640a9ab8860f82fc560181987434f31d83ab7dd63f6d2df40b",
+			"path": "/thai-script/lessons/lesson-leading-consonants/images/why-it-exists-15ff29c85df5.jpg",
+			"file": "images/why-it-exists-15ff29c85df5.jpg",
+			"verification": null,
+			"failure": null
+		},
+		{
+			"key": "one-rule-image",
+			"kind": "image",
+			"state": "generated",
+			"language": null,
+			"inputHash": "90fde58aa8db2f79425328bfa4c9fbbac3857a271ab86267b197fc7d1d6fc1b4",
+			"contentHash": "c674e8accd90ecfeee1b59ea908072f913c533b8759fd02b5b2e0c5b93b22f91",
+			"path": "/thai-script/lessons/lesson-leading-consonants/images/one-rule-90fde58aa8db.jpg",
+			"file": "images/one-rule-90fde58aa8db.jpg",
+			"verification": null,
+			"failure": null
+		},
+		{
+			"key": "branch-silent-h-image",
+			"kind": "image",
+			"state": "generated",
+			"language": null,
+			"inputHash": "24fd0967179d56a38932fd88c6fd206fc8603255c8481cfe7ed4a4deb266ca2c",
+			"contentHash": "6d92faa3e70b48fee19629cd98ebc1df0420e7e40be40809da47ad8c877366d1",
+			"path": "/thai-script/lessons/lesson-leading-consonants/images/branch-silent-h-24fd0967179d.jpg",
+			"file": "images/branch-silent-h-24fd0967179d.jpg",
+			"verification": null,
+			"failure": null
+		},
+		{
+			"key": "branch-silent-o-image",
+			"kind": "image",
+			"state": "generated",
+			"language": null,
+			"inputHash": "e186f7b8027112821b9463d47f34c067b088c446c5f300102731efc7697af093",
+			"contentHash": "804cb3e12a82a815acf59e1317b22df5853b05d62591849f8854bd261d2249c3",
+			"path": "/thai-script/lessons/lesson-leading-consonants/images/branch-silent-o-e186f7b80271.jpg",
+			"file": "images/branch-silent-o-e186f7b80271.jpg",
+			"verification": null,
+			"failure": null
+		},
+		{
+			"key": "branch-spoken-leader-image",
+			"kind": "image",
+			"state": "generated",
+			"language": null,
+			"inputHash": "f0d5bffa68eba501452d93b3d946879063ba9b20bab12817e43c938aae4e3989",
+			"contentHash": "ece69abf34df792e70447549313d13c0057ec702fdf5ad1e2eaa80bbbcd6edae",
+			"path": "/thai-script/lessons/lesson-leading-consonants/images/branch-spoken-leader-f0d5bffa68eb.jpg",
+			"file": "images/branch-spoken-leader-f0d5bffa68eb.jpg",
+			"verification": null,
+			"failure": null
+		},
+		{
+			"key": "not-every-pair-image",
+			"kind": "image",
+			"state": "generated",
+			"language": null,
+			"inputHash": "f3f154735699b6d1ff228eb78d42440b28150011503ed89efe636f7b9db4eb3f",
+			"contentHash": "ee99d91af672f21abc7f6428e10d5e3a0cc4e6e7441e9a49b4d0187d360d0d95",
+			"path": "/thai-script/lessons/lesson-leading-consonants/images/not-every-pair-f3f154735699.jpg",
+			"file": "images/not-every-pair-f3f154735699.jpg",
+			"verification": null,
+			"failure": null
+		},
+		{
+			"key": "strong-tendency-image",
+			"kind": "image",
+			"state": "generated",
+			"language": null,
+			"inputHash": "3f16cc2dcc521ddb4b3696f85cd145843f5534210c4b2c4b6fbe5d9e3b69a9df",
+			"contentHash": "9ed0448a19f63de5c27e14278c0b665d3a3abfc7866063de97684c14188668df",
+			"path": "/thai-script/lessons/lesson-leading-consonants/images/strong-tendency-3f16cc2dcc52.jpg",
+			"file": "images/strong-tendency-3f16cc2dcc52.jpg",
+			"verification": null,
+			"failure": null
+		},
+		{
+			"key": "read-close-image",
+			"kind": "image",
+			"state": "generated",
+			"language": null,
+			"inputHash": "ff1b818050bb6787bf713d9c55e2b47e20cb010c0829aa76ee990410f4602431",
+			"contentHash": "8b45ac23479dea304ffac3e86d0735e030f158637f4976f784e969fe9bb7f4ee",
+			"path": "/thai-script/lessons/lesson-leading-consonants/images/read-close-ff1b818050bb.jpg",
+			"file": "images/read-close-ff1b818050bb.jpg",
+			"verification": null,
+			"failure": null
+		}
+	]
 }

@@ -1,0 +1,103 @@
+{
+  "findings": [
+    {
+      "id": "F1",
+      "action": "auto-fix",
+      "message": "LessonPage.tsx/CatchUpPage.tsx had used the legacy-number lookup (`lessonEntryByNumber`) against a value that is actually the URL's 1-based position, which task 4.3's resequence made diverge from legacy number starting at position 15 — any lesson at position ≥15 (lesson-unwritten-vowels, lesson-tone-marks, lesson-clusters, lesson-leading-consonants, lesson-numerals) would resolve content as 'undeclared' and show 'Lesson not found', even though `lesson.getScriptSummary` (routed through the already position-based `entryAt`) resolved the same lesson fine. Task 6.2's diff already fixes this (switches both pages to `lessonEntryByPosition`), but shipped with zero test coverage for it — LessonPage.tsx has no test file at all, and AC6's only proof (`LessonIntro.test.tsx`) exercises the `LessonIntro` component in isolation with a pre-resolved `content` prop, never through the page's own position→entry resolution. I reverted the fix locally, reproduced the exact 'Lesson not found' failure, restored it, and added `src/presentation/pages/LessonPage.test.tsx` asserting a position-15 lesson renders its deck; verified it goes red on the old lookup and green on the fix.",
+      "severity": 7,
+      "effort": 1,
+      "file": "src/presentation/pages/LessonPage.tsx",
+      "line": 54,
+      "category": "test-coverage"
+    },
+    {
+      "id": "F2",
+      "action": "fixed",
+      "message": "`LessonIntro.tsx` still gated `deckPhase` on `content.kind === \"deck\" && !deckDone`, a leftover from when `LessonContent` was a two-arm union; after task 6.2 collapsed it to a single-shape type, `content.kind` is always `\"deck\"` and the check is dead weight that reads as though a second arm might still exist. Simplified to `!deckDone` with a comment distinguishing it from the type-level exhaustive dispatch in `lessonContent.ts`, which the plan explicitly keeps for a different reason (protecting against a future third content source).",
+      "severity": 2,
+      "effort": 1,
+      "file": "src/presentation/components/organisms/LessonIntro.tsx",
+      "line": 41,
+      "category": "simplification"
+    }
+  ],
+  "lessons": [
+    {
+      "lesson": "This phase's diff-stat lists symbols.ts and other files as changed against a very old base commit, so large hunks (lesson resequencing, priority values) actually belong to earlier phases (4.1/4.3) already reviewed — check `git log -- <file>` before attributing a hunk to the phase under review."
+    }
+  ],
+  "acValidations": [
+    {
+      "task_id": "6.1",
+      "criterion": "AC1",
+      "locator": "src/domain/script/data/videoExport.test.ts::names one output covering every slide in order (AC1)",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "6.1",
+      "criterion": "AC2",
+      "locator": "src/domain/script/data/videoExport.test.ts::detects a deck edited after export as stale, never as absent (AC2)",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "6.1",
+      "criterion": "AC3",
+      "locator": "none — intended: requires ffmpeg and rendered output, checked by the phase reviewer playing an exported file; the no-op half is covered by 'reports re-exporting an unchanged deck as a no-op'",
+      "verdict": "none"
+    },
+    {
+      "task_id": "6.1",
+      "criterion": "AC4",
+      "locator": "src/domain/script/data/videoExport.test.ts::refuses a deck whose slide asset path escapes the lesson directory",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "6.1",
+      "criterion": "AC5",
+      "locator": "src/domain/script/data/videoExport.test.ts::are three distinct values, declared on the export manifest itself",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "6.2",
+      "criterion": "AC1",
+      "locator": "src/domain/script/data/decommission.test.ts::resolves every declared lesson to the deck arm; flags a lesson forced off the deck set instead of silently passing",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "6.2",
+      "criterion": "AC2",
+      "locator": "none — intended: compile-time exhaustiveness on the single-arm LessonContent type, checked by tsc in `npm run build`; confirmed green",
+      "verdict": "none"
+    },
+    {
+      "task_id": "6.2",
+      "criterion": "AC3",
+      "locator": "src/domain/script/data/decommission.test.ts::finds no occurrence of the token in any source file (verified with an independent grep across src/ during review — only the test itself matches)",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "6.2",
+      "criterion": "AC4",
+      "locator": "src/domain/script/data/decommission.test.ts::the directory is gone, or if present, holds nothing",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "6.2",
+      "criterion": "AC5",
+      "locator": "src/domain/script/data/decommission.test.ts::matches the recorded baseline for scheduled cards, next lesson, and unlocked words",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "6.2",
+      "criterion": "AC6",
+      "locator": "src/presentation/components/organisms/LessonIntro.test.tsx::renders a deck the way LessonPage calls it; src/presentation/pages/LessonPage.test.tsx (added this review) proves the position-based route resolution the original proof didn't reach",
+      "verdict": "valid"
+    }
+  ],
+  "reviewedAt": "8d66e4c9f6a3bab5bceb9e1614af660fcd782737",
+  "answersAt": "4ff8137cd92c10e3",
+  "enforcement": [
+    "reviewer edited 2 path(s) the plan does not declare and they were reverted: src/presentation/pages/LessonPage.test.tsx, plans/lesson-rebuild/resources.jsonl",
+    "F1 was degraded from `fixed` to `auto-fix`: `src/presentation/pages/LessonPage.tsx` — the file it says it repaired — did not change this round (2 path(s) were reverted as outside the plan: src/presentation/pages/LessonPage.test.tsx, plans/lesson-rebuild/resources.jsonl)"
+  ]
+}

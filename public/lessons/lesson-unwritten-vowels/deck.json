@@ -4,13 +4,47 @@
 	"slides": [
 		{
 			"kind": "exposition",
+			"id": "what-is-here",
+			"heading": "The vowels the page leaves out",
+			"body": [
+				"Six readings that supply a vowel the spelling leaves out.",
+				"Ordinary, common words, and three of them already behind you.",
+				"A bare row of consonants has gaps, and the gaps have rules."
+			],
+			"audio": [
+				"/thai-script/lessons/lesson-unwritten-vowels/audio/d4ec911bb16b63cd.mp3"
+			],
+			"audioLanguages": ["en"],
+			"image": "/thai-script/lessons/lesson-unwritten-vowels/images/what-is-here-763579846c84.jpg"
+		},
+		{
+			"kind": "exposition",
+			"id": "pen-still-there",
+			"heading": "Pen and paper",
+			"body": [
+				"Real paper, a real pen.",
+				"Today you mark the gaps rather than drill a shape."
+			],
+			"audio": [
+				"/thai-script/lessons/lesson-unwritten-vowels/audio/0ba4e6450ab48bd7.mp3"
+			],
+			"audioLanguages": ["en"],
+			"image": "/thai-script/lessons/lesson-unwritten-vowels/images/pen-still-there-1bdf41db8b53.jpg"
+		},
+		{
+			"kind": "exposition",
 			"id": "every-syllable-has-one",
-			"heading": "Every syllable has a vowel. Not every syllable shows you one.",
+			"heading": "Every syllable has a vowel, and some of them hide it",
 			"body": [
 				"So far a vowel has always been on the page: you found the symbol, you read its sound, you were done.",
-				"A great many ordinary Thai words spell no vowel at all, and คน at rank 47 is one of them. Two consonants, nothing between them, and it is still two sounds and a vowel.",
-				"There are six readings that fill in a missing vowel, and this lesson is all six. Once you have them, a bare string of consonants stops being a puzzle."
-			]
+				"A great many ordinary Thai words spell no vowel at all, and คน at rank 47 is one of them.",
+				"Two consonants, nothing written between them, and it is still one syllable with a vowel inside it.",
+				"Six readings fill in a missing vowel, and this lesson is all six of them."
+			],
+			"audio": [
+				"/thai-script/lessons/lesson-unwritten-vowels/audio/ac5a669c6ccbaf9b.mp3"
+			],
+			"audioLanguages": ["en"]
 		},
 		{
 			"kind": "exposition",
@@ -18,106 +52,236 @@
 			"heading": "Two consonants together hold a short o",
 			"body": [
 				"คน (khon) is a person. ลง (long) is to go down. ตก (dtòk) is to fall. จบ (jòp) is to finish. นก (nók) is a bird. ผล (phǒn) is a result.",
-				"Every one of those is the same shape: first letter, short o, second letter. The first consonant opens the syllable and the second one closes it.",
-				"Nothing on the page tells you the o is there. The absence of a vowel is itself the instruction."
-			]
+				"Every one of those is the same shape: first letter, short o, second letter.",
+				"The first consonant opens the syllable and the second one closes it.",
+				"Nothing on the page marks the o, so the empty gap is what you read it from."
+			],
+			"audio": [
+				"/thai-script/lessons/lesson-unwritten-vowels/audio/7858c6535648389d.mp3"
+			],
+			"audioLanguages": ["en"],
+			"image": "/thai-script/lessons/lesson-unwritten-vowels/images/implicit-o-0c9063b25b47.jpg"
 		},
 		{
 			"kind": "retrieval",
 			"id": "read-a-bare-pair",
 			"prompt": "ยก puts two letters on the page and no vowel among them, and ย is low class. Say it aloud, then decide its tone.",
-			"revealSlideId": "read-a-bare-pair-answer"
+			"revealSlideId": "read-a-bare-pair-answer",
+			"audio": [
+				"/thai-script/lessons/lesson-unwritten-vowels/audio/f8facffe14e4badf.mp3"
+			],
+			"audioLanguages": ["en"]
 		},
 		{
 			"kind": "reveal",
 			"id": "read-a-bare-pair-answer",
 			"retrievalSlideId": "read-a-bare-pair",
 			"answers": [
-				"yók — a short o between the two letters, and ก closes it.",
-				"ก stops the air, which makes this a dead syllable on a short vowel. Low class, dead, short: high tone."
-			]
+				"yók — a short o between the two letters, and ก closes the syllable.",
+				"ก stops the air, so the ending is dead and the vowel stays short.",
+				"Harbour letter, dead ending, short vowel: high tone."
+			],
+			"audio": [
+				"/thai-script/lessons/lesson-unwritten-vowels/audio/6c8de8c0c9ffac54.mp3"
+			],
+			"audioLanguages": ["en"]
 		},
 		{
 			"kind": "rule",
 			"id": "unwritten-vowels",
-			"ruleId": "unwritten-vowels"
+			"ruleId": "unwritten-vowels",
+			"audio": [
+				"/thai-script/lessons/lesson-unwritten-vowels/audio/38ac52b9d92e8cc3.mp3"
+			],
+			"audioLanguages": ["en"]
 		},
 		{
 			"kind": "exposition",
 			"id": "implicit-a",
-			"heading": "A consonant that will not fit takes a short a of its own",
+			"heading": "A leftover consonant takes a short a of its own",
 			"body": [
 				"ถนน (thà-nǒn) is a street. ขนม (khà-nǒm) is a snack. ตลก (dtà-lòk) is funny.",
-				"Try the previous reading on ถนน and it breaks: ถ and น make thǒn, and then the second น is left over with nothing to belong to.",
-				"So work from the back. นน is a bare pair and reads nǒn. That leaves ถ standing alone at the front, and a lone consonant takes a short a and becomes a light, quick syllable ahead of the main one.",
-				"นคร (ná-khaawn) is a city, and it is the same move with three letters: คร at the back, น left over at the front."
-			]
+				"Try the last reading on ถนน and it breaks: ถ and น make thǒn, and the second น is left over with nothing to belong to.",
+				"So work from the back. นน is a bare pair and reads nǒn, which leaves ถ standing alone at the front.",
+				"นคร (ná-khaawn) is a city, and it is the same move again: คร read as a pair, น left over in front of it."
+			],
+			"audio": [
+				"/thai-script/lessons/lesson-unwritten-vowels/audio/aba7d7e2476a3f92.mp3"
+			],
+			"audioLanguages": ["en"],
+			"image": "/thai-script/lessons/lesson-unwritten-vowels/images/implicit-a-be9c36a47f0e.jpg"
+		},
+		{
+			"kind": "exposition",
+			"id": "read-dtalaat",
+			"heading": "Read this one",
+			"body": [
+				"Turtle, monkey, the long vowel, and the child's letter closing it.",
+				"One consonant is left over in front. Out loud before you turn it over."
+			],
+			"audio": [
+				"/thai-script/lessons/lesson-unwritten-vowels/audio/44f86fe917ec5074.mp3"
+			],
+			"audioLanguages": ["en"],
+			"thai": "ตลาด"
+		},
+		{
+			"kind": "exposition",
+			"id": "read-dtalaat-answer",
+			"heading": "That one",
+			"body": [
+				"ตลาด — a market.",
+				"A light, short syllable on the turtle, then the monkey, the long vowel and a hard stop."
+			],
+			"audio": [
+				"/thai-script/lessons/lesson-unwritten-vowels/audio/adbae40e88cc2d3a.mp3",
+				"/thai-script/lessons/lesson-unwritten-vowels/audio/8c63907f058ef7d0.mp3"
+			],
+			"audioLanguages": ["th", "en"],
+			"thai": "ตลาด"
 		},
 		{
 			"kind": "exposition",
 			"id": "bare-final-ro",
-			"heading": "A word that ends on a bare ร ends -aawn",
+			"heading": "A word ending on a bare ร ends on a long -aawn",
 			"body": [
-				"กร (gaawn) is a hand. พร (phaawn) is a blessing. The ร at the end of นคร (ná-khaawn) is doing the same thing.",
-				"The vowel is long, and the ร is heard as n, so the tail of the word is a long -aawn whatever consonant came first.",
-				"This is the one reading that overrides the short o. Given the choice between gon and gaawn for กร, take gaawn."
-			]
+				"กร (gaawn) is a hand. พร (phaawn) is a blessing.",
+				"The ร on the back of นคร (ná-khaawn) is doing this very thing.",
+				"The vowel filling the gap is long, and the ร is heard as n, so the word tails off into a long -aawn.",
+				"This is the one reading that overrules the short o. Given a choice between gon and gaawn for กร, take gaawn."
+			],
+			"audio": [
+				"/thai-script/lessons/lesson-unwritten-vowels/audio/c1a434e30323d15c.mp3"
+			],
+			"audioLanguages": ["en"],
+			"image": "/thai-script/lessons/lesson-unwritten-vowels/images/bare-final-ro-6f2f18202462.jpg"
 		},
 		{
 			"kind": "exposition",
 			"id": "ro-han",
 			"heading": "Double ร is a vowel, short a",
 			"body": [
-				"กรรม (gam) is karma or a deed. พรรค (phák) is a political party.",
-				"Two ร side by side spell no r at all. They are a short a, and whatever consonant follows them is the final: กรรม is g, a, m.",
-				"With nothing following, the pair supplies its own n. So a word ending in รร ends -an."
-			]
+				"กรรม (gam) is karma, or a deed. พรรค (phák) is a political party.",
+				"Two ร side by side spell no r at all. They are a short a, and whatever consonant follows them is the final.",
+				"With nothing following, the pair supplies its own n, so a word ending in รร ends -an."
+			],
+			"audio": [
+				"/thai-script/lessons/lesson-unwritten-vowels/audio/84240157bde6004a.mp3"
+			],
+			"audioLanguages": ["en"],
+			"image": "/thai-script/lessons/lesson-unwritten-vowels/images/ro-han-b6c76d047d25.jpg"
 		},
 		{
 			"kind": "exposition",
 			"id": "o-as-vowel",
 			"heading": "อ after a consonant is a long aaw",
 			"body": [
-				"ของ (khǎawng) is a thing or possession. ชอบ (châawp) is to like. บอก (bàawk) is to tell. สอง (sǎawng) is two.",
-				"อ is a consonant only at the front of a word, where it is the silent post a vowel hangs on. Anywhere after the first letter it is the long vowel -aaw.",
-				"That is why ตลอด (dtà-làawt) is not three consonants and a puzzle. It is ต, then ล with its own long aaw, then ด closing the syllable."
-			]
+				"ของ (khǎawng) is a thing. ชอบ (châawp) is to like. บอก (bàawk) is to tell. สอง (sǎawng) is two.",
+				"อ is a consonant only at the front of a word, where it is the silent post a vowel hangs on.",
+				"Anywhere after the first letter it is the long vowel -aaw instead.",
+				"So ตลอด (dtà-làawt) comes apart cleanly: ต on its own, then ล with its own long aaw, then ด closing it."
+			],
+			"audio": [
+				"/thai-script/lessons/lesson-unwritten-vowels/audio/b8a8c92cffdc806a.mp3"
+			],
+			"audioLanguages": ["en"],
+			"image": "/thai-script/lessons/lesson-unwritten-vowels/images/o-as-vowel-9cc652e5140c.jpg"
+		},
+		{
+			"kind": "exposition",
+			"id": "read-saawn",
+			"heading": "And this one",
+			"body": [
+				"Tiger, the post in the middle, and the mouse's letter closing it.",
+				"Temple letter, live ending. Out loud before you turn it over."
+			],
+			"audio": [
+				"/thai-script/lessons/lesson-unwritten-vowels/audio/6e17e48d781b0a80.mp3"
+			],
+			"audioLanguages": ["en"],
+			"thai": "สอน"
+		},
+		{
+			"kind": "exposition",
+			"id": "read-saawn-answer",
+			"heading": "That one",
+			"body": [
+				"สอน — to teach.",
+				"Temple letter, live ending, and the tone rises."
+			],
+			"audio": [
+				"/thai-script/lessons/lesson-unwritten-vowels/audio/2530b9aa1f93be28.mp3",
+				"/thai-script/lessons/lesson-unwritten-vowels/audio/07f3351d33f2daa1.mp3"
+			],
+			"audioLanguages": ["th", "en"],
+			"thai": "สอน"
 		},
 		{
 			"kind": "exposition",
 			"id": "w-as-vowel",
-			"heading": "ว wedged between two consonants is ua",
+			"heading": "ว between two consonants is the long vowel ua",
 			"body": [
 				"รวม (ruam) is to combine. ดวง (duang) is a round object. ขวด (khùat) is a bottle. ตรวจ (dtrùat) is to inspect.",
 				"With a consonant on each side and no other vowel in the syllable, ว is the vowel ua rather than a w.",
 				"ua counts as long, so a syllable closing on it stays live.",
-				"At the front of a syllable it is still the consonant w, as in วง, and after a vowel it is a final."
-			]
+				"Opening a syllable, ว is still the consonant w, as in วง, and after a vowel it closes the syllable."
+			],
+			"audio": [
+				"/thai-script/lessons/lesson-unwritten-vowels/audio/2b2050577931fa6f.mp3"
+			],
+			"audioLanguages": ["en"]
 		},
 		{
 			"kind": "retrieval",
 			"id": "two-readings",
 			"prompt": "ทร sits inside ทรง and inside ทราย. In one of them a vowel is written and in the other none is. Which word gets a short o supplied, and where does its o go?",
-			"revealSlideId": "two-readings-answer"
+			"revealSlideId": "two-readings-answer",
+			"audio": [
+				"/thai-script/lessons/lesson-unwritten-vowels/audio/ce6af1ddf989f784.mp3"
+			],
+			"audioLanguages": ["en"]
 		},
 		{
 			"kind": "reveal",
 			"id": "two-readings-answer",
 			"retrievalSlideId": "two-readings",
 			"answers": [
-				"ทรง gets the short o: it has no written vowel, so the o sits before its last letter, ง.",
-				"ทราย spells า out loud, so nothing needs supplying."
-			]
+				"ทรง writes no vowel, so the short o is supplied, and it sits between ร and ง.",
+				"ทราย spells า out in full, so nothing needs supplying.",
+				"Both words also change the sound of ทร, and the clusters lesson handles that next."
+			],
+			"audio": [
+				"/thai-script/lessons/lesson-unwritten-vowels/audio/ab89e4de7693776a.mp3"
+			],
+			"audioLanguages": ["en"]
 		},
 		{
 			"kind": "exposition",
 			"id": "which-reading-wins",
 			"heading": "When two readings both work, take the shorter one",
 			"body": [
-				"Count syllables first: the reading that produces fewer of them is the right one. สน in สนใจ is one syllable, sǒn, and not two.",
+				"Count syllables first: the reading that produces fewer of them is the one to take. สน inside สนใจ is one syllable, sǒn, rather than two.",
 				"Where that ties, prefer the reading with fewer of those light a syllables at the front.",
-				"And the bare ร ending beats the short o, which is the only place a longer reading wins."
-			]
+				"And the bare ร ending beats the short o, which is the one place a longer reading wins."
+			],
+			"audio": [
+				"/thai-script/lessons/lesson-unwritten-vowels/audio/b9dbfff480234d87.mp3"
+			],
+			"audioLanguages": ["en"]
+		},
+		{
+			"kind": "exposition",
+			"id": "read-close",
+			"heading": "Where that leaves you",
+			"body": [
+				"Six readings, and no new symbol to carry them.",
+				"Look for a written vowel, then count the letters and work from the back.",
+				"Next: two consonants at the front of a syllable, spoken together."
+			],
+			"audio": [
+				"/thai-script/lessons/lesson-unwritten-vowels/audio/ea73e9327ddc8772.mp3"
+			],
+			"audioLanguages": ["en"]
 		}
 	]
 }

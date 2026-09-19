@@ -1,0 +1,135 @@
+{
+  "findings": [
+    {
+      "id": "F1-followup",
+      "action": "auto-fix",
+      "message": "Round 1's F1 fix (commit 6ce579d6, wiring RETIRED_LESSONS into migrateLessonIdentity in Storage.ts) is correct by inspection — retiredPositionByLegacy correctly falls back through idToPosition for legacy numbers 15-25, and the fixer's own transcript confirms manual verification (legacy 15 → lesson-12's position, legacy 19 → lesson-tone-marks/lesson-14 resolve without throwing). But no automated test exercises this path: every existing describe block in Storage.test.ts (migrateLessonIdentity, migrateState, importData) calls migrateLessonIdentity against a synthetic RESEQUENCED fixture, never against the real default `lessonSequence` with an actual retired legacy number (15-25) from RETIRED_LESSONS. The fixer's own verification test was temporary and not committed. If a future edit to RETIRED_LESSONS or to the resolve() fallback regresses this path, nothing in the suite would catch it — exactly the silent-migration-failure hazard CONTEXT.md's Rule 1 was written to prevent.",
+      "severity": 6,
+      "effort": 3,
+      "why_not_fixed": "Storage.ts and Storage.test.ts belong to phase 1's covers, not phase 4's, and concurrent tasks may be editing files outside this phase's scope right now; per this round's cross-phase restriction I report rather than repair. The owning phase is re-reviewed regardless.",
+      "effort_basis": "add one test to Storage.test.ts that calls migrateLessonIdentity (or migrateState) with the default production lessonSequence and a state carrying a legacy number from RETIRED_LESSONS (e.g. completedLessons: [19], or a card with lessonNumber: 17), asserting it resolves to the absorbing lesson's position without throwing — bounded, no fixture changes needed beyond importing RETIRED_LESSONS",
+      "file": "src/infrastructure/persistence/Storage.test.ts"
+    }
+  ],
+  "acValidations": [
+    {
+      "task_id": "4.1",
+      "criterion": "AC1",
+      "locator": "src/domain/script/data/toneMarkTable.test.ts::enumerates all twelve combinations with none missing",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "4.1",
+      "criterion": "AC2",
+      "locator": "src/domain/script/data/toneMarkTable.test.ts::declares exactly the four stated combinations unreachable",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "4.1",
+      "criterion": "AC3",
+      "locator": "src/domain/script/data/toneMarkTable.test.ts::resolves to the mark's tone even when the spelling rule disagrees",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "4.1",
+      "criterion": "AC4",
+      "locator": "src/domain/script/data/symbolPriority.test.ts::reads ThaiConsonant.priority directly rather than a parallel map",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "4.1",
+      "criterion": "AC5",
+      "locator": "src/domain/script/data/symbolPriority.test.ts::matches the declared symbols.ts priority for every consonant",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "4.1",
+      "criterion": "AC6",
+      "locator": "src/domain/script/data/symbolPriority.test.ts::assigns every rank 1..44 exactly once — demotion reorders, never removes",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "4.1",
+      "criterion": "AC7",
+      "locator": "src/domain/script/data/toneMarkTable.test.ts::gives three distinct values for the three query states",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "4.2",
+      "criterion": "AC1",
+      "locator": "src/domain/script/data/toneMarkLesson.test.ts::AC1 — the lesson resolves to the deck arm at its declared position > is declared, decked, and comes after every spelling-based tone rule",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "4.2",
+      "criterion": "AC2",
+      "locator": "src/domain/script/data/toneMarkLesson.test.ts::AC2 — all twelve class-by-mark combinations appear > states every resolved cell that toneMarkTable.ts declares resolved",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "4.2",
+      "criterion": "AC3",
+      "locator": "src/domain/script/data/toneMarkLesson.test.ts::AC3 — the lesson's stated table resolves real corpus words > depends on the lesson text: thinning a class slide stops the resolution",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "4.2",
+      "criterion": "AC4",
+      "locator": "src/domain/script/data/toneMarkLesson.test.ts::AC4 — every Thai example word is a real, rank-windowed corpus word > resolves every word the deck shows against vocabulary.json",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "4.2",
+      "criterion": "AC5",
+      "locator": "src/domain/script/data/toneMarkLesson.test.ts::AC5 — the lesson reuses no phrasing from the source transcripts > catches a planted overlap, so the clearance above is not vacuous",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "4.2",
+      "criterion": "AC6",
+      "locator": "src/domain/script/data/toneMarkLesson.test.ts::AC6 — every asset the deck references exists > references only files inside the lesson's own directory, and leaves none unreferenced",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "4.3",
+      "criterion": "AC1",
+      "locator": "src/domain/script/data/sequenceClosure.test.ts::AC1 — no lesson in the sequence resolves to the video arm > resolves every declared lesson to a deck",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "4.3",
+      "criterion": "AC2",
+      "locator": "src/domain/script/data/sequenceClosure.test.ts::AC2 — every symbol is taught by exactly one lesson > files every consonant in exactly one lessons-table row, and that row is in the sequence",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "4.3",
+      "criterion": "AC3",
+      "locator": "src/domain/script/data/sequenceClosure.test.ts::AC3 — demoted letters remain in the SRS set > keeps the symbol set at 44 consonants, every one reachable through some lesson's cards",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "4.3",
+      "criterion": "AC4",
+      "locator": "src/domain/script/data/sequenceClosure.test.ts::AC4 — the numerals track has three distinct states > resolves a learner to exactly one of three distinct states",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "4.3",
+      "criterion": "AC5",
+      "locator": "src/domain/script/data/sequenceClosure.test.ts::AC5 — the complete sequence's rules resolve the taught corpus > matches the recorded baseline across the taught rank window, reporting each disagreement",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "4.3",
+      "criterion": "AC6",
+      "locator": "src/domain/script/data/sequenceClosure.test.ts::AC6 — no lesson uses a symbol a later lesson teaches > sweeps every deck in the final sequence against what is taught by that point",
+      "verdict": "valid"
+    }
+  ],
+  "reviewedAt": "6ce579d6bd1dc29ec700101d3f3801ee880f2d28",
+  "answersAt": "4ff8137cd92c10e3",
+  "enforcement": [
+    "reviewer edited 1 path(s) the plan does not declare and they were reverted: plans/lesson-rebuild/resources.jsonl"
+  ]
+}

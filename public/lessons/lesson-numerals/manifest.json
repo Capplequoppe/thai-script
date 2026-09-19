@@ -3,16 +3,513 @@
 	"schema": {
 		"version": 1,
 		"segmentStates": ["absent", "generated", "failed"],
-		"verificationOutcomes": ["not-required", "verified", "mismatch"]
+		"verificationOutcomes": ["not-required", "verified", "mismatch", "recorded"]
 	},
 	"voice": {
-		"voiceId": "JBFqnCBsd6RMkjVDRZzb",
-		"modelId": "eleven_multilingual_v2",
+		"voiceId": "brM9iIbwDREZaWL8luun",
+		"modelId": "eleven_v3",
 		"settings": {
 			"stability": 0.5,
 			"similarity_boost": 0.75,
 			"speed": 1.0
+		},
+		"english": {
+			"modelId": "fishaudio/s2-pro",
+			"reference": "8924c611339b8fe5"
 		}
 	},
-	"assets": []
+	"assets": [
+		{
+			"key": "what-is-here-0",
+			"kind": "audio",
+			"state": "generated",
+			"language": "en",
+			"inputHash": "a375757bfb4178d1f88689acca0255abc413a0118cd18a43e9fe99b1f38fba41",
+			"contentHash": "97d2e0b6b499d9faeadc98b01634a1ea1ead3828edd5f4d5108d293326936d2a",
+			"path": "/thai-script/lessons/lesson-numerals/audio/a375757bfb4178d1.mp3",
+			"file": "audio/a375757bfb4178d1.mp3",
+			"verification": {
+				"outcome": "not-required",
+				"attempts": 1,
+				"expected": null,
+				"heard": []
+			},
+			"failure": null
+		},
+		{
+			"key": "pen-still-there-0",
+			"kind": "audio",
+			"state": "generated",
+			"language": "en",
+			"inputHash": "d1b4eaf0626fcdeec1833815befdd0c14b389de4f3fb52854535e983012842be",
+			"contentHash": "c2764fe893a1227e0855502939086455487d3d474d44012e8e6dfc386a3f64c8",
+			"path": "/thai-script/lessons/lesson-numerals/audio/d1b4eaf0626fcdee.mp3",
+			"file": "audio/d1b4eaf0626fcdee.mp3",
+			"verification": {
+				"outcome": "not-required",
+				"attempts": 1,
+				"expected": null,
+				"heard": []
+			},
+			"failure": null
+		},
+		{
+			"key": "why-optional-0",
+			"kind": "audio",
+			"state": "generated",
+			"language": "en",
+			"inputHash": "27c53e597d61b0b4d9cd8e5efedaa1b57b9854fe7d2b88f49cc213564df44b58",
+			"contentHash": "6bd0504099fa3f3b11f5561caf122886ea0b87f40e679714a18c0c72e6571964",
+			"path": "/thai-script/lessons/lesson-numerals/audio/27c53e597d61b0b4.mp3",
+			"file": "audio/27c53e597d61b0b4.mp3",
+			"verification": {
+				"outcome": "not-required",
+				"attempts": 1,
+				"expected": null,
+				"heard": []
+			},
+			"failure": null
+		},
+		{
+			"key": "zero-to-four-0",
+			"kind": "audio",
+			"state": "generated",
+			"language": "en",
+			"inputHash": "66ac143be0ec13330462924a384d98b8172da667bbb4424433ca072864cf820f",
+			"contentHash": "e199671ccfe22e8bb1201f7c93c757f2fe7feb5c4120a2e9d697ebf3d4c8efe4",
+			"path": "/thai-script/lessons/lesson-numerals/audio/66ac143be0ec1333.mp3",
+			"file": "audio/66ac143be0ec1333.mp3",
+			"verification": {
+				"outcome": "not-required",
+				"attempts": 1,
+				"expected": null,
+				"heard": []
+			},
+			"failure": null
+		},
+		{
+			"key": "zero-to-four-1",
+			"kind": "audio",
+			"state": "generated",
+			"language": "th",
+			"inputHash": "027089f87cc9cab870fa2ca2cba597e4b914aac08ce7defad075764da6590497",
+			"contentHash": "f4a5d8ebbe28e4f7e6549f92f05200398eab6432b2e8aed564f84d1a5529ae2d",
+			"path": "/thai-script/lessons/lesson-numerals/audio/027089f87cc9cab8.mp3",
+			"file": "audio/027089f87cc9cab8.mp3",
+			"verification": {
+				"outcome": "recorded",
+				"attempts": 1,
+				"expected": null,
+				"heard": []
+			},
+			"failure": null
+		},
+		{
+			"key": "zero-to-four-2",
+			"kind": "audio",
+			"state": "generated",
+			"language": "th",
+			"inputHash": "6a178434cb895889bf6376e567b841c06cbe8ed82126b15437020142cd789661",
+			"contentHash": "8a439859319c6547f7d8ad49c2bb06b6cab60f34ae82c440a1f2411362b757e0",
+			"path": "/thai-script/lessons/lesson-numerals/audio/6a178434cb895889.mp3",
+			"file": "audio/6a178434cb895889.mp3",
+			"verification": {
+				"outcome": "recorded",
+				"attempts": 1,
+				"expected": null,
+				"heard": []
+			},
+			"failure": null
+		},
+		{
+			"key": "zero-to-four-3",
+			"kind": "audio",
+			"state": "generated",
+			"language": "th",
+			"inputHash": "2e8e75b7fac990ce0894c81fc20805ac75bd39ecf8f69df4217c46ff96f2f2c3",
+			"contentHash": "436a5b911cf69f3d493fdb11b2212384f05a1bcf09e8b7433325fd1a041ee5a4",
+			"path": "/thai-script/lessons/lesson-numerals/audio/2e8e75b7fac990ce.mp3",
+			"file": "audio/2e8e75b7fac990ce.mp3",
+			"verification": {
+				"outcome": "recorded",
+				"attempts": 1,
+				"expected": null,
+				"heard": []
+			},
+			"failure": null
+		},
+		{
+			"key": "zero-to-four-4",
+			"kind": "audio",
+			"state": "generated",
+			"language": "th",
+			"inputHash": "43fa2a5d074a4f15e9dd3d7e717e016bb298ef73b68f2f03fb163ef21e4f4f49",
+			"contentHash": "7433bfb636bbc2911b356c88b93c26ab40642164955d0041b84885104638a149",
+			"path": "/thai-script/lessons/lesson-numerals/audio/43fa2a5d074a4f15.mp3",
+			"file": "audio/43fa2a5d074a4f15.mp3",
+			"verification": {
+				"outcome": "recorded",
+				"attempts": 1,
+				"expected": null,
+				"heard": []
+			},
+			"failure": null
+		},
+		{
+			"key": "zero-to-four-5",
+			"kind": "audio",
+			"state": "generated",
+			"language": "th",
+			"inputHash": "2a66d784d4344165aff0aa9f8a40f6903edb73a0229dcacb615dc75f50858f0c",
+			"contentHash": "9f57d0a4588b5b984da176d181e0347da0bd285d54a6480e15ef15ae88f80c37",
+			"path": "/thai-script/lessons/lesson-numerals/audio/2a66d784d4344165.mp3",
+			"file": "audio/2a66d784d4344165.mp3",
+			"verification": {
+				"outcome": "recorded",
+				"attempts": 1,
+				"expected": null,
+				"heard": []
+			},
+			"failure": null
+		},
+		{
+			"key": "five-to-nine-0",
+			"kind": "audio",
+			"state": "generated",
+			"language": "en",
+			"inputHash": "b380e0024b0bb208a9d5f10822f94fb4b14b75c5d29dfd99777e75eea9071e68",
+			"contentHash": "1d35f425040afe91eb79a71a6df38a83549c29fe708a836bd69cf927eed88434",
+			"path": "/thai-script/lessons/lesson-numerals/audio/b380e0024b0bb208.mp3",
+			"file": "audio/b380e0024b0bb208.mp3",
+			"verification": {
+				"outcome": "not-required",
+				"attempts": 1,
+				"expected": null,
+				"heard": []
+			},
+			"failure": null
+		},
+		{
+			"key": "five-to-nine-1",
+			"kind": "audio",
+			"state": "generated",
+			"language": "th",
+			"inputHash": "3cc346763c19fbc8ee89d3d47d12847b815eb96d8f260e34ec2fc3f583183181",
+			"contentHash": "28bab87ed518f2bea7b7d30b8a079d12b4a7e9c50a2d97b3f323534ef4dcc013",
+			"path": "/thai-script/lessons/lesson-numerals/audio/3cc346763c19fbc8.mp3",
+			"file": "audio/3cc346763c19fbc8.mp3",
+			"verification": {
+				"outcome": "recorded",
+				"attempts": 1,
+				"expected": null,
+				"heard": []
+			},
+			"failure": null
+		},
+		{
+			"key": "five-to-nine-2",
+			"kind": "audio",
+			"state": "generated",
+			"language": "th",
+			"inputHash": "40a20e98fcd487e281ba401e9be65633899064e22bd4b9f1a09f413a0f0dbb8a",
+			"contentHash": "a6e460b7e7ad3c9a363105a14d50d3b5f8891a22f20bb3ed58271b2ff6f30bee",
+			"path": "/thai-script/lessons/lesson-numerals/audio/40a20e98fcd487e2.mp3",
+			"file": "audio/40a20e98fcd487e2.mp3",
+			"verification": {
+				"outcome": "recorded",
+				"attempts": 1,
+				"expected": null,
+				"heard": []
+			},
+			"failure": null
+		},
+		{
+			"key": "five-to-nine-3",
+			"kind": "audio",
+			"state": "generated",
+			"language": "th",
+			"inputHash": "c14b176db6e19b593c2e32b76d665bab973cfe93810c92ac0019828afbf8a43a",
+			"contentHash": "2b7b350359dc4ae7687112f68a63f803ba759ea59bec9a13c2e64c819e12d470",
+			"path": "/thai-script/lessons/lesson-numerals/audio/c14b176db6e19b59.mp3",
+			"file": "audio/c14b176db6e19b59.mp3",
+			"verification": {
+				"outcome": "recorded",
+				"attempts": 1,
+				"expected": null,
+				"heard": []
+			},
+			"failure": null
+		},
+		{
+			"key": "five-to-nine-4",
+			"kind": "audio",
+			"state": "generated",
+			"language": "th",
+			"inputHash": "94999d6f399fca0bf0d87dffe1042c41eb5778c8f91586ad2352d37277c0c437",
+			"contentHash": "231072f5f200354fec7255e0458471044cc21b10eea456808fdc4cd4e9cfe5f0",
+			"path": "/thai-script/lessons/lesson-numerals/audio/94999d6f399fca0b.mp3",
+			"file": "audio/94999d6f399fca0b.mp3",
+			"verification": {
+				"outcome": "recorded",
+				"attempts": 1,
+				"expected": null,
+				"heard": []
+			},
+			"failure": null
+		},
+		{
+			"key": "five-to-nine-5",
+			"kind": "audio",
+			"state": "generated",
+			"language": "th",
+			"inputHash": "0f8f5460840af5e7f6aec6510c290bbdaf88ad28c8a1cfe02897743c06857f81",
+			"contentHash": "245f87bbf85d9ec4ccba0a8b8d86cc23d86b03e1153fab57605838d50b90b798",
+			"path": "/thai-script/lessons/lesson-numerals/audio/0f8f5460840af5e7.mp3",
+			"file": "audio/0f8f5460840af5e7.mp3",
+			"verification": {
+				"outcome": "recorded",
+				"attempts": 1,
+				"expected": null,
+				"heard": []
+			},
+			"failure": null
+		},
+		{
+			"key": "reading-a-number-0",
+			"kind": "audio",
+			"state": "generated",
+			"language": "en",
+			"inputHash": "2c52dbd31cff027fb65aaef73bba6310ea793e74d4154f7b78d790647e99f520",
+			"contentHash": "fbf484cfc7fa1bc7e2186564e29697bbbdcf490aee063a2599ff771b734c6359",
+			"path": "/thai-script/lessons/lesson-numerals/audio/2c52dbd31cff027f.mp3",
+			"file": "audio/2c52dbd31cff027f.mp3",
+			"verification": {
+				"outcome": "not-required",
+				"attempts": 1,
+				"expected": null,
+				"heard": []
+			},
+			"failure": null
+		},
+		{
+			"key": "say-the-number-0",
+			"kind": "audio",
+			"state": "generated",
+			"language": "en",
+			"inputHash": "e458e03534d40344446b731f245564668565e2c68f01899aa2ad3703157754bf",
+			"contentHash": "d722074b11544d8217797b6e558ead981a24f0ee5495b8ea64b977ce42092c85",
+			"path": "/thai-script/lessons/lesson-numerals/audio/e458e03534d40344.mp3",
+			"file": "audio/e458e03534d40344.mp3",
+			"verification": {
+				"outcome": "not-required",
+				"attempts": 1,
+				"expected": null,
+				"heard": []
+			},
+			"failure": null
+		},
+		{
+			"key": "say-the-number-answer-0",
+			"kind": "audio",
+			"state": "generated",
+			"language": "en",
+			"inputHash": "4dc4df95eccc1e8cf296974d4ce35033201c3b416a380c5740f0a2e8395857ee",
+			"contentHash": "10a02203bdefeba3d0a9375bc5118820c2dbd3ebe16726b6530786067ae9565d",
+			"path": "/thai-script/lessons/lesson-numerals/audio/4dc4df95eccc1e8c.mp3",
+			"file": "audio/4dc4df95eccc1e8c.mp3",
+			"verification": {
+				"outcome": "not-required",
+				"attempts": 1,
+				"expected": null,
+				"heard": []
+			},
+			"failure": null
+		},
+		{
+			"key": "read-price-0",
+			"kind": "audio",
+			"state": "generated",
+			"language": "en",
+			"inputHash": "93ab11f785642f0760c265c50e57a44d90f5df29a91d9b1b9fb404e558f726c6",
+			"contentHash": "f621af3d93d92f88e698df2e8e281028305dd1a90e4291f1e25510967de790d9",
+			"path": "/thai-script/lessons/lesson-numerals/audio/93ab11f785642f07.mp3",
+			"file": "audio/93ab11f785642f07.mp3",
+			"verification": {
+				"outcome": "not-required",
+				"attempts": 1,
+				"expected": null,
+				"heard": []
+			},
+			"failure": null
+		},
+		{
+			"key": "read-price-answer-0",
+			"kind": "audio",
+			"state": "generated",
+			"language": "en",
+			"inputHash": "94035a8966463cfa5c502db8ef7aec17d97cf55a2c2dca6e203c649ac251ceb5",
+			"contentHash": "43ee2d9a6ae8866605c7815a85a60db91c49b650aeb0cec017c301f5c186a4be",
+			"path": "/thai-script/lessons/lesson-numerals/audio/94035a8966463cfa.mp3",
+			"file": "audio/94035a8966463cfa.mp3",
+			"verification": {
+				"outcome": "not-required",
+				"attempts": 1,
+				"expected": null,
+				"heard": []
+			},
+			"failure": null
+		},
+		{
+			"key": "spot-digit-0",
+			"kind": "audio",
+			"state": "generated",
+			"language": "en",
+			"inputHash": "b431cc0ce2f0dbc4bf732056f9441426fcb3ae51e450e2a169e3b9d5f25772d6",
+			"contentHash": "4272c74e3d39a14bd3daea5d43d9157be304f8377d6cf5479433d421a653c434",
+			"path": "/thai-script/lessons/lesson-numerals/audio/b431cc0ce2f0dbc4.mp3",
+			"file": "audio/b431cc0ce2f0dbc4.mp3",
+			"verification": {
+				"outcome": "not-required",
+				"attempts": 1,
+				"expected": null,
+				"heard": []
+			},
+			"failure": null
+		},
+		{
+			"key": "spot-digit-answer-0",
+			"kind": "audio",
+			"state": "generated",
+			"language": "th",
+			"inputHash": "0f8f5460840af5e7f6aec6510c290bbdaf88ad28c8a1cfe02897743c06857f81",
+			"contentHash": "245f87bbf85d9ec4ccba0a8b8d86cc23d86b03e1153fab57605838d50b90b798",
+			"path": "/thai-script/lessons/lesson-numerals/audio/0f8f5460840af5e7.mp3",
+			"file": "audio/0f8f5460840af5e7.mp3",
+			"verification": {
+				"outcome": "recorded",
+				"attempts": 1,
+				"expected": null,
+				"heard": []
+			},
+			"failure": null
+		},
+		{
+			"key": "spot-digit-answer-1",
+			"kind": "audio",
+			"state": "generated",
+			"language": "en",
+			"inputHash": "73e564455b94dfe977202dc820c6cb723fa386a9d0b98ae4a35fa1dfd94b4d02",
+			"contentHash": "0422e5785f38422f31c732a030c45ed7a92cf938f4e9b606c65855b6087b9abf",
+			"path": "/thai-script/lessons/lesson-numerals/audio/73e564455b94dfe9.mp3",
+			"file": "audio/73e564455b94dfe9.mp3",
+			"verification": {
+				"outcome": "not-required",
+				"attempts": 1,
+				"expected": null,
+				"heard": []
+			},
+			"failure": null
+		},
+		{
+			"key": "close-0",
+			"kind": "audio",
+			"state": "generated",
+			"language": "en",
+			"inputHash": "0cf0fc634088b0b3d75eb2fc24fbd35334642b126a42874e36243ed21b69887d",
+			"contentHash": "959e60d104c753eb9ba2ebfb95395060596df51c2a6333082a482ac9736e72a2",
+			"path": "/thai-script/lessons/lesson-numerals/audio/0cf0fc634088b0b3.mp3",
+			"file": "audio/0cf0fc634088b0b3.mp3",
+			"verification": {
+				"outcome": "not-required",
+				"attempts": 1,
+				"expected": null,
+				"heard": []
+			},
+			"failure": null
+		},
+		{
+			"key": "what-is-here-image",
+			"kind": "image",
+			"state": "generated",
+			"language": null,
+			"inputHash": "504b106541339a5e62ce75e9d089461cdbff6b8badbb2d7281d882803f1654ba",
+			"contentHash": "4057cb56dc784e6965f93b458794d44e1682919cef3d3471d2182d73441dfbd4",
+			"path": "/thai-script/lessons/lesson-numerals/images/what-is-here-504b10654133.jpg",
+			"file": "images/what-is-here-504b10654133.jpg",
+			"verification": null,
+			"failure": null
+		},
+		{
+			"key": "pen-still-there-image",
+			"kind": "image",
+			"state": "generated",
+			"language": null,
+			"inputHash": "1bdf41db8b53f4c1d37e35fe055407aff7aa9205fa5d41b74dbbcf7ff693faa8",
+			"contentHash": "d5ee5c5c023898ed24512e1d09e65f95aecc922e11f54dab1cac9d33590ddab8",
+			"path": "/thai-script/lessons/lesson-numerals/images/pen-still-there-1bdf41db8b53.jpg",
+			"file": "images/pen-still-there-1bdf41db8b53.jpg",
+			"verification": null,
+			"failure": null
+		},
+		{
+			"key": "why-optional-image",
+			"kind": "image",
+			"state": "generated",
+			"language": null,
+			"inputHash": "83bf51434a14277fe5f9cb94faa81f22c84e64f778e0a720570333c4fe09014b",
+			"contentHash": "7369331e3d6e093e732fd6043140043b0771b1e9c646fb0ca5ddf094dba37c18",
+			"path": "/thai-script/lessons/lesson-numerals/images/why-optional-83bf51434a14.jpg",
+			"file": "images/why-optional-83bf51434a14.jpg",
+			"verification": null,
+			"failure": null
+		},
+		{
+			"key": "zero-to-four-image",
+			"kind": "image",
+			"state": "generated",
+			"language": null,
+			"inputHash": "65c6148c10a9d4d3d5f45d009bd6e677c98c05ee4239ad4a799c084f3cbdab60",
+			"contentHash": "a556bd5bc920a9309b7ed2f3844a644a14168760ab68b97a411921df7a7f3dcf",
+			"path": "/thai-script/lessons/lesson-numerals/images/zero-to-four-65c6148c10a9.jpg",
+			"file": "images/zero-to-four-65c6148c10a9.jpg",
+			"verification": null,
+			"failure": null
+		},
+		{
+			"key": "five-to-nine-image",
+			"kind": "image",
+			"state": "generated",
+			"language": null,
+			"inputHash": "8b173967955c2fc6c34f3410cffc4edbfcd8bff203d97bce968c6e6d1b9e83e1",
+			"contentHash": "e7f3116011c197c82ba7b70cd8ea87ac3331243d17a24e13e04d88b43a056f88",
+			"path": "/thai-script/lessons/lesson-numerals/images/five-to-nine-8b173967955c.jpg",
+			"file": "images/five-to-nine-8b173967955c.jpg",
+			"verification": null,
+			"failure": null
+		},
+		{
+			"key": "reading-a-number-image",
+			"kind": "image",
+			"state": "generated",
+			"language": null,
+			"inputHash": "b8e894a4980f4bca51288f2f7f3baa08baaecf380a849f0d023b55bc1a434bfe",
+			"contentHash": "0a6002bbb4a606e190b7343af9a7020293263df18a7a57001432c06f3f932e3b",
+			"path": "/thai-script/lessons/lesson-numerals/images/reading-a-number-b8e894a4980f.jpg",
+			"file": "images/reading-a-number-b8e894a4980f.jpg",
+			"verification": null,
+			"failure": null
+		},
+		{
+			"key": "close-image",
+			"kind": "image",
+			"state": "generated",
+			"language": null,
+			"inputHash": "18d12f82a34477c2293fcc88fd39cbfcb7a0c33b41cc40ed12522e05d967516f",
+			"contentHash": "a097b7047e113e8b1d20e3b682527f8df0bd0f6d6e1e456ea1fdd4cdb77c5365",
+			"path": "/thai-script/lessons/lesson-numerals/images/close-18d12f82a344.jpg",
+			"file": "images/close-18d12f82a344.jpg",
+			"verification": null,
+			"failure": null
+		}
+	]
 }

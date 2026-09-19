@@ -829,7 +829,7 @@ const consonants: ThaiConsonant[] = [
 		sceneMnemonic: {
 			district: "market",
 			shapeCue:
-				"An open basket with both walls stopping level at the rim — and one enormous glossy leaf growing straight up out of it, bigger than the stall it stands in, shading the whole market row.",
+				"An open bucket with both walls stopping level at the flat bottom — and one enormous glossy leaf growing straight up out of it, bigger than the stall it stands in, shading the whole market row.",
 			soundCue:
 				"A plain flat b, nothing breathy about it; at a syllable's tail the lips seal on a p-stop and hold.",
 		},
@@ -1093,7 +1093,7 @@ const consonants: ThaiConsonant[] = [
 		sceneMnemonic: {
 			district: "market",
 			shapeCue:
-				"Like บ, but the right wall rises higher than the rim — a fish jumping clear of the market basket.",
+				"Like บ, but the right wall rises higher than the rim — a fish jumping clear of the market bucket.",
 			soundCue:
 				"Bp — b and p pressed into one flat sound, no puff; the fish slaps back down bp.",
 		},
@@ -1204,7 +1204,7 @@ const consonants: ThaiConsonant[] = [
 		sceneMnemonic: {
 			district: "temple",
 			shapeCue:
-				"Like บ, but crossed with an extra line — the hermit's staff laid across the basket he carries up to the temple.",
+				"Like บ, but crossed with an extra line — the hermit's staff laid across the bucket he carries up to the temple.",
 			soundCue:
 				"S — the second temple s, whispered through the hermit's beard.",
 		},
@@ -1985,7 +1985,7 @@ const vowels: ThaiVowel[] = [
 		name: "sara ia",
 		length: "short",
 		sound: "ia (short version of sara iia)",
-		position: "around",
+		position: "left-above-right",
 		audioUrl: "/thai-script/audio/sara-ia-short.mp3",
 		priority: 23,
 		lesson: 12,
@@ -2049,7 +2049,7 @@ const vowels: ThaiVowel[] = [
 		name: "sara uea",
 		length: "short",
 		sound: "uea (short combination of สระ อื + สระ อะ)",
-		position: "around",
+		position: "left-above-right",
 		audioUrl: "/thai-script/audio/sara-eua-short.mp3",
 		priority: 27,
 		lesson: 14,
@@ -2080,7 +2080,7 @@ const vowels: ThaiVowel[] = [
 		name: "sara ua",
 		length: "short",
 		sound: "ua (short combination of อู + อะ)",
-		position: "around",
+		position: "above",
 		audioUrl: "/thai-script/audio/sara-ua-short.mp3",
 		priority: 28,
 		lesson: 14,

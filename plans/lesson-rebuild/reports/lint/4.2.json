@@ -1,0 +1,209 @@
+{
+  "version": 1,
+  "task": "4.2",
+  "pass": "after",
+  "result": {
+    "outcome": "unsupported",
+    "reason": "content/lessons/lesson-tone-marks.md: no grammar covers '.md' files (and 2 more) — 11 violations were measured before this and are not shown"
+  },
+  "findings": [
+    {
+      "rule": "length",
+      "severity": "warning",
+      "measured": 557,
+      "threshold": 400,
+      "tier": "file",
+      "path": "src/domain/script/data/lessonContent.ts"
+    },
+    {
+      "rule": "length",
+      "severity": "warning",
+      "measured": 4735,
+      "threshold": 2000,
+      "tier": "module",
+      "module": "src/domain/script/data",
+      "members": [
+        "src/domain/script/data/lessonContent.ts",
+        "src/domain/script/data/lessonSequence.ts",
+        "src/domain/script/data/symbols.ts",
+        "src/domain/script/data/toneMarkLesson.test.ts"
+      ]
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 4.26,
+      "threshold": 5,
+      "tier": "file",
+      "path": "src/domain/script/data/symbols.ts",
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "length",
+      "severity": "warning",
+      "measured": 3497,
+      "threshold": 400,
+      "tier": "file",
+      "path": "src/domain/script/data/symbols.ts"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "(anonymous)",
+        "path": "src/domain/script/data/toneMarkLesson.test.ts",
+        "bytes": {
+          "startIndex": 10955,
+          "endIndex": 11777
+        },
+        "lines": {
+          "startRow": 311,
+          "endRow": 339
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "(anonymous)",
+        "path": "src/domain/script/data/toneMarkLesson.test.ts",
+        "bytes": {
+          "startIndex": 11210,
+          "endIndex": 11773
+        },
+        "lines": {
+          "startRow": 317,
+          "endRow": 338
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "(anonymous)",
+        "path": "src/domain/script/data/toneMarkLesson.test.ts",
+        "bytes": {
+          "startIndex": 12090,
+          "endIndex": 13471
+        },
+        "lines": {
+          "startRow": 345,
+          "endRow": 391
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "(anonymous)",
+        "path": "src/domain/script/data/toneMarkLesson.test.ts",
+        "bytes": {
+          "startIndex": 12164,
+          "endIndex": 13467
+        },
+        "lines": {
+          "startRow": 346,
+          "endRow": 390
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "(anonymous)",
+        "path": "src/domain/script/data/toneMarkLesson.test.ts",
+        "bytes": {
+          "startIndex": 13733,
+          "endIndex": 14646
+        },
+        "lines": {
+          "startRow": 397,
+          "endRow": 422
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "(anonymous)",
+        "path": "src/domain/script/data/toneMarkLesson.test.ts",
+        "bytes": {
+          "startIndex": 14884,
+          "endIndex": 16445
+        },
+        "lines": {
+          "startRow": 428,
+          "endRow": 472
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "(anonymous)",
+        "path": "src/domain/script/data/toneMarkLesson.test.ts",
+        "bytes": {
+          "startIndex": 14985,
+          "endIndex": 16441
+        },
+        "lines": {
+          "startRow": 429,
+          "endRow": 471
+        }
+      },
+      "check": "density-below-floor"
+    }
+  ],
+  "adapters": [
+    {
+      "tool": "biome",
+      "selection": {
+        "evidence": "configured",
+        "by": "biome.json"
+      },
+      "program": null,
+      "result": {
+        "outcome": "unsupported",
+        "reason": "biome did not resolve: 'biome' on PATH (31 entries). Its findings are missing from this report — that is a gap and not a pass."
+      },
+      "files": 4,
+      "findings": 0,
+      "refusedPaths": 0,
+      "outsideAnalysis": 0,
+      "refusedShape": 0
+    }
+  ]
+}

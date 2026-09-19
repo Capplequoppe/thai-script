@@ -1,0 +1,147 @@
+{
+  "findings": [
+    {
+      "id": "F1",
+      "action": "fixed",
+      "message": "lessonRow() in middleBand.test.ts annotated its return type as `Lesson` without importing that type from ./symbols. It compiled and ran fine only because both tsconfig.json and tsconfig.domain-check.json exclude *.test.ts from type-checking, and vitest's esbuild transform strips types without checking them — so no gate this repo runs would ever have caught it. Fixed by adding `type Lesson` to the existing `./symbols` import.",
+      "severity": 3,
+      "effort": 1,
+      "file": "src/domain/script/data/middleBand.test.ts",
+      "line": 160,
+      "category": "correctness"
+    }
+  ],
+  "lessons": [
+    {
+      "lesson": "Both tsconfig.json and tsconfig.domain-check.json exclude *.test.ts, and vitest's esbuild transform never type-checks — so a missing/wrong type import in any *.test.ts silently passes every gate this repo runs. Worth a real tsc pass over test files occasionally, since nothing else will catch it."
+    }
+  ],
+  "acValidations": [
+    {
+      "task_id": "3.1",
+      "criterion": "AC1",
+      "locator": "src/domain/script/data/syllableRules.test.ts::reads ของ, ชอบ and ออก with อ as a vowel, not as an implicit โอะ",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "3.1",
+      "criterion": "AC2",
+      "locator": "src/domain/script/data/syllableRules.test.ts::divides ถนน, ขนม, ตลก and สงบ with an implicit อะ on the first syllable",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "3.1",
+      "criterion": "AC3",
+      "locator": "src/domain/script/data/syllableRules.test.ts::resolves a false cluster to its actual sound, not the sum of its parts",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "3.1",
+      "criterion": "AC4",
+      "locator": "src/domain/script/data/syllableRules.test.ts::declares the อ branch closed at exactly four words",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "3.1",
+      "criterion": "AC5",
+      "locator": "src/domain/script/data/syllableRules.test.ts::reports a disagreement count that matches the recorded baseline",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "3.1",
+      "criterion": "AC6",
+      "locator": "src/domain/script/data/syllableRules.test.ts::keeps อ a consonant at the start of a word and a vowel after that",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "3.1",
+      "criterion": "AC7",
+      "locator": "src/domain/script/data/syllableRules.test.ts::reports an unresolvable word with the rule that ran out, and never as unanalysed",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "3.1",
+      "criterion": "AC8",
+      "locator": "src/domain/script/data/syllableRules.test.ts::declares a slot for all nine, before their content exists",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "3.2",
+      "criterion": "AC1",
+      "locator": "src/domain/script/data/promotedLessons.test.ts::resolves each to the deck arm at its declared sequence position",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "3.2",
+      "criterion": "AC2",
+      "locator": "src/domain/script/data/promotedLessons.test.ts::states the class transfer once, and not again inside any branch",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "3.2",
+      "criterion": "AC3",
+      "locator": "src/domain/script/data/promotedLessons.test.ts::lists twenty pairs and says that is all of them",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "3.2",
+      "criterion": "AC4",
+      "locator": "src/domain/script/data/promotedLessons.test.ts::resolves every sampled corpus word's pronunciation and tone",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "3.2",
+      "criterion": "AC5",
+      "locator": "src/domain/script/data/promotedLessons.test.ts::clears the shared originality check on every line of every deck",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "3.2",
+      "criterion": "AC6",
+      "locator": "src/domain/script/data/promotedLessons.test.ts::references only files inside the lesson's own directory, and leaves none unreferenced",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "3.3",
+      "criterion": "AC1",
+      "locator": "src/domain/script/data/middleBand.test.ts::resolves every middle-band lesson to the deck arm",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "3.3",
+      "criterion": "AC2",
+      "locator": "src/domain/script/data/middleBand.test.ts::introduces exactly the symbols each lesson declares",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "3.3",
+      "criterion": "AC3",
+      "locator": "src/domain/script/data/middleBand.test.ts::never uses a symbol the sequence teaches later",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "3.3",
+      "criterion": "AC4",
+      "locator": "src/domain/script/data/middleBand.test.ts::resolves every Thai example word inside the lesson's declared rank window",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "3.3",
+      "criterion": "AC5",
+      "locator": "src/domain/script/data/middleBand.test.ts::clears the shared originality check on every line of every band deck",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "3.3",
+      "criterion": "AC6",
+      "locator": "src/domain/script/data/middleBand.test.ts::references only assets that exist inside the lesson's own directory, and leaves none unreferenced",
+      "verdict": "valid"
+    }
+  ],
+  "reviewedAt": "096ceedbf82e2f7922d6c432357f51f0831e26f3",
+  "answersAt": "4ff8137cd92c10e3",
+  "enforcement": [
+    "reviewer edited 1 path(s) the plan does not declare and they were reverted: plans/lesson-rebuild/resources.jsonl"
+  ],
+  "repairsVerified": true
+}

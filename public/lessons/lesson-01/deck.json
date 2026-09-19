@@ -425,17 +425,33 @@
 		},
 		{
 			"kind": "exposition",
+			"id": "the-vowel-house",
+			"heading": "And one place that is not a district",
+			"body": [
+				"A vowel carries no class, so it belongs to no district.",
+				"One house, where the roads from all three districts meet.",
+				"The room it lodges in is simply **where it is written**."
+			],
+			"audio": [
+				"/thai-script/lessons/lesson-01/audio/9ac979eacd11686d.mp3",
+				"/thai-script/lessons/lesson-01/audio/20bc1a07cdf2b46d.mp3"
+			],
+			"audioLanguages": ["en", "en"],
+			"image": "/thai-script/lessons/lesson-01/images/the-vowel-house-9cc652e5140c.jpg"
+		},
+		{
+			"kind": "exposition",
 			"id": "meet-aa",
 			"heading": "The vowel you have already heard",
 			"body": [
 				"A **long**, open note, held until the breath runs out.",
 				"Length changes meaning. Long and short are different vowels.",
-				"It always follows its consonant, and never stands alone."
+				"It is written **after** its consonant, so it lodges in the **back yard**."
 			],
 			"audio": [
 				"/thai-script/lessons/lesson-01/audio/bc110c12970a31b2.mp3",
 				"/thai-script/lessons/lesson-01/audio/823d442bff951539.mp3",
-				"/thai-script/lessons/lesson-01/audio/7f3cf6ed0c2b6ab7.mp3"
+				"/thai-script/lessons/lesson-01/audio/0e590767e3ea9ad6.mp3"
 			],
 			"audioLanguages": ["en", "th", "en"]
 		},
@@ -571,16 +587,16 @@
 			"heading": "Close the syllable",
 			"body": [
 				"The mouse's letter, the long vowel, then the mouse's letter again.",
-				"It means **a long time**.",
+				"It means **a long time** — what the net-mender waited, with **none** of her knots left.",
 				"One consonant can both **open** and **close** a syllable. Position decides."
 			],
 			"audio": [
 				"/thai-script/lessons/lesson-01/audio/8d33dd2cb515c971.mp3",
 				"/thai-script/lessons/lesson-01/audio/42e9577b0a3ffa81.mp3",
-				"/thai-script/lessons/lesson-01/audio/b871a8b7e3f6fcca.mp3"
+				"/thai-script/lessons/lesson-01/audio/328fba7be989d525.mp3"
 			],
 			"audioLanguages": ["en", "th", "en"],
-			"image": "/thai-script/lessons/lesson-01/images/word-naan-691d762960ab.jpg"
+			"image": "/thai-script/lessons/lesson-01/images/word-naan-7510d8a5b50d.jpg"
 		},
 		{
 			"kind": "exposition",

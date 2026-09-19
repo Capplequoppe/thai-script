@@ -4,38 +4,304 @@
 	"slides": [
 		{
 			"kind": "exposition",
-			"id": "tray-and-tooth",
-			"heading": "phaaw phaan and faaw fan",
+			"id": "what-is-here",
+			"heading": "Two letters, two vowels, and the tone that falls",
 			"body": [
-				"พ is three prongs in a row with every tip stopping level and the head curled outside the left rim — a tray set flat.",
-				"ฟ is that same figure with its last stroke grown taller than the rest, one tooth outgrowing the row. Its name word is fan, a tooth, which is a useful accident.",
-				"พ pushes p out on a breath. ฟ brushes breath past the teeth as f. Both breathe; neither hums and neither stops."
-			]
+				"Two consonants, another near-identical pair.",
+				"Two vowels, and the last room of the house.",
+				"The first tone that **falls**."
+			],
+			"audio": ["/thai-script/lessons/lesson-05/audio/62064231213ec72e.mp3"],
+			"audioLanguages": ["en"],
+			"image": "/thai-script/lessons/lesson-05/images/what-is-here-8205045e22f2.jpg"
+		},
+		{
+			"kind": "exposition",
+			"id": "the-trick",
+			"heading": "The shrine above the beach",
+			"body": [
+				"Both low class, both at the harbour, both up at the shrine.",
+				"**Both breathe**, like the elephant. Everything before them hummed or stopped.",
+				"Two different places in your mouth: the lips, and the teeth."
+			],
+			"audio": [
+				"/thai-script/lessons/lesson-05/audio/661859b1acab09a1.mp3",
+				"/thai-script/lessons/lesson-05/audio/24147ee4eb045aad.mp3"
+			],
+			"audioLanguages": ["en", "en"],
+			"image": "/thai-script/lessons/lesson-05/images/the-trick-e1388944853f.jpg"
+		},
+		{
+			"kind": "exposition",
+			"id": "pen-still-there",
+			"heading": "Pen and paper first",
+			"body": [
+				"Real paper, a real pen.",
+				"Today's pair is the closest yet. The hand separates them.",
+				"Out loud, both halves, every time."
+			],
+			"audio": ["/thai-script/lessons/lesson-05/audio/c1770a582493a395.mp3"],
+			"audioLanguages": ["en"],
+			"image": "/thai-script/lessons/lesson-05/images/pen-still-there-1bdf41db8b53.jpg"
+		},
+		{
+			"kind": "exposition",
+			"id": "meet-phaan",
+			"heading": "The tray",
+			"body": [
+				"Its name is the sound, then a word beginning with that sound.",
+				"The word means an **offering tray**.",
+				"A p with a puff behind it. The palm moves."
+			],
+			"audio": [
+				"/thai-script/lessons/lesson-05/audio/e319ce7827ffc5c8.mp3",
+				"/thai-script/lessons/lesson-05/audio/54b6625274ea1bb3.mp3",
+				"/thai-script/lessons/lesson-05/audio/074b21632ca547bf.mp3"
+			],
+			"audioLanguages": ["en", "th", "en"],
+			"image": "/thai-script/lessons/lesson-05/images/meet-phaan-96609d50aae8.jpg"
+		},
+		{
+			"kind": "exposition",
+			"id": "phaan-story-1",
+			"heading": "The woman who keeps the shrine",
+			"body": [
+				"She has kept the shrine for forty years, and has not missed a morning.",
+				"Fresh flowers on the tray, incense lit, gone before the boats.",
+				"Nobody admits it matters. Nobody goes out if the tray is empty."
+			],
+			"audio": ["/thai-script/lessons/lesson-05/audio/241fc41bfd7bb3f7.mp3"],
+			"audioLanguages": ["en"],
+			"image": "/thai-script/lessons/lesson-05/images/phaan-story-1-06b39dfdcfdc.jpg"
+		},
+		{
+			"kind": "exposition",
+			"id": "phaan-story-2",
+			"heading": "The sound she makes at the end of it",
+			"body": [
+				"One short puff to put the flame out. Lips together, then open.",
+				"Three prongs, all three tips level. A tray set flat.",
+				"The head curls outside the left rim."
+			],
+			"audio": [
+				"/thai-script/lessons/lesson-05/audio/4a218d5ffc9d07e7.mp3",
+				"/thai-script/lessons/lesson-05/audio/54b6625274ea1bb3.mp3"
+			],
+			"audioLanguages": ["en", "th"],
+			"image": "/thai-script/lessons/lesson-05/images/phaan-story-2-8eb4d9c17e91.jpg"
+		},
+		{
+			"kind": "exposition",
+			"id": "see-phaan",
+			"heading": "The tray's letter",
+			"body": [
+				"Three prongs in a row, every tip level.",
+				"The head sits outside the rim, on the left."
+			],
+			"thai": "พ"
+		},
+		{
+			"kind": "exposition",
+			"id": "write-phaan",
+			"heading": "Write it now",
+			"body": [
+				"**Start at the head**, outside the rim on the left.",
+				"Three prongs, and all three tips stop **level**.",
+				"Leave it on the page. You will need it in two minutes."
+			],
+			"audio": ["/thai-script/lessons/lesson-05/audio/e5b6b00deddd4f32.mp3"],
+			"audioLanguages": ["en"],
+			"thai": "พ"
+		},
+		{
+			"kind": "exposition",
+			"id": "meet-fan",
+			"heading": "The tooth",
+			"body": [
+				"Its name is the sound, then a word beginning with that sound.",
+				"The word means a **tooth**.",
+				"And the sound is **made at the teeth**. The word tells you how to say it."
+			],
+			"audio": [
+				"/thai-script/lessons/lesson-05/audio/c2ead4ca2f269cdd.mp3",
+				"/thai-script/lessons/lesson-05/audio/468a8ff680176df7.mp3",
+				"/thai-script/lessons/lesson-05/audio/61cba05e859c85ce.mp3"
+			],
+			"audioLanguages": ["en", "th", "en"],
+			"image": "/thai-script/lessons/lesson-05/images/meet-fan-682eafbfbc07.jpg"
+		},
+		{
+			"kind": "exposition",
+			"id": "fan-story-1",
+			"heading": "What is on the tray",
+			"body": [
+				"A tooth the size of a hand, brought up in a net thirty years ago.",
+				"Nobody agrees what it came out of.",
+				"It has sat on the tray ever since, and every child tries to touch it."
+			],
+			"audio": ["/thai-script/lessons/lesson-05/audio/f941e58aa5b75d52.mp3"],
+			"audioLanguages": ["en"],
+			"image": "/thai-script/lessons/lesson-05/images/fan-story-1-d15a8da3ae3f.jpg"
+		},
+		{
+			"kind": "exposition",
+			"id": "fan-story-2",
+			"heading": "Why it is that letter and not the other one",
+			"body": [
+				"Same figure as the tray, with the last stroke grown taller.",
+				"One tooth standing up out of the row.",
+				"Nothing else separates the two letters."
+			],
+			"audio": [
+				"/thai-script/lessons/lesson-05/audio/902f81b47bee821b.mp3",
+				"/thai-script/lessons/lesson-05/audio/468a8ff680176df7.mp3"
+			],
+			"audioLanguages": ["en", "th"],
+			"image": "/thai-script/lessons/lesson-05/images/fan-story-2-8702124d7c47.jpg"
+		},
+		{
+			"kind": "exposition",
+			"id": "see-fan",
+			"heading": "The tooth's letter",
+			"body": [
+				"The tray, with the final stroke risen above the rest.",
+				"Same head, same prongs. One of them outgrew the row."
+			],
+			"thai": "ฟ"
+		},
+		{
+			"kind": "exposition",
+			"id": "write-fan",
+			"heading": "Write it under the tray",
+			"body": [
+				"Same head, same prongs. The last one keeps going.",
+				"Write it **directly under** the tray.",
+				"Compare your own two. That height is the whole difference."
+			],
+			"audio": ["/thai-script/lessons/lesson-05/audio/858ebfefdbff681b.mp3"],
+			"audioLanguages": ["en"],
+			"thai": "ฟ"
 		},
 		{
 			"kind": "retrieval",
 			"id": "which-outgrew",
-			"prompt": "พ and ฟ share a shape. Say the one difference, and which letter carries it.",
-			"revealSlideId": "which-outgrew-answer"
+			"prompt": "The two letters share a shape. Say the one difference, and which of them carries it.",
+			"revealSlideId": "which-outgrew-answer",
+			"audio": ["/thai-script/lessons/lesson-05/audio/940a657a896aec24.mp3"],
+			"audioLanguages": ["en"]
 		},
 		{
 			"kind": "reveal",
 			"id": "which-outgrew-answer",
 			"retrievalSlideId": "which-outgrew",
 			"answers": [
-				"The final stroke is taller than the others.",
-				"ฟ carries it. พ keeps all three tips level."
-			]
+				"The final stroke rises above the rest.",
+				"The **tooth** has it. The tray keeps all three level."
+			],
+			"audio": ["/thai-script/lessons/lesson-05/audio/710570b65b7379e7.mp3"],
+			"audioLanguages": ["en"]
 		},
 		{
 			"kind": "exposition",
-			"id": "u-vowels",
-			"heading": "The two vowels that hang below the line",
+			"id": "down-to-the-cellar",
+			"heading": "The last room of the house",
 			"body": [
-				"ุ is a small hook hanging under the floor of its letter: a short u, lips rounded for one beat. ชุด (chút) is an outfit or a set.",
-				"ู doubles that hook into a deeper ladle: a long uu, held. ดู (duu) is to watch or to look at.",
-				"These are the first vowels you have met that live below the letter rather than above, before or after it. Thai uses all four positions."
-			]
+				"Back yard: written after. Roof: written above.",
+				"Underneath the floor is the **cellar**.",
+				"Two vowels today, and they arrive together."
+			],
+			"audio": ["/thai-script/lessons/lesson-05/audio/8dd41becb792d778.mp3"],
+			"audioLanguages": ["en"],
+			"image": "/thai-script/lessons/lesson-05/images/down-to-the-cellar-9cc652e5140c.jpg"
+		},
+		{
+			"kind": "exposition",
+			"id": "meet-um",
+			"heading": "The one who lives underneath",
+			"body": [
+				"The name means **to carry**, or to hold something up.",
+				"A small hook, written underneath the consonant.",
+				"Where it is written is the only thing that puts him there."
+			],
+			"audio": [
+				"/thai-script/lessons/lesson-05/audio/16ad14f3a3db0f84.mp3",
+				"/thai-script/lessons/lesson-05/audio/2ee369207be41b4b.mp3",
+				"/thai-script/lessons/lesson-05/audio/cb05aaf3415c8f8b.mp3"
+			],
+			"audioLanguages": ["en", "th", "en"],
+			"image": "/thai-script/lessons/lesson-05/images/meet-um-f4a4d5525880.jpg"
+		},
+		{
+			"kind": "exposition",
+			"id": "the-flick-again",
+			"heading": "And you have seen this trick before",
+			"body": [
+				"Two of him: same sound, two lengths.",
+				"The long one is the same hook, drawn **deeper**.",
+				"**More stroke means longer.** Upstairs and down."
+			],
+			"audio": ["/thai-script/lessons/lesson-05/audio/fd603318dd5e2531.mp3"],
+			"audioLanguages": ["en"],
+			"image": "/thai-script/lessons/lesson-05/images/the-flick-again-1970d86a74ed.jpg"
+		},
+		{
+			"kind": "exposition",
+			"id": "short-in-a-word",
+			"heading": "The short one, doing a job",
+			"body": [
+				"The horse's letter, the small hook beneath, the horse's letter again.",
+				"**มุม** — a corner, or an angle.",
+				"Short: there and finished."
+			],
+			"audio": [
+				"/thai-script/lessons/lesson-05/audio/b9088ac0f2852ffa.mp3",
+				"/thai-script/lessons/lesson-05/audio/c5c42f8dca2c9903.mp3",
+				"/thai-script/lessons/lesson-05/audio/621497ee35912923.mp3"
+			],
+			"audioLanguages": ["en", "th", "en"],
+			"thai": "มุม",
+			"image": "/thai-script/lessons/lesson-05/images/short-in-a-word-1faf64388abd.jpg"
+		},
+		{
+			"kind": "exposition",
+			"id": "write-the-cellar",
+			"heading": "Write them both",
+			"body": [
+				"Write both, one under the other. Compare the depth.",
+				"Always under a consonant, one you already know.",
+				"Say the **syllable** out loud, the sound the marks make together."
+			],
+			"audio": [
+				"/thai-script/lessons/lesson-05/audio/192277e1d5eef228.mp3",
+				"/thai-script/lessons/lesson-05/audio/25e998dd228b6484.mp3",
+				"/thai-script/lessons/lesson-05/audio/53086e9233c79a8c.mp3"
+			],
+			"audioLanguages": ["en", "th", "th"],
+			"thai": "ู"
+		},
+		{
+			"kind": "exposition",
+			"id": "read-duu",
+			"heading": "Read this one",
+			"body": [
+				"The child's letter, with the deep hook beneath.",
+				"**Say it aloud before you turn it over.**"
+			],
+			"audio": ["/thai-script/lessons/lesson-05/audio/960fa10635c28e33.mp3"],
+			"audioLanguages": ["en"],
+			"thai": "ดู"
+		},
+		{
+			"kind": "exposition",
+			"id": "read-duu-answer",
+			"heading": "That one",
+			"body": ["**ดู** — to look, to watch."],
+			"audio": [
+				"/thai-script/lessons/lesson-05/audio/88f0fe34acee55e2.mp3",
+				"/thai-script/lessons/lesson-05/audio/14597a4ba3a2a01d.mp3"
+			],
+			"audioLanguages": ["th", "en"],
+			"thai": "ดู"
 		},
 		{
 			"kind": "rule",
@@ -47,36 +313,94 @@
 			"id": "falling",
 			"heading": "Low class, stopped, on a long vowel",
 			"body": [
-				"Last lesson a low class letter went high on a short vowel, stopped dead. Lengthen that vowel and the pitch does something else entirely: it starts high and drops.",
-				"พูด (phûut) is to speak. พ is low class, ู is long, and ด seals the syllable dead — so the pitch falls through it.",
-				"มาก (mâak) and ยาก (yâak) do the same thing with the long า and the k-stop of ก. You have been reading them since lesson three; now you know why they fall.",
-				"Set that beside พบ (phóp), to meet. Same letter, same kind of stop, short vowel — so it goes high instead."
-			]
+				"Low class, long vowel, dead ending: the pitch **falls**.",
+				"Short vowel in the same frame: it goes **high** instead.",
+				"The mark under the letter is where you read the length."
+			],
+			"audio": [
+				"/thai-script/lessons/lesson-05/audio/c74cdf1ee03c3991.mp3",
+				"/thai-script/lessons/lesson-05/audio/d4a11215e421a9a1.mp3",
+				"/thai-script/lessons/lesson-05/audio/b6365f068a8d7ebb.mp3",
+				"/thai-script/lessons/lesson-05/audio/c908905ae81e5791.mp3",
+				"/thai-script/lessons/lesson-05/audio/0b26cb8adadfc3f6.mp3"
+			],
+			"audioLanguages": ["en", "th", "en", "th", "en"],
+			"image": "/thai-script/lessons/lesson-05/images/falling-ae4ce0dca51b.jpg"
+		},
+		{
+			"kind": "exposition",
+			"id": "already-falling",
+			"heading": "Two words you have been reading since lesson three",
+			"body": [
+				"Both are low class, long vowel, dead ending.",
+				"Both fall, and both have since lesson three.",
+				"The rule gives you the tone before you have heard the word."
+			],
+			"audio": [
+				"/thai-script/lessons/lesson-05/audio/1df7901b524ffe39.mp3",
+				"/thai-script/lessons/lesson-05/audio/01ad691f866355b6.mp3",
+				"/thai-script/lessons/lesson-05/audio/a83d814306f7814b.mp3",
+				"/thai-script/lessons/lesson-05/audio/1b223bae0e54534a.mp3",
+				"/thai-script/lessons/lesson-05/audio/aa4a6846d7883a26.mp3"
+			],
+			"audioLanguages": ["en", "th", "en", "th", "en"],
+			"image": "/thai-script/lessons/lesson-05/images/already-falling-7bbc973f1a31.jpg"
 		},
 		{
 			"kind": "retrieval",
 			"id": "short-or-long",
-			"prompt": "พูด and พบ both open on พ and both end dead. One falls and one goes high. Which is which, and what is the only thing separating them?",
-			"revealSlideId": "short-or-long-answer"
+			"prompt": "Two words open on the tray's letter and both end dead. One falls and one goes high. Which is which, and what is the only thing separating them?",
+			"revealSlideId": "short-or-long-answer",
+			"audio": ["/thai-script/lessons/lesson-05/audio/aad343f41a3fd800.mp3"],
+			"audioLanguages": ["en"]
 		},
 		{
 			"kind": "reveal",
 			"id": "short-or-long-answer",
 			"retrievalSlideId": "short-or-long",
 			"answers": [
-				"พูด falls. พบ goes high.",
-				"Vowel length, and nothing else. ู is long, so the low class dead rule sends it falling; พบ has a short vowel, so the rule you learned last lesson sends it up."
-			]
+				"Long vowel, dead ending, low class: **falls**.",
+				"Short vowel, same frame: **high**.",
+				"Length decides it, and the depth of the hook shows the length."
+			],
+			"audio": ["/thai-script/lessons/lesson-05/audio/e0bc7f2cdc6f8e25.mp3"],
+			"audioLanguages": ["en"]
 		},
 		{
 			"kind": "exposition",
-			"id": "more-words",
-			"heading": "Words you can read now",
+			"id": "read-fang",
+			"heading": "One more to read",
 			"body": [
-				"ฟัง (fang) is to listen. ฟัน (fan) is a tooth. พา (phaa) is to lead someone somewhere. พวก (phûak) is a group of people.",
-				"มุม (mum) is a corner or an angle — the short hook under ม, and a word you can read at a glance.",
-				"Twelve consonants and seven vowels in, and the words are ordinary ones. That was the point of the order they came in."
-			]
+				"Tooth, curl above, snake closing it.",
+				"**Out loud before you turn it over.**"
+			],
+			"audio": ["/thai-script/lessons/lesson-05/audio/450cb4bca903359b.mp3"],
+			"audioLanguages": ["en"],
+			"thai": "ฟัง"
+		},
+		{
+			"kind": "exposition",
+			"id": "read-fang-answer",
+			"heading": "That one",
+			"body": ["**ฟัง** — to listen."],
+			"audio": [
+				"/thai-script/lessons/lesson-05/audio/52bb20874b1700b0.mp3",
+				"/thai-script/lessons/lesson-05/audio/d84b16ed4f8b15c5.mp3"
+			],
+			"audioLanguages": ["th", "en"],
+			"thai": "ฟัง"
+		},
+		{
+			"kind": "exposition",
+			"id": "read-close",
+			"heading": "The opening band, finished",
+			"body": [
+				"Twelve letters, seven vowels, four tone rules.",
+				"Every room of the vowels' house is open.",
+				"You can read a word you have never seen and know its tone."
+			],
+			"audio": ["/thai-script/lessons/lesson-05/audio/537dfa44d261de8b.mp3"],
+			"audioLanguages": ["en"]
 		}
 	]
 }

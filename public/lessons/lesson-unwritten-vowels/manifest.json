@@ -3,16 +3,479 @@
 	"schema": {
 		"version": 1,
 		"segmentStates": ["absent", "generated", "failed"],
-		"verificationOutcomes": ["not-required", "verified", "mismatch"]
+		"verificationOutcomes": ["not-required", "verified", "mismatch", "recorded"]
 	},
 	"voice": {
-		"voiceId": "JBFqnCBsd6RMkjVDRZzb",
-		"modelId": "eleven_multilingual_v2",
+		"voiceId": "brM9iIbwDREZaWL8luun",
+		"modelId": "eleven_v3",
 		"settings": {
 			"stability": 0.5,
 			"similarity_boost": 0.75,
 			"speed": 1.0
+		},
+		"english": {
+			"modelId": "fishaudio/s2-pro",
+			"reference": "8924c611339b8fe5"
 		}
 	},
-	"assets": []
+	"assets": [
+		{
+			"key": "what-is-here-0",
+			"kind": "audio",
+			"state": "generated",
+			"language": "en",
+			"inputHash": "d4ec911bb16b63cd518c43ce96e77fec75fd1501e3df04ecd391fb2b66d93ec0",
+			"contentHash": "89432840f491a2e5231df903be57f28d859dda9d7e49c3215b229401b30d62a7",
+			"path": "/thai-script/lessons/lesson-unwritten-vowels/audio/d4ec911bb16b63cd.mp3",
+			"file": "audio/d4ec911bb16b63cd.mp3",
+			"verification": {
+				"outcome": "not-required",
+				"attempts": 1,
+				"expected": null,
+				"heard": []
+			},
+			"failure": null
+		},
+		{
+			"key": "pen-still-there-0",
+			"kind": "audio",
+			"state": "generated",
+			"language": "en",
+			"inputHash": "0ba4e6450ab48bd75dad3e828830fc9c87b75e58159cc08b626be2fcf66a41a1",
+			"contentHash": "495e472402f04e819fbc8f97abfd73201e8878d2bbe5be38af618eecd8ec9e73",
+			"path": "/thai-script/lessons/lesson-unwritten-vowels/audio/0ba4e6450ab48bd7.mp3",
+			"file": "audio/0ba4e6450ab48bd7.mp3",
+			"verification": {
+				"outcome": "not-required",
+				"attempts": 1,
+				"expected": null,
+				"heard": []
+			},
+			"failure": null
+		},
+		{
+			"key": "every-syllable-has-one-0",
+			"kind": "audio",
+			"state": "generated",
+			"language": "en",
+			"inputHash": "ac5a669c6ccbaf9b1d423e7d05820feac9f6d809626bd75bd6c0c32c2c724082",
+			"contentHash": "faafebf1cf94cdf952254ee0b7fbf1aeaad0063cb1c86aed9579c95e53e8bdd0",
+			"path": "/thai-script/lessons/lesson-unwritten-vowels/audio/ac5a669c6ccbaf9b.mp3",
+			"file": "audio/ac5a669c6ccbaf9b.mp3",
+			"verification": {
+				"outcome": "not-required",
+				"attempts": 1,
+				"expected": null,
+				"heard": []
+			},
+			"failure": null
+		},
+		{
+			"key": "implicit-o-0",
+			"kind": "audio",
+			"state": "generated",
+			"language": "en",
+			"inputHash": "7858c6535648389d16e8e8f0aa4f4e7b4ca37e1fe077529f26c99e49c6c1c420",
+			"contentHash": "6fe9cb4ced05eb160645f0ea6839eed0d7360c0fd79261064f71e403e91a0b7d",
+			"path": "/thai-script/lessons/lesson-unwritten-vowels/audio/7858c6535648389d.mp3",
+			"file": "audio/7858c6535648389d.mp3",
+			"verification": {
+				"outcome": "not-required",
+				"attempts": 1,
+				"expected": null,
+				"heard": []
+			},
+			"failure": null
+		},
+		{
+			"key": "read-a-bare-pair-0",
+			"kind": "audio",
+			"state": "generated",
+			"language": "en",
+			"inputHash": "f8facffe14e4badf877c9cc5e05ac23966db72c527b00bfb103bd9d3ca3bfeb2",
+			"contentHash": "bc9650d6d7e402046a74c279db9d6810f456af6bc2e67ca4916c3e8fdfd315b0",
+			"path": "/thai-script/lessons/lesson-unwritten-vowels/audio/f8facffe14e4badf.mp3",
+			"file": "audio/f8facffe14e4badf.mp3",
+			"verification": {
+				"outcome": "not-required",
+				"attempts": 1,
+				"expected": null,
+				"heard": []
+			},
+			"failure": null
+		},
+		{
+			"key": "read-a-bare-pair-answer-0",
+			"kind": "audio",
+			"state": "generated",
+			"language": "en",
+			"inputHash": "6c8de8c0c9ffac54514a7cd9c3385562a25b00b91d5d07f0d70a100f22c28c80",
+			"contentHash": "97815f756add030d9acde560178a56f347a14e2b920946cf4e0f94f3ae815bf7",
+			"path": "/thai-script/lessons/lesson-unwritten-vowels/audio/6c8de8c0c9ffac54.mp3",
+			"file": "audio/6c8de8c0c9ffac54.mp3",
+			"verification": {
+				"outcome": "not-required",
+				"attempts": 1,
+				"expected": null,
+				"heard": []
+			},
+			"failure": null
+		},
+		{
+			"key": "unwritten-vowels-0",
+			"kind": "audio",
+			"state": "generated",
+			"language": "en",
+			"inputHash": "38ac52b9d92e8cc369b3971aa9808f90c25f084bba0e434513cee8b99db8157e",
+			"contentHash": "a99139dddbf3e5e5518e27ba00b8c2326d854a821f9850758e896ece5bdbb0ba",
+			"path": "/thai-script/lessons/lesson-unwritten-vowels/audio/38ac52b9d92e8cc3.mp3",
+			"file": "audio/38ac52b9d92e8cc3.mp3",
+			"verification": {
+				"outcome": "not-required",
+				"attempts": 1,
+				"expected": null,
+				"heard": []
+			},
+			"failure": null
+		},
+		{
+			"key": "implicit-a-0",
+			"kind": "audio",
+			"state": "generated",
+			"language": "en",
+			"inputHash": "aba7d7e2476a3f92bc4cfcf07d773804f383bdb17efe6b6f21dea0db511742d6",
+			"contentHash": "b377f78aa4d365ef1e4dcb08b81c3b7fd259137018e0e5c873dabac0ace47709",
+			"path": "/thai-script/lessons/lesson-unwritten-vowels/audio/aba7d7e2476a3f92.mp3",
+			"file": "audio/aba7d7e2476a3f92.mp3",
+			"verification": {
+				"outcome": "not-required",
+				"attempts": 1,
+				"expected": null,
+				"heard": []
+			},
+			"failure": null
+		},
+		{
+			"key": "read-dtalaat-0",
+			"kind": "audio",
+			"state": "generated",
+			"language": "en",
+			"inputHash": "44f86fe917ec507458fea124cf8a078c7d1d302b253d3e5b24e94e01e17fa3e0",
+			"contentHash": "61d9713833a51d22f64fe8cc95b3cc5e42e2c9b688a2d977c32924e281b41f0e",
+			"path": "/thai-script/lessons/lesson-unwritten-vowels/audio/44f86fe917ec5074.mp3",
+			"file": "audio/44f86fe917ec5074.mp3",
+			"verification": {
+				"outcome": "not-required",
+				"attempts": 1,
+				"expected": null,
+				"heard": []
+			},
+			"failure": null
+		},
+		{
+			"key": "read-dtalaat-answer-0",
+			"kind": "audio",
+			"state": "generated",
+			"language": "th",
+			"inputHash": "adbae40e88cc2d3a76bb5c47a8256e6e01575a4aa8a45a8acfce51d8c397b03b",
+			"contentHash": "55eae19d3714a99a723c6ab789de3f434fd44980110322ebe08dd53d68e59d64",
+			"path": "/thai-script/lessons/lesson-unwritten-vowels/audio/adbae40e88cc2d3a.mp3",
+			"file": "audio/adbae40e88cc2d3a.mp3",
+			"verification": {
+				"outcome": "verified",
+				"attempts": 1,
+				"expected": "ตลาด",
+				"heard": [" ตลาด"]
+			},
+			"failure": null
+		},
+		{
+			"key": "read-dtalaat-answer-1",
+			"kind": "audio",
+			"state": "generated",
+			"language": "en",
+			"inputHash": "8c63907f058ef7d0f3f8c999ea32a0799a6671b7698f3d61a907089cdc414e91",
+			"contentHash": "ced0f5ce8b46c5f8f642f7f75b50c564a3078472d42ebb37269b08bc0e3f16b2",
+			"path": "/thai-script/lessons/lesson-unwritten-vowels/audio/8c63907f058ef7d0.mp3",
+			"file": "audio/8c63907f058ef7d0.mp3",
+			"verification": {
+				"outcome": "not-required",
+				"attempts": 1,
+				"expected": null,
+				"heard": []
+			},
+			"failure": null
+		},
+		{
+			"key": "bare-final-ro-0",
+			"kind": "audio",
+			"state": "generated",
+			"language": "en",
+			"inputHash": "c1a434e30323d15c8e1f4c8af47806add656ef191c13ede54738012b1dcb7765",
+			"contentHash": "2ee257c517a9564dd8ed38f5cf82c6aa990f1e57393219775f77ce746ef39865",
+			"path": "/thai-script/lessons/lesson-unwritten-vowels/audio/c1a434e30323d15c.mp3",
+			"file": "audio/c1a434e30323d15c.mp3",
+			"verification": {
+				"outcome": "not-required",
+				"attempts": 1,
+				"expected": null,
+				"heard": []
+			},
+			"failure": null
+		},
+		{
+			"key": "ro-han-0",
+			"kind": "audio",
+			"state": "generated",
+			"language": "en",
+			"inputHash": "84240157bde6004a9828c424c996323c853343b6f9d3fdb917178c7226612e90",
+			"contentHash": "9986ac8da0dfb5d64e64767eafffe82035894d6882ec6fdf40709d6ff0a8fdbf",
+			"path": "/thai-script/lessons/lesson-unwritten-vowels/audio/84240157bde6004a.mp3",
+			"file": "audio/84240157bde6004a.mp3",
+			"verification": {
+				"outcome": "not-required",
+				"attempts": 1,
+				"expected": null,
+				"heard": []
+			},
+			"failure": null
+		},
+		{
+			"key": "o-as-vowel-0",
+			"kind": "audio",
+			"state": "generated",
+			"language": "en",
+			"inputHash": "b8a8c92cffdc806af609858ea364001ba5c774178212935bac0fb667f17e5eb4",
+			"contentHash": "d508937cb566324c1625b63fe93013887c202af6398b05ceb126da5872d6b849",
+			"path": "/thai-script/lessons/lesson-unwritten-vowels/audio/b8a8c92cffdc806a.mp3",
+			"file": "audio/b8a8c92cffdc806a.mp3",
+			"verification": {
+				"outcome": "not-required",
+				"attempts": 1,
+				"expected": null,
+				"heard": []
+			},
+			"failure": null
+		},
+		{
+			"key": "read-saawn-0",
+			"kind": "audio",
+			"state": "generated",
+			"language": "en",
+			"inputHash": "6e17e48d781b0a80c33a53aecb4a41b09c4c3ff463da6c35c74db9bf96d57ccf",
+			"contentHash": "599e4a917666fad9e4773d1bf6db3a11161f79329e0043865bac0beecd75d093",
+			"path": "/thai-script/lessons/lesson-unwritten-vowels/audio/6e17e48d781b0a80.mp3",
+			"file": "audio/6e17e48d781b0a80.mp3",
+			"verification": {
+				"outcome": "not-required",
+				"attempts": 1,
+				"expected": null,
+				"heard": []
+			},
+			"failure": null
+		},
+		{
+			"key": "read-saawn-answer-0",
+			"kind": "audio",
+			"state": "generated",
+			"language": "th",
+			"inputHash": "2530b9aa1f93be28f05b33a58efce2dd62bd174e1632996494115c1d62a32b7a",
+			"contentHash": "7bab182ce633ae2f2cd1ce59d15ada16856ebcd1a76cb2bd60e3f0b60b2b7611",
+			"path": "/thai-script/lessons/lesson-unwritten-vowels/audio/2530b9aa1f93be28.mp3",
+			"file": "audio/2530b9aa1f93be28.mp3",
+			"verification": {
+				"outcome": "verified",
+				"attempts": 2,
+				"expected": "สอน",
+				"heard": ["อน", " สอน"]
+			},
+			"failure": null
+		},
+		{
+			"key": "read-saawn-answer-1",
+			"kind": "audio",
+			"state": "generated",
+			"language": "en",
+			"inputHash": "07f3351d33f2daa101447fe4923df67152bac345a6235840dd1a8c4ee7f089c3",
+			"contentHash": "c35217af697dbe9683b0a6944b2875da8aaefd4f2106d6f82d3f9a7e6cfedacb",
+			"path": "/thai-script/lessons/lesson-unwritten-vowels/audio/07f3351d33f2daa1.mp3",
+			"file": "audio/07f3351d33f2daa1.mp3",
+			"verification": {
+				"outcome": "not-required",
+				"attempts": 1,
+				"expected": null,
+				"heard": []
+			},
+			"failure": null
+		},
+		{
+			"key": "w-as-vowel-0",
+			"kind": "audio",
+			"state": "generated",
+			"language": "en",
+			"inputHash": "2b2050577931fa6f97a5732b5ba5bca785061aea3ab4e1ce71e6760b0ac9e70c",
+			"contentHash": "194005e5757432efbf8540e30d8d59f271c1b38fc2b499b106150a4768b16316",
+			"path": "/thai-script/lessons/lesson-unwritten-vowels/audio/2b2050577931fa6f.mp3",
+			"file": "audio/2b2050577931fa6f.mp3",
+			"verification": {
+				"outcome": "not-required",
+				"attempts": 1,
+				"expected": null,
+				"heard": []
+			},
+			"failure": null
+		},
+		{
+			"key": "two-readings-0",
+			"kind": "audio",
+			"state": "generated",
+			"language": "en",
+			"inputHash": "ce6af1ddf989f784bc93f84dae53063af040b2402690745f5a70600cef80b847",
+			"contentHash": "73075ac00eceac85ef62b86497f3eead1ebb2fd4524ffa1968e273d2c8927a5b",
+			"path": "/thai-script/lessons/lesson-unwritten-vowels/audio/ce6af1ddf989f784.mp3",
+			"file": "audio/ce6af1ddf989f784.mp3",
+			"verification": {
+				"outcome": "not-required",
+				"attempts": 1,
+				"expected": null,
+				"heard": []
+			},
+			"failure": null
+		},
+		{
+			"key": "two-readings-answer-0",
+			"kind": "audio",
+			"state": "generated",
+			"language": "en",
+			"inputHash": "ab89e4de7693776afc338980bb6a70414ab1f4033dffcc0821dc2ad08165afb8",
+			"contentHash": "3efe21a0d7bdc743dde839c12224de1bf6a4d84e4db618b2ba443e8b6ce158ce",
+			"path": "/thai-script/lessons/lesson-unwritten-vowels/audio/ab89e4de7693776a.mp3",
+			"file": "audio/ab89e4de7693776a.mp3",
+			"verification": {
+				"outcome": "not-required",
+				"attempts": 1,
+				"expected": null,
+				"heard": []
+			},
+			"failure": null
+		},
+		{
+			"key": "which-reading-wins-0",
+			"kind": "audio",
+			"state": "generated",
+			"language": "en",
+			"inputHash": "b9dbfff480234d8753928e98c3cc90dd74ed59a07d99acea06741ec99712a8ff",
+			"contentHash": "ccfcf1a3f33f3724cc6f71468b2e03da80a15941e118103a8e8dc04c5e51bf1f",
+			"path": "/thai-script/lessons/lesson-unwritten-vowels/audio/b9dbfff480234d87.mp3",
+			"file": "audio/b9dbfff480234d87.mp3",
+			"verification": {
+				"outcome": "not-required",
+				"attempts": 1,
+				"expected": null,
+				"heard": []
+			},
+			"failure": null
+		},
+		{
+			"key": "read-close-0",
+			"kind": "audio",
+			"state": "generated",
+			"language": "en",
+			"inputHash": "ea73e9327ddc87722a04a944f8558739b3e584006c0c68487f5885ea6750bc57",
+			"contentHash": "c4205c49f0cf7dee95ab594d1ab93179ec8a82a99fb1db420d2fd5f3d8270ecf",
+			"path": "/thai-script/lessons/lesson-unwritten-vowels/audio/ea73e9327ddc8772.mp3",
+			"file": "audio/ea73e9327ddc8772.mp3",
+			"verification": {
+				"outcome": "not-required",
+				"attempts": 1,
+				"expected": null,
+				"heard": []
+			},
+			"failure": null
+		},
+		{
+			"key": "what-is-here-image",
+			"kind": "image",
+			"state": "generated",
+			"language": null,
+			"inputHash": "763579846c84a3ffa0b59e8a5f75d5723be688a18586578bc309e50bf7bb434a",
+			"contentHash": "f9c15c56402fd9fc236900b8d79a4e60519b35f1fa2c11f9a5cea31133884466",
+			"path": "/thai-script/lessons/lesson-unwritten-vowels/images/what-is-here-763579846c84.jpg",
+			"file": "images/what-is-here-763579846c84.jpg",
+			"verification": null,
+			"failure": null
+		},
+		{
+			"key": "pen-still-there-image",
+			"kind": "image",
+			"state": "generated",
+			"language": null,
+			"inputHash": "1bdf41db8b53f4c1d37e35fe055407aff7aa9205fa5d41b74dbbcf7ff693faa8",
+			"contentHash": "d5ee5c5c023898ed24512e1d09e65f95aecc922e11f54dab1cac9d33590ddab8",
+			"path": "/thai-script/lessons/lesson-unwritten-vowels/images/pen-still-there-1bdf41db8b53.jpg",
+			"file": "images/pen-still-there-1bdf41db8b53.jpg",
+			"verification": null,
+			"failure": null
+		},
+		{
+			"key": "implicit-o-image",
+			"kind": "image",
+			"state": "generated",
+			"language": null,
+			"inputHash": "0c9063b25b47333675de5b2dcf725918243abd0d8556263851f45bddacfdefc9",
+			"contentHash": "e99ddb57c57fb4a74aa465fa5e7120202a79fc1446995704230f7b60409d1b1f",
+			"path": "/thai-script/lessons/lesson-unwritten-vowels/images/implicit-o-0c9063b25b47.jpg",
+			"file": "images/implicit-o-0c9063b25b47.jpg",
+			"verification": null,
+			"failure": null
+		},
+		{
+			"key": "implicit-a-image",
+			"kind": "image",
+			"state": "generated",
+			"language": null,
+			"inputHash": "be9c36a47f0ed72382a33eaf84c891ca8d8a437137a1590f825ef2fe34831ae9",
+			"contentHash": "d3e4de4c0cacfb82ff32aca5bea04b602d4c47c109bc76b6d7c33beadd01963a",
+			"path": "/thai-script/lessons/lesson-unwritten-vowels/images/implicit-a-be9c36a47f0e.jpg",
+			"file": "images/implicit-a-be9c36a47f0e.jpg",
+			"verification": null,
+			"failure": null
+		},
+		{
+			"key": "bare-final-ro-image",
+			"kind": "image",
+			"state": "generated",
+			"language": null,
+			"inputHash": "6f2f182024620c5eb59e91313d21911a24d90b969267225c1107e959da6aa334",
+			"contentHash": "851cc0567c8df27f8e18078bafcce9d5947e898d428521cefa37b1cafd614a1d",
+			"path": "/thai-script/lessons/lesson-unwritten-vowels/images/bare-final-ro-6f2f18202462.jpg",
+			"file": "images/bare-final-ro-6f2f18202462.jpg",
+			"verification": null,
+			"failure": null
+		},
+		{
+			"key": "ro-han-image",
+			"kind": "image",
+			"state": "generated",
+			"language": null,
+			"inputHash": "b6c76d047d2513f9da1debb4709a85b3a758535a00cd6d75da0efff9e91e26bc",
+			"contentHash": "9a77f1564a79a8c3f3424bfffd3b66e736b83ce7f74dd8b210aa7a43cc861cae",
+			"path": "/thai-script/lessons/lesson-unwritten-vowels/images/ro-han-b6c76d047d25.jpg",
+			"file": "images/ro-han-b6c76d047d25.jpg",
+			"verification": null,
+			"failure": null
+		},
+		{
+			"key": "o-as-vowel-image",
+			"kind": "image",
+			"state": "generated",
+			"language": null,
+			"inputHash": "9cc652e5140cb6c51d870ce5527c1cd2c371cfd10134e3eaf1a83309c7eb0c2c",
+			"contentHash": "4d67fecbeab72061a62e09c9b37e832f90089fe0afb33b4b76f84ca74ab0549e",
+			"path": "/thai-script/lessons/lesson-unwritten-vowels/images/o-as-vowel-9cc652e5140c.jpg",
+			"file": "images/o-as-vowel-9cc652e5140c.jpg",
+			"verification": null,
+			"failure": null
+		}
+	]
 }

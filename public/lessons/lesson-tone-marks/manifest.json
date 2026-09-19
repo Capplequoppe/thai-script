@@ -3,16 +3,741 @@
 	"schema": {
 		"version": 1,
 		"segmentStates": ["absent", "generated", "failed"],
-		"verificationOutcomes": ["not-required", "verified", "mismatch"]
+		"verificationOutcomes": ["not-required", "verified", "mismatch", "recorded"]
 	},
 	"voice": {
-		"voiceId": "JBFqnCBsd6RMkjVDRZzb",
-		"modelId": "eleven_multilingual_v2",
+		"voiceId": "brM9iIbwDREZaWL8luun",
+		"modelId": "eleven_v3",
 		"settings": {
 			"stability": 0.5,
 			"similarity_boost": 0.75,
 			"speed": 1.0
+		},
+		"english": {
+			"modelId": "fishaudio/s2-pro",
+			"reference": "8924c611339b8fe5"
 		}
 	},
-	"assets": []
+	"assets": [
+		{
+			"key": "what-is-here-0",
+			"kind": "audio",
+			"state": "generated",
+			"language": "en",
+			"inputHash": "b6978a7f4fce125e734f25a5388723e85236dabb09a6d9e955c1c939f340b4ff",
+			"contentHash": "16d494cc405d372b64dd02909ab8eb7f59813e0d4c7a3a8a9df2cdc21b72c976",
+			"path": "/thai-script/lessons/lesson-tone-marks/audio/b6978a7f4fce125e.mp3",
+			"file": "audio/b6978a7f4fce125e.mp3",
+			"verification": {
+				"outcome": "not-required",
+				"attempts": 1,
+				"expected": null,
+				"heard": []
+			},
+			"failure": null
+		},
+		{
+			"key": "what-is-here-1",
+			"kind": "audio",
+			"state": "generated",
+			"language": "en",
+			"inputHash": "ab20e2368f07f0b491b2cfdeaa359068f243cba94ca335badce6a14c2a96371b",
+			"contentHash": "9747fea87cbf4f59b5c4f7d43df7d7e2b738e12a525d54f43faba7bbb783e6e0",
+			"path": "/thai-script/lessons/lesson-tone-marks/audio/ab20e2368f07f0b4.mp3",
+			"file": "audio/ab20e2368f07f0b4.mp3",
+			"verification": {
+				"outcome": "not-required",
+				"attempts": 1,
+				"expected": null,
+				"heard": []
+			},
+			"failure": null
+		},
+		{
+			"key": "pen-still-there-0",
+			"kind": "audio",
+			"state": "generated",
+			"language": "en",
+			"inputHash": "9998fb8ee221aedd6bc479e73db65883f4c8e8ed28fd15a64a6e09730c00f7ba",
+			"contentHash": "d4d14dfbfc2a8c86d82c0227a77809bc69063522502a94ff432482965d4dd9bc",
+			"path": "/thai-script/lessons/lesson-tone-marks/audio/9998fb8ee221aedd.mp3",
+			"file": "audio/9998fb8ee221aedd.mp3",
+			"verification": {
+				"outcome": "not-required",
+				"attempts": 1,
+				"expected": null,
+				"heard": []
+			},
+			"failure": null
+		},
+		{
+			"key": "the-horse-and-the-verb-0",
+			"kind": "audio",
+			"state": "generated",
+			"language": "en",
+			"inputHash": "d826c48f974a3a3c0eb9026c0967262e9d90ec91e488d9edd167ac14fc1b39c8",
+			"contentHash": "298ef45a1833355e80e3b75e81e4753e6edb4a2db26ff6555e363e9a3d53cddf",
+			"path": "/thai-script/lessons/lesson-tone-marks/audio/d826c48f974a3a3c.mp3",
+			"file": "audio/d826c48f974a3a3c.mp3",
+			"verification": {
+				"outcome": "not-required",
+				"attempts": 1,
+				"expected": null,
+				"heard": []
+			},
+			"failure": null
+		},
+		{
+			"key": "one-table-0",
+			"kind": "audio",
+			"state": "generated",
+			"language": "en",
+			"inputHash": "e544d188c021bf1967c774a04d35fb1abfde06cd135413c5329f4484ce5cdd20",
+			"contentHash": "4e9183a1775a983b08887061652ca9a6233b195b6d13cc8fce9f324180f63bb6",
+			"path": "/thai-script/lessons/lesson-tone-marks/audio/e544d188c021bf19.mp3",
+			"file": "audio/e544d188c021bf19.mp3",
+			"verification": {
+				"outcome": "not-required",
+				"attempts": 1,
+				"expected": null,
+				"heard": []
+			},
+			"failure": null
+		},
+		{
+			"key": "the-first-two-marks-0",
+			"kind": "audio",
+			"state": "generated",
+			"language": "en",
+			"inputHash": "a4e296c120c7c6ae55029955e19d2cb004491789906e5dc3add7c2b334cd0cee",
+			"contentHash": "711ebff611126849cc8732016ebf6c236e39298b25123a8c618cbe1173a55181",
+			"path": "/thai-script/lessons/lesson-tone-marks/audio/a4e296c120c7c6ae.mp3",
+			"file": "audio/a4e296c120c7c6ae.mp3",
+			"verification": {
+				"outcome": "not-required",
+				"attempts": 1,
+				"expected": null,
+				"heard": []
+			},
+			"failure": null
+		},
+		{
+			"key": "the-first-two-marks-1",
+			"kind": "audio",
+			"state": "generated",
+			"language": "th",
+			"inputHash": "871bea1de6dadafbe3e2cadbe83c341524469918e2b3e6e1921db43e36617905",
+			"contentHash": "bb2ce93b5434cf54e9cba3b1476ce3729f74973533adca7959679d12195de33b",
+			"path": "/thai-script/lessons/lesson-tone-marks/audio/871bea1de6dadafb.mp3",
+			"file": "audio/871bea1de6dadafb.mp3",
+			"verification": {
+				"outcome": "recorded",
+				"attempts": 1,
+				"expected": null,
+				"heard": []
+			},
+			"failure": null
+		},
+		{
+			"key": "the-first-two-marks-2",
+			"kind": "audio",
+			"state": "generated",
+			"language": "en",
+			"inputHash": "6cea7f18ef4fe7d7265ddcd6f19bdc6c3e4f2504dfe35af45e90a3ef5ae91c73",
+			"contentHash": "8025eabed34f3f650589d9fef4a6ecbabc57eec54d997f19fa3923e6a9e85697",
+			"path": "/thai-script/lessons/lesson-tone-marks/audio/6cea7f18ef4fe7d7.mp3",
+			"file": "audio/6cea7f18ef4fe7d7.mp3",
+			"verification": {
+				"outcome": "not-required",
+				"attempts": 1,
+				"expected": null,
+				"heard": []
+			},
+			"failure": null
+		},
+		{
+			"key": "the-first-two-marks-3",
+			"kind": "audio",
+			"state": "generated",
+			"language": "th",
+			"inputHash": "f32e4e75d7cb417ecfad943a5b79458994cc458402a05774b71a3ebcf8ca1769",
+			"contentHash": "cf51a287275db8a1f4a127ec52a0b6c2039582ae65f9ef718f6577bc6730aced",
+			"path": "/thai-script/lessons/lesson-tone-marks/audio/f32e4e75d7cb417e.mp3",
+			"file": "audio/f32e4e75d7cb417e.mp3",
+			"verification": {
+				"outcome": "recorded",
+				"attempts": 1,
+				"expected": null,
+				"heard": []
+			},
+			"failure": null
+		},
+		{
+			"key": "the-first-two-marks-4",
+			"kind": "audio",
+			"state": "generated",
+			"language": "en",
+			"inputHash": "28b664926d6e4f217059fe3e2f0b9fe0065ecc37e8ce15f9046fb94daf34958d",
+			"contentHash": "9f1da0b578ae4cb372f2f61d9afb9f92168e0dbb472c6166dbd41eb53472587b",
+			"path": "/thai-script/lessons/lesson-tone-marks/audio/28b664926d6e4f21.mp3",
+			"file": "audio/28b664926d6e4f21.mp3",
+			"verification": {
+				"outcome": "not-required",
+				"attempts": 1,
+				"expected": null,
+				"heard": []
+			},
+			"failure": null
+		},
+		{
+			"key": "the-market-only-marks-0",
+			"kind": "audio",
+			"state": "generated",
+			"language": "en",
+			"inputHash": "89fa48e15f64847ae77f60ab1764bf691967f6d864ec8b658440383f2773653c",
+			"contentHash": "fa21644085825979a6958afe30ca1c79d7afd04a5629ccdca1c9b466767bcf5a",
+			"path": "/thai-script/lessons/lesson-tone-marks/audio/89fa48e15f64847a.mp3",
+			"file": "audio/89fa48e15f64847a.mp3",
+			"verification": {
+				"outcome": "not-required",
+				"attempts": 1,
+				"expected": null,
+				"heard": []
+			},
+			"failure": null
+		},
+		{
+			"key": "the-market-only-marks-1",
+			"kind": "audio",
+			"state": "generated",
+			"language": "th",
+			"inputHash": "db00bba8d78457d6fee73493805b99f86de35c4ea78b9e11ee11f7084747f2cb",
+			"contentHash": "894f91bdfb0e8a452f475c4bdc714fced0c28fd16b98e7f44e408ca971522dc5",
+			"path": "/thai-script/lessons/lesson-tone-marks/audio/db00bba8d78457d6.mp3",
+			"file": "audio/db00bba8d78457d6.mp3",
+			"verification": {
+				"outcome": "recorded",
+				"attempts": 1,
+				"expected": null,
+				"heard": []
+			},
+			"failure": null
+		},
+		{
+			"key": "the-market-only-marks-2",
+			"kind": "audio",
+			"state": "generated",
+			"language": "en",
+			"inputHash": "dd858fed11ec362ff65aa30ca6b2cdaa991651630eca55af4c972d4b140faee9",
+			"contentHash": "43e1a821b66d61aeffe5d7127e1a9bd5dbee00b3aa029c3499af73ada02a356b",
+			"path": "/thai-script/lessons/lesson-tone-marks/audio/dd858fed11ec362f.mp3",
+			"file": "audio/dd858fed11ec362f.mp3",
+			"verification": {
+				"outcome": "not-required",
+				"attempts": 1,
+				"expected": null,
+				"heard": []
+			},
+			"failure": null
+		},
+		{
+			"key": "the-market-only-marks-3",
+			"kind": "audio",
+			"state": "generated",
+			"language": "th",
+			"inputHash": "00de90aa168f7f259fced52939440fa0e7f4aa80d36f120a63811529b8f4cfde",
+			"contentHash": "1451cd07afee12e75fc27159586af632ba12d5ea60b5fda3c32880dcd9d9a9e3",
+			"path": "/thai-script/lessons/lesson-tone-marks/audio/00de90aa168f7f25.mp3",
+			"file": "audio/00de90aa168f7f25.mp3",
+			"verification": {
+				"outcome": "recorded",
+				"attempts": 1,
+				"expected": null,
+				"heard": []
+			},
+			"failure": null
+		},
+		{
+			"key": "the-market-only-marks-4",
+			"kind": "audio",
+			"state": "generated",
+			"language": "en",
+			"inputHash": "7c7cf4aea83a0f155ec983acb7f640837f6033447178b48e7e6e19decea95ffc",
+			"contentHash": "9103fdf264acbd2e4296719cd3717df1ec99ed9d0cb331ec12e4ee05df3d52e8",
+			"path": "/thai-script/lessons/lesson-tone-marks/audio/7c7cf4aea83a0f15.mp3",
+			"file": "audio/7c7cf4aea83a0f15.mp3",
+			"verification": {
+				"outcome": "not-required",
+				"attempts": 1,
+				"expected": null,
+				"heard": []
+			},
+			"failure": null
+		},
+		{
+			"key": "mid-class-marks-0",
+			"kind": "audio",
+			"state": "generated",
+			"language": "en",
+			"inputHash": "3603e4553ac6e71ec18ef93970058d2b5686b10707876a813ce00bd66edcb72a",
+			"contentHash": "7ae03ac8a8004952a87ade0a6a7e9e08797f373f011d2daa63d190e7154ec6fa",
+			"path": "/thai-script/lessons/lesson-tone-marks/audio/3603e4553ac6e71e.mp3",
+			"file": "audio/3603e4553ac6e71e.mp3",
+			"verification": {
+				"outcome": "not-required",
+				"attempts": 1,
+				"expected": null,
+				"heard": []
+			},
+			"failure": null
+		},
+		{
+			"key": "high-class-marks-0",
+			"kind": "audio",
+			"state": "generated",
+			"language": "en",
+			"inputHash": "ad495fd52f6dbd4a4ac01720d808893660aec321818d9a98fca13a763d2250fb",
+			"contentHash": "ab5accc79434fe2f1ae369f9ee498d1c07df0838cdb59adec75102a01e9db506",
+			"path": "/thai-script/lessons/lesson-tone-marks/audio/ad495fd52f6dbd4a.mp3",
+			"file": "audio/ad495fd52f6dbd4a.mp3",
+			"verification": {
+				"outcome": "not-required",
+				"attempts": 1,
+				"expected": null,
+				"heard": []
+			},
+			"failure": null
+		},
+		{
+			"key": "low-class-marks-0",
+			"kind": "audio",
+			"state": "generated",
+			"language": "en",
+			"inputHash": "36cb2c351c52d71759604b326372a7db9f1dc8a3e4ad0cdd4181a0451564f720",
+			"contentHash": "20b190d0c0d8fc495ed49d8d54f0fddc2b6137a6c02a5fcc2225854858b02df8",
+			"path": "/thai-script/lessons/lesson-tone-marks/audio/36cb2c351c52d717.mp3",
+			"file": "audio/36cb2c351c52d717.mp3",
+			"verification": {
+				"outcome": "not-required",
+				"attempts": 1,
+				"expected": null,
+				"heard": []
+			},
+			"failure": null
+		},
+		{
+			"key": "which-tone-a-0",
+			"kind": "audio",
+			"state": "generated",
+			"language": "en",
+			"inputHash": "53cd71202e9b52cf16f37f8eee7ad528ed8e29da1a209a03e9b70464f83c0bbd",
+			"contentHash": "ec2bb9ae7d2e967699d5fb93e2398fb5fe12c0d63e76fa5c69e4f089a56bea06",
+			"path": "/thai-script/lessons/lesson-tone-marks/audio/53cd71202e9b52cf.mp3",
+			"file": "audio/53cd71202e9b52cf.mp3",
+			"verification": {
+				"outcome": "not-required",
+				"attempts": 1,
+				"expected": null,
+				"heard": []
+			},
+			"failure": null
+		},
+		{
+			"key": "which-tone-a-answer-0",
+			"kind": "audio",
+			"state": "generated",
+			"language": "en",
+			"inputHash": "0cd81b5ce65d4d0e33b61e45910d9ff77d5586098d5e45d9d558aaa17fc4196d",
+			"contentHash": "9325c983e12a985c78db0d4f9d8d7f1dc5623f2a1dcf5a9c1dda73add2c21f87",
+			"path": "/thai-script/lessons/lesson-tone-marks/audio/0cd81b5ce65d4d0e.mp3",
+			"file": "audio/0cd81b5ce65d4d0e.mp3",
+			"verification": {
+				"outcome": "not-required",
+				"attempts": 1,
+				"expected": null,
+				"heard": []
+			},
+			"failure": null
+		},
+		{
+			"key": "which-tone-b-0",
+			"kind": "audio",
+			"state": "generated",
+			"language": "en",
+			"inputHash": "21d3eefb0d8ac042421c72e726fd843507630d372740550593d214580f289797",
+			"contentHash": "48b3ed03a489a87dcbee2c8bf7e9145bab9b4daad6381a1a92e3414fb74c371a",
+			"path": "/thai-script/lessons/lesson-tone-marks/audio/21d3eefb0d8ac042.mp3",
+			"file": "audio/21d3eefb0d8ac042.mp3",
+			"verification": {
+				"outcome": "not-required",
+				"attempts": 1,
+				"expected": null,
+				"heard": []
+			},
+			"failure": null
+		},
+		{
+			"key": "which-tone-b-answer-0",
+			"kind": "audio",
+			"state": "generated",
+			"language": "en",
+			"inputHash": "aea0688403e2993608bfaae7eb3833a7ca8c5d0ea38036ea674ec519b2810a6c",
+			"contentHash": "0b07f575fb58c1c41e344ef7be32bf2af928b7b29d74e615b402bf28624a4793",
+			"path": "/thai-script/lessons/lesson-tone-marks/audio/aea0688403e29936.mp3",
+			"file": "audio/aea0688403e29936.mp3",
+			"verification": {
+				"outcome": "not-required",
+				"attempts": 1,
+				"expected": null,
+				"heard": []
+			},
+			"failure": null
+		},
+		{
+			"key": "read-dtoh-0",
+			"kind": "audio",
+			"state": "generated",
+			"language": "en",
+			"inputHash": "2c1e9cc0c37262e769e834aa4e5e149f3a053f81361c00c92ac9c1cf57331910",
+			"contentHash": "1bd2250bce6f5f405d442d8938a3996c4efacde02750f6a5ae0e085ae8274575",
+			"path": "/thai-script/lessons/lesson-tone-marks/audio/2c1e9cc0c37262e7.mp3",
+			"file": "audio/2c1e9cc0c37262e7.mp3",
+			"verification": {
+				"outcome": "not-required",
+				"attempts": 1,
+				"expected": null,
+				"heard": []
+			},
+			"failure": null
+		},
+		{
+			"key": "read-dtoh-answer-0",
+			"kind": "audio",
+			"state": "generated",
+			"language": "th",
+			"inputHash": "5382c812810ee3d2100ff1e20a6b524773da634caab97551030539d44f123171",
+			"contentHash": "a7190b534bef38373281e03a88fb667423a333b7fb9e74b3ce2505ed5adb4c0d",
+			"path": "/thai-script/lessons/lesson-tone-marks/audio/5382c812810ee3d2.mp3",
+			"file": "audio/5382c812810ee3d2.mp3",
+			"verification": {
+				"outcome": "verified",
+				"attempts": 2,
+				"expected": "โต๊ะ",
+				"heard": [" โตวะ", " โต๊ะ"]
+			},
+			"failure": null
+		},
+		{
+			"key": "read-dtoh-answer-1",
+			"kind": "audio",
+			"state": "generated",
+			"language": "en",
+			"inputHash": "fb7d3b11fc9f5d3cb5f5c255b825583a416596e2ca1abec0419437d4dbb1cdf0",
+			"contentHash": "b748a9e585276cc66ea8d35d677ef9481e66c38275251cb88042e52c99ff3715",
+			"path": "/thai-script/lessons/lesson-tone-marks/audio/fb7d3b11fc9f5d3c.mp3",
+			"file": "audio/fb7d3b11fc9f5d3c.mp3",
+			"verification": {
+				"outcome": "not-required",
+				"attempts": 1,
+				"expected": null,
+				"heard": []
+			},
+			"failure": null
+		},
+		{
+			"key": "read-khaao-0",
+			"kind": "audio",
+			"state": "generated",
+			"language": "en",
+			"inputHash": "72bc503de052a21c25458ca86e374366c7198e23beb1a393ca0dbc21edbd3de2",
+			"contentHash": "85592597c3c5c77c87e9ce3a2c0a30e3f00b6ca3c5ec7e999b1e0bb24451b392",
+			"path": "/thai-script/lessons/lesson-tone-marks/audio/72bc503de052a21c.mp3",
+			"file": "audio/72bc503de052a21c.mp3",
+			"verification": {
+				"outcome": "not-required",
+				"attempts": 1,
+				"expected": null,
+				"heard": []
+			},
+			"failure": null
+		},
+		{
+			"key": "read-khaao-answer-0",
+			"kind": "audio",
+			"state": "generated",
+			"language": "th",
+			"inputHash": "11dcf822b8854479e141cfe5635d5cdeefc66ba8fa7d32b60ac554f666f96599",
+			"contentHash": "445f46ace52f85180ea7288295e6952055c937175fe0e7b5a31f0890d0694c17",
+			"path": "/thai-script/lessons/lesson-tone-marks/audio/11dcf822b8854479.mp3",
+			"file": "audio/11dcf822b8854479.mp3",
+			"verification": {
+				"outcome": "verified",
+				"attempts": 2,
+				"expected": "ข่าว",
+				"heard": ["าว", " ข่าว"]
+			},
+			"failure": null
+		},
+		{
+			"key": "read-khaao-answer-1",
+			"kind": "audio",
+			"state": "generated",
+			"language": "en",
+			"inputHash": "1a5a63e3ff617e04b9f458a0eb2a0db663d8ade14b8626cc33ec188d02a4ba56",
+			"contentHash": "0defb26c244735064680271558b5017cd9d85cbe0296db04bde1b298f43c4147",
+			"path": "/thai-script/lessons/lesson-tone-marks/audio/1a5a63e3ff617e04.mp3",
+			"file": "audio/1a5a63e3ff617e04.mp3",
+			"verification": {
+				"outcome": "not-required",
+				"attempts": 1,
+				"expected": null,
+				"heard": []
+			},
+			"failure": null
+		},
+		{
+			"key": "read-maa-0",
+			"kind": "audio",
+			"state": "generated",
+			"language": "en",
+			"inputHash": "13711012d22834caea4e41ec026fdf7c0bf21314dd69aad580e53a5a75ae15a1",
+			"contentHash": "e1f4a9617055f38a54929d6e0f16fda917af10ea36aa30b0d532d51cdd69703d",
+			"path": "/thai-script/lessons/lesson-tone-marks/audio/13711012d22834ca.mp3",
+			"file": "audio/13711012d22834ca.mp3",
+			"verification": {
+				"outcome": "not-required",
+				"attempts": 1,
+				"expected": null,
+				"heard": []
+			},
+			"failure": null
+		},
+		{
+			"key": "read-maa-answer-0",
+			"kind": "audio",
+			"state": "generated",
+			"language": "th",
+			"inputHash": "755cd9f806f260fc7044320bc8579695bec507930f15bdfb0b59c6e954a45f16",
+			"contentHash": "1f7110267d3063b050e1e80ace3bc5f074cf25ef1b25fc6816fdead1dce80c82",
+			"path": "/thai-script/lessons/lesson-tone-marks/audio/755cd9f806f260fc.mp3",
+			"file": "audio/755cd9f806f260fc.mp3",
+			"verification": {
+				"outcome": "recorded",
+				"attempts": 1,
+				"expected": null,
+				"heard": []
+			},
+			"failure": null
+		},
+		{
+			"key": "read-maa-answer-1",
+			"kind": "audio",
+			"state": "generated",
+			"language": "en",
+			"inputHash": "2e4bac939714ddc81a601237d76e871b2fc53a4714cd0fba0996c0f8c4c69b40",
+			"contentHash": "96b761d44b2ad4a3c80a9a862d54e3387c5736310b2e7f154a5db4a2355ca03f",
+			"path": "/thai-script/lessons/lesson-tone-marks/audio/2e4bac939714ddc8.mp3",
+			"file": "audio/2e4bac939714ddc8.mp3",
+			"verification": {
+				"outcome": "not-required",
+				"attempts": 1,
+				"expected": null,
+				"heard": []
+			},
+			"failure": null
+		},
+		{
+			"key": "where-the-mark-goes-0",
+			"kind": "audio",
+			"state": "generated",
+			"language": "en",
+			"inputHash": "a2cca101e8ba02c2c2785f141466724913b22fd03768062d9615d955e756fab8",
+			"contentHash": "1b2cd0d931ced9f3c5438afde2838b1fa6eb68dd150d691a357c9f93d6a238f5",
+			"path": "/thai-script/lessons/lesson-tone-marks/audio/a2cca101e8ba02c2.mp3",
+			"file": "audio/a2cca101e8ba02c2.mp3",
+			"verification": {
+				"outcome": "not-required",
+				"attempts": 1,
+				"expected": null,
+				"heard": []
+			},
+			"failure": null
+		},
+		{
+			"key": "tone-mark-placement-0",
+			"kind": "audio",
+			"state": "generated",
+			"language": "en",
+			"inputHash": "b6c57bf6d7c4d31b9d4bcedf1cc1eadaa4bcdd99e4469bfe0b9a9e003442d5a2",
+			"contentHash": "f4a77d026e9a66ff77d2228636026a4cc8f6a2f067ffe910053d6ce4ec647627",
+			"path": "/thai-script/lessons/lesson-tone-marks/audio/b6c57bf6d7c4d31b.mp3",
+			"file": "audio/b6c57bf6d7c4d31b.mp3",
+			"verification": {
+				"outcome": "not-required",
+				"attempts": 1,
+				"expected": null,
+				"heard": []
+			},
+			"failure": null
+		},
+		{
+			"key": "mai-tri-chattawa-scope-0",
+			"kind": "audio",
+			"state": "generated",
+			"language": "en",
+			"inputHash": "ef4928410e7b7cab48dcc6bc35746f486aacc1e88bc8edd3b5ab1248925cc691",
+			"contentHash": "d9d342785f9d92f9c982bf4cfd7258dde1939c5572cf43f176b8850c0041c7a3",
+			"path": "/thai-script/lessons/lesson-tone-marks/audio/ef4928410e7b7cab.mp3",
+			"file": "audio/ef4928410e7b7cab.mp3",
+			"verification": {
+				"outcome": "not-required",
+				"attempts": 1,
+				"expected": null,
+				"heard": []
+			},
+			"failure": null
+		},
+		{
+			"key": "the-shape-of-the-table-0",
+			"kind": "audio",
+			"state": "generated",
+			"language": "en",
+			"inputHash": "1fd6c584da843152e2324bdad032b69239aa4178cfdbf778767bb2d2021809b1",
+			"contentHash": "3aa6d34e58d52f31bf11a88791d2c1f1121a51e0ee83125427e47599c3f910d7",
+			"path": "/thai-script/lessons/lesson-tone-marks/audio/1fd6c584da843152.mp3",
+			"file": "audio/1fd6c584da843152.mp3",
+			"verification": {
+				"outcome": "not-required",
+				"attempts": 1,
+				"expected": null,
+				"heard": []
+			},
+			"failure": null
+		},
+		{
+			"key": "read-close-0",
+			"kind": "audio",
+			"state": "generated",
+			"language": "en",
+			"inputHash": "976dfb72707c19286810ada193420fac2cad06f0e3352215b38d4e6731e240f9",
+			"contentHash": "573a0dfca83df3ddaa8a641b1f4ece6bb8f623903e6e4daf84df2b18b58e9c2e",
+			"path": "/thai-script/lessons/lesson-tone-marks/audio/976dfb72707c1928.mp3",
+			"file": "audio/976dfb72707c1928.mp3",
+			"verification": {
+				"outcome": "not-required",
+				"attempts": 1,
+				"expected": null,
+				"heard": []
+			},
+			"failure": null
+		},
+		{
+			"key": "what-is-here-image",
+			"kind": "image",
+			"state": "generated",
+			"language": null,
+			"inputHash": "8619da93dbce9be03275981e47bd98f3f23eb198cea88bd60e0b2fef3e517cae",
+			"contentHash": "3784322d30451e5dc8e259eed9e2f0c97b85ac41603cb499f61efb7d91bc0713",
+			"path": "/thai-script/lessons/lesson-tone-marks/images/what-is-here-8619da93dbce.jpg",
+			"file": "images/what-is-here-8619da93dbce.jpg",
+			"verification": null,
+			"failure": null
+		},
+		{
+			"key": "pen-still-there-image",
+			"kind": "image",
+			"state": "generated",
+			"language": null,
+			"inputHash": "1bdf41db8b53f4c1d37e35fe055407aff7aa9205fa5d41b74dbbcf7ff693faa8",
+			"contentHash": "d5ee5c5c023898ed24512e1d09e65f95aecc922e11f54dab1cac9d33590ddab8",
+			"path": "/thai-script/lessons/lesson-tone-marks/images/pen-still-there-1bdf41db8b53.jpg",
+			"file": "images/pen-still-there-1bdf41db8b53.jpg",
+			"verification": null,
+			"failure": null
+		},
+		{
+			"key": "the-horse-and-the-verb-image",
+			"kind": "image",
+			"state": "generated",
+			"language": null,
+			"inputHash": "d40618501937ca3f6eaaeccce3dec2f2dc9066967dc4c690ffe14d56c2eef297",
+			"contentHash": "3f83deca2c57f567ffd43697e705cf7b1bc5745912d4fab66b1d821e5bb92a54",
+			"path": "/thai-script/lessons/lesson-tone-marks/images/the-horse-and-the-verb-d40618501937.jpg",
+			"file": "images/the-horse-and-the-verb-d40618501937.jpg",
+			"verification": null,
+			"failure": null
+		},
+		{
+			"key": "the-first-two-marks-image",
+			"kind": "image",
+			"state": "generated",
+			"language": null,
+			"inputHash": "8cdb4f0ab0ae253612f739ade512f220563a60de66aff07994dd120c6c3bcca9",
+			"contentHash": "110a400602e11bef85e3a5e35cebf3dade24f89bdb750bb2867d4da3ead5e20a",
+			"path": "/thai-script/lessons/lesson-tone-marks/images/the-first-two-marks-8cdb4f0ab0ae.jpg",
+			"file": "images/the-first-two-marks-8cdb4f0ab0ae.jpg",
+			"verification": null,
+			"failure": null
+		},
+		{
+			"key": "the-market-only-marks-image",
+			"kind": "image",
+			"state": "generated",
+			"language": null,
+			"inputHash": "f540b125dde7722aeeb3b7975151d24d2161cf824a7d8ee443b886ee1ddbc17c",
+			"contentHash": "be1e25552454fab4c4029c524a1a8cda275e1e833cfc9d74d0b288396dd4440c",
+			"path": "/thai-script/lessons/lesson-tone-marks/images/the-market-only-marks-f540b125dde7.jpg",
+			"file": "images/the-market-only-marks-f540b125dde7.jpg",
+			"verification": null,
+			"failure": null
+		},
+		{
+			"key": "mid-class-marks-image",
+			"kind": "image",
+			"state": "generated",
+			"language": null,
+			"inputHash": "a6318424b72f5d8a6d46e3647a2310d2b08a821df34cd671e2a808b20814e6e6",
+			"contentHash": "7c809e97c6ddd3852aafe6a61c0245976f0284775d9a62b90fdbbd3b51e8a442",
+			"path": "/thai-script/lessons/lesson-tone-marks/images/mid-class-marks-a6318424b72f.jpg",
+			"file": "images/mid-class-marks-a6318424b72f.jpg",
+			"verification": null,
+			"failure": null
+		},
+		{
+			"key": "high-class-marks-image",
+			"kind": "image",
+			"state": "generated",
+			"language": null,
+			"inputHash": "16d0eee8a31c6c9a9b663f999d30eaad7ccb672e8fc08177a401c88471896e65",
+			"contentHash": "5a5016d772538c3a421617717dd05cf69c67cd03b37052693724ae1f15b624d7",
+			"path": "/thai-script/lessons/lesson-tone-marks/images/high-class-marks-16d0eee8a31c.jpg",
+			"file": "images/high-class-marks-16d0eee8a31c.jpg",
+			"verification": null,
+			"failure": null
+		},
+		{
+			"key": "low-class-marks-image",
+			"kind": "image",
+			"state": "generated",
+			"language": null,
+			"inputHash": "0b587ae9656a90c56c668400ee792f6782f41add1cf25615992d93ad80396304",
+			"contentHash": "afa48748fd88eb915357fa31acc79b8080ab59ac5f33151d97d2801971c7812b",
+			"path": "/thai-script/lessons/lesson-tone-marks/images/low-class-marks-0b587ae9656a.jpg",
+			"file": "images/low-class-marks-0b587ae9656a.jpg",
+			"verification": null,
+			"failure": null
+		},
+		{
+			"key": "where-the-mark-goes-image",
+			"kind": "image",
+			"state": "generated",
+			"language": null,
+			"inputHash": "322e83dfe0b9f51d4d9efc88580e25e5ca1caefda20fa2a71f8903722cbfb7de",
+			"contentHash": "77a761727c2c22368a1c5cba3fa5e06c6589d4d9d8b9962e348f89c60f2f831e",
+			"path": "/thai-script/lessons/lesson-tone-marks/images/where-the-mark-goes-322e83dfe0b9.jpg",
+			"file": "images/where-the-mark-goes-322e83dfe0b9.jpg",
+			"verification": null,
+			"failure": null
+		}
+	]
 }

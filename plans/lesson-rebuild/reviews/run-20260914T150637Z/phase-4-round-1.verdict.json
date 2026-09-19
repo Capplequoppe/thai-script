@@ -1,0 +1,152 @@
+{
+  "findings": [
+    {
+      "id": "F1",
+      "action": "auto-fix",
+      "message": "Task 4.3 retires legacy lesson numbers 15–25 from `lessonSequence` (folding them into lessons 12–14/26–30) but nothing wires the new `RETIRED_LESSONS` map into `migrateLessonIdentity` (Storage.ts), which still throws `LessonIdentityMigrationError` for any legacy number absent from the current sequence. A learner (or an imported/merged device backup) whose persisted state has `completedLessons` containing 15, `currentLesson: 19`, or any SRS card with `lessonNumber` in 15–25 — all real values under the pre-phase-4 25-lesson course — now fails `positionByLegacy.get(value)` for that number, and `Storage.load()` calls `migrateState` unguarded (Storage.ts:337) with no try/catch; every repository method and `AppContext`'s boot sequence call `storage.load()` directly, so the exception propagates uncaught through app initialization and the app fails to load for that learner.",
+      "severity": 9,
+      "effort": 8,
+      "attribution": "plan-defect",
+      "why_not_fixed": "The only place this can be repaired is `migrateLessonIdentity` in `src/infrastructure/persistence/Storage.ts`, which is not in phase 4's `covers` (it belongs to task 1.1's phase) and other work may be running against it concurrently. `plans/lesson-rebuild/lessons.md` already recorded this exact requirement — 'The first non-identity resequence (phase 4) MUST add a persisted epoch…' — before this phase ran, but no task in phase 4 has Storage.ts in its covers, so no executor in this phase was even positioned to close it.",
+      "file": "src/domain/script/data/lessonSequence.ts",
+      "options": [
+        {
+          "option": "Extend `migrateLessonIdentity` to consult `RETIRED_LESSONS`: a legacy number found there resolves to the absorbing lesson's position instead of failing, and add the persisted epoch field Storage.ts's own NOTE calls for so a second load can't double-convert.",
+          "consequence": "Closes the join-key hazard CONTEXT.md Rule 1 exists to prevent; requires a follow-up task (or an amendment to an existing one) that puts `src/infrastructure/persistence/Storage.ts`, `Validation.ts` and `MergeService.ts` in its covers, plus tests reproducing a pre-phase-4 blob with lesson numbers 15–25."
+        },
+        {
+          "option": "Ship phase 4 as-is and accept that any learner with progress past lesson 14 under the old numbering hits a hard load failure.",
+          "consequence": "Silent data-loss-shaped incident for real users the moment this reaches them; directly contradicts the plan's own success bar ('the learner's scheduled cards and unlocked vocabulary are unchanged across the migration')."
+        }
+      ],
+      "recommendation": "Extend `migrateLessonIdentity` to consult `RETIRED_LESSONS`: a legacy number found there resolves to the absorbing lesson's position instead of failing, and add the persisted epoch field Storage.ts's own NOTE calls for so a second load can't double-convert."
+    }
+  ],
+  "lessons": [
+    {
+      "lesson": "Storage.ts's migration code and plans/lesson-rebuild/lessons.md both flagged in advance that the first non-identity resequence (this phase) must add a persisted epoch field / consume a retirement map, but no phase-4 task had Storage.ts in its covers, so the resequencing shipped without it — a resequencing phase should always include (or explicitly hand off)… [clipped — full text in the transcript]"
+    }
+  ],
+  "acValidations": [
+    {
+      "task_id": "4.1",
+      "criterion": "AC1",
+      "locator": "src/domain/script/data/toneMarkTable.test.ts::enumerates all twelve combinations with none missing",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "4.1",
+      "criterion": "AC2",
+      "locator": "src/domain/script/data/toneMarkTable.test.ts::declares exactly the four stated combinations unreachable",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "4.1",
+      "criterion": "AC3",
+      "locator": "src/domain/script/data/toneMarkTable.test.ts::resolves to the mark's tone even when the spelling rule disagrees",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "4.1",
+      "criterion": "AC4",
+      "locator": "src/domain/script/data/symbolPriority.test.ts::reads ThaiConsonant.priority directly rather than a parallel map",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "4.1",
+      "criterion": "AC5",
+      "locator": "src/domain/script/data/symbolPriority.test.ts::matches the declared symbols.ts priority for every consonant",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "4.1",
+      "criterion": "AC6",
+      "locator": "src/domain/script/data/symbolPriority.test.ts::assigns every rank 1..44 exactly once — demotion reorders, never removes",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "4.1",
+      "criterion": "AC7",
+      "locator": "src/domain/script/data/toneMarkTable.test.ts::gives three distinct values for the three query states",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "4.2",
+      "criterion": "AC1",
+      "locator": "src/domain/script/data/toneMarkLesson.test.ts::AC1 — the lesson resolves to the deck arm at its declared position > is declared, decked, and comes after every spelling-based tone rule",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "4.2",
+      "criterion": "AC2",
+      "locator": "src/domain/script/data/toneMarkLesson.test.ts::AC2 — all twelve class-by-mark combinations appear > states every resolved cell that toneMarkTable.ts declares resolved",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "4.2",
+      "criterion": "AC3",
+      "locator": "src/domain/script/data/toneMarkLesson.test.ts::AC3 — the lesson's stated table resolves real corpus words > depends on the lesson text: thinning a class slide stops the resolution",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "4.2",
+      "criterion": "AC4",
+      "locator": "src/domain/script/data/toneMarkLesson.test.ts::AC4 — every Thai example word is a real, rank-windowed corpus word > resolves every word the deck shows against vocabulary.json",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "4.2",
+      "criterion": "AC5",
+      "locator": "src/domain/script/data/toneMarkLesson.test.ts::AC5 — the lesson reuses no phrasing from the source transcripts > catches a planted overlap, so the clearance above is not vacuous",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "4.2",
+      "criterion": "AC6",
+      "locator": "src/domain/script/data/toneMarkLesson.test.ts::AC6 — every asset the deck references exists > references only files inside the lesson's own directory, and leaves none unreferenced",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "4.3",
+      "criterion": "AC1",
+      "locator": "src/domain/script/data/sequenceClosure.test.ts::AC1 — no lesson in the sequence resolves to the video arm > resolves every declared lesson to a deck",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "4.3",
+      "criterion": "AC2",
+      "locator": "src/domain/script/data/sequenceClosure.test.ts::AC2 — every symbol is taught by exactly one lesson > files every consonant in exactly one lessons-table row, and that row is in the sequence",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "4.3",
+      "criterion": "AC3",
+      "locator": "src/domain/script/data/sequenceClosure.test.ts::AC3 — demoted letters remain in the SRS set > keeps the symbol set at 44 consonants, every one reachable through some lesson's cards",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "4.3",
+      "criterion": "AC4",
+      "locator": "src/domain/script/data/sequenceClosure.test.ts::AC4 — the numerals track has three distinct states > resolves a learner to exactly one of three distinct states",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "4.3",
+      "criterion": "AC5",
+      "locator": "src/domain/script/data/sequenceClosure.test.ts::AC5 — the complete sequence's rules resolve the taught corpus > matches the recorded baseline across the taught rank window, reporting each disagreement",
+      "verdict": "valid"
+    },
+    {
+      "task_id": "4.3",
+      "criterion": "AC6",
+      "locator": "src/domain/script/data/sequenceClosure.test.ts::AC6 — no lesson uses a symbol a later lesson teaches > sweeps every deck in the final sequence against what is taught by that point",
+      "verdict": "valid"
+    }
+  ],
+  "reviewedAt": "22c939d6feb3d04543700419ad0ddcea90fa5548",
+  "answersAt": "4ff8137cd92c10e3",
+  "enforcement": [
+    "reviewer edited 1 path(s) the plan does not declare and they were reverted: plans/lesson-rebuild/resources.jsonl",
+    "1 finding(s) were reported as `auto-fix` on files inside this phase's own covers, so the reviewer could have repaired them in-round: F1 — each gave a reason."
+  ]
+}

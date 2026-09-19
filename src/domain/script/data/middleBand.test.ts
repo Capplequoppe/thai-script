@@ -346,8 +346,14 @@ function cousinPairs(inventory: readonly ThaiConsonant[]): CousinPair[] {
  * reads the same sentence back — so deleting a bullet deletes the claim.
  */
 function districtClaims(bullet: string): { glyph: string; district: string }[] {
-	return [...bullet.matchAll(/([฀-๿])\s+is\s+(temple|market|harbor)\b/g)].map(
-		(m) => ({ glyph: m[1], district: m[2] }),
+	// Both spellings are accepted and normalised to the data's. `District` is
+	// spelled the American way because it is an identifier, and the lessons are
+	// written the British way because they are English prose — so requiring one
+	// here would force "harbor" into a single slide of a course that says
+	// "harbour" everywhere else. What this function is for is checking that the
+	// claim was made, not how it was spelled.
+	return [...bullet.matchAll(/([฀-๿])\s+is\s+(temple|market|harbou?r)\b/g)].map(
+		(m) => ({ glyph: m[1], district: m[2].replace("harbour", "harbor") }),
 	);
 }
 

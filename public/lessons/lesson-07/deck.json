@@ -4,101 +4,360 @@
 	"slides": [
 		{
 			"kind": "exposition",
-			"id": "thaaw-thahaan",
-			"heading": "thaaw thá-hǎan, a soldier on the bridge",
+			"id": "what-is-here",
+			"heading": "Two letters, the last room of the house, and a map",
 			"body": [
-				"ท has a head that curls in, a back that climbs straight up, and an arch that marches back down — a soldier pacing the harbor bridge.",
-				"Harbor again: ท is low class, like ค last lesson. The sound is th, a t carried out on a breath, so ทาง (thaang), a way or a direction, puffs where an English t would not.",
-				"Watch it in final position instead and the breath disappears: บาท (bàat) is the baht, and the ท there is a plain t-stop. That is the dead-ending rule from lesson three, unchanged."
-			]
+				"Two consonants: one constant, one the rarest here.",
+				"A vowel that breaks the reading order.",
+				"And a map of half the letters you have not met."
+			],
+			"audio": ["/thai-script/lessons/lesson-07/audio/b68115fce70dcbb1.mp3"],
+			"audioLanguages": ["en"],
+			"image": "/thai-script/lessons/lesson-07/images/what-is-here-82830ac9c088.jpg"
 		},
 		{
 			"kind": "exposition",
-			"id": "haaw-nok-huuk",
-			"heading": "haaw nók-hûuk, an owl on the water",
+			"id": "pen-still-there",
+			"heading": "Pen and paper",
 			"body": [
-				"ฮ is a single round eye with a zigzag crest over it — an owl's ear-tufts, blinking at the night harbor.",
-				"It says h, and ฮา (haa) is to laugh. It is the rarest letter you will meet in this course: barely one character in ten thousand of running Thai.",
-				"Learn it anyway, and learn it now. It is the last piece of a pattern that covers seven sounds, and without it the pattern has a hole in exactly the place a beginner most needs it."
-			]
+				"Real paper, a real pen.",
+				"Both halves of the name, out loud, every time."
+			],
+			"audio": ["/thai-script/lessons/lesson-07/audio/d962c61b9293dbb4.mp3"],
+			"audioLanguages": ["en"],
+			"image": "/thai-script/lessons/lesson-07/images/pen-still-there-1bdf41db8b53.jpg"
 		},
 		{
 			"kind": "exposition",
-			"id": "cousin-pairs",
-			"heading": "Seven sounds, two letters each",
+			"id": "meet-thahaan",
+			"heading": "The soldier on the bridge",
 			"body": [
-				"Every letter below breathes or hisses — none of them can be hummed, and none of them is a plain stop. That is the one group where class is not derivable from the sound, and Thai gives each of those sounds two letters: one at the harbor, one at the temple.",
-				"ค is harbor and ข is temple. Both say kh.",
-				"ช is harbor and ฉ is temple. Both say ch.",
-				"ท is harbor and ถ is temple. Both say th.",
-				"พ is harbor and ผ is temple. Both say ph, and the two are the same figure with the head turned the other way.",
-				"ฟ is harbor and ฝ is temple. Both say f, and they differ by the same head turn.",
-				"ซ is harbor and ส is temple. Both say s.",
-				"ฮ is harbor and ห is temple. Both say h.",
-				"Seven rows, not fourteen letters. You already hold the whole harbor column; the temple column arrives one lesson at a time, and each one you meet is a letter whose sound you can already make."
-			]
-		},
-		{
-			"kind": "retrieval",
-			"id": "why-two",
-			"prompt": "The two letters in a row sound identical. Say what the second one is for, and what you would lose if Thai had only one of them.",
-			"revealSlideId": "why-two-answer"
-		},
-		{
-			"kind": "reveal",
-			"id": "why-two-answer",
-			"retrievalSlideId": "why-two",
-			"answers": [
-				"The district is the difference: one is low class, the other high class, and class is half of every tone decision.",
-				"With one letter per sound, those syllables could only carry the tones the low class can reach. The second letter is how Thai writes the other tones for the same sound."
-			]
+				"Its name is the sound, then a word beginning with that sound.",
+				"The word means a **soldier**.",
+				"Low class, at the harbour. No new tone rules."
+			],
+			"audio": [
+				"/thai-script/lessons/lesson-07/audio/e319ce7827ffc5c8.mp3",
+				"/thai-script/lessons/lesson-07/audio/143065acfa1714fd.mp3",
+				"/thai-script/lessons/lesson-07/audio/4e28371f67c76124.mp3"
+			],
+			"audioLanguages": ["en", "th", "en"],
+			"image": "/thai-script/lessons/lesson-07/images/meet-thahaan-8e43a9078237.jpg"
 		},
 		{
 			"kind": "exposition",
-			"id": "mast-vowels",
-			"heading": "เ and เ-ะ, the mast raised in front",
+			"id": "thahaan-story",
+			"heading": "What he does all night",
 			"body": [
-				"เ is a single mast written before its consonant and sounded after it. Reading order and writing order come apart here for the first time: เท is read thee, not ee-th.",
-				"Held long it is ee, the vowel of a level gaze. เท (thee) is to pour.",
-				"เ-ะ is the same mast with two stacked hooks behind it — the short, clipped version of the same vowel. It is rarely written out in full, and the next slide is why."
-			]
+				"A bridge over the creek where the harbour finishes, and a soldier on it all night.",
+				"Head curls in, back climbs straight, arch marches down.",
+				"One stroke, from the head to the foot of the arch."
+			],
+			"audio": [
+				"/thai-script/lessons/lesson-07/audio/84db7259b27a0561.mp3",
+				"/thai-script/lessons/lesson-07/audio/143065acfa1714fd.mp3"
+			],
+			"audioLanguages": ["en", "th"],
+			"image": "/thai-script/lessons/lesson-07/images/thahaan-story-4a3eb8dee9e9.jpg"
 		},
 		{
 			"kind": "exposition",
-			"id": "e-with-a-final",
-			"heading": "What the hooks turn into",
+			"id": "see-thahaan",
+			"heading": "The soldier's letter",
 			"body": [
-				"The stacked hooks of เ-ะ only survive when nothing follows. Add a final consonant and they collapse into a small ็ perched over it.",
-				"เด็ก (dèk) is a child. เย็น (yen) is cool or evening. เก็บ (gèp) is to keep or put away.",
-				"ก็ (gâaw) is the odd one out and worth knowing on sight: a bare ก wearing the same roof, meaning then or also, and one of the commonest words in the language.",
-				"This is the second vowel you have met that is written differently depending on what follows it. ะ was the first, back in lesson four, when it became a curl over the consonant."
-			]
+				"The head curls inward at the start.",
+				"A straight climb, then an arch back down."
+			],
+			"thai": "ท"
+		},
+		{
+			"kind": "exposition",
+			"id": "write-thahaan",
+			"heading": "Write it",
+			"body": [
+				"**Start at the head**, curling inward.",
+				"Straight up, then the arch over and down.",
+				"Put it at a syllable's **end** and the breath disappears. A plain t-stop."
+			],
+			"audio": ["/thai-script/lessons/lesson-07/audio/923f8c0e7daea338.mp3"],
+			"audioLanguages": ["en"],
+			"thai": "ท"
+		},
+		{
+			"kind": "exposition",
+			"id": "read-thaang",
+			"heading": "Read this one",
+			"body": [
+				"Soldier, long vowel, snake closing it.",
+				"**Out loud before you turn it over.**"
+			],
+			"audio": ["/thai-script/lessons/lesson-07/audio/8412c7ca919254bd.mp3"],
+			"audioLanguages": ["en"],
+			"thai": "ทาง"
+		},
+		{
+			"kind": "exposition",
+			"id": "read-thaang-answer",
+			"heading": "That one",
+			"body": ["**ทาง** — a way, a road, a direction."],
+			"audio": [
+				"/thai-script/lessons/lesson-07/audio/6256379eb41dbb8b.mp3",
+				"/thai-script/lessons/lesson-07/audio/fcfc4d6a10caad15.mp3"
+			],
+			"audioLanguages": ["th", "en"],
+			"thai": "ทาง"
+		},
+		{
+			"kind": "exposition",
+			"id": "meet-nok-huuk",
+			"heading": "The owl, and the rarest letter here",
+			"body": [
+				"Its name is the sound, then a word beginning with that sound.",
+				"The word means an **owl**.",
+				"The rarest letter in this course: about one character in ten thousand."
+			],
+			"audio": [
+				"/thai-script/lessons/lesson-07/audio/7b9f4dc749d52891.mp3",
+				"/thai-script/lessons/lesson-07/audio/10232f6c3c8dd00c.mp3",
+				"/thai-script/lessons/lesson-07/audio/c35895534a90aeca.mp3"
+			],
+			"audioLanguages": ["en", "th", "en"],
+			"image": "/thai-script/lessons/lesson-07/images/meet-nok-huuk-2dfe55e57c2e.jpg"
+		},
+		{
+			"kind": "exposition",
+			"id": "why-learn-the-owl",
+			"heading": "So why are we bothering",
+			"body": [
+				"It is rare, and the pattern it completes covers seven sounds.",
+				"Its partner is the fourth commonest syllable initial in Thai.",
+				"The map arrives at the end of this lesson, with the owl in it."
+			],
+			"audio": ["/thai-script/lessons/lesson-07/audio/2542ff4484783aa4.mp3"],
+			"audioLanguages": ["en"],
+			"image": "/thai-script/lessons/lesson-07/images/why-learn-the-owl-287be12ebe16.jpg"
+		},
+		{
+			"kind": "exposition",
+			"id": "see-nok-huuk",
+			"heading": "The owl's letter",
+			"body": [
+				"One round eye, with a zigzag crest over the top.",
+				"Ear tufts, blinking at a dark harbour."
+			],
+			"thai": "ฮ"
+		},
+		{
+			"kind": "exposition",
+			"id": "read-haa",
+			"heading": "And its one word",
+			"body": [
+				"**ฮา** — to laugh, the whole-room kind.",
+				"The one common word beginning with this letter.",
+				"Read it once, and look for the letter again in the map."
+			],
+			"audio": ["/thai-script/lessons/lesson-07/audio/7d31fa56e390ad47.mp3"],
+			"audioLanguages": ["en"],
+			"thai": "ฮา"
+		},
+		{
+			"kind": "exposition",
+			"id": "the-last-room",
+			"heading": "The last room of the house",
+			"body": [
+				"Back yard, roof, cellar. All three already open.",
+				"Today: the **front steps**.",
+				"And the one who lives there behaves differently from everybody else."
+			],
+			"audio": ["/thai-script/lessons/lesson-07/audio/f5ac07c484aca460.mp3"],
+			"audioLanguages": ["en"],
+			"image": "/thai-script/lessons/lesson-07/images/the-last-room-9cc652e5140c.jpg"
+		},
+		{
+			"kind": "exposition",
+			"id": "meet-the-mast",
+			"heading": "The one who holds the door",
+			"body": [
+				"His mark goes down **before** the consonant does.",
+				"Your eye reaches him before it reaches the consonant.",
+				"And he speaks only once the consonant has gone in."
+			],
+			"audio": [
+				"/thai-script/lessons/lesson-07/audio/eb40624d3a9a055e.mp3",
+				"/thai-script/lessons/lesson-07/audio/7038c8acf05da125.mp3",
+				"/thai-script/lessons/lesson-07/audio/754aecd9fcb05e4d.mp3"
+			],
+			"audioLanguages": ["en", "th", "en"],
+			"image": "/thai-script/lessons/lesson-07/images/meet-the-mast-33e39d9acb24.jpg"
+		},
+		{
+			"kind": "exposition",
+			"id": "written-first-spoken-second",
+			"heading": "This is the thing to get right today",
+			"body": [
+				"**Written first. Spoken second.**",
+				"You see the vowel before the consonant and say it after.",
+				"Speak the consonant before the mark, whichever your eye found."
+			],
+			"audio": [
+				"/thai-script/lessons/lesson-07/audio/d7e9c7fc176c7d97.mp3",
+				"/thai-script/lessons/lesson-07/audio/688f25e23b63a65f.mp3",
+				"/thai-script/lessons/lesson-07/audio/c4bea4e89e3ac1ed.mp3"
+			],
+			"audioLanguages": ["en", "th", "en"],
+			"image": "/thai-script/lessons/lesson-07/images/written-first-spoken-second-2905065f0bb1.jpg"
+		},
+		{
+			"kind": "exposition",
+			"id": "write-the-mast",
+			"heading": "Write it, and say it in the right order",
+			"body": [
+				"One upright with a small curve at the top.",
+				"Write it **ahead of** the consonant.",
+				"Say it aloud until the order stops feeling wrong."
+			],
+			"audio": ["/thai-script/lessons/lesson-07/audio/77756cb1d30e7c17.mp3"],
+			"audioLanguages": ["en"],
+			"thai": "เ"
+		},
+		{
+			"kind": "exposition",
+			"id": "the-short-mast",
+			"heading": "And the short one, which you can already guess",
+			"body": [
+				"**เ-ะ** — the mast in front, and the two hooks **ะ** behind.",
+				"The same shortener from lesson four, doing the same job.",
+				"Written in full only when nothing follows."
+			],
+			"audio": [
+				"/thai-script/lessons/lesson-07/audio/93226d53d507cf61.mp3",
+				"/thai-script/lessons/lesson-07/audio/dc038da18f357833.mp3"
+			],
+			"audioLanguages": ["en", "th"],
+			"image": "/thai-script/lessons/lesson-07/images/the-short-mast-fbb540e20e83.jpg"
+		},
+		{
+			"kind": "exposition",
+			"id": "what-the-hooks-become",
+			"heading": "Unless something follows it",
+			"body": [
+				"Two hooks behind, and a final consonant wants that spot.",
+				"So they climb and become a small roof over the letter.",
+				"**Same sound. Same length.** The mark sits above the letter instead."
+			],
+			"audio": [
+				"/thai-script/lessons/lesson-07/audio/e26cd4f34216e423.mp3",
+				"/thai-script/lessons/lesson-07/audio/a1872fce3a32681f.mp3",
+				"/thai-script/lessons/lesson-07/audio/2e4bb98400b85592.mp3"
+			],
+			"audioLanguages": ["en", "th", "en"],
+			"image": "/thai-script/lessons/lesson-07/images/what-the-hooks-become-750aeb229ab2.jpg"
+		},
+		{
+			"kind": "exposition",
+			"id": "read-yen",
+			"heading": "Read this one",
+			"body": [
+				"Mast, giant's letter, the small roof, mouse closing it.",
+				"**Watch the order.** Out loud before you turn it over."
+			],
+			"audio": ["/thai-script/lessons/lesson-07/audio/bf5e87d52809ec77.mp3"],
+			"audioLanguages": ["en"],
+			"thai": "เย็น"
+		},
+		{
+			"kind": "exposition",
+			"id": "read-yen-answer",
+			"heading": "That one",
+			"body": ["**เย็น** — cool, and also *evening*."],
+			"audio": [
+				"/thai-script/lessons/lesson-07/audio/05323ebbe13c188e.mp3",
+				"/thai-script/lessons/lesson-07/audio/12a61a2f94252eb0.mp3"
+			],
+			"audioLanguages": ["th", "en"],
+			"thai": "เย็น"
 		},
 		{
 			"kind": "retrieval",
 			"id": "hooks-or-roof",
 			"prompt": "You want to write the short e sound twice — once in a syllable ending in k, once in a syllable ending in nothing. What changes between them?",
-			"revealSlideId": "hooks-or-roof-answer"
+			"revealSlideId": "hooks-or-roof-answer",
+			"audio": ["/thai-script/lessons/lesson-07/audio/cfd00efdf1e8adc4.mp3"],
+			"audioLanguages": ["en"]
 		},
 		{
 			"kind": "reveal",
 			"id": "hooks-or-roof-answer",
 			"retrievalSlideId": "hooks-or-roof",
 			"answers": [
-				"With a final consonant the hooks become the ็ roof: เด็ก.",
-				"With nothing following, the hooks stay written out after the consonant.",
-				"The sound does not change at all. Only the spelling reacts to what comes next."
-			]
+				"With a final consonant: the hooks become the **roof**.",
+				"With nothing following: the hooks stay written out behind.",
+				"The sound is identical, and the spelling answers to what follows."
+			],
+			"audio": ["/thai-script/lessons/lesson-07/audio/a7a521f01faf600d.mp3"],
+			"audioLanguages": ["en"]
 		},
 		{
 			"kind": "exposition",
-			"id": "more-words",
-			"heading": "Words you can read now",
+			"id": "the-map-is-coming",
+			"heading": "Now the map",
 			"body": [
-				"ทุก (thúk) is every. ทันที (than thii) is at once. นาที (naa-thii) is a minute, and บางที (baang thii) is perhaps.",
-				"ทาน (thaan) is to eat. ทีม (thiim) is a team and เกม (geem) is a game — both borrowed, both spelled exactly as they sound.",
-				"บทบาท (bòt bàat) is a role. ทับ (tháp) is to lie on top of something."
-			]
+				"Hummers and stoppers tell you their class through their sound.",
+				"The ones that **breathe or hiss** give you nothing.",
+				"So Thai gives each of those sounds **two letters**, in two districts."
+			],
+			"audio": ["/thai-script/lessons/lesson-07/audio/ec7794c9950c278f.mp3"],
+			"audioLanguages": ["en"],
+			"image": "/thai-script/lessons/lesson-07/images/the-map-is-coming-664930a6a024.jpg"
+		},
+		{
+			"kind": "exposition",
+			"id": "cousin-pairs",
+			"heading": "Seven sounds, two letters each",
+			"body": [
+				"ค is harbour and ข is temple. Both say kh.",
+				"ช is harbour and ฉ is temple. Both say ch.",
+				"ท is harbour and ถ is temple. Both say th.",
+				"พ is harbour and ผ is temple. Both say ph, and the two are the same figure with the head turned the other way.",
+				"ฟ is harbour and ฝ is temple. Both say f, and they differ by the same head turn.",
+				"ซ is harbour and ส is temple. Both say s.",
+				"ฮ is harbour and ห is temple. Both say h."
+			],
+			"audio": ["/thai-script/lessons/lesson-07/audio/aee80c2634f5b32e.mp3"],
+			"audioLanguages": ["en"],
+			"image": "/thai-script/lessons/lesson-07/images/cousin-pairs-1c36d1eaba8c.jpg"
+		},
+		{
+			"kind": "retrieval",
+			"id": "why-two",
+			"prompt": "The two letters in a row sound identical. Say what the second one is for, and what you would lose if Thai had only one of them.",
+			"revealSlideId": "why-two-answer",
+			"audio": ["/thai-script/lessons/lesson-07/audio/de229fc74369237b.mp3"],
+			"audioLanguages": ["en"]
+		},
+		{
+			"kind": "reveal",
+			"id": "why-two-answer",
+			"retrievalSlideId": "why-two",
+			"answers": [
+				"One is low class, the other high. Class is half of every tone decision.",
+				"One letter per sound would mean only the tones low class can reach.",
+				"The second letter is how Thai spells the other tones."
+			],
+			"audio": ["/thai-script/lessons/lesson-07/audio/9df6ef477e31057a.mp3"],
+			"audioLanguages": ["en"]
+		},
+		{
+			"kind": "exposition",
+			"id": "read-close",
+			"heading": "Halfway, and the shape of the rest",
+			"body": [
+				"Fifteen letters, eleven vowels, every room open.",
+				"Most of what is left is the temple half of these seven pairs.",
+				"Next: two letters that both land as n."
+			],
+			"audio": ["/thai-script/lessons/lesson-07/audio/5a11a28ee1cae0c8.mp3"],
+			"audioLanguages": ["en"]
 		}
 	]
 }

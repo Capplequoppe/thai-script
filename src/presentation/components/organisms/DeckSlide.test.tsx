@@ -219,9 +219,18 @@ describe("DeckSlide — one narration per slide", () => {
 
 		// The transport used to own a second narration and knew nothing about
 		// the auto-play, so it offered Play over audio already running.
-		// `getByRole` throws when absent, which is the assertion — this project
-		// does not load jest-dom's matchers.
-		screen.getByRole("button", { name: /Pause audio/ });
+		//
+		// `findByRole`, not `getByRole`: the control appears once the auto-play
+		// effect has run, and a synchronous read races it. This is the one
+		// assertion here about a *transient* state rather than a consequence of
+		// one, which is why it was the only test that failed intermittently,
+		// and only ever under the full suite's parallel load. It throws when
+		// absent, which is the assertion — this project does not load jest-dom.
+		await screen.findByRole(
+			"button",
+			{ name: /Pause audio/ },
+			{ timeout: 3000 },
+		);
 	});
 
 	it("pauses and resumes rather than starting over", async () => {

@@ -4,29 +4,174 @@
 	"slides": [
 		{
 			"kind": "exposition",
-			"id": "breath-pair",
-			"heading": "A letter that breathes and a letter that hisses",
+			"id": "what-is-here",
+			"heading": "Two letters, one vowel, two spellings of it",
 			"body": [
-				"chaaw cháang pushes ch out on a burst of breath. Palm up again: this one is supposed to move it.",
-				"saaw sôo is a flat hiss with no burst behind it at all — air escaping, not air thrown.",
-				"Both are new kinds of sound for you. Every letter you have met so far either hummed or stopped; these two do neither."
-			]
+				"Two consonants, and the second is nearly the first.",
+				"One new vowel, written two ways.",
+				"The best shortcut in the writing system, and it is short."
+			],
+			"audio": ["/thai-script/lessons/lesson-04/audio/5c8c262918f46fda.mp3"],
+			"audioLanguages": ["en"],
+			"image": "/thai-script/lessons/lesson-04/images/what-is-here-1478d9944586.jpg"
 		},
 		{
 			"kind": "exposition",
-			"id": "near-twins",
-			"heading": "Two shapes you have to keep apart",
+			"id": "the-trick",
+			"heading": "An elephant and a chain, which are one job",
 			"body": [
-				"ช climbs in one smooth unbroken stroke, with a tail flicking up past the top line.",
-				"ซ is the same figure with a notch dented into that climbing stroke — one link of a chain snagged in it — and the same tail above.",
-				"The notch is the entire difference. Find it before you read the word, not after."
-			]
+				"Both low class, so both harbour.",
+				"The second letter is the first with a notch in it.",
+				"The notch is a link of chain."
+			],
+			"audio": ["/thai-script/lessons/lesson-04/audio/ea859bb3554e2557.mp3"],
+			"audioLanguages": ["en"],
+			"image": "/thai-script/lessons/lesson-04/images/the-trick-43ead26a5be5.jpg"
+		},
+		{
+			"kind": "exposition",
+			"id": "pen-still-there",
+			"heading": "Pen and paper, again",
+			"body": [
+				"Real paper, a real pen.",
+				"Today's pair is nearly identical. The hand separates them.",
+				"Out loud, both halves of the name, every time."
+			],
+			"audio": ["/thai-script/lessons/lesson-04/audio/acdc73ee59914104.mp3"],
+			"audioLanguages": ["en"],
+			"image": "/thai-script/lessons/lesson-04/images/pen-still-there-1bdf41db8b53.jpg"
+		},
+		{
+			"kind": "exposition",
+			"id": "meet-chaang",
+			"heading": "The elephant",
+			"body": [
+				"Its name is the sound, then a word beginning with that sound.",
+				"The word means *elephant*.",
+				"Your palm should move. This one is thrown out on breath."
+			],
+			"audio": [
+				"/thai-script/lessons/lesson-04/audio/e319ce7827ffc5c8.mp3",
+				"/thai-script/lessons/lesson-04/audio/ab9ccacf7a555d14.mp3",
+				"/thai-script/lessons/lesson-04/audio/589ffe2ca00c16bc.mp3"
+			],
+			"audioLanguages": ["en", "th", "en"],
+			"image": "/thai-script/lessons/lesson-04/images/meet-chaang-94c6c5bf7517.jpg"
+		},
+		{
+			"kind": "exposition",
+			"id": "chaang-story-1",
+			"heading": "What the elephant is for",
+			"body": [
+				"Boats come out of the water on a chain.",
+				"The elephant is what pulls the chain.",
+				"One boat at a time, and nobody hurries him."
+			],
+			"audio": ["/thai-script/lessons/lesson-04/audio/9a3daace33fc2dcf.mp3"],
+			"audioLanguages": ["en"],
+			"image": "/thai-script/lessons/lesson-04/images/chaang-story-1-004e74c0e9dc.jpg"
+		},
+		{
+			"kind": "exposition",
+			"id": "chaang-story-2",
+			"heading": "The sound he makes when the work is done",
+			"body": [
+				"Work done, trunk up, one burst of breath.",
+				"A smooth climbing stroke with a tail flicking up past the line."
+			],
+			"audio": [
+				"/thai-script/lessons/lesson-04/audio/d20449e185130ea3.mp3",
+				"/thai-script/lessons/lesson-04/audio/ab9ccacf7a555d14.mp3"
+			],
+			"audioLanguages": ["en", "th"],
+			"image": "/thai-script/lessons/lesson-04/images/chaang-story-2-ba50b8502cd0.jpg"
+		},
+		{
+			"kind": "exposition",
+			"id": "see-chaang",
+			"heading": "The elephant's letter",
+			"body": [
+				"One climbing stroke, smooth the whole way.",
+				"A tail flicking up past the top line."
+			],
+			"thai": "ช"
+		},
+		{
+			"kind": "exposition",
+			"id": "write-chaang",
+			"heading": "Write the elephant",
+			"body": [
+				"**Start at the head**, top left, clockwise.",
+				"The climb runs **smooth and unbroken**.",
+				"A tail flicking up past the top line. Out loud, every time."
+			],
+			"audio": ["/thai-script/lessons/lesson-04/audio/9329c262b106bac2.mp3"],
+			"audioLanguages": ["en"],
+			"thai": "ช"
+		},
+		{
+			"kind": "exposition",
+			"id": "meet-so",
+			"heading": "The chain",
+			"body": [
+				"Its name is the sound, then a word beginning with that sound.",
+				"The word means *chain*.",
+				"A flat hiss. The air leaks out instead of being thrown."
+			],
+			"audio": [
+				"/thai-script/lessons/lesson-04/audio/ab8efc4b6a2c47e7.mp3",
+				"/thai-script/lessons/lesson-04/audio/0fb2210cec941cb6.mp3",
+				"/thai-script/lessons/lesson-04/audio/aaf384620a81b8f4.mp3"
+			],
+			"audioLanguages": ["en", "th", "en"],
+			"image": "/thai-script/lessons/lesson-04/images/meet-so-387d95aa4a91.jpg"
+		},
+		{
+			"kind": "exposition",
+			"id": "so-story-1",
+			"heading": "Snagged, slack and sliding",
+			"body": [
+				"Snagged, slack, sliding back into the water.",
+				"Sliding over wet stone is a long flat hiss.",
+				"The link that snags on the bollard is the notch."
+			],
+			"audio": [
+				"/thai-script/lessons/lesson-04/audio/94f8db0423d61960.mp3",
+				"/thai-script/lessons/lesson-04/audio/0fb2210cec941cb6.mp3"
+			],
+			"audioLanguages": ["en", "th"],
+			"image": "/thai-script/lessons/lesson-04/images/so-story-1-36a5d625ed60.jpg"
+		},
+		{
+			"kind": "exposition",
+			"id": "see-so",
+			"heading": "The chain's letter",
+			"body": [
+				"The elephant's letter with a notch dented into the climb.",
+				"The same tail above. Nothing else separates them."
+			],
+			"thai": "ซ"
+		},
+		{
+			"kind": "exposition",
+			"id": "write-so",
+			"heading": "And the chain, on the same page",
+			"body": [
+				"Head, climb, tail — then one notch in the climb.",
+				"Write it **directly under** the elephant. Compare your own two.",
+				"The letters are near twins. The names are miles apart."
+			],
+			"audio": ["/thai-script/lessons/lesson-04/audio/62dea26a70911544.mp3"],
+			"audioLanguages": ["en"],
+			"thai": "ซ"
 		},
 		{
 			"kind": "retrieval",
 			"id": "spot-the-notch",
-			"prompt": "ช and ซ differ by one detail. Name it, and say which of the two carries it.",
-			"revealSlideId": "spot-the-notch-answer"
+			"prompt": "The two letters differ by one detail. Name it, and say which of the two carries it.",
+			"revealSlideId": "spot-the-notch-answer",
+			"audio": ["/thai-script/lessons/lesson-04/audio/80cbfba31bc5254c.mp3"],
+			"audioLanguages": ["en"]
 		},
 		{
 			"kind": "reveal",
@@ -34,18 +179,108 @@
 			"retrievalSlideId": "spot-the-notch",
 			"answers": [
 				"The notch dented into the climbing stroke.",
-				"ซ has it. ช runs smooth."
-			]
+				"The chain has it. The elephant runs smooth."
+			],
+			"audio": ["/thai-script/lessons/lesson-04/audio/e0c64633267ff8a8.mp3"],
+			"audioLanguages": ["en"]
 		},
 		{
 			"kind": "exposition",
-			"id": "short-vowels",
-			"heading": "Two vowels that are over before they start",
+			"id": "back-to-the-house",
+			"heading": "Somebody new in the back yard",
 			"body": [
-				"ะ is a pair of small hooks written after the consonant, and it clips the vowel short. นะ (ná) is the particle that softens whatever you just said.",
-				"ิ is the beret you learned last lesson with its upright flick removed — a quick i, gone before it settles. ซิ (sí) urges someone on: go on, do it.",
-				"Short is not a shade of long here. It is a different vowel, and next rule it decides a tone."
-			]
+				"The house again, and the back yard.",
+				"The back yard is where a vowel written *after* its consonant lodges."
+			],
+			"audio": ["/thai-script/lessons/lesson-04/audio/63fd55a14a19c057.mp3"],
+			"audioLanguages": ["en"],
+			"image": "/thai-script/lessons/lesson-04/images/back-to-the-house-9cc652e5140c.jpg"
+		},
+		{
+			"kind": "exposition",
+			"id": "meet-at",
+			"heading": "The one who ends the visit",
+			"body": [
+				"The name means *to press*, or *to compress*.",
+				"Two small hooks, written just after the consonant.",
+				"Where he turns up, the vowel is short."
+			],
+			"audio": [
+				"/thai-script/lessons/lesson-04/audio/16ad14f3a3db0f84.mp3",
+				"/thai-script/lessons/lesson-04/audio/2c8bde33693ba8e7.mp3",
+				"/thai-script/lessons/lesson-04/audio/c1c993da57f18966.mp3"
+			],
+			"audioLanguages": ["en", "th", "en"],
+			"image": "/thai-script/lessons/lesson-04/images/meet-at-d1da4fd7fcbd.jpg"
+		},
+		{
+			"kind": "exposition",
+			"id": "the-cheat-code",
+			"heading": "The best shortcut you will get",
+			"body": [
+				"Every vowel is long or short, and it changes the word.",
+				"**If he is on the end, it is short.** Nine of the thirty carry him.",
+				"**If he is absent, the vowel may still be either.**"
+			],
+			"audio": ["/thai-script/lessons/lesson-04/audio/b3f5b01566e49787.mp3"],
+			"audioLanguages": ["en"],
+			"image": "/thai-script/lessons/lesson-04/images/the-cheat-code-e199671a8de4.jpg"
+		},
+		{
+			"kind": "exposition",
+			"id": "short-i",
+			"heading": "And here is the proof, one slide later",
+			"body": [
+				"Same lodger as last lesson, same sound, and short.",
+				"No sign of the shortener on him. Short anyway.",
+				"**The flick is the length.** With it long, without it short."
+			],
+			"audio": ["/thai-script/lessons/lesson-04/audio/0a065bca9807c551.mp3"],
+			"audioLanguages": ["en"],
+			"image": "/thai-script/lessons/lesson-04/images/short-i-859f6ebadd94.jpg"
+		},
+		{
+			"kind": "exposition",
+			"id": "read-short",
+			"heading": "Read this one",
+			"body": [
+				"Chicken, short vowel above, mouse closing it.",
+				"**Say it aloud before you turn it over.**"
+			],
+			"audio": ["/thai-script/lessons/lesson-04/audio/f7a6f836a3a52086.mp3"],
+			"audioLanguages": ["en"],
+			"thai": "กิน"
+		},
+		{
+			"kind": "exposition",
+			"id": "read-short-answer",
+			"heading": "That one",
+			"body": ["**กิน** — to eat."],
+			"audio": [
+				"/thai-script/lessons/lesson-04/audio/656113f564447322.mp3",
+				"/thai-script/lessons/lesson-04/audio/36c1d9bac6c4b4c6.mp3"
+			],
+			"audioLanguages": ["th", "en"],
+			"thai": "กิน"
+		},
+		{
+			"kind": "exposition",
+			"id": "write-short-vowels",
+			"heading": "Write the vowel, both of its shapes",
+			"body": [
+				"Always written with a consonant, after it or above it.",
+				"Two hooks after, or the small mark above.",
+				"Say the **syllable** out loud, the sound the marks make together."
+			],
+			"audio": [
+				"/thai-script/lessons/lesson-04/audio/a6e9c66690e023ec.mp3",
+				"/thai-script/lessons/lesson-04/audio/718aa0c3180c1041.mp3",
+				"/thai-script/lessons/lesson-04/audio/0605218b3b03ad1a.mp3",
+				"/thai-script/lessons/lesson-04/audio/3f44c04e677b4519.mp3",
+				"/thai-script/lessons/lesson-04/audio/ca167969d18884a8.mp3"
+			],
+			"audioLanguages": ["en", "th", "en", "th", "en"],
+			"thai": "ะ"
 		},
 		{
 			"kind": "rule",
@@ -55,12 +290,52 @@
 		{
 			"kind": "exposition",
 			"id": "han-akat",
-			"heading": "ะ in disguise",
+			"heading": "When the back yard is taken",
 			"body": [
-				"ะ sits after its consonant, so a final consonant arriving behind it has nowhere to stand. Thai solves it by lifting the vowel out of the way: it becomes a single curl, ั, written above the initial.",
-				"วัน (wan) is a day. กัน (gan) is together. ดัง (dang) is loud.",
-				"Nothing about the sound changed. Only where it is written changed, which is why it is worth learning as one vowel with two spellings rather than as two vowels."
-			]
+				"A final consonant stands in the back yard too, and gets there first.",
+				"So the vowel climbs: one curl, written above the first letter.",
+				"Same sound, same length, written in a different place."
+			],
+			"audio": [
+				"/thai-script/lessons/lesson-04/audio/64e31c0ef4facbb7.mp3",
+				"/thai-script/lessons/lesson-04/audio/7b4324642c71d24f.mp3",
+				"/thai-script/lessons/lesson-04/audio/59d8ff2d48abbd6a.mp3"
+			],
+			"audioLanguages": ["en", "th", "en"],
+			"image": "/thai-script/lessons/lesson-04/images/han-akat-a6550318c06a.jpg"
+		},
+		{
+			"kind": "exposition",
+			"id": "han-akat-words",
+			"heading": "Three of them",
+			"body": [
+				"*together*, *loud*, *to measure*.",
+				"All three: short vowel, final consonant, curl on the roof."
+			],
+			"audio": [
+				"/thai-script/lessons/lesson-04/audio/33f3c9258b54dc41.mp3",
+				"/thai-script/lessons/lesson-04/audio/1383b430def5b0cb.mp3",
+				"/thai-script/lessons/lesson-04/audio/4aae7c6713fb58f4.mp3",
+				"/thai-script/lessons/lesson-04/audio/a2326fa4e087ca5a.mp3",
+				"/thai-script/lessons/lesson-04/audio/bd4a71d542aa5f59.mp3",
+				"/thai-script/lessons/lesson-04/audio/5b35ce3445053701.mp3",
+				"/thai-script/lessons/lesson-04/audio/bca0d49fd0e999a3.mp3"
+			],
+			"audioLanguages": ["en", "th", "en", "th", "en", "th", "en"],
+			"thai": "กัน"
+		},
+		{
+			"kind": "exposition",
+			"id": "write-han-akat",
+			"heading": "Write the climb",
+			"body": [
+				"The curl goes on top of the first letter.",
+				"Write it beside the two-hooks version.",
+				"**They sound the same.** One sits above, one sits after."
+			],
+			"audio": ["/thai-script/lessons/lesson-04/audio/a4074e1c623d14bc.mp3"],
+			"audioLanguages": ["en"],
+			"thai": "วัน"
 		},
 		{
 			"kind": "rule",
@@ -72,37 +347,70 @@
 			"id": "high-tone",
 			"heading": "Low class, stopped short",
 			"body": [
-				"A low class letter, a syllable stopped dead, and a short vowel: the pitch jumps to the top of your range.",
-				"นะ (ná) is exactly that — ะ is short and nothing follows it, which counts as stopped. So is ซิ (sí).",
-				"วัด (wát) is to measure: the same short ั, now sealed dead by ด.",
-				"นัก (nák) marks a person who does something as a calling, and it stops on the k-stop of ก."
-			]
+				"Low class, short vowel, dead ending: the pitch jumps high.",
+				"Both of those are sealed by a real final consonant.",
+				"A short vowel with **nothing after it** counts as stopped too."
+			],
+			"audio": [
+				"/thai-script/lessons/lesson-04/audio/1b7139bb5ff92558.mp3",
+				"/thai-script/lessons/lesson-04/audio/e4c6041b8ef6be5f.mp3",
+				"/thai-script/lessons/lesson-04/audio/6ffc6701ab93a31e.mp3",
+				"/thai-script/lessons/lesson-04/audio/5b35ce3445053701.mp3",
+				"/thai-script/lessons/lesson-04/audio/18232b2abdfc74e7.mp3"
+			],
+			"audioLanguages": ["en", "th", "en", "th", "en"],
+			"image": "/thai-script/lessons/lesson-04/images/high-tone-6b7ebcd5f06f.jpg"
 		},
 		{
 			"kind": "exposition",
 			"id": "live-contrast",
-			"heading": "The same letters, ending live",
+			"heading": "The same letter, ending live",
 			"body": [
-				"ชาย (chaai) is a man and ชาว (chaao) is the people of a place. Both open on ช, which is low class, and both end on a hum.",
-				"Live ending, so the low class live rule applies and they land flat — not high.",
-				"One letter, two tones, decided entirely by how the syllable ends. That is the machine you are learning."
-			]
+				"Both open on the elephant's letter, which is low class.",
+				"Both end on a hum, so both are live, so both land flat.",
+				"Same letter, two tones. The ending and the length decide."
+			],
+			"audio": [
+				"/thai-script/lessons/lesson-04/audio/488788e0006a6dd3.mp3",
+				"/thai-script/lessons/lesson-04/audio/ed506e564973a1ec.mp3",
+				"/thai-script/lessons/lesson-04/audio/d27abafefde47e42.mp3",
+				"/thai-script/lessons/lesson-04/audio/e16b2defdce005e0.mp3",
+				"/thai-script/lessons/lesson-04/audio/263fa8786f5762d6.mp3"
+			],
+			"audioLanguages": ["en", "th", "en", "th", "en"],
+			"image": "/thai-script/lessons/lesson-04/images/live-contrast-51d4baf5fe5b.jpg"
 		},
 		{
 			"kind": "retrieval",
 			"id": "two-endings",
-			"prompt": "ชาย and ซิ both open on a low class letter. One lands flat and one lands high. Say which is which and name the two things that decide it.",
-			"revealSlideId": "two-endings-answer"
+			"prompt": "Two words open on the same low class letter. One lands flat and one lands high. Say which is which, and name the two things that decide it.",
+			"revealSlideId": "two-endings-answer",
+			"audio": ["/thai-script/lessons/lesson-04/audio/b98b66e5e0fd8aba.mp3"],
+			"audioLanguages": ["en"]
 		},
 		{
 			"kind": "reveal",
 			"id": "two-endings-answer",
 			"retrievalSlideId": "two-endings",
 			"answers": [
-				"ชาย lands flat: it ends on ย, a hum, so the syllable is live.",
-				"ซิ lands high: the vowel is short and nothing follows it, so the syllable is dead.",
-				"The ending and the vowel length decide it. The class was the same in both."
-			]
+				"Flat: ends on a hum, so live. Low class plus live is mid.",
+				"High: short vowel, nothing after it, so dead.",
+				"The class was the same. Length and ending decided."
+			],
+			"audio": ["/thai-script/lessons/lesson-04/audio/9281d29cc1cdbbf4.mp3"],
+			"audioLanguages": ["en"]
+		},
+		{
+			"kind": "exposition",
+			"id": "read-close",
+			"heading": "Four lessons in",
+			"body": [
+				"Ten letters, two districts, three rooms of the house.",
+				"A third of the vowels tell you their length by sight.",
+				"Next: the cellar, and the same length trick again."
+			],
+			"audio": ["/thai-script/lessons/lesson-04/audio/9056629ee9361bf4.mp3"],
+			"audioLanguages": ["en"]
 		}
 	]
 }

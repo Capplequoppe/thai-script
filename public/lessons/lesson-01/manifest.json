@@ -683,6 +683,40 @@
 			"failure": null
 		},
 		{
+			"key": "the-vowel-house-0",
+			"kind": "audio",
+			"state": "generated",
+			"language": "en",
+			"inputHash": "9ac979eacd11686da5addf42c7e7636d6c6a919306fafb6e2e936463983828bd",
+			"contentHash": "c02d08a3772ee161719acc5c0286f92f156cb4f8c7ece4524ea27eb59aee2863",
+			"path": "/thai-script/lessons/lesson-01/audio/9ac979eacd11686d.mp3",
+			"file": "audio/9ac979eacd11686d.mp3",
+			"verification": {
+				"outcome": "not-required",
+				"attempts": 1,
+				"expected": null,
+				"heard": []
+			},
+			"failure": null
+		},
+		{
+			"key": "the-vowel-house-1",
+			"kind": "audio",
+			"state": "generated",
+			"language": "en",
+			"inputHash": "20bc1a07cdf2b46da54532856f5fc2d10998f684ac8b197ad7fb76b3428ceac7",
+			"contentHash": "db5aef98d23870395f8ee1b11afdf9cfebafb7f4515354ffaf8c8a724c91e5b5",
+			"path": "/thai-script/lessons/lesson-01/audio/20bc1a07cdf2b46d.mp3",
+			"file": "audio/20bc1a07cdf2b46d.mp3",
+			"verification": {
+				"outcome": "not-required",
+				"attempts": 1,
+				"expected": null,
+				"heard": []
+			},
+			"failure": null
+		},
+		{
 			"key": "meet-aa-0",
 			"kind": "audio",
 			"state": "generated",
@@ -721,10 +755,10 @@
 			"kind": "audio",
 			"state": "generated",
 			"language": "en",
-			"inputHash": "7f3cf6ed0c2b6ab7fb0fab1cedd7f113e94bc6d6d9278ade0b41cdf83ecdb742",
-			"contentHash": "9a34032811f07ea5b6af885615e80fdab7d60f8957246ab5f1c07ad32e943185",
-			"path": "/thai-script/lessons/lesson-01/audio/7f3cf6ed0c2b6ab7.mp3",
-			"file": "audio/7f3cf6ed0c2b6ab7.mp3",
+			"inputHash": "0e590767e3ea9ad64ac24c42fcec700b419d5d620fda750d02a0ebf2edade36c",
+			"contentHash": "beeab4e31fd8e76beab82789b0e8b21c079b6276f9bf34ee4453f5c5b0496a1f",
+			"path": "/thai-script/lessons/lesson-01/audio/0e590767e3ea9ad6.mp3",
+			"file": "audio/0e590767e3ea9ad6.mp3",
 			"verification": {
 				"outcome": "not-required",
 				"attempts": 1,
@@ -1146,10 +1180,10 @@
 			"kind": "audio",
 			"state": "generated",
 			"language": "en",
-			"inputHash": "b871a8b7e3f6fcca7a1577dad99160c3f1b9e7b8072a601f3be28e4357d6bf6d",
-			"contentHash": "35025f0db85d91faa4fbbf43e76f29f68529ecd5a98b9fcb0654ccd0862d2b75",
-			"path": "/thai-script/lessons/lesson-01/audio/b871a8b7e3f6fcca.mp3",
-			"file": "audio/b871a8b7e3f6fcca.mp3",
+			"inputHash": "328fba7be989d525f747b4276e691f44668707d630b371c61b3c540858aa60af",
+			"contentHash": "a46498fcc9a425c53be74dc8f9da86e0971e38332ea38e1cc22a1ce010afe619",
+			"path": "/thai-script/lessons/lesson-01/audio/328fba7be989d525.mp3",
+			"file": "audio/328fba7be989d525.mp3",
 			"verification": {
 				"outcome": "not-required",
 				"attempts": 1,
@@ -1448,6 +1482,18 @@
 			"failure": null
 		},
 		{
+			"key": "the-vowel-house-image",
+			"kind": "image",
+			"state": "generated",
+			"language": null,
+			"inputHash": "9cc652e5140cb6c51d870ce5527c1cd2c371cfd10134e3eaf1a83309c7eb0c2c",
+			"contentHash": "4d67fecbeab72061a62e09c9b37e832f90089fe0afb33b4b76f84ca74ab0549e",
+			"path": "/thai-script/lessons/lesson-01/images/the-vowel-house-9cc652e5140c.jpg",
+			"file": "images/the-vowel-house-9cc652e5140c.jpg",
+			"verification": null,
+			"failure": null
+		},
+		{
 			"key": "word-naa-image",
 			"kind": "image",
 			"state": "generated",
@@ -1476,10 +1522,10 @@
 			"kind": "image",
 			"state": "generated",
 			"language": null,
-			"inputHash": "691d762960ab210eed38bda9a668c408c99fa19c5417d4addba6e620c8ed6236",
-			"contentHash": "d92bab7ba97dabce9102d9711c219e15e510b7ec2bd4e453f4905a1c225432e7",
-			"path": "/thai-script/lessons/lesson-01/images/word-naan-691d762960ab.jpg",
-			"file": "images/word-naan-691d762960ab.jpg",
+			"inputHash": "7510d8a5b50d3225b91a203565291ae282c46ef5249e8d1d482c85aad66c33f8",
+			"contentHash": "30c5c5679b07266c455aa751f1eb0ef8e0216d44230b3fa424175cc680233144",
+			"path": "/thai-script/lessons/lesson-01/images/word-naan-7510d8a5b50d.jpg",
+			"file": "images/word-naan-7510d8a5b50d.jpg",
 			"verification": null,
 			"failure": null
 		}

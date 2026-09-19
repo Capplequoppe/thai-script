@@ -1,0 +1,765 @@
+{
+  "version": 1,
+  "task": "4.3",
+  "pass": "after",
+  "result": {
+    "outcome": "unsupported",
+    "reason": "content/lessons/lesson-12.md: no grammar covers '.md' files (and 11 more) — 41 violations were measured before this and are not shown"
+  },
+  "findings": [
+    {
+      "rule": "length",
+      "severity": "warning",
+      "measured": 8581,
+      "threshold": 2000,
+      "tier": "module",
+      "module": "src/domain/script/data",
+      "members": [
+        "src/domain/script/data/lesson01Deck.test.ts",
+        "src/domain/script/data/lessonContent.test.ts",
+        "src/domain/script/data/lessonContent.ts",
+        "src/domain/script/data/lessonSequence.test.ts",
+        "src/domain/script/data/lessonSequence.ts",
+        "src/domain/script/data/middleBand.test.ts",
+        "src/domain/script/data/openingBand.test.ts",
+        "src/domain/script/data/promotedLessons.test.ts",
+        "src/domain/script/data/sequenceClosure.test.ts",
+        "src/domain/script/data/symbols.ts"
+      ]
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 1.96,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "(anonymous)",
+        "path": "src/domain/script/data/lessonContent.test.ts",
+        "bytes": {
+          "startIndex": 3344,
+          "endIndex": 5252
+        },
+        "lines": {
+          "startRow": 115,
+          "endRow": 165
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 2.34,
+      "threshold": 5,
+      "tier": "file",
+      "path": "src/domain/script/data/lessonContent.test.ts",
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "length",
+      "severity": "warning",
+      "measured": 555,
+      "threshold": 400,
+      "tier": "file",
+      "path": "src/domain/script/data/lessonContent.ts"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "(anonymous)",
+        "path": "src/domain/script/data/lessonSequence.test.ts",
+        "bytes": {
+          "startIndex": 1959,
+          "endIndex": 2618
+        },
+        "lines": {
+          "startRow": 57,
+          "endRow": 76
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "file",
+      "path": "src/domain/script/data/lessonSequence.test.ts",
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 2.7,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "(anonymous)",
+        "path": "src/domain/script/data/middleBand.test.ts",
+        "bytes": {
+          "startIndex": 13988,
+          "endIndex": 15232
+        },
+        "lines": {
+          "startRow": 376,
+          "endRow": 412
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "length",
+      "severity": "warning",
+      "measured": 1369,
+      "threshold": 1200,
+      "tier": "file",
+      "path": "src/domain/script/data/promotedLessons.test.ts"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "(anonymous)",
+        "path": "src/domain/script/data/sequenceClosure.test.ts",
+        "bytes": {
+          "startIndex": 6884,
+          "endIndex": 8093
+        },
+        "lines": {
+          "startRow": 220,
+          "endRow": 255
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "(anonymous)",
+        "path": "src/domain/script/data/sequenceClosure.test.ts",
+        "bytes": {
+          "startIndex": 8375,
+          "endIndex": 10645
+        },
+        "lines": {
+          "startRow": 261,
+          "endRow": 328
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "(anonymous)",
+        "path": "src/domain/script/data/sequenceClosure.test.ts",
+        "bytes": {
+          "startIndex": 9450,
+          "endIndex": 10641
+        },
+        "lines": {
+          "startRow": 291,
+          "endRow": 327
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "sweepTaughtWindow",
+        "path": "src/domain/script/data/sequenceClosure.test.ts",
+        "bytes": {
+          "startIndex": 18706,
+          "endIndex": 19940
+        },
+        "lines": {
+          "startRow": 540,
+          "endRow": 583
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "(anonymous)",
+        "path": "src/domain/script/data/sequenceClosure.test.ts",
+        "bytes": {
+          "startIndex": 20791,
+          "endIndex": 22536
+        },
+        "lines": {
+          "startRow": 604,
+          "endRow": 658
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "(anonymous)",
+        "path": "src/domain/script/data/sequenceClosure.test.ts",
+        "bytes": {
+          "startIndex": 21135,
+          "endIndex": 21965
+        },
+        "lines": {
+          "startRow": 612,
+          "endRow": 641
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "taughtBy",
+        "path": "src/domain/script/data/sequenceClosure.test.ts",
+        "bytes": {
+          "startIndex": 22838,
+          "endIndex": 23771
+        },
+        "lines": {
+          "startRow": 665,
+          "endRow": 696
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "(anonymous)",
+        "path": "src/domain/script/data/sequenceClosure.test.ts",
+        "bytes": {
+          "startIndex": 23838,
+          "endIndex": 24812
+        },
+        "lines": {
+          "startRow": 698,
+          "endRow": 727
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "(anonymous)",
+        "path": "src/domain/script/data/sequenceClosure.test.ts",
+        "bytes": {
+          "startIndex": 26130,
+          "endIndex": 27068
+        },
+        "lines": {
+          "startRow": 755,
+          "endRow": 784
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "(anonymous)",
+        "path": "src/domain/script/data/sequenceClosure.test.ts",
+        "bytes": {
+          "startIndex": 26275,
+          "endIndex": 27061
+        },
+        "lines": {
+          "startRow": 759,
+          "endRow": 782
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "(anonymous)",
+        "path": "src/domain/script/data/sequenceClosure.test.ts",
+        "bytes": {
+          "startIndex": 27142,
+          "endIndex": 28295
+        },
+        "lines": {
+          "startRow": 786,
+          "endRow": 820
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "(anonymous)",
+        "path": "src/domain/script/data/sequenceClosure.test.ts",
+        "bytes": {
+          "startIndex": 27240,
+          "endIndex": 28288
+        },
+        "lines": {
+          "startRow": 788,
+          "endRow": 818
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "(anonymous)",
+        "path": "src/domain/script/data/sequenceClosure.test.ts",
+        "bytes": {
+          "startIndex": 28378,
+          "endIndex": 29402
+        },
+        "lines": {
+          "startRow": 822,
+          "endRow": 850
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "(anonymous)",
+        "path": "src/domain/script/data/sequenceClosure.test.ts",
+        "bytes": {
+          "startIndex": 28461,
+          "endIndex": 29062
+        },
+        "lines": {
+          "startRow": 823,
+          "endRow": 842
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 4.66,
+      "threshold": 5,
+      "tier": "file",
+      "path": "src/domain/script/data/symbols.ts",
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "length",
+      "severity": "warning",
+      "measured": 3393,
+      "threshold": 400,
+      "tier": "file",
+      "path": "src/domain/script/data/symbols.ts"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 1.02,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "(anonymous)",
+        "path": "src/domain/script/services/ScriptCardGenerator.test.ts",
+        "bytes": {
+          "startIndex": 173,
+          "endIndex": 3913
+        },
+        "lines": {
+          "startRow": 6,
+          "endRow": 103
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "(anonymous)",
+        "path": "src/domain/script/services/ScriptCardGenerator.test.ts",
+        "bytes": {
+          "startIndex": 3951,
+          "endIndex": 4594
+        },
+        "lines": {
+          "startRow": 105,
+          "endRow": 124
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0.8,
+      "threshold": 5,
+      "tier": "file",
+      "path": "src/domain/script/services/ScriptCardGenerator.test.ts",
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "length",
+      "severity": "warning",
+      "tier": "function",
+      "measured": 451,
+      "threshold": 150,
+      "symbol": {
+        "kind": "function",
+        "name": "(anonymous)",
+        "path": "src/domain/script/services/ScriptLessonService.test.ts",
+        "bytes": {
+          "startIndex": 876,
+          "endIndex": 14845
+        },
+        "lines": {
+          "startRow": 16,
+          "endRow": 466
+        }
+      }
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 4.66,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "(anonymous)",
+        "path": "src/domain/script/services/ScriptLessonService.test.ts",
+        "bytes": {
+          "startIndex": 876,
+          "endIndex": 14845
+        },
+        "lines": {
+          "startRow": 16,
+          "endRow": 466
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "(anonymous)",
+        "path": "src/domain/script/services/ScriptLessonService.test.ts",
+        "bytes": {
+          "startIndex": 6171,
+          "endIndex": 7452
+        },
+        "lines": {
+          "startRow": 182,
+          "endRow": 228
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 4.5,
+      "threshold": 5,
+      "tier": "file",
+      "path": "src/domain/script/services/ScriptLessonService.test.ts",
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 4.76,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "(anonymous)",
+        "path": "src/presentation/components/organisms/LessonPath.test.tsx",
+        "bytes": {
+          "startIndex": 839,
+          "endIndex": 2162
+        },
+        "lines": {
+          "startRow": 22,
+          "endRow": 63
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "length",
+      "severity": "warning",
+      "tier": "function",
+      "measured": 178,
+      "threshold": 50,
+      "symbol": {
+        "kind": "function",
+        "name": "CatchUpPage",
+        "path": "src/presentation/pages/CatchUpPage.tsx",
+        "bytes": {
+          "startIndex": 1133,
+          "endIndex": 5414
+        },
+        "lines": {
+          "startRow": 21,
+          "endRow": 198
+        }
+      }
+    },
+    {
+      "rule": "naming",
+      "severity": "convention",
+      "measured": 1,
+      "threshold": 0,
+      "tier": "function",
+      "symbol": {
+        "kind": "function",
+        "name": "CatchUpPage",
+        "path": "src/presentation/pages/CatchUpPage.tsx",
+        "bytes": {
+          "startIndex": 1133,
+          "endIndex": 5414
+        },
+        "lines": {
+          "startRow": 21,
+          "endRow": 198
+        }
+      }
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 1.69,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "CatchUpPage",
+        "path": "src/presentation/pages/CatchUpPage.tsx",
+        "bytes": {
+          "startIndex": 1133,
+          "endIndex": 5414
+        },
+        "lines": {
+          "startRow": 21,
+          "endRow": 198
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "(anonymous)",
+        "path": "src/presentation/pages/Dashboard.test.tsx",
+        "bytes": {
+          "startIndex": 4686,
+          "endIndex": 5772
+        },
+        "lines": {
+          "startRow": 112,
+          "endRow": 148
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "length",
+      "severity": "warning",
+      "tier": "function",
+      "measured": 259,
+      "threshold": 50,
+      "symbol": {
+        "kind": "function",
+        "name": "LessonPage",
+        "path": "src/presentation/pages/LessonPage.tsx",
+        "bytes": {
+          "startIndex": 1182,
+          "endIndex": 7713
+        },
+        "lines": {
+          "startRow": 26,
+          "endRow": 284
+        }
+      }
+    },
+    {
+      "rule": "naming",
+      "severity": "convention",
+      "measured": 1,
+      "threshold": 0,
+      "tier": "function",
+      "symbol": {
+        "kind": "function",
+        "name": "LessonPage",
+        "path": "src/presentation/pages/LessonPage.tsx",
+        "bytes": {
+          "startIndex": 1182,
+          "endIndex": 7713
+        },
+        "lines": {
+          "startRow": 26,
+          "endRow": 284
+        }
+      }
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 1,
+      "tier": "function",
+      "symbol": {
+        "name": "LessonPage",
+        "path": "src/presentation/pages/LessonPage.tsx",
+        "bytes": {
+          "startIndex": 1175,
+          "endIndex": 7713
+        },
+        "lines": {
+          "startRow": 26,
+          "endRow": 284
+        }
+      },
+      "check": "undocumented-export"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 1.93,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "LessonPage",
+        "path": "src/presentation/pages/LessonPage.tsx",
+        "bytes": {
+          "startIndex": 1182,
+          "endIndex": 7713
+        },
+        "lines": {
+          "startRow": 26,
+          "endRow": 284
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 1.75,
+      "threshold": 5,
+      "tier": "file",
+      "path": "src/presentation/pages/LessonPage.tsx",
+      "check": "density-below-floor"
+    }
+  ],
+  "adapters": [
+    {
+      "tool": "biome",
+      "selection": {
+        "evidence": "configured",
+        "by": "biome.json"
+      },
+      "program": null,
+      "result": {
+        "outcome": "unsupported",
+        "reason": "biome did not resolve: 'biome' on PATH (31 entries). Its findings are missing from this report — that is a gap and not a pass."
+      },
+      "files": 12,
+      "findings": 0,
+      "refusedPaths": 0,
+      "outsideAnalysis": 0,
+      "refusedShape": 0
+    },
+    {
+      "tool": "no linter this feature ships",
+      "selection": {
+        "evidence": "none",
+        "considered": []
+      },
+      "program": null,
+      "result": {
+        "outcome": "unsupported",
+        "reason": "no native linter covered these files: looked for a configuration file for no linter this feature ships at the repository root, and for no linter this feature ships on PATH in a repository of that ecosystem. Their findings are missing from this report — that is a gap and not a pass."
+      },
+      "files": 5,
+      "findings": 0,
+      "refusedPaths": 0,
+      "outsideAnalysis": 0,
+      "refusedShape": 0
+    }
+  ]
+}

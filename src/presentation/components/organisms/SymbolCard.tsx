@@ -3,6 +3,10 @@ import {
 	consonantImageFor,
 	consonantSceneFor,
 } from "../../../domain/script/data/consonantScenes";
+import {
+	describeSwedish,
+	swedishFor,
+} from "../../../domain/script/data/vowelAnalogies";
 import type {
 	ConsonantSummary,
 	NumeralSummary,
@@ -154,6 +158,10 @@ export function VowelCard({
 	v: VowelSummary;
 	compact?: boolean;
 }) {
+	// Shown under the English gloss rather than instead of it: the English is
+	// what every other course and dictionary will give this vowel, and a
+	// learner who only ever sees the Swedish cannot follow them.
+	const swedish = swedishFor(v.character);
 	return (
 		<div className="space-y-3">
 			<div className="text-center">
@@ -166,6 +174,11 @@ export function VowelCard({
 				<p className="text-sm" style={{ color: "var(--color-text-muted)" }}>
 					{v.sound}
 				</p>
+				{swedish && (
+					<p className="text-sm mt-1" style={{ color: "var(--color-master)" }}>
+						Swedish: {describeSwedish(swedish)}
+					</p>
+				)}
 			</div>
 
 			<div

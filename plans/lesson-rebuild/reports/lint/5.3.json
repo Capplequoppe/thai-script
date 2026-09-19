@@ -1,0 +1,524 @@
+{
+  "version": 1,
+  "task": "5.3",
+  "pass": "before",
+  "result": {
+    "outcome": "unsupported",
+    "reason": "plans/lesson-rebuild/phase-5-vocabulary-palace/task-5.3-characters-and-mnemonics.md: no grammar covers '.md' files — 25 violations were measured before this and are not shown"
+  },
+  "findings": [
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "(anonymous)",
+        "path": "src/domain/vocabulary/data/characters.test.ts",
+        "bytes": {
+          "startIndex": 2242,
+          "endIndex": 2916
+        },
+        "lines": {
+          "startRow": 66,
+          "endRow": 89
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "registerViolations",
+        "path": "src/domain/vocabulary/data/characters.ts",
+        "bytes": {
+          "startIndex": 4796,
+          "endIndex": 5422
+        },
+        "lines": {
+          "startRow": 137,
+          "endRow": 157
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "(anonymous)",
+        "path": "src/domain/vocabulary/services/VocabMnemonic.test.ts",
+        "bytes": {
+          "startIndex": 1231,
+          "endIndex": 2331
+        },
+        "lines": {
+          "startRow": 35,
+          "endRow": 64
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 3.64,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "(anonymous)",
+        "path": "src/domain/vocabulary/services/VocabMnemonic.test.ts",
+        "bytes": {
+          "startIndex": 2599,
+          "endIndex": 4215
+        },
+        "lines": {
+          "startRow": 70,
+          "endRow": 124
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 2.44,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "(anonymous)",
+        "path": "src/domain/vocabulary/services/VocabMnemonic.test.ts",
+        "bytes": {
+          "startIndex": 5867,
+          "endIndex": 7113
+        },
+        "lines": {
+          "startRow": 171,
+          "endRow": 211
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "(anonymous)",
+        "path": "src/domain/vocabulary/services/VocabMnemonic.test.ts",
+        "bytes": {
+          "startIndex": 7365,
+          "endIndex": 8240
+        },
+        "lines": {
+          "startRow": 217,
+          "endRow": 249
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "(anonymous)",
+        "path": "src/domain/vocabulary/services/VocabMnemonic.test.ts",
+        "bytes": {
+          "startIndex": 11582,
+          "endIndex": 12187
+        },
+        "lines": {
+          "startRow": 337,
+          "endRow": 357
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "length",
+      "severity": "warning",
+      "tier": "function",
+      "measured": 53,
+      "threshold": 50,
+      "symbol": {
+        "kind": "function",
+        "name": "validateVocabMnemonic",
+        "path": "src/domain/vocabulary/services/VocabMnemonic.ts",
+        "bytes": {
+          "startIndex": 4161,
+          "endIndex": 5920
+        },
+        "lines": {
+          "startRow": 98,
+          "endRow": 150
+        }
+      }
+    },
+    {
+      "rule": "cyclomatic-complexity",
+      "severity": "warning",
+      "measured": 26,
+      "threshold": 10,
+      "tier": "function",
+      "symbol": {
+        "kind": "function",
+        "name": "validateVocabMnemonic",
+        "path": "src/domain/vocabulary/services/VocabMnemonic.ts",
+        "bytes": {
+          "startIndex": 4161,
+          "endIndex": 5920
+        },
+        "lines": {
+          "startRow": 98,
+          "endRow": 150
+        }
+      }
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "validateVocabMnemonic",
+        "path": "src/domain/vocabulary/services/VocabMnemonic.ts",
+        "bytes": {
+          "startIndex": 4161,
+          "endIndex": 5920
+        },
+        "lines": {
+          "startRow": 98,
+          "endRow": 150
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "coverageReport",
+        "path": "src/domain/vocabulary/services/VocabMnemonic.ts",
+        "bytes": {
+          "startIndex": 28257,
+          "endIndex": 29042
+        },
+        "lines": {
+          "startRow": 905,
+          "endRow": 932
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "reviewStaging",
+        "path": "src/domain/vocabulary/services/VocabMnemonic.ts",
+        "bytes": {
+          "startIndex": 29752,
+          "endIndex": 30287
+        },
+        "lines": {
+          "startRow": 951,
+          "endRow": 972
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "length",
+      "severity": "warning",
+      "measured": 1017,
+      "threshold": 400,
+      "tier": "file",
+      "path": "src/domain/vocabulary/services/VocabMnemonic.ts"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 2.08,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "(anonymous)",
+        "path": "src/presentation/components/organisms/Flashcard.test.tsx",
+        "bytes": {
+          "startIndex": 5471,
+          "endIndex": 7158
+        },
+        "lines": {
+          "startRow": 149,
+          "endRow": 196
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "length",
+      "severity": "warning",
+      "tier": "function",
+      "measured": 233,
+      "threshold": 50,
+      "symbol": {
+        "kind": "function",
+        "name": "Flashcard",
+        "path": "src/presentation/components/organisms/Flashcard.tsx",
+        "bytes": {
+          "startIndex": 1809,
+          "endIndex": 8774
+        },
+        "lines": {
+          "startRow": 57,
+          "endRow": 289
+        }
+      }
+    },
+    {
+      "rule": "cyclomatic-complexity",
+      "severity": "warning",
+      "measured": 33,
+      "threshold": 10,
+      "tier": "function",
+      "symbol": {
+        "kind": "function",
+        "name": "Flashcard",
+        "path": "src/presentation/components/organisms/Flashcard.tsx",
+        "bytes": {
+          "startIndex": 1809,
+          "endIndex": 8774
+        },
+        "lines": {
+          "startRow": 57,
+          "endRow": 289
+        }
+      }
+    },
+    {
+      "rule": "naming",
+      "severity": "convention",
+      "measured": 1,
+      "threshold": 0,
+      "tier": "function",
+      "symbol": {
+        "kind": "function",
+        "name": "RoomNote",
+        "path": "src/presentation/components/organisms/Flashcard.tsx",
+        "bytes": {
+          "startIndex": 1508,
+          "endIndex": 1800
+        },
+        "lines": {
+          "startRow": 45,
+          "endRow": 55
+        }
+      }
+    },
+    {
+      "rule": "naming",
+      "severity": "convention",
+      "measured": 1,
+      "threshold": 0,
+      "tier": "function",
+      "symbol": {
+        "kind": "function",
+        "name": "Flashcard",
+        "path": "src/presentation/components/organisms/Flashcard.tsx",
+        "bytes": {
+          "startIndex": 1809,
+          "endIndex": 8774
+        },
+        "lines": {
+          "startRow": 57,
+          "endRow": 289
+        }
+      }
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 1,
+      "tier": "function",
+      "symbol": {
+        "name": "Flashcard",
+        "path": "src/presentation/components/organisms/Flashcard.tsx",
+        "bytes": {
+          "startIndex": 1802,
+          "endIndex": 8774
+        },
+        "lines": {
+          "startRow": 57,
+          "endRow": 289
+        }
+      },
+      "check": "undocumented-export"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "(anonymous)",
+        "path": "src/presentation/components/organisms/WordCard.test.tsx",
+        "bytes": {
+          "startIndex": 3218,
+          "endIndex": 4309
+        },
+        "lines": {
+          "startRow": 98,
+          "endRow": 132
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "length",
+      "severity": "warning",
+      "tier": "function",
+      "measured": 266,
+      "threshold": 50,
+      "symbol": {
+        "kind": "function",
+        "name": "WordCard",
+        "path": "src/presentation/components/organisms/WordCard.tsx",
+        "bytes": {
+          "startIndex": 1752,
+          "endIndex": 9627
+        },
+        "lines": {
+          "startRow": 64,
+          "endRow": 329
+        }
+      }
+    },
+    {
+      "rule": "naming",
+      "severity": "convention",
+      "measured": 1,
+      "threshold": 0,
+      "tier": "function",
+      "symbol": {
+        "kind": "function",
+        "name": "WordCard",
+        "path": "src/presentation/components/organisms/WordCard.tsx",
+        "bytes": {
+          "startIndex": 1752,
+          "endIndex": 9627
+        },
+        "lines": {
+          "startRow": 64,
+          "endRow": 329
+        }
+      }
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 0,
+      "threshold": 1,
+      "tier": "function",
+      "symbol": {
+        "name": "WordCard",
+        "path": "src/presentation/components/organisms/WordCard.tsx",
+        "bytes": {
+          "startIndex": 1745,
+          "endIndex": 9627
+        },
+        "lines": {
+          "startRow": 64,
+          "endRow": 329
+        }
+      },
+      "check": "undocumented-export"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 2.63,
+      "threshold": 5,
+      "tier": "function",
+      "symbol": {
+        "name": "WordCard",
+        "path": "src/presentation/components/organisms/WordCard.tsx",
+        "bytes": {
+          "startIndex": 1752,
+          "endIndex": 9627
+        },
+        "lines": {
+          "startRow": 64,
+          "endRow": 329
+        }
+      },
+      "check": "density-below-floor"
+    },
+    {
+      "rule": "comment-policy",
+      "severity": "convention",
+      "measured": 2.12,
+      "threshold": 5,
+      "tier": "file",
+      "path": "src/presentation/components/organisms/WordCard.tsx",
+      "check": "density-below-floor"
+    }
+  ],
+  "adapters": [
+    {
+      "tool": "biome",
+      "selection": {
+        "evidence": "configured",
+        "by": "biome.json"
+      },
+      "program": null,
+      "result": {
+        "outcome": "unsupported",
+        "reason": "biome did not resolve: 'biome' on PATH (31 entries). Its findings are missing from this report — that is a gap and not a pass."
+      },
+      "files": 4,
+      "findings": 0,
+      "refusedPaths": 0,
+      "outsideAnalysis": 0,
+      "refusedShape": 0
+    },
+    {
+      "tool": "no linter this feature ships",
+      "selection": {
+        "evidence": "none",
+        "considered": []
+      },
+      "program": null,
+      "result": {
+        "outcome": "unsupported",
+        "reason": "no native linter covered these files: looked for a configuration file for no linter this feature ships at the repository root, and for no linter this feature ships on PATH in a repository of that ecosystem. Their findings are missing from this report — that is a gap and not a pass."
+      },
+      "files": 4,
+      "findings": 0,
+      "refusedPaths": 0,
+      "outsideAnalysis": 0,
+      "refusedShape": 0
+    }
+  ]
+}
