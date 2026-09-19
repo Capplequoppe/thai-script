@@ -99,15 +99,15 @@ narration: en Head first, curling inward, the way most of them do. Then straight
 - Straight up, then the arch over and down.
 - Put it at a syllable's **end** and the breath disappears. A plain t-stop.
 
-## exposition read-thaang
+## retrieval read-thaang
+reveal: read-thaang-answer
+prompt: Soldier, long vowel, snake closing it. **Out loud before you turn it over.**
 thai: ทาง
-heading: Read this one
 teaches: tho-thahan
 narration: en Three letters, all yours. The soldier, the long vowel from lesson one, and the snake's letter closing it without stopping it. Out loud before you turn it over.
-- Soldier, long vowel, snake closing it.
-- **Out loud before you turn it over.**
 
-## exposition read-thaang-answer
+## reveal read-thaang-answer
+retrieval: read-thaang
 thai: ทาง
 heading: That one
 teaches: tho-thahan
@@ -227,15 +227,15 @@ narration: en A child. Mast in front, the child's letter from the market, the li
 - So they climb and become a small roof over the letter.
 - **Same sound. Same length.** The mark sits above the letter instead.
 
-## exposition read-yen
+## retrieval read-yen
+reveal: read-yen-answer
+prompt: Mast, giant's letter, the small roof, mouse closing it. **Watch the order.** Out loud before you turn it over.
 thai: เย็น
-heading: Read this one
 teaches: sara-e, mai-taikhu
 narration: en Four marks and every one of them is yours. The mast, the giant's letter from lesson two, the little roof, and the mouse's letter closing it. Take your time with the order. Out loud before you turn it over.
-- Mast, giant's letter, the small roof, mouse closing it.
-- **Watch the order.** Out loud before you turn it over.
 
-## exposition read-yen-answer
+## reveal read-yen-answer
+retrieval: read-yen
 thai: เย็น
 heading: That one
 teaches: sara-e, mai-taikhu

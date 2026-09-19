@@ -169,16 +169,15 @@ narration: en Three letters, all of them yours. The tiger, the long oo from less
 - The shape your voice makes on the English word *really*.
 - Skipping the dip gives you a different tone.
 
-## exposition read-suung
+## retrieval read-suung
+reveal: read-suung-answer
+prompt: Tiger, the long oo in the cellar, the snake closing it. The syllable alive, temple letter. **Out loud, with the dip, before you turn it over.**
 thai: สูง
-heading: Read this one
 teaches: so-sia, high-live
 narration: en There it is on its own. The tiger opens it and the long oo sits underneath in the cellar. The snake closes it with a hum, which makes the syllable alive. Temple letter, the syllable alive — so you have the rule and you have the letter. Say it out loud with the dip in it before you turn this over.
-- Tiger, the long oo in the cellar, the snake closing it.
-- The syllable alive, temple letter.
-- **Out loud, with the dip, before you turn it over.**
 
-## exposition read-suung-answer
+## reveal read-suung-answer
+retrieval: read-suung
 thai: สูง
 heading: That one
 teaches: so-sia, high-live
@@ -251,16 +250,15 @@ narration: en Pen again, and take these one at a time. The egg is the elephant, 
 - The bee: **the tray, with the head turned in**.
 - Each one beside the letter it came from.
 
-## exposition read-khao
+## retrieval read-khao
+reveal: read-khao-answer
+prompt: Mast, the egg's letter, the long post. **Watch the order.** The mast goes down first and is spoken second. Work the tone out before you say it.
 thai: เขา
-heading: Read this one
 teaches: kho-khay, high-live
 narration: en Three marks and every one of them is yours. A mast in front, the egg, and the long post from lesson one. Watch the order, because the mast goes down ahead of the consonant and gets spoken after it. Then work out the tone before you say it: temple letter, and the vowel ends the syllable with nothing stopping it. Out loud before you turn it over.
-- Mast, the egg's letter, the long post.
-- **Watch the order.** The mast goes down first and is spoken second.
-- Work the tone out before you say it.
 
-## exposition read-khao-answer
+## reveal read-khao-answer
+retrieval: read-khao
 thai: เขา
 heading: That one
 teaches: kho-khay, high-live
@@ -356,16 +354,15 @@ narration: en One more thing about the long one, and it cuts against what you ha
 - No common word uses it. Recognise the spelling and move on.
 - The long one keeps **all three marks in place** before a final consonant.
 
-## exposition read-sia
+## retrieval read-sia
+reveal: read-sia-answer
+prompt: Mast, tiger, the roof mark, the giant's letter. The syllable alive, temple letter. **Tone first, then out loud.**
 thai: เสีย
-heading: Read this one
 teaches: sara-iia, so-sia
 narration: en Four marks, and all four are yours as of about two minutes ago. The mast, the tiger, the mark on the roof, and the giant's letter closing the vowel off. Nothing stops the syllable, so it is alive, and the letter doing the opening lives at the temple. Work out the tone, then say it out loud before you turn it over.
-- Mast, tiger, the roof mark, the giant's letter.
-- The syllable alive, temple letter.
-- **Tone first, then out loud.**
 
-## exposition read-sia-answer
+## reveal read-sia-answer
+retrieval: read-sia
 thai: เสีย
 heading: That one
 teaches: sara-iia, so-sia
@@ -374,16 +371,15 @@ narration: en To lose something, or to waste it, or for a thing to break. One wo
 - **เสีย** — to lose, to waste, to break.
 - Rising: temple letter, the syllable alive.
 
-## exposition read-rian
+## retrieval read-rian
+reveal: read-rian-answer
+prompt: Mast, boat, roof mark, giant's letter, mouse closing it. The boat lives at the **harbour**, and the ending hums. Say the tone out loud before you turn it over.
 thai: เรียน
-heading: Now the same vowel from the harbour
 teaches: sara-iia, high-live, low-live
 narration: en Same vowel, different district, and this is the comparison worth stopping on. Five marks this time. The mast, the boat's letter from lesson eight, the mark on the roof, the giant's letter. Then the mouse closing the whole thing off with a hum. The boat lives at the harbour. The ending hums, so the syllable is alive. Work that pair of facts against the rules you have and say what tone comes out, before you turn it over.
-- Mast, boat, roof mark, giant's letter, mouse closing it.
-- The boat lives at the **harbour**, and the ending hums.
-- Say the tone out loud before you turn it over.
 
-## exposition read-rian-answer
+## reveal read-rian-answer
+retrieval: read-rian
 thai: เรียน
 heading: That one
 teaches: sara-iia, high-live, low-live

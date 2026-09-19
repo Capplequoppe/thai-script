@@ -146,24 +146,20 @@
 			"image": "/thai-script/lessons/lesson-13/images/temple-dead-32ce8c994f2a.jpg"
 		},
 		{
-			"kind": "exposition",
+			"kind": "retrieval",
 			"id": "read-phiseet",
-			"heading": "Read this one",
-			"body": [
-				"Tray plus short ee, then mast, pavilion, hermit.",
-				"Two syllables, and a different rule for each.",
-				"**Out loud before you turn it over.**"
-			],
+			"prompt": "Tray plus short ee, then mast, pavilion, hermit. Two syllables, and a different rule for each. **Out loud before you turn it over.**",
+			"revealSlideId": "read-phiseet-answer",
 			"audio": ["/thai-script/lessons/lesson-13/audio/758b3516091b8792.mp3"],
 			"audioLanguages": ["en"],
 			"thai": "พิเศษ",
 			"teaches": ["so-sala", "so-risi", "high-dead-long"]
 		},
 		{
-			"kind": "exposition",
+			"kind": "reveal",
 			"id": "read-phiseet-answer",
-			"heading": "That one",
-			"body": [
+			"retrievalSlideId": "read-phiseet",
+			"answers": [
 				"**พิเศษ** — special.",
 				"First half: harbour, dead, short — high.",
 				"Second half: temple, dead, long — low.",
@@ -280,24 +276,20 @@
 			"teaches": ["no-nen", "yo-ying", "pho-samphau", "tho-thong"]
 		},
 		{
-			"kind": "exposition",
+			"kind": "retrieval",
 			"id": "read-phaasaa",
-			"heading": "Read this one",
-			"body": [
-				"Junk, long post, hermit, long post.",
-				"One harbour letter and one temple letter, in one word.",
-				"Both halves run alive. **Out loud before you turn it over.**"
-			],
+			"prompt": "Junk, long post, hermit, long post. One harbour letter and one temple letter, in one word. Both halves run alive. **Out loud before you turn it over.**",
+			"revealSlideId": "read-phaasaa-answer",
 			"audio": ["/thai-script/lessons/lesson-13/audio/8bfff96d58d2eab3.mp3"],
 			"audioLanguages": ["en"],
 			"thai": "ภาษา",
 			"teaches": ["pho-samphau", "so-risi"]
 		},
 		{
-			"kind": "exposition",
+			"kind": "reveal",
 			"id": "read-phaasaa-answer",
-			"heading": "That one",
-			"body": [
+			"retrievalSlideId": "read-phaasaa",
+			"answers": [
 				"**ภาษา** — a language.",
 				"First half: harbour, alive — flat.",
 				"Second half: temple, alive — rising."
@@ -357,24 +349,20 @@
 			"image": "/thai-script/lessons/lesson-13/images/am-is-always-live-28d658ad9a2b.jpg"
 		},
 		{
-			"kind": "exposition",
+			"kind": "retrieval",
 			"id": "read-samkhan",
-			"heading": "Read this one",
-			"body": [
-				"Tiger plus the new vowel, then buffalo, the curl on the roof, and the woman's letter.",
-				"**Remember what she does last in a syllable.**",
-				"Both tones before you speak."
-			],
+			"prompt": "Tiger plus the new vowel, then buffalo, the curl on the roof, and the woman's letter. **Remember what she does last in a syllable.** Both tones before you speak.",
+			"revealSlideId": "read-samkhan-answer",
 			"audio": ["/thai-script/lessons/lesson-13/audio/fa2c7a8d2507d142.mp3"],
 			"audioLanguages": ["en"],
 			"thai": "สำคัญ",
 			"teaches": ["sara-am", "yo-ying"]
 		},
 		{
-			"kind": "exposition",
+			"kind": "reveal",
 			"id": "read-samkhan-answer",
-			"heading": "That one",
-			"body": [
+			"retrievalSlideId": "read-samkhan",
+			"answers": [
 				"**สำคัญ** — important.",
 				"First half: temple, alive — rising.",
 				"Second half: harbour, alive — flat.",
@@ -466,23 +454,20 @@
 			"teaches": ["sara-oe"]
 		},
 		{
-			"kind": "exposition",
+			"kind": "retrieval",
 			"id": "read-doen",
-			"heading": "Read this one",
-			"body": [
-				"Mast, the child's letter, the brim above, the mouse closing it.",
-				"**Name the vowel first**, then the district, then the tone."
-			],
+			"prompt": "Mast, the child's letter, the brim above, the mouse closing it. **Name the vowel first**, then the district, then the tone.",
+			"revealSlideId": "read-doen-answer",
 			"audio": ["/thai-script/lessons/lesson-13/audio/a185026fcba1c25c.mp3"],
 			"audioLanguages": ["en"],
 			"thai": "เดิน",
 			"teaches": ["sara-ooe"]
 		},
 		{
-			"kind": "exposition",
+			"kind": "reveal",
 			"id": "read-doen-answer",
-			"heading": "That one",
-			"body": [
+			"retrievalSlideId": "read-doen",
+			"answers": [
 				"**เดิน** — to walk.",
 				"The long vowel in its closed shape, brim on the roof.",
 				"Market letter, the syllable alive, flat."
@@ -605,7 +590,7 @@
 	],
 	"timing": {
 		"spokenSeconds": 1148,
-		"practiceSeconds": 284,
-		"estimatedMinutes": 24
+		"practiceSeconds": 384,
+		"estimatedMinutes": 26
 	}
 }

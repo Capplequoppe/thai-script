@@ -275,23 +275,20 @@
 			"teaches": ["sara-oo"]
 		},
 		{
-			"kind": "exposition",
+			"kind": "retrieval",
 			"id": "read-lok",
-			"heading": "Read this one",
-			"body": [
-				"The leaning mast, the monkey's letter, the chicken sealing it.",
-				"Out loud before you turn it over."
-			],
+			"prompt": "The leaning mast, the monkey's letter, the chicken sealing it. Out loud before you turn it over.",
+			"revealSlideId": "read-lok-answer",
 			"audio": ["/thai-script/lessons/lesson-09/audio/be0fec2734beaafe.mp3"],
 			"audioLanguages": ["en"],
 			"thai": "โลก",
 			"teaches": ["sara-oo"]
 		},
 		{
-			"kind": "exposition",
+			"kind": "reveal",
 			"id": "read-lok-answer",
-			"heading": "That one",
-			"body": [
+			"retrievalSlideId": "read-lok",
+			"answers": [
 				"**โลก** — the world.",
 				"Harbour letter, dead ending, long vowel. It falls."
 			],
@@ -336,23 +333,20 @@
 			"image": "/thai-script/lessons/lesson-09/images/the-vowel-you-cannot-see-9162f89ee2ed.jpg"
 		},
 		{
-			"kind": "exposition",
+			"kind": "retrieval",
 			"id": "read-khon",
-			"heading": "You have read this one before",
-			"body": [
-				"The buffalo's letter, then the mouse's letter closing it.",
-				"One beat. Out loud before you turn it over."
-			],
+			"prompt": "The buffalo's letter, then the mouse's letter closing it. One beat. Out loud before you turn it over.",
+			"revealSlideId": "read-khon-answer",
 			"audio": ["/thai-script/lessons/lesson-09/audio/f473f693f8224380.mp3"],
 			"audioLanguages": ["en"],
 			"thai": "คน",
 			"teaches": ["sara-o"]
 		},
 		{
-			"kind": "exposition",
+			"kind": "reveal",
 			"id": "read-khon-answer",
-			"heading": "That one",
-			"body": [
+			"retrievalSlideId": "read-khon",
+			"answers": [
 				"**คน** — a person.",
 				"The short round vowel sits between them, unwritten."
 			],
@@ -405,22 +399,19 @@
 			"teaches": ["sara-o"]
 		},
 		{
-			"kind": "exposition",
+			"kind": "retrieval",
 			"id": "read-bpen",
-			"heading": "Read this one",
-			"body": [
-				"Single mast, the fish's letter, the small roof, the mouse closing it.",
-				"Watch the order. Out loud before you turn it over."
-			],
+			"prompt": "Single mast, the fish's letter, the small roof, the mouse closing it. Watch the order. Out loud before you turn it over.",
+			"revealSlideId": "read-bpen-answer",
 			"audio": ["/thai-script/lessons/lesson-09/audio/6ffed5bade4016f3.mp3"],
 			"audioLanguages": ["en"],
 			"thai": "เป็น"
 		},
 		{
-			"kind": "exposition",
+			"kind": "reveal",
 			"id": "read-bpen-answer",
-			"heading": "That one",
-			"body": [
+			"retrievalSlideId": "read-bpen",
+			"answers": [
 				"**เป็น** — to be, and the tenth commonest word in Thai.",
 				"A lesson-seven vowel, a market letter, and the little roof."
 			],
@@ -461,7 +452,7 @@
 	],
 	"timing": {
 		"spokenSeconds": 828,
-		"practiceSeconds": 242,
-		"estimatedMinutes": 18
+		"practiceSeconds": 317,
+		"estimatedMinutes": 19
 	}
 }

@@ -227,15 +227,15 @@ narration: en One stroke, and it takes about a second. An upright, with a small 
 - Write it ahead of the turtle's letter and say it aloud.
 - Consonant out of the mouth first, then the vowel.
 
-## exposition read-lok
+## retrieval read-lok
+reveal: read-lok-answer
+prompt: The leaning mast, the monkey's letter, the chicken sealing it. Out loud before you turn it over.
 thai: โลก
-heading: Read this one
 teaches: sara-oo
 narration: en Three marks, and every one of them is already yours. The leaning mast, the monkey's letter from last lesson, and the chicken's letter sealing the end. Watch the order, and say it out loud before you turn it over.
-- The leaning mast, the monkey's letter, the chicken sealing it.
-- Out loud before you turn it over.
 
-## exposition read-lok-answer
+## reveal read-lok-answer
+retrieval: read-lok
 thai: โลก
 heading: That one
 teaches: sara-oo
@@ -269,15 +269,15 @@ narration: en Put a final consonant into that syllable and the two hooks give wa
 - Nothing is written in their place at all.
 - Two bare consonants, and a short round vowel between them.
 
-## exposition read-khon
+## retrieval read-khon
+reveal: read-khon-answer
+prompt: The buffalo's letter, then the mouse's letter closing it. One beat. Out loud before you turn it over.
 thai: คน
-heading: You have read this one before
 teaches: sara-o
 narration: en Two marks, both old friends, and you met this exact word in lesson six with a promise hanging off it that nobody cashed. The buffalo's letter, and the mouse's letter closing it. Say it out loud, in one single beat, before you turn it over.
-- The buffalo's letter, then the mouse's letter closing it.
-- One beat. Out loud before you turn it over.
 
-## exposition read-khon-answer
+## reveal read-khon-answer
+retrieval: read-khon
 thai: คน
 heading: That one
 teaches: sara-o
@@ -311,14 +311,14 @@ narration: en The short round vowel, unwritten. And one syllable — the first l
 - **One** syllable, opened and closed by the two letters.
 - The complete rule, and what three consonants do, comes later.
 
-## exposition read-bpen
+## retrieval read-bpen
+reveal: read-bpen-answer
+prompt: Single mast, the fish's letter, the small roof, the mouse closing it. Watch the order. Out loud before you turn it over.
 thai: เป็น
-heading: Read this one
 narration: en Four marks, and all four of them came out of the last three lessons. The single mast from lesson seven, the fish's letter you learned twenty minutes ago, the small roof the hooks turn into, and the mouse's letter closing the syllable. Take the order slowly, and say it out loud before you turn it over.
-- Single mast, the fish's letter, the small roof, the mouse closing it.
-- Watch the order. Out loud before you turn it over.
 
-## exposition read-bpen-answer
+## reveal read-bpen-answer
+retrieval: read-bpen
 thai: เป็น
 heading: That one
 narration: th เป็น

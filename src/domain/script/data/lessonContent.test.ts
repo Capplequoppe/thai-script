@@ -165,6 +165,75 @@ describe("content resolution states", () => {
 	});
 });
 
+describe("a reading question keeps its word on screen", () => {
+	// A reading exercise asks about one particular word, so the word has to
+	// survive onto the retrieval slide that asks and the reveal slide that
+	// answers. Until these carried `thai`, converting the course's ungated
+	// reading pairs into real retrievals would have asked the learner to
+	// decode something that was not on the screen.
+	it("carries thai through a retrieval and its reveal", () => {
+		const result = validateDeck(
+			deck([
+				{
+					kind: "retrieval",
+					id: "read-it",
+					prompt: "Read this one.",
+					revealSlideId: "read-it-answer",
+					thai: "กฎหมาย",
+				},
+				{
+					kind: "reveal",
+					id: "read-it-answer",
+					retrievalSlideId: "read-it",
+					answers: ["gòt-măai — a law."],
+					thai: "กฎหมาย",
+				},
+			]),
+		);
+		expect(result.ok).toBe(true);
+		if (!result.ok) return;
+		const [ask, tell] = result.deck.slides;
+		expect(ask.kind === "retrieval" && ask.thai).toBe("กฎหมาย");
+		expect(tell.kind === "reveal" && tell.thai).toBe("กฎหมาย");
+	});
+
+	it("still refuses a retrieval that carries its own answer", () => {
+		// The reason a retrieval is a retrieval. Adding `thai` must not have
+		// opened a door beside it.
+		const result = validateDeck(
+			deck([
+				{
+					kind: "retrieval",
+					id: "read-it",
+					prompt: "Read this one.",
+					revealSlideId: "read-it-answer",
+					thai: "กฎหมาย",
+					answers: ["gòt-măai"],
+				},
+				{
+					kind: "reveal",
+					id: "read-it-answer",
+					retrievalSlideId: "read-it",
+					answers: ["gòt-măai"],
+				},
+			]),
+		);
+		expect(result.ok).toBe(false);
+		if (result.ok) return;
+		expect(result.errors.map((e) => e.code)).toContain(
+			"retrieval-answer-on-same-slide",
+		);
+	});
+
+	it("leaves thai off when the slide does not read anything", () => {
+		const result = validateDeck(deck([RETRIEVAL, REVEAL]));
+		expect(result.ok).toBe(true);
+		if (!result.ok) return;
+		const [ask] = result.deck.slides;
+		expect(ask.kind === "retrieval" && ask.thai).toBeUndefined();
+	});
+});
+
 describe("a deck's stated length", () => {
 	const WITH_SLIDES = [RETRIEVAL, REVEAL];
 

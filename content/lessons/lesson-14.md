@@ -151,16 +151,15 @@ narration: en Pen down. Draw the child's letter from lesson three, and then inst
 - The goad: **the same again, with a bump in the base line**.
 - Put the child's letter and the turtle's letter beside them.
 
-## exposition read-gotmaai
+## retrieval read-gotmaai
+reveal: read-gotmaai-answer
+prompt: Chicken, crown, and nothing written between them. Lesson nine: two bare consonants take the **unwritten short o**. **Work out the first syllable's tone** before you turn it over.
 thai: กฎหมาย
-heading: Read the first half of this one
 teaches: do-chada
 narration: en Six marks, and I want you to do half of this one and take the other half on trust. Look at the first two characters. The chicken's letter, then the crown, and nothing written between them. You met that arrangement in lesson nine: two bare consonants side by side are read with a short o that nobody writes down. So the first syllable is a market letter, a short o, and a stop. Work out the tone of that syllable before you turn this over. The second half uses a trick that has a lesson of its own later. A silent letter stands in front of the horse's letter and changes what it does. So read the first half, and let me give you the rest.
-- Chicken, crown, and nothing written between them.
-- Lesson nine: two bare consonants take the **unwritten short o**.
-- **Work out the first syllable's tone** before you turn it over.
 
-## exposition read-gotmaai-answer
+## reveal read-gotmaai-answer
+retrieval: read-gotmaai
 thai: กฎหมาย
 heading: That one
 teaches: do-chada
@@ -235,16 +234,15 @@ narration: en Pen again. The pedestal is the plate's curve set above a separate 
 - The elder: **the turtle's bowl into the horse's loop**.
 - Six spellings, one sound. Read the column.
 
-## exposition read-rat
+## retrieval read-rat
+reveal: read-rat-answer
+prompt: Boat, the curl on the roof, the pedestal closing it. **A breathed letter at the back loses its breath.** Lesson seven. District, alive or dead, long or short. Then say it.
 thai: รัฐ
-heading: Read this one
 teaches: tho-than
 narration: en Three marks. The boat's letter from lesson eight, the curl on the roof from lesson four, and then the pedestal's letter sealing it. Think about what the pedestal is doing back there. It is a breathed t at the front of a syllable, and a breathed letter closing one has behaved the same way since lesson seven. So: which district opens it, is the syllable alive or dead, and is the vowel long or short? Then say it out loud before you turn it over.
-- Boat, the curl on the roof, the pedestal closing it.
-- **A breathed letter at the back loses its breath.** Lesson seven.
-- District, alive or dead, long or short. Then say it.
 
-## exposition read-rat-answer
+## reveal read-rat-answer
+retrieval: read-rat
 thai: รัฐ
 heading: That one
 teaches: tho-than
@@ -425,15 +423,15 @@ narration: en And the honest part. Neither of them has a word in this course's v
 - **เ-ือะ** — the three-room spelling, with the same two hooks.
 - Neither has a word in this course. Recognise the shape and move on.
 
-## exposition read-duuean
+## retrieval read-duuean
+reveal: read-duuean-answer
+prompt: Mast, child's letter, the grin mark above, the basin, the mouse. **Name the vowel first**, then the district, then the ending.
 thai: เดือน
-heading: Read this one
 teaches: sara-uuea
 narration: en Five marks, and the vowel is the one you met ninety seconds ago. A mast out in front, the child's letter from lesson three, the long grin mark above it, the basin behind, and the mouse closing the whole thing. Name the vowel first. Then the district, then whether the ending stops the air. Out loud before you turn it over.
-- Mast, child's letter, the grin mark above, the basin, the mouse.
-- **Name the vowel first**, then the district, then the ending.
 
-## exposition read-duuean-answer
+## reveal read-duuean-answer
+retrieval: read-duuean
 thai: เดือน
 heading: That one
 teaches: sara-uuea

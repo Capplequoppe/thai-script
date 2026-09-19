@@ -162,15 +162,15 @@ narration: en Now, in lesson two you were told something flatly, and I want to p
 - These two stay outside the set.
 - They arrive **as** the mouse's letter, and are read as one.
 
-## exposition read-gaan
+## retrieval read-gaan
+reveal: read-gaan-answer
+prompt: Chicken, long vowel, and the boat's letter at the end. **Remember what it does there.** Out loud before you turn it over.
 thai: การ
-heading: Read this one
 teaches: ro-ria
 narration: en Three letters, all yours, and this is the commonest word in the language built this way. The chicken's letter, the long vowel, and the boat's letter at the end. Remember what the boat does in last position. Out loud before you turn it over.
-- Chicken, long vowel, and the boat's letter at the end.
-- **Remember what it does there.** Out loud before you turn it over.
 
-## exposition read-gaan-answer
+## reveal read-gaan-answer
+retrieval: read-gaan
 thai: การ
 heading: That one
 teaches: ro-ria
@@ -217,15 +217,15 @@ narration: en Two uprights with the small curve at the top of each, side by side
 - Written **ahead of** the consonant.
 - Say each syllable aloud, with the consonant leading.
 
-## exposition read-daaeng
+## retrieval read-daaeng
+reveal: read-daaeng-answer
+prompt: Twin masts, the child's letter, the snake closing it. **Watch the order.** Out loud before you turn it over.
 thai: แดง
-heading: Read this one
 teaches: sara-aae
 narration: en Three marks. Twin masts, the child's letter from the market, and the snake's letter closing it. Watch the order. Out loud before you turn it over.
-- Twin masts, the child's letter, the snake closing it.
-- **Watch the order.** Out loud before you turn it over.
 
-## exposition read-daaeng-answer
+## reveal read-daaeng-answer
+retrieval: read-daaeng
 thai: แดง
 heading: That one
 teaches: sara-aae

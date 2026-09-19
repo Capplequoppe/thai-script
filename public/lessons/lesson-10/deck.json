@@ -73,23 +73,20 @@
 			"teaches": ["sara-ao"]
 		},
 		{
-			"kind": "exposition",
+			"kind": "retrieval",
 			"id": "read-rao",
-			"heading": "Read this one",
-			"body": [
-				"The mast, the boat's letter, the long post.",
-				"One vowel wrapped round one consonant. Out loud before you turn it over."
-			],
+			"prompt": "The mast, the boat's letter, the long post. One vowel wrapped round one consonant. Out loud before you turn it over.",
+			"revealSlideId": "read-rao-answer",
 			"audio": ["/thai-script/lessons/lesson-10/audio/21b256a5782b3348.mp3"],
 			"audioLanguages": ["en"],
 			"thai": "เรา",
 			"teaches": ["sara-ao"]
 		},
 		{
-			"kind": "exposition",
+			"kind": "reveal",
 			"id": "read-rao-answer",
-			"heading": "That one",
-			"body": [
+			"retrievalSlideId": "read-rao",
+			"answers": [
 				"**เรา** — we, or us.",
 				"Also a very common everyday word for *I*."
 			],
@@ -134,23 +131,23 @@
 			"teaches": ["sara-ai-mai-malaai"]
 		},
 		{
-			"kind": "exposition",
+			"kind": "retrieval",
 			"id": "read-bpai",
-			"heading": "Read this one",
-			"body": [
-				"The zigzag mast, then the fish's letter.",
-				"Out loud before you turn it over."
-			],
+			"prompt": "The zigzag mast, then the fish's letter. Out loud before you turn it over.",
+			"revealSlideId": "read-bpai-answer",
 			"audio": ["/thai-script/lessons/lesson-10/audio/352eb67e05c1479d.mp3"],
 			"audioLanguages": ["en"],
 			"thai": "ไป",
 			"teaches": ["sara-ai-mai-malaai"]
 		},
 		{
-			"kind": "exposition",
+			"kind": "reveal",
 			"id": "read-bpai-answer",
-			"heading": "That one",
-			"body": ["**ไป** — to go.", "The 34th commonest word in the language."],
+			"retrievalSlideId": "read-bpai",
+			"answers": [
+				"**ไป** — to go.",
+				"The 34th commonest word in the language."
+			],
 			"audio": [
 				"/thai-script/lessons/lesson-10/audio/71f0aef5ff7e7039.mp3",
 				"/thai-script/lessons/lesson-10/audio/d157e049a539be1f.mp3"
@@ -337,24 +334,20 @@
 			"image": "/thai-script/lessons/lesson-10/images/clusters-named-584d135d7904.jpg"
 		},
 		{
-			"kind": "exposition",
+			"kind": "retrieval",
 			"id": "read-khrai",
-			"heading": "Read this one",
-			"body": [
-				"The curled mast, the buffalo's letter, the boat's letter.",
-				"The last two run together into a single syllable.",
-				"Out loud before you turn it over."
-			],
+			"prompt": "The curled mast, the buffalo's letter, the boat's letter. The last two run together into a single syllable. Out loud before you turn it over.",
+			"revealSlideId": "read-khrai-answer",
 			"audio": ["/thai-script/lessons/lesson-10/audio/abfa0e4fb84e27ff.mp3"],
 			"audioLanguages": ["en"],
 			"thai": "ใคร",
 			"teaches": ["sara-ai-mai-muuan"]
 		},
 		{
-			"kind": "exposition",
+			"kind": "reveal",
 			"id": "read-khrai-answer",
-			"heading": "That one",
-			"body": [
+			"retrievalSlideId": "read-khrai",
+			"answers": [
 				"**ใคร** — who, and a fifth word taking the curl.",
 				"**ใคร ๆ** — anyone at all."
 			],
@@ -367,23 +360,20 @@
 			"teaches": ["sara-ai-mai-muuan"]
 		},
 		{
-			"kind": "exposition",
+			"kind": "retrieval",
 			"id": "read-thai",
-			"heading": "One more, and you have been waiting for it",
-			"body": [
-				"The zigzag mast, the soldier's letter, the giant's letter.",
-				"Out loud before you turn it over."
-			],
+			"prompt": "The zigzag mast, the soldier's letter, the giant's letter. Out loud before you turn it over.",
+			"revealSlideId": "read-thai-answer",
 			"audio": ["/thai-script/lessons/lesson-10/audio/ab08e3a092ed81d8.mp3"],
 			"audioLanguages": ["en"],
 			"thai": "ไทย",
 			"teaches": ["sara-ai-mai-malaai"]
 		},
 		{
-			"kind": "exposition",
+			"kind": "reveal",
 			"id": "read-thai-answer",
-			"heading": "That one",
-			"body": [
+			"retrievalSlideId": "read-thai",
+			"answers": [
 				"**ไทย** — Thai, and Thailand.",
 				"The last piece it needed was today's zigzag mast."
 			],
@@ -424,7 +414,7 @@
 	],
 	"timing": {
 		"spokenSeconds": 698,
-		"practiceSeconds": 242,
-		"estimatedMinutes": 16
+		"practiceSeconds": 342,
+		"estimatedMinutes": 17
 	}
 }

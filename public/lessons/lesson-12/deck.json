@@ -166,24 +166,20 @@
 			"image": "/thai-script/lessons/lesson-12/images/rising-in-the-mouth-1589228b152e.jpg"
 		},
 		{
-			"kind": "exposition",
+			"kind": "retrieval",
 			"id": "read-suung",
-			"heading": "Read this one",
-			"body": [
-				"Tiger, the long oo in the cellar, the snake closing it.",
-				"The syllable alive, temple letter.",
-				"**Out loud, with the dip, before you turn it over.**"
-			],
+			"prompt": "Tiger, the long oo in the cellar, the snake closing it. The syllable alive, temple letter. **Out loud, with the dip, before you turn it over.**",
+			"revealSlideId": "read-suung-answer",
 			"audio": ["/thai-script/lessons/lesson-12/audio/a94bf2b216f7af6d.mp3"],
 			"audioLanguages": ["en"],
 			"thai": "สูง",
 			"teaches": ["so-sia", "high-live"]
 		},
 		{
-			"kind": "exposition",
+			"kind": "reveal",
 			"id": "read-suung-answer",
-			"heading": "That one",
-			"body": [
+			"retrievalSlideId": "read-suung",
+			"answers": [
 				"**สูง** — tall.",
 				"Rising, from the temple letter and the ending that leaves it alive."
 			],
@@ -278,24 +274,20 @@
 			"teaches": ["kho-khay", "tho-thung", "pho-phing"]
 		},
 		{
-			"kind": "exposition",
+			"kind": "retrieval",
 			"id": "read-khao",
-			"heading": "Read this one",
-			"body": [
-				"Mast, the egg's letter, the long post.",
-				"**Watch the order.** The mast goes down first and is spoken second.",
-				"Work the tone out before you say it."
-			],
+			"prompt": "Mast, the egg's letter, the long post. **Watch the order.** The mast goes down first and is spoken second. Work the tone out before you say it.",
+			"revealSlideId": "read-khao-answer",
 			"audio": ["/thai-script/lessons/lesson-12/audio/24d917d1050e64ef.mp3"],
 			"audioLanguages": ["en"],
 			"thai": "เขา",
 			"teaches": ["kho-khay", "high-live"]
 		},
 		{
-			"kind": "exposition",
+			"kind": "reveal",
 			"id": "read-khao-answer",
-			"heading": "That one",
-			"body": [
+			"retrievalSlideId": "read-khao",
+			"answers": [
 				"**เขา** — he, or she.",
 				"Rising: temple letter, the syllable alive.",
 				"The same sound from the harbour would come out flat."
@@ -423,24 +415,20 @@
 			"teaches": ["sara-ia", "sara-iia"]
 		},
 		{
-			"kind": "exposition",
+			"kind": "retrieval",
 			"id": "read-sia",
-			"heading": "Read this one",
-			"body": [
-				"Mast, tiger, the roof mark, the giant's letter.",
-				"The syllable alive, temple letter.",
-				"**Tone first, then out loud.**"
-			],
+			"prompt": "Mast, tiger, the roof mark, the giant's letter. The syllable alive, temple letter. **Tone first, then out loud.**",
+			"revealSlideId": "read-sia-answer",
 			"audio": ["/thai-script/lessons/lesson-12/audio/b4d6ac2b08555684.mp3"],
 			"audioLanguages": ["en"],
 			"thai": "เสีย",
 			"teaches": ["sara-iia", "so-sia"]
 		},
 		{
-			"kind": "exposition",
+			"kind": "reveal",
 			"id": "read-sia-answer",
-			"heading": "That one",
-			"body": [
+			"retrievalSlideId": "read-sia",
+			"answers": [
 				"**เสีย** — to lose, to waste, to break.",
 				"Rising: temple letter, the syllable alive."
 			],
@@ -453,24 +441,20 @@
 			"teaches": ["sara-iia", "so-sia"]
 		},
 		{
-			"kind": "exposition",
+			"kind": "retrieval",
 			"id": "read-rian",
-			"heading": "Now the same vowel from the harbour",
-			"body": [
-				"Mast, boat, roof mark, giant's letter, mouse closing it.",
-				"The boat lives at the **harbour**, and the ending hums.",
-				"Say the tone out loud before you turn it over."
-			],
+			"prompt": "Mast, boat, roof mark, giant's letter, mouse closing it. The boat lives at the **harbour**, and the ending hums. Say the tone out loud before you turn it over.",
+			"revealSlideId": "read-rian-answer",
 			"audio": ["/thai-script/lessons/lesson-12/audio/001ef84c126e8dd9.mp3"],
 			"audioLanguages": ["en"],
 			"thai": "เรียน",
 			"teaches": ["sara-iia", "high-live", "low-live"]
 		},
 		{
-			"kind": "exposition",
+			"kind": "reveal",
 			"id": "read-rian-answer",
-			"heading": "That one",
-			"body": [
+			"retrievalSlideId": "read-rian",
+			"answers": [
 				"**เรียน** — to study.",
 				"Flat: harbour letter, the syllable alive.",
 				"Same vowel as the last word, and a different tone, from the district alone."
@@ -572,7 +556,7 @@
 	],
 	"timing": {
 		"spokenSeconds": 1041,
-		"practiceSeconds": 278,
-		"estimatedMinutes": 22
+		"practiceSeconds": 378,
+		"estimatedMinutes": 24
 	}
 }

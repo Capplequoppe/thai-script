@@ -120,23 +120,20 @@
 			"image": "/thai-script/lessons/lesson-11/images/job-one-ff23fc99c768.jpg"
 		},
 		{
-			"kind": "exposition",
+			"kind": "retrieval",
 			"id": "read-iik",
-			"heading": "Read this one",
-			"body": [
-				"The ring, silent. Then the roof's lodger, then the chicken stopping it.",
-				"Out loud before you turn it over."
-			],
+			"prompt": "The ring, silent. Then the roof's lodger, then the chicken stopping it. Out loud before you turn it over.",
+			"revealSlideId": "read-iik-answer",
 			"audio": ["/thai-script/lessons/lesson-11/audio/90353e52b3211db5.mp3"],
 			"audioLanguages": ["en"],
 			"thai": "อีก",
 			"teaches": ["o-ang"]
 		},
 		{
-			"kind": "exposition",
+			"kind": "reveal",
 			"id": "read-iik-answer",
-			"heading": "That one",
-			"body": [
+			"retrievalSlideId": "read-iik",
+			"answers": [
 				"**อีก** — more, or again.",
 				"The ring says nothing. The vowel behind it is the sound."
 			],
@@ -187,23 +184,20 @@
 			"image": "/thai-script/lessons/lesson-11/images/job-two-b671f5e73ba7.jpg"
 		},
 		{
-			"kind": "exposition",
+			"kind": "retrieval",
 			"id": "read-naawn",
-			"heading": "Read this one",
-			"body": [
-				"Mouse, basin as the vowel, mouse again closing it.",
-				"Hold the vowel long. Out loud before you turn it over."
-			],
+			"prompt": "Mouse, basin as the vowel, mouse again closing it. Hold the vowel long. Out loud before you turn it over.",
+			"revealSlideId": "read-naawn-answer",
 			"audio": ["/thai-script/lessons/lesson-11/audio/ae4cd2f0f272de36.mp3"],
 			"audioLanguages": ["en"],
 			"thai": "นอน",
 			"teaches": ["sara-aaw"]
 		},
 		{
-			"kind": "exposition",
+			"kind": "reveal",
 			"id": "read-naawn-answer",
-			"heading": "That one",
-			"body": [
+			"retrievalSlideId": "read-naawn",
+			"answers": [
 				"**นอน** — to lie down, or to sleep.",
 				"Harbour letter, the syllable alive, flat and level."
 			],
@@ -216,24 +210,20 @@
 			"teaches": ["sara-aaw"]
 		},
 		{
-			"kind": "exposition",
+			"kind": "retrieval",
 			"id": "read-aawk",
-			"heading": "Both jobs in one word",
-			"body": [
-				"The first ring: silent, holding the slot.",
-				"The second ring: the long vowel.",
-				"Then the chicken's letter stopping it. Out loud first."
-			],
+			"prompt": "The first ring: silent, holding the slot. The second ring: the long vowel. Then the chicken's letter stopping it. Out loud first.",
+			"revealSlideId": "read-aawk-answer",
 			"audio": ["/thai-script/lessons/lesson-11/audio/1f470e151b4e4abf.mp3"],
 			"audioLanguages": ["en"],
 			"thai": "ออก",
 			"teaches": ["o-ang", "sara-aaw"]
 		},
 		{
-			"kind": "exposition",
+			"kind": "reveal",
 			"id": "read-aawk-answer",
-			"heading": "That one",
-			"body": [
+			"retrievalSlideId": "read-aawk",
+			"answers": [
 				"**ออก** — out, or to go out.",
 				"The same letter twice: silent, then the vowel."
 			],
@@ -286,23 +276,20 @@
 			"image": "/thai-script/lessons/lesson-11/images/meet-short-aw-14f6957a7c9b.jpg"
 		},
 		{
-			"kind": "exposition",
+			"kind": "retrieval",
 			"id": "read-kaw",
-			"heading": "Read this one",
-			"body": [
-				"Three marks of vowel, wrapped round the chicken's letter.",
-				"Short. Out loud before you turn it over."
-			],
+			"prompt": "Three marks of vowel, wrapped round the chicken's letter. Short. Out loud before you turn it over.",
+			"revealSlideId": "read-kaw-answer",
 			"audio": ["/thai-script/lessons/lesson-11/audio/882c81c9269bc3d6.mp3"],
 			"audioLanguages": ["en"],
 			"thai": "เกาะ",
 			"teaches": ["sara-aw"]
 		},
 		{
-			"kind": "exposition",
+			"kind": "reveal",
 			"id": "read-kaw-answer",
-			"heading": "That one",
-			"body": [
+			"retrievalSlideId": "read-kaw",
+			"answers": [
 				"**เกาะ** — an island.",
 				"Market letter, short vowel, stopped dead.",
 				"Read from the page. This one has no recording here.",
@@ -430,7 +417,7 @@
 	],
 	"timing": {
 		"spokenSeconds": 713,
-		"practiceSeconds": 236,
-		"estimatedMinutes": 16
+		"practiceSeconds": 336,
+		"estimatedMinutes": 17
 	}
 }

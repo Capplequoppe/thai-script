@@ -96,15 +96,15 @@ narration: en Write the mast first, because that is the order your pen goes in. 
 - Say it aloud with the consonant leaving your mouth first.
 - Put the boat's letter in the middle and try it.
 
-## exposition read-rao
+## retrieval read-rao
+reveal: read-rao-answer
+prompt: The mast, the boat's letter, the long post. One vowel wrapped round one consonant. Out loud before you turn it over.
 thai: เรา
-heading: Read this one
 teaches: sara-ao
 narration: en Three marks, and the middle one is the boat. Take the two outer marks together as one vowel, put the boat between them, and say it out loud before you turn it over.
-- The mast, the boat's letter, the long post.
-- One vowel wrapped round one consonant. Out loud before you turn it over.
 
-## exposition read-rao-answer
+## reveal read-rao-answer
+retrieval: read-rao
 thai: เรา
 heading: That one
 teaches: sara-ao
@@ -137,15 +137,15 @@ narration: en One upright, and the zigzag goes on at the top as a small sharp fl
 - Write it ahead of the fish's letter and say it aloud.
 - Consonant out of the mouth first, then the vowel.
 
-## exposition read-bpai
+## retrieval read-bpai
+reveal: read-bpai-answer
+prompt: The zigzag mast, then the fish's letter. Out loud before you turn it over.
 thai: ไป
-heading: Read this one
 teaches: sara-ai-mai-malaai
 narration: en Two marks. The zigzag mast, and the fish's letter you learned last lesson. It is one of the commonest words in the language and you have everything you need for it. Out loud before you turn it over.
-- The zigzag mast, then the fish's letter.
-- Out loud before you turn it over.
 
-## exposition read-bpai-answer
+## reveal read-bpai-answer
+retrieval: read-bpai
 thai: ไป
 heading: That one
 teaches: sara-ai-mai-malaai
@@ -278,16 +278,15 @@ narration: en Last thing today. You met two bare consonants side by side last le
 - Only three letters can stand second, and the rule names all three.
 - Last lesson gave you the other reading of two bare consonants.
 
-## exposition read-khrai
+## retrieval read-khrai
+reveal: read-khrai-answer
+prompt: The curled mast, the buffalo's letter, the boat's letter. The last two run together into a single syllable. Out loud before you turn it over.
 thai: ใคร
-heading: Read this one
 teaches: sara-ai-mai-muuan
 narration: en Three marks. The curled mast, the buffalo's letter, and the boat's letter — and those last two are a cluster, so run them together as one sound. It is one syllable. Say it out loud before you turn it over.
-- The curled mast, the buffalo's letter, the boat's letter.
-- The last two run together into a single syllable.
-- Out loud before you turn it over.
 
-## exposition read-khrai-answer
+## reveal read-khrai-answer
+retrieval: read-khrai
 thai: ใคร
 heading: That one
 teaches: sara-ai-mai-muuan
@@ -296,15 +295,15 @@ narration: en Who. And it is one of the twenty words on the curl's guest list, s
 - **ใคร** — who, and a fifth word taking the curl.
 - **ใคร ๆ** — anyone at all.
 
-## exposition read-thai
+## retrieval read-thai
+reveal: read-thai-answer
+prompt: The zigzag mast, the soldier's letter, the giant's letter. Out loud before you turn it over.
 thai: ไทย
-heading: One more, and you have been waiting for it
 teaches: sara-ai-mai-malaai
 narration: en Three marks, and every one of them has been yours for a while. The zigzag mast from today, the soldier's letter from lesson seven, and the giant's letter from lesson two. Out loud before you turn it over.
-- The zigzag mast, the soldier's letter, the giant's letter.
-- Out loud before you turn it over.
 
-## exposition read-thai-answer
+## reveal read-thai-answer
+retrieval: read-thai
 thai: ไทย
 heading: That one
 teaches: sara-ai-mai-malaai

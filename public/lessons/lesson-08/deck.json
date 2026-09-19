@@ -170,23 +170,20 @@
 			"image": "/thai-script/lessons/lesson-08/images/not-a-sixth-ending-641240bde4cf.jpg"
 		},
 		{
-			"kind": "exposition",
+			"kind": "retrieval",
 			"id": "read-gaan",
-			"heading": "Read this one",
-			"body": [
-				"Chicken, long vowel, and the boat's letter at the end.",
-				"**Remember what it does there.** Out loud before you turn it over."
-			],
+			"prompt": "Chicken, long vowel, and the boat's letter at the end. **Remember what it does there.** Out loud before you turn it over.",
+			"revealSlideId": "read-gaan-answer",
 			"audio": ["/thai-script/lessons/lesson-08/audio/18b4049cab4ca4e6.mp3"],
 			"audioLanguages": ["en"],
 			"thai": "การ",
 			"teaches": ["ro-ria"]
 		},
 		{
-			"kind": "exposition",
+			"kind": "reveal",
 			"id": "read-gaan-answer",
-			"heading": "That one",
-			"body": [
+			"retrievalSlideId": "read-gaan",
+			"answers": [
 				"**การ** — ends on **n**, with no roll at all.",
 				"It turns up inside longer words unchanged."
 			],
@@ -253,23 +250,20 @@
 			"teaches": ["sara-aae"]
 		},
 		{
-			"kind": "exposition",
+			"kind": "retrieval",
 			"id": "read-daaeng",
-			"heading": "Read this one",
-			"body": [
-				"Twin masts, the child's letter, the snake closing it.",
-				"**Watch the order.** Out loud before you turn it over."
-			],
+			"prompt": "Twin masts, the child's letter, the snake closing it. **Watch the order.** Out loud before you turn it over.",
+			"revealSlideId": "read-daaeng-answer",
 			"audio": ["/thai-script/lessons/lesson-08/audio/93a600eb2e62f0d0.mp3"],
 			"audioLanguages": ["en"],
 			"thai": "แดง",
 			"teaches": ["sara-aae"]
 		},
 		{
-			"kind": "exposition",
+			"kind": "reveal",
 			"id": "read-daaeng-answer",
-			"heading": "That one",
-			"body": [
+			"retrievalSlideId": "read-daaeng",
+			"answers": [
 				"**แดง** — red.",
 				"The syllable alive, low class, and the tone comes out flat."
 			],
@@ -369,7 +363,7 @@
 	],
 	"timing": {
 		"spokenSeconds": 492,
-		"practiceSeconds": 206,
+		"practiceSeconds": 256,
 		"estimatedMinutes": 12
 	}
 }

@@ -116,15 +116,15 @@ narration: en A Thai syllable is built consonant first and vowel after. That has
 - Some words open on a vowel and have no consonant to write.
 - The basin stands in the slot and makes no sound.
 
-## exposition read-iik
+## retrieval read-iik
+reveal: read-iik-answer
+prompt: The ring, silent. Then the roof's lodger, then the chicken stopping it. Out loud before you turn it over.
 thai: อีก
-heading: Read this one
 teaches: o-ang
 narration: en Three marks, and the first of them is silent. Skip straight past the ring, and what is left is the lodger on the roof saying his own name — then the chicken's letter stops it. Out loud before you turn it over.
-- The ring, silent. Then the roof's lodger, then the chicken stopping it.
-- Out loud before you turn it over.
 
-## exposition read-iik-answer
+## reveal read-iik-answer
+retrieval: read-iik
 thai: อีก
 heading: That one
 teaches: o-ang
@@ -162,15 +162,15 @@ narration: en A long aw, with the jaw dropped all the way, like the middle of th
 - It stops being silent and becomes a long aw.
 - The jaw drops all the way, as in the English word *saw*.
 
-## exposition read-naawn
+## retrieval read-naawn
+reveal: read-naawn-answer
+prompt: Mouse, basin as the vowel, mouse again closing it. Hold the vowel long. Out loud before you turn it over.
 thai: นอน
-heading: Read this one
 teaches: sara-aaw
 narration: en Three marks. The mouse's letter opening it, the basin doing its second job in the middle, and the mouse's letter again closing it. Out loud before you turn it over, and hold the vowel long.
-- Mouse, basin as the vowel, mouse again closing it.
-- Hold the vowel long. Out loud before you turn it over.
 
-## exposition read-naawn-answer
+## reveal read-naawn-answer
+retrieval: read-naawn
 thai: นอน
 heading: That one
 teaches: sara-aaw
@@ -179,16 +179,15 @@ narration: en To lie down, and to sleep. It opens on a harbour letter and ends o
 - **นอน** — to lie down, or to sleep.
 - Harbour letter, the syllable alive, flat and level.
 
-## exposition read-aawk
+## retrieval read-aawk
+reveal: read-aawk-answer
+prompt: The first ring: silent, holding the slot. The second ring: the long vowel. Then the chicken's letter stopping it. Out loud first.
 thai: ออก
-heading: Both jobs in one word
 teaches: o-ang, sara-aaw
 narration: en Three marks, and the first two are the same letter doing both of its jobs at once. The first ring is silent and holding the slot. The second ring is the vowel. Then the chicken's letter stops the whole thing. Take it slowly and say it out loud before you turn it over.
-- The first ring: silent, holding the slot.
-- The second ring: the long vowel.
-- Then the chicken's letter stopping it. Out loud first.
 
-## exposition read-aawk-answer
+## reveal read-aawk-answer
+retrieval: read-aawk
 thai: ออก
 heading: That one
 teaches: o-ang, sara-aaw
@@ -226,15 +225,15 @@ narration: en Same jaw, same shape of mouth, gone before the yawn can open. The 
 - The same mouth as the long aw, cut off early.
 - Long and short are two separate vowels here, as they have been since lesson one.
 
-## exposition read-kaw
+## retrieval read-kaw
+reveal: read-kaw-answer
+prompt: Three marks of vowel, wrapped round the chicken's letter. Short. Out loud before you turn it over.
 thai: เกาะ
-heading: Read this one
 teaches: sara-aw
 narration: en Four marks, and three of them are the vowel wrapped round the middle one. The chicken's letter sits inside. Say it short, and say it out loud before you turn it over.
-- Three marks of vowel, wrapped round the chicken's letter.
-- Short. Out loud before you turn it over.
 
-## exposition read-kaw-answer
+## reveal read-kaw-answer
+retrieval: read-kaw
 thai: เกาะ
 heading: That one
 teaches: sara-aw

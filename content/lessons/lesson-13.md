@@ -157,16 +157,15 @@ narration: en All three low, and only the middle one has a short vowel.
 - Long vowel or short, the tone comes out the same.
 - The harbour needed two rules here. The temple needs one.
 
-## exposition read-phiseet
+## retrieval read-phiseet
+reveal: read-phiseet-answer
+prompt: Tray plus short ee, then mast, pavilion, hermit. Two syllables, and a different rule for each. **Out loud before you turn it over.**
 thai: พิเศษ
-heading: Read this one
 teaches: so-sala, so-risi, high-dead-long
 narration: en Five marks, two syllables, and everything in it is yours. The first syllable is the offering tray from lesson five with the short ee under it, and nothing closes it. The second is a mast, the pavilion's letter, and then the hermit's letter stopping it dead. Work both tones out before you speak. Remember what the tray's letter is, and what the pavilion's letter is, and which rule each half needs. Out loud before you turn it over.
-- Tray plus short ee, then mast, pavilion, hermit.
-- Two syllables, and a different rule for each.
-- **Out loud before you turn it over.**
 
-## exposition read-phiseet-answer
+## reveal read-phiseet-answer
+retrieval: read-phiseet
 thai: พิเศษ
 heading: That one
 teaches: so-sala, so-risi, high-dead-long
@@ -258,16 +257,15 @@ narration: en Pen again, one at a time, and say both halves of each name while y
 - The junk: **the bag, with its head swung outside**.
 - The flag: **the boat, with its top tied shut**.
 
-## exposition read-phaasaa
+## retrieval read-phaasaa
+reveal: read-phaasaa-answer
+prompt: Junk, long post, hermit, long post. One harbour letter and one temple letter, in one word. Both halves run alive. **Out loud before you turn it over.**
 thai: ภาษา
-heading: Read this one
 teaches: pho-samphau, so-risi
 narration: en Four marks, two syllables, two of today's letters. The junk opens it, then the long post from lesson one. Then the hermit's letter, and the long post again. One of those letters lives at the harbour and the other lives at the temple. Both syllables end open on a long vowel, with nothing stopping either of them. So the two halves take different rules. Work them out and say the whole word before you turn it over.
-- Junk, long post, hermit, long post.
-- One harbour letter and one temple letter, in one word.
-- Both halves run alive. **Out loud before you turn it over.**
 
-## exposition read-phaasaa-answer
+## reveal read-phaasaa-answer
+retrieval: read-phaasaa
 thai: ภาษา
 heading: That one
 teaches: pho-samphau, so-risi
@@ -311,16 +309,15 @@ narration: en That means to remember.
 - Every syllable this vowel finishes is **alive**.
 - Short as it is, the hum keeps the air running, so the syllable lives.
 
-## exposition read-samkhan
+## retrieval read-samkhan
+reveal: read-samkhan-answer
+prompt: Tiger plus the new vowel, then buffalo, the curl on the roof, and the woman's letter. **Remember what she does last in a syllable.** Both tones before you speak.
 thai: สำคัญ
-heading: Read this one
 teaches: sara-am, yo-ying
 narration: en Two syllables, and the second one uses a letter you met twenty minutes ago in the job it does least often. The tiger from last lesson, with the new vowel over and behind it. Then the water buffalo, the curl on the roof from lesson four, and the woman's letter closing the word. Remember what the woman's letter does in last position. Work out both tones, and say the whole thing before you turn it over.
-- Tiger plus the new vowel, then buffalo, the curl on the roof, and the woman's letter.
-- **Remember what she does last in a syllable.**
-- Both tones before you speak.
 
-## exposition read-samkhan-answer
+## reveal read-samkhan-answer
+retrieval: read-samkhan
 thai: สำคัญ
 heading: That one
 teaches: sara-am, yo-ying
@@ -389,15 +386,15 @@ narration: en And I have to be straight with you about this one, because the gap
 - Common Thai has no closed example of it.
 - Learn the open shape and move on.
 
-## exposition read-doen
+## retrieval read-doen
+reveal: read-doen-answer
+prompt: Mast, the child's letter, the brim above, the mouse closing it. **Name the vowel first**, then the district, then the tone.
 thai: เดิน
-heading: Read this one
 teaches: sara-ooe
 narration: en Four marks. A mast out in front, the child's letter from lesson three, the small brim up over it, and the mouse closing the word with a hum. Name the vowel before you say anything, because the shape it is wearing here is the one it puts on when something follows it. Then the district, then the tone. Out loud before you turn it over.
-- Mast, the child's letter, the brim above, the mouse closing it.
-- **Name the vowel first**, then the district, then the tone.
 
-## exposition read-doen-answer
+## reveal read-doen-answer
+retrieval: read-doen
 thai: เดิน
 heading: That one
 teaches: sara-ooe

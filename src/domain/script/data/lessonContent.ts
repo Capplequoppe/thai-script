@@ -302,6 +302,13 @@ export interface DeckRetrievalSlide extends DeckSlideSubject {
 	readonly id: string;
 	readonly prompt: string;
 	readonly revealSlideId: string;
+	/**
+	 * Thai to be *read*, shown large in the app's own font.
+	 *
+	 * Present on a reading exercise, where the question and its answer are
+	 * both about a particular word and it has to stay on screen through both.
+	 */
+	readonly thai?: string;
 }
 
 export interface DeckRevealSlide extends DeckSlideSubject {
@@ -309,6 +316,13 @@ export interface DeckRevealSlide extends DeckSlideSubject {
 	readonly id: string;
 	readonly retrievalSlideId: string;
 	readonly answers: readonly string[];
+	/**
+	 * Thai to be *read*, shown large in the app's own font.
+	 *
+	 * Present on a reading exercise, where the question and its answer are
+	 * both about a particular word and it has to stay on screen through both.
+	 */
+	readonly thai?: string;
 }
 
 /** Renders from the lesson's rules block; holds no prose of its own. */
@@ -484,6 +498,7 @@ function parseSlide(
 				id,
 				prompt: raw.prompt,
 				revealSlideId: raw.revealSlideId,
+				...(typeof raw.thai === "string" && raw.thai ? { thai: raw.thai } : {}),
 			};
 		}
 		case "reveal": {
@@ -504,6 +519,7 @@ function parseSlide(
 				id,
 				retrievalSlideId: raw.retrievalSlideId,
 				answers: raw.answers,
+				...(typeof raw.thai === "string" && raw.thai ? { thai: raw.thai } : {}),
 			};
 		}
 		case "rule": {
