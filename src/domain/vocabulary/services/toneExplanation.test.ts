@@ -7,9 +7,15 @@
  * card is teaching a derivation that does not work.
  */
 import { describe, expect, it } from "vitest";
+import { toneMarkRules } from "../../script/data/symbols";
 import vocabularyData from "../data/vocabulary.json";
 import type { VocabEntry } from "../types";
-import { syllableShapeOf, toneExplanationFor } from "./toneExplanation";
+import {
+	CORPUS_MARK_ID,
+	MARK_LABEL,
+	syllableShapeOf,
+	toneExplanationFor,
+} from "./toneExplanation";
 
 const corpus = vocabularyData as unknown as VocabEntry[];
 
@@ -135,5 +141,68 @@ describe("against the corpus", () => {
 		// the number into a guard — at 0.9 it had four points of slack, which is
 		// room for a regression the size of the one this file exists to catch.
 		expect(agreed / compared).toBeGreaterThan(0.98);
+	});
+});
+
+describe("the two tone-mark dialects", () => {
+	// The corpus and the lessons spell the four tone marks differently, and
+	// both spellings are minted independently — `scripts/enrich-vocabulary.py`
+	// writes the corpus id straight from the Unicode codepoint, `markRuleId`
+	// in `memoryPalace.ts` builds the palace id from `toneMarkRules`.
+	//
+	// Nothing forces them to agree. What makes that dangerous rather than
+	// merely untidy is the shape of the failure: `isWordMastered` asks whether
+	// every id in an entry's `toneRules` is in the learner's mastered set, so a
+	// single spelling drifting apart means affected words are **never
+	// unlocked** — no exception, no warning, nothing in a log. The learner
+	// reports "my vocabulary stopped growing", weeks later.
+
+	it("maps every mark the lessons teach to a corpus id", () => {
+		for (const rule of toneMarkRules) {
+			expect(
+				CORPUS_MARK_ID[rule.toneMarkName],
+				`no corpus id for "${rule.toneMarkName}"`,
+			).toBeDefined();
+		}
+	});
+
+	it("round-trips both ways, so neither table can drift alone", () => {
+		for (const [corpus, palace] of Object.entries(MARK_LABEL)) {
+			expect(CORPUS_MARK_ID[palace]).toBe(corpus);
+		}
+		for (const [palace, corpus] of Object.entries(CORPUS_MARK_ID)) {
+			expect(MARK_LABEL[corpus]).toBe(palace);
+		}
+	});
+
+	it("produces rule ids the shipped corpus actually uses", () => {
+		// The end-to-end check the two above cannot make: the ids this builds
+		// have to be the ids sitting in `vocabulary.json`, or the join fails
+		// however self-consistent the tables are.
+		const inCorpus = new Set(
+			(vocabularyData as unknown as VocabEntry[]).flatMap(
+				(entry) => entry.toneRules ?? [],
+			),
+		);
+		// A marked rule is one whose suffix is one of the four mark ids. The
+		// spelling rules — `mid-dead-short`, `low-dead-long` — carry no mark
+		// and are minted on the palace side alone, so they are not this
+		// test's business.
+		const markIds = new Set(Object.values(CORPUS_MARK_ID));
+		const marked = [...inCorpus].filter((id) =>
+			[...markIds].some((mark) => id.endsWith(`-${mark}`)),
+		);
+		expect(marked.length).toBeGreaterThan(0);
+
+		const buildable = new Set(
+			toneMarkRules.map(
+				(rule) => `${rule.consonantClass}-${CORPUS_MARK_ID[rule.toneMarkName]}`,
+			),
+		);
+		for (const id of marked) {
+			expect(buildable, `corpus uses "${id}" and nothing mints it`).toContain(
+				id,
+			);
+		}
 	});
 });
