@@ -23,7 +23,9 @@ function palaceRuleId(summaryId: string): string | undefined {
 	if (split < 0) return undefined;
 	const name = rest.slice(0, split);
 	const consonantClass = rest.slice(split + 1);
-	if (!Object.values(ThaiSymbolClass).includes(consonantClass as ThaiSymbolClass)) {
+	if (
+		!Object.values(ThaiSymbolClass).includes(consonantClass as ThaiSymbolClass)
+	) {
 		return undefined;
 	}
 	return markRuleId(consonantClass as ThaiSymbolClass, name);
@@ -70,7 +72,22 @@ export function useLearnedScript(): LearnedScript {
 		const toneRules = new Set<string>();
 
 		for (const number of state.completedLessons) {
-			const summary = lesson.getScriptSummary(number);
+			// A completed position the sequence no longer has. `getScriptSummary`
+			// throws on one, and nothing above this catches it — a stored state
+			// carrying a single stale position took the whole page to a white
+			// screen, palace and all.
+			//
+			// That is not reachable by finishing lessons, and it is one
+			// resequence away: dropping a lesson shortens the sequence under
+			// every learner who had already passed it. The rest of their
+			// progress is intact and should still be shown, so the stale entry
+			// is skipped rather than allowed to lose all of it.
+			let summary: ReturnType<typeof lesson.getScriptSummary>;
+			try {
+				summary = lesson.getScriptSummary(number);
+			} catch {
+				continue;
+			}
 			for (const item of summary.consonants) consonants.add(item.character);
 			for (const item of summary.vowels) vowels.add(item.character);
 			for (const item of summary.toneMarks) toneMarks.add(item.character);
