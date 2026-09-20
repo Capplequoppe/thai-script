@@ -1173,10 +1173,10 @@
 			"kind": "image",
 			"state": "generated",
 			"language": null,
-			"inputHash": "d42ee34ac6deab86f333c5cc5c17e6d977c22bb11c2d96164f9d295fa8774b1f",
-			"contentHash": "675690a0fd4c6822dcf3cc2c747f91de33cbf95b617f3a8c58772897b22758c0",
-			"path": "/thai-script/lessons/lesson-02/images/the-paddy-d42ee34ac6de.jpg",
-			"file": "images/the-paddy-d42ee34ac6de.jpg",
+			"inputHash": "d67c8d0f657ab9e2be36a092d0c94f2a320781556199f1f6f34ae0b72598100a",
+			"contentHash": "96a7f80fd97827eb7b8e8f465013bf7eb87d9280f0df63a7a25c2bd168c399e3",
+			"path": "/thai-script/lessons/lesson-02/images/the-paddy-d67c8d0f657a.jpg",
+			"file": "images/the-paddy-d67c8d0f657a.jpg",
 			"verification": null,
 			"failure": null
 		}

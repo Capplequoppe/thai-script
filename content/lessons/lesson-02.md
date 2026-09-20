@@ -294,8 +294,7 @@ teaches: low-live
 narration: en Both halves are in your hand now. Every letter in the harbour is low class. Put one of them at the front of a syllable and let the syllable finish alive: the tone comes out flat, level from start to finish, about halfway up your speaking range. Low class, the syllable alive, mid tone. Every tone rule you meet after this one is measured against it.
 
 ## exposition the-paddy
-image: images/lesson-02/the-paddy.jpg
-scene: A fisherman and a market vendor stand talking in a flat rice paddy, both alive and unhurried, the horizon dead level behind them.
+image: images/palace/paddy-alive.jpg
 heading: Where a flat tone lives
 teaches: low-live, paddy-alive
 narration: en A flat tone has a place of its own, a long way inland from the harbour. It is a rice paddy, level to the horizon in every direction, nothing rising anywhere and nothing falling. A fisherman is standing in the middle of it, miles from his boat, talking. Look at him properly: he is perfectly all right. Alive, unhurried, nothing whatever has happened to him. A syllable that ends alive is a syllable nothing has happened to. A harbour voice that nothing has happened to comes out flat.

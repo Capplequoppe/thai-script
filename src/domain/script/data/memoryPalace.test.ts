@@ -254,11 +254,21 @@ describe("scene prompts", () => {
 		// is what the mark is named after: ek, tho, tri and chattawa are the
 		// Sanskrit one, two, three, four. N copies of an object was the first
 		// scheme and the model could not count them.
+		//
+		// The count, not one spelling of it. These were written as the prop's
+		// exact name, and that turned out to constrain the picture rather than
+		// the prose: "a two-pronged spear" is the object's name and draws a
+		// plain one-pointed spear at every seed, while "a shaft topped with
+		// exactly two long straight tines" draws two. Every wording change
+		// reshuffles the whole image, so a prompt that renders the right number
+		// is worth more than one that recites the right noun — and what this
+		// test exists to catch, a prompt that never says how many, is caught
+		// either way.
 		const COUNT_WORD: Record<string, RegExp> = {
-			"a plain one-pointed spear": /\bone-pointed\b/i,
-			"a two-pronged spear": /\btwo-pronged\b/i,
-			"a three-pronged trident": /\bthree-pronged trident\b/i,
-			"a four-tined pitchfork": /\bfour[- ]tined\b/i,
+			"a plain one-pointed spear": /\bone[- ](?:pointed|sharp point)\b/i,
+			"a two-pronged spear": /\btwo[- ](?:pronged|long straight tines)\b/i,
+			"a three-pronged trident": /\bthree[- ](?:pronged|prongs)\b/i,
+			"a four-tined pitchfork": /\bfour[- ](?:tined|straight tines)\b/i,
 		};
 		for (const scene of TONE_SCENES) {
 			if (!scene.prop) continue;

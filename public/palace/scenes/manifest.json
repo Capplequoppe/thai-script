@@ -19,15 +19,15 @@
 	},
 	"hill-monk-climbs": {
 		"file": "hill-monk-climbs.jpg",
-		"prompt": "A monk in an orange robe with a shaved head walking up a long steep hill path, seen from below, the path dipping in the foreground and then rising sharply to a high ridge against the sky. Anime illustration with clean confident ink linework and a soft watercolour wash. Warm golden key light against cool blue shadows, drifting dust motes, visible paper grain, rich saturated colour. Expressive faces, cinematic composition, detailed background. No text, letters, numbers or signage anywhere in the image.",
+		"prompt": "A a monk in a bright orange robe with a shaved head and one bare shoulder, carrying nothing, walking up a long steep hill path, seen from below, the path dipping in the foreground and then rising sharply to a high ridge against the sky. Anime illustration with clean confident ink linework and a soft watercolour wash. Warm golden key light against cool blue shadows, drifting dust motes, visible paper grain, rich saturated colour. Expressive faces, cinematic composition, detailed background. No text, letters, numbers or signage anywhere in the image.",
 		"scene": "A monk walks down into a dip and then climbs a long hill path, alive and steady, robes bright against the slope.",
 		"seed": 42
 	},
 	"hill-vendor-four-poles": {
 		"file": "hill-vendor-four-poles.jpg",
-		"prompt": "A market vendor in a flat straw hat and a work apron climbing alone up a steep hill path, holding up a single four-tined wooden pitchfork, exactly four straight tines spread wide and clear against the open sky. Anime illustration with clean confident ink linework and a soft watercolour wash. Warm golden key light against cool blue shadows, drifting dust motes, visible paper grain, rich saturated colour. Expressive faces, cinematic composition, detailed background. No text, letters, numbers or signage anywhere in the image.",
+		"prompt": "A wooden pitchfork with exactly four straight tines held up high, the four tines spread wide and clearly separate against the open sky, carried by a market vendor with thick black hair under a folded red and white chequered headband, wearing a canvas apron, climbing alone up a steep hill path. He carries this one pitchfork and nothing else. Anime illustration with clean confident ink linework and a soft watercolour wash. Warm golden key light against cool blue shadows, drifting dust motes, visible paper grain, rich saturated colour. Expressive faces, cinematic composition, detailed background. No text, letters, numbers or signage anywhere in the image.",
 		"scene": "The market vendor carries a four-tined pitchfork up the hill path, climbing alone.",
-		"seed": 42
+		"seed": 101
 	},
 	"map-districts": {
 		"file": "map-districts.jpg",
@@ -43,7 +43,7 @@
 	},
 	"paddy-alive": {
 		"file": "paddy-alive.jpg",
-		"prompt": "A fisherman in a conical straw hat and rolled-up trousers and a market vendor in a flat straw hat and a work apron standing and talking in a flooded green rice paddy, both upright, unhurt and relaxed, the horizon a dead flat line behind them under a wide open sky. Anime illustration with clean confident ink linework and a soft watercolour wash. Warm golden key light against cool blue shadows, drifting dust motes, visible paper grain, rich saturated colour. Expressive faces, cinematic composition, detailed background. No text, letters, numbers or signage anywhere in the image.",
+		"prompt": "A fisherman holding up a large silver fish by a cord through its gills, wearing a conical straw hat, barefoot in rolled-up trousers, standing and talking with a market vendor carrying a wooden shoulder pole across his shoulders with a shallow woven basket of vegetables hanging at each end, wearing a canvas apron, with thick black hair under a folded red and white chequered headband. Both stand upright in a flooded green rice paddy, unhurt and relaxed, the horizon a dead flat line behind them under a wide open sky. Anime illustration with clean confident ink linework and a soft watercolour wash. Warm golden key light against cool blue shadows, drifting dust motes, visible paper grain, rich saturated colour. Expressive faces, cinematic composition, detailed background. No text, letters, numbers or signage anywhere in the image.",
 		"scene": "A fisherman and a market vendor stand talking in a flat rice paddy, both alive and unhurried, the horizon dead level behind them.",
 		"seed": 42
 	},
@@ -85,49 +85,49 @@
 	},
 	"rooftop-fisherman-hooked": {
 		"file": "rooftop-fisherman-hooked.jpg",
-		"prompt": "A fisherman in a conical straw hat and rolled-up trousers lying sprawled on a flat rooftop against the sky, a large two-pronged spear planted upright on the roof beside him, both prongs clearly visible. Anime illustration with clean confident ink linework and a soft watercolour wash. Warm golden key light against cool blue shadows, drifting dust motes, visible paper grain, rich saturated colour. Expressive faces, cinematic composition, detailed background. No text, letters, numbers or signage anywhere in the image.",
+		"prompt": "A two-pronged spear — a tall wooden shaft topped with exactly two long straight tines spread apart — planted upright on a flat clay rooftop, the two tines clear against the open sky. a fisherman in a conical straw hat, barefoot in rolled-up trousers lies sprawled on the tiles beneath it, a small silver fish on the tiles beside him. Anime illustration with clean confident ink linework and a soft watercolour wash. Warm golden key light against cool blue shadows, drifting dust motes, visible paper grain, rich saturated colour. Expressive faces, cinematic composition, detailed background. No text, letters, numbers or signage anywhere in the image.",
 		"scene": "A two-pronged spear lifts the fisherman up onto the rooftop and leaves him there.",
-		"seed": 42
+		"seed": 23
 	},
 	"rooftop-fisherman-struck": {
 		"file": "rooftop-fisherman-struck.jpg",
-		"prompt": "A fisherman in a conical straw hat and rolled-up trousers standing on the flat roof of a building, at the instant a jagged white lightning bolt hits him. His body arches backwards, arms flung wide, a blinding flash at the point of impact. Anime illustration with clean confident ink linework and a soft watercolour wash. Warm golden key light against cool blue shadows, drifting dust motes, visible paper grain, rich saturated colour. Expressive faces, cinematic composition, detailed background. No text, letters, numbers or signage anywhere in the image.",
+		"prompt": "A fisherman in a conical straw hat, barefoot in rolled-up trousers, standing on the flat roof of a building at the instant a jagged white lightning bolt hits him. His body arches backwards, arms flung wide, a large silver fish dropping from his hand, a blinding flash at the point of impact. Anime illustration with clean confident ink linework and a soft watercolour wash. Warm golden key light against cool blue shadows, drifting dust motes, visible paper grain, rich saturated colour. Expressive faces, cinematic composition, detailed background. No text, letters, numbers or signage anywhere in the image.",
 		"scene": "A fisherman on a rooftop is killed instantly by a single lightning strike — one flash, already over.",
 		"seed": 42
 	},
 	"rooftop-vendor-three-flags": {
 		"file": "rooftop-vendor-three-flags.jpg",
-		"prompt": "A market vendor in a flat straw hat and a work apron standing alone on a flat rooftop, holding a large three-pronged trident upright in both hands, its three points sharp and clear against an open sky. Nobody else on the roof. Anime illustration with clean confident ink linework and a soft watercolour wash. Warm golden key light against cool blue shadows, drifting dust motes, visible paper grain, rich saturated colour. Expressive faces, cinematic composition, detailed background. No text, letters, numbers or signage anywhere in the image.",
+		"prompt": "A trident with exactly three prongs held upright in both hands, its three points sharp and clearly separate against an open sky, gripped by a market vendor with thick black hair under a folded red and white chequered headband, wearing a canvas apron, standing alone on a flat clay rooftop. He holds this one trident and nothing else, and there is nobody else on the roof. Anime illustration with clean confident ink linework and a soft watercolour wash. Warm golden key light against cool blue shadows, drifting dust motes, visible paper grain, rich saturated colour. Expressive faces, cinematic composition, detailed background. No text, letters, numbers or signage anywhere in the image.",
 		"scene": "The market vendor stands alone on the rooftop holding a trident, its three points against the sky.",
 		"seed": 42
 	},
 	"waterfall-fisherman-drowns": {
 		"file": "waterfall-fisherman-drowns.jpg",
-		"prompt": "A fisherman in a conical straw hat and rolled-up trousers sinking slowly beneath the surface of a deep green pool at the foot of a tall waterfall, arms drifting upward above him, a long trail of bubbles rising to the light. Anime illustration with clean confident ink linework and a soft watercolour wash. Warm golden key light against cool blue shadows, drifting dust motes, visible paper grain, rich saturated colour. Expressive faces, cinematic composition, detailed background. No text, letters, numbers or signage anywhere in the image.",
+		"prompt": "Underwater, a drowning fisherman sinking into the dark green depths of a pool beneath a waterfall, his body limp and falling away downward, his conical straw hat coming off and floating up above him, bubbles streaming upward, a small silver fish beside him, the surface light far above. Anime illustration with clean confident ink linework and a soft watercolour wash. Warm golden key light against cool blue shadows, drifting dust motes, visible paper grain, rich saturated colour. Expressive faces, cinematic composition, detailed background. No text, letters, numbers or signage anywhere in the image.",
 		"scene": "The same fisherman goes over a waterfall and drowns slowly in the pool below, the fall drawn out and unhurried.",
 		"seed": 42
 	},
 	"waterfall-fisherman-speared": {
 		"file": "waterfall-fisherman-speared.jpg",
-		"prompt": "A fisherman in a conical straw hat and rolled-up trousers falling head-first over the lip of a tall waterfall. A plain one-pointed spear is planted at the clifftop above him, its single point sharp against the sky. Anime illustration with clean confident ink linework and a soft watercolour wash. Warm golden key light against cool blue shadows, drifting dust motes, visible paper grain, rich saturated colour. Expressive faces, cinematic composition, detailed background. No text, letters, numbers or signage anywhere in the image.",
+		"prompt": "A plain one-pointed spear — a single shaft with one sharp point — planted at the top of a cliff, stark against the sky. Below it a fisherman in a conical straw hat, barefoot in rolled-up trousers falls head-first over the lip of the waterfall, a small silver fish tumbling through the white water beside him. Anime illustration with clean confident ink linework and a soft watercolour wash. Warm golden key light against cool blue shadows, drifting dust motes, visible paper grain, rich saturated colour. Expressive faces, cinematic composition, detailed background. No text, letters, numbers or signage anywhere in the image.",
 		"scene": "The same one-pointed spear sends the fisherman over the waterfall instead of into the well.",
 		"seed": 42
 	},
 	"waterfall-hooked-twice": {
 		"file": "waterfall-hooked-twice.jpg",
-		"prompt": "A market vendor in a flat straw hat and a work apron and a monk in an orange robe with a shaved head falling head-first over the lip of a tall waterfall, upside down in the white water. A large two-pronged spear is planted at the clifftop above them, both prongs clearly visible against the sky. Anime illustration with clean confident ink linework and a soft watercolour wash. Warm golden key light against cool blue shadows, drifting dust motes, visible paper grain, rich saturated colour. Expressive faces, cinematic composition, detailed background. No text, letters, numbers or signage anywhere in the image.",
+		"prompt": "A wooden pitchfork with exactly two long straight tines planted at the top of a cliff, the two tines spread apart against the sky. Below it two men fall head-first over the lip of the waterfall side by side, upside down in the white water: one is a young market vendor with messy black hair and a red chequered headband in a plain WHITE shirt and blue trousers, the other is a bald monk in ORANGE robes. Their clothes are completely different colours. Anime illustration with clean confident ink linework and a soft watercolour wash. Warm golden key light against cool blue shadows, drifting dust motes, visible paper grain, rich saturated colour. Expressive faces, cinematic composition, detailed background. No text, letters, numbers or signage anywhere in the image.",
 		"scene": "A two-pronged spear pitches the market vendor and the monk over the lip of the waterfall together.",
-		"seed": 42
+		"seed": 11
 	},
 	"well-speared-once": {
 		"file": "well-speared-once.jpg",
-		"prompt": "A plain one-pointed spear standing upright, driven into the stone rim of a round well. A market vendor in a flat straw hat and a work apron and a monk in an orange robe with a shaved head tumbling down the dark shaft beside it, arms above their heads, seen from the well mouth looking down. Anime illustration with clean confident ink linework and a soft watercolour wash. Warm golden key light against cool blue shadows, drifting dust motes, visible paper grain, rich saturated colour. Expressive faces, cinematic composition, detailed background. No text, letters, numbers or signage anywhere in the image.",
+		"prompt": "A plain one-pointed spear — a single shaft with one sharp point — standing upright driven into the stone rim of a round well, its single point stark against the sky. A wooden shoulder pole and two woven vegetable baskets lie dropped beside it, vegetables spilled on the stones. Down inside the black shaft below, a market vendor with thick black hair under a folded red and white chequered headband, in a plain white shirt and a bald monk in bright orange robes tumble away into the darkness, small and upside down, arms above their heads. Anime illustration with clean confident ink linework and a soft watercolour wash. Warm golden key light against cool blue shadows, drifting dust motes, visible paper grain, rich saturated colour. Expressive faces, cinematic composition, detailed background. No text, letters, numbers or signage anywhere in the image.",
 		"scene": "A one-pointed spear stands driven into the well's rim, and the market vendor and the monk are already gone down the shaft.",
-		"seed": 42
+		"seed": 88
 	},
 	"well-vendor-and-monk-fall": {
 		"file": "well-vendor-and-monk-fall.jpg",
-		"prompt": "A market vendor in a flat straw hat and a work apron and a monk in an orange robe with a shaved head falling head-first down a round stone well shaft, arms and legs flailing above them, seen from inside the well looking up at the bright circular opening. Anime illustration with clean confident ink linework and a soft watercolour wash. Warm golden key light against cool blue shadows, drifting dust motes, visible paper grain, rich saturated colour. Expressive faces, cinematic composition, detailed background. No text, letters, numbers or signage anywhere in the image.",
+		"prompt": "A market vendor with thick black hair under a folded red and white chequered headband, wearing a canvas apron, and a monk in a bright orange robe with a shaved head and one bare shoulder, both falling head-first down a round stone well shaft, arms and legs flailing above them, the vendor's wooden shoulder pole and two woven vegetable baskets tumbling down the shaft after them, seen from inside the well looking up at the bright circular opening. Anime illustration with clean confident ink linework and a soft watercolour wash. Warm golden key light against cool blue shadows, drifting dust motes, visible paper grain, rich saturated colour. Expressive faces, cinematic composition, detailed background. No text, letters, numbers or signage anywhere in the image.",
 		"scene": "A market vendor and a monk both fall down the same well and do not come back up.",
 		"seed": 42
 	}
