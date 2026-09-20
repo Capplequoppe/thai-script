@@ -207,6 +207,57 @@
 			"failure": null
 		},
 		{
+			"key": "well-story-monk-0",
+			"kind": "audio",
+			"state": "generated",
+			"language": "en",
+			"inputHash": "6dfeb6d2f8d03d8a224f043c682a55af7fff43b248b5df1a23aa56b37c32d134",
+			"contentHash": "335a11c373268d99807ea62a324ed101cb7f87db363cc81f4deaeb93b38b409a",
+			"path": "/thai-script/lessons/lesson-13/audio/6dfeb6d2f8d03d8a.mp3",
+			"file": "audio/6dfeb6d2f8d03d8a.mp3",
+			"verification": {
+				"outcome": "not-required",
+				"attempts": 1,
+				"expected": null,
+				"heard": []
+			},
+			"failure": null
+		},
+		{
+			"key": "well-story-monk-1",
+			"kind": "audio",
+			"state": "generated",
+			"language": "en",
+			"inputHash": "91c5641ddb12305b262b21eb106f5cea98f55e2a97d52e0e923a555c3416b18e",
+			"contentHash": "2c8e9a8d33e4c2bfb2dab8da40d8676522873e9e494bce9eaf1d0cc05e34b95f",
+			"path": "/thai-script/lessons/lesson-13/audio/91c5641ddb12305b.mp3",
+			"file": "audio/91c5641ddb12305b.mp3",
+			"verification": {
+				"outcome": "not-required",
+				"attempts": 1,
+				"expected": null,
+				"heard": []
+			},
+			"failure": null
+		},
+		{
+			"key": "well-story-monk-2",
+			"kind": "audio",
+			"state": "generated",
+			"language": "en",
+			"inputHash": "2e26816b8965d924143bcff3193f9d5f3f137ffda97c8155e00e160c350c6cc5",
+			"contentHash": "9068c7b52c100620cca2581260c318505935bc2f1cdb8deb1e7faebe65321930",
+			"path": "/thai-script/lessons/lesson-13/audio/2e26816b8965d924.mp3",
+			"file": "audio/2e26816b8965d924.mp3",
+			"verification": {
+				"outcome": "not-required",
+				"attempts": 1,
+				"expected": null,
+				"heard": []
+			},
+			"failure": null
+		},
+		{
 			"key": "temple-dead-0",
 			"kind": "audio",
 			"state": "generated",
@@ -1482,6 +1533,18 @@
 			"contentHash": "c8dccc750adcb3297de7e6cdac26ae40655151d34befaaeec498f963733aaee8",
 			"path": "/thai-script/lessons/lesson-13/images/meet-ruesii-9aa2e62ee441.jpg",
 			"file": "images/meet-ruesii-9aa2e62ee441.jpg",
+			"verification": null,
+			"failure": null
+		},
+		{
+			"key": "well-story-monk-image",
+			"kind": "image",
+			"state": "generated",
+			"language": null,
+			"inputHash": "023c4a9d0333ff2911be32959fb0a6c9f609fd941d532ee78ba472c26a15fe3b",
+			"contentHash": "dc9bf77990150e9b12e71068cd7d4a46330b8331fa306b2e28007b2bd0c63478",
+			"path": "/thai-script/lessons/lesson-13/images/well-story-monk-023c4a9d0333.jpg",
+			"file": "images/well-story-monk-023c4a9d0333.jpg",
 			"verification": null,
 			"failure": null
 		},

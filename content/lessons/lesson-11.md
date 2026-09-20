@@ -256,6 +256,18 @@ narration: en That is the word for to follow — it is a market letter with a hu
 - **ตาม** — to follow. Market letter, the syllable alive, flat and level.
 - The two dead corners are all that is left.
 
+## exposition well-story
+image: images/palace/well-vendor-and-monk-fall.jpg
+heading: What happens at the well
+teaches: mid-dead-short, mid-dead-long, well-vendor-and-monk-fall
+narration: en The harbour's dead corners have a rooftop and a waterfall in them, and you have stood in both. The market's has a place of its own, and it is the one spot in the whole town you have to look *down* into. Behind the stalls there is a well — old, deep, a stone rim worn smooth by a couple of centuries of hands.
+narration: en The man who sells in the market leans over that rim. And in he goes. Down the shaft, into the dark, and the dark keeps him. A well is where you look down, and down is exactly where a low tone sits. Those two dark corners from a moment ago are both of them this same well: a market letter, a syllable stopped dead, and the voice goes down the shaft. How long the vowel was makes no difference at all. Short or long, same rim, same well.
+narration: en There is a second man leaning on that rim beside him. I am not going to tell you who he is, because you have not met him — he has two lessons still to wait. When you do meet him, he goes in after the vendor, and that is when you find out why the two of them share a well.
+- The vendor sells at the market, so he is **mid class**.
+- He goes **down**, and down is where you look for a low tone.
+- The vowel's length changes nothing — both market dead rules end here.
+- The other figure on the rim is somebody you meet later.
+
 ## rule mid-dead-short
 rule: mid-dead-short
 teaches: mid-dead-short

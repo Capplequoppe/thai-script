@@ -13,6 +13,9 @@ import {
 	type PalacePlace,
 	placeForTone,
 	roomPlaceFor,
+	ruleLabel,
+	sceneStory,
+	scenesForClass,
 	TONE_SCENES,
 	type ToneScene,
 	toneNarrationFor,
@@ -22,6 +25,7 @@ import { districtForClass } from "../../domain/script/data/sceneGrammar";
 import {
 	type Story,
 	storyForConsonant,
+	storyForToneRule,
 	storyForVowel,
 } from "../../domain/script/data/slideTags";
 import {
@@ -146,6 +150,7 @@ export function MemoryPalacePage() {
 			<div ref={detailRef} className="scroll-mt-4">
 				<DetailPanel
 					selected={selected}
+					onSelect={setSelected}
 					onOpenLetter={setOpenLetter}
 					onPlayStory={setPlaying}
 				/>
@@ -456,10 +461,13 @@ function RoomRow({
 
 function DetailPanel({
 	selected,
+	onSelect,
 	onOpenLetter,
 	onPlayStory,
 }: {
 	selected: Selection;
+	/** A district's tone-rule shortcuts move the selection to a tone place. */
+	onSelect: (selection: Selection) => void;
 	onOpenLetter: (character: string) => void;
 	onPlayStory: (playing: Playing) => void;
 }) {
@@ -474,7 +482,8 @@ function DetailPanel({
 		);
 	}
 
-	if (selected.kind === "tone") return <TonePlaceDetail tone={selected.tone} />;
+	if (selected.kind === "tone")
+		return <TonePlaceDetail tone={selected.tone} onPlayStory={onPlayStory} />;
 	if (selected.kind === "house")
 		return <HouseDetail onPlayStory={onPlayStory} />;
 	if (selected.kind === "district")
@@ -482,12 +491,19 @@ function DetailPanel({
 			<DistrictDetail
 				classType={selected.classType}
 				onOpenLetter={onOpenLetter}
+				onSelect={onSelect}
 			/>
 		);
 	return <RoomDetail room={selected.room} />;
 }
 
-function TonePlaceDetail({ tone }: { tone: string }) {
+function TonePlaceDetail({
+	tone,
+	onPlayStory,
+}: {
+	tone: string;
+	onPlayStory: (playing: Playing) => void;
+}) {
 	const place = placeForTone(tone as Parameters<typeof placeForTone>[0]);
 	const learned = useLearnedScript();
 	const scenes = useMemo(
@@ -542,7 +558,12 @@ function TonePlaceDetail({ tone }: { tone: string }) {
 			) : (
 				<div className="space-y-3">
 					{scenes.map((scene) => (
-						<SceneCard key={scene.id} scene={scene} />
+						<SceneCard
+							key={scene.id}
+							scene={scene}
+							learned={learned.toneRules}
+							onPlayStory={onPlayStory}
+						/>
 					))}
 				</div>
 			)}
@@ -635,13 +656,36 @@ function SceneIllustration({ scene }: { scene: ToneScene }) {
  * The button sits above the prose because the prose is the same story written
  * down — someone who listens has no reason to read it afterwards, and someone
  * who would rather read has lost nothing by scrolling past a button.
+ *
+ * "The story in text" used to be `scene.scene`, which is one sentence and is
+ * the caption the image was drawn from. That is not the mnemonic. The mnemonic
+ * is the place, the cast, the moment and then the rule — which is what the
+ * clip says and what the caption had no room for, so a learner who could not
+ * play audio got a sentence where the memory was supposed to be. It is
+ * `sceneStory` now, the clip's own words, so listening and reading give the
+ * same thing.
  */
-function SceneCard({ scene }: { scene: ToneScene }) {
+function SceneCard({
+	scene,
+	learned,
+	onPlayStory,
+}: {
+	scene: ToneScene;
+	/** Rule ids the learner has met, as the palace names them. */
+	learned: ReadonlySet<string>;
+	onPlayStory: (playing: Playing) => void;
+}) {
 	const clips = useMemo(
 		() => [`${import.meta.env.BASE_URL}${toneNarrationFor(scene.id)}`],
 		[scene.id],
 	);
 	const { playing, play, stop } = useClipSequence(clips);
+	const place = placeForTone(scene.tone);
+	// Only the rules this learner has actually been taught. A scene appears as
+	// soon as any one of its rules is known, so an unfiltered list would hand
+	// somebody standing in the well at lesson 11 the two rules lesson 13 has
+	// not taught them yet.
+	const rules = scene.covers.filter((id) => learned.has(id));
 
 	return (
 		<article
@@ -664,26 +708,108 @@ function SceneCard({ scene }: { scene: ToneScene }) {
 			>
 				{playing ? "■ Stop" : "▶ Hear what happens here"}
 			</button>
-			<p className="text-sm leading-relaxed">{scene.scene}</p>
+
+			<p className="text-sm leading-relaxed">{sceneStory(scene)}</p>
+
 			<p className="text-xs" style={{ color: "var(--color-text-muted)" }}>
 				{scene.teaches}
 			</p>
-			<p className="text-[10px]" style={{ color: "var(--color-text-muted)" }}>
-				{scene.covers.length === 1
-					? "1 rule"
-					: `${scene.covers.length} rules, which agree`}
-				{scene.prop ? ` · ${scene.prop}` : ""}
-			</p>
+
+			{/* Each rule as its own way back into the lesson that told it, rather
+			    than one link for the scene. A scene can carry four rules taught
+			    across two lessons, and "the lesson" is then the wrong noun: the
+			    monk goes down this well in lesson 13 and the vendor went down it
+			    in lesson 11, and a learner asking about one of them should not
+			    land in the other. */}
+			{rules.length > 0 && (
+				<div className="flex flex-wrap gap-1.5 pt-0.5">
+					{rules.map((id) => (
+						<RuleStoryChip
+							key={id}
+							ruleId={id}
+							place={place.name}
+							onPlayStory={onPlayStory}
+						/>
+					))}
+				</div>
+			)}
+
+			{scene.prop && (
+				<p className="text-[10px]" style={{ color: "var(--color-text-muted)" }}>
+					{scene.prop}
+				</p>
+			)}
 		</article>
+	);
+}
+
+/**
+ * One rule under its scene, and the lesson slides that taught it.
+ *
+ * A plain label where no lesson has tagged that rule yet, for the reason
+ * `Lodger` records: a button that opens nothing is worse than no button. The
+ * tagging happened lesson by lesson, so this really can be absent.
+ */
+function RuleStoryChip({
+	ruleId,
+	place,
+	onPlayStory,
+}: {
+	ruleId: string;
+	/** Where the rule resolves, which is what the story is filed under. */
+	place: string;
+	onPlayStory: (playing: Playing) => void;
+}) {
+	const label = ruleLabel(ruleId);
+	const story = storyForToneRule(ruleId);
+	// Not capitalised: `ruleLabel` returns a phrase rather than a name, and
+	// title case on "Low Class, Dead, Short Vowel" reads like a database
+	// column rather than something a person said.
+	const className = "rounded-md px-2 py-1 text-[11px] leading-tight";
+	const style = {
+		background: "var(--color-surface)",
+		color: "var(--color-text-muted)",
+	};
+
+	if (!story) {
+		return (
+			<span className={className} style={style}>
+				{label}
+			</span>
+		);
+	}
+
+	return (
+		<button
+			type="button"
+			onClick={() =>
+				onPlayStory({
+					story,
+					title: label,
+				})
+			}
+			className={`${className} transition-transform active:scale-[0.98]`}
+			style={{
+				...style,
+				color: "var(--color-accent)",
+				border:
+					"1px solid color-mix(in srgb, var(--color-accent) 30%, transparent)",
+			}}
+			aria-label={`${label} — the story from the lesson, at the ${place}`}
+		>
+			{label} ▸
+		</button>
 	);
 }
 
 function DistrictDetail({
 	classType,
 	onOpenLetter,
+	onSelect,
 }: {
 	classType: ThaiSymbolClass;
 	onOpenLetter: (character: string) => void;
+	onSelect: (selection: Selection) => void;
 }) {
 	const district = districtForClass(classType);
 	const overview = districtPlaceFor(classType);
@@ -712,6 +838,34 @@ function DistrictDetail({
 			),
 		],
 		[classType, learned.toneRules],
+	);
+
+	// The scenes this district's figure appears in — the shortcut from a class
+	// to what that class does to a tone.
+	//
+	// Filtered by `rules` above rather than by what the learner knows in
+	// general, so the list and the count beside it cannot disagree. A scene can
+	// belong to two districts: the vendor and the monk share a well, and at
+	// lesson 11 the vendor is in it and the monk has not been met. Gating on
+	// any learned rule would put that well behind the temple three lessons
+	// before the temple has anything to do with it.
+	const ruleIds = useMemo(
+		() =>
+			new Set(
+				rules.map((rule) =>
+					"id" in rule
+						? rule.id
+						: markRuleId(rule.consonantClass, rule.toneMarkName),
+				),
+			),
+		[rules],
+	);
+	const scenes = useMemo(
+		() =>
+			scenesForClass(classType).filter((scene) =>
+				scene.covers.some((id) => ruleIds.has(id)),
+			),
+		[classType, ruleIds],
 	);
 
 	return (
@@ -759,13 +913,72 @@ function DistrictDetail({
 			    been shown nothing exactly how much was being withheld, directly
 			    under a line saying the place was empty. */}
 			{rules.length > 0 && (
-				<p className="text-xs" style={{ color: "var(--color-text-muted)" }}>
-					{rules.length === 1
-						? "One tone rule starts here."
-						: `${rules.length} tone rules start here.`}
-				</p>
+				<div className="space-y-2">
+					<p className="text-xs" style={{ color: "var(--color-text-muted)" }}>
+						{rules.length === 1
+							? "One tone rule starts here, and this is where it ends up."
+							: `${rules.length} tone rules start here, and these are where they end up.`}
+					</p>
+					<div className="space-y-1.5">
+						{scenes.map((scene) => (
+							<ToneShortcut key={scene.id} scene={scene} onSelect={onSelect} />
+						))}
+					</div>
+				</div>
 			)}
 		</section>
+	);
+}
+
+/**
+ * From a district to the place one of its rules resolves at.
+ *
+ * The line this replaced said "four tone rules start here" and stopped — true,
+ * and a dead end. A learner standing in the harbour asking what low class does
+ * to a tone had to already know the answer lived under four separate tone
+ * places, and go and find each one on the map. This is that walk, made once,
+ * by somebody who knew where they were going.
+ *
+ * The scene's own sentence rather than the rule's wording, because the scene
+ * is what is at the other end: tapping it puts you at the rooftop, next to the
+ * picture of the man being struck by lightning, and the label should be a
+ * promise of that rather than of a grammar note.
+ */
+function ToneShortcut({
+	scene,
+	onSelect,
+}: {
+	scene: ToneScene;
+	onSelect: (selection: Selection) => void;
+}) {
+	const place = placeForTone(scene.tone);
+
+	return (
+		<button
+			type="button"
+			onClick={() => onSelect({ kind: "tone", tone: scene.tone })}
+			className="w-full text-left rounded-lg px-3 py-2 transition-transform active:scale-[0.99]"
+			style={{
+				background: "var(--color-surface-2)",
+				border: "1px solid var(--color-border)",
+			}}
+		>
+			<span className="flex items-baseline justify-between gap-2">
+				<span className="text-sm font-medium capitalize">{place.name}</span>
+				<span
+					className="text-[11px] whitespace-nowrap"
+					style={{ color: "var(--color-accent)" }}
+				>
+					{scene.tone} tone ▸
+				</span>
+			</span>
+			<span
+				className="block text-xs mt-0.5 leading-snug"
+				style={{ color: "var(--color-text-muted)" }}
+			>
+				{scene.scene}
+			</span>
+		</button>
 	);
 }
 

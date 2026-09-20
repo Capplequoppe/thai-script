@@ -147,6 +147,69 @@ narration: en Down at the water the row is two boxes again, and this is where th
 - Where the temple got low and then falling, the water gets falling and then high.
 - Mai tri and mai chattawa never sit over a harbour letter either, so two boxes stay empty down here as well.
 
+## exposition mark-one-at-the-well
+image: images/palace/well-speared-once.jpg
+heading: Mark one, and where it leaves the pair of them
+teaches: mid-mai-ek, high-mai-ek, well-speared-once
+narration: en So the grid is full. Now the pictures for it, because a table is a thing you look up and a picture is a thing you have. Four marks, and each one turns out to be a weapon with the right number of points on it — which is a piece of luck, given that the marks are numbered one to four and counting points is a great deal easier than holding a row in your head.
+narration: en Start where the vendor and the monk ended up.
+recording: en The well again, and now there is a spear. One shaft, one point, driven into the rim and left standing there — and the vendor and the monk are already down in the dark below it. Count the points: one. Mai ek is the first of the four tone marks, and one point is how you will know it. Mai ek over a mid-class or a high-class letter gives a low tone. The spear settles it. Alive, dead, short, long — once that mark is written, the answer comes from the mark. public/palace/scenes/audio/well-speared-once.mp3
+- One point, one shaft: **mai ek**, the first mark.
+- Over a market letter or a temple letter it gives **low**.
+- The two of them are down the well, which is where a low tone sits.
+
+## exposition mark-one-at-the-waterfall
+image: images/palace/waterfall-fisherman-speared.jpg
+heading: The same spear, down at the water
+teaches: low-mai-ek, waterfall-fisherman-speared
+narration: en Now the swap, and this is the part of the lesson worth sitting down with. Same mark, same single point — but it finds the fisherman instead, and it does not take him anywhere near the well.
+recording: en The waterfall, and the one-pointed spear is back. This time it is the fisherman it finds, and instead of standing him at a well rim it sends him straight over the falls. One point, mai ek — the same mark that put the vendor and the monk down the well. Mai ek over a low-class letter gives a falling tone. The mark is the one you already know; the class is what changed the ending. Read the mark, then read the class, and answer from the two of them together. public/palace/scenes/audio/waterfall-fisherman-speared.mp3
+- The **same** one-pointed mark, over a harbour letter instead.
+- It sends him over the falls, not down the shaft: **falling**, not low.
+- Count the points for the mark, then look at the class for the ending.
+
+## exposition mark-two-at-the-waterfall
+image: images/palace/waterfall-hooked-twice.jpg
+heading: Mark two, and where it leaves the other two
+teaches: mid-mai-tho, high-mai-tho, waterfall-hooked-twice
+narration: en Mark two next, and the same pair of pictures again — the market and the temple first, then the water. Two prongs this time, and it is the vendor and the monk who meet it.
+recording: en The waterfall, and a spear with two prongs. It comes in from behind and pitches the vendor and the monk over the lip together, the pair of them going down the drop side by side. Two prongs. Mai tho is the second mark, and two is what you count. Mai tho over a mid-class or a high-class letter gives a falling tone. The same two people as the well, a different spear, and this one sent them over the edge instead of down the shaft. public/palace/scenes/audio/waterfall-hooked-twice.mp3
+- Two prongs: **mai tho**, the second mark.
+- Over a market or a temple letter it gives **falling**.
+- The same two people as the well, and a different spear takes them over an edge.
+
+## exposition mark-two-on-the-rooftop
+image: images/palace/rooftop-fisherman-hooked.jpg
+heading: The same hook, and the harbour goes up
+teaches: low-mai-tho, rooftop-fisherman-hooked
+narration: en And the swap a second time. Everything the harbour does with these two marks is upside down from everywhere else, so watch which way he goes.
+recording: en The rooftop, and the two-pronged spear. It hooks the fisherman under the arms and lifts him — up past the eaves and onto the roof, where it sets him down and leaves him standing there. Two prongs, mai tho. Mai tho over a low-class letter gives a high tone. That same spear dragged the vendor and the monk over a waterfall. Under a low-class letter it hauls upward instead, so the class is what tells you which direction. public/palace/scenes/audio/rooftop-fisherman-hooked.mp3
+- The **same** two-pronged mark, over a harbour letter.
+- It lifts him instead of dropping him: **high**, where the others fell.
+- Mark one sends the harbour down the falls; mark two hauls it up to the roof.
+
+## exposition mark-three-on-the-rooftop
+image: images/palace/rooftop-vendor-three-flags.jpg
+heading: Mark three, and why the vendor is alone
+teaches: mid-mai-tri, rooftop-vendor-three-flags
+narration: en Neither of the last two marks has a swap to learn, and the reason why is the useful thing about them. Look at who is holding this one, and, rather more to the point, at who is not.
+recording: en The rooftop again, and the vendor is up there on his own, holding a trident with its three points against the sky. Three. Mai tri — tri is three in Thai the way it is three in English, and the three points are up on the roof. Mai tri over a mid-class letter gives a high tone. He is alone up there because mai tri only ever sits on a mid-class letter. Seeing that mark answers the class question for you. public/palace/scenes/audio/rooftop-vendor-three-flags.mp3
+- Three points: **mai tri**, and *tri* is three.
+- Over a market letter it gives **high**.
+- Nobody else is up there, because this mark only ever sits on a market letter.
+
+## exposition mark-four-on-the-hill
+image: images/palace/hill-vendor-four-poles.jpg
+heading: Mark four, on somebody else's path
+teaches: mid-mai-chattawa, hill-vendor-four-poles
+narration: en And the fourth, which is the rarest thing in the tone system and the easiest of the lot to count. The vendor is out of the market again, and this time he has borrowed the monk's road.
+recording: en The hill path, and the vendor is climbing it with a four-tined pitchfork over his shoulder. Four tines. Mai chattawa is the fourth mark, and chattawa is four. Mai chattawa over a mid-class letter gives a rising tone. He is walking the monk's path, dipping at the start and climbing all the rest of the way, and his voice goes with him. Like mai tri, this mark only ever lands on a mid-class letter, so seeing it settles the class. public/palace/scenes/audio/hill-vendor-four-poles.mp3
+narration: en All four, then. One spear at the well, two prongs over the edge, three points on the roof, four tines up the hill — and the harbour taking the first two marks and handing back the other two tones.
+- Four tines: **mai chattawa**, and *chattawa* is four.
+- Over a market letter it gives **rising**.
+- He is on the monk's dipping, climbing path, and his voice climbs with him.
+- Market only, like mark three — so seeing either one settles the class for you.
+
 ## retrieval which-tone-a
 reveal: which-tone-a-answer
 prompt: ตั๋ว (dtǔua, a ticket) carries mai chattawa over ต. What tone does that give, and why did one row of the table settle it?

@@ -108,6 +108,29 @@
 			"teaches": ["so-sala", "so-risi", "so-sia"]
 		},
 		{
+			"kind": "exposition",
+			"id": "well-story-monk",
+			"heading": "Who the other man on the well rim was",
+			"body": [
+				"The monk is **high class**, and he follows the vendor down the shaft.",
+				"Mid class and high class give the **same** answer on a dead syllable: low.",
+				"Vowel length changes nothing for either of them.",
+				"Four rules end in this well, and all four are now yours."
+			],
+			"audio": [
+				"/thai-script/lessons/lesson-13/audio/6dfeb6d2f8d03d8a.mp3",
+				"/thai-script/lessons/lesson-13/audio/91c5641ddb12305b.mp3",
+				"/thai-script/lessons/lesson-13/audio/2e26816b8965d924.mp3"
+			],
+			"audioLanguages": ["en", "en", "en"],
+			"teaches": [
+				"high-dead-short",
+				"high-dead-long",
+				"well-vendor-and-monk-fall"
+			],
+			"image": "/thai-script/lessons/lesson-13/images/well-story-monk-023c4a9d0333.jpg"
+		},
+		{
 			"kind": "rule",
 			"id": "high-dead-short-rule",
 			"ruleId": "high-dead-short",
@@ -589,8 +612,8 @@
 		}
 	],
 	"timing": {
-		"spokenSeconds": 1164,
-		"practiceSeconds": 384,
-		"estimatedMinutes": 26
+		"spokenSeconds": 1231,
+		"practiceSeconds": 390,
+		"estimatedMinutes": 27
 	}
 }

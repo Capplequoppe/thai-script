@@ -168,6 +168,111 @@
 			"image": "/thai-script/lessons/lesson-tone-marks/images/low-class-marks-0b587ae9656a.jpg"
 		},
 		{
+			"kind": "exposition",
+			"id": "mark-one-at-the-well",
+			"heading": "Mark one, and where it leaves the pair of them",
+			"body": [
+				"One point, one shaft: **mai ek**, the first mark.",
+				"Over a market letter or a temple letter it gives **low**.",
+				"The two of them are down the well, which is where a low tone sits."
+			],
+			"audio": [
+				"/thai-script/lessons/lesson-tone-marks/audio/9436e6f0e963df41.mp3",
+				"/thai-script/lessons/lesson-tone-marks/audio/c93d3375f27f9f96.mp3",
+				"/thai-script/lessons/lesson-tone-marks/audio/bb3bd2a3e0b890d5.mp3"
+			],
+			"audioLanguages": ["en", "en", "en"],
+			"teaches": ["mid-mai-ek", "high-mai-ek", "well-speared-once"],
+			"image": "/thai-script/lessons/lesson-tone-marks/images/mark-one-at-the-well-b5c9e09609c0.jpg"
+		},
+		{
+			"kind": "exposition",
+			"id": "mark-one-at-the-waterfall",
+			"heading": "The same spear, down at the water",
+			"body": [
+				"The **same** one-pointed mark, over a harbour letter instead.",
+				"It sends him over the falls, not down the shaft: **falling**, not low.",
+				"Count the points for the mark, then look at the class for the ending."
+			],
+			"audio": [
+				"/thai-script/lessons/lesson-tone-marks/audio/26164914d755596d.mp3",
+				"/thai-script/lessons/lesson-tone-marks/audio/501fdb58fd343997.mp3"
+			],
+			"audioLanguages": ["en", "en"],
+			"teaches": ["low-mai-ek", "waterfall-fisherman-speared"],
+			"image": "/thai-script/lessons/lesson-tone-marks/images/mark-one-at-the-waterfall-a7a901fe5226.jpg"
+		},
+		{
+			"kind": "exposition",
+			"id": "mark-two-at-the-waterfall",
+			"heading": "Mark two, and where it leaves the other two",
+			"body": [
+				"Two prongs: **mai tho**, the second mark.",
+				"Over a market or a temple letter it gives **falling**.",
+				"The same two people as the well, and a different spear takes them over an edge."
+			],
+			"audio": [
+				"/thai-script/lessons/lesson-tone-marks/audio/d86d5e14fc4ef07e.mp3",
+				"/thai-script/lessons/lesson-tone-marks/audio/454d37ca7e627319.mp3"
+			],
+			"audioLanguages": ["en", "en"],
+			"teaches": ["mid-mai-tho", "high-mai-tho", "waterfall-hooked-twice"],
+			"image": "/thai-script/lessons/lesson-tone-marks/images/mark-two-at-the-waterfall-79931df78ddf.jpg"
+		},
+		{
+			"kind": "exposition",
+			"id": "mark-two-on-the-rooftop",
+			"heading": "The same hook, and the harbour goes up",
+			"body": [
+				"The **same** two-pronged mark, over a harbour letter.",
+				"It lifts him instead of dropping him: **high**, where the others fell.",
+				"Mark one sends the harbour down the falls; mark two hauls it up to the roof."
+			],
+			"audio": [
+				"/thai-script/lessons/lesson-tone-marks/audio/a39e0f65031db544.mp3",
+				"/thai-script/lessons/lesson-tone-marks/audio/1c4296fb0175cc83.mp3"
+			],
+			"audioLanguages": ["en", "en"],
+			"teaches": ["low-mai-tho", "rooftop-fisherman-hooked"],
+			"image": "/thai-script/lessons/lesson-tone-marks/images/mark-two-on-the-rooftop-7b50e22658cd.jpg"
+		},
+		{
+			"kind": "exposition",
+			"id": "mark-three-on-the-rooftop",
+			"heading": "Mark three, and why the vendor is alone",
+			"body": [
+				"Three points: **mai tri**, and *tri* is three.",
+				"Over a market letter it gives **high**.",
+				"Nobody else is up there, because this mark only ever sits on a market letter."
+			],
+			"audio": [
+				"/thai-script/lessons/lesson-tone-marks/audio/5536946c72ab4fcd.mp3",
+				"/thai-script/lessons/lesson-tone-marks/audio/e16fb6e65fca3bf9.mp3"
+			],
+			"audioLanguages": ["en", "en"],
+			"teaches": ["mid-mai-tri", "rooftop-vendor-three-flags"],
+			"image": "/thai-script/lessons/lesson-tone-marks/images/mark-three-on-the-rooftop-4069fafd42ba.jpg"
+		},
+		{
+			"kind": "exposition",
+			"id": "mark-four-on-the-hill",
+			"heading": "Mark four, on somebody else's path",
+			"body": [
+				"Four tines: **mai chattawa**, and *chattawa* is four.",
+				"Over a market letter it gives **rising**.",
+				"He is on the monk's dipping, climbing path, and his voice climbs with him.",
+				"Market only, like mark three — so seeing either one settles the class for you."
+			],
+			"audio": [
+				"/thai-script/lessons/lesson-tone-marks/audio/955fd72ba9b7f92f.mp3",
+				"/thai-script/lessons/lesson-tone-marks/audio/081c20514773effb.mp3",
+				"/thai-script/lessons/lesson-tone-marks/audio/53fb8d43ff7161fd.mp3"
+			],
+			"audioLanguages": ["en", "en", "en"],
+			"teaches": ["mid-mai-chattawa", "hill-vendor-four-poles"],
+			"image": "/thai-script/lessons/lesson-tone-marks/images/mark-four-on-the-hill-a971247a98a2.jpg"
+		},
+		{
 			"kind": "retrieval",
 			"id": "which-tone-a",
 			"prompt": "ตั๋ว (dtǔua, a ticket) carries mai chattawa over ต. What tone does that give, and why did one row of the table settle it?",
@@ -377,8 +482,8 @@
 		}
 	],
 	"timing": {
-		"spokenSeconds": 794,
-		"practiceSeconds": 194,
-		"estimatedMinutes": 16
+		"spokenSeconds": 1059,
+		"practiceSeconds": 230,
+		"estimatedMinutes": 21
 	}
 }

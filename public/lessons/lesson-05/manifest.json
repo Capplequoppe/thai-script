@@ -598,6 +598,57 @@
 			"failure": null
 		},
 		{
+			"key": "waterfall-story-0",
+			"kind": "audio",
+			"state": "generated",
+			"language": "en",
+			"inputHash": "40862b105d58ab18deb2d63f74f6ccf946f9177d1e1e947da80d90b1b3dee3e5",
+			"contentHash": "d9d9162bf553fce6eb95efb60f6c1504994a8285695ddd23d688c3211362ef32",
+			"path": "/thai-script/lessons/lesson-05/audio/40862b105d58ab18.mp3",
+			"file": "audio/40862b105d58ab18.mp3",
+			"verification": {
+				"outcome": "not-required",
+				"attempts": 1,
+				"expected": null,
+				"heard": []
+			},
+			"failure": null
+		},
+		{
+			"key": "waterfall-story-1",
+			"kind": "audio",
+			"state": "generated",
+			"language": "en",
+			"inputHash": "1e8367555cff90284f98dcec6a0572e204a7ff935829022e6d39f6588c361cec",
+			"contentHash": "7f25cb1f050cb5e1294a0de0469af74edec617fddfdfe36dca503216f7e724a1",
+			"path": "/thai-script/lessons/lesson-05/audio/1e8367555cff9028.mp3",
+			"file": "audio/1e8367555cff9028.mp3",
+			"verification": {
+				"outcome": "not-required",
+				"attempts": 1,
+				"expected": null,
+				"heard": []
+			},
+			"failure": null
+		},
+		{
+			"key": "waterfall-story-2",
+			"kind": "audio",
+			"state": "generated",
+			"language": "en",
+			"inputHash": "b2a3056aab594a489a22b71903617fd9fb13115dd8f5d05886baa37d09f8ee9e",
+			"contentHash": "681666e927b3f0d878c11e7519cba5fc7193e3e1c44fee94db7dc6ab754bd608",
+			"path": "/thai-script/lessons/lesson-05/audio/b2a3056aab594a48.mp3",
+			"file": "audio/b2a3056aab594a48.mp3",
+			"verification": {
+				"outcome": "not-required",
+				"attempts": 1,
+				"expected": null,
+				"heard": []
+			},
+			"failure": null
+		},
+		{
 			"key": "falling-0",
 			"kind": "audio",
 			"state": "generated",
@@ -1022,6 +1073,18 @@
 			"contentHash": "85bd9a878fbec2e0983360df1f4cfe74ea680b38447409d3245ee391fb9abb13",
 			"path": "/thai-script/lessons/lesson-05/images/short-in-a-word-1faf64388abd.jpg",
 			"file": "images/short-in-a-word-1faf64388abd.jpg",
+			"verification": null,
+			"failure": null
+		},
+		{
+			"key": "waterfall-story-image",
+			"kind": "image",
+			"state": "generated",
+			"language": null,
+			"inputHash": "0b0f5024f5018b4a81c8cbd05db897ebb780cff9b1445b77bb259da0be0a6c6a",
+			"contentHash": "dab6fbd85131608c11beaa0e7e6ddfd1edbade32c53955ff886f402360ca337a",
+			"path": "/thai-script/lessons/lesson-05/images/waterfall-story-0b0f5024f501.jpg",
+			"file": "images/waterfall-story-0b0f5024f501.jpg",
 			"verification": null,
 			"failure": null
 		},

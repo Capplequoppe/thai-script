@@ -82,3 +82,47 @@ and answer it. Three to six slides is the usual span.
 If a letter's tags come to one slide, look again — the lesson probably develops
 it somewhere you passed over. If they come to twelve, some of those are lesson
 slides rather than letter slides.
+
+---
+
+## A tone rule's story is the palace's story, said once
+
+The eleven scenes in `palace-scenes.json` each carry a written story, a
+picture and a narrated clip. For a while they were told nowhere a learner
+would meet them: the lessons taught the rules analytically beside a picture of
+the empty place, so lesson 4 drew a rooftop with nobody on it while the
+mnemonic was a fisherman being struck by lightning on that roof.
+
+Every rule now has a story slide in the lesson that teaches it, and that slide
+is built the same way every time:
+
+```
+## exposition rooftop-story
+image: images/palace/rooftop-fisherman-struck.jpg
+heading: What happens on the rooftop
+teaches: low-dead-short, rooftop-fisherman-struck
+narration: en <the teacher walks the learner to the place>
+recording: en <the scene's own words> public/palace/scenes/audio/rooftop-fisherman-struck.mp3
+narration: en <the teacher hands it back, bound to the rule>
+- <bullets>
+```
+
+**The middle line is a `recording:`, not narration.** It plays the exact clip
+the Palace tab plays, and the picture is the same file, so the story a learner
+hears in the lesson and the story they hear two months later looking it up are
+the same words rather than two drafts of one idea. A mnemonic works by exact
+repetition; two tellings that differ in their details are two things to hold.
+It also costs nothing to synthesise.
+
+Tag both the rule ids and the scene id. The rule ids are what `storyForToneRule`
+resolves, which is how the palace offers a way back into the lesson from under
+the scene; the scene id is what says which of the eleven this slide is.
+
+**Where a scene runs ahead of the lesson, tell the part that fits and say so.**
+`well-vendor-and-monk-fall` names the monk and counts four rules, and lesson 11
+knows neither — so lesson 11 tells the vendor's half in the teacher's voice and
+leaves the second figure on the well rim explicitly unnamed, and lesson 13
+plays the clip once the monk exists and all four rules are on the table. The
+alternative is a forward reference the learner cannot tell from an assumption,
+which is the fault that put "you met this letter twenty minutes ago" into a
+lesson nobody had started twenty minutes earlier.

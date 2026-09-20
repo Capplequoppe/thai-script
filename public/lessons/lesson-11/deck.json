@@ -320,6 +320,29 @@
 			"image": "/thai-script/lessons/lesson-11/images/the-grid-so-far-b9f3222c246d.jpg"
 		},
 		{
+			"kind": "exposition",
+			"id": "well-story",
+			"heading": "What happens at the well",
+			"body": [
+				"The vendor sells at the market, so he is **mid class**.",
+				"He goes **down**, and down is where you look for a low tone.",
+				"The vowel's length changes nothing — both market dead rules end here.",
+				"The other figure on the rim is somebody you meet later."
+			],
+			"audio": [
+				"/thai-script/lessons/lesson-11/audio/fb30b5594b5e3d2a.mp3",
+				"/thai-script/lessons/lesson-11/audio/065c44d109a7041c.mp3",
+				"/thai-script/lessons/lesson-11/audio/17f67891eaca04a3.mp3"
+			],
+			"audioLanguages": ["en", "en", "en"],
+			"teaches": [
+				"mid-dead-short",
+				"mid-dead-long",
+				"well-vendor-and-monk-fall"
+			],
+			"image": "/thai-script/lessons/lesson-11/images/well-story-023c4a9d0333.jpg"
+		},
+		{
 			"kind": "rule",
 			"id": "mid-dead-short",
 			"ruleId": "mid-dead-short",
@@ -416,8 +439,8 @@
 		}
 	],
 	"timing": {
-		"spokenSeconds": 714,
-		"practiceSeconds": 336,
-		"estimatedMinutes": 18
+		"spokenSeconds": 780,
+		"practiceSeconds": 342,
+		"estimatedMinutes": 19
 	}
 }

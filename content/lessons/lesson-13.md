@@ -135,6 +135,18 @@ narration: en Pen down. For the pavilion, draw the water buffalo exactly as you 
 - The hermit: **the leaf's letter, crossed once**.
 - Put the tiger under them both, and look at the column.
 
+## exposition well-story-monk
+image: images/palace/well-vendor-and-monk-fall.jpg
+heading: Who the other man on the well rim was
+teaches: high-dead-short, high-dead-long, well-vendor-and-monk-fall
+narration: en Back in lesson eleven I took you to a well behind the market stalls, and showed you the vendor going over the rim into the dark. I also said there was a second man leaning on that rim, and that you had not met him yet. You have now.
+recording: en The well. The market vendor and the monk are both leaning over the same rim, and both of them go in — down the shaft, into the dark, and the dark keeps them. A well is the one place you have to look down into, which is where a low tone sits. A dead syllable under a mid-class or a high-class letter gives a low tone. Four rules end in this well. The vowel's length changes nothing for either class, so short or long, mid or high, they all go down the same shaft. public/palace/scenes/audio/well-vendor-and-monk-fall.mp3
+narration: en So that is why they share a well. The market and the temple disagree about very nearly everything — on an alive syllable the vendor is standing flat in his field while the monk is climbing a hill — and on a dead syllable they agree completely. Both of them go down. Neither of them cares in the least how long the vowel was.
+- The monk is **high class**, and he follows the vendor down the shaft.
+- Mid class and high class give the **same** answer on a dead syllable: low.
+- Vowel length changes nothing for either of them.
+- Four rules end in this well, and all four are now yours.
+
 ## rule high-dead-short-rule
 rule: high-dead-short
 teaches: high-dead-short

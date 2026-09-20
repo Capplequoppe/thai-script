@@ -153,6 +153,17 @@ narration: en Pen down. For the tiger, start at the head at the base. Draw the m
 - The chest: head, a kinked stroke down, a loop, a tall wall.
 - Six or seven each, name out loud.
 
+## exposition hill-path-story
+image: images/palace/hill-monk-climbs.jpg
+heading: What happens on the hill path
+teaches: high-live, hill-monk-climbs
+narration: en Pens down, then, because the temple does one thing nothing else in this town does. Every other district, on a syllable that ends alive, comes out flat — you have watched the fisherman and the vendor stand in that field doing precisely nothing. A temple letter rises instead. And a rising tone will not stay in a flat field, because it has somewhere to get to, so it needs a road with a shape in it. Behind the temple a path runs down the back of the hill, and it drops into a dip before it starts to climb. Watch him take it.
+recording: en The hill path. The monk sets out from the temple on his own, and the path drops into a dip before it climbs, so he goes down a little first and then up and up, his robes bright against the slope. His voice does what his feet do — down at the start, climbing the whole rest of the way. A high-class letter, on a syllable that ends alive, rises. The fisherman and the vendor stayed flat in their field; the monk is walking uphill. So when a high-class letter opens a syllable that ends alive, take your voice down and then up. public/palace/scenes/audio/hill-monk-climbs.mp3
+narration: en Dip first, then climb, and finish higher than you set out. Put him beside the two standing in the paddy and you have the whole alive row in one glance — the fisherman flat, the vendor flat, and the monk walking uphill.
+- The monk comes from the temple, so he is **high class**.
+- The path **dips, then climbs**, which is the shape of the tone.
+- The other two stay level in their field. The monk is the one who goes up.
+
 ## rule high-live-rule
 rule: high-live
 teaches: high-live

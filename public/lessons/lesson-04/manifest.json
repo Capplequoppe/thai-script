@@ -751,6 +751,74 @@
 			"failure": null
 		},
 		{
+			"key": "rooftop-story-0",
+			"kind": "audio",
+			"state": "generated",
+			"language": "en",
+			"inputHash": "77db3b2dba8d64aeed59f9ca808490e3fbd47150f526a14578625ed05e360e55",
+			"contentHash": "67a1a8b047e1108f7bd0831f2479c683ac5e0c099e39067c39a4647608615620",
+			"path": "/thai-script/lessons/lesson-04/audio/77db3b2dba8d64ae.mp3",
+			"file": "audio/77db3b2dba8d64ae.mp3",
+			"verification": {
+				"outcome": "not-required",
+				"attempts": 1,
+				"expected": null,
+				"heard": []
+			},
+			"failure": null
+		},
+		{
+			"key": "rooftop-story-1",
+			"kind": "audio",
+			"state": "generated",
+			"language": "en",
+			"inputHash": "a2b71d1d8e0a38307f4b6411fe23bf7ef11416ded873cd52f5320a159226120a",
+			"contentHash": "95fe20020d8572a37be18972b8e2da3feacbc054296bc7778b8d06597ebd3642",
+			"path": "/thai-script/lessons/lesson-04/audio/a2b71d1d8e0a3830.mp3",
+			"file": "audio/a2b71d1d8e0a3830.mp3",
+			"verification": {
+				"outcome": "not-required",
+				"attempts": 1,
+				"expected": null,
+				"heard": []
+			},
+			"failure": null
+		},
+		{
+			"key": "rooftop-story-2",
+			"kind": "audio",
+			"state": "generated",
+			"language": "en",
+			"inputHash": "407870a6eb3932bd7231539e560e245af462b263cd6bb5212af5efa51db596b8",
+			"contentHash": "340a177241ef6818dce5f41550e1b46d230b8b20e8109803cf37b70e23302c25",
+			"path": "/thai-script/lessons/lesson-04/audio/407870a6eb3932bd.mp3",
+			"file": "audio/407870a6eb3932bd.mp3",
+			"verification": {
+				"outcome": "not-required",
+				"attempts": 1,
+				"expected": null,
+				"heard": []
+			},
+			"failure": null
+		},
+		{
+			"key": "rooftop-story-3",
+			"kind": "audio",
+			"state": "generated",
+			"language": "en",
+			"inputHash": "1de3571554b82e6f2231ae7d21aa94ca95f9eb4ee4200087e233882e66a3c6a2",
+			"contentHash": "425b163f9eac5fb9e97d164f14075795b28c2f8b6c75c9974ed86e26d609c0f5",
+			"path": "/thai-script/lessons/lesson-04/audio/1de3571554b82e6f.mp3",
+			"file": "audio/1de3571554b82e6f.mp3",
+			"verification": {
+				"outcome": "not-required",
+				"attempts": 1,
+				"expected": null,
+				"heard": []
+			},
+			"failure": null
+		},
+		{
 			"key": "high-tone-0",
 			"kind": "audio",
 			"state": "generated",
@@ -1124,6 +1192,18 @@
 			"contentHash": "6b90dcfedcb53f34159994859cba3179d57810bcd2cbf6520879c0b3c9466252",
 			"path": "/thai-script/lessons/lesson-04/images/han-akat-a6550318c06a.jpg",
 			"file": "images/han-akat-a6550318c06a.jpg",
+			"verification": null,
+			"failure": null
+		},
+		{
+			"key": "rooftop-story-image",
+			"kind": "image",
+			"state": "generated",
+			"language": null,
+			"inputHash": "3f2402039096b05cf99a844da02f6858cdc3a932ca056932de5902a2c3e0ddcb",
+			"contentHash": "21772f30563fbdc90c89e7266065c289d90f4c504e73557c8cf092f08373c5c2",
+			"path": "/thai-script/lessons/lesson-04/images/rooftop-story-3f2402039096.jpg",
+			"file": "images/rooftop-story-3f2402039096.jpg",
 			"verification": null,
 			"failure": null
 		},

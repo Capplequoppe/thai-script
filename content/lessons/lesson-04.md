@@ -281,6 +281,19 @@ narration: en One more. Write the word for a day: the ring's letter, then the cu
 - Write it beside the two-hooks version.
 - **They sound the same.** One sits above, one sits after.
 
+## exposition rooftop-story
+image: images/palace/rooftop-fisherman-struck.jpg
+heading: What happens on the rooftop
+teaches: low-dead-short, rooftop-fisherman-struck
+narration: en Before I give you the rule, come and see where it happens, because this is one you will want a picture of. Every tone in this language has a place of its own somewhere in that town, five places for five tones, and you have already stood in one of them. The rice paddy, in lesson two — the flat field, the fisherman with nothing whatever the matter with him. They are all kept together under Palace, along the bottom of the screen, and you can walk back into any of them whenever you like.
+narration: en Today you go up. Leave the quay, take the outside stair of the tallest house on the harbour front all the way to the top, and come out onto the flat roof. Then stand still and watch what happens.
+recording: en The rooftop. The fisherman has climbed up to fix a tile, and a single bolt of lightning takes him — one flash, over before the sound reaches the street. It is the quickest end anything meets in this palace, and it happens at the very top of the house. A low-class letter, a dead syllable, a short vowel: high tone. This is the one place in the whole system where the length of the vowel decides the answer, so find the vowel first and then read. public/palace/scenes/audio/rooftop-fisherman-struck.mp3
+narration: en Hold on to that one. A harbour man, on a roof, gone in a single flash. Short, and high up. That is the picture to reach for every time a harbour letter takes a short vowel and something slams the syllable shut.
+- The fisherman came up from the harbour, so he is **low class**.
+- One flash and it is over — a **short** vowel, stopped **dead**.
+- He is up on the roof when it happens, and the tone is **high**.
+- The five tone places live under **Palace**, and you can go back any time.
+
 ## rule low-dead-short
 rule: low-dead-short
 teaches: low-dead-short

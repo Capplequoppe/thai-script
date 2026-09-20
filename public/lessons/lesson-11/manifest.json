@@ -632,6 +632,57 @@
 			"failure": null
 		},
 		{
+			"key": "well-story-0",
+			"kind": "audio",
+			"state": "generated",
+			"language": "en",
+			"inputHash": "fb30b5594b5e3d2a2fa652485c677507164b8fd64902084317897388efe25df9",
+			"contentHash": "f3525b4d6da8c35475993278c92e21c7db1fbc14fa44b426a495ade8b71909db",
+			"path": "/thai-script/lessons/lesson-11/audio/fb30b5594b5e3d2a.mp3",
+			"file": "audio/fb30b5594b5e3d2a.mp3",
+			"verification": {
+				"outcome": "not-required",
+				"attempts": 1,
+				"expected": null,
+				"heard": []
+			},
+			"failure": null
+		},
+		{
+			"key": "well-story-1",
+			"kind": "audio",
+			"state": "generated",
+			"language": "en",
+			"inputHash": "065c44d109a7041c5c138ef0078ac70bbcf70d30ef8e9dd3562b2015ccc677c0",
+			"contentHash": "334c963c18e6acad0b0e667371ad71460c9c01158f30dfb7dc998baee7ac33cb",
+			"path": "/thai-script/lessons/lesson-11/audio/065c44d109a7041c.mp3",
+			"file": "audio/065c44d109a7041c.mp3",
+			"verification": {
+				"outcome": "not-required",
+				"attempts": 1,
+				"expected": null,
+				"heard": []
+			},
+			"failure": null
+		},
+		{
+			"key": "well-story-2",
+			"kind": "audio",
+			"state": "generated",
+			"language": "en",
+			"inputHash": "17f67891eaca04a3192c45956d3140b927b79fd52cabf492401d4d52ce6eb02e",
+			"contentHash": "301946f037e12b374750b546c9f55bdaf3f4ea86b83a62e57eeb82888784d41f",
+			"path": "/thai-script/lessons/lesson-11/audio/17f67891eaca04a3.mp3",
+			"file": "audio/17f67891eaca04a3.mp3",
+			"verification": {
+				"outcome": "not-required",
+				"attempts": 1,
+				"expected": null,
+				"heard": []
+			},
+			"failure": null
+		},
+		{
 			"key": "the-grid-closes-0",
 			"kind": "audio",
 			"state": "generated",
@@ -850,6 +901,18 @@
 			"contentHash": "57ace0a6b6e7a1e72707292e18fd82bff36e6c165f441f80381f262ad4713c60",
 			"path": "/thai-script/lessons/lesson-11/images/the-grid-so-far-b9f3222c246d.jpg",
 			"file": "images/the-grid-so-far-b9f3222c246d.jpg",
+			"verification": null,
+			"failure": null
+		},
+		{
+			"key": "well-story-image",
+			"kind": "image",
+			"state": "generated",
+			"language": null,
+			"inputHash": "023c4a9d0333ff2911be32959fb0a6c9f609fd941d532ee78ba472c26a15fe3b",
+			"contentHash": "dc9bf77990150e9b12e71068cd7d4a46330b8331fa306b2e28007b2bd0c63478",
+			"path": "/thai-script/lessons/lesson-11/images/well-story-023c4a9d0333.jpg",
+			"file": "images/well-story-023c4a9d0333.jpg",
 			"verification": null,
 			"failure": null
 		},

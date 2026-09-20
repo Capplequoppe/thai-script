@@ -224,6 +224,57 @@
 			"failure": null
 		},
 		{
+			"key": "hill-path-story-0",
+			"kind": "audio",
+			"state": "generated",
+			"language": "en",
+			"inputHash": "402994f846f6612be5b6857d9d68948036b9476d9708be86fd0cb73959b4ca41",
+			"contentHash": "a57f2382e0990f1cc5ffda2f839392b3b4710a364220f6aba37c5205a1b57f91",
+			"path": "/thai-script/lessons/lesson-12/audio/402994f846f6612b.mp3",
+			"file": "audio/402994f846f6612b.mp3",
+			"verification": {
+				"outcome": "not-required",
+				"attempts": 1,
+				"expected": null,
+				"heard": []
+			},
+			"failure": null
+		},
+		{
+			"key": "hill-path-story-1",
+			"kind": "audio",
+			"state": "generated",
+			"language": "en",
+			"inputHash": "3ad325eb71f0ec0d075702f7a36fdd7668c73738afd09d487755cd5acdf08ed5",
+			"contentHash": "3f662ff843a16757ba889e51020f352dc6c279d5a0b5cd324f6c5fd9091d1d0d",
+			"path": "/thai-script/lessons/lesson-12/audio/3ad325eb71f0ec0d.mp3",
+			"file": "audio/3ad325eb71f0ec0d.mp3",
+			"verification": {
+				"outcome": "not-required",
+				"attempts": 1,
+				"expected": null,
+				"heard": []
+			},
+			"failure": null
+		},
+		{
+			"key": "hill-path-story-2",
+			"kind": "audio",
+			"state": "generated",
+			"language": "en",
+			"inputHash": "03bf3f11a21256a0b5ef7d02610dd65f33d26fc4ef2f6fde6c618ca2dd32b1e3",
+			"contentHash": "3af580e63715d8cdf84cbf5c6e67e3245f09f3cb989b50ae33d6231b5febf377",
+			"path": "/thai-script/lessons/lesson-12/audio/03bf3f11a21256a0.mp3",
+			"file": "audio/03bf3f11a21256a0.mp3",
+			"verification": {
+				"outcome": "not-required",
+				"attempts": 1,
+				"expected": null,
+				"heard": []
+			},
+			"failure": null
+		},
+		{
 			"key": "rising-in-the-mouth-0",
 			"kind": "audio",
 			"state": "generated",
@@ -1120,6 +1171,18 @@
 			"contentHash": "6ba14cae27b88a70c0cba52705589157428e6cb96eae2096844b7a4b29d2bff8",
 			"path": "/thai-script/lessons/lesson-12/images/meet-hiip-7a1069b2f1de.jpg",
 			"file": "images/meet-hiip-7a1069b2f1de.jpg",
+			"verification": null,
+			"failure": null
+		},
+		{
+			"key": "hill-path-story-image",
+			"kind": "image",
+			"state": "generated",
+			"language": null,
+			"inputHash": "30eb171c632c349da5c5a8060005d20b9dc728bdb24ceeb3b7e14787fb7fe2d6",
+			"contentHash": "74dfc4f77f0897b019447ca20aeef0097b9b4a90b015922b06d31e02ab0f7b58",
+			"path": "/thai-script/lessons/lesson-12/images/hill-path-story-30eb171c632c.jpg",
+			"file": "images/hill-path-story-30eb171c632c.jpg",
 			"verification": null,
 			"failure": null
 		},

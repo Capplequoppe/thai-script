@@ -250,6 +250,18 @@ narration: th ดู
 narration: en To look, or to watch. Two marks, and one of the words you will say most often in the language.
 - **ดู** — to look, to watch.
 
+## exposition waterfall-story
+image: images/palace/waterfall-fisherman-drowns.jpg
+heading: What happens at the waterfall
+teaches: low-dead-long, low-dead-short, waterfall-fisherman-drowns
+narration: en Same man as last lesson. You watched him go on the roof in a single flash, and that flash was a short vowel stopped dead. Today the vowel is long — so whatever happens to him now has to take longer. Come inland, follow the river up, and stand at the place where it goes over the edge.
+recording: en The waterfall. The same fisherman, a different day. This time the river has him, and he goes over the lip and down the long drop into the pool below, and it takes a while. He starts at the top and finishes at the bottom, with the whole length of the fall in between. A low-class letter, a dead syllable, a long vowel: falling tone. Same man, same class, same dead syllable as the rooftop — the vowel got longer and the tone came down with it. Hear the length, and let your voice fall the distance. public/palace/scenes/audio/waterfall-fisherman-drowns.mp3
+narration: en Keep those two together rather than as two separate rules, because they are one man and one difference. Short is the flash on the roof, and the pitch stays up where he was. Long is the fall, and your voice has to make the drop with him.
+- The same fisherman, so the same **low class** and the same dead ending.
+- The vowel is **long**, so the ending takes long: over the lip and all the way down.
+- He starts at the top and finishes at the bottom — the **falling** tone.
+- Rooftop against waterfall is the whole of the difference: short against long.
+
 ## rule low-dead-long
 rule: low-dead-long
 teaches: low-dead-long

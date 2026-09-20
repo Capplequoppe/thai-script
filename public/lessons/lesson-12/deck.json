@@ -142,6 +142,24 @@
 			"teaches": ["so-sia", "ho-hip"]
 		},
 		{
+			"kind": "exposition",
+			"id": "hill-path-story",
+			"heading": "What happens on the hill path",
+			"body": [
+				"The monk comes from the temple, so he is **high class**.",
+				"The path **dips, then climbs**, which is the shape of the tone.",
+				"The other two stay level in their field. The monk is the one who goes up."
+			],
+			"audio": [
+				"/thai-script/lessons/lesson-12/audio/402994f846f6612b.mp3",
+				"/thai-script/lessons/lesson-12/audio/3ad325eb71f0ec0d.mp3",
+				"/thai-script/lessons/lesson-12/audio/03bf3f11a21256a0.mp3"
+			],
+			"audioLanguages": ["en", "en", "en"],
+			"teaches": ["high-live", "hill-monk-climbs"],
+			"image": "/thai-script/lessons/lesson-12/images/hill-path-story-30eb171c632c.jpg"
+		},
+		{
 			"kind": "rule",
 			"id": "high-live-rule",
 			"ruleId": "high-live",
@@ -555,8 +573,8 @@
 		}
 	],
 	"timing": {
-		"spokenSeconds": 1082,
-		"practiceSeconds": 378,
-		"estimatedMinutes": 24
+		"spokenSeconds": 1169,
+		"practiceSeconds": 384,
+		"estimatedMinutes": 26
 	}
 }
