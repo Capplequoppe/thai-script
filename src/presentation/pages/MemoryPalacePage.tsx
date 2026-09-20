@@ -43,6 +43,7 @@ import {
 } from "../../domain/script/data/vowelHouse";
 import { ROOMS } from "../../domain/vocabulary/types";
 import { SectionHeader } from "../components/atoms/SectionHeader";
+import { CardPager } from "../components/molecules/CardPager";
 import {
 	ConsonantDetailDialog,
 	consonantSummaryFor,
@@ -483,7 +484,16 @@ function DetailPanel({
 	}
 
 	if (selected.kind === "tone")
-		return <TonePlaceDetail tone={selected.tone} onPlayStory={onPlayStory} />;
+		return (
+			// Keyed on the place, so walking from the rooftop to the well opens
+			// the well's first scene rather than its third — and stops whatever
+			// the rooftop was saying on the way out.
+			<TonePlaceDetail
+				key={selected.tone}
+				tone={selected.tone}
+				onPlayStory={onPlayStory}
+			/>
+		);
 	if (selected.kind === "house")
 		return <HouseDetail onPlayStory={onPlayStory} />;
 	if (selected.kind === "district")
@@ -521,6 +531,16 @@ function TonePlaceDetail({
 	);
 	const overview = tonePlaceOverviewFor(tone);
 
+	// Which scene is open. The place itself stays put above it — a tone place
+	// is one room and these are the several things that happened in it, so
+	// paging moves the event and not the room.
+	const [index, setIndex] = useState(0);
+	// Clamped rather than trusted: the scene list is gated on what has been
+	// learned, and a learner who resets their progress with the rooftop open
+	// would otherwise be holding an index into a shorter list.
+	const current = Math.min(index, Math.max(0, scenes.length - 1));
+	const scene = scenes[current];
+
 	return (
 		<section
 			className="rounded-2xl p-4 space-y-4"
@@ -556,20 +576,36 @@ function TonePlaceDetail({
 					as you meet them.
 				</p>
 			) : (
-				<div className="space-y-3">
-					{scenes.map((scene) => (
+				scene && (
+					// One at a time, paged, rather than stacked down the page.
+					// The rooftop holds three scenes and the well two, and a
+					// column of them turned the place into a scrolling list of
+					// unrelated deaths — you could not tell where one story
+					// stopped and the next began. `CardPager` is the same
+					// control the vocabulary and learned-items pages use, so
+					// the gesture is one the learner already has.
+					//
+					// Keyed on the scene so paging remounts the card, which
+					// stops a story that was still being read aloud: the clip
+					// hook releases on unmount.
+					<CardPager
+						index={current}
+						total={scenes.length}
+						onNavigate={setIndex}
+					>
 						<SceneCard
 							key={scene.id}
 							scene={scene}
 							learned={learned.toneRules}
 							onPlayStory={onPlayStory}
 						/>
-					))}
-				</div>
+					</CardPager>
+				)
 			)}
 
 			{/* Said outright, because it is the reason several scenes hold more
-			    than one character and a learner should not have to infer it. */}
+			    than one character and a learner should not have to infer it —
+			    and more so now that only one of them is on screen at a time. */}
 			{scenes.length > 1 && (
 				<p className="text-xs" style={{ color: "var(--color-text-muted)" }}>
 					Everything here ends in a {tone} tone — that is what makes it one
