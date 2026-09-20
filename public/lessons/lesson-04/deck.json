@@ -361,6 +361,26 @@
 			"teaches": ["mai-han-akat", "sara-a"]
 		},
 		{
+			"kind": "exposition",
+			"id": "rooftop-story",
+			"heading": "What happens on the rooftop",
+			"body": [
+				"The fisherman came up from the harbour, so he is **low class**.",
+				"One flash and it is over — a **short** vowel, stopped **dead**.",
+				"He is up on the roof when it happens, and the tone is **high**.",
+				"The five tone places live under **Palace**, and you can go back any time."
+			],
+			"audio": [
+				"/thai-script/lessons/lesson-04/audio/77db3b2dba8d64ae.mp3",
+				"/thai-script/lessons/lesson-04/audio/a2b71d1d8e0a3830.mp3",
+				"/thai-script/lessons/lesson-04/audio/407870a6eb3932bd.mp3",
+				"/thai-script/lessons/lesson-04/audio/1de3571554b82e6f.mp3"
+			],
+			"audioLanguages": ["en", "en", "en", "en"],
+			"teaches": ["low-dead-short", "rooftop-fisherman-struck"],
+			"image": "/thai-script/lessons/lesson-04/images/rooftop-story-3f2402039096.jpg"
+		},
+		{
 			"kind": "rule",
 			"id": "low-dead-short",
 			"ruleId": "low-dead-short",
@@ -442,8 +462,8 @@
 		}
 	],
 	"timing": {
-		"spokenSeconds": 679,
-		"practiceSeconds": 236,
-		"estimatedMinutes": 15
+		"spokenSeconds": 766,
+		"practiceSeconds": 242,
+		"estimatedMinutes": 17
 	}
 }

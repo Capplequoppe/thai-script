@@ -11,7 +11,7 @@
 				"A shape to learn and a district to put it in.",
 				"One new tone, and these seven are what spell it."
 			],
-			"audio": ["/thai-script/lessons/lesson-12/audio/00630e9d86d9de3b.mp3"],
+			"audio": ["/thai-script/lessons/lesson-12/audio/3e8d5ecf30cfcef3.mp3"],
 			"audioLanguages": ["en"],
 			"image": "/thai-script/lessons/lesson-12/images/what-is-here-7f63f31c809a.jpg"
 		},
@@ -24,7 +24,7 @@
 				"Both halves of the name, out loud.",
 				"Seven shapes in one sitting, so write each one while its name is in your ear."
 			],
-			"audio": ["/thai-script/lessons/lesson-12/audio/a270afa637121c27.mp3"],
+			"audio": ["/thai-script/lessons/lesson-12/audio/74755439c4160edc.mp3"],
 			"audioLanguages": ["en"],
 			"image": "/thai-script/lessons/lesson-12/images/pen-still-there-1bdf41db8b53.jpg"
 		},
@@ -37,7 +37,7 @@
 				"The temple is the **high class**.",
 				"Today it goes from empty to seven residents."
 			],
-			"audio": ["/thai-script/lessons/lesson-12/audio/5c3889ca526b47b5.mp3"],
+			"audio": ["/thai-script/lessons/lesson-12/audio/3cb59546aef797ea.mp3"],
 			"audioLanguages": ["en"],
 			"image": "/thai-script/lessons/lesson-12/images/up-to-the-temple-9f0b4d6169f4.jpg"
 		},
@@ -50,7 +50,7 @@
 				"Today the temple column arrives whole.",
 				"Each letter costs a shape and a tone, and the sound comes free."
 			],
-			"audio": ["/thai-script/lessons/lesson-12/audio/2a2d513317baf62a.mp3"],
+			"audio": ["/thai-script/lessons/lesson-12/audio/89a948eb604e3a96.mp3"],
 			"audioLanguages": ["en"],
 			"image": "/thai-script/lessons/lesson-12/images/the-map-again-1c36d1eaba8c.jpg"
 		},
@@ -63,7 +63,7 @@
 				"The first two turn up within a page of almost anything.",
 				"One writes the everyday s, and the other writes h."
 			],
-			"audio": ["/thai-script/lessons/lesson-12/audio/3d63abc7019359e6.mp3"],
+			"audio": ["/thai-script/lessons/lesson-12/audio/614f8dd5fe9d0ee3.mp3"],
 			"audioLanguages": ["en"],
 			"image": "/thai-script/lessons/lesson-12/images/the-two-you-will-use-most-138dacc45b2a.jpg"
 		},
@@ -78,9 +78,9 @@
 				"The monkey's shape with **one line crossed through it**."
 			],
 			"audio": [
-				"/thai-script/lessons/lesson-12/audio/e319ce7827ffc5c8.mp3",
+				"/thai-script/lessons/lesson-12/audio/52bfb59790ae0441.mp3",
 				"/thai-script/lessons/lesson-12/audio/d49cf848308636cd.mp3",
-				"/thai-script/lessons/lesson-12/audio/b99762f16db7f6e0.mp3"
+				"/thai-script/lessons/lesson-12/audio/238fbd5689d438b8.mp3"
 			],
 			"audioLanguages": ["en", "th", "en"],
 			"teaches": ["so-sia"],
@@ -108,9 +108,9 @@
 				"The soldier's letter with a **kink in the left stroke**."
 			],
 			"audio": [
-				"/thai-script/lessons/lesson-12/audio/7b9f4dc749d52891.mp3",
+				"/thai-script/lessons/lesson-12/audio/6fd583a9246c5bb4.mp3",
 				"/thai-script/lessons/lesson-12/audio/d987b671f9735de7.mp3",
-				"/thai-script/lessons/lesson-12/audio/44dafb5890e14e7f.mp3"
+				"/thai-script/lessons/lesson-12/audio/75b3c2d7b343a2ab.mp3"
 			],
 			"audioLanguages": ["en", "th", "en"],
 			"teaches": ["ho-hip"],
@@ -136,10 +136,28 @@
 				"The chest: head, a kinked stroke down, a loop, a tall wall.",
 				"Six or seven each, name out loud."
 			],
-			"audio": ["/thai-script/lessons/lesson-12/audio/c76c6df59d2b6889.mp3"],
+			"audio": ["/thai-script/lessons/lesson-12/audio/320c18cb883fcd86.mp3"],
 			"audioLanguages": ["en"],
 			"thai": "ส ห",
 			"teaches": ["so-sia", "ho-hip"]
+		},
+		{
+			"kind": "exposition",
+			"id": "hill-path-story",
+			"heading": "What happens on the hill path",
+			"body": [
+				"The monk comes from the temple, so he is **high class**.",
+				"The path **dips, then climbs**, which is the shape of the tone.",
+				"The other two stay level in their field. The monk is the one who goes up."
+			],
+			"audio": [
+				"/thai-script/lessons/lesson-12/audio/402994f846f6612b.mp3",
+				"/thai-script/lessons/lesson-12/audio/3ad325eb71f0ec0d.mp3",
+				"/thai-script/lessons/lesson-12/audio/03bf3f11a21256a0.mp3"
+			],
+			"audioLanguages": ["en", "en", "en"],
+			"teaches": ["high-live", "hill-monk-climbs"],
+			"image": "/thai-script/lessons/lesson-12/images/hill-path-story-30eb171c632c.jpg"
 		},
 		{
 			"kind": "rule",
@@ -157,33 +175,29 @@
 				"Skipping the dip gives you a different tone."
 			],
 			"audio": [
-				"/thai-script/lessons/lesson-12/audio/18c9bfbab8d0b826.mp3",
+				"/thai-script/lessons/lesson-12/audio/0669285a7b12b3af.mp3",
 				"/thai-script/lessons/lesson-12/audio/39ae85d15b0cc7e8.mp3",
-				"/thai-script/lessons/lesson-12/audio/a3687312e20cdc70.mp3"
+				"/thai-script/lessons/lesson-12/audio/746c7fe4a5efc183.mp3"
 			],
 			"audioLanguages": ["en", "th", "en"],
 			"teaches": ["high-live"],
 			"image": "/thai-script/lessons/lesson-12/images/rising-in-the-mouth-1589228b152e.jpg"
 		},
 		{
-			"kind": "exposition",
+			"kind": "retrieval",
 			"id": "read-suung",
-			"heading": "Read this one",
-			"body": [
-				"Tiger, the long oo in the cellar, the snake closing it.",
-				"The syllable alive, temple letter.",
-				"**Out loud, with the dip, before you turn it over.**"
-			],
+			"prompt": "Tiger, the long oo in the cellar, the snake closing it. The syllable alive, temple letter. **Out loud, with the dip, before you turn it over.**",
+			"revealSlideId": "read-suung-answer",
 			"audio": ["/thai-script/lessons/lesson-12/audio/a94bf2b216f7af6d.mp3"],
 			"audioLanguages": ["en"],
 			"thai": "สูง",
 			"teaches": ["so-sia", "high-live"]
 		},
 		{
-			"kind": "exposition",
+			"kind": "reveal",
 			"id": "read-suung-answer",
-			"heading": "That one",
-			"body": [
+			"retrievalSlideId": "read-suung",
+			"answers": [
 				"**สูง** — tall.",
 				"Rising, from the temple letter and the ending that leaves it alive."
 			],
@@ -204,7 +218,7 @@
 				"Their harbour cousins are the buffalo, the elephant and the soldier.",
 				"Three shapes, each a letter you own with one change."
 			],
-			"audio": ["/thai-script/lessons/lesson-12/audio/fd2bf0b5e0025b3d.mp3"],
+			"audio": ["/thai-script/lessons/lesson-12/audio/1e1ac672dc454870.mp3"],
 			"audioLanguages": ["en"],
 			"image": "/thai-script/lessons/lesson-12/images/three-that-breathe-0e66b527d4db.jpg"
 		},
@@ -218,9 +232,9 @@
 				"The elephant's letter with **the tail taken off**."
 			],
 			"audio": [
-				"/thai-script/lessons/lesson-12/audio/0e5b9ecbf64d46eb.mp3",
+				"/thai-script/lessons/lesson-12/audio/2cb836a11875237e.mp3",
 				"/thai-script/lessons/lesson-12/audio/c69878c7f9f92b30.mp3",
-				"/thai-script/lessons/lesson-12/audio/071a309c8d3fc700.mp3"
+				"/thai-script/lessons/lesson-12/audio/bdbd337da0c7598e.mp3"
 			],
 			"audioLanguages": ["en", "th", "en"],
 			"teaches": ["kho-khay"],
@@ -236,9 +250,9 @@
 				"The chicken's frame with a **head coiled inside it**."
 			],
 			"audio": [
-				"/thai-script/lessons/lesson-12/audio/0e5b9ecbf64d46eb.mp3",
+				"/thai-script/lessons/lesson-12/audio/b8a819ee8c97897d.mp3",
 				"/thai-script/lessons/lesson-12/audio/5dfbc9f895059bb8.mp3",
-				"/thai-script/lessons/lesson-12/audio/f449ae907470ea92.mp3"
+				"/thai-script/lessons/lesson-12/audio/f21df88d2ffafea2.mp3"
 			],
 			"audioLanguages": ["en", "th", "en"],
 			"teaches": ["tho-thung"],
@@ -254,9 +268,9 @@
 				"The tray's outline with **the head turned inward**."
 			],
 			"audio": [
-				"/thai-script/lessons/lesson-12/audio/0e5b9ecbf64d46eb.mp3",
+				"/thai-script/lessons/lesson-12/audio/fa38013d58706461.mp3",
 				"/thai-script/lessons/lesson-12/audio/bed66b6e0bf00ae4.mp3",
-				"/thai-script/lessons/lesson-12/audio/7ae14bac4896a51d.mp3"
+				"/thai-script/lessons/lesson-12/audio/99809625aec1d99c.mp3"
 			],
 			"audioLanguages": ["en", "th", "en"],
 			"teaches": ["pho-phing"],
@@ -272,30 +286,26 @@
 				"The bee: **the tray, with the head turned in**.",
 				"Each one beside the letter it came from."
 			],
-			"audio": ["/thai-script/lessons/lesson-12/audio/6a8796faefa1d629.mp3"],
+			"audio": ["/thai-script/lessons/lesson-12/audio/114f91842d083151.mp3"],
 			"audioLanguages": ["en"],
 			"thai": "ข ถ ผ",
 			"teaches": ["kho-khay", "tho-thung", "pho-phing"]
 		},
 		{
-			"kind": "exposition",
+			"kind": "retrieval",
 			"id": "read-khao",
-			"heading": "Read this one",
-			"body": [
-				"Mast, the egg's letter, the long post.",
-				"**Watch the order.** The mast goes down first and is spoken second.",
-				"Work the tone out before you say it."
-			],
-			"audio": ["/thai-script/lessons/lesson-12/audio/24d917d1050e64ef.mp3"],
+			"prompt": "Mast, the egg's letter, the long post. **Watch the order.** The mast goes down first and is spoken second. Work the tone out before you say it.",
+			"revealSlideId": "read-khao-answer",
+			"audio": ["/thai-script/lessons/lesson-12/audio/4b47902a9120ef73.mp3"],
 			"audioLanguages": ["en"],
 			"thai": "เขา",
 			"teaches": ["kho-khay", "high-live"]
 		},
 		{
-			"kind": "exposition",
+			"kind": "reveal",
 			"id": "read-khao-answer",
-			"heading": "That one",
-			"body": [
+			"retrievalSlideId": "read-khao",
+			"answers": [
 				"**เขา** — he, or she.",
 				"Rising: temple letter, the syllable alive.",
 				"The same sound from the harbour would come out flat."
@@ -317,7 +327,7 @@
 				"One of them opens the word a woman uses for *I*.",
 				"A half-learned letter gets read straight past, and the word goes wrong."
 			],
-			"audio": ["/thai-script/lessons/lesson-12/audio/afc1e3ed6a93faa0.mp3"],
+			"audio": ["/thai-script/lessons/lesson-12/audio/f1dde53e9428c5e3.mp3"],
 			"audioLanguages": ["en"],
 			"image": "/thai-script/lessons/lesson-12/images/the-last-two-441f691f248a.jpg"
 		},
@@ -331,9 +341,9 @@
 				"The mouse's profile, shortened, with **a flicked tail above**."
 			],
 			"audio": [
-				"/thai-script/lessons/lesson-12/audio/0e5b9ecbf64d46eb.mp3",
+				"/thai-script/lessons/lesson-12/audio/a8d8ac48d9460992.mp3",
 				"/thai-script/lessons/lesson-12/audio/04a1c412af6c17fb.mp3",
-				"/thai-script/lessons/lesson-12/audio/2492b7fc9ac3c095.mp3"
+				"/thai-script/lessons/lesson-12/audio/98a38a598b3588b2.mp3"
 			],
 			"audioLanguages": ["en", "th", "en"],
 			"teaches": ["cho-ching"],
@@ -349,9 +359,9 @@
 				"The tooth's letter with **the head brought inside the rim**."
 			],
 			"audio": [
-				"/thai-script/lessons/lesson-12/audio/0e5b9ecbf64d46eb.mp3",
+				"/thai-script/lessons/lesson-12/audio/c7de23c3fe1ff222.mp3",
 				"/thai-script/lessons/lesson-12/audio/cfc8454975585646.mp3",
-				"/thai-script/lessons/lesson-12/audio/512b0aa2ae4991ac.mp3"
+				"/thai-script/lessons/lesson-12/audio/c63547d18e7e5ef8.mp3"
 			],
 			"audioLanguages": ["en", "th", "en"],
 			"teaches": ["fo-fa"],
@@ -416,31 +426,27 @@
 			"audio": [
 				"/thai-script/lessons/lesson-12/audio/ed29968fc6c8db63.mp3",
 				"/thai-script/lessons/lesson-12/audio/901ee5d7936d37de.mp3",
-				"/thai-script/lessons/lesson-12/audio/9434929c915fba56.mp3",
-				"/thai-script/lessons/lesson-12/audio/3c68000b5e9cc9f9.mp3"
+				"/thai-script/lessons/lesson-12/audio/800532e9e605ba6c.mp3",
+				"/thai-script/lessons/lesson-12/audio/71fef1477dead42d.mp3"
 			],
 			"audioLanguages": ["en", "th", "en", "en"],
 			"teaches": ["sara-ia", "sara-iia"]
 		},
 		{
-			"kind": "exposition",
+			"kind": "retrieval",
 			"id": "read-sia",
-			"heading": "Read this one",
-			"body": [
-				"Mast, tiger, the roof mark, the giant's letter.",
-				"The syllable alive, temple letter.",
-				"**Tone first, then out loud.**"
-			],
-			"audio": ["/thai-script/lessons/lesson-12/audio/b4d6ac2b08555684.mp3"],
+			"prompt": "Mast, tiger, the roof mark, the giant's letter. The syllable alive, temple letter. **Tone first, then out loud.**",
+			"revealSlideId": "read-sia-answer",
+			"audio": ["/thai-script/lessons/lesson-12/audio/27d45fb46f0db2df.mp3"],
 			"audioLanguages": ["en"],
 			"thai": "เสีย",
 			"teaches": ["sara-iia", "so-sia"]
 		},
 		{
-			"kind": "exposition",
+			"kind": "reveal",
 			"id": "read-sia-answer",
-			"heading": "That one",
-			"body": [
+			"retrievalSlideId": "read-sia",
+			"answers": [
 				"**เสีย** — to lose, to waste, to break.",
 				"Rising: temple letter, the syllable alive."
 			],
@@ -453,24 +459,20 @@
 			"teaches": ["sara-iia", "so-sia"]
 		},
 		{
-			"kind": "exposition",
+			"kind": "retrieval",
 			"id": "read-rian",
-			"heading": "Now the same vowel from the harbour",
-			"body": [
-				"Mast, boat, roof mark, giant's letter, mouse closing it.",
-				"The boat lives at the **harbour**, and the ending hums.",
-				"Say the tone out loud before you turn it over."
-			],
+			"prompt": "Mast, boat, roof mark, giant's letter, mouse closing it. The boat lives at the **harbour**, and the ending hums. Say the tone out loud before you turn it over.",
+			"revealSlideId": "read-rian-answer",
 			"audio": ["/thai-script/lessons/lesson-12/audio/001ef84c126e8dd9.mp3"],
 			"audioLanguages": ["en"],
 			"thai": "เรียน",
 			"teaches": ["sara-iia", "high-live", "low-live"]
 		},
 		{
-			"kind": "exposition",
+			"kind": "reveal",
 			"id": "read-rian-answer",
-			"heading": "That one",
-			"body": [
+			"retrievalSlideId": "read-rian",
+			"answers": [
 				"**เรียน** — to study.",
 				"Flat: harbour letter, the syllable alive.",
 				"Same vowel as the last word, and a different tone, from the district alone."
@@ -497,7 +499,7 @@
 				"**หา** — to look for. The chest, and the long post from lesson one.",
 				"**สูง** — tall. The tiger, and the long oo down in the cellar."
 			],
-			"audio": ["/thai-script/lessons/lesson-12/audio/c35edecb13582ab4.mp3"],
+			"audio": ["/thai-script/lessons/lesson-12/audio/732d2faa085fcd7a.mp3"],
 			"audioLanguages": ["en"],
 			"teaches": [
 				"so-sia",
@@ -515,7 +517,7 @@
 			"id": "which-cousin",
 			"prompt": "เขา is read with a rising tone. Respell it with the water buffalo's letter in place of the egg's and the climb disappears. Same sound out of your mouth, same vowel — so what is that one written change doing?",
 			"revealSlideId": "which-cousin-answer",
-			"audio": ["/thai-script/lessons/lesson-12/audio/1e1e1aacfb3ea7f2.mp3"],
+			"audio": ["/thai-script/lessons/lesson-12/audio/92d2417acfd95a39.mp3"],
 			"audioLanguages": ["en"],
 			"teaches": ["kho-khay", "kho-khwai", "high-live", "low-live"]
 		},
@@ -529,7 +531,7 @@
 				"Harbour letter, the syllable alive, flat.",
 				"Two letters for one sound is how the script spells a tone."
 			],
-			"audio": ["/thai-script/lessons/lesson-12/audio/0c835df6b2acff36.mp3"],
+			"audio": ["/thai-script/lessons/lesson-12/audio/0645822e697759dd.mp3"],
 			"audioLanguages": ["en"],
 			"teaches": ["kho-khay", "kho-khwai", "high-live", "low-live"]
 		},
@@ -538,7 +540,7 @@
 			"id": "which-letter",
 			"prompt": "You hear a word pronounced with a breathed t at the front, a long open vowel, and a hum closing it — and the whole thing rises. Two letters in Thai write that breathed t. Which one is on the page, and how do you know?",
 			"revealSlideId": "which-letter-answer",
-			"audio": ["/thai-script/lessons/lesson-12/audio/aee45079d4414871.mp3"],
+			"audio": ["/thai-script/lessons/lesson-12/audio/2cef79c9168debdd.mp3"],
 			"audioLanguages": ["en"],
 			"teaches": ["tho-thung", "tho-thahan", "high-live"]
 		},
@@ -566,13 +568,13 @@
 				"Write the column, with each harbour cousin beside it.",
 				"Next: six more doubled sounds, two at the temple and four at the harbour."
 			],
-			"audio": ["/thai-script/lessons/lesson-12/audio/b7f1c18a960e1e88.mp3"],
+			"audio": ["/thai-script/lessons/lesson-12/audio/0238f1e9701654c0.mp3"],
 			"audioLanguages": ["en"]
 		}
 	],
 	"timing": {
-		"spokenSeconds": 1041,
-		"practiceSeconds": 278,
-		"estimatedMinutes": 22
+		"spokenSeconds": 1169,
+		"practiceSeconds": 384,
+		"estimatedMinutes": 26
 	}
 }

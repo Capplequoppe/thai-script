@@ -38,7 +38,7 @@ ITS ANSWER NEVER SHARE A SLIDE. All unchanged from lesson 3.
 image: images/lesson-11/what-is-here.jpg
 scene: An empty aisle of a Thai open-air market at dawn, striped awnings running down both sides and baskets stacked against the closed stalls, the light still low.
 heading: One letter, two jobs, and the last corner of a grid
-narration: en One consonant today, and you have been looking at it for five lessons. It turned up in lesson six as a piece of furniture, propping up a vowel that had nothing underneath it. I told you then that it was a real letter with a real name, and that it would get a lesson of its own. This is that lesson. It has two jobs, and they are so different that people meet it twice and never realise it was the same mark both times. Then the short version of the vowel it becomes. And at the end, two tone rules that finish the market off completely.
+narration: en Today you get one consonant. You have been looking at it for five lessons. It turned up in lesson six as a piece of furniture, propping up a vowel that had nothing underneath it. I told you then that it was a real letter with a real name, and that it would get a lesson of its own. This is that lesson. It has two jobs — they are so different that people meet it twice and never realise it was the same mark both times. Then the short version of the vowel it becomes. And at the end, two tone rules that finish the market off completely.
 - The letter from lesson six finally gets its name.
 - Two jobs, one glyph, and the position tells you which.
 - A short vowel to go with the long one.
@@ -47,7 +47,7 @@ narration: en One consonant today, and you have been looking at it for five less
 ## exposition pen-still-there
 image: images/lesson-01/get-a-pen.jpg
 heading: Pen and paper
-narration: en Pen and paper one more time, and both halves of the name out loud as you write. This is the simplest shape in the whole alphabet, so the writing will be quick and the saying is what matters. Go and get them.
+narration: en Pen and paper one more time. Both halves of the name out loud as you write. This is the simplest shape in the whole alphabet, so the writing will be quick and the saying is what matters. Go and get them.
 - Real paper, a real pen.
 - Both halves of the name, out loud, every time.
 
@@ -71,7 +71,7 @@ image: images/lesson-11/aang-story.jpg
 scene: An old woman setting a wide empty basin down on the bare ground of an empty market row at dawn, striped awnings above her, stalls not yet opened.
 heading: The woman who sold nothing
 teaches: o-ang
-narration: en The market has one rule about pitches and everybody obeys it. A stall keeps its place only while something of yours is standing in it. Leave it bare for a morning and by noon somebody else has moved in, and there is nothing to be done about it. So the fish-seller's sister had to go north for a whole season. On the first morning the fish-seller went down at dawn and set an empty basin in the middle of her sister's pitch. Not to sell out of. Not to wash in. She put it there to be a thing standing in the space. Then she came back and filled it with water every day for four months, so that it would look like somebody's.
+narration: en The market has one rule about pitches and everybody obeys it. A stall keeps its place only while something of yours is standing in it. Leave it bare for a morning and by noon somebody else has moved in. There is nothing to be done about it. So the fish-seller's sister had to go north for a whole season. On the first morning the fish-seller went down at dawn and set an empty basin in the middle of her sister's pitch. Not to sell out of. Not to wash in. She put it there to be a thing standing in the space. Then she came back and filled it with water every day for four months, so that it would look like somebody's.
 - A pitch is kept only while something of yours is standing in it.
 - The fish-seller set an empty basin in her sister's place.
 - She filled it every day for four months so it would look like somebody's.
@@ -97,7 +97,7 @@ teaches: o-ang
 thai: อ
 heading: Write it
 teaches: o-ang
-narration: en One stroke and about a second of your life. Start at the head, up on the left, turn it clockwise as you have done forty times by now, and carry the ring round and closed. Write it a dozen times with the name out loud. Then look back through your notes from lesson six, because you have drawn this shape before without being told what it was.
+narration: en A single stroke and about a second of your life. Start at the head, up on the left, turn it clockwise as you have done forty times by now, and carry the ring round and closed. Write it a dozen times with the name out loud. Then look back through your notes from lesson six, because you have drawn this shape before without being told what it was.
 - **Start at the head**, upper left, clockwise.
 - Carry the ring round and close it.
 - You drew this in lesson six without knowing its name.
@@ -116,20 +116,20 @@ narration: en A Thai syllable is built consonant first and vowel after. That has
 - Some words open on a vowel and have no consonant to write.
 - The basin stands in the slot and makes no sound.
 
-## exposition read-iik
+## retrieval read-iik
+reveal: read-iik-answer
+prompt: The ring, silent. Then the roof's lodger, then the chicken stopping it. Out loud before you turn it over.
 thai: อีก
-heading: Read this one
 teaches: o-ang
-narration: en Three marks, and the first of them is silent. Skip straight past the ring, and what is left is the lodger on the roof saying his own name — then the chicken's letter stops it. Out loud before you turn it over.
-- The ring, silent. Then the roof's lodger, then the chicken stopping it.
-- Out loud before you turn it over.
+narration: en There are three marks — the first of them is silent. Skip straight past the ring, and what is left is the lodger on the roof saying his own name — then the chicken's letter stops it. Out loud before you turn it over.
 
-## exposition read-iik-answer
+## reveal read-iik-answer
+retrieval: read-iik
 thai: อีก
 heading: That one
 teaches: o-ang
 narration: th อีก
-narration: en More, or again. You will hear it constantly, on the end of a request for another one of something. The tone on it stops dead on the chicken's letter, and the rule that settles that is twenty minutes away at the end of this lesson.
+narration: en More, or again. You will hear it constantly, on the end of a request for another one of something. The tone on it stops dead on the chicken's letter. The rule that settles that is twenty minutes away at the end of this lesson.
 - **อีก** — more, or again.
 - The ring says nothing. The vowel behind it is the sound.
 
@@ -142,7 +142,7 @@ narration: en Now the callback, and it reaches back five lessons. In lesson six 
 narration: th มือ
 narration: en A hand. The ring on the end of that is the basin, silent, propping up a vowel that would otherwise have nothing beneath it.
 narration: th คือ
-narration: en And that one means is. The buffalo's letter, the same vowel riding above it, and the same ring underneath holding it up.
+narration: en And that one means is. The buffalo's letter, the same vowel riding above it — the same ring underneath holding it up.
 - **มือ** — a hand. **คือ** — is.
 - The prop from lesson six was this letter the whole time.
 - Front of a word or under a bare vowel, it holds a place and says nothing.
@@ -155,22 +155,22 @@ gloss: the basin as a vowel
 cue: a yawn with the jaw dropped
 heading: Job two, where the basin fills up
 teaches: o-ang, sara-aaw
-narration: en Now the second job, and this is the one that catches people. Put the ring after a consonant, with no vowel written anywhere between them, and it stops being silent. It becomes a vowel in its own right. Listen to that vowel's name.
+narration: en Now the second job. This is the one that catches people. Put the ring after a consonant, with no vowel written anywhere between them, and it stops being silent. It becomes a vowel in its own right. Listen to that vowel's name.
 recording: th สระออ public/audio/sara-aw-long.mp3
 narration: en A long aw, with the jaw dropped all the way, like the middle of the English word saw held out. Look at the shape while you say it, because your mouth is doing what the letter looks like: a wide open ring. Then say the two of them one after the other. A ring at the front of a word, then a ring behind a consonant, and hear what the seat is worth.
 - Put the ring after a consonant with no vowel written between them.
 - It stops being silent and becomes a long aw.
 - The jaw drops all the way, as in the English word *saw*.
 
-## exposition read-naawn
+## retrieval read-naawn
+reveal: read-naawn-answer
+prompt: Mouse, basin as the vowel, mouse again closing it. Hold the vowel long. Out loud before you turn it over.
 thai: นอน
-heading: Read this one
 teaches: sara-aaw
-narration: en Three marks. The mouse's letter opening it, the basin doing its second job in the middle, and the mouse's letter again closing it. Out loud before you turn it over, and hold the vowel long.
-- Mouse, basin as the vowel, mouse again closing it.
-- Hold the vowel long. Out loud before you turn it over.
+narration: en Just three marks. The mouse's letter opening it, the basin doing its second job in the middle, and the mouse's letter again closing it. Out loud before you turn it over, and hold the vowel long.
 
-## exposition read-naawn-answer
+## reveal read-naawn-answer
+retrieval: read-naawn
 thai: นอน
 heading: That one
 teaches: sara-aaw
@@ -179,16 +179,15 @@ narration: en To lie down, and to sleep. It opens on a harbour letter and ends o
 - **นอน** — to lie down, or to sleep.
 - Harbour letter, the syllable alive, flat and level.
 
-## exposition read-aawk
+## retrieval read-aawk
+reveal: read-aawk-answer
+prompt: The first ring: silent, holding the slot. The second ring: the long vowel. Then the chicken's letter stopping it. Out loud first.
 thai: ออก
-heading: Both jobs in one word
 teaches: o-ang, sara-aaw
-narration: en Three marks, and the first two are the same letter doing both of its jobs at once. The first ring is silent and holding the slot. The second ring is the vowel. Then the chicken's letter stops the whole thing. Take it slowly and say it out loud before you turn it over.
-- The first ring: silent, holding the slot.
-- The second ring: the long vowel.
-- Then the chicken's letter stopping it. Out loud first.
+narration: en Look at the marks: three, with the first two the same letter doing both of its jobs at once. The first ring is silent and holding the slot. The second ring is the vowel. Then the chicken's letter stops the whole thing. Take it slowly and say it out loud before you turn it over.
 
-## exposition read-aawk-answer
+## reveal read-aawk-answer
+retrieval: read-aawk
 thai: ออก
 heading: That one
 teaches: o-ang, sara-aaw
@@ -226,15 +225,15 @@ narration: en Same jaw, same shape of mouth, gone before the yawn can open. The 
 - The same mouth as the long aw, cut off early.
 - Long and short are two separate vowels here, as they have been since lesson one.
 
-## exposition read-kaw
+## retrieval read-kaw
+reveal: read-kaw-answer
+prompt: Three marks of vowel, wrapped round the chicken's letter. Short. Out loud before you turn it over.
 thai: เกาะ
-heading: Read this one
 teaches: sara-aw
-narration: en Four marks, and three of them are the vowel wrapped round the middle one. The chicken's letter sits inside. Say it short, and say it out loud before you turn it over.
-- Three marks of vowel, wrapped round the chicken's letter.
-- Short. Out loud before you turn it over.
+narration: en There are four marks, three of them the vowel wrapped round the middle one. The chicken's letter sits inside. Say it short. Out loud, before you turn it over.
 
-## exposition read-kaw-answer
+## reveal read-kaw-answer
+retrieval: read-kaw
 thai: เกาะ
 heading: That one
 teaches: sara-aw
@@ -251,11 +250,23 @@ heading: Three corners you already hold
 teaches: mid-dead-short, mid-dead-long
 narration: en Take stock for a moment, because you are one rule away from finishing a whole district. A tone comes from two facts: which district the opening consonant lives in, and whether the syllable ends alive or dead. That gives every district four corners. The market has had one of them since lesson three, which is an ending that leaves it alive, and it puts the syllable flat and level.
 narration: th ตาม
-narration: en That is the word for to follow, and it is a market letter with a hum on the end that keeps the sound running. Flat and level, by lesson three's rule. The two corners still dark are the dead ones, short and long, and they are the last two rules the market ever needs.
+narration: en That is the word for to follow — it is a market letter with a hum on the end that keeps the sound running. Flat and level, by lesson three's rule. The two corners still dark are the dead ones, short and long. They are the last two rules the market ever needs.
 - A tone comes from the district, and from alive against dead.
 - Four corners per district, and the market has had one since lesson three.
 - **ตาม** — to follow. Market letter, the syllable alive, flat and level.
 - The two dead corners are all that is left.
+
+## exposition well-story
+image: images/palace/well-vendor-and-monk-fall.jpg
+heading: What happens at the well
+teaches: mid-dead-short, mid-dead-long, well-vendor-and-monk-fall
+narration: en The harbour's dead corners have a rooftop and a waterfall in them, and you have stood in both. The market's has a place of its own, and it is the one spot in the whole town you have to look *down* into. Behind the stalls there is a well — old, deep, a stone rim worn smooth by a couple of centuries of hands.
+narration: en The man who sells in the market leans over that rim. And in he goes. Down the shaft, into the dark, and the dark keeps him. A well is where you look down, and down is exactly where a low tone sits. Those two dark corners from a moment ago are both of them this same well: a market letter, a syllable stopped dead, and the voice goes down the shaft. How long the vowel was makes no difference at all. Short or long, same rim, same well.
+narration: en There is a second man leaning on that rim beside him. I am not going to tell you who he is, because you have not met him — he has two lessons still to wait. When you do meet him, he goes in after the vendor, and that is when you find out why the two of them share a well.
+- The vendor sells at the market, so he is **mid class**.
+- He goes **down**, and down is where you look for a low tone.
+- The vowel's length changes nothing — both market dead rules end here.
+- The other figure on the rim is somebody you meet later.
 
 ## rule mid-dead-short
 rule: mid-dead-short
@@ -270,7 +281,7 @@ image: images/lesson-11/the-grid-closes.jpg
 scene: A four-square grid chalked in white on the wooden shutter of a closed market stall, evening light across the boards.
 heading: The market's four corners, closed
 teaches: mid-dead-short, mid-dead-long
-narration: en Read those two rules again and compare them word for word. A market letter on a dead syllable gives a low tone. A market letter on a dead syllable with a long vowel gives a low tone. The vowel length is written into both of them, and both of them come out low. So the market's dead corner is a single rule written down twice, and you may stop checking the vowel length the moment you know the opening letter is a market one.
+narration: en Read those two rules again and compare them word for word. A market letter on a dead syllable gives a low tone. A market letter on a dead syllable with a long vowel gives a low tone. The vowel length is written into both of them, and both come out low. So the market's dead corner is a single rule written down twice — you may stop checking the vowel length the moment you know the opening letter is a market one.
 - Market letter, dead ending, short vowel: **low**.
 - Market letter, dead ending, long vowel: **low**.
 - The length is written into both rules, and both give the same answer.
@@ -281,7 +292,7 @@ image: images/lesson-11/compare-the-harbour.jpg
 scene: A stone harbour quay at dusk with mooring posts standing along its edge and boats lying quiet at anchor beyond, lamps lit along the wall.
 heading: Why that is a gift, and what the harbour charges instead
 teaches: mid-dead-short, mid-dead-long, low-dead-short, low-dead-long
-narration: en Now put that beside the harbour, where you did this same work in lessons four and five. Down there the two lengths pull apart. A short dead syllable goes high and a long dead syllable falls, and you have to measure the vowel before you can say which. The market asks you for nothing of the kind. Same class, same ending, same answer, whatever the vowel is doing. So a market word that ends dead needs one look at its opening letter. A harbour word that ends dead needs a second look at the vowel before you can speak.
+narration: en Now put that beside the harbour, where you did this same work in lessons four and five. Down there the two lengths pull apart. A short dead syllable goes high and a long dead syllable falls. You have to measure the vowel before you can say which. The market asks you for nothing of the kind. Same class, same ending, same answer, whatever the vowel is doing. So a market word that ends dead needs one look at its opening letter. A harbour word that ends dead needs a second look at the vowel before you can speak.
 - Harbour, dead, short: **high**. Harbour, dead, long: **falling**.
 - Market, dead: **low**, at either length.
 - The harbour makes you measure the vowel. The market takes the letter and stops.
@@ -314,7 +325,7 @@ narration: en A last handful, and the basin is in all of them, doing one job or 
 
 ## exposition read-close
 heading: Twenty-one letters, and the end of a run
-narration: en Twenty-one letters, twenty vowel spellings, and the market closed in all four corners. Look at what the last six lessons did, because they were built as a set. You went from two districts that agreed with each other to two districts you can tell apart by their tones. You opened every room of the vowel house, and you saw the map of the seven pairs. Seven of the market's nine letters are yours and the harbour side of those pairs is complete. What comes next is the temple, which is the third district and the last one, and the seven letters waiting in it are sounds your mouth already makes. After them come the marks that write a tone down directly, and those overrule everything you worked out from the spelling.
+narration: en Twenty-one letters, twenty vowel spellings, and the market closed in all four corners. Look at what the last six lessons did, because they were built as a set. You went from two districts that agreed with each other to two districts you can tell apart by their tones. You opened every room of the vowel house — you saw the map of the seven pairs. Seven of the market's nine letters are yours and the harbour side of those pairs is complete. What comes next is the temple, which is the third district and the last one, and the seven letters waiting in it are sounds your mouth already makes. After them come the marks that write a tone down directly, and those overrule everything you worked out from the spelling.
 - Twenty-one letters, twenty vowel spellings.
 - The market's tone grid is closed, and the harbour's has been since lesson five.
 - Next: the temple, and the seven letters you were shown the map of.

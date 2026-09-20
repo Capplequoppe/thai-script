@@ -76,15 +76,26 @@ describe("MemoryPalacePage", () => {
 		renderPalace();
 		fireEvent.click(worldMap().getByRole("button", { name: /^well/i }));
 
-		expect(screen.getByText(/fall down the same well/i)).toBeTruthy();
-		expect(screen.getByText(/one-pointed spear stands driven/i)).toBeTruthy();
+		// The stories themselves, which is what a scene is — not the one-line
+		// caption its picture was drawn from. That caption used to stand here
+		// in place of the mnemonic, so a learner who could not play the audio
+		// got a sentence where the memory was meant to be.
+		expect(screen.getByText(/down the shaft, into the dark/i)).toBeTruthy();
+		expect(screen.getByText(/driven into the rim/i)).toBeTruthy();
 		expect(screen.getByText(/that is what makes it one place/i)).toBeTruthy();
 	});
 
-	it("says how many rules a merged scene stands for", () => {
+	it("names each rule a merged scene stands for, and offers each one's lesson", () => {
 		renderPalace();
 		fireEvent.click(worldMap().getByRole("button", { name: /^well/i }));
-		expect(screen.getByText(/4 rules, which agree/)).toBeTruthy();
+
+		// Four rules end in this well, across two lessons. A count said so and
+		// went no further; naming them gives a learner the one they came for
+		// and a way back into the lesson that told it.
+		expect(screen.getByText(/mid class, dead, short vowel/i)).toBeTruthy();
+		expect(screen.getByText(/mid class, dead, long vowel/i)).toBeTruthy();
+		expect(screen.getByText(/high class, dead, short vowel/i)).toBeTruthy();
+		expect(screen.getByText(/high class, dead, long vowel/i)).toBeTruthy();
 	});
 
 	it("puts a district's own letters and its cast behind the district", () => {
@@ -128,11 +139,11 @@ describe("MemoryPalacePage", () => {
 	it("swaps the panel rather than stacking places", () => {
 		renderPalace();
 		fireEvent.click(worldMap().getByRole("button", { name: /^well/i }));
-		expect(screen.getByText(/fall down the same well/i)).toBeTruthy();
+		expect(screen.getByText(/down the shaft, into the dark/i)).toBeTruthy();
 
 		fireEvent.click(worldMap().getByRole("button", { name: /rice paddy/i }));
-		expect(screen.queryByText(/fall down the same well/i)).toBeNull();
-		expect(screen.getByText(/flat rice paddy/i)).toBeTruthy();
+		expect(screen.queryByText(/down the shaft, into the dark/i)).toBeNull();
+		expect(screen.getByText(/runs flat to the horizon/i)).toBeTruthy();
 	});
 });
 

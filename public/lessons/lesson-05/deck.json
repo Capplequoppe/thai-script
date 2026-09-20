@@ -323,6 +323,29 @@
 			"teaches": ["sara-uu"]
 		},
 		{
+			"kind": "exposition",
+			"id": "waterfall-story",
+			"heading": "What happens at the waterfall",
+			"body": [
+				"The same fisherman, so the same **low class** and the same dead ending.",
+				"The vowel is **long**, so the ending takes long: over the lip and all the way down.",
+				"He starts at the top and finishes at the bottom — the **falling** tone.",
+				"Rooftop against waterfall is the whole of the difference: short against long."
+			],
+			"audio": [
+				"/thai-script/lessons/lesson-05/audio/40862b105d58ab18.mp3",
+				"/thai-script/lessons/lesson-05/audio/1e8367555cff9028.mp3",
+				"/thai-script/lessons/lesson-05/audio/b2a3056aab594a48.mp3"
+			],
+			"audioLanguages": ["en", "en", "en"],
+			"teaches": [
+				"low-dead-long",
+				"low-dead-short",
+				"waterfall-fisherman-drowns"
+			],
+			"image": "/thai-script/lessons/lesson-05/images/waterfall-story-0b0f5024f501.jpg"
+		},
+		{
 			"kind": "rule",
 			"id": "low-dead-long",
 			"ruleId": "low-dead-long",
@@ -428,8 +451,8 @@
 		}
 	],
 	"timing": {
-		"spokenSeconds": 643,
-		"practiceSeconds": 230,
-		"estimatedMinutes": 15
+		"spokenSeconds": 711,
+		"practiceSeconds": 236,
+		"estimatedMinutes": 16
 	}
 }

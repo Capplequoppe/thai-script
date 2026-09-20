@@ -37,7 +37,10 @@ from lesson_deck.pipeline import segment_input_hash  # noqa: E402
 from lesson_deck.script_parser import parse_script  # noqa: E402
 from lesson_deck.vendor import VoiceSpec  # noqa: E402
 
-SCRIPTS = sorted((REPO_ROOT / "content" / "lessons").glob("lesson-*.md"))
+# Every script, not just the ones named "lesson-*": `orientation.md` does not
+# carry that prefix, so for as long as this globbed for it the first deck a
+# learner ever sees was the one deck whose freshness nothing checked.
+SCRIPTS = sorted((REPO_ROOT / "content" / "lessons").glob("*.md"))
 DECKS = REPO_ROOT / "public" / "lessons"
 
 

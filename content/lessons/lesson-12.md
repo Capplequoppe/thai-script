@@ -59,7 +59,7 @@ ITS ANSWER NEVER SHARE A SLIDE. All unchanged from lesson 3.
 image: images/lesson-12/what-is-here.jpg
 scene: A steep stone stairway climbing through trees toward the white wall and tiered golden roof of a Thai temple, seen from the bottom step in early morning light.
 heading: Seven letters, one climb, and the tone that needs them
-narration: en Seven consonants today, which is more than any lesson has given you, and I want to say straight away why that is affordable. Every one of the seven makes a sound you have been reading since about lesson four. Your mouth already does all of it, and none of the seven will ask you for anything new. What each one asks for is a shape and an address. In exchange the group hands you a fifth tone, and these seven letters are what spells it. Eleven lessons around the harbour and the market, and today you go up the hill. Shall we?
+narration: en Today you get seven consonants, which is more than any lesson has given you, and I want to say straight away why that is affordable. All seven make a sound you have been reading since about lesson four. Your mouth already does all of it. None of the seven will ask you for anything new. What each one asks for is a shape and an address. In exchange the group hands you a fifth tone — and these seven letters are what spells it. You have spent eleven lessons around the harbour and the market. Today you go up the hill. Shall we?
 - Seven consonants, and every one of their sounds is already yours.
 - A shape to learn and a district to put it in.
 - One new tone, and these seven are what spell it.
@@ -67,7 +67,7 @@ narration: en Seven consonants today, which is more than any lesson has given yo
 ## exposition pen-still-there
 image: images/lesson-01/get-a-pen.jpg
 heading: Pen and paper
-narration: en Pen and paper first, as every lesson, and both halves of each name out loud while your hand is moving. Seven shapes is a lot in one sitting. Writing them is what turns a page you have looked at into a page you can read. Go and get them.
+narration: en Pen and paper first, as every lesson. Both halves of each name out loud while your hand is moving. That is a lot of shapes for one sitting. Writing them is what turns a page you have looked at into a page you can read. Go and get them.
 - Real paper, a real pen.
 - Both halves of the name, out loud.
 - Seven shapes in one sitting, so write each one while its name is in your ear.
@@ -76,7 +76,7 @@ narration: en Pen and paper first, as every lesson, and both halves of each name
 image: images/lesson-12/up-to-the-temple.jpg
 scene: A swept temple courtyard with white walls and tiered golden roofs standing empty in early morning light, flagstones still wet.
 heading: The third district, and the first letters to live in it
-narration: en You know two of the three districts. The harbour, down at the water, where fourteen of your letters live. The market, up the road, where the other seven stand among the stalls. And all this time there has been a third place on the hill above both. You have seen it from a distance twice and never walked into it. Until now it was empty. Every letter in this lesson lives here. The temple is the high class, and it is the one district whose letters can make a syllable climb.
+narration: en You know two of the three districts. The harbour, down at the water, where fourteen of your letters live. The market, up the road, where the other seven stand among the stalls. And all this time there has been a third place on the hill above both. You have seen it from a distance twice and never walked into it. Until now it was empty. Every letter in this lesson lives here. The temple is the high class: the one district whose letters can make a syllable climb.
 - Harbour, market, and the hill above both.
 - The temple is the **high class**.
 - Today it goes from empty to seven residents.
@@ -84,7 +84,7 @@ narration: en You know two of the three districts. The harbour, down at the wate
 ## exposition the-map-again
 image: images/lesson-07/cousin-pairs.jpg
 heading: The map from lesson seven, and what it promised
-narration: en In lesson seven I showed you a map and told you to look at the shape of it rather than learn it. Seven sounds, each with two letters — one down at the harbour and one up at the temple. You have held the entire harbour column since that day. Kh, ch, th, ph, f, s and h, all seven of them, all low class, all yours. The temple column is the other half of that map, and it arrives here, in one piece. So the thing each of these seven letters actually costs you is small. You know what it sounds like, because its cousin taught you. You know why it exists, because the map told you. All that is left is the shape it takes and the tone it produces. Ready for the other half of that map?
+narration: en In lesson seven I showed you a map and told you to look at the shape of it rather than learn it. Each of those sounds has two letters — one down at the harbour, one up at the temple. You have held the entire harbour column since that day. Kh, ch, th, ph, f, s and h, all seven of them, all low class, all yours. The temple column is the other half of that map, and it arrives here, in one piece. So the thing each of these seven letters actually costs you is small. You know what it sounds like, because its cousin taught you. You know why it exists, because the map told you. All that is left is the shape it takes and the tone it produces. Ready for the other half of that map?
 - Seven sounds, two letters each. The harbour column has been yours since lesson seven.
 - Today the temple column arrives whole.
 - Each letter costs a shape and a tone, and the sound comes free.
@@ -93,7 +93,7 @@ narration: en In lesson seven I showed you a map and told you to look at the sha
 image: images/lesson-12/the-two-you-will-use-most.jpg
 scene: A monk sweeping the flagstones of a temple courtyard with a long straw broom at dawn, white walls and tiered golden roofs behind him.
 heading: First, the two that carry the most text
-narration: en The seven turn up at very different rates. So I am going to give them to you in the order the language uses them, heaviest first. The first two you will meet within a page of almost anything you read. One of them writes the ordinary s of Thai. The other writes h, and later in the course it takes on a second job that no other letter in the alphabet does. If you get tired halfway through this lesson, these two are the ones to keep.
+narration: en The seven turn up at very different rates. So I am going to give them to you in the order the language uses them, heaviest first. The first two you will meet within a page of almost anything you read. One of them writes the ordinary s of Thai. The other writes h, which later in the course takes on a second job no other letter in the alphabet does. If you get tired halfway through this lesson, these two are the ones to keep.
 - The seven arrive heaviest first.
 - The first two turn up within a page of almost anything.
 - One writes the everyday s, and the other writes h.
@@ -106,9 +106,9 @@ gloss: tiger letter
 cue: the everyday s, up the hill
 heading: The tiger behind the gate
 teaches: so-sia
-narration: en The first letter. Listen to its name.
+narration: en First of the seven, and it arrives with a surprise attached. Its name before anything else.
 recording: th สอ เสือ public/audio/consonant-so-sia.mp3
-narration: en That word means a tiger. The sound is a plain s, and it is the same s you learned at the harbour in lesson four, from the chain. Two letters, one sound, and this is the one you will see far more often. It does the everyday work of s in written Thai, and the chain is comparatively rare. The shape is the monkey's letter from lesson eight with one straight line drawn across it. A tiger paces behind the temple gate, and a single iron bar crosses its arched tail.
+narration: en A tiger. And the sound at the front of that word is a plain s — the very same plain s you already own, from the chain, down at the harbour in lesson four. Two different letters making one identical sound. Which raises the obvious question of why a language would want both, and the answer you need today is just this: it is the tiger you will actually meet. It does the everyday work of s in written Thai while the chain sits comparatively idle. As for drawing it, take the monkey's letter from lesson eight and put one straight line across it. A tiger pacing behind the temple gate, one iron bar crossing its arched tail.
 - Its name is the sound, then a word beginning with that sound.
 - The word means a **tiger**.
 - The same s as the chain's letter at the harbour, moved to the temple.
@@ -129,9 +129,9 @@ gloss: chest letter
 cue: the h that was waiting for the owl
 heading: The chest against the wall
 teaches: ho-hip
-narration: en The second letter. Listen.
+narration: en Second one, and this is me keeping a promise I made in lesson seven.
 recording: th หอ หีบ public/audio/consonant-ho-hip.mp3
-narration: en That word means a chest — the big carved kind with a domed lid, standing against a wall. The sound is a plain h. It is the owl's sound from lesson seven, where I told you the owl was worth ten minutes because of the letter it propped up. This is that letter. The owl turns up once in ten thousand characters. This one is the fourth commonest sound a Thai syllable can open with. So you have been holding that row the wrong way round, with the rare half learned and the common half missing, and today fixes it. The shape is the soldier's letter with a kink put into the left stroke, where his back climbs dead straight. Then a loop, and a tall wall up the right side.
+narration: en A chest — the big carved kind with a domed lid, pushed back against a wall. Its sound is a plain h, which you have met: it is the owl's, and when the owl came up I told you it was worth ten minutes because of the letter it was propping up. This is that letter. The owl itself turns up about once in ten thousand characters. This one opens the fourth commonest sound in the language. So you have been carrying that pair the wrong way round ever since — the rare half learned, the useful half missing — which today puts right. To draw it, take the soldier's letter and put a kink into the left stroke, where his back runs dead straight. Then a loop, then a tall wall up the right side.
 - Its name is the sound, then a word beginning with that sound.
 - The word means a **chest**.
 - The owl's h, and this is the half of that pair the language actually uses.
@@ -148,10 +148,21 @@ teaches: ho-hip
 thai: ส ห
 heading: Write both of them
 teaches: so-sia, ho-hip
-narration: en Pen down. For the tiger, start at the head at the base. Draw the monkey exactly as you did in lesson eight, then put one straight line across it. For the chest, start at the head as usual. Carry the stroke down with a kink in it rather than straight. Make your loop, and finish with a tall wall up the far side. Write each one six or seven times, saying both halves of its name out loud. Then set what your hand has made beside the monkey and the soldier you already know.
+narration: en Pen down. For the tiger, start at the head at the base. Draw the monkey exactly as you did in lesson eight, then put one straight line across it. For the chest, start at the head as usual. Carry the stroke down with a kink in it rather than straight. Make your loop, then finish with a tall wall up the far side. Write each one six or seven times, saying both halves of its name out loud. Then set what your hand has made beside the monkey and the soldier you already know.
 - The tiger: **the monkey, then one line across it**.
 - The chest: head, a kinked stroke down, a loop, a tall wall.
 - Six or seven each, name out loud.
+
+## exposition hill-path-story
+image: images/palace/hill-monk-climbs.jpg
+heading: What happens on the hill path
+teaches: high-live, hill-monk-climbs
+narration: en Pens down, then, because the temple does one thing nothing else in this town does. Every other district, on a syllable that ends alive, comes out flat — you have watched the fisherman and the vendor stand in that field doing precisely nothing. A temple letter rises instead. And a rising tone will not stay in a flat field, because it has somewhere to get to, so it needs a road with a shape in it. Behind the temple a path runs down the back of the hill, and it drops into a dip before it starts to climb. Watch him take it.
+recording: en The hill path. The monk sets out from the temple on his own, and the path drops into a dip before it climbs, so he goes down a little first and then up and up, his robes bright against the slope. His voice does what his feet do — down at the start, climbing the whole rest of the way. A high-class letter, on a syllable that ends alive, rises. The fisherman and the vendor stayed flat in their field; the monk is walking uphill. So when a high-class letter opens a syllable that ends alive, take your voice down and then up. public/palace/scenes/audio/hill-monk-climbs.mp3
+narration: en Dip first, then climb, and finish higher than you set out. Put him beside the two standing in the paddy and you have the whole alive row in one glance — the fisherman flat, the vendor flat, and the monk walking uphill.
+- The monk comes from the temple, so he is **high class**.
+- The path **dips, then climbs**, which is the shape of the tone.
+- The other two stay level in their field. The monk is the one who goes up.
 
 ## rule high-live-rule
 rule: high-live
@@ -162,23 +173,22 @@ image: images/lesson-12/rising-in-the-mouth.jpg
 scene: A woman standing on a temple step with her chin lifting as she speaks, morning light across the white wall behind her.
 heading: What a rising tone actually does
 teaches: high-live
-narration: en So that is the rule, and now the sound of it, because rising is the tone English speakers get wrong most often. English makes the same shape, and you already make it without thinking. The pitch dips down first and then climbs, and it finishes higher than it started. It is the shape your own voice makes on the word "really" when somebody tells you something surprising. Down, then up, and you end high. The mistake is to skip the dip and simply climb, which comes out as a different tone. So take it low, let it fall a little further, and then bring it all the way up. Here is a real word doing it.
+narration: en So that is the rule. Now the sound of it, because rising is the tone English speakers get wrong most often. English makes the same shape. You already make it without thinking. The pitch dips down first and then climbs, finishing higher than it started. It is the shape your own voice makes on the word "really" when somebody tells you something surprising. Down, then up. You end high. The mistake is to skip the dip and simply climb, which comes out as a different tone. So take it low, let it fall a little further, then bring it all the way up. Here is a real word doing it.
 narration: th สูง
-narration: en Three letters, all of them yours. The tiger, the long oo from lesson five, and the snake closing it without stopping it. Did you catch the dip at the front of that?
+narration: en All three of those are yours now. The tiger, the long oo from lesson five, then the snake closing it without stopping it. Did you catch the dip at the front of that?
 - The pitch **dips, then climbs**, and finishes high.
 - The shape your voice makes on the English word *really*.
 - Skipping the dip gives you a different tone.
 
-## exposition read-suung
+## retrieval read-suung
+reveal: read-suung-answer
+prompt: Tiger, the long oo in the cellar, the snake closing it. The syllable alive, temple letter. **Out loud, with the dip, before you turn it over.**
 thai: สูง
-heading: Read this one
 teaches: so-sia, high-live
 narration: en There it is on its own. The tiger opens it and the long oo sits underneath in the cellar. The snake closes it with a hum, which makes the syllable alive. Temple letter, the syllable alive — so you have the rule and you have the letter. Say it out loud with the dip in it before you turn this over.
-- Tiger, the long oo in the cellar, the snake closing it.
-- The syllable alive, temple letter.
-- **Out loud, with the dip, before you turn it over.**
 
-## exposition read-suung-answer
+## reveal read-suung-answer
+retrieval: read-suung
 thai: สูง
 heading: That one
 teaches: so-sia, high-live
@@ -191,7 +201,7 @@ narration: en Tall, or high. Rising, exactly as the rule promised. If your voice
 image: images/lesson-12/three-that-breathe.jpg
 scene: A row of tall white temple wall panels catching low morning sun, a line of shadow running along the flagstones beneath them.
 heading: Next, the three breathing letters
-narration: en The next three go together because your palm can find all of them. Every one of them is a stop with breath coming out behind it. That is the test from lesson five. Hold a hand in front of your mouth and feel whether anything lands on it. Their three harbour cousins are the water buffalo, the elephant and the soldier, and you have had all three for lessons now. So can you already guess what these three will sound like? The sounds arrive already made. What is new is three shapes, each a letter you own with one thing done to it.
+narration: en The next three go together because your palm can find all of them. Each is a stop with breath coming out behind it. That is the test from lesson five. Hold a hand in front of your mouth and feel whether anything lands on it. Their three harbour cousins are the water buffalo, the elephant and the soldier — all three of which you have had for lessons now. So can you already guess what these three will sound like? The sounds arrive already made. What is new is three shapes, each a letter you own with one thing done to it.
 - Three stops, all of them breathed. Your palm finds them.
 - Their harbour cousins are the buffalo, the elephant and the soldier.
 - Three shapes, each a letter you own with one change.
@@ -204,9 +214,9 @@ gloss: egg letter
 cue: the buffalo's kh, up the hill
 heading: The egg in the alms bowl
 teaches: kho-khay
-narration: en Listen.
+narration: en This next one is the cheapest shape you will be given all day. Name first.
 recording: th ขอ ไข่ public/audio/consonant-kho-khay.mp3
-narration: en That word means an egg. The sound is kh, a k with breath behind it, and it is the water buffalo's sound from lesson six. The shape is the elephant's letter with its tail taken off. Nothing rises past the line the rest of the letter sits under. An egg resting in a monk's brass alms bowl, with the bowl empty around it.
+narration: en An egg. It says kh, a k with breath behind it — the water buffalo's, from lesson six. And the shape is the elephant's letter with its tail taken off. That is the entire instruction. Nothing rises past the line the rest of the letter sits under. One white egg alone in a monk's brass alms bowl, the bowl empty around it.
 - The word means an **egg**.
 - The buffalo's kh, written from the temple.
 - The elephant's letter with **the tail taken off**.
@@ -219,9 +229,9 @@ gloss: bag letter
 cue: the soldier's th, up the hill
 heading: The bag brought to the steps
 teaches: tho-thung
-narration: en Listen.
+narration: en Picture the thing before I name it. A cloth bag, open at the top, carried up to the monks in both hands with fruit weighing it down. Here is its letter.
 recording: th ถอ ถุง public/audio/consonant-tho-thung.mp3
-narration: en That word means a bag, the cloth kind people fill with fruit and carry up to the monks in both hands. The sound is th, a t breathed open, and it belongs to the soldier from lesson seven. The shape is the chicken's letter with a head coiled inside the near end of its frame. Fruit sits down inside a cloth bag rather than on top of it.
+narration: en A bag. That kind, specifically. It says th, a t breathed open, which belongs to the soldier from lesson seven. For the shape, take the chicken's letter and coil a head inside the near end of its frame — fruit sitting down inside the bag rather than piled on top of it.
 - The word means a **bag**.
 - The soldier's th, written from the temple.
 - The chicken's frame with a **head coiled inside it**.
@@ -234,9 +244,9 @@ gloss: bee letter
 cue: the tray's ph, head turned inward
 heading: The bee in the lotus
 teaches: pho-phing
-narration: en Listen.
+narration: en You can already draw this one, though you do not know that yet. Take its name.
 recording: th ผอ ผึ้ง public/audio/consonant-pho-phing.mp3
-narration: en That word means a bee. The sound is ph, a p with breath behind it, and it is the offering tray's sound from lesson five. This is the cheapest shape in the lesson, because lesson seven already told you what it would be. The tray's letter with its head turned the other way. The curl sits inside the left rim instead of hanging outside it. A bee tucked head-first into a lotus, with only its striped back showing.
+narration: en A bee. Ph is what it says, a p with breath behind it, from the offering tray in lesson five. And lesson seven already told you what this shape would be: the tray's letter with its head turned the other way, so the curl sits inside the left rim instead of hanging outside it. A fat bee gone head-first into a lotus, only its striped back showing.
 - The word means a **bee**.
 - The tray's ph, written from the temple.
 - The tray's outline with **the head turned inward**.
@@ -245,22 +255,21 @@ narration: en That word means a bee. The sound is ph, a p with breath behind it,
 thai: ข ถ ผ
 heading: Write all three
 teaches: kho-khay, tho-thung, pho-phing
-narration: en Pen again, and take these one at a time. The egg is the elephant, stopped before the tail goes up. The bag is the chicken, with the head coiled down inside the frame instead of sitting outside it. The bee is the tray with the head curled in under the left rim. Write each one until your hand stops hesitating, and say both halves of the name each time you do it. Then put each new letter beside the one it came from and look hard at the difference. Cover one of each pair with your hand and name the other from its shape alone.
+narration: en Pen again, and take these one at a time. The egg is the elephant, stopped before the tail goes up. The bag is the chicken, with the head coiled down inside the frame instead of sitting outside it. The bee is the tray with the head curled in under the left rim. Write each one until your hand stops hesitating, saying both halves of the name each time you do it. Then put each new letter beside the one it came from and look hard at the difference. Cover one of each pair with your hand and name the other from its shape alone.
 - The egg: **the elephant, minus the tail**.
 - The bag: **the chicken, with a head coiled inside**.
 - The bee: **the tray, with the head turned in**.
 - Each one beside the letter it came from.
 
-## exposition read-khao
+## retrieval read-khao
+reveal: read-khao-answer
+prompt: Mast, the egg's letter, the long post. **Watch the order.** The mast goes down first and is spoken second. Work the tone out before you say it.
 thai: เขา
-heading: Read this one
 teaches: kho-khay, high-live
-narration: en Three marks and every one of them is yours. A mast in front, the egg, and the long post from lesson one. Watch the order, because the mast goes down ahead of the consonant and gets spoken after it. Then work out the tone before you say it: temple letter, and the vowel ends the syllable with nothing stopping it. Out loud before you turn it over.
-- Mast, the egg's letter, the long post.
-- **Watch the order.** The mast goes down first and is spoken second.
-- Work the tone out before you say it.
+narration: en Look at the marks: three of them, and you own all three. A mast in front, the egg, and the long post from lesson one. Watch the order, because the mast goes down ahead of the consonant and gets spoken after it. Then work out the tone before you say it: temple letter, and the vowel ends the syllable with nothing stopping it. Out loud before you turn it over.
 
-## exposition read-khao-answer
+## reveal read-khao-answer
+retrieval: read-khao
 thai: เขา
 heading: That one
 teaches: kho-khay, high-live
@@ -274,7 +283,7 @@ narration: en He, or she — Thai uses the one word for both, and it is among th
 image: images/lesson-12/the-last-two.jpg
 scene: A row of small brass bells hanging still along the eave of a temple roof against a pale morning sky.
 heading: And the last two, which are rarer
-narration: en Two left, and I will be honest about them: they are the two you will see least. They still turn up in words you want. One of them opens the ordinary word a woman uses for "I". But you can expect to go pages without meeting either. Learn them properly now anyway. A letter you half know is worse than one you have never seen, because you read straight past it and get the word wrong with complete confidence.
+narration: en That leaves two, and I will be honest about them — they are the pair you will see least. They still turn up in words you want. One of them opens the ordinary word a woman uses for "I". But you can expect to go pages without meeting either. Learn them properly now anyway. A letter you half know is worse than one you have never seen, because you read straight past it and get the word wrong with complete confidence.
 - The two rarest of the seven.
 - One of them opens the word a woman uses for *I*.
 - A half-learned letter gets read straight past, and the word goes wrong.
@@ -287,9 +296,9 @@ gloss: cymbal letter
 cue: the elephant's ch, up the hill
 heading: The cymbals on the step
 teaches: cho-ching
-narration: en Listen.
+narration: en You have almost certainly heard this object, even if you have never seen it written down.
 recording: th ฉอ ฉิ่ง public/audio/consonant-cho-ching.mp3
-narration: en That word means a pair of small brass finger-cymbals, the kind struck together to keep time. The sound is ch on a breath, and it belongs to the elephant from lesson four. The shape is the mouse's letter from lesson one, made stubby, with a flicked tail added above it. Two cymbals held up at the moment they chime, and a flick of ribbon on top.
+narration: en A pair of small brass finger-cymbals — the kind struck together to keep time, at a temple, at a funeral, under a dance. Ch on a breath, which is the elephant's from lesson four. For the shape, take the mouse from lesson one, make it stubby, then flick a tail over the top of it. Two cymbals held up at the instant they chime, a flick of ribbon above them.
 - The word means **finger-cymbals**.
 - The elephant's ch, written from the temple.
 - The mouse's profile, shortened, with **a flicked tail above**.
@@ -302,9 +311,9 @@ gloss: lid letter
 cue: the tooth's f, head turned inward
 heading: The lid on the shelf
 teaches: fo-fa
-narration: en Listen.
+narration: en Last of the seven, and it is the second of those two head turns the map promised you.
 recording: th ฝอ ฝา public/audio/consonant-fo-fa.mp3
-narration: en That word means a lid, the thing that goes over a jar. The sound is f, and it is the tooth's sound from lesson five. This is the second of the two head turns the map promised you. The tooth's letter with its head brought inside the rim, and the last stroke standing tall. A lidded jar on a temple shelf with the knob on its lid turned inward.
+narration: en A lid — the thing that goes over a jar. F, and you already know where that came from: the tooth, lesson five. Take the tooth's letter, bring its head inside the rim, then run the last stroke up tall. A lidded ceramic jar on a temple shelf, the knob on its lid turned inward.
 - The word means a **lid**.
 - The tooth's f, written from the temple.
 - The tooth's letter with **the head brought inside the rim**.
@@ -350,22 +359,21 @@ heading: And the short one
 teaches: sara-ia, sara-iia
 narration: en There is a short version, and you can probably guess how it will be spelled. The same three stations, and then the two hooks behind. That is the shortener from lesson four, lesson seven and lesson eight. Fourth time of asking, same job.
 recording: th สระเอียะ public/audio/sara-ia-short.mp3
-narration: en One honest thing about it. I cannot give you a word, because common Thai has none. It survives in a handful of exclamations and in nothing you are going to read for a very long time. Know the spelling, recognise it if it turns up, and spend your time on the long one.
-narration: en One more thing about the long one, and it cuts against what you have learned to expect. Twice now you have watched a vowel's hooks climb up and turn into a little roof when a final consonant wanted their seat. This one holds its ground. Put a final consonant after it and all three of its marks stay exactly where they were.
+narration: en An honest word about it. I cannot give you a word, because common Thai has none. It survives in a handful of exclamations and in nothing you are going to read for a very long time. Know the spelling, recognise it if it turns up, and spend your time on the long one.
+narration: en There is more to say about the long one, and it cuts against what you have learned to expect. Twice now you have watched a vowel's hooks climb up and turn into a little roof when a final consonant wanted their seat. This one holds its ground. Put a final consonant after it and all three of its marks stay exactly where they were.
 - **เ-ียะ** — the same three stations, with the two hooks behind.
 - No common word uses it. Recognise the spelling and move on.
 - The long one keeps **all three marks in place** before a final consonant.
 
-## exposition read-sia
+## retrieval read-sia
+reveal: read-sia-answer
+prompt: Mast, tiger, the roof mark, the giant's letter. The syllable alive, temple letter. **Tone first, then out loud.**
 thai: เสีย
-heading: Read this one
 teaches: sara-iia, so-sia
-narration: en Four marks, and all four are yours as of about two minutes ago. The mast, the tiger, the mark on the roof, and the giant's letter closing the vowel off. Nothing stops the syllable, so it is alive, and the letter doing the opening lives at the temple. Work out the tone, then say it out loud before you turn it over.
-- Mast, tiger, the roof mark, the giant's letter.
-- The syllable alive, temple letter.
-- **Tone first, then out loud.**
+narration: en Count the marks. Four, and all of them yours as of about two minutes ago. The mast, the tiger, the mark on the roof, and the giant's letter closing the vowel off. Nothing stops the syllable, so it is alive, and the letter doing the opening lives at the temple. Work out the tone, then say it out loud before you turn it over.
 
-## exposition read-sia-answer
+## reveal read-sia-answer
+retrieval: read-sia
 thai: เสีย
 heading: That one
 teaches: sara-iia, so-sia
@@ -374,16 +382,15 @@ narration: en To lose something, or to waste it, or for a thing to break. One wo
 - **เสีย** — to lose, to waste, to break.
 - Rising: temple letter, the syllable alive.
 
-## exposition read-rian
+## retrieval read-rian
+reveal: read-rian-answer
+prompt: Mast, boat, roof mark, giant's letter, mouse closing it. The boat lives at the **harbour**, and the ending hums. Say the tone out loud before you turn it over.
 thai: เรียน
-heading: Now the same vowel from the harbour
 teaches: sara-iia, high-live, low-live
 narration: en Same vowel, different district, and this is the comparison worth stopping on. Five marks this time. The mast, the boat's letter from lesson eight, the mark on the roof, the giant's letter. Then the mouse closing the whole thing off with a hum. The boat lives at the harbour. The ending hums, so the syllable is alive. Work that pair of facts against the rules you have and say what tone comes out, before you turn it over.
-- Mast, boat, roof mark, giant's letter, mouse closing it.
-- The boat lives at the **harbour**, and the ending hums.
-- Say the tone out loud before you turn it over.
 
-## exposition read-rian-answer
+## reveal read-rian-answer
+retrieval: read-rian
 thai: เรียน
 heading: That one
 teaches: sara-iia, high-live, low-live
@@ -398,7 +405,7 @@ image: images/lesson-12/seven-words.jpg
 scene: A sheet of lined practice paper lying on a wooden desk under warm lamplight, a pen resting across one corner of it.
 heading: One word for each of the seven
 teaches: so-sia, ho-hip, kho-khay, tho-thung, pho-phing, cho-ching, fo-fa
-narration: en Before the questions, one word for each letter, so that none of the seven leaves this lesson as a shape with nothing attached to it. Read each one out loud. Every one of them opens on a temple letter and closes alive, so every one of them rises. Read the list twice, and on the second pass say the tone before you say the word.
+narration: en Before the questions, one word for each letter, so that none of the seven leaves this lesson as a shape with nothing attached to it. Read each one out loud. Every one of them opens on a temple letter and closes alive, so every one of them rises. Read the list twice. On the second pass, say the tone before you say the word.
 - **ของ** — of, or a thing. The egg's letter opening it.
 - **ฉัน** — I, the word a woman uses for herself. The cymbals.
 - **ถาม** — to ask. The bag, the long post, and the horse humming it shut.
@@ -412,12 +419,12 @@ narration: en Before the questions, one word for each letter, so that none of th
 reveal: which-cousin-answer
 prompt: เขา is read with a rising tone. Respell it with the water buffalo's letter in place of the egg's and the climb disappears. Same sound out of your mouth, same vowel — so what is that one written change doing?
 teaches: kho-khay, kho-khwai, high-live, low-live
-narration: en Two questions before the end. Here is the first. You read the word for he a few minutes ago and it rose. Now imagine the same word respelled with the water buffalo in front instead of the egg. The sound coming out of your mouth would be identical, the vowel would be identical, and the tone would come out flat. So what is that one written change actually doing to the word?
+narration: en A couple of questions before the end. Here is the first. You read the word for he a few minutes ago and it rose. Now imagine the same word respelled with the water buffalo in front instead of the egg. The sound coming out of your mouth would be identical, the vowel would be identical, and the tone would come out flat. So what is that one written change actually doing to the word?
 
 ## reveal which-cousin-answer
 retrieval: which-cousin
 teaches: kho-khay, kho-khwai, high-live, low-live
-narration: en It is changing the district, and the district decides the tone. The egg's letter lives at the temple, and a temple letter on a syllable that ends alive gives a rising tone. The buffalo writes the same sound from the harbour, where a syllable that ends alive comes out flat. Which is why the language keeps two letters for one sound. The choice of letter is the only place on the page where that tone is written down.
+narration: en It is changing the district — and the district decides the tone. The egg's letter lives at the temple, where a letter on a syllable that ends alive gives a rising tone. The buffalo writes the same sound from the harbour, where a syllable that ends alive comes out flat. Which is why the language keeps two letters for one sound. The choice of letter is the only place on the page where that tone is written down.
 - The district changed, and the district decides the tone.
 - Temple letter, the syllable alive, rising.
 - Harbour letter, the syllable alive, flat.
@@ -427,7 +434,7 @@ narration: en It is changing the district, and the district decides the tone. Th
 reveal: which-letter-answer
 prompt: You hear a word pronounced with a breathed t at the front, a long open vowel, and a hum closing it — and the whole thing rises. Two letters in Thai write that breathed t. Which one is on the page, and how do you know?
 teaches: tho-thung, tho-thahan, high-live
-narration: en And the second, which is the same question turned round. You hear a word. It opens with a breathed t, it runs through a long open vowel, and it closes on a hum. And it rises. Two letters in the alphabet write that breathed t — one at the harbour, one at the temple. Which of them is on the page in front of the person who wrote it down, and what told you?
+narration: en And the second, which is the same question turned round. You hear a word. It opens with a breathed t, runs through a long open vowel, then closes on a hum. And it rises. Two letters in the alphabet write that breathed t — one at the harbour, one at the temple. Which of them is on the page in front of the person who wrote it down, and what told you?
 
 ## reveal which-letter-answer
 retrieval: which-letter
@@ -440,7 +447,7 @@ narration: en The bag's letter, up at the temple. The ending hums, so the syllab
 
 ## exposition read-close
 heading: Twenty-eight letters, and the temple open
-narration: en Seven letters in one lesson, and they cost you seven shapes rather than seven sounds, which is what lesson seven was buying when it spent ten minutes on an owl. The temple has residents now, and one rule covers all of them so far: a temple letter on a syllable that ends alive rises. Before you stop, write the seven out once more in a column. Put each one's harbour cousin beside it, and say both names as you go. Next lesson brings six more letters. Every one of them doubles a sound you are already reading. Two go up to the temple, and four stay down at the water.
+narration: en You took seven letters in one lesson, and they cost you seven shapes rather than seven sounds — which is what lesson seven was buying when it spent ten minutes on an owl. The temple has residents now, and one rule covers all of them so far: a temple letter on a syllable that ends alive rises. Before you stop, write the seven out once more in a column. Put each one's harbour cousin beside it, saying both names as you go. Next lesson brings six more letters. Each one doubles a sound you are already reading. Two go up to the temple. Four stay down at the water.
 - Seven temple letters: **ส** tiger, **ห** chest, **ข** egg, **ถ** bag, **ผ** bee, **ฉ** cymbals, **ฝ** lid.
 - One rule for all of them so far: temple plus alive gives **rising**.
 - Write the column, with each harbour cousin beside it.

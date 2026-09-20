@@ -242,6 +242,72 @@ export function toneNarrationFor(sceneId: string): string {
 	return `palace/scenes/audio/${sceneId}.mp3`;
 }
 
+/**
+ * A scene's story as prose, with the engine's breath marks taken out.
+ *
+ * `narration` is written to be spoken and `[pause]` is an instruction to the
+ * voice, not a word — so it is stripped here rather than in the data, because
+ * the synthesis script needs the marks and a reader needs them gone. The
+ * alternative was a second copy of every story written for the eye, which is
+ * exactly the drift this file argues against in `TONE_SCENES`.
+ */
+export function sceneStory(scene: ToneScene): string {
+	return scene.narration.replaceAll("[pause]", "").replace(/\s+/g, " ").trim();
+}
+
+/** A rule id from a scene's `covers`, said the way a learner would say it. */
+export function ruleLabel(ruleId: string): string {
+	const spelling = toneRules.find((rule) => rule.id === ruleId);
+	if (spelling) {
+		const ending =
+			spelling.syllableType === "live"
+				? "a syllable that ends alive"
+				: spelling.syllableType === "dead-short"
+					? "dead, short vowel"
+					: "dead, long vowel";
+		return `${spelling.consonantClass} class, ${ending}`;
+	}
+
+	const mark = toneMarkRules.find(
+		(rule) => markRuleId(rule.consonantClass, rule.toneMarkName) === ruleId,
+	);
+	return mark ? `${mark.consonantClass} class, ${mark.toneMarkName}` : ruleId;
+}
+
+/**
+ * Where in the course a scene belongs, so a list of them reads in the order a
+ * learner met them rather than in whatever order the JSON happens to be in.
+ */
+function sceneOrder(scene: ToneScene): number {
+	const positions = scene.covers.map((id) => ALL_RULE_IDS.indexOf(id));
+	return Math.min(...positions);
+}
+
+/**
+ * Every tone scene a class appears in, earliest-taught first.
+ *
+ * The way into the tone rules from the district you are already standing in.
+ * A learner in the harbour wanting to know what low class does to a tone has,
+ * until now, had to know that the answer lives under four separate tone places
+ * and go looking in each — which is a question about one district answered by
+ * a tour of the whole map.
+ *
+ * Keyed on `cast` rather than on the rules' `consonantClass` so a shared scene
+ * appears in both districts it belongs to. The vendor and the monk go down the
+ * same well *because* mid and high agree there, and a learner who finds that
+ * well from the temple and again from the market has been told the thing the
+ * shared scene exists to say.
+ */
+export function scenesForClass(
+	classType: ThaiSymbolClass,
+): readonly ToneScene[] {
+	// `filter` has already made a new array, so sorting in place mutates
+	// nothing `TONE_SCENES` holds.
+	return TONE_SCENES.filter((scene) => scene.cast.includes(classType)).sort(
+		(a, b) => sceneOrder(a) - sceneOrder(b),
+	);
+}
+
 /** The id a `toneMarkRules` entry is referred to by, matching `toneExplanationFor`. */
 export function markRuleId(
 	consonantClass: ThaiSymbolClass,

@@ -11,7 +11,7 @@
 				"Together they are about three characters in a thousand.",
 				"Recognise all ten. Expect to write almost none of them."
 			],
-			"audio": ["/thai-script/lessons/lesson-14/audio/047113095917b602.mp3"],
+			"audio": ["/thai-script/lessons/lesson-14/audio/3c12708b86dd7884.mp3"],
 			"audioLanguages": ["en"],
 			"image": "/thai-script/lessons/lesson-14/images/what-is-here-53aa8fbfa4f3.jpg"
 		},
@@ -24,7 +24,7 @@
 				"Both halves of the name, out loud.",
 				"Writing it once is what makes it recognisable a year later."
 			],
-			"audio": ["/thai-script/lessons/lesson-14/audio/cc93b4f8de1e1be9.mp3"],
+			"audio": ["/thai-script/lessons/lesson-14/audio/78bf5cb1d2e9993c.mp3"],
 			"audioLanguages": ["en"],
 			"image": "/thai-script/lessons/lesson-14/images/pen-still-there-1bdf41db8b53.jpg"
 		},
@@ -37,7 +37,7 @@
 				"All ten of today's letters together: about a hundred.",
 				"They sit at the back of the review queue and stay there."
 			],
-			"audio": ["/thai-script/lessons/lesson-14/audio/b5cbb548a52dcded.mp3"],
+			"audio": ["/thai-script/lessons/lesson-14/audio/ab762a5ea43be742.mp3"],
 			"audioLanguages": ["en"],
 			"image": "/thai-script/lessons/lesson-14/images/how-rare-is-rare-ca2dd8712816.jpg"
 		},
@@ -50,7 +50,7 @@
 				"**Two** retired, kept in the chart and used nowhere.",
 				"**One** alone at the bottom, scarcer than either of those."
 			],
-			"audio": ["/thai-script/lessons/lesson-14/audio/4ef2913936677562.mp3"],
+			"audio": ["/thai-script/lessons/lesson-14/audio/ce72ff6571083c91.mp3"],
 			"audioLanguages": ["en"],
 			"image": "/thai-script/lessons/lesson-14/images/three-tiers-2a6fc80e4c17.jpg"
 		},
@@ -63,7 +63,7 @@
 				"A second d, and a second unpuffed t.",
 				"Both kept for royal and religious spellings."
 			],
-			"audio": ["/thai-script/lessons/lesson-14/audio/72c284ed1dc8aa24.mp3"],
+			"audio": ["/thai-script/lessons/lesson-14/audio/caa1c9b67734c486.mp3"],
 			"audioLanguages": ["en"],
 			"image": "/thai-script/lessons/lesson-14/images/the-two-crowns-98f0bbada059.jpg"
 		},
@@ -77,9 +77,9 @@
 				"The child's bowl, with **a loop hung below the base line**."
 			],
 			"audio": [
-				"/thai-script/lessons/lesson-14/audio/e319ce7827ffc5c8.mp3",
+				"/thai-script/lessons/lesson-14/audio/2f74b5a4eb76537a.mp3",
 				"/thai-script/lessons/lesson-14/audio/59e05156c3124399.mp3",
-				"/thai-script/lessons/lesson-14/audio/ed16a1c04d872e7f.mp3"
+				"/thai-script/lessons/lesson-14/audio/8898d74a3d63d823.mp3"
 			],
 			"audioLanguages": ["en", "th", "en"],
 			"teaches": ["do-chada"],
@@ -95,9 +95,9 @@
 				"The crown, with **a bump worked into the base line**."
 			],
 			"audio": [
-				"/thai-script/lessons/lesson-14/audio/7b9f4dc749d52891.mp3",
+				"/thai-script/lessons/lesson-14/audio/9fb7bf5850ced6ee.mp3",
 				"/thai-script/lessons/lesson-14/audio/409422cd2584ac79.mp3",
-				"/thai-script/lessons/lesson-14/audio/efff90389818496f.mp3"
+				"/thai-script/lessons/lesson-14/audio/e79c89ee4542e393.mp3"
 			],
 			"audioLanguages": ["en", "th", "en"],
 			"teaches": ["to-patak"],
@@ -112,37 +112,33 @@
 				"The goad: **the same again, with a bump in the base line**.",
 				"Put the child's letter and the turtle's letter beside them."
 			],
-			"audio": ["/thai-script/lessons/lesson-14/audio/5de252f3863c8e92.mp3"],
+			"audio": ["/thai-script/lessons/lesson-14/audio/a0cb24e898fe579e.mp3"],
 			"audioLanguages": ["en"],
 			"thai": "ฎ ฏ",
 			"teaches": ["do-chada", "to-patak", "do-dek", "to-tau"]
 		},
 		{
-			"kind": "exposition",
+			"kind": "retrieval",
 			"id": "read-gotmaai",
-			"heading": "Read the first half of this one",
-			"body": [
-				"Chicken, crown, and nothing written between them.",
-				"Lesson nine: two bare consonants take the **unwritten short o**.",
-				"**Work out the first syllable's tone** before you turn it over."
-			],
-			"audio": ["/thai-script/lessons/lesson-14/audio/8a5618e9e77ab57b.mp3"],
+			"prompt": "Chicken, crown, and nothing written between them. Lesson nine: two bare consonants take the **unwritten short o**. **Work out the first syllable's tone** before you turn it over.",
+			"revealSlideId": "read-gotmaai-answer",
+			"audio": ["/thai-script/lessons/lesson-14/audio/3acc37268127ea35.mp3"],
 			"audioLanguages": ["en"],
 			"thai": "กฎหมาย",
 			"teaches": ["do-chada"]
 		},
 		{
-			"kind": "exposition",
+			"kind": "reveal",
 			"id": "read-gotmaai-answer",
-			"heading": "That one",
-			"body": [
+			"retrievalSlideId": "read-gotmaai",
+			"answers": [
 				"**กฎหมาย** — law.",
 				"First syllable: market letter, dead, short — low.",
 				"The crown appears **inside a legal word**, closing a syllable."
 			],
 			"audio": [
 				"/thai-script/lessons/lesson-14/audio/9500899be0d32791.mp3",
-				"/thai-script/lessons/lesson-14/audio/c02162848d789d96.mp3"
+				"/thai-script/lessons/lesson-14/audio/4dfe38b7ab3ecc5b.mp3"
 			],
 			"audioLanguages": ["th", "en"],
 			"thai": "กฎหมาย",
@@ -157,7 +153,7 @@
 				"One at the temple, two at the harbour.",
 				"A shape and a district each, and the tone rules stay as they are."
 			],
-			"audio": ["/thai-script/lessons/lesson-14/audio/6c874ae6fd9e71e9.mp3"],
+			"audio": ["/thai-script/lessons/lesson-14/audio/74b142d940591b79.mp3"],
 			"audioLanguages": ["en"],
 			"image": "/thai-script/lessons/lesson-14/images/three-more-breathed-t-c555946a1e15.jpg"
 		},
@@ -171,9 +167,9 @@
 				"The plate's curve **floating over a separate footed base**."
 			],
 			"audio": [
-				"/thai-script/lessons/lesson-14/audio/0e5b9ecbf64d46eb.mp3",
+				"/thai-script/lessons/lesson-14/audio/2e83b7213d3fe60d.mp3",
 				"/thai-script/lessons/lesson-14/audio/bdd3dfa3b67ff70d.mp3",
-				"/thai-script/lessons/lesson-14/audio/292eed969cecdd4a.mp3"
+				"/thai-script/lessons/lesson-14/audio/07abc30e466ca4dd.mp3"
 			],
 			"audioLanguages": ["en", "th", "en"],
 			"teaches": ["tho-than"],
@@ -190,9 +186,9 @@
 				"Sometimes it says **d** instead, and the word itself is what tells you."
 			],
 			"audio": [
-				"/thai-script/lessons/lesson-14/audio/0e5b9ecbf64d46eb.mp3",
+				"/thai-script/lessons/lesson-14/audio/85b6bbda29be3807.mp3",
 				"/thai-script/lessons/lesson-14/audio/db2a9712a7e501f6.mp3",
-				"/thai-script/lessons/lesson-14/audio/8cef91aaa21b7219.mp3"
+				"/thai-script/lessons/lesson-14/audio/d3f85c8b1c7e44d0.mp3"
 			],
 			"audioLanguages": ["en", "th", "en"],
 			"teaches": ["tho-montho"],
@@ -208,9 +204,9 @@
 				"**The turtle's notched bowl**, closing into **the horse's loop**."
 			],
 			"audio": [
-				"/thai-script/lessons/lesson-14/audio/0e5b9ecbf64d46eb.mp3",
+				"/thai-script/lessons/lesson-14/audio/fb4793cc53b7f282.mp3",
 				"/thai-script/lessons/lesson-14/audio/33759f2860a6c227.mp3",
-				"/thai-script/lessons/lesson-14/audio/df22d6361c93cc50.mp3"
+				"/thai-script/lessons/lesson-14/audio/3689c05c20fd5d62.mp3"
 			],
 			"audioLanguages": ["en", "th", "en"],
 			"teaches": ["tho-phuthau"],
@@ -232,31 +228,27 @@
 			"teaches": ["tho-than", "tho-montho", "tho-phuthau"]
 		},
 		{
-			"kind": "exposition",
+			"kind": "retrieval",
 			"id": "read-rat",
-			"heading": "Read this one",
-			"body": [
-				"Boat, the curl on the roof, the pedestal closing it.",
-				"**A breathed letter at the back loses its breath.** Lesson seven.",
-				"District, alive or dead, long or short. Then say it."
-			],
-			"audio": ["/thai-script/lessons/lesson-14/audio/7b26ecf1ec1cf92a.mp3"],
+			"prompt": "Boat, the curl on the roof, the pedestal closing it. **A breathed letter at the back loses its breath.** Lesson seven. District, alive or dead, long or short. Then say it.",
+			"revealSlideId": "read-rat-answer",
+			"audio": ["/thai-script/lessons/lesson-14/audio/a3ed97c7f07a3956.mp3"],
 			"audioLanguages": ["en"],
 			"thai": "รัฐ",
 			"teaches": ["tho-than"]
 		},
 		{
-			"kind": "exposition",
+			"kind": "reveal",
 			"id": "read-rat-answer",
-			"heading": "That one",
-			"body": [
+			"retrievalSlideId": "read-rat",
+			"answers": [
 				"**รัฐ** — a state.",
 				"Harbour letter, dead ending, short vowel — high tone.",
 				"The pedestal closes it as a **plain t-stop**."
 			],
 			"audio": [
 				"/thai-script/lessons/lesson-14/audio/1f6a0889e3b85798.mp3",
-				"/thai-script/lessons/lesson-14/audio/f528351c3d699ec4.mp3"
+				"/thai-script/lessons/lesson-14/audio/92b3fa7d8b0f074d.mp3"
 			],
 			"audioLanguages": ["th", "en"],
 			"thai": "รัฐ",
@@ -272,7 +264,7 @@
 				"The other looks like the **horse** and says **kh**.",
 				"Learn these two by name, because the shape misleads."
 			],
-			"audio": ["/thai-script/lessons/lesson-14/audio/e3b2fb04100c2af2.mp3"],
+			"audio": ["/thai-script/lessons/lesson-14/audio/c780b38ab6730679.mp3"],
 			"audioLanguages": ["en"],
 			"teaches": ["lo-jula", "kho-rakhang"],
 			"image": "/thai-script/lessons/lesson-14/images/two-that-mislead-7d319f6f5671.jpg"
@@ -287,9 +279,9 @@
 				"The offering tray with **an extra curled tail on the last stroke**."
 			],
 			"audio": [
-				"/thai-script/lessons/lesson-14/audio/0e5b9ecbf64d46eb.mp3",
+				"/thai-script/lessons/lesson-14/audio/4177d61c6e3bc828.mp3",
 				"/thai-script/lessons/lesson-14/audio/a5030429c7ad0d43.mp3",
-				"/thai-script/lessons/lesson-14/audio/a0948279fcd3ccb4.mp3"
+				"/thai-script/lessons/lesson-14/audio/01301702f4456b75.mp3"
 			],
 			"audioLanguages": ["en", "th", "en"],
 			"teaches": ["lo-jula"],
@@ -305,9 +297,9 @@
 				"The horse's letter with **a bumped curve after the head**."
 			],
 			"audio": [
-				"/thai-script/lessons/lesson-14/audio/0e5b9ecbf64d46eb.mp3",
+				"/thai-script/lessons/lesson-14/audio/b591008923b0c45c.mp3",
 				"/thai-script/lessons/lesson-14/audio/4cca8224757794bc.mp3",
-				"/thai-script/lessons/lesson-14/audio/7ab2dab628879aed.mp3"
+				"/thai-script/lessons/lesson-14/audio/ee4e46f177dddf05.mp3"
 			],
 			"audioLanguages": ["en", "th", "en"],
 			"teaches": ["kho-rakhang"],
@@ -322,7 +314,7 @@
 				"The bell: **the horse, with a bump after the head**.",
 				"Say the **sound** aloud as you write, rather than the shape."
 			],
-			"audio": ["/thai-script/lessons/lesson-14/audio/54b48953070135a9.mp3"],
+			"audio": ["/thai-script/lessons/lesson-14/audio/19741090d5e2bf54.mp3"],
 			"audioLanguages": ["en"],
 			"thai": "ฬ ฆ",
 			"teaches": ["lo-jula", "kho-rakhang"]
@@ -343,7 +335,7 @@
 				"**The egg's letter, with a notch cut into the top stroke**.",
 				"There is no recording of its name here, because no living word needs one."
 			],
-			"audio": ["/thai-script/lessons/lesson-14/audio/3435f831924f7b66.mp3"],
+			"audio": ["/thai-script/lessons/lesson-14/audio/495d406c08768a4a.mp3"],
 			"audioLanguages": ["en"],
 			"teaches": ["khaaw-khuat"],
 			"image": "/thai-script/lessons/lesson-14/images/the-retired-bottle-71d16f06e42f.jpg"
@@ -409,9 +401,9 @@
 				"/thai-script/lessons/lesson-14/audio/5fc1e67e113b32ef.mp3",
 				"/thai-script/lessons/lesson-14/audio/85e3e2e970b2a670.mp3",
 				"/thai-script/lessons/lesson-14/audio/824db04ff60465d8.mp3",
-				"/thai-script/lessons/lesson-14/audio/755a8935e856f96e.mp3",
+				"/thai-script/lessons/lesson-14/audio/fad60c73d34400b3.mp3",
 				"/thai-script/lessons/lesson-14/audio/b61cac2d3748b5ff.mp3",
-				"/thai-script/lessons/lesson-14/audio/6c4b0d4c090c4f6a.mp3"
+				"/thai-script/lessons/lesson-14/audio/861323f63a0b8f7e.mp3"
 			],
 			"audioLanguages": ["en", "th", "en", "th", "en", "th", "en"],
 			"teaches": ["sara-uua"],
@@ -427,7 +419,7 @@
 				"Three consonants in a row, and the middle one is the vowel."
 			],
 			"audio": [
-				"/thai-script/lessons/lesson-14/audio/b338d92788034248.mp3",
+				"/thai-script/lessons/lesson-14/audio/3e09a9acaee19c76.mp3",
 				"/thai-script/lessons/lesson-14/audio/691fdf8ac6161f30.mp3",
 				"/thai-script/lessons/lesson-14/audio/3a757151a2bfb8d8.mp3"
 			],
@@ -447,7 +439,7 @@
 			"audio": [
 				"/thai-script/lessons/lesson-14/audio/861a93307e848b85.mp3",
 				"/thai-script/lessons/lesson-14/audio/a9f589124cee10f9.mp3",
-				"/thai-script/lessons/lesson-14/audio/93661a2d79355e9a.mp3",
+				"/thai-script/lessons/lesson-14/audio/47b50109a593223f.mp3",
 				"/thai-script/lessons/lesson-14/audio/dc2db25d0014bfe7.mp3",
 				"/thai-script/lessons/lesson-14/audio/c38bf09fa258fea2.mp3",
 				"/thai-script/lessons/lesson-14/audio/8277ae7dea6d546d.mp3",
@@ -469,7 +461,7 @@
 				"Neither has a word in this course. Recognise the shape and move on."
 			],
 			"audio": [
-				"/thai-script/lessons/lesson-14/audio/0a37589db85a8257.mp3",
+				"/thai-script/lessons/lesson-14/audio/30a6e0d05c97eaa9.mp3",
 				"/thai-script/lessons/lesson-14/audio/9faff2e08f681b12.mp3",
 				"/thai-script/lessons/lesson-14/audio/750b69b3491a732c.mp3",
 				"/thai-script/lessons/lesson-14/audio/9a85a34d5dcb1c1c.mp3"
@@ -478,30 +470,27 @@
 			"teaches": ["sara-ua", "sara-uea", "sara-uua", "sara-uuea"]
 		},
 		{
-			"kind": "exposition",
+			"kind": "retrieval",
 			"id": "read-duuean",
-			"heading": "Read this one",
-			"body": [
-				"Mast, child's letter, the grin mark above, the basin, the mouse.",
-				"**Name the vowel first**, then the district, then the ending."
-			],
-			"audio": ["/thai-script/lessons/lesson-14/audio/8e5782839c06e1f9.mp3"],
+			"prompt": "Mast, child's letter, the grin mark above, the basin, the mouse. **Name the vowel first**, then the district, then the ending.",
+			"revealSlideId": "read-duuean-answer",
+			"audio": ["/thai-script/lessons/lesson-14/audio/0687aae0e9534ae6.mp3"],
 			"audioLanguages": ["en"],
 			"thai": "เดือน",
 			"teaches": ["sara-uuea"]
 		},
 		{
-			"kind": "exposition",
+			"kind": "reveal",
 			"id": "read-duuean-answer",
-			"heading": "That one",
-			"body": [
+			"retrievalSlideId": "read-duuean",
+			"answers": [
 				"**เดือน** — a month, and also the moon.",
 				"Market letter, the syllable alive — flat.",
 				"Five marks, one syllable."
 			],
 			"audio": [
 				"/thai-script/lessons/lesson-14/audio/c3f0add15f019dbf.mp3",
-				"/thai-script/lessons/lesson-14/audio/0528a3d14719ea62.mp3"
+				"/thai-script/lessons/lesson-14/audio/de37ff44337e583b.mp3"
 			],
 			"audioLanguages": ["th", "en"],
 			"thai": "เดือน",
@@ -518,11 +507,11 @@
 				"The last three have no example here, because no common word uses them."
 			],
 			"audio": [
-				"/thai-script/lessons/lesson-14/audio/224811b634002efc.mp3",
+				"/thai-script/lessons/lesson-14/audio/2b63dfa33b3af9f7.mp3",
 				"/thai-script/lessons/lesson-14/audio/53d5c9996a33245c.mp3",
-				"/thai-script/lessons/lesson-14/audio/4e17655869d38055.mp3",
+				"/thai-script/lessons/lesson-14/audio/726f96eb0595ba41.mp3",
 				"/thai-script/lessons/lesson-14/audio/0d382f094dc1223b.mp3",
-				"/thai-script/lessons/lesson-14/audio/c95726108924c583.mp3"
+				"/thai-script/lessons/lesson-14/audio/17640e7014a7d75e.mp3"
 			],
 			"audioLanguages": ["en", "th", "en", "th", "en"],
 			"image": "/thai-script/lessons/lesson-14/images/rare-vowel-signs-683765aa1a48.jpg"
@@ -532,7 +521,7 @@
 			"id": "spot-the-rare",
 			"prompt": "เมฆ is read mêek, and it falls. The letter closing it is one of today's ten, standing where you would normally expect the chicken. Which letter is it, and what does its presence tell you about the word?",
 			"revealSlideId": "spot-the-rare-answer",
-			"audio": ["/thai-script/lessons/lesson-14/audio/f89fbf4acf090c80.mp3"],
+			"audio": ["/thai-script/lessons/lesson-14/audio/6160fc8f4762685e.mp3"],
 			"audioLanguages": ["en"],
 			"teaches": ["kho-rakhang", "low-dead-long"]
 		},
@@ -555,7 +544,7 @@
 			"id": "crown-twins",
 			"prompt": "The two market letters you met first today are crowned twins of two letters you have had since lessons three and nine. Say which sound each twin carries, which district it sits in, and what its crown actually changes.",
 			"revealSlideId": "crown-twins-answer",
-			"audio": ["/thai-script/lessons/lesson-14/audio/2df6a4f2f7f287f6.mp3"],
+			"audio": ["/thai-script/lessons/lesson-14/audio/df72cb9685b748ec.mp3"],
 			"audioLanguages": ["en"],
 			"teaches": ["do-chada", "to-patak"]
 		},
@@ -587,7 +576,7 @@
 				"**เมฆ** — a cloud. The bell's letter closing it.",
 				"**กฎหมาย** — law. The crown's letter, the one word you will meet it in."
 			],
-			"audio": ["/thai-script/lessons/lesson-14/audio/5c834c9a774fe136.mp3"],
+			"audio": ["/thai-script/lessons/lesson-14/audio/0a3fa78b792bb393.mp3"],
 			"audioLanguages": ["en"],
 			"teaches": [
 				"tho-than",
@@ -611,13 +600,13 @@
 				"Next: unwritten vowels, tone marks, clusters, and leading consonants.",
 				"Write the ten in a column, with the letter each one doubles beside it."
 			],
-			"audio": ["/thai-script/lessons/lesson-14/audio/1128759e23a4f548.mp3"],
+			"audio": ["/thai-script/lessons/lesson-14/audio/d2b4c285aed296aa.mp3"],
 			"audioLanguages": ["en"]
 		}
 	],
 	"timing": {
-		"spokenSeconds": 1310,
-		"practiceSeconds": 284,
-		"estimatedMinutes": 27
+		"spokenSeconds": 1312,
+		"practiceSeconds": 359,
+		"estimatedMinutes": 28
 	}
 }

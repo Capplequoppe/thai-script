@@ -24,7 +24,7 @@
 				"Real paper, a real pen.",
 				"Both halves of the name, out loud, every time."
 			],
-			"audio": ["/thai-script/lessons/lesson-10/audio/9962e5bac2a193b0.mp3"],
+			"audio": ["/thai-script/lessons/lesson-10/audio/5a01f9a6b5c03574.mp3"],
 			"audioLanguages": ["en"],
 			"image": "/thai-script/lessons/lesson-10/images/pen-still-there-1bdf41db8b53.jpg"
 		},
@@ -37,7 +37,7 @@
 				"Three more lodgers arrive today.",
 				"Written ahead of the consonant, spoken after it."
 			],
-			"audio": ["/thai-script/lessons/lesson-10/audio/f386a4418fa1fe01.mp3"],
+			"audio": ["/thai-script/lessons/lesson-10/audio/8e0b3f7c43f9d398.mp3"],
 			"audioLanguages": ["en"],
 			"image": "/thai-script/lessons/lesson-10/images/back-to-the-steps-d6adf58a8dfb.jpg"
 		},
@@ -53,7 +53,7 @@
 			"audio": [
 				"/thai-script/lessons/lesson-10/audio/7c99b71b265b2864.mp3",
 				"/thai-script/lessons/lesson-10/audio/1ceda3981665f122.mp3",
-				"/thai-script/lessons/lesson-10/audio/339205d0895fb813.mp3"
+				"/thai-script/lessons/lesson-10/audio/a517df282f8cb4e4.mp3"
 			],
 			"audioLanguages": ["en", "th", "en"],
 			"teaches": ["sara-ao"],
@@ -73,29 +73,26 @@
 			"teaches": ["sara-ao"]
 		},
 		{
-			"kind": "exposition",
+			"kind": "retrieval",
 			"id": "read-rao",
-			"heading": "Read this one",
-			"body": [
-				"The mast, the boat's letter, the long post.",
-				"One vowel wrapped round one consonant. Out loud before you turn it over."
-			],
-			"audio": ["/thai-script/lessons/lesson-10/audio/21b256a5782b3348.mp3"],
+			"prompt": "The mast, the boat's letter, the long post. One vowel wrapped round one consonant. Out loud before you turn it over.",
+			"revealSlideId": "read-rao-answer",
+			"audio": ["/thai-script/lessons/lesson-10/audio/cff5c7b432084970.mp3"],
 			"audioLanguages": ["en"],
 			"thai": "เรา",
 			"teaches": ["sara-ao"]
 		},
 		{
-			"kind": "exposition",
+			"kind": "reveal",
 			"id": "read-rao-answer",
-			"heading": "That one",
-			"body": [
+			"retrievalSlideId": "read-rao",
+			"answers": [
 				"**เรา** — we, or us.",
 				"Also a very common everyday word for *I*."
 			],
 			"audio": [
 				"/thai-script/lessons/lesson-10/audio/924dc9dfbbbe7445.mp3",
-				"/thai-script/lessons/lesson-10/audio/824e42f8bf87b9aa.mp3"
+				"/thai-script/lessons/lesson-10/audio/ed711a52cf01d5ac.mp3"
 			],
 			"audioLanguages": ["th", "en"],
 			"thai": "เรา",
@@ -113,7 +110,7 @@
 			"audio": [
 				"/thai-script/lessons/lesson-10/audio/120add5fc794a653.mp3",
 				"/thai-script/lessons/lesson-10/audio/adf3a7d6f3837740.mp3",
-				"/thai-script/lessons/lesson-10/audio/4c198834b800d071.mp3"
+				"/thai-script/lessons/lesson-10/audio/cbf4ea23384cbe6a.mp3"
 			],
 			"audioLanguages": ["en", "th", "en"],
 			"teaches": ["sara-ai-mai-malaai"],
@@ -128,32 +125,32 @@
 				"Write it ahead of the fish's letter and say it aloud.",
 				"Consonant out of the mouth first, then the vowel."
 			],
-			"audio": ["/thai-script/lessons/lesson-10/audio/8afae67f2ba17236.mp3"],
+			"audio": ["/thai-script/lessons/lesson-10/audio/26fdfd373c689f2f.mp3"],
 			"audioLanguages": ["en"],
 			"thai": "ไ",
 			"teaches": ["sara-ai-mai-malaai"]
 		},
 		{
-			"kind": "exposition",
+			"kind": "retrieval",
 			"id": "read-bpai",
-			"heading": "Read this one",
-			"body": [
-				"The zigzag mast, then the fish's letter.",
-				"Out loud before you turn it over."
-			],
-			"audio": ["/thai-script/lessons/lesson-10/audio/352eb67e05c1479d.mp3"],
+			"prompt": "The zigzag mast, then the fish's letter. Out loud before you turn it over.",
+			"revealSlideId": "read-bpai-answer",
+			"audio": ["/thai-script/lessons/lesson-10/audio/31b1422b5e7a90dd.mp3"],
 			"audioLanguages": ["en"],
 			"thai": "ไป",
 			"teaches": ["sara-ai-mai-malaai"]
 		},
 		{
-			"kind": "exposition",
+			"kind": "reveal",
 			"id": "read-bpai-answer",
-			"heading": "That one",
-			"body": ["**ไป** — to go.", "The 34th commonest word in the language."],
+			"retrievalSlideId": "read-bpai",
+			"answers": [
+				"**ไป** — to go.",
+				"The 34th commonest word in the language."
+			],
 			"audio": [
 				"/thai-script/lessons/lesson-10/audio/71f0aef5ff7e7039.mp3",
-				"/thai-script/lessons/lesson-10/audio/d157e049a539be1f.mp3"
+				"/thai-script/lessons/lesson-10/audio/f97c7563e2bdbc3c.mp3"
 			],
 			"audioLanguages": ["th", "en"],
 			"thai": "ไป",
@@ -171,7 +168,7 @@
 			"audio": [
 				"/thai-script/lessons/lesson-10/audio/1fe7df730b47a263.mp3",
 				"/thai-script/lessons/lesson-10/audio/ef93dfc0fc8a091b.mp3",
-				"/thai-script/lessons/lesson-10/audio/775c2b30f16d71f6.mp3"
+				"/thai-script/lessons/lesson-10/audio/75fd26c97959d583.mp3"
 			],
 			"audioLanguages": ["en", "th", "en"],
 			"teaches": ["sara-ai-mai-muuan"],
@@ -186,7 +183,7 @@
 				"Write it beside the zigzag and compare the two tops.",
 				"A flick against a curl. Nothing else separates them."
 			],
-			"audio": ["/thai-script/lessons/lesson-10/audio/01ef7c74e494eb30.mp3"],
+			"audio": ["/thai-script/lessons/lesson-10/audio/51b63b7d101c7dac.mp3"],
 			"audioLanguages": ["en"],
 			"thai": "ใ",
 			"teaches": ["sara-ai-mai-muuan"]
@@ -201,7 +198,7 @@
 				"**ใบ** — a leaf.",
 				"**ใด** — any."
 			],
-			"audio": ["/thai-script/lessons/lesson-10/audio/5cff62a1e3c185c5.mp3"],
+			"audio": ["/thai-script/lessons/lesson-10/audio/6cd078d15712f4db.mp3"],
 			"audioLanguages": ["en"],
 			"teaches": ["sara-ai-mai-muuan"],
 			"image": "/thai-script/lessons/lesson-10/images/the-guest-list-3b6a85a2a1f7.jpg"
@@ -211,7 +208,7 @@
 			"id": "two-spellings",
 			"prompt": "You hear a Thai word with this sound in it and you have to write it down. Which of the two spellings do you reach for, and how confident should you be?",
 			"revealSlideId": "two-spellings-answer",
-			"audio": ["/thai-script/lessons/lesson-10/audio/03ffd1712605fdca.mp3"],
+			"audio": ["/thai-script/lessons/lesson-10/audio/e71cc78a86f9c096.mp3"],
 			"audioLanguages": ["en"],
 			"teaches": ["sara-ai-mai-muuan", "sara-ai-mai-malaai"]
 		},
@@ -258,7 +255,7 @@
 				"**ตก** stops on the chicken's letter, and the air goes nowhere.",
 				"What stops the syllable is the whole of what the rule measures."
 			],
-			"audio": ["/thai-script/lessons/lesson-10/audio/9f43d6c84fc98ade.mp3"],
+			"audio": ["/thai-script/lessons/lesson-10/audio/e98f61859694edab.mp3"],
 			"audioLanguages": ["en"],
 			"image": "/thai-script/lessons/lesson-10/images/what-makes-a-syllable-dead-340d4e0b3836.jpg"
 		},
@@ -279,7 +276,7 @@
 				"Put a stopping consonant behind the vowel and it becomes dead.",
 				"**ไป** opens on a market letter and ends alive, so lesson three's rule settles it."
 			],
-			"audio": ["/thai-script/lessons/lesson-10/audio/4b700625aec4ee24.mp3"],
+			"audio": ["/thai-script/lessons/lesson-10/audio/a27106d62c62c005.mp3"],
 			"audioLanguages": ["en"]
 		},
 		{
@@ -299,7 +296,7 @@
 			"audio": [
 				"/thai-script/lessons/lesson-10/audio/714c0f6bb7334c5d.mp3",
 				"/thai-script/lessons/lesson-10/audio/14187d8b7dfdce6e.mp3",
-				"/thai-script/lessons/lesson-10/audio/606c72afb472aaf3.mp3"
+				"/thai-script/lessons/lesson-10/audio/b730d00cd0d43b82.mp3"
 			],
 			"audioLanguages": ["en", "th", "en"],
 			"image": "/thai-script/lessons/lesson-10/images/the-repeat-mark-f8d76decb40a.jpg"
@@ -313,7 +310,7 @@
 				"English doubling usually intensifies.",
 				"Thai doubling usually broadens, and makes the word less exact."
 			],
-			"audio": ["/thai-script/lessons/lesson-10/audio/a4014c2b34fc5554.mp3"],
+			"audio": ["/thai-script/lessons/lesson-10/audio/62e50989fb023aa5.mp3"],
 			"audioLanguages": ["en"],
 			"image": "/thai-script/lessons/lesson-10/images/what-doubling-does-f3920e314bbd.jpg"
 		},
@@ -332,29 +329,25 @@
 				"Only three letters can stand second, and the rule names all three.",
 				"Last lesson gave you the other reading of two bare consonants."
 			],
-			"audio": ["/thai-script/lessons/lesson-10/audio/486a3f7798330213.mp3"],
+			"audio": ["/thai-script/lessons/lesson-10/audio/e2df6ba5f7049109.mp3"],
 			"audioLanguages": ["en"],
 			"image": "/thai-script/lessons/lesson-10/images/clusters-named-584d135d7904.jpg"
 		},
 		{
-			"kind": "exposition",
+			"kind": "retrieval",
 			"id": "read-khrai",
-			"heading": "Read this one",
-			"body": [
-				"The curled mast, the buffalo's letter, the boat's letter.",
-				"The last two run together into a single syllable.",
-				"Out loud before you turn it over."
-			],
-			"audio": ["/thai-script/lessons/lesson-10/audio/abfa0e4fb84e27ff.mp3"],
+			"prompt": "The curled mast, the buffalo's letter, the boat's letter. The last two run together into a single syllable. Out loud before you turn it over.",
+			"revealSlideId": "read-khrai-answer",
+			"audio": ["/thai-script/lessons/lesson-10/audio/58b8d06b1306df99.mp3"],
 			"audioLanguages": ["en"],
 			"thai": "ใคร",
 			"teaches": ["sara-ai-mai-muuan"]
 		},
 		{
-			"kind": "exposition",
+			"kind": "reveal",
 			"id": "read-khrai-answer",
-			"heading": "That one",
-			"body": [
+			"retrievalSlideId": "read-khrai",
+			"answers": [
 				"**ใคร** — who, and a fifth word taking the curl.",
 				"**ใคร ๆ** — anyone at all."
 			],
@@ -367,23 +360,20 @@
 			"teaches": ["sara-ai-mai-muuan"]
 		},
 		{
-			"kind": "exposition",
+			"kind": "retrieval",
 			"id": "read-thai",
-			"heading": "One more, and you have been waiting for it",
-			"body": [
-				"The zigzag mast, the soldier's letter, the giant's letter.",
-				"Out loud before you turn it over."
-			],
-			"audio": ["/thai-script/lessons/lesson-10/audio/ab08e3a092ed81d8.mp3"],
+			"prompt": "The zigzag mast, the soldier's letter, the giant's letter. Out loud before you turn it over.",
+			"revealSlideId": "read-thai-answer",
+			"audio": ["/thai-script/lessons/lesson-10/audio/4b4c0b6479ad384b.mp3"],
 			"audioLanguages": ["en"],
 			"thai": "ไทย",
 			"teaches": ["sara-ai-mai-malaai"]
 		},
 		{
-			"kind": "exposition",
+			"kind": "reveal",
 			"id": "read-thai-answer",
-			"heading": "That one",
-			"body": [
+			"retrievalSlideId": "read-thai",
+			"answers": [
 				"**ไทย** — Thai, and Thailand.",
 				"The last piece it needed was today's zigzag mast."
 			],
@@ -418,13 +408,13 @@
 				"A vowel at the back of a syllable stops nothing, so the syllable is alive.",
 				"Next: the letter from lesson six gets its name, and the market's grid closes."
 			],
-			"audio": ["/thai-script/lessons/lesson-10/audio/e332dfd66312bc14.mp3"],
+			"audio": ["/thai-script/lessons/lesson-10/audio/dc7651cda412e1d8.mp3"],
 			"audioLanguages": ["en"]
 		}
 	],
 	"timing": {
-		"spokenSeconds": 698,
-		"practiceSeconds": 242,
-		"estimatedMinutes": 16
+		"spokenSeconds": 709,
+		"practiceSeconds": 342,
+		"estimatedMinutes": 18
 	}
 }

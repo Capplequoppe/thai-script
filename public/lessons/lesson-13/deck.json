@@ -11,7 +11,7 @@
 				"They mark a word as old, formal, or borrowed.",
 				"A vowel with a built-in ending, and a sign that silences a letter."
 			],
-			"audio": ["/thai-script/lessons/lesson-13/audio/561fcead70f00172.mp3"],
+			"audio": ["/thai-script/lessons/lesson-13/audio/a7126d1bd157b62e.mp3"],
 			"audioLanguages": ["en"],
 			"image": "/thai-script/lessons/lesson-13/images/what-is-here-4a366694a51a.jpg"
 		},
@@ -24,7 +24,7 @@
 				"Both halves of the name, out loud.",
 				"Six shapes, and the sounds are already yours."
 			],
-			"audio": ["/thai-script/lessons/lesson-13/audio/5121a1fb7f49c14a.mp3"],
+			"audio": ["/thai-script/lessons/lesson-13/audio/32657d03bb5a7b58.mp3"],
 			"audioLanguages": ["en"],
 			"image": "/thai-script/lessons/lesson-13/images/pen-still-there-1bdf41db8b53.jpg"
 		},
@@ -38,7 +38,7 @@
 				"The words kept their spelling, and the script made room.",
 				"Each of the six tells you about the word rather than the sound."
 			],
-			"audio": ["/thai-script/lessons/lesson-13/audio/440d09a185449fca.mp3"],
+			"audio": ["/thai-script/lessons/lesson-13/audio/20db933f8091352c.mp3"],
 			"audioLanguages": ["en"],
 			"image": "/thai-script/lessons/lesson-13/images/why-thai-kept-them-8252e4c16a4e.jpg"
 		},
@@ -51,7 +51,7 @@
 				"The temple pair both write **s**.",
 				"Thai has three s letters at the temple, and you already have one."
 			],
-			"audio": ["/thai-script/lessons/lesson-13/audio/b19a4bf66c33e97a.mp3"],
+			"audio": ["/thai-script/lessons/lesson-13/audio/deedb410154757b3.mp3"],
 			"audioLanguages": ["en"],
 			"image": "/thai-script/lessons/lesson-13/images/the-two-at-the-temple-d9300c54f021.jpg"
 		},
@@ -66,9 +66,9 @@
 				"The buffalo's letter with **a flag stroke planted on top**."
 			],
 			"audio": [
-				"/thai-script/lessons/lesson-13/audio/e319ce7827ffc5c8.mp3",
+				"/thai-script/lessons/lesson-13/audio/1c1be7c361d64152.mp3",
 				"/thai-script/lessons/lesson-13/audio/f1414b044a181430.mp3",
-				"/thai-script/lessons/lesson-13/audio/0aa6e7c319ee6432.mp3"
+				"/thai-script/lessons/lesson-13/audio/7a092244df260488.mp3"
 			],
 			"audioLanguages": ["en", "th", "en"],
 			"teaches": ["so-sala"],
@@ -85,9 +85,9 @@
 				"The leaf's letter, **crossed with one line**."
 			],
 			"audio": [
-				"/thai-script/lessons/lesson-13/audio/7b9f4dc749d52891.mp3",
+				"/thai-script/lessons/lesson-13/audio/c914da5ca37fd80a.mp3",
 				"/thai-script/lessons/lesson-13/audio/f1d13a03e5c7930b.mp3",
-				"/thai-script/lessons/lesson-13/audio/a1acf02f295f5f1a.mp3"
+				"/thai-script/lessons/lesson-13/audio/a5bf84942b6eaf40.mp3"
 			],
 			"audioLanguages": ["en", "th", "en"],
 			"teaches": ["so-risi"],
@@ -102,10 +102,33 @@
 				"The hermit: **the leaf's letter, crossed once**.",
 				"Put the tiger under them both, and look at the column."
 			],
-			"audio": ["/thai-script/lessons/lesson-13/audio/b03cc1edda53714a.mp3"],
+			"audio": ["/thai-script/lessons/lesson-13/audio/8a448a07235595ec.mp3"],
 			"audioLanguages": ["en"],
 			"thai": "ศ ษ",
 			"teaches": ["so-sala", "so-risi", "so-sia"]
+		},
+		{
+			"kind": "exposition",
+			"id": "well-story-monk",
+			"heading": "Who the other man on the well rim was",
+			"body": [
+				"The monk is **high class**, and he follows the vendor down the shaft.",
+				"Mid class and high class give the **same** answer on a dead syllable: low.",
+				"Vowel length changes nothing for either of them.",
+				"Four rules end in this well, and all four are now yours."
+			],
+			"audio": [
+				"/thai-script/lessons/lesson-13/audio/6dfeb6d2f8d03d8a.mp3",
+				"/thai-script/lessons/lesson-13/audio/91c5641ddb12305b.mp3",
+				"/thai-script/lessons/lesson-13/audio/2e26816b8965d924.mp3"
+			],
+			"audioLanguages": ["en", "en", "en"],
+			"teaches": [
+				"high-dead-short",
+				"high-dead-long",
+				"well-vendor-and-monk-fall"
+			],
+			"image": "/thai-script/lessons/lesson-13/images/well-story-monk-023c4a9d0333.jpg"
 		},
 		{
 			"kind": "rule",
@@ -129,12 +152,12 @@
 				"The harbour needed two rules here. The temple needs one."
 			],
 			"audio": [
-				"/thai-script/lessons/lesson-13/audio/7b8ae13781d77b18.mp3",
-				"/thai-script/lessons/lesson-13/audio/b2c5bd78888ea3a7.mp3",
+				"/thai-script/lessons/lesson-13/audio/a8af2404214ea508.mp3",
+				"/thai-script/lessons/lesson-13/audio/ff380d47a5a07472.mp3",
 				"/thai-script/lessons/lesson-13/audio/027a7a974443d528.mp3",
 				"/thai-script/lessons/lesson-13/audio/f8548190352ce363.mp3",
 				"/thai-script/lessons/lesson-13/audio/645a741a819b156d.mp3",
-				"/thai-script/lessons/lesson-13/audio/a85f7788f4bf28ef.mp3"
+				"/thai-script/lessons/lesson-13/audio/3d6550e0c157b39d.mp3"
 			],
 			"audioLanguages": ["en", "en", "th", "th", "th", "en"],
 			"teaches": [
@@ -146,24 +169,20 @@
 			"image": "/thai-script/lessons/lesson-13/images/temple-dead-32ce8c994f2a.jpg"
 		},
 		{
-			"kind": "exposition",
+			"kind": "retrieval",
 			"id": "read-phiseet",
-			"heading": "Read this one",
-			"body": [
-				"Tray plus short ee, then mast, pavilion, hermit.",
-				"Two syllables, and a different rule for each.",
-				"**Out loud before you turn it over.**"
-			],
-			"audio": ["/thai-script/lessons/lesson-13/audio/758b3516091b8792.mp3"],
+			"prompt": "Tray plus short ee, then mast, pavilion, hermit. Two syllables, with a different rule for each. **Out loud before you turn it over.**",
+			"revealSlideId": "read-phiseet-answer",
+			"audio": ["/thai-script/lessons/lesson-13/audio/b0a87f3d09b31d52.mp3"],
 			"audioLanguages": ["en"],
 			"thai": "พิเศษ",
 			"teaches": ["so-sala", "so-risi", "high-dead-long"]
 		},
 		{
-			"kind": "exposition",
+			"kind": "reveal",
 			"id": "read-phiseet-answer",
-			"heading": "That one",
-			"body": [
+			"retrievalSlideId": "read-phiseet",
+			"answers": [
 				"**พิเศษ** — special.",
 				"First half: harbour, dead, short — high.",
 				"Second half: temple, dead, long — low.",
@@ -171,7 +190,7 @@
 			],
 			"audio": [
 				"/thai-script/lessons/lesson-13/audio/c557a8fa93fa47c7.mp3",
-				"/thai-script/lessons/lesson-13/audio/ece78dba7e29c616.mp3"
+				"/thai-script/lessons/lesson-13/audio/9499c11cd8295a92.mp3"
 			],
 			"audioLanguages": ["th", "en"],
 			"thai": "พิเศษ",
@@ -186,7 +205,7 @@
 				"A second n, a second y, a second breathed p, a second breathed t.",
 				"Shape and sound each, and both are already familiar."
 			],
-			"audio": ["/thai-script/lessons/lesson-13/audio/4014eddf2f1cbf73.mp3"],
+			"audio": ["/thai-script/lessons/lesson-13/audio/f177ae8fc82eddb4.mp3"],
 			"audioLanguages": ["en"],
 			"image": "/thai-script/lessons/lesson-13/images/four-at-the-harbour-3f89b0767bc4.jpg"
 		},
@@ -201,9 +220,9 @@
 				"A whole **chicken frame first**, and the mouse's loop last."
 			],
 			"audio": [
-				"/thai-script/lessons/lesson-13/audio/0e5b9ecbf64d46eb.mp3",
+				"/thai-script/lessons/lesson-13/audio/6669f2133582fe4c.mp3",
 				"/thai-script/lessons/lesson-13/audio/631964264bd41a5b.mp3",
-				"/thai-script/lessons/lesson-13/audio/072f91368866dd8d.mp3"
+				"/thai-script/lessons/lesson-13/audio/4994db68e0d2d600.mp3"
 			],
 			"audioLanguages": ["en", "th", "en"],
 			"teaches": ["no-nen"],
@@ -220,9 +239,9 @@
 				"Put it last in a syllable and it lands as **n**."
 			],
 			"audio": [
-				"/thai-script/lessons/lesson-13/audio/0e5b9ecbf64d46eb.mp3",
+				"/thai-script/lessons/lesson-13/audio/468dfac9c8a39abc.mp3",
 				"/thai-script/lessons/lesson-13/audio/1e62c257ad7d7224.mp3",
-				"/thai-script/lessons/lesson-13/audio/1ad2085c66f76c5e.mp3"
+				"/thai-script/lessons/lesson-13/audio/85a0cc4b5978eebe.mp3"
 			],
 			"audioLanguages": ["en", "th", "en"],
 			"teaches": ["yo-ying"],
@@ -238,9 +257,9 @@
 				"The bag coils its head inside the frame. This one **hangs it outside**."
 			],
 			"audio": [
-				"/thai-script/lessons/lesson-13/audio/0e5b9ecbf64d46eb.mp3",
+				"/thai-script/lessons/lesson-13/audio/2d156e7dec6a2f53.mp3",
 				"/thai-script/lessons/lesson-13/audio/7c3503efe3432289.mp3",
-				"/thai-script/lessons/lesson-13/audio/13d7464f9c56468b.mp3"
+				"/thai-script/lessons/lesson-13/audio/08fd6b340d0e4d64.mp3"
 			],
 			"audioLanguages": ["en", "th", "en"],
 			"teaches": ["pho-samphau"],
@@ -256,9 +275,9 @@
 				"The boat's letter with **its top tied into a crossed loop**."
 			],
 			"audio": [
-				"/thai-script/lessons/lesson-13/audio/0e5b9ecbf64d46eb.mp3",
+				"/thai-script/lessons/lesson-13/audio/aacf1449249949d9.mp3",
 				"/thai-script/lessons/lesson-13/audio/056f5ea8d9e6215b.mp3",
-				"/thai-script/lessons/lesson-13/audio/93e22fdf01aed9c6.mp3"
+				"/thai-script/lessons/lesson-13/audio/1bd0c63c6cf50b25.mp3"
 			],
 			"audioLanguages": ["en", "th", "en"],
 			"teaches": ["tho-thong"],
@@ -274,37 +293,33 @@
 				"The junk: **the bag, with its head swung outside**.",
 				"The flag: **the boat, with its top tied shut**."
 			],
-			"audio": ["/thai-script/lessons/lesson-13/audio/67aa1d18ff4cd219.mp3"],
+			"audio": ["/thai-script/lessons/lesson-13/audio/30e8e9a902044b41.mp3"],
 			"audioLanguages": ["en"],
 			"thai": "ณ ญ ภ ธ",
 			"teaches": ["no-nen", "yo-ying", "pho-samphau", "tho-thong"]
 		},
 		{
-			"kind": "exposition",
+			"kind": "retrieval",
 			"id": "read-phaasaa",
-			"heading": "Read this one",
-			"body": [
-				"Junk, long post, hermit, long post.",
-				"One harbour letter and one temple letter, in one word.",
-				"Both halves run alive. **Out loud before you turn it over.**"
-			],
-			"audio": ["/thai-script/lessons/lesson-13/audio/8bfff96d58d2eab3.mp3"],
+			"prompt": "Junk, long post, hermit, long post. One harbour letter and one temple letter, in one word. Both halves run alive. **Out loud before you turn it over.**",
+			"revealSlideId": "read-phaasaa-answer",
+			"audio": ["/thai-script/lessons/lesson-13/audio/ba03524b9ffb848c.mp3"],
 			"audioLanguages": ["en"],
 			"thai": "ภาษา",
 			"teaches": ["pho-samphau", "so-risi"]
 		},
 		{
-			"kind": "exposition",
+			"kind": "reveal",
 			"id": "read-phaasaa-answer",
-			"heading": "That one",
-			"body": [
+			"retrievalSlideId": "read-phaasaa",
+			"answers": [
 				"**ภาษา** — a language.",
 				"First half: harbour, alive — flat.",
 				"Second half: temple, alive — rising."
 			],
 			"audio": [
 				"/thai-script/lessons/lesson-13/audio/59f7dd54152b1d4e.mp3",
-				"/thai-script/lessons/lesson-13/audio/6f124ef147cced0d.mp3"
+				"/thai-script/lessons/lesson-13/audio/3d958a1023fdd797.mp3"
 			],
 			"audioLanguages": ["th", "en"],
 			"thai": "ภาษา",
@@ -350,31 +365,27 @@
 			"audio": [
 				"/thai-script/lessons/lesson-13/audio/09eea726686185c4.mp3",
 				"/thai-script/lessons/lesson-13/audio/c1787b0def4f83a2.mp3",
-				"/thai-script/lessons/lesson-13/audio/7f0082476382b310.mp3"
+				"/thai-script/lessons/lesson-13/audio/5b6649001bef0a5b.mp3"
 			],
 			"audioLanguages": ["en", "th", "en"],
 			"teaches": ["sara-am"],
 			"image": "/thai-script/lessons/lesson-13/images/am-is-always-live-28d658ad9a2b.jpg"
 		},
 		{
-			"kind": "exposition",
+			"kind": "retrieval",
 			"id": "read-samkhan",
-			"heading": "Read this one",
-			"body": [
-				"Tiger plus the new vowel, then buffalo, the curl on the roof, and the woman's letter.",
-				"**Remember what she does last in a syllable.**",
-				"Both tones before you speak."
-			],
-			"audio": ["/thai-script/lessons/lesson-13/audio/fa2c7a8d2507d142.mp3"],
+			"prompt": "Tiger plus the new vowel, then buffalo, the curl on the roof, and the woman's letter. **Remember what she does last in a syllable.** Both tones before you speak.",
+			"revealSlideId": "read-samkhan-answer",
+			"audio": ["/thai-script/lessons/lesson-13/audio/a0fb257920b1c69a.mp3"],
 			"audioLanguages": ["en"],
 			"thai": "สำคัญ",
 			"teaches": ["sara-am", "yo-ying"]
 		},
 		{
-			"kind": "exposition",
+			"kind": "reveal",
 			"id": "read-samkhan-answer",
-			"heading": "That one",
-			"body": [
+			"retrievalSlideId": "read-samkhan",
+			"answers": [
 				"**สำคัญ** — important.",
 				"First half: temple, alive — rising.",
 				"Second half: harbour, alive — flat.",
@@ -440,7 +451,7 @@
 				"**เลย** is the 81st commonest word in Thai and spelled exactly that way."
 			],
 			"audio": [
-				"/thai-script/lessons/lesson-13/audio/dce19e1ed226f746.mp3",
+				"/thai-script/lessons/lesson-13/audio/418681289ec25e55.mp3",
 				"/thai-script/lessons/lesson-13/audio/a4fd6ec36b0c20e0.mp3",
 				"/thai-script/lessons/lesson-13/audio/58849a6b24eca111.mp3"
 			],
@@ -458,7 +469,7 @@
 				"Learn the open shape and move on."
 			],
 			"audio": [
-				"/thai-script/lessons/lesson-13/audio/f84408b35c4d6942.mp3",
+				"/thai-script/lessons/lesson-13/audio/b8d2db22fa17d92f.mp3",
 				"/thai-script/lessons/lesson-13/audio/de214dc3a2518520.mp3",
 				"/thai-script/lessons/lesson-13/audio/9c580c97a55f3822.mp3"
 			],
@@ -466,23 +477,20 @@
 			"teaches": ["sara-oe"]
 		},
 		{
-			"kind": "exposition",
+			"kind": "retrieval",
 			"id": "read-doen",
-			"heading": "Read this one",
-			"body": [
-				"Mast, the child's letter, the brim above, the mouse closing it.",
-				"**Name the vowel first**, then the district, then the tone."
-			],
-			"audio": ["/thai-script/lessons/lesson-13/audio/a185026fcba1c25c.mp3"],
+			"prompt": "Mast, the child's letter, the brim above, the mouse closing it. **Name the vowel first**, then the district, then the tone.",
+			"revealSlideId": "read-doen-answer",
+			"audio": ["/thai-script/lessons/lesson-13/audio/ab397551fe6ccde4.mp3"],
 			"audioLanguages": ["en"],
 			"thai": "เดิน",
 			"teaches": ["sara-ooe"]
 		},
 		{
-			"kind": "exposition",
+			"kind": "reveal",
 			"id": "read-doen-answer",
-			"heading": "That one",
-			"body": [
+			"retrievalSlideId": "read-doen",
+			"answers": [
 				"**เดิน** — to walk.",
 				"The long vowel in its closed shape, brim on the roof.",
 				"Market letter, the syllable alive, flat."
@@ -515,7 +523,7 @@
 				"/thai-script/lessons/lesson-13/audio/3f062e013b663f03.mp3",
 				"/thai-script/lessons/lesson-13/audio/afbd132298994be7.mp3",
 				"/thai-script/lessons/lesson-13/audio/3addac2cd9d9b102.mp3",
-				"/thai-script/lessons/lesson-13/audio/d88e2eeb26ce59ce.mp3"
+				"/thai-script/lessons/lesson-13/audio/f309471baa071dc2.mp3"
 			],
 			"audioLanguages": ["en", "th", "en", "th", "en"],
 			"image": "/thai-script/lessons/lesson-13/images/gaaran-802926032f10.jpg"
@@ -550,7 +558,7 @@
 			"id": "two-halves",
 			"prompt": "ศึกษา is read sùek-sǎa — low, then rising. Both halves open with a temple s letter. So what makes the two tones come out different?",
 			"revealSlideId": "two-halves-answer",
-			"audio": ["/thai-script/lessons/lesson-13/audio/d73728b508a33d62.mp3"],
+			"audio": ["/thai-script/lessons/lesson-13/audio/38820260ed9d36ac.mp3"],
 			"audioLanguages": ["en"],
 			"teaches": ["so-sala", "so-risi", "high-dead-short", "high-live"]
 		},
@@ -564,7 +572,7 @@
 				"Second half: open long vowel, so alive — rising.",
 				"Both temple rules in a single word."
 			],
-			"audio": ["/thai-script/lessons/lesson-13/audio/e5aff4384d73e4c4.mp3"],
+			"audio": ["/thai-script/lessons/lesson-13/audio/2869a81844942627.mp3"],
 			"audioLanguages": ["en"],
 			"teaches": ["so-sala", "so-risi", "high-dead-short", "high-live"]
 		},
@@ -573,7 +581,7 @@
 			"id": "silent-letter",
 			"prompt": "สัตว์ is read sàt, one closed syllable. Its spelling ends on the buffalo's letter under a small sign. What is that sign doing, and what would be lost without it?",
 			"revealSlideId": "silent-letter-answer",
-			"audio": ["/thai-script/lessons/lesson-13/audio/ba4f7317b44ff368.mp3"],
+			"audio": ["/thai-script/lessons/lesson-13/audio/443bd998d1febb1c.mp3"],
 			"audioLanguages": ["en"]
 		},
 		{
@@ -586,7 +594,7 @@
 				"Dropped, the word would lose the spelling it arrived with.",
 				"The mark keeps the history on the page and out of the mouth."
 			],
-			"audio": ["/thai-script/lessons/lesson-13/audio/1ba8041549e8b3dc.mp3"],
+			"audio": ["/thai-script/lessons/lesson-13/audio/62ab6770046bdf28.mp3"],
 			"audioLanguages": ["en"]
 		},
 		{
@@ -599,13 +607,13 @@
 				"**ำ** carries its own m, **เ-อ** wraps around, and **์** silences.",
 				"Next: the last ten letters, and two the language has retired."
 			],
-			"audio": ["/thai-script/lessons/lesson-13/audio/42f462ce7af727c4.mp3"],
+			"audio": ["/thai-script/lessons/lesson-13/audio/ef7335f8bb185dd2.mp3"],
 			"audioLanguages": ["en"]
 		}
 	],
 	"timing": {
-		"spokenSeconds": 1148,
-		"practiceSeconds": 284,
-		"estimatedMinutes": 24
+		"spokenSeconds": 1231,
+		"practiceSeconds": 390,
+		"estimatedMinutes": 27
 	}
 }

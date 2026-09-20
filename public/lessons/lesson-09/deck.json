@@ -11,7 +11,7 @@
 				"A vowel that leans forward over its letter.",
 				"And a vowel written with nothing at all."
 			],
-			"audio": ["/thai-script/lessons/lesson-09/audio/f423a4c5a06475f6.mp3"],
+			"audio": ["/thai-script/lessons/lesson-09/audio/4c63f3e7d332706f.mp3"],
 			"audioLanguages": ["en"],
 			"image": "/thai-script/lessons/lesson-09/images/what-is-here-ac441f04b6b5.jpg"
 		},
@@ -23,7 +23,7 @@
 				"Real paper, a real pen.",
 				"Both halves of the name, out loud, every time."
 			],
-			"audio": ["/thai-script/lessons/lesson-09/audio/fa17ab0fbc51025e.mp3"],
+			"audio": ["/thai-script/lessons/lesson-09/audio/f4a994c17d98c96b.mp3"],
 			"audioLanguages": ["en"],
 			"image": "/thai-script/lessons/lesson-09/images/pen-still-there-1bdf41db8b53.jpg"
 		},
@@ -55,7 +55,7 @@
 				"A head at middle height, then a hook curving up and over."
 			],
 			"audio": [
-				"/thai-script/lessons/lesson-09/audio/d19a24c5d49558b1.mp3",
+				"/thai-script/lessons/lesson-09/audio/ea37d331b32c1bf9.mp3",
 				"/thai-script/lessons/lesson-09/audio/1f10eaee0e53fb43.mp3"
 			],
 			"audioLanguages": ["en", "th"],
@@ -96,7 +96,7 @@
 			"audio": [
 				"/thai-script/lessons/lesson-09/audio/7b9f4dc749d52891.mp3",
 				"/thai-script/lessons/lesson-09/audio/d78a47b081c555e9.mp3",
-				"/thai-script/lessons/lesson-09/audio/1c1bb75b36d8d907.mp3"
+				"/thai-script/lessons/lesson-09/audio/1fe1ae022d01b7e6.mp3"
 			],
 			"audioLanguages": ["en", "th", "en"],
 			"teaches": ["to-tau"],
@@ -156,7 +156,7 @@
 			"audio": [
 				"/thai-script/lessons/lesson-09/audio/a292e94690e9b12f.mp3",
 				"/thai-script/lessons/lesson-09/audio/d0e2ecc255a54d62.mp3",
-				"/thai-script/lessons/lesson-09/audio/1250c98e530870ac.mp3"
+				"/thai-script/lessons/lesson-09/audio/ffc6ff3f9b1edf08.mp3"
 			],
 			"audioLanguages": ["en", "th", "en"],
 			"teaches": ["po-pla"],
@@ -199,7 +199,7 @@
 				"Carry the right stroke up past the rim and leave it standing.",
 				"Write **บ** beside it. Nothing else separates them."
 			],
-			"audio": ["/thai-script/lessons/lesson-09/audio/c321eb20f283496b.mp3"],
+			"audio": ["/thai-script/lessons/lesson-09/audio/5b99f2643d11296c.mp3"],
 			"audioLanguages": ["en"],
 			"thai": "ป",
 			"teaches": ["po-pla", "bo-baimai"]
@@ -215,7 +215,7 @@
 				"Listen for the missing puff instead of memorising a list."
 			],
 			"audio": [
-				"/thai-script/lessons/lesson-09/audio/69df0166933899ad.mp3",
+				"/thai-script/lessons/lesson-09/audio/6d5a78f3b826abfa.mp3",
 				"/thai-script/lessons/lesson-09/audio/2174448e618caa41.mp3"
 			],
 			"audioLanguages": ["en", "en"],
@@ -226,7 +226,7 @@
 			"id": "market-or-not",
 			"prompt": "Somebody hands you a Thai letter you have never seen and tells you only how it sounds: a plain stop with no breath behind it. Which district does it live in, and how sure are you allowed to be?",
 			"revealSlideId": "market-or-not-answer",
-			"audio": ["/thai-script/lessons/lesson-09/audio/531fdaa3cb583520.mp3"],
+			"audio": ["/thai-script/lessons/lesson-09/audio/2f1a3f93c03483af.mp3"],
 			"audioLanguages": ["en"]
 		},
 		{
@@ -238,7 +238,7 @@
 				"Certain without seeing the shape, because the sound settles it.",
 				"Six of the market's nine letters are yours."
 			],
-			"audio": ["/thai-script/lessons/lesson-09/audio/bf1cd3ab5da3e98c.mp3"],
+			"audio": ["/thai-script/lessons/lesson-09/audio/9cf9c78f7b0d8a87.mp3"],
 			"audioLanguages": ["en"]
 		},
 		{
@@ -252,7 +252,7 @@
 				"Long and round, with the mouth held in one shape."
 			],
 			"audio": [
-				"/thai-script/lessons/lesson-09/audio/13947416f03d1675.mp3",
+				"/thai-script/lessons/lesson-09/audio/8fbde1dd7e371cb3.mp3",
 				"/thai-script/lessons/lesson-09/audio/aa05239e22362f4f.mp3",
 				"/thai-script/lessons/lesson-09/audio/bdedf00d5a4eeffa.mp3"
 			],
@@ -269,29 +269,26 @@
 				"Write it ahead of the turtle's letter and say it aloud.",
 				"Consonant out of the mouth first, then the vowel."
 			],
-			"audio": ["/thai-script/lessons/lesson-09/audio/ff36f086e41049e5.mp3"],
+			"audio": ["/thai-script/lessons/lesson-09/audio/6833e6251370832a.mp3"],
 			"audioLanguages": ["en"],
 			"thai": "โ",
 			"teaches": ["sara-oo"]
 		},
 		{
-			"kind": "exposition",
+			"kind": "retrieval",
 			"id": "read-lok",
-			"heading": "Read this one",
-			"body": [
-				"The leaning mast, the monkey's letter, the chicken sealing it.",
-				"Out loud before you turn it over."
-			],
-			"audio": ["/thai-script/lessons/lesson-09/audio/be0fec2734beaafe.mp3"],
+			"prompt": "The leaning mast, the monkey's letter, the chicken sealing it. Out loud before you turn it over.",
+			"revealSlideId": "read-lok-answer",
+			"audio": ["/thai-script/lessons/lesson-09/audio/1f79865a1e5b9ebc.mp3"],
 			"audioLanguages": ["en"],
 			"thai": "โลก",
 			"teaches": ["sara-oo"]
 		},
 		{
-			"kind": "exposition",
+			"kind": "reveal",
 			"id": "read-lok-answer",
-			"heading": "That one",
-			"body": [
+			"retrievalSlideId": "read-lok",
+			"answers": [
 				"**โลก** — the world.",
 				"Harbour letter, dead ending, long vowel. It falls."
 			],
@@ -313,7 +310,7 @@
 				"Written out in full it needs a mark from a later lesson, so it waits for that."
 			],
 			"audio": [
-				"/thai-script/lessons/lesson-09/audio/6d40994649a79f72.mp3",
+				"/thai-script/lessons/lesson-09/audio/11b9c791ea0fdba8.mp3",
 				"/thai-script/lessons/lesson-09/audio/b829c566ab69491b.mp3",
 				"/thai-script/lessons/lesson-09/audio/66834769410363fc.mp3"
 			],
@@ -336,23 +333,20 @@
 			"image": "/thai-script/lessons/lesson-09/images/the-vowel-you-cannot-see-9162f89ee2ed.jpg"
 		},
 		{
-			"kind": "exposition",
+			"kind": "retrieval",
 			"id": "read-khon",
-			"heading": "You have read this one before",
-			"body": [
-				"The buffalo's letter, then the mouse's letter closing it.",
-				"One beat. Out loud before you turn it over."
-			],
-			"audio": ["/thai-script/lessons/lesson-09/audio/f473f693f8224380.mp3"],
+			"prompt": "The buffalo's letter, then the mouse's letter closing it. One beat. Out loud before you turn it over.",
+			"revealSlideId": "read-khon-answer",
+			"audio": ["/thai-script/lessons/lesson-09/audio/b75bcb94a6a97f03.mp3"],
 			"audioLanguages": ["en"],
 			"thai": "คน",
 			"teaches": ["sara-o"]
 		},
 		{
-			"kind": "exposition",
+			"kind": "reveal",
 			"id": "read-khon-answer",
-			"heading": "That one",
-			"body": [
+			"retrievalSlideId": "read-khon",
+			"answers": [
 				"**คน** — a person.",
 				"The short round vowel sits between them, unwritten."
 			],
@@ -374,7 +368,7 @@
 				"One beat each, with the vowel supplied by you rather than by the page."
 			],
 			"audio": [
-				"/thai-script/lessons/lesson-09/audio/82ddc152dee27643.mp3",
+				"/thai-script/lessons/lesson-09/audio/4a30233faa943f93.mp3",
 				"/thai-script/lessons/lesson-09/audio/82b675d8dd485d90.mp3",
 				"/thai-script/lessons/lesson-09/audio/1c53d3939c0c6d26.mp3",
 				"/thai-script/lessons/lesson-09/audio/5cd74e2d7a8f8452.mp3"
@@ -387,7 +381,7 @@
 			"id": "nothing-between",
 			"prompt": "You meet a two-letter word with no vowel written anywhere in it. What sound goes between the letters, and how many syllables is the word?",
 			"revealSlideId": "nothing-between-answer",
-			"audio": ["/thai-script/lessons/lesson-09/audio/13b209cbfa3e1ee4.mp3"],
+			"audio": ["/thai-script/lessons/lesson-09/audio/2d38175b3a580cc6.mp3"],
 			"audioLanguages": ["en"],
 			"teaches": ["sara-o"]
 		},
@@ -405,28 +399,25 @@
 			"teaches": ["sara-o"]
 		},
 		{
-			"kind": "exposition",
+			"kind": "retrieval",
 			"id": "read-bpen",
-			"heading": "Read this one",
-			"body": [
-				"Single mast, the fish's letter, the small roof, the mouse closing it.",
-				"Watch the order. Out loud before you turn it over."
-			],
-			"audio": ["/thai-script/lessons/lesson-09/audio/6ffed5bade4016f3.mp3"],
+			"prompt": "Single mast, the fish's letter, the small roof, the mouse closing it. Watch the order. Out loud before you turn it over.",
+			"revealSlideId": "read-bpen-answer",
+			"audio": ["/thai-script/lessons/lesson-09/audio/8b4fa36b0b1a306e.mp3"],
 			"audioLanguages": ["en"],
 			"thai": "เป็น"
 		},
 		{
-			"kind": "exposition",
+			"kind": "reveal",
 			"id": "read-bpen-answer",
-			"heading": "That one",
-			"body": [
+			"retrievalSlideId": "read-bpen",
+			"answers": [
 				"**เป็น** — to be, and the tenth commonest word in Thai.",
 				"A lesson-seven vowel, a market letter, and the little roof."
 			],
 			"audio": [
 				"/thai-script/lessons/lesson-09/audio/5e878e4f5fc0682c.mp3",
-				"/thai-script/lessons/lesson-09/audio/609c70af0c9de525.mp3"
+				"/thai-script/lessons/lesson-09/audio/83bd786e6e87eb99.mp3"
 			],
 			"audioLanguages": ["th", "en"],
 			"thai": "เป็น"
@@ -442,7 +433,7 @@
 				"**ปาก** — a mouth. **ปี** — a year.",
 				"**โต** — to grow, or to be large. **โดย** — by, or by means of."
 			],
-			"audio": ["/thai-script/lessons/lesson-09/audio/9276d6c2f3a1cae7.mp3"],
+			"audio": ["/thai-script/lessons/lesson-09/audio/9584650bbb91649c.mp3"],
 			"audioLanguages": ["en"],
 			"teaches": ["jo-jan", "to-tau", "po-pla"]
 		},
@@ -455,13 +446,13 @@
 				"A market letter on a dead syllable is the one tone rule still missing.",
 				"Next: three vowels, a repeat mark, and two consonants run together."
 			],
-			"audio": ["/thai-script/lessons/lesson-09/audio/a83f6c8020320e03.mp3"],
+			"audio": ["/thai-script/lessons/lesson-09/audio/62f1573bc6584287.mp3"],
 			"audioLanguages": ["en"]
 		}
 	],
 	"timing": {
-		"spokenSeconds": 828,
-		"practiceSeconds": 242,
-		"estimatedMinutes": 18
+		"spokenSeconds": 833,
+		"practiceSeconds": 317,
+		"estimatedMinutes": 19
 	}
 }

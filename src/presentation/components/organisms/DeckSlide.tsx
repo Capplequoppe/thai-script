@@ -704,6 +704,10 @@ function DeckSlideContent({
 			// schema itself refuses a retrieval slide that carries one.
 			return (
 				<div className="space-y-4">
+					{/* A reading question must show the writing it is asking
+					    about. Without this the learner is asked to decode a word
+					    that is not on the screen. */}
+					{slide.thai && <ReadingPanel thai={slide.thai} />}
 					<p className="text-center text-lg">
 						<RichText text={slide.prompt} />
 					</p>
@@ -722,6 +726,10 @@ function DeckSlideContent({
 			const question = asked?.kind === "retrieval" ? asked.prompt : undefined;
 			return (
 				<div className="space-y-4">
+					{/* Still on screen while the answer lands: the answer is about
+					    this word, and taking it away to show the answer would hide
+					    the thing being explained. */}
+					{slide.thai && <ReadingPanel thai={slide.thai} />}
 					{question && (
 						<p className="text-center text-lg">
 							<RichText text={question} />

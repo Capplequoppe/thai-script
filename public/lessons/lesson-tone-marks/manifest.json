@@ -309,6 +309,244 @@
 			"failure": null
 		},
 		{
+			"key": "mark-one-at-the-well-0",
+			"kind": "audio",
+			"state": "generated",
+			"language": "en",
+			"inputHash": "9436e6f0e963df41d148bf3e70a97d111195240305ca70fddcdd3a1e47f416dc",
+			"contentHash": "4c5efc21db4b1dfe3c467b77ede68f94b52a64004a6609d47d5d51b9299eaf1a",
+			"path": "/thai-script/lessons/lesson-tone-marks/audio/9436e6f0e963df41.mp3",
+			"file": "audio/9436e6f0e963df41.mp3",
+			"verification": {
+				"outcome": "not-required",
+				"attempts": 1,
+				"expected": null,
+				"heard": []
+			},
+			"failure": null
+		},
+		{
+			"key": "mark-one-at-the-well-1",
+			"kind": "audio",
+			"state": "generated",
+			"language": "en",
+			"inputHash": "c93d3375f27f9f96e5e50e122065c5ce8b9eb9c84c15671f8e40d2b5714fbb6c",
+			"contentHash": "76ce31f37b2fb515511843d57b2a6bb05cc88c45bfb0d278ff5c6fa52cc02cd3",
+			"path": "/thai-script/lessons/lesson-tone-marks/audio/c93d3375f27f9f96.mp3",
+			"file": "audio/c93d3375f27f9f96.mp3",
+			"verification": {
+				"outcome": "not-required",
+				"attempts": 1,
+				"expected": null,
+				"heard": []
+			},
+			"failure": null
+		},
+		{
+			"key": "mark-one-at-the-well-2",
+			"kind": "audio",
+			"state": "generated",
+			"language": "en",
+			"inputHash": "bb3bd2a3e0b890d5d650c86e50e84d00cd8dcf7ce926f433b8bc6ca9948f7abf",
+			"contentHash": "7389c5c698323f0d69abe374c8097b5421d038656ec1e25973a8f7f4161416d9",
+			"path": "/thai-script/lessons/lesson-tone-marks/audio/bb3bd2a3e0b890d5.mp3",
+			"file": "audio/bb3bd2a3e0b890d5.mp3",
+			"verification": {
+				"outcome": "not-required",
+				"attempts": 1,
+				"expected": null,
+				"heard": []
+			},
+			"failure": null
+		},
+		{
+			"key": "mark-one-at-the-waterfall-0",
+			"kind": "audio",
+			"state": "generated",
+			"language": "en",
+			"inputHash": "26164914d755596dff86153712222c084046aee3b735d928d9c295d801ac5ca4",
+			"contentHash": "f8f6f70b36f40a1997ce260fc5dffc4ff13cf0f2b1e35d50a9bf203a6c37c855",
+			"path": "/thai-script/lessons/lesson-tone-marks/audio/26164914d755596d.mp3",
+			"file": "audio/26164914d755596d.mp3",
+			"verification": {
+				"outcome": "not-required",
+				"attempts": 1,
+				"expected": null,
+				"heard": []
+			},
+			"failure": null
+		},
+		{
+			"key": "mark-one-at-the-waterfall-1",
+			"kind": "audio",
+			"state": "generated",
+			"language": "en",
+			"inputHash": "501fdb58fd343997531687e9ab9892d79d3940999a1ff684336d4ca14d634a76",
+			"contentHash": "52fa56b3a7d6a37822b6ac0a28e8750b57e547f33a0bf4b9c57f2f35e9f248f8",
+			"path": "/thai-script/lessons/lesson-tone-marks/audio/501fdb58fd343997.mp3",
+			"file": "audio/501fdb58fd343997.mp3",
+			"verification": {
+				"outcome": "not-required",
+				"attempts": 1,
+				"expected": null,
+				"heard": []
+			},
+			"failure": null
+		},
+		{
+			"key": "mark-two-at-the-waterfall-0",
+			"kind": "audio",
+			"state": "generated",
+			"language": "en",
+			"inputHash": "d86d5e14fc4ef07ef6dcaf4e3f3031c9e9e79a00d4f02ef9509227f51dbdb566",
+			"contentHash": "ef6df72fcb808fee3422d63a39941764682c2b3426d5954199e23d8e02829ee5",
+			"path": "/thai-script/lessons/lesson-tone-marks/audio/d86d5e14fc4ef07e.mp3",
+			"file": "audio/d86d5e14fc4ef07e.mp3",
+			"verification": {
+				"outcome": "not-required",
+				"attempts": 1,
+				"expected": null,
+				"heard": []
+			},
+			"failure": null
+		},
+		{
+			"key": "mark-two-at-the-waterfall-1",
+			"kind": "audio",
+			"state": "generated",
+			"language": "en",
+			"inputHash": "454d37ca7e627319e70122bd0e2a7baede83166ac405c4549d3378ac6c22c933",
+			"contentHash": "2bb654c364cba8bb1a1681e6ba7d480879c724b764d7301159c61d467ea72555",
+			"path": "/thai-script/lessons/lesson-tone-marks/audio/454d37ca7e627319.mp3",
+			"file": "audio/454d37ca7e627319.mp3",
+			"verification": {
+				"outcome": "not-required",
+				"attempts": 1,
+				"expected": null,
+				"heard": []
+			},
+			"failure": null
+		},
+		{
+			"key": "mark-two-on-the-rooftop-0",
+			"kind": "audio",
+			"state": "generated",
+			"language": "en",
+			"inputHash": "a39e0f65031db544404ee0d35e8a69e77213ee17f498d1035e6e634e9356ffd3",
+			"contentHash": "22982b37406c12b543de678dd3f1a47dad1e023b89fb0570c18131461875448c",
+			"path": "/thai-script/lessons/lesson-tone-marks/audio/a39e0f65031db544.mp3",
+			"file": "audio/a39e0f65031db544.mp3",
+			"verification": {
+				"outcome": "not-required",
+				"attempts": 1,
+				"expected": null,
+				"heard": []
+			},
+			"failure": null
+		},
+		{
+			"key": "mark-two-on-the-rooftop-1",
+			"kind": "audio",
+			"state": "generated",
+			"language": "en",
+			"inputHash": "1c4296fb0175cc8306d200e568420bfd556a580bc73d0e14041f73d2fdd2ac9b",
+			"contentHash": "a564f04bbbb2bbec8341c5f378ff22073cc984a10cb5674a62e02c3858b11f0a",
+			"path": "/thai-script/lessons/lesson-tone-marks/audio/1c4296fb0175cc83.mp3",
+			"file": "audio/1c4296fb0175cc83.mp3",
+			"verification": {
+				"outcome": "not-required",
+				"attempts": 1,
+				"expected": null,
+				"heard": []
+			},
+			"failure": null
+		},
+		{
+			"key": "mark-three-on-the-rooftop-0",
+			"kind": "audio",
+			"state": "generated",
+			"language": "en",
+			"inputHash": "5536946c72ab4fcded91c57d63f4c4cebd9bb76e8e93714cb9f38fa8e46c6b39",
+			"contentHash": "cb10548eb5eeff187ec21be2b52099976fa64bb986a1777c2ea92ee4df7e00cf",
+			"path": "/thai-script/lessons/lesson-tone-marks/audio/5536946c72ab4fcd.mp3",
+			"file": "audio/5536946c72ab4fcd.mp3",
+			"verification": {
+				"outcome": "not-required",
+				"attempts": 1,
+				"expected": null,
+				"heard": []
+			},
+			"failure": null
+		},
+		{
+			"key": "mark-three-on-the-rooftop-1",
+			"kind": "audio",
+			"state": "generated",
+			"language": "en",
+			"inputHash": "e16fb6e65fca3bf9f754521f6f7f66200ad7332bfdf9cb82a594cd50ff23217f",
+			"contentHash": "2504184051bbfd942827b97440126d6da1e66768fb4a7c26edb4ab71d66c82d0",
+			"path": "/thai-script/lessons/lesson-tone-marks/audio/e16fb6e65fca3bf9.mp3",
+			"file": "audio/e16fb6e65fca3bf9.mp3",
+			"verification": {
+				"outcome": "not-required",
+				"attempts": 1,
+				"expected": null,
+				"heard": []
+			},
+			"failure": null
+		},
+		{
+			"key": "mark-four-on-the-hill-0",
+			"kind": "audio",
+			"state": "generated",
+			"language": "en",
+			"inputHash": "955fd72ba9b7f92fa072eac7c9ee0c1b68b3a06d6861589cdec262d05bdceb1a",
+			"contentHash": "39aa9754a51b51436e10620daafdeb5b2836fc2cd9192e128c3a284c562d6dd6",
+			"path": "/thai-script/lessons/lesson-tone-marks/audio/955fd72ba9b7f92f.mp3",
+			"file": "audio/955fd72ba9b7f92f.mp3",
+			"verification": {
+				"outcome": "not-required",
+				"attempts": 1,
+				"expected": null,
+				"heard": []
+			},
+			"failure": null
+		},
+		{
+			"key": "mark-four-on-the-hill-1",
+			"kind": "audio",
+			"state": "generated",
+			"language": "en",
+			"inputHash": "081c20514773effb3397d3cee9d55fb73c600c514a260f4bd2222f6a0c825fc6",
+			"contentHash": "d3aba4ab51520749ff49852a2c2c2d61982e0bf132e76487ade1386f47702c55",
+			"path": "/thai-script/lessons/lesson-tone-marks/audio/081c20514773effb.mp3",
+			"file": "audio/081c20514773effb.mp3",
+			"verification": {
+				"outcome": "not-required",
+				"attempts": 1,
+				"expected": null,
+				"heard": []
+			},
+			"failure": null
+		},
+		{
+			"key": "mark-four-on-the-hill-2",
+			"kind": "audio",
+			"state": "generated",
+			"language": "en",
+			"inputHash": "53fb8d43ff7161fd05bc6bbc1b6e46e5f5933c526d9ffa79751fc32b021d9cb4",
+			"contentHash": "056792b369125210e3b88801fda79d75d290c78024bcc4503acd03226233d451",
+			"path": "/thai-script/lessons/lesson-tone-marks/audio/53fb8d43ff7161fd.mp3",
+			"file": "audio/53fb8d43ff7161fd.mp3",
+			"verification": {
+				"outcome": "not-required",
+				"attempts": 1,
+				"expected": null,
+				"heard": []
+			},
+			"failure": null
+		},
+		{
 			"key": "which-tone-a-0",
 			"kind": "audio",
 			"state": "generated",
@@ -707,6 +945,78 @@
 			"contentHash": "afa48748fd88eb915357fa31acc79b8080ab59ac5f33151d97d2801971c7812b",
 			"path": "/thai-script/lessons/lesson-tone-marks/images/low-class-marks-0b587ae9656a.jpg",
 			"file": "images/low-class-marks-0b587ae9656a.jpg",
+			"verification": null,
+			"failure": null
+		},
+		{
+			"key": "mark-one-at-the-well-image",
+			"kind": "image",
+			"state": "generated",
+			"language": null,
+			"inputHash": "b5c9e09609c00ac49e98a18aa33f9e500c5b08e12e8cb8c6ab161fd359f16470",
+			"contentHash": "dfa8a2731250a9090ebcbc8372b1e1a878f547d466ecaaf071f422c1ccb6b95e",
+			"path": "/thai-script/lessons/lesson-tone-marks/images/mark-one-at-the-well-b5c9e09609c0.jpg",
+			"file": "images/mark-one-at-the-well-b5c9e09609c0.jpg",
+			"verification": null,
+			"failure": null
+		},
+		{
+			"key": "mark-one-at-the-waterfall-image",
+			"kind": "image",
+			"state": "generated",
+			"language": null,
+			"inputHash": "a7a901fe522681bf5a2650716358a645a8c8e6ab65ad99a2d174f7bb72a79f0e",
+			"contentHash": "086ee01e6cfa330700dee097b9829ce16b06db23e3802ba9aaf37a1998ad5731",
+			"path": "/thai-script/lessons/lesson-tone-marks/images/mark-one-at-the-waterfall-a7a901fe5226.jpg",
+			"file": "images/mark-one-at-the-waterfall-a7a901fe5226.jpg",
+			"verification": null,
+			"failure": null
+		},
+		{
+			"key": "mark-two-at-the-waterfall-image",
+			"kind": "image",
+			"state": "generated",
+			"language": null,
+			"inputHash": "79931df78ddf5f07c8fbf71a4e467dd0240bd93cb519d97ef53b7f44088481a4",
+			"contentHash": "d02220325e439d0e0626aed1c0b2c7e9d30e584dbf2ba3a1cd8566355eb55100",
+			"path": "/thai-script/lessons/lesson-tone-marks/images/mark-two-at-the-waterfall-79931df78ddf.jpg",
+			"file": "images/mark-two-at-the-waterfall-79931df78ddf.jpg",
+			"verification": null,
+			"failure": null
+		},
+		{
+			"key": "mark-two-on-the-rooftop-image",
+			"kind": "image",
+			"state": "generated",
+			"language": null,
+			"inputHash": "7b50e22658cd42096e1b5e55f21f22e6c8d367f2efffcc2863a17b469f45313c",
+			"contentHash": "2e3df286e495d1bd9b37617c17dfede446308d7c5a47b52be6510922b014829c",
+			"path": "/thai-script/lessons/lesson-tone-marks/images/mark-two-on-the-rooftop-7b50e22658cd.jpg",
+			"file": "images/mark-two-on-the-rooftop-7b50e22658cd.jpg",
+			"verification": null,
+			"failure": null
+		},
+		{
+			"key": "mark-three-on-the-rooftop-image",
+			"kind": "image",
+			"state": "generated",
+			"language": null,
+			"inputHash": "4069fafd42ba280c4b90c235b718f5a22990139666cfe568750608aca60cdc20",
+			"contentHash": "665f60a4f59ab697e58b1707471ebc442ea5675ec26e693eeb92daa76c946fed",
+			"path": "/thai-script/lessons/lesson-tone-marks/images/mark-three-on-the-rooftop-4069fafd42ba.jpg",
+			"file": "images/mark-three-on-the-rooftop-4069fafd42ba.jpg",
+			"verification": null,
+			"failure": null
+		},
+		{
+			"key": "mark-four-on-the-hill-image",
+			"kind": "image",
+			"state": "generated",
+			"language": null,
+			"inputHash": "a971247a98a20238ccb79b3624d74d1702be0c128c641673673f0469d17b6f54",
+			"contentHash": "b52d5ac9fbe8fd0cdb461fdc2a22d9742bde33e5067fdb52821d460959d370bc",
+			"path": "/thai-script/lessons/lesson-tone-marks/images/mark-four-on-the-hill-a971247a98a2.jpg",
+			"file": "images/mark-four-on-the-hill-a971247a98a2.jpg",
 			"verification": null,
 			"failure": null
 		},

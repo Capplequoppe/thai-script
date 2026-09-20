@@ -157,3 +157,64 @@ def test_the_course_tags_most_of_its_consonants(known) -> None:
         f"only {len(covered)} of {len(consonants)} consonants have a tagged "
         f"slide; missing {missing}"
     )
+
+
+def test_every_tone_rule_is_taught_beside_its_scene(known) -> None:
+    """A rule stated is not a rule told.
+
+    The obvious version of this check — "every rule slug appears on some
+    slide" — passes against the course as it was before the stories existed,
+    because every rule was already tagged by its own bare `## rule` slide.
+    That slide states the rule and shows nothing. All seventeen rules had been
+    pictured in `palace-scenes.json` for months, written, illustrated and
+    narrated, while ten of the eleven scenes were told nowhere a learner would
+    meet them: lesson 4 drew a rooftop terrace with nobody on it, and the
+    mnemonic — a fisherman struck by lightning on that roof — was somewhere
+    else entirely.
+
+    So what is asserted is the join. Each rule must be taught by a slide that
+    also carries the slug of a scene covering it, which is what a story slide
+    looks like and what a `## rule` slide on its own never does.
+    """
+    covered_by: dict[str, set[str]] = {}
+    for scene in json.loads(
+        (DATA / "palace-scenes.json").read_text(encoding="utf-8")
+    ):
+        for rule in scene["covers"]:
+            covered_by.setdefault(rule, set()).add(scene["id"])
+
+    told: set[str] = set()
+    for path in LESSON_PATHS:
+        for _, slugs in tagged_slides(path):
+            here = set(slugs)
+            told.update(
+                rule
+                for rule in here & known["rule"]
+                if here & covered_by.get(rule, set())
+            )
+
+    missing = sorted(known["rule"] - told)
+    assert not missing, (
+        f"{len(missing)} tone rule(s) are stated by a lesson but never told as "
+        f"a story — no slide carries the rule and its scene together: {missing}"
+    )
+
+
+def test_every_tone_scene_is_told_in_a_lesson(known) -> None:
+    """The other half of the same join, from the scene's end.
+
+    A rule can be tagged by a slide that merely states it. What says the
+    *story* was told is the scene's own slug on that slide — and the scene is
+    the thing a learner is meant to be holding years later, so a scene nobody
+    tells is the expensive half going to waste.
+    """
+    tagged: set[str] = set()
+    for path in LESSON_PATHS:
+        for _, slugs in tagged_slides(path):
+            tagged.update(slugs)
+
+    missing = sorted(known["scene"] - tagged)
+    assert not missing, (
+        f"{len(missing)} tone scene(s) have a picture and a narrated clip but "
+        f"are told in no lesson: {missing}"
+    )

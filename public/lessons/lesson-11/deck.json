@@ -12,7 +12,7 @@
 				"A short vowel to go with the long one.",
 				"And the last two tone rules the market needs."
 			],
-			"audio": ["/thai-script/lessons/lesson-11/audio/3aecb9462b3105de.mp3"],
+			"audio": ["/thai-script/lessons/lesson-11/audio/4543efff69801df7.mp3"],
 			"audioLanguages": ["en"],
 			"image": "/thai-script/lessons/lesson-11/images/what-is-here-29d94620684a.jpg"
 		},
@@ -24,7 +24,7 @@
 				"Real paper, a real pen.",
 				"Both halves of the name, out loud, every time."
 			],
-			"audio": ["/thai-script/lessons/lesson-11/audio/7308265d5a4a9a1b.mp3"],
+			"audio": ["/thai-script/lessons/lesson-11/audio/6f1ef56b18c34db7.mp3"],
 			"audioLanguages": ["en"],
 			"image": "/thai-script/lessons/lesson-11/images/pen-still-there-1bdf41db8b53.jpg"
 		},
@@ -55,7 +55,7 @@
 				"The fish-seller set an empty basin in her sister's place.",
 				"She filled it every day for four months so it would look like somebody's."
 			],
-			"audio": ["/thai-script/lessons/lesson-11/audio/6bbfeaaebea6ccd5.mp3"],
+			"audio": ["/thai-script/lessons/lesson-11/audio/025d0c278e17ab45.mp3"],
 			"audioLanguages": ["en"],
 			"teaches": ["o-ang"],
 			"image": "/thai-script/lessons/lesson-11/images/aang-story-0e96246ddcf4.jpg"
@@ -94,7 +94,7 @@
 				"Carry the ring round and close it.",
 				"You drew this in lesson six without knowing its name."
 			],
-			"audio": ["/thai-script/lessons/lesson-11/audio/dd1ec95b1bd2d13a.mp3"],
+			"audio": ["/thai-script/lessons/lesson-11/audio/08570c825c935f5f.mp3"],
 			"audioLanguages": ["en"],
 			"thai": "อ",
 			"teaches": ["o-ang"]
@@ -120,29 +120,26 @@
 			"image": "/thai-script/lessons/lesson-11/images/job-one-ff23fc99c768.jpg"
 		},
 		{
-			"kind": "exposition",
+			"kind": "retrieval",
 			"id": "read-iik",
-			"heading": "Read this one",
-			"body": [
-				"The ring, silent. Then the roof's lodger, then the chicken stopping it.",
-				"Out loud before you turn it over."
-			],
-			"audio": ["/thai-script/lessons/lesson-11/audio/90353e52b3211db5.mp3"],
+			"prompt": "The ring, silent. Then the roof's lodger, then the chicken stopping it. Out loud before you turn it over.",
+			"revealSlideId": "read-iik-answer",
+			"audio": ["/thai-script/lessons/lesson-11/audio/a9a18da01ec0515d.mp3"],
 			"audioLanguages": ["en"],
 			"thai": "อีก",
 			"teaches": ["o-ang"]
 		},
 		{
-			"kind": "exposition",
+			"kind": "reveal",
 			"id": "read-iik-answer",
-			"heading": "That one",
-			"body": [
+			"retrievalSlideId": "read-iik",
+			"answers": [
 				"**อีก** — more, or again.",
 				"The ring says nothing. The vowel behind it is the sound."
 			],
 			"audio": [
 				"/thai-script/lessons/lesson-11/audio/8e3f40f95493da2d.mp3",
-				"/thai-script/lessons/lesson-11/audio/f1977cb8427c16d3.mp3"
+				"/thai-script/lessons/lesson-11/audio/11f267ab22f5d921.mp3"
 			],
 			"audioLanguages": ["th", "en"],
 			"thai": "อีก",
@@ -162,7 +159,7 @@
 				"/thai-script/lessons/lesson-11/audio/1c9f2745d82e0cfd.mp3",
 				"/thai-script/lessons/lesson-11/audio/0c11e52bcb114610.mp3",
 				"/thai-script/lessons/lesson-11/audio/2381d5304464fa1b.mp3",
-				"/thai-script/lessons/lesson-11/audio/46ab1b246479c7eb.mp3"
+				"/thai-script/lessons/lesson-11/audio/09618817c841b793.mp3"
 			],
 			"audioLanguages": ["en", "th", "en", "th", "en"],
 			"teaches": ["o-ang"],
@@ -178,7 +175,7 @@
 				"The jaw drops all the way, as in the English word *saw*."
 			],
 			"audio": [
-				"/thai-script/lessons/lesson-11/audio/ea742be5d1c70c29.mp3",
+				"/thai-script/lessons/lesson-11/audio/f7b929f86b61279c.mp3",
 				"/thai-script/lessons/lesson-11/audio/8f3d2eadb788b747.mp3",
 				"/thai-script/lessons/lesson-11/audio/e8cd21cff7f5b9c2.mp3"
 			],
@@ -187,23 +184,20 @@
 			"image": "/thai-script/lessons/lesson-11/images/job-two-b671f5e73ba7.jpg"
 		},
 		{
-			"kind": "exposition",
+			"kind": "retrieval",
 			"id": "read-naawn",
-			"heading": "Read this one",
-			"body": [
-				"Mouse, basin as the vowel, mouse again closing it.",
-				"Hold the vowel long. Out loud before you turn it over."
-			],
-			"audio": ["/thai-script/lessons/lesson-11/audio/ae4cd2f0f272de36.mp3"],
+			"prompt": "Mouse, basin as the vowel, mouse again closing it. Hold the vowel long. Out loud before you turn it over.",
+			"revealSlideId": "read-naawn-answer",
+			"audio": ["/thai-script/lessons/lesson-11/audio/fb9e0dd613b34cc8.mp3"],
 			"audioLanguages": ["en"],
 			"thai": "นอน",
 			"teaches": ["sara-aaw"]
 		},
 		{
-			"kind": "exposition",
+			"kind": "reveal",
 			"id": "read-naawn-answer",
-			"heading": "That one",
-			"body": [
+			"retrievalSlideId": "read-naawn",
+			"answers": [
 				"**นอน** — to lie down, or to sleep.",
 				"Harbour letter, the syllable alive, flat and level."
 			],
@@ -216,24 +210,20 @@
 			"teaches": ["sara-aaw"]
 		},
 		{
-			"kind": "exposition",
+			"kind": "retrieval",
 			"id": "read-aawk",
-			"heading": "Both jobs in one word",
-			"body": [
-				"The first ring: silent, holding the slot.",
-				"The second ring: the long vowel.",
-				"Then the chicken's letter stopping it. Out loud first."
-			],
-			"audio": ["/thai-script/lessons/lesson-11/audio/1f470e151b4e4abf.mp3"],
+			"prompt": "The first ring: silent, holding the slot. The second ring: the long vowel. Then the chicken's letter stopping it. Out loud first.",
+			"revealSlideId": "read-aawk-answer",
+			"audio": ["/thai-script/lessons/lesson-11/audio/cf7cb8451998e701.mp3"],
 			"audioLanguages": ["en"],
 			"thai": "ออก",
 			"teaches": ["o-ang", "sara-aaw"]
 		},
 		{
-			"kind": "exposition",
+			"kind": "reveal",
 			"id": "read-aawk-answer",
-			"heading": "That one",
-			"body": [
+			"retrievalSlideId": "read-aawk",
+			"answers": [
 				"**ออก** — out, or to go out.",
 				"The same letter twice: silent, then the vowel."
 			],
@@ -286,23 +276,20 @@
 			"image": "/thai-script/lessons/lesson-11/images/meet-short-aw-14f6957a7c9b.jpg"
 		},
 		{
-			"kind": "exposition",
+			"kind": "retrieval",
 			"id": "read-kaw",
-			"heading": "Read this one",
-			"body": [
-				"Three marks of vowel, wrapped round the chicken's letter.",
-				"Short. Out loud before you turn it over."
-			],
-			"audio": ["/thai-script/lessons/lesson-11/audio/882c81c9269bc3d6.mp3"],
+			"prompt": "Three marks of vowel, wrapped round the chicken's letter. Short. Out loud before you turn it over.",
+			"revealSlideId": "read-kaw-answer",
+			"audio": ["/thai-script/lessons/lesson-11/audio/35815e9bdd3f3a7f.mp3"],
 			"audioLanguages": ["en"],
 			"thai": "เกาะ",
 			"teaches": ["sara-aw"]
 		},
 		{
-			"kind": "exposition",
+			"kind": "reveal",
 			"id": "read-kaw-answer",
-			"heading": "That one",
-			"body": [
+			"retrievalSlideId": "read-kaw",
+			"answers": [
 				"**เกาะ** — an island.",
 				"Market letter, short vowel, stopped dead.",
 				"Read from the page. This one has no recording here.",
@@ -326,11 +313,34 @@
 			"audio": [
 				"/thai-script/lessons/lesson-11/audio/d5704a163c1eaa09.mp3",
 				"/thai-script/lessons/lesson-11/audio/8e46b34582dbc904.mp3",
-				"/thai-script/lessons/lesson-11/audio/ca0e15449ebb542a.mp3"
+				"/thai-script/lessons/lesson-11/audio/991f0e6614a71ff3.mp3"
 			],
 			"audioLanguages": ["en", "th", "en"],
 			"teaches": ["mid-dead-short", "mid-dead-long"],
 			"image": "/thai-script/lessons/lesson-11/images/the-grid-so-far-b9f3222c246d.jpg"
+		},
+		{
+			"kind": "exposition",
+			"id": "well-story",
+			"heading": "What happens at the well",
+			"body": [
+				"The vendor sells at the market, so he is **mid class**.",
+				"He goes **down**, and down is where you look for a low tone.",
+				"The vowel's length changes nothing — both market dead rules end here.",
+				"The other figure on the rim is somebody you meet later."
+			],
+			"audio": [
+				"/thai-script/lessons/lesson-11/audio/fb30b5594b5e3d2a.mp3",
+				"/thai-script/lessons/lesson-11/audio/065c44d109a7041c.mp3",
+				"/thai-script/lessons/lesson-11/audio/17f67891eaca04a3.mp3"
+			],
+			"audioLanguages": ["en", "en", "en"],
+			"teaches": [
+				"mid-dead-short",
+				"mid-dead-long",
+				"well-vendor-and-monk-fall"
+			],
+			"image": "/thai-script/lessons/lesson-11/images/well-story-023c4a9d0333.jpg"
 		},
 		{
 			"kind": "rule",
@@ -354,7 +364,7 @@
 				"The length is written into both rules, and both give the same answer.",
 				"**เกาะ** is short. **ออก** is long. Both are low."
 			],
-			"audio": ["/thai-script/lessons/lesson-11/audio/58d15c19d51e2d6b.mp3"],
+			"audio": ["/thai-script/lessons/lesson-11/audio/e9b32b7a9a32b46f.mp3"],
 			"audioLanguages": ["en"],
 			"teaches": ["mid-dead-short", "mid-dead-long"],
 			"image": "/thai-script/lessons/lesson-11/images/the-grid-closes-2445c7299847.jpg"
@@ -368,7 +378,7 @@
 				"Market, dead: **low**, at either length.",
 				"The harbour makes you measure the vowel. The market takes the letter and stops."
 			],
-			"audio": ["/thai-script/lessons/lesson-11/audio/541a0c8e8754098a.mp3"],
+			"audio": ["/thai-script/lessons/lesson-11/audio/7c704a0bc35c58c6.mp3"],
 			"audioLanguages": ["en"],
 			"teaches": [
 				"mid-dead-short",
@@ -424,13 +434,13 @@
 				"The market's tone grid is closed, and the harbour's has been since lesson five.",
 				"Next: the temple, and the seven letters you were shown the map of."
 			],
-			"audio": ["/thai-script/lessons/lesson-11/audio/ef8ebdfe30bdeb69.mp3"],
+			"audio": ["/thai-script/lessons/lesson-11/audio/6e77ed0a77b89718.mp3"],
 			"audioLanguages": ["en"]
 		}
 	],
 	"timing": {
-		"spokenSeconds": 713,
-		"practiceSeconds": 236,
-		"estimatedMinutes": 16
+		"spokenSeconds": 780,
+		"practiceSeconds": 342,
+		"estimatedMinutes": 19
 	}
 }
