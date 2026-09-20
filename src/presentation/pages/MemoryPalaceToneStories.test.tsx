@@ -64,6 +64,9 @@ function enter(district: RegExp) {
 	fireEvent.click(door);
 }
 
+/** Every lesson there is, so the tone-mark scenes are unlocked too. */
+const EVERYTHING = Array.from({ length: 20 }, (_, i) => i + 1);
+
 /** Everything through lesson 13, which is every spelling rule there is. */
 const THROUGH_THE_SPELLING_RULES = [
 	1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13,
@@ -187,6 +190,76 @@ describe("a tone place's stories", () => {
 
 		expect(screen.getAllByText(/mid class, dead/i).length).toBeGreaterThan(0);
 		expect(screen.queryByText(/high class, dead/i)).toBeNull();
+	});
+});
+
+describe("paging between the rules of one place", () => {
+	/** Opens a tone place from the painted map. */
+	function goTo(place: RegExp) {
+		const ways = screen.getAllByRole("button", { name: place });
+		const door = ways[0];
+		if (!door) throw new Error(`no way to ${place}`);
+		fireEvent.click(door);
+	}
+
+	it("shows one scene at a time, with a count of the rest", () => {
+		palaceAfter(EVERYTHING);
+		goTo(/rooftop/i);
+
+		// Three things happen on the rooftop: the lightning, the two-pronged
+		// spear and the vendor's trident. Stacked down the page they read as a
+		// scrolling list of unrelated deaths.
+		expect(screen.getByText("1 / 3")).toBeTruthy();
+		expect(screen.getByText(/climbed up to fix a tile/i)).toBeTruthy();
+		expect(
+			screen.queryByText(/hooks the fisherman under the arms/i),
+		).toBeNull();
+	});
+
+	it("pages forward to the next rule", () => {
+		palaceAfter(EVERYTHING);
+		goTo(/rooftop/i);
+		fireEvent.click(screen.getByRole("button", { name: /next item/i }));
+
+		expect(screen.getByText("2 / 3")).toBeTruthy();
+		expect(
+			screen.getByText(/hooks the fisherman under the arms/i),
+		).toBeTruthy();
+		expect(screen.queryByText(/climbed up to fix a tile/i)).toBeNull();
+	});
+
+	it("pages back again", () => {
+		palaceAfter(EVERYTHING);
+		goTo(/rooftop/i);
+		fireEvent.click(screen.getByRole("button", { name: /next item/i }));
+		fireEvent.click(screen.getByRole("button", { name: /previous item/i }));
+
+		expect(screen.getByText("1 / 3")).toBeTruthy();
+		expect(screen.getByText(/climbed up to fix a tile/i)).toBeTruthy();
+	});
+
+	it("opens the next place at its first rule, not wherever the last one was", () => {
+		palaceAfter(EVERYTHING);
+		goTo(/rooftop/i);
+		fireEvent.click(screen.getByRole("button", { name: /next item/i }));
+		expect(screen.getByText("2 / 3")).toBeTruthy();
+
+		// The well holds two. Carrying the rooftop's index across would open it
+		// on its second, or — without the clamp — past the end of a shorter list.
+		goTo(/^well/i);
+		expect(screen.getByText("1 / 2")).toBeTruthy();
+		expect(screen.getByText(/down the shaft, into the dark/i)).toBeTruthy();
+	});
+
+	it("offers no pager where a place holds one rule", () => {
+		palaceAfter(EVERYTHING);
+		goTo(/rice paddy/i);
+
+		// The paddy has a single scene, shared by low and mid class. A pager
+		// reading "1 / 1" is a control that does nothing.
+		expect(screen.queryByText("1 / 1")).toBeNull();
+		expect(screen.queryByRole("button", { name: /next item/i })).toBeNull();
+		expect(screen.getByText(/runs flat to the horizon/i)).toBeTruthy();
 	});
 });
 

@@ -80,7 +80,18 @@ describe("MemoryPalacePage", () => {
 		// caption its picture was drawn from. That caption used to stand here
 		// in place of the mnemonic, so a learner who could not play the audio
 		// got a sentence where the memory was meant to be.
+		//
+		// Two scenes end in this well and they are paged rather than stacked,
+		// so the claim is made by walking from one to the other. The line
+		// saying why they share a place stays up across both, which is the
+		// part that would otherwise be easy to lose when only one is on screen.
+		expect(screen.getByText("1 / 2")).toBeTruthy();
 		expect(screen.getByText(/down the shaft, into the dark/i)).toBeTruthy();
+		expect(screen.getByText(/that is what makes it one place/i)).toBeTruthy();
+
+		fireEvent.click(screen.getByRole("button", { name: /next item/i }));
+
+		expect(screen.getByText("2 / 2")).toBeTruthy();
 		expect(screen.getByText(/driven into the rim/i)).toBeTruthy();
 		expect(screen.getByText(/that is what makes it one place/i)).toBeTruthy();
 	});
